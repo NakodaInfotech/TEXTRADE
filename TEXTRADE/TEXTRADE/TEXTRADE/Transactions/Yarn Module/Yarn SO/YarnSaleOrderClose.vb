@@ -68,8 +68,11 @@ Public Class YarnSaleOrderClose
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim DTROW As DataRow = gridbill.GetDataRow(I)
                 If Convert.ToBoolean(DTROW("CLOSED")) = True Then
-                    If DTROW("TYPE") = "SALEORDER" Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE YARNSALEORDER_DESC SET YSO_CLOSED = 1 WHERE YSO_NO = " & Val(DTROW("SONO")) & " AND YSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND YSO_YEARID = " & YearId, "", "") Else Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGYARNSALEORDER_DESC SET OYSO_CLOSED = 1 WHERE OYSO_NO = " & Val(DTROW("SONO")) & " AND OYSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OYSO_YEARID = " & YearId, "", "")
+                    Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE YARNSALEORDER_DESC SET YSO_CLOSED = 1 WHERE YSO_NO = " & Val(DTROW("SONO")) & " AND YSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND YSO_YEARID = " & YearId, "", "")
+                Else
+                    Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGYARNSALEORDER_DESC SET OYSO_CLOSED = 1 WHERE OYSO_NO = " & Val(DTROW("SONO")) & " AND OYSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OYSO_YEARID = " & YearId, "", "")
                 End If
+
             Next
             fillgrid()
             gridbill.Focus()
