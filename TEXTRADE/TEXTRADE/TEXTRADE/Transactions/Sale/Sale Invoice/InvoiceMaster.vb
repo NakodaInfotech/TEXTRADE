@@ -8996,7 +8996,8 @@ LINE1:
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
             Dim OBJSTOCK As New SelectStockGDN
-            OBJSTOCK.ShowDialog()
+            OBJSTOCK.MdiParent = MDIMain
+            OBJSTOCK.Show()
         Catch ex As Exception
             Throw ex
         End Try
