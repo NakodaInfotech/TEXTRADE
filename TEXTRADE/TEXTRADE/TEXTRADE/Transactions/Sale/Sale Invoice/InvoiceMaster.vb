@@ -5184,6 +5184,8 @@ LINE1:
                     TXTGRIDLRNO.ReadOnly = True
                     GGRIDPURPARTY.Visible = True
                     GPURPARTYBILLNO.Visible = True
+
+                    CMDSELECTSTOCK.Visible = True
                 End If
             Else
                 CMDSELECTGDN.Visible = True
@@ -8996,8 +8998,7 @@ LINE1:
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
             Dim OBJSTOCK As New SelectStockGDN
-            OBJSTOCK.MdiParent = MDIMain
-            OBJSTOCK.Show()
+            OBJSTOCK.ShowDialog()
         Catch ex As Exception
             Throw ex
         End Try
