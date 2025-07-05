@@ -581,11 +581,12 @@ Partial Class PurchaseMaster
         Me.LBLCHADTI.BackColor = System.Drawing.Color.Transparent
         Me.LBLCHADTI.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCHADTI.ForeColor = System.Drawing.Color.Black
-        Me.LBLCHADTI.Location = New System.Drawing.Point(656, 164)
+        Me.LBLCHADTI.Location = New System.Drawing.Point(656, 165)
         Me.LBLCHADTI.Name = "LBLCHADTI"
         Me.LBLCHADTI.Size = New System.Drawing.Size(67, 15)
         Me.LBLCHADTI.TabIndex = 908
         Me.LBLCHADTI.Text = "Quality Wt"
+        Me.LBLCHADTI.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CHKMANUALTCS
         '

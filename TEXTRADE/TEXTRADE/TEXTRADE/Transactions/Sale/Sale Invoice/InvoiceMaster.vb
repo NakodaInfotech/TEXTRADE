@@ -453,7 +453,7 @@ Public Class InvoiceMaster
                     'Item Grid
                     Dim PER As String
                     If dr("PER") = "Qty" Then PER = "Pcs" Else PER = "Mtrs"
-                    GRIDINVOICE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, "", dr("COLOR"), 0, 0, "", dr("BALENO").ToString, Val(dr("QTY")), Val(dr("CUT")), Val(dr("MTRS")), Val(dr("RATE")), PER, Val(dr("AMT")), dr("LRNO"), "", Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", "Mtrs", 0, 0, dr("NAME"), dr("PARTYBILLNO"))
+                    GRIDINVOICE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, "", dr("COLOR"), 0, 0, "", dr("BALENO").ToString, Val(dr("QTY")), Val(dr("CUT")), Val(dr("MTRS")), Val(dr("RATE")), PER, Val(dr("AMT")), dr("LRNO"), dr("TRANSNAME"), Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", "Mtrs", 0, 0, dr("NAME"), dr("PARTYBILLNO"))
                     CMBITEM.Text = dr("ITEMNAME")
 
                     TabControl2.SelectedIndex = (0)
@@ -5167,23 +5167,29 @@ LINE1:
                     txtlrno.Visible = False
                     LBLLRDATE.Visible = False
                     LRDATE.Visible = False
-                    TXTSRNO.ReadOnly = True
-                    CMBITEM.Enabled = False
-                    TXTHSNCODE.ReadOnly = True
-                    CMBQUALITY.Enabled = False
-                    CMBDESIGN.Enabled = False
-                    CMBSHADE.Enabled = False
-                    TXTDESCRIPTION.ReadOnly = True
-                    TXTBALENO.ReadOnly = True
-                    TXTPCS.ReadOnly = True
-                    TXTCUT.ReadOnly = True
-                    TXTMTRS.ReadOnly = True
-                    TXTRATE.ReadOnly = True
-                    CMBPER.Enabled = False
-                    TXTAMT.ReadOnly = True
-                    TXTGRIDLRNO.ReadOnly = True
+                    TXTSRNO.Visible = False
+                    CMBITEM.Visible = False
+                    TXTHSNCODE.Visible = False
+                    TXTQTY.Visible = False
+                    TXTFOLDPER.Visible = False
+                    TXTGRIDLRNO.Visible = False
+                    CMBGRIDTRANS.Visible = False
+                    CMBQUALITY.Visible = False
+                    CMBDESIGN.Visible = False
+                    CMBSHADE.Visible = False
+                    TXTDESCRIPTION.Visible = False
+                    TXTBALENO.Visible = False
+                    TXTPCS.Visible = False
+                    TXTCUT.Visible = False
+                    TXTMTRS.Visible = False
+                    TXTRATE.Visible = False
+                    CMBPER.Visible = False
+                    TXTAMT.Visible = False
+                    TXTGRIDLRNO.Visible = False
                     GGRIDPURPARTY.Visible = True
                     GPURPARTYBILLNO.Visible = True
+
+                    CMDSELECTSTOCK.Visible = True
                 End If
             Else
                 CMDSELECTGDN.Visible = True
@@ -5708,7 +5714,7 @@ LINE1:
                 GGRIDTOTAL.Visible = False
 
                 If ClientName = "ABHEE" Then
-                    GRIDINVOICE.Width = 1490
+                    GRIDINVOICE.Width = 1790
                 Else
                     GRIDINVOICE.Width = 1230
                 End If
