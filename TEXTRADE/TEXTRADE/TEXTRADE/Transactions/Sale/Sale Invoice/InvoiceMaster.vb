@@ -3311,19 +3311,19 @@ LINE2:
 
 
                                 If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
-                                    GRIDINVOICE.Rows.Add(0, dr("ITEM"), DTHSN.Rows(0).Item("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), Format(Val(CUT), "0.00"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, Val(TXTSPDISCPER.Text.Trim), 0, "0.00", "0.00", Val(CGSTPER), "0.00", Val(SGSTPER), "0.00", "0.00", "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0)
+                                    GRIDINVOICE.Rows.Add(0, dr("ITEM"), DTHSN.Rows(0).Item("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), Format(Val(CUT), "0.00"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, Val(TXTSPDISCPER.Text.Trim), 0, "0.00", "0.00", Val(CGSTPER), "0.00", Val(SGSTPER), "0.00", "0.00", "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0, "", "")
                                     TXTCGSTPER1.Text = Val(CGSTPER)
                                     TXTSGSTPER1.Text = Val(SGSTPER)
                                     TXTIGSTPER1.Text = 0
                                 Else
-                                    GRIDINVOICE.Rows.Add(0, dr("ITEM"), DTHSN.Rows(0).Item("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), Format(Val(CUT), "0.00"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, Val(TXTSPDISCPER.Text.Trim), 0, "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", Val(IGSTPER), "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0)
+                                    GRIDINVOICE.Rows.Add(0, dr("ITEM"), DTHSN.Rows(0).Item("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), Format(Val(CUT), "0.00"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, Val(TXTSPDISCPER.Text.Trim), 0, "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", Val(IGSTPER), "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0, "", "")
                                     TXTCGSTPER1.Text = 0
                                     TXTSGSTPER1.Text = 0
                                     TXTIGSTPER1.Text = Val(IGSTPER)
                                 End If
 
                             Else
-                                GRIDINVOICE.Rows.Add(0, dr("ITEM"), " ", dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), "0.00", Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, 0, 0, "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0)
+                                GRIDINVOICE.Rows.Add(0, dr("ITEM"), " ", dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("PRINTDESC"), BALENO, Format(Val(dr("PCS")), "0.00"), "0.00", Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, "0.00", "", "", Val(DISCPER), 0, 0, 0, "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "", dr("GDNNO"), GDNSRNO, DRFROMTYPE("FROMTYPE"), 0, dr("GRIDPARTYPONO"), dr("UNIT"), 0, 0, "", "")
                             End If
                         Next
 
@@ -4096,7 +4096,7 @@ LINE1:
     Sub fillgrid()
 
         If GRIDDOUBLECLICK = False Then
-            GRIDINVOICE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEM.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), TXTFOLDPER.Text.Trim, TXTDESCRIPTION.Text.Trim, TXTBALENO.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, CMBGRIDTRANS.Text.Trim, Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", "Mtrs", 0, 0)
+            GRIDINVOICE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEM.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), TXTFOLDPER.Text.Trim, TXTDESCRIPTION.Text.Trim, TXTBALENO.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, CMBGRIDTRANS.Text.Trim, Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", "Mtrs", 0, 0, "", "")
             getsrno(GRIDINVOICE)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDINVOICE.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
@@ -5363,11 +5363,11 @@ LINE1:
                 CMBSHADE.Visible = False
                 GDESIGN.Visible = False
                 GSHADE.Visible = False
-                TXTQTY.Visible = True
-                TXTFOLDPER.Visible = True
+                ' TXTQTY.Visible = True
+                '   TXTFOLDPER.Visible = True
                 GQTY.Visible = True
                 GFOLDPER.Visible = True
-                TXTGRIDLRNO.Visible = True
+                ' TXTGRIDLRNO.Visible = True
                 CMBGRIDTRANS.Visible = True
                 GLRNO.Visible = True
                 GTRANS.Visible = True
@@ -8890,12 +8890,12 @@ NEXTLINE:
                         TXTCGSTPER1.Text = Val(DTHSN.Rows(0).Item("CGST"))
                         TXTSGSTPER1.Text = Val(DTHSN.Rows(0).Item("SGST"))
                         TXTIGSTPER1.Text = 0
-                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("CGST")), 0, Val(DTHSN.Rows(0).Item("SGST")), 0, 0, 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0)
+                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("CGST")), 0, Val(DTHSN.Rows(0).Item("SGST")), 0, 0, 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, "", "")
                     Else
                         TXTCGSTPER1.Text = 0
                         TXTSGSTPER1.Text = 0
                         TXTIGSTPER1.Text = Val(DTHSN.Rows(0).Item("IGST"))
-                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("IGST")), 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0)
+                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("IGST")), 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, "", "")
                     End If
                     TOTAL()
 LINE1:
@@ -9389,7 +9389,7 @@ LINE2:
                         If DT.Rows(0).Item("UNIT") <> "" Then PER = DT.Rows(0).Item("UNIT") Else PER = "Mtrs"
                         GETHSNCODE()
                         If DTROW("TYPE") = "YARNSALEORDER" Or DTROW("TYPE") = "OPENINGYARNSALEORDER" Then DT.Rows(0).Item("ITEMREMARKS") = DTROW("GRIDDESC")
-                        GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", DTROW("DESIGN"), DTROW("COLOR"), 0, 0, DT.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")))
+                        GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", DTROW("DESIGN"), DTROW("COLOR"), 0, 0, DT.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), "", "")
                     End If
 NEXTLINE:
                 Next
