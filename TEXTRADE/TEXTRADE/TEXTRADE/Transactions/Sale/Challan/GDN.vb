@@ -32,7 +32,6 @@ Public Class GDN
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
-
     Sub CLEAR()
 
         EP.Clear()
@@ -98,12 +97,9 @@ Public Class GDN
             CMBPIECETYPE.Text = ""
         End If
 
-
         TXTBALENOTO.Clear()
         txtremarks.Clear()
-
         CMDSELECTSTOCK.Enabled = True
-
         lbllocked.Visible = False
         PBlock.Visible = False
         SALELOCK.Visible = False
@@ -111,8 +107,6 @@ Public Class GDN
         'clearing itemgrid textboxes and combos
         GRIDGDN.RowCount = 0
         GRIDORDER.RowCount = 0
-
-
         cmdselectOrder.Enabled = True
         cmdselectps.Enabled = True
         GRIDDOUBLECLICK = False
