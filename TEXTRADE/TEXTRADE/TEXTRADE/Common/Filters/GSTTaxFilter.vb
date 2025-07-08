@@ -380,7 +380,6 @@ Public Class GSTTaxFilter
                 If MsgBox("Wish To Mail Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
 
                     'WE HAVE TO CREATE 1 WORKBOOK AND ALL OTHER FILES AS SHEETS
-                    'TESTING
 
 
                     Dim OBJRPT As New clsReportDesigner("B2B", System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx", 2)
