@@ -420,7 +420,9 @@ CHECKNEXTLINEMTRS:
             Cursor.Current = Cursors.WaitCursor
 
             EP.Clear()
+
             If Not ERRORVALID() Then
+
                 Exit Sub
             End If
 
