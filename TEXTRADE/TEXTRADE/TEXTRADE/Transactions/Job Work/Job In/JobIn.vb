@@ -420,7 +420,9 @@ CHECKNEXTLINEMTRS:
             Cursor.Current = Cursors.WaitCursor
 
             EP.Clear()
+
             If Not ERRORVALID() Then
+
                 Exit Sub
             End If
 
@@ -442,7 +444,6 @@ CHECKNEXTLINEMTRS:
             alParaval.Add(CMBPROCESS.Text.Trim)
             alParaval.Add(TXTBALMTRS.Text.Trim)
             alParaval.Add(TXTOUTMTRS.Text.Trim)
-
             alParaval.Add(cmbtrans.Text.Trim)
             alParaval.Add(txtlrno.Text.Trim)
             alParaval.Add(lrdate.Value)
@@ -455,13 +456,11 @@ CHECKNEXTLINEMTRS:
             alParaval.Add(CMBJONO.Text.Trim)
             alParaval.Add(TXTTYPE.Text.Trim)
             alParaval.Add(TXTLOTNO.Text.Trim)
-
             alParaval.Add(CmpId)
             alParaval.Add(Locationid)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
-
 
             Dim gridsrno As String = ""
             Dim PIECETYPE As String = ""
@@ -531,7 +530,6 @@ CHECKNEXTLINEMTRS:
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = row.Cells(GFROMTYPE.Index).Value
                         PCSNO = row.Cells(GPCSNO.Index).Value
-
 
                     Else
 
