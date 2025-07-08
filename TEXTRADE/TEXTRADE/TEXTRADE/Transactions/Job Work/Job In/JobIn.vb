@@ -444,7 +444,6 @@ CHECKNEXTLINEMTRS:
             alParaval.Add(CMBPROCESS.Text.Trim)
             alParaval.Add(TXTBALMTRS.Text.Trim)
             alParaval.Add(TXTOUTMTRS.Text.Trim)
-
             alParaval.Add(cmbtrans.Text.Trim)
             alParaval.Add(txtlrno.Text.Trim)
             alParaval.Add(lrdate.Value)
