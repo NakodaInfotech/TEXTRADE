@@ -2389,7 +2389,7 @@ NORATE:
                 End If
             Next
             LBLTOTALBALES.Text = Val(dic.Count)
-            If ClientName = "KCRAYON" Or ClientName = "CHINTAN" Or ClientName = "SNCM" Then TXTBALENOFROM.Text = Val(LBLTOTALBALES.Text)
+            If ClientName = "CHINTAN" Or ClientName = "SNCM" Then TXTBALENOFROM.Text = Val(LBLTOTALBALES.Text)
         Catch ex As Exception
             Throw ex
         End Try

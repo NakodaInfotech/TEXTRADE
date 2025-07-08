@@ -7628,6 +7628,1252 @@ fontItalic As Boolean = False)
         Return Nothing
     End Function
 
+#Region "GSTR1"
+    Public Function GSTGSTR1_EXCEL(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date, CLIENTNAME As String, Optional ByVal REGNAME As String = "") As Object
+        Try
+
+            SetWorkSheet()
+            objSheet.Name = "B2B"
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 13)
+            Next
+
+            SetColumnWidth(Range("1"), 25)
+            SetColumnWidth(Range("2"), 25)
+            SetColumnWidth(Range("3"), 17)
+            SetColumnWidth(Range("5"), 17)
+            SetColumnWidth(Range("6"), 17)
+            SetColumnWidth(Range("10"), 17)
+            SetColumnWidth(Range("11"), 10)
+            SetColumnWidth(Range("12"), 17)
+
+
+            '''''''''''Report Title
+            Dim OBJCMN As New ClsCommon
+            Dim DT As New System.Data.DataTable
+
+
+
+
+            Write("Summary For B2B (4)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("No Of Receipients", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("No Of Invoices", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Invoice Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Taxable Value", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cess", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("13")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("13")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & RowIndex, objColumn.Item("13").ToString & RowIndex)
+
+
+            RowIndex += 1
+            'WE HAVE WRITTEN THIS FORMULA AT THE END, IF WE WRITE HERE THEN THE SPEED REDUCES DRASTICALLY
+            'FORMULA("=SUMPRODUCT((" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&""""))", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            'FORMULA("=SUMPRODUCT((" & objColumn.Item("2").ToString & 5 & ":" & objColumn.Item("2").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("2").ToString & 5 & ":" & objColumn.Item("2").ToString & 40000 & "," & objColumn.Item("2").ToString & 5 & ":" & objColumn.Item("2").ToString & 40000 & "&""""))", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & 5 & ":" & objColumn.Item("5").ToString & 40000 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("12").ToString & 5 & ":" & objColumn.Item("12").ToString & 40000 & ")", Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("13").ToString & 5 & ":" & objColumn.Item("13").ToString & 40000 & ")", Range("13"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objSheet.Range(objColumn.Item("5").ToString & 3, objColumn.Item("5").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 3, objColumn.Item("12").ToString & 3).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & RowIndex, objColumn.Item("13").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("GSTIN/UIN Of Receipients", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Receiver Name", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice No", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice Date", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Place Of Supply", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Reverse Charge", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Applicable %", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice Type", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("E-Commerce GSTIN", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess Amount", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            'THIS IS DONE ADDITIONALLY
+            Write("CGST Amount", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("SGST Amount", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("IGST Amount", Range("16"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("13")).Interior.Color = RGB(250, 240, 230)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & RowIndex, objColumn.Item("13").ToString & RowIndex)
+
+
+            Dim WHERECLAUSE As String = ""
+            If REGNAME <> "" Then WHERECLAUSE = " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "'"
+
+            'THIS CODE CREATES ISSUE IF THERE ARE MULTIPLE GST% IN SAME HSNCODE FOR KREEVE
+            'DT = OBJCMN.Execute_Any_String(" select INVOICEMASTER.INVOICE_PRINTINITIALS AS PRINTINITIALS, INVOICEMASTER.INVOICE_INITIALS AS INVNO, ISNULL(LEDGERS.ACC_CMPNAME, '') AS NAME, CAST(INVOICEMASTER.INVOICE_DATE AS VARCHAR(10)) AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL, ISNULL(INVOICEMASTER.INVOICE_TOTALCGSTAMT, 0) AS TOTALCGSTAMT, ISNULL(INVOICEMASTER.INVOICE_TOTALSGSTAMT, 0) AS TOTALSGSTAMT, ISNULL(INVOICEMASTER.INVOICE_TOTALIGSTAMT, 0) AS TOTALIGSTAMT from INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID where   INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "'  " & WHERECLAUSE & "   AND INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') <> '' ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO", "", "")
+            Dim DTVERSION As System.Data.DataTable = OBJCMN.Execute_Any_String("SELECT VERSION_INVOICELINEGST AS INVOICESCREENTYPE FROM VERSION", "", "")
+            'IF LINEGST IS FALSE
+            If Convert.ToBoolean(DTVERSION.Rows(0).Item("INVOICESCREENTYPE")) = False Then
+                DT = OBJCMN.Execute_Any_String(" select INVOICEMASTER.INVOICE_PRINTINITIALS AS PRINTINITIALS, INVOICEMASTER.INVOICE_INITIALS AS INVNO, ISNULL(LEDGERS.ACC_CMPNAME, '') AS NAME, CAST(INVOICEMASTER.INVOICE_DATE AS VARCHAR(10)) AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL, ISNULL(INVOICEMASTER.INVOICE_TOTALCGSTAMT, 0) AS TOTALCGSTAMT, ISNULL(INVOICEMASTER.INVOICE_TOTALSGSTAMT, 0) AS TOTALSGSTAMT, ISNULL(INVOICEMASTER.INVOICE_TOTALIGSTAMT, 0) AS TOTALIGSTAMT from INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID where   INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "'  " & WHERECLAUSE & "   AND INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') <> '' ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO", "", "")
+            Else
+                DT = OBJCMN.Execute_Any_String(" SELECT INVOICEMASTER.INVOICE_PRINTINITIALS AS PRINTINITIALS, INVOICEMASTER.INVOICE_INITIALS AS INVNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, CAST(INVOICEMASTER.INVOICE_DATE AS VARCHAR(10)) AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(CAST(STATEMASTER.state_remark AS VARCHAR(100)), '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_TAXABLEAMT, 0)) ELSE ISNULL(INVOICE_SUBTOTAL, 0) END) AS TAXABLEAMT, (CASE WHEN INVOICEMASTER_DESC.INVOICE_IGSTPER = 0 THEN INVOICEMASTER_DESC.INVOICE_CGSTPER + INVOICEMASTER_DESC.INVOICE_SGSTPER ELSE INVOICEMASTER_DESC.INVOICE_IGSTPER END) AS GSTPER, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_GRIDTOTAL, 0)) ELSE ISNULL(INVOICE_TOTALWITHGST, 0) END) AS GRANDTOTAL,(CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_CGSTAMT, 0)) ELSE ISNULL(INVOICE_TOTALCGSTAMT, 0) END) AS TOTALCGSTAMT, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_SGSTAMT, 0)) ELSE ISNULL(INVOICE_TOTALSGSTAMT, 0) END) AS TOTALSGSTAMT, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_IGSTAMT, 0)) ELSE ISNULL(INVOICE_TOTALIGSTAMT, 0) END) AS TOTALIGSTAMT FROM INVOICEMASTER INNER JOIN INVOICEMASTER_DESC ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATEMASTER.state_id = LEDGERS.Acc_stateid INNER JOIN REGISTERMASTER ON REGISTERMASTER.register_id = INVOICEMASTER.INVOICE_REGISTERID where INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "'  " & WHERECLAUSE & "   AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') <> '' GROUP BY INVOICEMASTER.INVOICE_PRINTINITIALS, INVOICEMASTER.INVOICE_INITIALS, ISNULL(LEDGERS.Acc_cmpname, ''), CAST(INVOICEMASTER.INVOICE_DATE AS VARCHAR(10)), ISNULL(LEDGERS.ACC_GSTIN, ''),  ISNULL(CAST(STATEMASTER.state_remark AS VARCHAR(100)), ''), ISNULL(STATEMASTER.state_name, ''), ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE, 'LINE GST'), ISNULL(INVOICE_SUBTOTAL, 0), INVOICEMASTER_DESC.INVOICE_CGSTPER, INVOICEMASTER_DESC.INVOICE_SGSTPER, INVOICEMASTER_DESC.INVOICE_IGSTPER, INVOICE_TOTALWITHGST, INVOICE_TOTALCGSTAMT, INVOICE_TOTALSGSTAMT, INVOICE_TOTALIGSTAMT, INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO, REGISTERMASTER.REGISTER_NAME ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO", "", "")
+            End If
+
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(DTROW("GSTIN"), Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("NAME"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                'CHANGED BY GULKIT
+                'Write("=(""" & DTROW("INVNO") & """)", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("PRINTINITIALS"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("DATE")).Date, "dd-MMM-yy"), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("GRANDTOTAL"), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(DTROW("STATECODE") & "-" & DTROW("STATE"), Range("6"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("N", Range("7"), XlHAlign.xlHAlignCenter, , False, 10)
+                Write("", Range("8"), XlHAlign.xlHAlignCenter, , False, 10)
+                Write("Regular", Range("9"), XlHAlign.xlHAlignCenter, , False, 10)
+                Write("", Range("10"), XlHAlign.xlHAlignLeft, , False, 10)
+
+
+                If Convert.ToBoolean(DTVERSION.Rows(0).Item("INVOICESCREENTYPE")) = False Then
+                    'GET GSTPER FROM 1ST RECORD OF INVOICEDESC AND FETCH FROM HSNCODE_DESC
+                    Dim OBJGST As System.Data.DataTable = OBJCMN.SEARCH(" TOP 1 (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_EXPORTGST,0) = 'TRUE' THEN ISNULL(HSN_EXPIGST,0) ELSE HSN_IGST END) AS GSTPER", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER_DESC ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER_DESC.HSN_ID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID", WHERECLAUSE & " AND INVOICEMASTER.INVOICE_INITIALS = '" & DTROW("INVNO") & "' AND HSNMASTER_DESC.HSN_WEFDATE <= INVOICEMASTER.INVOICE_DATE AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC ")
+                    If OBJGST.Rows.Count > 0 Then Write(Val(OBJGST.Rows(0).Item("GSTPER")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+                Else
+                    Write(Val(DTROW("GSTPER")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+                End If
+
+                Write(Val(DTROW("TAXABLEAMT")), Range("12"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("13"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+                Write(Val(DTROW("TOTALCGSTAMT")), Range("14"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TOTALSGSTAMT")), Range("15"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TOTALIGSTAMT")), Range("16"), XlHAlign.xlHAlignRight, , False, 10)
+            Next
+
+
+
+            FORMULA("=SUMPRODUCT((" & objColumn.Item("1").ToString & 5 & ": " & objColumn.Item("1").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&""""))", objColumn.Item("1").ToString & 3, XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUMPRODUCT((" & objColumn.Item("3").ToString & 5 & ":" & objColumn.Item("3").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("3").ToString & 5 & ":" & objColumn.Item("3").ToString & 40000 & "," & objColumn.Item("3").ToString & 5 & ":" & objColumn.Item("3").ToString & 40000 & "&""""))", objColumn.Item("3").ToString & 3, XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+            objSheet.Range(objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("12").ToString & 5, objColumn.Item("12").ToString & RowIndex).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 5, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 5, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & 5, objColumn.Item("13").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '****************** END OF B2B CODE ***************************
+
+
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** B2CL ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "B2CL"
+
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 13)
+            Next
+
+            SetColumnWidth(Range("1"), 25)
+            SetColumnWidth(Range("3"), 17)
+            SetColumnWidth(Range("4"), 17)
+            SetColumnWidth(Range("7"), 17)
+            SetColumnWidth(Range("9"), 17)
+
+
+            '''''''''''Report Title
+            Write("Summary For B2CL (5)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("No Of Invoices", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Total Invoice Value", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Taxable Value", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cess", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("9")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("9")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUMPRODUCT((" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&""""))", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUMPRODUCT(1/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&"""")," & objColumn.Item("3").ToString & 5 & ":" & objColumn.Item("3").ToString & 40000 & ")", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("7").ToString & 5 & ":" & objColumn.Item("7").ToString & 40000 & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & 5 & ":" & objColumn.Item("8").ToString & 40000 & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objSheet.Range(objColumn.Item("3").ToString & 3, objColumn.Item("3").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 3, objColumn.Item("7").ToString & 3).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("Invoice No", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice Date", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice Value", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Place Of Supply", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Applicable %", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess Amount", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("E-Commerce GSTIN", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("9")).Interior.Color = RGB(250, 240, 230)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+
+
+            If REGNAME <> "" Then WHERECLAUSE = " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "'"
+
+            'SALE(URD)
+            DT = OBJCMN.Execute_Any_String(" SELECT INVOICEMASTER.INVOICE_PRINTINITIALS AS INVNO, INVOICEMASTER.INVOICE_DATE AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL FROM INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID WHERE  INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND  INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') = '' AND ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) > 0 AND INVOICE_TOTALIGSTAMT >= 200000 ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO", "", "")
+
+            ''DT = OBJCMN.search(" INVOICEMASTER.INVOICE_INITIALS AS INVNO, INVOICEMASTER.INVOICE_DATE AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL  ", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID", WHERECLAUSE & " AND INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') = '' AND ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) > 250000 ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO")
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write("=(""" & DTROW("INVNO") & """)", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("DATE")).Date, "dd-MMM-yy"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("GRANDTOTAL"), Range("3"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(DTROW("STATECODE") & "-" & DTROW("STATE"), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("", Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                'GET GSTPER FROM 1ST RECORD OF INVOICEDESC AND FETCH FROM HSNCODE
+                Dim OBJGST As System.Data.DataTable = OBJCMN.SEARCH(" TOP 1 (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_EXPORTGST,0) = 'TRUE' THEN ISNULL(HSN_EXPIGST,0) ELSE HSN_IGST END) AS GSTPER", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER_DESC ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER_DESC.HSN_ID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID ", WHERECLAUSE & " AND INVOICEMASTER.INVOICE_INITIALS = '" & DTROW("INVNO") & "' AND HSNMASTER_DESC.HSN_WEFDATE <= INVOICEMASTER.INVOICE_DATE AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                If OBJGST.Rows.Count > 0 Then Write(Val(OBJGST.Rows(0).Item("GSTPER")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("", Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+            Next
+
+            objSheet.Range(objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '****************** END OF B2CL CODE ***************************
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** B2CS ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "B2CS"
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 13)
+            Next
+
+            SetColumnWidth(Range("1"), 25)
+            SetColumnWidth(Range("2"), 17)
+            SetColumnWidth(Range("5"), 17)
+            SetColumnWidth(Range("7"), 17)
+
+
+            '''''''''''Report Title
+
+            Write("Summary For B2CS (7)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("Total Taxable Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cess", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("7")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("7")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & 5 & ":" & objColumn.Item("5").ToString & 40000 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("6").ToString & 5 & ":" & objColumn.Item("6").ToString & 40000 & ")", Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objSheet.Range(objColumn.Item("5").ToString & 3, objColumn.Item("5").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 3, objColumn.Item("6").ToString & 3).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("Type", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Place Of Supply", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Applicable %", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess Amount", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("E-Commerce GSTIN", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("7")).Interior.Color = RGB(250, 240, 230)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+
+
+            If REGNAME <> "" Then WHERECLAUSE = " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "'"
+
+
+            'SALE(URD)<250000
+            'DT = OBJCMN.search(" INVOICEMASTER.INVOICE_INITIALS AS INVNO, INVOICEMASTER.INVOICE_DATE AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL  ", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID ", WHERECLAUSE & " AND INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') = '' ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO")
+
+            DT = OBJCMN.Execute_Any_String(" SELECT INVOICEMASTER.INVOICE_PRINTINITIALS AS INVNO, INVOICEMASTER.INVOICE_DATE AS DATE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(STATEMASTER.STATE_REMARK, '') AS STATECODE, ISNULL(STATEMASTER.STATE_NAME, '') AS STATE, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN ISNULL(INVOICEMASTER.INVOICE_TOTALTAXABLEAMT, 0) ELSE ISNULL(INVOICE_SUBTOTAL,0) END) AS TAXABLEAMT, 0 AS GSTPER, ISNULL(INVOICEMASTER.INVOICE_TOTALWITHGST, 0) AS GRANDTOTAL FROM INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON STATE_ID = LEDGERS.ACC_STATEID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID WHERE INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND INVOICE_YEARID = " & YEARID & " AND ISNULL(ACC_GSTIN,'') = '' AND ISNULL(INVOICEMASTER.INVOICE_TOTALIGSTAMT, 0) < 200000 ORDER BY INVOICEMASTER.INVOICE_DATE, INVOICEMASTER.INVOICE_NO", "", "")
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write("OE", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("STATECODE") & "-" & DTROW("STATE"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                'GET GSTPER FROM 1ST RECORD OF INVOICEDESC AND FETCH FROM HSNCODE
+                Dim OBJGST As System.Data.DataTable = OBJCMN.SEARCH(" TOP 1 (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_EXPORTGST,0) = 'TRUE' THEN ISNULL(HSN_EXPIGST,0) ELSE HSN_IGST END) AS GSTPER", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER_DESC ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER_DESC.HSN_ID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID", WHERECLAUSE & " AND INVOICEMASTER.INVOICE_PRINTINITIALS = '" & DTROW("INVNO") & "' AND HSNMASTER_DESC.HSN_WEFDATE <= INVOICEMASTER.INVOICE_DATE AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC ")
+                If OBJGST.Rows.Count > 0 Then Write(Val(OBJGST.Rows(0).Item("GSTPER")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("", Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            Next
+
+            objSheet.Range(objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF B2CS CODE ***************************
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** CDNR ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "CDNR"
+
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 25)
+            Next
+
+            SetColumnWidth(Range("8"), 17)
+
+
+            '''''''''''Report Title
+            Dim TEMPDT As New System.Data.DataTable
+
+            Write("GSTIN/UIN of Recipient", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Receiver Name", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice/Advance Receipt Number", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice/Advance Receipt date", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Note/Refund Voucher Number", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Note/Refund Voucher date", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Document Type", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Place Of Supply", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Voucher Value", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Applicable %", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Pre GST", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            'THIS IS DONE ADDITIONALLY
+            Write("CGST Amount", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("SGST Amount", Range("16"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("IGST Amount", Range("17"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            objSheet.Range(Range("1"), Range("14")).Interior.Color = RGB(250, 240, 230)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & RowIndex, objColumn.Item("13").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("14").ToString & RowIndex, objColumn.Item("14").ToString & RowIndex)
+
+
+            If REGNAME <> "" Then WHERECLAUSE = " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "'"
+
+
+            'CREDITNOTE / DEBITNOTE / SALERETURN
+            'DT = OBJCMN.search("*", "", " (SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE CREDITNOTEMASTER.CN_BILLNO END) AS INVINITIALS, (CASE WHEN CN_BILLNO = '' THEN CN_date ELSE COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE) END) AS INVDATE, CREDITNOTEMASTER.CN_initials AS CNINITIALS, CREDITNOTEMASTER.CN_date AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, CREDITNOTEMASTER.CN_cmpid AS CMPID, CREDITNOTEMASTER.CN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATE, CREDITNOTEMASTER.CN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER.HSN_IGST,0) AS RATE, CREDITNOTEMASTER.CN_SUBTOTAL AS TAXABLEAMT FROM CREDITNOTEMASTER INNER JOIN LEDGERS ON CREDITNOTEMASTER.CN_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN HSNMASTER ON CREDITNOTEMASTER.CN_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN INVOICEMASTER ON CREDITNOTEMASTER.CN_yearid = INVOICEMASTER.INVOICE_YEARID AND CREDITNOTEMASTER.CN_BILLNO = INVOICEMASTER.INVOICE_INITIALS LEFT OUTER JOIN OPENINGBILL ON CREDITNOTEMASTER.CN_yearid = OPENINGBILL.BILL_YEARID AND CREDITNOTEMASTER.CN_BILLNO = OPENINGBILL.BILL_INITIALS UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, DEBITNOTEMASTER.DN_initials AS INVINITIALS, DEBITNOTEMASTER.DN_date AS INVDATE, DEBITNOTEMASTER.DN_initials AS DNINITIALS, DEBITNOTEMASTER.DN_date AS DNDATE, 'D' AS DOCTYPE, '07-Others' AS REASON, DEBITNOTEMASTER.DN_cmpid AS CMPID, DEBITNOTEMASTER.DN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, DEBITNOTEMASTER.DN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER.HSN_IGST, 0) AS RATE, DEBITNOTEMASTER.DN_SUBTOTAL AS TAXABLEAMT FROM DEBITNOTEMASTER INNER JOIN LEDGERS ON DEBITNOTEMASTER.DN_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN HSNMASTER ON DEBITNOTEMASTER.DN_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id WHERE (DEBITNOTEMASTER.DN_BILLNO = '') UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_INITIALS, OPENINGBILL.BILL_INITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS INVINITIALS, (CASE WHEN ISNULL(SALRET_INVOICENO, '') = '' THEN SALRET_date ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE), SALRET_DATE) END) AS INVDATE, 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10)) AS CNINITIALS, SALERETURN.SALRET_DATE AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, SALERETURN.SALRET_cmpid AS CMPID, SALERETURN.SALRET_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, SALERETURN.SALRET_GRANDTOTAL AS GRANDTOTAL, CASE WHEN ISNULL(SALRET_IGSTPER, 0) = 0 THEN ISNULL(SALRET_CGSTPER, 0) + ISNULL(SALRET_SGSTPER, 0) ELSE ISNULL(SALRET_IGSTPER, 0) END AS RATE, SALERETURN.SALRET_SUBTOTAL AS TAXABLEAMT FROM SALERETURN INNER JOIN LEDGERS ON SALERETURN.SALRET_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN OPENINGBILL ON SALERETURN.SALRET_yearid = OPENINGBILL.BILL_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = OPENINGBILL.BILL_NO AND SALERETURN.SALRET_INVOICEREGID = OPENINGBILL.BILL_REGISTERID LEFT OUTER JOIN INVOICEMASTER ON SALERETURN.SALRET_yearid = INVOICEMASTER.INVOICE_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = INVOICEMASTER.INVOICE_NO AND SALERETURN.SALRET_INVOICEREGID = INVOICEMASTER.INVOICE_REGISTERID) AS T ", " AND T.CNDATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND T.CNDATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND T.YEARID = " & YEARID & " AND T.GSTIN <> '' ORDER BY T.CNDATE")
+            DT = OBJCMN.Execute_Any_String("SELECT * FROM (SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE CREDITNOTEMASTER.CN_BILLNO END) AS INVINITIALS, ISNULL((CASE WHEN CN_BILLNO = '' THEN CN_date ELSE COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE) END), GETDATE()) AS INVDATE, CREDITNOTEMASTER.CN_PRINTINITIALS AS CNINITIALS, CREDITNOTEMASTER.CN_date AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, CREDITNOTEMASTER.CN_cmpid AS CMPID, CREDITNOTEMASTER.CN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATE, CREDITNOTEMASTER.CN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS RATE, CREDITNOTEMASTER.CN_SUBTOTAL AS TAXABLEAMT, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE COALESCE(INVOICEMASTER.INVOICE_PRINTINITIALS, OPENINGBILL.BILL_PRINTINITIALS) END) AS PRINTINITIALS, ISNULL(CREDITNOTEMASTER.CN_CGSTAMT,0) AS TOTALCGSTAMT, ISNULL(CREDITNOTEMASTER.CN_SGSTAMT,0) AS TOTALSGSTAMT, ISNULL(CREDITNOTEMASTER.CN_IGSTAMT,0) AS TOTALIGSTAMT FROM CREDITNOTEMASTER INNER JOIN LEDGERS ON CREDITNOTEMASTER.CN_LEDGERID = LEDGERS.Acc_id CROSS APPLY (SELECT TOP 1 * FROM HSNMASTER_DESC WHERE HSN_WEFDATE <= CREDITNOTEMASTER.CN_DATE AND HSN_YEARID = CREDITNOTEMASTER.CN_yearid AND HSN_ID = CN_HSNCODEID ORDER BY HSN_WEFDATE DESC) AS HSNMASTER_DESC LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN INVOICEMASTER ON CREDITNOTEMASTER.CN_yearid = INVOICEMASTER.INVOICE_YEARID AND CREDITNOTEMASTER.CN_BILLNO = INVOICEMASTER.INVOICE_INITIALS LEFT OUTER JOIN OPENINGBILL ON CREDITNOTEMASTER.CN_yearid = OPENINGBILL.BILL_YEARID AND CREDITNOTEMASTER.CN_BILLNO = OPENINGBILL.BILL_INITIALS WHERE ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE' UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, ISNULL(DEBITNOTEMASTER.DN_SALEREFNO,'') AS INVINITIALS, DN_DATE AS INVDATE, DEBITNOTEMASTER.DN_PRINTINITIALS AS DNINITIALS, DEBITNOTEMASTER.DN_date AS DNDATE, 'D' AS DOCTYPE, '07-Others' AS REASON, DEBITNOTEMASTER.DN_cmpid AS CMPID, DEBITNOTEMASTER.DN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, DEBITNOTEMASTER.DN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS RATE, DEBITNOTEMASTER.DN_SUBTOTAL AS TAXABLEAMT, ISNULL(DEBITNOTEMASTER.DN_SALEREFNO,'') AS PRINTINITIALS, ISNULL(DEBITNOTEMASTER.DN_TOTALCGSTAMT,0) AS TOTALCGSTAMT, ISNULL(DEBITNOTEMASTER.DN_TOTALSGSTAMT,0) AS TOTALSGSTAMT, ISNULL(DEBITNOTEMASTER.DN_TOTALIGSTAMT,0) AS TOTALIGSTAMT FROM DEBITNOTEMASTER INNER JOIN LEDGERS ON DEBITNOTEMASTER.DN_LEDGERID = LEDGERS.Acc_id CROSS APPLY (SELECT TOP 1 * FROM HSNMASTER_DESC WHERE HSN_WEFDATE <= DEBITNOTEMASTER.DN_DATE AND HSN_YEARID = DEBITNOTEMASTER.DN_yearid AND HSN_ID = DN_HSNCODEID ORDER BY HSN_WEFDATE DESC) AS HSNMASTER_DESC LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id WHERE ISNULL(DEBITNOTEMASTER.DN_GSTR1,'TRUE') = 'TRUE' UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_INITIALS, OPENINGBILL.BILL_INITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS INVINITIALS, (CASE WHEN ISNULL(SALRET_INVOICENO, '') = '' THEN SALRET_date ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE), SALRET_DATE) END) AS INVDATE, CAST(SALERETURN.SALRET_PRINTINITIALS AS VARCHAR(50)) AS CNINITIALS, SALERETURN.SALRET_DATE AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, SALERETURN.SALRET_cmpid AS CMPID, SALERETURN.SALRET_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, SALERETURN.SALRET_GRANDTOTAL AS GRANDTOTAL, CASE WHEN ISNULL(SALRET_IGSTPER, 0) = 0 THEN ISNULL(SALRET_CGSTPER, 0) + ISNULL(SALRET_SGSTPER, 0) ELSE ISNULL(SALRET_IGSTPER, 0) END AS RATE, SALERETURN.SALRET_SUBTOTAL AS TAXABLEAMT, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_PRINTINITIALS, OPENINGBILL.BILL_PRINTINITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS PRINTINITIALS, ISNULL(SALERETURN.SALRET_TOTALCGSTAMT,0) AS TOTALCGSTAMT, ISNULL(SALERETURN.SALRET_TOTALSGSTAMT,0) AS TOTALSGSTAMT, ISNULL(SALERETURN.SALRET_TOTALIGSTAMT,0) AS TOTALIGSTAMT  FROM SALERETURN INNER JOIN LEDGERS ON SALERETURN.SALRET_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN OPENINGBILL ON SALERETURN.SALRET_yearid = OPENINGBILL.BILL_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = OPENINGBILL.BILL_NO AND SALERETURN.SALRET_INVOICEREGID = OPENINGBILL.BILL_REGISTERID AND SALERETURN.SALRET_INVOICEINITIALS = OPENINGBILL.BILL_INITIALS LEFT OUTER JOIN INVOICEMASTER ON SALERETURN.SALRET_yearid = INVOICEMASTER.INVOICE_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = INVOICEMASTER.INVOICE_NO AND SALERETURN.SALRET_INVOICEREGID = INVOICEMASTER.INVOICE_REGISTERID) AS T WHERE  T.CNDATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND T.CNDATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND T.YEARID = " & YEARID & " AND T.GSTIN <> '' ORDER BY T.CNDATE", "", "")
+
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(DTROW("GSTIN"), Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("NAME"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("=(""" & DTROW("PRINTINITIALS") & """)", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("INVDATE")).Date, "dd-MMM-yy"), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("=(""" & DTROW("CNINITIALS") & """)", Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("CNDATE")).Date, "dd-MMM-yy"), Range("6"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("DOCTYPE"), Range("7"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("STATECODE") & "-" & DTROW("STATE"), Range("8"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Val(DTROW("GRANDTOTAL")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("", Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("RATE")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("12"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("13"), XlHAlign.xlHAlignRight, , False, 10)
+
+                'CHECK WHETHER BILLNO IS PREGST OR NOT
+                Dim TEMPPREGST As String = "N"
+                If DTROW("INVINITIALS") <> "" Then TEMPDT = OBJCMN.SEARCH("INVOICE_DATE AS DATE", "", "INVOICEMASTER ", " AND INVOICE_INITIALS = '" & DTROW("INVINITIALS") & "' AND INVOICE_YEARID = " & YEARID) Else TEMPPREGST = "N"
+                If TEMPDT.Rows.Count > 0 Then
+                    If Convert.ToDateTime(TEMPDT.Rows(0).Item("DATE")).Date < "01/07/2017" Then TEMPPREGST = "Y" Else TEMPPREGST = "N"
+                End If
+                Write(TEMPPREGST, Range("14"), XlHAlign.xlHAlignLeft, , False, 10)
+
+
+                Write(Val(DTROW("TOTALCGSTAMT")), Range("15"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TOTALSGSTAMT")), Range("16"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TOTALIGSTAMT")), Range("17"), XlHAlign.xlHAlignRight, , False, 10)
+
+            Next
+
+            objSheet.Range(objColumn.Item("9").ToString & 2, objColumn.Item("9").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 2, objColumn.Item("11").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("12").ToString & 2, objColumn.Item("12").ToString & RowIndex).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 2, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 2, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 2, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 2, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 2, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 2, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 2, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 2, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 2, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 2, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 2, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 2, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & 2, objColumn.Item("13").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("14").ToString & 2, objColumn.Item("14").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUM(" & objColumn.Item("9").ToString & 2 & ":" & objColumn.Item("9").ToString & RowIndex - 1 & ")", Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("12").ToString & 2 & ":" & objColumn.Item("12").ToString & RowIndex - 1 & ")", Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("15").ToString & 2 & ":" & objColumn.Item("15").ToString & RowIndex - 1 & ")", Range("15"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("16").ToString & 2 & ":" & objColumn.Item("16").ToString & RowIndex - 1 & ")", Range("16"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("17").ToString & 2 & ":" & objColumn.Item("17").ToString & RowIndex - 1 & ")", Range("17"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF CDNR CODE ***************************
+
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** CDNUR ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "CDNUR"
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 25)
+            Next
+
+            SetColumnWidth(Range("6"), 17)
+
+
+            '''''''''''Report Title
+
+            Write("UR Type", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Note/Refund Voucher Number", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Note/Refund Voucher date", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Document Type", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice/Advance Receipt Number", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Invoice/Advance Receipt date", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Place Of Supply", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Voucher Value", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Applicable %", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Pre GST", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("13")).Interior.Color = RGB(250, 240, 230)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & RowIndex, objColumn.Item("13").ToString & RowIndex)
+
+
+            If REGNAME <> "" Then WHERECLAUSE = " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "'"
+
+
+            'CREDITNOTE / DEBITNOTE / SALERETURN
+            'DT = OBJCMN.search("*", "", " (SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE CREDITNOTEMASTER.CN_BILLNO END) AS INVINITIALS, (CASE WHEN CN_BILLNO = '' THEN CN_date ELSE COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE) END) AS INVDATE, CREDITNOTEMASTER.CN_initials AS CNINITIALS, CREDITNOTEMASTER.CN_date AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, CREDITNOTEMASTER.CN_cmpid AS CMPID, CREDITNOTEMASTER.CN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATE, CREDITNOTEMASTER.CN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER.HSN_IGST,0) AS RATE, CREDITNOTEMASTER.CN_SUBTOTAL AS TAXABLEAMT FROM CREDITNOTEMASTER INNER JOIN LEDGERS ON CREDITNOTEMASTER.CN_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN HSNMASTER ON CREDITNOTEMASTER.CN_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN INVOICEMASTER ON CREDITNOTEMASTER.CN_yearid = INVOICEMASTER.INVOICE_YEARID AND CREDITNOTEMASTER.CN_BILLNO = INVOICEMASTER.INVOICE_INITIALS LEFT OUTER JOIN OPENINGBILL ON CREDITNOTEMASTER.CN_yearid = OPENINGBILL.BILL_YEARID AND CREDITNOTEMASTER.CN_BILLNO = OPENINGBILL.BILL_INITIALS UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, DEBITNOTEMASTER.DN_initials AS INVINITIALS, DEBITNOTEMASTER.DN_date AS INVDATE, DEBITNOTEMASTER.DN_initials AS DNINITIALS, DEBITNOTEMASTER.DN_date AS DNDATE, 'D' AS DOCTYPE, '07-Others' AS REASON, DEBITNOTEMASTER.DN_cmpid AS CMPID, DEBITNOTEMASTER.DN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, DEBITNOTEMASTER.DN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER.HSN_IGST, 0) AS RATE, DEBITNOTEMASTER.DN_SUBTOTAL AS TAXABLEAMT FROM DEBITNOTEMASTER INNER JOIN LEDGERS ON DEBITNOTEMASTER.DN_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN HSNMASTER ON DEBITNOTEMASTER.DN_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id WHERE (DEBITNOTEMASTER.DN_BILLNO = '') UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_INITIALS, OPENINGBILL.BILL_INITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS INVINITIALS, (CASE WHEN ISNULL(SALRET_INVOICENO, '') = '' THEN SALRET_date ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE), SALRET_DATE) END) AS INVDATE, 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10)) AS CNINITIALS, SALERETURN.SALRET_DATE AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, SALERETURN.SALRET_cmpid AS CMPID, SALERETURN.SALRET_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, SALERETURN.SALRET_GRANDTOTAL AS GRANDTOTAL, CASE WHEN ISNULL(SALRET_IGSTPER, 0) = 0 THEN ISNULL(SALRET_CGSTPER, 0) + ISNULL(SALRET_SGSTPER, 0) ELSE ISNULL(SALRET_IGSTPER, 0) END AS RATE, SALERETURN.SALRET_SUBTOTAL AS TAXABLEAMT FROM SALERETURN INNER JOIN LEDGERS ON SALERETURN.SALRET_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN OPENINGBILL ON SALERETURN.SALRET_yearid = OPENINGBILL.BILL_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = OPENINGBILL.BILL_NO AND SALERETURN.SALRET_INVOICEREGID = OPENINGBILL.BILL_REGISTERID LEFT OUTER JOIN INVOICEMASTER ON SALERETURN.SALRET_yearid = INVOICEMASTER.INVOICE_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = INVOICEMASTER.INVOICE_NO AND SALERETURN.SALRET_INVOICEREGID = INVOICEMASTER.INVOICE_REGISTERID) AS T ", " AND T.CNDATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND T.CNDATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND T.YEARID = " & YEARID & " AND T.GSTIN = '' ORDER BY T.CNDATE")
+            DT = OBJCMN.Execute_Any_String("SELECT * FROM (SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE CREDITNOTEMASTER.CN_BILLNO END) AS INVINITIALS, (CASE WHEN CN_BILLNO = '' THEN CN_date ELSE COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE) END) AS INVDATE, CREDITNOTEMASTER.CN_PRINTINITIALS AS CNINITIALS, CREDITNOTEMASTER.CN_date AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, CREDITNOTEMASTER.CN_cmpid AS CMPID, CREDITNOTEMASTER.CN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATE, CREDITNOTEMASTER.CN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS RATE, CREDITNOTEMASTER.CN_SUBTOTAL AS TAXABLEAMT, (CASE WHEN CREDITNOTEMASTER.CN_BILLNO = '' THEN CN_PARTYREFNO ELSE INVOICEMASTER.INVOICE_PRINTINITIALS END) AS PRINTINITIALS FROM CREDITNOTEMASTER INNER JOIN LEDGERS ON CREDITNOTEMASTER.CN_LEDGERID = LEDGERS.Acc_id CROSS APPLY (SELECT TOP 1 * FROM HSNMASTER_DESC WHERE HSN_WEFDATE <= CREDITNOTEMASTER.CN_DATE AND HSN_YEARID = CREDITNOTEMASTER.CN_yearid AND HSN_ID = CN_HSNCODEID ORDER BY HSN_WEFDATE DESC) AS HSNMASTER_DESC LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN INVOICEMASTER ON CREDITNOTEMASTER.CN_yearid = INVOICEMASTER.INVOICE_YEARID AND CREDITNOTEMASTER.CN_BILLNO = INVOICEMASTER.INVOICE_INITIALS LEFT OUTER JOIN OPENINGBILL ON CREDITNOTEMASTER.CN_yearid = OPENINGBILL.BILL_YEARID AND CREDITNOTEMASTER.CN_BILLNO = OPENINGBILL.BILL_INITIALS WHERE ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE' UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(DEBITNOTEMASTER.DN_SALEREFNO,'') AS INVINITIALS, DEBITNOTEMASTER.DN_date AS INVDATE, DEBITNOTEMASTER.DN_PRINTinitials AS DNINITIALS, DEBITNOTEMASTER.DN_date AS DNDATE, 'D' AS DOCTYPE, '07-Others' AS REASON, DEBITNOTEMASTER.DN_cmpid AS CMPID, DEBITNOTEMASTER.DN_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, DEBITNOTEMASTER.DN_GTOTAL AS GRANDTOTAL, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS RATE, DEBITNOTEMASTER.DN_SUBTOTAL AS TAXABLEAMT, '' AS PRINTINITIALS FROM DEBITNOTEMASTER INNER JOIN LEDGERS ON DEBITNOTEMASTER.DN_LEDGERID = LEDGERS.Acc_id CROSS APPLY (SELECT TOP 1 * FROM HSNMASTER_DESC WHERE HSN_WEFDATE <= DEBITNOTEMASTER.DN_DATE AND HSN_YEARID = DEBITNOTEMASTER.DN_yearid AND HSN_ID = DN_HSNCODEID ORDER BY HSN_WEFDATE DESC) AS HSNMASTER_DESC LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id WHERE (DEBITNOTEMASTER.DN_BILLNO = '')  AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'TRUE') = 'TRUE'  UNION ALL SELECT ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_INITIALS, OPENINGBILL.BILL_INITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS INVINITIALS, (CASE WHEN ISNULL(SALRET_INVOICENO, '') = '' THEN SALRET_date ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_DATE, OPENINGBILL.BILL_DATE), SALRET_DATE) END) AS INVDATE, 'SR-' + CAST(SALERETURN.SALRET_PRINTINITIALS AS VARCHAR(50)) AS CNINITIALS, SALERETURN.SALRET_DATE AS CNDATE, 'C' AS DOCTYPE, '01-Sales Return' AS REASON, SALERETURN.SALRET_cmpid AS CMPID, SALERETURN.SALRET_yearid AS YEARID, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(STATEMASTER.state_name, '') AS STATENAME, SALERETURN.SALRET_GRANDTOTAL AS GRANDTOTAL, CASE WHEN ISNULL(SALRET_IGSTPER, 0) = 0 THEN ISNULL(SALRET_CGSTPER, 0) + ISNULL(SALRET_SGSTPER, 0) ELSE ISNULL(SALRET_IGSTPER, 0) END AS RATE, SALERETURN.SALRET_SUBTOTAL AS TAXABLEAMT, (CASE WHEN ISNULL(SALERETURN.SALRET_INVOICENO, '') = '' THEN CAST(SALRET_NO AS VARCHAR(10)) ELSE ISNULL(COALESCE (INVOICEMASTER.INVOICE_PRINTINITIALS, OPENINGBILL.BILL_INITIALS), 'SR-' + CAST(SALERETURN.SALRET_NO AS VARCHAR(10))) END) AS PRINTINITIALS FROM SALERETURN INNER JOIN LEDGERS ON SALERETURN.SALRET_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN OPENINGBILL ON SALERETURN.SALRET_yearid = OPENINGBILL.BILL_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = OPENINGBILL.BILL_NO AND SALERETURN.SALRET_INVOICEREGID = OPENINGBILL.BILL_REGISTERID LEFT OUTER JOIN INVOICEMASTER ON SALERETURN.SALRET_yearid = INVOICEMASTER.INVOICE_YEARID AND CAST(SALERETURN.SALRET_INVOICENO AS INT) = INVOICEMASTER.INVOICE_NO AND SALERETURN.SALRET_INVOICEREGID = INVOICEMASTER.INVOICE_REGISTERID) AS T WHERE T.CNDATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND T.CNDATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND T.YEARID = " & YEARID & " AND T.GSTIN = '' ORDER BY T.CNDATE", "", "")
+
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(DTROW("GSTIN"), Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("CNINITIALS"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("CNDATE")).Date, "dd-MMM-yy"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("DOCTYPE"), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("=(""" & DTROW("PRINTINITIALS") & """)", Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Format(Convert.ToDateTime(DTROW("INVDATE")).Date, "dd-MMM-yy"), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(DTROW("STATECODE") & "-" & DTROW("STATE"), Range("7"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Val(DTROW("GRANDTOTAL")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("", Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("RATE")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("12"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("N", Range("13"), XlHAlign.xlHAlignLeft, , False, 10)
+            Next
+
+            objSheet.Range(objColumn.Item("8").ToString & 2, objColumn.Item("8").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("10").ToString & 2, objColumn.Item("10").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 2, objColumn.Item("11").ToString & RowIndex).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 2, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 2, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 2, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 2, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 2, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 2, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 2, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 2, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 2, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 2, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 2, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 2, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("13").ToString & 2, objColumn.Item("13").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & 2 & ":" & objColumn.Item("8").ToString & RowIndex - 1 & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("11").ToString & 2 & ":" & objColumn.Item("11").ToString & RowIndex - 1 & ")", Range("11"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF CDNUR CODE ***************************
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** HSNB2B ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "HSNB2B"
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 17)
+            Next
+
+            SetColumnWidth(Range("1"), 25)
+            SetColumnWidth(Range("2"), 25)
+            SetColumnWidth(Range("7"), 20)
+
+
+            '''''''''''Report Title
+
+            Write("Summary For HSN(B2B) (12)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("No Of HSN", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Total Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Taxable Value", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Integrated Tax", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Central Tax", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total State/UT Tax", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cess", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("11")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("11")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUMPRODUCT((" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&""""))", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & 5 & ":" & objColumn.Item("5").ToString & 40000 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("7").ToString & 5 & ":" & objColumn.Item("7").ToString & 40000 & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & 5 & ":" & objColumn.Item("8").ToString & 40000 & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("9").ToString & 5 & ":" & objColumn.Item("9").ToString & 40000 & ")", Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("10").ToString & 5 & ":" & objColumn.Item("10").ToString & 40000 & ")", Range("10"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("11").ToString & 5 & ":" & objColumn.Item("11").ToString & 40000 & ")", Range("11"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objSheet.Range(objColumn.Item("5").ToString & 3, objColumn.Item("5").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 3, objColumn.Item("6").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 3, objColumn.Item("7").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("8").ToString & 3, objColumn.Item("8").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("9").ToString & 3, objColumn.Item("9").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("10").ToString & 3, objColumn.Item("10").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 3, objColumn.Item("11").ToString & 3).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("HSN", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Description", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UQC", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Qty", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Integrated Tax Amount", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Central Tax Amount", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("State/UT Tax Amount", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess Amount", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("11")).Interior.Color = RGB(250, 240, 230)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+            If CLIENTNAME = "LEEFABRICO" Then
+                DT = OBJCMN.Execute_Any_String(" SELECT HSNCODE, HSNDESC, HSNRATE, UNIT, SUM(QTY) AS QTY, SUM(GRANDTOTAL) AS GRANDTOTAL, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, CMPID, YEARID FROM HSNSUMMARY WHERE DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND YEARID = " & YEARID & " GROUP BY HSNCODE, HSNDESC, HSNRATE, UNIT, CMPID, YEARID", "", "")
+            Else
+                DT = OBJCMN.Execute_Any_String(" SELECT HSNCODE, HSNDESC, HSNRATE, 'MTR' AS UNIT, SUM(QTY) AS QTY, SUM(GRANDTOTAL) AS GRANDTOTAL, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, CMPID, YEARID FROM HSNSUMMARY WHERE DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND YEARID = " & YEARID & " GROUP BY HSNCODE, HSNDESC, HSNRATE, CMPID, YEARID", "", "")
+            End If
+
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(DTROW("HSNCODE"), Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("HSNDESC"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("UNIT"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Val(DTROW("QTY")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+                'Dim DTINV As New System.Data.DataTable
+                'WE CAN NOT GET GRAND TOTAL IN ABOVE QUERY COZ THIS WIL CALC GRANDTOTAL MULTIPLE TIMES COZ WE HAVE JOIN WITH INVOICEDESC
+                'BELOW CODE WASS TAKING TIME 
+                'If INVOICESCREENTYPE = "LINE GST" Then
+                'Else
+                '    DTINV = OBJCMN.search("DISTINCT INVOICEMASTER.INVOICE_NO  ROUND(SUM(ISNULL(INVOICEMASTER.INVOICE_GRANDTOTAL, 0)),0) AS GRANDTOTAL, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_TAXABLEAMT, 0)) ELSE SUM(ISNULL(INVOICEMASTER.INVOICE_SUBTOTAL, 0)) END) AS TAXABLEAMT,", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN INVOICEMASTER ON INVOICEMASTER_DESC.INVOICE_NO = INVOICEMASTER.INVOICE_NO AND INVOICEMASTER_DESC.INVOICE_REGISTERID = INVOICEMASTER.INVOICE_REGISTERID AND INVOICEMASTER_DESC.INVOICE_YEARID = INVOICEMASTER.INVOICE_YEARID ", " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " AND HSN_CODE = '" & DTROW("HSNCODE") & "'")
+                'End If
+
+                Write(Val(DTROW("GRANDTOTAL")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("HSNRATE")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("IGSTAMT")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("CGSTAMT")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("SGSTAMT")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+            Next
+
+            objSheet.Range(objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("10").ToString & 5, objColumn.Item("10").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex).NumberFormat = "0.00"
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 5, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF HSNB2B CODE ***************************
+
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** HSNB2C ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "HSNB2C"
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 17)
+            Next
+
+            SetColumnWidth(Range("1"), 25)
+            SetColumnWidth(Range("2"), 25)
+            SetColumnWidth(Range("7"), 20)
+
+
+            '''''''''''Report Title
+
+            Write("Summary For HSN(B2C) (12)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("No Of HSN", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Total Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Taxable Value", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Integrated Tax", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Central Tax", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total State/UT Tax", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cess", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("11")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("11")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUMPRODUCT((" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "<>"""")/COUNTIF(" & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "," & objColumn.Item("1").ToString & 5 & ":" & objColumn.Item("1").ToString & 40000 & "&""""))", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & 5 & ":" & objColumn.Item("5").ToString & 40000 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("7").ToString & 5 & ":" & objColumn.Item("7").ToString & 40000 & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & 5 & ":" & objColumn.Item("8").ToString & 40000 & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("9").ToString & 5 & ":" & objColumn.Item("9").ToString & 40000 & ")", Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("10").ToString & 5 & ":" & objColumn.Item("10").ToString & 40000 & ")", Range("10"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("11").ToString & 5 & ":" & objColumn.Item("11").ToString & 40000 & ")", Range("11"), XlHAlign.xlHAlignRight, , True, 10)
+
+            objSheet.Range(objColumn.Item("5").ToString & 3, objColumn.Item("5").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 3, objColumn.Item("6").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 3, objColumn.Item("7").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("8").ToString & 3, objColumn.Item("8").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("9").ToString & 3, objColumn.Item("9").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("10").ToString & 3, objColumn.Item("10").ToString & 3).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 3, objColumn.Item("11").ToString & 3).NumberFormat = "0.00"
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("HSN", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Description", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UQC", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Qty", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Value", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Rate", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Taxable Value", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Integrated Tax Amount", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Central Tax Amount", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("State/UT Tax Amount", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Cess Amount", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("11")).Interior.Color = RGB(250, 240, 230)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+
+
+            If CLIENTNAME = "LEEFABRICO" Then
+                DT = OBJCMN.Execute_Any_String(" SELECT HSNCODE, HSNDESC, HSNRATE, UNIT, SUM(QTY) AS QTY, SUM(GRANDTOTAL) AS GRANDTOTAL, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, CMPID, YEARID FROM HSNSUMMARYB2C WHERE DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND YEARID = " & YEARID & " GROUP BY HSNCODE, HSNDESC, HSNRATE, UNIT, CMPID, YEARID", "", "")
+            Else
+                DT = OBJCMN.Execute_Any_String(" SELECT HSNCODE, HSNDESC, HSNRATE, 'MTR' AS UNIT, SUM(QTY) AS QTY, SUM(GRANDTOTAL) AS GRANDTOTAL, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, CMPID, YEARID FROM HSNSUMMARYB2C WHERE DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' " & WHERECLAUSE & " AND YEARID = " & YEARID & " GROUP BY HSNCODE, HSNDESC, HSNRATE, CMPID, YEARID", "", "")
+            End If
+
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(DTROW("HSNCODE"), Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("HSNDESC"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(DTROW("UNIT"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Val(DTROW("QTY")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+                'Dim DTINV As New System.Data.DataTable
+                'WE CAN NOT GET GRAND TOTAL IN ABOVE QUERY COZ THIS WIL CALC GRANDTOTAL MULTIPLE TIMES COZ WE HAVE JOIN WITH INVOICEDESC
+                'BELOW CODE WASS TAKING TIME 
+                'If INVOICESCREENTYPE = "LINE GST" Then
+                'Else
+                '    DTINV = OBJCMN.search("DISTINCT INVOICEMASTER.INVOICE_NO  ROUND(SUM(ISNULL(INVOICEMASTER.INVOICE_GRANDTOTAL, 0)),0) AS GRANDTOTAL, (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_SCREENTYPE,'LINE GST') = 'LINE GST' THEN SUM(ISNULL(INVOICEMASTER_DESC.INVOICE_TAXABLEAMT, 0)) ELSE SUM(ISNULL(INVOICEMASTER.INVOICE_SUBTOTAL, 0)) END) AS TAXABLEAMT,", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN INVOICEMASTER ON INVOICEMASTER_DESC.INVOICE_NO = INVOICEMASTER.INVOICE_NO AND INVOICEMASTER_DESC.INVOICE_REGISTERID = INVOICEMASTER.INVOICE_REGISTERID AND INVOICEMASTER_DESC.INVOICE_YEARID = INVOICEMASTER.INVOICE_YEARID ", " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " AND HSN_CODE = '" & DTROW("HSNCODE") & "'")
+                'End If
+
+                Write(Val(DTROW("GRANDTOTAL")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("HSNRATE")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("TAXABLEAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("IGSTAMT")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("CGSTAMT")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DTROW("SGSTAMT")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+                Write("0", Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+            Next
+
+            objSheet.Range(objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("10").ToString & 5, objColumn.Item("10").ToString & RowIndex).NumberFormat = "0.00"
+            objSheet.Range(objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex).NumberFormat = "0.00"
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 5, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 5, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 5, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 5, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 5, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 5, objColumn.Item("11").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF HSNB2C CODE ***************************
+
+
+
+
+
+            'CREATE NEW WORKSHEET
+            '****************** DOCS ***************************************
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "DOCS"
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 17)
+            Next
+
+            SetColumnWidth(Range("1"), 40)
+
+
+            '''''''''''Report Title
+
+            Write("Summary of Documents issued during the tax period (13)", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            objSheet.Range(Range("1"), Range("1")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("1")).Interior.Color = RGB(0, 128, 255)
+
+            RowIndex += 1
+            Write("Total Number", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cancelled", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            objSheet.Range(Range("1"), Range("5")).Font.Color = RGB(255, 255, 255)
+            objSheet.Range(Range("1"), Range("5")).Interior.Color = RGB(0, 128, 255)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+
+
+            RowIndex += 1
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & 5 & ":" & objColumn.Item("4").ToString & 40000 & ")", Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & 5 & ":" & objColumn.Item("5").ToString & 40000 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+
+
+
+            RowIndex += 1
+            Write("Name Of Document", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("Sr. No From", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Sr. No To", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Number", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Total Cancelled", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            objSheet.Range(Range("1"), Range("11")).Interior.Color = RGB(250, 240, 230)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+
+
+            Dim DTINV As New System.Data.DataTable
+
+            'SALE INVOICE DETAILS
+            DT = OBJCMN.SEARCH(" DISTINCT INVOICE_REGISTERID AS REGISTERID ", "", " INVOICEMASTER ", " AND INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_TOTALCGSTAMT > 0 OR INVOICE_TOTALIGSTAMT > 0  AND INVOICEMASTER.INVOICE_YEARID = " & YEARID)
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+
+                Write("Invoice For Outward Supply", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 INVOICE_PRINTINITIALS  AS FROMNO ", "", " INVOICEMASTER ", " AND INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY INVOICEMASTER.INVOICE_NO ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("FROMNO"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 INVOICE_PRINTINITIALS  AS TONO ", "", " INVOICEMASTER ", " AND INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY INVOICEMASTER.INVOICE_NO DESC ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("TONO"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" DISTINCT COUNT(INVOICE_PRINTINITIALS) AS TOTALINV ", "", " INVOICEMASTER ", " AND INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID)
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TOTALINV")), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.Execute_Any_String("CREATE TABLE #TEMP (ID INT) DECLARE @I INT, @MAXNO INT   SELECT @I = MIN(INVOICE_NO) FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = register_id WHERE INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & "  SELECT @MAXNO = MAX(INVOICE_NO) FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = register_id WHERE INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & "  WHILE @I <= @MAXNO  BEGIN 	INSERT INTO #TEMP VALUES (@I) 	SET @I+=1  END   SELECT COUNT(#TEMP.ID) AS SRNO FROM #TEMP WHERE ID NOT IN (SELECT INVOICE_NO FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = register_id WHERE INVOICEMASTER.INVOICE_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND INVOICE_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & ")  DROP TABLE #TEMP ", "", "")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("SRNO")), Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            Next
+
+
+
+
+            'CREDIT NOTE DETAILS
+            DT = OBJCMN.SEARCH(" DISTINCT CN_REGISTERID AS REGISTERID ", "", " CREDITNOTEMASTER ", " AND CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND CN_CGSTAMT > 0 OR CN_IGSTAMT > 0 AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE' AND CREDITNOTEMASTER.CN_YEARID = " & YEARID)
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+
+                Write("Credit Note", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 CN_INITIALS  AS FROMNO ", "", " CREDITNOTEMASTER ", " AND CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE' AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID & " ORDER BY CREDITNOTEMASTER.CN_NO ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("FROMNO"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 CN_INITIALS  AS TONO ", "", " CREDITNOTEMASTER ", " AND CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE'  AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID & " ORDER BY CREDITNOTEMASTER.CN_NO DESC ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("TONO"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" DISTINCT COUNT(CN_INITIALS) AS TOTALINV ", "", " CREDITNOTEMASTER ", " AND CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE'  AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID)
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TOTALINV")), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.Execute_Any_String("CREATE TABLE #TEMP (ID INT) DECLARE @I INT, @MAXNO INT   SELECT @I = MIN(CN_NO) FROM CREDITNOTEMASTER INNER JOIN REGISTERMASTER ON CN_REGISTERID = register_id WHERE CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE'  AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID & "  SELECT @MAXNO = MAX(CN_NO) FROM CREDITNOTEMASTER INNER JOIN REGISTERMASTER ON CN_REGISTERID = register_id WHERE CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE'  AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID & "  WHILE @I <= @MAXNO  BEGIN 	INSERT INTO #TEMP VALUES (@I) 	SET @I+=1  END   SELECT COUNT(#TEMP.ID) AS SRNO FROM #TEMP WHERE ID NOT IN (SELECT CN_NO FROM CREDITNOTEMASTER INNER JOIN REGISTERMASTER ON CN_REGISTERID = register_id WHERE CREDITNOTEMASTER.CN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND CREDITNOTEMASTER.CN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(CREDITNOTEMASTER.CN_NOGSTR1,'FALSE') = 'FALSE'  AND CN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND CREDITNOTEMASTER.CN_YEARID = " & YEARID & ")  DROP TABLE #TEMP ", "", "")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("SRNO")), Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+            Next
+
+
+
+            'SALES RETURN
+            RowIndex += 1
+            Write("Credit Note (Sale Return)", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DTINV = OBJCMN.SEARCH(" TOP 1 SALRET_PRINTINITIALS AS FROMNO ", "", " SALERETURN ", " AND SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALRET_YEARID = " & YEARID & " ORDER BY SALRET_NO ")
+            If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("FROMNO"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DTINV = OBJCMN.SEARCH(" TOP 1 SALRET_PRINTINITIALS AS TONO ", "", " SALERETURN ", " AND SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALRET_YEARID = " & YEARID & " ORDER BY SALRET_NO DESC ")
+            If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("TONO"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DTINV = OBJCMN.SEARCH(" DISTINCT COUNT(SALRET_PRINTINITIALS) AS TOTALINV ", "", " SALERETURN ", " AND SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALRET_YEARID = " & YEARID)
+            If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TOTALINV")), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DTINV = OBJCMN.Execute_Any_String("CREATE TABLE #TEMP (ID INT) DECLARE @I INT, @MAXNO INT   SELECT @I = MIN(SALRET_NO) FROM SALERETURN WHERE SALERETURN.SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_YEARID = " & YEARID & "  SELECT @MAXNO = MAX(SALRET_NO) FROM SALERETURN WHERE SALERETURN.SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_YEARID = " & YEARID & "  WHILE @I <= @MAXNO  BEGIN 	INSERT INTO #TEMP VALUES (@I) 	SET @I+=1  END   SELECT COUNT(#TEMP.ID) AS SRNO FROM #TEMP WHERE ID NOT IN (SELECT SALRET_NO FROM SALERETURN WHERE SALERETURN.SALRET_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND SALERETURN.SALRET_YEARID = " & YEARID & ")  DROP TABLE #TEMP ", "", "")
+            If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("SRNO")), Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+
+
+
+            'DEBIT NOTE DETAILS
+            DT = OBJCMN.SEARCH(" DISTINCT DN_REGISTERID AS REGISTERID ", "", " DEBITNOTEMASTER ", " AND DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND DN_TOTALCGSTAMT > 0 OR DN_TOTALIGSTAMT > 0 AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE' AND DEBITNOTEMASTER.DN_YEARID = " & YEARID)
+            For Each DTROW As DataRow In DT.Rows
+                RowIndex += 1
+
+                Write("Debit Note", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 DN_INITIALS  AS FROMNO ", "", " DEBITNOTEMASTER ", " AND DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE' AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID & " ORDER BY DEBITNOTEMASTER.DN_NO ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("FROMNO"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 DN_INITIALS  AS TONO ", "", " DEBITNOTEMASTER ", " AND DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE'  AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID & " ORDER BY DEBITNOTEMASTER.DN_NO DESC ")
+                If DTINV.Rows.Count > 0 Then Write(DTINV.Rows(0).Item("TONO"), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" DISTINCT COUNT(DN_INITIALS) AS TOTALINV ", "", " DEBITNOTEMASTER ", " AND DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE'  AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID)
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TOTALINV")), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.Execute_Any_String("CREATE TABLE #TEMP (ID INT) DECLARE @I INT, @MAXNO INT   SELECT @I = MIN(DN_NO) FROM DEBITNOTEMASTER INNER JOIN REGISTERMASTER ON DN_REGISTERID = register_id WHERE DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE'  AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID & "  SELECT @MAXNO = MAX(DN_NO) FROM DEBITNOTEMASTER INNER JOIN REGISTERMASTER ON DN_REGISTERID = register_id WHERE DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE'  AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID & "  WHILE @I <= @MAXNO  BEGIN 	INSERT INTO #TEMP VALUES (@I) 	SET @I+=1  END   SELECT COUNT(#TEMP.ID) AS SRNO FROM #TEMP WHERE ID NOT IN (SELECT DN_NO FROM DEBITNOTEMASTER INNER JOIN REGISTERMASTER ON DN_REGISTERID = register_id WHERE DEBITNOTEMASTER.DN_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND DEBITNOTEMASTER.DN_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND ISNULL(DEBITNOTEMASTER.DN_GSTR1,'FALSE') = 'TRUE'  AND DN_REGISTERID = " & Val(DTROW("REGISTERID")) & " AND DEBITNOTEMASTER.DN_YEARID = " & YEARID & ")  DROP TABLE #TEMP ", "", "")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("SRNO")), Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+            Next
+
+
+
+
+            'JOB WORK SERIES
+            If CLIENTNAME <> "SHREEVALLABH" And CLIENTNAME <> "MANS" Then
+                RowIndex += 1
+                Write("Delivery Challan for Job Work", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 JO_NO AS FROMNO ", "", " JOBOUT ", " AND JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JO_YEARID = " & YEARID & " ORDER BY JO_NO ")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("FROMNO")), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" TOP 1 JO_NO AS TONO ", "", " JOBOUT ", " AND JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JO_YEARID = " & YEARID & " ORDER BY JO_NO DESC ")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TONO")), Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.SEARCH(" DISTINCT COUNT(JO_NO) AS TOTALINV ", "", " JOBOUT ", " AND JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JO_YEARID = " & YEARID)
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("TOTALINV")), Range("4"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DTINV = OBJCMN.Execute_Any_String("CREATE TABLE #TEMP (ID INT) DECLARE @I INT, @MAXNO INT   SELECT @I = MIN(JO_NO) FROM JOBOUT WHERE JOBOUT.JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_YEARID = " & YEARID & "  SELECT @MAXNO = MAX(JO_NO) FROM JOBOUT WHERE JOBOUT.JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_YEARID = " & YEARID & "  WHILE @I <= @MAXNO  BEGIN 	INSERT INTO #TEMP VALUES (@I) 	SET @I+=1  END   SELECT COUNT(#TEMP.ID) AS SRNO FROM #TEMP WHERE ID NOT IN (SELECT JO_NO FROM JOBOUT WHERE JOBOUT.JO_DATE >= '" & Format(FROMDATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_DATE <= '" & Format(TODATE.Date, "MM/dd/yyyy") & "' AND JOBOUT.JO_YEARID = " & YEARID & ")  DROP TABLE #TEMP ", "", "")
+                If DTINV.Rows.Count > 0 Then Write(Val(DTINV.Rows(0).Item("SRNO")), Range("5"), XlHAlign.xlHAlignLeft, , False, 10)
+            End If
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 5, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 5, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 5, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 5, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 5, objColumn.Item("5").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************** END OF DOCS CODE ***************************
+
+            SaveAndClose()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return Nothing
+    End Function
+
+#End Region
+
     Public Function GSTB2B_EXCEL(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date, Optional ByVal REGNAME As String = "") As Object
         Try
 
@@ -7784,7 +9030,7 @@ fontItalic As Boolean = False)
 
                 If Convert.ToBoolean(DTVERSION.Rows(0).Item("INVOICESCREENTYPE")) = False Then
                     'GET GSTPER FROM 1ST RECORD OF INVOICEDESC AND FETCH FROM HSNCODE_DESC
-                    Dim OBJGST As System.Data.DataTable = OBJCMN.search(" TOP 1 (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_EXPORTGST,0) = 'TRUE' THEN ISNULL(HSN_EXPIGST,0) ELSE HSN_IGST END) AS GSTPER", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER_DESC ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER_DESC.HSN_ID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID", WHERECLAUSE & " AND INVOICEMASTER.INVOICE_INITIALS = '" & DTROW("INVNO") & "' AND HSNMASTER_DESC.HSN_WEFDATE <= INVOICEMASTER.INVOICE_DATE AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC ")
+                    Dim OBJGST As System.Data.DataTable = OBJCMN.SEARCH(" TOP 1 (CASE WHEN ISNULL(INVOICEMASTER.INVOICE_EXPORTGST,0) = 'TRUE' THEN ISNULL(HSN_EXPIGST,0) ELSE HSN_IGST END) AS GSTPER", "", " INVOICEMASTER_DESC INNER JOIN HSNMASTER_DESC ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER_DESC.HSN_ID  INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICE_REGISTERID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID", WHERECLAUSE & " AND INVOICEMASTER.INVOICE_INITIALS = '" & DTROW("INVNO") & "' AND HSNMASTER_DESC.HSN_WEFDATE <= INVOICEMASTER.INVOICE_DATE AND INVOICEMASTER.INVOICE_YEARID = " & YEARID & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC ")
                     If OBJGST.Rows.Count > 0 Then Write(Val(OBJGST.Rows(0).Item("GSTPER")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
                 Else
                     Write(Val(DTROW("GSTPER")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
@@ -7827,15 +9073,6 @@ fontItalic As Boolean = False)
 
 
             objBook.Application.ActiveWindow.Zoom = 100
-
-            'With objSheet.PageSetup
-            '    .Orientation = XlPageOrientation.xlLandscape
-            '    .TopMargin = 20
-            '    .LeftMargin = 10
-            '    .RightMargin = 5
-            '    .BottomMargin = 10
-            '    .Zoom = False
-            'End With
 
             SaveAndClose()
 

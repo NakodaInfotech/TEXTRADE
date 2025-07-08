@@ -380,78 +380,86 @@ Public Class GSTTaxFilter
                 If MsgBox("Wish To Mail Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
 
                     'WE HAVE TO CREATE 1 WORKBOOK AND ALL OTHER FILES AS SHEETS
+                    Dim OBJGSTR1 As New clsReportDesigner("GSTR1", System.AppDomain.CurrentDomain.BaseDirectory & "GSTR1.xlsx", 2)
+                    If chkdate.CheckState = CheckState.Checked Then OBJGSTR1.GSTGSTR1_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName, CMBREGISTER.Text.Trim) Else OBJGSTR1.GSTGSTR1_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName, CMBREGISTER.Text.Trim)
 
 
-                    Dim OBJRPT As New clsReportDesigner("B2B", System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx", 2)
-                    Dim OBJRPTB2CL As New clsReportDesigner("B2CL", System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx", 2)
-                    Dim OBJRPTB2CS As New clsReportDesigner("B2CS", System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx", 2)
-                    Dim OBJRPTCDNR As New clsReportDesigner("CDNR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx", 2)
-                    Dim OBJRPTCDNUR As New clsReportDesigner("CDNUR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx", 2)
-                    Dim OBJRPTHSNB2B As New clsReportDesigner("HSNB2B", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx", 2)
-                    Dim OBJRPTHSNB2C As New clsReportDesigner("HSNB2C", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx", 2)
-                    Dim OBJRPTDOCS As New clsReportDesigner("DOCS", System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx", 2)
-                    If chkdate.CheckState = CheckState.Checked Then
-                        OBJRPT.GSTB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName)
-                    Else
-                        OBJRPT.GSTB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName)
-                    End If
+                    'Dim OBJRPT As New clsReportDesigner("B2B", System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx", 2)
+                    'Dim OBJRPTB2CL As New clsReportDesigner("B2CL", System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx", 2)
+                    'Dim OBJRPTB2CS As New clsReportDesigner("B2CS", System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx", 2)
+                    'Dim OBJRPTCDNR As New clsReportDesigner("CDNR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx", 2)
+                    'Dim OBJRPTCDNUR As New clsReportDesigner("CDNUR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx", 2)
+                    'Dim OBJRPTHSNB2B As New clsReportDesigner("HSNB2B", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx", 2)
+                    'Dim OBJRPTHSNB2C As New clsReportDesigner("HSNB2C", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx", 2)
+                    'Dim OBJRPTDOCS As New clsReportDesigner("DOCS", System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx", 2)
+                    'If chkdate.CheckState = CheckState.Checked Then
+                    '    OBJRPT.GSTB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName)
+                    'Else
+                    '    OBJRPT.GSTB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName)
+                    'End If
                     Exit Sub
                 Else
-                    Dim OBJRPT As New clsReportDesigner("B2B", System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx", 0)
-                    Dim OBJRPTB2CL As New clsReportDesigner("B2CL", System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx", 0)
-                    Dim OBJRPTB2CS As New clsReportDesigner("B2CS", System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx", 0)
-                    Dim OBJRPTCDNR As New clsReportDesigner("CDNR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx", 0)
-                    Dim OBJRPTCDNUR As New clsReportDesigner("CDNUR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx", 0)
-                    Dim OBJRPTHSNB2B As New clsReportDesigner("HSNB2B", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx", 0)
-                    Dim OBJRPTHSNB2C As New clsReportDesigner("HSNB2C", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx", 0)
-                    Dim OBJRPTDOCS As New clsReportDesigner("DOCS", System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx", 0)
-                    If chkdate.CheckState = CheckState.Checked Then
-                        OBJRPT.GSTB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName)
-                    Else
-                        OBJRPT.GSTB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
-                        OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName)
-                    End If
+
+                    'WE HAVE TO CREATE 1 WORKBOOK AND ALL OTHER FILES AS SHEETS
+                    Dim OBJGSTR1 As New clsReportDesigner("GSTR1", System.AppDomain.CurrentDomain.BaseDirectory & "GSTR1.xlsx", 0)
+                    If chkdate.CheckState = CheckState.Checked Then OBJGSTR1.GSTGSTR1_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName, CMBREGISTER.Text.Trim) Else OBJGSTR1.GSTGSTR1_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName, CMBREGISTER.Text.Trim)
+
+                    'Dim OBJRPT As New clsReportDesigner("B2B", System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx", 0)
+                    'Dim OBJRPTB2CL As New clsReportDesigner("B2CL", System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx", 0)
+                    'Dim OBJRPTB2CS As New clsReportDesigner("B2CS", System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx", 0)
+                    'Dim OBJRPTCDNR As New clsReportDesigner("CDNR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx", 0)
+                    'Dim OBJRPTCDNUR As New clsReportDesigner("CDNUR", System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx", 0)
+                    'Dim OBJRPTHSNB2B As New clsReportDesigner("HSNB2B", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx", 0)
+                    'Dim OBJRPTHSNB2C As New clsReportDesigner("HSNB2C", System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx", 0)
+                    'Dim OBJRPTDOCS As New clsReportDesigner("DOCS", System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx", 0)
+                    'If chkdate.CheckState = CheckState.Checked Then
+                    '    OBJRPT.GSTB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, Convert.ToDateTime(dtfrom.Text), Convert.ToDateTime(dtto.Text), ClientName)
+                    'Else
+                    '    OBJRPT.GSTB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CL.GSTB2CL_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTB2CS.GSTB2CS_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNR.GSTCDNR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTCDNUR.GSTCDNUR_EXCEL(CmpId, YearId, AccFrom, AccTo, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2B.GSTHSNB2B_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTHSNB2C.GSTHSNB2C_EXCEL(CmpId, YearId, AccFrom, AccTo, INVOICESCREENTYPE, ClientName, CMBREGISTER.Text.Trim)
+                    '    OBJRPTDOCS.GSTDOCS_EXCEL(CmpId, YearId, AccFrom, AccTo, ClientName)
+                    'End If
                     'MAIL EXCEL AS ATTACHMENTS
 
                     Dim objmail As New SendMail
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx")
-                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx")
+                    objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "GSTR1.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2B.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2CL.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "B2CS.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "CDNR.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "CDNUR.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2B.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "HSNB2C.xlsx")
+                    'objmail.ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx")
 
                     ' objmail.attachment6 = System.AppDomain.CurrentDomain.BaseDirectory & "DOCS.xlsx"
-                    objmail.subject = "GSTR1 Details"
+                    objmail.subject = "GSTR1 Details Of " & CmpName
                     objmail.Show()
                     objmail.BringToFront()
                     Windows.Forms.Cursor.Current = Cursors.Arrow

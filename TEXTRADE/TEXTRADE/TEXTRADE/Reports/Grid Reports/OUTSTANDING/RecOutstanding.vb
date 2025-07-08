@@ -1094,6 +1094,7 @@ line1:
             CMBSTATE.Text = ""
             CMBREGISTER.Text = ""
             TXTOVERDUEDAYS.Clear()
+            CMBITEMNAME.Text = ""
             CHKDUE.CheckState = CheckState.Unchecked
             CHKLASTYEAR.CheckState = CheckState.Unchecked
             chkdate.CheckState = CheckState.Unchecked
