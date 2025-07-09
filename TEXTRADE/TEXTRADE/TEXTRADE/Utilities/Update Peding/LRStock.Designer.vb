@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class LRStock
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class LRStock
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -33,9 +33,10 @@ Partial Class LRStock
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLEDGERID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.RBENTERED = New System.Windows.Forms.RadioButton()
         Me.RBPENDING = New System.Windows.Forms.RadioButton()
@@ -43,9 +44,6 @@ Partial Class LRStock
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GLEDGERID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLEDGERIDTO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +84,7 @@ Partial Class LRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GUNIT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GLEDGERIDTO, Me.GBALENO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -112,7 +110,7 @@ Partial Class LRStock
         Me.GDATE.Caption = "Date"
         Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GDATE.FieldName = "DATE"
+        Me.GDATE.FieldName = "BILLDATE"
         Me.GDATE.Name = "GDATE"
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
@@ -121,7 +119,7 @@ Partial Class LRStock
         'GINITIALS
         '
         Me.GINITIALS.Caption = "Initials"
-        Me.GINITIALS.FieldName = "INITIALS"
+        Me.GINITIALS.FieldName = "BILLINITIALS"
         Me.GINITIALS.Name = "GINITIALS"
         Me.GINITIALS.Visible = True
         Me.GINITIALS.VisibleIndex = 2
@@ -154,14 +152,16 @@ Partial Class LRStock
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
         Me.GLRNO.VisibleIndex = 5
+        Me.GLRNO.Width = 120
         '
         'GPCS
         '
-        Me.GPCS.Caption = "Pcs"
+        Me.GPCS.Caption = "Qty"
         Me.GPCS.DisplayFormat.FormatString = "0"
         Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "TOTALPCS"
+        Me.GPCS.FieldName = "TOTALQTY"
         Me.GPCS.Name = "GPCS"
+        Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Visible = True
         Me.GPCS.VisibleIndex = 6
         Me.GPCS.Width = 80
@@ -173,25 +173,19 @@ Partial Class LRStock
         Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GMTRS.FieldName = "TOTALMTRS"
         Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Visible = True
         Me.GMTRS.VisibleIndex = 7
         Me.GMTRS.Width = 100
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 8
         '
         'GTYPE
         '
         Me.GTYPE.Caption = "Type"
         Me.GTYPE.FieldName = "TYPE"
         Me.GTYPE.Name = "GTYPE"
+        Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 9
+        Me.GTYPE.VisibleIndex = 8
         Me.GTYPE.Width = 200
         '
         'GREGID
@@ -200,6 +194,19 @@ Partial Class LRStock
         Me.GREGID.FieldName = "REGID"
         Me.GREGID.Name = "GREGID"
         Me.GREGID.OptionsColumn.AllowEdit = False
+        '
+        'GLEDGERID
+        '
+        Me.GLEDGERID.Caption = "LEDGERID"
+        Me.GLEDGERID.FieldName = "LEDGERID"
+        Me.GLEDGERID.Name = "GLEDGERID"
+        '
+        'GTRANSID
+        '
+        Me.GTRANSID.Caption = "TRANSID"
+        Me.GTRANSID.FieldName = "TRANSID"
+        Me.GTRANSID.Name = "GTRANSID"
+        Me.GTRANSID.OptionsColumn.AllowEdit = False
         '
         'CMDREFRESH
         '
@@ -285,26 +292,6 @@ Partial Class LRStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'GLEDGERID
-        '
-        Me.GLEDGERID.Caption = "LEDGERID"
-        Me.GLEDGERID.FieldName = "LEDGERID"
-        Me.GLEDGERID.Name = "GLEDGERID"
-        '
-        'GLEDGERIDTO
-        '
-        Me.GLEDGERIDTO.Caption = "LEDGERIDTO"
-        Me.GLEDGERIDTO.FieldName = "LEDGERIDTO"
-        Me.GLEDGERIDTO.Name = "GLEDGERIDTO"
-        '
-        'GBALENO
-        '
-        Me.GBALENO.Caption = "BALENO"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 10
-        '
         'LRStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -343,9 +330,7 @@ Partial Class LRStock
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLEDGERID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLEDGERIDTO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRANSID As DevExpress.XtraGrid.Columns.GridColumn
 End Class
