@@ -306,6 +306,7 @@ Public Class InvoiceMaster
         CHKTRADINGACC.CheckState = CheckState.Unchecked
         GRIDORDER.RowCount = 0
         LBLCOVERNOTEDONE.Visible = False
+        CMDSELECTSO.Enabled = True
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -9002,31 +9003,8 @@ LINE1:
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
             Dim OBJSTOCK As New SelectStockGDN
+            OBJSTOCK.ITEMNAME = GRIDORDER.Item(GITEMNAME.Index, GRIDORDER.CurrentRow.Index).Value
             OBJSTOCK.ShowDialog()
-            '            Dim OBJCMN As New ClsCommon
-            '            Dim DTNO As New DataTable
-            '            Dim OBJSELECTGDN As New SelectStockGDN
-            '            'OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
-
-            '            OBJSELECTGDN.ShowDialog()
-            '            DTNO = OBJSELECTGDN.DT
-            '            If DTNO.Rows.Count > 0 Then
-            '                For Each DTROW As DataRow In DTNO.Rows
-            '                    Dim PER As String = "Mtrs"
-            '                    'FETCH PER FROM ITEMMASTER
-
-            '                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE,'') AS HSNCODE, ITEMMASTER.ITEM_REMARKS AS ITEMREMARKS, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT", "", " ITEMMASTER INNER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-            '                    CMBITEM.Text = DTROW("ITEMNAME")
-            '                    If DT.Rows(0).Item("UNIT") <> "" Then PER = DT.Rows(0).Item("UNIT") Else PER = "Mtrs"
-            '                        GETHSNCODE()
-
-            '                    GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", "", DTROW("COLOR"), 0, 0, DTNO.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), "", "")
-            'LINE1:
-            '                Next
-            '                getsrno(GRIDINVOICE)
-            '                TOTAL()
-            '                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
-            '            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -9160,8 +9138,10 @@ LINE1:
                 cmbname.Focus()
                 Exit Sub
             End If
-
             Dim OBJCMN As New ClsCommon
+            'Dim DT1 As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & GRIDINVOICE.Item(GITEMNAME.Index, GRIDINVOICE.CurrentRow.Index).Value & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " ORDER BY INVOICEMASTER.INVOICE_NO DESC")
+            'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
+
             Dim DTSO As New DataTable
             Dim OBJSELECTSO As New SelectSO
             OBJSELECTSO.PARTYNAME = cmbname.Text.Trim
@@ -9430,7 +9410,7 @@ NEXTLINE:
                     GRIDINVOICE.RowCount = 0
                 End If
             End If
-
+            CMDSELECTSO.Enabled = False
         Catch ex As Exception
             Throw ex
         End Try

@@ -1,0 +1,39 @@
+<xpml><page quantity='0' pitch='50.0 mm'></xpml>^XA
+^MCY^PMN
+^PW380
+~JSN^MMT
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='50.0 mm'></xpml>~DGR:SSGFX000.GRF,190,5,:Z64:eJxtjrENgDAMBA9RpGQBRNagQLBSSgqKjJZRMkJKuvAxVCiydG7s/4Mb8DXBUTNUdzMULlxmx0UmjfYCY5phSJuQTz2VIIQfFMHaQ+kcW8oqZAudW0crilapcv9qmJDUyidpuk38AVIpK8E=:119B
+<xpml></page></xpml><xpml><page quantity='1' pitch='50.0 mm'></xpml>^XA
+^FT23,103
+^CI0
+^A0N,39,52^FDDHANNA SHALI^FS
+^FT331,55
+^AAN,27,15^FDR^FS
+^FT54,145
+^A0N,23,30^FDEXCLUSIVE SHIRTING^FS
+^FT9,197
+^A0N,23,30^FD175-COTTON BOND-28055^FS
+^FT10,235
+^A0N,23,30^FDWIDTH^FS
+^FT112,235
+^A0N,23,30^FD:^FS
+^FT136,235
+^A0N,23,30^FD36 INCH^FS
+^FT10,275
+^A0N,23,30^FDSMP ^FS
+^FT112,275
+^A0N,23,30^FD:^FS
+^FT136,275
+^A0N,23,30^FDS-99999/99/99^FS
+^FO12,289
+^BY2^BCN,80,N,N,,A^FDS-99999/99/99^FS
+^FO322,26
+^XGR:SSGFX000.GRF,1,1^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml>^XA
+^IDR:SSGFX000.GRF^XZ
+<xpml><end/></xpml>

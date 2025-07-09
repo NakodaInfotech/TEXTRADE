@@ -227,7 +227,6 @@ Public Class PurchaseMaster
         TXTSPLREMARKS.Clear()
 
         CMBCOSTCENTERNAME.Text = ""
-
     End Sub
 
     Sub FILLUPLOAD()

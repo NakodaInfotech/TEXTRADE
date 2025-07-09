@@ -1,0 +1,4 @@
+1) GRN ISSUE 1 IN QTY -------------------------------	DONE
+2) GRN PRINTOUT -------------------------------------	DONE
+3) JOBOUT CHALLAN SAME AS GDN --------------
+4) GIVE STOCK RECO ----------------------------------

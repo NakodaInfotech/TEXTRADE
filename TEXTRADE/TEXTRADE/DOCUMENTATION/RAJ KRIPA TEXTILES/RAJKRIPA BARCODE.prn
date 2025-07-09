@@ -1,0 +1,42 @@
+<xpml><page quantity='0' pitch='75.1 mm'></xpml>^XA
+^MCY^PMN
+^PW779
+~JSN^MMT
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='75.1 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>^XA
+^FT20,236
+^CI0
+^A0N,51,69^FDTRUE COTTON - 19001^FS
+^FT20,301
+^ADN,36,20^FDSHADE^FS
+^FT194,301
+^ADN,36,20^FD:^FS
+^FT224,302
+^A0N,45,61^FD005^FS
+^FT20,368
+^ADN,36,20^FDQUALITY^FS
+^FT194,368
+^ADN,36,20^FD:^FS
+^FT224,370
+^A0N,45,61^FD58 DESIGN^FS
+^FT20,436
+^ADN,36,20^FDMTRS^FS
+^FT194,436
+^ADN,36,20^FD:^FS
+^FT224,437
+^A0N,45,61^FD999.00^FS
+^FT439,436
+^ADN,36,20^FDGRADE^FS
+^FT571,436
+^ADN,36,20^FD:^FS
+^FT607,437
+^A0N,45,61^FDROLL^FS
+^FO30,450
+^BY4^BCN,102,N,N,,A^FDD-99999/99/99^FS
+^FT269,580
+^AAN,27,15^FDD-99999/99/99^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>

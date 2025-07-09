@@ -12,6 +12,7 @@ Public Class SelectStockGDN
     Public GODOWN As String = ""
     Public FILTER As String = ""
     Public FRMSTRING As String = ""
+    Public ITEMNAME As String = ""
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -195,6 +196,7 @@ Public Class SelectStockGDN
 
             If GODOWN <> "" And ALLOWBARCODEPRINT = True Then WHERE = WHERE & " AND GODOWN = '" & GODOWN & "'"
             If ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Then WHERE = WHERE & " AND GODOWN = '" & GODOWN & "'"
+            If ClientName = "ABHEE" Then WHERE = WHERE & " AND ITEMNAME = '" & ITEMNAME & "'"
 
             If Val(TXTCUT.Text.Trim) <> 0 Then WHERE = WHERE & " AND CUT = " & Val(TXTCUT.Text.Trim)
             If FILTER <> "" Then WHERE = WHERE & FILTER
