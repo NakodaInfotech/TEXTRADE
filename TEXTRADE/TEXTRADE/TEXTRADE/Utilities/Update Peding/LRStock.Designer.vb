@@ -44,6 +44,7 @@ Partial Class LRStock
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +85,7 @@ Partial Class LRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GITEMNAME, Me.GPARTYBILLNO, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -114,7 +115,7 @@ Partial Class LRStock
         Me.GDATE.Name = "GDATE"
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
-        Me.GDATE.Width = 85
+        Me.GDATE.Width = 80
         '
         'GINITIALS
         '
@@ -132,7 +133,7 @@ Partial Class LRStock
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
-        Me.GNAME.Width = 250
+        Me.GNAME.Width = 240
         '
         'GPARTYBILLNO
         '
@@ -141,7 +142,7 @@ Partial Class LRStock
         Me.GPARTYBILLNO.Name = "GPARTYBILLNO"
         Me.GPARTYBILLNO.OptionsColumn.AllowEdit = False
         Me.GPARTYBILLNO.Visible = True
-        Me.GPARTYBILLNO.VisibleIndex = 4
+        Me.GPARTYBILLNO.VisibleIndex = 5
         Me.GPARTYBILLNO.Width = 120
         '
         'GLRNO
@@ -151,7 +152,7 @@ Partial Class LRStock
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 5
+        Me.GLRNO.VisibleIndex = 6
         Me.GLRNO.Width = 120
         '
         'GPCS
@@ -163,7 +164,7 @@ Partial Class LRStock
         Me.GPCS.Name = "GPCS"
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 6
+        Me.GPCS.VisibleIndex = 7
         Me.GPCS.Width = 80
         '
         'GMTRS
@@ -175,8 +176,8 @@ Partial Class LRStock
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 7
-        Me.GMTRS.Width = 100
+        Me.GMTRS.VisibleIndex = 8
+        Me.GMTRS.Width = 80
         '
         'GTYPE
         '
@@ -185,8 +186,8 @@ Partial Class LRStock
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 8
-        Me.GTYPE.Width = 200
+        Me.GTYPE.VisibleIndex = 9
+        Me.GTYPE.Width = 100
         '
         'GREGID
         '
@@ -292,6 +293,15 @@ Partial Class LRStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 4
+        Me.GITEMNAME.Width = 160
+        '
         'LRStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -333,4 +343,5 @@ Partial Class LRStock
     Friend WithEvents GREGID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLEDGERID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTRANSID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class
