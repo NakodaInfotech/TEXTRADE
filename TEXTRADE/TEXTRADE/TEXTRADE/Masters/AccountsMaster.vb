@@ -2277,8 +2277,6 @@ line1:
             Dim READER As StreamReader = New StreamReader(RESPONSE.GetResponseStream())
             Dim REQUESTEDTEXT As String = READER.ReadToEnd()
 
-
-
             If MsgBox("Wish to Fetch Data From GSTIN?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 ' Parse the JSON object once to avoid repetition
                 Dim jsonObject As JObject = JObject.Parse(REQUESTEDTEXT)
