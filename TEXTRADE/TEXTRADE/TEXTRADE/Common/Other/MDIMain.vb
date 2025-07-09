@@ -10432,5 +10432,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub PartyWiseBaleRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartyWiseBaleRateToolStripMenuItem.Click
+        Try
+            Dim OBJCN As New PartyWiseBaleRate
+            OBJCN.MdiParent = Me
+            OBJCN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

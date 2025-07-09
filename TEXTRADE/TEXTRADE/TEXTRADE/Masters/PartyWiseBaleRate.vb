@@ -16,9 +16,9 @@ Public Class PartyWiseBaleRate
 
         'FOR RAJKRIPA PARTY NAME IS NOT MANDATE
         If CMBNAME.Text.Trim <> "" Then
-            DT = OBJCMN.SEARCH(" ISNULL(PARTYWISEBALERATE.PAR_NO,0) AS ID ", "", " PARTYWISEBALERATE LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON PARTYWISEBALERATE.PAR_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON PARTYWISEBALERATE.PAR_LEDGERID = LEDGERS.Acc_id ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' AND TRANSLEDGERS.acc_cmpname = '" & CMBTRANSPORT.Text.Trim & "'  AND PAR_YEARID = " & YearId & " AND PAR_CMPID = " & CmpId)
+            DT = OBJCMN.SEARCH(" ISNULL(PARTYWISEBALERATE.PAR_NO,0) AS ID, ISNULL(LEDGERS.ACC_CMPNAME, '') AS NAME, ISNULL(TRANSLEDGERS.ACC_CMPNAME, '') AS TRANSPORT ", "", " PARTYWISEBALERATE LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON PARTYWISEBALERATE.PAR_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON PARTYWISEBALERATE.PAR_LEDGERID = LEDGERS.Acc_id ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' AND TRANSLEDGERS.acc_cmpname = '" & CMBTRANSPORT.Text.Trim & "'  AND PAR_YEARID = " & YearId & " AND PAR_CMPID = " & CmpId)
             If DT.Rows.Count > 0 Then
-                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And Val(TXTNO.Text) <> Val(DT.Rows(0).Item(0))) Then
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And Val(TXTNO.Text) <> Val(DT.Rows(0).Item(0)) And CMBNAME.Text.Trim <> DT.Rows(0).Item("NAME") And CMBTRANSPORT.Text.Trim <> DT.Rows(0).Item("TRANSPORT")) Then
                     EP.SetError(CMBNAME, "Bale Rate for This party & Item Already Exist in Grid below")
                     bln = False
                 End If
@@ -222,7 +222,7 @@ Public Class PartyWiseBaleRate
             End If
 
             Dim ALPARAVAL As New ArrayList
-            Dim OBJCONFIG As New ClsPartyItemWiseChart
+            Dim OBJCONFIG As New ClsPartyWiseBaleRate
 
             ALPARAVAL.Add(Val(TXTNO.Text.Trim))
             ALPARAVAL.Add(CMBNAME.Text.Trim)
@@ -259,7 +259,7 @@ Public Class PartyWiseBaleRate
 
 
             'DELETE FROM TABLE
-            Dim OBJSM As New ClsPartyItemWiseChart
+            Dim OBJSM As New ClsPartyWiseBaleRate
             Dim ALPARAVAL As New ArrayList
             ALPARAVAL.Add(gridbill.GetFocusedRowCellValue("ID"))
             ALPARAVAL.Add(Userid)
@@ -282,7 +282,7 @@ Public Class PartyWiseBaleRate
                 GRIDDOUBLECLICK = True
                 TXTNO.Text = gridbill.GetFocusedRowCellValue("ID")
                 CMBNAME.Text = gridbill.GetFocusedRowCellValue("NAME")
-                CMBTRANSPORT.Text = gridbill.GetFocusedRowCellValue("ITEM")
+                CMBTRANSPORT.Text = gridbill.GetFocusedRowCellValue("TRANSPORT")
                 TXTRATE.Text = Val(gridbill.GetFocusedRowCellValue("RATE"))
                 CMBNAME.Focus()
             End If
@@ -303,16 +303,29 @@ Public Class PartyWiseBaleRate
         End Try
     End Sub
     'Function CHECKDUPLICATE() As Boolean
-    '    Try
-    '        Dim bln As Boolean = True
-    '        For Each row As DataGridViewRow In gridbilldetails.rows
-    '            If (GRIDDOUBLECLICK = True And TEMPROW <> row.Index) Or GRIDDOUBLECLICK = False Then
-    '                If TXTPOLICYNO.Text.Trim = row.Cells(GPOLICYNO.Index).Value Then bln = False
+    '    'Try
+    '    '    Dim bln As Boolean = True
+    '    '    For Each row As DataGridViewRow In gridbilldetails.rows
+    '    '        If (GRIDDOUBLECLICK = True And TEMPROW <> row.Index) Or GRIDDOUBLECLICK = False Then
+    '    '            If TXTPOLICYNO.Text.Trim = row.Cells(GPOLICYNO.Index).Value Then bln = False
+    '    '        End If
+    '    '    Next
+    '    '    Return bln
+    '    'Catch ex As Exception
+    '    '    Throw ex
+    '    'End Try
+    '    Dim bln As Boolean = True
+
+    '    Dim OBJCMN As New ClsCommon
+    '    Dim DT As New DataTable
+    '    If CMBNAME.Text.Trim <> "" Then
+    '        DT = OBJCMN.SEARCH(" ISNULL(PARTYWISEBALERATE.PAR_NO,0) AS ID, ISNULL(LEDGERS.ACC_CMPNAME, '') AS NAME, ISNULL(TRANSLEDGERS.ACC_CMPNAME, '') AS TRANSPORT ", "", " PARTYWISEBALERATE LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON PARTYWISEBALERATE.PAR_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON PARTYWISEBALERATE.PAR_LEDGERID = LEDGERS.Acc_id ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' AND TRANSLEDGERS.acc_cmpname = '" & CMBTRANSPORT.Text.Trim & "'  AND PAR_YEARID = " & YearId & " AND PAR_CMPID = " & CmpId)
+    '        If DT.Rows.Count > 0 Then
+    '            If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And Val(TXTNO.Text) <> Val(DT.Rows(0).Item(0)) And CMBNAME.Text.Trim <> DT.Rows(0).Item("NAME") And CMBTRANSPORT.Text.Trim <> DT.Rows(0).Item("TRANSPORT")) Then
+    '                EP.SetError(CMBNAME, "Bale Rate for This party & Item Already Exist in Grid below")
+    '                bln = False
     '            End If
-    '        Next
-    '        Return bln
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
+    '        End If
+    '    End If
     'End Function
 End Class
