@@ -1,0 +1,20 @@
+<xpml><page quantity='0' pitch='15.0 mm'></xpml>I8,A
+ZN
+q300
+O
+JF
+KIZZQ0
+ZT
+Q120,25
+KI80
+<xpml></page></xpml><xpml><page quantity='1' pitch='15.0 mm'></xpml>N
+A293,109,2,3,1,1,N,"SUMMER FRESH (551511)"
+A293,76,2,1,1,1,N,"SUMMER FRESH - 01/3C"
+LO5,83,289,2
+LO80,9,2,73
+A215,49,2,3,1,1,N,"WHITE"
+b10,11,Q,m2,s3,eL,iA,"SMP-99999/99/99"
+LO80,52,203,2
+A266,23,2,1,1,1,N,"SMP-99999/99/99"
+P1
+<xpml></page></xpml><xpml><end/></xpml>

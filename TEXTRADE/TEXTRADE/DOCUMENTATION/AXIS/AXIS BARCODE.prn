@@ -1,0 +1,31 @@
+<xpml><page quantity='0' pitch='38.0 mm'></xpml>I8,A
+ZN
+q401
+O
+JF
+KIZZQ0
+KI9+0.0
+ZT
+Q304,B25
+Arglabel 380 31
+exit
+KI80
+<xpml></page></xpml><xpml><page quantity='1' pitch='38.0 mm'></xpml>N
+B388,94,2,1,2,4,62,N,"REC-9999/99/99"
+A269,26,2,1,1,1,N,"REC-9999/99/99"
+A395,289,2,4,1,1,N,"COTTON MATKA WHITE PATLI"
+A284,149,2,1,2,2,N,"36"
+A381,196,2,1,2,2,N,"SHADE"
+A209,149,2,1,2,2,N,"MRP"
+A380,242,2,1,2,2,N,"MTRS"
+A284,194,2,1,2,2,N,":"
+A265,194,2,1,2,2,N,"PARROT GREEN"
+A284,242,2,1,2,2,N,":"
+A149,149,2,1,2,2,N,":"
+A265,242,2,1,2,2,N,"999.99"
+A131,149,2,1,2,2,N,"9999/-"
+A380,149,2,1,2,2,N,"SIZE"
+A301,149,2,1,2,2,N,":"
+A203,114,2,1,1,1,N,"(Incl. of All Taxes)"
+P1
+<xpml></page></xpml><xpml><end/></xpml>
