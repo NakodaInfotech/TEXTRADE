@@ -1185,7 +1185,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.PartyWiseBaleRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PartyWiseBaleRate = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1239,7 +1239,7 @@ Partial Class MDIMain
         '
         'LEDGER_MASTER
         '
-        Me.LEDGER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACC_MASTER, Me.ToolStripSeparator13, Me.INCENTIVE_MASTER, Me.ToolStripSeparator283, Me.PartyWiseBaleRateToolStripMenuItem})
+        Me.LEDGER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACC_MASTER, Me.ToolStripSeparator13, Me.INCENTIVE_MASTER, Me.ToolStripSeparator283, Me.PartyWiseBaleRate})
         Me.LEDGER_MASTER.Name = "LEDGER_MASTER"
         Me.LEDGER_MASTER.Size = New System.Drawing.Size(169, 22)
         Me.LEDGER_MASTER.Text = "&Ledger Master"
@@ -8661,9 +8661,9 @@ Partial Class MDIMain
         '
         'PartyWiseBaleRateToolStripMenuItem
         '
-        Me.PartyWiseBaleRateToolStripMenuItem.Name = "PartyWiseBaleRateToolStripMenuItem"
-        Me.PartyWiseBaleRateToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
-        Me.PartyWiseBaleRateToolStripMenuItem.Text = "Party Wise Bale Rate"
+        Me.PartyWiseBaleRate.Name = "PartyWiseBaleRateToolStripMenuItem"
+        Me.PartyWiseBaleRate.Size = New System.Drawing.Size(187, 22)
+        Me.PartyWiseBaleRate.Text = "Party Wise Bale Rate"
         '
         'MDIMain
         '
@@ -9853,5 +9853,5 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator310 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator309 As ToolStripSeparator
     Friend WithEvents LRStockToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PartyWiseBaleRateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PartyWiseBaleRate As ToolStripMenuItem
 End Class
