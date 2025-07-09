@@ -529,6 +529,12 @@
     <Compile Include="Masters\ItemPackingMaterial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\PartyWiseBaleRate.Designer.vb">
+      <DependentUpon>PartyWiseBaleRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\PartyWiseBaleRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\StateWiseMRP.Designer.vb">
       <DependentUpon>StateWiseMRP.vb</DependentUpon>
     </Compile>
@@ -6476,6 +6482,12 @@
     <Compile Include="Utilities\Update Peding\LockPendingLotsForProgram.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Update Peding\LRStock.Designer.vb">
+      <DependentUpon>LRStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\LRStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Update Peding\SelectPendingEntries.Designer.vb">
       <DependentUpon>SelectPendingEntries.vb</DependentUpon>
     </Compile>
@@ -8451,6 +8463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\ItemPackingMaterial.resx">
       <DependentUpon>ItemPackingMaterial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\PartyWiseBaleRate.resx">
+      <DependentUpon>PartyWiseBaleRate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\StateWiseMRP.resx">
       <DependentUpon>StateWiseMRP.vb</DependentUpon>
@@ -12088,6 +12103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\LockPendingLotsForProgram.resx">
       <DependentUpon>LockPendingLotsForProgram.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\LRStock.resx">
+      <DependentUpon>LRStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\SelectPendingEntries.resx">
       <DependentUpon>SelectPendingEntries.vb</DependentUpon>

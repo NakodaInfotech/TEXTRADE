@@ -5267,7 +5267,7 @@ Partial Class InvoiceMaster
         Me.CMDSELECTGDN.FlatAppearance.BorderSize = 0
         Me.CMDSELECTGDN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTGDN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTGDN.Location = New System.Drawing.Point(484, 430)
+        Me.CMDSELECTGDN.Location = New System.Drawing.Point(467, 429)
         Me.CMDSELECTGDN.Name = "CMDSELECTGDN"
         Me.CMDSELECTGDN.Size = New System.Drawing.Size(93, 28)
         Me.CMDSELECTGDN.TabIndex = 4

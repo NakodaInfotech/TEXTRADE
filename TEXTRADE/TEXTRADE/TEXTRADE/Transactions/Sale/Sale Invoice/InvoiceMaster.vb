@@ -9402,7 +9402,9 @@ NEXTLINE:
                     GRIDINVOICE.Focus()
                     GRIDINVOICE.CurrentCell = GRIDINVOICE.Rows(0).Cells(Gpcs.Index)
                 End If
-
+                If ClientName = "ABHEE" Then
+                    GRIDINVOICE.RowCount = 0
+                End If
             End If
 
         Catch ex As Exception
