@@ -213,6 +213,7 @@
     <Compile Include="Masters\ClsGroupOfCompanies.vb" />
     <Compile Include="Masters\ClsHSNMaster.vb" />
     <Compile Include="Masters\ClsInterGodownTransfer.vb" />
+    <Compile Include="Masters\ClsPartyWiseBaleRate.vb" />
     <Compile Include="Masters\ClsSampleTypeMaster.vb" />
     <Compile Include="Masters\ClsTransInsurance.vb" />
     <Compile Include="Masters\ClsVehicleMaster.vb" />

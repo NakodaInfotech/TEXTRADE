@@ -5107,6 +5107,7 @@ SKIPLINE:
             If ClientName = "ABHEE" Then
                 LRStockToolStripMenuItem.Enabled = True
             End If
+            If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
         Catch ex As Exception
             Throw ex
         End Try
@@ -10428,6 +10429,16 @@ SKIPLINE:
             Dim OBJOP As New LRStock
             OBJOP.MdiParent = Me
             OBJOP.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub PartyWiseBaleRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartyWiseBaleRate.Click
+        Try
+            Dim OBJCN As New PartyWiseBaleRate
+            OBJCN.MdiParent = Me
+            OBJCN.Show()
         Catch ex As Exception
             Throw ex
         End Try
