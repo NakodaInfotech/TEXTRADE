@@ -43,6 +43,12 @@ Partial Class SelectPurLRStock
         Me.CHKSELECT = New System.Windows.Forms.CheckBox()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,12 +71,12 @@ Partial Class SelectPurLRStock
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(31, 28)
+        Me.gridbilldetails.Location = New System.Drawing.Point(12, 28)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHK})
-        Me.gridbilldetails.Size = New System.Drawing.Size(1223, 507)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1260, 507)
         Me.gridbilldetails.TabIndex = 808
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -80,7 +86,7 @@ Partial Class SelectPurLRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GWT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID, Me.GUNIT, Me.GHSNCODE, Me.GAQTY, Me.GFOLDPER})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -171,15 +177,15 @@ Partial Class SelectPurLRStock
         '
         'GPCS
         '
-        Me.GPCS.Caption = "Qty"
+        Me.GPCS.Caption = "Pcs"
         Me.GPCS.DisplayFormat.FormatString = "0"
         Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GPCS.FieldName = "TOTALQTY"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 7
-        Me.GPCS.Width = 80
+        Me.GPCS.VisibleIndex = 8
+        Me.GPCS.Width = 60
         '
         'GMTRS
         '
@@ -190,8 +196,8 @@ Partial Class SelectPurLRStock
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
-        Me.GMTRS.Width = 100
+        Me.GMTRS.VisibleIndex = 9
+        Me.GMTRS.Width = 80
         '
         'GTYPE
         '
@@ -200,7 +206,7 @@ Partial Class SelectPurLRStock
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 9
+        Me.GTYPE.VisibleIndex = 11
         '
         'GREGID
         '
@@ -251,6 +257,53 @@ Partial Class SelectPurLRStock
         Me.CMDOK.Text = "&OK"
         Me.CMDOK.UseVisualStyleBackColor = True
         '
+        'GWT
+        '
+        Me.GWT.Caption = "Wt"
+        Me.GWT.DisplayFormat.FormatString = "0.00"
+        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 10
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.Width = 180
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        '
+        'GHSNCODE
+        '
+        Me.GHSNCODE.Caption = "HSN"
+        Me.GHSNCODE.FieldName = "HSNCODE"
+        Me.GHSNCODE.Name = "GHSNCODE"
+        '
+        'GAQTY
+        '
+        Me.GAQTY.Caption = "Qty"
+        Me.GAQTY.DisplayFormat.FormatString = "0.00"
+        Me.GAQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAQTY.FieldName = "AQTY"
+        Me.GAQTY.Name = "GAQTY"
+        '
+        'GFOLDPER
+        '
+        Me.GFOLDPER.Caption = "Fold %"
+        Me.GFOLDPER.DisplayFormat.FormatString = "0.00"
+        Me.GFOLDPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GFOLDPER.FieldName = "FOLDPER"
+        Me.GFOLDPER.Name = "GFOLDPER"
+        '
         'SelectPurLRStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -292,4 +345,10 @@ Partial Class SelectPurLRStock
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHK As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAQTY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
 End Class

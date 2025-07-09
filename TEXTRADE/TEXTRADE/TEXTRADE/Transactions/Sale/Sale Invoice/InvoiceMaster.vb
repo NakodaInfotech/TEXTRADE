@@ -454,7 +454,7 @@ Public Class InvoiceMaster
                     'Item Grid
                     Dim PER As String
                     If dr("PER") = "Qty" Then PER = "Pcs" Else PER = "Mtrs"
-                    GRIDINVOICE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, "", dr("COLOR"), 0, 0, "", dr("BALENO").ToString, Val(dr("QTY")), Val(dr("CUT")), Val(dr("MTRS")), Val(dr("RATE")), PER, Val(dr("AMT")), dr("LRNO"), dr("TRANSNAME"), Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", "Mtrs", 0, 0, dr("NAME"), dr("PARTYBILLNO"))
+                    GRIDINVOICE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, "", dr("COLOR"), Val(dr("AQTY")), Val(dr("FOLDPER")), "", dr("BALENO").ToString, Val(dr("QTY")), Val(dr("CUT")), Val(dr("MTRS")), Val(dr("RATE")), PER, Val(dr("AMT")), dr("LRNO"), dr("TRANSNAME"), Format(Val(TXTDISCPER.Text.Trim), "0.00"), Format(Val(TXTDISCAMT.Text.Trim), "0.00"), Format(Val(TXTSPDISCPER.Text.Trim), "0.00"), Format(Val(TXTSPDISCAMT.Text.Trim), "0.00"), Format(Val(TXTOTHERAMT.Text.Trim), "0.00"), Format(Val(TXTTAXABLEAMT.Text.Trim), "0.00"), Val(TXTCGSTPER.Text.Trim), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Val(TXTSGSTPER.Text.Trim), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Val(TXTIGSTPER.Text.Trim), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Format(Val(TXTGRIDTOTAL.Text.Trim), "0.00"), txtdescbarcode.Text.Trim, 0, 0, "", 0, "", dr("UNIT"), 0, 0, Val(dr("CHADTI")), dr("NAME"), dr("PARTYBILLNO"))
                     CMBITEM.Text = dr("ITEMNAME")
 
                     TabControl2.SelectedIndex = (0)
@@ -505,7 +505,7 @@ Public Class InvoiceMaster
 
             If DIRECTINVOICE = True Then
                 cmbname.Text = TEMPPARTYNAME
-                cmbname_Validated(sender,e)
+                cmbname_Validated(sender, e)
                 If ClientName = "AFW" Then Call CMDSELECTGDN_Click(sender, e) Else GETDATAFROMPUR()
             End If
 
@@ -682,7 +682,7 @@ Public Class InvoiceMaster
                     TXTSUBTOTAL.Text = Val(dr("SUBTOTAL"))
                     txtroundoff.Text = Val(dr("ROUNDOFF"))
                     txtgrandtotal.Text = Val(dr("GRANDTOTAL"))
-                    TXTTOTALWT.Text = Val(dr("TOTALWT"))  'TOTALWT
+                    LBLTOTALWT.Text = Val(dr("TOTALWT"))  'TOTALWT
 
                     TXTAMTREC.Text = Val(dr("AMTREC"))
                     TXTEXTRAAMT.Text = Val(dr("EXTRAAMT"))
@@ -1359,7 +1359,7 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERRATE)
             alParaval.Add(ORDERPARTYPONO)
 
-            alParaval.Add(Val(TXTTOTALWT.Text.Trim))
+            alParaval.Add(Val(LBLTOTALWT.Text))
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -5198,10 +5198,7 @@ LINE1:
 
                     GWT.Visible = True
                     LBLTOTALWT.Visible = True
-                    TXTTOTALWT.Visible = True
-
                     CMDSELECTSTOCK.Visible = True
-                    Label23.Visible = True
                 End If
             Else
                 CMDSELECTGDN.Visible = True
@@ -8902,12 +8899,12 @@ NEXTLINE:
                         TXTCGSTPER1.Text = Val(DTHSN.Rows(0).Item("CGST"))
                         TXTSGSTPER1.Text = Val(DTHSN.Rows(0).Item("SGST"))
                         TXTIGSTPER1.Text = 0
-                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("CGST")), 0, Val(DTHSN.Rows(0).Item("SGST")), 0, 0, 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, "", "")
+                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("CGST")), 0, Val(DTHSN.Rows(0).Item("SGST")), 0, 0, 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, 0, "", "")
                     Else
                         TXTCGSTPER1.Text = 0
                         TXTSGSTPER1.Text = 0
                         TXTIGSTPER1.Text = Val(DTHSN.Rows(0).Item("IGST"))
-                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("IGST")), 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, "", "")
+                        GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DTHSN.Rows(0).Item("HSNCODE"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, 0, DESC, "", 1, Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTHSN.Rows(0).Item("IGST")), 0, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, "", DT.Rows(0).Item("UNIT"), 0, 0, 0, "", "")
                     End If
                     TOTAL()
 LINE1:
@@ -9025,21 +9022,8 @@ LINE1:
 
             If DTST.Rows.Count > 0 Then
                 For Each DTROWPS As DataRow In DTST.Rows
-                    If Val(DTROWPS("PCS")) = 0 Then DTROWPS("PCS") = 1
-
-                    Dim PER As String = "Mtrs"
-                    Dim CCRATE As Double = 0
-                    Dim CUT As Double = 0
-
-                    Dim OBJCMN As New ClsCommon
-                    Dim DTPS As New DataTable
-                    DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND FROMSRNO = " & Val(DTROWPS("FROMSRNO")) & "   AND YEARID = " & YearId)
-                    'GRIDINVOICE.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "")
-                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTPS.Rows(0).Item("ITEMNAME"), DTPS.Rows(0).Item("HSNCODE"), DTPS.Rows(0).Item("QUALITY"), DTPS.Rows(0).Item("DESIGNNO"), DTPS.Rows(0).Item("COLOR"), 0, 0, "", "", 1, Format(Val(DTPS.Rows(0).Item("CUT")), "0.00"), Format(Val(DTPS.Rows(0).Item("MTRS")), "0.00"), DTPS, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTPS.Rows(0).Item("IGST")), 0, 0, DTPS.Rows(0).Item("BARCODE"), DTPS.Rows(0).Item("FROMNO"), DTPS.Rows(0).Item("FROMSRNO"), DTPS.Rows(0).Item("TYPE"), 0, "", DTPS.Rows(0).Item("UNIT"), 0, 0, 0, "", "")
-
-LINE1:
+                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTROWPS("ITEMNAME"), DTROWPS("HSNCODE"), "", "", "", Val(DTROWPS("AQTY")), Val(DTROWPS("FOLDPER")), "", "", Val(DTROWPS("TOTALQTY")), 0, Format(Val(DTROWPS("TOTALMTRS")), "0.00"), 0, "Mtrs", 0, DTROWPS("LRNO"), DTROWPS("TRANSPORT"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Val(DTROWPS("FROMNO")), 0, DTROWPS("TYPE"), 0, "", DTROWPS("UNIT"), 0, 0, Val(DTROWPS("WT")), DTROWPS("PURNAME"), DTROWPS("PARTYBILLNO"))
                 Next
-                CMDSELECTSTOCK.Enabled = True
                 getsrno(GRIDINVOICE)
                 TOTAL()
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
