@@ -5104,9 +5104,9 @@ SKIPLINE:
             End If
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then MASHOK_REPORTS.Visible = True
-            If ClientName = "ABHEE" Then
-                LRStockToolStripMenuItem.Enabled = True
-            End If
+            'If ClientName = "ABHEE" Then
+            '    LRStockToolStripMenuItem.Enabled = True
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
