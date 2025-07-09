@@ -1313,4 +1313,13 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDSUMM_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDSUMM.SortCompare
+        Try
+            e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+            e.Handled = True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -50,6 +50,8 @@ Partial Class YarnSaleOrderClose
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.RBENTERED = New System.Windows.Forms.RadioButton()
+        Me.RBPENDING = New System.Windows.Forms.RadioButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +62,8 @@ Partial Class YarnSaleOrderClose
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.RBENTERED)
+        Me.BlendPanel1.Controls.Add(Me.RBPENDING)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -94,7 +98,7 @@ Partial Class YarnSaleOrderClose
         Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
         Me.CHKSELECTALL.Location = New System.Drawing.Point(12, 32)
         Me.CHKSELECTALL.Name = "CHKSELECTALL"
-        Me.CHKSELECTALL.Size = New System.Drawing.Size(72, 18)
+        Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
         Me.CHKSELECTALL.TabIndex = 257
         Me.CHKSELECTALL.Text = "Select All"
         Me.CHKSELECTALL.UseVisualStyleBackColor = False
@@ -218,7 +222,7 @@ Partial Class YarnSaleOrderClose
         Me.GBAGS.OptionsColumn.AllowEdit = False
         Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 8
+        Me.GBAGS.VisibleIndex = 7
         Me.GBAGS.Width = 60
         '
         'GWT
@@ -230,7 +234,7 @@ Partial Class YarnSaleOrderClose
         Me.GWT.Name = "GWT"
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 9
+        Me.GWT.VisibleIndex = 8
         '
         'GRATE
         '
@@ -241,7 +245,7 @@ Partial Class YarnSaleOrderClose
         Me.GRATE.Name = "GRATE"
         Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 10
+        Me.GRATE.VisibleIndex = 9
         '
         'GRECDBAGS
         '
@@ -252,7 +256,7 @@ Partial Class YarnSaleOrderClose
         Me.GRECDBAGS.Name = "GRECDBAGS"
         Me.GRECDBAGS.OptionsColumn.AllowEdit = False
         Me.GRECDBAGS.Visible = True
-        Me.GRECDBAGS.VisibleIndex = 11
+        Me.GRECDBAGS.VisibleIndex = 10
         Me.GRECDBAGS.Width = 65
         '
         'GRECDWT
@@ -264,7 +268,7 @@ Partial Class YarnSaleOrderClose
         Me.GRECDWT.Name = "GRECDWT"
         Me.GRECDWT.OptionsColumn.AllowEdit = False
         Me.GRECDWT.Visible = True
-        Me.GRECDWT.VisibleIndex = 12
+        Me.GRECDWT.VisibleIndex = 11
         '
         'GBALBAGS
         '
@@ -276,7 +280,7 @@ Partial Class YarnSaleOrderClose
         Me.GBALBAGS.OptionsColumn.AllowEdit = False
         Me.GBALBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALBAGS.Visible = True
-        Me.GBALBAGS.VisibleIndex = 13
+        Me.GBALBAGS.VisibleIndex = 12
         Me.GBALBAGS.Width = 65
         '
         'GBALWT
@@ -289,7 +293,7 @@ Partial Class YarnSaleOrderClose
         Me.GBALWT.OptionsColumn.AllowEdit = False
         Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALWT.Visible = True
-        Me.GBALWT.VisibleIndex = 14
+        Me.GBALWT.VisibleIndex = 13
         '
         'GREMARKS
         '
@@ -298,7 +302,7 @@ Partial Class YarnSaleOrderClose
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.VisibleIndex = 14
         Me.GREMARKS.Width = 280
         '
         'GTYPE
@@ -308,7 +312,7 @@ Partial Class YarnSaleOrderClose
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 16
+        Me.GTYPE.VisibleIndex = 15
         '
         'CMBREASON
         '
@@ -367,6 +371,30 @@ Partial Class YarnSaleOrderClose
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'RBENTERED
+        '
+        Me.RBENTERED.AutoSize = True
+        Me.RBENTERED.BackColor = System.Drawing.Color.Transparent
+        Me.RBENTERED.Location = New System.Drawing.Point(192, 32)
+        Me.RBENTERED.Name = "RBENTERED"
+        Me.RBENTERED.Size = New System.Drawing.Size(66, 19)
+        Me.RBENTERED.TabIndex = 809
+        Me.RBENTERED.Text = "Entered"
+        Me.RBENTERED.UseVisualStyleBackColor = False
+        '
+        'RBPENDING
+        '
+        Me.RBPENDING.AutoSize = True
+        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
+        Me.RBPENDING.Checked = True
+        Me.RBPENDING.Location = New System.Drawing.Point(117, 32)
+        Me.RBPENDING.Name = "RBPENDING"
+        Me.RBPENDING.Size = New System.Drawing.Size(69, 19)
+        Me.RBPENDING.TabIndex = 808
+        Me.RBPENDING.TabStop = True
+        Me.RBPENDING.Text = "Pending"
+        Me.RBPENDING.UseVisualStyleBackColor = False
+        '
         'YarnSaleOrderClose
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -417,4 +445,6 @@ Partial Class YarnSaleOrderClose
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents cmdok As Button
+    Friend WithEvents RBENTERED As RadioButton
+    Friend WithEvents RBPENDING As RadioButton
 End Class
