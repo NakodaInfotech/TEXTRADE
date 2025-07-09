@@ -5104,9 +5104,9 @@ SKIPLINE:
             End If
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then MASHOK_REPORTS.Visible = True
-            'If ClientName = "ABHEE" Then
-            '    LRStockToolStripMenuItem.Enabled = True
-            'End If
+            If ClientName = "ABHEE" Then
+                LRStockToolStripMenuItem.Enabled = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -10416,6 +10416,16 @@ SKIPLINE:
     Private Sub EditExistingEntryToolStripMenuItem6_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem6.Click
         Try
             Dim OBJOP As New AgencyReceiptDetails
+            OBJOP.MdiParent = Me
+            OBJOP.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub LRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LRStockToolStripMenuItem.Click
+        Try
+            Dim OBJOP As New LRStock
             OBJOP.MdiParent = Me
             OBJOP.Show()
         Catch ex As Exception
