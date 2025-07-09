@@ -2342,17 +2342,6 @@ line1:
 
             End If
 
-
-
-
-
-
-
-
-
-
-
-
             Dim TEMPSTATUS As String = ""
             Dim CMPSTATUS As String = JObject.Parse(REQUESTEDTEXT)("sts")
             If CMPSTATUS = "Cancelled" Then
