@@ -3,6 +3,8 @@ Imports BL
 Imports System.ComponentModel
 Imports System.Net
 Imports System.IO
+Imports Newtonsoft.Json.Linq
+
 
 Public Class AccountsMaster
 
@@ -2271,21 +2273,33 @@ line1:
             Catch ex As WebException
                 RESPONSE = ex.Response
             End Try
+
             Dim READER As StreamReader = New StreamReader(RESPONSE.GetResponseStream())
             Dim REQUESTEDTEXT As String = READER.ReadToEnd()
 
-            'IF STATUS IS NOT 1 THEN TOKEN IS NOT GENERATED
-            Dim STARTPOS As Integer = 0
+
+
+            If MsgBox("Wish to Fetch Data From GSTIN?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                cmbcmpname.Text = JObject.Parse(REQUESTEDTEXT)("tradeNam")
+
+            End If
+
+
+
+
+
+
+
             Dim TEMPSTATUS As String = ""
-            'Dim TOKEN As String = ""
-            Dim ENDPOS As Integer = 0
-
-            'STARTPOS = REQUESTEDTEXT.IndexOf(TXTGSTIN.Text.Trim)
-            STARTPOS = REQUESTEDTEXT.ToLower.IndexOf("sts") + 6
-            ENDPOS = REQUESTEDTEXT.ToLower.IndexOf("ctjcd") - 3
-
-            TEMPSTATUS = REQUESTEDTEXT.Substring(STARTPOS, ENDPOS - STARTPOS)
-            If TEMPSTATUS = "Active" Then TEMPSTATUS = "SUCCESS" Else TEMPSTATUS = "FAILED"
+            Dim CMPSTATUS As String = JObject.Parse(REQUESTEDTEXT)("sts")
+            If CMPSTATUS = "Cancelled" Then
+                MsgBox("GSTIN is Cancelled", MsgBoxStyle.Critical)
+                TEMPSTATUS = "FAILED"
+            ElseIf CMPSTATUS = "Active" Then
+                TEMPSTATUS = "SUCCESS"
+            Else
+                TEMPSTATUS = "FAILED"
+            End If
 
 
             If TEMPSTATUS = "SUCCESS" Then

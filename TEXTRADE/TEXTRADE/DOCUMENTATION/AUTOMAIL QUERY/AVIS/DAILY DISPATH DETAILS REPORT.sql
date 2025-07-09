@@ -1,0 +1,52 @@
+DECLARE @SUBJECT VARCHAR(100), @ENTRYBODY VARCHAR(MAX), @TOTALMTRS DECIMAL(18,2), @TOTALRETURNMTRS DECIMAL(18,2)
+SELECT @TOTALMTRS = SUM(SALEGATEPASS_DESC.GP_MTRS)  FROM  SALEGATEPASS_DESC INNER JOIN SALEGATEPASS ON SALEGATEPASS.GP_NO = SALEGATEPASS_DESC.GP_NO AND SALEGATEPASS.GP_YEARID = SALEGATEPASS_DESC.GP_YEARID WHERE GP_DATE = CAST(GETDATE() AS DATE)
+SELECT @TOTALRETURNMTRS = ISNULL(SUM(SALERETURN_DESC.SALRET_MTRS),0)  FROM  SALERETURN_DESC INNER JOIN SALERETURN ON SALERETURN.SALRET_NO = SALERETURN_DESC.SALRET_NO AND SALERETURN.SALRET_YEARID = SALERETURN_DESC.SALRET_YEARID WHERE SALRET_DATE = CAST(GETDATE() AS DATE)
+SET @SUBJECT = 'DAILY DISPATH DETAILS REPORT FOR ' + CAST(DAY( GETDATE()) AS VARCHAR(2)) + '-' + CAST(MONTH( GETDATE()) AS VARCHAR(2)) + '-' + CAST(YEAR( GETDATE()) AS VARCHAR(4))
+
+
+SET @ENTRYBODY = (SELECT  
+[TD/@style]='font-family:Tahoma; font-size:11px;', [TD/@width]='80px', TD= GP_DATE ,'', 
+[TD/@style]='font-family:Tahoma; font-size:11px;', [TD/@width]='250px', TD= ISNULL(LEDGERS.Acc_cmpname,'') ,'', 
+[TD/@style]='font-family:Tahoma; font-size:11px;', [TD/@align]='right',[TD/@width]='80px', TD=SUM(CAST(SALEGATEPASS_DESC.GP_MTRS AS DECIMAL(18,2))) ,'',
+[TD/@style]='font-family:Tahoma; font-size:11px;', [TD/@align]='right',[TD/@width]='100px', TD=CAST(ISNULL(T.MTRS,0) AS DECIMAL(18,2)) ,''
+
+FROM SALEGATEPASS INNER JOIN LEDGERS ON GP_ledgerid = LEDGERS.ACC_ID INNER JOIN 
+SALEGATEPASS_DESC ON SALEGATEPASS.GP_NO = SALEGATEPASS_DESC.GP_NO AND SALEGATEPASS.GP_YEARID = SALEGATEPASS_DESC.GP_YEARID
+LEFT OUTER JOIN 
+
+(SELECT SALRET_DATE AS DATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, SUM(SALERETURN_DESC.SALRET_MTRS) AS MTRS  FROM SALERETURN INNER JOIN LEDGERS ON SALRET_ledgerid = LEDGERS.ACC_ID INNER JOIN SALERETURN_DESC ON SALERETURN.SALRET_NO = SALERETURN_DESC.SALRET_NO AND SALERETURN.SALRET_YEARID = SALERETURN_DESC.SALRET_YEARID 
+WHERE SALRET_DATE = CAST(GETDATE() AS DATE) GROUP BY SALRET_DATE, ISNULL(LEDGERS.ACC_CMPNAME,'')
+) AS T
+
+ON T.DATE = GP_date AND T.NAME = LEDGERS.ACC_CMPNAME
+
+WHERE GP_DATE = CAST(GETDATE() AS DATE)
+GROUP BY GP_DATE, T.MTRS, ISNULL(LEDGERS.ACC_CMPNAME,'')
+
+
+
+
+FOR XML PATH ('tr'))
+
+
+DECLARE @BODY VARCHAR(MAX)
+SET @BODY = N'<H1 style="font-family:Tahoma; font-size:11px;">DAILY DISPATCH DETAILS</H1>' +
+				N'<Table Border = "1">' + 
+				N'<Tr style="font-family:Tahoma; font-size:11px;"><Th>Date</Th><Th>Name</Th><Th>Mtrs</Th><Th>Return Mtrs</Th></Tr>'+
+				+ISNULL(@ENTRYBODY,'')+ N'<tfoot><tr><td colspan="2"; style="font-family:Tahoma; font-size:11px; font-weight:bold; color:black;" bgcolor="yellow">GRAND TOTAL:</td>
+				<td style="font-family:Tahoma; font-size:11px; font-weight:bold; color:black;" align="right" bgcolor="yellow">' + CAST(@TOTALMTRS AS VARCHAR) + N'</td>
+				<td style="font-family:Tahoma; font-size:11px; font-weight:bold; color:black;" align="right" bgcolor="yellow">' + CAST(@TOTALRETURNMTRS AS VARCHAR) + N'</td>
+				</tr></tfoot></Table></html>'
+
+
+
+DECLARE @FINALBODY VARCHAR(MAX)
+SET @FINALBODY = @BODY 
+
+
+EXEC msdb.dbo.sp_send_dbmail
+@profile_name='TEXTRADE',
+@recipients='infoavisindustries@gmail.com;gm@avisindustries.in;',
+@subject=@SUBJECT,
+@body=@FINALBODY,
+@body_format = 'HTML'

@@ -1,0 +1,28 @@
+<xpml><page quantity='0' pitch='38.0 mm'></xpml>I8,A
+ZN
+q636
+S3
+O
+JF
+KIZZQ0
+KI9+0.0
+D14
+ZT
+Q304,B25
+Arglabel 380 31
+exit
+<xpml></page></xpml><xpml><page quantity='1' pitch='38.0 mm'></xpml>N
+b151,108,Q,m2,s5,eL,iA,"SMP-9999/99/99"
+A24,77,0,4,1,1,N,"2/120 GIZAAAAA"
+A24,165,0,4,1,1,N,"SHADE"
+A24,123,0,4,1,1,N,"DESIGN"
+A24,211,0,2,1,1,N,"34KT194338"
+A265,225,3,1,1,1,N,"S-99999/99/99"
+b487,108,Q,m2,s5,eL,iA,"SMP-9999/99/99"
+A360,77,0,4,1,1,N,"2/120 GIZAAAAA"
+A360,165,0,4,1,1,N,"SHADE"
+A360,123,0,4,1,1,N,"DESIGN"
+A360,211,0,2,1,1,N,"34KT194338"
+A602,225,3,1,1,1,N,"S-99999/99/99"
+P1
+<xpml></page></xpml><xpml><end/></xpml>
