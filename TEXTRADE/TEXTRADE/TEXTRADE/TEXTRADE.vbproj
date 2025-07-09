@@ -2270,6 +2270,12 @@
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.Designer.vb">
+      <DependentUpon>SelectPurLRStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Sale\Sale Order\ProgramStatusDetails.Designer.vb">
       <DependentUpon>ProgramStatusDetails.vb</DependentUpon>
     </Compile>
@@ -9525,6 +9531,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.resx">
+      <DependentUpon>SelectPurLRStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Order\ProgramStatusDetails.resx">
       <DependentUpon>ProgramStatusDetails.vb</DependentUpon>

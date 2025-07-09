@@ -9013,7 +9013,12 @@ LINE1:
 
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
-            Dim OBJSTOCK As New SelectStockGDN
+            If GRIDORDER.RowCount = 0 Then
+                MsgBox("Select Order First", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            Dim OBJSTOCK As New SelectPurLRStock
             OBJSTOCK.ITEMNAME = GRIDORDER.Item(GITEMNAME.Index, GRIDORDER.CurrentRow.Index).Value
             Dim DTST As DataTable = OBJSTOCK.DT
             OBJSTOCK.ShowDialog()
