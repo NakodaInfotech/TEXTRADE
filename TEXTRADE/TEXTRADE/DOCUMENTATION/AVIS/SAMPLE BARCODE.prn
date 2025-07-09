@@ -1,0 +1,18 @@
+<xpml><page quantity='0' pitch='15.0 mm'></xpml>G0
+n
+M0500
+O0214
+V0
+t1
+Kf0070
+<xpml></page></xpml><xpml><page quantity='1' pitch='15.0 mm'></xpml>L
+D11
+A2
+1W1D44000001200152,LA,SMP-9999/99/99
+ySPM
+1911A0600020005SMP-9999/99/99
+1911A0800340067210291-(JM99)
+1911A0800170067WHITE/NAVY
+Q0001
+E
+<xpml></page></xpml><xpml><end/></xpml>

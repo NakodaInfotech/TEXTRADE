@@ -1,0 +1,29 @@
+<xpml><page quantity='0' pitch='75.1 mm'></xpml>I8,A
+ZN
+q779
+S3
+O
+JF
+KIZZQ0
+D8
+ZT
+Q600,25
+KI81
+<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>N
+A693,232,2,2,2,2,N,"Width"
+A694,405,2,2,2,2,N,"Item "
+b168,198,Q,m2,s5,eL,iA,"REC-99999/99/99"
+A150,198,1,1,1,1,N,"SMP-99999/99/99"
+A548,232,2,2,2,2,N,"58 INCH"
+A548,412,2,3,2,2,N,"SUMMER FRESH"
+A692,347,2,2,2,2,N,"D.No"
+A572,405,2,2,2,2,N,":"
+A548,347,2,2,2,2,N,"SUMMER FRESH"
+A572,347,2,2,2,2,N,":"
+A572,232,2,2,2,2,N,":"
+A692,174,2,2,2,2,N,"FINE MICON KOTA STARTCH"
+A692,289,2,2,2,2,N,"HSN"
+A548,289,2,2,2,2,N,"551311"
+A572,289,2,2,2,2,N,":"
+P1
+<xpml></page></xpml><xpml><end/></xpml>
