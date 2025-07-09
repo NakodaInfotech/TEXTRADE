@@ -81,6 +81,7 @@ Public Class SelectSO
 
             Dim TEMPDISPATCHTO As String = ""
             Dim TEMPPARTYPONO As String = ""
+            Dim TEMPITEMNAME As String = ""
             Dim TEMPALLOW As Boolean = False
             'WE NEED TO INTIMATE IF WE HAVE SELECTED ORDER OF DIFF SHIPTO PARTY
 
@@ -116,6 +117,15 @@ Public Class SelectSO
                         End If
                     End If
 
+                    If ClientName = "ABHEE" Then
+                        If TEMPITEMNAME = "" And dtrow("ITEMNAME") <> "" Then
+                            TEMPITEMNAME = dtrow("ITEMNAME")
+                        ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
+                            MsgBox("You have selected Different Itemname", MsgBoxStyle.Critical)
+                            DT.Rows.Clear()
+                            Exit For
+                        End If
+                    End If
                     DT.Rows.Add(dtrow("DATE"), dtrow("NAME"), dtrow("ITEMNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("QTY")), Val(dtrow("MTRS")), dtrow("PONO"), dtrow("AGENTNAME"), dtrow("TRANSNAME"), dtrow("CITYNAME"), dtrow("DELIVERYAT"), dtrow("REFNO"), Val(dtrow("RATE")), Val(dtrow("SONO")), Val(dtrow("GRIDSRNO")), dtrow("TYPE"), dtrow("GRIDPARTYPONO"), dtrow("PACKINGTYPE"), dtrow("REMARKS"), dtrow("GRIDDESC"))
                 End If
             Next

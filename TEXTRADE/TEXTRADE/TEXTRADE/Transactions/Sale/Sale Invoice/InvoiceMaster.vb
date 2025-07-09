@@ -306,6 +306,7 @@ Public Class InvoiceMaster
         CHKTRADINGACC.CheckState = CheckState.Unchecked
         GRIDORDER.RowCount = 0
         LBLCOVERNOTEDONE.Visible = False
+        CMDSELECTSO.Enabled = True
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -9002,6 +9003,7 @@ LINE1:
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
             Dim OBJSTOCK As New SelectStockGDN
+            OBJSTOCK.ITEMNAME = GRIDORDER.Item(GITEMNAME.Index, GRIDORDER.CurrentRow.Index).Value
             OBJSTOCK.ShowDialog()
         Catch ex As Exception
             Throw ex
@@ -9136,8 +9138,10 @@ LINE1:
                 cmbname.Focus()
                 Exit Sub
             End If
-
             Dim OBJCMN As New ClsCommon
+            'Dim DT1 As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & GRIDINVOICE.Item(GITEMNAME.Index, GRIDINVOICE.CurrentRow.Index).Value & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " ORDER BY INVOICEMASTER.INVOICE_NO DESC")
+            'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
+
             Dim DTSO As New DataTable
             Dim OBJSELECTSO As New SelectSO
             OBJSELECTSO.PARTYNAME = cmbname.Text.Trim
@@ -9406,7 +9410,7 @@ NEXTLINE:
                     GRIDINVOICE.RowCount = 0
                 End If
             End If
-
+            CMDSELECTSO.Enabled = False
         Catch ex As Exception
             Throw ex
         End Try
