@@ -5195,9 +5195,11 @@ LINE1:
                     TXTGRIDLRNO.Visible = False
                     GGRIDPURPARTY.Visible = True
                     GPURPARTYBILLNO.Visible = True
+
                     GWT.Visible = True
                     LBLTOTALWT.Visible = True
                     TXTTOTALWT.Visible = True
+
                     CMDSELECTSTOCK.Visible = True
                     Label23.Visible = True
                 End If
@@ -9013,82 +9015,30 @@ LINE1:
         Try
             Dim OBJSTOCK As New SelectStockGDN
             OBJSTOCK.ITEMNAME = GRIDORDER.Item(GITEMNAME.Index, GRIDORDER.CurrentRow.Index).Value
-            'Dim DTST As DataTable = OBJSTOCK.DT
+            Dim DTST As DataTable = OBJSTOCK.DT
             OBJSTOCK.ShowDialog()
 
-            '            '            If DTST.Rows.Count > 0 Then
-            '            '                For Each DTROW As DataRow In DTST.Rows
-            '            '                    'GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DTROW("LOTNO"), DTROW("REELNO"), Val(DTROW("GSM")), DTROW("GSMDETAILS"), Val(DTROW("SIZE")), Val(DTROW("QTY")), DTROW("UNIT"), DTROW("BARCODE"), DTROW("FROMNO"), DTROW("FROMSRNO"), DTROW("FROMTYPE"))
-            '            '                    GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DTST.Rows(0).Item("HSNCODE"), "", DTROW("DESIGN"), DTROW("COLOR"), 0, 0, DT.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), "", "")
+            If DTST.Rows.Count > 0 Then
+                For Each DTROWPS As DataRow In DTST.Rows
+                    If Val(DTROWPS("PCS")) = 0 Then DTROWPS("PCS") = 1
 
-            '            'NEXTLINE:
+                    Dim PER As String = "Mtrs"
+                    Dim CCRATE As Double = 0
+                    Dim CUT As Double = 0
 
-            '            '                Next
-            '            '                getsrno(GRIDINVOICE)
-            '            '                TOTAL()
-            '            '                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
-            '            '                'If GRIDINVOICE.RowCount > 0 Then
-            '            '                '    GRIDINVOICE.Focus()
-            '            '                '    GRIDINVOICE.CurrentCell = GRIDINVOICE.Rows(0).Cells(Gpcs.Index)
-            '            '                'End If
+                    Dim OBJCMN As New ClsCommon
+                    Dim DTPS As New DataTable
+                    DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND FROMSRNO = " & Val(DTROWPS("FROMSRNO")) & "   AND YEARID = " & YearId)
+                    'GRIDINVOICE.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "")
+                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTPS.Rows(0).Item("ITEMNAME"), DTPS.Rows(0).Item("HSNCODE"), DTPS.Rows(0).Item("QUALITY"), DTPS.Rows(0).Item("DESIGNNO"), DTPS.Rows(0).Item("COLOR"), 0, 0, "", "", 1, Format(Val(DTPS.Rows(0).Item("CUT")), "0.00"), Format(Val(DTPS.Rows(0).Item("MTRS")), "0.00"), DTPS, "Pcs", 0, "", "", Val(TXTDISCPER.Text.Trim), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(DTPS.Rows(0).Item("IGST")), 0, 0, DTPS.Rows(0).Item("BARCODE"), DTPS.Rows(0).Item("FROMNO"), DTPS.Rows(0).Item("FROMSRNO"), DTPS.Rows(0).Item("TYPE"), 0, "", DTPS.Rows(0).Item("UNIT"), 0, 0, 0, "", "")
 
-            '            '            End If
-
-            '            If DTST.Rows.Count > 0 Then
-            '                For Each DTROWPS As DataRow In DTST.Rows
-
-            '                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
-            '                    'If ALLOWBARCODEPRINT = True Or ALLOWPACKINGSLIP = True Then
-            '                    '    For Each ROW As DataGridViewRow In GRIDGDN.Rows
-            '                    '        If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Or (DTROWPS("BARCODE") = "" And Val(ROW.Cells(GFROMNO.Index).Value) = Val(DTROWPS("FROMNO")) And Val(ROW.Cells(GFROMSRNO.Index).Value) = Val(DTROWPS("FROMSRNO"))) Then GoTo LINE1
-            '                    '    Next
-            '                    'End If
-
-            '                    If Val(DTROWPS("PCS")) = 0 Then DTROWPS("PCS") = 1
-            '                    'If (ClientName <> "SAKARIA" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "MARKIN" And ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SHUBHI" And ClientName <> "SUBHLAXMI" And ClientName <> "SSC" And ClientName <> "RUCHITA" And ClientName <> "SARAYU" And ClientName <> "VALIANT" And ClientName <> "MBB" And ClientName <> "RADHA" And ClientName <> "MONOGRAM" And ClientName <> "SNCM" And ClientName <> "SHAILESHTRADING" And ClientName <> "CHINTAN") AndAlso Val(DTROWPS("CUT")) = 0 Then DTROWPS("CUT") = Val(DTROWPS("MTRS"))
-
-            '                    Dim PER As String = "Mtrs"
-            '                    Dim CCRATE As Double = 0
-            '                    Dim CUT As Double = 0
-
-            '                    'If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
-
-            '                    'Dim OBJCMN As New ClsCommon
-            '                    'If ClientName = "CC" Or ClientName = "C3" Then
-            '                    '    Dim DTRATE As DataTable = OBJCMN.SEARCH("ISNULL(DESIGN_SALERATE,0) AS SALERATE, ISNULL(DESIGN_WRATE,0) AS WRATE", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DTROWPS("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
-            '                    '    If CHKRETAIL.CheckState = CheckState.Checked Then CCRATE = DTRATE.Rows(0).Item("SALERATE") Else CCRATE = DTRATE.Rows(0).Item("WRATE")
-            '                    '    PER = "Pcs"
-            '                    'End If
-
-            '                    'If ClientName = "ABHEE" Or ClientName = "SUBHLAXMI" Then PER = "Pcs"
-
-            '                    'GET RATE FROM PRICELIST
-            '                    'If ClientName = "MYCOT" Or ClientName = "SBA" Or ClientName = "DEVEN" Then
-            '                    '    Dim DTPRICELIST As DataTable = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_PRICELISTCOLUMN, '') AS COLNAME", "", " LEDGERS ", " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
-            '                    '    If DTPRICELIST.Rows.Count > 0 AndAlso DTPRICELIST.Rows(0).Item("COLNAME") <> "" Then
-            '                    '        Dim DTRATE As DataTable = OBJCMN.SEARCH(DTPRICELIST.Rows(0).Item("COLNAME") & " AS RATE", "", "ITEMPRICELIST INNER JOIN ITEMMASTER ON ITEMPRICELIST.ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.ITEM_NAME = '" & DTROWPS("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-            '                    '        If DTRATE.Rows.Count > 0 Then CCRATE = Val(DTRATE.Rows(0).Item("RATE"))
-            '                    '    End If
-            '                    'End If
-
-
-
-
-
-            '                    Dim DTPS As New DataTable
-            '                    DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND FROMSRNO = " & Val(DTROWPS("FROMSRNO")) & "   AND YEARID = " & YearId)
-            '                    GRIDINVOICE.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "")
-
-
-
-
-            'LINE1:
-            '                Next
-            '                CMDSELECTSTOCK.Enabled = True
-            '                getsrno(GRIDINVOICE)
-            '                TOTAL()
-            '                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
-            '            End If
+LINE1:
+                Next
+                CMDSELECTSTOCK.Enabled = True
+                getsrno(GRIDINVOICE)
+                TOTAL()
+                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
+            End If
 
         Catch ex As Exception
             Throw ex
