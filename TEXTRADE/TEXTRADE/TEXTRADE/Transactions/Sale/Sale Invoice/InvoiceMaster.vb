@@ -9003,30 +9003,6 @@ LINE1:
         Try
             Dim OBJSTOCK As New SelectStockGDN
             OBJSTOCK.ShowDialog()
-            '            Dim OBJCMN As New ClsCommon
-            '            Dim DTNO As New DataTable
-            '            Dim OBJSELECTGDN As New SelectStockGDN
-            '            'OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
-
-            '            OBJSELECTGDN.ShowDialog()
-            '            DTNO = OBJSELECTGDN.DT
-            '            If DTNO.Rows.Count > 0 Then
-            '                For Each DTROW As DataRow In DTNO.Rows
-            '                    Dim PER As String = "Mtrs"
-            '                    'FETCH PER FROM ITEMMASTER
-
-            '                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE,'') AS HSNCODE, ITEMMASTER.ITEM_REMARKS AS ITEMREMARKS, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT", "", " ITEMMASTER INNER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-            '                    CMBITEM.Text = DTROW("ITEMNAME")
-            '                    If DT.Rows(0).Item("UNIT") <> "" Then PER = DT.Rows(0).Item("UNIT") Else PER = "Mtrs"
-            '                        GETHSNCODE()
-
-            '                    GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", "", DTROW("COLOR"), 0, 0, DTNO.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), "", "")
-            'LINE1:
-            '                Next
-            '                getsrno(GRIDINVOICE)
-            '                TOTAL()
-            '                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
-            '            End If
         Catch ex As Exception
             Throw ex
         End Try
