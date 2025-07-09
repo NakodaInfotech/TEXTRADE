@@ -1042,6 +1042,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator292 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1184,7 +1185,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PartyWiseBaleRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1238,7 +1239,7 @@ Partial Class MDIMain
         '
         'LEDGER_MASTER
         '
-        Me.LEDGER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACC_MASTER, Me.ToolStripSeparator13, Me.INCENTIVE_MASTER, Me.ToolStripSeparator283})
+        Me.LEDGER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACC_MASTER, Me.ToolStripSeparator13, Me.INCENTIVE_MASTER, Me.ToolStripSeparator283, Me.PartyWiseBaleRateToolStripMenuItem})
         Me.LEDGER_MASTER.Name = "LEDGER_MASTER"
         Me.LEDGER_MASTER.Size = New System.Drawing.Size(169, 22)
         Me.LEDGER_MASTER.Text = "&Ledger Master"
@@ -1248,7 +1249,7 @@ Partial Class MDIMain
         Me.ACC_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACCADD, Me.ACCEDIT, Me.ToolStripSeparator92})
         Me.ACC_MASTER.Enabled = False
         Me.ACC_MASTER.Name = "ACC_MASTER"
-        Me.ACC_MASTER.Size = New System.Drawing.Size(167, 22)
+        Me.ACC_MASTER.Size = New System.Drawing.Size(187, 22)
         Me.ACC_MASTER.Text = "Accounts Master"
         '
         'ACCADD
@@ -1276,14 +1277,14 @@ Partial Class MDIMain
         'ToolStripSeparator13
         '
         Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
-        Me.ToolStripSeparator13.Size = New System.Drawing.Size(164, 6)
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(184, 6)
         '
         'INCENTIVE_MASTER
         '
         Me.INCENTIVE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INCENTIVEADD, Me.INCENTIVEEDIT, Me.ToolStripSeparator284, Me.INCENTIVEREPORT_MENU, Me.ToolStripSeparator293})
         Me.INCENTIVE_MASTER.Enabled = False
         Me.INCENTIVE_MASTER.Name = "INCENTIVE_MASTER"
-        Me.INCENTIVE_MASTER.Size = New System.Drawing.Size(167, 22)
+        Me.INCENTIVE_MASTER.Size = New System.Drawing.Size(187, 22)
         Me.INCENTIVE_MASTER.Text = "Incentive Tagging"
         '
         'INCENTIVEADD
@@ -1320,7 +1321,7 @@ Partial Class MDIMain
         'ToolStripSeparator283
         '
         Me.ToolStripSeparator283.Name = "ToolStripSeparator283"
-        Me.ToolStripSeparator283.Size = New System.Drawing.Size(164, 6)
+        Me.ToolStripSeparator283.Size = New System.Drawing.Size(184, 6)
         '
         'ToolStripSeparator172
         '
@@ -7707,6 +7708,13 @@ Partial Class MDIMain
         Me.PROGRAMTOOLSTRIP.Name = "PROGRAMTOOLSTRIP"
         Me.PROGRAMTOOLSTRIP.Size = New System.Drawing.Size(250, 6)
         '
+        'LRStockToolStripMenuItem
+        '
+        Me.LRStockToolStripMenuItem.Enabled = False
+        Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
+        Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.LRStockToolStripMenuItem.Text = "LR Stock"
+        '
         'ToolStripSeparator90
         '
         Me.ToolStripSeparator90.Name = "ToolStripSeparator90"
@@ -8651,12 +8659,11 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'LRStockToolStripMenuItem
+        'PartyWiseBaleRateToolStripMenuItem
         '
-        Me.LRStockToolStripMenuItem.Enabled = False
-        Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
-        Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.LRStockToolStripMenuItem.Text = "LR Stock"
+        Me.PartyWiseBaleRateToolStripMenuItem.Name = "PartyWiseBaleRateToolStripMenuItem"
+        Me.PartyWiseBaleRateToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.PartyWiseBaleRateToolStripMenuItem.Text = "Party Wise Bale Rate"
         '
         'MDIMain
         '
@@ -9846,4 +9853,5 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator310 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator309 As ToolStripSeparator
     Friend WithEvents LRStockToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PartyWiseBaleRateToolStripMenuItem As ToolStripMenuItem
 End Class
