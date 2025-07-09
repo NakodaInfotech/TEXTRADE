@@ -2280,9 +2280,72 @@ line1:
 
 
             If MsgBox("Wish to Fetch Data From GSTIN?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                cmbcmpname.Text = JObject.Parse(REQUESTEDTEXT)("tradeNam")
+                ' Parse the JSON object once to avoid repetition
+                Dim jsonObject As JObject = JObject.Parse(REQUESTEDTEXT)
+
+                ' Access and set txtadd1
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Make sure the required fields exist before assigning to the textboxes
+                    If addrObj("flno") IsNot Nothing AndAlso addrObj("bno") IsNot Nothing AndAlso addrObj("bnm") IsNot Nothing AndAlso addrObj("st") IsNot Nothing Then
+                        txtadd1.Text = addrObj("flno").ToString() & ", " & addrObj("bno").ToString() & ", " & addrObj("bnm").ToString() & ", " & addrObj("st").ToString()
+                    End If
+                End If
+
+                ' Access and set txtadd2
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Check if locality, dst, stcd, and pncd exist before assigning
+                    If addrObj("locality") IsNot Nothing AndAlso addrObj("dst") IsNot Nothing AndAlso addrObj("stcd") IsNot Nothing AndAlso addrObj("pncd") IsNot Nothing Then
+                        txtadd2.Text = addrObj("locality").ToString() & ", " & addrObj("dst").ToString() & ", " & addrObj("stcd").ToString() & ", " & addrObj("pncd").ToString()
+                    End If
+                End If
+
+                ' Access and set txtadd (combine both address parts)
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Ensure all fields are available before concatenating
+                    If addrObj("flno") IsNot Nothing AndAlso addrObj("bno") IsNot Nothing AndAlso addrObj("bnm") IsNot Nothing AndAlso addrObj("st") IsNot Nothing AndAlso addrObj("locality") IsNot Nothing AndAlso addrObj("dst") IsNot Nothing AndAlso addrObj("stcd") IsNot Nothing AndAlso addrObj("pncd") IsNot Nothing Then
+                        txtadd.Text = addrObj("flno").ToString() & ", " & addrObj("bno").ToString() & ", " & addrObj("bnm").ToString() & ", " & addrObj("st").ToString() & ", " & addrObj("locality").ToString() & ", " & addrObj("dst").ToString() & ", " & addrObj("stcd").ToString() & ", " & addrObj("pncd").ToString()
+                    End If
+                End If
+
+                ' Access and set pincode, state, and city (newly added fields)
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+
+                    ' Set Pincode
+                    If addrObj("pncd") IsNot Nothing Then
+                        txtzipcode.Text = addrObj("pncd").ToString()
+                    End If
+
+                    ' Set State
+                    If addrObj("stcd") IsNot Nothing Then
+                        cmbstate.Text = addrObj("stcd").ToString()  ' Assuming cmbstate is for the state field
+                    End If
+
+                    ' Set City
+                    If addrObj("loc") IsNot Nothing Then
+                        cmbcity.Text = addrObj("loc").ToString()  ' Assuming cmbcity is for the city field
+                    End If
+                End If
+
+                If Not String.IsNullOrEmpty(TXTGSTIN.Text) AndAlso TXTGSTIN.Text.Length >= 15 Then
+                    ' Extract the PAN part (characters from index 2 to 11)
+                    txtpanno.Text = TXTGSTIN.Text.Substring(2, 10) ' Extracts 10 characters from the 3rd character (index 2)
+
+                End If
+                If jsonObject("tradeNam") IsNot Nothing Then
+                    cmbcmpname.Text = jsonObject("tradeNam").ToString()
+                    CMBCODE.Text = cmbcmpname.Text.ToUpper
+                End If
 
             End If
+
+
+
+
+
 
 
 
