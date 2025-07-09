@@ -62,7 +62,7 @@ Partial Class PartyWiseBaleRate
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(884, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(741, 581)
         Me.BlendPanel1.TabIndex = 1
         '
         'TXTRATE
@@ -104,7 +104,7 @@ Partial Class PartyWiseBaleRate
         '
         'CMDCLEAR
         '
-        Me.CMDCLEAR.Location = New System.Drawing.Point(316, 541)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(257, 541)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
         Me.CMDCLEAR.TabIndex = 5
@@ -113,7 +113,7 @@ Partial Class PartyWiseBaleRate
         '
         'CMDEXIT
         '
-        Me.CMDEXIT.Location = New System.Drawing.Point(488, 541)
+        Me.CMDEXIT.Location = New System.Drawing.Point(429, 541)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 7
@@ -122,7 +122,7 @@ Partial Class PartyWiseBaleRate
         '
         'CMDDELETE
         '
-        Me.CMDDELETE.Location = New System.Drawing.Point(402, 541)
+        Me.CMDDELETE.Location = New System.Drawing.Point(343, 541)
         Me.CMDDELETE.Name = "CMDDELETE"
         Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
         Me.CMDDELETE.TabIndex = 6
@@ -150,7 +150,7 @@ Partial Class PartyWiseBaleRate
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(845, 498)
+        Me.gridbilldetails.Size = New System.Drawing.Size(717, 498)
         Me.gridbilldetails.TabIndex = 4
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -245,7 +245,7 @@ Partial Class PartyWiseBaleRate
         'PartyWiseBaleRate
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(884, 581)
+        Me.ClientSize = New System.Drawing.Size(741, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True

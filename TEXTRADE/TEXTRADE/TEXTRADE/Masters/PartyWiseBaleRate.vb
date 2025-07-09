@@ -222,7 +222,7 @@ Public Class PartyWiseBaleRate
             End If
 
             Dim ALPARAVAL As New ArrayList
-            Dim OBJCONFIG As New ClsPartyItemWiseChart
+            Dim OBJCONFIG As New ClsPartyWiseBaleRate
 
             ALPARAVAL.Add(Val(TXTNO.Text.Trim))
             ALPARAVAL.Add(CMBNAME.Text.Trim)
@@ -259,7 +259,7 @@ Public Class PartyWiseBaleRate
 
 
             'DELETE FROM TABLE
-            Dim OBJSM As New ClsPartyItemWiseChart
+            Dim OBJSM As New ClsPartyWiseBaleRate
             Dim ALPARAVAL As New ArrayList
             ALPARAVAL.Add(gridbill.GetFocusedRowCellValue("ID"))
             ALPARAVAL.Add(Userid)
@@ -282,7 +282,7 @@ Public Class PartyWiseBaleRate
                 GRIDDOUBLECLICK = True
                 TXTNO.Text = gridbill.GetFocusedRowCellValue("ID")
                 CMBNAME.Text = gridbill.GetFocusedRowCellValue("NAME")
-                CMBTRANSPORT.Text = gridbill.GetFocusedRowCellValue("ITEM")
+                CMBTRANSPORT.Text = gridbill.GetFocusedRowCellValue("TRANSPORT")
                 TXTRATE.Text = Val(gridbill.GetFocusedRowCellValue("RATE"))
                 CMBNAME.Focus()
             End If
