@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class LRStock
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class SelectPurLRStock
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,16 +20,19 @@ Partial Class LRStock
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHK = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,46 +40,38 @@ Partial Class LRStock
         Me.GREGID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLEDGERID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMDREFRESH = New System.Windows.Forms.Button()
-        Me.RBENTERED = New System.Windows.Forms.RadioButton()
-        Me.RBPENDING = New System.Windows.Forms.RadioButton()
-        Me.CMDSAVE = New System.Windows.Forms.Button()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKSELECT = New System.Windows.Forms.CheckBox()
+        Me.CMDEXIT = New System.Windows.Forms.Button()
+        Me.CMDOK = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip1.SuspendLayout()
+        CType(Me.CHK, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
-        Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
-        Me.BlendPanel1.Controls.Add(Me.RBENTERED)
-        Me.BlendPanel1.Controls.Add(Me.RBPENDING)
-        Me.BlendPanel1.Controls.Add(Me.CMDSAVE)
-        Me.BlendPanel1.Controls.Add(Me.cmdexit)
-        Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
+        Me.BlendPanel1.Controls.Add(Me.CHKSELECT)
+        Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
+        Me.BlendPanel1.Controls.Add(Me.CMDOK)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1184, 581)
-        Me.BlendPanel1.TabIndex = 13
+        Me.BlendPanel1.Size = New System.Drawing.Size(1284, 581)
+        Me.BlendPanel1.TabIndex = 1
         '
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(18, 64)
+        Me.gridbilldetails.Location = New System.Drawing.Point(31, 28)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(1149, 473)
-        Me.gridbilldetails.TabIndex = 807
+        Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHK})
+        Me.gridbilldetails.Size = New System.Drawing.Size(1223, 507)
+        Me.gridbilldetails.TabIndex = 808
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
         'gridbill
@@ -85,20 +80,30 @@ Partial Class LRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GITEMNAME, Me.GPARTYBILLNO, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GPCS, Me.GMTRS, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
         Me.gridbill.OptionsBehavior.Editable = False
-        Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 40
-        Me.gridbill.OptionsSelection.MultiSelect = True
-        Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
-        Me.gridbill.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.[True]
         Me.gridbill.OptionsView.ColumnAutoWidth = False
-        Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
+        Me.gridbill.OptionsView.ShowGroupPanel = False
+        '
+        'GCHK
+        '
+        Me.GCHK.ColumnEdit = Me.CHK
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 40
+        '
+        'CHK
+        '
+        Me.CHK.AutoHeight = False
+        Me.CHK.Name = "CHK"
+        Me.CHK.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
         'GENTRYNO
         '
@@ -115,7 +120,7 @@ Partial Class LRStock
         Me.GDATE.Name = "GDATE"
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
-        Me.GDATE.Width = 80
+        Me.GDATE.Width = 85
         '
         'GINITIALS
         '
@@ -133,17 +138,26 @@ Partial Class LRStock
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
-        Me.GNAME.Width = 240
+        Me.GNAME.Width = 250
         '
         'GPARTYBILLNO
         '
-        Me.GPARTYBILLNO.Caption = "Party Bill NO"
+        Me.GPARTYBILLNO.Caption = "Party Bill No"
         Me.GPARTYBILLNO.FieldName = "PARTYBILLNO"
         Me.GPARTYBILLNO.Name = "GPARTYBILLNO"
         Me.GPARTYBILLNO.OptionsColumn.AllowEdit = False
         Me.GPARTYBILLNO.Visible = True
-        Me.GPARTYBILLNO.VisibleIndex = 5
+        Me.GPARTYBILLNO.VisibleIndex = 4
         Me.GPARTYBILLNO.Width = 120
+        '
+        'GTRANSNAME
+        '
+        Me.GTRANSNAME.Caption = "Transport Name"
+        Me.GTRANSNAME.FieldName = "TRANSNAME"
+        Me.GTRANSNAME.Name = "GTRANSNAME"
+        Me.GTRANSNAME.Visible = True
+        Me.GTRANSNAME.VisibleIndex = 6
+        Me.GTRANSNAME.Width = 200
         '
         'GLRNO
         '
@@ -152,7 +166,7 @@ Partial Class LRStock
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 6
+        Me.GLRNO.VisibleIndex = 5
         Me.GLRNO.Width = 120
         '
         'GPCS
@@ -177,7 +191,7 @@ Partial Class LRStock
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Visible = True
         Me.GMTRS.VisibleIndex = 8
-        Me.GMTRS.Width = 80
+        Me.GMTRS.Width = 100
         '
         'GTYPE
         '
@@ -187,7 +201,6 @@ Partial Class LRStock
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
         Me.GTYPE.VisibleIndex = 9
-        Me.GTYPE.Width = 100
         '
         'GREGID
         '
@@ -209,139 +222,74 @@ Partial Class LRStock
         Me.GTRANSID.Name = "GTRANSID"
         Me.GTRANSID.OptionsColumn.AllowEdit = False
         '
-        'CMDREFRESH
+        'CHKSELECT
         '
-        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
-        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
-        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(552, 547)
-        Me.CMDREFRESH.Name = "CMDREFRESH"
-        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 806
-        Me.CMDREFRESH.Text = "&Refresh"
-        Me.CMDREFRESH.UseVisualStyleBackColor = False
+        Me.CHKSELECT.AutoSize = True
+        Me.CHKSELECT.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECT.Location = New System.Drawing.Point(31, 6)
+        Me.CHKSELECT.Name = "CHKSELECT"
+        Me.CHKSELECT.Size = New System.Drawing.Size(76, 19)
+        Me.CHKSELECT.TabIndex = 805
+        Me.CHKSELECT.Text = "&Select All"
+        Me.CHKSELECT.UseVisualStyleBackColor = False
         '
-        'RBENTERED
+        'CMDEXIT
         '
-        Me.RBENTERED.AutoSize = True
-        Me.RBENTERED.BackColor = System.Drawing.Color.Transparent
-        Me.RBENTERED.Location = New System.Drawing.Point(98, 39)
-        Me.RBENTERED.Name = "RBENTERED"
-        Me.RBENTERED.Size = New System.Drawing.Size(62, 17)
-        Me.RBENTERED.TabIndex = 805
-        Me.RBENTERED.Text = "Entered"
-        Me.RBENTERED.UseVisualStyleBackColor = False
+        Me.CMDEXIT.Location = New System.Drawing.Point(645, 541)
+        Me.CMDEXIT.Name = "CMDEXIT"
+        Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXIT.TabIndex = 2
+        Me.CMDEXIT.Text = "&Exit"
+        Me.CMDEXIT.UseVisualStyleBackColor = True
         '
-        'RBPENDING
+        'CMDOK
         '
-        Me.RBPENDING.AutoSize = True
-        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
-        Me.RBPENDING.Checked = True
-        Me.RBPENDING.Location = New System.Drawing.Point(23, 39)
-        Me.RBPENDING.Name = "RBPENDING"
-        Me.RBPENDING.Size = New System.Drawing.Size(64, 17)
-        Me.RBPENDING.TabIndex = 804
-        Me.RBPENDING.TabStop = True
-        Me.RBPENDING.Text = "Pending"
-        Me.RBPENDING.UseVisualStyleBackColor = False
+        Me.CMDOK.Location = New System.Drawing.Point(559, 541)
+        Me.CMDOK.Name = "CMDOK"
+        Me.CMDOK.Size = New System.Drawing.Size(80, 28)
+        Me.CMDOK.TabIndex = 1
+        Me.CMDOK.Text = "&OK"
+        Me.CMDOK.UseVisualStyleBackColor = True
         '
-        'CMDSAVE
+        'SelectPurLRStock
         '
-        Me.CMDSAVE.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVE.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVE.FlatAppearance.BorderSize = 0
-        Me.CMDSAVE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVE.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVE.Location = New System.Drawing.Point(466, 547)
-        Me.CMDSAVE.Name = "CMDSAVE"
-        Me.CMDSAVE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVE.TabIndex = 257
-        Me.CMDSAVE.Text = "&Save"
-        Me.CMDSAVE.UseVisualStyleBackColor = False
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(638, 547)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 2
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1184, 25)
-        Me.ToolStrip1.TabIndex = 255
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 4
-        Me.GITEMNAME.Width = 160
-        '
-        'LRStock
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1184, 581)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.ClientSize = New System.Drawing.Size(1284, 581)
         Me.Controls.Add(Me.BlendPanel1)
-        Me.Name = "LRStock"
-        Me.Text = "LR Stock"
+        Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KeyPreview = True
+        Me.Name = "SelectPurLRStock"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "Select LR Stock"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        CType(Me.CHK, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
+    Friend WithEvents CMDEXIT As Button
+    Friend WithEvents CMDOK As Button
+    Friend WithEvents CHKSELECT As CheckBox
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GENTRYNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINITIALS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GINITIALS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPCS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CMDREFRESH As Button
-    Friend WithEvents RBENTERED As RadioButton
-    Friend WithEvents RBPENDING As RadioButton
-    Friend WithEvents CMDSAVE As Button
-    Friend WithEvents cmdexit As Button
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents PrintToolStripButton As ToolStripButton
-    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLEDGERID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTRANSID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHK As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

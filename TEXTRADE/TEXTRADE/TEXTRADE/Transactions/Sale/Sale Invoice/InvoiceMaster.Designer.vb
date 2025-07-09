@@ -100,6 +100,8 @@ Partial Class InvoiceMaster
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTTOTALWT = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.LBLCOVERNOTEDONE = New System.Windows.Forms.Label()
         Me.CHKTRADINGACC = New System.Windows.Forms.CheckBox()
@@ -213,6 +215,7 @@ Partial Class InvoiceMaster
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.LBLTOTALWT = New System.Windows.Forms.Label()
         Me.GRIDINVOICE = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -254,6 +257,7 @@ Partial Class InvoiceMaster
         Me.GUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSOSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDPURPARTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPURPARTYBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTCUT = New System.Windows.Forms.TextBox()
@@ -774,6 +778,8 @@ Partial Class InvoiceMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTTOTALWT)
+        Me.BlendPanel1.Controls.Add(Me.Label23)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTSTOCK)
         Me.BlendPanel1.Controls.Add(Me.LBLCOVERNOTEDONE)
         Me.BlendPanel1.Controls.Add(Me.CHKTRADINGACC)
@@ -908,6 +914,33 @@ Partial Class InvoiceMaster
         Me.BlendPanel1.Size = New System.Drawing.Size(1291, 595)
         Me.BlendPanel1.TabIndex = 0
         '
+        'TXTTOTALWT
+        '
+        Me.TXTTOTALWT.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTOTALWT.ForeColor = System.Drawing.Color.Black
+        Me.TXTTOTALWT.Location = New System.Drawing.Point(1038, 574)
+        Me.TXTTOTALWT.Name = "TXTTOTALWT"
+        Me.TXTTOTALWT.ReadOnly = True
+        Me.TXTTOTALWT.Size = New System.Drawing.Size(95, 23)
+        Me.TXTTOTALWT.TabIndex = 948
+        Me.TXTTOTALWT.TabStop = False
+        Me.TXTTOTALWT.Text = "0.00"
+        Me.TXTTOTALWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTTOTALWT.Visible = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.BackColor = System.Drawing.Color.Transparent
+        Me.Label23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(981, 578)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(53, 15)
+        Me.Label23.TabIndex = 947
+        Me.Label23.Text = "Total Wt"
+        Me.Label23.Visible = False
+        '
         'CMDSELECTSTOCK
         '
         Me.CMDSELECTSTOCK.BackColor = System.Drawing.Color.Transparent
@@ -929,7 +962,7 @@ Partial Class InvoiceMaster
         Me.LBLCOVERNOTEDONE.BackColor = System.Drawing.Color.Transparent
         Me.LBLCOVERNOTEDONE.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCOVERNOTEDONE.ForeColor = System.Drawing.Color.Black
-        Me.LBLCOVERNOTEDONE.Location = New System.Drawing.Point(707, 559)
+        Me.LBLCOVERNOTEDONE.Location = New System.Drawing.Point(707, 555)
         Me.LBLCOVERNOTEDONE.Name = "LBLCOVERNOTEDONE"
         Me.LBLCOVERNOTEDONE.Size = New System.Drawing.Size(161, 26)
         Me.LBLCOVERNOTEDONE.TabIndex = 945
@@ -1111,7 +1144,7 @@ Partial Class InvoiceMaster
         Me.CHKPARTYTDS.AutoSize = True
         Me.CHKPARTYTDS.BackColor = System.Drawing.Color.Transparent
         Me.CHKPARTYTDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKPARTYTDS.Location = New System.Drawing.Point(1037, 559)
+        Me.CHKPARTYTDS.Location = New System.Drawing.Point(1037, 556)
         Me.CHKPARTYTDS.Name = "CHKPARTYTDS"
         Me.CHKPARTYTDS.Size = New System.Drawing.Size(78, 19)
         Me.CHKPARTYTDS.TabIndex = 919
@@ -1124,7 +1157,7 @@ Partial Class InvoiceMaster
         Me.TXTTOTALWITHGST.BackColor = System.Drawing.Color.Linen
         Me.TXTTOTALWITHGST.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALWITHGST.ForeColor = System.Drawing.Color.Black
-        Me.TXTTOTALWITHGST.Location = New System.Drawing.Point(871, 560)
+        Me.TXTTOTALWITHGST.Location = New System.Drawing.Point(871, 556)
         Me.TXTTOTALWITHGST.Name = "TXTTOTALWITHGST"
         Me.TXTTOTALWITHGST.ReadOnly = True
         Me.TXTTOTALWITHGST.Size = New System.Drawing.Size(95, 23)
@@ -2307,6 +2340,7 @@ Partial Class InvoiceMaster
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.AutoSize = True
+        Me.Panel1.Controls.Add(Me.LBLTOTALWT)
         Me.Panel1.Controls.Add(Me.GRIDINVOICE)
         Me.Panel1.Controls.Add(Me.TXTCUT)
         Me.Panel1.Controls.Add(Me.TXTDESCRIPTION)
@@ -2358,6 +2392,19 @@ Partial Class InvoiceMaster
         Me.Panel1.Size = New System.Drawing.Size(1241, 271)
         Me.Panel1.TabIndex = 791
         '
+        'LBLTOTALWT
+        '
+        Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(2028, 238)
+        Me.LBLTOTALWT.Name = "LBLTOTALWT"
+        Me.LBLTOTALWT.Size = New System.Drawing.Size(63, 15)
+        Me.LBLTOTALWT.TabIndex = 811
+        Me.LBLTOTALWT.Text = "0"
+        Me.LBLTOTALWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTOTALWT.Visible = False
+        '
         'GRIDINVOICE
         '
         Me.GRIDINVOICE.AllowUserToAddRows = False
@@ -2377,7 +2424,7 @@ Partial Class InvoiceMaster
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDINVOICE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDINVOICE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDINVOICE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGN, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GDESCRIPTION, Me.GBALENO, Me.Gpcs, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMT, Me.GLRNO, Me.GTRANS, Me.GDISCPER, Me.GDISCAMT, Me.GSPDISCPER, Me.GSPDISCAMT, Me.GOTHERAMT, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRIDTOTAL, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GDONE, Me.GPARTYPONO, Me.GUNIT, Me.GSONO, Me.GSOSRNO, Me.GGRIDPURPARTY, Me.GPURPARTYBILLNO})
+        Me.GRIDINVOICE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGN, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GDESCRIPTION, Me.GBALENO, Me.Gpcs, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMT, Me.GLRNO, Me.GTRANS, Me.GDISCPER, Me.GDISCAMT, Me.GSPDISCPER, Me.GSPDISCAMT, Me.GOTHERAMT, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRIDTOTAL, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GDONE, Me.GPARTYPONO, Me.GUNIT, Me.GSONO, Me.GSOSRNO, Me.GWT, Me.GGRIDPURPARTY, Me.GPURPARTYBILLNO})
         DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2400,7 +2447,7 @@ Partial Class InvoiceMaster
         Me.GRIDINVOICE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDINVOICE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDINVOICE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDINVOICE.Size = New System.Drawing.Size(2097, 209)
+        Me.GRIDINVOICE.Size = New System.Drawing.Size(2102, 209)
         Me.GRIDINVOICE.TabIndex = 15
         Me.GRIDINVOICE.TabStop = False
         '
@@ -2786,6 +2833,15 @@ Partial Class InvoiceMaster
         Me.GSOSRNO.HeaderText = "SOSRNO"
         Me.GSOSRNO.Name = "GSOSRNO"
         Me.GSOSRNO.Visible = False
+        '
+        'GWT
+        '
+        Me.GWT.HeaderText = "Wt"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Visible = False
         '
         'GGRIDPURPARTY
         '
@@ -5267,7 +5323,7 @@ Partial Class InvoiceMaster
         Me.CMDSELECTGDN.FlatAppearance.BorderSize = 0
         Me.CMDSELECTGDN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTGDN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTGDN.Location = New System.Drawing.Point(467, 429)
+        Me.CMDSELECTGDN.Location = New System.Drawing.Point(483, 429)
         Me.CMDSELECTGDN.Name = "CMDSELECTGDN"
         Me.CMDSELECTGDN.Size = New System.Drawing.Size(93, 28)
         Me.CMDSELECTGDN.TabIndex = 4
@@ -5704,6 +5760,9 @@ Partial Class InvoiceMaster
     Friend WithEvents TXTQTY As TextBox
     Friend WithEvents TXTGRIDLRNO As TextBox
     Friend WithEvents CMDSELECTSTOCK As Button
+    Friend WithEvents LBLTOTALWT As Label
+    Friend WithEvents TXTTOTALWT As TextBox
+    Friend WithEvents Label23 As Label
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
     Friend WithEvents GHSNCODE As DataGridViewTextBoxColumn
@@ -5744,6 +5803,7 @@ Partial Class InvoiceMaster
     Friend WithEvents GUNIT As DataGridViewTextBoxColumn
     Friend WithEvents GSONO As DataGridViewTextBoxColumn
     Friend WithEvents GSOSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDPURPARTY As DataGridViewTextBoxColumn
     Friend WithEvents GPURPARTYBILLNO As DataGridViewTextBoxColumn
 End Class

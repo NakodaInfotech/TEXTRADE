@@ -310,6 +310,8 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSOSRNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDPURPARTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDPURPARTYBILLNO", alParaval(I)))
@@ -411,7 +413,8 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERPARTYPONO", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -715,6 +718,8 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSOSRNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDPURPARTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDPURPARTYBILLNO", alParaval(I)))
@@ -816,7 +821,8 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERPARTYPONO", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))
                 I = I + 1

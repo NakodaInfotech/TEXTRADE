@@ -397,12 +397,6 @@ NEXTLINE:
             Next
 
 
-            'DELETE ALL THE FILES IN PATH ARRAY
-            If FRMSTRING = "DIRECTWHATSAPP" Then
-                For I As Integer = 0 To PATH.Count - 1
-                    If File.Exists(PATH(I)) Then File.Delete(PATH(I))
-                Next
-            End If
 
 
             'TEXT MESSAGE SHOULD BE SEND ONLY ONCE

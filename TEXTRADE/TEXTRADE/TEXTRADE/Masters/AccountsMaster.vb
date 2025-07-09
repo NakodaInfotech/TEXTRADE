@@ -3,6 +3,8 @@ Imports BL
 Imports System.ComponentModel
 Imports System.Net
 Imports System.IO
+Imports Newtonsoft.Json.Linq
+
 
 Public Class AccountsMaster
 
@@ -2271,21 +2273,83 @@ line1:
             Catch ex As WebException
                 RESPONSE = ex.Response
             End Try
+
             Dim READER As StreamReader = New StreamReader(RESPONSE.GetResponseStream())
             Dim REQUESTEDTEXT As String = READER.ReadToEnd()
 
-            'IF STATUS IS NOT 1 THEN TOKEN IS NOT GENERATED
-            Dim STARTPOS As Integer = 0
+            If MsgBox("Wish to Fetch Data From GSTIN?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                ' Parse the JSON object once to avoid repetition
+                Dim jsonObject As JObject = JObject.Parse(REQUESTEDTEXT)
+
+                ' Access and set txtadd1
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Make sure the required fields exist before assigning to the textboxes
+                    If addrObj("flno") IsNot Nothing AndAlso addrObj("bno") IsNot Nothing AndAlso addrObj("bnm") IsNot Nothing AndAlso addrObj("st") IsNot Nothing Then
+                        txtadd1.Text = addrObj("flno").ToString() & ", " & addrObj("bno").ToString() & ", " & addrObj("bnm").ToString() & ", " & addrObj("st").ToString()
+                    End If
+                End If
+
+                ' Access and set txtadd2
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Check if locality, dst, stcd, and pncd exist before assigning
+                    If addrObj("locality") IsNot Nothing AndAlso addrObj("dst") IsNot Nothing AndAlso addrObj("stcd") IsNot Nothing AndAlso addrObj("pncd") IsNot Nothing Then
+                        txtadd2.Text = addrObj("locality").ToString() & ", " & addrObj("dst").ToString() & ", " & addrObj("stcd").ToString() & ", " & addrObj("pncd").ToString()
+                    End If
+                End If
+
+                ' Access and set txtadd (combine both address parts)
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+                    ' Ensure all fields are available before concatenating
+                    If addrObj("flno") IsNot Nothing AndAlso addrObj("bno") IsNot Nothing AndAlso addrObj("bnm") IsNot Nothing AndAlso addrObj("st") IsNot Nothing AndAlso addrObj("locality") IsNot Nothing AndAlso addrObj("dst") IsNot Nothing AndAlso addrObj("stcd") IsNot Nothing AndAlso addrObj("pncd") IsNot Nothing Then
+                        txtadd.Text = addrObj("flno").ToString() & ", " & addrObj("bno").ToString() & ", " & addrObj("bnm").ToString() & ", " & addrObj("st").ToString() & ", " & addrObj("locality").ToString() & ", " & addrObj("dst").ToString() & ", " & addrObj("stcd").ToString() & ", " & addrObj("pncd").ToString()
+                    End If
+                End If
+
+                ' Access and set pincode, state, and city (newly added fields)
+                If jsonObject("pradr") IsNot Nothing AndAlso jsonObject("pradr")("addr") IsNot Nothing Then
+                    Dim addrObj As JObject = jsonObject("pradr")("addr")
+
+                    ' Set Pincode
+                    If addrObj("pncd") IsNot Nothing Then
+                        txtzipcode.Text = addrObj("pncd").ToString()
+                    End If
+
+                    ' Set State
+                    If addrObj("stcd") IsNot Nothing Then
+                        cmbstate.Text = addrObj("stcd").ToString()  ' Assuming cmbstate is for the state field
+                    End If
+
+                    ' Set City
+                    If addrObj("loc") IsNot Nothing Then
+                        cmbcity.Text = addrObj("loc").ToString()  ' Assuming cmbcity is for the city field
+                    End If
+                End If
+
+                If Not String.IsNullOrEmpty(TXTGSTIN.Text) AndAlso TXTGSTIN.Text.Length >= 15 Then
+                    ' Extract the PAN part (characters from index 2 to 11)
+                    txtpanno.Text = TXTGSTIN.Text.Substring(2, 10) ' Extracts 10 characters from the 3rd character (index 2)
+
+                End If
+                If jsonObject("tradeNam") IsNot Nothing Then
+                    cmbcmpname.Text = jsonObject("tradeNam").ToString()
+                    CMBCODE.Text = cmbcmpname.Text.ToUpper
+                End If
+
+            End If
+
             Dim TEMPSTATUS As String = ""
-            'Dim TOKEN As String = ""
-            Dim ENDPOS As Integer = 0
-
-            'STARTPOS = REQUESTEDTEXT.IndexOf(TXTGSTIN.Text.Trim)
-            STARTPOS = REQUESTEDTEXT.ToLower.IndexOf("sts") + 6
-            ENDPOS = REQUESTEDTEXT.ToLower.IndexOf("ctjcd") - 3
-
-            TEMPSTATUS = REQUESTEDTEXT.Substring(STARTPOS, ENDPOS - STARTPOS)
-            If TEMPSTATUS = "Active" Then TEMPSTATUS = "SUCCESS" Else TEMPSTATUS = "FAILED"
+            Dim CMPSTATUS As String = JObject.Parse(REQUESTEDTEXT)("sts")
+            If CMPSTATUS = "Cancelled" Then
+                MsgBox("GSTIN is Cancelled", MsgBoxStyle.Critical)
+                TEMPSTATUS = "FAILED"
+            ElseIf CMPSTATUS = "Active" Then
+                TEMPSTATUS = "SUCCESS"
+            Else
+                TEMPSTATUS = "FAILED"
+            End If
 
 
             If TEMPSTATUS = "SUCCESS" Then
