@@ -50,6 +50,7 @@ Partial Class PurchaseOrderDetails
         Me.GPDESNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCUT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -77,7 +78,7 @@ Partial Class PurchaseOrderDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,7 +264,7 @@ Partial Class PurchaseOrderDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GPDESNO, Me.GPSHADE, Me.GQTY, Me.GUNIT, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GRECDQTY, Me.GRECDMTRS, Me.GBALQTY, Me.GTONAME, Me.GORDERTYPE, Me.GBROKER, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS, Me.GTRANSNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GPDESNO, Me.GPSHADE, Me.GQTY, Me.GUNIT, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GRECDQTY, Me.GRECDMTRS, Me.GBALQTY, Me.GTONAME, Me.GORDERTYPE, Me.GBROKER, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS, Me.GTRANSNAME, Me.GORDERON})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -377,6 +378,14 @@ Partial Class PurchaseOrderDetails
         Me.GQTY.Visible = True
         Me.GQTY.VisibleIndex = 11
         Me.GQTY.Width = 60
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.Visible = True
+        Me.GUNIT.VisibleIndex = 12
         '
         'GCUT
         '
@@ -606,13 +615,13 @@ Partial Class PurchaseOrderDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GUNIT
+        'GORDERON
         '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 12
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 26
         '
         'PurchaseOrderDetails
         '
@@ -688,4 +697,5 @@ Partial Class PurchaseOrderDetails
     Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCUT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
 End Class
