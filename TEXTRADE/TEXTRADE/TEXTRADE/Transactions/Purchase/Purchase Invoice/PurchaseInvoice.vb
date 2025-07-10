@@ -4675,7 +4675,9 @@ LINE2:
                         CMBITEM.Text = DTROW("ITEMNAME")
                         GETHSNCODE()
                     End If
-                    GRIDBILL.Rows.Add(0, DTROW("ITEMNAME"), HSNCODE, "", DTROW("DESIGNNO"), DTROW("COLOR"), 0, 0, DTROW("GRIDREMARKS"), "", "", Val(DTROW("QTY")), "Bags", 0, Val(DTROW("MTRS")), 0, Val(DTROW("RATE")), "Mtrs", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, DTROW("PONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, 0)
+                    Dim PER As String = "Pcs"
+                    If ClientName = "MASHOK" Then PER = "Bags"
+                    GRIDBILL.Rows.Add(0, DTROW("ITEMNAME"), HSNCODE, "", DTROW("DESIGNNO"), DTROW("COLOR"), 0, 0, DTROW("GRIDREMARKS"), "", "", Val(DTROW("QTY")), PER, 0, Val(DTROW("MTRS")), 0, Val(DTROW("RATE")), "Mtrs", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, DTROW("PONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, 0)
 
 
 NEXTLINE:

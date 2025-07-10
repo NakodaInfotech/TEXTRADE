@@ -2093,7 +2093,7 @@ line1:
                 TabControl1.TabStop = True
 
                 LBLCATEGORY.Visible = True
-
+                CMBORDERON.Visible = True
             End If
 
 
@@ -2107,6 +2107,8 @@ line1:
                 LBLTRANS1.Text = "Mumbai"
                 LBLTRANS2.Text = "Jetpur"
             End If
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else "PCS"
+
 
         Catch ex As Exception
             Throw ex

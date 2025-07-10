@@ -36,6 +36,7 @@ Partial Class SaleOrder
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SaleOrder))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLCATEGORY = New System.Windows.Forms.Label()
         Me.CHKVERIFY = New System.Windows.Forms.CheckBox()
         Me.Label63 = New System.Windows.Forms.Label()
         Me.TXTCOPIES = New System.Windows.Forms.TextBox()
@@ -317,7 +318,7 @@ Partial Class SaleOrder
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.LBLCATEGORY = New System.Windows.Forms.Label()
+        Me.CMBORDERON = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.PANELSIZE.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -339,6 +340,7 @@ Partial Class SaleOrder
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBORDERON)
         Me.BlendPanel1.Controls.Add(Me.LBLCATEGORY)
         Me.BlendPanel1.Controls.Add(Me.CHKVERIFY)
         Me.BlendPanel1.Controls.Add(Me.Label63)
@@ -533,6 +535,18 @@ Partial Class SaleOrder
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1298, 561)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'LBLCATEGORY
+        '
+        Me.LBLCATEGORY.AutoSize = True
+        Me.LBLCATEGORY.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCATEGORY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCATEGORY.ForeColor = System.Drawing.Color.Red
+        Me.LBLCATEGORY.Location = New System.Drawing.Point(328, 175)
+        Me.LBLCATEGORY.Name = "LBLCATEGORY"
+        Me.LBLCATEGORY.Size = New System.Drawing.Size(0, 15)
+        Me.LBLCATEGORY.TabIndex = 937
+        Me.LBLCATEGORY.Visible = False
         '
         'CHKVERIFY
         '
@@ -3830,17 +3844,21 @@ Partial Class SaleOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'LBLCATEGORY
+        'CMBORDERON
         '
-        Me.LBLCATEGORY.AutoSize = True
-        Me.LBLCATEGORY.BackColor = System.Drawing.Color.Transparent
-        Me.LBLCATEGORY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLCATEGORY.ForeColor = System.Drawing.Color.Red
-        Me.LBLCATEGORY.Location = New System.Drawing.Point(328, 175)
-        Me.LBLCATEGORY.Name = "LBLCATEGORY"
-        Me.LBLCATEGORY.Size = New System.Drawing.Size(0, 15)
-        Me.LBLCATEGORY.TabIndex = 937
-        Me.LBLCATEGORY.Visible = False
+        Me.CMBORDERON.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBORDERON.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBORDERON.BackColor = System.Drawing.Color.White
+        Me.CMBORDERON.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBORDERON.FormattingEnabled = True
+        Me.CMBORDERON.Items.AddRange(New Object() {"PCS", "MTRS"})
+        Me.CMBORDERON.Location = New System.Drawing.Point(1140, 143)
+        Me.CMBORDERON.MaxDropDownItems = 14
+        Me.CMBORDERON.Name = "CMBORDERON"
+        Me.CMBORDERON.Size = New System.Drawing.Size(82, 22)
+        Me.CMBORDERON.TabIndex = 925
+        Me.CMBORDERON.Visible = False
         '
         'SaleOrder
         '
@@ -4167,4 +4185,5 @@ Partial Class SaleOrder
     Friend WithEvents TXTFROM As TextBox
     Friend WithEvents CHKVERIFY As CheckBox
     Friend WithEvents LBLCATEGORY As Label
+    Friend WithEvents CMBORDERON As ComboBox
 End Class

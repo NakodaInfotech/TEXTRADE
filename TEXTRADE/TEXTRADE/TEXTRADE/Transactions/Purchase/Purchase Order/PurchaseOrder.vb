@@ -1864,6 +1864,7 @@ LINE1:
                 GCUT.HeaderText = "LR"
                 GMTRS.HeaderText = "Total Qty"
                 LBLCATEGORY.Visible = True
+                CMBORDERON.Visible = True
             End If
 
             If ALLOWPOSOCHECKIN = False Then
@@ -1871,6 +1872,7 @@ LINE1:
             Else
                 CHKVERIFY.Enabled = True
             End If
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else "PCS"
 
         Catch ex As Exception
             Throw ex
