@@ -48,6 +48,8 @@ Partial Class InvoiceGridDetails
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -87,6 +89,11 @@ Partial Class InvoiceGridDetails
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESCRIPTION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDPURNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -100,8 +107,6 @@ Partial Class InvoiceGridDetails
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,7 +197,7 @@ Partial Class InvoiceGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -378,6 +383,20 @@ Partial Class InvoiceGridDetails
         Me.GSHADE.VisibleIndex = 16
         Me.GSHADE.Width = 100
         '
+        'GQTY
+        '
+        Me.GQTY.Caption = "Qty"
+        Me.GQTY.FieldName = "QTY"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.OptionsColumn.AllowEdit = False
+        '
+        'GFOLDPER
+        '
+        Me.GFOLDPER.Caption = "Fold %"
+        Me.GFOLDPER.FieldName = "FOLDPER"
+        Me.GFOLDPER.Name = "GFOLDPER"
+        Me.GFOLDPER.OptionsColumn.AllowEdit = False
+        '
         'GBALENO
         '
         Me.GBALENO.Caption = "Bale No"
@@ -397,7 +416,7 @@ Partial Class InvoiceGridDetails
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 20
+        Me.GPCS.VisibleIndex = 18
         Me.GPCS.Width = 85
         '
         'GMTRS
@@ -410,7 +429,7 @@ Partial Class InvoiceGridDetails
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 21
+        Me.GMTRS.VisibleIndex = 19
         Me.GMTRS.Width = 85
         '
         'GPER
@@ -421,7 +440,7 @@ Partial Class InvoiceGridDetails
         Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 22
+        Me.GPER.VisibleIndex = 20
         Me.GPER.Width = 85
         '
         'GRATE
@@ -433,7 +452,7 @@ Partial Class InvoiceGridDetails
         Me.GRATE.Name = "GRATE"
         Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 23
+        Me.GRATE.VisibleIndex = 21
         '
         'GAMT
         '
@@ -445,7 +464,7 @@ Partial Class InvoiceGridDetails
         Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 24
+        Me.GAMT.VisibleIndex = 22
         '
         'GAGENT
         '
@@ -454,7 +473,7 @@ Partial Class InvoiceGridDetails
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.OptionsColumn.AllowEdit = False
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 25
+        Me.GAGENT.VisibleIndex = 23
         Me.GAGENT.Width = 150
         '
         'GSHIPPEDTO
@@ -464,7 +483,7 @@ Partial Class InvoiceGridDetails
         Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
         Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
         Me.GSHIPPEDTO.Visible = True
-        Me.GSHIPPEDTO.VisibleIndex = 26
+        Me.GSHIPPEDTO.VisibleIndex = 24
         Me.GSHIPPEDTO.Width = 100
         '
         'GPACKINGADD
@@ -474,7 +493,7 @@ Partial Class InvoiceGridDetails
         Me.GPACKINGADD.Name = "GPACKINGADD"
         Me.GPACKINGADD.OptionsColumn.AllowEdit = False
         Me.GPACKINGADD.Visible = True
-        Me.GPACKINGADD.VisibleIndex = 27
+        Me.GPACKINGADD.VisibleIndex = 25
         Me.GPACKINGADD.Width = 300
         '
         'GTRANSPORT
@@ -484,7 +503,7 @@ Partial Class InvoiceGridDetails
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 28
+        Me.GTRANSPORT.VisibleIndex = 26
         Me.GTRANSPORT.Width = 150
         '
         'GTRANSGSTIN
@@ -494,7 +513,7 @@ Partial Class InvoiceGridDetails
         Me.GTRANSGSTIN.Name = "GTRANSGSTIN"
         Me.GTRANSGSTIN.OptionsColumn.AllowEdit = False
         Me.GTRANSGSTIN.Visible = True
-        Me.GTRANSGSTIN.VisibleIndex = 29
+        Me.GTRANSGSTIN.VisibleIndex = 27
         Me.GTRANSGSTIN.Width = 100
         '
         'GSO
@@ -504,7 +523,7 @@ Partial Class InvoiceGridDetails
         Me.GSO.Name = "GSO"
         Me.GSO.OptionsColumn.AllowEdit = False
         Me.GSO.Visible = True
-        Me.GSO.VisibleIndex = 30
+        Me.GSO.VisibleIndex = 28
         '
         'GBALES
         '
@@ -515,7 +534,7 @@ Partial Class InvoiceGridDetails
         Me.GBALES.Name = "GBALES"
         Me.GBALES.OptionsColumn.AllowEdit = False
         Me.GBALES.Visible = True
-        Me.GBALES.VisibleIndex = 31
+        Me.GBALES.VisibleIndex = 29
         '
         'GTOTALAMT
         '
@@ -527,7 +546,7 @@ Partial Class InvoiceGridDetails
         Me.GTOTALAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALAMT.Visible = True
-        Me.GTOTALAMT.VisibleIndex = 32
+        Me.GTOTALAMT.VisibleIndex = 30
         '
         'GDISC
         '
@@ -537,7 +556,7 @@ Partial Class InvoiceGridDetails
         Me.GDISC.OptionsColumn.AllowEdit = False
         Me.GDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDISC.Visible = True
-        Me.GDISC.VisibleIndex = 33
+        Me.GDISC.VisibleIndex = 31
         Me.GDISC.Width = 80
         '
         'GSPDISCAMT
@@ -548,7 +567,7 @@ Partial Class InvoiceGridDetails
         Me.GSPDISCAMT.OptionsColumn.AllowEdit = False
         Me.GSPDISCAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSPDISCAMT.Visible = True
-        Me.GSPDISCAMT.VisibleIndex = 34
+        Me.GSPDISCAMT.VisibleIndex = 32
         '
         'GCHARGES
         '
@@ -558,7 +577,7 @@ Partial Class InvoiceGridDetails
         Me.GCHARGES.OptionsColumn.AllowEdit = False
         Me.GCHARGES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCHARGES.Visible = True
-        Me.GCHARGES.VisibleIndex = 35
+        Me.GCHARGES.VisibleIndex = 33
         '
         'GTOTALTAXABLEAMT
         '
@@ -570,7 +589,7 @@ Partial Class InvoiceGridDetails
         Me.GTOTALTAXABLEAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALTAXABLEAMT.Visible = True
-        Me.GTOTALTAXABLEAMT.VisibleIndex = 36
+        Me.GTOTALTAXABLEAMT.VisibleIndex = 34
         '
         'GCGSTPER
         '
@@ -581,7 +600,7 @@ Partial Class InvoiceGridDetails
         Me.GCGSTPER.Name = "GCGSTPER"
         Me.GCGSTPER.OptionsColumn.AllowEdit = False
         Me.GCGSTPER.Visible = True
-        Me.GCGSTPER.VisibleIndex = 37
+        Me.GCGSTPER.VisibleIndex = 35
         '
         'GTOTALCGSTAMT
         '
@@ -593,7 +612,7 @@ Partial Class InvoiceGridDetails
         Me.GTOTALCGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCGSTAMT.Visible = True
-        Me.GTOTALCGSTAMT.VisibleIndex = 38
+        Me.GTOTALCGSTAMT.VisibleIndex = 36
         '
         'GSGSTPER
         '
@@ -604,7 +623,7 @@ Partial Class InvoiceGridDetails
         Me.GSGSTPER.Name = "GSGSTPER"
         Me.GSGSTPER.OptionsColumn.AllowEdit = False
         Me.GSGSTPER.Visible = True
-        Me.GSGSTPER.VisibleIndex = 39
+        Me.GSGSTPER.VisibleIndex = 37
         '
         'GTOTALSGSTAMT
         '
@@ -616,7 +635,7 @@ Partial Class InvoiceGridDetails
         Me.GTOTALSGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALSGSTAMT.Visible = True
-        Me.GTOTALSGSTAMT.VisibleIndex = 40
+        Me.GTOTALSGSTAMT.VisibleIndex = 38
         '
         'GIGSTPER
         '
@@ -627,7 +646,7 @@ Partial Class InvoiceGridDetails
         Me.GIGSTPER.Name = "GIGSTPER"
         Me.GIGSTPER.OptionsColumn.AllowEdit = False
         Me.GIGSTPER.Visible = True
-        Me.GIGSTPER.VisibleIndex = 41
+        Me.GIGSTPER.VisibleIndex = 39
         '
         'GTOTALIGSTAMT
         '
@@ -637,7 +656,7 @@ Partial Class InvoiceGridDetails
         Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALIGSTAMT.Visible = True
-        Me.GTOTALIGSTAMT.VisibleIndex = 42
+        Me.GTOTALIGSTAMT.VisibleIndex = 40
         '
         'GGRANDTOTAL
         '
@@ -649,7 +668,7 @@ Partial Class InvoiceGridDetails
         Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
         Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 43
+        Me.GGRANDTOTAL.VisibleIndex = 41
         Me.GGRANDTOTAL.Width = 85
         '
         'GRECDAMT
@@ -662,7 +681,7 @@ Partial Class InvoiceGridDetails
         Me.GRECDAMT.OptionsColumn.AllowEdit = False
         Me.GRECDAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDAMT.Visible = True
-        Me.GRECDAMT.VisibleIndex = 44
+        Me.GRECDAMT.VisibleIndex = 42
         '
         'GRETURNAMT
         '
@@ -674,7 +693,7 @@ Partial Class InvoiceGridDetails
         Me.GRETURNAMT.OptionsColumn.AllowEdit = False
         Me.GRETURNAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRETURNAMT.Visible = True
-        Me.GRETURNAMT.VisibleIndex = 45
+        Me.GRETURNAMT.VisibleIndex = 43
         '
         'GBALANCE
         '
@@ -686,7 +705,7 @@ Partial Class InvoiceGridDetails
         Me.GBALANCE.OptionsColumn.AllowEdit = False
         Me.GBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALANCE.Visible = True
-        Me.GBALANCE.VisibleIndex = 46
+        Me.GBALANCE.VisibleIndex = 44
         '
         'GREMARKS
         '
@@ -695,7 +714,7 @@ Partial Class InvoiceGridDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 47
+        Me.GREMARKS.VisibleIndex = 45
         Me.GREMARKS.Width = 150
         '
         'GTRADING
@@ -704,7 +723,7 @@ Partial Class InvoiceGridDetails
         Me.GTRADING.FieldName = "TRADING"
         Me.GTRADING.Name = "GTRADING"
         Me.GTRADING.Visible = True
-        Me.GTRADING.VisibleIndex = 49
+        Me.GTRADING.VisibleIndex = 47
         '
         'GDISPUTED
         '
@@ -713,7 +732,7 @@ Partial Class InvoiceGridDetails
         Me.GDISPUTED.Name = "GDISPUTED"
         Me.GDISPUTED.OptionsColumn.AllowEdit = False
         Me.GDISPUTED.Visible = True
-        Me.GDISPUTED.VisibleIndex = 48
+        Me.GDISPUTED.VisibleIndex = 46
         '
         'GBILLCHECKED
         '
@@ -722,7 +741,7 @@ Partial Class InvoiceGridDetails
         Me.GBILLCHECKED.Name = "GBILLCHECKED"
         Me.GBILLCHECKED.OptionsColumn.AllowEdit = False
         Me.GBILLCHECKED.Visible = True
-        Me.GBILLCHECKED.VisibleIndex = 50
+        Me.GBILLCHECKED.VisibleIndex = 48
         '
         'GSUPPLIERNAME
         '
@@ -748,7 +767,7 @@ Partial Class InvoiceGridDetails
         Me.GSTATE.Name = "GSTATE"
         Me.GSTATE.OptionsColumn.AllowEdit = False
         Me.GSTATE.Visible = True
-        Me.GSTATE.VisibleIndex = 51
+        Me.GSTATE.VisibleIndex = 49
         Me.GSTATE.Width = 100
         '
         'GCITY
@@ -758,7 +777,7 @@ Partial Class InvoiceGridDetails
         Me.GCITY.Name = "GCITY"
         Me.GCITY.OptionsColumn.AllowEdit = False
         Me.GCITY.Visible = True
-        Me.GCITY.VisibleIndex = 52
+        Me.GCITY.VisibleIndex = 50
         Me.GCITY.Width = 100
         '
         'GREGNAME
@@ -768,7 +787,7 @@ Partial Class InvoiceGridDetails
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.OptionsColumn.AllowEdit = False
         Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 53
+        Me.GREGNAME.VisibleIndex = 51
         Me.GREGNAME.Width = 120
         '
         'GDESCRIPTION
@@ -787,7 +806,47 @@ Partial Class InvoiceGridDetails
         Me.GMONTHNAME.FieldName = "MONTHNAME"
         Me.GMONTHNAME.Name = "GMONTHNAME"
         Me.GMONTHNAME.Visible = True
-        Me.GMONTHNAME.VisibleIndex = 54
+        Me.GMONTHNAME.VisibleIndex = 52
+        '
+        'GGRIDTRANSPORT
+        '
+        Me.GGRIDTRANSPORT.Caption = "Transport"
+        Me.GGRIDTRANSPORT.FieldName = "GRIDTRANSE"
+        Me.GGRIDTRANSPORT.Name = "GGRIDTRANSPORT"
+        Me.GGRIDTRANSPORT.OptionsColumn.AllowEdit = False
+        Me.GGRIDTRANSPORT.Width = 150
+        '
+        'GGRIDLRNO
+        '
+        Me.GGRIDLRNO.Caption = "LR No"
+        Me.GGRIDLRNO.FieldName = "GRIDLRNO"
+        Me.GGRIDLRNO.Name = "GGRIDLRNO"
+        Me.GGRIDLRNO.OptionsColumn.AllowEdit = False
+        Me.GGRIDLRNO.Width = 100
+        '
+        'GGRIDWT
+        '
+        Me.GGRIDWT.Caption = "WT"
+        Me.GGRIDWT.FieldName = "WT"
+        Me.GGRIDWT.Name = "GGRIDWT"
+        Me.GGRIDWT.OptionsColumn.AllowEdit = False
+        Me.GGRIDWT.Width = 60
+        '
+        'GGRIDPURNAME
+        '
+        Me.GGRIDPURNAME.Caption = "Purchase Name"
+        Me.GGRIDPURNAME.FieldName = "GRIDPURNAME"
+        Me.GGRIDPURNAME.Name = "GGRIDPURNAME"
+        Me.GGRIDPURNAME.OptionsColumn.AllowEdit = False
+        Me.GGRIDPURNAME.Width = 150
+        '
+        'GGRIDPARTYBILLNO
+        '
+        Me.GGRIDPARTYBILLNO.Caption = "Party Bill No"
+        Me.GGRIDPARTYBILLNO.FieldName = "PARTYBILLNO"
+        Me.GGRIDPARTYBILLNO.Name = "GGRIDPARTYBILLNO"
+        Me.GGRIDPARTYBILLNO.OptionsColumn.AllowEdit = False
+        Me.GGRIDPARTYBILLNO.Width = 100
         '
         'CHKEDIT
         '
@@ -912,20 +971,6 @@ Partial Class InvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GFOLDPER
-        '
-        Me.GFOLDPER.Caption = "Fold %"
-        Me.GFOLDPER.FieldName = "FOLDPER"
-        Me.GFOLDPER.Name = "GFOLDPER"
-        Me.GFOLDPER.OptionsColumn.AllowEdit = False
-        '
-        'GQTY
-        '
-        Me.GQTY.Caption = "Qty"
-        Me.GQTY.FieldName = "QTY"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.OptionsColumn.AllowEdit = False
-        '
         'InvoiceGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1027,4 +1072,9 @@ Partial Class InvoiceGridDetails
     Friend WithEvents GMONTHNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDPURNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
