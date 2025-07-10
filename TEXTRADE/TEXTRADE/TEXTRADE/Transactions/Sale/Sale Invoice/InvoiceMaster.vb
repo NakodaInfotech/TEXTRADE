@@ -157,7 +157,7 @@ Public Class InvoiceMaster
         TXTBALENO.Clear()
         TXTPCS.Clear()
         TXTCUT.Clear()
-
+        CMBORDERON.Text = ""
         TXTMTRS.Clear()
         TXTRATE.Clear()
         If ClientName = "CC" Or ClientName = "C3" Or ClientName = "GELATO" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Then
@@ -286,7 +286,7 @@ Public Class InvoiceMaster
         LBLWHATSAPP.Visible = False
         PBDESIGNIMAGE.Image = Nothing
         CMBSALESMAN.Text = ""
-
+        CMBORDERON.Text = ""
 
         'IT WAS DONE FOR EINVOICE LOCKING
         GRATE.ReadOnly = False
@@ -717,7 +717,7 @@ Public Class InvoiceMaster
                     If Convert.ToBoolean(dr("CHANGEADD")) = False Then CHKCHANGEADD.Checked = False Else CHKCHANGEADD.Checked = True
                     txtDeliveryadd.Text = dr("DELIVERYADD")
                     If Convert.ToBoolean(dr("TRADINGACC")) = False Then CHKTRADINGACC.Checked = False Else CHKTRADINGACC.Checked = True
-
+                    CMBORDERON.Text = dr("ORDERON")
 
 
                     'Item Grid
@@ -1360,6 +1360,7 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERPARTYPONO)
 
             alParaval.Add(Val(LBLTOTALWT.Text))
+            alParaval.Add(CMBORDERON.Text.Trim)
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -5380,7 +5381,11 @@ LINE1:
                 CMBGRIDTRANS.Visible = True
                 GLRNO.Visible = True
                 GTRANS.Visible = True
+                LBLORDERON.Visible = True
+                CMBORDERON.Visible = True
             End If
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
+
 
         Catch ex As Exception
             Throw ex

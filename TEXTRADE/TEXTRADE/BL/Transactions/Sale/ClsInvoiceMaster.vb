@@ -415,7 +415,8 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
             End With
 
             DT = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -822,6 +823,8 @@ Public Class ClsInvoiceMaster
                 .Add(New SqlClient.SqlParameter("@ORDERPARTYPONO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))

@@ -463,6 +463,8 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
+        Me.CMBORDERON = New System.Windows.Forms.ComboBox()
+        Me.LBLORDERON = New System.Windows.Forms.Label()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -777,6 +779,8 @@ Partial Class InvoiceMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLORDERON)
+        Me.BlendPanel1.Controls.Add(Me.CMBORDERON)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTSTOCK)
         Me.BlendPanel1.Controls.Add(Me.LBLCOVERNOTEDONE)
         Me.BlendPanel1.Controls.Add(Me.CHKTRADINGACC)
@@ -1335,7 +1339,7 @@ Partial Class InvoiceMaster
         '
         Me.txtpartypono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtpartypono.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtpartypono.Location = New System.Drawing.Point(1007, 61)
+        Me.txtpartypono.Location = New System.Drawing.Point(1013, 61)
         Me.txtpartypono.Name = "txtpartypono"
         Me.txtpartypono.Size = New System.Drawing.Size(69, 22)
         Me.txtpartypono.TabIndex = 11
@@ -1347,7 +1351,7 @@ Partial Class InvoiceMaster
         Me.Label32.BackColor = System.Drawing.Color.Transparent
         Me.Label32.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.ForeColor = System.Drawing.Color.Black
-        Me.Label32.Location = New System.Drawing.Point(937, 65)
+        Me.Label32.Location = New System.Drawing.Point(943, 65)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(68, 14)
         Me.Label32.TabIndex = 900
@@ -1515,7 +1519,7 @@ Partial Class InvoiceMaster
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(956, 37)
+        Me.Label6.Location = New System.Drawing.Point(962, 37)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 15)
         Me.Label6.TabIndex = 731
@@ -1541,7 +1545,7 @@ Partial Class InvoiceMaster
         Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
         Me.TXTCRDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCRDAYS.Location = New System.Drawing.Point(1007, 33)
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(1013, 33)
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(69, 23)
         Me.TXTCRDAYS.TabIndex = 8
@@ -1710,7 +1714,7 @@ Partial Class InvoiceMaster
         Me.Label30.BackColor = System.Drawing.Color.Transparent
         Me.Label30.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.ForeColor = System.Drawing.Color.Black
-        Me.Label30.Location = New System.Drawing.Point(966, 91)
+        Me.Label30.Location = New System.Drawing.Point(972, 91)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(39, 15)
         Me.Label30.TabIndex = 837
@@ -1743,7 +1747,7 @@ Partial Class InvoiceMaster
         'TXTGSTIN
         '
         Me.TXTGSTIN.BackColor = System.Drawing.Color.Linen
-        Me.TXTGSTIN.Location = New System.Drawing.Point(1007, 87)
+        Me.TXTGSTIN.Location = New System.Drawing.Point(1013, 87)
         Me.TXTGSTIN.Name = "TXTGSTIN"
         Me.TXTGSTIN.ReadOnly = True
         Me.TXTGSTIN.Size = New System.Drawing.Size(111, 22)
@@ -1833,7 +1837,7 @@ Partial Class InvoiceMaster
         '
         Me.TXTMULTISONO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTMULTISONO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTMULTISONO.Location = New System.Drawing.Point(1007, 114)
+        Me.TXTMULTISONO.Location = New System.Drawing.Point(1013, 114)
         Me.TXTMULTISONO.Name = "TXTMULTISONO"
         Me.TXTMULTISONO.Size = New System.Drawing.Size(111, 22)
         Me.TXTMULTISONO.TabIndex = 16
@@ -1844,7 +1848,7 @@ Partial Class InvoiceMaster
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(963, 118)
+        Me.Label4.Location = New System.Drawing.Point(969, 118)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(42, 14)
         Me.Label4.TabIndex = 702
@@ -5335,6 +5339,34 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'CMBORDERON
+        '
+        Me.CMBORDERON.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBORDERON.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBORDERON.BackColor = System.Drawing.Color.White
+        Me.CMBORDERON.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBORDERON.FormattingEnabled = True
+        Me.CMBORDERON.Items.AddRange(New Object() {"PCS", "MTRS"})
+        Me.CMBORDERON.Location = New System.Drawing.Point(815, 87)
+        Me.CMBORDERON.MaxDropDownItems = 14
+        Me.CMBORDERON.Name = "CMBORDERON"
+        Me.CMBORDERON.Size = New System.Drawing.Size(82, 22)
+        Me.CMBORDERON.TabIndex = 925
+        Me.CMBORDERON.Visible = False
+        '
+        'LBLORDERON
+        '
+        Me.LBLORDERON.AutoSize = True
+        Me.LBLORDERON.BackColor = System.Drawing.Color.Transparent
+        Me.LBLORDERON.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLORDERON.ForeColor = System.Drawing.Color.Black
+        Me.LBLORDERON.Location = New System.Drawing.Point(751, 91)
+        Me.LBLORDERON.Name = "LBLORDERON"
+        Me.LBLORDERON.Size = New System.Drawing.Size(58, 15)
+        Me.LBLORDERON.TabIndex = 838
+        Me.LBLORDERON.Text = "Order On"
+        '
         'InvoiceMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5777,4 +5809,6 @@ Partial Class InvoiceMaster
     Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDPURPARTY As DataGridViewTextBoxColumn
     Friend WithEvents GPURPARTYBILLNO As DataGridViewTextBoxColumn
+    Friend WithEvents LBLORDERON As Label
+    Friend WithEvents CMBORDERON As ComboBox
 End Class
