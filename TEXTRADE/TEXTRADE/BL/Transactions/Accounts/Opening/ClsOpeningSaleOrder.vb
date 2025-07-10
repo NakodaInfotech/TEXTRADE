@@ -220,6 +220,8 @@ Public Class ClsOpeningSaleOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VERIFIED", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
             End With
 
             Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -434,6 +436,8 @@ Public Class ClsOpeningSaleOrder
                 .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VERIFIED", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPOPSONO", alParaval(I)))

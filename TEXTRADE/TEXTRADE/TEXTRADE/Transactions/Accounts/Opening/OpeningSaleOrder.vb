@@ -210,6 +210,8 @@ Public Class OpeningSaleOrder
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBORDERON.Text.Trim)
+
             Dim objclsSALORD As New ClsOpeningSaleOrder()
             objclsSALORD.alParaval = alParaval
 
@@ -349,7 +351,7 @@ Public Class OpeningSaleOrder
             CMBSAMPLE.SelectedIndex = 0
             CMBFROMCITY.Text = ""
             CHKVERIFY.CheckState = CheckState.Unchecked
-
+            CMBORDERON.Text = ""
             cmbtrans.Text = ""
             cmbtrans2.Text = ""
             cmbcity.Text = ""
@@ -822,6 +824,7 @@ line1:
                         CMBSAMPLE.Text = dr("SAMPLE")
                         CMBFROMCITY.Text = dr("FROMCITY")
                         If Convert.ToBoolean(dr("VERIFIED")) = True Then CHKVERIFY.CheckState = CheckState.Checked Else CHKVERIFY.CheckState = CheckState.Unchecked
+                        CMBORDERON.Text = dr("ORDERON")
                         GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Val(dr("RECDQTY")), Val(dr("RECDMTRS")), dr("DONE"), dr("SAMPLEDONE"), dr("CLOSED"))
 
                         If Val(dr("RECDQTY")) > 0 Or Val(dr("RECDMTRS")) > 0 Then
@@ -1793,8 +1796,12 @@ line1:
                 TXTCONSIGNOR.TabStop = False
                 TXTMOBILENO.TabStop = False
             End If
+            If ClientName = "ABHEE" Then
+                CMBORDERON.Visible = True
+            End If
             If ClientName = "KCRAYON" Then lbltotalqty.Visible = True
 
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
         Catch ex As Exception
             Throw ex
         End Try

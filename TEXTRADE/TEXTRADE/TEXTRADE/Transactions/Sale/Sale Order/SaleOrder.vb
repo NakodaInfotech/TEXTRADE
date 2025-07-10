@@ -115,7 +115,7 @@ Public Class SaleOrder
             alParaval.Add(CMBSALESMAN.Text.Trim)
             alParaval.Add(CMBPACKINGTYPE.Text.Trim)
             alParaval.Add(CMBFORWARD.Text.Trim)
-            alParaval.Add(CMBORDERON.Text.Trim)
+
 
 
 
@@ -223,6 +223,7 @@ Public Class SaleOrder
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBORDERON.Text.Trim)
 
             Dim objclsPurord As New ClsSaleOrder()
             objclsPurord.alParaval = alParaval
