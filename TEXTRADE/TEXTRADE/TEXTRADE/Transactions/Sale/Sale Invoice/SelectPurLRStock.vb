@@ -53,77 +53,25 @@ Public Class SelectPurLRStock
 
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
         Try
-            DT.Columns.Add("DATE")
-            DT.Columns.Add("NAME")
+            DT.Columns.Add("PURNAME")
+            DT.Columns.Add("PARTYBILLNO")
+            DT.Columns.Add("LRNO")
+            DT.Columns.Add("TRANSPORT")
             DT.Columns.Add("ITEMNAME")
-            DT.Columns.Add("DESIGN")
-            DT.Columns.Add("COLOR")
+            DT.Columns.Add("HSNCODE")
+            DT.Columns.Add("AQTY")
+            DT.Columns.Add("FOLDPER")
             DT.Columns.Add("QTY")
             DT.Columns.Add("MTRS")
-            DT.Columns.Add("PONO")
-            DT.Columns.Add("AGENTNAME")
-            DT.Columns.Add("TRANSNAME")
-            DT.Columns.Add("CITYNAME")
-            DT.Columns.Add("DELIVERYAT")
-            DT.Columns.Add("REFNO")
-            DT.Columns.Add("RATE")
-            DT.Columns.Add("SONO")
-            DT.Columns.Add("GRIDSRNO")
+            DT.Columns.Add("UNIT")
+            DT.Columns.Add("WT")
+            DT.Columns.Add("FROMNO")
             DT.Columns.Add("TYPE")
-            DT.Columns.Add("GRIDPARTYPONO")
-            DT.Columns.Add("PACKINGTYPE")
-            DT.Columns.Add("REMARKS")
-            DT.Columns.Add("GRIDDESC")
-
-
-            Dim TEMPDISPATCHTO As String = ""
-            Dim TEMPPARTYPONO As String = ""
-            Dim TEMPITEMNAME As String = ""
-            Dim TEMPALLOW As Boolean = False
-            'WE NEED TO INTIMATE IF WE HAVE SELECTED ORDER OF DIFF SHIPTO PARTY
 
             For i As Integer = 0 To gridbill.RowCount - 1
-                Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                Dim DTROW As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If ClientName = "SIDDHGIRI" Then dtrow("GRIDPARTYPONO") = ""
-                    If TEMPDISPATCHTO = "" And dtrow("DELIVERYAT") <> "" Then
-                        TEMPDISPATCHTO = dtrow("DELIVERYAT")
-                    ElseIf TEMPDISPATCHTO <> "" And dtrow("DELIVERYAT") <> "" And TEMPDISPATCHTO <> dtrow("DELIVERYAT") Then
-                        If TEMPALLOW = False Then
-                            If MsgBox("You have selected Orders of Different Ship To Party, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                                DT.Rows.Clear()
-                                Exit For
-                            Else
-                                TEMPALLOW = True
-                            End If
-                        End If
-                    End If
-
-
-
-                    If TEMPPARTYPONO = "" And dtrow("PONO") <> "" Then
-                        TEMPPARTYPONO = dtrow("PONO")
-                    ElseIf TEMPPARTYPONO <> "" And dtrow("PONO") <> "" And TEMPPARTYPONO <> dtrow("PONO") Then
-                        If TEMPALLOW = False Then
-                            If MsgBox("You have selected Orders of Different Party PO No, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                                DT.Rows.Clear()
-                                Exit For
-                            Else
-                                TEMPALLOW = True
-                            End If
-                        End If
-                    End If
-
-                    If ClientName = "ABHEE" Then
-                        If TEMPITEMNAME = "" And dtrow("ITEMNAME") <> "" Then
-                            TEMPITEMNAME = dtrow("ITEMNAME")
-                        ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
-                            MsgBox("You have selected Different Itemname", MsgBoxStyle.Critical)
-                            DT.Rows.Clear()
-                            Exit For
-                        End If
-                    End If
-                    DT.Rows.Add(dtrow("DATE"), dtrow("NAME"), dtrow("ITEMNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("QTY")), Val(dtrow("MTRS")), dtrow("PONO"), dtrow("AGENTNAME"), dtrow("TRANSNAME"), dtrow("CITYNAME"), dtrow("DELIVERYAT"), dtrow("REFNO"), Val(dtrow("RATE")), Val(dtrow("SONO")), Val(dtrow("GRIDSRNO")), dtrow("TYPE"), dtrow("GRIDPARTYPONO"), dtrow("PACKINGTYPE"), dtrow("REMARKS"), dtrow("GRIDDESC"))
+                    DT.Rows.Add(DTROW("NAME"), DTROW("PARTYBILLNO"), DTROW("LRNO"), DTROW("TRANSNAME"), DTROW("ITEMNAME"), DTROW("HSNCODE"), Val(DTROW("AQTY")), Val(DTROW("FOLDPER")), Val(DTROW("TOTALQTY")), Val(DTROW("TOTALMTRS")), DTROW("UNIT"), Val(DTROW("WT")), Val(DTROW("BILLNO")), DTROW("TYPE"))
                 End If
             Next
             Me.Close()
