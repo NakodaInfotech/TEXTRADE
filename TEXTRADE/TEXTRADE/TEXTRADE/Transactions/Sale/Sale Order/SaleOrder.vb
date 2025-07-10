@@ -447,7 +447,7 @@ Public Class SaleOrder
                 cmbqtyunit.Text = "PCS"
             End If
 
-            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then TXTCUT.Text = 110 Else TXTCUT.Clear()
+            If ClientName = "MASHOK" Then TXTCUT.Text = 110 Else TXTCUT.Clear()
             TXTMTRS.Clear()
             TXTRATE.Clear()
             CMBPER.Text = "Mtrs"
@@ -2076,7 +2076,11 @@ line1:
 
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                If ClientName <> "MASHOK" Then TXTCUT.Text = 110
+                If ClientName = "MASHOK" Then
+                    TXTCUT.Text = 110
+                    cmbqtyunit.TabStop = False
+                    TXTCUT.TabStop = False
+                End If
                 CMBSALESMAN.TabStop = False
                 CMBRISK.TabStop = False
                 txtpono.TabStop = False
@@ -2091,10 +2095,8 @@ line1:
                 txtgridremarks.TabStop = False
                 cmbcolor.TabStop = False
                 TXTPARTYPONO.TabStop = False
-                TXTCUT.TabStop = False
                 CMBPER.TabStop = False
                 TXTAMOUNT.TabStop = False
-                cmbqtyunit.TabStop = False
                 TabControl1.TabStop = True
 
                 LBLCATEGORY.Visible = True

@@ -2368,7 +2368,7 @@ Partial Class InvoiceMaster
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(2028, 238)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(1197, 237)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(63, 15)
         Me.LBLTOTALWT.TabIndex = 811

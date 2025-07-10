@@ -40,7 +40,7 @@ Public Class SelectPurLRStock
             End If
 
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search("*", "", " PURCHASELRSTOCK ", WHERE & " AND PURCHASELRSTOCK.YEARID=" & YearId & " AND PURCHASELRSTOCK.SOLD = 0 ORDER BY TYPE, BILLNO")
+            Dim dt As DataTable = objclsCMST.search("CAST(0 AS BIT) AS CHK, PURCHASELRSTOCK.*", "", " PURCHASELRSTOCK ", WHERE & " AND PURCHASELRSTOCK.YEARID=" & YearId & " AND PURCHASELRSTOCK.SOLD = 0 ORDER BY TYPE, BILLNO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1

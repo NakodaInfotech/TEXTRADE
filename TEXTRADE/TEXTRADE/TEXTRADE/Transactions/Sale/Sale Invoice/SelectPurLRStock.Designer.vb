@@ -34,21 +34,21 @@ Partial Class SelectPurLRStock
         Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLEDGERID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CHKSELECT = New System.Windows.Forms.CheckBox()
-        Me.CMDEXIT = New System.Windows.Forms.Button()
-        Me.CMDOK = New System.Windows.Forms.Button()
-        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKSELECT = New System.Windows.Forms.CheckBox()
+        Me.CMDEXIT = New System.Windows.Forms.Button()
+        Me.CMDOK = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +91,6 @@ Partial Class SelectPurLRStock
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridbill.OptionsBehavior.Editable = False
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
@@ -100,6 +99,7 @@ Partial Class SelectPurLRStock
         'GCHK
         '
         Me.GCHK.ColumnEdit = Me.CHK
+        Me.GCHK.FieldName = "CHK"
         Me.GCHK.Name = "GCHK"
         Me.GCHK.Visible = True
         Me.GCHK.VisibleIndex = 0
@@ -116,6 +116,7 @@ Partial Class SelectPurLRStock
         Me.GENTRYNO.Caption = "Entry No"
         Me.GENTRYNO.FieldName = "BILLNO"
         Me.GENTRYNO.Name = "GENTRYNO"
+        Me.GENTRYNO.OptionsColumn.AllowEdit = False
         '
         'GDATE
         '
@@ -124,6 +125,7 @@ Partial Class SelectPurLRStock
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GDATE.FieldName = "BILLDATE"
         Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         Me.GDATE.Width = 85
@@ -133,6 +135,7 @@ Partial Class SelectPurLRStock
         Me.GINITIALS.Caption = "Initials"
         Me.GINITIALS.FieldName = "BILLINITIALS"
         Me.GINITIALS.Name = "GINITIALS"
+        Me.GINITIALS.OptionsColumn.AllowEdit = False
         Me.GINITIALS.Visible = True
         Me.GINITIALS.VisibleIndex = 2
         Me.GINITIALS.Width = 100
@@ -142,6 +145,7 @@ Partial Class SelectPurLRStock
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 250
@@ -161,6 +165,7 @@ Partial Class SelectPurLRStock
         Me.GTRANSNAME.Caption = "Transport Name"
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
+        Me.GTRANSNAME.OptionsColumn.AllowEdit = False
         Me.GTRANSNAME.Visible = True
         Me.GTRANSNAME.VisibleIndex = 6
         Me.GTRANSNAME.Width = 200
@@ -174,6 +179,16 @@ Partial Class SelectPurLRStock
         Me.GLRNO.Visible = True
         Me.GLRNO.VisibleIndex = 5
         Me.GLRNO.Width = 120
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.Width = 180
         '
         'GPCS
         '
@@ -199,6 +214,17 @@ Partial Class SelectPurLRStock
         Me.GMTRS.VisibleIndex = 9
         Me.GMTRS.Width = 80
         '
+        'GWT
+        '
+        Me.GWT.Caption = "Wt"
+        Me.GWT.DisplayFormat.FormatString = "0.00"
+        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 10
+        '
         'GTYPE
         '
         Me.GTYPE.Caption = "Type"
@@ -220,6 +246,7 @@ Partial Class SelectPurLRStock
         Me.GLEDGERID.Caption = "LEDGERID"
         Me.GLEDGERID.FieldName = "LEDGERID"
         Me.GLEDGERID.Name = "GLEDGERID"
+        Me.GLEDGERID.OptionsColumn.AllowEdit = False
         '
         'GTRANSID
         '
@@ -227,6 +254,38 @@ Partial Class SelectPurLRStock
         Me.GTRANSID.FieldName = "TRANSID"
         Me.GTRANSID.Name = "GTRANSID"
         Me.GTRANSID.OptionsColumn.AllowEdit = False
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.OptionsColumn.AllowEdit = False
+        '
+        'GHSNCODE
+        '
+        Me.GHSNCODE.Caption = "HSN"
+        Me.GHSNCODE.FieldName = "HSNCODE"
+        Me.GHSNCODE.Name = "GHSNCODE"
+        Me.GHSNCODE.OptionsColumn.AllowEdit = False
+        '
+        'GAQTY
+        '
+        Me.GAQTY.Caption = "Qty"
+        Me.GAQTY.DisplayFormat.FormatString = "0.00"
+        Me.GAQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAQTY.FieldName = "AQTY"
+        Me.GAQTY.Name = "GAQTY"
+        Me.GAQTY.OptionsColumn.AllowEdit = False
+        '
+        'GFOLDPER
+        '
+        Me.GFOLDPER.Caption = "Fold %"
+        Me.GFOLDPER.DisplayFormat.FormatString = "0.00"
+        Me.GFOLDPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GFOLDPER.FieldName = "FOLDPER"
+        Me.GFOLDPER.Name = "GFOLDPER"
+        Me.GFOLDPER.OptionsColumn.AllowEdit = False
         '
         'CHKSELECT
         '
@@ -256,53 +315,6 @@ Partial Class SelectPurLRStock
         Me.CMDOK.TabIndex = 1
         Me.CMDOK.Text = "&OK"
         Me.CMDOK.UseVisualStyleBackColor = True
-        '
-        'GWT
-        '
-        Me.GWT.Caption = "Wt"
-        Me.GWT.DisplayFormat.FormatString = "0.00"
-        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWT.FieldName = "WT"
-        Me.GWT.Name = "GWT"
-        Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 10
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 7
-        Me.GITEMNAME.Width = 180
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        '
-        'GHSNCODE
-        '
-        Me.GHSNCODE.Caption = "HSN"
-        Me.GHSNCODE.FieldName = "HSNCODE"
-        Me.GHSNCODE.Name = "GHSNCODE"
-        '
-        'GAQTY
-        '
-        Me.GAQTY.Caption = "Qty"
-        Me.GAQTY.DisplayFormat.FormatString = "0.00"
-        Me.GAQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GAQTY.FieldName = "AQTY"
-        Me.GAQTY.Name = "GAQTY"
-        '
-        'GFOLDPER
-        '
-        Me.GFOLDPER.Caption = "Fold %"
-        Me.GFOLDPER.DisplayFormat.FormatString = "0.00"
-        Me.GFOLDPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GFOLDPER.FieldName = "FOLDPER"
-        Me.GFOLDPER.Name = "GFOLDPER"
         '
         'SelectPurLRStock
         '
