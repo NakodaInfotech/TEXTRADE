@@ -258,6 +258,8 @@ Public Class OpeningPurchaseOrder
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         CMBBROKER.Text = Convert.ToString(dr("BROKER"))
                         CMBORDERTYPE.Text = Convert.ToString(dr("ORDERTYPE"))
+                        CMBORDERON.Text = dr("ORDERON")
+
 
                         gridpo.Rows.Add(dr("POGRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("GRIDREMARKS").ToString, dr("QUALITY").ToString, dr("COUNT").ToString, dr("REED").ToString, dr("PICK").ToString, dr("WIDTH").ToString, dr("WT").ToString, dr("DESIGN").ToString, dr("COLORNAME").ToString, dr("PDESNO").ToString, dr("PSHADE").ToString, Format(Val(dr("POQTY")), "0.00"), dr("Unit").ToString, Val(dr("CUT")), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("rate")), "0.00"), dr("PER"), Format(Val(dr("amt")), "0.00"), dr("GRIDQUOTNO").ToString, dr("QUOTGRIDSRNO").ToString, Val(dr("RECDQTY")), dr("GRIDPODONE").ToString, dr("TONAME").ToString)
 
@@ -560,6 +562,8 @@ Public Class OpeningPurchaseOrder
 
             alParaval.Add(txtinwords.Text.Trim)
             alParaval.Add(CMBBROKER.Text.Trim)
+            alParaval.Add(CMBORDERON.Text.Trim)
+
 
             Dim objclsPurord As New ClsOpeningPurchaseOrder()
             objclsPurord.alParaval = alParaval
@@ -1744,6 +1748,27 @@ LINE1:
                 Next
             End If
         End If
+    End Sub
+
+    Private Sub OpeningPurchaseOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName = "ABHEE" Then
+            CMBBROKER.TabStop = False
+            CMBTRANS.TabStop = False
+            duedate.TabStop = False
+            txtgridremarks.TabStop = False
+            CMBQUALITY.TabStop = False
+            cmbcolor.TabStop = False
+            TXTPDESNO.TabStop = False
+            TXTPSHADE.TabStop = False
+            GDESIGN.HeaderText = "P Quality"
+            GCUT.HeaderText = "LR"
+            GMTRS.HeaderText = "Total Qty"
+            ' LBLCATEGORY.Visible = True
+            CMBORDERON.Visible = True
+        End If
+
+        If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
+
     End Sub
 End Class
 
