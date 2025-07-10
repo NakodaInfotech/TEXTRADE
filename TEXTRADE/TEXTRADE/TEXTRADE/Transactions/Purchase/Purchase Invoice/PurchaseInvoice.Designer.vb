@@ -74,8 +74,8 @@ Partial Class PurchaseMaster
         Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PurchaseMaster))
+        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMBSHIPTO = New System.Windows.Forms.ComboBox()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -346,18 +346,6 @@ Partial Class PurchaseMaster
         Me.PBSoftCopy = New System.Windows.Forms.PictureBox()
         Me.TBORDER = New System.Windows.Forms.TabPage()
         Me.GRIDORDER = New System.Windows.Forms.DataGridView()
-        Me.OSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ODESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OGRNQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -374,6 +362,19 @@ Partial Class PurchaseMaster
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.OSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ODESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OGRNQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OORDERON = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBTDS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBDN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3836,7 +3837,7 @@ Partial Class PurchaseMaster
         DataGridViewCellStyle49.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDORDER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle49
         Me.GRIDORDER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDORDER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.OSRNO, Me.OITEMNAME, Me.ODESIGN, Me.OCOLOR, Me.OPCS, Me.OMTRS, Me.OFROMNO, Me.OFROMSRNO, Me.OFROMTYPE, Me.OGRNQTY, Me.OGRNMTRS, Me.ORATE})
+        Me.GRIDORDER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.OSRNO, Me.OITEMNAME, Me.ODESIGN, Me.OCOLOR, Me.OPCS, Me.OMTRS, Me.OFROMNO, Me.OFROMSRNO, Me.OFROMTYPE, Me.OGRNQTY, Me.OGRNMTRS, Me.ORATE, Me.OORDERON})
         DataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle51.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle51.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3864,112 +3865,6 @@ Partial Class PurchaseMaster
         Me.GRIDORDER.Size = New System.Drawing.Size(1251, 226)
         Me.GRIDORDER.TabIndex = 3
         Me.GRIDORDER.TabStop = False
-        '
-        'OSRNO
-        '
-        Me.OSRNO.HeaderText = "Sr."
-        Me.OSRNO.Name = "OSRNO"
-        Me.OSRNO.ReadOnly = True
-        Me.OSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OSRNO.Width = 30
-        '
-        'OITEMNAME
-        '
-        Me.OITEMNAME.HeaderText = "Item Name"
-        Me.OITEMNAME.Name = "OITEMNAME"
-        Me.OITEMNAME.ReadOnly = True
-        Me.OITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OITEMNAME.Width = 210
-        '
-        'ODESIGN
-        '
-        Me.ODESIGN.HeaderText = "Design"
-        Me.ODESIGN.Name = "ODESIGN"
-        Me.ODESIGN.ReadOnly = True
-        Me.ODESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ODESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'OCOLOR
-        '
-        Me.OCOLOR.HeaderText = "Shade"
-        Me.OCOLOR.Name = "OCOLOR"
-        Me.OCOLOR.ReadOnly = True
-        Me.OCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OCOLOR.Width = 70
-        '
-        'OPCS
-        '
-        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.OPCS.DefaultCellStyle = DataGridViewCellStyle50
-        Me.OPCS.HeaderText = "Pcs/Bags"
-        Me.OPCS.Name = "OPCS"
-        Me.OPCS.ReadOnly = True
-        Me.OPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'OMTRS
-        '
-        Me.OMTRS.HeaderText = "Mtrs/Wt"
-        Me.OMTRS.Name = "OMTRS"
-        Me.OMTRS.ReadOnly = True
-        Me.OMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'OFROMNO
-        '
-        Me.OFROMNO.HeaderText = "PO No"
-        Me.OFROMNO.Name = "OFROMNO"
-        Me.OFROMNO.ReadOnly = True
-        Me.OFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OFROMNO.Width = 70
-        '
-        'OFROMSRNO
-        '
-        Me.OFROMSRNO.HeaderText = "PO Sr No"
-        Me.OFROMSRNO.Name = "OFROMSRNO"
-        Me.OFROMSRNO.ReadOnly = True
-        Me.OFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OFROMSRNO.Width = 70
-        '
-        'OFROMTYPE
-        '
-        Me.OFROMTYPE.HeaderText = "Type"
-        Me.OFROMTYPE.Name = "OFROMTYPE"
-        Me.OFROMTYPE.ReadOnly = True
-        Me.OFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OFROMTYPE.Width = 120
-        '
-        'OGRNQTY
-        '
-        Me.OGRNQTY.HeaderText = "Recd Pcs/Bags"
-        Me.OGRNQTY.Name = "OGRNQTY"
-        Me.OGRNQTY.ReadOnly = True
-        Me.OGRNQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OGRNQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OGRNQTY.Width = 120
-        '
-        'OGRNMTRS
-        '
-        Me.OGRNMTRS.HeaderText = "Recd Mtrs/Wt"
-        Me.OGRNMTRS.Name = "OGRNMTRS"
-        Me.OGRNMTRS.ReadOnly = True
-        Me.OGRNMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.OGRNMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.OGRNMTRS.Width = 120
-        '
-        'ORATE
-        '
-        Me.ORATE.HeaderText = "Rate"
-        Me.ORATE.Name = "ORATE"
-        Me.ORATE.ReadOnly = True
-        Me.ORATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ORATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         '
         'Label3
         '
@@ -4106,6 +4001,121 @@ Partial Class PurchaseMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'OSRNO
+        '
+        Me.OSRNO.HeaderText = "Sr."
+        Me.OSRNO.Name = "OSRNO"
+        Me.OSRNO.ReadOnly = True
+        Me.OSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OSRNO.Width = 30
+        '
+        'OITEMNAME
+        '
+        Me.OITEMNAME.HeaderText = "Item Name"
+        Me.OITEMNAME.Name = "OITEMNAME"
+        Me.OITEMNAME.ReadOnly = True
+        Me.OITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OITEMNAME.Width = 210
+        '
+        'ODESIGN
+        '
+        Me.ODESIGN.HeaderText = "Design"
+        Me.ODESIGN.Name = "ODESIGN"
+        Me.ODESIGN.ReadOnly = True
+        Me.ODESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ODESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'OCOLOR
+        '
+        Me.OCOLOR.HeaderText = "Shade"
+        Me.OCOLOR.Name = "OCOLOR"
+        Me.OCOLOR.ReadOnly = True
+        Me.OCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OCOLOR.Width = 70
+        '
+        'OPCS
+        '
+        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.OPCS.DefaultCellStyle = DataGridViewCellStyle50
+        Me.OPCS.HeaderText = "Pcs/Bags"
+        Me.OPCS.Name = "OPCS"
+        Me.OPCS.ReadOnly = True
+        Me.OPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OPCS.Width = 90
+        '
+        'OMTRS
+        '
+        Me.OMTRS.HeaderText = "Mtrs/Wt"
+        Me.OMTRS.Name = "OMTRS"
+        Me.OMTRS.ReadOnly = True
+        Me.OMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'OFROMNO
+        '
+        Me.OFROMNO.HeaderText = "PO No"
+        Me.OFROMNO.Name = "OFROMNO"
+        Me.OFROMNO.ReadOnly = True
+        Me.OFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMNO.Width = 70
+        '
+        'OFROMSRNO
+        '
+        Me.OFROMSRNO.HeaderText = "PO Sr No"
+        Me.OFROMSRNO.Name = "OFROMSRNO"
+        Me.OFROMSRNO.ReadOnly = True
+        Me.OFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMSRNO.Width = 70
+        '
+        'OFROMTYPE
+        '
+        Me.OFROMTYPE.HeaderText = "Type"
+        Me.OFROMTYPE.Name = "OFROMTYPE"
+        Me.OFROMTYPE.ReadOnly = True
+        Me.OFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMTYPE.Width = 110
+        '
+        'OGRNQTY
+        '
+        Me.OGRNQTY.HeaderText = "Recd Pcs/Bags"
+        Me.OGRNQTY.Name = "OGRNQTY"
+        Me.OGRNQTY.ReadOnly = True
+        Me.OGRNQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OGRNQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'OGRNMTRS
+        '
+        Me.OGRNMTRS.HeaderText = "Recd Mtrs/Wt"
+        Me.OGRNMTRS.Name = "OGRNMTRS"
+        Me.OGRNMTRS.ReadOnly = True
+        Me.OGRNMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OGRNMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'ORATE
+        '
+        Me.ORATE.HeaderText = "Rate"
+        Me.ORATE.Name = "ORATE"
+        Me.ORATE.ReadOnly = True
+        Me.ORATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ORATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.ORATE.Width = 80
+        '
+        'OORDERON
+        '
+        Me.OORDERON.HeaderText = "Order On"
+        Me.OORDERON.Name = "OORDERON"
+        Me.OORDERON.ReadOnly = True
+        Me.OORDERON.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OORDERON.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OORDERON.Width = 80
         '
         'PurchaseMaster
         '
@@ -4398,18 +4408,6 @@ Partial Class PurchaseMaster
     Friend WithEvents LBLCOSTCENTER As Label
     Friend WithEvents CMBCOSTCENTERNAME As ComboBox
     Friend WithEvents TOOLEWB As ToolStripButton
-    Friend WithEvents OSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents OITEMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents ODESIGN As DataGridViewTextBoxColumn
-    Friend WithEvents OCOLOR As DataGridViewTextBoxColumn
-    Friend WithEvents OPCS As DataGridViewTextBoxColumn
-    Friend WithEvents OMTRS As DataGridViewTextBoxColumn
-    Friend WithEvents OFROMNO As DataGridViewTextBoxColumn
-    Friend WithEvents OFROMSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents OFROMTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents OGRNQTY As DataGridViewTextBoxColumn
-    Friend WithEvents OGRNMTRS As DataGridViewTextBoxColumn
-    Friend WithEvents ORATE As DataGridViewTextBoxColumn
     Friend WithEvents CMBSHIPTO As ComboBox
     Friend WithEvents Label42 As Label
     Friend WithEvents TXTAQTY As TextBox
@@ -4452,4 +4450,17 @@ Partial Class PurchaseMaster
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
     Friend WithEvents GOUTPCS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents OSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents OITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents ODESIGN As DataGridViewTextBoxColumn
+    Friend WithEvents OCOLOR As DataGridViewTextBoxColumn
+    Friend WithEvents OPCS As DataGridViewTextBoxColumn
+    Friend WithEvents OMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMNO As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents OGRNQTY As DataGridViewTextBoxColumn
+    Friend WithEvents OGRNMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents ORATE As DataGridViewTextBoxColumn
+    Friend WithEvents OORDERON As DataGridViewTextBoxColumn
 End Class

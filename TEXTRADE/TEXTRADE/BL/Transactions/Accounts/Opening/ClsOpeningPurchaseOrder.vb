@@ -182,6 +182,8 @@ Public Class ClsOpeningPurchaseOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BROKER", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -508,6 +510,8 @@ Public Class ClsOpeningPurchaseOrder
                 .Add(New SqlClient.SqlParameter("@INWORDS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BROKER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OPONO", alParaval(I)))
                 I = I + 1

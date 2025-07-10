@@ -57,6 +57,7 @@ Partial Class OpeningPurchaseOrderDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +99,7 @@ Partial Class OpeningPurchaseOrderDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GPDESNO, Me.PSHADE, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GRECDQTY, Me.GRECDMTRS, Me.GTONAME, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GPDESNO, Me.PSHADE, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GRECDQTY, Me.GRECDMTRS, Me.GTONAME, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS, Me.GORDERON})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -409,6 +410,14 @@ Partial Class OpeningPurchaseOrderDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a O.P.O. to Change"
         '
+        'GORDERON
+        '
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 19
+        '
         'OpeningPurchaseOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -465,4 +474,5 @@ Partial Class OpeningPurchaseOrderDetails
     Friend WithEvents GDONE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCLOSED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
 End Class

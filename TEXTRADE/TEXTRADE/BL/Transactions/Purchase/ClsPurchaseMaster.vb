@@ -314,6 +314,8 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
 
 
 
@@ -633,6 +635,10 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
+
+
                 .Add(New SqlClient.SqlParameter("@SPLREMARKS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CD", alParaval(I)))
