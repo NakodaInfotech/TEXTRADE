@@ -133,7 +133,7 @@ Public Class PurchaseMaster
         TXTBALENO.Clear()
 
         TXTQTY.Clear()
-        If ClientName = "SOFTAS" Then CMBQTYUNIT.Text = "PCS" Else CMBQTYUNIT.Text = ""
+        If ClientName = "SOFTAS" Or ClientName = "ABHEE" Then CMBQTYUNIT.Text = "PCS" Else CMBQTYUNIT.Text = ""
         If ClientName = "MANSI" Then CMBQTYUNIT.Text = "Mtrs"
         TXTMTRS.Clear()
         TXTRATE.Clear()
@@ -1529,14 +1529,22 @@ CHECKNEXTLINE:
         End If
 
         'TO BLOCK EXCESS QTY
-        'If ClientName = "MASHOK" Then
-        '    For Each ROW As DataGridViewRow In GRIDORDER.Rows
-        '        If (ROW.Cells(OGRNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value) Then
-        '            EP.SetError(cmbname, "Excess Qty Not Allowed")
-        '            bln = False
-        '        End If
-        '    Next
-        'End If
+        If ClientName = "ABHEE" Then
+            For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                If (ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
+                    EP.SetError(cmbname, "Excess Qty Not Allowed")
+                    bln = False
+                End If
+            Next
+        End If
+        If ClientName = "MASHOK" Then
+            For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                If (ROW.Cells(OGRNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value) Then
+                    EP.SetError(cmbname, "Excess Qty Not Allowed")
+                    bln = False
+                End If
+            Next
+        End If
 
 
 
@@ -3386,7 +3394,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTQTY_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTQTY.KeyPress, TXTMTRS.KeyPress, TXTRATE.KeyPress, TXTDISCAMT.KeyPress, TXTDISCPER.KeyPress, TXTSPDISCPER.KeyPress, TXTSPDISCAMT.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTAMT.KeyPress, TXTFOOTERDISC.KeyPress, TXTFOOTERDISCAMT.KeyPress, TXTTCSAMT.KeyPress, TXTAQTY.KeyPress, TXTFOLDPER.KeyPress
+    Private Sub TXTQTY_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTQTY.KeyPress, TXTMTRS.KeyPress, TXTRATE.KeyPress, TXTDISCAMT.KeyPress, TXTDISCPER.KeyPress, TXTSPDISCPER.KeyPress, TXTSPDISCAMT.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTAMT.KeyPress, TXTFOOTERDISC.KeyPress, TXTFOOTERDISCAMT.KeyPress, TXTTCSAMT.KeyPress, TXTAQTY.KeyPress, TXTFOLDPER.KeyPress, TXTCHADTI.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 

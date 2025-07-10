@@ -97,7 +97,7 @@ Public Class PurchaseOrder
         TXTPICK.Clear()
         cmbcolor.Text = ""
         txtqty.Clear()
-        If ClientName = "RMANILAL" Then cmbqtyunit.Text = "Pcs" Else cmbqtyunit.Text = ""
+        If ClientName = "RMANILAL" Or ClientName = "ABHEE" Then cmbqtyunit.Text = "Pcs" Else cmbqtyunit.Text = ""
         If ClientName = "AVIS" Then cmbqtyunit.Text = "Mtrs" Else cmbqtyunit.Text = ""
         txtrate.Clear()
         TXTAMOUNT.Clear()

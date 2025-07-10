@@ -81,9 +81,23 @@ Public Class SelectPO
             DT.Columns.Add("ORDERON")   'COLUMN SPECIALLY FOR ABHEE
 
 
+            Dim TEMPITEMNAME As String = ""
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim dtrow As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+
+
+                If ClientName = "ABHEE" Then
+                    If TEMPITEMNAME = "" And dtrow("ITEMNAME") <> "" Then
+                        TEMPITEMNAME = dtrow("ITEMNAME")
+                    ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
+                        MsgBox("You have Selected PO With Different Item Name", MsgBoxStyle.Critical)
+                        DT.Rows.Clear()
+                        Exit For
+                    End If
+                End If
+
+
                 DT.Rows.Add(dtrow("PONO"), dtrow("NAME"), dtrow("DATE"), Val(dtrow("GRIDSRNO")), dtrow("ITEMNAME"), dtrow("QUALITY"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("QTY")), Val(dtrow("MTRS")), dtrow("TONAME"), dtrow("DUEDATE"), dtrow("GROUPNAME"), Val(dtrow("RATE")), dtrow("TYPE"), dtrow("AGENT"), dtrow("TRANSPORT"), dtrow("REMARKS"), dtrow("CRDAYS"), dtrow("GRIDREMARKS"), dtrow("ORDERON"))
             Next
             Me.Close()

@@ -437,19 +437,6 @@ Partial Class InvoiceMaster
         Me.PBSoftCopy = New System.Windows.Forms.PictureBox()
         Me.TBORDER = New System.Windows.Forms.TabPage()
         Me.GRIDORDER = New System.Windows.Forms.DataGridView()
-        Me.CMBCODE = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.cmbname = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.CMDSELECTGDN = New System.Windows.Forms.Button()
-        Me.CMDSELECTSO = New System.Windows.Forms.Button()
-        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
         Me.OSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ODESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -464,6 +451,19 @@ Partial Class InvoiceMaster
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OPARTYPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OORDERON = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CMBCODE = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cmbname = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CMDSELECTGDN = New System.Windows.Forms.Button()
+        Me.CMDSELECTSO = New System.Windows.Forms.Button()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -919,7 +919,7 @@ Partial Class InvoiceMaster
         Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
         Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(433, 463)
+        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(581, 497)
         Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
         Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(93, 28)
         Me.CMDSELECTSTOCK.TabIndex = 946
@@ -5094,125 +5094,6 @@ Partial Class InvoiceMaster
         Me.GRIDORDER.TabIndex = 2
         Me.GRIDORDER.TabStop = False
         '
-        'CMBCODE
-        '
-        Me.CMBCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCODE.Enabled = False
-        Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBCODE.FormattingEnabled = True
-        Me.CMBCODE.Location = New System.Drawing.Point(123, 28)
-        Me.CMBCODE.MaxDropDownItems = 14
-        Me.CMBCODE.Name = "CMBCODE"
-        Me.CMBCODE.Size = New System.Drawing.Size(58, 22)
-        Me.CMBCODE.TabIndex = 738
-        Me.CMBCODE.Visible = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(21, 38)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(52, 14)
-        Me.Label5.TabIndex = 713
-        Me.Label5.Text = "Register"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(34, 65)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 14)
-        Me.Label9.TabIndex = 703
-        Me.Label9.Text = "Name"
-        '
-        'cmbname
-        '
-        Me.cmbname.AutoCompleteCustomSource.AddRange(New String() {""})
-        Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbname.Enabled = False
-        Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Items.AddRange(New Object() {""})
-        Me.cmbname.Location = New System.Drawing.Point(75, 61)
-        Me.cmbname.Name = "cmbname"
-        Me.cmbname.Size = New System.Drawing.Size(276, 22)
-        Me.cmbname.TabIndex = 3
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1153, 91)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(33, 14)
-        Me.Label1.TabIndex = 700
-        Me.Label1.Text = "Date"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(1119, 65)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(67, 14)
-        Me.Label3.TabIndex = 701
-        Me.Label3.Text = "Invoice No."
-        '
-        'CMDSELECTGDN
-        '
-        Me.CMDSELECTGDN.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTGDN.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTGDN.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTGDN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTGDN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTGDN.Location = New System.Drawing.Point(483, 429)
-        Me.CMDSELECTGDN.Name = "CMDSELECTGDN"
-        Me.CMDSELECTGDN.Size = New System.Drawing.Size(93, 28)
-        Me.CMDSELECTGDN.TabIndex = 4
-        Me.CMDSELECTGDN.Text = "S&elect Challan"
-        Me.CMDSELECTGDN.UseVisualStyleBackColor = False
-        '
-        'CMDSELECTSO
-        '
-        Me.CMDSELECTSO.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTSO.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTSO.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTSO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTSO.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSO.Location = New System.Drawing.Point(484, 430)
-        Me.CMDSELECTSO.Name = "CMDSELECTSO"
-        Me.CMDSELECTSO.Size = New System.Drawing.Size(93, 28)
-        Me.CMDSELECTSO.TabIndex = 944
-        Me.CMDSELECTSO.Text = "Select &Order"
-        Me.CMDSELECTSO.UseVisualStyleBackColor = False
-        Me.CMDSELECTSO.Visible = False
-        '
-        'EP
-        '
-        Me.EP.BlinkRate = 0
-        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
-        Me.EP.ContainerControl = Me
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'PRINTDIALOG
-        '
-        Me.PRINTDIALOG.AllowSelection = True
-        Me.PRINTDIALOG.AllowSomePages = True
-        Me.PRINTDIALOG.ShowHelp = True
-        Me.PRINTDIALOG.UseEXDialog = True
-        '
         'OSRNO
         '
         Me.OSRNO.HeaderText = "Sr."
@@ -5343,6 +5224,125 @@ Partial Class InvoiceMaster
         Me.OORDERON.ReadOnly = True
         Me.OORDERON.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.OORDERON.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CMBCODE
+        '
+        Me.CMBCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCODE.Enabled = False
+        Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCODE.FormattingEnabled = True
+        Me.CMBCODE.Location = New System.Drawing.Point(123, 28)
+        Me.CMBCODE.MaxDropDownItems = 14
+        Me.CMBCODE.Name = "CMBCODE"
+        Me.CMBCODE.Size = New System.Drawing.Size(58, 22)
+        Me.CMBCODE.TabIndex = 738
+        Me.CMBCODE.Visible = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(21, 38)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(52, 14)
+        Me.Label5.TabIndex = 713
+        Me.Label5.Text = "Register"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(34, 65)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(39, 14)
+        Me.Label9.TabIndex = 703
+        Me.Label9.Text = "Name"
+        '
+        'cmbname
+        '
+        Me.cmbname.AutoCompleteCustomSource.AddRange(New String() {""})
+        Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbname.Enabled = False
+        Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbname.FormattingEnabled = True
+        Me.cmbname.Items.AddRange(New Object() {""})
+        Me.cmbname.Location = New System.Drawing.Point(75, 61)
+        Me.cmbname.Name = "cmbname"
+        Me.cmbname.Size = New System.Drawing.Size(276, 22)
+        Me.cmbname.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(1153, 91)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(33, 14)
+        Me.Label1.TabIndex = 700
+        Me.Label1.Text = "Date"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(1119, 65)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(67, 14)
+        Me.Label3.TabIndex = 701
+        Me.Label3.Text = "Invoice No."
+        '
+        'CMDSELECTGDN
+        '
+        Me.CMDSELECTGDN.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTGDN.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTGDN.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTGDN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTGDN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTGDN.Location = New System.Drawing.Point(483, 429)
+        Me.CMDSELECTGDN.Name = "CMDSELECTGDN"
+        Me.CMDSELECTGDN.Size = New System.Drawing.Size(93, 28)
+        Me.CMDSELECTGDN.TabIndex = 4
+        Me.CMDSELECTGDN.Text = "S&elect Challan"
+        Me.CMDSELECTGDN.UseVisualStyleBackColor = False
+        '
+        'CMDSELECTSO
+        '
+        Me.CMDSELECTSO.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTSO.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTSO.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTSO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTSO.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTSO.Location = New System.Drawing.Point(484, 430)
+        Me.CMDSELECTSO.Name = "CMDSELECTSO"
+        Me.CMDSELECTSO.Size = New System.Drawing.Size(93, 28)
+        Me.CMDSELECTSO.TabIndex = 944
+        Me.CMDSELECTSO.Text = "Select &Order"
+        Me.CMDSELECTSO.UseVisualStyleBackColor = False
+        Me.CMDSELECTSO.Visible = False
+        '
+        'EP
+        '
+        Me.EP.BlinkRate = 0
+        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EP.ContainerControl = Me
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
         'InvoiceMaster
         '

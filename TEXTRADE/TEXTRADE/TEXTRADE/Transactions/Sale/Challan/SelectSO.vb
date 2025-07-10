@@ -122,7 +122,7 @@ Public Class SelectSO
                         If TEMPITEMNAME = "" And dtrow("ITEMNAME") <> "" Then
                             TEMPITEMNAME = dtrow("ITEMNAME")
                         ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
-                            MsgBox("You have selected Different Itemname", MsgBoxStyle.Critical)
+                            MsgBox("YYou have Selected SO With Different Item Name", MsgBoxStyle.Critical)
                             DT.Rows.Clear()
                             Exit For
                         End If
