@@ -222,6 +222,8 @@ Public Class ClsSaleOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VERIFIED", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -438,6 +440,8 @@ Public Class ClsSaleOrder
                 .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VERIFIED", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPSONO", alParaval(I)))

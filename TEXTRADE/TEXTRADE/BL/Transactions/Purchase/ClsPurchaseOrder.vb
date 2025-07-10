@@ -185,7 +185,8 @@ Public Class ClsPurchaseOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BROKER", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
+                I = I + 1
             End With
 
             Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -513,6 +514,8 @@ Public Class ClsPurchaseOrder
                 .Add(New SqlClient.SqlParameter("@INWORDS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BROKER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))

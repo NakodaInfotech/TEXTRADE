@@ -313,6 +313,8 @@ Public Class PurchaseOrder
                         If Convert.ToBoolean(dr("VERIFIED")) = True Then CHKVERIFY.CheckState = CheckState.Checked Else CHKVERIFY.CheckState = CheckState.Unchecked
                         If Convert.ToBoolean(dr("SMSSEND")) = True Then LBLSMS.Visible = True
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
+                        CMBORDERON.Text = dr("ORDERON")
+
 
 
                         If Val(dr("RECDQTY")) > 0 Or Val(dr("RECDMTRS")) > 0 Then
@@ -568,6 +570,7 @@ Public Class PurchaseOrder
 
             alParaval.Add(txtinwords.Text.Trim)
             alParaval.Add(CMBBROKER.Text.Trim)
+            alParaval.Add(CMBORDERON.Text.Trim)
 
             Dim objclsPurord As New ClsPurchaseOrder()
             objclsPurord.alParaval = alParaval
@@ -1872,7 +1875,7 @@ LINE1:
             Else
                 CHKVERIFY.Enabled = True
             End If
-            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else "PCS"
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
 
         Catch ex As Exception
             Throw ex

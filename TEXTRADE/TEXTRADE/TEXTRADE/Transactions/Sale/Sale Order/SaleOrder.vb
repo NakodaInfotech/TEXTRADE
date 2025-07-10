@@ -115,6 +115,7 @@ Public Class SaleOrder
             alParaval.Add(CMBSALESMAN.Text.Trim)
             alParaval.Add(CMBPACKINGTYPE.Text.Trim)
             alParaval.Add(CMBFORWARD.Text.Trim)
+            alParaval.Add(CMBORDERON.Text.Trim)
 
 
 
@@ -379,6 +380,7 @@ Public Class SaleOrder
             Else
                 CMBFORWARD.Text = ""
             End If
+            CMBORDERON.Text = ""
             CHKFETCHDESC.CheckState = CheckState.Unchecked
 
             txtpono.Clear()
@@ -977,10 +979,12 @@ line1:
                     CMBPACKINGTYPE.Text = Convert.ToString(dr("PACKINGTYPE"))
 
                     CMBFORWARD.Text = dr("FORWARD")
+
                     CMBSAMPLE.Text = dr("SAMPLE")
                     CMBFROMCITY.Text = dr("FROMCITY")
                     If Convert.ToBoolean(dr("VERIFIED")) = True Then CHKVERIFY.CheckState = CheckState.Checked Else CHKVERIFY.CheckState = CheckState.Unchecked
                     TEMPVERIFIED = Convert.ToBoolean(dr("VERIFIED"))
+                    CMBORDERON.Text = dr("ORDERON")
 
 
 
@@ -2107,7 +2111,7 @@ line1:
                 LBLTRANS1.Text = "Mumbai"
                 LBLTRANS2.Text = "Jetpur"
             End If
-            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else "PCS"
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
 
 
         Catch ex As Exception
@@ -2900,7 +2904,7 @@ LINESINGLE:
                         CMBPACKINGTYPE.Text = Convert.ToString(dr("PACKINGTYPE"))
 
                         CMBFORWARD.Text = dr("FORWARD")
-
+                        CMBORDERON.Text = dr("ORDERON")
 
                         GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), 0, 0, 0, 0, 0)
 
