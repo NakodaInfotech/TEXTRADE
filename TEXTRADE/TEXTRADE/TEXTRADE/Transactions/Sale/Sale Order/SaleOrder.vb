@@ -2101,6 +2101,8 @@ line1:
 
                 LBLCATEGORY.Visible = True
                 CMBORDERON.Visible = True
+                LBLORDERON.Visible = True
+
             End If
 
 
