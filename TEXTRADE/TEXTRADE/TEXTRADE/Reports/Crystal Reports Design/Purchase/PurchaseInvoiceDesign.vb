@@ -42,6 +42,7 @@ Public Class PurchaseInvoiceDesign
     Dim RPTENTRYWISE As New PurchaseEntryWiseDetails
     Dim RPTPURCHASEWISE As New PurchaseWiseDetailsReport
     Dim RPTPARTYENTRYWISE As New PurchasePartyEntryWiseReport
+    Dim RPTPURCHASEWISESUMM As New PurchaseWiseSummReport
     Dim RPTPURREGISTERINDETAIL As New PurchaseRegisterInDetailsReport
     Dim RPTPURREGISTERENTRYWISE As New PurchaseRegisterEntryWiseReport
 
@@ -107,6 +108,7 @@ Public Class PurchaseInvoiceDesign
             If FRMSTRING = "MONTHLYRETURN" Then crTables = RPTMONTHLYWITHRET.Database.Tables
             If FRMSTRING = "ENTRYWISE" Then crTables = RPTENTRYWISE.Database.Tables
             If FRMSTRING = "PURCHASEWISE" Then crTables = RPTPURCHASEWISE.Database.Tables
+            If FRMSTRING = "PURCHASEWISESUMM" Then crTables = RPTPURCHASEWISESUMM.Database.Tables
             If FRMSTRING = "PURREGISTERINDETAIL" Then crTables = RPTPURREGISTERINDETAIL.Database.Tables
             If FRMSTRING = "REGISTERENTRYWISE" Then crTables = RPTPURREGISTERENTRYWISE.Database.Tables
             If FRMSTRING = "PARTYENTRYWISE" Then crTables = RPTPARTYENTRYWISE.Database.Tables
@@ -190,6 +192,9 @@ Public Class PurchaseInvoiceDesign
             ElseIf FRMSTRING = "PURCHASEWISE" Then
                 crpo.ReportSource = RPTPURCHASEWISE
                 RPTPURCHASEWISE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            ElseIf FRMSTRING = "PURCHASEWISESUMM" Then
+                crpo.ReportSource = RPTPURCHASEWISESUMM
+                RPTPURCHASEWISESUMM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
             ElseIf FRMSTRING = "PARTYENTRYWISE" Then
                 crpo.ReportSource = RPTPARTYENTRYWISE
                 RPTPARTYENTRYWISE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -363,6 +368,12 @@ Public Class PurchaseInvoiceDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTPURCHASEWISE.Export()
+            ElseIf FRMSTRING = "PURCHASEWISESUMM" Then
+                expo = RPTPURCHASEWISESUMM.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTPURCHASEWISESUMM.Export()
             ElseIf FRMSTRING = "PURREGISTERINDETAIL" Then
                 expo = RPTPURREGISTERINDETAIL.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -381,6 +392,7 @@ Public Class PurchaseInvoiceDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTPARTYENTRYWISE.Export()
+
             ElseIf FRMSTRING = "PURRETURN" Then
                 If ClientName = "SVS" Then
                     expo = RPTPURRETURN_SVS.ExportOptions

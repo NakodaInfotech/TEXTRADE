@@ -290,7 +290,7 @@ Public Class PurchaseInvoiceFilter
                 OBJGRN.PERIOD = "REGISTER ENTRY WISE DETAILS - " & OBJGRN.PERIOD
 
             ElseIf RDBPURCHASEENTRYWISE.Checked = True Then
-                OBJGRN.FRMSTRING = "PURCHASEWISE"
+                If CHKSUMMARY.Checked = True Then OBJGRN.FRMSTRING = "PURCHASEWISESUMM" Else OBJGRN.FRMSTRING = "PURCHASEWISE"
 
 
                 'FOR PARTYNAME
