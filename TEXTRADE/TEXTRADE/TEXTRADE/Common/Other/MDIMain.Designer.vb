@@ -42,6 +42,7 @@ Partial Class MDIMain
         Me.INCENTIVEREPORT_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator293 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator283 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PartyWiseBaleRate = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator172 = New System.Windows.Forms.ToolStripSeparator()
         Me.EMPLOYEE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.EMPLOYEEADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1185,7 +1186,8 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.PartyWiseBaleRate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MagicBoxOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1322,6 +1324,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator283.Name = "ToolStripSeparator283"
         Me.ToolStripSeparator283.Size = New System.Drawing.Size(184, 6)
+        '
+        'PartyWiseBaleRate
+        '
+        Me.PartyWiseBaleRate.Name = "PartyWiseBaleRate"
+        Me.PartyWiseBaleRate.Size = New System.Drawing.Size(187, 22)
+        Me.PartyWiseBaleRate.Text = "Party Wise Bale Rate"
         '
         'ToolStripSeparator172
         '
@@ -8222,7 +8230,7 @@ Partial Class MDIMain
         '
         'MASHOK_REPORTS
         '
-        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_INVDETAILS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302})
+        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_INVDETAILS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302, Me.MagicBoxToolStripMenuItem})
         Me.MASHOK_REPORTS.Name = "MASHOK_REPORTS"
         Me.MASHOK_REPORTS.Size = New System.Drawing.Size(84, 20)
         Me.MASHOK_REPORTS.Text = "MIS Reports"
@@ -8659,11 +8667,18 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'PartyWiseBaleRateToolStripMenuItem
+        'MagicBoxToolStripMenuItem
         '
-        Me.PartyWiseBaleRate.Name = "PartyWiseBaleRateToolStripMenuItem"
-        Me.PartyWiseBaleRate.Size = New System.Drawing.Size(187, 22)
-        Me.PartyWiseBaleRate.Text = "Party Wise Bale Rate"
+        Me.MagicBoxToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MagicBoxOrderToolStripMenuItem})
+        Me.MagicBoxToolStripMenuItem.Name = "MagicBoxToolStripMenuItem"
+        Me.MagicBoxToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.MagicBoxToolStripMenuItem.Text = "Magic Box"
+        '
+        'MagicBoxOrderToolStripMenuItem
+        '
+        Me.MagicBoxOrderToolStripMenuItem.Name = "MagicBoxOrderToolStripMenuItem"
+        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.MagicBoxOrderToolStripMenuItem.Text = "Magic Box Order"
         '
         'MDIMain
         '
@@ -9854,4 +9869,6 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator309 As ToolStripSeparator
     Friend WithEvents LRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PartyWiseBaleRate As ToolStripMenuItem
+    Friend WithEvents MagicBoxToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MagicBoxOrderToolStripMenuItem As ToolStripMenuItem
 End Class

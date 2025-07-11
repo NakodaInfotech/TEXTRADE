@@ -10443,5 +10443,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub MagicBoxOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxOrderToolStripMenuItem.Click
+        Try
+            Dim OBJMB As New MagicBox
+            OBJMB.MdiParent = Me
+            OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
