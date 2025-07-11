@@ -728,6 +728,12 @@
       <DependentUpon>PayPartySummReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Purchase Invoice\PurchaseWiseSummReport.vb">
+      <DependentUpon>PurchaseWiseSummReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Purchase Order\YarnPOStatusDetailsReport.vb">
       <DependentUpon>YarnPOStatusDetailsReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8590,6 +8596,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Payment\PayPartySummReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayPartySummReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Purchase Invoice\PurchaseWiseSummReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseWiseSummReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Purchase Order\YarnPOStatusDetailsReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
