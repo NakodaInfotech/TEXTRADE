@@ -82,6 +82,7 @@ Public Class SelectPO
 
 
             Dim TEMPITEMNAME As String = ""
+            Dim TEMPORDERON As String = ""
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim dtrow As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
@@ -92,6 +93,13 @@ Public Class SelectPO
                         TEMPITEMNAME = dtrow("ITEMNAME")
                     ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
                         MsgBox("You have Selected PO With Different Item Name", MsgBoxStyle.Critical)
+                        DT.Rows.Clear()
+                        Exit For
+                    End If
+                    If TEMPORDERON = "" And dtrow("ORDERON") <> "" Then
+                        TEMPORDERON = dtrow("ORDERON")
+                    ElseIf TEMPORDERON <> "" And dtrow("ORDERON") <> "" And TEMPORDERON <> dtrow("ORDERON") Then
+                        MsgBox("You have Selected PO With Different Pcs/QTY", MsgBoxStyle.Critical)
                         DT.Rows.Clear()
                         Exit For
                     End If

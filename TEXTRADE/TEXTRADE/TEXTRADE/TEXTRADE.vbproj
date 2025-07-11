@@ -1802,6 +1802,12 @@
     <Compile Include="Reports\Grid Reports\GSTR Reports\RCMSelfInvoiceGSTDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.Designer.vb">
+      <DependentUpon>PartyWiseBaleRateReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\ReminderReport.Designer.vb">
       <DependentUpon>ReminderReport.vb</DependentUpon>
     </Compile>
@@ -9304,6 +9310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\GSTR Reports\RCMSelfInvoiceGSTDetails.resx">
       <DependentUpon>RCMSelfInvoiceGSTDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.resx">
+      <DependentUpon>PartyWiseBaleRateReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\ReminderReport.resx">
       <DependentUpon>ReminderReport.vb</DependentUpon>

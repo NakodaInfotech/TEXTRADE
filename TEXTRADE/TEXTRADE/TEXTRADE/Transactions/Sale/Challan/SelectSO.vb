@@ -83,6 +83,7 @@ Public Class SelectSO
             Dim TEMPDISPATCHTO As String = ""
             Dim TEMPPARTYPONO As String = ""
             Dim TEMPITEMNAME As String = ""
+            Dim TEMPORDERON As String = ""
             Dim TEMPALLOW As Boolean = False
             'WE NEED TO INTIMATE IF WE HAVE SELECTED ORDER OF DIFF SHIPTO PARTY
 
@@ -122,7 +123,14 @@ Public Class SelectSO
                         If TEMPITEMNAME = "" And dtrow("ITEMNAME") <> "" Then
                             TEMPITEMNAME = dtrow("ITEMNAME")
                         ElseIf TEMPITEMNAME <> "" And dtrow("ITEMNAME") <> "" And TEMPITEMNAME <> dtrow("ITEMNAME") Then
-                            MsgBox("YYou have Selected SO With Different Item Name", MsgBoxStyle.Critical)
+                            MsgBox("You have Selected SO With Different Item Name", MsgBoxStyle.Critical)
+                            DT.Rows.Clear()
+                            Exit For
+                        End If
+                        If TEMPORDERON = "" And dtrow("ORDERON") <> "" Then
+                            TEMPORDERON = dtrow("ORDERON")
+                        ElseIf TEMPORDERON <> "" And dtrow("ORDERON") <> "" And TEMPORDERON <> dtrow("ORDERON") Then
+                            MsgBox("You have Selected SO With Different Pcs/QTY", MsgBoxStyle.Critical)
                             DT.Rows.Clear()
                             Exit For
                         End If
