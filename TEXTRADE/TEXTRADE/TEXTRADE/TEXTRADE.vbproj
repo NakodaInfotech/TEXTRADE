@@ -2180,6 +2180,12 @@
     <Compile Include="Transactions\Job Work\Emb Production\EmbIncentiveDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBox.Designer.vb">
+      <DependentUpon>MagicBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
       <DependentUpon>PosterOrder.vb</DependentUpon>
     </Compile>
@@ -9492,6 +9498,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Job Work\Emb Production\EmbIncentiveDetails.resx">
       <DependentUpon>EmbIncentiveDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBox.resx">
+      <DependentUpon>MagicBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>
