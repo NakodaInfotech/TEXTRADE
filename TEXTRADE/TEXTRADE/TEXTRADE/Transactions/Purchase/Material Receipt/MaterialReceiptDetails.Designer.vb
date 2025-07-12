@@ -32,6 +32,7 @@ Partial Class MaterialReceiptDetails
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -55,7 +56,7 @@ Partial Class MaterialReceiptDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +124,7 @@ Partial Class MaterialReceiptDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -181,6 +182,14 @@ Partial Class MaterialReceiptDetails
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
         Me.GLOTNO.VisibleIndex = 4
+        '
+        'GPIECETYPE
+        '
+        Me.GPIECETYPE.Caption = "Pcs Type"
+        Me.GPIECETYPE.FieldName = "PIECETYPE"
+        Me.GPIECETYPE.Name = "GPIECETYPE"
+        Me.GPIECETYPE.Visible = True
+        Me.GPIECETYPE.VisibleIndex = 5
         '
         'GITEMNAME
         '
@@ -389,13 +398,14 @@ Partial Class MaterialReceiptDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select Material Receipt to Change"
         '
-        'GPIECETYPE
+        'GBARCODE
         '
-        Me.GPIECETYPE.Caption = "Pcs Type"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 5
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 23
+        Me.GBARCODE.Width = 120
         '
         'MaterialReceiptDetails
         '
@@ -452,4 +462,5 @@ Partial Class MaterialReceiptDetails
     Friend WithEvents GPCSNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

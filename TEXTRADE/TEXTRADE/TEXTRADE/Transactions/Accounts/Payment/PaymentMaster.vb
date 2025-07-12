@@ -268,6 +268,11 @@ Public Class PaymentMaster
                 total()
             End If
 
+            'SPECIALLY FOR MAHAVIRPOLYCOT
+            If gridpayment.RowCount = 0 And Val(txtchqamt.Text.Trim) = 0 And ClientName = "MAHAVIRPOLYCOT" Then
+                gridpayment.Rows.Add(0, 1, "On Account", "", "", Val(txtchqamt.Text.Trim), 0, 0, 0, Val(txtchqamt.Text.Trim))
+            End If
+
             If Val(txtchqamt.Text.Trim) = 0 And ClientName <> "MAHAVIRPOLYCOT" Then
                 EP.SetError(txtchqamt, "Enter Amount")
                 BLN = False

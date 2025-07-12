@@ -5276,4 +5276,16 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMBYESNO_Validated(sender As Object, e As EventArgs) Handles CMBYESNO.Validated
+        Try
+            If ClientName = "MAHAVIRPOLYCOT" And CMBYESNO.Text.Trim = "Y" And Val(TXTDIFF.Text.Trim) > 10 Then
+                If MsgBox("Mtrs Greater then 10, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    TXTRECDMTRS.Focus()
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

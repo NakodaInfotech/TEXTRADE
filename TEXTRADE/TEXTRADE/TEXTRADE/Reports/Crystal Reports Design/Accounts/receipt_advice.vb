@@ -302,8 +302,17 @@ Public Class receipt_advice
             If ALLOWWHATSAPP = False Then Exit Sub
             Transfer()
             Dim OBJWHATSAPP As New SendWhatsapp
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\RECEIPTREPORT.PDF")
-            OBJWHATSAPP.FILENAME.Add("RECEIPTREPORT.pdf")
+            If FRMSTRING = "BANKSLIP" Then
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\BANKSLIP.PDF")
+                OBJWHATSAPP.FILENAME.Add("BANKSLIP.pdf")
+
+            ElseIf FRMSTRING = "OFFICECOPY" Then
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\OFFICECOPY.PDF")
+                OBJWHATSAPP.FILENAME.Add("OFFICECOPY.pdf")
+            Else
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\RECEIPTREPORT.PDF")
+                OBJWHATSAPP.FILENAME.Add("RECEIPTREPORT.pdf")
+            End If
             OBJWHATSAPP.ShowDialog()
         Catch ex As Exception
             Throw ex
