@@ -5409,6 +5409,7 @@ LINE1:
 
             If ClientName = "ARIHANTGARMENTS" Then
                 txtchallan.ReadOnly = False
+                txtchallan.TabStop = True
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 CMBSHADE.TabStop = False
