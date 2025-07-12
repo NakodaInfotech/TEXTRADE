@@ -159,7 +159,7 @@ Public Class InvoiceMaster
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "GELATO" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Then
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "GELATO" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Or ClientName = "ARIHANTGARMENTS" Then
             CMBPER.Text = "Pcs"
         Else
             CMBPER.Text = "Mtrs"
@@ -4209,7 +4209,7 @@ LINE1:
 
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Then
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Or ClientName = "ARIHANTGARMENTS" Then
             CMBPER.Text = "Pcs"
         Else
             CMBPER.Text = "Mtrs"
@@ -5414,6 +5414,7 @@ LINE1:
                 CMBDESIGN.TabStop = False
                 CMBSHADE.TabStop = False
                 TXTBALENO.TabStop = False
+                CMBPER.Text = "Pcs"
             End If
 
         Catch ex As Exception

@@ -2,6 +2,8 @@
 Imports BL
 
 Public Class PartyWiseBaleRateReport
+    Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+
     Dim fromD
     Dim toD
     Dim a1, a2, a3, a4 As String
@@ -300,4 +302,62 @@ Public Class PartyWiseBaleRateReport
         End Try
     End Sub
 
+    Private Sub gridregister_DoubleClick(sender As Object, e As EventArgs) Handles gridregister.DoubleClick
+        Try
+            showform(True, gridregister.GetFocusedRowCellValue("PARNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
+        Try
+            showform(True, gridregister.GetFocusedRowCellValue("PARNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub showform(ByVal EDITVAL As Boolean, ByVal PARNO As Integer)
+        Try
+            If PARNO = 0 Then
+                Exit Sub
+            End If
+
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Dim OBJENQNO As New PartyWiseBaleRate
+            OBJENQNO.EDIT = EDITVAL
+            OBJENQNO.MdiParent = MDIMain
+            OBJENQNO.TEMPPARNO = PARNO
+            OBJENQNO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            Dim objreg As New registerdesign
+            Dim tempmsg As Integer = vbNo
+
+            If chkdate.Checked = True Then
+
+                objreg.FROMDATE = dtfrom.Value.Date
+                objreg.TODATE = dtto.Value.Date
+                objreg.PERIOD = "LEDGER BOOK (" & Format(dtfrom.Value.Date, "dd/MM/yyyy") & " - " & Format(dtto.Value.Date, "dd/MM/yyyy") & ")"
+            Else
+                objreg.FROMDATE = AccFrom
+                objreg.TODATE = AccTo
+                objreg.PERIOD = "LEDGER BOOK (" & Format(AccFrom.Date, "dd/MM/yyyy") & " - " & Format(AccTo.Date, "dd/MM/yyyy") & ")"
+            End If
+            objreg.PARTYNAME = cmbname.Text.Trim
+            objreg.MdiParent = MDIMain
+            objreg.Show()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
