@@ -543,6 +543,15 @@ CHECKNEXTLINEMTRS:
                 bln = False
             End If
 
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDORDER.RowCount = 0 Then
+                If MsgBox("Sale Order Not Selected, Wish to Proceed without Order?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    EP.SetError(cmbname, "Please Select Sale Order")
+                    bln = False
+                End If
+            End If
+
+
             If txttransref.Text.Trim <> "" And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "RAJKRIPA" Then
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(txttransref.Text.Trim)) Then
                     'for search
@@ -2443,6 +2452,8 @@ NEXTLINE:
                 CMBGODOWN.TabStop = False
                 cmbcity.TabStop = False
             End If
+
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then CMDSELECTSTOCK.Visible = False
 
             If ClientName = "RADHA" Then GBALENO.HeaderText = "Party Ch No"
             If ClientName = "DILIP" Or ClientName = "DILIPNEW" Then CMBDISPATCHTO.TabStop = False

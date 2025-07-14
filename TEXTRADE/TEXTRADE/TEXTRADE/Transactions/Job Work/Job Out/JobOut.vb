@@ -1878,6 +1878,7 @@ LINE1:
                 CMBPARTYNAME.Enabled = False
             End If
 
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then CMDSELECTSTOCK.Visible = False
 
             If ALLOWMANUALJONO = True Then
                 TXTJONO.ReadOnly = False

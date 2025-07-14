@@ -519,7 +519,7 @@ Public Class ItemMaster
         TXTDISPLAYNAME.Clear()
         cmbitemname.Text = ""
         CMBDEPARTMENT.Text = ""
-        cmbunit.Text = ""
+        If ClientName = "MAHAVIRPOLYCOT" Then cmbunit.Text = "Mtrs" Else cmbunit.Text = ""
         CMBCODE.Text = ""
         TXTFOLD.Clear()
         TXTRATE.Clear()

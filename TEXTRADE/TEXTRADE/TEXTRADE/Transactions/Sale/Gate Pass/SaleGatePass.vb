@@ -1006,11 +1006,10 @@ LINE1:
 
             If ClientName = "DRDRAPES" Then GDESCRIPTION.ReadOnly = False
 
-            If ClientName = "VINTAGEINDIA" Then
-                Label26.Visible = False
+            If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAVIRPOLYCOT" Then
+                LBLTXTVEHICLENO.Visible = False
                 TXTVEHICLENO.Visible = False
 
-                Label4.Visible = True
                 CMBVEHICLENAME.Visible = True
             End If
         Catch ex As Exception
@@ -1143,7 +1142,7 @@ LINE1:
 
     Private Sub CMBTRANS_Validated(sender As Object, e As EventArgs) Handles CMBTRANS.Validated
         Try
-            If ClientName = "VINTAGEINDIA" Then
+            If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAVIRPOLYCOT" Then
                 If CMBTRANS.Text.Trim <> "" Then
                     'GET VEHICLE NO FROM REMARKS FROM ACCOUNT MASTER
                     Dim OBJCMN As New ClsCommon
@@ -1185,14 +1184,6 @@ LINE1:
             TXTBARCODE.Clear()
         Catch ex As Exception
             Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBVEHICLENAME_Enter(sender As Object, e As EventArgs) Handles CMBVEHICLENAME.Enter
-        Try
-            If CMBVEHICLENAME.Text.Trim = "" Then FILLVEHICLE(CMBVEHICLENAME, EDIT)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 

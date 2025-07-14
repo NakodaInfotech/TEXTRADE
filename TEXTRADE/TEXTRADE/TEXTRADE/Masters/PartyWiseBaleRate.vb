@@ -6,6 +6,8 @@ Public Class PartyWiseBaleRate
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
+    Public TEMPPARNO As String
+
     Public EDIT As Boolean          'used for editing
 
     Private Function errorvalid() As Boolean
