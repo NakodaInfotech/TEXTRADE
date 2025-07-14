@@ -385,6 +385,12 @@
     <Compile Include="Common\Filters\LotFilter.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Common\Filters\MonthlySaleAnalysisFilter.Designer.vb">
+      <DependentUpon>MonthlySaleAnalysisFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Filters\MonthlySaleAnalysisFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\OutstandingFilter.Designer.vb">
       <DependentUpon>OutstandingFilter.vb</DependentUpon>
     </Compile>
@@ -1818,6 +1824,12 @@
       <DependentUpon>StoresReOrderLevelReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\StoresReOrderLevelReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.Designer.vb">
+      <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Grid Reports\SO Report\OrderGridReport.Designer.vb">
@@ -8416,6 +8428,9 @@
     <EmbeddedResource Include="Common\Filters\LotFilter.resx">
       <DependentUpon>LotFilter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Filters\MonthlySaleAnalysisFilter.resx">
+      <DependentUpon>MonthlySaleAnalysisFilter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\OutstandingFilter.resx">
       <DependentUpon>OutstandingFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -9325,6 +9340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\StoresReOrderLevelReport.resx">
       <DependentUpon>StoresReOrderLevelReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.resx">
+      <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\SO Report\OrderGridReport.resx">
       <DependentUpon>OrderGridReport.vb</DependentUpon>

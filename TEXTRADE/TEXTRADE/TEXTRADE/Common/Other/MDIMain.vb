@@ -52,7 +52,7 @@ Public Class MDIMain
             Me.Text = CmpName & " (" & AccFrom & " - " & AccTo & ")                     User - " & UserName
             GETCONN()
 
-            If ClientName = "YASHVI" Or ClientName = "NAKODAINFOTECH" Or ClientName = "AVIS" Or ClientName = "MAHAVIRPOLYCOT" Then
+            If ClientName = "YASHVI" Or ClientName = "NAKODAINFOTECH" Or ClientName = "AVIS" Then
                 Timer1.Enabled = True
                 LBLCHECKIN.Visible = True
                 Timer1.Interval = 15
@@ -10449,6 +10449,26 @@ SKIPLINE:
             Dim OBJMB As New MagicBox
             OBJMB.MdiParent = Me
             OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MASHOK_MONTHLYSALEANALYSIS_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_MONTHLYSALEANALYSIS_MENU.Click
+        Try
+            Dim OBJSALE As New MonthlySaleAnalysisFilter
+            OBJSALE.MdiParent = Me
+            OBJSALE.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MONTHLYSALEANALYSIS_REPORT_Click(sender As Object, e As EventArgs) Handles MONTHLYSALEANALYSIS_REPORT.Click
+        Try
+            Dim OBJSALE As New MonthlySaleAnalysisFilter
+            OBJSALE.MdiParent = Me
+            OBJSALE.Show()
         Catch ex As Exception
             Throw ex
         End Try
