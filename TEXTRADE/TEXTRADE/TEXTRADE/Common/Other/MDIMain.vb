@@ -10456,7 +10456,7 @@ SKIPLINE:
 
     Private Sub MASHOK_MONTHLYSALEANALYSIS_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_MONTHLYSALEANALYSIS_MENU.Click
         Try
-            Dim OBJSALE As New MonthlySaleAnalysisFilter
+            Dim OBJSALE As New MonthlySaleAnalysisGridReport
             OBJSALE.MdiParent = Me
             OBJSALE.Show()
         Catch ex As Exception
@@ -10466,7 +10466,7 @@ SKIPLINE:
 
     Private Sub MONTHLYSALEANALYSIS_REPORT_Click(sender As Object, e As EventArgs) Handles MONTHLYSALEANALYSIS_REPORT.Click
         Try
-            Dim OBJSALE As New MonthlySaleAnalysisFilter
+            Dim OBJSALE As New MonthlySaleAnalysisGridReport
             OBJSALE.MdiParent = Me
             OBJSALE.Show()
         Catch ex As Exception
