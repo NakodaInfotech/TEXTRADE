@@ -466,8 +466,6 @@ Partial Class SaleGatePassDetails
         'GDESCRIPTION
         '
         Me.GDESCRIPTION.Caption = "Description"
-        Me.GDESCRIPTION.DisplayFormat.FormatString = "0.00"
-        Me.GDESCRIPTION.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GDESCRIPTION.FieldName = "DESCRIPTION"
         Me.GDESCRIPTION.Name = "GDESCRIPTION"
         Me.GDESCRIPTION.Visible = True
