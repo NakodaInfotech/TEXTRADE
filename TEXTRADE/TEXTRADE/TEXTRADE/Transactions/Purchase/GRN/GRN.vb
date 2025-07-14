@@ -143,7 +143,7 @@ Public Class GRN
         cmbcolor.Text = ""
         If ClientName = "MSANCHITKUMAR" Or ClientName = "KEMLINO" Or ClientName = "MOHATUL" Then txtqty.Clear() Else txtqty.Text = 1
         If ClientName = "YASHVI" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "MANISH" Or ClientName = "VALIANT" Or ClientName = "RADHA" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
-        If ClientName = "AVIS" Or ClientName = "SNCM" Then cmbqtyunit.Text = "Mtrs"
+        If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MAHAVIRPOLYCOT" Then cmbqtyunit.Text = "Mtrs"
         If ClientName = "MNIKHIL" Or ClientName = "HRITI" Then cmbqtyunit.Text = "ROLL"
 
         TXTCUT.Clear()
@@ -200,6 +200,7 @@ Public Class GRN
 
             gitemname.HeaderText = "Item Name"
             txtPartyMtrs.Visible = False
+            If ClientName = "MAHAVIRPOLYCOT" Then cmbqtyunit.Text = "UNCHECK LUMP"
 
         Else
             cmbtype.Text = "Inwards"
@@ -1008,7 +1009,7 @@ CHECKNEXTLINE:
                 txtgrnno.Text = Val(DTTABLE.Rows(0).Item(0))
                 MsgBox("Details Added")
 
-                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI") And TXTLOTNO.Text.Trim <> "" Then
+                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI" Or ClientName = "MAHAVIRPOLYCOT") And TXTLOTNO.Text.Trim <> "" Then
                     If MsgBox("Wish to Create GRN Checking", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo SKIPLINE
 
                     Dim OBJCHECKNIG As New GRNChecking

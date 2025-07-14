@@ -29,17 +29,6 @@ Partial Class PartyWiseBaleRateReport
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gtype = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gbillinitials = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gdr = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcr = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRUNNINGBAL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gbillno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.greg = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHQNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gremarks = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUSER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.cmdshowdetails = New System.Windows.Forms.Button()
@@ -70,6 +59,10 @@ Partial Class PartyWiseBaleRateReport
         Me.lblname = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNOOFBALES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +126,7 @@ Partial Class PartyWiseBaleRateReport
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = CType(resources.GetObject("gridregister.Appearance.ViewCaption.Font"), System.Drawing.Font)
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gDate, Me.gname, Me.gtype, Me.gbillinitials, Me.GREFNO, Me.gdr, Me.gcr, Me.GRUNNINGBAL, Me.gbillno, Me.greg, Me.GCHQNO, Me.gremarks, Me.GUSER})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gDate, Me.gname, Me.GTRANSPORT, Me.GRATE, Me.GNOOFBALES, Me.GAMOUNT})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -161,84 +154,6 @@ Partial Class PartyWiseBaleRateReport
         Me.gname.FieldName = "Name"
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'gtype
-        '
-        resources.ApplyResources(Me.gtype, "gtype")
-        Me.gtype.FieldName = "Type"
-        Me.gtype.Name = "gtype"
-        Me.gtype.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'gbillinitials
-        '
-        resources.ApplyResources(Me.gbillinitials, "gbillinitials")
-        Me.gbillinitials.FieldName = "Bill No"
-        Me.gbillinitials.Name = "gbillinitials"
-        '
-        'GREFNO
-        '
-        resources.ApplyResources(Me.GREFNO, "GREFNO")
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        '
-        'gdr
-        '
-        resources.ApplyResources(Me.gdr, "gdr")
-        Me.gdr.DisplayFormat.FormatString = "0.00"
-        Me.gdr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gdr.FieldName = "Debit"
-        Me.gdr.Name = "gdr"
-        Me.gdr.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.gdr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("gdr.Summary"), DevExpress.Data.SummaryItemType), resources.GetString("gdr.Summary1"), resources.GetString("gdr.Summary2"))})
-        '
-        'gcr
-        '
-        resources.ApplyResources(Me.gcr, "gcr")
-        Me.gcr.DisplayFormat.FormatString = "0.00"
-        Me.gcr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcr.FieldName = "Credit"
-        Me.gcr.Name = "gcr"
-        Me.gcr.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.gcr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("gcr.Summary"), DevExpress.Data.SummaryItemType), resources.GetString("gcr.Summary1"), resources.GetString("gcr.Summary2"))})
-        '
-        'GRUNNINGBAL
-        '
-        resources.ApplyResources(Me.GRUNNINGBAL, "GRUNNINGBAL")
-        Me.GRUNNINGBAL.DisplayFormat.FormatString = "0.00"
-        Me.GRUNNINGBAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRUNNINGBAL.FieldName = "RUNNINGBAL"
-        Me.GRUNNINGBAL.Name = "GRUNNINGBAL"
-        '
-        'gbillno
-        '
-        resources.ApplyResources(Me.gbillno, "gbillno")
-        Me.gbillno.FieldName = "BILL"
-        Me.gbillno.Name = "gbillno"
-        '
-        'greg
-        '
-        resources.ApplyResources(Me.greg, "greg")
-        Me.greg.FieldName = "REGTYPE"
-        Me.greg.Name = "greg"
-        '
-        'GCHQNO
-        '
-        resources.ApplyResources(Me.GCHQNO, "GCHQNO")
-        Me.GCHQNO.FieldName = "CHQNO"
-        Me.GCHQNO.Name = "GCHQNO"
-        '
-        'gremarks
-        '
-        resources.ApplyResources(Me.gremarks, "gremarks")
-        Me.gremarks.FieldName = "REMARKS"
-        Me.gremarks.Name = "gremarks"
-        Me.gremarks.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
-        '
-        'GUSER
-        '
-        resources.ApplyResources(Me.GUSER, "GUSER")
-        Me.GUSER.FieldName = "USERNAME"
-        Me.GUSER.Name = "GUSER"
         '
         'CMBACCCODE
         '
@@ -450,6 +365,30 @@ Partial Class PartyWiseBaleRateReport
         Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lbl.Name = "lbl"
         '
+        'GTRANSPORT
+        '
+        resources.ApplyResources(Me.GTRANSPORT, "GTRANSPORT")
+        Me.GTRANSPORT.FieldName = "TRANSPORT"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        '
+        'GRATE
+        '
+        resources.ApplyResources(Me.GRATE, "GRATE")
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        '
+        'GNOOFBALES
+        '
+        resources.ApplyResources(Me.GNOOFBALES, "GNOOFBALES")
+        Me.GNOOFBALES.FieldName = "NOOFBALES"
+        Me.GNOOFBALES.Name = "GNOOFBALES"
+        '
+        'GAMOUNT
+        '
+        resources.ApplyResources(Me.GAMOUNT, "GAMOUNT")
+        Me.GAMOUNT.FieldName = "AMOUNT"
+        Me.GAMOUNT.Name = "GAMOUNT"
+        '
         'PartyWiseBaleRateReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -474,17 +413,6 @@ Partial Class PartyWiseBaleRateReport
     Private WithEvents gridregister As DevExpress.XtraGrid.Views.Grid.GridView
     Private WithEvents gDate As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gtype As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gbillinitials As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gdr As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gcr As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRUNNINGBAL As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gbillno As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents greg As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHQNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gremarks As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUSER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBACCCODE As ComboBox
     Friend WithEvents txtadd As TextBox
     Friend WithEvents cmdshowdetails As Button
@@ -515,4 +443,8 @@ Partial Class PartyWiseBaleRateReport
     Friend WithEvents lblname As Label
     Friend WithEvents cmbname As ComboBox
     Friend WithEvents lbl As Label
+    Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNOOFBALES As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

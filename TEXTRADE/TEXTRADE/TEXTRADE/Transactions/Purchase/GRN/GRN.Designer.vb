@@ -2245,6 +2245,7 @@ Partial Class GRN
         Me.TXTBALENO.BackColor = System.Drawing.Color.White
         Me.TXTBALENO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBALENO.Location = New System.Drawing.Point(398, 3)
+        Me.TXTBALENO.MaxLength = 100
         Me.TXTBALENO.Name = "TXTBALENO"
         Me.TXTBALENO.Size = New System.Drawing.Size(100, 22)
         Me.TXTBALENO.TabIndex = 3

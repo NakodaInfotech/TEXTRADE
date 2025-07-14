@@ -1025,6 +1025,9 @@ LINE1:
                 LBLCHALLANNO.Text = "Challan No"
             End If
 
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then CMDSELECTSTOCK.Visible = False
+
+
             If ClientName = "VINTAGEINDIA" Then
                 LBLLOTNO.Visible = True
                 TXTLOTNO.Visible = True

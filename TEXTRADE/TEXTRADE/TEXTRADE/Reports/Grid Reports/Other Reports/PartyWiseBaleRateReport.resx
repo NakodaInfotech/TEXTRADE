@@ -195,128 +195,52 @@
   <data name="gname.Width" type="System.Int32, mscorlib">
     <value>200</value>
   </data>
-  <data name="gtype.Caption" xml:space="preserve">
-    <value>Type</value>
+  <data name="GTRANSPORT.Caption" xml:space="preserve">
+    <value>Transporter</value>
   </data>
-  <data name="gbillinitials.Caption" xml:space="preserve">
-    <value>Bill No.</value>
-  </data>
-  <data name="gbillinitials.ImageIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="gbillinitials.Visible" type="System.Boolean, mscorlib">
+  <data name="GTRANSPORT.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="gbillinitials.VisibleIndex" type="System.Int32, mscorlib">
+  <data name="GTRANSPORT.VisibleIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="gbillinitials.Width" type="System.Int32, mscorlib">
-    <value>70</value>
+  <data name="GTRANSPORT.Width" type="System.Int32, mscorlib">
+    <value>200</value>
   </data>
-  <data name="GREFNO.Caption" xml:space="preserve">
-    <value>Ref No</value>
+  <data name="GRATE.Caption" xml:space="preserve">
+    <value>Rate</value>
   </data>
-  <data name="GREFNO.Visible" type="System.Boolean, mscorlib">
+  <data name="GRATE.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="GREFNO.VisibleIndex" type="System.Int32, mscorlib">
+  <data name="GRATE.VisibleIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="gdr.Caption" xml:space="preserve">
-    <value>Debit</value>
+  <data name="GRATE.Width" type="System.Int32, mscorlib">
+    <value>100</value>
   </data>
-  <assembly alias="DevExpress.Data.v15.1" name="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="gdr.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v15.1">
-    <value>Sum</value>
+  <data name="GNOOFBALES.Caption" xml:space="preserve">
+    <value>No of Bales</value>
   </data>
-  <data name="gdr.Summary1" xml:space="preserve">
-    <value>Debit</value>
-  </data>
-  <data name="gdr.Summary2" xml:space="preserve">
-    <value>{0:0.00}</value>
-  </data>
-  <data name="gdr.Visible" type="System.Boolean, mscorlib">
+  <data name="GNOOFBALES.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="gdr.VisibleIndex" type="System.Int32, mscorlib">
+  <data name="GNOOFBALES.VisibleIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="gdr.Width" type="System.Int32, mscorlib">
+  <data name="GNOOFBALES.Width" type="System.Int32, mscorlib">
     <value>100</value>
   </data>
-  <data name="gcr.Caption" xml:space="preserve">
-    <value>Credit</value>
+  <data name="GAMOUNT.Caption" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="gcr.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v15.1">
-    <value>Sum</value>
-  </data>
-  <data name="gcr.Summary1" xml:space="preserve">
-    <value>Credit</value>
-  </data>
-  <data name="gcr.Summary2" xml:space="preserve">
-    <value>{0:0.00}</value>
-  </data>
-  <data name="gcr.Visible" type="System.Boolean, mscorlib">
+  <data name="GAMOUNT.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="gcr.VisibleIndex" type="System.Int32, mscorlib">
+  <data name="GAMOUNT.VisibleIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="gcr.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="GRUNNINGBAL.Caption" xml:space="preserve">
-    <value>Running Bal</value>
-  </data>
-  <data name="GRUNNINGBAL.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="GRUNNINGBAL.VisibleIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="GRUNNINGBAL.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="gbillno.Caption" xml:space="preserve">
-    <value>Bill no</value>
-  </data>
-  <data name="greg.Caption" xml:space="preserve">
-    <value>Reg Name</value>
-  </data>
-  <data name="GCHQNO.Caption" xml:space="preserve">
-    <value>Chq No</value>
-  </data>
-  <data name="GCHQNO.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="GCHQNO.VisibleIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="gremarks.Caption" xml:space="preserve">
-    <value>Remarks</value>
-  </data>
-  <data name="gremarks.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="gremarks.VisibleIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="gremarks.Width" type="System.Int32, mscorlib">
-    <value>250</value>
-  </data>
-  <data name="GUSER.Caption" xml:space="preserve">
-    <value>User Name</value>
-  </data>
-  <data name="GUSER.ImageIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="GUSER.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="GUSER.VisibleIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="GUSER.Width" type="System.Int32, mscorlib">
+  <data name="GAMOUNT.Width" type="System.Int32, mscorlib">
     <value>100</value>
   </data>
   <data name="griddetails.Size" type="System.Drawing.Size, System.Drawing">
@@ -1106,72 +1030,6 @@
   <data name="&gt;&gt;gname.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;gtype.Name" xml:space="preserve">
-    <value>gtype</value>
-  </data>
-  <data name="&gt;&gt;gtype.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gbillinitials.Name" xml:space="preserve">
-    <value>gbillinitials</value>
-  </data>
-  <data name="&gt;&gt;gbillinitials.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GREFNO.Name" xml:space="preserve">
-    <value>GREFNO</value>
-  </data>
-  <data name="&gt;&gt;GREFNO.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gdr.Name" xml:space="preserve">
-    <value>gdr</value>
-  </data>
-  <data name="&gt;&gt;gdr.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gcr.Name" xml:space="preserve">
-    <value>gcr</value>
-  </data>
-  <data name="&gt;&gt;gcr.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GRUNNINGBAL.Name" xml:space="preserve">
-    <value>GRUNNINGBAL</value>
-  </data>
-  <data name="&gt;&gt;GRUNNINGBAL.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gbillno.Name" xml:space="preserve">
-    <value>gbillno</value>
-  </data>
-  <data name="&gt;&gt;gbillno.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;greg.Name" xml:space="preserve">
-    <value>greg</value>
-  </data>
-  <data name="&gt;&gt;greg.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GCHQNO.Name" xml:space="preserve">
-    <value>GCHQNO</value>
-  </data>
-  <data name="&gt;&gt;GCHQNO.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gremarks.Name" xml:space="preserve">
-    <value>gremarks</value>
-  </data>
-  <data name="&gt;&gt;gremarks.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GUSER.Name" xml:space="preserve">
-    <value>GUSER</value>
-  </data>
-  <data name="&gt;&gt;GUSER.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
     <value>PrintToolStripButton</value>
   </data>
@@ -1219,6 +1077,30 @@
   </data>
   <data name="&gt;&gt;ToolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GTRANSPORT.Name" xml:space="preserve">
+    <value>GTRANSPORT</value>
+  </data>
+  <data name="&gt;&gt;GTRANSPORT.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GRATE.Name" xml:space="preserve">
+    <value>GRATE</value>
+  </data>
+  <data name="&gt;&gt;GRATE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GNOOFBALES.Name" xml:space="preserve">
+    <value>GNOOFBALES</value>
+  </data>
+  <data name="&gt;&gt;GNOOFBALES.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GAMOUNT.Name" xml:space="preserve">
+    <value>GAMOUNT</value>
+  </data>
+  <data name="&gt;&gt;GAMOUNT.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PartyWiseBaleRateReport</value>
