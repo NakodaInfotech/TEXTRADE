@@ -29,15 +29,16 @@ Partial Class JobInGridDetails
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPCSNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GJONO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,10 +53,11 @@ Partial Class JobInGridDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GPCSNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GOPERATOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +95,7 @@ Partial Class JobInGridDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GGODOWN, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GPCSNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GJONO, Me.GLOTNO, Me.GCHALLANNO, Me.GREMARKS, Me.GBARCODE, Me.GPURCHASEPARTYNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GGODOWN, Me.GPIECETYPE, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GPCSNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GJONO, Me.GLOTNO, Me.GCHALLANNO, Me.GREMARKS, Me.GBARCODE, Me.GPURCHASEPARTYNAME, Me.GOPERATOR})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -135,14 +137,6 @@ Partial Class JobInGridDetails
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         '
-        'GBALENO
-        '
-        Me.GBALENO.Caption = "Bale No"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 6
-        '
         'GITEMNAME
         '
         Me.GITEMNAME.Caption = "Item Name"
@@ -158,7 +152,7 @@ Partial Class JobInGridDetails
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 4
+        Me.GDESIGNNO.VisibleIndex = 5
         Me.GDESIGNNO.Width = 150
         '
         'GSHADE
@@ -167,8 +161,16 @@ Partial Class JobInGridDetails
         Me.GSHADE.FieldName = "SHADE"
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 5
+        Me.GSHADE.VisibleIndex = 6
         Me.GSHADE.Width = 120
+        '
+        'GBALENO
+        '
+        Me.GBALENO.Caption = "Bale No"
+        Me.GBALENO.FieldName = "BALENO"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.Visible = True
+        Me.GBALENO.VisibleIndex = 7
         '
         'GPCS
         '
@@ -179,7 +181,7 @@ Partial Class JobInGridDetails
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 7
+        Me.GPCS.VisibleIndex = 8
         '
         'GMTRS
         '
@@ -190,7 +192,7 @@ Partial Class JobInGridDetails
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
+        Me.GMTRS.VisibleIndex = 9
         '
         'GRATE
         '
@@ -198,7 +200,7 @@ Partial Class JobInGridDetails
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 10
+        Me.GRATE.VisibleIndex = 11
         '
         'GPER
         '
@@ -206,7 +208,7 @@ Partial Class JobInGridDetails
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 11
+        Me.GPER.VisibleIndex = 12
         '
         'GAMOUNT
         '
@@ -215,7 +217,16 @@ Partial Class JobInGridDetails
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMOUNT.Visible = True
-        Me.GAMOUNT.VisibleIndex = 12
+        Me.GAMOUNT.VisibleIndex = 13
+        '
+        'GPCSNO
+        '
+        Me.GPCSNO.Caption = "Pcs No"
+        Me.GPCSNO.FieldName = "PCSNO"
+        Me.GPCSNO.Name = "GPCSNO"
+        Me.GPCSNO.Visible = True
+        Me.GPCSNO.VisibleIndex = 14
+        Me.GPCSNO.Width = 100
         '
         'GTOTALPCS
         '
@@ -241,7 +252,7 @@ Partial Class JobInGridDetails
         Me.GJONO.FieldName = "JONO"
         Me.GJONO.Name = "GJONO"
         Me.GJONO.Visible = True
-        Me.GJONO.VisibleIndex = 9
+        Me.GJONO.VisibleIndex = 10
         '
         'GLOTNO
         '
@@ -249,7 +260,7 @@ Partial Class JobInGridDetails
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 14
+        Me.GLOTNO.VisibleIndex = 15
         '
         'GCHALLANNO
         '
@@ -257,7 +268,7 @@ Partial Class JobInGridDetails
         Me.GCHALLANNO.FieldName = "CHALLANNO"
         Me.GCHALLANNO.Name = "GCHALLANNO"
         Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 15
+        Me.GCHALLANNO.VisibleIndex = 16
         Me.GCHALLANNO.Width = 110
         '
         'GREMARKS
@@ -266,7 +277,7 @@ Partial Class JobInGridDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 16
+        Me.GREMARKS.VisibleIndex = 17
         '
         'GBARCODE
         '
@@ -274,7 +285,7 @@ Partial Class JobInGridDetails
         Me.GBARCODE.FieldName = "BARCODE"
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 17
+        Me.GBARCODE.VisibleIndex = 18
         '
         'GPURCHASEPARTYNAME
         '
@@ -282,7 +293,7 @@ Partial Class JobInGridDetails
         Me.GPURCHASEPARTYNAME.FieldName = "WEAVER"
         Me.GPURCHASEPARTYNAME.Name = "GPURCHASEPARTYNAME"
         Me.GPURCHASEPARTYNAME.Visible = True
-        Me.GPURCHASEPARTYNAME.VisibleIndex = 18
+        Me.GPURCHASEPARTYNAME.VisibleIndex = 19
         Me.GPURCHASEPARTYNAME.Width = 250
         '
         'cmdexit
@@ -339,6 +350,11 @@ Partial Class JobInGridDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -365,19 +381,21 @@ Partial Class JobInGridDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GPCSNO
+        'GPIECETYPE
         '
-        Me.GPCSNO.Caption = "Pcs No"
-        Me.GPCSNO.FieldName = "PCSNO"
-        Me.GPCSNO.Name = "GPCSNO"
-        Me.GPCSNO.Visible = True
-        Me.GPCSNO.VisibleIndex = 13
-        Me.GPCSNO.Width = 100
+        Me.GPIECETYPE.Caption = "Piece Type"
+        Me.GPIECETYPE.FieldName = "PIECETYPE"
+        Me.GPIECETYPE.Name = "GPIECETYPE"
+        Me.GPIECETYPE.Visible = True
+        Me.GPIECETYPE.VisibleIndex = 4
         '
-        'ToolStripSeparator1
+        'GOPERATOR
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.GOPERATOR.Caption = "Contractor"
+        Me.GOPERATOR.FieldName = "OPERATOR"
+        Me.GOPERATOR.Name = "GOPERATOR"
+        Me.GOPERATOR.Visible = True
+        Me.GOPERATOR.VisibleIndex = 20
         '
         'JobInGridDetails
         '
@@ -434,4 +452,6 @@ Partial Class JobInGridDetails
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPCSNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GOPERATOR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

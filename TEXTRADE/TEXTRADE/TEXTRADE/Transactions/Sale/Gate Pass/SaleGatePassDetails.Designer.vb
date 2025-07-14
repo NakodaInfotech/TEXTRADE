@@ -466,7 +466,7 @@ Partial Class SaleGatePassDetails
         'GDESCRIPTION
         '
         Me.GDESCRIPTION.Caption = "Description"
-        Me.GDESCRIPTION.FieldName = "DESCRIPTION"
+        Me.GDESCRIPTION.FieldName = "PRINTDESC"
         Me.GDESCRIPTION.Name = "GDESCRIPTION"
         Me.GDESCRIPTION.Visible = True
         Me.GDESCRIPTION.VisibleIndex = 12
