@@ -151,7 +151,7 @@ Partial Class PartyWiseBaleRateReport
         'gname
         '
         resources.ApplyResources(Me.gname, "gname")
-        Me.gname.FieldName = "Name"
+        Me.gname.FieldName = "NAME"
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
@@ -368,25 +368,25 @@ Partial Class PartyWiseBaleRateReport
         'GTRANSPORT
         '
         resources.ApplyResources(Me.GTRANSPORT, "GTRANSPORT")
-        Me.GTRANSPORT.FieldName = "TRANSPORT"
+        Me.GTRANSPORT.FieldName = "TRANSNAME"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         '
         'GRATE
         '
         resources.ApplyResources(Me.GRATE, "GRATE")
-        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.FieldName = "BALERATE"
         Me.GRATE.Name = "GRATE"
         '
         'GNOOFBALES
         '
         resources.ApplyResources(Me.GNOOFBALES, "GNOOFBALES")
-        Me.GNOOFBALES.FieldName = "NOOFBALES"
+        Me.GNOOFBALES.FieldName = "TOTALBALES"
         Me.GNOOFBALES.Name = "GNOOFBALES"
         '
         'GAMOUNT
         '
         resources.ApplyResources(Me.GAMOUNT, "GAMOUNT")
-        Me.GAMOUNT.FieldName = "AMOUNT"
+        Me.GAMOUNT.FieldName = "AMT"
         Me.GAMOUNT.Name = "GAMOUNT"
         '
         'PartyWiseBaleRateReport
