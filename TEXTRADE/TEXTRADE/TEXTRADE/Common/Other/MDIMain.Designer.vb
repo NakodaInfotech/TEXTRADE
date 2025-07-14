@@ -649,6 +649,7 @@ Partial Class MDIMain
         Me.GDNFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator35 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaleInvoiceFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MONTHLYSALEANALYSIS_REPORT = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaleReturnFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator101 = New System.Windows.Forms.ToolStripSeparator()
         Me.PendingInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1134,9 +1135,13 @@ Partial Class MDIMain
         Me.MASHOK_RECOUT_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_PAYOUT_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator306 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MASHOK_MONTHLYSALEANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_INVDETAILS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_AGEING_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator302 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MagicBoxOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator319 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpeningBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditExistingEntryToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1186,8 +1191,6 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MagicBoxOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -5201,7 +5204,7 @@ Partial Class MDIMain
         '
         'SALE_REPORTS
         '
-        Me.SALE_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaleOrderFilterToolStripMenuItem, Me.ToolStripSeparator50, Me.GDNFilterToolStripMenuItem, Me.ToolStripSeparator35, Me.SaleInvoiceFilterToolStripMenuItem, Me.SaleReturnFilterToolStripMenuItem, Me.ToolStripSeparator101, Me.PendingInvoiceToolStripMenuItem, Me.PendingInvoiceDetailsToolStripMenuItem, Me.MissingInvoiceNoToolStripMenuItem, Me.ToolStripSeparator73, Me.COVER, Me.ToolStripSeparator303})
+        Me.SALE_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaleOrderFilterToolStripMenuItem, Me.ToolStripSeparator50, Me.GDNFilterToolStripMenuItem, Me.ToolStripSeparator35, Me.SaleInvoiceFilterToolStripMenuItem, Me.MONTHLYSALEANALYSIS_REPORT, Me.SaleReturnFilterToolStripMenuItem, Me.ToolStripSeparator101, Me.PendingInvoiceToolStripMenuItem, Me.PendingInvoiceDetailsToolStripMenuItem, Me.MissingInvoiceNoToolStripMenuItem, Me.ToolStripSeparator73, Me.COVER, Me.ToolStripSeparator303})
         Me.SALE_REPORTS.Enabled = False
         Me.SALE_REPORTS.Name = "SALE_REPORTS"
         Me.SALE_REPORTS.Size = New System.Drawing.Size(169, 22)
@@ -5234,6 +5237,12 @@ Partial Class MDIMain
         Me.SaleInvoiceFilterToolStripMenuItem.Name = "SaleInvoiceFilterToolStripMenuItem"
         Me.SaleInvoiceFilterToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
         Me.SaleInvoiceFilterToolStripMenuItem.Text = "Sale Invoice Reports"
+        '
+        'MONTHLYSALEANALYSIS_REPORT
+        '
+        Me.MONTHLYSALEANALYSIS_REPORT.Name = "MONTHLYSALEANALYSIS_REPORT"
+        Me.MONTHLYSALEANALYSIS_REPORT.Size = New System.Drawing.Size(230, 22)
+        Me.MONTHLYSALEANALYSIS_REPORT.Text = "Monthly Sale Analysis"
         '
         'SaleReturnFilterToolStripMenuItem
         '
@@ -8230,7 +8239,7 @@ Partial Class MDIMain
         '
         'MASHOK_REPORTS
         '
-        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_INVDETAILS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302, Me.MagicBoxToolStripMenuItem})
+        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_MONTHLYSALEANALYSIS_MENU, Me.MASHOK_INVDETAILS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302, Me.MagicBoxToolStripMenuItem, Me.ToolStripSeparator319})
         Me.MASHOK_REPORTS.Name = "MASHOK_REPORTS"
         Me.MASHOK_REPORTS.Size = New System.Drawing.Size(84, 20)
         Me.MASHOK_REPORTS.Text = "MIS Reports"
@@ -8270,6 +8279,12 @@ Partial Class MDIMain
         Me.ToolStripSeparator306.Name = "ToolStripSeparator306"
         Me.ToolStripSeparator306.Size = New System.Drawing.Size(200, 6)
         '
+        'MASHOK_MONTHLYSALEANALYSIS_MENU
+        '
+        Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Name = "MASHOK_MONTHLYSALEANALYSIS_MENU"
+        Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Text = "Monthly Sale Analysis"
+        '
         'MASHOK_INVDETAILS_MENU
         '
         Me.MASHOK_INVDETAILS_MENU.Name = "MASHOK_INVDETAILS_MENU"
@@ -8286,6 +8301,24 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator302.Name = "ToolStripSeparator302"
         Me.ToolStripSeparator302.Size = New System.Drawing.Size(200, 6)
+        '
+        'MagicBoxToolStripMenuItem
+        '
+        Me.MagicBoxToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MagicBoxOrderToolStripMenuItem})
+        Me.MagicBoxToolStripMenuItem.Name = "MagicBoxToolStripMenuItem"
+        Me.MagicBoxToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.MagicBoxToolStripMenuItem.Text = "Magic Box"
+        '
+        'MagicBoxOrderToolStripMenuItem
+        '
+        Me.MagicBoxOrderToolStripMenuItem.Name = "MagicBoxOrderToolStripMenuItem"
+        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.MagicBoxOrderToolStripMenuItem.Text = "Magic Box Order"
+        '
+        'ToolStripSeparator319
+        '
+        Me.ToolStripSeparator319.Name = "ToolStripSeparator319"
+        Me.ToolStripSeparator319.Size = New System.Drawing.Size(200, 6)
         '
         'OpeningBillToolStripMenuItem
         '
@@ -8666,19 +8699,6 @@ Partial Class MDIMain
         'Timer1
         '
         Me.Timer1.Interval = 10
-        '
-        'MagicBoxToolStripMenuItem
-        '
-        Me.MagicBoxToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MagicBoxOrderToolStripMenuItem})
-        Me.MagicBoxToolStripMenuItem.Name = "MagicBoxToolStripMenuItem"
-        Me.MagicBoxToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.MagicBoxToolStripMenuItem.Text = "Magic Box"
-        '
-        'MagicBoxOrderToolStripMenuItem
-        '
-        Me.MagicBoxOrderToolStripMenuItem.Name = "MagicBoxOrderToolStripMenuItem"
-        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
-        Me.MagicBoxOrderToolStripMenuItem.Text = "Magic Box Order"
         '
         'MDIMain
         '
@@ -9871,4 +9891,7 @@ Partial Class MDIMain
     Friend WithEvents PartyWiseBaleRate As ToolStripMenuItem
     Friend WithEvents MagicBoxToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MagicBoxOrderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MASHOK_MONTHLYSALEANALYSIS_MENU As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator319 As ToolStripSeparator
+    Friend WithEvents MONTHLYSALEANALYSIS_REPORT As ToolStripMenuItem
 End Class
