@@ -189,7 +189,7 @@ Public Class AutoWhatsapp
     Private Sub TXTTIME_Validated(sender As Object, e As EventArgs) Handles TXTTIME.Validated
         Try
             If CMBTYPE.Text <> "" And TXTTIME.Text.Trim <> "" Then
-                SAVE()
+                'SAVE()
                 FILLGRID()
                 CLEAR()
             End If

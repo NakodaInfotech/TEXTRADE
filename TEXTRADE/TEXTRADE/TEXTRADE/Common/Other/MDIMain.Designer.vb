@@ -20,9 +20,8 @@ Partial Class MDIMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIMain))
-        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolTip = New System.Windows.Forms.ToolTip()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.Mastermenuitems = New System.Windows.Forms.ToolStripMenuItem()
         Me.GROUP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1187,10 +1186,11 @@ Partial Class MDIMain
         Me.PAYOUT_TOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
         Me.RACKUPDATE_TOOL = New System.Windows.Forms.ToolStripButton()
         Me.RACKUPDATE_TOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
-        Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
-        Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
+        Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager()
+        Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel()
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer1 = New System.Windows.Forms.Timer()
+        Me.AutoWhatsappToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -7301,7 +7301,7 @@ Partial Class MDIMain
         '
         'Utilitiesmenu
         '
-        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AutoWhatsappToolStripMenuItem, Me.ToolStripSeparator158, Me.DATATRANSFER_MASTER, Me.STOCKTRANSFER_MASTER, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20})
+        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AutoWhatsappToolStripMenuItem, Me.ToolStripSeparator158, Me.DATATRANSFER_MASTER, Me.STOCKTRANSFER_MASTER, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20, Me.AutoWhatsappToolStripMenuItem1})
         Me.Utilitiesmenu.Name = "Utilitiesmenu"
         Me.Utilitiesmenu.Size = New System.Drawing.Size(62, 20)
         Me.Utilitiesmenu.Text = "&Utilities"
@@ -8700,6 +8700,12 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
+        'AutoWhatsappToolStripMenuItem1
+        '
+        Me.AutoWhatsappToolStripMenuItem1.Name = "AutoWhatsappToolStripMenuItem1"
+        Me.AutoWhatsappToolStripMenuItem1.Size = New System.Drawing.Size(190, 22)
+        Me.AutoWhatsappToolStripMenuItem1.Text = "Auto Whatsapp"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -9894,4 +9900,5 @@ Partial Class MDIMain
     Friend WithEvents MASHOK_MONTHLYSALEANALYSIS_MENU As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator319 As ToolStripSeparator
     Friend WithEvents MONTHLYSALEANALYSIS_REPORT As ToolStripMenuItem
+    Friend WithEvents AutoWhatsappToolStripMenuItem1 As ToolStripMenuItem
 End Class
