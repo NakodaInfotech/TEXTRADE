@@ -291,7 +291,7 @@ Public Class AutoWhatsapp
                 If row.Cells(GSRNO.Index).Value <> Nothing Then
                     If GRIDSRNO = "" Then
 
-                        GRIDSRNO = row.Cells(GSRNO.Index).Value.ToString
+                        GRIDSRNO = Val(row.Cells(GSRNO.Index).Value)
                         TYPE = row.Cells(GTYPE.Index).Value.ToString
                         MONDAY = row.Cells(GMON.Index).Value
                         TUESDAY = row.Cells(GTUE.Index).Value
@@ -304,7 +304,7 @@ Public Class AutoWhatsapp
 
                     Else
 
-                        GRIDSRNO = GRIDSRNO & "|" & row.Cells(GSRNO.Index).Value.ToString
+                        GRIDSRNO = GRIDSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
                         TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value.ToString
                         MONDAY = MONDAY & "|" & row.Cells(GMON.Index).Value
                         TUESDAY = TUESDAY & "|" & row.Cells(GTUE.Index).Value
@@ -347,7 +347,7 @@ Public Class AutoWhatsapp
                         NAME = dtrow("NAME")
                         CITY = dtrow("CITY")
                     Else
-                        CHK = CHK & "|" & dtrow("CHK")
+                        CHK = CHK & "|" & If(Convert.ToBoolean(dtrow("CHK")), "1", "0")
                         NAME = NAME & "|" & dtrow("NAME")
                         CITY = CITY & "|" & dtrow("CITY")
                     End If
@@ -364,15 +364,15 @@ Public Class AutoWhatsapp
 
             For I As Integer = 0 To GridView1.RowCount - 1
                 Dim dtrow As DataRow = GridView1.GetDataRow(I)
-                If Convert.ToBoolean(dtrow("ACHK")) = True Then
+                If Convert.ToBoolean(dtrow("AGENTCHK")) = True Then
                     If ANAME = "" Then
-                        ACHK = dtrow("ACHK")
-                        ANAME = dtrow("ANAME")
-                        ACITY = dtrow("ACITY")
+                        ACHK = dtrow("AGENTCHK")
+                        ANAME = dtrow("AGENTNAME")
+                        ACITY = dtrow("AGENTCITY")
                     Else
-                        ACHK = ACHK & "|" & dtrow("ACHK")
-                        ANAME = ANAME & "|" & dtrow("ANAME")
-                        ACITY = ACITY & "|" & dtrow("ACITY")
+                        ACHK = ACHK & "|" & If(Convert.ToBoolean(dtrow("AGENTCHK")), "1", "0")
+                        ANAME = ANAME & "|" & dtrow("AGENTNAME")
+                        ACITY = ACITY & "|" & dtrow("AGENTCITY")
                     End If
                 End If
             Next
@@ -381,7 +381,7 @@ Public Class AutoWhatsapp
             alparaval.Add(ANAME)
             alparaval.Add(ACITY)
 
-            Dim OBJAUTOWA As New ClsLotTagging
+            Dim OBJAUTOWA As New ClsAUTOWHATSAPP
             OBJAUTOWA.alParaval = alparaval
 
             If EDIT = False Then
@@ -443,7 +443,7 @@ Public Class AutoWhatsapp
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
-            Dim DT As DataTable = OBJCMN.SEARCH("CASE When ISNULL(LEDGERS.Acc_cmpname,'') = '' THEN  CAST (0 AS BIT) ELSE  CAST (0 AS BIT) END AS CHK, LEDGERS.Acc_cmpname AS AGENTNAME , ISNULL(CITYMASTER.city_name,'') AS CITY ", " ", " LEDGERS LEFT OUTER JOIN  CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " AND  Acc_TYPE = 'AGENT' AND LEDGERS.ACC_YEARID = '" & YearId & "' ORDER BY LEDGERS.Acc_cmpname")
+            Dim DT As DataTable = OBJCMN.SEARCH("CASE When ISNULL(LEDGERS.Acc_cmpname,'') = '' THEN  CAST (0 AS BIT) ELSE  CAST (0 AS BIT) END AS AGENTCHK, LEDGERS.Acc_cmpname AS AGENTNAME , ISNULL(CITYMASTER.city_name,'') AS AGENTCITY ", " ", " LEDGERS LEFT OUTER JOIN  CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " AND  Acc_TYPE = 'AGENT' AND LEDGERS.ACC_YEARID = '" & YearId & "' ORDER BY LEDGERS.Acc_cmpname")
             GridControl1.DataSource = DT
             If DT.Rows.Count > 0 Then
                 GridView1.FocusedRowHandle = GridView1.RowCount - 1

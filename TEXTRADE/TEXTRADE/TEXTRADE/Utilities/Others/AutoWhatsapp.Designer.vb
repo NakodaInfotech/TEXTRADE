@@ -22,11 +22,10 @@ Partial Class AutoWhatsapp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLTYPE1 = New System.Windows.Forms.Label()
         Me.LBLTYPE = New System.Windows.Forms.Label()
@@ -68,7 +67,7 @@ Partial Class AutoWhatsapp
         Me.GCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDSAVE = New System.Windows.Forms.Button()
-        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.EP = New System.Windows.Forms.ErrorProvider()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,9 +166,9 @@ Partial Class AutoWhatsapp
         '
         'GACHK
         '
-        Me.GACHK.Caption = "CHK"
+        Me.GACHK.Caption = "AGENTCHK"
         Me.GACHK.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GACHK.FieldName = "CHK"
+        Me.GACHK.FieldName = "AGENTCHK"
         Me.GACHK.Name = "GACHK"
         Me.GACHK.OptionsColumn.ShowCaption = False
         Me.GACHK.Visible = True
@@ -196,7 +195,7 @@ Partial Class AutoWhatsapp
         'GACITY
         '
         Me.GACITY.Caption = "City"
-        Me.GACITY.FieldName = "CITY"
+        Me.GACITY.FieldName = "AGENTCITY"
         Me.GACITY.Name = "GACITY"
         Me.GACITY.Visible = True
         Me.GACITY.VisibleIndex = 2
@@ -284,39 +283,39 @@ Partial Class AutoWhatsapp
         Me.GRIDAUTOWA.AllowUserToDeleteRows = False
         Me.GRIDAUTOWA.AllowUserToResizeColumns = False
         Me.GRIDAUTOWA.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDAUTOWA.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDAUTOWA.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDAUTOWA.BackgroundColor = System.Drawing.Color.White
         Me.GRIDAUTOWA.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDAUTOWA.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDAUTOWA.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GRIDAUTOWA.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.GRIDAUTOWA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDAUTOWA.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GTYPE, Me.GMON, Me.GTUE, Me.GWED, Me.GTHU, Me.GFRI, Me.GSAT, Me.GSUN, Me.GTIME})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDAUTOWA.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDAUTOWA.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDAUTOWA.GridColor = System.Drawing.SystemColors.ControlText
         Me.GRIDAUTOWA.Location = New System.Drawing.Point(3, 38)
         Me.GRIDAUTOWA.Margin = New System.Windows.Forms.Padding(2)
         Me.GRIDAUTOWA.MultiSelect = False
         Me.GRIDAUTOWA.Name = "GRIDAUTOWA"
         Me.GRIDAUTOWA.RowHeadersVisible = False
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDAUTOWA.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDAUTOWA.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDAUTOWA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.GRIDAUTOWA.Size = New System.Drawing.Size(916, 285)
         Me.GRIDAUTOWA.TabIndex = 11
