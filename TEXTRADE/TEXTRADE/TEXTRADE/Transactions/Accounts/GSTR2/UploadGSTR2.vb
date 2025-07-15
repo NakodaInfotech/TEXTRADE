@@ -151,26 +151,26 @@ Public Class UploadGSTR2
                 End If
 
 
-                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
-                    DTROWSAVE("TAXABLEAMT") = Val(oSheet.Range("J" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
+                    DTROWSAVE("TAXABLEAMT") = Val(oSheet.Range("I" & I.ToString).Text)
                 Else
                     DTROWSAVE("TAXABLEAMT") = 0
                 End If
 
-                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
-                    DTROWSAVE("IGSTAMT") = Val(oSheet.Range("K" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
+                    DTROWSAVE("IGSTAMT") = Val(oSheet.Range("J" & I.ToString).Text)
                 Else
                     DTROWSAVE("IGSTAMT") = 0
                 End If
 
-                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
-                    DTROWSAVE("CGSTAMT") = Val(oSheet.Range("L" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
+                    DTROWSAVE("CGSTAMT") = Val(oSheet.Range("K" & I.ToString).Text)
                 Else
                     DTROWSAVE("CGSTAMT") = 0
                 End If
 
-                If IsDBNull(oSheet.Range("M" & I.ToString).Text) = False Then
-                    DTROWSAVE("SGSTAMT") = Val(oSheet.Range("M" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
+                    DTROWSAVE("SGSTAMT") = Val(oSheet.Range("L" & I.ToString).Text)
                 Else
                     DTROWSAVE("SGSTAMT") = 0
                 End If
@@ -294,26 +294,26 @@ SKIPB2B:
 
 
 
-                If IsDBNull(oSheetCNDN.Range("K" & I.ToString).Text) = False Then
-                    DTROWSAVECNDN("TAXABLEAMT") = Val(oSheetCNDN.Range("K" & I.ToString).Text)
+                If IsDBNull(oSheetCNDN.Range("J" & I.ToString).Text) = False Then
+                    DTROWSAVECNDN("TAXABLEAMT") = Val(oSheetCNDN.Range("J" & I.ToString).Text)
                 Else
                     DTROWSAVECNDN("TAXABLEAMT") = 0
                 End If
 
-                If IsDBNull(oSheetCNDN.Range("L" & I.ToString).Text) = False Then
-                    DTROWSAVECNDN("IGSTAMT") = Val(oSheetCNDN.Range("L" & I.ToString).Text)
+                If IsDBNull(oSheetCNDN.Range("K" & I.ToString).Text) = False Then
+                    DTROWSAVECNDN("IGSTAMT") = Val(oSheetCNDN.Range("K" & I.ToString).Text)
                 Else
                     DTROWSAVECNDN("IGSTAMT") = 0
                 End If
 
-                If IsDBNull(oSheetCNDN.Range("M" & I.ToString).Text) = False Then
-                    DTROWSAVECNDN("CGSTAMT") = Val(oSheetCNDN.Range("M" & I.ToString).Text)
+                If IsDBNull(oSheetCNDN.Range("L" & I.ToString).Text) = False Then
+                    DTROWSAVECNDN("CGSTAMT") = Val(oSheetCNDN.Range("L" & I.ToString).Text)
                 Else
                     DTROWSAVECNDN("CGSTAMT") = 0
                 End If
 
-                If IsDBNull(oSheetCNDN.Range("N" & I.ToString).Text) = False Then
-                    DTROWSAVECNDN("SGSTAMT") = Val(oSheetCNDN.Range("N" & I.ToString).Text)
+                If IsDBNull(oSheetCNDN.Range("M" & I.ToString).Text) = False Then
+                    DTROWSAVECNDN("SGSTAMT") = Val(oSheetCNDN.Range("M" & I.ToString).Text)
                 Else
                     DTROWSAVECNDN("SGSTAMT") = 0
                 End If
