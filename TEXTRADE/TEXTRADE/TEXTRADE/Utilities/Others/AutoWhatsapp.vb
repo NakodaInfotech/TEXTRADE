@@ -261,6 +261,149 @@ Public Class AutoWhatsapp
 
     Private Sub CMDSAVE_Click(sender As Object, e As EventArgs) Handles CMDSAVE.Click
         Try
+            Dim DTTABLE As DataTable
+            If ISLOCKYEAR = True Then
+                MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            Dim INTRESULT As Integer
+
+            EP.Clear()
+            If Not errorvalid() Then
+                Exit Sub
+            End If
+
+            Dim alparaval As New ArrayList
+
+            Dim GRIDSRNO As String = ""
+            Dim TYPE As String = ""
+            Dim MONDAY As String = ""
+            Dim TUESDAY As String = ""
+            Dim WEDNESDAY As String = ""
+            Dim THURSDAY As String = ""
+            Dim FRIDAY As String = ""
+            Dim SATURDAY As String = ""
+            Dim SUNDAY As String = ""
+            Dim TIME As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDAUTOWA.Rows
+                If row.Cells(GSRNO.Index).Value <> Nothing Then
+                    If GRIDSRNO = "" Then
+
+                        GRIDSRNO = row.Cells(GSRNO.Index).Value.ToString
+                        TYPE = row.Cells(GTYPE.Index).Value.ToString
+                        MONDAY = row.Cells(GMON.Index).Value
+                        TUESDAY = row.Cells(GTUE.Index).Value
+                        WEDNESDAY = row.Cells(GWED.Index).Value
+                        THURSDAY = row.Cells(GTHU.Index).Value
+                        FRIDAY = row.Cells(GFRI.Index).Value
+                        SATURDAY = row.Cells(GSAT.Index).Value
+                        SUNDAY = row.Cells(GSUN.Index).Value
+                        TIME = row.Cells(GTIME.Index).Value.ToString
+
+                    Else
+
+                        GRIDSRNO = GRIDSRNO & "|" & row.Cells(GSRNO.Index).Value.ToString
+                        TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value.ToString
+                        MONDAY = MONDAY & "|" & row.Cells(GMON.Index).Value
+                        TUESDAY = TUESDAY & "|" & row.Cells(GTUE.Index).Value
+                        WEDNESDAY = WEDNESDAY & "|" & row.Cells(GWED.Index).Value
+                        THURSDAY = THURSDAY & "|" & row.Cells(GTHU.Index).Value
+                        FRIDAY = FRIDAY & "|" & row.Cells(GFRI.Index).Value
+                        SATURDAY = SATURDAY & "|" & row.Cells(GSAT.Index).Value
+                        SUNDAY = SUNDAY & "|" & row.Cells(GSUN.Index).Value
+                        TIME = TIME & "|" & row.Cells(GTIME.Index).Value.ToString
+
+
+                    End If
+                End If
+            Next
+
+
+            alparaval.Add(GRIDSRNO)
+            alparaval.Add(TYPE)
+            alparaval.Add(MONDAY)
+            alparaval.Add(TUESDAY)
+            alparaval.Add(WEDNESDAY)
+            alparaval.Add(THURSDAY)
+            alparaval.Add(FRIDAY)
+            alparaval.Add(SATURDAY)
+            alparaval.Add(SUNDAY)
+            alparaval.Add(TIME)
+            alparaval.Add(CmpId)
+            alparaval.Add(Userid)
+
+
+            Dim CHK As String = ""
+            Dim NAME As String = ""
+            Dim CITY As String = ""
+
+            For I As Integer = 0 To gridbill.RowCount - 1
+                Dim dtrow As DataRow = gridbill.GetDataRow(I)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If NAME = "" Then
+                        CHK = dtrow("CHK")
+                        NAME = dtrow("NAME")
+                        CITY = dtrow("CITY")
+                    Else
+                        CHK = CHK & "|" & dtrow("CHK")
+                        NAME = NAME & "|" & dtrow("NAME")
+                        CITY = CITY & "|" & dtrow("CITY")
+                    End If
+                End If
+            Next
+
+            alparaval.Add(CHK)
+            alparaval.Add(NAME)
+            alparaval.Add(CITY)
+
+            Dim ACHK As String = ""
+            Dim ANAME As String = ""
+            Dim ACITY As String = ""
+
+            For I As Integer = 0 To GridView1.RowCount - 1
+                Dim dtrow As DataRow = GridView1.GetDataRow(I)
+                If Convert.ToBoolean(dtrow("ACHK")) = True Then
+                    If ANAME = "" Then
+                        ACHK = dtrow("ACHK")
+                        ANAME = dtrow("ANAME")
+                        ACITY = dtrow("ACITY")
+                    Else
+                        ACHK = ACHK & "|" & dtrow("ACHK")
+                        ANAME = ANAME & "|" & dtrow("ANAME")
+                        ACITY = ACITY & "|" & dtrow("ACITY")
+                    End If
+                End If
+            Next
+
+            alparaval.Add(ACHK)
+            alparaval.Add(ANAME)
+            alparaval.Add(ACITY)
+
+            Dim OBJAUTOWA As New ClsLotTagging
+            OBJAUTOWA.alParaval = alparaval
+
+            If EDIT = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                DTTABLE = OBJAUTOWA.SAVE()
+                MessageBox.Show("Details Added")
+                TXTSRNO.Text = DTTABLE.Rows(0).Item(0)
+            Else
+                'If USEREDIT = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
+                'alparaval.Add(LOTTAGNO)
+                'Dim IntResult As Integer = OBJAUTOWA.UPDATE()
+                'MsgBox("Details Updated")
+            End If
+            CLEAR()
+            EDIT = False
+
 
         Catch ex As Exception
             Throw ex
