@@ -10473,5 +10473,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AutoWhatsappToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AutoWhatsappToolStripMenuItem1.Click
+        Try
+            Dim OBJAUTOWA As New AutoWhatsapp
+            OBJAUTOWA.MdiParent = Me
+            OBJAUTOWA.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

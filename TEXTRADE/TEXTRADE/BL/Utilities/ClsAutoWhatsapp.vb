@@ -29,6 +29,8 @@ Public Class ClsAUTOWHATSAPP
 
                 Dim I As Integer = 0
 
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@MONDAY", alParaval(I)))
@@ -52,10 +54,17 @@ Public Class ClsAUTOWHATSAPP
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
                 I += 1
 
-
+                .Add(New SqlClient.SqlParameter("@CHK", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@CITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@AGENTCHK", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@AGENTNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@AGENTCITY", alParaval(I)))
                 I += 1
 
             End With
@@ -80,7 +89,8 @@ Public Class ClsAUTOWHATSAPP
 
                 Dim I As Integer = 0
 
-
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@MONDAY", alParaval(I)))
@@ -104,9 +114,22 @@ Public Class ClsAUTOWHATSAPP
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
                 I += 1
 
+                .Add(New SqlClient.SqlParameter("@CHK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@AGENTCHK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@AGENTNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@AGENTCITY", alParaval(I)))
+                I += 1
 
 
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+
+                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
 
             End With
@@ -132,6 +155,8 @@ Public Class ClsAUTOWHATSAPP
                 Dim I As Integer = 0
 
 
+                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
@@ -141,11 +166,6 @@ Public Class ClsAUTOWHATSAPP
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
-                I += 1
-
-
-
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
 
             End With
