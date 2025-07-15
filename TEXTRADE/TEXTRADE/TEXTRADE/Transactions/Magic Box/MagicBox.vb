@@ -1,7 +1,7 @@
-﻿Imports System.ComponentModel
-Imports System.IO
-Imports System.Windows.Forms
+﻿
+Imports System.ComponentModel
 Imports BL
+
 Public Class MagicBox
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
@@ -10,11 +10,6 @@ Public Class MagicBox
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         Try
-            Cursor.Current = Cursors.WaitCursor
-            Dim IntResult As Integer
-
-            EP.Clear()
-
             For Each row As Windows.Forms.DataGridViewRow In GRIDSO.Rows
                 Dim alParaval As New ArrayList
                 Dim NO As String = ""
@@ -49,8 +44,6 @@ Public Class MagicBox
 
                 If row.Cells(0).Value <> Nothing Then
 
-
-
                     GRIDSRNO = 1 'row.Cells(gsrno.Index).Value.ToString
                     NO = row.Cells(GNO.Index).Value.ToString
                     ORDERDATE = Format(Convert.ToDateTime(row.Cells(GDATE.Index).Value), "MM/dd/yyyy")
@@ -81,8 +74,6 @@ Public Class MagicBox
                     SAMPLEDONE = 0 'If Convert.ToBoolean(row.Cells(GSAMPLEDONE.Index).Value) = True Then SAMPLEDONE = 1 Else SAMPLEDONE = 0
                     CLOSED = 0 'If Convert.ToBoolean(row.Cells(GCLOSED.Index).Value) = True Then CLOSED = 1 Else CLOSED = 0
                     REMARKS = row.Cells(GREMARKS.Index).Value
-
-
 
                 End If
 
@@ -200,7 +191,12 @@ Public Class MagicBox
                 Dim DT As DataTable = objclsPurord.SAVE()
 
 
+
+                'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
+
+
             Next
+
             MessageBox.Show("Details Added")
 
 
@@ -211,28 +207,27 @@ Public Class MagicBox
             Throw ex
         End Try
     End Sub
+
     Sub CLEAR()
         txtsrno.Text = 1
+        ORDERDATE.Value = Now.Date
         CMBBUYERS.Text = ""
         CMBSELLERS.Text = ""
-        CMBDESIGN.Text = ""
-        cmbitemname.Text = ""
-        cmbqtyunit.Text = ""
         TXTCRDAYS.Clear()
-        TXTCUT.Clear()
-        TXTDELPERIOD.Clear()
         TXTDISCOUNT.Clear()
-        TXTMTRS.Clear()
+        TXTDELPERIOD.Clear()
+        duedate.Value = Now.Date
         TXTORDERNO.Clear()
+        cmbitemname.Text = ""
+        CMBDESIGN.Text = ""
         txtQTY.Clear()
+        cmbqtyunit.Text = ""
+        TXTCUT.Clear()
+        TXTMTRS.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
         GRIDSO.RowCount = 0
-        CMBBUYERS.Focus()
     End Sub
-    Private Function ERRORVALID() As Boolean
-
-    End Function
 
     Private Sub MagicBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -245,13 +240,7 @@ Public Class MagicBox
 
             Cursor.Current = Cursors.WaitCursor
             CLEAR()
-            If GRIDSO.RowCount > 0 Then
-                txtsrno.Text = Val(GRIDSO.Rows(GRIDSO.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
-            'getmax_no()
-            CMBBUYERS.Focus()
+            txtsrno.Text = 1
         Catch ex As Exception
             Throw ex
         End Try
@@ -299,6 +288,7 @@ Public Class MagicBox
 
         End Try
     End Sub
+
     Private Sub CMBBUYERS_Validating(sender As Object, e As CancelEventArgs) Handles CMBBUYERS.Validating
         Try
             If CMBBUYERS.Text.Trim <> "" Then
@@ -518,5 +508,6 @@ Public Class MagicBox
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         CLEAR()
         EDIT = False
+        CMBBUYERS.Focus()
     End Sub
 End Class

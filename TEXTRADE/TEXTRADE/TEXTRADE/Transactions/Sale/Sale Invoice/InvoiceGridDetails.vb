@@ -163,6 +163,14 @@ Public Class InvoiceGridDetails
         End Try
     End Sub
 
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            gridbill.SaveLayoutToXml("Custom.xml")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub InvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
@@ -173,6 +181,7 @@ Public Class InvoiceGridDetails
             USERDELETE = DTROW(0).Item(4)
 
             fillregister(cmbregister, " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+            'gridbill.RestoreLayoutFromXml("Custom.xml")
 
         Catch ex As Exception
             Throw ex
