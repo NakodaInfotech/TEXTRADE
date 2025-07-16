@@ -43,6 +43,9 @@ Partial Class CoverNoteDetails
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDOCKETNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -52,9 +55,6 @@ Partial Class CoverNoteDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GCOURIERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOURIERDOCKETNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOURIERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +96,11 @@ Partial Class CoverNoteDetails
         Me.gridbill.OptionsBehavior.Editable = False
         Me.gridbill.OptionsCustomization.AllowColumnMoving = False
         Me.gridbill.OptionsCustomization.AllowGroup = False
+        Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
+        Me.gridbill.OptionsSelection.MultiSelect = True
+        Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridbill.OptionsView.ColumnAutoWidth = False
+        Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
@@ -107,7 +111,7 @@ Partial Class CoverNoteDetails
         Me.gsrno.FieldName = "TEMPCOVERNO"
         Me.gsrno.Name = "gsrno"
         Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 0
+        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 50
         '
         'gdate
@@ -118,7 +122,7 @@ Partial Class CoverNoteDetails
         Me.gdate.FieldName = "COVERDATE"
         Me.gdate.Name = "gdate"
         Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 1
+        Me.gdate.VisibleIndex = 2
         Me.gdate.Width = 80
         '
         'GNAME
@@ -127,7 +131,7 @@ Partial Class CoverNoteDetails
         Me.GNAME.FieldName = "PARTYNAME"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
         'GAGENT
@@ -136,7 +140,7 @@ Partial Class CoverNoteDetails
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 3
+        Me.GAGENT.VisibleIndex = 4
         Me.GAGENT.Width = 220
         '
         'GINVNO
@@ -145,7 +149,7 @@ Partial Class CoverNoteDetails
         Me.GINVNO.FieldName = "INVNO"
         Me.GINVNO.Name = "GINVNO"
         Me.GINVNO.Visible = True
-        Me.GINVNO.VisibleIndex = 4
+        Me.GINVNO.VisibleIndex = 5
         '
         'GREGNAME
         '
@@ -153,7 +157,7 @@ Partial Class CoverNoteDetails
         Me.GREGNAME.FieldName = "REGNAME"
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 5
+        Me.GREGNAME.VisibleIndex = 6
         Me.GREGNAME.Width = 150
         '
         'GINVINITIALS
@@ -162,7 +166,7 @@ Partial Class CoverNoteDetails
         Me.GINVINITIALS.FieldName = "INVINITIALS"
         Me.GINVINITIALS.Name = "GINVINITIALS"
         Me.GINVINITIALS.Visible = True
-        Me.GINVINITIALS.VisibleIndex = 6
+        Me.GINVINITIALS.VisibleIndex = 7
         '
         'GPRINTINITIALS
         '
@@ -170,7 +174,7 @@ Partial Class CoverNoteDetails
         Me.GPRINTINITIALS.FieldName = "PRINTINITIALS"
         Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
         Me.GPRINTINITIALS.Visible = True
-        Me.GPRINTINITIALS.VisibleIndex = 7
+        Me.GPRINTINITIALS.VisibleIndex = 8
         '
         'GGRIDNAME
         '
@@ -179,7 +183,7 @@ Partial Class CoverNoteDetails
         Me.GGRIDNAME.Name = "GGRIDNAME"
         Me.GGRIDNAME.OptionsColumn.AllowEdit = False
         Me.GGRIDNAME.Visible = True
-        Me.GGRIDNAME.VisibleIndex = 8
+        Me.GGRIDNAME.VisibleIndex = 9
         Me.GGRIDNAME.Width = 200
         '
         'GGRIDAGENTNAME
@@ -189,7 +193,7 @@ Partial Class CoverNoteDetails
         Me.GGRIDAGENTNAME.Name = "GGRIDAGENTNAME"
         Me.GGRIDAGENTNAME.OptionsColumn.AllowEdit = False
         Me.GGRIDAGENTNAME.Visible = True
-        Me.GGRIDAGENTNAME.VisibleIndex = 9
+        Me.GGRIDAGENTNAME.VisibleIndex = 10
         Me.GGRIDAGENTNAME.Width = 200
         '
         'GINVDATE
@@ -198,7 +202,7 @@ Partial Class CoverNoteDetails
         Me.GINVDATE.FieldName = "INVDATE"
         Me.GINVDATE.Name = "GINVDATE"
         Me.GINVDATE.Visible = True
-        Me.GINVDATE.VisibleIndex = 10
+        Me.GINVDATE.VisibleIndex = 11
         '
         'GLRNO
         '
@@ -206,7 +210,7 @@ Partial Class CoverNoteDetails
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 11
+        Me.GLRNO.VisibleIndex = 12
         '
         'GTRANSPORT
         '
@@ -214,7 +218,7 @@ Partial Class CoverNoteDetails
         Me.GTRANSPORT.FieldName = "TRANSPORT"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 12
+        Me.GTRANSPORT.VisibleIndex = 13
         Me.GTRANSPORT.Width = 150
         '
         'GLRDATE
@@ -223,7 +227,7 @@ Partial Class CoverNoteDetails
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 13
+        Me.GLRDATE.VisibleIndex = 14
         '
         'GTOTALMTRS
         '
@@ -231,7 +235,7 @@ Partial Class CoverNoteDetails
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 14
+        Me.GTOTALMTRS.VisibleIndex = 15
         Me.GTOTALMTRS.Width = 80
         '
         'GTOTALPCS
@@ -241,7 +245,7 @@ Partial Class CoverNoteDetails
         Me.GTOTALPCS.ImageIndex = 0
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.Visible = True
-        Me.GTOTALPCS.VisibleIndex = 15
+        Me.GTOTALPCS.VisibleIndex = 16
         Me.GTOTALPCS.Width = 80
         '
         'GGRANDTOTAL
@@ -250,7 +254,39 @@ Partial Class CoverNoteDetails
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 16
+        Me.GGRANDTOTAL.VisibleIndex = 17
+        '
+        'GCOURIERNAME
+        '
+        Me.GCOURIERNAME.Caption = "Courier Name"
+        Me.GCOURIERNAME.FieldName = "COURIERNAME"
+        Me.GCOURIERNAME.Name = "GCOURIERNAME"
+        Me.GCOURIERNAME.OptionsColumn.AllowEdit = False
+        Me.GCOURIERNAME.Visible = True
+        Me.GCOURIERNAME.VisibleIndex = 18
+        Me.GCOURIERNAME.Width = 220
+        '
+        'GCOURIERDOCKETNO
+        '
+        Me.GCOURIERDOCKETNO.Caption = "Courier Docket No"
+        Me.GCOURIERDOCKETNO.FieldName = "COURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.Name = "GCOURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDOCKETNO.Visible = True
+        Me.GCOURIERDOCKETNO.VisibleIndex = 19
+        Me.GCOURIERDOCKETNO.Width = 150
+        '
+        'GCOURIERDATE
+        '
+        Me.GCOURIERDATE.Caption = "Courier Date"
+        Me.GCOURIERDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCOURIERDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCOURIERDATE.FieldName = "COURIERDATE"
+        Me.GCOURIERDATE.Name = "GCOURIERDATE"
+        Me.GCOURIERDATE.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDATE.Visible = True
+        Me.GCOURIERDATE.VisibleIndex = 20
+        Me.GCOURIERDATE.Width = 80
         '
         'GREMARKS
         '
@@ -258,7 +294,7 @@ Partial Class CoverNoteDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 20
+        Me.GREMARKS.VisibleIndex = 21
         Me.GREMARKS.Width = 240
         '
         'cmdexit
@@ -340,38 +376,6 @@ Partial Class CoverNoteDetails
         Me.cmdok.TabIndex = 3
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GCOURIERNAME
-        '
-        Me.GCOURIERNAME.Caption = "Courier Name"
-        Me.GCOURIERNAME.FieldName = "COURIERNAME"
-        Me.GCOURIERNAME.Name = "GCOURIERNAME"
-        Me.GCOURIERNAME.OptionsColumn.AllowEdit = False
-        Me.GCOURIERNAME.Visible = True
-        Me.GCOURIERNAME.VisibleIndex = 17
-        Me.GCOURIERNAME.Width = 220
-        '
-        'GCOURIERDOCKETNO
-        '
-        Me.GCOURIERDOCKETNO.Caption = "Courier Docket No"
-        Me.GCOURIERDOCKETNO.FieldName = "COURIERDOCKETNO"
-        Me.GCOURIERDOCKETNO.Name = "GCOURIERDOCKETNO"
-        Me.GCOURIERDOCKETNO.OptionsColumn.AllowEdit = False
-        Me.GCOURIERDOCKETNO.Visible = True
-        Me.GCOURIERDOCKETNO.VisibleIndex = 18
-        Me.GCOURIERDOCKETNO.Width = 150
-        '
-        'GCOURIERDATE
-        '
-        Me.GCOURIERDATE.Caption = "Courier Date"
-        Me.GCOURIERDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GCOURIERDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCOURIERDATE.FieldName = "COURIERDATE"
-        Me.GCOURIERDATE.Name = "GCOURIERDATE"
-        Me.GCOURIERDATE.OptionsColumn.AllowEdit = False
-        Me.GCOURIERDATE.Visible = True
-        Me.GCOURIERDATE.VisibleIndex = 19
-        Me.GCOURIERDATE.Width = 80
         '
         'CoverNoteDetails
         '
