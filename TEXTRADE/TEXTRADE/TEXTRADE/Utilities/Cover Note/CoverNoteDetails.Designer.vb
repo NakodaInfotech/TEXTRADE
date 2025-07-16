@@ -34,6 +34,8 @@ Partial Class CoverNoteDetails
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINVINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPRINTINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINVDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,8 +52,9 @@ Partial Class CoverNoteDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GGRIDNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDOCKETNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +90,7 @@ Partial Class CoverNoteDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -169,6 +172,26 @@ Partial Class CoverNoteDetails
         Me.GPRINTINITIALS.Visible = True
         Me.GPRINTINITIALS.VisibleIndex = 7
         '
+        'GGRIDNAME
+        '
+        Me.GGRIDNAME.Caption = "Grid Party Name"
+        Me.GGRIDNAME.FieldName = "GRIDNAME"
+        Me.GGRIDNAME.Name = "GGRIDNAME"
+        Me.GGRIDNAME.OptionsColumn.AllowEdit = False
+        Me.GGRIDNAME.Visible = True
+        Me.GGRIDNAME.VisibleIndex = 8
+        Me.GGRIDNAME.Width = 200
+        '
+        'GGRIDAGENTNAME
+        '
+        Me.GGRIDAGENTNAME.Caption = "Grid Agent Name"
+        Me.GGRIDAGENTNAME.FieldName = "GRIDAGENTNAME"
+        Me.GGRIDAGENTNAME.Name = "GGRIDAGENTNAME"
+        Me.GGRIDAGENTNAME.OptionsColumn.AllowEdit = False
+        Me.GGRIDAGENTNAME.Visible = True
+        Me.GGRIDAGENTNAME.VisibleIndex = 9
+        Me.GGRIDAGENTNAME.Width = 200
+        '
         'GINVDATE
         '
         Me.GINVDATE.Caption = "Inv Date"
@@ -235,7 +258,7 @@ Partial Class CoverNoteDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 17
+        Me.GREMARKS.VisibleIndex = 20
         Me.GREMARKS.Width = 240
         '
         'cmdexit
@@ -318,25 +341,37 @@ Partial Class CoverNoteDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GGRIDNAME
+        'GCOURIERNAME
         '
-        Me.GGRIDNAME.Caption = "Grid Party Name"
-        Me.GGRIDNAME.FieldName = "GRIDNAME"
-        Me.GGRIDNAME.Name = "GGRIDNAME"
-        Me.GGRIDNAME.OptionsColumn.AllowEdit = False
-        Me.GGRIDNAME.Visible = True
-        Me.GGRIDNAME.VisibleIndex = 8
-        Me.GGRIDNAME.Width = 200
+        Me.GCOURIERNAME.Caption = "Courier Name"
+        Me.GCOURIERNAME.FieldName = "COURIERNAME"
+        Me.GCOURIERNAME.Name = "GCOURIERNAME"
+        Me.GCOURIERNAME.OptionsColumn.AllowEdit = False
+        Me.GCOURIERNAME.Visible = True
+        Me.GCOURIERNAME.VisibleIndex = 17
+        Me.GCOURIERNAME.Width = 220
         '
-        'GGRIDAGENTNAME
+        'GCOURIERDOCKETNO
         '
-        Me.GGRIDAGENTNAME.Caption = "Grid Agent Name"
-        Me.GGRIDAGENTNAME.FieldName = "GRIDAGENTNAME"
-        Me.GGRIDAGENTNAME.Name = "GGRIDAGENTNAME"
-        Me.GGRIDAGENTNAME.OptionsColumn.AllowEdit = False
-        Me.GGRIDAGENTNAME.Visible = True
-        Me.GGRIDAGENTNAME.VisibleIndex = 9
-        Me.GGRIDAGENTNAME.Width = 200
+        Me.GCOURIERDOCKETNO.Caption = "Courier Docket No"
+        Me.GCOURIERDOCKETNO.FieldName = "COURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.Name = "GCOURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDOCKETNO.Visible = True
+        Me.GCOURIERDOCKETNO.VisibleIndex = 18
+        Me.GCOURIERDOCKETNO.Width = 150
+        '
+        'GCOURIERDATE
+        '
+        Me.GCOURIERDATE.Caption = "Courier Date"
+        Me.GCOURIERDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCOURIERDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCOURIERDATE.FieldName = "COURIERDATE"
+        Me.GCOURIERDATE.Name = "GCOURIERDATE"
+        Me.GCOURIERDATE.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDATE.Visible = True
+        Me.GCOURIERDATE.VisibleIndex = 19
+        Me.GCOURIERDATE.Width = 80
         '
         'CoverNoteDetails
         '
@@ -388,4 +423,7 @@ Partial Class CoverNoteDetails
     Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERDOCKETNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
