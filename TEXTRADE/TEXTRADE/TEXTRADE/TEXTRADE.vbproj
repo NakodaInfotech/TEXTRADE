@@ -385,6 +385,12 @@
     <Compile Include="Common\Filters\LotFilter.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
+      <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.Designer.vb">
       <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
     </Compile>
@@ -8421,6 +8427,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\LotFilter.resx">
       <DependentUpon>LotFilter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.resx">
       <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>

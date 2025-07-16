@@ -92,6 +92,7 @@ Public Class saledesign
     Dim RPTINVOICE_MOMAI As New InvoiceReport_MOMAI
     Dim RPTINVOICE_SIMPLEX As New InvoiceReport_SIMPLEX
     Dim RPTINVOICE_SNCM As New InvoiceReport_SNCM
+    Dim RPTINVOICE_ABHEE As New InvoiceReport_ABHEE
 
     Dim RPTINVOICE_SUPRIYA As New InvoiceReport_SUPRIYA
     Dim RPTINVOICE_YARNDO As New InvoiceReport_YARNDO
@@ -355,6 +356,8 @@ Public Class saledesign
                     crTables = RPTINVOICE_SNCM.Database.Tables
                 ElseIf ClientName = "NAKODAINFOTECH" Then
                     crTables = RPTINVOICE_NAKODAINFOTECH.Database.Tables
+                ElseIf ClientName = "ABHEE" Then
+                    crTables = RPTINVOICE_ABHEE.Database.Tables
                 Else
                     crTables = RPTINVOICE_TOTALLEFT.Database.Tables
                 End If
