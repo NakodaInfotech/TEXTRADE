@@ -3,6 +3,10 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Data.SqlClient
 Imports CrystalDecisions.Shared
 Imports BL
+Imports DevExpress.XtraGrid.Views.Grid
+Imports System.IO
+
+
 
 Public Class SaleInvoiceDesign
 
@@ -23,6 +27,9 @@ Public Class SaleInvoiceDesign
     Public BALERATE As Double = 0.0
     Public ROLLRATE As Double = 0.0
     Public COVERNOTENO As Integer = 1
+
+
+
 
     Dim RPTPARTYDTLS As New InvoicePartyWiseDetails
     Dim RPTPARTYSUMM As New InvoicePartyWiseSummary
@@ -114,8 +121,21 @@ Public Class SaleInvoiceDesign
     Public PARTYNAME As String
     Public AGENTNAME As String
 
+    Public DIRECTPRINT As Boolean = False
+    Public DIRECTMAIL As Boolean = False
+    Public DIRECTWHATSAPP As Boolean = False
+    Public PRINTSETTING As Object = Nothing
+    Public NOOFCOPIES As Integer = 1
+
     Private Sub SaleInvoiceDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+
+
+            If DIRECTPRINT = True Then
+                PRINTDIRECTLYTOPRINTER()
+                Exit Sub
+            End If
+
             Cursor.Current = Cursors.WaitCursor
 
             If POSOFRMSTRING = "PO" Then Me.Text = "Purchase Order"
@@ -380,7 +400,7 @@ Public Class SaleInvoiceDesign
                 RPTSOSTATUSRACK.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 RPTSOSTATUSRACK.Subreports(0).DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 Dim OBJCMN As New ClsCommon
-                Dim TEMPUNIT As DataTable = OBJCMN.search(" DISTINCT SUBSTRING ((SELECT ',""' + UNIT_ABBR + '""' from DEFAULTSTOCKUNIT for XML PATH('')),2,20000)AS UNIT ", "", " DEFAULTSTOCKUNIT ", "")
+                Dim TEMPUNIT As DataTable = OBJCMN.SEARCH(" DISTINCT SUBSTRING ((SELECT ',""' + UNIT_ABBR + '""' from DEFAULTSTOCKUNIT for XML PATH('')),2,20000)AS UNIT ", "", " DEFAULTSTOCKUNIT ", "")
                 'If TEMPUNIT.Rows.Count > 0 Then RPTSOSTATUSRACK.Subreports(0).DataDefinition.FormulaFields("UNITS").Text = "'" & TEMPUNIT.Rows(0).Item("UNIT") & "'"
             ElseIf FRMSTRING = "SOSTATUSITEM" Then
                 crpo.ReportSource = RPTSOSTATUSITEM
@@ -543,6 +563,74 @@ Public Class SaleInvoiceDesign
 
     End Sub
 
+
+    Sub PRINTDIRECTLYTOPRINTER()
+        Try
+            Dim crParameterFieldDefinitions As ParameterFieldDefinitions
+            Dim crParameterFieldDefinition As ParameterFieldDefinition
+            Dim crParameterValues As New ParameterValues
+            Dim crParameterDiscreteValue As New ParameterDiscreteValue
+
+            '**************** SET SERVER ************************
+            Dim crtableLogonInfo As New TableLogOnInfo
+            Dim crConnecttionInfo As New ConnectionInfo
+            Dim crTables As Tables
+            Dim crTable As Table
+
+
+            With crConnecttionInfo
+                .ServerName = SERVERNAME
+                .DatabaseName = DatabaseName
+                .UserID = DBUSERNAME
+                .Password = Dbpassword
+                .IntegratedSecurity = Dbsecurity
+            End With
+
+
+            Dim OBJ As New Object
+
+            If FRMSTRING = "MAINCOVERNOTE" Then
+                OBJ = New CoverNoteReport_SNCM
+            ElseIf FRMSTRING = "MAINAGENTCOVERNOTE" Then
+                OBJ = New CoverNoteAgentReport_SNCM
+            End If
+
+
+
+SKIPINVOICE:
+            crTables = OBJ.Database.Tables
+
+            For Each crTable In crTables
+                crtableLogonInfo = crTable.LogOnInfo
+                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                crTable.ApplyLogOnInfo(crtableLogonInfo)
+            Next
+
+            OBJ.RecordSelectionFormula = FORMULA
+            OBJ.REFRESH()
+
+            If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
+                OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+                OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+            Else
+                Dim expo As New ExportOptions
+                Dim oDfDopt As New DiskFileDestinationOptions
+                oDfDopt.DiskFileName = Application.StartupPath & "\COVERNOTE_" & COVERNOTENO & ".pdf"
+                If File.Exists(oDfDopt.DiskFileName) Then FILE.Delete(oDfDopt.DiskFileName)
+                expo = OBJ.ExportOptions
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 1
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                OBJ.Export()
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 0
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
     Private Sub SaleInvoiceDesign_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Windows.Forms.Keys.Escape Then
             Me.Close()
@@ -552,12 +640,25 @@ Public Class SaleInvoiceDesign
     End Sub
 
     Private Sub sendmailtool_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles sendmailtool.Click
+
+        Dim emailid As String = ""
+        Dim emailid1 As String = ""
+        Windows.Forms.Cursor.Current = Cursors.WaitCursor
+        Transfer()
+        Dim tempattachment As String
+
+        Dim objmail As New SendMail
+
+
+        tempattachment = "MAINCOVERNOTE"
+        objmail.subject = "Cover Note"
+
         Try
-            Dim emailid As String = ""
+            ' Dim emailid As String = ""
             Windows.Forms.Cursor.Current = Cursors.WaitCursor
             Transfer()
-            Dim TEMPATTACHMENT As String = "REPORT"
-            Dim objmail As New SendMail
+            ' Dim TEMPATTACHMENT As String = "REPORT"
+            ' Dim objmail As New SendMail
             objmail.attachment = Application.StartupPath & "\" & TEMPATTACHMENT & ".PDF"
             If emailid <> "" Then
                 objmail.cmbfirstadd.Text = emailid

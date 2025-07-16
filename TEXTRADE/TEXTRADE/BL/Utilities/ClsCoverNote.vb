@@ -41,6 +41,13 @@ Public Class ClsCoverNote
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@COURIERNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COURIERDOCKETNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COURIERDATE", alParaval(I)))
+                I = I + 1
+
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
@@ -112,6 +119,12 @@ Public Class ClsCoverNote
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@COURIERNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COURIERDOCKETNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COURIERDATE", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))

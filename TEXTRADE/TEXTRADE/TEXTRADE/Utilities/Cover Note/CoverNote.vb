@@ -116,6 +116,10 @@ Public Class CoverNote
             alParaval.Add(CmpId)
             alParaval.Add(YearId)
             alParaval.Add(Userid)
+            alParaval.Add(TXTCOURIERNAME.Text.Trim)
+            alParaval.Add(TXTCOURIERDOCKETNO.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(COURIERDATE.Text).Date, "MM/dd/yyyy"))
+
 
             Dim SRNO As String = ""
             Dim INVNO As String = ""
@@ -318,6 +322,10 @@ LINE1:
                         CMBNAME.Text = Convert.ToString(dr("NAME"))
                         CMBAGENT.Text = Convert.ToString(dr("AGENT"))
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
+                        TXTCOURIERNAME.Text = Convert.ToString(dr("COURIERNAME"))
+                        TXTCOURIERDOCKETNO.Text = Convert.ToString(dr("COURIERDOCKETNO"))
+                        COURIERDATE.Text = Format(Convert.ToDateTime(dr("COURIERDATE")), "dd/MM/yyyy")
+
 
                         GRIDCOVER.Rows.Add(dr("SRNO"), dr("INVNO"), dr("REGNAME"), dr("INVINITIALS"), dr("PRINTINITIALS"), dr("PARTYNAME"), dr("AGENTNAME"), Format(Convert.ToDateTime(dr("INVDATE")), "dd/MM/yyyy").ToString, dr("LRNO"), dr("LRDATE"), dr("TRANSPORT"), Val(dr("TOTALMTRS")), Val(dr("TOTALPCS")), Val(dr("GRANDTOTAL")))
 
@@ -351,6 +359,9 @@ LINE1:
             CMBAGENT.Text = ""
             GRIDCOVER.RowCount = 0
             txtremarks.Clear()
+            TXTCOURIERDOCKETNO.Clear()
+            TXTCOURIERNAME.Clear()
+            COURIERDATE.Value = Now.Date
             GETMAXNO()
         Catch ex As Exception
             Throw ex

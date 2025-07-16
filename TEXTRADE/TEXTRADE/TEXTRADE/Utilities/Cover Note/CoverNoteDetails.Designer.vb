@@ -22,8 +22,15 @@ Partial Class CoverNoteDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNoteDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,6 +41,8 @@ Partial Class CoverNoteDetails
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINVINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPRINTINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINVDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,6 +50,9 @@ Partial Class CoverNoteDetails
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDOCKETNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOURIERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -48,10 +60,14 @@ Partial Class CoverNoteDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GGRIDNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +77,12 @@ Partial Class CoverNoteDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label4)
+        Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
+        Me.BlendPanel1.Controls.Add(Me.Label9)
+        Me.BlendPanel1.Controls.Add(Me.Label10)
+        Me.BlendPanel1.Controls.Add(Me.TXTTO)
+        Me.BlendPanel1.Controls.Add(Me.TXTFROM)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
@@ -71,6 +93,72 @@ Partial Class CoverNoteDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1303, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(385, 8)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 14)
+        Me.Label4.TabIndex = 811
+        Me.Label4.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.Location = New System.Drawing.Point(438, 4)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
+        Me.TXTCOPIES.TabIndex = 810
+        Me.TXTCOPIES.Text = "1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(295, 7)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(19, 14)
+        Me.Label9.TabIndex = 809
+        Me.Label9.Text = "To"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.White
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(197, 7)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(34, 14)
+        Me.Label10.TabIndex = 808
+        Me.Label10.Text = "From"
+        '
+        'TXTTO
+        '
+        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.Location = New System.Drawing.Point(316, 3)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
+        Me.TXTTO.TabIndex = 807
+        Me.TXTTO.TabStop = False
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.Location = New System.Drawing.Point(232, 3)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
+        Me.TXTFROM.TabIndex = 806
+        Me.TXTFROM.TabStop = False
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'gridbilldetails
         '
@@ -87,13 +175,17 @@ Partial Class CoverNoteDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
         Me.gridbill.OptionsCustomization.AllowColumnMoving = False
         Me.gridbill.OptionsCustomization.AllowGroup = False
+        Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
+        Me.gridbill.OptionsSelection.MultiSelect = True
+        Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridbill.OptionsView.ColumnAutoWidth = False
+        Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
@@ -104,7 +196,7 @@ Partial Class CoverNoteDetails
         Me.gsrno.FieldName = "TEMPCOVERNO"
         Me.gsrno.Name = "gsrno"
         Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 0
+        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 50
         '
         'gdate
@@ -115,7 +207,7 @@ Partial Class CoverNoteDetails
         Me.gdate.FieldName = "COVERDATE"
         Me.gdate.Name = "gdate"
         Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 1
+        Me.gdate.VisibleIndex = 2
         Me.gdate.Width = 80
         '
         'GNAME
@@ -124,7 +216,7 @@ Partial Class CoverNoteDetails
         Me.GNAME.FieldName = "PARTYNAME"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
         'GAGENT
@@ -133,7 +225,7 @@ Partial Class CoverNoteDetails
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 3
+        Me.GAGENT.VisibleIndex = 4
         Me.GAGENT.Width = 220
         '
         'GINVNO
@@ -142,7 +234,7 @@ Partial Class CoverNoteDetails
         Me.GINVNO.FieldName = "INVNO"
         Me.GINVNO.Name = "GINVNO"
         Me.GINVNO.Visible = True
-        Me.GINVNO.VisibleIndex = 4
+        Me.GINVNO.VisibleIndex = 5
         '
         'GREGNAME
         '
@@ -150,7 +242,7 @@ Partial Class CoverNoteDetails
         Me.GREGNAME.FieldName = "REGNAME"
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 5
+        Me.GREGNAME.VisibleIndex = 6
         Me.GREGNAME.Width = 150
         '
         'GINVINITIALS
@@ -159,7 +251,7 @@ Partial Class CoverNoteDetails
         Me.GINVINITIALS.FieldName = "INVINITIALS"
         Me.GINVINITIALS.Name = "GINVINITIALS"
         Me.GINVINITIALS.Visible = True
-        Me.GINVINITIALS.VisibleIndex = 6
+        Me.GINVINITIALS.VisibleIndex = 7
         '
         'GPRINTINITIALS
         '
@@ -167,7 +259,27 @@ Partial Class CoverNoteDetails
         Me.GPRINTINITIALS.FieldName = "PRINTINITIALS"
         Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
         Me.GPRINTINITIALS.Visible = True
-        Me.GPRINTINITIALS.VisibleIndex = 7
+        Me.GPRINTINITIALS.VisibleIndex = 8
+        '
+        'GGRIDNAME
+        '
+        Me.GGRIDNAME.Caption = "Grid Party Name"
+        Me.GGRIDNAME.FieldName = "GRIDNAME"
+        Me.GGRIDNAME.Name = "GGRIDNAME"
+        Me.GGRIDNAME.OptionsColumn.AllowEdit = False
+        Me.GGRIDNAME.Visible = True
+        Me.GGRIDNAME.VisibleIndex = 9
+        Me.GGRIDNAME.Width = 200
+        '
+        'GGRIDAGENTNAME
+        '
+        Me.GGRIDAGENTNAME.Caption = "Grid Agent Name"
+        Me.GGRIDAGENTNAME.FieldName = "GRIDAGENTNAME"
+        Me.GGRIDAGENTNAME.Name = "GGRIDAGENTNAME"
+        Me.GGRIDAGENTNAME.OptionsColumn.AllowEdit = False
+        Me.GGRIDAGENTNAME.Visible = True
+        Me.GGRIDAGENTNAME.VisibleIndex = 10
+        Me.GGRIDAGENTNAME.Width = 200
         '
         'GINVDATE
         '
@@ -175,7 +287,7 @@ Partial Class CoverNoteDetails
         Me.GINVDATE.FieldName = "INVDATE"
         Me.GINVDATE.Name = "GINVDATE"
         Me.GINVDATE.Visible = True
-        Me.GINVDATE.VisibleIndex = 10
+        Me.GINVDATE.VisibleIndex = 11
         '
         'GLRNO
         '
@@ -183,7 +295,7 @@ Partial Class CoverNoteDetails
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 11
+        Me.GLRNO.VisibleIndex = 12
         '
         'GTRANSPORT
         '
@@ -191,7 +303,7 @@ Partial Class CoverNoteDetails
         Me.GTRANSPORT.FieldName = "TRANSPORT"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 12
+        Me.GTRANSPORT.VisibleIndex = 13
         Me.GTRANSPORT.Width = 150
         '
         'GLRDATE
@@ -200,7 +312,7 @@ Partial Class CoverNoteDetails
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 13
+        Me.GLRDATE.VisibleIndex = 14
         '
         'GTOTALMTRS
         '
@@ -208,7 +320,7 @@ Partial Class CoverNoteDetails
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 14
+        Me.GTOTALMTRS.VisibleIndex = 15
         Me.GTOTALMTRS.Width = 80
         '
         'GTOTALPCS
@@ -218,7 +330,7 @@ Partial Class CoverNoteDetails
         Me.GTOTALPCS.ImageIndex = 0
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.Visible = True
-        Me.GTOTALPCS.VisibleIndex = 15
+        Me.GTOTALPCS.VisibleIndex = 16
         Me.GTOTALPCS.Width = 80
         '
         'GGRANDTOTAL
@@ -227,7 +339,39 @@ Partial Class CoverNoteDetails
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 16
+        Me.GGRANDTOTAL.VisibleIndex = 17
+        '
+        'GCOURIERNAME
+        '
+        Me.GCOURIERNAME.Caption = "Courier Name"
+        Me.GCOURIERNAME.FieldName = "COURIERNAME"
+        Me.GCOURIERNAME.Name = "GCOURIERNAME"
+        Me.GCOURIERNAME.OptionsColumn.AllowEdit = False
+        Me.GCOURIERNAME.Visible = True
+        Me.GCOURIERNAME.VisibleIndex = 18
+        Me.GCOURIERNAME.Width = 220
+        '
+        'GCOURIERDOCKETNO
+        '
+        Me.GCOURIERDOCKETNO.Caption = "Courier Docket No"
+        Me.GCOURIERDOCKETNO.FieldName = "COURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.Name = "GCOURIERDOCKETNO"
+        Me.GCOURIERDOCKETNO.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDOCKETNO.Visible = True
+        Me.GCOURIERDOCKETNO.VisibleIndex = 19
+        Me.GCOURIERDOCKETNO.Width = 150
+        '
+        'GCOURIERDATE
+        '
+        Me.GCOURIERDATE.Caption = "Courier Date"
+        Me.GCOURIERDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCOURIERDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCOURIERDATE.FieldName = "COURIERDATE"
+        Me.GCOURIERDATE.Name = "GCOURIERDATE"
+        Me.GCOURIERDATE.OptionsColumn.AllowEdit = False
+        Me.GCOURIERDATE.Visible = True
+        Me.GCOURIERDATE.VisibleIndex = 20
+        Me.GCOURIERDATE.Width = 80
         '
         'GREMARKS
         '
@@ -235,7 +379,7 @@ Partial Class CoverNoteDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 17
+        Me.GREMARKS.VisibleIndex = 21
         Me.GREMARKS.Width = 240
         '
         'cmdexit
@@ -254,7 +398,7 @@ Partial Class CoverNoteDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.TOOLMAIL, Me.TOOLWHATSAPP, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1303, 25)
@@ -292,6 +436,35 @@ Partial Class CoverNoteDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'TOOLMAIL
+        '
+        Me.TOOLMAIL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLMAIL.Image = Global.TEXTRADE.My.Resources.Resources.MAIL_IMAGE
+        Me.TOOLMAIL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLMAIL.Name = "TOOLMAIL"
+        Me.TOOLMAIL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLMAIL.Text = "Mail Credit Note Directly"
+        Me.TOOLMAIL.Visible = False
+        '
+        'TOOLWHATSAPP
+        '
+        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
+        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
+        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLWHATSAPP.Text = "Whatsapp Cedit Note Directly"
+        Me.TOOLWHATSAPP.Visible = False
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "&Print"
+        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -318,25 +491,19 @@ Partial Class CoverNoteDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GGRIDNAME
+        'PRINTDIALOG
         '
-        Me.GGRIDNAME.Caption = "Grid Party Name"
-        Me.GGRIDNAME.FieldName = "GRIDNAME"
-        Me.GGRIDNAME.Name = "GGRIDNAME"
-        Me.GGRIDNAME.OptionsColumn.AllowEdit = False
-        Me.GGRIDNAME.Visible = True
-        Me.GGRIDNAME.VisibleIndex = 8
-        Me.GGRIDNAME.Width = 200
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GGRIDAGENTNAME
+        'imageList1
         '
-        Me.GGRIDAGENTNAME.Caption = "Grid Agent Name"
-        Me.GGRIDAGENTNAME.FieldName = "GRIDAGENTNAME"
-        Me.GGRIDAGENTNAME.Name = "GGRIDAGENTNAME"
-        Me.GGRIDAGENTNAME.OptionsColumn.AllowEdit = False
-        Me.GGRIDAGENTNAME.Visible = True
-        Me.GGRIDAGENTNAME.VisibleIndex = 9
-        Me.GGRIDAGENTNAME.Width = 200
+        Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.imageList1.TransparentColor = System.Drawing.Color.Magenta
+        Me.imageList1.Images.SetKeyName(0, "")
+        Me.imageList1.Images.SetKeyName(1, "")
         '
         'CoverNoteDetails
         '
@@ -388,4 +555,19 @@ Partial Class CoverNoteDetails
     Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERDOCKETNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOURIERDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TXTCOPIES As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TXTTO As TextBox
+    Friend WithEvents TXTFROM As TextBox
+    Friend WithEvents TOOLMAIL As ToolStripButton
+    Friend WithEvents TOOLWHATSAPP As ToolStripButton
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
+    Private WithEvents imageList1 As ImageList
 End Class

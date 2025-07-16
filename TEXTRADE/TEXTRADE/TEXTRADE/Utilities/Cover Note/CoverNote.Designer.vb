@@ -27,15 +27,29 @@ Partial Class CoverNote
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.GRIDCOVER = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREGNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINVINITIALS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPRINTINITIALS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAGENTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINVDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTRANSPORT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRANDTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.LBLNAME = New System.Windows.Forms.Label()
         Me.LBLCATEGORY = New System.Windows.Forms.Label()
@@ -67,20 +81,12 @@ Partial Class CoverNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GREGNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINVINITIALS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPRINTINITIALS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAGENTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINVDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTRANSPORT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRANDTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TXTCOURIERNAME = New System.Windows.Forms.TextBox()
+        Me.LBLCOURIERDOCKETNO = New System.Windows.Forms.Label()
+        Me.TXTCOURIERDOCKETNO = New System.Windows.Forms.TextBox()
+        Me.COURIERDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCOVER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -91,6 +97,12 @@ Partial Class CoverNote
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.COURIERDATE)
+        Me.BlendPanel1.Controls.Add(Me.Label14)
+        Me.BlendPanel1.Controls.Add(Me.TXTCOURIERNAME)
+        Me.BlendPanel1.Controls.Add(Me.LBLCOURIERDOCKETNO)
+        Me.BlendPanel1.Controls.Add(Me.TXTCOURIERDOCKETNO)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Controls.Add(Me.TXTADD)
         Me.BlendPanel1.Controls.Add(Me.GRIDCOVER)
@@ -126,7 +138,7 @@ Partial Class CoverNote
         Me.CMBCODE.Enabled = False
         Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCODE.FormattingEnabled = True
-        Me.CMBCODE.Location = New System.Drawing.Point(698, 31)
+        Me.CMBCODE.Location = New System.Drawing.Point(1069, 506)
         Me.CMBCODE.MaxDropDownItems = 14
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(58, 23)
@@ -138,7 +150,7 @@ Partial Class CoverNote
         Me.TXTADD.BackColor = System.Drawing.Color.White
         Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTADD.ForeColor = System.Drawing.Color.DimGray
-        Me.TXTADD.Location = New System.Drawing.Point(758, 31)
+        Me.TXTADD.Location = New System.Drawing.Point(1129, 506)
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.ReadOnly = True
         Me.TXTADD.Size = New System.Drawing.Size(23, 23)
@@ -190,6 +202,140 @@ Partial Class CoverNote
         Me.GRIDCOVER.Size = New System.Drawing.Size(1205, 285)
         Me.GRIDCOVER.TabIndex = 10
         Me.GRIDCOVER.TabStop = False
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 40
+        '
+        'GINVNO
+        '
+        Me.GINVNO.HeaderText = "Inv No"
+        Me.GINVNO.Name = "GINVNO"
+        Me.GINVNO.ReadOnly = True
+        Me.GINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GINVNO.Visible = False
+        '
+        'GREGNAME
+        '
+        Me.GREGNAME.HeaderText = "Reg Name"
+        Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.ReadOnly = True
+        Me.GREGNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GREGNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GREGNAME.Visible = False
+        Me.GREGNAME.Width = 150
+        '
+        'GINVINITIALS
+        '
+        Me.GINVINITIALS.HeaderText = "Inv Initials"
+        Me.GINVINITIALS.Name = "GINVINITIALS"
+        Me.GINVINITIALS.ReadOnly = True
+        Me.GINVINITIALS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINVINITIALS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GINVINITIALS.Visible = False
+        Me.GINVINITIALS.Width = 150
+        '
+        'GPRINTINITIALS
+        '
+        Me.GPRINTINITIALS.HeaderText = "Bill No"
+        Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
+        Me.GPRINTINITIALS.ReadOnly = True
+        Me.GPRINTINITIALS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPRINTINITIALS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPRINTINITIALS.Width = 120
+        '
+        'GPARTYNAME
+        '
+        Me.GPARTYNAME.HeaderText = "Party Name"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.ReadOnly = True
+        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPARTYNAME.Width = 200
+        '
+        'GAGENTNAME
+        '
+        Me.GAGENTNAME.HeaderText = "Agent Name"
+        Me.GAGENTNAME.Name = "GAGENTNAME"
+        Me.GAGENTNAME.ReadOnly = True
+        Me.GAGENTNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAGENTNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GAGENTNAME.Width = 200
+        '
+        'GINVDATE
+        '
+        Me.GINVDATE.HeaderText = "Inv Date"
+        Me.GINVDATE.Name = "GINVDATE"
+        Me.GINVDATE.ReadOnly = True
+        Me.GINVDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINVDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GINVDATE.Width = 80
+        '
+        'GLRNO
+        '
+        Me.GLRNO.HeaderText = "LR No"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.ReadOnly = True
+        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRNO.Width = 120
+        '
+        'GLRDATE
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GLRDATE.HeaderText = "LR Date"
+        Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRDATE.Width = 80
+        '
+        'GTRANSPORT
+        '
+        Me.GTRANSPORT.HeaderText = "Transport"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        Me.GTRANSPORT.ReadOnly = True
+        Me.GTRANSPORT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTRANSPORT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTRANSPORT.Width = 200
+        '
+        'GTOTALMTRS
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GTOTALMTRS.HeaderText = "Mtrs"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTOTALMTRS.Width = 80
+        '
+        'GTOTALPCS
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle5
+        Me.GTOTALPCS.HeaderText = "Pcs"
+        Me.GTOTALPCS.Name = "GTOTALPCS"
+        Me.GTOTALPCS.ReadOnly = True
+        Me.GTOTALPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTOTALPCS.Width = 60
+        '
+        'GGRANDTOTAL
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GGRANDTOTAL.HeaderText = "Grand Total"
+        Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
+        Me.GGRANDTOTAL.ReadOnly = True
+        Me.GGRANDTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRANDTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRANDTOTAL.Width = 80
         '
         'CMBNAME
         '
@@ -507,139 +653,68 @@ Partial Class CoverNote
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GSRNO
+        'Label14
         '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 40
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(559, 42)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(82, 15)
+        Me.Label14.TabIndex = 926
+        Me.Label14.Text = "Courier Name"
         '
-        'GINVNO
+        'TXTCOURIERNAME
         '
-        Me.GINVNO.HeaderText = "Inv No"
-        Me.GINVNO.Name = "GINVNO"
-        Me.GINVNO.ReadOnly = True
-        Me.GINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GINVNO.Visible = False
+        Me.TXTCOURIERNAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOURIERNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOURIERNAME.Location = New System.Drawing.Point(643, 39)
+        Me.TXTCOURIERNAME.MaxLength = 50
+        Me.TXTCOURIERNAME.Name = "TXTCOURIERNAME"
+        Me.TXTCOURIERNAME.Size = New System.Drawing.Size(344, 23)
+        Me.TXTCOURIERNAME.TabIndex = 923
         '
-        'GREGNAME
+        'LBLCOURIERDOCKETNO
         '
-        Me.GREGNAME.HeaderText = "Reg Name"
-        Me.GREGNAME.Name = "GREGNAME"
-        Me.GREGNAME.ReadOnly = True
-        Me.GREGNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GREGNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREGNAME.Visible = False
-        Me.GREGNAME.Width = 150
+        Me.LBLCOURIERDOCKETNO.AutoSize = True
+        Me.LBLCOURIERDOCKETNO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOURIERDOCKETNO.Location = New System.Drawing.Point(533, 70)
+        Me.LBLCOURIERDOCKETNO.Name = "LBLCOURIERDOCKETNO"
+        Me.LBLCOURIERDOCKETNO.Size = New System.Drawing.Size(108, 15)
+        Me.LBLCOURIERDOCKETNO.TabIndex = 925
+        Me.LBLCOURIERDOCKETNO.Text = "Courier docket No."
         '
-        'GINVINITIALS
+        'TXTCOURIERDOCKETNO
         '
-        Me.GINVINITIALS.HeaderText = "Inv Initials"
-        Me.GINVINITIALS.Name = "GINVINITIALS"
-        Me.GINVINITIALS.ReadOnly = True
-        Me.GINVINITIALS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINVINITIALS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GINVINITIALS.Visible = False
-        Me.GINVINITIALS.Width = 150
+        Me.TXTCOURIERDOCKETNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOURIERDOCKETNO.Location = New System.Drawing.Point(643, 67)
+        Me.TXTCOURIERDOCKETNO.MaxLength = 20
+        Me.TXTCOURIERDOCKETNO.Name = "TXTCOURIERDOCKETNO"
+        Me.TXTCOURIERDOCKETNO.Size = New System.Drawing.Size(247, 23)
+        Me.TXTCOURIERDOCKETNO.TabIndex = 924
         '
-        'GPRINTINITIALS
+        'COURIERDATE
         '
-        Me.GPRINTINITIALS.HeaderText = "Bill No"
-        Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
-        Me.GPRINTINITIALS.ReadOnly = True
-        Me.GPRINTINITIALS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPRINTINITIALS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPRINTINITIALS.Width = 120
+        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.COURIERDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.COURIERDATE.Location = New System.Drawing.Point(643, 96)
+        Me.COURIERDATE.Name = "COURIERDATE"
+        Me.COURIERDATE.Size = New System.Drawing.Size(91, 23)
+        Me.COURIERDATE.TabIndex = 927
         '
-        'GPARTYNAME
+        'Label1
         '
-        Me.GPARTYNAME.HeaderText = "Party Name"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.ReadOnly = True
-        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPARTYNAME.Width = 200
-        '
-        'GAGENTNAME
-        '
-        Me.GAGENTNAME.HeaderText = "Agent Name"
-        Me.GAGENTNAME.Name = "GAGENTNAME"
-        Me.GAGENTNAME.ReadOnly = True
-        Me.GAGENTNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAGENTNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GAGENTNAME.Width = 200
-        '
-        'GINVDATE
-        '
-        Me.GINVDATE.HeaderText = "Inv Date"
-        Me.GINVDATE.Name = "GINVDATE"
-        Me.GINVDATE.ReadOnly = True
-        Me.GINVDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINVDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GINVDATE.Width = 80
-        '
-        'GLRNO
-        '
-        Me.GLRNO.HeaderText = "LR No"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.ReadOnly = True
-        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRNO.Width = 120
-        '
-        'GLRDATE
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GLRDATE.HeaderText = "LR Date"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRDATE.Width = 80
-        '
-        'GTRANSPORT
-        '
-        Me.GTRANSPORT.HeaderText = "Transport"
-        Me.GTRANSPORT.Name = "GTRANSPORT"
-        Me.GTRANSPORT.ReadOnly = True
-        Me.GTRANSPORT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTRANSPORT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTRANSPORT.Width = 200
-        '
-        'GTOTALMTRS
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GTOTALMTRS.HeaderText = "Mtrs"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTOTALMTRS.Width = 80
-        '
-        'GTOTALPCS
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle5
-        Me.GTOTALPCS.HeaderText = "Pcs"
-        Me.GTOTALPCS.Name = "GTOTALPCS"
-        Me.GTOTALPCS.ReadOnly = True
-        Me.GTOTALPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTOTALPCS.Width = 60
-        '
-        'GGRANDTOTAL
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle6
-        Me.GGRANDTOTAL.HeaderText = "Grand Total"
-        Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
-        Me.GGRANDTOTAL.ReadOnly = True
-        Me.GGRANDTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGRANDTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGRANDTOTAL.Width = 80
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(565, 99)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(76, 15)
+        Me.Label1.TabIndex = 928
+        Me.Label1.Text = "Courier Date"
         '
         'CoverNote
         '
@@ -713,4 +788,10 @@ Partial Class CoverNote
     Friend WithEvents GTOTALMTRS As DataGridViewTextBoxColumn
     Friend WithEvents GTOTALPCS As DataGridViewTextBoxColumn
     Friend WithEvents GGRANDTOTAL As DataGridViewTextBoxColumn
+    Friend WithEvents Label1 As Label
+    Friend WithEvents COURIERDATE As DateTimePicker
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TXTCOURIERNAME As TextBox
+    Friend WithEvents LBLCOURIERDOCKETNO As Label
+    Friend WithEvents TXTCOURIERDOCKETNO As TextBox
 End Class
