@@ -25,6 +25,7 @@ Partial Class PurchaseOrderDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PurchaseOrderDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKPENDING = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TXTCOPIES = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -65,6 +66,7 @@ Partial Class PurchaseOrderDetails
         Me.GCLOSED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -78,7 +80,6 @@ Partial Class PurchaseOrderDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +89,7 @@ Partial Class PurchaseOrderDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKPENDING)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
         Me.BlendPanel1.Controls.Add(Me.Label9)
@@ -108,6 +110,18 @@ Partial Class PurchaseOrderDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 569)
         Me.BlendPanel1.TabIndex = 4
+        '
+        'CHKPENDING
+        '
+        Me.CHKPENDING.AutoSize = True
+        Me.CHKPENDING.BackColor = System.Drawing.Color.Transparent
+        Me.CHKPENDING.Location = New System.Drawing.Point(818, 4)
+        Me.CHKPENDING.Name = "CHKPENDING"
+        Me.CHKPENDING.Size = New System.Drawing.Size(102, 18)
+        Me.CHKPENDING.TabIndex = 826
+        Me.CHKPENDING.Text = "Show Pending"
+        Me.CHKPENDING.UseVisualStyleBackColor = False
+        Me.CHKPENDING.Visible = False
         '
         'Label4
         '
@@ -517,6 +531,14 @@ Partial Class PurchaseOrderDetails
         Me.GTRANSNAME.VisibleIndex = 25
         Me.GTRANSNAME.Width = 200
         '
+        'GORDERON
+        '
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 26
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -615,14 +637,6 @@ Partial Class PurchaseOrderDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GORDERON
-        '
-        Me.GORDERON.Caption = "Order On"
-        Me.GORDERON.FieldName = "ORDERON"
-        Me.GORDERON.Name = "GORDERON"
-        Me.GORDERON.Visible = True
-        Me.GORDERON.VisibleIndex = 26
-        '
         'PurchaseOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -698,4 +712,5 @@ Partial Class PurchaseOrderDetails
     Friend WithEvents GCUT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKPENDING As CheckBox
 End Class
