@@ -114,6 +114,12 @@ Public Class SaleInvoiceDesign
     Public PARTYNAME As String
     Public AGENTNAME As String
 
+    Public DIRECTPRINT As Boolean = False
+    Public DIRECTMAIL As Boolean = False
+    Public DIRECTWHATSAPP As Boolean = False
+    Public PRINTSETTING As Object = Nothing
+    Public NOOFCOPIES As Integer = 1
+
     Private Sub SaleInvoiceDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Cursor.Current = Cursors.WaitCursor
