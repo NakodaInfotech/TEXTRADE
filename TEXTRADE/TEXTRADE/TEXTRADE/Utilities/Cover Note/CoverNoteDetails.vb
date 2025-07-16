@@ -222,99 +222,98 @@ Public Class CoverNoteDetails
 
 
     Sub SERVERPROPDIRECT(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
-        'Try
-        '    Dim ALATTACHMENT As New ArrayList
-        '    Dim FILENAME As New ArrayList
-        '    If INVOICEMAIL = False And WHATSAPP = False Then
-        '        If PrintDialog.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PrintDialog.PrinterSettings Else Exit Sub
-        '    End If
-        '    For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
-        '        Dim OBJINV As New SaleInvoiceDesign
-        '        OBJINV.MdiParent = MDIMain
-        '        OBJINV.DIRECTPRINT = True
-        '        OBJINV.FRMSTRING = "MAINCOVERNOTE"
-        '        OBJINV.DIRECTMAIL = INVOICEMAIL
-        '        OBJINV.DIRECTWHATSAPP = WHATSAPP
-        '        'OBJJV.REGNAME = cmbregister.Text.Trim
-        '        OBJINV.PRINTSETTING = PRINTDIALOG
-        '        OBJINV.COVERNOTENO = Val(I)
-        '        OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-        '        OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+        Try
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+            If INVOICEMAIL = False And WHATSAPP = False Then
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
+            End If
+            For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
+                Dim OBJINV As New SaleInvoiceDesign
+                OBJINV.MdiParent = MDIMain
+                OBJINV.DIRECTPRINT = True
+                OBJINV.FRMSTRING = "MAINCOVERNOTE"
+                OBJINV.DIRECTMAIL = INVOICEMAIL
+                OBJINV.DIRECTWHATSAPP = WHATSAPP
+                'OBJJV.REGNAME = cmbregister.Text.Trim
+                OBJINV.PRINTSETTING = PRINTDIALOG
+                OBJINV.COVERNOTENO = Val(I)
+                OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
 
-        '        OBJINV.Show()
-        '        OBJINV.Close()
-        '        ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
-        '        FILENAME.Add("COVER_" & I & ".pdf")
-        '    Next
+                OBJINV.Show()
+                OBJINV.Close()
+                ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
+                FILENAME.Add("COVER_" & I & ".pdf")
+            Next
 
-        '    If INVOICEMAIL Then
-        '        Dim OBJMAIL As New SendMail
-        '        OBJMAIL.ALATTACHMENT = ALATTACHMENT
-        '        OBJMAIL.subject = "COVERNOTE"
-        '        OBJMAIL.ShowDialog()
-        '    End If
+            If INVOICEMAIL Then
+                Dim OBJMAIL As New SendMail
+                OBJMAIL.ALATTACHMENT = ALATTACHMENT
+                OBJMAIL.subject = "COVERNOTE"
+                OBJMAIL.ShowDialog()
+            End If
 
-        '    If WHATSAPP = True Then
-        '        Dim OBJWHATSAPP As New SendWhatsapp
-        '        OBJWHATSAPP.PATH = ALATTACHMENT
-        '        OBJWHATSAPP.FILENAME = FILENAME
-        '        OBJWHATSAPP.ShowDialog()
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            If WHATSAPP = True Then
+                Dim OBJWHATSAPP As New SendWhatsapp
+                OBJWHATSAPP.PATH = ALATTACHMENT
+                OBJWHATSAPP.FILENAME = FILENAME
+                OBJWHATSAPP.ShowDialog()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Sub SERVERPROPSELECTED(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
-        'Try
+        Try
 
-        '    Dim ALATTACHMENT As New ArrayList
-        '    Dim FILENAME As New ArrayList
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
 
-        '    If INVOICEMAIL = False And WHATSAPP = False Then
-        '        If PrintDialog.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PrintDialog.PrinterSettings Else Exit Sub
-        '    End If
-        '    Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
-        '    For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
-        '        Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+            If INVOICEMAIL = False And WHATSAPP = False Then
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
+            End If
 
-        '        Dim OBJINV As New SaleInvoiceDesign
-        '        OBJINV.MdiParent = MDIMain
-        '        OBJINV.DIRECTPRINT = True
+            Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
+            For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
+                Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
 
+                Dim OBJINV As New SaleInvoiceDesign
+                OBJINV.MdiParent = MDIMain
+                OBJINV.DIRECTPRINT = True
+                OBJINV.FRMSTRING = "MAINCOVERNOTE"
+                OBJINV.FRMSTRING = "MAINAGENTCOVERNOTE"
+                OBJINV.DIRECTMAIL = INVOICEMAIL
+                OBJINV.DIRECTWHATSAPP = WHATSAPP
+                OBJINV.PRINTSETTING = PRINTDIALOG
+                OBJINV.FORMULA = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
+                OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                OBJINV.Show()
+                OBJINV.Close()
+                ALATTACHMENT.Add(Application.StartupPath & "\COVERNOTE_" & Val(ROW("SRNO")) & ".pdf")
+                FILENAME.Add("COVER_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+            Next
 
-        '        OBJINV.FRMSTRING = "MAINCOVERNOTE"
-        '        OBJINV.DIRECTMAIL = INVOICEMAIL
-        '        OBJINV.DIRECTWHATSAPP = WHATSAPP
-        '        'OBJJV.REGNAME = cmbregister.Text.Trim
-        '        OBJINV.PRINTSETTING = PRINTDIALOG
-        '        OBJINV.COVERNOTENO = Val(ROW("SRNO"))
-        '        OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-        '        OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+            If INVOICEMAIL Then
+                Dim OBJMAIL As New SendMail
+                OBJMAIL.ALATTACHMENT = ALATTACHMENT
+                OBJMAIL.subject = "MAINCOVERNOTE"
+                OBJMAIL.subject = "MAINAGENTCOVERNOTE"
 
+                OBJMAIL.ShowDialog()
+            End If
 
-        '        OBJINV.Show()
-        '        OBJINV.Close()
-        '        ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & Val(ROW("SRNO")) & ".pdf")
-        '        FILENAME.Add("COVER_" & Val(ROW("SRNO")) & ".pdf")
-        '    Next
-
-        '    If INVOICEMAIL Then
-        '        Dim OBJMAIL As New SendMail
-        '        OBJMAIL.ALATTACHMENT = ALATTACHMENT
-        '        OBJMAIL.subject = "COVERNOTE"
-        '        OBJMAIL.ShowDialog()
-        '    End If
-
-        '    If WHATSAPP = True Then
-        '        Dim OBJWHATSAPP As New SendWhatsapp
-        '        OBJWHATSAPP.PATH = ALATTACHMENT
-        '        OBJWHATSAPP.FILENAME = FILENAME
-        '        OBJWHATSAPP.ShowDialog()
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            If WHATSAPP = True Then
+                Dim OBJWHATSAPP As New SendWhatsapp
+                OBJWHATSAPP.PATH = ALATTACHMENT
+                OBJWHATSAPP.FILENAME = FILENAME
+                OBJWHATSAPP.ShowDialog()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class

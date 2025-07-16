@@ -25,6 +25,12 @@ Partial Class CoverNoteDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNoteDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,17 +60,11 @@ Partial Class CoverNoteDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.lbl = New System.Windows.Forms.Label()
-        Me.cmdok = New System.Windows.Forms.Button()
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TXTTO = New System.Windows.Forms.TextBox()
-        Me.TXTFROM = New System.Windows.Forms.TextBox()
+        Me.lbl = New System.Windows.Forms.Label()
+        Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
@@ -93,6 +93,72 @@ Partial Class CoverNoteDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1303, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(385, 8)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 14)
+        Me.Label4.TabIndex = 811
+        Me.Label4.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.Location = New System.Drawing.Point(438, 4)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
+        Me.TXTCOPIES.TabIndex = 810
+        Me.TXTCOPIES.Text = "1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(295, 7)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(19, 14)
+        Me.Label9.TabIndex = 809
+        Me.Label9.Text = "To"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.White
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(197, 7)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(34, 14)
+        Me.Label10.TabIndex = 808
+        Me.Label10.Text = "From"
+        '
+        'TXTTO
+        '
+        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.Location = New System.Drawing.Point(316, 3)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
+        Me.TXTTO.TabIndex = 807
+        Me.TXTTO.TabStop = False
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.Location = New System.Drawing.Point(232, 3)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
+        Me.TXTFROM.TabIndex = 806
+        Me.TXTFROM.TabStop = False
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'gridbilldetails
         '
@@ -370,32 +436,6 @@ Partial Class CoverNoteDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'lbl
-        '
-        Me.lbl.AutoSize = True
-        Me.lbl.BackColor = System.Drawing.Color.Transparent
-        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lbl.Location = New System.Drawing.Point(19, 34)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(130, 14)
-        Me.lbl.TabIndex = 251
-        Me.lbl.Text = "Select a S.O. to Change"
-        '
-        'cmdok
-        '
-        Me.cmdok.BackColor = System.Drawing.Color.Transparent
-        Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdok.FlatAppearance.BorderSize = 0
-        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(563, 528)
-        Me.cmdok.Name = "cmdok"
-        Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 3
-        Me.cmdok.Text = "&Ok"
-        Me.cmdok.UseVisualStyleBackColor = False
-        '
         'TOOLMAIL
         '
         Me.TOOLMAIL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -425,71 +465,31 @@ Partial Class CoverNoteDetails
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "&Print"
         '
-        'Label4
+        'lbl
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(385, 8)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(44, 14)
-        Me.Label4.TabIndex = 811
-        Me.Label4.Text = "Copies"
+        Me.lbl.AutoSize = True
+        Me.lbl.BackColor = System.Drawing.Color.Transparent
+        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lbl.Location = New System.Drawing.Point(19, 34)
+        Me.lbl.Name = "lbl"
+        Me.lbl.Size = New System.Drawing.Size(130, 14)
+        Me.lbl.TabIndex = 251
+        Me.lbl.Text = "Select a S.O. to Change"
         '
-        'TXTCOPIES
+        'cmdok
         '
-        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOPIES.Location = New System.Drawing.Point(438, 4)
-        Me.TXTCOPIES.Name = "TXTCOPIES"
-        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
-        Me.TXTCOPIES.TabIndex = 810
-        Me.TXTCOPIES.Text = "1"
-        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.White
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(295, 7)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(19, 14)
-        Me.Label9.TabIndex = 809
-        Me.Label9.Text = "To"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.White
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(197, 7)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(34, 14)
-        Me.Label10.TabIndex = 808
-        Me.Label10.Text = "From"
-        '
-        'TXTTO
-        '
-        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTO.Location = New System.Drawing.Point(316, 3)
-        Me.TXTTO.Name = "TXTTO"
-        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
-        Me.TXTTO.TabIndex = 807
-        Me.TXTTO.TabStop = False
-        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTFROM
-        '
-        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROM.Location = New System.Drawing.Point(232, 3)
-        Me.TXTFROM.Name = "TXTFROM"
-        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
-        Me.TXTFROM.TabIndex = 806
-        Me.TXTFROM.TabStop = False
-        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.cmdok.BackColor = System.Drawing.Color.Transparent
+        Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdok.FlatAppearance.BorderSize = 0
+        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdok.ForeColor = System.Drawing.Color.Black
+        Me.cmdok.Location = New System.Drawing.Point(563, 528)
+        Me.cmdok.Name = "cmdok"
+        Me.cmdok.Size = New System.Drawing.Size(80, 28)
+        Me.cmdok.TabIndex = 3
+        Me.cmdok.Text = "&Ok"
+        Me.cmdok.UseVisualStyleBackColor = False
         '
         'PRINTDIALOG
         '
