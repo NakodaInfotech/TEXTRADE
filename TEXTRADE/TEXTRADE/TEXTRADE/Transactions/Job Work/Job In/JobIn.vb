@@ -5057,4 +5057,17 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub cmbcolor_Validated(sender As Object, e As EventArgs) Handles cmbcolor.Validated
+
+        If ClientName = "SUPEEMA" Then
+            If cmbcolor.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER_SHADEITEMDETAILS.ITEM_SHADEMTRS, 0) AS MTRS", "", " ITEMMASTER INNER JOIN ITEMMASTER_SHADEITEMDETAILS ON ITEMMASTER.item_id = ITEMMASTER_SHADEITEMDETAILS.ITEM_ID AND ITEMMASTER.item_yearid = ITEMMASTER_SHADEITEMDETAILS.ITEM_YEARID INNER JOIN DESIGNMASTER ON ITEMMASTER_SHADEITEMDETAILS.ITEM_SHADEDESIGNID = DESIGNMASTER.DESIGN_id INNER JOIN ITEMMASTER AS ITEMMASTER_1 ON ITEMMASTER_SHADEITEMDETAILS.ITEM_ID = ITEMMASTER_1.item_id INNER JOIN COLORMASTER ON ITEMMASTER_SHADEITEMDETAILS.ITEM_SHADECOLORID = COLORMASTER.COLOR_id  ", " AND ITEMMASTER_1.item_name = '" & cmbitemname.Text.Trim & "' AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "'   AND COLORMASTER.COLOR_name = '" & cmbcolor.Text.Trim & "'  AND itemmaster.item_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TXTCUT.Text = Format(Val(DT.Rows(0).Item("MTRS")), "0.00")
+                End If
+            End If
+        End If
+    End Sub
 End Class
