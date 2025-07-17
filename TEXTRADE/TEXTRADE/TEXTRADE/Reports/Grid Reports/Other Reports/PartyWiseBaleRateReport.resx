@@ -122,37 +122,6 @@
     <value>Vertical, (213, 228, 248), (Window)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="CMBOUTSTANDING.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="CMBOUTSTANDING.Location" type="System.Drawing.Point, System.Drawing">
-    <value>840, 67</value>
-  </data>
-  <data name="CMBOUTSTANDING.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 28</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CMBOUTSTANDING.TabIndex" type="System.Int32, mscorlib">
-    <value>485</value>
-  </data>
-  <data name="CMBOUTSTANDING.Text" xml:space="preserve">
-    <value>Outstanding</value>
-  </data>
-  <data name="CMBOUTSTANDING.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;CMBOUTSTANDING.Name" xml:space="preserve">
-    <value>CMBOUTSTANDING</value>
-  </data>
-  <data name="&gt;&gt;CMBOUTSTANDING.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CMBOUTSTANDING.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;CMBOUTSTANDING.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="griddetails.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9pt</value>
   </data>
@@ -171,6 +140,7 @@
   <data name="gDate.Caption" xml:space="preserve">
     <value>Date</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="gDate.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -259,7 +229,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;griddetails.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="CMBACCCODE.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
@@ -289,34 +259,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;CMBACCCODE.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtadd.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="txtadd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 64</value>
-  </data>
-  <data name="txtadd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 23</value>
-  </data>
-  <data name="txtadd.TabIndex" type="System.Int32, mscorlib">
-    <value>448</value>
-  </data>
-  <data name="txtadd.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;txtadd.Name" xml:space="preserve">
-    <value>txtadd</value>
-  </data>
-  <data name="&gt;&gt;txtadd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtadd.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtadd.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="cmdshowdetails.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
@@ -343,7 +286,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;cmdshowdetails.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="cmdok.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
@@ -370,7 +313,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;cmdok.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="cmdexit.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
@@ -397,92 +340,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;cmdexit.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="txtcrtotal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9pt</value>
-  </data>
-  <data name="txtcrtotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1077, 526</value>
-  </data>
-  <data name="txtcrtotal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="txtcrtotal.TabIndex" type="System.Int32, mscorlib">
-    <value>443</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="txtcrtotal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtcrtotal.Name" xml:space="preserve">
-    <value>txtcrtotal</value>
-  </data>
-  <data name="&gt;&gt;txtcrtotal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtcrtotal.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtcrtotal.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtdrtotal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9pt</value>
-  </data>
-  <data name="txtdrtotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>977, 526</value>
-  </data>
-  <data name="txtdrtotal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="txtdrtotal.TabIndex" type="System.Int32, mscorlib">
-    <value>442</value>
-  </data>
-  <data name="txtdrtotal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtdrtotal.Name" xml:space="preserve">
-    <value>txtdrtotal</value>
-  </data>
-  <data name="&gt;&gt;txtdrtotal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtdrtotal.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtdrtotal.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="Label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9pt, style=Bold</value>
-  </data>
-  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>942, 530</value>
-  </data>
-  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 14</value>
-  </data>
-  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
-    <value>441</value>
-  </data>
-  <data name="Label2.Text" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
-    <value>Label2</value>
-  </data>
-  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>4</value>
   </data>
   <data name="lbldrcropening.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -509,7 +367,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;lbldrcropening.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>5</value>
   </data>
   <data name="lbldrcrclosing.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -536,91 +394,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;lbldrcrclosing.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="txttotal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9pt</value>
-  </data>
-  <data name="txttotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1077, 552</value>
-  </data>
-  <data name="txttotal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="txttotal.TabIndex" type="System.Int32, mscorlib">
-    <value>435</value>
-  </data>
-  <data name="txttotal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txttotal.Name" xml:space="preserve">
-    <value>txttotal</value>
-  </data>
-  <data name="&gt;&gt;txttotal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txttotal.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;txttotal.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="lbln.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbln.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9pt, style=Bold</value>
-  </data>
-  <data name="lbln.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1011, 556</value>
-  </data>
-  <data name="lbln.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 14</value>
-  </data>
-  <data name="lbln.TabIndex" type="System.Int32, mscorlib">
-    <value>434</value>
-  </data>
-  <data name="lbln.Text" xml:space="preserve">
-    <value>Closing Bal.</value>
-  </data>
-  <data name="&gt;&gt;lbln.Name" xml:space="preserve">
-    <value>lbln</value>
-  </data>
-  <data name="&gt;&gt;lbln.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbln.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;lbln.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="txttempbillno.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="txttempbillno.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 64</value>
-  </data>
-  <data name="txttempbillno.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 23</value>
-  </data>
-  <data name="txttempbillno.TabIndex" type="System.Int32, mscorlib">
-    <value>433</value>
-  </data>
-  <data name="txttempbillno.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;txttempbillno.Name" xml:space="preserve">
-    <value>txttempbillno</value>
-  </data>
-  <data name="&gt;&gt;txttempbillno.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txttempbillno.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;txttempbillno.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>6</value>
   </data>
   <data name="chkdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -650,7 +424,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;chkdate.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>7</value>
   </data>
   <data name="dtto.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -677,7 +451,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;dtto.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>8</value>
   </data>
   <data name="lblto.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -707,7 +481,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;lblto.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>9</value>
   </data>
   <data name="dtfrom.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -734,7 +508,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;dtfrom.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>10</value>
   </data>
   <data name="lblfrom.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -764,7 +538,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;lblfrom.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>11</value>
   </data>
   <metadata name="ToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -884,64 +658,7 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;ToolStrip1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="lblname.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblname.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="lblname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 42</value>
-  </data>
-  <data name="lblname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 15</value>
-  </data>
-  <data name="lblname.TabIndex" type="System.Int32, mscorlib">
-    <value>429</value>
-  </data>
-  <data name="lblname.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;lblname.Name" xml:space="preserve">
-    <value>lblname</value>
-  </data>
-  <data name="&gt;&gt;lblname.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblname.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;lblname.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="cmbname.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="cmbname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 38</value>
-  </data>
-  <data name="cmbname.MaxDropDownItems" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="cmbname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 23</value>
-  </data>
-  <data name="cmbname.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmbname.Name" xml:space="preserve">
-    <value>cmbname</value>
-  </data>
-  <data name="&gt;&gt;cmbname.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbname.Parent" xml:space="preserve">
-    <value>BlendPanel1</value>
-  </data>
-  <data name="&gt;&gt;cmbname.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>12</value>
   </data>
   <data name="lbl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -971,8 +688,9 @@
     <value>BlendPanel1</value>
   </data>
   <data name="&gt;&gt;lbl.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>13</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="BlendPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1030,6 +748,30 @@
   <data name="&gt;&gt;gname.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;GTRANSPORT.Name" xml:space="preserve">
+    <value>GTRANSPORT</value>
+  </data>
+  <data name="&gt;&gt;GTRANSPORT.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GRATE.Name" xml:space="preserve">
+    <value>GRATE</value>
+  </data>
+  <data name="&gt;&gt;GRATE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GNOOFBALES.Name" xml:space="preserve">
+    <value>GNOOFBALES</value>
+  </data>
+  <data name="&gt;&gt;GNOOFBALES.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GAMOUNT.Name" xml:space="preserve">
+    <value>GAMOUNT</value>
+  </data>
+  <data name="&gt;&gt;GAMOUNT.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
     <value>PrintToolStripButton</value>
   </data>
@@ -1077,30 +819,6 @@
   </data>
   <data name="&gt;&gt;ToolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GTRANSPORT.Name" xml:space="preserve">
-    <value>GTRANSPORT</value>
-  </data>
-  <data name="&gt;&gt;GTRANSPORT.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GRATE.Name" xml:space="preserve">
-    <value>GRATE</value>
-  </data>
-  <data name="&gt;&gt;GRATE.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GNOOFBALES.Name" xml:space="preserve">
-    <value>GNOOFBALES</value>
-  </data>
-  <data name="&gt;&gt;GNOOFBALES.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GAMOUNT.Name" xml:space="preserve">
-    <value>GAMOUNT</value>
-  </data>
-  <data name="&gt;&gt;GAMOUNT.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PartyWiseBaleRateReport</value>

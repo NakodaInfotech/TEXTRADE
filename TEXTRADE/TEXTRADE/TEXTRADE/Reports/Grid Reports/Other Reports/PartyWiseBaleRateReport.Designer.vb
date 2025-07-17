@@ -24,24 +24,20 @@ Partial Class PartyWiseBaleRateReport
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PartyWiseBaleRateReport))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.CMBOUTSTANDING = New System.Windows.Forms.Button()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNOOFBALES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
-        Me.txtadd = New System.Windows.Forms.TextBox()
         Me.cmdshowdetails = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.txtcrtotal = New System.Windows.Forms.TextBox()
-        Me.txtdrtotal = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.lbldrcropening = New System.Windows.Forms.Label()
         Me.lbldrcrclosing = New System.Windows.Forms.Label()
-        Me.txttotal = New System.Windows.Forms.TextBox()
-        Me.lbln = New System.Windows.Forms.Label()
-        Me.txttempbillno = New System.Windows.Forms.TextBox()
         Me.chkdate = New System.Windows.Forms.CheckBox()
         Me.dtto = New System.Windows.Forms.DateTimePicker()
         Me.lblto = New System.Windows.Forms.Label()
@@ -56,13 +52,7 @@ Partial Class PartyWiseBaleRateReport
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLMONTHLY = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lblname = New System.Windows.Forms.Label()
-        Me.cmbname = New System.Windows.Forms.ComboBox()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNOOFBALES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,41 +62,21 @@ Partial Class PartyWiseBaleRateReport
         'BlendPanel1
         '
         resources.ApplyResources(Me.BlendPanel1, "BlendPanel1")
-        Me.BlendPanel1.Controls.Add(Me.CMBOUTSTANDING)
         Me.BlendPanel1.Controls.Add(Me.griddetails)
         Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
-        Me.BlendPanel1.Controls.Add(Me.txtadd)
         Me.BlendPanel1.Controls.Add(Me.cmdshowdetails)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
-        Me.BlendPanel1.Controls.Add(Me.txtcrtotal)
-        Me.BlendPanel1.Controls.Add(Me.txtdrtotal)
-        Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.lbldrcropening)
         Me.BlendPanel1.Controls.Add(Me.lbldrcrclosing)
-        Me.BlendPanel1.Controls.Add(Me.txttotal)
-        Me.BlendPanel1.Controls.Add(Me.lbln)
-        Me.BlendPanel1.Controls.Add(Me.txttempbillno)
         Me.BlendPanel1.Controls.Add(Me.chkdate)
         Me.BlendPanel1.Controls.Add(Me.dtto)
         Me.BlendPanel1.Controls.Add(Me.lblto)
         Me.BlendPanel1.Controls.Add(Me.dtfrom)
         Me.BlendPanel1.Controls.Add(Me.lblfrom)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.lblname)
-        Me.BlendPanel1.Controls.Add(Me.cmbname)
         Me.BlendPanel1.Controls.Add(Me.lbl)
         Me.BlendPanel1.Name = "BlendPanel1"
-        '
-        'CMBOUTSTANDING
-        '
-        Me.CMBOUTSTANDING.BackColor = System.Drawing.Color.Transparent
-        Me.CMBOUTSTANDING.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMBOUTSTANDING.FlatAppearance.BorderSize = 0
-        resources.ApplyResources(Me.CMBOUTSTANDING, "CMBOUTSTANDING")
-        Me.CMBOUTSTANDING.ForeColor = System.Drawing.Color.Black
-        Me.CMBOUTSTANDING.Name = "CMBOUTSTANDING"
-        Me.CMBOUTSTANDING.UseVisualStyleBackColor = False
         '
         'griddetails
         '
@@ -155,6 +125,30 @@ Partial Class PartyWiseBaleRateReport
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
+        'GTRANSPORT
+        '
+        resources.ApplyResources(Me.GTRANSPORT, "GTRANSPORT")
+        Me.GTRANSPORT.FieldName = "TRANSNAME"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        '
+        'GRATE
+        '
+        resources.ApplyResources(Me.GRATE, "GRATE")
+        Me.GRATE.FieldName = "BALERATE"
+        Me.GRATE.Name = "GRATE"
+        '
+        'GNOOFBALES
+        '
+        resources.ApplyResources(Me.GNOOFBALES, "GNOOFBALES")
+        Me.GNOOFBALES.FieldName = "TOTALBALES"
+        Me.GNOOFBALES.Name = "GNOOFBALES"
+        '
+        'GAMOUNT
+        '
+        resources.ApplyResources(Me.GAMOUNT, "GAMOUNT")
+        Me.GAMOUNT.FieldName = "AMT"
+        Me.GAMOUNT.Name = "GAMOUNT"
+        '
         'CMBACCCODE
         '
         Me.CMBACCCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -163,11 +157,6 @@ Partial Class PartyWiseBaleRateReport
         Me.CMBACCCODE.FormattingEnabled = True
         Me.CMBACCCODE.Items.AddRange(New Object() {resources.GetString("CMBACCCODE.Items")})
         Me.CMBACCCODE.Name = "CMBACCCODE"
-        '
-        'txtadd
-        '
-        resources.ApplyResources(Me.txtadd, "txtadd")
-        Me.txtadd.Name = "txtadd"
         '
         'cmdshowdetails
         '
@@ -199,31 +188,6 @@ Partial Class PartyWiseBaleRateReport
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'txtcrtotal
-        '
-        Me.txtcrtotal.BackColor = System.Drawing.Color.White
-        resources.ApplyResources(Me.txtcrtotal, "txtcrtotal")
-        Me.txtcrtotal.ForeColor = System.Drawing.Color.Black
-        Me.txtcrtotal.Name = "txtcrtotal"
-        Me.txtcrtotal.ReadOnly = True
-        Me.txtcrtotal.TabStop = False
-        '
-        'txtdrtotal
-        '
-        Me.txtdrtotal.BackColor = System.Drawing.Color.White
-        resources.ApplyResources(Me.txtdrtotal, "txtdrtotal")
-        Me.txtdrtotal.ForeColor = System.Drawing.Color.Black
-        Me.txtdrtotal.Name = "txtdrtotal"
-        Me.txtdrtotal.ReadOnly = True
-        Me.txtdrtotal.TabStop = False
-        '
-        'Label2
-        '
-        resources.ApplyResources(Me.Label2, "Label2")
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Name = "Label2"
-        '
         'lbldrcropening
         '
         resources.ApplyResources(Me.lbldrcropening, "lbldrcropening")
@@ -237,27 +201,6 @@ Partial Class PartyWiseBaleRateReport
         Me.lbldrcrclosing.BackColor = System.Drawing.Color.Transparent
         Me.lbldrcrclosing.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lbldrcrclosing.Name = "lbldrcrclosing"
-        '
-        'txttotal
-        '
-        Me.txttotal.BackColor = System.Drawing.Color.White
-        resources.ApplyResources(Me.txttotal, "txttotal")
-        Me.txttotal.ForeColor = System.Drawing.Color.Black
-        Me.txttotal.Name = "txttotal"
-        Me.txttotal.ReadOnly = True
-        Me.txttotal.TabStop = False
-        '
-        'lbln
-        '
-        resources.ApplyResources(Me.lbln, "lbln")
-        Me.lbln.BackColor = System.Drawing.Color.Transparent
-        Me.lbln.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lbln.Name = "lbln"
-        '
-        'txttempbillno
-        '
-        resources.ApplyResources(Me.txttempbillno, "txttempbillno")
-        Me.txttempbillno.Name = "txttempbillno"
         '
         'chkdate
         '
@@ -343,51 +286,12 @@ Partial Class PartyWiseBaleRateReport
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
         resources.ApplyResources(Me.ToolStripSeparator5, "ToolStripSeparator5")
         '
-        'lblname
-        '
-        resources.ApplyResources(Me.lblname, "lblname")
-        Me.lblname.BackColor = System.Drawing.Color.Transparent
-        Me.lblname.ForeColor = System.Drawing.Color.Black
-        Me.lblname.Name = "lblname"
-        '
-        'cmbname
-        '
-        Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        resources.ApplyResources(Me.cmbname, "cmbname")
-        Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Name = "cmbname"
-        '
         'lbl
         '
         resources.ApplyResources(Me.lbl, "lbl")
         Me.lbl.BackColor = System.Drawing.Color.Transparent
         Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lbl.Name = "lbl"
-        '
-        'GTRANSPORT
-        '
-        resources.ApplyResources(Me.GTRANSPORT, "GTRANSPORT")
-        Me.GTRANSPORT.FieldName = "TRANSNAME"
-        Me.GTRANSPORT.Name = "GTRANSPORT"
-        '
-        'GRATE
-        '
-        resources.ApplyResources(Me.GRATE, "GRATE")
-        Me.GRATE.FieldName = "BALERATE"
-        Me.GRATE.Name = "GRATE"
-        '
-        'GNOOFBALES
-        '
-        resources.ApplyResources(Me.GNOOFBALES, "GNOOFBALES")
-        Me.GNOOFBALES.FieldName = "TOTALBALES"
-        Me.GNOOFBALES.Name = "GNOOFBALES"
-        '
-        'GAMOUNT
-        '
-        resources.ApplyResources(Me.GAMOUNT, "GAMOUNT")
-        Me.GAMOUNT.FieldName = "AMT"
-        Me.GAMOUNT.Name = "GAMOUNT"
         '
         'PartyWiseBaleRateReport
         '
@@ -408,24 +312,16 @@ Partial Class PartyWiseBaleRateReport
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Friend WithEvents CMBOUTSTANDING As Button
     Private WithEvents griddetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridregister As DevExpress.XtraGrid.Views.Grid.GridView
     Private WithEvents gDate As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBACCCODE As ComboBox
-    Friend WithEvents txtadd As TextBox
     Friend WithEvents cmdshowdetails As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents cmdexit As Button
-    Friend WithEvents txtcrtotal As TextBox
-    Friend WithEvents txtdrtotal As TextBox
-    Friend WithEvents Label2 As Label
     Friend WithEvents lbldrcropening As Label
     Friend WithEvents lbldrcrclosing As Label
-    Friend WithEvents txttotal As TextBox
-    Friend WithEvents lbln As Label
-    Friend WithEvents txttempbillno As TextBox
     Friend WithEvents chkdate As CheckBox
     Friend WithEvents dtto As DateTimePicker
     Friend WithEvents lblto As Label
@@ -440,8 +336,6 @@ Partial Class PartyWiseBaleRateReport
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents TOOLMONTHLY As ToolStripButton
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
-    Friend WithEvents lblname As Label
-    Friend WithEvents cmbname As ComboBox
     Friend WithEvents lbl As Label
     Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
