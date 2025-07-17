@@ -99,7 +99,7 @@ Partial Class CoverNoteDetails
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(385, 8)
+        Me.Label4.Location = New System.Drawing.Point(406, 8)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(44, 14)
         Me.Label4.TabIndex = 811
@@ -109,7 +109,7 @@ Partial Class CoverNoteDetails
         '
         Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOPIES.Location = New System.Drawing.Point(438, 4)
+        Me.TXTCOPIES.Location = New System.Drawing.Point(459, 4)
         Me.TXTCOPIES.Name = "TXTCOPIES"
         Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
         Me.TXTCOPIES.TabIndex = 810
@@ -121,7 +121,7 @@ Partial Class CoverNoteDetails
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.White
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(295, 7)
+        Me.Label9.Location = New System.Drawing.Point(316, 7)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(19, 14)
         Me.Label9.TabIndex = 809
@@ -132,7 +132,7 @@ Partial Class CoverNoteDetails
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(197, 7)
+        Me.Label10.Location = New System.Drawing.Point(218, 7)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(34, 14)
         Me.Label10.TabIndex = 808
@@ -142,7 +142,7 @@ Partial Class CoverNoteDetails
         '
         Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTO.Location = New System.Drawing.Point(316, 3)
+        Me.TXTTO.Location = New System.Drawing.Point(337, 3)
         Me.TXTTO.Name = "TXTTO"
         Me.TXTTO.Size = New System.Drawing.Size(57, 22)
         Me.TXTTO.TabIndex = 807
@@ -153,7 +153,7 @@ Partial Class CoverNoteDetails
         '
         Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROM.Location = New System.Drawing.Point(232, 3)
+        Me.TXTFROM.Location = New System.Drawing.Point(253, 3)
         Me.TXTFROM.Name = "TXTFROM"
         Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
         Me.TXTFROM.TabIndex = 806
@@ -398,7 +398,7 @@ Partial Class CoverNoteDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.TOOLMAIL, Me.TOOLWHATSAPP, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripButton2, Me.TOOLMAIL, Me.TOOLWHATSAPP})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1303, 25)
