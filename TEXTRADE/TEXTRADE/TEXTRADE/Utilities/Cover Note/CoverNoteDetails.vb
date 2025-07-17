@@ -230,6 +230,7 @@ Public Class CoverNoteDetails
                 Dim OBJINV As New SaleInvoiceDesign
                 OBJINV.MdiParent = MDIMain
                 OBJINV.DIRECTPRINT = True
+
                 OBJINV.FRMSTRING = "MAINCOVERNOTE"
                 OBJINV.DIRECTMAIL = INVOICEMAIL
                 OBJINV.DIRECTWHATSAPP = WHATSAPP
