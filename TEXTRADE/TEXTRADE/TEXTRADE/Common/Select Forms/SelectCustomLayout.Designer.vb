@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class SelectStockGrid
+Partial Class SelectCustomLayout
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -28,14 +28,7 @@ Partial Class SelectStockGrid
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPENDINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPACKINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPRGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUSERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.CMDPHOTOVIEW = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
@@ -66,8 +59,8 @@ Partial Class SelectStockGrid
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1171, 581)
-        Me.BlendPanel1.TabIndex = 4
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.TabIndex = 5
         '
         'PBIMAGE1
         '
@@ -91,7 +84,7 @@ Partial Class SelectStockGrid
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE})
-        Me.gridbilldetails.Size = New System.Drawing.Size(1136, 490)
+        Me.gridbilldetails.Size = New System.Drawing.Size(319, 490)
         Me.gridbilldetails.TabIndex = 431
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -99,7 +92,7 @@ Partial Class SelectStockGrid
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GMTRS, Me.GPENDINGMTRS, Me.GPACKINGMTRS, Me.GPRGMTRS, Me.GBALMTRS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GUSERNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -127,93 +120,15 @@ Partial Class SelectStockGrid
         Me.CHKEDIT.Name = "CHKEDIT"
         Me.CHKEDIT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
-        'GITEMNAME
+        'GUSERNAME
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
-        Me.GITEMNAME.Width = 250
-        '
-        'GDESIGNNO
-        '
-        Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 2
-        Me.GDESIGNNO.Width = 250
-        '
-        'GSHADE
-        '
-        Me.GSHADE.Caption = "Shade"
-        Me.GSHADE.FieldName = "COLOR"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.OptionsColumn.AllowEdit = False
-        Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 3
-        Me.GSHADE.Width = 150
-        '
-        'GMTRS
-        '
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.DisplayFormat.FormatString = "0"
-        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 4
-        '
-        'GPENDINGMTRS
-        '
-        Me.GPENDINGMTRS.Caption = "Pending Mtrs"
-        Me.GPENDINGMTRS.DisplayFormat.FormatString = "0"
-        Me.GPENDINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPENDINGMTRS.FieldName = "PENDINGMTRS"
-        Me.GPENDINGMTRS.Name = "GPENDINGMTRS"
-        Me.GPENDINGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPENDINGMTRS.Visible = True
-        Me.GPENDINGMTRS.VisibleIndex = 5
-        Me.GPENDINGMTRS.Width = 80
-        '
-        'GPACKINGMTRS
-        '
-        Me.GPACKINGMTRS.Caption = "Packing Mtrs"
-        Me.GPACKINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPACKINGMTRS.FieldName = "PACKINGMTRS"
-        Me.GPACKINGMTRS.Name = "GPACKINGMTRS"
-        Me.GPACKINGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPACKINGMTRS.Visible = True
-        Me.GPACKINGMTRS.VisibleIndex = 6
-        Me.GPACKINGMTRS.Width = 80
-        '
-        'GPRGMTRS
-        '
-        Me.GPRGMTRS.Caption = "Prg Mtrs"
-        Me.GPRGMTRS.DisplayFormat.FormatString = "0"
-        Me.GPRGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPRGMTRS.FieldName = "PROGRAMMTRS"
-        Me.GPRGMTRS.Name = "GPRGMTRS"
-        Me.GPRGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPRGMTRS.Visible = True
-        Me.GPRGMTRS.VisibleIndex = 7
-        Me.GPRGMTRS.Width = 80
-        '
-        'GBALMTRS
-        '
-        Me.GBALMTRS.Caption = "Bal Stock"
-        Me.GBALMTRS.DisplayFormat.FormatString = "0"
-        Me.GBALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBALMTRS.FieldName = "BALMTRS"
-        Me.GBALMTRS.Name = "GBALMTRS"
-        Me.GBALMTRS.OptionsColumn.AllowEdit = False
-        Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 8
-        Me.GBALMTRS.Width = 80
+        Me.GUSERNAME.Caption = "User Name"
+        Me.GUSERNAME.FieldName = "USERNAME"
+        Me.GUSERNAME.Name = "GUSERNAME"
+        Me.GUSERNAME.OptionsColumn.AllowEdit = False
+        Me.GUSERNAME.Visible = True
+        Me.GUSERNAME.VisibleIndex = 1
+        Me.GUSERNAME.Width = 250
         '
         'APPROXDATE
         '
@@ -265,7 +180,7 @@ Partial Class SelectStockGrid
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExcelExport, Me.ToolStripSeparator1, Me.TOOLREFRESH})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1171, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 430
         Me.ToolStrip1.Text = "v"
         '
@@ -292,16 +207,16 @@ Partial Class SelectStockGrid
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "ToolStripButton1"
         '
-        'SelectStockGrid
+        'SelectCustomLayout
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1171, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "SelectStockGrid"
+        Me.Name = "SelectCustomLayout"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Select Stock Grid"
+        Me.Text = "Select Custom Layout"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -318,25 +233,18 @@ Partial Class SelectStockGrid
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
+    Friend WithEvents PBIMAGE1 As PictureBox
+    Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GUSERNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents CMDPHOTOVIEW As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ExcelExport As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
-    Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
-    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHADE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents GPENDINGMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPACKINGMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPRGMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PBIMAGE1 As PictureBox
-    Friend WithEvents CMDPHOTOVIEW As Button
 End Class

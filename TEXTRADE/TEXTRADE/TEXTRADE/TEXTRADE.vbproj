@@ -385,6 +385,18 @@
     <Compile Include="Common\Filters\LotFilter.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Common\Select Forms\SelectCustomLayout.Designer.vb">
+      <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\CustomLayout.Designer.vb">
+      <DependentUpon>CustomLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\CustomLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8440,9 +8452,18 @@
     <EmbeddedResource Include="Common\Filters\LotFilter.resx">
       <DependentUpon>LotFilter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
+      <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\CustomLayout.resx">
+      <DependentUpon>CustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.resx">
+      <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.resx">
       <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>

@@ -10503,5 +10503,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub MonthlyPurchaseAnalysisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonthlyPurchaseAnalysisToolStripMenuItem.Click
+        Try
+            Dim OBJSALE As New MonthlyPurchaseAnalysisGridReport
+            OBJSALE.MdiParent = Me
+            OBJSALE.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
