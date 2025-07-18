@@ -23,16 +23,22 @@ Partial Class CoverNote
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.COURIERDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TXTCOURIERNAME = New System.Windows.Forms.TextBox()
+        Me.LBLCOURIERDOCKETNO = New System.Windows.Forms.Label()
+        Me.TXTCOURIERDOCKETNO = New System.Windows.Forms.TextBox()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.GRIDCOVER = New System.Windows.Forms.DataGridView()
@@ -81,12 +87,6 @@ Partial Class CoverNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.TXTCOURIERNAME = New System.Windows.Forms.TextBox()
-        Me.LBLCOURIERDOCKETNO = New System.Windows.Forms.Label()
-        Me.TXTCOURIERDOCKETNO = New System.Windows.Forms.TextBox()
-        Me.COURIERDATE = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCOVER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -131,6 +131,69 @@ Partial Class CoverNote
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(565, 99)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(76, 15)
+        Me.Label1.TabIndex = 928
+        Me.Label1.Text = "Courier Date"
+        '
+        'COURIERDATE
+        '
+        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.COURIERDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.COURIERDATE.Location = New System.Drawing.Point(643, 96)
+        Me.COURIERDATE.Name = "COURIERDATE"
+        Me.COURIERDATE.Size = New System.Drawing.Size(91, 23)
+        Me.COURIERDATE.TabIndex = 4
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(559, 42)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(82, 15)
+        Me.Label14.TabIndex = 926
+        Me.Label14.Text = "Courier Name"
+        '
+        'TXTCOURIERNAME
+        '
+        Me.TXTCOURIERNAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOURIERNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOURIERNAME.Location = New System.Drawing.Point(643, 39)
+        Me.TXTCOURIERNAME.MaxLength = 50
+        Me.TXTCOURIERNAME.Name = "TXTCOURIERNAME"
+        Me.TXTCOURIERNAME.Size = New System.Drawing.Size(325, 23)
+        Me.TXTCOURIERNAME.TabIndex = 2
+        '
+        'LBLCOURIERDOCKETNO
+        '
+        Me.LBLCOURIERDOCKETNO.AutoSize = True
+        Me.LBLCOURIERDOCKETNO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOURIERDOCKETNO.Location = New System.Drawing.Point(533, 70)
+        Me.LBLCOURIERDOCKETNO.Name = "LBLCOURIERDOCKETNO"
+        Me.LBLCOURIERDOCKETNO.Size = New System.Drawing.Size(108, 15)
+        Me.LBLCOURIERDOCKETNO.TabIndex = 925
+        Me.LBLCOURIERDOCKETNO.Text = "Courier docket No."
+        '
+        'TXTCOURIERDOCKETNO
+        '
+        Me.TXTCOURIERDOCKETNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOURIERDOCKETNO.Location = New System.Drawing.Point(643, 67)
+        Me.TXTCOURIERDOCKETNO.MaxLength = 20
+        Me.TXTCOURIERDOCKETNO.Name = "TXTCOURIERDOCKETNO"
+        Me.TXTCOURIERDOCKETNO.Size = New System.Drawing.Size(247, 23)
+        Me.TXTCOURIERDOCKETNO.TabIndex = 3
+        '
         'CMBCODE
         '
         Me.CMBCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -164,28 +227,28 @@ Partial Class CoverNote
         Me.GRIDCOVER.AllowUserToDeleteRows = False
         Me.GRIDCOVER.AllowUserToResizeColumns = False
         Me.GRIDCOVER.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.GRIDCOVER.BackgroundColor = System.Drawing.Color.White
         Me.GRIDCOVER.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDCOVER.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
         Me.GRIDCOVER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDCOVER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GPARTYNAME, Me.GAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GLRDATE, Me.GTRANSPORT, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle23
         Me.GRIDCOVER.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDCOVER.Location = New System.Drawing.Point(17, 143)
         Me.GRIDCOVER.MultiSelect = False
@@ -193,9 +256,9 @@ Partial Class CoverNote
         Me.GRIDCOVER.RowHeadersVisible = False
         Me.GRIDCOVER.RowHeadersWidth = 30
         Me.GRIDCOVER.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle24
         Me.GRIDCOVER.RowTemplate.Height = 20
         Me.GRIDCOVER.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCOVER.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -288,8 +351,8 @@ Partial Class CoverNote
         '
         'GLRDATE
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle19
         Me.GLRDATE.HeaderText = "LR Date"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -307,8 +370,8 @@ Partial Class CoverNote
         '
         'GTOTALMTRS
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle20
         Me.GTOTALMTRS.HeaderText = "Mtrs"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -317,8 +380,8 @@ Partial Class CoverNote
         '
         'GTOTALPCS
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle21
         Me.GTOTALPCS.HeaderText = "Pcs"
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.ReadOnly = True
@@ -328,8 +391,8 @@ Partial Class CoverNote
         '
         'GGRANDTOTAL
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle22
         Me.GGRANDTOTAL.HeaderText = "Grand Total"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.ReadOnly = True
@@ -407,7 +470,7 @@ Partial Class CoverNote
         Me.cmddelete.Location = New System.Drawing.Point(590, 501)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 5
+        Me.cmddelete.TabIndex = 8
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -421,7 +484,7 @@ Partial Class CoverNote
         Me.cmdclear.Location = New System.Drawing.Point(719, 467)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 4
+        Me.cmdclear.TabIndex = 7
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -469,7 +532,7 @@ Partial Class CoverNote
         Me.CMDSELECTINV.Location = New System.Drawing.Point(547, 467)
         Me.CMDSELECTINV.Name = "CMDSELECTINV"
         Me.CMDSELECTINV.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSELECTINV.TabIndex = 2
+        Me.CMDSELECTINV.TabIndex = 5
         Me.CMDSELECTINV.Text = "Select Inv"
         Me.CMDSELECTINV.UseVisualStyleBackColor = False
         '
@@ -613,7 +676,7 @@ Partial Class CoverNote
         Me.cmdok.Location = New System.Drawing.Point(633, 467)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 3
+        Me.cmdok.TabIndex = 6
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -627,7 +690,7 @@ Partial Class CoverNote
         Me.cmdexit.Location = New System.Drawing.Point(676, 501)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 6
+        Me.cmdexit.TabIndex = 9
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -652,69 +715,6 @@ Partial Class CoverNote
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(559, 42)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(82, 15)
-        Me.Label14.TabIndex = 926
-        Me.Label14.Text = "Courier Name"
-        '
-        'TXTCOURIERNAME
-        '
-        Me.TXTCOURIERNAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOURIERNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOURIERNAME.Location = New System.Drawing.Point(643, 39)
-        Me.TXTCOURIERNAME.MaxLength = 50
-        Me.TXTCOURIERNAME.Name = "TXTCOURIERNAME"
-        Me.TXTCOURIERNAME.Size = New System.Drawing.Size(344, 23)
-        Me.TXTCOURIERNAME.TabIndex = 923
-        '
-        'LBLCOURIERDOCKETNO
-        '
-        Me.LBLCOURIERDOCKETNO.AutoSize = True
-        Me.LBLCOURIERDOCKETNO.BackColor = System.Drawing.Color.Transparent
-        Me.LBLCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLCOURIERDOCKETNO.Location = New System.Drawing.Point(533, 70)
-        Me.LBLCOURIERDOCKETNO.Name = "LBLCOURIERDOCKETNO"
-        Me.LBLCOURIERDOCKETNO.Size = New System.Drawing.Size(108, 15)
-        Me.LBLCOURIERDOCKETNO.TabIndex = 925
-        Me.LBLCOURIERDOCKETNO.Text = "Courier docket No."
-        '
-        'TXTCOURIERDOCKETNO
-        '
-        Me.TXTCOURIERDOCKETNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOURIERDOCKETNO.Location = New System.Drawing.Point(643, 67)
-        Me.TXTCOURIERDOCKETNO.MaxLength = 20
-        Me.TXTCOURIERDOCKETNO.Name = "TXTCOURIERDOCKETNO"
-        Me.TXTCOURIERDOCKETNO.Size = New System.Drawing.Size(247, 23)
-        Me.TXTCOURIERDOCKETNO.TabIndex = 924
-        '
-        'COURIERDATE
-        '
-        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.COURIERDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.COURIERDATE.Location = New System.Drawing.Point(643, 96)
-        Me.COURIERDATE.Name = "COURIERDATE"
-        Me.COURIERDATE.Size = New System.Drawing.Size(91, 23)
-        Me.COURIERDATE.TabIndex = 927
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(565, 99)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 15)
-        Me.Label1.TabIndex = 928
-        Me.Label1.Text = "Courier Date"
         '
         'CoverNote
         '

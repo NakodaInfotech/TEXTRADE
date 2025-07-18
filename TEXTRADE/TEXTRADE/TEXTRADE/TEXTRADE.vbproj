@@ -713,20 +713,17 @@
     <Compile Include="Reports\Crystal Reports\Lot Status Reports\LotTaggingReport.vb">
       <DependentUpon>LotTaggingReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.vb">
       <DependentUpon>OpeningReport_SNCM.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport_SNCM.vb">
       <DependentUpon>MatRecReport_SNCM.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\PayMonthlyReport.vb">
       <AutoGen>True</AutoGen>
@@ -1079,7 +1076,6 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport.vb">
       <DependentUpon>MatRecReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Non Purchase Reports\SelfInvoiceReport.vb">
@@ -3053,13 +3049,11 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecEntryDesignShadeWiseSumm.vb">
       <DependentUpon>MatRecEntryDesignShadeWiseSumm.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReportCutting.vb">
       <DependentUpon>MatRecReportCutting.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\OutstandingReport_Broker_Inventory_Details_Rec.vb">
@@ -3683,7 +3677,6 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport_BRILLANTO.vb">
       <DependentUpon>MatRecReport_BRILLANTO.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\ChqPaymentHDFC_TCOT.vb">
@@ -4487,7 +4480,6 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecMonthWise.vb">
       <DependentUpon>MatRecMonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\ChqPayment_PNB.vb">
@@ -5267,98 +5259,82 @@
     <Compile Include="Reports\Crystal Reports\Lot Status Reports\LotStatus_Summary1.vb">
       <DependentUpon>LotStatus_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecLOTWiseDetails.vb">
       <DependentUpon>MatRecLOTWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecShadeWiseSummary.vb">
       <DependentUpon>MatRecShadeWiseSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecShadeWiseDetails.vb">
       <DependentUpon>MatRecShadeWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecItemWiseSummary.vb">
       <DependentUpon>MatRecItemWiseSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecItemWiseDetails.vb">
       <DependentUpon>MatRecItemWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecGodownWiseSummary.vb">
       <DependentUpon>MatRecGodownWiseSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecGodownWiseDetails.vb">
       <DependentUpon>MatRecGodownWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecDesignWiseDetails.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecDesignWiseDetails.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecDesignWiseSummary.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecDesignWiseSummary.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecPartyWiseDetails.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecPartyWiseDetails.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecPartyWiseSummary.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecPartyWiseSummary.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecQualityWiseDetails.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecQualityWiseDetails.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecQualityWiseSummary.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecQualityWiseSummary.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecLOTWiseSummary.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatRecLOTWiseSummary.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatrRecDiffReport.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MatrRecDiffReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\ChqPayment.vb">
       <AutoGen>True</AutoGen>
