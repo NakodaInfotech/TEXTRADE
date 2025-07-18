@@ -333,7 +333,7 @@ Public Class JobOut
                 End If
             End If
 
-            If Val(TXTBALENUMBER.Text.Trim) = 0 Then TXTBALENUMBER.Text = 1
+            If Val(TXTBALENUMBER.Text.Trim) = 0 And ClientName <> "NTC" Then TXTBALENUMBER.Text = 1
 
 
             Return bln
