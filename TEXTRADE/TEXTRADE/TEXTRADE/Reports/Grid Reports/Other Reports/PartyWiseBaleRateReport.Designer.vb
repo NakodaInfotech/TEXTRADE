@@ -26,7 +26,6 @@ Partial Class PartyWiseBaleRateReport
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,7 +95,7 @@ Partial Class PartyWiseBaleRateReport
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = CType(resources.GetObject("gridregister.Appearance.ViewCaption.Font"), System.Drawing.Font)
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gDate, Me.gname, Me.GTRANSPORT, Me.GRATE, Me.GNOOFBALES, Me.GAMOUNT})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gname, Me.GTRANSPORT, Me.GRATE, Me.GNOOFBALES, Me.GAMOUNT})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -107,16 +106,6 @@ Partial Class PartyWiseBaleRateReport
         Me.gridregister.OptionsView.ShowAutoFilterRow = True
         Me.gridregister.OptionsView.ShowFooter = True
         Me.gridregister.OptionsView.ShowGroupedColumns = True
-        '
-        'gDate
-        '
-        resources.ApplyResources(Me.gDate, "gDate")
-        Me.gDate.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.gDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gDate.FieldName = "Date"
-        Me.gDate.Name = "gDate"
-        Me.gDate.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[True]
-        Me.gDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'gname
         '
@@ -314,7 +303,6 @@ Partial Class PartyWiseBaleRateReport
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Private WithEvents griddetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridregister As DevExpress.XtraGrid.Views.Grid.GridView
-    Private WithEvents gDate As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBACCCODE As ComboBox
     Friend WithEvents cmdshowdetails As Button

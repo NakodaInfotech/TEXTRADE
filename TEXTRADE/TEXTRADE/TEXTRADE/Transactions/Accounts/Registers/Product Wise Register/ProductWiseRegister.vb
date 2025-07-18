@@ -2,24 +2,6 @@
 
 Public Class ProductWiseRegister
 
-    Dim fromD
-    Dim toD
-    Dim a1, a2, a3, a4 As String
-    Dim a11, a12, a13, a14 As String
-    Public TEMPNAME As String = ""
-
-    Sub getFromToDate()
-        a1 = DatePart(DateInterval.Day, dtfrom.Value.Date)
-        a2 = DatePart(DateInterval.Month, dtfrom.Value.Date)
-        a3 = DatePart(DateInterval.Year, dtfrom.Value.Date)
-        fromD = "(" & a3 & "," & a2 & "," & a1 & ")"
-
-        a11 = DatePart(DateInterval.Day, dtto.Value.Date)
-        a12 = DatePart(DateInterval.Month, dtto.Value.Date)
-        a13 = DatePart(DateInterval.Year, dtto.Value.Date)
-        toD = "(" & a13 & "," & a12 & "," & a11 & ")"
-    End Sub
-
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
@@ -28,46 +10,44 @@ Public Class ProductWiseRegister
         fillgrid()
     End Sub
 
-    Sub fillgrid()
-
-
-        Dim dt As New DataTable()
+    Sub FILLGRID()
 
         Dim OBJCOMMON As New ClsCommonMaster
-        If chkdate.CheckState = CheckState.Unchecked Then
+        Dim WHERECLAUSE As String = "" '" and YEARID = " & YearId
+        If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " And DATE > '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  and DATE < '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
-            dt = OBJCOMMON.search("*", "", " REGISTERPRODUCTWISE ", "  and CMPID = " & CmpId & " and YEARID = " & YearId)
-        ElseIf chkdate.CheckState = CheckState.Checked Then
-            dt = OBJCOMMON.search("*", "", " REGISTERPRODUCTWISE ", " and DATE >'" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  and DATE <'" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'  and CMPID = " & CmpId & "  and YEARID = " & YearId)
+        'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+        Dim OBJCMN As New ClsCommon
+        Dim CMPCLAUSE As String = ""
+        Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+        For Each item As Object In CHECKED_CMP
+            If CMPCLAUSE = "" Then
+                CMPCLAUSE = "'" & item.ToString() & "'"
+            Else
+                CMPCLAUSE = CMPCLAUSE & " , '" & item.ToString() & "'"
+                GCMPNAME.Visible = True
+            End If
 
-        ElseIf LSTCMP.CheckedItems.Count > 1 Then
+        Next item
 
-            'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
-            Dim OBJCMN As New ClsCommon
-            'Dim DT As New DataTable
-            Dim CMPCLAUSE As String = ""
-            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
-            For Each item As Object In CHECKED_CMP
-                If CMPCLAUSE = "" Then
-                    CMPCLAUSE = "'" & item.ToString() & "'"
-                Else
-                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
-                End If
-            Next item
-            dt = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
-            CMPCLAUSE = ""
-            For Each DTROW As DataRow In dt.Rows
-                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
-            Next
-            'OBJOUTSTAND.selfor_ss = " {@YEARID} in [" & CMPCLAUSE & "]"
-            ' If RBOUTSTANDINGBILLS.Checked = True Then OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_ALL.YEARID} in [" & CMPCLAUSE & "]" Else OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_DETAILS.YEARID} in [" & CMPCLAUSE & "]"
-            ' If LSTCMP.CheckedItems.Count > 1 Then OBJOUTSTAND.MULTICMP = 1 Else OBJOUTSTAND.MULTICMP = 0
-
+        If CMPCLAUSE = "" Then
+            MsgBox("Please Atleast One Company", MsgBoxStyle.Critical)
+            ' Me.Close()
+            Exit Sub
         End If
-        griddetails.DataSource = dt
+
+        Dim DTCMP As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE =  '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+        CMPCLAUSE = ""
+        For Each DTROW As DataRow In DTCMP.Rows
+            If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+        Next
+        WHERECLAUSE = WHERECLAUSE & " AND YEARID IN  (" & CMPCLAUSE & ")"
+
+        Dim DT As DataTable = OBJCOMMON.search("*", "", " REGISTERPRODUCTWISE ", WHERECLAUSE)
+
+        griddetails.DataSource = DT
 
     End Sub
-
 
     Private Sub ProductWiseRegister_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
@@ -83,6 +63,9 @@ Public Class ProductWiseRegister
 
     Private Sub ProductWiseRegister_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            dtfrom.Value = AccFrom
+            dtto.Value = AccTo
+
             Dim OBJCMN As New ClsCommon
             Dim dt As DataTable = OBJCMN.SEARCH("CMP_NAME", "", "CMPMASTER", "")
             For Each DROW As DataRow In dt.Rows
@@ -95,20 +78,6 @@ Public Class ProductWiseRegister
             Throw ex
         End Try
     End Sub
-
-    Private Sub chkdate_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkdate.CheckedChanged
-        Try
-            dtfrom.Enabled = chkdate.CheckState
-            dtto.Enabled = chkdate.CheckState
-            'fillgrid()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-
-
-
 
     Private Sub gridregister_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridregister.DoubleClick
         Try

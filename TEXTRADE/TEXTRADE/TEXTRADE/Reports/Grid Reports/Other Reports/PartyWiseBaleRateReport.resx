@@ -137,22 +137,10 @@
   <data name="gridregister.Appearance.ViewCaption.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9pt</value>
   </data>
-  <data name="gDate.Caption" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="gDate.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="gDate.VisibleIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gDate.Width" type="System.Int32, mscorlib">
-    <value>65</value>
-  </data>
   <data name="gname.Caption" xml:space="preserve">
     <value>Name</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="gname.ImageIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -160,7 +148,7 @@
     <value>True</value>
   </data>
   <data name="gname.VisibleIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="gname.Width" type="System.Int32, mscorlib">
     <value>200</value>
@@ -172,7 +160,7 @@
     <value>True</value>
   </data>
   <data name="GTRANSPORT.VisibleIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="GTRANSPORT.Width" type="System.Int32, mscorlib">
     <value>200</value>
@@ -184,7 +172,7 @@
     <value>True</value>
   </data>
   <data name="GRATE.VisibleIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="GRATE.Width" type="System.Int32, mscorlib">
     <value>100</value>
@@ -196,7 +184,7 @@
     <value>True</value>
   </data>
   <data name="GNOOFBALES.VisibleIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="GNOOFBALES.Width" type="System.Int32, mscorlib">
     <value>100</value>
@@ -208,13 +196,13 @@
     <value>True</value>
   </data>
   <data name="GAMOUNT.VisibleIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="GAMOUNT.Width" type="System.Int32, mscorlib">
     <value>100</value>
   </data>
   <data name="griddetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1186, 423</value>
+    <value>798, 423</value>
   </data>
   <data name="griddetails.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -265,7 +253,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="cmdshowdetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 67</value>
+    <value>330, 63</value>
   </data>
   <data name="cmdshowdetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 28</value>
@@ -403,7 +391,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="chkdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>562, 44</value>
+    <value>15, 66</value>
   </data>
   <data name="chkdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 19</value>
@@ -433,7 +421,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="dtto.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 68</value>
+    <value>237, 64</value>
   </data>
   <data name="dtto.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 23</value>
@@ -460,7 +448,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="lblto.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 72</value>
+    <value>213, 68</value>
   </data>
   <data name="lblto.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 15</value>
@@ -490,7 +478,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="dtfrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 42</value>
+    <value>112, 64</value>
   </data>
   <data name="dtfrom.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 23</value>
@@ -517,7 +505,7 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="lblfrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>614, 45</value>
+    <value>74, 67</value>
   </data>
   <data name="lblfrom.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 15</value>
@@ -670,13 +658,13 @@
     <value>11, 33</value>
   </data>
   <data name="lbl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 24</value>
+    <value>271, 24</value>
   </data>
   <data name="lbl.TabIndex" type="System.Int32, mscorlib">
     <value>427</value>
   </data>
   <data name="lbl.Text" xml:space="preserve">
-    <value>Ledger Book</value>
+    <value>Party Wise Bale Rate Report</value>
   </data>
   <data name="&gt;&gt;lbl.Name" xml:space="preserve">
     <value>lbl</value>
@@ -735,12 +723,6 @@
   </data>
   <data name="&gt;&gt;gridregister.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;gDate.Name" xml:space="preserve">
-    <value>gDate</value>
-  </data>
-  <data name="&gt;&gt;gDate.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;gname.Name" xml:space="preserve">
     <value>gname</value>
