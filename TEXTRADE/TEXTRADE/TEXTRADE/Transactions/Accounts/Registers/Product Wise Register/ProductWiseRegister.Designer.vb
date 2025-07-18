@@ -47,6 +47,7 @@ Partial Class ProductWiseRegister
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdshowdetails = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -59,10 +60,7 @@ Partial Class ProductWiseRegister
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lbldate = New System.Windows.Forms.Label()
-        Me.registerdate = New System.Windows.Forms.DateTimePicker()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,8 +82,6 @@ Partial Class ProductWiseRegister
         Me.BlendPanel1.Controls.Add(Me.dtfrom)
         Me.BlendPanel1.Controls.Add(Me.lblfrom)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.lbldate)
-        Me.BlendPanel1.Controls.Add(Me.registerdate)
         Me.BlendPanel1.Controls.Add(Me.lbl)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
@@ -134,6 +130,7 @@ Partial Class ProductWiseRegister
         Me.gridregister.OptionsView.ShowAutoFilterRow = True
         Me.gridregister.OptionsView.ShowFooter = True
         Me.gridregister.OptionsView.ShowGroupedColumns = True
+        Me.gridregister.OptionsView.ShowGroupPanel = False
         '
         'GCMPNAME
         '
@@ -162,7 +159,7 @@ Partial Class ProductWiseRegister
         Me.gDate.Caption = "Date"
         Me.gDate.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.gDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gDate.FieldName = "Date"
+        Me.gDate.FieldName = "DATE"
         Me.gDate.Name = "gDate"
         Me.gDate.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[True]
         Me.gDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
@@ -208,7 +205,6 @@ Partial Class ProductWiseRegister
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.OptionsColumn.AllowEdit = False
         Me.GLOTNO.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GLOTNO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{0:0.00}")})
         Me.GLOTNO.Visible = True
         Me.GLOTNO.VisibleIndex = 6
         Me.GLOTNO.Width = 100
@@ -220,7 +216,6 @@ Partial Class ProductWiseRegister
         Me.GBALENO.Name = "GBALENO"
         Me.GBALENO.OptionsColumn.AllowEdit = False
         Me.GBALENO.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GBALENO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{0:0.00}")})
         Me.GBALENO.Visible = True
         Me.GBALENO.VisibleIndex = 7
         Me.GBALENO.Width = 80
@@ -350,7 +345,13 @@ Partial Class ProductWiseRegister
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
         Me.GTYPE.VisibleIndex = 20
-        Me.GTYPE.Width = 80
+        Me.GTYPE.Width = 120
+        '
+        'GNO
+        '
+        Me.GNO.Caption = "NO"
+        Me.GNO.FieldName = "NO"
+        Me.GNO.Name = "GNO"
         '
         'cmdshowdetails
         '
@@ -359,7 +360,7 @@ Partial Class ProductWiseRegister
         Me.cmdshowdetails.FlatAppearance.BorderSize = 0
         Me.cmdshowdetails.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshowdetails.ForeColor = System.Drawing.Color.Black
-        Me.cmdshowdetails.Location = New System.Drawing.Point(445, 46)
+        Me.cmdshowdetails.Location = New System.Drawing.Point(445, 59)
         Me.cmdshowdetails.Name = "cmdshowdetails"
         Me.cmdshowdetails.Size = New System.Drawing.Size(88, 28)
         Me.cmdshowdetails.TabIndex = 4
@@ -484,28 +485,6 @@ Partial Class ProductWiseRegister
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'lbldate
-        '
-        Me.lbldate.AutoSize = True
-        Me.lbldate.BackColor = System.Drawing.Color.Transparent
-        Me.lbldate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbldate.Location = New System.Drawing.Point(1079, 38)
-        Me.lbldate.Name = "lbldate"
-        Me.lbldate.Size = New System.Drawing.Size(33, 14)
-        Me.lbldate.TabIndex = 428
-        Me.lbldate.Text = "Date"
-        Me.lbldate.Visible = False
-        '
-        'registerdate
-        '
-        Me.registerdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.registerdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.registerdate.Location = New System.Drawing.Point(1113, 34)
-        Me.registerdate.Name = "registerdate"
-        Me.registerdate.Size = New System.Drawing.Size(87, 22)
-        Me.registerdate.TabIndex = 423
-        Me.registerdate.Visible = False
-        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -517,12 +496,6 @@ Partial Class ProductWiseRegister
         Me.lbl.Size = New System.Drawing.Size(217, 24)
         Me.lbl.TabIndex = 427
         Me.lbl.Text = "Register Wise Product"
-        '
-        'GNO
-        '
-        Me.GNO.Caption = "NO"
-        Me.GNO.FieldName = "NO"
-        Me.GNO.Name = "GNO"
         '
         'ProductWiseRegister
         '
@@ -571,8 +544,6 @@ Partial Class ProductWiseRegister
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ExcelExport As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents lbldate As Label
-    Friend WithEvents registerdate As DateTimePicker
     Friend WithEvents lbl As Label
     Friend WithEvents GINITIAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
