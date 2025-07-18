@@ -356,8 +356,8 @@ Public Class saledesign
                     crTables = RPTINVOICE_SNCM.Database.Tables
                 ElseIf ClientName = "NAKODAINFOTECH" Then
                     crTables = RPTINVOICE_NAKODAINFOTECH.Database.Tables
-                    'ElseIf ClientName = "ABHEE" Then
-                    '    crTables = RPTINVOICE_ABHEE.Database.Tables
+                ElseIf ClientName = "ABHEE" Then
+                    crTables = RPTINVOICE_ABHEE.Database.Tables
                 Else
                     crTables = RPTINVOICE_TOTALLEFT.Database.Tables
                 End If
@@ -524,18 +524,18 @@ SKIPINVOICE:
                 ElseIf ClientName = "SNCM" Then
                     CRPO.ReportSource = RPTINVOICE_SNCM
                     RPTINVOICE_SNCM.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    'ElseIf ClientName = "ABHEE" Then
-                    '    CRPO.ReportSource = RPTINVOICE_ABHEE
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    '    If BLANKPAPER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
-                    '    If SHOWSIGNONINVOICE = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
-                    '    If INVTOPHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 0
-                    '    If INVCENTREHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
-                    '    If INVSHOWSRNO = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
-                    '    If INVSHOWITEMDESIGN = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+                ElseIf ClientName = "ABHEE" Then
+                    CRPO.ReportSource = RPTINVOICE_ABHEE
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+                    If BLANKPAPER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                    If SHOWSIGNONINVOICE = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+                    If INVTOPHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 0
+                    If INVCENTREHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
+                    If INVSHOWSRNO = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
+                    If INVSHOWITEMDESIGN = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
 
                 Else
                     CRPO.ReportSource = RPTINVOICE_TOTALLEFT
@@ -769,18 +769,18 @@ SKIPINVOICE:
                     If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
                     If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
                     If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
-                    'ElseIf ClientName = "ABHEE" Then
-                    '    OBJ = New InvoiceReport_ABHEE
-                    '    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    '    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
-                    '    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    '    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                    '    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
-                    '    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
-                    '    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
-                    '    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
-                    '    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
-                    '    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+                ElseIf ClientName = "ABHEE" Then
+                    OBJ = New InvoiceReport_ABHEE
+                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
+                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+                    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
+                    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
+                    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
+                    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
                 Else
                     OBJ = New InvoiceReport_TOTALLEFT
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -1264,15 +1264,15 @@ SKIPINVOICE:
                     expo.DestinationOptions = oDfDopt
                     RPTINVOICE_NAKODAINFOTECH.Export()
                     RPTINVOICE_NAKODAINFOTECH.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    'ElseIf ClientName = "ABHEE" Then
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    '    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    '    expo = RPTINVOICE_ABHEE.ExportOptions
-                    '    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    '    expo.DestinationOptions = oDfDopt
-                    '    RPTINVOICE_ABHEE.Export()
-                    '    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+                ElseIf ClientName = "ABHEE" Then
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+                    expo = RPTINVOICE_ABHEE.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTINVOICE_ABHEE.Export()
+                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
 
                 Else
                     RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
