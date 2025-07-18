@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 Imports DevExpress.XtraGrid.Views.Grid
 
@@ -113,7 +114,7 @@ Public Class InvoiceGridDetails
 
             Dim clscommon As New ClsCommon
             Dim dt As DataTable
-            dt = clscommon.search(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
             If dt.Rows.Count > 0 Then
                 cmbregister.Text = dt.Rows(0).Item(0).ToString
             End If
@@ -129,7 +130,7 @@ Public Class InvoiceGridDetails
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
                 Dim dt As DataTable
-                dt = clscommon.search(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+                dt = clscommon.SEARCH(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     SALEREGID = dt.Rows(0).Item(0)
                     fillgrid(" and INVOICEMASTER.INVOICE_yearid = " & YearId & " AND INVOICEMASTER.INVOICE_registerid = " & SALEREGID & " order by dbo.INVOICEMASTER.INVOICE_no ")
@@ -170,9 +171,14 @@ Public Class InvoiceGridDetails
             gridbill.SaveLayoutToXml(layoutPath)
             MessageBox.Show("Layout saved as: " & layoutFileName)
 
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
 
             Dim OBJSELECTSG As New SelectCustomLayout
-            OBJSELECTSG.ShowDialog()
+                OBJSELECTSG.ShowDialog()
+                OBJSELECTSG.FORMNAME = layoutFileName
+            OBJSELECTSG.FILE = xmlContent
 
         Catch ex As Exception
             Throw ex
