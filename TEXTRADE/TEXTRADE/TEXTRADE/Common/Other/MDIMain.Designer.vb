@@ -750,6 +750,7 @@ Partial Class MDIMain
         Me.DAILYGREYSTOCKEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator64 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLSTRIPGREYSTOCK = New System.Windows.Forms.ToolStripSeparator()
+        Me.PartyWiseBaleRateReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator155 = New System.Windows.Forms.ToolStripSeparator()
         Me.STORES_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESPO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1192,7 +1193,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.PartyWiseBaleRateReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RegisterProductWiseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -5708,7 +5709,7 @@ Partial Class MDIMain
         '
         'OtherReportsToolStripMenuItem
         '
-        Me.OtherReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegisterWisePurchaseSummaryToolStripMenuItem, Me.RegiserWiseSaleSummaryToolStripMenuItem, Me.DAILYACTIVITYFILTER_MASTER, Me.PENDINGDETAILS_MASTER, Me.GROSSPROFIT_MASTER, Me.ReOrderLevelReportToolStripMenuItem, Me.StockRegisterToolStripMenuItem, Me.ContractorReportToolStripMenuItem, Me.CATALOG_REPORTS, Me.EwayEntryDetailsToolStripMenuItem, Me.EINVOICECOUNTERREPORT_MASTER, Me.CHALLANSTOCKREG_MASTER, Me.ErrorInOpeningBillsReportToolStripMenuItem, Me.SOREPORT_MASTER, Me.SALARYREPORT_MASTER, Me.FollowupReportToolStripMenuItem, Me.ToolStripSeparator56, Me.DAILYGREYSTOCK_MASTER, Me.TOOLSTRIPGREYSTOCK, Me.PartyWiseBaleRateReportToolStripMenuItem})
+        Me.OtherReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegisterWisePurchaseSummaryToolStripMenuItem, Me.RegiserWiseSaleSummaryToolStripMenuItem, Me.DAILYACTIVITYFILTER_MASTER, Me.PENDINGDETAILS_MASTER, Me.GROSSPROFIT_MASTER, Me.ReOrderLevelReportToolStripMenuItem, Me.StockRegisterToolStripMenuItem, Me.ContractorReportToolStripMenuItem, Me.CATALOG_REPORTS, Me.EwayEntryDetailsToolStripMenuItem, Me.EINVOICECOUNTERREPORT_MASTER, Me.CHALLANSTOCKREG_MASTER, Me.ErrorInOpeningBillsReportToolStripMenuItem, Me.SOREPORT_MASTER, Me.SALARYREPORT_MASTER, Me.FollowupReportToolStripMenuItem, Me.ToolStripSeparator56, Me.DAILYGREYSTOCK_MASTER, Me.TOOLSTRIPGREYSTOCK, Me.PartyWiseBaleRateReportToolStripMenuItem, Me.RegisterProductWiseToolStripMenuItem})
         Me.OtherReportsToolStripMenuItem.Name = "OtherReportsToolStripMenuItem"
         Me.OtherReportsToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.OtherReportsToolStripMenuItem.Text = "Other Reports"
@@ -5845,6 +5846,12 @@ Partial Class MDIMain
         Me.TOOLSTRIPGREYSTOCK.Name = "TOOLSTRIPGREYSTOCK"
         Me.TOOLSTRIPGREYSTOCK.Size = New System.Drawing.Size(251, 6)
         Me.TOOLSTRIPGREYSTOCK.Visible = False
+        '
+        'PartyWiseBaleRateReportToolStripMenuItem
+        '
+        Me.PartyWiseBaleRateReportToolStripMenuItem.Name = "PartyWiseBaleRateReportToolStripMenuItem"
+        Me.PartyWiseBaleRateReportToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.PartyWiseBaleRateReportToolStripMenuItem.Text = "Party Wise Bale Rate Report"
         '
         'ToolStripSeparator155
         '
@@ -8708,11 +8715,11 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'PartyWiseBaleRateReportToolStripMenuItem
+        'RegisterProductWiseToolStripMenuItem
         '
-        Me.PartyWiseBaleRateReportToolStripMenuItem.Name = "PartyWiseBaleRateReportToolStripMenuItem"
-        Me.PartyWiseBaleRateReportToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
-        Me.PartyWiseBaleRateReportToolStripMenuItem.Text = "Party Wise Bale Rate Report"
+        Me.RegisterProductWiseToolStripMenuItem.Name = "RegisterProductWiseToolStripMenuItem"
+        Me.RegisterProductWiseToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.RegisterProductWiseToolStripMenuItem.Text = "Register Product Wise"
         '
         'MDIMain
         '
@@ -9910,4 +9917,5 @@ Partial Class MDIMain
     Friend WithEvents MONTHLYSALEANALYSIS_REPORT As ToolStripMenuItem
     Friend WithEvents AutoWhatsappToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents PartyWiseBaleRateReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RegisterProductWiseToolStripMenuItem As ToolStripMenuItem
 End Class

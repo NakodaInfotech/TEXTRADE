@@ -2020,6 +2020,12 @@
     <Compile Include="Transactions\Accounts\Registers\Ledger Book\LedgerPartySummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.Designer.vb">
+      <DependentUpon>ProductWiseRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNote.Designer.vb">
       <DependentUpon>AgencyCreditNote.vb</DependentUpon>
     </Compile>
@@ -9416,6 +9422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Registers\Ledger Book\LedgerPartySummary.resx">
       <DependentUpon>LedgerPartySummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.resx">
+      <DependentUpon>ProductWiseRegister.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNote.resx">
       <DependentUpon>AgencyCreditNote.vb</DependentUpon>
