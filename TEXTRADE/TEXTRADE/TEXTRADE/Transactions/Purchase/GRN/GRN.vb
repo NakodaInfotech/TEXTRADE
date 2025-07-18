@@ -3448,7 +3448,7 @@ LINE1:
             End If
 
 
-            If ClientName = "YASHVI" Then
+            If ClientName = "YASHVI" Or ClientName = "MNARESH" Then
                 TXTBALEWT.Visible = True
                 LBLBALEWT.Visible = True
                 TXTPURRATE.Visible = True

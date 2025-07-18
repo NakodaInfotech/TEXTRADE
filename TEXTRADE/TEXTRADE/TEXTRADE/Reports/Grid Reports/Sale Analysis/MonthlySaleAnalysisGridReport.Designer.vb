@@ -22,24 +22,11 @@ Partial Class MonthlySaleAnalysisGridReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.CMBCITY = New System.Windows.Forms.ComboBox()
@@ -214,7 +201,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.CMBSUBGROUP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSUBGROUP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBSUBGROUP.FormattingEnabled = True
-        Me.CMBSUBGROUP.Items.AddRange(New Object() {"", "PARTYWISE", "AGENTWISE"})
+        Me.CMBSUBGROUP.Items.AddRange(New Object() {"", "PARTYWISE", "AGENTWISE", "ITEMWISE"})
         Me.CMBSUBGROUP.Location = New System.Drawing.Point(88, 42)
         Me.CMBSUBGROUP.MaxDropDownItems = 14
         Me.CMBSUBGROUP.Name = "CMBSUBGROUP"
@@ -458,10 +445,10 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         Me.TabControl1.Controls.Add(Me.TBREPORT)
         Me.TabControl1.Controls.Add(Me.TBFILTERS)
-        Me.TabControl1.Location = New System.Drawing.Point(2, 99)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 99)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1446, 561)
+        Me.TabControl1.Size = New System.Drawing.Size(1448, 561)
         Me.TabControl1.TabIndex = 14
         '
         'TBREPORT
@@ -469,10 +456,11 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TBREPORT.AutoScroll = True
         Me.TBREPORT.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TBREPORT.Controls.Add(Me.GRIDREPORT)
+        Me.TBREPORT.Font = New System.Drawing.Font("Verdana", 7.0!)
         Me.TBREPORT.Location = New System.Drawing.Point(4, 24)
         Me.TBREPORT.Name = "TBREPORT"
         Me.TBREPORT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBREPORT.Size = New System.Drawing.Size(1438, 533)
+        Me.TBREPORT.Size = New System.Drawing.Size(1440, 533)
         Me.TBREPORT.TabIndex = 0
         Me.TBREPORT.Text = "Report"
         '
@@ -482,27 +470,27 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.GRIDREPORT.AllowUserToDeleteRows = False
         Me.GRIDREPORT.AllowUserToResizeColumns = False
         Me.GRIDREPORT.AllowUserToResizeRows = False
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDREPORT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDREPORT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDREPORT.BackgroundColor = System.Drawing.Color.White
         Me.GRIDREPORT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDREPORT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDREPORT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Verdana", 7.0!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDREPORT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDREPORT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDREPORT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GNAME, Me.GAPRIL, Me.GMAY, Me.GJUNE, Me.GJULY, Me.GAUGUST, Me.GSEPTEMBER, Me.GOCTOBER, Me.GNOVEMBER, Me.GDECEMBER, Me.GJANUARY, Me.GFEBRUARY, Me.GMARCH, Me.GTOTAL})
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Verdana", 7.0!)
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDREPORT.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDREPORT.Location = New System.Drawing.Point(3, 2)
         Me.GRIDREPORT.MultiSelect = False
@@ -510,13 +498,13 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.GRIDREPORT.ReadOnly = True
         Me.GRIDREPORT.RowHeadersVisible = False
         Me.GRIDREPORT.RowHeadersWidth = 30
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDREPORT.RowsDefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDREPORT.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDREPORT.RowTemplate.Height = 20
         Me.GRIDREPORT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDREPORT.Size = New System.Drawing.Size(1434, 529)
+        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 529)
         Me.GRIDREPORT.TabIndex = 686
         Me.GRIDREPORT.TabStop = False
         '
@@ -529,7 +517,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TBFILTERS.Location = New System.Drawing.Point(4, 22)
         Me.TBFILTERS.Name = "TBFILTERS"
         Me.TBFILTERS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBFILTERS.Size = New System.Drawing.Size(1432, 535)
+        Me.TBFILTERS.Size = New System.Drawing.Size(1438, 535)
         Me.TBFILTERS.TabIndex = 1
         Me.TBFILTERS.Text = "Filters"
         '
@@ -846,19 +834,16 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GNAME
         '
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GNAME.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GNAME.DefaultCellStyle = DataGridViewCellStyle3
         Me.GNAME.HeaderText = "Name"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.ReadOnly = True
         Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GNAME.Width = 170
         '
         'GAPRIL
         '
-        DataGridViewCellStyle22.Format = "N2"
-        Me.GAPRIL.DefaultCellStyle = DataGridViewCellStyle22
         Me.GAPRIL.HeaderText = "April"
         Me.GAPRIL.Name = "GAPRIL"
         Me.GAPRIL.ReadOnly = True
@@ -867,8 +852,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GMAY
         '
-        DataGridViewCellStyle23.Format = "N2"
-        Me.GMAY.DefaultCellStyle = DataGridViewCellStyle23
         Me.GMAY.HeaderText = "May"
         Me.GMAY.Name = "GMAY"
         Me.GMAY.ReadOnly = True
@@ -877,8 +860,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GJUNE
         '
-        DataGridViewCellStyle24.Format = "N2"
-        Me.GJUNE.DefaultCellStyle = DataGridViewCellStyle24
         Me.GJUNE.HeaderText = "June"
         Me.GJUNE.Name = "GJUNE"
         Me.GJUNE.ReadOnly = True
@@ -887,8 +868,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GJULY
         '
-        DataGridViewCellStyle25.Format = "N2"
-        Me.GJULY.DefaultCellStyle = DataGridViewCellStyle25
         Me.GJULY.HeaderText = "July"
         Me.GJULY.Name = "GJULY"
         Me.GJULY.ReadOnly = True
@@ -897,8 +876,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GAUGUST
         '
-        DataGridViewCellStyle26.Format = "N2"
-        Me.GAUGUST.DefaultCellStyle = DataGridViewCellStyle26
         Me.GAUGUST.HeaderText = "August"
         Me.GAUGUST.Name = "GAUGUST"
         Me.GAUGUST.ReadOnly = True
@@ -907,8 +884,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GSEPTEMBER
         '
-        DataGridViewCellStyle27.Format = "N2"
-        Me.GSEPTEMBER.DefaultCellStyle = DataGridViewCellStyle27
         Me.GSEPTEMBER.HeaderText = "September"
         Me.GSEPTEMBER.Name = "GSEPTEMBER"
         Me.GSEPTEMBER.ReadOnly = True
@@ -917,8 +892,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GOCTOBER
         '
-        DataGridViewCellStyle28.Format = "N2"
-        Me.GOCTOBER.DefaultCellStyle = DataGridViewCellStyle28
         Me.GOCTOBER.HeaderText = "October"
         Me.GOCTOBER.Name = "GOCTOBER"
         Me.GOCTOBER.ReadOnly = True
@@ -927,8 +900,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GNOVEMBER
         '
-        DataGridViewCellStyle29.Format = "N2"
-        Me.GNOVEMBER.DefaultCellStyle = DataGridViewCellStyle29
         Me.GNOVEMBER.HeaderText = "November"
         Me.GNOVEMBER.Name = "GNOVEMBER"
         Me.GNOVEMBER.ReadOnly = True
@@ -937,8 +908,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GDECEMBER
         '
-        DataGridViewCellStyle30.Format = "N2"
-        Me.GDECEMBER.DefaultCellStyle = DataGridViewCellStyle30
         Me.GDECEMBER.HeaderText = "December"
         Me.GDECEMBER.Name = "GDECEMBER"
         Me.GDECEMBER.ReadOnly = True
@@ -947,8 +916,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GJANUARY
         '
-        DataGridViewCellStyle31.Format = "N2"
-        Me.GJANUARY.DefaultCellStyle = DataGridViewCellStyle31
         Me.GJANUARY.HeaderText = "January"
         Me.GJANUARY.Name = "GJANUARY"
         Me.GJANUARY.ReadOnly = True
@@ -957,8 +924,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GFEBRUARY
         '
-        DataGridViewCellStyle32.Format = "N2"
-        Me.GFEBRUARY.DefaultCellStyle = DataGridViewCellStyle32
         Me.GFEBRUARY.HeaderText = "February"
         Me.GFEBRUARY.Name = "GFEBRUARY"
         Me.GFEBRUARY.ReadOnly = True
@@ -967,8 +932,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GMARCH
         '
-        DataGridViewCellStyle33.Format = "N2"
-        Me.GMARCH.DefaultCellStyle = DataGridViewCellStyle33
         Me.GMARCH.HeaderText = "March"
         Me.GMARCH.Name = "GMARCH"
         Me.GMARCH.ReadOnly = True
@@ -977,13 +940,10 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'GTOTAL
         '
-        DataGridViewCellStyle34.Format = "N2"
-        Me.GTOTAL.DefaultCellStyle = DataGridViewCellStyle34
         Me.GTOTAL.HeaderText = "Total"
         Me.GTOTAL.Name = "GTOTAL"
         Me.GTOTAL.ReadOnly = True
         Me.GTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTAL.Width = 95
         '
         'MonthlySaleAnalysisGridReport
         '

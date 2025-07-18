@@ -1038,7 +1038,6 @@ Partial Class SamplePriceList
         Me.GRATE.DefaultCellStyle = DataGridViewCellStyle5
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
         Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GRATE.Width = 80
