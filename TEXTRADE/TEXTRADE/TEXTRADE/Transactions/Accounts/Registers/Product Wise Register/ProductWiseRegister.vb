@@ -66,8 +66,6 @@ Public Class ProductWiseRegister
         End If
         griddetails.DataSource = dt
 
-
-
     End Sub
 
 
@@ -92,7 +90,7 @@ Public Class ProductWiseRegister
                 If DROW(0) = CmpName Then LSTCMP.SetItemChecked(LSTCMP.Items.Count - 1, True)
             Next
 
-            ' fillgrid()
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -133,7 +131,7 @@ Public Class ProductWiseRegister
             If gridregister.RowCount > 0 Then
                 Dim dtrow As DataRow = gridregister.GetFocusedDataRow
                 If dtrow("TYPE") = "OPENINGBILL" Or dtrow("TYPE") = "OPENINGSTOCK" Then Exit Sub
-                VIEWFORM(dtrow("TYPE"), True, dtrow("BILL"), dtrow("REGNAME"))
+                VIEWFORM(dtrow("TYPE"), True, dtrow("NO"), dtrow("REGNAME"))
             End If
         Catch ex As Exception
             Throw ex
