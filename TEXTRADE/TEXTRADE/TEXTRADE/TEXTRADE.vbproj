@@ -391,6 +391,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.Designer.vb">
+      <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.Designer.vb">
       <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
     </Compile>
