@@ -160,7 +160,7 @@ Public Class StockReco
 
 
                         'Item Grid
-                        If Val(dr("GRIDSRNO")) > 0 Then GRIDSTOCK.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("PCS"), "0.00"), dr("UNIT"), Format(dr("MTRS"), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
+                        If Val(dr("GRIDSRNO")) > 0 Then GRIDSTOCK.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("PCS"), "0.00"), dr("UNIT"), Format(dr("MTRS"), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("BALENO").ToString, dr("BARCODE").ToString, dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
 
                         CHKMANUALRATE.Checked = Convert.ToBoolean(dr("MANUALRATE"))
 
@@ -502,6 +502,8 @@ Public Class StockReco
             Dim RATE As String = ""
             Dim PER As String = ""
             Dim AMOUNT As String = ""
+            Dim BALENO As String = ""
+
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCK.Rows
@@ -521,8 +523,8 @@ Public Class StockReco
                         RATE = row.Cells(GRATE.Index).Value
                         PER = row.Cells(GPER.Index).Value
                         AMOUNT = row.Cells(GAMOUNT.Index).Value
+                        BALENO = row.Cells(GBALENO.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-
                         FROMNO = row.Cells(GFROMNO.Index).Value.ToString
                         FROMSRNO = row.Cells(GFROMSRNO.Index).Value.ToString
                         FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
@@ -542,6 +544,7 @@ Public Class StockReco
                         RATE = RATE & "|" & row.Cells(GRATE.Index).Value
                         PER = PER & "|" & row.Cells(GPER.Index).Value
                         AMOUNT = AMOUNT & "|" & row.Cells(GAMOUNT.Index).Value
+                        BALENO = BALENO & "|" & row.Cells(GBALENO.Index).Value.ToString
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value.ToString
                         FROMSRNO = FROMSRNO & "|" & row.Cells(GFROMSRNO.Index).Value.ToString
@@ -564,6 +567,7 @@ Public Class StockReco
             alParaval.Add(RATE)
             alParaval.Add(PER)
             alParaval.Add(AMOUNT)
+            alParaval.Add(BALENO)
             alParaval.Add(BARCODE)
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
@@ -950,7 +954,7 @@ NEXTLINE:
 
                     If ClientName = "SAKARIA" Or ClientName = "CC" Or ClientName = "C3" Then CMBNAME.Text = DTROWPS("PURNAME")
 
-                    GRIDSTOCK.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("LOTNO"), Format(Val(DTROWPS("PCS")), "0.00"), DTROWPS("UNIT"), Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("PURRATE")), "Mtrs", 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"))
+                    GRIDSTOCK.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("LOTNO"), Format(Val(DTROWPS("PCS")), "0.00"), DTROWPS("UNIT"), Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("PURRATE")), "Mtrs", 0, DTROWPS("BALENO"), DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"))
                     If CHKYARDMTR.Checked = True And CHKCOPY.Checked = True Then
                         DTROWPS("MTRS") = Format(Val(DTROWPS("MTRS")) * 0.9144, "0.00")
                         DTROWPS("UNIT") = "Mtrs"

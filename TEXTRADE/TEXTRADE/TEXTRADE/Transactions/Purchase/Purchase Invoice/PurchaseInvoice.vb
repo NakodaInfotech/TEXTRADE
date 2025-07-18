@@ -4892,9 +4892,9 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub CMBSACDESC_Enter(sender As Object, e As EventArgs) Handles CMBSACDESC.Enter
-        If CMBSACDESC.Items.Count > 0 Then CMBSACDESC.SelectedIndex = 0
-    End Sub
+    'Private Sub CMBSACDESC_Enter(sender As Object, e As EventArgs) Handles CMBSACDESC.Enter
+    '    If CMBSACDESC.Items.Count > 0 Then CMBSACDESC.SelectedIndex = 0
+    'End Sub
 
     Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
         Try

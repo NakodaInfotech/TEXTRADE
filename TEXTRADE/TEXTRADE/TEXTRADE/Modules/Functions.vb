@@ -4864,106 +4864,13 @@ PRINTALL:
 
     Sub VIEWFORM(ByVal TYPE As String, ByVal EDIT As Boolean, ByVal BILLNO As Integer, ByVal REGTYPE As String)
         Try
-            If TYPE = "PURCHASE" Then
-
-                Dim OBJPURCHASE As New PurchaseMaster
-                OBJPURCHASE.MdiParent = MDIMain
-                OBJPURCHASE.EDIT = EDIT
-                OBJPURCHASE.TEMPBILLNO = BILLNO
-                OBJPURCHASE.TEMPREGNAME = REGTYPE
-                OBJPURCHASE.Show()
-
-            ElseIf TYPE = "CHALLAN" Then
-
-                Dim OBJGDN As New GDN
-                OBJGDN.MdiParent = MDIMain
-                OBJGDN.EDIT = EDIT
-                OBJGDN.TEMPGDNNO = BILLNO
-                OBJGDN.Show()
-
-            ElseIf TYPE = "SALE" Then
-
-                Dim OBJSALE As New InvoiceMaster
-                OBJSALE.MdiParent = MDIMain
-                OBJSALE.EDIT = EDIT
-                OBJSALE.TEMPINVOICENO = BILLNO
-                OBJSALE.TEMPREGNAME = REGTYPE
-                OBJSALE.Show()
-
-            ElseIf TYPE = "MATREC" Then
-
-                Dim OBJMATREC As New MaterialReceipt
-                OBJMATREC.MdiParent = MDIMain
-                OBJMATREC.EDIT = EDIT
-                OBJMATREC.TEMPMATRECNO = BILLNO
-                OBJMATREC.Show()
-
-            ElseIf TYPE = "INHOUSECHECKING" Or TYPE = "INHOUSECHECKINGISS" Then
-
-                Dim OBJCHECK As New InHouseChecking
-                OBJCHECK.MdiParent = MDIMain
-                OBJCHECK.EDIT = EDIT
-                OBJCHECK.TEMPCHECKINGNO = BILLNO
-                OBJCHECK.Show()
-
-            ElseIf TYPE = "ISSUEPACKING" Then
-
-                Dim OBJISS As New IssueToPacking
-                OBJISS.MdiParent = MDIMain
-                OBJISS.EDIT = EDIT
-                OBJISS.TEMPISSUENO = BILLNO
-                OBJISS.Show()
-
-            ElseIf TYPE = "RECPACKING" Then
-
-                Dim OBJREC As New RecFromPacking
-                OBJREC.MdiParent = MDIMain
-                OBJREC.EDIT = EDIT
-                OBJREC.TEMPRECNO = BILLNO
-                OBJREC.Show()
-
-            ElseIf TYPE = "JOBOUT" Then
-
-                Dim OBJJO As New JobOut
-                OBJJO.MdiParent = MDIMain
-                OBJJO.EDIT = EDIT
-                OBJJO.TEMPJONO = BILLNO
-                OBJJO.Show()
-
-            ElseIf TYPE = "JOBIN" Then
-
-                Dim OBJJI As New JobIn
-                OBJJI.MdiParent = MDIMain
-                OBJJI.EDIT = EDIT
-                OBJJI.TEMPJOBINNO = BILLNO
-                OBJJI.Show()
-
-            ElseIf TYPE = "PAYMENT" Then
-
-                Dim OBJPAYMENT As New PaymentMaster
-                OBJPAYMENT.MdiParent = MDIMain
-                OBJPAYMENT.EDIT = EDIT
-                OBJPAYMENT.TEMPPAYMENTNO = BILLNO
-                OBJPAYMENT.TEMPREGNAME = REGTYPE
-                OBJPAYMENT.Show()
-
-            ElseIf TYPE = "RECEIPT" Then
-
-                Dim OBJREC As New Receipt
-                OBJREC.MdiParent = MDIMain
-                OBJREC.EDIT = EDIT
-                OBJREC.TEMPRECEIPTNO = BILLNO
-                OBJREC.TEMPREGNAME = REGTYPE
-                OBJREC.Show()
-
-            ElseIf TYPE = "JOURNAL" Then
-
-                Dim OBJJV As New journal
-                OBJJV.MdiParent = MDIMain
-                OBJJV.EDIT = EDIT
-                OBJJV.TEMPJVNO = BILLNO
-                OBJJV.TEMPREGNAME = REGTYPE
-                OBJJV.Show()
+            If TYPE = "CREDITNOTE" Then
+                Dim OBJCN As New CREDITNOTE
+                OBJCN.MdiParent = MDIMain
+                OBJCN.edit = EDIT
+                OBJCN.TEMPCNNO = BILLNO
+                OBJCN.TEMPREGNAME = REGTYPE
+                OBJCN.Show()
 
             ElseIf TYPE = "DEBITNOTE" Then
 
@@ -4974,57 +4881,78 @@ PRINTALL:
                 OBJDN.TEMPREGNAME = REGTYPE
                 OBJDN.Show()
 
-            ElseIf TYPE = "CREDITNOTE" Then
+            ElseIf TYPE = "NONPURCHASE" Then
 
-                Dim OBJCN As New CREDITNOTE
-                OBJCN.MdiParent = MDIMain
-                OBJCN.edit = EDIT
-                OBJCN.TEMPCNNO = BILLNO
-                OBJCN.TEMPREGNAME = REGTYPE
-                OBJCN.Show()
+                Dim OBJNP As New ExpenseVoucher
+                OBJNP.MdiParent = MDIMain
+                OBJNP.EDIT = EDIT
+                OBJNP.TEMPEXPNO = BILLNO
+                OBJNP.Show()
 
-            ElseIf TYPE = "CONTRA" Then
 
-                Dim OBJCON As New ContraEntry
-                OBJCON.MdiParent = MDIMain
-                OBJCON.EDIT = EDIT
-                OBJCON.tempcontrano = BILLNO
-                OBJCON.TEMPREGNAME = REGTYPE
-                OBJCON.Show()
+            ElseIf TYPE = "PURCHASE" Then
 
-            ElseIf TYPE = "EXPENSE" Then
+                Dim OBJPURCHASE As New PurchaseMaster
+                OBJPURCHASE.MdiParent = MDIMain
+                OBJPURCHASE.EDIT = EDIT
+                OBJPURCHASE.TEMPBILLNO = BILLNO
+                OBJPURCHASE.TEMPREGNAME = REGTYPE
+                OBJPURCHASE.Show()
 
-                Dim OBJEXP As New ExpenseVoucher
-                OBJEXP.MdiParent = MDIMain
-                OBJEXP.EDIT = EDIT
-                OBJEXP.TEMPEXPNO = BILLNO
-                OBJEXP.TEMPREGNAME = REGTYPE
-                OBJEXP.FRMSTRING = "NONPURCHASE"
-                OBJEXP.Show()
+            ElseIf TYPE = "SALE" Then
 
-            ElseIf TYPE = "SALE RETURN" Or TYPE = "SALERETURN" Then
+                Dim OBJSALE As New InvoiceMaster
+                OBJSALE.MdiParent = MDIMain
+                OBJSALE.EDIT = EDIT
+                OBJSALE.TEMPINVOICENO = BILLNO
+                OBJSALE.TEMPREGNAME = REGTYPE
+                OBJSALE.Show()
 
-                Dim OBJSALERET As New SaleReturn
-                OBJSALERET.MdiParent = MDIMain
-                OBJSALERET.EDIT = EDIT
-                OBJSALERET.TEMPSALRETNO = BILLNO
-                OBJSALERET.Show()
 
-            ElseIf TYPE = "PUR RETURN" Or TYPE = "PURCHASERETURN" Then
 
-                Dim OBJPURRET As New PurchaseReturn
-                OBJPURRET.MdiParent = MDIMain
-                OBJPURRET.EDIT = EDIT
-                OBJPURRET.TEMPPRNO = BILLNO
-                OBJPURRET.Show()
 
-            ElseIf TYPE = "STKADJ" Then
+            ElseIf TYPE = "CHALLAN" Then
 
-                Dim OBJSTOCKADJ As New StockReco
-                OBJSTOCKADJ.MdiParent = MDIMain
-                OBJSTOCKADJ.EDIT = EDIT
-                OBJSTOCKADJ.TEMPRECONO = BILLNO
-                OBJSTOCKADJ.Show()
+                Dim OBJGDN As New GDN
+                OBJGDN.MdiParent = MDIMain
+                OBJGDN.EDIT = EDIT
+                OBJGDN.TEMPGDNNO = BILLNO
+                OBJGDN.Show()
+
+
+
+            ElseIf TYPE = "GODOWNTRANSFER" Then
+
+                Dim OBJGODOWN As New InterGodownTransfer
+                OBJGODOWN.MdiParent = MDIMain
+                OBJGODOWN.EDIT = EDIT
+                OBJGODOWN.TEMPGODOWNNO = BILLNO
+                OBJGODOWN.Show()
+
+            ElseIf TYPE = "ISSTOPACK" Then
+
+                Dim OBJISS As New IssueToPacking
+                OBJISS.MdiParent = MDIMain
+                OBJISS.EDIT = EDIT
+                OBJISS.TEMPISSUENO = BILLNO
+                OBJISS.Show()
+
+            ElseIf TYPE = "PACKINGSLIP" Then
+
+                Dim OBJPCK As New PackingSlip
+                OBJPCK.MdiParent = MDIMain
+                OBJPCK.EDIT = EDIT
+                OBJPCK.TEMPPACKINGNO = BILLNO
+                OBJPCK.Show()
+
+            ElseIf TYPE = "SALEORDER" Then
+
+                Dim OBJSO As New SaleOrder
+                OBJSO.MdiParent = MDIMain
+                OBJSO.EDIT = EDIT
+                OBJSO.TEMPSONO = BILLNO
+                OBJSO.Show()
+
             End If
         Catch ex As Exception
             Throw ex

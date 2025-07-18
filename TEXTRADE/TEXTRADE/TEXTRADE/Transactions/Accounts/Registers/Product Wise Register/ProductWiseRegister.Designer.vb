@@ -23,6 +23,7 @@ Partial Class ProductWiseRegister
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCMPNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,7 +62,7 @@ Partial Class ProductWiseRegister
         Me.lbldate = New System.Windows.Forms.Label()
         Me.registerdate = New System.Windows.Forms.DateTimePicker()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
+        Me.GNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +93,15 @@ Partial Class ProductWiseRegister
         Me.BlendPanel1.Size = New System.Drawing.Size(1214, 582)
         Me.BlendPanel1.TabIndex = 1
         '
+        'LSTCMP
+        '
+        Me.LSTCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LSTCMP.FormattingEnabled = True
+        Me.LSTCMP.Location = New System.Drawing.Point(937, 28)
+        Me.LSTCMP.Name = "LSTCMP"
+        Me.LSTCMP.Size = New System.Drawing.Size(136, 72)
+        Me.LSTCMP.TabIndex = 722
+        '
         'griddetails
         '
         Me.griddetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -113,7 +123,7 @@ Partial Class ProductWiseRegister
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCMPNAME, Me.GINITIAL, Me.gDate, Me.GNAME, Me.GITEMNAME, Me.GDESIGN, Me.GLOTNO, Me.GBALENO, Me.GBARCODE, Me.GBALECOUNT, Me.GQTY, Me.GMTRS, Me.GUNIT, Me.GRATE, Me.GCGST, Me.GSGST, Me.GIGST, Me.GRCM, Me.GGRANDTOTAL, Me.GREGNAME, Me.GTYPE})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCMPNAME, Me.GINITIAL, Me.gDate, Me.GNAME, Me.GITEMNAME, Me.GDESIGN, Me.GLOTNO, Me.GBALENO, Me.GBARCODE, Me.GBALECOUNT, Me.GQTY, Me.GMTRS, Me.GUNIT, Me.GRATE, Me.GCGST, Me.GSGST, Me.GIGST, Me.GRCM, Me.GGRANDTOTAL, Me.GREGNAME, Me.GTYPE, Me.GNO})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -508,14 +518,11 @@ Partial Class ProductWiseRegister
         Me.lbl.TabIndex = 427
         Me.lbl.Text = "Register Wise Product"
         '
-        'LSTCMP
+        'GNO
         '
-        Me.LSTCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LSTCMP.FormattingEnabled = True
-        Me.LSTCMP.Location = New System.Drawing.Point(937, 28)
-        Me.LSTCMP.Name = "LSTCMP"
-        Me.LSTCMP.Size = New System.Drawing.Size(136, 72)
-        Me.LSTCMP.TabIndex = 722
+        Me.GNO.Caption = "NO"
+        Me.GNO.FieldName = "NO"
+        Me.GNO.Name = "GNO"
         '
         'ProductWiseRegister
         '
@@ -578,4 +585,5 @@ Partial Class ProductWiseRegister
     Friend WithEvents GRCM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LSTCMP As CheckedListBox
+    Friend WithEvents GNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
