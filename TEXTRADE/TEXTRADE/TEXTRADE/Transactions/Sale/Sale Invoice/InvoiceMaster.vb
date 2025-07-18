@@ -5247,6 +5247,9 @@ LINE1:
                     GGRIDPURPARTY.Visible = True
                     GPURPARTYBILLNO.Visible = True
 
+                    GLRNO.Visible = True
+                    GTRANS.Visible = True
+
                     GWT.Visible = True
                     LBLTOTALWT.Visible = True
                     CMDSELECTSTOCK.Visible = True
