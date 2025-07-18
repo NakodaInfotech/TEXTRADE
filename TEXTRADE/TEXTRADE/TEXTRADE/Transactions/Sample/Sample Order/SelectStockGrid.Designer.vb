@@ -23,6 +23,7 @@ Partial Class SelectStockGrid
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.PBIMAGE1 = New System.Windows.Forms.PictureBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,22 +37,21 @@ Partial Class SelectStockGrid
         Me.GPRGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.CMDPHOTOVIEW = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
-        Me.PBIMAGE1 = New System.Windows.Forms.PictureBox()
-        Me.CMDPHOTOVIEW = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.APPROXDATE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.APPROXDATE.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -68,6 +68,20 @@ Partial Class SelectStockGrid
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1171, 581)
         Me.BlendPanel1.TabIndex = 4
+        '
+        'PBIMAGE1
+        '
+        Me.PBIMAGE1.BackColor = System.Drawing.Color.White
+        Me.PBIMAGE1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBIMAGE1.ErrorImage = Nothing
+        Me.PBIMAGE1.InitialImage = Nothing
+        Me.PBIMAGE1.Location = New System.Drawing.Point(382, 541)
+        Me.PBIMAGE1.Name = "PBIMAGE1"
+        Me.PBIMAGE1.Size = New System.Drawing.Size(28, 29)
+        Me.PBIMAGE1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBIMAGE1.TabIndex = 481
+        Me.PBIMAGE1.TabStop = False
+        Me.PBIMAGE1.Visible = False
         '
         'gridbilldetails
         '
@@ -208,6 +222,16 @@ Partial Class SelectStockGrid
         Me.APPROXDATE.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.APPROXDATE.Name = "APPROXDATE"
         '
+        'CMDPHOTOVIEW
+        '
+        Me.CMDPHOTOVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOVIEW.Location = New System.Drawing.Point(416, 541)
+        Me.CMDPHOTOVIEW.Name = "CMDPHOTOVIEW"
+        Me.CMDPHOTOVIEW.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOVIEW.TabIndex = 480
+        Me.CMDPHOTOVIEW.Text = "&View"
+        Me.CMDPHOTOVIEW.UseVisualStyleBackColor = True
+        '
         'cmdok
         '
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
@@ -268,30 +292,6 @@ Partial Class SelectStockGrid
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "ToolStripButton1"
         '
-        'PBIMAGE1
-        '
-        Me.PBIMAGE1.BackColor = System.Drawing.Color.White
-        Me.PBIMAGE1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBIMAGE1.ErrorImage = Nothing
-        Me.PBIMAGE1.InitialImage = Nothing
-        Me.PBIMAGE1.Location = New System.Drawing.Point(382, 541)
-        Me.PBIMAGE1.Name = "PBIMAGE1"
-        Me.PBIMAGE1.Size = New System.Drawing.Size(28, 29)
-        Me.PBIMAGE1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PBIMAGE1.TabIndex = 481
-        Me.PBIMAGE1.TabStop = False
-        Me.PBIMAGE1.Visible = False
-        '
-        'CMDPHOTOVIEW
-        '
-        Me.CMDPHOTOVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOVIEW.Location = New System.Drawing.Point(416, 541)
-        Me.CMDPHOTOVIEW.Name = "CMDPHOTOVIEW"
-        Me.CMDPHOTOVIEW.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOVIEW.TabIndex = 480
-        Me.CMDPHOTOVIEW.Text = "&View"
-        Me.CMDPHOTOVIEW.UseVisualStyleBackColor = True
-        '
         'SelectStockGrid
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -305,6 +305,7 @@ Partial Class SelectStockGrid
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).EndInit()
@@ -312,7 +313,6 @@ Partial Class SelectStockGrid
         CType(Me.APPROXDATE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
