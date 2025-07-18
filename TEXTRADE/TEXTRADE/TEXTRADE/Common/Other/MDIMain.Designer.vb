@@ -751,6 +751,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator64 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLSTRIPGREYSTOCK = New System.Windows.Forms.ToolStripSeparator()
         Me.PartyWiseBaleRateReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RegisterProductWiseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator155 = New System.Windows.Forms.ToolStripSeparator()
         Me.STORES_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESPO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1193,7 +1194,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.RegisterProductWiseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -5056,7 +5057,7 @@ Partial Class MDIMain
         '
         'PUR_REPORTS
         '
-        Me.PUR_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PurchaseOrderToolStripMenuItem1, Me.ToolStripSeparator68, Me.PurchaseGRNToolStripMenuItem, Me.GRNCheckingToolStripMenuItem, Me.ToolStripSeparator69, Me.MaterialReceiptToolStripMenuItem, Me.ToolStripSeparator91, Me.PurchaseInvoiceToolStripMenuItem, Me.PURCHASERETURNREPORTS, Me.ToolStripSeparator36, Me.CheckedGRNToolStripMenuItem1, Me.UncheckedGRNToolStripMenuItem1, Me.PendingInvoiceToolStripMenuItem1, Me.ToolStripSeparator43})
+        Me.PUR_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PurchaseOrderToolStripMenuItem1, Me.ToolStripSeparator68, Me.PurchaseGRNToolStripMenuItem, Me.GRNCheckingToolStripMenuItem, Me.ToolStripSeparator69, Me.MaterialReceiptToolStripMenuItem, Me.ToolStripSeparator91, Me.PurchaseInvoiceToolStripMenuItem, Me.MonthlyPurchaseAnalysisToolStripMenuItem, Me.PURCHASERETURNREPORTS, Me.ToolStripSeparator36, Me.CheckedGRNToolStripMenuItem1, Me.UncheckedGRNToolStripMenuItem1, Me.PendingInvoiceToolStripMenuItem1, Me.ToolStripSeparator43})
         Me.PUR_REPORTS.Enabled = False
         Me.PUR_REPORTS.Name = "PUR_REPORTS"
         Me.PUR_REPORTS.Size = New System.Drawing.Size(169, 22)
@@ -5065,81 +5066,81 @@ Partial Class MDIMain
         'PurchaseOrderToolStripMenuItem1
         '
         Me.PurchaseOrderToolStripMenuItem1.Name = "PurchaseOrderToolStripMenuItem1"
-        Me.PurchaseOrderToolStripMenuItem1.Size = New System.Drawing.Size(210, 22)
+        Me.PurchaseOrderToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
         Me.PurchaseOrderToolStripMenuItem1.Text = "Purchase Order Reports"
         '
         'ToolStripSeparator68
         '
         Me.ToolStripSeparator68.Name = "ToolStripSeparator68"
-        Me.ToolStripSeparator68.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator68.Size = New System.Drawing.Size(216, 6)
         '
         'PurchaseGRNToolStripMenuItem
         '
         Me.PurchaseGRNToolStripMenuItem.Name = "PurchaseGRNToolStripMenuItem"
-        Me.PurchaseGRNToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PurchaseGRNToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
         Me.PurchaseGRNToolStripMenuItem.Text = "Purchase GRN Reports"
         '
         'GRNCheckingToolStripMenuItem
         '
         Me.GRNCheckingToolStripMenuItem.Name = "GRNCheckingToolStripMenuItem"
-        Me.GRNCheckingToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.GRNCheckingToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
         Me.GRNCheckingToolStripMenuItem.Text = "GRN Checking Reports"
         '
         'ToolStripSeparator69
         '
         Me.ToolStripSeparator69.Name = "ToolStripSeparator69"
-        Me.ToolStripSeparator69.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator69.Size = New System.Drawing.Size(216, 6)
         '
         'MaterialReceiptToolStripMenuItem
         '
         Me.MaterialReceiptToolStripMenuItem.Name = "MaterialReceiptToolStripMenuItem"
-        Me.MaterialReceiptToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.MaterialReceiptToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
         Me.MaterialReceiptToolStripMenuItem.Text = "&Material Receipt Reports"
         '
         'ToolStripSeparator91
         '
         Me.ToolStripSeparator91.Name = "ToolStripSeparator91"
-        Me.ToolStripSeparator91.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator91.Size = New System.Drawing.Size(216, 6)
         '
         'PurchaseInvoiceToolStripMenuItem
         '
         Me.PurchaseInvoiceToolStripMenuItem.Name = "PurchaseInvoiceToolStripMenuItem"
-        Me.PurchaseInvoiceToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PurchaseInvoiceToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
         Me.PurchaseInvoiceToolStripMenuItem.Text = "Purchase Invoice Reports"
         '
         'PURCHASERETURNREPORTS
         '
         Me.PURCHASERETURNREPORTS.Name = "PURCHASERETURNREPORTS"
-        Me.PURCHASERETURNREPORTS.Size = New System.Drawing.Size(210, 22)
+        Me.PURCHASERETURNREPORTS.Size = New System.Drawing.Size(219, 22)
         Me.PURCHASERETURNREPORTS.Text = "Purchase Return Reports"
         '
         'ToolStripSeparator36
         '
         Me.ToolStripSeparator36.Name = "ToolStripSeparator36"
-        Me.ToolStripSeparator36.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator36.Size = New System.Drawing.Size(216, 6)
         '
         'CheckedGRNToolStripMenuItem1
         '
         Me.CheckedGRNToolStripMenuItem1.Name = "CheckedGRNToolStripMenuItem1"
-        Me.CheckedGRNToolStripMenuItem1.Size = New System.Drawing.Size(210, 22)
+        Me.CheckedGRNToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
         Me.CheckedGRNToolStripMenuItem1.Text = "Checked GRN"
         '
         'UncheckedGRNToolStripMenuItem1
         '
         Me.UncheckedGRNToolStripMenuItem1.Name = "UncheckedGRNToolStripMenuItem1"
-        Me.UncheckedGRNToolStripMenuItem1.Size = New System.Drawing.Size(210, 22)
+        Me.UncheckedGRNToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
         Me.UncheckedGRNToolStripMenuItem1.Text = "Unchecked GRN"
         '
         'PendingInvoiceToolStripMenuItem1
         '
         Me.PendingInvoiceToolStripMenuItem1.Name = "PendingInvoiceToolStripMenuItem1"
-        Me.PendingInvoiceToolStripMenuItem1.Size = New System.Drawing.Size(210, 22)
+        Me.PendingInvoiceToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
         Me.PendingInvoiceToolStripMenuItem1.Text = "Pending Invoice"
         '
         'ToolStripSeparator43
         '
         Me.ToolStripSeparator43.Name = "ToolStripSeparator43"
-        Me.ToolStripSeparator43.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator43.Size = New System.Drawing.Size(216, 6)
         '
         'PURREPORT_TOOLSTRIP
         '
@@ -5852,6 +5853,12 @@ Partial Class MDIMain
         Me.PartyWiseBaleRateReportToolStripMenuItem.Name = "PartyWiseBaleRateReportToolStripMenuItem"
         Me.PartyWiseBaleRateReportToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
         Me.PartyWiseBaleRateReportToolStripMenuItem.Text = "Party Wise Bale Rate Report"
+        '
+        'RegisterProductWiseToolStripMenuItem
+        '
+        Me.RegisterProductWiseToolStripMenuItem.Name = "RegisterProductWiseToolStripMenuItem"
+        Me.RegisterProductWiseToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.RegisterProductWiseToolStripMenuItem.Text = "Register Product Wise"
         '
         'ToolStripSeparator155
         '
@@ -8715,11 +8722,11 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'RegisterProductWiseToolStripMenuItem
+        'MonthlyPurchaseAnalysisToolStripMenuItem
         '
-        Me.RegisterProductWiseToolStripMenuItem.Name = "RegisterProductWiseToolStripMenuItem"
-        Me.RegisterProductWiseToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
-        Me.RegisterProductWiseToolStripMenuItem.Text = "Register Product Wise"
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Name = "MonthlyPurchaseAnalysisToolStripMenuItem"
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Text = "Monthly Purchase Analysis"
         '
         'MDIMain
         '
@@ -9918,4 +9925,5 @@ Partial Class MDIMain
     Friend WithEvents AutoWhatsappToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents PartyWiseBaleRateReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RegisterProductWiseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MonthlyPurchaseAnalysisToolStripMenuItem As ToolStripMenuItem
 End Class

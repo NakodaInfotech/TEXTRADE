@@ -8444,6 +8444,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.resx">
+      <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.resx">
       <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
     </EmbeddedResource>
