@@ -34,7 +34,6 @@ Partial Class CoverNote
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.COURIERDATE = New System.Windows.Forms.DateTimePicker()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TXTCOURIERNAME = New System.Windows.Forms.TextBox()
         Me.LBLCOURIERDOCKETNO = New System.Windows.Forms.Label()
@@ -87,6 +86,7 @@ Partial Class CoverNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.COURIERDATE = New System.Windows.Forms.MaskedTextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCOVER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -97,8 +97,8 @@ Partial Class CoverNote
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.COURIERDATE)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label14)
         Me.BlendPanel1.Controls.Add(Me.TXTCOURIERNAME)
         Me.BlendPanel1.Controls.Add(Me.LBLCOURIERDOCKETNO)
@@ -137,20 +137,11 @@ Partial Class CoverNote
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(565, 99)
+        Me.Label1.Location = New System.Drawing.Point(565, 100)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 15)
         Me.Label1.TabIndex = 928
         Me.Label1.Text = "Courier Date"
-        '
-        'COURIERDATE
-        '
-        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.COURIERDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.COURIERDATE.Location = New System.Drawing.Point(643, 96)
-        Me.COURIERDATE.Name = "COURIERDATE"
-        Me.COURIERDATE.Size = New System.Drawing.Size(91, 23)
-        Me.COURIERDATE.TabIndex = 4
         '
         'Label14
         '
@@ -470,7 +461,7 @@ Partial Class CoverNote
         Me.cmddelete.Location = New System.Drawing.Point(590, 501)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 8
+        Me.cmddelete.TabIndex = 9
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -484,7 +475,7 @@ Partial Class CoverNote
         Me.cmdclear.Location = New System.Drawing.Point(719, 467)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 7
+        Me.cmdclear.TabIndex = 8
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -532,7 +523,7 @@ Partial Class CoverNote
         Me.CMDSELECTINV.Location = New System.Drawing.Point(547, 467)
         Me.CMDSELECTINV.Name = "CMDSELECTINV"
         Me.CMDSELECTINV.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSELECTINV.TabIndex = 5
+        Me.CMDSELECTINV.TabIndex = 6
         Me.CMDSELECTINV.Text = "Select Inv"
         Me.CMDSELECTINV.UseVisualStyleBackColor = False
         '
@@ -540,16 +531,16 @@ Partial Class CoverNote
         '
         Me.DTCOVERDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTCOVERDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTCOVERDATE.Location = New System.Drawing.Point(1131, 85)
+        Me.DTCOVERDATE.Location = New System.Drawing.Point(1131, 68)
         Me.DTCOVERDATE.Name = "DTCOVERDATE"
         Me.DTCOVERDATE.Size = New System.Drawing.Size(91, 23)
-        Me.DTCOVERDATE.TabIndex = 0
+        Me.DTCOVERDATE.TabIndex = 5
         '
         'TXTCOVERNO
         '
         Me.TXTCOVERNO.BackColor = System.Drawing.Color.Linen
         Me.TXTCOVERNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOVERNO.Location = New System.Drawing.Point(1131, 56)
+        Me.TXTCOVERNO.Location = New System.Drawing.Point(1131, 39)
         Me.TXTCOVERNO.Name = "TXTCOVERNO"
         Me.TXTCOVERNO.ReadOnly = True
         Me.TXTCOVERNO.Size = New System.Drawing.Size(91, 23)
@@ -563,7 +554,7 @@ Partial Class CoverNote
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(1089, 60)
+        Me.Label12.Location = New System.Drawing.Point(1089, 43)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(38, 15)
         Me.Label12.TabIndex = 634
@@ -575,7 +566,7 @@ Partial Class CoverNote
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(1096, 89)
+        Me.Label9.Location = New System.Drawing.Point(1096, 72)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 15)
         Me.Label9.TabIndex = 632
@@ -676,7 +667,7 @@ Partial Class CoverNote
         Me.cmdok.Location = New System.Drawing.Point(633, 467)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 6
+        Me.cmdok.TabIndex = 7
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -690,7 +681,7 @@ Partial Class CoverNote
         Me.cmdexit.Location = New System.Drawing.Point(676, 501)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 9
+        Me.cmdexit.TabIndex = 10
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -715,6 +706,20 @@ Partial Class CoverNote
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'COURIERDATE
+        '
+        Me.COURIERDATE.AsciiOnly = True
+        Me.COURIERDATE.BackColor = System.Drawing.Color.White
+        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.COURIERDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.COURIERDATE.Location = New System.Drawing.Point(643, 95)
+        Me.COURIERDATE.Mask = "00/00/0000"
+        Me.COURIERDATE.Name = "COURIERDATE"
+        Me.COURIERDATE.Size = New System.Drawing.Size(76, 23)
+        Me.COURIERDATE.TabIndex = 4
+        Me.COURIERDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.COURIERDATE.ValidatingType = GetType(Date)
         '
         'CoverNote
         '
@@ -789,9 +794,9 @@ Partial Class CoverNote
     Friend WithEvents GTOTALPCS As DataGridViewTextBoxColumn
     Friend WithEvents GGRANDTOTAL As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As Label
-    Friend WithEvents COURIERDATE As DateTimePicker
     Friend WithEvents Label14 As Label
     Friend WithEvents TXTCOURIERNAME As TextBox
     Friend WithEvents LBLCOURIERDOCKETNO As Label
     Friend WithEvents TXTCOURIERDOCKETNO As TextBox
+    Friend WithEvents COURIERDATE As MaskedTextBox
 End Class
