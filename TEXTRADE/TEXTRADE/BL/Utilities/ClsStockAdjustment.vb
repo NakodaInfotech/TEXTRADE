@@ -91,6 +91,8 @@ Public Class ClsStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
@@ -243,6 +245,8 @@ Public Class ClsStockAdjustment
                 .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
