@@ -40,28 +40,28 @@ Public Class ProductWiseRegister
         ElseIf chkdate.CheckState = CheckState.Checked Then
             dt = OBJCOMMON.search("*", "", " REGISTERPRODUCTWISE ", " and DATE >'" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  and DATE <'" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'  and CMPID = " & CmpId & "  and YEARID = " & YearId)
 
-            'ElseIf LSTCMP.CheckedItems.Count > 1 Then
+        ElseIf LSTCMP.CheckedItems.Count > 1 Then
 
-            '    'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
-            '    Dim OBJCMN As New ClsCommon
-            '    'Dim DT As New DataTable
-            '    Dim CMPCLAUSE As String = ""
-            '    Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
-            '    For Each item As Object In CHECKED_CMP
-            '        If CMPCLAUSE = "" Then
-            '            CMPCLAUSE = "'" & item.ToString() & "'"
-            '        Else
-            '            CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
-            '        End If
-            '    Next item
-            '    dt = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
-            '    CMPCLAUSE = ""
-            '    For Each DTROW As DataRow In dt.Rows
-            '        If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
-            '    Next
-            '    'OBJOUTSTAND.selfor_ss = " {@YEARID} in [" & CMPCLAUSE & "]"
-            '    ' If RBOUTSTANDINGBILLS.Checked = True Then OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_ALL.YEARID} in [" & CMPCLAUSE & "]" Else OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_DETAILS.YEARID} in [" & CMPCLAUSE & "]"
-            '    ' If LSTCMP.CheckedItems.Count > 1 Then OBJOUTSTAND.MULTICMP = 1 Else OBJOUTSTAND.MULTICMP = 0
+            'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+            Dim OBJCMN As New ClsCommon
+            'Dim DT As New DataTable
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+            dt = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In dt.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            'OBJOUTSTAND.selfor_ss = " {@YEARID} in [" & CMPCLAUSE & "]"
+            ' If RBOUTSTANDINGBILLS.Checked = True Then OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_ALL.YEARID} in [" & CMPCLAUSE & "]" Else OBJOUTSTAND.selfor_ss = " {OUTSTANDINGREPORT_DETAILS.YEARID} in [" & CMPCLAUSE & "]"
+            ' If LSTCMP.CheckedItems.Count > 1 Then OBJOUTSTAND.MULTICMP = 1 Else OBJOUTSTAND.MULTICMP = 0
 
         End If
         griddetails.DataSource = dt
@@ -90,7 +90,7 @@ Public Class ProductWiseRegister
                 If DROW(0) = CmpName Then LSTCMP.SetItemChecked(LSTCMP.Items.Count - 1, True)
             Next
 
-            ' fillgrid()
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -131,7 +131,7 @@ Public Class ProductWiseRegister
             If gridregister.RowCount > 0 Then
                 Dim dtrow As DataRow = gridregister.GetFocusedDataRow
                 If dtrow("TYPE") = "OPENINGBILL" Or dtrow("TYPE") = "OPENINGSTOCK" Then Exit Sub
-                VIEWFORM(dtrow("TYPE"), True, dtrow("BILL"), dtrow("REGNAME"))
+                VIEWFORM(dtrow("TYPE"), True, dtrow("NO"), dtrow("REGNAME"))
             End If
         Catch ex As Exception
             Throw ex
