@@ -212,6 +212,8 @@ Public Class CoverNote
             End If
 
             EDIT = False
+            PRINTREPORT(TEMPCOVERNO)
+
             CLEAR()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -526,6 +528,26 @@ LINE1:
                 OBJAGENT.AGENTNAME = CMBAGENT.Text.Trim
                 OBJAGENT.Show()
             End If
+
+
+            Dim TEMPMSG3 As Integer = MsgBox("Wish to Print Party Envelope?", MsgBoxStyle.YesNo)
+            If CMBNAME.Text.Trim <> "" And TEMPMSG3 = vbYes Then
+                Dim OBJENV As New payment_advice
+                OBJENV.WHERECLAUSE = " {LEDGERS.Acc_cmpname} = '" & CMBNAME.Text.Trim & "' and {LEDGERS.ACC_YEARID} = " & YearId
+                OBJENV.FRMSTRING = "ENVELOPE"
+                OBJENV.MdiParent = MDIMain
+                OBJENV.Show()
+            End If
+
+            Dim TEMPMSG4 As Integer = MsgBox("Wish to Print AGENT Envelope?", MsgBoxStyle.YesNo)
+            If CMBAGENT.Text.Trim <> "" And TEMPMSG4 = vbYes Then
+                Dim OBJENV As New payment_advice
+                OBJENV.WHERECLAUSE = " {LEDGERS.Acc_cmpname} = '" & CMBAGENT.Text.Trim & "' and {LEDGERS.ACC_YEARID} = " & YearId
+                OBJENV.FRMSTRING = "ENVELOPE"
+                OBJENV.MdiParent = MDIMain
+                OBJENV.Show()
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
