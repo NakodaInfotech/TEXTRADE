@@ -75,15 +75,17 @@ Public Class SelectCustomLayout
                 DTTABLE = OBJMATCH.SAVE()
                 MessageBox.Show("Details Added")
                 USERNAME = DTTABLE.Rows(0).Item(0)
-            Else
-                alparaval.Add(USERNAME)
-                Dim IntResult As Integer = OBJMATCH.UPDATE()
-                MsgBox("Details Updated")
+
             End If
+            Me.Close()
 
         Catch ex As Exception
             Throw ex
 
         End Try
+    End Sub
+
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+        Me.Close()
     End Sub
 End Class

@@ -30,7 +30,6 @@ Partial Class SelectCustomLayout
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GUSERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.CMDPHOTOVIEW = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -52,7 +51,6 @@ Partial Class SelectCustomLayout
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.PBIMAGE1)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
-        Me.BlendPanel1.Controls.Add(Me.CMDPHOTOVIEW)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
@@ -137,16 +135,6 @@ Partial Class SelectCustomLayout
         Me.APPROXDATE.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.APPROXDATE.Name = "APPROXDATE"
         '
-        'CMDPHOTOVIEW
-        '
-        Me.CMDPHOTOVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOVIEW.Location = New System.Drawing.Point(416, 541)
-        Me.CMDPHOTOVIEW.Name = "CMDPHOTOVIEW"
-        Me.CMDPHOTOVIEW.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOVIEW.TabIndex = 480
-        Me.CMDPHOTOVIEW.Text = "&View"
-        Me.CMDPHOTOVIEW.UseVisualStyleBackColor = True
-        '
         'cmdok
         '
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
@@ -154,7 +142,7 @@ Partial Class SelectCustomLayout
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(502, 541)
+        Me.cmdok.Location = New System.Drawing.Point(76, 541)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 5
@@ -168,7 +156,7 @@ Partial Class SelectCustomLayout
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(588, 541)
+        Me.cmdexit.Location = New System.Drawing.Point(162, 541)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 6
@@ -240,7 +228,6 @@ Partial Class SelectCustomLayout
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GUSERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents CMDPHOTOVIEW As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
