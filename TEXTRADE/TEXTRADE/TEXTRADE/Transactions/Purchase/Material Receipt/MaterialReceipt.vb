@@ -3242,7 +3242,7 @@ NEXTLINE:
 
 
             'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
-            If ClientName = "SNCM" Then
+            If ClientName = "SNCM" And EDIT = False Then
 LINE1:
                 For I As Integer = 0 To DT_MTRSDETAILS.Rows.Count - 1
                     If GRIDMATREC.Rows(GRIDMATREC.CurrentRow.Index).Cells(gsrno.Index).Value = Val(DT_MTRSDETAILS.Rows(I).Item("MAINSRNO")) Then
