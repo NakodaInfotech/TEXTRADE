@@ -832,5 +832,4 @@ Public Class MonthlySaleAnalysisGridReport
         End Try
     End Sub
 
-
 End Class
