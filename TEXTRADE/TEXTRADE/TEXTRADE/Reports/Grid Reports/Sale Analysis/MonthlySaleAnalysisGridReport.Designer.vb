@@ -97,6 +97,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.cmbacccode = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.TXTTEMP = New System.Windows.Forms.TextBox()
+        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
         Me.BlendPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBREPORT.SuspendLayout()
@@ -114,6 +115,7 @@ Partial Class MonthlySaleAnalysisGridReport
         CType(Me.gridpartydetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Gridparty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel2
@@ -492,7 +494,7 @@ Partial Class MonthlySaleAnalysisGridReport
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDREPORT.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDREPORT.Location = New System.Drawing.Point(3, 2)
+        Me.GRIDREPORT.Location = New System.Drawing.Point(2, 1)
         Me.GRIDREPORT.MultiSelect = False
         Me.GRIDREPORT.Name = "GRIDREPORT"
         Me.GRIDREPORT.ReadOnly = True
@@ -504,7 +506,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.GRIDREPORT.RowTemplate.Height = 20
         Me.GRIDREPORT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 529)
+        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 524)
         Me.GRIDREPORT.TabIndex = 686
         Me.GRIDREPORT.TabStop = False
         '
@@ -945,6 +947,11 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TXTTEMP.TabIndex = 646
         Me.TXTTEMP.Visible = False
         '
+        'FileSystemWatcher1
+        '
+        Me.FileSystemWatcher1.EnableRaisingEvents = True
+        Me.FileSystemWatcher1.SynchronizingObject = Me
+        '
         'MonthlySaleAnalysisGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -977,6 +984,7 @@ Partial Class MonthlySaleAnalysisGridReport
         CType(Me.gridpartydetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Gridparty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1051,4 +1059,5 @@ Partial Class MonthlySaleAnalysisGridReport
     Friend WithEvents GFEBRUARY As DataGridViewTextBoxColumn
     Friend WithEvents GMARCH As DataGridViewTextBoxColumn
     Friend WithEvents GTOTAL As DataGridViewTextBoxColumn
+    Friend WithEvents FileSystemWatcher1 As IO.FileSystemWatcher
 End Class

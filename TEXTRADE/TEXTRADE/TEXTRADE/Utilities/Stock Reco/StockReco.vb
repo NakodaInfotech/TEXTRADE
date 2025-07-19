@@ -1751,7 +1751,7 @@ LINE1:
                     If ClientName = "TCOT" Or ClientName = "VALIANT" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
                     If ClientName = "SAKARIA" Or ClientName = "CC"  Or ClientName = "C3" Then CMBNAME.Text = DT.Rows(0).Item("PURNAME")
 
-                    GRIDSTOCK.Rows.Add(GRIDSTOCK.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), Format(Val(DT.Rows(0).Item("PURRATE")), "0.00"), "Mtrs", 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"))
+                    GRIDSTOCK.Rows.Add(GRIDSTOCK.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), Format(Val(DT.Rows(0).Item("PURRATE")), "0.00"), "Mtrs", 0, DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"))
                     If CHKYARDMTR.Checked = True And CHKCOPY.Checked = True Then
                         DT.Rows(0).Item("MTRS") = Format(Val(DT.Rows(0).Item("MTRS")) * 0.9144, "0.00")
                         DT.Rows(0).Item("UNIT") = "Mtrs"
