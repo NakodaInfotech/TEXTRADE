@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class MonthlySaleAnalysisGridReport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class MonthlySaleAnalysisGridReport
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -54,6 +54,20 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBREPORT = New System.Windows.Forms.TabPage()
         Me.GRIDREPORT = New System.Windows.Forms.DataGridView()
+        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAPRIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMAY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GJUNE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GJULY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAUGUST = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSEPTEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOCTOBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNOVEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDECEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GJANUARY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFEBRUARY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMARCH = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBFILTERS = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CHKSELECTAGENT = New System.Windows.Forms.CheckBox()
@@ -83,20 +97,6 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.cmbacccode = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.TXTTEMP = New System.Windows.Forms.TextBox()
-        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAPRIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMAY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GJUNE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GJULY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAUGUST = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSEPTEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOCTOBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNOVEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDECEMBER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GJANUARY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFEBRUARY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMARCH = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBREPORT.SuspendLayout()
@@ -508,6 +508,119 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.GRIDREPORT.TabIndex = 686
         Me.GRIDREPORT.TabStop = False
         '
+        'GNAME
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GNAME.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GNAME.HeaderText = "Name"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.ReadOnly = True
+        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GNAME.Width = 170
+        '
+        'GAPRIL
+        '
+        Me.GAPRIL.HeaderText = "April"
+        Me.GAPRIL.Name = "GAPRIL"
+        Me.GAPRIL.ReadOnly = True
+        Me.GAPRIL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAPRIL.Width = 95
+        '
+        'GMAY
+        '
+        Me.GMAY.HeaderText = "May"
+        Me.GMAY.Name = "GMAY"
+        Me.GMAY.ReadOnly = True
+        Me.GMAY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMAY.Width = 95
+        '
+        'GJUNE
+        '
+        Me.GJUNE.HeaderText = "June"
+        Me.GJUNE.Name = "GJUNE"
+        Me.GJUNE.ReadOnly = True
+        Me.GJUNE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GJUNE.Width = 95
+        '
+        'GJULY
+        '
+        Me.GJULY.HeaderText = "July"
+        Me.GJULY.Name = "GJULY"
+        Me.GJULY.ReadOnly = True
+        Me.GJULY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GJULY.Width = 95
+        '
+        'GAUGUST
+        '
+        Me.GAUGUST.HeaderText = "August"
+        Me.GAUGUST.Name = "GAUGUST"
+        Me.GAUGUST.ReadOnly = True
+        Me.GAUGUST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAUGUST.Width = 95
+        '
+        'GSEPTEMBER
+        '
+        Me.GSEPTEMBER.HeaderText = "September"
+        Me.GSEPTEMBER.Name = "GSEPTEMBER"
+        Me.GSEPTEMBER.ReadOnly = True
+        Me.GSEPTEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSEPTEMBER.Width = 95
+        '
+        'GOCTOBER
+        '
+        Me.GOCTOBER.HeaderText = "October"
+        Me.GOCTOBER.Name = "GOCTOBER"
+        Me.GOCTOBER.ReadOnly = True
+        Me.GOCTOBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOCTOBER.Width = 95
+        '
+        'GNOVEMBER
+        '
+        Me.GNOVEMBER.HeaderText = "November"
+        Me.GNOVEMBER.Name = "GNOVEMBER"
+        Me.GNOVEMBER.ReadOnly = True
+        Me.GNOVEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GNOVEMBER.Width = 95
+        '
+        'GDECEMBER
+        '
+        Me.GDECEMBER.HeaderText = "December"
+        Me.GDECEMBER.Name = "GDECEMBER"
+        Me.GDECEMBER.ReadOnly = True
+        Me.GDECEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDECEMBER.Width = 95
+        '
+        'GJANUARY
+        '
+        Me.GJANUARY.HeaderText = "January"
+        Me.GJANUARY.Name = "GJANUARY"
+        Me.GJANUARY.ReadOnly = True
+        Me.GJANUARY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GJANUARY.Width = 95
+        '
+        'GFEBRUARY
+        '
+        Me.GFEBRUARY.HeaderText = "February"
+        Me.GFEBRUARY.Name = "GFEBRUARY"
+        Me.GFEBRUARY.ReadOnly = True
+        Me.GFEBRUARY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFEBRUARY.Width = 95
+        '
+        'GMARCH
+        '
+        Me.GMARCH.HeaderText = "March"
+        Me.GMARCH.Name = "GMARCH"
+        Me.GMARCH.ReadOnly = True
+        Me.GMARCH.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMARCH.Width = 95
+        '
+        'GTOTAL
+        '
+        Me.GTOTAL.HeaderText = "Total"
+        Me.GTOTAL.Name = "GTOTAL"
+        Me.GTOTAL.ReadOnly = True
+        Me.GTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
         'TBFILTERS
         '
         Me.TBFILTERS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -517,7 +630,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TBFILTERS.Location = New System.Drawing.Point(4, 22)
         Me.TBFILTERS.Name = "TBFILTERS"
         Me.TBFILTERS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBFILTERS.Size = New System.Drawing.Size(1438, 535)
+        Me.TBFILTERS.Size = New System.Drawing.Size(1440, 535)
         Me.TBFILTERS.TabIndex = 1
         Me.TBFILTERS.Text = "Filters"
         '
@@ -831,119 +944,6 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TXTTEMP.Size = New System.Drawing.Size(69, 23)
         Me.TXTTEMP.TabIndex = 646
         Me.TXTTEMP.Visible = False
-        '
-        'GNAME
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GNAME.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GNAME.HeaderText = "Name"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.ReadOnly = True
-        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNAME.Width = 170
-        '
-        'GAPRIL
-        '
-        Me.GAPRIL.HeaderText = "April"
-        Me.GAPRIL.Name = "GAPRIL"
-        Me.GAPRIL.ReadOnly = True
-        Me.GAPRIL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAPRIL.Width = 95
-        '
-        'GMAY
-        '
-        Me.GMAY.HeaderText = "May"
-        Me.GMAY.Name = "GMAY"
-        Me.GMAY.ReadOnly = True
-        Me.GMAY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMAY.Width = 95
-        '
-        'GJUNE
-        '
-        Me.GJUNE.HeaderText = "June"
-        Me.GJUNE.Name = "GJUNE"
-        Me.GJUNE.ReadOnly = True
-        Me.GJUNE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GJUNE.Width = 95
-        '
-        'GJULY
-        '
-        Me.GJULY.HeaderText = "July"
-        Me.GJULY.Name = "GJULY"
-        Me.GJULY.ReadOnly = True
-        Me.GJULY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GJULY.Width = 95
-        '
-        'GAUGUST
-        '
-        Me.GAUGUST.HeaderText = "August"
-        Me.GAUGUST.Name = "GAUGUST"
-        Me.GAUGUST.ReadOnly = True
-        Me.GAUGUST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAUGUST.Width = 95
-        '
-        'GSEPTEMBER
-        '
-        Me.GSEPTEMBER.HeaderText = "September"
-        Me.GSEPTEMBER.Name = "GSEPTEMBER"
-        Me.GSEPTEMBER.ReadOnly = True
-        Me.GSEPTEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSEPTEMBER.Width = 95
-        '
-        'GOCTOBER
-        '
-        Me.GOCTOBER.HeaderText = "October"
-        Me.GOCTOBER.Name = "GOCTOBER"
-        Me.GOCTOBER.ReadOnly = True
-        Me.GOCTOBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GOCTOBER.Width = 95
-        '
-        'GNOVEMBER
-        '
-        Me.GNOVEMBER.HeaderText = "November"
-        Me.GNOVEMBER.Name = "GNOVEMBER"
-        Me.GNOVEMBER.ReadOnly = True
-        Me.GNOVEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNOVEMBER.Width = 95
-        '
-        'GDECEMBER
-        '
-        Me.GDECEMBER.HeaderText = "December"
-        Me.GDECEMBER.Name = "GDECEMBER"
-        Me.GDECEMBER.ReadOnly = True
-        Me.GDECEMBER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDECEMBER.Width = 95
-        '
-        'GJANUARY
-        '
-        Me.GJANUARY.HeaderText = "January"
-        Me.GJANUARY.Name = "GJANUARY"
-        Me.GJANUARY.ReadOnly = True
-        Me.GJANUARY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GJANUARY.Width = 95
-        '
-        'GFEBRUARY
-        '
-        Me.GFEBRUARY.HeaderText = "February"
-        Me.GFEBRUARY.Name = "GFEBRUARY"
-        Me.GFEBRUARY.ReadOnly = True
-        Me.GFEBRUARY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFEBRUARY.Width = 95
-        '
-        'GMARCH
-        '
-        Me.GMARCH.HeaderText = "March"
-        Me.GMARCH.Name = "GMARCH"
-        Me.GMARCH.ReadOnly = True
-        Me.GMARCH.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMARCH.Width = 95
-        '
-        'GTOTAL
-        '
-        Me.GTOTAL.HeaderText = "Total"
-        Me.GTOTAL.Name = "GTOTAL"
-        Me.GTOTAL.ReadOnly = True
-        Me.GTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
         'MonthlySaleAnalysisGridReport
         '
