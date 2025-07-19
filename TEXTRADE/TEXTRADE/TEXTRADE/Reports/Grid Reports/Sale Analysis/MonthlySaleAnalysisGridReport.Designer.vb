@@ -53,6 +53,9 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBREPORT = New System.Windows.Forms.TabPage()
+        Me.CMBGRIDITEM = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDAGENT = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDPARTY = New System.Windows.Forms.ComboBox()
         Me.GRIDREPORT = New System.Windows.Forms.DataGridView()
         Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAPRIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -98,6 +101,9 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.TXTTEMP = New System.Windows.Forms.TextBox()
         Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
+        Me.CMBGRIDPARTY1 = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDITEM1 = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDAGENT1 = New System.Windows.Forms.ComboBox()
         Me.BlendPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBREPORT.SuspendLayout()
@@ -457,6 +463,12 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         Me.TBREPORT.AutoScroll = True
         Me.TBREPORT.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDAGENT1)
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDITEM1)
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDPARTY1)
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDITEM)
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDAGENT)
+        Me.TBREPORT.Controls.Add(Me.CMBGRIDPARTY)
         Me.TBREPORT.Controls.Add(Me.GRIDREPORT)
         Me.TBREPORT.Font = New System.Drawing.Font("Verdana", 7.0!)
         Me.TBREPORT.Location = New System.Drawing.Point(4, 24)
@@ -465,6 +477,45 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TBREPORT.Size = New System.Drawing.Size(1440, 533)
         Me.TBREPORT.TabIndex = 0
         Me.TBREPORT.Text = "Report"
+        '
+        'CMBGRIDITEM
+        '
+        Me.CMBGRIDITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDITEM.FormattingEnabled = True
+        Me.CMBGRIDITEM.Location = New System.Drawing.Point(2, 3)
+        Me.CMBGRIDITEM.MaxDropDownItems = 14
+        Me.CMBGRIDITEM.Name = "CMBGRIDITEM"
+        Me.CMBGRIDITEM.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDITEM.TabIndex = 791
+        Me.CMBGRIDITEM.Visible = False
+        '
+        'CMBGRIDAGENT
+        '
+        Me.CMBGRIDAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDAGENT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDAGENT.FormattingEnabled = True
+        Me.CMBGRIDAGENT.Location = New System.Drawing.Point(1, 3)
+        Me.CMBGRIDAGENT.MaxDropDownItems = 14
+        Me.CMBGRIDAGENT.Name = "CMBGRIDAGENT"
+        Me.CMBGRIDAGENT.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDAGENT.TabIndex = 790
+        Me.CMBGRIDAGENT.Visible = False
+        '
+        'CMBGRIDPARTY
+        '
+        Me.CMBGRIDPARTY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDPARTY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDPARTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDPARTY.FormattingEnabled = True
+        Me.CMBGRIDPARTY.Location = New System.Drawing.Point(2, 3)
+        Me.CMBGRIDPARTY.MaxDropDownItems = 14
+        Me.CMBGRIDPARTY.Name = "CMBGRIDPARTY"
+        Me.CMBGRIDPARTY.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDPARTY.TabIndex = 789
+        Me.CMBGRIDPARTY.Visible = False
         '
         'GRIDREPORT
         '
@@ -494,7 +545,7 @@ Partial Class MonthlySaleAnalysisGridReport
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDREPORT.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDREPORT.Location = New System.Drawing.Point(2, 1)
+        Me.GRIDREPORT.Location = New System.Drawing.Point(2, 25)
         Me.GRIDREPORT.MultiSelect = False
         Me.GRIDREPORT.Name = "GRIDREPORT"
         Me.GRIDREPORT.ReadOnly = True
@@ -506,7 +557,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.GRIDREPORT.RowTemplate.Height = 20
         Me.GRIDREPORT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 524)
+        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 500)
         Me.GRIDREPORT.TabIndex = 686
         Me.GRIDREPORT.TabStop = False
         '
@@ -952,6 +1003,45 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.FileSystemWatcher1.EnableRaisingEvents = True
         Me.FileSystemWatcher1.SynchronizingObject = Me
         '
+        'CMBGRIDPARTY1
+        '
+        Me.CMBGRIDPARTY1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDPARTY1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDPARTY1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDPARTY1.FormattingEnabled = True
+        Me.CMBGRIDPARTY1.Location = New System.Drawing.Point(173, 3)
+        Me.CMBGRIDPARTY1.MaxDropDownItems = 14
+        Me.CMBGRIDPARTY1.Name = "CMBGRIDPARTY1"
+        Me.CMBGRIDPARTY1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDPARTY1.TabIndex = 792
+        Me.CMBGRIDPARTY1.Visible = False
+        '
+        'CMBGRIDITEM1
+        '
+        Me.CMBGRIDITEM1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDITEM1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDITEM1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDITEM1.FormattingEnabled = True
+        Me.CMBGRIDITEM1.Location = New System.Drawing.Point(173, 3)
+        Me.CMBGRIDITEM1.MaxDropDownItems = 14
+        Me.CMBGRIDITEM1.Name = "CMBGRIDITEM1"
+        Me.CMBGRIDITEM1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDITEM1.TabIndex = 793
+        Me.CMBGRIDITEM1.Visible = False
+        '
+        'CMBGRIDAGENT1
+        '
+        Me.CMBGRIDAGENT1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDAGENT1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDAGENT1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDAGENT1.FormattingEnabled = True
+        Me.CMBGRIDAGENT1.Location = New System.Drawing.Point(173, 3)
+        Me.CMBGRIDAGENT1.MaxDropDownItems = 14
+        Me.CMBGRIDAGENT1.Name = "CMBGRIDAGENT1"
+        Me.CMBGRIDAGENT1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDAGENT1.TabIndex = 794
+        Me.CMBGRIDAGENT1.Visible = False
+        '
         'MonthlySaleAnalysisGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1060,4 +1150,10 @@ Partial Class MonthlySaleAnalysisGridReport
     Friend WithEvents GMARCH As DataGridViewTextBoxColumn
     Friend WithEvents GTOTAL As DataGridViewTextBoxColumn
     Friend WithEvents FileSystemWatcher1 As IO.FileSystemWatcher
+    Friend WithEvents CMBGRIDPARTY As ComboBox
+    Friend WithEvents CMBGRIDITEM As ComboBox
+    Friend WithEvents CMBGRIDAGENT As ComboBox
+    Friend WithEvents CMBGRIDAGENT1 As ComboBox
+    Friend WithEvents CMBGRIDITEM1 As ComboBox
+    Friend WithEvents CMBGRIDPARTY1 As ComboBox
 End Class
