@@ -1,7 +1,8 @@
 ﻿Imports BL
 Public Class SelectCustomLayout
-    Public FORMNAME As String = ""
-    Public FILE As String = ""
+    Public FORMNAMES As String = ""
+    Public EDIT As Boolean          'used for editing
+    Public FILES As String = ""
     Private Sub SelectCustomLayout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             FILLGRID()
@@ -30,43 +31,56 @@ Public Class SelectCustomLayout
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
-
-            'Dim USERNAME As String = ""
-            'Dim CHK As String = ""
-            'Dim FORMNAME As String = FORMNAME
-            'Dim FILE As String = FILE
-
-
-            'For I As Integer = 0 To gridbill.RowCount - 1
-            '    Dim dtrow As DataRow = gridbill.GetDataRow(I)
-            '    If Convert.ToBoolean(dtrow("CHK")) = True Then
-            '        If Name = "" Then
-
-            '            CHK = dtrow("CHK")
-            '            USERNAME = dtrow("USERNAME")
-            '            USERNAME = dtrow("USERNAME")
+            Dim DTTABLE As DataTable
+            Dim USERNAME As String = ""
+            Dim CHK As String = ""
+            Dim FORMNAME As String = ""
+            Dim FILE As String = ""
+            Dim alparaval As New ArrayList
 
 
-            '        Else
+            For I As Integer = 0 To gridbill.RowCount - 1
+                Dim dtrow As DataRow = gridbill.GetDataRow(I)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If USERNAME = "" Then
 
-            '            GRIDSRNO = GRIDSRNO & "|" & Val(dtrow("SRNO"))
-            '            CHK = CHK & "|" & dtrow("CHK")
-            '            LRNO = LRNO & "|" & Val(dtrow("LRNO"))
-            '            LOTNO = LOTNO & "|" & dtrow("LOTNO")
-            '            LOTDATE = LOTDATE & "|" & Format(dtrow("DATE"), "MM/dd/yyyy")
-            '            ITEMNAME = ITEMNAME & "|" & dtrow("ITEMNAME")
-            '            TOTALMTRS = TOTALMTRS & "|" & Val(dtrow("TOTALMTRS"))
-            '            BALMTRS = BALMTRS & "|" & Val(dtrow("BALMTRS"))
-            '            ADJMTRS = ADJMTRS & "|" & Val(dtrow("ADJMTRS"))
-            '            FROMNO = FROMNO & "|" & Val(dtrow("FROMNO"))
-            '            FROMTYPE = FROMTYPE & "|" & dtrow("FROMTYPE")
+                        'CHK = dtrow("CHK")
+                        USERNAME = dtrow("USERNAME")
+                        FORMNAME = FORMNAMES
+                        FILE = FILES
 
-            '        End If
-            '    End If
-            'Next
-            'alparaval.Add(GRIDSRNO)
-            'alparaval.Add(CHK)
-            'alparaval.Add(LRNO)
+
+                    Else
+
+                        USERNAME = USERNAME & "|" & dtrow("USERNAME")
+                        FORMNAME = FORMNAME & "|" & FORMNAMES
+                        'CHK = CHK & "|" & dtrow("CHK")
+                        FILE = FILE & "|" & FILES
+
+
+                    End If
+                End If
+            Next
+            alparaval.Add(USERNAME)
+            alparaval.Add(FORMNAME)
+            alparaval.Add(FILE)
+            alparaval.Add(CmpId)
+            alparaval.Add(YearId)
+
+            Dim OBJMATCH As New CLSCUSTOMLAYOUT
+            OBJMATCH.alParaval = alparaval
+
+            If EDIT = False Then
+
+                DTTABLE = OBJMATCH.SAVE()
+                MessageBox.Show("Details Added")
+                USERNAME = DTTABLE.Rows(0).Item(0)
+            Else
+                alparaval.Add(USERNAME)
+                Dim IntResult As Integer = OBJMATCH.UPDATE()
+                MsgBox("Details Updated")
+            End If
+
         Catch ex As Exception
             Throw ex
 

@@ -201,6 +201,7 @@
     <Compile Include="Masters\ClsColorMaster.vb" />
     <Compile Include="Masters\ClsCostCenterMaster.vb" />
     <Compile Include="Masters\ClsCurrencyMaster.vb" />
+    <Compile Include="Masters\ClsCustomLayout.vb" />
     <Compile Include="Masters\ClsDeducteetypeMaster.vb" />
     <Compile Include="Masters\ClsDepartmentMaster.vb" />
     <Compile Include="Masters\ClsdesignationMaster.vb" />

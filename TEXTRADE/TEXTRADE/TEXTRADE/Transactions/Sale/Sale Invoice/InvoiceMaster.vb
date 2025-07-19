@@ -337,6 +337,10 @@ Public Class InvoiceMaster
                 TabControl2.SelectedIndex = 5
             ElseIf e.Alt = True And e.KeyCode = Keys.P Then
                 Call PrintToolStripButton_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.E Then
+                Call TOOLEINV_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.W Then
+                Call TOOLEWB_Click(sender, e)
             ElseIf e.KeyCode = Keys.OemPipe Then
                 e.SuppressKeyPress = True
             ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
