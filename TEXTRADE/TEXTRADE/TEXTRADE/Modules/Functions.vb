@@ -3597,8 +3597,6 @@ PRINTALL:
                 oWrite.WriteLine("1911A1401330009SERIES")
                 oWrite.WriteLine("1911A1401330089:")
                 If TEMPHEADER = "PRINTSERIES" Then oWrite.WriteLine("1911C1801290100" & GRIDDESC)
-                oWrite.WriteLine("1911A1401620009ITEM")
-                oWrite.WriteLine("1911A1401620089:")
                 oWrite.WriteLine("1911A1400040261RACK")
                 oWrite.WriteLine("1911A1400040320:")
                 oWrite.WriteLine("1911A1400040332" & RACK)
