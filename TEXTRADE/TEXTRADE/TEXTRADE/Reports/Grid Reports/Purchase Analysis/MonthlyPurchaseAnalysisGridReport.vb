@@ -282,15 +282,15 @@ Public Class MonthlyPurchaseAnalysisGridReport
                 'Dim GROUPBYCLAUSE As String = ""
                 'Dim QTYMTRS As String = "BILL_TOTALMTRS"
                 'If CMBPRINTVALUE.Text = "Amt Only" Then QTYMTRS = "BILL_SUBTOTAL"
-                'If CMBPRINTVALUE.Text = "Taka Only" Then QTYMTRS = "BILL_TOTALPCS"
+                'If CMBPRINTVALUE.Text = "Taka Only" Then QTYMTRS = "BILL_TOTALQTY"
                 'Dim TOTALCLAUSE As String = " ROUND(SUM(PURCHASEMASTER." & QTYMTRS & ") ,2)"
 
 
 
                 'If CMBPRINTVALUE.Text = "Avg Mtrs" Or CMBPRINTVALUE.Text = "Avg Rate" Then
                 '    If CMBPRINTVALUE.Text = "Avg Mtrs" Then
-                '        QTYMTRS = " CASE WHEN SUM(BILL_TOTALPCS) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALPCS)),2) ELSE 0 END "
-                '        TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALPCS) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALPCS)),2) ELSE 0 END "
+                '        QTYMTRS = " CASE WHEN SUM(BILL_TOTALQTY) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALQTY)),2) ELSE 0 END "
+                '        TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALQTY) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALQTY)),2) ELSE 0 END "
                 '    ElseIf CMBPRINTVALUE.Text = "Avg Rate" Then
                 '        QTYMTRS = " CASE WHEN SUM(BILL_TOTALMTRS) > 0 THEN ROUND((SUM(BILL_TOTALAMT)/ SUM(BILL_TOTALMTRS)),2) ELSE 0 END "
                 '        TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALMTRS) > 0 THEN ROUND((SUM(BILL_TOTALAMT)/ SUM(BILL_TOTALMTRS)),2) ELSE 0 END "
@@ -330,15 +330,15 @@ Public Class MonthlyPurchaseAnalysisGridReport
                 Dim GROUPBYCLAUSE As String = ""
                 Dim QTYMTRS As String = "BILL_TOTALMTRS"
                 If CMBPRINTVALUE.Text = "Amt Only" Then QTYMTRS = "BILL_SUBTOTAL"
-                If CMBPRINTVALUE.Text = "Taka Only" Then QTYMTRS = "BILL_TOTALPCS"
+                If CMBPRINTVALUE.Text = "Taka Only" Then QTYMTRS = "BILL_TOTALQTY"
                 Dim TOTALCLAUSE As String = " ROUND(SUM(PURCHASEMASTER." & QTYMTRS & ") ,2)"
 
 
 
                 If CMBPRINTVALUE.Text = "Avg Mtrs" Or CMBPRINTVALUE.Text = "Avg Rate" Then
                     If CMBPRINTVALUE.Text = "Avg Mtrs" Then
-                        QTYMTRS = " CASE WHEN SUM(BILL_TOTALPCS) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALPCS)),2) ELSE 0 END "
-                        TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALPCS) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALPCS)),2) ELSE 0 END "
+                        QTYMTRS = " CASE WHEN SUM(BILL_TOTALQTY) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALQTY)),2) ELSE 0 END "
+                        TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALQTY) > 0 THEN ROUND((SUM(BILL_TOTALMTRS)/ SUM(BILL_TOTALQTY)),2) ELSE 0 END "
                     ElseIf CMBPRINTVALUE.Text = "Avg Rate" Then
                         QTYMTRS = " CASE WHEN SUM(BILL_TOTALMTRS) > 0 THEN ROUND((SUM(BILL_TOTALAMT)/ SUM(BILL_TOTALMTRS)),2) ELSE 0 END "
                         TOTALCLAUSE = " CASE WHEN SUM(BILL_TOTALMTRS) > 0 THEN ROUND((SUM(BILL_TOTALAMT)/ SUM(BILL_TOTALMTRS)),2) ELSE 0 END "
