@@ -961,7 +961,7 @@ LINE1:
             alParaval.Add("")
             alParaval.Add(0)    'AVGWT
             alParaval.Add(0)    'DISPATCHFROM
-
+            alParaval.Add(0) 'WIDTH
 
             Dim OBJJO As New ClsCuttingIssue()
             OBJJO.alParaval = alParaval
