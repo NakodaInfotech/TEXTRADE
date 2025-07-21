@@ -75,7 +75,7 @@ Public Class InHouseChecking
             CMDSELECTLOT.Enabled = True
             GRIDDOUBLECLICK = False
             getmaxno()
-            CHKCHECKMTRS.CheckState = CheckState.Unchecked
+            If ClientName <> "SHASHWAT" Then CHKCHECKMTRS.CheckState = CheckState.Unchecked
             CHALLANDATE.Text = Now.Date
         Catch ex As Exception
             Throw ex
@@ -747,7 +747,7 @@ NEXTLINE:
                 For Each ROW As DataRow In DTTABLE.Rows
                     Dim CHECKEDMTRS As Decimal = 0.0
                     If CHKCHECKMTRS.CheckState = 1 Then CHECKEDMTRS = Val(ROW("RECDMTRS"))
-                    'If ClientName = "RAJKRIPA" Then CHECKEDMTRS = 0
+                    'If ClientName = "SHASHWAT" Then CHECKEDMTRS = 0
                     If TXTLOTNO.Text.Trim = "" And ROW("LOTNO") <> "0" And ROW("LOTNO") <> "" Then TXTLOTNO.Text = ROW("LOTNO")
 
                     'FETCH WEAVERNAME AND WEAVERCHNO FROM LOTVIEW
@@ -1041,6 +1041,9 @@ LINE1:
     Private Sub InHouseChecking_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "RAJKRIPA" Then Gdesc.HeaderText = "Grade"
+
+            If ClientName = "SHASHWAT" Then CHKCHECKMTRS.CheckState = CheckState.Checked
+
             If ClientName = "VINTAGEINDIA" Then
                 TXTCHECKEDBY.Text = UserName
                 GBALENO.HeaderText = "Pcs No"

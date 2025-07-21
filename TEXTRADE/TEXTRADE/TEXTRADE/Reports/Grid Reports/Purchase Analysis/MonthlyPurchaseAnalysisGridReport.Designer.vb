@@ -492,7 +492,7 @@ Partial Class MonthlyPurchaseAnalysisGridReport
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDREPORT.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDREPORT.Location = New System.Drawing.Point(3, 2)
+        Me.GRIDREPORT.Location = New System.Drawing.Point(3, 23)
         Me.GRIDREPORT.MultiSelect = False
         Me.GRIDREPORT.Name = "GRIDREPORT"
         Me.GRIDREPORT.ReadOnly = True
@@ -504,7 +504,7 @@ Partial Class MonthlyPurchaseAnalysisGridReport
         Me.GRIDREPORT.RowTemplate.Height = 20
         Me.GRIDREPORT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 529)
+        Me.GRIDREPORT.Size = New System.Drawing.Size(1437, 508)
         Me.GRIDREPORT.TabIndex = 686
         Me.GRIDREPORT.TabStop = False
         '
@@ -627,10 +627,10 @@ Partial Class MonthlyPurchaseAnalysisGridReport
         Me.TBFILTERS.Controls.Add(Me.GroupBox1)
         Me.TBFILTERS.Controls.Add(Me.GPITEMNAME)
         Me.TBFILTERS.Controls.Add(Me.GPPARTYNAME)
-        Me.TBFILTERS.Location = New System.Drawing.Point(4, 24)
+        Me.TBFILTERS.Location = New System.Drawing.Point(4, 22)
         Me.TBFILTERS.Name = "TBFILTERS"
         Me.TBFILTERS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBFILTERS.Size = New System.Drawing.Size(1440, 533)
+        Me.TBFILTERS.Size = New System.Drawing.Size(1440, 535)
         Me.TBFILTERS.TabIndex = 1
         Me.TBFILTERS.Text = "Filters"
         '

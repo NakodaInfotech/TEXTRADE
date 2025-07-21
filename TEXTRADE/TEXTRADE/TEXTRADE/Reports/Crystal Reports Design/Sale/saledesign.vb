@@ -448,7 +448,7 @@ SKIPINVOICE:
                     CRPO.ReportSource = RPTINVOICE_SVS
                 ElseIf ClientName = "CC" Or ClientName = "C3" Then
                     CRPO.ReportSource = RPTINVOICE_CC
-                    If ClientName = "C3" Then RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "CC" Or ClientName = "C3" Then RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 ElseIf ClientName = "MANINATH" Then
                     CRPO.ReportSource = RPTINVOICE_MANINATH
                 ElseIf ClientName = "JURON" Or ClientName = "MOHAN" Then
