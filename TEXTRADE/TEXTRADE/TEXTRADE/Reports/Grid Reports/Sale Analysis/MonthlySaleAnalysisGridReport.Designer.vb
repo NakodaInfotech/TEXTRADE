@@ -53,6 +53,9 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBREPORT = New System.Windows.Forms.TabPage()
+        Me.CMBGRIDAGENT1 = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDITEM1 = New System.Windows.Forms.ComboBox()
+        Me.CMBGRIDPARTY1 = New System.Windows.Forms.ComboBox()
         Me.CMBGRIDITEM = New System.Windows.Forms.ComboBox()
         Me.CMBGRIDAGENT = New System.Windows.Forms.ComboBox()
         Me.CMBGRIDPARTY = New System.Windows.Forms.ComboBox()
@@ -101,9 +104,6 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.TXTTEMP = New System.Windows.Forms.TextBox()
         Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
-        Me.CMBGRIDPARTY1 = New System.Windows.Forms.ComboBox()
-        Me.CMBGRIDITEM1 = New System.Windows.Forms.ComboBox()
-        Me.CMBGRIDAGENT1 = New System.Windows.Forms.ComboBox()
         Me.BlendPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBREPORT.SuspendLayout()
@@ -478,9 +478,48 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.TBREPORT.TabIndex = 0
         Me.TBREPORT.Text = "Report"
         '
+        'CMBGRIDAGENT1
+        '
+        Me.CMBGRIDAGENT1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CMBGRIDAGENT1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDAGENT1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDAGENT1.FormattingEnabled = True
+        Me.CMBGRIDAGENT1.Location = New System.Drawing.Point(173, 3)
+        Me.CMBGRIDAGENT1.MaxDropDownItems = 14
+        Me.CMBGRIDAGENT1.Name = "CMBGRIDAGENT1"
+        Me.CMBGRIDAGENT1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDAGENT1.TabIndex = 794
+        Me.CMBGRIDAGENT1.Visible = False
+        '
+        'CMBGRIDITEM1
+        '
+        Me.CMBGRIDITEM1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CMBGRIDITEM1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDITEM1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDITEM1.FormattingEnabled = True
+        Me.CMBGRIDITEM1.Location = New System.Drawing.Point(173, 4)
+        Me.CMBGRIDITEM1.MaxDropDownItems = 14
+        Me.CMBGRIDITEM1.Name = "CMBGRIDITEM1"
+        Me.CMBGRIDITEM1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDITEM1.TabIndex = 793
+        Me.CMBGRIDITEM1.Visible = False
+        '
+        'CMBGRIDPARTY1
+        '
+        Me.CMBGRIDPARTY1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.CMBGRIDPARTY1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGRIDPARTY1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBGRIDPARTY1.FormattingEnabled = True
+        Me.CMBGRIDPARTY1.Location = New System.Drawing.Point(173, 3)
+        Me.CMBGRIDPARTY1.MaxDropDownItems = 14
+        Me.CMBGRIDPARTY1.Name = "CMBGRIDPARTY1"
+        Me.CMBGRIDPARTY1.Size = New System.Drawing.Size(172, 23)
+        Me.CMBGRIDPARTY1.TabIndex = 792
+        Me.CMBGRIDPARTY1.Visible = False
+        '
         'CMBGRIDITEM
         '
-        Me.CMBGRIDITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CMBGRIDITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBGRIDITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBGRIDITEM.FormattingEnabled = True
@@ -493,11 +532,11 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'CMBGRIDAGENT
         '
-        Me.CMBGRIDAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CMBGRIDAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBGRIDAGENT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBGRIDAGENT.FormattingEnabled = True
-        Me.CMBGRIDAGENT.Location = New System.Drawing.Point(1, 3)
+        Me.CMBGRIDAGENT.Location = New System.Drawing.Point(2, 4)
         Me.CMBGRIDAGENT.MaxDropDownItems = 14
         Me.CMBGRIDAGENT.Name = "CMBGRIDAGENT"
         Me.CMBGRIDAGENT.Size = New System.Drawing.Size(172, 23)
@@ -506,7 +545,7 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         'CMBGRIDPARTY
         '
-        Me.CMBGRIDPARTY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGRIDPARTY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.CMBGRIDPARTY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBGRIDPARTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBGRIDPARTY.FormattingEnabled = True
@@ -1002,45 +1041,6 @@ Partial Class MonthlySaleAnalysisGridReport
         '
         Me.FileSystemWatcher1.EnableRaisingEvents = True
         Me.FileSystemWatcher1.SynchronizingObject = Me
-        '
-        'CMBGRIDPARTY1
-        '
-        Me.CMBGRIDPARTY1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBGRIDPARTY1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBGRIDPARTY1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBGRIDPARTY1.FormattingEnabled = True
-        Me.CMBGRIDPARTY1.Location = New System.Drawing.Point(173, 3)
-        Me.CMBGRIDPARTY1.MaxDropDownItems = 14
-        Me.CMBGRIDPARTY1.Name = "CMBGRIDPARTY1"
-        Me.CMBGRIDPARTY1.Size = New System.Drawing.Size(172, 23)
-        Me.CMBGRIDPARTY1.TabIndex = 792
-        Me.CMBGRIDPARTY1.Visible = False
-        '
-        'CMBGRIDITEM1
-        '
-        Me.CMBGRIDITEM1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBGRIDITEM1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBGRIDITEM1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBGRIDITEM1.FormattingEnabled = True
-        Me.CMBGRIDITEM1.Location = New System.Drawing.Point(173, 3)
-        Me.CMBGRIDITEM1.MaxDropDownItems = 14
-        Me.CMBGRIDITEM1.Name = "CMBGRIDITEM1"
-        Me.CMBGRIDITEM1.Size = New System.Drawing.Size(172, 23)
-        Me.CMBGRIDITEM1.TabIndex = 793
-        Me.CMBGRIDITEM1.Visible = False
-        '
-        'CMBGRIDAGENT1
-        '
-        Me.CMBGRIDAGENT1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBGRIDAGENT1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBGRIDAGENT1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBGRIDAGENT1.FormattingEnabled = True
-        Me.CMBGRIDAGENT1.Location = New System.Drawing.Point(173, 3)
-        Me.CMBGRIDAGENT1.MaxDropDownItems = 14
-        Me.CMBGRIDAGENT1.Name = "CMBGRIDAGENT1"
-        Me.CMBGRIDAGENT1.Size = New System.Drawing.Size(172, 23)
-        Me.CMBGRIDAGENT1.TabIndex = 794
-        Me.CMBGRIDAGENT1.Visible = False
         '
         'MonthlySaleAnalysisGridReport
         '
