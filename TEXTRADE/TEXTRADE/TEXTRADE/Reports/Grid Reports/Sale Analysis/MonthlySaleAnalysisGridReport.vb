@@ -557,6 +557,9 @@ Public Class MonthlySaleAnalysisGridReport
                 Exit Sub
             End If
             FILLGRID()
+            GRIDREPORT.Refresh()
+            CreateFilterTextBoxes()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -668,136 +671,120 @@ Public Class MonthlySaleAnalysisGridReport
 
             If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-            TEMPOUTSTANDING()
+            TEMPSALEANALYSIS()
 
 
             If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                Dim OBJRPT As New clsReportDesigner("Sale Analysis Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
                 OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
                 Exit Sub
             End If
 
             Dim OBJPL As New PLDesign
-            OBJPL.frmstring = "OUTSTANDING"
+            OBJPL.frmstring = "SALEANALYSIS"
             OBJPL.MdiParent = MDIMain
-            OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
+            OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
             OBJPL.Show()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Sub TEMPOUTSTANDING()
+    Sub TEMPSALEANALYSIS()
         Try
-            'Dim OBJCMN As New ClsCommon
-            'Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPOUTSTANDING WHERE YEARID = " & YearId, "", "")
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPSALEANALYSIS WHERE YEARID = " & YearId, "", "")
 
-            'Dim I As Integer = 1
+            Dim I As Integer = 1
 
-            'If TabControl1.SelectedIndex = 0 Then
-            '    For Each ROW As DataGridViewRow In GRIDOUTSTANDING.Rows
-            '        Dim ALPARAVAL As New ArrayList
-            '        ALPARAVAL.Add(I)
-            '        If ROW.Cells(GNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GNAME.Index).Value)
-            '        If ROW.Cells(GINVNO.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GINVNO.Index).Value)
-            '        Dim TEMP As Date
-            '        If Not DateTime.TryParse(ROW.Cells(GDATE.Index).Value, TEMP) Then
-            '            ALPARAVAL.Add(DBNull.Value)
-            '        Else
-            '            ALPARAVAL.Add(TEMP)
-            '        End If
+            If TabControl1.SelectedIndex = 0 Then
+                For Each ROW As DataGridViewRow In GRIDREPORT.Rows
+                    Dim ALPARAVAL As New ArrayList
+                    ALPARAVAL.Add(I)
+                    If ROW.Cells(GNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GNAME.Index).Value)
+                    If ROW.Cells(GAPRIL.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GAPRIL.Index).Value)
+                    If ROW.Cells(GMAY.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GMAY.Index).Value)
+                    If ROW.Cells(GJUNE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GJUNE.Index).Value)
+                    If ROW.Cells(GJULY.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GJULY.Index).Value)
+                    If ROW.Cells(GAUGUST.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GAUGUST.Index).Value)
+                    If ROW.Cells(GSEPTEMBER.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GSEPTEMBER.Index).Value)
+                    If ROW.Cells(GOCTOBER.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GOCTOBER.Index).Value)
+                    If ROW.Cells(GNOVEMBER.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GNOVEMBER.Index).Value)
+                    If ROW.Cells(GDECEMBER.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GDECEMBER.Index).Value)
+                    If ROW.Cells(GJANUARY.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GJANUARY.Index).Value)
+                    If ROW.Cells(GFEBRUARY.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GFEBRUARY.Index).Value)
+                    If ROW.Cells(GMARCH.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GMARCH.Index).Value)
+                    If ROW.Cells(GTOTAL.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GTOTAL.Index).Value)
 
-            '        If Not DateTime.TryParse(ROW.Cells(GDUEDATE.Index).Value, TEMP) Then
-            '            ALPARAVAL.Add(DBNull.Value)
-            '        Else
-            '            ALPARAVAL.Add(TEMP)
-            '        End If
+                    ALPARAVAL.Add(CmpId)
+                    ALPARAVAL.Add(YearId)
 
-            '        If ROW.Cells(GBILLAMT.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GBILLAMT.Index).Value))
+                    Dim OBJTB As New ClsTrialBalance
+                    OBJTB.alParaval = ALPARAVAL
+                    Dim INT As Integer = OBJTB.SAVESALEANALYSIS()
 
-            '        'WE WILL ADD PARTYCONTACT NO IN LR NO COLUMN
-            '        If ROW.Cells(GDATE.Index).Value = "CONTACT" Then
-            '            If ROW.Cells(GDATE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GDATE.Index).Value)
-            '        Else
-            '            If ROW.Cells(GLRNO.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GLRNO.Index).Value)
-            '        End If
+                    I += 1
+                Next
 
-            '        If ROW.Cells(GITEMNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GITEMNAME.Index).Value)
-            '        If ROW.Cells(GRECDAMT.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GRECDAMT.Index).Value))
-            '        If ROW.Cells(GBALANCE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GBALANCE.Index).Value))
-            '        'If ROW.Cells(GDAYS.Index).Value = Nothing Then ALPARAVAL.Add(0) Else ALPARAVAL.Add(Val(ROW.Cells(GDAYS.Index).Value))
-            '        If ROW.Cells(GOVERDUEDAYS.Index).Value = Nothing Then ALPARAVAL.Add(0) Else ALPARAVAL.Add(Val(ROW.Cells(GOVERDUEDAYS.Index).Value))
-            '        If ROW.Cells(GCMPNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GCMPNAME.Index).Value)
-            '        ALPARAVAL.Add(CmpId)
-            '        ALPARAVAL.Add(YearId)
-            '        If ROW.Cells(GCHARGES.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GCHARGES.Index).Value))
+                'Else
+                '    For Each ROW As DataGridViewRow In GRIDSUMM.Rows
+                '        Dim ALPARAVAL As New ArrayList
+                '        ALPARAVAL.Add(I)
+                '        If ROW.Cells(SNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(SNAME.Index).Value)
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add("")
+                '        If ROW.Cells(SBALANCE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(SBALANCE.Index).Value))
+                '        '  ALPARAVAL.Add(0)
+                '        ALPARAVAL.Add("")
+                '        ALPARAVAL.Add(CmpId)
+                '        ALPARAVAL.Add(YearId)
+                '        ALPARAVAL.Add("")
 
-            '        Dim OBJTB As New ClsTrialBalance
-            '        OBJTB.alParaval = ALPARAVAL
-            '        Dim INT As Integer = OBJTB.SAVEOUTSTANDING()
+                '        Dim OBJTB As New ClsTrialBalance
+                '        OBJTB.alParaval = ALPARAVAL
+                '        Dim INT As Integer = OBJTB.SAVEOUTSTANDING()
 
-            '        I += 1
-            '    Next
-
-            'Else
-            '    For Each ROW As DataGridViewRow In GRIDSUMM.Rows
-            '        Dim ALPARAVAL As New ArrayList
-            '        ALPARAVAL.Add(I)
-            '        If ROW.Cells(SNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(SNAME.Index).Value)
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add("")
-            '        If ROW.Cells(SBALANCE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(SBALANCE.Index).Value))
-            '        '  ALPARAVAL.Add(0)
-            '        ALPARAVAL.Add("")
-            '        ALPARAVAL.Add(CmpId)
-            '        ALPARAVAL.Add(YearId)
-            '        ALPARAVAL.Add("")
-
-            '        Dim OBJTB As New ClsTrialBalance
-            '        OBJTB.alParaval = ALPARAVAL
-            '        Dim INT As Integer = OBJTB.SAVEOUTSTANDING()
-
-            '        I += 1
-            '    Next
-            'End If
+                '        I += 1
+                '    Next
+            End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
     Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
-        'Try
-        '    If ALLOWWHATSAPP = False Then Exit Sub
-        '    If Not CHECKWHASTAPPEXP() Then
-        '        MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
-        '        Exit Sub
-        '    End If
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
 
-        '    If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-        '    TEMPOUTSTANDING()
-        '    Dim WHATSAPPNO As String = ""
-        '    Dim OBJPL As New PLDesign
-        '    OBJPL.frmstring = "OUTSTANDING"
-        '    OBJPL.MdiParent = MDIMain
-        '    OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-        '    OBJPL.DIRECTPRINT = True
-        '    OBJPL.PARTYNAME = CMBNAME.Text.Trim
-        '    OBJPL.Show()
-        '    OBJPL.Close()
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            TEMPSALEANALYSIS()
+            Dim WHATSAPPNO As String = ""
+            Dim OBJPL As New PLDesign
+            OBJPL.frmstring = "SALEANALYSIS"
+            OBJPL.MdiParent = MDIMain
+            OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
+            OBJPL.DIRECTPRINT = True
+            OBJPL.PARTYNAME = CMBREPORTTYPE.Text.Trim
+            OBJPL.Show()
+            OBJPL.Close()
 
-        '    Dim OBJWHATSAPP As New SendWhatsapp
-        '    OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
-        '    OBJWHATSAPP.PATH.Add(Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf")
-        '    OBJWHATSAPP.FILENAME.Add("Outstanding" & PARTYNAME & ".pdf")
-        '    OBJWHATSAPP.ShowDialog()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            Dim OBJWHATSAPP As New SendWhatsapp
+            OBJWHATSAPP.PARTYNAME = CMBREPORTTYPE.Text.Trim
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("SaleAnalysis" & CMBREPORTTYPE.Text.Trim & ".pdf")
+            OBJWHATSAPP.ShowDialog()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDREPORT_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GRIDREPORT.CellFormatting
@@ -956,6 +943,51 @@ Public Class MonthlySaleAnalysisGridReport
 
     Private Sub CMBGRIDAGENT_TextChanged(sender As Object, e As EventArgs) Handles CMBGRIDAGENT.TextChanged, CMBGRIDAGENT1.TextChanged, CMBGRIDITEM.TextChanged, CMBGRIDITEM1.TextChanged, CMBGRIDPARTY.TextChanged, CMBGRIDPARTY1.TextChanged
         LOADDATA()
+    End Sub
+    Private filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Private Sub CreateFilterTextBoxes()
+        'TBREPORT.Controls.Clear()
+        filterTextBoxes.Clear()
+
+        If GRIDREPORT.Columns.Count = 0 Then Exit Sub
+
+        Dim xPos As Integer = 0
+
+        For Each col As DataGridViewColumn In GRIDREPORT.Columns
+            Dim txt As New TextBox()
+            txt.Width = col.Width
+            txt.Left = xPos
+            txt.Top = 5
+            txt.Tag = col.Index
+            txt.Font = New Font("Segoe UI", 8)
+            AddHandler txt.TextChanged, AddressOf FilterGrid
+
+            TBREPORT.Controls.Add(txt)
+            filterTextBoxes.Add(txt)
+
+            xPos += col.Width
+        Next
+    End Sub
+
+    Private Sub FilterGrid(sender As Object, e As EventArgs)
+        Dim dt As DataTable = TryCast(GRIDREPORT.DataSource, DataTable)
+        If dt Is Nothing Then Return
+
+        Dim dv As New DataView(dt)
+        Dim filterParts As New List(Of String)
+
+        For i As Integer = 0 To filterTextBoxes.Count - 1
+            Dim value = filterTextBoxes(i).Text.Trim().Replace("'", "''")
+            If value <> "" Then
+                Dim colName = GRIDREPORT.Columns(i).DataPropertyName
+                filterParts.Add(String.Format("[{0}] LIKE '%{1}%'", colName, value))
+            End If
+        Next
+
+        dv.RowFilter = String.Join(" AND ", filterParts)
+        GRIDREPORT.DataSource = dv
     End Sub
 
 End Class
