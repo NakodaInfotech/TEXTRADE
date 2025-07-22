@@ -13,6 +13,7 @@ Public Class PLDesign
     Dim RPTINTDTLS As New InterestDetailsReport
     Dim RPTINTBILLDTLS As New InterestBillWiseReport
     Dim RPTOUTSTANDING As New GridOutstandingPrintReport
+    'Dim RPTSALEANALYSIS As New GridSaleAnalysisPrintReport
 
     Public frmstring As String
     Public SHOWNARR As Integer = 0
@@ -69,6 +70,8 @@ Public Class PLDesign
                 crTables = RPTINTBILLDTLS.Database.Tables
             ElseIf frmstring = "OUTSTANDING" Then
                 crTables = RPTOUTSTANDING.Database.Tables
+            ElseIf frmstring = "SALEANALYSIS" Then
+                'crTables = RPTSALEANALYSIS.Database.Tables
             Else
                 crTables = RPTPL.Database.Tables
             End If
@@ -103,6 +106,8 @@ Public Class PLDesign
                 If CHANGEDUEDATE = True Then RPTINTBILLDTLS.DataDefinition.FormulaFields("DUEDATE").Text = "#" & Format(Convert.ToDateTime(DUEDATE).Date, "MM/dd/yyyy") & "#"
             ElseIf frmstring = "OUTSTANDING" Then
                 CRPO.ReportSource = RPTOUTSTANDING
+            ElseIf frmstring = "SALEANALYSIS" Then
+                'CRPO.ReportSource = RPTSALEANALYSIS
             Else
                 CRPO.ReportSource = RPTPL
                 RPTPL.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -149,6 +154,10 @@ Public Class PLDesign
                 OBJ = New GridOutstandingPrintReport
                 crTables = RPTOUTSTANDING.Database.Tables
             End If
+            'If frmstring = "SALEANALYSIS" Then
+            '    OBJ = New GridSaleAnalysisPrintReport
+            '    crTables = RPTSALEANALYSIS.Database.Tables
+            'End If
 
 
             crTables = OBJ.Database.Tables
@@ -168,6 +177,8 @@ Public Class PLDesign
 
             If frmstring = "OUTSTANDING" Then
                 CRPO.ReportSource = RPTOUTSTANDING
+                'ElseIf 
+
             End If
 
             Dim expo As New ExportOptions

@@ -49,6 +49,7 @@ Partial Class SelectPurLRStock
         Me.CHKSELECT = New System.Windows.Forms.CheckBox()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +87,7 @@ Partial Class SelectPurLRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GWT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID, Me.GUNIT, Me.GHSNCODE, Me.GAQTY, Me.GFOLDPER})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GWT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID, Me.GUNIT, Me.GHSNCODE, Me.GAQTY, Me.GFOLDPER, Me.GRATE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -316,6 +317,14 @@ Partial Class SelectPurLRStock
         Me.CMDOK.Text = "&OK"
         Me.CMDOK.UseVisualStyleBackColor = True
         '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 12
+        '
         'SelectPurLRStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -363,4 +372,5 @@ Partial Class SelectPurLRStock
     Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
