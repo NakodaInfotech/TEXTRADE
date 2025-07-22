@@ -43,6 +43,7 @@ Public Class ItemMaster
             '7) CMDSELECTSO_CLICK IN SALEINVOICE
             '8) TXTPRNO_Validating IN MATERIALRECEIPT
             '9) CMDSELECTPO CLICK IN PURCHASEINVOICE
+            '10) SAVE CLICK IN MAGICBOX
 
 
             Ep.Clear()

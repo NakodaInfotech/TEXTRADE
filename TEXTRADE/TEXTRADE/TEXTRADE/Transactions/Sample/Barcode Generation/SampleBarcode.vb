@@ -303,7 +303,7 @@ Public Class SampleBarcode
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" Then Exit Sub
                 End If
 
-                If ClientName = "SUPRIYA" Then
+                If ClientName = "SUPRIYA" Or ClientName = "MNARESH" Then
                     TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SAMPLE STICKER" & Chr(13) & "2 FOR REGISTER STICKER")
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                 End If
@@ -849,6 +849,96 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 249,265,""ROMAN.TTF"",270,1,8,""" & TXTBARCODE.Text.Trim & """")
                             oWrite.WriteLine("PRINT 1,1")
                             oWrite.Dispose()
+
+                        ElseIf ClientName = "MNARESH" Then
+
+                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                            Dim TEMPWIDTH As String = ""
+                            Dim OBJCMN As New ClsCommon
+                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                            End If
+
+                            If TEMPHEADER = "1" Then
+
+                                oWrite.WriteLine("SIZE 97.5 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 755,379,""ROMAN.TTF"",180,1,16,""" & CMBMERCHANT.Text.Trim & """
+BAR 409,324, 355, 3
+TEXT 755,307,""ROMAN.TTF"",180,1,14,""LOT NO""
+TEXT 614,307,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,307,""ROMAN.TTF"",180,1,14,""" & TXTREMARKS.Text.Trim & """
+TEXT 755,253,""ROMAN.TTF"",180,1,14,""D. NO""
+TEXT 614,253,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,253,""ROMAN.TTF"",180,1,14,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 755,199,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 614,199,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,199,""ROMAN.TTF"",180,1,14,""" & CMBCOLOR.Text.Trim & """
+TEXT 755,145,""ROMAN.TTF"",180,1,14,""WIDTH""
+TEXT 614,145,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,145,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """
+BARCODE 764,101,""39"",60,0,180,2,5,""" & TXTBARCODE.Text.Trim & """
+TEXT 631,36,""ROMAN.TTF"",180,1,8,""" & TXTBARCODE.Text.Trim & """
+TEXT 384,379,""ROMAN.TTF"",180,1,16,""" & CMBMERCHANT.Text.Trim & """
+BAR 37,324, 355, 3
+TEXT 384,307,""ROMAN.TTF"",180,1,14,""LOT NO""
+TEXT 243,307,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,307,""ROMAN.TTF"",180,1,14,""" & TXTREMARKS.Text.Trim & """
+TEXT 384,253,""ROMAN.TTF"",180,1,14,""D. NO""
+TEXT 243,253,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,253,""ROMAN.TTF"",180,1,14,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 384,199,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 243,199,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,199,""ROMAN.TTF"",180,1,14,""" & CMBCOLOR.Text.Trim & """
+TEXT 384,145,""ROMAN.TTF"",180,1,14,""WIDTH""
+TEXT 243,145,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,145,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """
+BARCODE 390,101,""39"",60,0,180,2,5,""" & TXTBARCODE.Text.Trim & """
+TEXT 258,36,""ROMAN.TTF"",180,1,8,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1")
+                                oWrite.Dispose()
+
+                            Else
+
+                                oWrite.WriteLine("SIZE 67.5 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 523,385,""ROMAN.TTF"",180,1,12,""" & CMBMERCHANT.Text.Trim & """
+BAR 19,337, 510, 3
+TEXT 517,314,""ROMAN.TTF"",180,1,12,""LOT NO""
+TEXT 379,314,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,314,""ROMAN.TTF"",180,1,12,""" & TXTREMARKS.Text.Trim & """
+TEXT 517,259,""ROMAN.TTF"",180,1,12,""D. NO""
+TEXT 379,259,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,259,""ROMAN.TTF"",180,1,12,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 517,204,""ROMAN.TTF"",180,1,12,""SHADE""
+TEXT 379,204,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,204,""ROMAN.TTF"",180,1,12,""" & CMBCOLOR.Text.Trim & """
+BARCODE 523,101,""39"",65,0,180,2,5,""" & TXTBARCODE.Text.Trim & """
+TEXT 366,31,""0"",180,7,7,""" & TXTBARCODE.Text.Trim & """
+TEXT 517,149,""ROMAN.TTF"",180,1,12,""WIDTH""
+TEXT 379,149,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,149,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """
+PRINT 1,1")
+                                oWrite.Dispose()
+
+                            End If
 
 
                         ElseIf ClientName = "MNIKHIL" Then
@@ -2048,6 +2138,96 @@ Public Class SampleBarcode
                                     oWrite.WriteLine("TEXT 249,265,""ROMAN.TTF"",270,1,8,""" & ROW("BARCODE") & """")
                                     oWrite.WriteLine("PRINT 1,1")
                                     oWrite.Dispose()
+
+                                ElseIf ClientName = "MNARESH" Then
+
+                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                                    Dim TEMPWIDTH As String = ""
+                                    Dim OBJCMN As New ClsCommon
+                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                    If DT.Rows.Count > 0 Then
+                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                                    End If
+
+                                    If TEMPHEADER = "1" Then
+
+                                        oWrite.WriteLine("SIZE 97.5 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 755,379,""ROMAN.TTF"",180,1,16,""" & ROW("ITEMNAME") & """
+BAR 409,324, 355, 3
+TEXT 755,307,""ROMAN.TTF"",180,1,14,""LOT NO""
+TEXT 614,307,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,307,""ROMAN.TTF"",180,1,14,""" & ROW("REMARKS") & """
+TEXT 755,253,""ROMAN.TTF"",180,1,14,""D. NO""
+TEXT 614,253,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,253,""ROMAN.TTF"",180,1,14,""" & ROW("DESIGNNO") & """
+TEXT 755,199,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 614,199,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,199,""ROMAN.TTF"",180,1,14,""" & ROW("SHADE") & """
+TEXT 755,145,""ROMAN.TTF"",180,1,14,""WIDTH""
+TEXT 614,145,""ROMAN.TTF"",180,1,14,"":""
+TEXT 583,145,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """
+BARCODE 764,101,""39"",60,0,180,2,5,""" & ROW("BARCODE") & """
+TEXT 631,36,""ROMAN.TTF"",180,1,8,""" & ROW("BARCODE") & """
+TEXT 384,379,""ROMAN.TTF"",180,1,16,""" & ROW("ITEMNAME") & """
+BAR 37,324, 355, 3
+TEXT 384,307,""ROMAN.TTF"",180,1,14,""LOT NO""
+TEXT 243,307,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,307,""ROMAN.TTF"",180,1,14,""" & ROW("REMARKS") & """
+TEXT 384,253,""ROMAN.TTF"",180,1,14,""D. NO""
+TEXT 243,253,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,253,""ROMAN.TTF"",180,1,14,""" & ROW("DESIGNNO") & """
+TEXT 384,199,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 243,199,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,199,""ROMAN.TTF"",180,1,14,""" & ROW("SHADE") & """
+TEXT 384,145,""ROMAN.TTF"",180,1,14,""WIDTH""
+TEXT 243,145,""ROMAN.TTF"",180,1,14,"":""
+TEXT 211,145,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """
+BARCODE 390,101,""39"",60,0,180,2,5,""" & ROW("BARCODE") & """
+TEXT 258,36,""ROMAN.TTF"",180,1,8,""" & ROW("BARCODE") & """
+PRINT 1,1")
+                                        oWrite.Dispose()
+
+                                    Else
+
+                                        oWrite.WriteLine("SIZE 67.5 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 523,385,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
+BAR 19,337, 510, 3
+TEXT 517,314,""ROMAN.TTF"",180,1,12,""LOT NO""
+TEXT 379,314,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,314,""ROMAN.TTF"",180,1,12,""" & ROW("REMARKS") & """
+TEXT 517,259,""ROMAN.TTF"",180,1,12,""D. NO""
+TEXT 379,259,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,259,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
+TEXT 517,204,""ROMAN.TTF"",180,1,12,""SHADE""
+TEXT 379,204,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,204,""ROMAN.TTF"",180,1,12,""" & ROW("SHADE") & """
+BARCODE 523,101,""39"",65,0,180,2,5,""" & ROW("BARCODE") & """
+TEXT 366,31,""0"",180,7,7,""" & ROW("BARCODE") & """
+TEXT 517,149,""ROMAN.TTF"",180,1,12,""WIDTH""
+TEXT 379,149,""ROMAN.TTF"",180,1,12,"":""
+TEXT 358,149,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """
+PRINT 1,1")
+                                        oWrite.Dispose()
+
+                                    End If
 
 
                                 ElseIf ClientName = "MNIKHIL" Then

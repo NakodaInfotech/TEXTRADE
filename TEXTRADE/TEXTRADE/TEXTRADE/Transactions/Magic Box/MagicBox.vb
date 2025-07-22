@@ -179,22 +179,50 @@ Public Class MagicBox
                 alParaval.Add(CLOSED)
 
                 alParaval.Add("") 'CMBSAMPLE.Text.Trim)
-
                 alParaval.Add("") 'CMBFROMCITY.Text.Trim)
-
                 alParaval.Add(0)
 
-
-                Dim objclsPurord As New ClsAgencySaleOrder()
-                objclsPurord.alParaval = alParaval
-
-                Dim DT As DataTable = objclsPurord.SAVE()
+                Dim OBJSO As New ClsAgencySaleOrder()
+                OBJSO.alParaval = alParaval
+                Dim DT As DataTable = OBJSO.SAVE()
 
 
 
                 'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
+                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE ORDER IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+                Dim OBJCMN As New ClsCommon
+                Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
+                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
+
+                    'CREATE PO IN ABHEE FABRICS LLP
+                    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMPID_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+                    If TEMPDT.Rows.Count > 0 Then
+                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+                    Else
+                        GoTo NEXTLINE
+                    End If
 
 
+
+                    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(row.Cells(GSELLERS.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+                    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+                    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
+                    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+
+
+                End If
+
+
+NEXTLINE:
             Next
 
             MessageBox.Show("Details Added")
@@ -203,6 +231,293 @@ Public Class MagicBox
             CLEAR()
 
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub CREATELEDGER(NAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+
+            'ADD IN ACCOUNTSMASTER
+            Dim ALPARAVAL As New ArrayList
+            Dim OBJSM As New ClsAccountsMaster
+            Dim OBJCMN As New ClsCommon
+            Dim DTLEDGER As DataTable = OBJCMN.SEARCH(" GROUPMASTER.group_name AS GROUPNAME, ISNULL(LEDGERS.ACC_INTPER, 0) AS INTPER, ISNULL(LEDGERS.Acc_add1,'') AS ADD1, ISNULL(LEDGERS.Acc_add2,'') AS ADD2, ISNULL(AREAMASTER.area_name, '') AS AREA, ISNULL(CITYMASTER.city_name, '') AS CITYNAME, ISNULL(LEDGERS.Acc_zipcode, '') AS PINCODE, ISNULL(STATEMASTER.state_name, '') AS STATE, ISNULL(COUNTRYMASTER.country_name, '') AS COUNTRY, ISNULL(LEDGERS.Acc_crdays, 0) AS CRDAYS, ISNULL(LEDGERS.Acc_crlimit, 0) AS CRLIMIT, ISNULL(LEDGERS.Acc_resino, '') AS RESINO, ISNULL(LEDGERS.Acc_altno, '') AS ALTNO, ISNULL(LEDGERS.Acc_phone, '') 
+                         AS PHONENO, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS WHATSAPPNO, ISNULL(LEDGERS.Acc_fax, '') AS FAX, ISNULL(LEDGERS.Acc_website, '') AS WEBSITE, 
+                         ISNULL(LEDGERS.Acc_email, '') AS EMAIL, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(LEDGERS.ACC_AGENTCOMM, 0) AS COMMISSION, 
+                         ISNULL(LEDGERS.ACC_DISC, 0) AS DISCOUNT, ISNULL(LEDGERS.ACC_CDPER, 0) AS CASHDISC, ISNULL(LEDGERS.ACC_KMS, 0) AS KMS, ISNULL(LEDGERS.Acc_panno, '') AS PANNO, ISNULL(LEDGERS.ACC_GSTIN, '') 
+                         AS GSTIN, ISNULL(LEDGERS.Acc_add, '') AS ADDRESS, ISNULL(LEDGERS.Acc_shippingadd, '') AS SHIPPINGADDRESS, ISNULL(LEDGERS.Acc_remarks, '') AS REMARKS, LEDGERS.Acc_code AS CODE, 
+                         ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN, ISNULL(DELIVERYCITYMASTER.city_name, '') AS DELIVERYAT, LEDGERS.Acc_TYPE AS TYPE, ISNULL(LEDGERS.ACC_DELIVERYPINCODE, '') 
+                         AS DELIVERYPINNO, ISNULL(LEDGERS.ACC_UPI, '') AS UPI, ISNULL(LEDGERS.ACC_MSMENO, '') AS MSME, ISNULL(LEDGERS.ACC_COMMISSION, 0) AS BROKERAGECOMM, ISNULL(LEDGERS.ACC_WARNING, '') 
+                         AS WARNINGTEXT, ISNULL(LEDGERS.ACC_GSTINVERIFIED, 0) AS GSTVERIFIED, ISNULL(LEDGERS.ACC_MSMETYPE, '') AS MSMETYPE, ISNULL(LEDGERS.ACC_EXMILLLESS, 0) AS EXMILLLESS, 
+                         ISNULL(LEDGERS.ACC_LOCKDAYS, 0) AS LOCKDAYS ", "", " LEDGERS INNER JOIN
+                         GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN
+						 SALESMANMASTER ON SALESMANMASTER.SALESMAN_ID = LEDGERS.ACC_SALESMANID LEFT OUTER JOIN
+                         CITYMASTER AS DELIVERYCITYMASTER ON LEDGERS.ACC_DELIVERYATID = DELIVERYCITYMASTER.city_id LEFT OUTER JOIN
+                         LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN
+						 LEDGERS AS TRANSLEDGERS ON TRANSLEDGERS.Acc_id = LEDGERS.ACC_TRANSID LEFT OUTER JOIN
+                         COUNTRYMASTER ON LEDGERS.Acc_countryid = COUNTRYMASTER.country_id LEFT OUTER JOIN
+                         STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN
+                         CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN 
+						 AREAMASTER ON AREAMASTER.area_id = LEDGERS.Acc_areaid ", " AND LEDGERS.ACC_CMPNAME = '" & NAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+
+
+
+            ALPARAVAL.Add(NAME)
+            ALPARAVAL.Add("")   'NAME
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GROUPNAME"))
+            ALPARAVAL.Add(0)    'OPBAL
+            ALPARAVAL.Add("Cr.")
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("INTPER")))    'INTPER
+            ALPARAVAL.Add(0)    'PROFITPER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD1"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD2"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("AREA"))   'AREA
+            ALPARAVAL.Add("")   'STD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("CITYNAME"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PINNO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("STATE"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("COUNTRY"))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRDAYS")))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRLIMIT")))    'CRLIMIT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("RESINO"))   'RESI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ALTNO"))   'ALT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PHONENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MOBILENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WHATSAPPNO"))   'WHATSAPPNO
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("FAX"))   'FAX
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WEBSITE"))   'WEBSITE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("EMAIL"))   'EMAIL
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TRANSPORT"))   'TRANS
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("BROKER"))   'AGENT
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("COMMISSION")))    'AGENTCOM
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("DISCOUNT")))    'DISC
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CASHDISC")))    'CDPER
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("KMS")))    'KMS
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PANNO"))   'PAN
+            ALPARAVAL.Add("")   'EXISE
+            ALPARAVAL.Add("")   'RANGE
+            ALPARAVAL.Add("")   'ADDLESS
+            ALPARAVAL.Add("")   'CST
+            ALPARAVAL.Add("")   'TIN
+            ALPARAVAL.Add("")   'ST
+            ALPARAVAL.Add("")   'VAT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTIN"))
+            ALPARAVAL.Add("")   'REGISTER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADDRESS"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SHIPPINGADD"))   'SHIPADD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("REMARKS"))   'REMARKS
+            ALPARAVAL.Add("")   'PARTYBANK
+            ALPARAVAL.Add("")   'ACCTYPE
+            ALPARAVAL.Add("")   'ACCNO
+            ALPARAVAL.Add("")   'IFSCCODE
+            ALPARAVAL.Add("")   'BRANCH
+            ALPARAVAL.Add("")   'BANKCITY
+            ALPARAVAL.Add("")   'GROUPOFCOMPANIES
+            ALPARAVAL.Add(0)    'BLOCKED
+            ALPARAVAL.Add(0)    'RCM
+            ALPARAVAL.Add(0)    'OVERSEAS
+            ALPARAVAL.Add(0)    'HOLDFORAPPROVAL
+            ALPARAVAL.Add(TEMPCMPID)
+            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(TEMPYEARID)
+            ALPARAVAL.Add(0)    'TRANSFER
+            ALPARAVAL.Add(NAME)
+            ALPARAVAL.Add("")    'PRICELIST
+            ALPARAVAL.Add("")    'PACKINGTYPE
+            ALPARAVAL.Add("")    'TERM
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SALESMAN"))    'SALESMAN
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYAT"))    'DELIVERYAT (SAME AS CITY WHILE UPLOADING)
+
+
+
+            'TDS
+            '*******************************
+            ALPARAVAL.Add(0)    'ISTDS
+            ALPARAVAL.Add("")   'DEDUCTEETYPER
+            ALPARAVAL.Add("")   'TDSFORM
+            ALPARAVAL.Add("")   'TDSCOMPANY
+            ALPARAVAL.Add(0)    'ISLOWER
+
+            ALPARAVAL.Add("")   'SECTION
+            ALPARAVAL.Add(Val(0))   'TDSRATE
+            ALPARAVAL.Add(0)    'TDSPER
+            ALPARAVAL.Add(0) 'SURCHARGE
+            ALPARAVAL.Add(0) 'LIMIT
+            '*******************************
+
+            ALPARAVAL.Add(0)    'TDSAC
+            ALPARAVAL.Add("NON SEZ")    'SEZTYPE
+            ALPARAVAL.Add("")   'NATUREOFPAY
+            If DTLEDGER.Rows(0).Item("TYPE") <> "" Then ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TYPE")) Else ALPARAVAL.Add("ACCOUNTS")   'TYPE
+            ALPARAVAL.Add("")   'CALC
+            ALPARAVAL.Add(0)                        'POMNADTE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYPINNO"))       'DELIVERYPINCODE (SAME AS PINCODE WHILE UPLOADING)
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("UPI"))   'UPI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSME"))   'MSME
+            ALPARAVAL.Add(0)    'TCS
+            ALPARAVAL.Add("")   'TDSDEDUCTEDAC
+            ALPARAVAL.Add(0)    'TDSONGTOTAL
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("BROKERAGECOMM")))    'COMMISSION
+            ALPARAVAL.Add("")   'DISTRICT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WARNINGTEXT"))   'WARNING TEXT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTVERIFIED"))   'GSTINVERIFIED
+            ALPARAVAL.Add(0)   'PARTYTDS
+            ALPARAVAL.Add(0)   'RD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSMETYPE"))   'MSME TYPE
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("EXMILLLESS")))   'EXMILL
+            ALPARAVAL.Add(0)   'BILLTOID
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("LOCKDAYS")))   'LOCKDAYS
+
+            'CONTACT DETAILS
+            '*******************************
+            ALPARAVAL.Add("")   'FOR NAME
+            ALPARAVAL.Add(0)   'FOR DESIGNATION
+            ALPARAVAL.Add("")   'FOR MOBILE
+            ALPARAVAL.Add("")   'FOR EMAIL
+
+
+
+            OBJSM.alParaval = ALPARAVAL
+            Dim INTRES As Integer = OBJSM.SAVE()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub CREATEITEM(ITEMNAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+            Dim OBJCMN As New ClsCommon
+            Dim DTITEM As DataTable = OBJCMN.SEARCH(" ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER IN ITEM_HSNCODEID = HSN_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+
+
+            ALPARAVAL.Add("Finished Goods")
+            alParaval.Add("")   'CATEGORY
+            ALPARAVAL.Add(UCase(ITEMNAME))       'DISPLAYNAME
+            ALPARAVAL.Add(UCase(ITEMNAME)) 'ITEMNAME
+
+            ALPARAVAL.Add("")   'DEPARTMENT
+            ALPARAVAL.Add(UCase(ITEMNAME))        'CODE
+            ALPARAVAL.Add(DTITEM.Rows(0).Item("UNIT"))   'UNIT
+            alParaval.Add("")   'FOLD
+            alParaval.Add(0)    'RATE
+            alParaval.Add(0)    'VALUATIONRATE   
+            alParaval.Add(0)    'TRANSRATE
+            alParaval.Add(0)    'CHCKINGRATE
+            alParaval.Add(0)    'PACKINGRATE
+            alParaval.Add(0)    'DESIGNRATE
+            alParaval.Add(0)    'REORDER
+            alParaval.Add(0)    'UPPER
+            alParaval.Add(0)    'LOWER
+
+            Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & DTITEM.Rows(0).Item("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+            If DTHSN.Rows.Count > 0 Then alParaval.Add(DTITEM.Rows(0).Item("HSNCODE")) Else alParaval.Add("") 'HSNCODEID
+
+            alParaval.Add(0)    'BLOCKED
+            alParaval.Add(0)    'HIDEINDESIGN
+
+            alParaval.Add("")    'WIDTH
+            alParaval.Add("")    'GREYWIDTH
+            alParaval.Add(0)    'SHRINKFROM
+            alParaval.Add(0)    'SHRINKTO
+            alParaval.Add("")   'SELVEDGE
+
+            alParaval.Add("")   'RATETYPE
+            alParaval.Add("")   'RATE
+
+            alParaval.Add("")   'YARNQUALITY
+            alParaval.Add("")   'PER
+
+
+            alParaval.Add("")   'GRIDSRNO
+            alParaval.Add("")   'PROCESS
+
+            alParaval.Add("")   'REMARKS
+            alParaval.Add("MERCHANT")
+
+            alParaval.Add(DBNull.Value) 'IMGPATH
+            alParaval.Add("")   'WARP
+            alParaval.Add("")   'WEFT
+
+            alParaval.Add(CmpId)
+            alParaval.Add(Locationid)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+            alParaval.Add(0)
+
+            alParaval.Add("")   'WARPSRNO
+            alParaval.Add("")   'WARPQUALITY
+            alParaval.Add("")   'WARPSHADE
+            alParaval.Add("")   'WARPENDS
+            alParaval.Add("")   'WARPWT
+            alParaval.Add("")   'WARPRATE
+            alParaval.Add("")   'WARPAMOUNT
+
+
+            alParaval.Add("")   'WEFTSRNO
+            alParaval.Add("")   'WEFTQUALITY
+            alParaval.Add("")   'WEFTSHADE
+            alParaval.Add("")   'WEFTPICK
+            alParaval.Add("")   'WEFTWT
+            alParaval.Add("")   'WEFTRATE
+            alParaval.Add("")   'WEFTAMOUNT
+
+            alParaval.Add(0)    'WARPTL
+            alParaval.Add(0)    'WEFTTL
+            alParaval.Add(0)    'REED
+            alParaval.Add(0)    'REEDSPACE
+            alParaval.Add(0)    'PICKS
+            alParaval.Add(0)    'TOTALWT
+            alParaval.Add(0)    'TOTALWARPWT
+            alParaval.Add(0)    'TOTALWEFTWT
+            alParaval.Add("")   'WEAVE
+            alParaval.Add("")   'GREYCATEGORY
+
+
+
+            alParaval.Add(0)    'ACTUALWT
+            alParaval.Add(0)    'ACTUALAMT
+            alParaval.Add(0)    'DHARAPER
+            alParaval.Add(0)    'DHARAAMT
+            alParaval.Add(0)    'WASTAGEPER
+            alParaval.Add(0)    'WASTAGEAMT
+            alParaval.Add(0)    'WEAVINGCHGS
+            alParaval.Add(0)    'WEAVINGAMT
+            alParaval.Add(0)    'GSTPER
+            alParaval.Add(0)    'GSTAMT
+            alParaval.Add(0)    'AMOUNT
+            alParaval.Add(0)    'TOTALGSTPER
+            alParaval.Add(0)    'TOTALAMT
+            alParaval.Add(0)    'WARPTOTALAMT
+            alParaval.Add(0)    'WEFTTOTALAMT
+
+            alParaval.Add("")   'COLORNO
+            alParaval.Add("")   'COLORSRNO
+            alParaval.Add(0)    'VALUELOSSPER
+            alParaval.Add("")    'COSTCENTERNAME
+            alParaval.Add(0)    'ITEM GSM
+            alParaval.Add(0)    'ITEM PERCENT
+            alParaval.Add(0)    'GARMENT
+
+            alParaval.Add(0)    'SHADESRNO
+            alParaval.Add(0)    'SHADECOLORID
+
+            alParaval.Add(0)    'SHADEITEMSRNO
+            alParaval.Add(0)    'SHADEITEMID
+            alParaval.Add(0)    'SHADEDESIGNID
+            alParaval.Add(0)    'SHADEITEMCOLORID
+            alParaval.Add(0)    'SHADEMTRS
+            alParaval.Add(0)    'SHADEsrno
+
+            Dim objclsItemMaster As New clsItemmaster
+            objclsItemMaster.alParaval = alParaval
+            Dim IntResult As Integer = objclsItemMaster.SAVE()
         Catch ex As Exception
             Throw ex
         End Try
