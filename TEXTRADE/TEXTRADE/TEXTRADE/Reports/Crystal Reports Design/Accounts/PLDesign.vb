@@ -14,6 +14,7 @@ Public Class PLDesign
     Dim RPTINTBILLDTLS As New InterestBillWiseReport
     Dim RPTOUTSTANDING As New GridOutstandingPrintReport
     Dim RPTSALEANALYSIS As New GridSaleAnalysisPrintReport
+    Dim RPTPURANALYSIS As New GridPurAnalysisPrintReport
 
     Public frmstring As String
     Public SHOWNARR As Integer = 0
@@ -72,6 +73,8 @@ Public Class PLDesign
                 crTables = RPTOUTSTANDING.Database.Tables
             ElseIf frmstring = "SALEANALYSIS" Then
                 crTables = RPTSALEANALYSIS.Database.Tables
+            ElseIf frmstring = "PURANALYSIS" Then
+                crTables = RPTPURANALYSIS.Database.Tables
             Else
                 crTables = RPTPL.Database.Tables
             End If
@@ -108,6 +111,8 @@ Public Class PLDesign
                 CRPO.ReportSource = RPTOUTSTANDING
             ElseIf frmstring = "SALEANALYSIS" Then
                 CRPO.ReportSource = RPTSALEANALYSIS
+            ElseIf frmstring = "PURANALYSIS" Then
+                CRPO.ReportSource = RPTPURANALYSIS
             Else
                 CRPO.ReportSource = RPTPL
                 RPTPL.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -153,9 +158,11 @@ Public Class PLDesign
             If frmstring = "OUTSTANDING" Then
                 OBJ = New GridOutstandingPrintReport
                 crTables = RPTOUTSTANDING.Database.Tables
-            End If
-            If frmstring = "SALEANALYSIS" Then
+            ElseIf frmstring = "SALEANALYSIS" Then
                 OBJ = New GridSaleAnalysisPrintReport
+                crTables = RPTSALEANALYSIS.Database.Tables
+            ElseIf frmstring = "PURANALYSIS" Then
+                OBJ = New GridPurAnalysisPrintReport
                 crTables = RPTSALEANALYSIS.Database.Tables
             End If
 
@@ -179,6 +186,8 @@ Public Class PLDesign
                 CRPO.ReportSource = RPTOUTSTANDING
             ElseIf frmstring = "SALEANALYSIS" Then
                 CRPO.ReportSource = RPTSALEANALYSIS
+            ElseIf frmstring = "PURANALYSIS" Then
+                CRPO.ReportSource = RPTPURANALYSIS
             End If
 
             Dim expo As New ExportOptions
@@ -190,6 +199,8 @@ Public Class PLDesign
                 TEMPATTACHMENT = "Outstanding_" & PARTYNAME
             ElseIf frmstring = "SALEANALYSIS" Then
                 TEMPATTACHMENT = "SaleAnalysis_" & PARTYNAME
+            ElseIf frmstring = "PURANALYSIS" Then
+                TEMPATTACHMENT = "PurAnalysis_" & PARTYNAME
             End If
             CRPO.Zoom(100)
             CRPO.Refresh()
@@ -229,6 +240,8 @@ Public Class PLDesign
             tempattachment = "OUTSTANDING"
         ElseIf frmstring = "SALEANALYSIS" Then
             tempattachment = "SALEANALYSIS"
+        ElseIf frmstring = "PURANALYSIS" Then
+            tempattachment = "PURANALYSIS"
         Else
             tempattachment = "PROFITLOSS"
         End If
@@ -294,6 +307,13 @@ Public Class PLDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTSALEANALYSIS.Export()
+            ElseIf frmstring = "PURANALYSIS" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\PURANALYSIS.PDF"
+                expo = RPTPURANALYSIS.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTPURANALYSIS.Export()
             Else
                 oDfDopt.DiskFileName = Application.StartupPath & "\PROFITLOSS.PDF"
                 expo = RPTPL.ExportOptions
@@ -326,6 +346,8 @@ Public Class PLDesign
                 tempattachment = "OUTSTANDING"
             ElseIf frmstring = "SALEANALYSIS" Then
                 tempattachment = "SALEANALYSIS"
+            ElseIf frmstring = "PURANALYSIS" Then
+                tempattachment = "PURANALYSIS"
             Else
                 tempattachment = "PROFITLOSS"
             End If

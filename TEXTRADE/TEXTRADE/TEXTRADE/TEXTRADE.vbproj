@@ -397,6 +397,12 @@
     <Compile Include="Masters\CustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.vb">
+      <DependentUpon>GridPurAnalysisPrintReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridSaleAnalysisPrintReport.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -8462,6 +8468,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GridPurAnalysisPrintReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\GridSaleAnalysisPrintReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
