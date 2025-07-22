@@ -1807,6 +1807,8 @@ LINE1:
     Private Sub PurchaseOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "PARAS" Then LBLCATEGORY.Visible = True
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
+
             If ClientName = "RMANILAL" Then
                 TXTCUT.TabStop = False
                 cmbqtyunit.Text = "Pcs"
@@ -1855,6 +1857,7 @@ LINE1:
             End If
 
             If ClientName = "ABHEE" Then
+                CMBORDERON.Text = "PCS"
                 CMBBROKER.TabStop = False
                 CMBTRANS.TabStop = False
                 duedate.TabStop = False
@@ -1876,7 +1879,6 @@ LINE1:
             Else
                 CHKVERIFY.Enabled = True
             End If
-            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
 
         Catch ex As Exception
             Throw ex

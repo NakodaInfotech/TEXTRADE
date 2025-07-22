@@ -1937,6 +1937,8 @@ line1:
 
     Private Sub SaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
+
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
                 LBLCONSIGNEE.Text = "Mobile No."
@@ -2076,10 +2078,14 @@ line1:
 
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                CMBORDERON.Text = "PCS"
                 If ClientName = "MASHOK" Then
                     TXTCUT.Text = 110
                     cmbqtyunit.TabStop = False
                     TXTCUT.TabStop = False
+                Else
+                    GMTRS.HeaderText = "Total Qty"
+                    gcut.HeaderText = "LR"
                 End If
                 CMBSALESMAN.TabStop = False
                 CMBRISK.TabStop = False
@@ -2116,7 +2122,6 @@ line1:
                 LBLTRANS1.Text = "Mumbai"
                 LBLTRANS2.Text = "Jetpur"
             End If
-            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
 
 
         Catch ex As Exception
