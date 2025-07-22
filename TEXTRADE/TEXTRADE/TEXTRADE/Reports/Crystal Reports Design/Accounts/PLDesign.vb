@@ -13,7 +13,7 @@ Public Class PLDesign
     Dim RPTINTDTLS As New InterestDetailsReport
     Dim RPTINTBILLDTLS As New InterestBillWiseReport
     Dim RPTOUTSTANDING As New GridOutstandingPrintReport
-    'Dim RPTSALEANALYSIS As New GridSaleAnalysisPrintReport
+    Dim RPTSALEANALYSIS As New GridSaleAnalysisPrintReport
 
     Public frmstring As String
     Public SHOWNARR As Integer = 0
@@ -71,7 +71,7 @@ Public Class PLDesign
             ElseIf frmstring = "OUTSTANDING" Then
                 crTables = RPTOUTSTANDING.Database.Tables
             ElseIf frmstring = "SALEANALYSIS" Then
-                'crTables = RPTSALEANALYSIS.Database.Tables
+                crTables = RPTSALEANALYSIS.Database.Tables
             Else
                 crTables = RPTPL.Database.Tables
             End If
@@ -107,7 +107,7 @@ Public Class PLDesign
             ElseIf frmstring = "OUTSTANDING" Then
                 CRPO.ReportSource = RPTOUTSTANDING
             ElseIf frmstring = "SALEANALYSIS" Then
-                'CRPO.ReportSource = RPTSALEANALYSIS
+                CRPO.ReportSource = RPTSALEANALYSIS
             Else
                 CRPO.ReportSource = RPTPL
                 RPTPL.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -154,10 +154,10 @@ Public Class PLDesign
                 OBJ = New GridOutstandingPrintReport
                 crTables = RPTOUTSTANDING.Database.Tables
             End If
-            'If frmstring = "SALEANALYSIS" Then
-            '    OBJ = New GridSaleAnalysisPrintReport
-            '    crTables = RPTSALEANALYSIS.Database.Tables
-            'End If
+            If frmstring = "SALEANALYSIS" Then
+                OBJ = New GridSaleAnalysisPrintReport
+                crTables = RPTSALEANALYSIS.Database.Tables
+            End If
 
 
             crTables = OBJ.Database.Tables
@@ -177,8 +177,8 @@ Public Class PLDesign
 
             If frmstring = "OUTSTANDING" Then
                 CRPO.ReportSource = RPTOUTSTANDING
-                'ElseIf 
-
+            ElseIf frmstring = "SALEANALYSIS" Then
+                CRPO.ReportSource = RPTSALEANALYSIS
             End If
 
             Dim expo As New ExportOptions
@@ -188,6 +188,8 @@ Public Class PLDesign
             Dim TEMPATTACHMENT As String = ""
             If frmstring = "OUTSTANDING" Then
                 TEMPATTACHMENT = "Outstanding_" & PARTYNAME
+            ElseIf frmstring = "SALEANALYSIS" Then
+                TEMPATTACHMENT = "SaleAnalysis_" & PARTYNAME
             End If
             CRPO.Zoom(100)
             CRPO.Refresh()
@@ -225,6 +227,8 @@ Public Class PLDesign
             tempattachment = "INTERESTBILLDTLS"
         ElseIf frmstring = "OUTSTANDING" Then
             tempattachment = "OUTSTANDING"
+        ElseIf frmstring = "SALEANALYSIS" Then
+            tempattachment = "SALEANALYSIS"
         Else
             tempattachment = "PROFITLOSS"
         End If
@@ -283,6 +287,13 @@ Public Class PLDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTOUTSTANDING.Export()
+            ElseIf frmstring = "SALEANALYSIS" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\SALEANALYSIS.PDF"
+                expo = RPTSALEANALYSIS.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSALEANALYSIS.Export()
             Else
                 oDfDopt.DiskFileName = Application.StartupPath & "\PROFITLOSS.PDF"
                 expo = RPTPL.ExportOptions
@@ -313,6 +324,8 @@ Public Class PLDesign
                 tempattachment = "INTERESTBILLDTLS"
             ElseIf frmstring = "OUTSTANDING" Then
                 tempattachment = "OUTSTANDING"
+            ElseIf frmstring = "SALEANALYSIS" Then
+                tempattachment = "SALEANALYSIS"
             Else
                 tempattachment = "PROFITLOSS"
             End If
