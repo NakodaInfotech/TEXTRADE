@@ -9064,7 +9064,7 @@ LINE1:
 
             If DTST.Rows.Count > 0 Then
                 For Each DTROWPS As DataRow In DTST.Rows
-                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTROWPS("ITEMNAME"), DTROWPS("HSNCODE"), "", "", "", Val(DTROWPS("AQTY")), Val(DTROWPS("FOLDPER")), "", "", Val(DTROWPS("QTY")), 0, Format(Val(DTROWPS("MTRS")), "0.00"), Format(Val(DTROWPS("RATE")), "0.00"), "Mtrs", 0, DTROWPS("LRNO"), DTROWPS("TRANSPORT"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Val(DTROWPS("FROMNO")), 0, DTROWPS("TYPE"), 0, "", DTROWPS("UNIT"), 0, 0, Val(DTROWPS("WT")), DTROWPS("PURNAME"), DTROWPS("PARTYBILLNO"))
+                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTROWPS("ITEMNAME"), DTROWPS("HSNCODE"), "", "", "", Val(DTROWPS("AQTY")), Val(DTROWPS("FOLDPER")), "", DTROWPS("BALENO"), Val(DTROWPS("QTY")), 0, Format(Val(DTROWPS("MTRS")), "0.00"), Format(Val(DTROWPS("RATE")), "0.00"), "Mtrs", 0, DTROWPS("LRNO"), DTROWPS("TRANSPORT"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Val(DTROWPS("FROMNO")), 0, DTROWPS("TYPE"), 0, "", DTROWPS("UNIT"), 0, 0, Val(DTROWPS("WT")), DTROWPS("PURNAME"), DTROWPS("PARTYBILLNO"))
                 Next
                 getsrno(GRIDINVOICE)
                 TOTAL()
