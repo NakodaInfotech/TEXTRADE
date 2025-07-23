@@ -567,6 +567,9 @@ LINE1:
         Try
             If TXTBARCODE.Text.Trim.Length > 0 Then
 
+
+                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+
                 Dim objclsCMST As New ClsCommon
                 Dim DT As DataTable = objclsCMST.search("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then

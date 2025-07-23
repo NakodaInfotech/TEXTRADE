@@ -2932,6 +2932,9 @@ LINE1:
                     Exit Sub
                 End If
 
+                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+
+
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)

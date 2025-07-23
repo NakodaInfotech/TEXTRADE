@@ -1084,6 +1084,8 @@ LINE1:
                     Exit Sub
                 End If
 
+                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+
                 'GET DATA FROM BARCODE
                 Dim GREYMTRS As Double = 0.0
                 Dim OBJCMN As New ClsCommon

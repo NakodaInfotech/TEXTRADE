@@ -1731,6 +1731,8 @@ LINE1:
                     Exit Sub
                 End If
 
+                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+
                 'GET DATA FROM BARCODE
                 DT = OBJCMN.search("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
