@@ -49,6 +49,7 @@ Partial Class ShrinkageEntryDetails
         Me.GSHRINKAGEPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGDYEINGJOB = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.grecdmtrs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +165,7 @@ Partial Class ShrinkageEntryDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.gdate, Me.GNAME, Me.GLRNO, Me.GLOTNO, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTOTALBALPCS, Me.GTOTALBALMTRS, Me.GSMPMTRS, Me.GSHRINKAGE, Me.GSHRINKAGEPER, Me.GCHALLANNO, Me.GGDYEINGJOB})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.gdate, Me.GNAME, Me.GLRNO, Me.GLOTNO, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.grecdmtrs, Me.GTOTALBALPCS, Me.GTOTALBALMTRS, Me.GSMPMTRS, Me.GSHRINKAGE, Me.GSHRINKAGEPER, Me.GCHALLANNO, Me.GGDYEINGJOB})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -262,7 +263,7 @@ Partial Class ShrinkageEntryDetails
         Me.GTOTALBALPCS.Name = "GTOTALBALPCS"
         Me.GTOTALBALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALBALPCS.Visible = True
-        Me.GTOTALBALPCS.VisibleIndex = 8
+        Me.GTOTALBALPCS.VisibleIndex = 9
         Me.GTOTALBALPCS.Width = 60
         '
         'GTOTALBALMTRS
@@ -272,7 +273,7 @@ Partial Class ShrinkageEntryDetails
         Me.GTOTALBALMTRS.Name = "GTOTALBALMTRS"
         Me.GTOTALBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALBALMTRS.Visible = True
-        Me.GTOTALBALMTRS.VisibleIndex = 9
+        Me.GTOTALBALMTRS.VisibleIndex = 10
         '
         'GSMPMTRS
         '
@@ -283,7 +284,7 @@ Partial Class ShrinkageEntryDetails
         Me.GSMPMTRS.Name = "GSMPMTRS"
         Me.GSMPMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSMPMTRS.Visible = True
-        Me.GSMPMTRS.VisibleIndex = 10
+        Me.GSMPMTRS.VisibleIndex = 11
         Me.GSMPMTRS.Width = 60
         '
         'GSHRINKAGE
@@ -295,7 +296,7 @@ Partial Class ShrinkageEntryDetails
         Me.GSHRINKAGE.Name = "GSHRINKAGE"
         Me.GSHRINKAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSHRINKAGE.Visible = True
-        Me.GSHRINKAGE.VisibleIndex = 11
+        Me.GSHRINKAGE.VisibleIndex = 12
         '
         'GSHRINKAGEPER
         '
@@ -305,7 +306,7 @@ Partial Class ShrinkageEntryDetails
         Me.GSHRINKAGEPER.FieldName = "SHRINKAGEPER"
         Me.GSHRINKAGEPER.Name = "GSHRINKAGEPER"
         Me.GSHRINKAGEPER.Visible = True
-        Me.GSHRINKAGEPER.VisibleIndex = 12
+        Me.GSHRINKAGEPER.VisibleIndex = 13
         '
         'GCHALLANNO
         '
@@ -313,7 +314,7 @@ Partial Class ShrinkageEntryDetails
         Me.GCHALLANNO.FieldName = "CHALLANNO"
         Me.GCHALLANNO.Name = "GCHALLANNO"
         Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 13
+        Me.GCHALLANNO.VisibleIndex = 14
         Me.GCHALLANNO.Width = 100
         '
         'GGDYEINGJOB
@@ -322,7 +323,17 @@ Partial Class ShrinkageEntryDetails
         Me.GGDYEINGJOB.FieldName = "DYEINGJOB"
         Me.GGDYEINGJOB.Name = "GGDYEINGJOB"
         Me.GGDYEINGJOB.Visible = True
-        Me.GGDYEINGJOB.VisibleIndex = 14
+        Me.GGDYEINGJOB.VisibleIndex = 15
+        '
+        'grecdmtrs
+        '
+        Me.grecdmtrs.Caption = "Recd Mtrs"
+        Me.grecdmtrs.DisplayFormat.FormatString = "0.00"
+        Me.grecdmtrs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.grecdmtrs.FieldName = "RECDMTRS"
+        Me.grecdmtrs.Name = "grecdmtrs"
+        Me.grecdmtrs.Visible = True
+        Me.grecdmtrs.VisibleIndex = 8
         '
         'ShrinkageEntryDetails
         '
@@ -371,4 +382,5 @@ Partial Class ShrinkageEntryDetails
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGDYEINGJOB As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents grecdmtrs As DevExpress.XtraGrid.Columns.GridColumn
 End Class
