@@ -34,6 +34,8 @@ Public Class ClsCustomLayout
                 I += 1
                 .Add(New SqlClient.SqlParameter("@FILE", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@FILENAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))

@@ -1,6 +1,7 @@
 ﻿Imports BL
 Public Class SelectCustomLayout
     Public FORMNAMES As String = ""
+    Public FILENAME As String = ""
     Public EDIT As Boolean          'used for editing
     Public FILES As String = ""
     Private Sub SelectCustomLayout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -36,6 +37,7 @@ Public Class SelectCustomLayout
             Dim CHK As String = ""
             Dim FORMNAME As String = ""
             Dim FILE As String = ""
+            Dim FILENAMES As String = ""
             Dim alparaval As New ArrayList
 
 
@@ -48,6 +50,7 @@ Public Class SelectCustomLayout
                         USERNAME = dtrow("USERNAME")
                         FORMNAME = FORMNAMES
                         FILE = FILES
+                        FILENAMES = FILENAME
 
 
                     Else
@@ -56,6 +59,7 @@ Public Class SelectCustomLayout
                         FORMNAME = FORMNAME & "|" & FORMNAMES
                         'CHK = CHK & "|" & dtrow("CHK")
                         FILE = FILE & "|" & FILES
+                        FILENAMES = FILENAMES & "|" & FILENAME
 
 
                     End If
@@ -64,6 +68,7 @@ Public Class SelectCustomLayout
             alparaval.Add(USERNAME)
             alparaval.Add(FORMNAME)
             alparaval.Add(FILE)
+            alparaval.Add(FILENAME)
             alparaval.Add(CmpId)
             alparaval.Add(YearId)
 

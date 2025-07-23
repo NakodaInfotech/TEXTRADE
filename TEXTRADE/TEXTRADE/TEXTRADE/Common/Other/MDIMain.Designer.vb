@@ -626,6 +626,7 @@ Partial Class MDIMain
         Me.MaterialReceiptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator91 = New System.Windows.Forms.ToolStripSeparator()
         Me.PurchaseInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PURCHASERETURNREPORTS = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator36 = New System.Windows.Forms.ToolStripSeparator()
         Me.CheckedGRNToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1194,7 +1195,8 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.MonthlyPurchaseAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CustomReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CustomLayoutsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1203,7 +1205,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.ReportsToolStripMenuItem, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.Utilitiesmenu, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.MASHOK_REPORTS})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.ReportsToolStripMenuItem, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.Utilitiesmenu, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.MASHOK_REPORTS, Me.CustomReportsToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -5108,6 +5110,12 @@ Partial Class MDIMain
         Me.PurchaseInvoiceToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
         Me.PurchaseInvoiceToolStripMenuItem.Text = "Purchase Invoice Reports"
         '
+        'MonthlyPurchaseAnalysisToolStripMenuItem
+        '
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Name = "MonthlyPurchaseAnalysisToolStripMenuItem"
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Text = "Monthly Purchase Analysis"
+        '
         'PURCHASERETURNREPORTS
         '
         Me.PURCHASERETURNREPORTS.Name = "PURCHASERETURNREPORTS"
@@ -8722,11 +8730,18 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'MonthlyPurchaseAnalysisToolStripMenuItem
+        'CustomReportsToolStripMenuItem
         '
-        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Name = "MonthlyPurchaseAnalysisToolStripMenuItem"
-        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
-        Me.MonthlyPurchaseAnalysisToolStripMenuItem.Text = "Monthly Purchase Analysis"
+        Me.CustomReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CustomLayoutsToolStripMenuItem})
+        Me.CustomReportsToolStripMenuItem.Name = "CustomReportsToolStripMenuItem"
+        Me.CustomReportsToolStripMenuItem.Size = New System.Drawing.Size(104, 20)
+        Me.CustomReportsToolStripMenuItem.Text = "Custom Reports"
+        '
+        'CustomLayoutsToolStripMenuItem
+        '
+        Me.CustomLayoutsToolStripMenuItem.Name = "CustomLayoutsToolStripMenuItem"
+        Me.CustomLayoutsToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.CustomLayoutsToolStripMenuItem.Text = "Custom Layouts"
         '
         'MDIMain
         '
@@ -9926,4 +9941,6 @@ Partial Class MDIMain
     Friend WithEvents PartyWiseBaleRateReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RegisterProductWiseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MonthlyPurchaseAnalysisToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CustomReportsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CustomLayoutsToolStripMenuItem As ToolStripMenuItem
 End Class

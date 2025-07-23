@@ -10513,5 +10513,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CustomLayoutsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomLayoutsToolStripMenuItem.Click
+        Try
+            Dim OBJCL As New CustomLayout
+            OBJCL.MdiParent = Me
+            OBJCL.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
