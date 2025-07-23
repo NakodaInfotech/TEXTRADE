@@ -54,6 +54,7 @@ Partial Class Adv_Receivable_settlement
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridADVREC, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +125,7 @@ Partial Class Adv_Receivable_settlement
         Me.gridADVREC.Appearance.Row.Options.UseFont = True
         Me.gridADVREC.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridADVREC.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridADVREC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gdate, Me.gbillinitials, Me.gamt, Me.gpaytype, Me.gacc, Me.GNAME, Me.GGROUPNAME, Me.gno, Me.greg, Me.gregabbr})
+        Me.gridADVREC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gdate, Me.gbillinitials, Me.gamt, Me.gpaytype, Me.gacc, Me.GNAME, Me.GAGENTNAME, Me.GGROUPNAME, Me.gno, Me.greg, Me.gregabbr})
         Me.gridADVREC.GridControl = Me.griddetails
         Me.gridADVREC.Images = Me.imageList1
         Me.gridADVREC.Name = "gridADVREC"
@@ -223,7 +224,7 @@ Partial Class Adv_Receivable_settlement
         Me.GGROUPNAME.OptionsColumn.AllowEdit = False
         Me.GGROUPNAME.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GGROUPNAME.Visible = True
-        Me.GGROUPNAME.VisibleIndex = 6
+        Me.GGROUPNAME.VisibleIndex = 7
         Me.GGROUPNAME.Width = 140
         '
         'gno
@@ -402,6 +403,14 @@ Partial Class Adv_Receivable_settlement
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'GAGENTNAME
+        '
+        Me.GAGENTNAME.Caption = "Agent Name"
+        Me.GAGENTNAME.FieldName = "AGENTNAME"
+        Me.GAGENTNAME.Name = "GAGENTNAME"
+        Me.GAGENTNAME.Visible = True
+        Me.GAGENTNAME.VisibleIndex = 6
+        '
         'Adv_Receivable_settlement
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -454,4 +463,5 @@ Partial Class Adv_Receivable_settlement
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ExcelExport As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

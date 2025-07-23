@@ -558,6 +558,9 @@ Public Class MonthlySaleAnalysisGridReport
                 MsgBox("Invalid Report Selection", MsgBoxStyle.Critical)
                 Exit Sub
             End If
+            For Each txt As TextBox In filterTextBoxes
+                txt.Text = ""
+            Next
             FILLGRID()
             GRIDREPORT.Refresh()
             CreateFilterTextBoxes()
@@ -658,7 +661,6 @@ Public Class MonthlySaleAnalysisGridReport
             CMBREGISTER.Text = ""
             CMBITEMNAME.Text = ""
             chkdate.CheckState = CheckState.Unchecked
-
             'FILLGRID()
         Catch ex As Exception
             Throw ex
@@ -946,10 +948,10 @@ Public Class MonthlySaleAnalysisGridReport
     Private Sub CMBGRIDAGENT_TextChanged(sender As Object, e As EventArgs) Handles CMBGRIDAGENT.TextChanged, CMBGRIDAGENT1.TextChanged, CMBGRIDITEM.TextChanged, CMBGRIDITEM1.TextChanged, CMBGRIDPARTY.TextChanged, CMBGRIDPARTY1.TextChanged
         LOADDATA()
     End Sub
-    Private filterTextBoxes As New List(Of TextBox)
+    Public filterTextBoxes As New List(Of TextBox)
 
     ' Call this after setting new data (e.g., on "Display" click)
-    Private Sub CreateFilterTextBoxes()
+    Public Sub CreateFilterTextBoxes()
         'TBREPORT.Controls.Clear()
         filterTextBoxes.Clear()
 
@@ -973,27 +975,27 @@ Public Class MonthlySaleAnalysisGridReport
         Next
     End Sub
 
-    Private Sub FilterGrid(sender As Object, e As EventArgs)
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
         Try
-            If DTMain Is Nothing OrElse DTMain.Rows.Count = 0 Then Exit Sub
+            For Each row As DataGridViewRow In GRIDREPORT.Rows
+                If row.IsNewRow Then Continue For
 
-            Dim dv As New DataView(DTMain)
-            Dim filter As String = ""
+                row.Visible = True ' Default visible
 
-            For Each txt As TextBox In filterTextBoxes
-                Dim colIndex As Integer = CInt(txt.Tag)
-                Dim colName As String = GRIDREPORT.Columns(colIndex).Name
-                Dim input As String = txt.Text.Trim().Replace("'", "''") ' Escape single quote
+                For Each txt As TextBox In filterTextBoxes
+                    Dim colIndex As Integer = CInt(txt.Tag)
+                    Dim filterText As String = txt.Text.Trim().ToLower()
 
-                If input <> "" Then
-                    If filter <> "" Then filter &= " AND "
-                    filter &= String.Format("[{0}] LIKE '%{1}%'", colName, input)
-                End If
+                    If filterText <> "" Then
+                        Dim cellValue As String = If(row.Cells(colIndex).Value, "").ToString().ToLower()
+
+                        If Not cellValue.Contains(filterText) Then
+                            row.Visible = False
+                            Exit For ' One filter failed — hide this row
+                        End If
+                    End If
+                Next
             Next
-
-            dv.RowFilter = filter
-            GRIDREPORT.DataSource = dv
-
         Catch ex As Exception
             MsgBox("Error while filtering: " & ex.Message)
         End Try
