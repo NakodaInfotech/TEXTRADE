@@ -12,6 +12,7 @@ Public Class RecFromPacking
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim HIDEALLISSUE As Boolean = True
     Dim ALLOWMANUALRECNO As Boolean = False
+    Dim TEMPDATE As Date
 
     Public Sub New()
         InitializeComponent()
@@ -30,6 +31,7 @@ Public Class RecFromPacking
 
         EP.Clear()
         RECDATE.Text = Now.Date
+        RECDATE.ReadOnly = False
         TXTLOTNO.Clear()
         TXTREFNO.Clear()
         cmbname.Text = ""
@@ -136,6 +138,9 @@ Public Class RecFromPacking
         CHKMANUALRATE.CheckState = CheckState.Unchecked
         TXTRATE.ReadOnly = True
         GRATE.ReadOnly = True
+
+
+
     End Sub
 
     Sub TOTAL()
@@ -308,6 +313,16 @@ Public Class RecFromPacking
                     End If
                 End If
             End If
+
+            If ClientName = "MNARESH" And UserName <> "Admin" Then
+                Dim TEMPDATE As DateTime = RECDATE.Text
+                If TEMPDATE <> DateTime.Today Then
+                    EP.SetError(RECDATE, "You cannot Modify And Create previous Date Entry. ")
+                    bln = False
+                End If
+            End If
+
+
 
             Return bln
         Catch ex As Exception
@@ -827,7 +842,11 @@ NEXTLINE:
             Cursor.Current = Cursors.WaitCursor
 
             If ClientName = "SUPEEMA" Or ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then HIDEALLISSUE = False
+
+
             clear()
+
+
 
             cmbname.Enabled = True
 
@@ -923,7 +942,11 @@ NEXTLINE:
                 End If
 
             End If
-
+            If ClientName = "MNARESH" AndAlso EDIT = True AndAlso UserName <> "Admin" Then
+                RECDATE.ReadOnly = True
+            Else
+                RECDATE.ReadOnly = False
+            End If
             txtsrno.Text = GRIDREC.RowCount
 
         Catch ex As Exception
@@ -1948,6 +1971,7 @@ LINE1:
             If ClientName = "AFW" Then
                 CMBADESIGN.TabStop = False
             End If
+
 
 
             If ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then TXTAQTY.ReadOnly = False
