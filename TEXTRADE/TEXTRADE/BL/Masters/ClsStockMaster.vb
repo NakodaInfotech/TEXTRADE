@@ -167,6 +167,8 @@ Public Class ClsStockMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
@@ -192,7 +194,7 @@ Public Class ClsStockMaster
         End Try
 
     End Function
-  
+
     Public Function UPDATE() As Integer
         Dim intResult As Integer
         Try
@@ -264,6 +266,8 @@ Public Class ClsStockMaster
                 .Add(New SqlClient.SqlParameter("@DYEINGJOB", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
