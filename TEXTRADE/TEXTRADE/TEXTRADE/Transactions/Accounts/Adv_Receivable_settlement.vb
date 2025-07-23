@@ -68,9 +68,9 @@ Public Class Adv_Receivable_settlement
             End If
 
             If flag_adv_settlement = True Then
-                dt = objclsCMST.search("  PAYMENTDATE as Date,PAYINITIALS as [Bill No.], PAYMENTAMT as [Amount], PAYTYPE as [Pay Type], ACCNAME as [Account], PAYMENTNO as [No], REGISTERID as [Reg Id], REGNAME as [Reg Name], NAME, GROUPNAME ", "", "  dbo.payment_report4paytype  ", " and payment_report4paytype.YEARID= " & YearId & condition)
+                dt = objclsCMST.search("  PAYMENTDATE as Date,PAYINITIALS as [Bill No.], PAYMENTAMT as [Amount], PAYTYPE as [Pay Type], ACCNAME as [Account], PAYMENTNO as [No], REGISTERID as [Reg Id], REGNAME as [Reg Name], NAME, GROUPNAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME ", "", "  LEDGERS AS AGENTLEDGERS INNER JOIN LEDGERS ON AGENTLEDGERS.Acc_id = LEDGERS.ACC_AGENTID RIGHT OUTER JOIN PAYMENT_REPORT4PAYTYPE ON LEDGERS.Acc_cmpname = PAYMENT_REPORT4PAYTYPE.NAME  ", " and payment_report4paytype.YEARID= " & YearId & condition)
             ElseIf flag_Rec_settlement = True Then
-                dt = objclsCMST.search(" RECEIPTDATE as Date, PAYINITIALS as [Bill No.], RECEIPTAMT as [Amount], PAYTYPE as [Pay Type], ACCNAME as [Account], RECEIPTNO as [No], REGISTERID as [Reg Id], REGNAME as [Reg Name], NAME, GROUPNAME ", "", "  dbo.receipt_report4paytype  ", " and receipt_report4paytype.YEARID= " & YearId & condition)
+                dt = objclsCMST.search(" RECEIPTDATE as Date, PAYINITIALS as [Bill No.], RECEIPTAMT as [Amount], PAYTYPE as [Pay Type], ACCNAME as [Account], RECEIPTNO as [No], REGISTERID as [Reg Id], REGNAME as [Reg Name], NAME, GROUPNAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME ", "", "  LEDGERS AS AGENTLEDGERS INNER JOIN LEDGERS ON AGENTLEDGERS.Acc_id = LEDGERS.ACC_AGENTID RIGHT OUTER JOIN receipt_report4paytype ON LEDGERS.Acc_cmpname = receipt_report4paytype.NAME  ", " and receipt_report4paytype.YEARID= " & YearId & condition)
             End If
 
             griddetails.DataSource = dt
