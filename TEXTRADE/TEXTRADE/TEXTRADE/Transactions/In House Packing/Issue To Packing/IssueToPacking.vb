@@ -26,6 +26,7 @@ Public Class IssueToPacking
         EP.Clear()
         CHKSLTP.CheckState = CheckState.Unchecked
         ISSUEDATE.Text = Now.Date
+        ISSUEDATE.ReadOnly = False
         TXTREFNO.Clear()
         tstxtbillno.Clear()
         txtremarks.Clear()
@@ -163,6 +164,17 @@ Public Class IssueToPacking
                     End If
                 End If
             End If
+
+
+
+            If ClientName = "MNARESH" And UserName <> "Admin" Then
+                Dim TEMPDATE As DateTime = ISSUEDATE.Text
+                If TEMPDATE <> DateTime.Today Then
+                    EP.SetError(ISSUEDATE, "You cannot Modify And Create previous Date Entry. ")
+                    bln = False
+                End If
+            End If
+
 
             Return bln
         Catch ex As Exception
@@ -501,6 +513,12 @@ Public Class IssueToPacking
                     EDIT = False
                     clear()
                 End If
+            End If
+
+            If ClientName = "MNARESH" AndAlso EDIT = True AndAlso UserName <> "Admin" Then
+                ISSUEDATE.ReadOnly = True
+            Else
+                ISSUEDATE.ReadOnly = False
             End If
 
         Catch ex As Exception

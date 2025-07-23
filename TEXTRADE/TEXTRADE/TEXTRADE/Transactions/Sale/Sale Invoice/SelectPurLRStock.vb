@@ -68,11 +68,13 @@ Public Class SelectPurLRStock
             DT.Columns.Add("FROMNO")
             DT.Columns.Add("TYPE")
             DT.Columns.Add("RATE")
+            DT.Columns.Add("BALENO")
+
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim DTROW As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(DTROW("NAME"), DTROW("PARTYBILLNO"), DTROW("LRNO"), DTROW("TRANSNAME"), DTROW("ITEMNAME"), DTROW("HSNCODE"), Val(DTROW("AQTY")), Val(DTROW("FOLDPER")), Val(DTROW("TOTALQTY")), Val(DTROW("TOTALMTRS")), DTROW("UNIT"), Val(DTROW("WT")), Val(DTROW("BILLNO")), DTROW("TYPE"), DTROW("RATE"))
+                    DT.Rows.Add(DTROW("NAME"), DTROW("PARTYBILLNO"), DTROW("LRNO"), DTROW("TRANSNAME"), DTROW("ITEMNAME"), DTROW("HSNCODE"), Val(DTROW("AQTY")), Val(DTROW("FOLDPER")), Val(DTROW("TOTALQTY")), Val(DTROW("TOTALMTRS")), DTROW("UNIT"), Val(DTROW("WT")), Val(DTROW("BILLNO")), DTROW("TYPE"), DTROW("RATE"), DTROW("BALENO"))
                 End If
             Next
             Me.Close()

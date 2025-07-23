@@ -33,6 +33,7 @@ Partial Class SelectPurLRStock
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,10 +47,10 @@ Partial Class SelectPurLRStock
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKSELECT = New System.Windows.Forms.CheckBox()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +88,7 @@ Partial Class SelectPurLRStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GLRNO, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GWT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID, Me.GUNIT, Me.GHSNCODE, Me.GAQTY, Me.GFOLDPER, Me.GRATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GDATE, Me.GINITIALS, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GBALENO, Me.GLRNO, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GWT, Me.GTYPE, Me.GREGID, Me.GLEDGERID, Me.GTRANSID, Me.GUNIT, Me.GHSNCODE, Me.GAQTY, Me.GFOLDPER, Me.GRATE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -168,8 +169,18 @@ Partial Class SelectPurLRStock
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.OptionsColumn.AllowEdit = False
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 6
+        Me.GTRANSNAME.VisibleIndex = 5
         Me.GTRANSNAME.Width = 200
+        '
+        'GBALENO
+        '
+        Me.GBALENO.Caption = "Bale No"
+        Me.GBALENO.FieldName = "BALENO"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.OptionsColumn.AllowEdit = False
+        Me.GBALENO.Visible = True
+        Me.GBALENO.VisibleIndex = 6
+        Me.GBALENO.Width = 80
         '
         'GLRNO
         '
@@ -178,7 +189,7 @@ Partial Class SelectPurLRStock
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 5
+        Me.GLRNO.VisibleIndex = 7
         Me.GLRNO.Width = 120
         '
         'GITEMNAME
@@ -188,7 +199,7 @@ Partial Class SelectPurLRStock
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.VisibleIndex = 8
         Me.GITEMNAME.Width = 180
         '
         'GPCS
@@ -200,7 +211,7 @@ Partial Class SelectPurLRStock
         Me.GPCS.Name = "GPCS"
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 8
+        Me.GPCS.VisibleIndex = 9
         Me.GPCS.Width = 60
         '
         'GMTRS
@@ -212,7 +223,7 @@ Partial Class SelectPurLRStock
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 9
+        Me.GMTRS.VisibleIndex = 10
         Me.GMTRS.Width = 80
         '
         'GWT
@@ -224,7 +235,7 @@ Partial Class SelectPurLRStock
         Me.GWT.Name = "GWT"
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 10
+        Me.GWT.VisibleIndex = 11
         '
         'GTYPE
         '
@@ -233,7 +244,7 @@ Partial Class SelectPurLRStock
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 11
+        Me.GTYPE.VisibleIndex = 12
         '
         'GREGID
         '
@@ -288,6 +299,14 @@ Partial Class SelectPurLRStock
         Me.GFOLDPER.Name = "GFOLDPER"
         Me.GFOLDPER.OptionsColumn.AllowEdit = False
         '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 13
+        '
         'CHKSELECT
         '
         Me.CHKSELECT.AutoSize = True
@@ -316,14 +335,6 @@ Partial Class SelectPurLRStock
         Me.CMDOK.TabIndex = 1
         Me.CMDOK.Text = "&OK"
         Me.CMDOK.UseVisualStyleBackColor = True
-        '
-        'GRATE
-        '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 12
         '
         'SelectPurLRStock
         '
@@ -373,4 +384,5 @@ Partial Class SelectPurLRStock
     Friend WithEvents GAQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
