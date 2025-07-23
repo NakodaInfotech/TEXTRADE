@@ -99,7 +99,7 @@ Public Class ProductWiseRegister
         Try
             If gridregister.RowCount > 0 Then
                 Dim dtrow As DataRow = gridregister.GetFocusedDataRow
-                If dtrow("TYPE") = "OPENINGBILL" Or dtrow("TYPE") = "OPENINGSTOCK" Then Exit Sub
+                If dtrow("TYPE") = "OPENINGBILL" Or dtrow("TYPE") = "OPENINGSTOCK" Or dtrow("YEARID") <> YearId Then Exit Sub
                 VIEWFORM(dtrow("TYPE"), True, dtrow("NO"), dtrow("REGNAME"))
             End If
         Catch ex As Exception

@@ -61,6 +61,8 @@ Partial Class ProductWiseRegister
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GCMPID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYEARID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,7 +121,7 @@ Partial Class ProductWiseRegister
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCMPNAME, Me.GINITIAL, Me.gDate, Me.GNAME, Me.GITEMNAME, Me.GDESIGN, Me.GLOTNO, Me.GBALENO, Me.GBARCODE, Me.GBALECOUNT, Me.GQTY, Me.GMTRS, Me.GUNIT, Me.GRATE, Me.GCGST, Me.GSGST, Me.GIGST, Me.GRCM, Me.GGRANDTOTAL, Me.GREGNAME, Me.GTYPE, Me.GNO})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCMPNAME, Me.GINITIAL, Me.gDate, Me.GNAME, Me.GITEMNAME, Me.GDESIGN, Me.GLOTNO, Me.GBALENO, Me.GBARCODE, Me.GBALECOUNT, Me.GQTY, Me.GMTRS, Me.GUNIT, Me.GRATE, Me.GCGST, Me.GSGST, Me.GIGST, Me.GRCM, Me.GGRANDTOTAL, Me.GREGNAME, Me.GTYPE, Me.GNO, Me.GCMPID, Me.GYEARID})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -497,6 +499,18 @@ Partial Class ProductWiseRegister
         Me.lbl.TabIndex = 427
         Me.lbl.Text = "Register Wise Product"
         '
+        'GCMPID
+        '
+        Me.GCMPID.Caption = "CMPID"
+        Me.GCMPID.FieldName = "CMPID"
+        Me.GCMPID.Name = "GCMPID"
+        '
+        'GYEARID
+        '
+        Me.GYEARID.Caption = "YEARID"
+        Me.GYEARID.FieldName = "YEARID"
+        Me.GYEARID.Name = "GYEARID"
+        '
         'ProductWiseRegister
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -557,4 +571,6 @@ Partial Class ProductWiseRegister
     Friend WithEvents GGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LSTCMP As CheckedListBox
     Friend WithEvents GNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCMPID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYEARID As DevExpress.XtraGrid.Columns.GridColumn
 End Class
