@@ -153,6 +153,7 @@ LINE1:
     Private Sub txtbarcode_Validated(sender As Object, e As EventArgs) Handles txtbarcode.Validated
         Try
             If txtbarcode.Text.Trim = "" Then Exit Sub
+            txtbarcode.Text = txtbarcode.Text.Replace(" TRIAL", "")
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & txtbarcode.Text.Trim & "' AND YEARID = " & YearId)
             If DT.Rows.Count > 0 Then

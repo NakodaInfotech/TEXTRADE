@@ -767,6 +767,8 @@ Public Class ChangeBarcode
         Try
             If txtbarcode.Text.Trim <> "" Then
 
+                txtbarcode.Text = txtbarcode.Text.Replace(" TRIAL", "")
+
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.search("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & txtbarcode.Text.Trim & "' AND YEARID = " & YearId)
