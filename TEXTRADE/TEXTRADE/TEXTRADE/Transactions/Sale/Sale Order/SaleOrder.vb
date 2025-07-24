@@ -381,10 +381,14 @@ Public Class SaleOrder
             Else
                 CMBFORWARD.Text = ""
             End If
-            CMBORDERON.Text = ""
+            If ClientName = "ABHEE" Then
+                CMBORDERON.Text = "PCS"
+            Else
+                CMBORDERON.Text = ""
+            End If
             CHKFETCHDESC.CheckState = CheckState.Unchecked
 
-            txtpono.Clear()
+                txtpono.Clear()
             DUEDATE.Value = Now.Date
             deldate.Value = Now.Date
             txtcrdays.Clear()
@@ -1937,7 +1941,11 @@ line1:
 
     Private Sub SaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
-            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
+            If SALEORDERONMTRS = True Then
+                If ClientName = "ABHEE" Then CMBORDERON.Text = "PCS" Else CMBORDERON.Text = "MTRS"
+            Else
+                CMBORDERON.Text = "PCS"
+            End If
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
