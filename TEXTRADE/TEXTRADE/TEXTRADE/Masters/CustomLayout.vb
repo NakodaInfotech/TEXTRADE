@@ -87,4 +87,8 @@ Public Class CustomLayout
             Return Nothing
         End Try
     End Function
+
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+        Me.Close()
+    End Sub
 End Class

@@ -68,7 +68,7 @@ Public Class SelectCustomLayout
             alparaval.Add(USERNAME)
             alparaval.Add(FORMNAME)
             alparaval.Add(FILE)
-            alparaval.Add(FILENAME)
+            alparaval.Add(FILENAMES)
             alparaval.Add(CmpId)
             alparaval.Add(YearId)
 

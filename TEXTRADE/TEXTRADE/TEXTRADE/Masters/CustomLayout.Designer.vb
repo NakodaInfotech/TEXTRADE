@@ -25,6 +25,7 @@ Partial Class CustomLayout
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDNAME = New DevExpress.XtraGrid.GridControl()
         Me.gridledger = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GFILENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFORMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUSERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCONTENT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,7 +35,6 @@ Partial Class CustomLayout
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
-        Me.GFILENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDNAME, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridledger, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,15 @@ Partial Class CustomLayout
         Me.gridledger.OptionsView.ColumnAutoWidth = False
         Me.gridledger.OptionsView.ShowAutoFilterRow = True
         Me.gridledger.OptionsView.ShowGroupPanel = False
+        '
+        'GFILENAME
+        '
+        Me.GFILENAME.Caption = "File Name"
+        Me.GFILENAME.FieldName = "FILENAME"
+        Me.GFILENAME.Name = "GFILENAME"
+        Me.GFILENAME.Visible = True
+        Me.GFILENAME.VisibleIndex = 0
+        Me.GFILENAME.Width = 200
         '
         'GFORMNAME
         '
@@ -159,15 +168,6 @@ Partial Class CustomLayout
         Me.TOOLREFRESH.Name = "TOOLREFRESH"
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "ToolStripButton1"
-        '
-        'GFILENAME
-        '
-        Me.GFILENAME.Caption = "File Name"
-        Me.GFILENAME.FieldName = "FILENAME"
-        Me.GFILENAME.Name = "GFILENAME"
-        Me.GFILENAME.Visible = True
-        Me.GFILENAME.VisibleIndex = 0
-        Me.GFILENAME.Width = 200
         '
         'CustomLayout
         '
