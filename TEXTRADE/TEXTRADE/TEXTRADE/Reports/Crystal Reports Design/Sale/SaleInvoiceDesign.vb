@@ -130,7 +130,6 @@ Public Class SaleInvoiceDesign
     Private Sub SaleInvoiceDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
 
-
             If DIRECTPRINT = True Then
                 PRINTDIRECTLYTOPRINTER()
                 Exit Sub
@@ -264,7 +263,6 @@ Public Class SaleInvoiceDesign
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-
             crpo.SelectionFormula = WHERECLAUSE
 
             If FRMSTRING = "PARTYWISEDTLS" Then
@@ -362,7 +360,6 @@ Public Class SaleInvoiceDesign
                 crpo.ReportSource = RPTPENDING
                 RPTPENDING.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
-
             ElseIf FRMSTRING = "YOYSALE" Then
                 crpo.ReportSource = RPTYOYSALE
                 RPTYOYSALE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -375,8 +372,6 @@ Public Class SaleInvoiceDesign
             ElseIf FRMSTRING = "YOYAGENTSALE" Then
                 crpo.ReportSource = RPTYOYAGENTSALE
                 RPTYOYAGENTSALE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
-
-
 
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crpo.ReportSource = RPTSOSTATUS
@@ -421,13 +416,10 @@ Public Class SaleInvoiceDesign
             ElseIf FRMSTRING = "ORDERVSSTOCK" Then
                 crpo.ReportSource = RPTORDERSTOCK
 
-
             ElseIf FRMSTRING = "YARNSOSTATUSDTLS" Then
                 crpo.ReportSource = RPTYARNSOSTATUSDTLS
                 RPTYARNSOSTATUSDTLS.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 RPTYARNSOSTATUSDTLS.DataDefinition.FormulaFields("SALEORDERONMTRS").Text = SALEORDERONMTRS
-
-
 
             ElseIf FRMSTRING = "POSTATUS" Then
                 crpo.ReportSource = RPTPOSTATUS
@@ -445,11 +437,8 @@ Public Class SaleInvoiceDesign
                 RPTPOSTATUSITEM.DataDefinition.FormulaFields("TYPE").Text = "'" & PENDINGSO & "'"
                 RPTPOSTATUSITEM.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
-
             ElseIf FRMSTRING = "YARNPOSTATUSDTLS" Then
                 crpo.ReportSource = RPTYARNPOSTATUSDTLS
-
-
 
             ElseIf FRMSTRING = "DOCUMENT" Then
                 crpo.ReportSource = RPTDOCDTLS
@@ -490,8 +479,6 @@ Public Class SaleInvoiceDesign
                 If COMMISSIONONRECDAMT = True Then
                     RPTCOMMOPSUMM.DataDefinition.FormulaFields("CALCON").Text = "'" & RECDAMT & "'"
                 End If
-
-
 
             ElseIf FRMSTRING = "COVERNOTE" Then
 
@@ -546,10 +533,6 @@ Public Class SaleInvoiceDesign
                 RPTTRANSWTCALC.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                 RPTTRANSWTCALC.DataDefinition.FormulaFields("BALERATE").Text = BALERATE
                 RPTTRANSWTCALC.DataDefinition.FormulaFields("ROLLRATE").Text = ROLLRATE
-
-
-
-
             End If
 
             crpo.Zoom(100)
