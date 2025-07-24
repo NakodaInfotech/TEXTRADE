@@ -835,8 +835,8 @@ LINE1:
                 Dim OBJWHATSAPP As New SendWhatsapp
                 OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
                 OBJWHATSAPP.AGENTNAME = CMBAGENT.Text.Trim
-                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "AGENTCOVERNOTE_" & Val(COVERNOTENO) & ".pdf")
-                OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "AGENTCOVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBAGENT.Text.Trim & "AGENTCOVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.FILENAME.Add(CMBAGENT.Text.Trim & "AGENTCOVERNOTE_" & Val(COVERNOTENO) & ".pdf")
                 OBJWHATSAPP.ShowDialog()
 
             End If
