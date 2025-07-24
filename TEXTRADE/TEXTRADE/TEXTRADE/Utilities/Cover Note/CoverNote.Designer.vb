@@ -23,16 +23,18 @@ Partial Class CoverNote
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLWHATSAPP = New System.Windows.Forms.Label()
+        Me.COURIERDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TXTCOURIERNAME = New System.Windows.Forms.TextBox()
@@ -76,6 +78,7 @@ Partial Class CoverNote
         Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.tooldelete = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
@@ -86,7 +89,6 @@ Partial Class CoverNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.COURIERDATE = New System.Windows.Forms.MaskedTextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCOVER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -97,6 +99,7 @@ Partial Class CoverNote
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.COURIERDATE)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label14)
@@ -130,6 +133,33 @@ Partial Class CoverNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'LBLWHATSAPP
+        '
+        Me.LBLWHATSAPP.AutoSize = True
+        Me.LBLWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.LBLWHATSAPP.Font = New System.Drawing.Font("Calibri", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.LBLWHATSAPP.Location = New System.Drawing.Point(920, 90)
+        Me.LBLWHATSAPP.Name = "LBLWHATSAPP"
+        Me.LBLWHATSAPP.Size = New System.Drawing.Size(205, 36)
+        Me.LBLWHATSAPP.TabIndex = 929
+        Me.LBLWHATSAPP.Text = "WhatsApp Sent"
+        Me.LBLWHATSAPP.Visible = False
+        '
+        'COURIERDATE
+        '
+        Me.COURIERDATE.AsciiOnly = True
+        Me.COURIERDATE.BackColor = System.Drawing.Color.White
+        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.COURIERDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.COURIERDATE.Location = New System.Drawing.Point(643, 95)
+        Me.COURIERDATE.Mask = "00/00/0000"
+        Me.COURIERDATE.Name = "COURIERDATE"
+        Me.COURIERDATE.Size = New System.Drawing.Size(76, 23)
+        Me.COURIERDATE.TabIndex = 4
+        Me.COURIERDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.COURIERDATE.ValidatingType = GetType(Date)
         '
         'Label1
         '
@@ -171,9 +201,9 @@ Partial Class CoverNote
         Me.LBLCOURIERDOCKETNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCOURIERDOCKETNO.Location = New System.Drawing.Point(533, 70)
         Me.LBLCOURIERDOCKETNO.Name = "LBLCOURIERDOCKETNO"
-        Me.LBLCOURIERDOCKETNO.Size = New System.Drawing.Size(108, 15)
+        Me.LBLCOURIERDOCKETNO.Size = New System.Drawing.Size(106, 15)
         Me.LBLCOURIERDOCKETNO.TabIndex = 925
-        Me.LBLCOURIERDOCKETNO.Text = "Courier docket No."
+        Me.LBLCOURIERDOCKETNO.Text = "Courier Docket No"
         '
         'TXTCOURIERDOCKETNO
         '
@@ -218,28 +248,28 @@ Partial Class CoverNote
         Me.GRIDCOVER.AllowUserToDeleteRows = False
         Me.GRIDCOVER.AllowUserToResizeColumns = False
         Me.GRIDCOVER.AllowUserToResizeRows = False
-        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDCOVER.BackgroundColor = System.Drawing.Color.White
         Me.GRIDCOVER.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDCOVER.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.GRIDCOVER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDCOVER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GPARTYNAME, Me.GAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GLRDATE, Me.GTRANSPORT, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL})
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle15
         Me.GRIDCOVER.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDCOVER.Location = New System.Drawing.Point(17, 143)
         Me.GRIDCOVER.MultiSelect = False
@@ -247,9 +277,9 @@ Partial Class CoverNote
         Me.GRIDCOVER.RowHeadersVisible = False
         Me.GRIDCOVER.RowHeadersWidth = 30
         Me.GRIDCOVER.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDCOVER.RowTemplate.Height = 20
         Me.GRIDCOVER.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCOVER.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -342,8 +372,8 @@ Partial Class CoverNote
         '
         'GLRDATE
         '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle11
         Me.GLRDATE.HeaderText = "LR Date"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -361,8 +391,8 @@ Partial Class CoverNote
         '
         'GTOTALMTRS
         '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle12
         Me.GTOTALMTRS.HeaderText = "Mtrs"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -371,8 +401,8 @@ Partial Class CoverNote
         '
         'GTOTALPCS
         '
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle13
         Me.GTOTALPCS.HeaderText = "Pcs"
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.ReadOnly = True
@@ -382,8 +412,8 @@ Partial Class CoverNote
         '
         'GGRANDTOTAL
         '
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle14
         Me.GGRANDTOTAL.HeaderText = "Grand Total"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.ReadOnly = True
@@ -576,7 +606,7 @@ Partial Class CoverNote
         '
         Me.tstxtbillno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.tstxtbillno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tstxtbillno.Location = New System.Drawing.Point(242, 1)
+        Me.tstxtbillno.Location = New System.Drawing.Point(262, 1)
         Me.tstxtbillno.Name = "tstxtbillno"
         Me.tstxtbillno.Size = New System.Drawing.Size(56, 22)
         Me.tstxtbillno.TabIndex = 9
@@ -585,7 +615,7 @@ Partial Class CoverNote
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.TOOLWHATSAPP, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -627,6 +657,15 @@ Partial Class CoverNote
         Me.tooldelete.Name = "tooldelete"
         Me.tooldelete.Size = New System.Drawing.Size(23, 22)
         Me.tooldelete.Text = "&Delete"
+        '
+        'TOOLWHATSAPP
+        '
+        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
+        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
+        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLWHATSAPP.Text = "&Whatsapp"
         '
         'toolStripSeparator
         '
@@ -707,20 +746,6 @@ Partial Class CoverNote
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'COURIERDATE
-        '
-        Me.COURIERDATE.AsciiOnly = True
-        Me.COURIERDATE.BackColor = System.Drawing.Color.White
-        Me.COURIERDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.COURIERDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.COURIERDATE.Location = New System.Drawing.Point(643, 95)
-        Me.COURIERDATE.Mask = "00/00/0000"
-        Me.COURIERDATE.Name = "COURIERDATE"
-        Me.COURIERDATE.Size = New System.Drawing.Size(76, 23)
-        Me.COURIERDATE.TabIndex = 4
-        Me.COURIERDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.COURIERDATE.ValidatingType = GetType(Date)
-        '
         'CoverNote
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -799,4 +824,6 @@ Partial Class CoverNote
     Friend WithEvents LBLCOURIERDOCKETNO As Label
     Friend WithEvents TXTCOURIERDOCKETNO As TextBox
     Friend WithEvents COURIERDATE As MaskedTextBox
+    Friend WithEvents TOOLWHATSAPP As ToolStripButton
+    Friend WithEvents LBLWHATSAPP As Label
 End Class

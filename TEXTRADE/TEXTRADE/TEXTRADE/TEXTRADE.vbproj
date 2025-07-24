@@ -407,6 +407,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GridSaleAnalysisPrintReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>

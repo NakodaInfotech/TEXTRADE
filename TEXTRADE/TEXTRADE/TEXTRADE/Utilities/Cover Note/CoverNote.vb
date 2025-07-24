@@ -326,7 +326,7 @@ LINE1:
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         TXTCOURIERNAME.Text = Convert.ToString(dr("COURIERNAME"))
                         TXTCOURIERDOCKETNO.Text = Convert.ToString(dr("COURIERDOCKETNO"))
-                        'COURIERDATE.Text = Format(Convert.ToDateTime(dr("COURIERDATE")), "dd/MM/yyyy")
+                        If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
                         COURIERDATE.Text = dr("COURIERDATE")
 
                         GRIDCOVER.Rows.Add(dr("SRNO"), dr("INVNO"), dr("REGNAME"), dr("INVINITIALS"), dr("PRINTINITIALS"), dr("PARTYNAME"), dr("AGENTNAME"), Format(Convert.ToDateTime(dr("INVDATE")), "dd/MM/yyyy").ToString, dr("LRNO"), dr("LRDATE"), dr("TRANSPORT"), Val(dr("TOTALMTRS")), Val(dr("TOTALPCS")), Val(dr("GRANDTOTAL")))
@@ -364,6 +364,7 @@ LINE1:
             TXTCOURIERDOCKETNO.Clear()
             TXTCOURIERNAME.Clear()
             COURIERDATE.Clear()
+            LBLWHATSAPP.Visible = False
             GETMAXNO()
         Catch ex As Exception
             Throw ex
@@ -408,7 +409,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
     Private Sub GRIDCOVER_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDCOVER.CellDoubleClick
         'Try
         '    EDITROW()
@@ -434,7 +434,6 @@ LINE1:
                 GRIDCOVER.Item(GTOTALMTRS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
                 GRIDCOVER.Item(GTOTALPCS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
                 GRIDCOVER.Item(GGRANDTOTAL.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-
 
                 TEMPROW = GRIDCOVER.CurrentRow.Index
                 CMBNAME.Focus()
@@ -701,4 +700,76 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+    Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
+        Try
+            Dim DT As New DataTable
+            Dim OBJCMN As New ClsCommon
+            If EDIT = True Then SendWhatsapp(TEMPCOVERNO)
+            DT = OBJCMN.Execute_Any_String("UPDATE COVERNOTE SET COVER_SENDWHATSAPP = 1 WHERE COVER_NO = " & TEMPCOVERNO & " AND COVER_YEARID = " & YearId, "", "")
+            LBLWHATSAPP.Visible = True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Async Sub SENDWHATSAPP(COVERNOTENO As Integer)
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim TEMPMSG2 As Integer = MsgBox("Wish to Send Party CoverNote ?", MsgBoxStyle.YesNo)
+            If TEMPMSG2 = vbYes Then
+
+                Dim WHATSAPPNO As String = ""
+                Dim OBJSR As New SaleInvoiceDesign
+                OBJSR.MdiParent = MDIMain
+                OBJSR.DIRECTPRINT = True
+                OBJSR.FRMSTRING = "MAINCOVERNOTE"
+                OBJSR.DIRECTMAIL = True
+                OBJSR.DIRECTWHATSAPP = True
+                OBJSR.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(COVERNOTENO) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                OBJSR.COVERNOTENO = COVERNOTENO
+                OBJSR.NOOFCOPIES = 1
+                OBJSR.Show()
+                OBJSR.Close()
+
+                Dim OBJWHATSAPP As New SendWhatsapp
+                OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.ShowDialog()
+            End If
+
+            Dim TEMPMSG3 As Integer = MsgBox("Wish to Send Agent CoverNote ?", MsgBoxStyle.YesNo)
+            If TEMPMSG3 = vbYes Then
+                Dim WHATSAPPNO As String = ""
+                Dim OBJSR As New SaleInvoiceDesign
+                OBJSR.MdiParent = MDIMain
+                OBJSR.DIRECTPRINT = True
+                OBJSR.FRMSTRING = "MAINAGENTCOVERNOTE"
+                OBJSR.DIRECTMAIL = True
+                OBJSR.DIRECTWHATSAPP = True
+                OBJSR.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(COVERNOTENO) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                OBJSR.COVERNOTENO = COVERNOTENO
+                OBJSR.NOOFCOPIES = 1
+                OBJSR.Show()
+                OBJSR.Close()
+
+                Dim OBJWHATSAPP As New SendWhatsapp
+                OBJWHATSAPP.AGENTNAME = CMBAGENT.Text.Trim
+                OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
+                OBJWHATSAPP.ShowDialog()
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
