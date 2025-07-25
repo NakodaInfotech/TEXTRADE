@@ -12,15 +12,19 @@
     <AssemblyName>TEXTRADE</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -118,140 +122,131 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Charts.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Charts.v15.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Docs.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Docs.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Docs.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Pdf.v15.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v25.1.Export, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Printing.v15.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Data.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Drawing.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Sparkline.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Utils.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Utils.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraBars.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraCharts.v15.1.Wizard.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraCharts.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v25.1.UI, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraCharts.v15.1.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v25.1.Wizard, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraEditors.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>C:\Program Files (x86)\DevExpress 15.1\Components\Bin\Framework\DevExpress.XtraGrid.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v25.1.UI, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraLayout.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraNavBar.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPdfViewer.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraPdfViewer.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraPrinting.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.Office.v15.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraPdfViewer.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraRichEdit.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraScheduler.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraScheduler.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Office.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraTreeList.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      
-    </Reference>
-    <Reference Include="DevExpress.Images.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      
-    </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      
-    </Reference>
-    <Reference Include="DevExpress.XtraScheduler.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      
-    </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\..\dlls\DevExpress.XtraVerticalGrid.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\FlashControlV71.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.12.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.12.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Interop.Excel, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\dlls\Interop.Excel.dll</HintPath>
+      <HintPath>D:\dlls\Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\dlls\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <HintPath>..\..\..\..\..\dlls\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs">
-      <HintPath>..\..\..\..\..\dlls\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\dlls\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\dlls\RestSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -280,15 +275,15 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="TaxProEInvoice.API">
-      <HintPath>..\..\..\..\..\dlls\TaxProEInvoice.API.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\TaxProEInvoice.API.dll</HintPath>
     </Reference>
     <Reference Include="VbPowerPack, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\dlls\VbPowerPack.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\VbPowerPack.dll</HintPath>
     </Reference>
     <Reference Include="WAProAPI, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\dlls\WAProAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\dlls\WAProAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +383,48 @@
       <DependentUpon>LotFilter.vb</DependentUpon>
     </Compile>
     <Compile Include="Common\Filters\LotFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Select Forms\SelectCustomLayout.Designer.vb">
+      <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\CustomLayout.Designer.vb">
+      <DependentUpon>CustomLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\CustomLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.vb">
+      <DependentUpon>GridPurAnalysisPrintReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridSaleAnalysisPrintReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GridSaleAnalysisPrintReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
+      <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.Designer.vb">
+      <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.Designer.vb">
+      <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\Filters\OutstandingFilter.Designer.vb">
@@ -534,13 +571,43 @@
     <Compile Include="Masters\ItemPackingMaterial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\PartyWiseBaleRate.Designer.vb">
+      <DependentUpon>PartyWiseBaleRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\PartyWiseBaleRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\StateWiseMRP.Designer.vb">
       <DependentUpon>StateWiseMRP.vb</DependentUpon>
     </Compile>
     <Compile Include="Masters\StateWiseMRP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TransportInsuranceDetails.Designer.vb">
+      <DependentUpon>TransportInsuranceDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TransportInsuranceDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\VehicleMaster.Designer.vb">
+      <DependentUpon>VehicleMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\VehicleMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\VehicleMasterDetails.Designer.vb">
+      <DependentUpon>VehicleMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\VehicleMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\PdfOpenFileHelper.vb" />
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.Designer.vb">
+      <DependentUpon>AgencySaleOrderDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Catalog\CatalogDesign.Designer.vb">
       <DependentUpon>CatalogDesign.vb</DependentUpon>
     </Compile>
@@ -577,6 +644,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Accounts\AddressPrint100X50.vb">
+      <DependentUpon>AddressPrint100X50.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Accounts\AddressPrint100X75.vb">
       <DependentUpon>AddressPrint100X75.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -601,6 +674,18 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteAgentReport_SNCM.vb">
+      <DependentUpon>CoverNoteAgentReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM.vb">
+      <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_REALCORP.vb">
       <DependentUpon>GDNReport_REALCORP.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -609,6 +694,12 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_SNCM.vb">
       <DependentUpon>GDNReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_SUPEEMAOG.vb">
+      <DependentUpon>GDNReport_SUPEEMAOG.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -652,8 +743,14 @@
     <Compile Include="Reports\Crystal Reports\Lot Status Reports\LotTaggingReport.vb">
       <DependentUpon>LotTaggingReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.vb">
+      <DependentUpon>OpeningReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport_SNCM.vb">
       <DependentUpon>MatRecReport_SNCM.rpt</DependentUpon>
@@ -672,6 +769,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PayPartySummReport.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Purchase Invoice\PurchaseWiseSummReport.vb">
+      <DependentUpon>PurchaseWiseSummReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Purchase Order\YarnPOStatusDetailsReport.vb">
+      <DependentUpon>YarnPOStatusDetailsReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Receipt\ReceiptRegisterReport.vb">
       <AutoGen>True</AutoGen>
@@ -697,8 +806,26 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceCategoryWiseSummary.vb">
+      <DependentUpon>InvoiceCategoryWiseSummary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceEntryWiseSummReport.vb">
+      <DependentUpon>InvoiceEntryWiseSummReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_SNCM.vb">
       <DependentUpon>InvoiceReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_YARNDO.vb">
+      <DependentUpon>InvoiceReport_YARNDO.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -982,8 +1109,8 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport.vb">
       <DependentUpon>MatRecReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Non Purchase Reports\SelfInvoiceReport.vb">
       <DependentUpon>SelfInvoiceReport.rpt</DependentUpon>
@@ -1291,7 +1418,7 @@
       <DependentUpon>SalaryStatementReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Sale Invoice\CoverNoteAgentReport.vb">
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteAgentReport.vb">
       <DependentUpon>CoverNoteAgentReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -1434,6 +1561,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Order\YarnSOStatusDetailsReport.vb">
+      <DependentUpon>YarnSOStatusDetailsReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Order\SOStatusWithImgReport.vb">
       <DependentUpon>SOStatusWithImgReport.rpt</DependentUpon>
@@ -1711,6 +1844,12 @@
     <Compile Include="Reports\Grid Reports\GSTR Reports\RCMSelfInvoiceGSTDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.Designer.vb">
+      <DependentUpon>PartyWiseBaleRateReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\ReminderReport.Designer.vb">
       <DependentUpon>ReminderReport.vb</DependentUpon>
     </Compile>
@@ -1721,6 +1860,12 @@
       <DependentUpon>StoresReOrderLevelReport.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\StoresReOrderLevelReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\SO Report\OrderGridReport.Designer.vb">
+      <DependentUpon>OrderGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\SO Report\OrderGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.Designer.vb">
@@ -1909,6 +2054,126 @@
     <Compile Include="Transactions\Accounts\Registers\Ledger Book\LedgerPartySummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.Designer.vb">
+      <DependentUpon>ProductWiseRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNote.Designer.vb">
+      <DependentUpon>AgencyCreditNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNoteDetails.Designer.vb">
+      <DependentUpon>AgencyCreditNoteDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNoteDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.Designer.vb">
+      <DependentUpon>AgencyReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceiptDetails.Designer.vb">
+      <DependentUpon>AgencyReceiptDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceiptDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBills.Designer.vb">
+      <DependentUpon>AgencyOpeningBills.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBills.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBillsDetails.Designer.vb">
+      <DependentUpon>AgencyOpeningBillsDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBillsDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrder.Designer.vb">
+      <DependentUpon>OpeningAgencySaleOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrderDetails.Designer.vb">
+      <DependentUpon>OpeningAgencySaleOrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoice.Designer.vb">
+      <DependentUpon>AgencyInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceDetails.Designer.vb">
+      <DependentUpon>AgencyInvoiceDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceGridDetails.Designer.vb">
+      <DependentUpon>AgencyInvoiceGridDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyShowRecPay.Designer.vb">
+      <DependentUpon>AgencyShowRecPay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyShowRecPay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\SelectAgencySO.Designer.vb">
+      <DependentUpon>SelectAgencySO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\SelectAgencySO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrder.Designer.vb">
+      <DependentUpon>AgencySaleOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderClose.Designer.vb">
+      <DependentUpon>AgencySaleOrderClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderDetails.Designer.vb">
+      <DependentUpon>AgencySaleOrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturn.Designer.vb">
+      <DependentUpon>AgencySaleReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnDetails.Designer.vb">
+      <DependentUpon>AgencySaleReturnDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnGridDetails.Designer.vb">
+      <DependentUpon>AgencySaleReturnGridDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Blanket Module\BlanketRepresentation.Designer.vb">
       <DependentUpon>BlanketRepresentation.vb</DependentUpon>
     </Compile>
@@ -1967,6 +2232,12 @@
       <DependentUpon>EmbIncentiveDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Job Work\Emb Production\EmbIncentiveDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBox.Designer.vb">
+      <DependentUpon>MagicBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBox.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
@@ -2063,6 +2334,12 @@
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.Designer.vb">
+      <DependentUpon>SelectPurLRStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Sale\Sale Order\ProgramStatusDetails.Designer.vb">
@@ -2287,6 +2564,12 @@
     <Compile Include="Utilities\Change Barcode\ChangeBarcodeDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\AutoWhatsapp.Designer.vb">
+      <DependentUpon>AutoWhatsapp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\AutoWhatsapp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Others\BlockDataTransfer.Designer.vb">
       <DependentUpon>BlockDataTransfer.vb</DependentUpon>
     </Compile>
@@ -2299,10 +2582,16 @@
     <Compile Include="Utilities\Others\CmpBankDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\Others\CoverNote.Designer.vb">
+    <Compile Include="Utilities\Cover Note\CoverNote.Designer.vb">
       <DependentUpon>CoverNote.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Others\CoverNote.vb">
+    <Compile Include="Utilities\Cover Note\CoverNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Cover Note\CoverNoteDetails.Designer.vb">
+      <DependentUpon>CoverNoteDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Cover Note\CoverNoteDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Others\DefaultBank.Designer.vb">
@@ -2800,14 +3089,14 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecEntryDesignShadeWiseSumm.vb">
       <DependentUpon>MatRecEntryDesignShadeWiseSumm.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReportCutting.vb">
       <DependentUpon>MatRecReportCutting.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\OutstandingReport_Broker_Inventory_Details_Rec.vb">
       <DependentUpon>OutstandingReport_Broker_Inventory_Details_Rec.rpt</DependentUpon>
@@ -3430,8 +3719,8 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecReport_BRILLANTO.vb">
       <DependentUpon>MatRecReport_BRILLANTO.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\ChqPaymentHDFC_TCOT.vb">
       <AutoGen>True</AutoGen>
@@ -3625,7 +3914,7 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Sale Invoice\CoverNoteReport.vb">
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteReport.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoverNoteReport.rpt</DependentUpon>
@@ -4234,8 +4523,8 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecMonthWise.vb">
       <DependentUpon>MatRecMonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Payment\ChqPayment_PNB.vb">
       <DependentUpon>ChqPayment_PNB.rpt</DependentUpon>
@@ -5014,26 +5303,26 @@
     <Compile Include="Reports\Crystal Reports\Lot Status Reports\LotStatus_Summary1.vb">
       <DependentUpon>LotStatus_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecLOTWiseDetails.vb">
       <DependentUpon>MatRecLOTWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecShadeWiseSummary.vb">
       <DependentUpon>MatRecShadeWiseSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecShadeWiseDetails.vb">
       <DependentUpon>MatRecShadeWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecItemWiseSummary.vb">
       <DependentUpon>MatRecItemWiseSummary.rpt</DependentUpon>
@@ -5044,20 +5333,20 @@
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecItemWiseDetails.vb">
       <DependentUpon>MatRecItemWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecGodownWiseSummary.vb">
       <DependentUpon>MatRecGodownWiseSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecGodownWiseDetails.vb">
       <DependentUpon>MatRecGodownWiseDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Material Rec\MatRecDesignWiseDetails.vb">
       <AutoGen>True</AutoGen>
@@ -6265,10 +6554,22 @@
     <Compile Include="Utilities\Update Peding\LockPendingLotsForProgram.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Update Peding\LRStock.Designer.vb">
+      <DependentUpon>LRStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\LRStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Update Peding\SelectPendingEntries.Designer.vb">
       <DependentUpon>SelectPendingEntries.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Update Peding\SelectPendingEntries.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateBillDispute.Designer.vb">
+      <DependentUpon>UpdateBillDispute.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateBillDispute.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Update Peding\UpdateItemRates.Designer.vb">
@@ -8163,6 +8464,30 @@
     <EmbeddedResource Include="Common\Filters\LotFilter.resx">
       <DependentUpon>LotFilter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
+      <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\CustomLayout.resx">
+      <DependentUpon>CustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GridPurAnalysisPrintReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\GridSaleAnalysisPrintReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GridSaleAnalysisPrintReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.resx">
+      <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Sale Analysis\MonthlySaleAnalysisGridReport.resx">
+      <DependentUpon>MonthlySaleAnalysisGridReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\OutstandingFilter.resx">
       <DependentUpon>OutstandingFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -8235,8 +8560,23 @@
     <EmbeddedResource Include="Masters\ItemPackingMaterial.resx">
       <DependentUpon>ItemPackingMaterial.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\PartyWiseBaleRate.resx">
+      <DependentUpon>PartyWiseBaleRate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Masters\StateWiseMRP.resx">
       <DependentUpon>StateWiseMRP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TransportInsuranceDetails.resx">
+      <DependentUpon>TransportInsuranceDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\VehicleMaster.resx">
+      <DependentUpon>VehicleMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\VehicleMasterDetails.resx">
+      <DependentUpon>VehicleMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.resx">
+      <DependentUpon>AgencySaleOrderDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Catalog\CatalogDesign.resx">
       <DependentUpon>CatalogDesign.vb</DependentUpon>
@@ -8257,6 +8597,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AccountsTree.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Accounts\AddressPrint100X50.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AddressPrint100X50.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Accounts\AddressPrint100X75.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AddressPrint100X75.vb</LastGenOutput>
@@ -8273,6 +8617,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ItemCatalogReport.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Cover Note\CoverNoteAgentReport_SNCM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CoverNoteAgentReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CoverNoteReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_REALCORP.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_REALCORP.vb</LastGenOutput>
@@ -8280,6 +8632,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_SUPEEMAOG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_SUPEEMAOG.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\In House Checking\InHouseCheckingReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -8309,6 +8665,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LotTaggingReport.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OpeningReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\MatRecReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MatRecReport_SNCM.vb</LastGenOutput>
@@ -8320,6 +8680,14 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Payment\PayPartySummReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayPartySummReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Purchase Invoice\PurchaseWiseSummReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseWiseSummReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Purchase Order\YarnPOStatusDetailsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnPOStatusDetailsReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Receipt\ReceiptRegisterReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -8337,9 +8705,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GroupSummaryMonthlyReport.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceCategoryWiseSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceCategoryWiseSummary.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceEntryWiseSummReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceEntryWiseSummReport.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_YARNDO.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceReport_YARNDO.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceYOYItemSaleReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -8733,7 +9113,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SalaryStatementReport.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\CoverNoteAgentReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Cover Note\CoverNoteAgentReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CoverNoteAgentReport.vb</LastGenOutput>
     </EmbeddedResource>
@@ -8828,6 +9208,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOReport_YASHVIYUMILONE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SOReport_YASHVIYUMILONE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\YarnSOStatusDetailsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnSOStatusDetailsReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOStatusWithImgReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -9005,11 +9389,17 @@
     <EmbeddedResource Include="Reports\Grid Reports\GSTR Reports\RCMSelfInvoiceGSTDetails.resx">
       <DependentUpon>RCMSelfInvoiceGSTDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\PartyWiseBaleRateReport.resx">
+      <DependentUpon>PartyWiseBaleRateReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\ReminderReport.resx">
       <DependentUpon>ReminderReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\StoresReOrderLevelReport.resx">
       <DependentUpon>StoresReOrderLevelReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\SO Report\OrderGridReport.resx">
+      <DependentUpon>OrderGridReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.resx">
       <DependentUpon>RackCapacityGridReport.vb</DependentUpon>
@@ -9104,6 +9494,66 @@
     <EmbeddedResource Include="Transactions\Accounts\Registers\Ledger Book\LedgerPartySummary.resx">
       <DependentUpon>LedgerPartySummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Registers\Product Wise Register\ProductWiseRegister.resx">
+      <DependentUpon>ProductWiseRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNote.resx">
+      <DependentUpon>AgencyCreditNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNoteDetails.resx">
+      <DependentUpon>AgencyCreditNoteDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.resx">
+      <DependentUpon>AgencyReceipt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyReceiptDetails.resx">
+      <DependentUpon>AgencyReceiptDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBills.resx">
+      <DependentUpon>AgencyOpeningBills.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Opening\AgencyOpeningBillsDetails.resx">
+      <DependentUpon>AgencyOpeningBillsDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrder.resx">
+      <DependentUpon>OpeningAgencySaleOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Opening\OpeningAgencySaleOrderDetails.resx">
+      <DependentUpon>OpeningAgencySaleOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoice.resx">
+      <DependentUpon>AgencyInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceDetails.resx">
+      <DependentUpon>AgencyInvoiceDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyInvoiceGridDetails.resx">
+      <DependentUpon>AgencyInvoiceGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\AgencyShowRecPay.resx">
+      <DependentUpon>AgencyShowRecPay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Invoice\SelectAgencySO.resx">
+      <DependentUpon>SelectAgencySO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrder.resx">
+      <DependentUpon>AgencySaleOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderClose.resx">
+      <DependentUpon>AgencySaleOrderClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Order\AgencySaleOrderDetails.resx">
+      <DependentUpon>AgencySaleOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturn.resx">
+      <DependentUpon>AgencySaleReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnDetails.resx">
+      <DependentUpon>AgencySaleReturnDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Transactions\Sale\Sale Return\AgencySaleReturnGridDetails.resx">
+      <DependentUpon>AgencySaleReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Blanket Module\BlanketRepresentation.resx">
       <DependentUpon>BlanketRepresentation.vb</DependentUpon>
     </EmbeddedResource>
@@ -9133,6 +9583,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Job Work\Emb Production\EmbIncentiveDetails.resx">
       <DependentUpon>EmbIncentiveDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBox.resx">
+      <DependentUpon>MagicBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>
@@ -9181,6 +9634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.resx">
+      <DependentUpon>SelectPurLRStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Order\ProgramStatusDetails.resx">
       <DependentUpon>ProgramStatusDetails.vb</DependentUpon>
@@ -9293,14 +9749,20 @@
     <EmbeddedResource Include="Utilities\Change Barcode\ChangeBarcodeDetails.resx">
       <DependentUpon>ChangeBarcodeDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\AutoWhatsapp.resx">
+      <DependentUpon>AutoWhatsapp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\BlockDataTransfer.resx">
       <DependentUpon>BlockDataTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\CmpBankDetails.resx">
       <DependentUpon>CmpBankDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\Others\CoverNote.resx">
+    <EmbeddedResource Include="Utilities\Cover Note\CoverNote.resx">
       <DependentUpon>CoverNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Cover Note\CoverNoteDetails.resx">
+      <DependentUpon>CoverNoteDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\DefaultBank.resx">
       <DependentUpon>DefaultBank.vb</DependentUpon>
@@ -10061,7 +10523,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_DETLINE.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\CoverNoteReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Cover Note\CoverNoteReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CoverNoteReport.vb</LastGenOutput>
     </EmbeddedResource>
@@ -11754,8 +12216,14 @@
     <EmbeddedResource Include="Utilities\Update Peding\LockPendingLotsForProgram.resx">
       <DependentUpon>LockPendingLotsForProgram.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\LRStock.resx">
+      <DependentUpon>LRStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\SelectPendingEntries.resx">
       <DependentUpon>SelectPendingEntries.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\UpdateBillDispute.resx">
+      <DependentUpon>UpdateBillDispute.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateItemRates.resx">
       <DependentUpon>UpdateItemRates.vb</DependentUpon>
@@ -12704,6 +13172,10 @@
       <Project>{ECF5F21B-EF76-46D0-A7F4-E03F44779C34}</Project>
       <Name>BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DB\DB.vbproj">
+      <Project>{9fcf7c3d-7be3-4aba-9090-5b7c9a7d9118}</Project>
+      <Name>DB</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -13393,7 +13865,9 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\Crystal Reports\Agency Module\Sale Order\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
