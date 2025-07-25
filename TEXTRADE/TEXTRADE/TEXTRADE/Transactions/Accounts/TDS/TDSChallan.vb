@@ -185,6 +185,8 @@ Public Class TDSChallan
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(YearId)
             ALPARAVAL.Add(CHKUNPAID.Checked)
+            ALPARAVAL.Add(TXTINTAMOUNT.Text.Trim)
+
 
             OBJTDS.alParaval = ALPARAVAL
             INTRESULT = OBJTDS.SAVE()
@@ -255,5 +257,9 @@ Public Class TDSChallan
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTINTAMOUNT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTINTAMOUNT.KeyPress
+        numdotkeypress(e, sender, Me)
     End Sub
 End Class

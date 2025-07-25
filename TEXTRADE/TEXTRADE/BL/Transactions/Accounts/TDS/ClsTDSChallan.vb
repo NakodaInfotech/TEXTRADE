@@ -103,6 +103,8 @@ Public Class ClsTDSChallan
                 I += 1
                 .Add(New SqlClient.SqlParameter("@UNPAID", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@INTAMOUNT", alParaval(I)))
+                I += 1
 
             End With
 
