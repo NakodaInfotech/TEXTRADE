@@ -564,7 +564,7 @@ NEXTLINE:
 
                     For Each dr As DataRow In dttable.Rows
 
-                        If ClientName <> "MSANCHITKUMAR" Then TXTOUTBARCODE.Enabled = False
+                        TXTOUTBARCODE.Enabled = False
 
                         TXTSRCHNO.Text = TEMPSRCHNO
                         TXTSRCHNO.ReadOnly = True
@@ -1571,7 +1571,7 @@ LINE1:
                 Dim DT As New DataTable
                 'GET DATA FROM SAMPLE BARCODE
                 'no need for yearid clause here as we need to fetch this barcode in all acccouting year
-                DT = OBJCMN.search(" TOP 1 * ", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTOUTBARCODE.Text.Trim & "'")
+                DT = OBJCMN.SEARCH(" TOP 1 * ", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTOUTBARCODE.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
 
                     GRIDSR.Rows.Add(GRIDSR.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", 0, 1, DT.Rows(0).Item("UNIT"), Val(DT.Rows(0).Item("MTRS")), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), "", "", "", 0, 0, 0)
