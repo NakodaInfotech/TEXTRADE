@@ -679,9 +679,10 @@ Public Class MonthlySaleAnalysisGridReport
 
 
             If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim OBJRPT As New clsReportDesigner("Sale Analysis Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-                OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
-                Exit Sub
+                'Dim OBJRPT As New clsReportDesigner("Sale Analysis Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                'OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
+                'Exit Sub
+                ExportGridToExcel(GRIDREPORT)
             End If
 
             Dim OBJPL As New PLDesign
@@ -694,6 +695,45 @@ Public Class MonthlySaleAnalysisGridReport
         End Try
     End Sub
 
+    Public Sub ExportGridToExcel(dgv As DataGridView)
+        Try
+            Dim ExcelApp As Object = CreateObject("Excel.Application")
+            Dim Workbook As Object = ExcelApp.Workbooks.Add()
+            Dim Worksheet As Object = Workbook.Sheets(1)
+
+            ExcelApp.Visible = False
+
+            ' Write column headers
+            For col As Integer = 0 To dgv.Columns.Count - 1
+                Worksheet.Cells(1, col + 1).Value = dgv.Columns(col).HeaderText
+                Worksheet.Cells(1, col + 1).Font.Bold = True
+            Next
+
+            ' Write data
+            For row As Integer = 0 To dgv.Rows.Count - 1
+                For col As Integer = 0 To dgv.Columns.Count - 1
+                    If dgv.Rows(row).Cells(col).Value IsNot Nothing Then
+                        Worksheet.Cells(row + 2, col + 1).Value = dgv.Rows(row).Cells(col).Value.ToString()
+                    End If
+                Next
+            Next
+
+            Worksheet.Columns.AutoFit()
+
+            ' Save to file
+            Dim exportPath As String = Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim & ".xlsx"
+            If Not IO.Directory.Exists(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim) Then IO.Directory.CreateDirectory(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim)
+            Workbook.SaveAs(exportPath)
+            ExcelApp.Visible = True
+            ExcelApp.UserControl = True
+
+
+            MsgBox("Exported to Excel successfully at " & exportPath)
+
+        Catch ex As Exception
+            MsgBox("Export failed: " & ex.Message)
+        End Try
+    End Sub
     Sub TEMPSALEANALYSIS()
         Try
             Dim OBJCMN As New ClsCommon
