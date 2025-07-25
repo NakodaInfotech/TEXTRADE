@@ -1,7 +1,7 @@
-﻿
-
+﻿Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 Imports BL
-    Imports System.Reflection
+Imports System.IO
 
 Public Class MonthlyPurchaseAnalysisGridReport
 
@@ -610,20 +610,24 @@ Public Class MonthlyPurchaseAnalysisGridReport
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
             If GRIDREPORT.RowCount = 0 Then Exit Sub
-            Dim PRINT As Boolean = True
-            Dim WHATSAPP As Boolean = True
 
             If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-            TEMPPURANALYSIS()
-
+            TEMPPURANALYSIS() ' Fill temp table
 
             If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim OBJRPT As New clsReportDesigner("Purchase Analysis Report", System.AppDomain.CurrentDomain.BaseDirectory & "Purchase Analysis Report.xlsx", 2)
-                OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
-                Exit Sub
-            End If
+                'Dim SavePath As String = Application.StartupPath & "\MonthlyPurchase.xlsx" ' <-- Adjust path as needed
+                'Dim ReportTitle As String = "Monthly Purchase Analysis"
+                'Dim PreviewOption As Integer = 2 ' 0: Silent Save, 1: WebPreview, 2: ExcelVisible
 
+                'Dim OBJRPT As New clsReportDesigner(ReportTitle, SavePath, PreviewOption)
+                'OBJRPT.PURCHASEANALYSIS_EXCEL(CmpId, YearId)
+                'Exit Sub
+                ExportGridToExcel(GRIDREPORT)
+            End If
+            If MsgBox("Wish to PDF?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                ExportDataGridViewToPDF(GRIDREPORT)
+            End If
             Dim OBJPL As New PLDesign
             OBJPL.frmstring = "PURANALYSIS"
             OBJPL.MdiParent = MDIMain
@@ -633,6 +637,87 @@ Public Class MonthlyPurchaseAnalysisGridReport
             Throw ex
         End Try
     End Sub
+    Public Sub ExportGridToExcel(dgv As DataGridView)
+        Try
+            Dim ExcelApp As Object = CreateObject("Excel.Application")
+            Dim Workbook As Object = ExcelApp.Workbooks.Add()
+            Dim Worksheet As Object = Workbook.Sheets(1)
+
+            ExcelApp.Visible = False
+
+            ' Write column headers
+            For col As Integer = 0 To dgv.Columns.Count - 1
+                Worksheet.Cells(1, col + 1).Value = dgv.Columns(col).HeaderText
+                Worksheet.Cells(1, col + 1).Font.Bold = True
+            Next
+
+            ' Write data
+            For row As Integer = 0 To dgv.Rows.Count - 1
+                For col As Integer = 0 To dgv.Columns.Count - 1
+                    If dgv.Rows(row).Cells(col).Value IsNot Nothing Then
+                        Worksheet.Cells(row + 2, col + 1).Value = dgv.Rows(row).Cells(col).Value.ToString()
+                    End If
+                Next
+            Next
+
+            Worksheet.Columns.AutoFit()
+
+            ' Save to file
+            Dim exportPath As String = Application.StartupPath & "\PurAnalysis_" & CMBREPORTTYPE.Text.Trim & ".xlsx"
+            If Not System.IO.Directory.Exists(Application.StartupPath & "\PurAnalysis_" & CMBREPORTTYPE.Text.Trim) Then System.IO.Directory.CreateDirectory(Application.StartupPath & "\PurAnalysis_" & CMBREPORTTYPE.Text.Trim)
+            Workbook.SaveAs(exportPath)
+            ExcelApp.Visible = True
+            ExcelApp.UserControl = True
+
+
+            MsgBox("Exported to Excel successfully at " & exportPath)
+
+        Catch ex As Exception
+            MsgBox("Export failed: " & ex.Message)
+        End Try
+    End Sub
+    Private Sub ExportDataGridViewToPDF(dgv As DataGridView)
+        Try
+            Dim pdfTable As New PdfPTable(dgv.ColumnCount)
+            Dim PDFPATH As String
+            pdfTable.WidthPercentage = 100
+            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT
+            PDFPATH = Application.StartupPath & "\PurAnalysis_" & CMBREPORTTYPE.Text.Trim
+            ' Add headers
+            For Each column As DataGridViewColumn In dgv.Columns
+                Dim cell As New PdfPCell(New Phrase(column.HeaderText))
+                cell.BackgroundColor = New BaseColor(240, 240, 240)
+                pdfTable.AddCell(cell)
+            Next
+
+            ' Add rows
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    For Each cell As DataGridViewCell In row.Cells
+                        pdfTable.AddCell(If(cell.Value IsNot Nothing, cell.Value.ToString(), ""))
+                    Next
+                End If
+            Next
+
+            ' Create document
+            Dim pdfDoc As New Document(PageSize.A4, 10, 10, 10, 10)
+            PdfWriter.GetInstance(pdfDoc, New FileStream(PDFPATH, FileMode.Create))
+            pdfDoc.Open()
+            pdfDoc.Add(New Paragraph("Monthly Purchase Report"))
+            pdfDoc.Add(New Paragraph("Date: " & DateTime.Now.ToString("dd/MM/yyyy")))
+            pdfDoc.Add(New Chunk(Environment.NewLine))
+            pdfDoc.Add(pdfTable)
+            pdfDoc.Close()
+
+            MessageBox.Show("PDF exported successfully to: " & PDFPATH)
+            Process.Start("explorer.exe", PDFPATH)
+
+        Catch ex As Exception
+            MessageBox.Show("Error exporting to PDF: " & ex.Message)
+        End Try
+    End Sub
+
+
 
     Sub TEMPPURANALYSIS()
         Try
@@ -698,7 +783,7 @@ Public Class MonthlyPurchaseAnalysisGridReport
             End If
 
         Catch ex As Exception
-        Throw ex
+            Throw ex
         End Try
     End Sub
 
