@@ -60,9 +60,9 @@ Partial Class CoverNoteDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
@@ -436,6 +436,15 @@ Partial Class CoverNoteDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "&Print"
+        '
         'TOOLMAIL
         '
         Me.TOOLMAIL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -444,7 +453,6 @@ Partial Class CoverNoteDetails
         Me.TOOLMAIL.Name = "TOOLMAIL"
         Me.TOOLMAIL.Size = New System.Drawing.Size(23, 22)
         Me.TOOLMAIL.Text = "Mail Credit Note Directly"
-        Me.TOOLMAIL.Visible = False
         '
         'TOOLWHATSAPP
         '
@@ -454,16 +462,6 @@ Partial Class CoverNoteDetails
         Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
         Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
         Me.TOOLWHATSAPP.Text = "Whatsapp Cedit Note Directly"
-        Me.TOOLWHATSAPP.Visible = False
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "&Print"
         '
         'lbl
         '

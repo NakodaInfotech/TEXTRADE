@@ -175,21 +175,21 @@ Public Class CoverNoteDetails
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
         Try
-            '    If (Val(TXTFROM.Text.Trim) = 0 Or Val(TXTTO.Text.Trim) = 0 Or Val(TXTCOPIES.Text.Trim) = 0) AndAlso gridbill.SelectedRowsCount = 0 Then Exit Sub
-            '    'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
-            '    If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
-            '        If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-            '            MsgBox("Enter Proper Journal Nos", MsgBoxStyle.Critical)
-            '            Exit Sub
-            '        Else
-            '            If MsgBox("Wish to Whatsapp Cover Note from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            '            SERVERPROPDIRECT(False, True)
-            '        End If
-            '    Else
-            '        If MsgBox("Wish to Whatsapp Selected Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
-            '            SERVERPROPSELECTED(False, True)
-            '        End If
-            '    End If
+            If (Val(TXTFROM.Text.Trim) = 0 Or Val(TXTTO.Text.Trim) = 0 Or Val(TXTCOPIES.Text.Trim) = 0) AndAlso gridbill.SelectedRowsCount = 0 Then Exit Sub
+            'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
+            If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
+                If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
+                    MsgBox("Enter Proper CoverNote Nos", MsgBoxStyle.Critical)
+                    Exit Sub
+                Else
+                    If MsgBox("Wish to Whatsapp CoverNote from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    SERVERPROPDIRECT(False, True)
+                End If
+            Else
+                If MsgBox("Wish to Whatsapp Selected CoverNote ?", MsgBoxStyle.YesNo) = vbYes Then
+                    SERVERPROPSELECTED(False, True)
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -198,21 +198,21 @@ Public Class CoverNoteDetails
 
     Private Sub TOOLMAIL_Click(sender As Object, e As EventArgs) Handles TOOLMAIL.Click
         Try
-            '    If (Val(TXTFROM.Text.Trim) = 0 Or Val(TXTTO.Text.Trim) = 0 Or Val(TXTCOPIES.Text.Trim) = 0) AndAlso gridbill.SelectedRowsCount = 0 Then Exit Sub
-            '    'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
-            '    If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
-            '        If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-            '            MsgBox("Enter Proper Cover Note Nos", MsgBoxStyle.Critical)
-            '            Exit Sub
-            '        Else
-            '            If MsgBox("Wish to Mail Cover Note from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            '            SERVERPROPDIRECT(True)
-            '        End If
-            '    Else
-            '        If MsgBox("Wish to Mail Selected Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
-            '            SERVERPROPSELECTED(True)
-            '        End If
-            '    End If
+            If (Val(TXTFROM.Text.Trim) = 0 Or Val(TXTTO.Text.Trim) = 0 Or Val(TXTCOPIES.Text.Trim) = 0) AndAlso gridbill.SelectedRowsCount = 0 Then Exit Sub
+            'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
+            If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
+                If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
+                    MsgBox("Enter Proper Cover Note Nos", MsgBoxStyle.Critical)
+                    Exit Sub
+                Else
+                    If MsgBox("Wish to Mail Cover Note from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    SERVERPROPDIRECT(True)
+                End If
+            Else
+                If MsgBox("Wish to Mail Selected Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
+                    SERVERPROPSELECTED(True)
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -240,7 +240,7 @@ Public Class CoverNoteDetails
                     OBJINV.PRINTSETTING = PRINTDIALOG
                     OBJINV.COVERNOTENO = Val(I)
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-                    OBJINV.FORMULA = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                     OBJINV.Show()
                     OBJINV.Close()
                     ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
@@ -259,8 +259,7 @@ Public Class CoverNoteDetails
                     OBJINV.PRINTSETTING = PRINTDIALOG
                     OBJINV.COVERNOTENO = Val(I)
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-                    OBJINV.FORMULA = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-
+                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                     OBJINV.Show()
                     OBJINV.Close()
                     ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
@@ -311,7 +310,7 @@ Public Class CoverNoteDetails
                     OBJINV.DIRECTMAIL = INVOICEMAIL
                     OBJINV.DIRECTWHATSAPP = WHATSAPP
                     OBJINV.PRINTSETTING = PRINTDIALOG
-                    OBJINV.FORMULA = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                     OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJINV.Show()
@@ -331,7 +330,7 @@ Public Class CoverNoteDetails
                     OBJINV.DIRECTMAIL = INVOICEMAIL
                     OBJINV.DIRECTWHATSAPP = WHATSAPP
                     OBJINV.PRINTSETTING = PRINTDIALOG
-                    OBJINV.FORMULA = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                     OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJINV.Show()

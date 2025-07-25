@@ -46,6 +46,7 @@ Partial Class TDSChallan
         Me.GCHQNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBANKNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCMPNOPCMP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDSLEDGER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
         Me.cmdshowdetails = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
@@ -62,7 +63,8 @@ Partial Class TDSChallan
         Me.lblname = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
         Me.LBLBALEFROM = New System.Windows.Forms.Label()
-        Me.GTDSLEDGER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TXTINTAMOUNT = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +74,8 @@ Partial Class TDSChallan
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTINTAMOUNT)
+        Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.CMDAPPLY)
         Me.BlendPanel1.Controls.Add(Me.TXTBSRCODE)
         Me.BlendPanel1.Controls.Add(Me.Label2)
@@ -131,9 +135,9 @@ Partial Class TDSChallan
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(856, 63)
+        Me.Label2.Location = New System.Drawing.Point(887, 63)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(88, 14)
+        Me.Label2.Size = New System.Drawing.Size(57, 14)
         Me.Label2.TabIndex = 823
         Me.Label2.Text = "BSR Code"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -153,9 +157,9 @@ Partial Class TDSChallan
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(856, 38)
+        Me.Label1.Location = New System.Drawing.Point(887, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(88, 14)
+        Me.Label1.Size = New System.Drawing.Size(57, 14)
         Me.Label1.TabIndex = 822
         Me.Label1.Text = "Chq No"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -164,7 +168,7 @@ Partial Class TDSChallan
         '
         Me.TXTCHNO.BackColor = System.Drawing.Color.White
         Me.TXTCHNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHNO.Location = New System.Drawing.Point(767, 34)
+        Me.TXTCHNO.Location = New System.Drawing.Point(797, 34)
         Me.TXTCHNO.Name = "TXTCHNO"
         Me.TXTCHNO.Size = New System.Drawing.Size(84, 22)
         Me.TXTCHNO.TabIndex = 5
@@ -174,7 +178,7 @@ Partial Class TDSChallan
         '
         Me.CHDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.CHDATE.Location = New System.Drawing.Point(767, 59)
+        Me.CHDATE.Location = New System.Drawing.Point(797, 59)
         Me.CHDATE.Name = "CHDATE"
         Me.CHDATE.Size = New System.Drawing.Size(84, 22)
         Me.CHDATE.TabIndex = 6
@@ -185,7 +189,7 @@ Partial Class TDSChallan
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(715, 63)
+        Me.Label7.Location = New System.Drawing.Point(745, 63)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(49, 14)
         Me.Label7.TabIndex = 820
@@ -358,6 +362,13 @@ Partial Class TDSChallan
         Me.GCMPNOPCMP.Visible = True
         Me.GCMPNOPCMP.VisibleIndex = 11
         Me.GCMPNOPCMP.Width = 150
+        '
+        'GTDSLEDGER
+        '
+        Me.GTDSLEDGER.Caption = "TDS Ledger Name"
+        Me.GTDSLEDGER.FieldName = "TDSLEDGER"
+        Me.GTDSLEDGER.Name = "GTDSLEDGER"
+        Me.GTDSLEDGER.Width = 250
         '
         'CMBACCCODE
         '
@@ -536,19 +547,34 @@ Partial Class TDSChallan
         Me.LBLBALEFROM.BackColor = System.Drawing.Color.Transparent
         Me.LBLBALEFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLBALEFROM.ForeColor = System.Drawing.Color.Black
-        Me.LBLBALEFROM.Location = New System.Drawing.Point(677, 38)
+        Me.LBLBALEFROM.Location = New System.Drawing.Point(707, 38)
         Me.LBLBALEFROM.Name = "LBLBALEFROM"
         Me.LBLBALEFROM.Size = New System.Drawing.Size(88, 14)
         Me.LBLBALEFROM.TabIndex = 821
         Me.LBLBALEFROM.Text = "Challan No"
         Me.LBLBALEFROM.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'GTDSLEDGER
+        'TXTINTAMOUNT
         '
-        Me.GTDSLEDGER.Caption = "TDS Ledger Name"
-        Me.GTDSLEDGER.FieldName = "TDSLEDGER"
-        Me.GTDSLEDGER.Name = "GTDSLEDGER"
-        Me.GTDSLEDGER.Width = 250
+        Me.TXTINTAMOUNT.BackColor = System.Drawing.Color.White
+        Me.TXTINTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTINTAMOUNT.Location = New System.Drawing.Point(640, 34)
+        Me.TXTINTAMOUNT.Name = "TXTINTAMOUNT"
+        Me.TXTINTAMOUNT.Size = New System.Drawing.Size(84, 22)
+        Me.TXTINTAMOUNT.TabIndex = 824
+        Me.TXTINTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(565, 38)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 14)
+        Me.Label3.TabIndex = 825
+        Me.Label3.Text = "Int Amount"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TDSChallan
         '
@@ -611,4 +637,6 @@ Partial Class TDSChallan
     Friend WithEvents Label7 As Label
     Friend WithEvents LBLBALEFROM As Label
     Friend WithEvents GTDSLEDGER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TXTINTAMOUNT As TextBox
+    Friend WithEvents Label3 As Label
 End Class

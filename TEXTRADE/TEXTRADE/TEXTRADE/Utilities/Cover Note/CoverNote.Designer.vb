@@ -23,14 +23,14 @@ Partial Class CoverNote
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoverNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
@@ -89,6 +89,7 @@ Partial Class CoverNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCOVER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -248,28 +249,28 @@ Partial Class CoverNote
         Me.GRIDCOVER.AllowUserToDeleteRows = False
         Me.GRIDCOVER.AllowUserToResizeColumns = False
         Me.GRIDCOVER.AllowUserToResizeRows = False
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDCOVER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDCOVER.BackgroundColor = System.Drawing.Color.White
         Me.GRIDCOVER.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDCOVER.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDCOVER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDCOVER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDCOVER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GPARTYNAME, Me.GAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GLRDATE, Me.GTRANSPORT, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDCOVER.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDCOVER.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDCOVER.Location = New System.Drawing.Point(17, 143)
         Me.GRIDCOVER.MultiSelect = False
@@ -277,9 +278,9 @@ Partial Class CoverNote
         Me.GRIDCOVER.RowHeadersVisible = False
         Me.GRIDCOVER.RowHeadersWidth = 30
         Me.GRIDCOVER.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDCOVER.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDCOVER.RowTemplate.Height = 20
         Me.GRIDCOVER.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCOVER.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -372,8 +373,8 @@ Partial Class CoverNote
         '
         'GLRDATE
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle3
         Me.GLRDATE.HeaderText = "LR Date"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -391,8 +392,8 @@ Partial Class CoverNote
         '
         'GTOTALMTRS
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle4
         Me.GTOTALMTRS.HeaderText = "Mtrs"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -401,8 +402,8 @@ Partial Class CoverNote
         '
         'GTOTALPCS
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALPCS.DefaultCellStyle = DataGridViewCellStyle5
         Me.GTOTALPCS.HeaderText = "Pcs"
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.ReadOnly = True
@@ -412,8 +413,8 @@ Partial Class CoverNote
         '
         'GGRANDTOTAL
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle6
         Me.GGRANDTOTAL.HeaderText = "Grand Total"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.ReadOnly = True
@@ -746,6 +747,13 @@ Partial Class CoverNote
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
+        '
         'CoverNote
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -826,4 +834,5 @@ Partial Class CoverNote
     Friend WithEvents COURIERDATE As MaskedTextBox
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
     Friend WithEvents LBLWHATSAPP As Label
+    Friend WithEvents PRINTDIALOG As PrintDialog
 End Class

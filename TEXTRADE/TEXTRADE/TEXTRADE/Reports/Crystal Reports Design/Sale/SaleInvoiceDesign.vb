@@ -589,24 +589,47 @@ SKIPINVOICE:
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-            OBJ.RecordSelectionFormula = FORMULA
+            OBJ.RecordSelectionFormula = WHERECLAUSE
             OBJ.REFRESH()
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
                 OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
             Else
-                Dim expo As New ExportOptions
-                Dim oDfDopt As New DiskFileDestinationOptions
-                oDfDopt.DiskFileName = Application.StartupPath & "\COVERNOTE_" & COVERNOTENO & ".pdf"
-                If File.Exists(oDfDopt.DiskFileName) Then FILE.Delete(oDfDopt.DiskFileName)
-                expo = OBJ.ExportOptions
+                'Dim expo As New ExportOptions
+                'Dim oDfDopt As New DiskFileDestinationOptions
+                'oDfDopt.DiskFileName = Application.StartupPath & "\COVERNOTE_" & COVERNOTENO & ".pdf"
+                'If File.Exists(oDfDopt.DiskFileName) Then FILE.Delete(oDfDopt.DiskFileName)
+                'expo = OBJ.ExportOptions
+                'OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 1
+                'expo.ExportDestinationType = ExportDestinationType.DiskFile
+                'expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                'expo.DestinationOptions = oDfDopt
+                'OBJ.Export()
+                'OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 0
+
+                'Dim expo As New ExportOptions
+                Dim PATH As String = ""
+                If FRMSTRING = "MAINCOVERNOTE" Then
+                    PATH = Application.StartupPath & "\" & PARTYNAME & "COVERNOTE_" & COVERNOTENO & ".pdf"
+                ElseIf FRMSTRING = "MAINAGENTCOVERNOTE" Then
+                    PATH = Application.StartupPath & "\" & AGENTNAME & "AGENTCOVERNOTE_" & COVERNOTENO & ".pdf"
+                End If
+
+                'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
+                If File.Exists(PATH) Then File.Delete(PATH)
+
+                'expo = OBJ.ExportOptions
+
                 OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 1
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                OBJ.Export()
+                'expo.ExportDestinationType = ExportDestinationType.DiskFile
+                'expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                'expo.DestinationOptions = oDfDopt
+
+                OBJ.ExportToDisk(ExportFormatType.PortableDocFormat, PATH)
+
                 OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 0
+
             End If
         Catch ex As Exception
             Throw ex

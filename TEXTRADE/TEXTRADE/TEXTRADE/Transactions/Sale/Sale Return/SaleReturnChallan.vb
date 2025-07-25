@@ -564,7 +564,7 @@ NEXTLINE:
 
                     For Each dr As DataRow In dttable.Rows
 
-                        TXTOUTBARCODE.Enabled = False
+                        If ClientName <> "MSANCHITKUMAR" Then TXTOUTBARCODE.Enabled = False
 
                         TXTSRCHNO.Text = TEMPSRCHNO
                         TXTSRCHNO.ReadOnly = True
