@@ -1262,6 +1262,7 @@ NEXTLINE:
                 Exit Sub
             End If
 
+
             Dim alParaval As New ArrayList
 
             If txtgdnno.ReadOnly = False Then
