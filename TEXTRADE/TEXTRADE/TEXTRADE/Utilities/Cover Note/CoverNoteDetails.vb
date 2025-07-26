@@ -204,11 +204,11 @@ Public Class CoverNoteDetails
                     Exit Sub
                 Else
                     If MsgBox("Wish to Mail Cover Note from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    SERVERPROPDIRECT(True)
+                    SERVERPROPDIRECT_WHATS(True)
                 End If
             Else
                 If MsgBox("Wish to Mail Selected Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
-                    SERVERPROPSELECTED(True)
+                    SERVERPROPSELECTED_WHATS(True)
                 End If
             End If
         Catch ex As Exception
