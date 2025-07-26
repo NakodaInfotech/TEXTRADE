@@ -712,68 +712,6 @@ LINE1:
         End Try
     End Sub
 
-    'Async Sub SENDWHATSAPP(COVERNOTENO As Integer)
-    '    Try
-    '        If ALLOWWHATSAPP = False Then Exit Sub
-    '        If Not CHECKWHASTAPPEXP() Then
-    '            MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
-    '            Exit Sub
-    '        End If
-
-    '        If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-
-    '        Dim TEMPMSG2 As Integer = MsgBox("Wish to Send Party CoverNote ?", MsgBoxStyle.YesNo)
-    '        If TEMPMSG2 = vbYes Then
-
-    '            Dim WHATSAPPNO As String = ""
-    '            Dim OBJSR As New SaleInvoiceDesign
-    '            OBJSR.MdiParent = MDIMain
-    '            OBJSR.DIRECTPRINT = True
-    '            OBJSR.FRMSTRING = "MAINCOVERNOTE"
-    '            OBJSR.DIRECTMAIL = True
-    '            OBJSR.DIRECTWHATSAPP = True
-    '            OBJSR.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(COVERNOTENO) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-    '            OBJSR.COVERNOTENO = COVERNOTENO
-    '            OBJSR.NOOFCOPIES = 1
-    '            OBJSR.Show()
-    '            OBJSR.Close()
-
-    '            Dim OBJWHATSAPP As New SendWhatsapp
-    '            OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
-    '            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
-    '            OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
-    '            OBJWHATSAPP.ShowDialog()
-    '        End If
-
-    '        Dim TEMPMSG3 As Integer = MsgBox("Wish to Send Agent CoverNote ?", MsgBoxStyle.YesNo)
-    '        If TEMPMSG3 = vbYes Then
-    '            Dim WHATSAPPNO As String = ""
-    '            Dim OBJSR As New SaleInvoiceDesign
-    '            OBJSR.MdiParent = MDIMain
-    '            OBJSR.DIRECTPRINT = True
-    '            OBJSR.FRMSTRING = "MAINAGENTCOVERNOTE"
-    '            OBJSR.DIRECTMAIL = True
-    '            OBJSR.DIRECTWHATSAPP = True
-    '            OBJSR.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(COVERNOTENO) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-    '            OBJSR.COVERNOTENO = COVERNOTENO
-    '            OBJSR.NOOFCOPIES = 1
-    '            OBJSR.Show()
-    '            OBJSR.Close()
-
-    '            Dim OBJWHATSAPP As New SendWhatsapp
-    '            OBJWHATSAPP.AGENTNAME = CMBAGENT.Text.Trim
-    '            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
-    '            OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "COVERNOTE_" & Val(COVERNOTENO) & ".pdf")
-    '            OBJWHATSAPP.ShowDialog()
-    '        End If
-
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-
-
     Async Sub SENDWHATSAPP(COVERNOTENO As Integer)
         Try
             If ALLOWWHATSAPP = False Then Exit Sub
