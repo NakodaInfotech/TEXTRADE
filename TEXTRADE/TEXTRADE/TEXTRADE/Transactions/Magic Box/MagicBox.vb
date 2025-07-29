@@ -197,7 +197,7 @@ Public Class MagicBox
 
                     'CREATE PO IN ABHEE FABRICS LLP
                     'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
-                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMPID_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
                     If TEMPDT.Rows.Count > 0 Then
                         TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
                         TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
@@ -226,7 +226,7 @@ Public Class MagicBox
 
                     'CREATE PO IN ABHEE FABRICS LLP
                     'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
-                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMPID_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
                     If TEMPDT.Rows.Count > 0 Then
                         TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
                         TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
@@ -469,7 +469,7 @@ NEXTLINE:
         Try
             Dim ALPARAVAL As New ArrayList
             Dim OBJCMN As New ClsCommon
-            Dim DTITEM As DataTable = OBJCMN.SEARCH(" ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER IN ITEM_HSNCODEID = HSN_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+            Dim DTITEM As DataTable = OBJCMN.SEARCH(" ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
 
 
             ALPARAVAL.Add("Finished Goods")
@@ -520,10 +520,10 @@ NEXTLINE:
             ALPARAVAL.Add("")   'WARP
             ALPARAVAL.Add("")   'WEFT
 
-            ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(TEMPCMPID)
+            ALPARAVAL.Add(0)
             ALPARAVAL.Add(Userid)
-            ALPARAVAL.Add(YearId)
+            ALPARAVAL.Add(TEMPYEARID)
             ALPARAVAL.Add(0)
 
             ALPARAVAL.Add("")   'WARPSRNO
@@ -610,7 +610,7 @@ NEXTLINE:
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GDELPERIOD.Index).Value))
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GORDERNO.Index).Value)
             ALPARAVAL.Add(0)
-            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value)
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GDISCOUNT.Index).Value)
             ALPARAVAL.Add("")   'TRANSPORT
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GREMARKS.Index).Value)
@@ -879,12 +879,13 @@ NEXTLINE:
         cmbitemname.Text = ""
         CMBDESIGN.Text = ""
         txtQTY.Clear()
-        cmbqtyunit.Text = ""
+        cmbqtyunit.Text = "Pcs"
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
         GRIDMAGICBOX.RowCount = 0
+        getmax_SO_no()
     End Sub
 
     Private Sub MagicBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -902,6 +903,13 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Sub getmax_SO_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(ASO_no),0) + 1 ", "AGENCYSALEORDER", " AND ASO_cmpid=" & CmpId & " and ASO_locationid=" & Locationid & " and ASO_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            TXTNO.Text = DTTABLE.Rows(0).Item(0)
+        End If
     End Sub
 
     Private Sub TXTDELPERIOD_Validated(sender As Object, e As EventArgs) Handles TXTDELPERIOD.Validated
@@ -1167,5 +1175,33 @@ NEXTLINE:
         CLEAR()
         EDIT = False
         CMBBUYERS.Focus()
+    End Sub
+
+    Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
+        Try
+            If TXTCUT.Text.Trim > 0 Then
+                If txtQTY.Text.Trim > 0 Then
+                    TXTMTRS.Text = Format(Val(TXTCUT.Text.Trim) * Val(txtQTY.Text.Trim), "0.00")
+                End If
+            Else
+                TXTMTRS.Clear()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MagicBox_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+                Me.Close()
+            ElseIf e.KeyCode = Keys.OemPipe Then
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

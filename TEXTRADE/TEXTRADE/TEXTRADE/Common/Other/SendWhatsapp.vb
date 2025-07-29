@@ -419,8 +419,6 @@ NEXTLINE:
                     Next
                 End If
             End If
-
-
             MsgBox("Message Sent", MsgBoxStyle.Information)
             'Me.Close()
         Catch ex As Exception

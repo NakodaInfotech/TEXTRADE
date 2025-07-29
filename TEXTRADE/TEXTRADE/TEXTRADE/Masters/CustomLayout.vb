@@ -1,4 +1,6 @@
 ﻿Imports BL
+Imports DevExpress.CodeParser
+Imports DevExpress.Entity.ProjectModel
 
 Public Class CustomLayout
     Private Sub CustomLayout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -11,7 +13,12 @@ Public Class CustomLayout
     Sub FILLGRID()
         Dim dttable As New DataTable
         Dim objClsCommon As New ClsCommonMaster
-        dttable = objClsCommon.search("0 AS SRNO, CUSTOMLAYOUTS.CL_FormName AS FORMNAME,CUSTOMLAYOUTS.CL_FILENAME AS FILENAME, CUSTOMLAYOUTS.CL_LayoutContent AS CONTENT, USERMASTER.User_Name AS USERNAME ", "", " CUSTOMLAYOUTS INNER JOIN USERMASTER ON CUSTOMLAYOUTS.CL_UserId = USERMASTER.User_id AND CUSTOMLAYOUTS.CL_YEARID = USERMASTER.User_yearid ", "  and CL_yearid = " & YearId & " order by FORMNAME")
+
+        If UserName = "Admin" Then
+            dttable = objClsCommon.search("0 AS SRNO, CUSTOMLAYOUTS.CL_FormName AS FORMNAME,CUSTOMLAYOUTS.CL_FILENAME AS FILENAME, CUSTOMLAYOUTS.CL_LayoutContent AS CONTENT, USERMASTER.User_Name AS USERNAME ", "", " CUSTOMLAYOUTS INNER JOIN USERMASTER ON CUSTOMLAYOUTS.CL_UserId = USERMASTER.User_id AND CUSTOMLAYOUTS.CL_YEARID = USERMASTER.User_yearid ", "  and CL_yearid = " & YearId & " order by FORMNAME")
+        Else
+            dttable = objClsCommon.search("0 AS SRNO, CUSTOMLAYOUTS.CL_FormName AS FORMNAME,CUSTOMLAYOUTS.CL_FILENAME AS FILENAME, CUSTOMLAYOUTS.CL_LayoutContent AS CONTENT, USERMASTER.User_Name AS USERNAME ", "", " CUSTOMLAYOUTS INNER JOIN USERMASTER ON CUSTOMLAYOUTS.CL_UserId = USERMASTER.User_id AND CUSTOMLAYOUTS.CL_yearid = USERMASTER.User_yearid ", " and CL_yearid = " & YearId & " and CL_UserId = " & Userid & " order by FORMNAME")
+        End If
         GRIDNAME.DataSource = dttable
     End Sub
     Sub showform(ByVal editval As Boolean, ByVal FORMNAME As String)

@@ -460,4 +460,34 @@ Public Class AutoWhatsapp
             TXTTYPE2.Text = CMBTYPE.Text
         End If
     End Sub
+
+    Private Sub GRIDAUTOWA_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDAUTOWA.RowEnter
+        GRIDVIEW(e.RowIndex)
+    End Sub
+    Sub GRIDVIEW(Optional ROWNO As Integer = -1)
+        Try
+            If GRIDAUTOWA.Rows.Count > 0 Then
+                If ROWNO = -1 Then ROWNO = GRIDAUTOWA.CurrentRow.Index
+
+                Dim objclsCMST As New ClsCommonMaster
+                Dim dt As DataTable = objclsCMST.search("DISTINCT  CASE  WHEN A.AUTOWA_AGENTCHK = 1 THEN 1         ELSE 0     END AS AGENTCHK,    L.Acc_cmpname AS AGENTNAME,    C.city_name AS AGENTCITY", "", " LEDGERS AS L LEFT JOIN CITYMASTER AS C ON L.Acc_cityid = C.city_id AND L.Acc_cmpid = C.city_cmpid LEFT JOIN AUTOWHATSAPP_AGENTDESC AS A ON     A.AUTOWA_AGENTID = L.Acc_id AND A.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'    AND A.AUTOWA_CMPID = " & CmpId & "", " L.Acc_YEARID =" & YearId)
+                GridControl1.DataSource = dt
+                If dt.Rows.Count > 0 Then
+                    GridView1.FocusedRowHandle = GridView1.RowCount - 1
+                    GridView1.TopRowIndex = GridView1.RowCount - 15
+                End If
+
+                Dim objclsLEDGER As New ClsCommonMaster
+                Dim dtLGR As DataTable = objclsCMST.search("AUTOWHATSAPP_DESC.AUTOWA_CHK AS CHK, LEDGERS.Acc_cmpname AS NAME, CITYMASTER.city_name AS CITY", "", " AUTOWHATSAPP_DESC LEFT OUTER JOIN LEDGERS ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN CITYMASTER ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id", "AND AUTOWHATSAPP_DESC.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = " & CmpId)
+                gridbilldetails.DataSource = dtLGR
+                If dtLGR.Rows.Count > 0 Then
+                    gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                    gridbill.TopRowIndex = gridbill.RowCount - 15
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

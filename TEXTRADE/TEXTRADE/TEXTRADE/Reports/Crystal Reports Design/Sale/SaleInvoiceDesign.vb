@@ -611,9 +611,9 @@ SKIPINVOICE:
                 'Dim expo As New ExportOptions
                 Dim PATH As String = ""
                 If FRMSTRING = "MAINCOVERNOTE" Then
-                    PATH = Application.StartupPath & "\" & PARTYNAME & "COVERNOTE_" & COVERNOTENO & ".pdf"
+                    PATH = Application.StartupPath & "\" & PARTYNAME & "_COVERNOTE_" & COVERNOTENO & ".pdf"
                 ElseIf FRMSTRING = "MAINAGENTCOVERNOTE" Then
-                    PATH = Application.StartupPath & "\" & AGENTNAME & "AGENTCOVERNOTE_" & COVERNOTENO & ".pdf"
+                    PATH = Application.StartupPath & "\" & AGENTNAME & "_AGENTCOVERNOTE_" & COVERNOTENO & ".pdf"
                 End If
 
                 'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
@@ -647,24 +647,41 @@ SKIPINVOICE:
 
     Private Sub sendmailtool_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles sendmailtool.Click
 
-        Dim emailid As String = ""
-        Dim emailid1 As String = ""
-        Windows.Forms.Cursor.Current = Cursors.WaitCursor
-        Transfer()
-        Dim tempattachment As String
+        'Dim emailid As String = ""
+        'Dim emailid1 As String = ""
+        'Windows.Forms.Cursor.Current = Cursors.WaitCursor
+        'Transfer()
+        'Dim tempattachment As String
 
-        Dim objmail As New SendMail
+        'Dim objmail As New SendMail
 
 
-        tempattachment = "MAINCOVERNOTE"
-        objmail.subject = "Cover Note"
+        'tempattachment = "MAINCOVERNOTE"
+        'objmail.subject = "Cover Note"
 
+        'Try
+        '    ' Dim emailid As String = ""
+        '    Windows.Forms.Cursor.Current = Cursors.WaitCursor
+        '    Transfer()
+        '    ' Dim TEMPATTACHMENT As String = "REPORT"
+        '    ' Dim objmail As New SendMail
+        '    objmail.attachment = Application.StartupPath & "\" & TEMPATTACHMENT & ".PDF"
+        '    If emailid <> "" Then
+        '        objmail.cmbfirstadd.Text = emailid
+        '    End If
+        '    objmail.Show()
+        '    objmail.BringToFront()
+        '    Windows.Forms.Cursor.Current = Cursors.Arrow
+        'Catch ex As Exception
+        '    If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        'End Try
         Try
-            ' Dim emailid As String = ""
+            Dim emailid As String = ""
             Windows.Forms.Cursor.Current = Cursors.WaitCursor
             Transfer()
-            ' Dim TEMPATTACHMENT As String = "REPORT"
-            ' Dim objmail As New SendMail
+            Dim TEMPATTACHMENT As String = "REPORT"
+            Dim objmail As New SendMail
+            objmail.attachment = TEMPATTACHMENT
             objmail.attachment = Application.StartupPath & "\" & TEMPATTACHMENT & ".PDF"
             If emailid <> "" Then
                 objmail.cmbfirstadd.Text = emailid
@@ -675,6 +692,7 @@ SKIPINVOICE:
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+
     End Sub
 
     Sub Transfer()

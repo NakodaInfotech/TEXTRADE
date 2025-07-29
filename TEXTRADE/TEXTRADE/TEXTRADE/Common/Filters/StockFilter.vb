@@ -375,136 +375,136 @@ Public Class StockFilter
                 OBJREP.MdiParent = MDIMain
                 If RBORDERVSSTOCK.Checked = True Then OBJREP.FRMSTRING = "ORDERVSSTOCK" Else OBJREP.FRMSTRING = "STOCKVSORDER"
 
-                If ClientName = "AVIS" Then
+                '    If ClientName = "AVIS" Then
 
-                    'IF CHK IS TRUE THEN GET ALL YEARID UDER THAT COMPANY
-                    Dim WHERECLAUSE As String = ""
-                    'If CHKALLCMP.Checked = True Then WHERECLAUSE = WHERECLAUSE & " And BARCODESTOCK.YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "')" Else WHERECLAUSE = WHERECLAUSE & " AND BARCODESTOCK.YEARID=" & YearId
-                    'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
-                    Dim DT As New DataTable
-                    Dim CMPCLAUSE As String = ""
-                    Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
-                    For Each item As Object In CHECKED_CMP
-                        If CMPCLAUSE = "" Then
-                            CMPCLAUSE = "'" & item.ToString() & "'"
-                        Else
-                            CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
-                        End If
-                    Next item
-                    DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
-                    CMPCLAUSE = ""
-                    For Each DTROW As DataRow In DT.Rows
-                        If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
-                    Next
-                    WHERECLAUSE = WHERECLAUSE & " AND BARCODESTOCK.YEARID in (" & CMPCLAUSE & ")"
-
-
-
-
-                    'FOR UNIT
-                    gridbillunit.ClearColumnsFilter()
-                    For i As Integer = 0 To gridbillunit.RowCount - 1
-                        Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If UNITCLAUSE = "" Then
-                                UNITCLAUSE = " And (BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
-                            Else
-                                UNITCLAUSE = UNITCLAUSE & " OR BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
-                            End If
-                        End If
-                    Next
-                    If UNITCLAUSE <> "" Then
-                        UNITCLAUSE = UNITCLAUSE & ")"
-                        WHERECLAUSE = WHERECLAUSE & UNITCLAUSE
-                    End If
+                '        'IF CHK IS TRUE THEN GET ALL YEARID UDER THAT COMPANY
+                '        Dim WHERECLAUSE As String = ""
+                '        'If CHKALLCMP.Checked = True Then WHERECLAUSE = WHERECLAUSE & " And BARCODESTOCK.YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "')" Else WHERECLAUSE = WHERECLAUSE & " AND BARCODESTOCK.YEARID=" & YearId
+                '        'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+                '        Dim DT As New DataTable
+                '        Dim CMPCLAUSE As String = ""
+                '        Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+                '        For Each item As Object In CHECKED_CMP
+                '            If CMPCLAUSE = "" Then
+                '                CMPCLAUSE = "'" & item.ToString() & "'"
+                '            Else
+                '                CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                '            End If
+                '        Next item
+                '        DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+                '        CMPCLAUSE = ""
+                '        For Each DTROW As DataRow In DT.Rows
+                '            If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+                '        Next
+                '        WHERECLAUSE = WHERECLAUSE & " AND BARCODESTOCK.YEARID in (" & CMPCLAUSE & ")"
 
 
 
-                    'FOR PARTYNAME
-                    gridbill.ClearColumnsFilter()
-                    For i As Integer = 0 To gridbill.RowCount - 1
-                        Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If NAMECLAUSE = "" Then
-                                NAMECLAUSE = " AND (NAME = '" & dtrow("NAME") & "'"
-                            Else
-                                NAMECLAUSE = NAMECLAUSE & " OR NAME = '" & dtrow("NAME") & "'"
-                            End If
-                        End If
-                    Next
-                    If NAMECLAUSE <> "" Then
-                        NAMECLAUSE = NAMECLAUSE & ")"
-                        WHERECLAUSE = WHERECLAUSE & NAMECLAUSE
-                    End If
+
+                '        'FOR UNIT
+                '        gridbillunit.ClearColumnsFilter()
+                '        For i As Integer = 0 To gridbillunit.RowCount - 1
+                '            Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
+                '            If Convert.ToBoolean(dtrow("CHK")) = True Then
+                '                If UNITCLAUSE = "" Then
+                '                    UNITCLAUSE = " And (BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
+                '                Else
+                '                    UNITCLAUSE = UNITCLAUSE & " OR BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
+                '                End If
+                '            End If
+                '        Next
+                '        If UNITCLAUSE <> "" Then
+                '            UNITCLAUSE = UNITCLAUSE & ")"
+                '            WHERECLAUSE = WHERECLAUSE & UNITCLAUSE
+                '        End If
 
 
-                    'FOR ITEMNAME
-                    GRIDITEM.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDITEM.RowCount - 1
-                        Dim dtrow As DataRow = GRIDITEM.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If ITEMCLAUSE = "" Then
-                                ITEMCLAUSE = " AND (ITEMNAME = '" & dtrow("ITEMNAME") & "'"
-                            Else
-                                ITEMCLAUSE = ITEMCLAUSE & " OR ITEMNAME = '" & dtrow("ITEMNAME") & "'"
-                            End If
-                        End If
-                    Next
-                    If ITEMCLAUSE <> "" Then
-                        ITEMCLAUSE = ITEMCLAUSE & ")"
-                        WHERECLAUSE = WHERECLAUSE & ITEMCLAUSE
-                    End If
 
-                    'FOR DESIGN
-                    GRIDDESIGN.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDDESIGN.RowCount - 1
-                        Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If DESIGNCLAUSE = "" Then
-                                DESIGNCLAUSE = " AND (DESIGNNO = '" & dtrow("DESIGNNO") & "'"
-                            Else
-                                DESIGNCLAUSE = DESIGNCLAUSE & " OR DESIGNNO = '" & dtrow("DESIGNNO") & "'"
-                            End If
-                        End If
-                    Next
-                    If DESIGNCLAUSE <> "" Then
-                        DESIGNCLAUSE = DESIGNCLAUSE & ")"
-                        WHERECLAUSE = WHERECLAUSE & DESIGNCLAUSE
-                    End If
+                '        'FOR PARTYNAME
+                '        gridbill.ClearColumnsFilter()
+                '        For i As Integer = 0 To gridbill.RowCount - 1
+                '            Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                '            If Convert.ToBoolean(dtrow("CHK")) = True Then
+                '                If NAMECLAUSE = "" Then
+                '                    NAMECLAUSE = " AND (NAME = '" & dtrow("NAME") & "'"
+                '                Else
+                '                    NAMECLAUSE = NAMECLAUSE & " OR NAME = '" & dtrow("NAME") & "'"
+                '                End If
+                '            End If
+                '        Next
+                '        If NAMECLAUSE <> "" Then
+                '            NAMECLAUSE = NAMECLAUSE & ")"
+                '            WHERECLAUSE = WHERECLAUSE & NAMECLAUSE
+                '        End If
 
-                    'FOR SHADE
-                    GRIDSHADE.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDSHADE.RowCount - 1
-                        Dim dtrow As DataRow = GRIDSHADE.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If SHADECLAUSE = "" Then
-                                SHADECLAUSE = " AND (COLOR = '" & dtrow("SHADE") & "'"
-                            Else
-                                SHADECLAUSE = SHADECLAUSE & " OR COLOR = '" & dtrow("SHADE") & "'"
-                            End If
-                        End If
-                    Next
-                    If SHADECLAUSE <> "" Then
-                        SHADECLAUSE = SHADECLAUSE & ")"
-                        WHERECLAUSE = WHERECLAUSE & SHADECLAUSE
-                    End If
 
-                    If SALEORDERONMTRS = False Then OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " AND (PENDINGPCS > 0  OR OLDPENDINGPCS > 0) "
-                    If CMBFORWARD.Text.Trim <> "" Then OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " AND FORWARD = '" & CMBFORWARD.Text.Trim & "'"
+                '        'FOR ITEMNAME
+                '        GRIDITEM.ClearColumnsFilter()
+                '        For i As Integer = 0 To GRIDITEM.RowCount - 1
+                '            Dim dtrow As DataRow = GRIDITEM.GetDataRow(i)
+                '            If Convert.ToBoolean(dtrow("CHK")) = True Then
+                '                If ITEMCLAUSE = "" Then
+                '                    ITEMCLAUSE = " AND (ITEMNAME = '" & dtrow("ITEMNAME") & "'"
+                '                Else
+                '                    ITEMCLAUSE = ITEMCLAUSE & " OR ITEMNAME = '" & dtrow("ITEMNAME") & "'"
+                '                End If
+                '            End If
+                '        Next
+                '        If ITEMCLAUSE <> "" Then
+                '            ITEMCLAUSE = ITEMCLAUSE & ")"
+                '            WHERECLAUSE = WHERECLAUSE & ITEMCLAUSE
+                '        End If
 
-                    If CMBGODOWN.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.GODOWN='" & CMBGODOWN.Text.Trim & "'"
-                    If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.ITEMNAME='" & CMBITEMNAME.Text.Trim & "'"
-                    If CMBQUALITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.QUALITY='" & CMBQUALITY.Text.Trim & "'"
-                    If CMBDESIGN.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.DESIGNNO='" & CMBDESIGN.Text.Trim & "'"
-                    If CMBSHADE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.COLOR='" & CMBSHADE.Text.Trim & "'"
-                    If CMBPIECETYPE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.PIECETYPE='" & CMBPIECETYPE.Text.Trim & "'"
-                    If CMBCATEGORY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.CATEGORY='" & CMBCATEGORY.Text.Trim & "'"
-                    OBJREP.WHERECLAUSE = WHERECLAUSE
+                '        'FOR DESIGN
+                '        GRIDDESIGN.ClearColumnsFilter()
+                '        For i As Integer = 0 To GRIDDESIGN.RowCount - 1
+                '            Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
+                '            If Convert.ToBoolean(dtrow("CHK")) = True Then
+                '                If DESIGNCLAUSE = "" Then
+                '                    DESIGNCLAUSE = " AND (DESIGNNO = '" & dtrow("DESIGNNO") & "'"
+                '                Else
+                '                    DESIGNCLAUSE = DESIGNCLAUSE & " OR DESIGNNO = '" & dtrow("DESIGNNO") & "'"
+                '                End If
+                '            End If
+                '        Next
+                '        If DESIGNCLAUSE <> "" Then
+                '            DESIGNCLAUSE = DESIGNCLAUSE & ")"
+                '            WHERECLAUSE = WHERECLAUSE & DESIGNCLAUSE
+                '        End If
 
-                Else
-                    Dim COLORCLAUSE As String = ""
+                '        'FOR SHADE
+                '        GRIDSHADE.ClearColumnsFilter()
+                '        For i As Integer = 0 To GRIDSHADE.RowCount - 1
+                '            Dim dtrow As DataRow = GRIDSHADE.GetDataRow(i)
+                '            If Convert.ToBoolean(dtrow("CHK")) = True Then
+                '                If SHADECLAUSE = "" Then
+                '                    SHADECLAUSE = " AND (COLOR = '" & dtrow("SHADE") & "'"
+                '                Else
+                '                    SHADECLAUSE = SHADECLAUSE & " OR COLOR = '" & dtrow("SHADE") & "'"
+                '                End If
+                '            End If
+                '        Next
+                '        If SHADECLAUSE <> "" Then
+                '            SHADECLAUSE = SHADECLAUSE & ")"
+                '            WHERECLAUSE = WHERECLAUSE & SHADECLAUSE
+                '        End If
 
-                    OBJREP.SOCLAUSE = " AND ALLSALEORDER_DESC.SO_CLOSED = 'FALSE' "
+                '        If SALEORDERONMTRS = False Then OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " AND (PENDINGPCS > 0  OR OLDPENDINGPCS > 0) "
+                '        If CMBFORWARD.Text.Trim <> "" Then OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " AND FORWARD = '" & CMBFORWARD.Text.Trim & "'"
+
+                '        If CMBGODOWN.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.GODOWN='" & CMBGODOWN.Text.Trim & "'"
+                '        If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.ITEMNAME='" & CMBITEMNAME.Text.Trim & "'"
+                '        If CMBQUALITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.QUALITY='" & CMBQUALITY.Text.Trim & "'"
+                '        If CMBDESIGN.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.DESIGNNO='" & CMBDESIGN.Text.Trim & "'"
+                '        If CMBSHADE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.COLOR='" & CMBSHADE.Text.Trim & "'"
+                '        If CMBPIECETYPE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.PIECETYPE='" & CMBPIECETYPE.Text.Trim & "'"
+                '        If CMBCATEGORY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " and BARCODESTOCK.CATEGORY='" & CMBCATEGORY.Text.Trim & "'"
+                '        OBJREP.WHERECLAUSE = WHERECLAUSE
+
+                '    Else
+                Dim COLORCLAUSE As String = ""
+
+                OBJREP.SOCLAUSE = " AND ALLSALEORDER_DESC.SO_CLOSED = 'FALSE' "
                     If CMBCATEGORY.Text.Trim <> "" Then
                         OBJREP.BARCODECLAUSE = OBJREP.BARCODECLAUSE & " and BARCODESTOCK.CATEGORY='" & CMBCATEGORY.Text.Trim & "'"
                         OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " and CATEGORYMASTER.CATEGORY_NAME='" & CMBCATEGORY.Text.Trim & "'"
@@ -600,9 +600,9 @@ Public Class StockFilter
 
 
 
-                End If
+                    'End If
 
-                OBJREP.Show()
+                    OBJREP.Show()
                 Exit Sub
 
             End If
