@@ -5,7 +5,6 @@ Imports System.IO
 
 Public Class MonthlyPurchaseAnalysisGridReport
 
-
     Dim FILLDONE As Boolean = True
 
     Public Sub New()
@@ -13,6 +12,72 @@ Public Class MonthlyPurchaseAnalysisGridReport
         FILLCMB()
         Me.SetStyle(ControlStyles.DoubleBuffer, True)
     End Sub
+
+#Region "AUTOSEARCHTEXTBOX"
+
+    Public filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Public Sub CreateFilterTextBoxes()
+
+        'REMOVE OLD TEXTBOXES AND THEN RECREATE
+        For i As Integer = TBREPORT.Controls.Count - 1 To 0 Step -1
+            If TypeOf TBREPORT.Controls(i) Is TextBox Then
+                TBREPORT.Controls.RemoveAt(i)
+            End If
+        Next
+
+
+
+        filterTextBoxes.Clear()
+
+        If GRIDREPORT.Columns.Count = 0 Then Exit Sub
+
+        Dim xPos As Integer = 0
+
+        For Each col As DataGridViewColumn In GRIDREPORT.Columns
+            Dim txt As New TextBox()
+            txt.Width = col.Width
+            txt.Left = xPos
+            txt.Top = 5
+            txt.Tag = col.Index
+            txt.Name = "TXT" & col.Index
+            AddHandler txt.TextChanged, AddressOf FilterGrid
+
+            TBREPORT.Controls.Add(txt)
+            filterTextBoxes.Add(txt)
+
+            xPos += col.Width
+        Next
+    End Sub
+
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
+        Try
+            For Each row As DataGridViewRow In GRIDREPORT.Rows
+                If row.IsNewRow Then Continue For
+
+                row.Visible = True ' Default visible
+
+                For Each txt As TextBox In filterTextBoxes
+                    Dim colIndex As Integer = CInt(txt.Tag)
+                    Dim filterText As String = txt.Text.Trim().ToLower()
+
+                    If filterText <> "" Then
+                        Dim cellValue As String = If(row.Cells(colIndex).Value, "").ToString().ToLower()
+
+                        If Not cellValue.Contains(filterText) Then
+                            row.Visible = False
+                            Exit For ' One filter failed — hide this row
+                        End If
+                    End If
+                Next
+            Next
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+
+#End Region
 
     Sub FILLCMB()
         Try
@@ -502,7 +567,12 @@ Public Class MonthlyPurchaseAnalysisGridReport
                 MsgBox("Invalid Report Selection", MsgBoxStyle.Critical)
                 Exit Sub
             End If
+            For Each txt As TextBox In filterTextBoxes
+                txt.Text = ""
+            Next
             FILLGRID()
+            GRIDREPORT.Refresh()
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -615,12 +685,14 @@ Public Class MonthlyPurchaseAnalysisGridReport
 
             If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-            TEMPPURANALYSIS() ' Fill temp table
+
 
             If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 ExportGridToExcel(GRIDREPORT)
+                Exit Sub
             End If
 
+            TEMPPURANALYSIS() ' Fill temp table
             Dim OBJPL As New PLDesign
             OBJPL.frmstring = "PURANALYSIS"
             OBJPL.MdiParent = MDIMain
@@ -874,14 +946,6 @@ Public Class MonthlyPurchaseAnalysisGridReport
                     e.Value = String.Empty
                     e.FormattingApplied = True
                 End If
-
-
-                'If e.ColumnIndex = GNAME.Index + 1 AndAlso e.Value = "PARTY TOTAL" Then
-                '    GRIDREPORT.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.Maroon
-                '    GRIDREPORT.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightYellow
-                '    e.Value = String.Empty
-                '    e.FormattingApplied = True
-                'End If
 
             End If
         Catch ex As Exception

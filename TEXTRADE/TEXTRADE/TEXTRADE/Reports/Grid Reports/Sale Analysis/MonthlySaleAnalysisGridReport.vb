@@ -1,6 +1,8 @@
-﻿
-Imports BL
+﻿Imports System.IO
 Imports System.Reflection
+Imports BL
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class MonthlySaleAnalysisGridReport
 
@@ -41,7 +43,6 @@ Public Class MonthlySaleAnalysisGridReport
             txt.Top = 5
             txt.Tag = col.Index
             txt.Name = "TXT" & col.Index
-            txt.Font = New Font("Segoe UI", 8)
             AddHandler txt.TextChanged, AddressOf FilterGrid
 
             TBREPORT.Controls.Add(txt)
@@ -571,7 +572,6 @@ Public Class MonthlySaleAnalysisGridReport
             FILLGRID()
             GRIDREPORT.Refresh()
             CreateFilterTextBoxes()
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -726,7 +726,7 @@ Public Class MonthlySaleAnalysisGridReport
 
             ' Save to file
             Dim exportPath As String = Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim & ".xlsx"
-            If Not IO.Directory.Exists(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim) Then IO.Directory.CreateDirectory(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim)
+            If Not System.IO.Directory.Exists(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim) Then System.IO.Directory.CreateDirectory(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim)
             Workbook.SaveAs(exportPath)
             ExcelApp.Visible = True
             ExcelApp.UserControl = True
@@ -738,7 +738,121 @@ Public Class MonthlySaleAnalysisGridReport
             MsgBox("Export failed: " & ex.Message)
         End Try
     End Sub
+    Private Sub ExportDataGridViewToPDF(dgv As DataGridView)
+        Try
+            ' Initialize PDF table with column count
+            Dim pdfTable As New PdfPTable(dgv.ColumnCount)
+            pdfTable.WidthPercentage = 100
+            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT
 
+            ' Define the path for the PDF file
+            Dim PDFPATH As String = Path.Combine(Application.StartupPath, "SaleAnalysis_" & CMBREPORTTYPE.Text.Trim() & ".pdf")
+
+            ' Adjust column widths to fit on the page (optional but helpful for fitting wide tables)
+            Dim columnWidths As New List(Of Single)
+            For i As Integer = 0 To dgv.ColumnCount - 1
+                columnWidths.Add(1.0F) ' You can adjust the value here based on the number of columns
+            Next
+            pdfTable.SetWidths(columnWidths.ToArray())
+
+            ' Create BaseFont for Helvetica (used for both header and content fonts)
+            Dim baseFont As BaseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED)
+
+            ' Set the font size for the header and content (optional)
+            Dim headerFont As New Font(baseFont, 8, Font.Bold)
+            Dim contentFont As New Font(baseFont, 8)
+
+            ' Define a light yellow color to highlight the rows
+            Dim highlightColor As New BaseColor(255, 255, 204) ' Light Yellow color
+
+            ' Add headers to PDF table
+            For Each column As DataGridViewColumn In dgv.Columns
+                Dim cell As New PdfPCell(New Phrase(column.HeaderText, headerFont))
+                cell.BackgroundColor = New BaseColor(240, 240, 240)
+                pdfTable.AddCell(cell)
+            Next
+
+            ' Add rows to PDF table
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    ' Check if the first column is empty and handle if the Agentwise column is missing or empty
+                    Dim isRowEmpty As Boolean = String.IsNullOrEmpty(row.Cells(0).Value.ToString()) ' Check if Name is empty
+
+                    ' Check if the Agentwise column exists and is empty, if it exists
+                    If dgv.Columns.Count > 1 Then ' Check if there is a second column (Agentwise)
+                        isRowEmpty = isRowEmpty AndAlso String.IsNullOrEmpty(row.Cells(1).Value.ToString())
+                    End If
+
+                    ' Check if this is the "Grand Total" row (last row or based on specific condition)
+                    Dim isGrandTotal As Boolean = row.Cells(0).Value.ToString().ToLower() = "grand total" Or "item total" Or "party total" Or "category total" Or "city total"
+                    'Dim isGrandTotal As Boolean = row.Cells(0).Value.ToString().ToLower() = "party total"
+
+                    ' If the row is either empty in the first column or is the "Grand Total" row, highlight it
+                    If isRowEmpty OrElse isGrandTotal Then
+                        ' Highlight the entire row with light yellow color
+                        For colIndex As Integer = 0 To dgv.ColumnCount - 1
+                            Dim cellValue As String = If(row.Cells(colIndex).Value IsNot Nothing, row.Cells(colIndex).Value.ToString(), "")
+                            Dim cell As New PdfPCell(New Phrase(cellValue, contentFont))
+                            cell.BackgroundColor = highlightColor ' Apply light yellow background
+
+                            ' If it's a numeric value, align it to the right
+                            If IsNumeric(cellValue) Then
+                                cell.HorizontalAlignment = Element.ALIGN_RIGHT
+                            Else
+                                cell.HorizontalAlignment = Element.ALIGN_LEFT
+                            End If
+
+                            pdfTable.AddCell(cell)
+                        Next
+                    Else
+                        ' If the row doesn't meet the condition, just add the regular content
+                        For colIndex As Integer = 0 To dgv.ColumnCount - 1
+                            Dim cellValue As String = If(row.Cells(colIndex).Value IsNot Nothing, row.Cells(colIndex).Value.ToString(), "")
+                            Dim cell As New PdfPCell(New Phrase(cellValue, contentFont))
+
+                            ' If it's a numeric value, align it to the right
+                            If IsNumeric(cellValue) Then
+                                cell.HorizontalAlignment = Element.ALIGN_RIGHT
+                            Else
+                                cell.HorizontalAlignment = Element.ALIGN_LEFT
+                            End If
+
+                            pdfTable.AddCell(cell)
+                        Next
+                    End If
+                End If
+            Next
+
+            ' Ensure the directory for the PDF exists
+            Dim directorys As String = Path.GetDirectoryName(PDFPATH)
+            If Not Directory.Exists(directorys) Then
+                Directory.CreateDirectory(directorys)
+            End If
+
+            ' Create the document in Landscape orientation
+            Dim pdfDoc As New Document(PageSize.A4.Rotate(), 10, 10, 10, 10)
+            PdfWriter.GetInstance(pdfDoc, New FileStream(PDFPATH, FileMode.Create))
+
+            ' Open the PDF document for writing
+            pdfDoc.Open()
+
+            ' Add a title and date to the PDF
+            pdfDoc.Add(New Paragraph("Monthly Sale Report"))
+            Dim accountingYear As String = GetAccountingYear()
+            pdfDoc.Add(New Paragraph(accountingYear))
+            pdfDoc.Add(New Chunk(Environment.NewLine))
+
+            ' Add the table containing the DataGridView data
+            pdfDoc.Add(pdfTable)
+
+            ' Close the PDF document
+            pdfDoc.Close()
+
+        Catch ex As Exception
+            ' Handle any exceptions and show an error message
+            MessageBox.Show("Error exporting to PDF: " & ex.Message)
+        End Try
+    End Sub
     Sub TEMPSALEANALYSIS()
         Try
             Dim OBJCMN As New ClsCommon
@@ -788,24 +902,27 @@ Public Class MonthlySaleAnalysisGridReport
                 MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
                 Exit Sub
             End If
+            ' Call the ExportDataGridViewToPDF function to generate the PDF first
+            ExportDataGridViewToPDF(GRIDREPORT)
 
-            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            TEMPSALEANALYSIS()
-            Dim WHATSAPPNO As String = ""
-            Dim OBJPL As New PLDesign
-            OBJPL.frmstring = "SALEANALYSIS"
-            OBJPL.MdiParent = MDIMain
-            OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
-            OBJPL.DIRECTPRINT = True
-            OBJPL.PARTYNAME = CMBREPORTTYPE.Text.Trim
-            OBJPL.Show()
-            OBJPL.Close()
+            ' Define the path for the PDF file
+            Dim pdfFileName As String = "SaleAnalysis_" & CMBREPORTTYPE.Text.Trim() & ".pdf"
+            Dim pdfFilePath As String = Path.Combine(Application.StartupPath, pdfFileName)
 
-            Dim OBJWHATSAPP As New SendWhatsapp
-            OBJWHATSAPP.PARTYNAME = CMBREPORTTYPE.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\SaleAnalysis_" & CMBREPORTTYPE.Text.Trim & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("SaleAnalysis" & CMBREPORTTYPE.Text.Trim & ".pdf")
-            OBJWHATSAPP.ShowDialog()
+            ' Check if the PDF file exists
+            If File.Exists(pdfFilePath) Then
+                ' Create a new instance of the SendWhatsapp class
+                Dim OBJWHATSAPP As New SendWhatsapp
+
+                ' Add the PDF path and filename to the SendWhatsapp object
+                OBJWHATSAPP.PATH.Add(pdfFilePath)
+                OBJWHATSAPP.FILENAME.Add(pdfFileName)
+
+                ' Show the WhatsApp dialog to share the PDF
+                OBJWHATSAPP.ShowDialog()
+            Else
+                MessageBox.Show("The PDF file could not be found at the specified location.")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
