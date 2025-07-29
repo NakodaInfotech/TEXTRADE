@@ -2679,7 +2679,7 @@ LINESINGLE:
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
 
-                If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
+                If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
                 Dim DTITEM As New DataTable
 
                 'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN

@@ -611,9 +611,9 @@ SKIPINVOICE:
                 'Dim expo As New ExportOptions
                 Dim PATH As String = ""
                 If FRMSTRING = "MAINCOVERNOTE" Then
-                    PATH = Application.StartupPath & "\" & PARTYNAME & "COVERNOTE_" & COVERNOTENO & ".pdf"
+                    PATH = Application.StartupPath & "\" & PARTYNAME & "_COVERNOTE_" & COVERNOTENO & ".pdf"
                 ElseIf FRMSTRING = "MAINAGENTCOVERNOTE" Then
-                    PATH = Application.StartupPath & "\" & AGENTNAME & "AGENTCOVERNOTE_" & COVERNOTENO & ".pdf"
+                    PATH = Application.StartupPath & "\" & AGENTNAME & "_AGENTCOVERNOTE_" & COVERNOTENO & ".pdf"
                 End If
 
                 'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
