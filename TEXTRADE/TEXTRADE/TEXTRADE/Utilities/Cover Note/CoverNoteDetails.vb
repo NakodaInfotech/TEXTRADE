@@ -109,9 +109,6 @@ Public Class CoverNoteDetails
             Throw ex
         End Try
     End Sub
-
-
-
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
             showform(True, gridbill.GetFocusedRowCellValue("TEMPCOVERNO"))
@@ -120,22 +117,20 @@ Public Class CoverNoteDetails
         End Try
     End Sub
 
-
-    Private Sub gridbill_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
-        'Try
-        '    Dim DT As DataTable = gridbilldetails.DataSource
-        '    If e.RowHandle >= 0 Then
-        '        Dim ROW As DataRow = DT.Rows(e.RowHandle)
-        '        If ROW("CLOSED") = "TRUE" Then
-        '            e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Regular)
-        '            e.Appearance.BackColor = Color.LightSkyBlue
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-    End Sub
-
+    'Private Sub gridbill_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
+    '    'Try
+    '    '    Dim DT As DataTable = gridbilldetails.DataSource
+    '    '    If e.RowHandle >= 0 Then
+    '    '        Dim ROW As DataRow = DT.Rows(e.RowHandle)
+    '    '        If ROW("CLOSED") = "TRUE" Then
+    '    '            e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Regular)
+    '    '            e.Appearance.BackColor = Color.LightSkyBlue
+    '    '        End If
+    '    '    End If
+    '    'Catch ex As Exception
+    '    '    Throw ex
+    '    'End Try
+    'End Sub
 
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
@@ -215,7 +210,6 @@ Public Class CoverNoteDetails
             Throw ex
         End Try
     End Sub
-
 
     Sub SERVERPROPDIRECT(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
         Try
