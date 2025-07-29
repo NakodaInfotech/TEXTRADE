@@ -1009,7 +1009,7 @@ CHECKNEXTLINE:
                 txtgrnno.Text = Val(DTTABLE.Rows(0).Item(0))
                 MsgBox("Details Added")
 
-                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI" Or ClientName = "MAHAVIRPOLYCOT") And TXTLOTNO.Text.Trim <> "" Then
+                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI") And TXTLOTNO.Text.Trim <> "" Then
                     If MsgBox("Wish to Create GRN Checking", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo SKIPLINE
 
                     Dim OBJCHECKNIG As New GRNChecking
