@@ -216,23 +216,23 @@ Public Class InvoiceGridDetails
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
             fillregister(cmbregister, " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-            If MsgBox("Want to Load Layout ? ", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim layoutFileName As String = $"{Me.Name}.xml"
-                Dim OBJPO As New ClsCustomLayout
-                Dim dt As DataTable = OBJPO.selectLAYOUT(UserName, layoutFileName, CmpId, YearId)
-                If dt.Rows.Count > 0 AndAlso dt.Columns.Contains("CL_LayoutContent") Then
-                    Dim layoutXml As String = dt.Rows(0)("CL_LayoutContent").ToString()
+            'If MsgBox("Want to Load Layout ? ", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            '    Dim layoutFileName As String = $"{Me.Name}.xml"
+            '    Dim OBJPO As New ClsCustomLayout
+            '    Dim dt As DataTable = OBJPO.selectLAYOUT(UserName, layoutFileName, CmpId, YearId)
+            '    If dt.Rows.Count > 0 AndAlso dt.Columns.Contains("CL_LayoutContent") Then
+            '        Dim layoutXml As String = dt.Rows(0)("CL_LayoutContent").ToString()
 
-                    If Not String.IsNullOrWhiteSpace(layoutXml) Then
-                        Using ms As New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(layoutXml))
-                            gridbill.RestoreLayoutFromStream(ms)
-                        End Using
-                    End If
-                Else
-                    MessageBox.Show("Layout file not found: " & layoutFileName)
-                End If
+            '        If Not String.IsNullOrWhiteSpace(layoutXml) Then
+            '            Using ms As New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(layoutXml))
+            '                gridbill.RestoreLayoutFromStream(ms)
+            '            End Using
+            '        End If
+            '    Else
+            '        MessageBox.Show("Layout file not found: " & layoutFileName)
+            '    End If
 
-            End If
+            'End If
 
         Catch ex As Exception
             Throw ex

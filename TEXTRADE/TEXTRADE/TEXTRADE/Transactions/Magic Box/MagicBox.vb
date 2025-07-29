@@ -879,12 +879,13 @@ NEXTLINE:
         cmbitemname.Text = ""
         CMBDESIGN.Text = ""
         txtQTY.Clear()
-        cmbqtyunit.Text = ""
+        cmbqtyunit.Text = "Pcs"
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
         GRIDMAGICBOX.RowCount = 0
+        getmax_SO_no()
     End Sub
 
     Private Sub MagicBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -902,6 +903,13 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Sub getmax_SO_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(ASO_no),0) + 1 ", "AGENCYSALEORDER", " AND ASO_cmpid=" & CmpId & " and ASO_locationid=" & Locationid & " and ASO_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            TXTNO.Text = DTTABLE.Rows(0).Item(0)
+        End If
     End Sub
 
     Private Sub TXTDELPERIOD_Validated(sender As Object, e As EventArgs) Handles TXTDELPERIOD.Validated
@@ -1167,5 +1175,33 @@ NEXTLINE:
         CLEAR()
         EDIT = False
         CMBBUYERS.Focus()
+    End Sub
+
+    Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
+        Try
+            If TXTCUT.Text.Trim > 0 Then
+                If txtQTY.Text.Trim > 0 Then
+                    TXTMTRS.Text = Format(Val(TXTCUT.Text.Trim) * Val(txtQTY.Text.Trim), "0.00")
+                End If
+            Else
+                TXTMTRS.Clear()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MagicBox_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+                Me.Close()
+            ElseIf e.KeyCode = Keys.OemPipe Then
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

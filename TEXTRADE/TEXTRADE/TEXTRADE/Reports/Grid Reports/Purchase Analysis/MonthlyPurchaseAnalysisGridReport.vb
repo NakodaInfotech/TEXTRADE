@@ -625,9 +625,9 @@ Public Class MonthlyPurchaseAnalysisGridReport
                 'Exit Sub
                 ExportGridToExcel(GRIDREPORT)
             End If
-            If MsgBox("Wish to PDF?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                ExportDataGridViewToPDF(GRIDREPORT)
-            End If
+            'If MsgBox("Wish to PDF?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            '    ExportDataGridViewToPDF(GRIDREPORT)
+            'End If
             Dim OBJPL As New PLDesign
             OBJPL.frmstring = "PURANALYSIS"
             OBJPL.MdiParent = MDIMain
