@@ -400,8 +400,8 @@ Public Class CoverNoteDetails
                     OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                     OBJINV.Show()
                     OBJINV.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ("PARTYNAME") & "COVERNOTE_" & Val(I) & ".pdf")
-                    FILENAME.Add("PARTYNAME" & "COVERNOTE_" & Val(I) & ".pdf")
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ("PARTYNAME") & "_COVERNOTE_" & Val(I) & ".pdf")
+                    FILENAME.Add("PARTYNAME" & "_COVERNOTE_" & Val(I) & ".pdf")
                 Next
 
                 If INVOICEMAIL Then
@@ -441,8 +441,8 @@ Public Class CoverNoteDetails
                         OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(I) & " and {COVERNOTE.COVER_YEARID}=" & YearId
                         OBJINV.Show()
                         OBJINV.Close()
-                        ALATTACHMENT.Add(Application.StartupPath & "\" & ("AGENT") & "AGENTCOVERNOTE_" & Val(I) & ".pdf")
-                        FILENAME.Add("AGENT" & "AGENTCOVERNOTE_" & Val(I) & ".pdf")
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & ("AGENT") & "_AGENTCOVERNOTE_" & Val(I) & ".pdf")
+                        FILENAME.Add("AGENT" & "_AGENTCOVERNOTE_" & Val(I) & ".pdf")
                     Next
 
                     If INVOICEMAIL Then
@@ -497,8 +497,8 @@ Public Class CoverNoteDetails
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJINV.Show()
                     OBJINV.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("PARTYNAME") & "COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
-                    FILENAME.Add(ROW("PARTYNAME") & "COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    FILENAME.Add(ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
                 Next
 
                 If INVOICEMAIL Then
@@ -535,8 +535,8 @@ Public Class CoverNoteDetails
                     OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJINV.Show()
                     OBJINV.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("AGENT") & "AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
-                    FILENAME.Add(ROW("AGENT") & "AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    FILENAME.Add(ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
                 Next
 
                 If INVOICEMAIL Then
