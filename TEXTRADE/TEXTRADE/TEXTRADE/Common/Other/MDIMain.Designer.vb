@@ -1140,6 +1140,7 @@ Partial Class MDIMain
         Me.MASHOK_PAYOUT_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator306 = New System.Windows.Forms.ToolStripSeparator()
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MASHOK_MONTHLYPURANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_AGEING_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator302 = New System.Windows.Forms.ToolStripSeparator()
         Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1196,7 +1197,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.MASHOK_MONTHLYPURANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.ToolStrip1.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -8198,7 +8199,7 @@ Partial Class MDIMain
         '
         'HelpMenu
         '
-        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShortcutsToolStripMenuItem, Me.NOUSE_MASTER, Me.ToolStripSeparator116})
+        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShortcutsToolStripMenuItem, Me.NOUSE_MASTER, Me.ToolStripSeparator116, Me.DashboardToolStripMenuItem})
         Me.HelpMenu.Name = "HelpMenu"
         Me.HelpMenu.Size = New System.Drawing.Size(45, 20)
         Me.HelpMenu.Text = "&Help"
@@ -8314,6 +8315,12 @@ Partial Class MDIMain
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Name = "MASHOK_MONTHLYSALEANALYSIS_MENU"
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Text = "Monthly Sale Analysis"
+        '
+        'MASHOK_MONTHLYPURANALYSIS_MENU
+        '
+        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Name = "MASHOK_MONTHLYPURANALYSIS_MENU"
+        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Text = "Monthly Pur Analysis"
         '
         'MASHOK_AGEING_MENU
         '
@@ -8737,11 +8744,11 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'MASHOK_MONTHLYPURANALYSIS_MENU
+        'DashboardToolStripMenuItem
         '
-        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Name = "MASHOK_MONTHLYPURANALYSIS_MENU"
-        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
-        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Text = "Monthly Pur Analysis"
+        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
+        Me.DashboardToolStripMenuItem.Text = "dashboard"
         '
         'MDIMain
         '
@@ -9943,4 +9950,5 @@ Partial Class MDIMain
     Friend WithEvents CustomReportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CustomLayoutsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MASHOK_MONTHLYPURANALYSIS_MENU As ToolStripMenuItem
+    Friend WithEvents DashboardToolStripMenuItem As ToolStripMenuItem
 End Class
