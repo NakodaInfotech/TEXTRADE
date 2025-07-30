@@ -7012,7 +7012,9 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningStock.Designer.vb">
       <DependentUpon>OpeningStock.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningStock.vb" />
+    <Compile Include="Transactions\Accounts\Opening\OpeningStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Other\ProgressBar.Designer.vb">
       <DependentUpon>ProgressBar.vb</DependentUpon>
     </Compile>
