@@ -169,7 +169,7 @@ Public Class InvoiceGridDetails
             Dim layoutFileName As String = $"{Me.Name}"
             Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
             gridbill.SaveLayoutToXml(layoutPath)
-            MessageBox.Show("Layout saved as: " & layoutFileName)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
 
 
 
@@ -188,7 +188,7 @@ Public Class InvoiceGridDetails
 
             ' Save layout to file
             gridbill.SaveLayoutToXml(layoutPath)
-            MessageBox.Show("Layout saved as: " & layoutFileName)
+            MessageBox.Show("Layout saved as: " & FileName)
 
             ' Read file content
             Dim xmlContent As String = File.ReadAllText(layoutPath)

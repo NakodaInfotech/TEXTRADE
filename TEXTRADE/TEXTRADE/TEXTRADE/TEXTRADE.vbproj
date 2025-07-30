@@ -405,8 +405,8 @@
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.vb">
       <DependentUpon>GridPurAnalysisPrintReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridSaleAnalysisPrintReport.vb">
       <AutoGen>True</AutoGen>

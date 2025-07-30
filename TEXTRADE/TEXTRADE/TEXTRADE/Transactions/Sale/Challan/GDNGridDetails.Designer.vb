@@ -61,6 +61,7 @@ Partial Class GDNGridDetails
         Me.GGRIDPARTYPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDSONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -70,7 +71,7 @@ Partial Class GDNGridDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GGRIDSONO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +81,7 @@ Partial Class GDNGridDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
@@ -207,7 +209,7 @@ Partial Class GDNGridDetails
         '
         Me.GNAME.Caption = "Customer Name"
         Me.GNAME.FieldName = "CMPNAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 4
@@ -453,6 +455,14 @@ Partial Class GDNGridDetails
         Me.GTRANSPORT.VisibleIndex = 28
         Me.GTRANSPORT.Width = 200
         '
+        'GGRIDSONO
+        '
+        Me.GGRIDSONO.Caption = "GRID SONO"
+        Me.GGRIDSONO.FieldName = "GRIDSONO"
+        Me.GGRIDSONO.Name = "GGRIDSONO"
+        Me.GGRIDSONO.Visible = True
+        Me.GGRIDSONO.VisibleIndex = 31
+        '
         'cmdexit
         '
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
@@ -538,13 +548,19 @@ Partial Class GDNGridDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GGRIDSONO
+        'CMDSAVELAYOUT
         '
-        Me.GGRIDSONO.Caption = "GRID SONO"
-        Me.GGRIDSONO.FieldName = "GRIDSONO"
-        Me.GGRIDSONO.Name = "GGRIDSONO"
-        Me.GGRIDSONO.Visible = True
-        Me.GGRIDSONO.VisibleIndex = 31
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(422, 536)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 809
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'GDNGridDetails
         '
@@ -616,4 +632,5 @@ Partial Class GDNGridDetails
     Friend WithEvents GPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDSONO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class

@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
@@ -123,6 +124,49 @@ Public Class GDNGridDetails
     Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
         Try
             fillgrid(" AND CHALLANTYPE_NAME = '" & CMBTYPE.Text.Trim & "' and dbo.gdn.gdn_yearid=" & YearId & " ")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            Dim layoutFileName As String = $"{Me.Name}"
+            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
+            gridbill.SaveLayoutToXml(layoutPath)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
+
+
+
+
+            ' Prompt user for filename
+            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
+
+            ' Exit if the user cancels or enters nothing
+            If String.IsNullOrWhiteSpace(userFileName) Then
+                MessageBox.Show("Save cancelled.")
+                Exit Sub
+            End If
+
+            ' Add .xml extension and construct path
+            Dim FileName As String = $"{userFileName}.xml"
+
+            ' Save layout to file
+            gridbill.SaveLayoutToXml(layoutPath)
+            MessageBox.Show("Layout saved as: " & FileName)
+
+            ' Read file content
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
+
+            Dim OBJSELECTSG As New SelectCustomLayout
+            OBJSELECTSG.FORMNAMES = layoutFileName
+            OBJSELECTSG.FILENAME = FileName
+            OBJSELECTSG.FILES = xmlContent
+            OBJSELECTSG.ShowDialog()
+
+
         Catch ex As Exception
             Throw ex
         End Try
