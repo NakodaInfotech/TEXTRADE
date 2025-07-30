@@ -1143,6 +1143,12 @@ NEXTLINE:
                 CLB_PROCESS.Visible = True
             End If
 
+            If ClientName = "KARAN" Then
+                CMBCOLOR.BackColor = Color.White
+                CMBITEMNAME.Enabled = True
+                CMBDESIGNNO.Enabled = True
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1479,7 +1485,7 @@ NEXTLINE:
                 If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNO.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
             Else
                 'COLOR NOT MANDATE
-                If ClientName = "SUPEEMA" Or ClientName = "YASHVI" Or ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Or ClientName = "REALCORPORATION" Then
+                If ClientName = "SUPEEMA" Or ClientName = "YASHVI" Or ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Or ClientName = "REALCORPORATION" Or ClientName = "KARAN" Then
                     If CMBLOTNO.Text.Trim <> "" And Val(TXTTOTALPCS.Text) > 0 And CMBITEMNAME.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
                 Else
                     If CMBLOTNO.Text.Trim <> "" And Val(TXTTOTALPCS.Text) > 0 And CMBITEMNAME.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then fillgrid()
