@@ -39,6 +39,7 @@ Partial Class PurchaseOrder
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLORDERON = New System.Windows.Forms.Label()
         Me.CMBORDERON = New System.Windows.Forms.ComboBox()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -216,7 +217,6 @@ Partial Class PurchaseOrder
         Me.LBLCATEGORY = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.LBLORDERON = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridpo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -323,6 +323,18 @@ Partial Class PurchaseOrder
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1198, 492)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'LBLORDERON
+        '
+        Me.LBLORDERON.AutoSize = True
+        Me.LBLORDERON.BackColor = System.Drawing.Color.Transparent
+        Me.LBLORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLORDERON.Location = New System.Drawing.Point(942, 163)
+        Me.LBLORDERON.Name = "LBLORDERON"
+        Me.LBLORDERON.Size = New System.Drawing.Size(55, 14)
+        Me.LBLORDERON.TabIndex = 940
+        Me.LBLORDERON.Text = "Order On"
+        Me.LBLORDERON.Visible = False
         '
         'CMBORDERON
         '
@@ -455,7 +467,7 @@ Partial Class PurchaseOrder
         Me.CMBORDERTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBORDERTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBORDERTYPE.FormattingEnabled = True
-        Me.CMBORDERTYPE.Items.AddRange(New Object() {"GREY", "FINISH"})
+        Me.CMBORDERTYPE.Items.AddRange(New Object() {"GREY", "FINISH", "WEAVER"})
         Me.CMBORDERTYPE.Location = New System.Drawing.Point(845, 158)
         Me.CMBORDERTYPE.MaxDropDownItems = 14
         Me.CMBORDERTYPE.Name = "CMBORDERTYPE"
@@ -2348,18 +2360,6 @@ Partial Class PurchaseOrder
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'LBLORDERON
-        '
-        Me.LBLORDERON.AutoSize = True
-        Me.LBLORDERON.BackColor = System.Drawing.Color.Transparent
-        Me.LBLORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLORDERON.Location = New System.Drawing.Point(942, 163)
-        Me.LBLORDERON.Name = "LBLORDERON"
-        Me.LBLORDERON.Size = New System.Drawing.Size(55, 14)
-        Me.LBLORDERON.TabIndex = 940
-        Me.LBLORDERON.Text = "Order On"
-        Me.LBLORDERON.Visible = False
         '
         'PurchaseOrder
         '

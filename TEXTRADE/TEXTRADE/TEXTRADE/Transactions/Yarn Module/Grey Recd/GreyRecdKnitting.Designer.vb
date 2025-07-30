@@ -36,7 +36,15 @@ Partial Class GreyRecdKnitting
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.cmdselectPO = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CMBDYEINGNAME = New System.Windows.Forms.ComboBox()
         Me.lrdate = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -131,10 +139,22 @@ Partial Class GreyRecdKnitting
         Me.GUIMGPATH = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.PBSoftCopy = New System.Windows.Forms.PictureBox()
+        Me.TBPODETAILS = New System.Windows.Forms.TabPage()
+        Me.GRIDORDER = New System.Windows.Forms.DataGridView()
+        Me.OSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ODESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OGRNQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.CMBDYEINGNAME = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -145,12 +165,15 @@ Partial Class GreyRecdKnitting
         Me.tbupload.SuspendLayout()
         CType(Me.gridupload, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBSoftCopy, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBPODETAILS.SuspendLayout()
+        CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.cmdselectPO)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.CMBDYEINGNAME)
         Me.BlendPanel1.Controls.Add(Me.lrdate)
@@ -191,6 +214,45 @@ Partial Class GreyRecdKnitting
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'cmdselectPO
+        '
+        Me.cmdselectPO.BackColor = System.Drawing.Color.Transparent
+        Me.cmdselectPO.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdselectPO.FlatAppearance.BorderSize = 0
+        Me.cmdselectPO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdselectPO.ForeColor = System.Drawing.Color.Black
+        Me.cmdselectPO.Location = New System.Drawing.Point(553, 489)
+        Me.cmdselectPO.Name = "cmdselectPO"
+        Me.cmdselectPO.Size = New System.Drawing.Size(80, 28)
+        Me.cmdselectPO.TabIndex = 672
+        Me.cmdselectPO.Text = "Select &P.O"
+        Me.cmdselectPO.UseVisualStyleBackColor = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(774, 115)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(79, 14)
+        Me.Label2.TabIndex = 671
+        Me.Label2.Text = "Dyeing Name"
+        '
+        'CMBDYEINGNAME
+        '
+        Me.CMBDYEINGNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBDYEINGNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBDYEINGNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBDYEINGNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBDYEINGNAME.FormattingEnabled = True
+        Me.CMBDYEINGNAME.Location = New System.Drawing.Point(856, 111)
+        Me.CMBDYEINGNAME.MaxDropDownItems = 14
+        Me.CMBDYEINGNAME.Name = "CMBDYEINGNAME"
+        Me.CMBDYEINGNAME.Size = New System.Drawing.Size(243, 22)
+        Me.CMBDYEINGNAME.TabIndex = 670
         '
         'lrdate
         '
@@ -380,7 +442,7 @@ Partial Class GreyRecdKnitting
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.Black
-        Me.cmddelete.Location = New System.Drawing.Point(591, 510)
+        Me.cmddelete.Location = New System.Drawing.Point(593, 523)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
         Me.cmddelete.TabIndex = 10
@@ -394,7 +456,7 @@ Partial Class GreyRecdKnitting
         Me.cmdclear.FlatAppearance.BorderSize = 0
         Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdclear.ForeColor = System.Drawing.Color.Black
-        Me.cmdclear.Location = New System.Drawing.Point(505, 510)
+        Me.cmdclear.Location = New System.Drawing.Point(508, 523)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
         Me.cmdclear.TabIndex = 9
@@ -408,7 +470,7 @@ Partial Class GreyRecdKnitting
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(419, 510)
+        Me.cmdok.Location = New System.Drawing.Point(637, 489)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
@@ -422,7 +484,7 @@ Partial Class GreyRecdKnitting
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(677, 510)
+        Me.cmdexit.Location = New System.Drawing.Point(677, 523)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 11
@@ -658,6 +720,7 @@ Partial Class GreyRecdKnitting
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.tbupload)
+        Me.TabControl1.Controls.Add(Me.TBPODETAILS)
         Me.TabControl1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(11, 140)
         Me.TabControl1.Name = "TabControl1"
@@ -1282,6 +1345,173 @@ Partial Class GreyRecdKnitting
         Me.PBSoftCopy.TabIndex = 441
         Me.PBSoftCopy.TabStop = False
         '
+        'TBPODETAILS
+        '
+        Me.TBPODETAILS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBPODETAILS.Controls.Add(Me.GRIDORDER)
+        Me.TBPODETAILS.Location = New System.Drawing.Point(4, 23)
+        Me.TBPODETAILS.Name = "TBPODETAILS"
+        Me.TBPODETAILS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBPODETAILS.Size = New System.Drawing.Size(1203, 301)
+        Me.TBPODETAILS.TabIndex = 3
+        Me.TBPODETAILS.Text = "2. PO Details"
+        '
+        'GRIDORDER
+        '
+        Me.GRIDORDER.AllowUserToAddRows = False
+        Me.GRIDORDER.AllowUserToDeleteRows = False
+        Me.GRIDORDER.AllowUserToResizeColumns = False
+        Me.GRIDORDER.AllowUserToResizeRows = False
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDORDER.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.GRIDORDER.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDORDER.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDORDER.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDORDER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.GRIDORDER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDORDER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.OSRNO, Me.OITEMNAME, Me.ODESIGN, Me.OCOLOR, Me.OPCS, Me.OMTRS, Me.OFROMNO, Me.OFROMSRNO, Me.OFROMTYPE, Me.OGRNQTY, Me.OGRNMTRS, Me.ORATE})
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDORDER.DefaultCellStyle = DataGridViewCellStyle16
+        Me.GRIDORDER.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDORDER.Location = New System.Drawing.Point(2, 1)
+        Me.GRIDORDER.MultiSelect = False
+        Me.GRIDORDER.Name = "GRIDORDER"
+        Me.GRIDORDER.ReadOnly = True
+        Me.GRIDORDER.RowHeadersVisible = False
+        Me.GRIDORDER.RowHeadersWidth = 30
+        Me.GRIDORDER.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDORDER.RowsDefaultCellStyle = DataGridViewCellStyle17
+        Me.GRIDORDER.RowTemplate.Height = 20
+        Me.GRIDORDER.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDORDER.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.GRIDORDER.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.GRIDORDER.Size = New System.Drawing.Size(953, 297)
+        Me.GRIDORDER.TabIndex = 3
+        Me.GRIDORDER.TabStop = False
+        '
+        'OSRNO
+        '
+        Me.OSRNO.HeaderText = "Sr."
+        Me.OSRNO.Name = "OSRNO"
+        Me.OSRNO.ReadOnly = True
+        Me.OSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OSRNO.Width = 30
+        '
+        'OITEMNAME
+        '
+        Me.OITEMNAME.HeaderText = "Item Name"
+        Me.OITEMNAME.Name = "OITEMNAME"
+        Me.OITEMNAME.ReadOnly = True
+        Me.OITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OITEMNAME.Width = 150
+        '
+        'ODESIGN
+        '
+        Me.ODESIGN.HeaderText = "Design"
+        Me.ODESIGN.Name = "ODESIGN"
+        Me.ODESIGN.ReadOnly = True
+        Me.ODESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ODESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'OCOLOR
+        '
+        Me.OCOLOR.HeaderText = "Shade"
+        Me.OCOLOR.Name = "OCOLOR"
+        Me.OCOLOR.ReadOnly = True
+        Me.OCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OCOLOR.Width = 70
+        '
+        'OPCS
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.OPCS.DefaultCellStyle = DataGridViewCellStyle15
+        Me.OPCS.HeaderText = "Pcs"
+        Me.OPCS.Name = "OPCS"
+        Me.OPCS.ReadOnly = True
+        Me.OPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OPCS.Width = 50
+        '
+        'OMTRS
+        '
+        Me.OMTRS.HeaderText = "Mtrs"
+        Me.OMTRS.Name = "OMTRS"
+        Me.OMTRS.ReadOnly = True
+        Me.OMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OMTRS.Width = 80
+        '
+        'OFROMNO
+        '
+        Me.OFROMNO.HeaderText = "PO No"
+        Me.OFROMNO.Name = "OFROMNO"
+        Me.OFROMNO.ReadOnly = True
+        Me.OFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMNO.Width = 70
+        '
+        'OFROMSRNO
+        '
+        Me.OFROMSRNO.HeaderText = "PO Sr No"
+        Me.OFROMSRNO.Name = "OFROMSRNO"
+        Me.OFROMSRNO.ReadOnly = True
+        Me.OFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMSRNO.Width = 70
+        '
+        'OFROMTYPE
+        '
+        Me.OFROMTYPE.HeaderText = "Type"
+        Me.OFROMTYPE.Name = "OFROMTYPE"
+        Me.OFROMTYPE.ReadOnly = True
+        Me.OFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OFROMTYPE.Width = 90
+        '
+        'OGRNQTY
+        '
+        Me.OGRNQTY.HeaderText = "GRN Pcs"
+        Me.OGRNQTY.Name = "OGRNQTY"
+        Me.OGRNQTY.ReadOnly = True
+        Me.OGRNQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OGRNQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OGRNQTY.Width = 80
+        '
+        'OGRNMTRS
+        '
+        Me.OGRNMTRS.HeaderText = "GRN Mtrs"
+        Me.OGRNMTRS.Name = "OGRNMTRS"
+        Me.OGRNMTRS.ReadOnly = True
+        Me.OGRNMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.OGRNMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.OGRNMTRS.Width = 80
+        '
+        'ORATE
+        '
+        Me.ORATE.HeaderText = "Rate"
+        Me.ORATE.Name = "ORATE"
+        Me.ORATE.ReadOnly = True
+        Me.ORATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ORATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        Me.ORATE.Width = 70
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
@@ -1291,31 +1521,6 @@ Partial Class GreyRecdKnitting
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(774, 115)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 14)
-        Me.Label2.TabIndex = 671
-        Me.Label2.Text = "Dyeing Name"
-        '
-        'CMBDYEINGNAME
-        '
-        Me.CMBDYEINGNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDYEINGNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDYEINGNAME.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBDYEINGNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDYEINGNAME.FormattingEnabled = True
-        Me.CMBDYEINGNAME.Location = New System.Drawing.Point(856, 111)
-        Me.CMBDYEINGNAME.MaxDropDownItems = 14
-        Me.CMBDYEINGNAME.Name = "CMBDYEINGNAME"
-        Me.CMBDYEINGNAME.Size = New System.Drawing.Size(243, 22)
-        Me.CMBDYEINGNAME.TabIndex = 670
         '
         'GreyRecdKnitting
         '
@@ -1343,6 +1548,8 @@ Partial Class GreyRecdKnitting
         Me.tbupload.PerformLayout()
         CType(Me.gridupload, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBSoftCopy, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBPODETAILS.ResumeLayout(False)
+        CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1446,4 +1653,19 @@ Partial Class GreyRecdKnitting
     Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
     Friend WithEvents Label2 As Label
     Friend WithEvents CMBDYEINGNAME As ComboBox
+    Friend WithEvents cmdselectPO As Button
+    Friend WithEvents TBPODETAILS As TabPage
+    Friend WithEvents GRIDORDER As DataGridView
+    Friend WithEvents OSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents OITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents ODESIGN As DataGridViewTextBoxColumn
+    Friend WithEvents OCOLOR As DataGridViewTextBoxColumn
+    Friend WithEvents OPCS As DataGridViewTextBoxColumn
+    Friend WithEvents OMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMNO As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents OFROMTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents OGRNQTY As DataGridViewTextBoxColumn
+    Friend WithEvents OGRNMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents ORATE As DataGridViewTextBoxColumn
 End Class

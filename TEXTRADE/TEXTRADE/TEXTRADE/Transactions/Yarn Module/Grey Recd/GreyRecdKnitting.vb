@@ -3,6 +3,7 @@ Imports BL
 Imports System.Windows.Forms
 Imports System.IO
 Imports System.ComponentModel
+Imports DevExpress.XtraGrid.Accessibility
 
 Public Class GreyRecdKnitting
 
@@ -16,6 +17,7 @@ Public Class GreyRecdKnitting
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim TEMPMSG As Integer
     Dim PARTYCHALLANNO As String
+    Public FRMSTRING As String
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Try
@@ -68,7 +70,7 @@ Public Class GreyRecdKnitting
 
     Private Sub CMBNAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
-            If cmbname.Text.Trim <> "" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", cmbtrans.Text)
+            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", cmbtrans.Text)
         Catch ex As Exception
             Throw ex
         End Try
@@ -104,7 +106,7 @@ Public Class GreyRecdKnitting
     Private Sub cmbtrans_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbtrans.Validating
         Try
             'If cmbtrans.Text.Trim <> "" Then namevalidate(cmbtrans, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "SUNDRY CREDITORS")
-            If cmbtrans.Text.Trim <> "" Then namevalidate(cmbtrans, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
+            If cmbtrans.Text.Trim <> "" Then NAMEVALIDATE(cmbtrans, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -183,6 +185,58 @@ Public Class GreyRecdKnitting
             '        End If
             '    End If
             'End If
+
+
+            'FOR ORDER CHECKING, FIRST REMOVE GDNQTY
+            Dim TEMPORDERROWNO As Integer = -1
+            Dim TEMPORDERMATCH As Boolean = False
+            If GRIDORDER.RowCount > 0 Then
+
+                For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
+                    ORDROW.Cells(OGRNQTY.Index).Value = 0
+                    ORDROW.Cells(OGRNMTRS.Index).Value = 0
+                Next
+
+                'GET MULTISONO
+                Dim MULTISONO() As String = (From row As DataGridViewRow In GRIDORDER.Rows.Cast(Of DataGridViewRow)() Where Not row.IsNewRow Select CStr(row.Cells(OFROMNO.Index).Value)).Distinct.ToArray
+
+                For Each ROW As DataGridViewRow In GRIDGREY.Rows
+                    For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
+                        If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(OITEMNAME.Index).Value And ROW.Cells(GDESIGN.Index).Value = ORDROW.Cells(ODESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(OCOLOR.Index).Value Then
+                            TEMPORDERMATCH = True
+                            'IF ITEM / DESIGN / SHADE IS MATCHED BUT THE QTY IS FULL THEN WE NEED TO KEEP THIS ROWNO IN TEMP AND NEED TO CHECK FURTHER ALSO
+                            'IF WE GET ANY NEW MATHING THEN WE NEED TO INSERT THERE
+                            'IF NO MATCHING IS FOUND IN FURTHER ROWS THEN WE NEED TO ADD QTY IN THIS TEMPROW
+                            If Val(ORDROW.Cells(OGRNMTRS.Index).Value) >= Val(ORDROW.Cells(OMTRS.Index).Value) Then
+                                TEMPORDERROWNO = ORDROW.Index
+                                GoTo CHECKNEXTLINE
+                            End If
+                            ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                            ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+                            'ROW.Cells(GPURRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+                            TEMPORDERROWNO = -1
+                            Exit For
+CHECKNEXTLINE:
+                        End If
+                    Next
+                    'IF NO FURTHER MACHING IS FOUND BUT WE HAVE TEMPORDERROWNO THEN ADD VALUE IN THAT ROW
+                    If TEMPORDERROWNO >= 0 Then
+                        GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                        GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+                        'ROW.Cells(GPURRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
+                        TEMPORDERROWNO = -1
+                    End If
+                    If TEMPORDERMATCH = False Then
+                        ROW.DefaultCellStyle.BackColor = Color.LightGreen
+                        If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                            EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+                            bln = False
+                        End If
+                    End If
+                    TEMPORDERMATCH = False
+                Next
+            End If
+
 
             Return bln
         Catch ex As Exception
@@ -311,6 +365,69 @@ Public Class GreyRecdKnitting
             alParaval.Add(DONE)
             alParaval.Add(OUTPCS)
             alParaval.Add(OUTMTRS)
+
+
+
+            Dim ORDERGRIDSRNO As String = ""
+            Dim ORDERITEMNAME As String = ""
+            Dim ORDERDESIGN As String = ""
+            Dim ORDERCOLOR As String = ""
+            Dim ORDERPCS As String = ""
+            Dim ORDERMTRS As String = ""
+            Dim ORDERFROMNO As String = ""
+            Dim ORDERFROMSRNO As String = ""
+            Dim ORDERFROMTYPE As String = ""
+            Dim ORDERGRNPCS As String = ""
+            Dim ORDERGRNMTRS As String = ""
+            Dim ORDERRATE As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDORDER.Rows
+                If row.Cells(0).Value <> Nothing Then
+
+                    If ORDERGRIDSRNO = "" Then
+                        ORDERGRIDSRNO = Val(row.Cells(OSRNO.Index).Value)
+                        ORDERITEMNAME = row.Cells(OITEMNAME.Index).Value.ToString
+                        ORDERDESIGN = row.Cells(ODESIGN.Index).Value.ToString
+                        ORDERCOLOR = row.Cells(OCOLOR.Index).Value.ToString
+                        ORDERPCS = Val(row.Cells(OPCS.Index).Value)
+                        ORDERMTRS = Val(row.Cells(OMTRS.Index).Value)
+                        ORDERFROMNO = Val(row.Cells(OFROMNO.Index).Value)
+                        ORDERFROMSRNO = Val(row.Cells(OFROMSRNO.Index).Value)
+                        ORDERFROMTYPE = row.Cells(OFROMTYPE.Index).Value.ToString
+                        ORDERGRNPCS = Val(row.Cells(OGRNQTY.Index).Value)
+                        ORDERGRNMTRS = Val(row.Cells(OGRNMTRS.Index).Value)
+                        ORDERRATE = Val(row.Cells(ORATE.Index).Value)
+                    Else
+                        ORDERGRIDSRNO = ORDERGRIDSRNO & "|" & Val(row.Cells(OSRNO.Index).Value)
+                        ORDERITEMNAME = ORDERITEMNAME & "|" & row.Cells(OITEMNAME.Index).Value.ToString
+                        ORDERDESIGN = ORDERDESIGN & "|" & row.Cells(ODESIGN.Index).Value.ToString
+                        ORDERCOLOR = ORDERCOLOR & "|" & row.Cells(OCOLOR.Index).Value.ToString
+                        ORDERPCS = ORDERPCS & "|" & Val(row.Cells(OPCS.Index).Value)
+                        ORDERMTRS = ORDERMTRS & "|" & Val(row.Cells(OMTRS.Index).Value)
+                        ORDERFROMNO = ORDERFROMNO & "|" & Val(row.Cells(OFROMNO.Index).Value)
+                        ORDERFROMSRNO = ORDERFROMSRNO & "|" & Val(row.Cells(OFROMSRNO.Index).Value)
+                        ORDERFROMTYPE = ORDERFROMTYPE & "|" & row.Cells(OFROMTYPE.Index).Value.ToString
+                        ORDERGRNPCS = ORDERGRNPCS & "|" & Val(row.Cells(OGRNQTY.Index).Value)
+                        ORDERGRNMTRS = ORDERGRNMTRS & "|" & Val(row.Cells(OGRNMTRS.Index).Value)
+                        ORDERRATE = ORDERRATE & "|" & Val(row.Cells(ORATE.Index).Value)
+                    End If
+                End If
+            Next
+
+            alParaval.Add(ORDERGRIDSRNO)
+            alParaval.Add(ORDERITEMNAME)
+            alParaval.Add(ORDERDESIGN)
+            alParaval.Add(ORDERCOLOR)
+            alParaval.Add(ORDERPCS)
+            alParaval.Add(ORDERMTRS)
+            alParaval.Add(ORDERFROMNO)
+            alParaval.Add(ORDERFROMSRNO)
+            alParaval.Add(ORDERFROMTYPE)
+            alParaval.Add(ORDERGRNPCS)
+            alParaval.Add(ORDERGRNMTRS)
+            alParaval.Add(ORDERRATE)
+
+
 
             alParaval.Add(CMBDYEINGNAME.Text.Trim)
 
@@ -1019,6 +1136,7 @@ LINE1:
             txtuploadsrno.Text = 1
         End If
         TXTLOOMNO.Clear()
+        GRIDORDER.RowCount = 0
 
     End Sub
 
@@ -1181,6 +1299,16 @@ LINE1:
                             gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
                         Next
                     End If
+
+                    'ORDER GRID
+                    'Dim OBJCMN As New ClsCommon
+                    dttable = OBJCMN.SEARCH(" GREYRECDKNITTING_PODETAILS.GREY_GRIDSRNO AS GRIDSRNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, GREYRECDKNITTING_PODETAILS.GREY_ORDERPCS AS ORDERQTY, ISNULL(GREYRECDKNITTING_PODETAILS.GREY_ORDERMTRS,0) AS ORDERMTRS, GREYRECDKNITTING_PODETAILS.GREY_FROMNO AS FROMNO, GREYRECDKNITTING_PODETAILS.GREY_FROMSRNO AS FROMSRNO, GREYRECDKNITTING_PODETAILS.GREY_FROMTYPE AS FROMTYPE, GREYRECDKNITTING_PODETAILS.GREY_PCS AS GRNQTY, ISNULL(GREYRECDKNITTING_PODETAILS.GREY_MTRS,0) AS GRNMTRS, ISNULL(GREYRECDKNITTING_PODETAILS.GREY_RATE,0) AS RATE ", "", " GREYRECDKNITTING_PODETAILS INNER JOIN ITEMMASTER ON GREYRECDKNITTING_PODETAILS.GREY_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON GREYRECDKNITTING_PODETAILS.GREY_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON GREYRECDKNITTING_PODETAILS.GREY_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND GREYRECDKNITTING_PODETAILS.GREY_NO = " & TEMPGREYNO & "  AND GREYRECDKNITTING_PODETAILS.GREY_YEARID = " & YearId)
+                    If dttable.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable.Rows
+                            GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME"), DTR("DESIGNNO"), DTR("COLOR"), Val(DTR("ORDERQTY")), Val(DTR("ORDERMTRS")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("GRNQTY")), Val(DTR("GRNMTRS")), Val(DTR("RATE")))
+                        Next
+                    End If
+                    getsrno(GRIDORDER)
 
                     total()
                     GRIDGREY.FirstDisplayedScrollingRowIndex = GRIDGREY.RowCount - 1
@@ -1842,6 +1970,72 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub cmdselectPO_Click(sender As Object, e As EventArgs) Handles cmdselectPO.Click
+        Try
+
+            If cmbname.Text.Trim = "" Then
+                MsgBox("Select Party Name", MsgBoxStyle.Critical)
+                cmbname.Focus()
+                Exit Sub
+            End If
+
+
+
+
+            Dim DTPO As New DataTable
+
+            Dim OBJSELECTPO As New SelectPO
+            OBJSELECTPO.PARTYNAME = cmbname.Text.Trim
+            OBJSELECTPO.FRMSTRING = "GREY RECD KNITTING"
+            OBJSELECTPO.ShowDialog()
+            DTPO = OBJSELECTPO.DT
+            If DTPO.Rows.Count > 0 Then
+
+                ''  GETTING DISTINCT PONO NO IN TEXTBOX
+                'Dim DV As DataView = DTPO.DefaultView
+                'Dim NEWDT As DataTable = DV.ToTable(True, "PONO")
+                'For Each DTR As DataRow In NEWDT.Rows
+                '    If txtpono.Text.Trim = "" Then
+                '        txtpono.Text = DTR("PONO").ToString
+                '    Else
+                '        txtpono.Text = txtpono.Text & "," & DTR("PONO").ToString
+                '    End If
+                'Next
+
+                fillledger(cmbname, EDIT, " And GROUPMASTER.GROUP_SECONDARY = '" & DTPO.Rows(0).Item("GROUPNAME") & "' ")
+                cmbname.Text = DTPO.Rows(0).Item("NAME")
+                cmbtrans.Text = DTPO.Rows(0).Item("TRANSPORT")
+
+
+
+
+                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                For Each DTROW As DataRow In DTPO.Rows
+                    For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                        If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("PONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
+                    Next
+
+                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("QTY")), Val(DTROW("MTRS")), DTROW("PONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")))
+                    'If ClientName = "MOMAI" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Then
+                    '    'FILL SAME DATA IN GRNGRID
+                    '    gridgrn.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", "", DTROW("DESIGNNO"), "", DTROW("COLOR"), Val(DTROW("QTY")), "Pcs", 0, Val(DTROW("MTRS")), "", "", 0, 0, 0, 0, "Mtrs", 0, "", 0, 0, 0, DTROW("PONO"), DTROW("GRIDSRNO"), 0, "")
+                    'End If
+NEXTLINE:
+                Next
+                getsrno(GRIDORDER)
+
+            End If
+
+            getsrno(GRIDGREY)
+            cmdselectPO.Enabled = True
+            total()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 
     Private Sub cmbqtyunit_Enter(sender As Object, e As EventArgs) Handles cmbqtyunit.Enter
         Try

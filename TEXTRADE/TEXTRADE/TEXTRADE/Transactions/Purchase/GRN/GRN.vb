@@ -142,7 +142,7 @@ Public Class GRN
 
         cmbcolor.Text = ""
         If ClientName = "MSANCHITKUMAR" Or ClientName = "KEMLINO" Or ClientName = "MOHATUL" Then txtqty.Clear() Else txtqty.Text = 1
-        If ClientName = "YASHVI" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "MANISH" Or ClientName = "VALIANT" Or ClientName = "RADHA" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
+        If ClientName = "YASHVI" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "MANISH" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "RADHA" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
         If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MAHAVIRPOLYCOT" Then cmbqtyunit.Text = "Mtrs"
         If ClientName = "MNIKHIL" Or ClientName = "HRITI" Then cmbqtyunit.Text = "ROLL"
 
@@ -2099,7 +2099,7 @@ LINE1:
 
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
-        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "BIGAPPLE" Then TXTBALENO.Clear()
+        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Then TXTBALENO.Clear()
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
         txtgridremarks.Clear()
@@ -2114,7 +2114,7 @@ LINE1:
         TXTBARCODE.Clear()
         txtsrno.Text = gridgrn.RowCount + 1
 
-        If ClientName = "INDRANI" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "REALCORPORATION" Or ClientName = "BIGAPPLE" Then
+        If ClientName = "INDRANI" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "BIGAPPLE" Then
             TXTBALENO.Focus()
         ElseIf ClientName = "MOMAI" Or ClientName = "KREEVE" Or ClientName = "BALAJI" Or ClientName = "TINUMINU" Then
             If FRMSTRING = "GRN FANCY" And (ClientName = "BALAJI") Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
