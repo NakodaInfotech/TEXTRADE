@@ -4858,6 +4858,27 @@ PRINTALL:
     End Function
 
 #End Region
+    Function GetAccountingYear() As String
+        Dim currentDate As DateTime = DateTime.Now
+        Dim startOfFinancialYear As New DateTime(currentDate.Year, 4, 1) ' Starting from April 1st
+
+        ' If the current month is before April, it belongs to the last year's accounting year
+        If currentDate < startOfFinancialYear Then
+            ' Start of the previous financial year
+            Dim startYear As Integer = currentDate.Year - 1
+            Dim endYear As Integer = currentDate.Year
+
+            ' Format as 01/04/YYYY - 31/03/YYYY
+            Return "01/04/" & startYear.ToString() & " - 31/03/" & endYear.ToString()
+        Else
+            ' Start of the current financial year
+            Dim startYear As Integer = currentDate.Year
+            Dim endYear As Integer = currentDate.Year + 1
+
+            ' Format as 01/04/YYYY - 31/03/YYYY
+            Return "01/04/" & startYear.ToString() & " - 31/03/" & endYear.ToString()
+        End If
+    End Function
 
 
     Sub VIEWFORM(ByVal TYPE As String, ByVal EDIT As Boolean, ByVal BILLNO As Integer, ByVal REGTYPE As String)
