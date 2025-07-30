@@ -3,6 +3,7 @@ Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
 Imports HtmlAgilityPack
+Imports TEXTRADE.Win_Dashboards
 
 Public Class MDIMain
 
@@ -10463,14 +10464,13 @@ SKIPLINE:
     End Sub
 
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
-        Try
-            Dim DASH As New DashboardTEst
-            DASH.MdiParent = Me
-            DASH.Show()
-
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    Dim DASH As New DashB
+        '    DASH.MdiParent = Me
+        '    DASH.Show()
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 End Class
 

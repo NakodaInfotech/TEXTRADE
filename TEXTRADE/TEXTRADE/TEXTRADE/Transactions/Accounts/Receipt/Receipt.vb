@@ -51,7 +51,7 @@ Public Class Receipt
 
             'SALE BALANCE
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID", " AND LEDGERS.Acc_cmpname = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID", " AND TRIALBALANCE.NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLACCBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
                 If Val(DT.Rows(0).Item("CRLIMIT")) < Val(DT.Rows(0).Item("BALANCE")) And Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
@@ -62,7 +62,7 @@ Public Class Receipt
             End If
 
 
-            DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID", " AND NAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID", " AND TRIALBALANCE.NAME = '" & cmbname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
                 If Val(DT.Rows(0).Item("CRLIMIT")) < Val(DT.Rows(0).Item("BALANCE")) And Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
