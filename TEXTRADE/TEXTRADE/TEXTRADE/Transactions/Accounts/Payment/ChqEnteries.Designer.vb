@@ -22,67 +22,68 @@ Partial Class ChqEnteries
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ChqEnteries))
-        Me.CMDDELETE = New System.Windows.Forms.Button
-        Me.CMDOK = New System.Windows.Forms.Button
-        Me.CMDEXIT = New System.Windows.Forms.Button
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.TXTENTERYNO = New System.Windows.Forms.TextBox
-        Me.CMDCLEAR = New System.Windows.Forms.Button
-        Me.LBLTOTALAMT = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.DTENTERYDATE = New System.Windows.Forms.MaskedTextBox
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox
-        Me.txtremarks = New System.Windows.Forms.TextBox
-        Me.BlendPanel1 = New VbPowerPack.BlendPanel
-        Me.CMBACCCODE = New System.Windows.Forms.ComboBox
-        Me.txtadd = New System.Windows.Forms.TextBox
-        Me.GRIDISSUE = New System.Windows.Forms.DataGridView
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GCHQNO = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GCHQDATE = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GCHQAMT = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.GBANKNAME = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.tstxtbillno = New System.Windows.Forms.TextBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.txtsrno = New System.Windows.Forms.TextBox
-        Me.TXTBANKNAME = New System.Windows.Forms.TextBox
-        Me.DTCHQDATE = New System.Windows.Forms.DateTimePicker
-        Me.TXTCHQNO = New System.Windows.Forms.TextBox
-        Me.cmbname = New System.Windows.Forms.ComboBox
-        Me.cmbaccname = New System.Windows.Forms.ComboBox
-        Me.txtamt = New System.Windows.Forms.TextBox
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton
-        Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton
-        Me.tooldelete = New System.Windows.Forms.ToolStripButton
-        Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator
-        Me.toolprevious = New System.Windows.Forms.ToolStripButton
-        Me.toolnext = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
+        Me.CMDDELETE = New System.Windows.Forms.Button()
+        Me.CMDOK = New System.Windows.Forms.Button()
+        Me.CMDEXIT = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TXTENTERYNO = New System.Windows.Forms.TextBox()
+        Me.CMDCLEAR = New System.Windows.Forms.Button()
+        Me.LBLTOTALAMT = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.DTENTERYDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.txtremarks = New System.Windows.Forms.TextBox()
+        Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBTYPE = New System.Windows.Forms.ComboBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.txtinwords = New System.Windows.Forms.TextBox()
+        Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
+        Me.txtadd = New System.Windows.Forms.TextBox()
+        Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBANKNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tstxtbillno = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.TXTBANKNAME = New System.Windows.Forms.TextBox()
+        Me.DTCHQDATE = New System.Windows.Forms.DateTimePicker()
+        Me.TXTCHQNO = New System.Windows.Forms.TextBox()
+        Me.cmbname = New System.Windows.Forms.ComboBox()
+        Me.cmbaccname = New System.Windows.Forms.ComboBox()
+        Me.txtamt = New System.Windows.Forms.TextBox()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.tooldelete = New System.Windows.Forms.ToolStripButton()
+        Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
+        Me.toolprevious = New System.Windows.Forms.ToolStripButton()
+        Me.toolnext = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.txtinwords = New System.Windows.Forms.TextBox
         Me.GroupBox5.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'CMDDELETE
@@ -238,6 +239,7 @@ Partial Class ChqEnteries
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
         Me.BlendPanel1.Controls.Add(Me.GroupBox3)
         Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
         Me.BlendPanel1.Controls.Add(Me.txtadd)
@@ -270,6 +272,46 @@ Partial Class ChqEnteries
         Me.BlendPanel1.Size = New System.Drawing.Size(939, 581)
         Me.BlendPanel1.TabIndex = 0
         '
+        'CMBTYPE
+        '
+        Me.CMBTYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTYPE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTYPE.FormattingEnabled = True
+        Me.CMBTYPE.Items.AddRange(New Object() {"", "RECEIPT", "PAYMENT"})
+        Me.CMBTYPE.Location = New System.Drawing.Point(15, 31)
+        Me.CMBTYPE.Name = "CMBTYPE"
+        Me.CMBTYPE.Size = New System.Drawing.Size(155, 22)
+        Me.CMBTYPE.TabIndex = 707
+        Me.CMBTYPE.Visible = False
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.txtinwords)
+        Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.GroupBox3.Location = New System.Drawing.Point(30, 522)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(563, 45)
+        Me.GroupBox3.TabIndex = 706
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "In Words"
+        '
+        'txtinwords
+        '
+        Me.txtinwords.BackColor = System.Drawing.Color.Linen
+        Me.txtinwords.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtinwords.ForeColor = System.Drawing.Color.Black
+        Me.txtinwords.Location = New System.Drawing.Point(6, 17)
+        Me.txtinwords.Multiline = True
+        Me.txtinwords.Name = "txtinwords"
+        Me.txtinwords.ReadOnly = True
+        Me.txtinwords.Size = New System.Drawing.Size(553, 22)
+        Me.txtinwords.TabIndex = 15
+        Me.txtinwords.TabStop = False
+        '
         'CMBACCCODE
         '
         Me.CMBACCCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -277,9 +319,9 @@ Partial Class ChqEnteries
         Me.CMBACCCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBACCCODE.FormattingEnabled = True
         Me.CMBACCCODE.Items.AddRange(New Object() {""})
-        Me.CMBACCCODE.Location = New System.Drawing.Point(491, 31)
+        Me.CMBACCCODE.Location = New System.Drawing.Point(357, 31)
         Me.CMBACCCODE.Name = "CMBACCCODE"
-        Me.CMBACCCODE.Size = New System.Drawing.Size(82, 22)
+        Me.CMBACCCODE.Size = New System.Drawing.Size(12, 22)
         Me.CMBACCCODE.TabIndex = 705
         Me.CMBACCCODE.Visible = False
         '
@@ -426,7 +468,7 @@ Partial Class ChqEnteries
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label1.Location = New System.Drawing.Point(44, 43)
+        Me.Label1.Location = New System.Drawing.Point(12, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(115, 15)
         Me.Label1.TabIndex = 702
@@ -599,32 +641,6 @@ Partial Class ChqEnteries
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'GroupBox3
-        '
-        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox3.Controls.Add(Me.txtinwords)
-        Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GroupBox3.Location = New System.Drawing.Point(30, 522)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(563, 45)
-        Me.GroupBox3.TabIndex = 706
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "In Words"
-        '
-        'txtinwords
-        '
-        Me.txtinwords.BackColor = System.Drawing.Color.Linen
-        Me.txtinwords.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtinwords.ForeColor = System.Drawing.Color.Black
-        Me.txtinwords.Location = New System.Drawing.Point(6, 17)
-        Me.txtinwords.Multiline = True
-        Me.txtinwords.Name = "txtinwords"
-        Me.txtinwords.ReadOnly = True
-        Me.txtinwords.Size = New System.Drawing.Size(553, 22)
-        Me.txtinwords.TabIndex = 15
-        Me.txtinwords.TabStop = False
-        '
         'ChqEnteries
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -640,12 +656,12 @@ Partial Class ChqEnteries
         Me.GroupBox5.PerformLayout()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -694,4 +710,5 @@ Partial Class ChqEnteries
     Friend WithEvents txtadd As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents txtinwords As System.Windows.Forms.TextBox
+    Friend WithEvents CMBTYPE As ComboBox
 End Class
