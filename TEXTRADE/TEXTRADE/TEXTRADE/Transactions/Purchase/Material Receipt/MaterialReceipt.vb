@@ -98,7 +98,7 @@ Public Class MaterialReceipt
         TXTCUT.Clear()
         TXTWT.Clear()
         txtqty.Text = 1
-        If ClientName = "YASHVI" Or ClientName = "BRILLANTO" Or ClientName = "AVIS" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VSTRADERS" Or ClientName = "VALIANT" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
+        If ClientName = "YASHVI" Or ClientName = "BRILLANTO" Or ClientName = "AVIS" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VSTRADERS" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
         If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Then cmbqtyunit.Text = "UNCHECK LUMP"
         TXTMTRS.Clear()
         TXTRATE.Clear()
@@ -3844,7 +3844,7 @@ LINE1:
                             DT = OBJCMN.SEARCH(" DISTINCT LOTNO ", "", " LOT_VIEW_PCSDETAILS ", " AND BALPCS > 0 AND LOTCOMPLETED = 0 AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                         Else
                             Dim WHERECLAUSE As String = ""
-                            If ClientName = "VALIANT" Then WHERECLAUSE = " OR ISNULL(SM_DYEINGJOB,'') = 'JOB' "
+                            If ClientName = "VALIANT" Or ClientName = "KARAN" Then WHERECLAUSE = " OR ISNULL(SM_DYEINGJOB,'') = 'JOB' "
                             DT = OBJCMN.SEARCH(" DISTINCT LOTNO ", "", " (Select DISTINCT CHECKINGMASTER.CHECK_LOTNO As LOTNO, CHECKINGMASTER.CHECK_NO As FROMNO, CHECKINGMASTER.CHECK_cmpid As CMPID, CHECKINGMASTER.CHECK_locationid As LOCATIONID, CHECKINGMASTER.CHECK_yearid AS YEARID FROM CHECKINGMASTER INNER JOIN CHECKINGMASTER_DESC ON CHECKINGMASTER.CHECK_NO = CHECKINGMASTER_DESC.CHECK_NO And CHECKINGMASTER.CHECK_YEARID = CHECKINGMASTER_DESC.CHECK_YEARID INNER JOIN LEDGERS ON CHECKINGMASTER.CHECK_LEDGERID = LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND (CHECKINGMASTER.CHECK_TYPE = 'JOB WORK') AND CHECKINGMASTER_DESC.CHECK_CHECKINGDONE = 0  UNION ALL SELECT   DISTINCT  STOCKMASTER.SM_LOTNO, SM_NO AS FROMNO, SM_CMPID, SM_LOCATIONID, SM_YEARID  FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO = LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND SM_TYPE = 'JOBBERSTOCK' and SM_DONE = 0 AND (SM_LOTNO <> '' OR  SM_LOTNO <> 0) AND (ISNULL(SM_DYEINGJOB,'') = 'DYEING' OR ISNULL(SM_DYEINGJOB,'') = '' " & WHERECLAUSE & " )) AS T ", " AND T.YEARID = " & YearId)
                         End If
                     End If
@@ -3901,7 +3901,7 @@ LINE1:
                     If ClientName = "SOFTAS" Then
                         DT = OBJCMN.SEARCH(" 0 as SRNO, CHECKNO AS FROMNO, GRNTYPE AS FROMTYPE, '' AS BALENO, ITEMNAME, DESIGN, PARTYNAME ", "", " LOT_VIEW ", " AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND (ACCEPTEDPCS-RECDPCS) > 0 AND LOTCOMPLETED = 'FALSE' AND DYEINGJOB <> 'JOB' AND YEARID = " & YearId)
                     Else
-                        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "RADHA" Or ClientName = "VALIANT" Then
+                        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "RADHA" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
                             DT = OBJCMN.SEARCH(" GRNNO AS SRNO, GRNNO AS FROMNO, GRNTYPE AS FROMTYPE, BALENO, PARTYNAME ", "", " LOT_VIEW_PCSDETAILS ", " AND BALENO NOT IN (SELECT DISTINCT BALENO FROM LOT_VIEW_PCSDETAILS WHERE LOTNO= '" & CMBGRIDLOTNO.Text.Trim & "' AND DYEINGJOB = 'DYEING' AND YEARID = " & YearId & " AND BALPCS<=0) AND BALPCS > 0 AND LOTCOMPLETED = 0 AND DYEINGJOB = 'DYEING' AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                         Else
                             DT = OBJCMN.SEARCH(" SRNO, FROMNO, FROMTYPE, BALENO, '' AS PARTYNAME ", "", " (SELECT   DISTINCT  CHECKINGMASTER_DESC.CHECK_GRIDSRNO AS SRNO, CHECKINGMASTER.CHECK_NO AS FROMNO, (CASE WHEN ISNULL(CHECK_GRIDREMARKS,'') <> '' THEN ISNULL(CHECK_GRIDREMARKS,'') ELSE CAST(CHECKINGMASTER_DESC.CHECK_GRIDSRNO AS VARCHAR(10)) END) AS BALENO,'CHECKING' AS FROMTYPE, CHECKINGMASTER.CHECK_cmpid AS CMPID, CHECKINGMASTER.CHECK_locationid AS LOCATIONID, CHECKINGMASTER.CHECK_yearid AS YEARID FROM CHECKINGMASTER INNER JOIN CHECKINGMASTER_DESC ON CHECKINGMASTER.CHECK_NO = CHECKINGMASTER_DESC.CHECK_NO AND CHECKINGMASTER.CHECK_CMPID = CHECKINGMASTER_DESC.CHECK_CMPID AND CHECKINGMASTER.CHECK_LOCATIONID = CHECKINGMASTER_DESC.CHECK_LOCATIONID AND CHECKINGMASTER.CHECK_YEARID = CHECKINGMASTER_DESC.CHECK_YEARID  INNER JOIN LEDGERS ON CHECKINGMASTER.CHECK_LEDGERID = LEDGERS.Acc_id AND CHECKINGMASTER.CHECK_CMPID = LEDGERS.Acc_cmpid AND CHECKINGMASTER.CHECK_LOCATIONID = LEDGERS.Acc_locationid AND CHECKINGMASTER.CHECK_YEARID = LEDGERS.Acc_yearid  WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND (CHECKINGMASTER.CHECK_LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "') AND CHECKINGMASTER_DESC.CHECK_CHECKINGDONE = 0 AND CHECKINGMASTER_DESC.CHECK_APPROVED = 1 UNION ALL SELECT   DISTINCT  STOCKMASTER.SM_NO, STOCKMASTER.SM_NO AS FROMNO, (CASE WHEN VERSION_CLIENTNAME = 'VALIANT' THEN CAST(ISNULL(SM_BALENO,'') AS VARCHAR(100)) ELSE CAST(ISNULL(SM_REMARKS,'') AS VARCHAR(100)) END) AS BALENO, 'OPENING' AS FROMTYPE, SM_CMPID, SM_LOCATIONID, SM_YEARID  FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO = LEDGERS.Acc_id CROSS JOIN VERSION WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND SM_TYPE = 'JOBBERSTOCK' AND SM_LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND (SM_PCS-SM_OUTPCS)>0) AS T ", " AND T.CMPID = " & CmpId & " AND T.LOCATIONID = " & Locationid & " AND T.YEARID = " & YearId)
@@ -4276,7 +4276,7 @@ LINE1:
             If ClientName = "PARAS" Then LBLCATEGORY.Visible = True
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KDFAB" Or ClientName = "KCRAYON" Or ClientName = "RAJKRIPA" Then GBALENO.HeaderText = "Description"
             If ClientName = "SOFTAS" Then CMBLOTNO.DropDownStyle = ComboBoxStyle.DropDownList
-            If ClientName = "SUCCESS" Or ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Then
+            If ClientName = "SUCCESS" Or ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Then
                 CMBCHECKSRNO.Visible = False
                 CMBBALENO.Visible = True
                 TXTBALENO.Enabled = False
@@ -4353,7 +4353,7 @@ LINE1:
                 TXTMTRS.BackColor = Color.White
             End If
 
-            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Then
+            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
                 TXTRATE.Visible = False
                 GRATE.Visible = False
                 CMBPER.Visible = False
@@ -4413,7 +4413,7 @@ LINE1:
             If CMBBALENO.Text.Trim <> "" And TXTFROMNO.Text.Trim <> "" And TXTFROMTYPE.Text.Trim <> "" And (CMBLOTNO.Text.Trim <> "" Or CMBGRIDLOTNO.Text.Trim <> "") And cmbname.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
-                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Then
+                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
                     DT = OBJCMN.SEARCH(" ISNULL(BALMTRS,0) AS MTRS, ISNULL(DESIGN,'') AS DESIGNNO, ITEMNAME, GRNNO AS FROMSRNO, COLOR, PARTYDESIGNNO ", "", " LOT_VIEW_PCSDETAILS ", " AND DYEINGJOB = 'DYEING' AND BALENO = '" & CMBBALENO.Text.Trim & "' AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                 Else
                     If TXTFROMTYPE.Text.Trim = "OPENING" Then
@@ -4722,7 +4722,7 @@ NEXTLINE:
 
     Private Sub CMBBALENO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBALENO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBGRIDLOTNO.Text.Trim
@@ -4737,7 +4737,7 @@ NEXTLINE:
     Private Sub CMBBALENO_Validating(sender As Object, e As CancelEventArgs) Handles CMBBALENO.Validating
         Try
             'CHECKING WHETHER SAME BALENO IS SELECTED IN GRID BELOW OR NOT
-            If ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False And CMBBALENO.Text.Trim <> "" And CMBGRIDLOTNO.Text.Trim <> "" Then
+            If ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" And GRIDDOUBLECLICK = False And CMBBALENO.Text.Trim <> "" And CMBGRIDLOTNO.Text.Trim <> "" Then
                 For Each ROW As DataGridViewRow In GRIDMATREC.Rows
                     If ROW.Cells(GLOTNO.Index).Value = CMBGRIDLOTNO.Text.Trim And ROW.Cells(GBALENO.Index).Value = CMBBALENO.Text.Trim Then
                         If MsgBox("Same Pcs No is already Taken, Wish to Proceed with Same PCS No", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
@@ -5288,4 +5288,5 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
 End Class

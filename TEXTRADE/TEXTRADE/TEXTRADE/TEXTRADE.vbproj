@@ -139,13 +139,19 @@
     </Reference>
     <Reference Include="DevExpress.Charts.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
     </Reference>
+    <Reference Include="DevExpress.Dashboard.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v25.1.Win, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v25.1.UI, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Diagram.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Docs.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.Map.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.Pdf.v25.1.Drawing, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v25.1.Export, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -165,6 +171,7 @@
     <Reference Include="DevExpress.Data.Desktop.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.TreeMap.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -174,6 +181,7 @@
     <Reference Include="DevExpress.XtraBars.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraCharts.v25.1.Extensions, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v25.1.Wizard, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -183,22 +191,27 @@
     <Reference Include="DevExpress.XtraCharts.v25.1.UI, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraDiagram.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v25.1.Core, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v25.1.Presets, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v25.1.Win, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.XtraLayout.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraMap.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.XtraPdfViewer.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -207,6 +220,7 @@
     </Reference>
     <Reference Include="DevExpress.CodeParser.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v25.1.CodeCompletion, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v25.1.Extensions, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -220,6 +234,8 @@
     <Reference Include="DevExpress.XtraTreeList.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraTreeMap.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v25.1.UI, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
@@ -272,6 +288,7 @@
       <HintPath>..\..\..\windows\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -2027,6 +2044,12 @@
       <DependentUpon>OpeningGDNDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningGDNDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningGreyStockAtTransport.Designer.vb">
+      <DependentUpon>OpeningGreyStockAtTransport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningGreyStockAtTransport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramDetails.Designer.vb">
@@ -9485,6 +9508,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGDNDetails.resx">
       <DependentUpon>OpeningGDNDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGreyStockAtTransport.resx">
+      <DependentUpon>OpeningGreyStockAtTransport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramDetails.resx">
       <DependentUpon>OpeningProgramDetails.vb</DependentUpon>
     </EmbeddedResource>
@@ -12778,6 +12804,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Order\PurchaseOrder.resx">
       <DependentUpon>PurchaseOrder.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Order\PurchaseOrderClose.resx">
       <DependentUpon>PurchaseOrderClose.vb</DependentUpon>

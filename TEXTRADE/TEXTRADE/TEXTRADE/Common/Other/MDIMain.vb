@@ -3,6 +3,7 @@ Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
 Imports HtmlAgilityPack
+Imports TEXTRADE.Win_Dashboards
 
 Public Class MDIMain
 
@@ -10461,5 +10462,18 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+
+
+    Private Sub MagicBoxRecPayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxRecPayToolStripMenuItem.Click
+        Try
+            Dim OBJPUR As New ChqEnteries
+            OBJPUR.MdiParent = Me
+            OBJPUR.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
 

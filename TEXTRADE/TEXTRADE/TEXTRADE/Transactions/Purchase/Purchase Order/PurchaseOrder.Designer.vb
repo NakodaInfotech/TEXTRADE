@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class PurchaseOrder
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class PurchaseOrder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -229,7 +229,7 @@ Partial Class PurchaseOrder
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.VSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GYARNNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALBAG = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTOTALWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GBYARNSTOCK.SuspendLayout()
@@ -348,10 +348,10 @@ Partial Class PurchaseOrder
         Me.GBYARNSTOCK.Controls.Add(Me.GRIDMTRS1)
         Me.GBYARNSTOCK.Location = New System.Drawing.Point(730, 363)
         Me.GBYARNSTOCK.Name = "GBYARNSTOCK"
-        Me.GBYARNSTOCK.Size = New System.Drawing.Size(368, 125)
+        Me.GBYARNSTOCK.Size = New System.Drawing.Size(388, 125)
         Me.GBYARNSTOCK.TabIndex = 941
         Me.GBYARNSTOCK.TabStop = False
-        Me.GBYARNSTOCK.Text = "Yarn Stock Details"
+        Me.GBYARNSTOCK.Text = "Taka Details"
         Me.GBYARNSTOCK.Visible = False
         '
         'Button1
@@ -387,7 +387,7 @@ Partial Class PurchaseOrder
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDMTRS1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDMTRS1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDMTRS1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VSRNO, Me.GYARNNAME, Me.GTOTALBAG, Me.GTOTALWT})
+        Me.GRIDMTRS1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VSRNO, Me.GYARNNAME, Me.GTOTALBAGS, Me.GTOTALWT})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -410,7 +410,7 @@ Partial Class PurchaseOrder
         Me.GRIDMTRS1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDMTRS1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDMTRS1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDMTRS1.Size = New System.Drawing.Size(356, 96)
+        Me.GRIDMTRS1.Size = New System.Drawing.Size(375, 96)
         Me.GRIDMTRS1.TabIndex = 2
         Me.GRIDMTRS1.TabStop = False
         '
@@ -530,7 +530,7 @@ Partial Class PurchaseOrder
         Me.LBLCLOSED.BackColor = System.Drawing.Color.Transparent
         Me.LBLCLOSED.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCLOSED.ForeColor = System.Drawing.Color.Red
-        Me.LBLCLOSED.Location = New System.Drawing.Point(358, 373)
+        Me.LBLCLOSED.Location = New System.Drawing.Point(359, 373)
         Me.LBLCLOSED.Name = "LBLCLOSED"
         Me.LBLCLOSED.Size = New System.Drawing.Size(53, 19)
         Me.LBLCLOSED.TabIndex = 675
@@ -557,7 +557,7 @@ Partial Class PurchaseOrder
         Me.CMBORDERTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBORDERTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBORDERTYPE.FormattingEnabled = True
-        Me.CMBORDERTYPE.Items.AddRange(New Object() {"GREY", "FINISH"})
+        Me.CMBORDERTYPE.Items.AddRange(New Object() {"GREY", "FINISH", "WEAVER"})
         Me.CMBORDERTYPE.Location = New System.Drawing.Point(845, 158)
         Me.CMBORDERTYPE.MaxDropDownItems = 14
         Me.CMBORDERTYPE.Name = "CMBORDERTYPE"
@@ -1186,7 +1186,7 @@ Partial Class PurchaseOrder
         Me.CHKVERIFY.BackColor = System.Drawing.Color.Transparent
         Me.CHKVERIFY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKVERIFY.ForeColor = System.Drawing.Color.Maroon
-        Me.CHKVERIFY.Location = New System.Drawing.Point(655, 375)
+        Me.CHKVERIFY.Location = New System.Drawing.Point(655, 373)
         Me.CHKVERIFY.Name = "CHKVERIFY"
         Me.CHKVERIFY.Size = New System.Drawing.Size(69, 19)
         Me.CHKVERIFY.TabIndex = 648
@@ -1375,7 +1375,7 @@ Partial Class PurchaseOrder
         '
         Me.PBlock.BackColor = System.Drawing.Color.Transparent
         Me.PBlock.Image = CType(resources.GetObject("PBlock.Image"), System.Drawing.Image)
-        Me.PBlock.Location = New System.Drawing.Point(417, 368)
+        Me.PBlock.Location = New System.Drawing.Point(418, 368)
         Me.PBlock.Name = "PBlock"
         Me.PBlock.Size = New System.Drawing.Size(60, 60)
         Me.PBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1432,7 +1432,7 @@ Partial Class PurchaseOrder
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.Black
-        Me.cmddelete.Location = New System.Drawing.Point(483, 402)
+        Me.cmddelete.Location = New System.Drawing.Point(484, 402)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
         Me.cmddelete.TabIndex = 26
@@ -1446,7 +1446,7 @@ Partial Class PurchaseOrder
         Me.cmdclear.FlatAppearance.BorderSize = 0
         Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdclear.ForeColor = System.Drawing.Color.Black
-        Me.cmdclear.Location = New System.Drawing.Point(569, 368)
+        Me.cmdclear.Location = New System.Drawing.Point(570, 368)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
         Me.cmdclear.TabIndex = 24
@@ -1460,7 +1460,7 @@ Partial Class PurchaseOrder
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(483, 368)
+        Me.cmdok.Location = New System.Drawing.Point(484, 368)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 23
@@ -1474,7 +1474,7 @@ Partial Class PurchaseOrder
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(569, 402)
+        Me.cmdexit.Location = New System.Drawing.Point(570, 402)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 27
@@ -1738,7 +1738,7 @@ Partial Class PurchaseOrder
         Me.lbllocked.BackColor = System.Drawing.Color.Transparent
         Me.lbllocked.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lbllocked.ForeColor = System.Drawing.Color.Red
-        Me.lbllocked.Location = New System.Drawing.Point(354, 397)
+        Me.lbllocked.Location = New System.Drawing.Point(355, 397)
         Me.lbllocked.Name = "lbllocked"
         Me.lbllocked.Size = New System.Drawing.Size(57, 19)
         Me.lbllocked.TabIndex = 445
@@ -2469,16 +2469,13 @@ Partial Class PurchaseOrder
         Me.GYARNNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GYARNNAME.Width = 150
         '
-        'GTOTALBAG
+        'GTOTALBAGS
         '
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALBAG.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GTOTALBAG.HeaderText = "Total Bag"
-        Me.GTOTALBAG.Name = "GTOTALBAG"
-        Me.GTOTALBAG.ReadOnly = True
-        Me.GTOTALBAG.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALBAG.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTOTALBAG.Width = 80
+        Me.GTOTALBAGS.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GTOTALBAGS.HeaderText = "Total Bags"
+        Me.GTOTALBAGS.Name = "GTOTALBAGS"
+        Me.GTOTALBAGS.Width = 80
         '
         'GTOTALWT
         '
@@ -2486,9 +2483,6 @@ Partial Class PurchaseOrder
         Me.GTOTALWT.DefaultCellStyle = DataGridViewCellStyle5
         Me.GTOTALWT.HeaderText = "Total Wt"
         Me.GTOTALWT.Name = "GTOTALWT"
-        Me.GTOTALWT.ReadOnly = True
-        Me.GTOTALWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.GTOTALWT.Width = 80
         '
         'PurchaseOrder
@@ -2704,6 +2698,6 @@ Partial Class PurchaseOrder
     Friend WithEvents GRIDMTRS1 As DataGridView
     Friend WithEvents VSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GYARNNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GTOTALBAG As DataGridViewTextBoxColumn
+    Friend WithEvents GTOTALBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GTOTALWT As DataGridViewTextBoxColumn
 End Class

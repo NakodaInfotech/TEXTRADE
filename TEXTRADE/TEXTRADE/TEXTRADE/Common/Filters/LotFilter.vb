@@ -467,7 +467,7 @@ Public Class LotFilter
                 RBPCSDETAILS.Visible = True
             End If
 
-            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Then
+            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
                 RBDETAILS.Checked = True
                 RBSUMMARY.Checked = False
                 CMBDYEINGJOB.Text = "Dyeing"

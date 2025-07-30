@@ -98,6 +98,36 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
                 I = I + 1
+
+
+
+                'POGRID
+                .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERDESIGN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERPCS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERGRNPCS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERGRNMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
+                I = I + 1
+
+
                 .Add(New SqlClient.SqlParameter("@DYEINGNAME", alParaval(I)))
                 I = I + 1
 
@@ -202,6 +232,34 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
                 I = I + 1
+
+
+                'POGRID
+                .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERDESIGN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERPCS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERFROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERGRNPCS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERGRNMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
+                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@DYEINGNAME", alParaval(I)))
                 I = I + 1
 

@@ -57,8 +57,9 @@ Public Class ClsChqEntries
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BANKNAME", alParaval(I)))
                 I = I + 1
-             
 
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -111,7 +112,8 @@ Public Class ClsChqEntries
                 .Add(New SqlClient.SqlParameter("@BANKNAME", alParaval(I)))
                 I = I + 1
 
-
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TEMPCHQENTNO", alParaval(I)))
                 I = I + 1
             End With

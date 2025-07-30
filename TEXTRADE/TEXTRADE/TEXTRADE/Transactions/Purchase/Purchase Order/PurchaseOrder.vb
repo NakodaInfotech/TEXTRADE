@@ -56,7 +56,7 @@ Public Class PurchaseOrder
 
     Private Sub CMBTRANS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANS.Validating
         Try
-            If CMBTRANS.Text.Trim <> "" Then namevalidate(CMBTRANS, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "TRANSPORT")
+            If CMBTRANS.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANS, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "TRANSPORT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -224,8 +224,8 @@ Public Class PurchaseOrder
 
     Sub fillcmb()
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
-            If cmbtoname.Text.Trim = "" Then fillname(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
             If CMBBROKER.Text.Trim = "" Then fillagentledger(CMBBROKER, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             fillQUALITY(CMBQUALITY, EDIT)
@@ -1956,7 +1956,7 @@ LINE1:
 
     Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'  AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'  AND LEDGERS.ACC_TYPE='ACCOUNTS'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1980,7 +1980,7 @@ LINE1:
 
     Private Sub cmbtoname_Enter(sender As Object, e As EventArgs) Handles cmbtoname.Enter
         Try
-            If cmbtoname.Text.Trim = "" Then fillname(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
