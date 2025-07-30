@@ -3932,43 +3932,11 @@ Public Class MDIMain
         End Try
     End Sub
 
-    Private Sub ReceiptAdjustedReportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJREC As New filter
-            OBJREC.MdiParent = Me
-            OBJREC.frmstring = "RECEIPTMONTHLYADJ"
-            OBJREC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub PaymentAdjustedReportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJPAY As New filter
-            OBJPAY.MdiParent = Me
-            OBJPAY.frmstring = "PAYMENTMONTHLYADJ"
-            OBJPAY.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TDSDeductedNotDedictedReportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TDSDeductedNotDedictedReportToolStripMenuItem.Click
         Try
             Dim OBJTDS As New TDSDeductedReport
             OBJTDS.MdiParent = Me
             OBJTDS.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub DESIGNREPLACEMENT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJDES As New DesignReplacement
-            OBJDES.MdiParent = Me
-            OBJDES.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -10109,36 +10077,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub CoverNoteToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        Try
-            'Dim OBJSO As New CoverNote
-            'OBJSO.MdiParent = Me
-            'OBJSO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    'Private Sub AddNewEntryToolStripMenuItem2_Click_4(sender As Object, e As EventArgs)
-    '    Try
-    '        Dim OBJSO As New CoverNote
-    '        OBJSO.MdiParent = Me
-    '        OBJSO.Show()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-    'Private Sub EditExistingEntryToolStripMenuItem2_Click_4(sender As Object, e As EventArgs)
-    '    Try
-    '        Dim OBJSO As New CoverNoteDetails
-    '        OBJSO.MdiParent = Me
-    '        OBJSO.Show()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Private Sub MASHOK_SOFILTER_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_SOFILTER_MENU.Click
         Try
             Dim OBJSO As New SOFilter
@@ -10165,16 +10103,6 @@ SKIPLINE:
             Dim OBJPAY As New PayOutstanding
             OBJPAY.MdiParent = Me
             OBJPAY.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub MASHOK_INVDETAILS_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_INVDETAILS_MENU.Click
-        Try
-            Dim OBJINVDETAIL As New InvoiceDetails
-            OBJINVDETAIL.MdiParent = Me
-            OBJINVDETAIL.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -10519,6 +10447,27 @@ SKIPLINE:
             Dim OBJCL As New CustomLayout
             OBJCL.MdiParent = Me
             OBJCL.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MASHOK_MONTHLYPURANALYSIS_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_MONTHLYPURANALYSIS_MENU.Click
+        Try
+            Dim OBJPUR As New MonthlyPurchaseAnalysisGridReport
+            OBJPUR.MdiParent = Me
+            OBJPUR.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Try
+            Dim DASH As New DashboardTEst
+            DASH.MdiParent = Me
+            DASH.Show()
+
         Catch ex As Exception
             Throw ex
         End Try
