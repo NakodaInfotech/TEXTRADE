@@ -2046,6 +2046,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningGDNDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningGreyStockAtProcess.Designer.vb">
+      <DependentUpon>OpeningGreyStockAtProcess.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningGreyStockAtProcess.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningGreyStockAtTransport.Designer.vb">
       <DependentUpon>OpeningGreyStockAtTransport.vb</DependentUpon>
     </Compile>
@@ -9507,6 +9513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGDNDetails.resx">
       <DependentUpon>OpeningGDNDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGreyStockAtProcess.resx">
+      <DependentUpon>OpeningGreyStockAtProcess.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGreyStockAtTransport.resx">
       <DependentUpon>OpeningGreyStockAtTransport.vb</DependentUpon>
