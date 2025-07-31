@@ -10463,15 +10463,15 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
-        'Try
-        '    Dim DASH As New DashB
-        '    DASH.MdiParent = Me
-        '    DASH.Show()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-    End Sub
+    'Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+    '    'Try
+    '    '    Dim DASH As New DashB
+    '    '    DASH.MdiParent = Me
+    '    '    DASH.Show()
+    '    'Catch ex As Exception
+    '    '    Throw ex
+    '    'End Try
+    'End Sub
 
     Private Sub MagicBoxRecPayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxRecPayToolStripMenuItem.Click
         Try
