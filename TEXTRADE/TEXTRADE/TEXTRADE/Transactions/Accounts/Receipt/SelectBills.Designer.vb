@@ -57,7 +57,7 @@ Partial Class SelectBills
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1216, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(738, 581)
         Me.BlendPanel1.TabIndex = 1
         '
         'CHKSELECTALL
@@ -247,7 +247,7 @@ Partial Class SelectBills
         'SelectBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1216, 581)
+        Me.ClientSize = New System.Drawing.Size(738, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
