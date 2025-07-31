@@ -3288,7 +3288,8 @@ LINE1:
             txtqty.Focus()
         ElseIf ClientName = "SNCM" Then
 
-
+            GRIDMTRS.EndEdit() '
+            DT_MTRSDETAILS.Clear()
             'ADD DATA FROM GRIDMTRS TO DT_MTRS
             For Each MTRSROW As DataGridViewRow In GRIDMTRS.Rows
                 Dim newRow As DataRow = DT_MTRSDETAILS.NewRow()
@@ -4854,6 +4855,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
 
     Private Sub TXTDMTRS_Validated(sender As Object, e As EventArgs) Handles TXTDMTRS.Validated
         Try
