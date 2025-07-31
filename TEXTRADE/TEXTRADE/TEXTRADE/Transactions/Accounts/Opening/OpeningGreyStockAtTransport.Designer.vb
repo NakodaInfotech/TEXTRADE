@@ -22,6 +22,7 @@ Partial Class OpeningGreyStockAtTransport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningGreyStockAtTransport))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -49,6 +50,9 @@ Partial Class OpeningGreyStockAtTransport
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TXTCRDAYS = New System.Windows.Forms.TextBox()
+        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
+        Me.CMBTRANS = New System.Windows.Forms.ComboBox()
         Me.TXTLRNO = New System.Windows.Forms.TextBox()
         Me.TXTBALENO = New System.Windows.Forms.TextBox()
         Me.CMBPER = New System.Windows.Forms.ComboBox()
@@ -56,21 +60,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.TXTRATE = New System.Windows.Forms.TextBox()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
         Me.gridstock = New System.Windows.Forms.DataGridView()
-        Me.txtpcs = New System.Windows.Forms.TextBox()
-        Me.cmbname = New System.Windows.Forms.ComboBox()
-        Me.cmbcolor = New System.Windows.Forms.ComboBox()
-        Me.txtMtrs = New System.Windows.Forms.TextBox()
-        Me.cmbunit = New System.Windows.Forms.ComboBox()
-        Me.txtsrno = New System.Windows.Forms.TextBox()
-        Me.cmbmerchant = New System.Windows.Forms.ComboBox()
-        Me.txtadd = New System.Windows.Forms.TextBox()
-        Me.cmbtype = New System.Windows.Forms.ComboBox()
-        Me.openingdate = New System.Windows.Forms.DateTimePicker()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CMBTRANS = New System.Windows.Forms.ComboBox()
-        Me.GDNDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
-        Me.TXTCRDAYS = New System.Windows.Forms.TextBox()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -94,9 +83,23 @@ Partial Class OpeningGreyStockAtTransport
         Me.gOutpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.goutmtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPROGRAMDONE = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.txtpcs = New System.Windows.Forms.TextBox()
+        Me.cmbname = New System.Windows.Forms.ComboBox()
+        Me.cmbcolor = New System.Windows.Forms.ComboBox()
+        Me.txtMtrs = New System.Windows.Forms.TextBox()
+        Me.cmbunit = New System.Windows.Forms.ComboBox()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.cmbmerchant = New System.Windows.Forms.ComboBox()
+        Me.txtadd = New System.Windows.Forms.TextBox()
+        Me.cmbtype = New System.Windows.Forms.ComboBox()
+        Me.openingdate = New System.Windows.Forms.DateTimePicker()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.DTLRDATE = New System.Windows.Forms.DateTimePicker()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -312,9 +315,9 @@ Partial Class OpeningGreyStockAtTransport
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.Linen
+        Me.Panel1.Controls.Add(Me.DTLRDATE)
         Me.Panel1.Controls.Add(Me.TXTCRDAYS)
         Me.Panel1.Controls.Add(Me.CMBAGENT)
-        Me.Panel1.Controls.Add(Me.GDNDATE)
         Me.Panel1.Controls.Add(Me.CMBTRANS)
         Me.Panel1.Controls.Add(Me.TXTLRNO)
         Me.Panel1.Controls.Add(Me.TXTBALENO)
@@ -334,6 +337,41 @@ Partial Class OpeningGreyStockAtTransport
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1209, 482)
         Me.Panel1.TabIndex = 0
+        '
+        'TXTCRDAYS
+        '
+        Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(1678, 0)
+        Me.TXTCRDAYS.Name = "TXTCRDAYS"
+        Me.TXTCRDAYS.Size = New System.Drawing.Size(100, 22)
+        Me.TXTCRDAYS.TabIndex = 33
+        '
+        'CMBAGENT
+        '
+        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBAGENT.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBAGENT.DropDownWidth = 400
+        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBAGENT.FormattingEnabled = True
+        Me.CMBAGENT.Location = New System.Drawing.Point(1478, 0)
+        Me.CMBAGENT.Name = "CMBAGENT"
+        Me.CMBAGENT.Size = New System.Drawing.Size(200, 22)
+        Me.CMBAGENT.TabIndex = 32
+        '
+        'CMBTRANS
+        '
+        Me.CMBTRANS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTRANS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTRANS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBTRANS.DropDownWidth = 400
+        Me.CMBTRANS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTRANS.FormattingEnabled = True
+        Me.CMBTRANS.Location = New System.Drawing.Point(243, 0)
+        Me.CMBTRANS.Name = "CMBTRANS"
+        Me.CMBTRANS.Size = New System.Drawing.Size(200, 22)
+        Me.CMBTRANS.TabIndex = 30
         '
         'TXTLRNO
         '
@@ -441,187 +479,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.gridstock.Size = New System.Drawing.Size(1926, 439)
         Me.gridstock.TabIndex = 28
         Me.gridstock.TabStop = False
-        '
-        'txtpcs
-        '
-        Me.txtpcs.BackColor = System.Drawing.Color.LemonChiffon
-        Me.txtpcs.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtpcs.Location = New System.Drawing.Point(1058, 0)
-        Me.txtpcs.Name = "txtpcs"
-        Me.txtpcs.Size = New System.Drawing.Size(60, 22)
-        Me.txtpcs.TabIndex = 14
-        Me.txtpcs.Text = "1"
-        Me.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'cmbname
-        '
-        Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbname.DropDownWidth = 400
-        Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Location = New System.Drawing.Point(43, 0)
-        Me.cmbname.Name = "cmbname"
-        Me.cmbname.Size = New System.Drawing.Size(200, 22)
-        Me.cmbname.TabIndex = 7
-        '
-        'cmbcolor
-        '
-        Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbcolor.FormattingEnabled = True
-        Me.cmbcolor.Location = New System.Drawing.Point(878, 0)
-        Me.cmbcolor.Name = "cmbcolor"
-        Me.cmbcolor.Size = New System.Drawing.Size(80, 22)
-        Me.cmbcolor.TabIndex = 6
-        '
-        'txtMtrs
-        '
-        Me.txtMtrs.BackColor = System.Drawing.Color.LemonChiffon
-        Me.txtMtrs.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMtrs.Location = New System.Drawing.Point(1178, 0)
-        Me.txtMtrs.Name = "txtMtrs"
-        Me.txtMtrs.Size = New System.Drawing.Size(80, 22)
-        Me.txtMtrs.TabIndex = 15
-        Me.txtMtrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'cmbunit
-        '
-        Me.cmbunit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbunit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbunit.FormattingEnabled = True
-        Me.cmbunit.Location = New System.Drawing.Point(1118, 0)
-        Me.cmbunit.Name = "cmbunit"
-        Me.cmbunit.Size = New System.Drawing.Size(60, 22)
-        Me.cmbunit.TabIndex = 13
-        '
-        'txtsrno
-        '
-        Me.txtsrno.BackColor = System.Drawing.Color.Linen
-        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(3, 0)
-        Me.txtsrno.Name = "txtsrno"
-        Me.txtsrno.ReadOnly = True
-        Me.txtsrno.Size = New System.Drawing.Size(40, 22)
-        Me.txtsrno.TabIndex = 0
-        Me.txtsrno.TabStop = False
-        Me.txtsrno.Text = " "
-        '
-        'cmbmerchant
-        '
-        Me.cmbmerchant.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbmerchant.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbmerchant.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbmerchant.DropDownWidth = 400
-        Me.cmbmerchant.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbmerchant.FormattingEnabled = True
-        Me.cmbmerchant.Location = New System.Drawing.Point(627, 0)
-        Me.cmbmerchant.Name = "cmbmerchant"
-        Me.cmbmerchant.Size = New System.Drawing.Size(170, 22)
-        Me.cmbmerchant.TabIndex = 3
-        '
-        'txtadd
-        '
-        Me.txtadd.BackColor = System.Drawing.Color.White
-        Me.txtadd.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtadd.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtadd.Location = New System.Drawing.Point(845, 13)
-        Me.txtadd.Name = "txtadd"
-        Me.txtadd.ReadOnly = True
-        Me.txtadd.Size = New System.Drawing.Size(30, 22)
-        Me.txtadd.TabIndex = 15
-        Me.txtadd.Text = " "
-        Me.txtadd.Visible = False
-        '
-        'cmbtype
-        '
-        Me.cmbtype.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbtype.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbtype.DropDownWidth = 400
-        Me.cmbtype.Enabled = False
-        Me.cmbtype.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbtype.FormattingEnabled = True
-        Me.cmbtype.Items.AddRange(New Object() {"INHOUSE", "JOBBERSTOCK"})
-        Me.cmbtype.Location = New System.Drawing.Point(150, 16)
-        Me.cmbtype.Name = "cmbtype"
-        Me.cmbtype.Size = New System.Drawing.Size(99, 23)
-        Me.cmbtype.TabIndex = 1
-        '
-        'openingdate
-        '
-        Me.openingdate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.openingdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.openingdate.Location = New System.Drawing.Point(55, 16)
-        Me.openingdate.Name = "openingdate"
-        Me.openingdate.Size = New System.Drawing.Size(88, 23)
-        Me.openingdate.TabIndex = 0
-        Me.openingdate.Value = New Date(2013, 4, 1, 8, 54, 0, 0)
-        Me.openingdate.Visible = False
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(1035, 530)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 1
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'CMBTRANS
-        '
-        Me.CMBTRANS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBTRANS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBTRANS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBTRANS.DropDownWidth = 400
-        Me.CMBTRANS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBTRANS.FormattingEnabled = True
-        Me.CMBTRANS.Location = New System.Drawing.Point(243, 0)
-        Me.CMBTRANS.Name = "CMBTRANS"
-        Me.CMBTRANS.Size = New System.Drawing.Size(200, 22)
-        Me.CMBTRANS.TabIndex = 30
-        '
-        'GDNDATE
-        '
-        Me.GDNDATE.AsciiOnly = True
-        Me.GDNDATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.GDNDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.GDNDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.GDNDATE.Location = New System.Drawing.Point(543, 0)
-        Me.GDNDATE.Mask = "00/00/0000"
-        Me.GDNDATE.Name = "GDNDATE"
-        Me.GDNDATE.Size = New System.Drawing.Size(84, 23)
-        Me.GDNDATE.TabIndex = 31
-        Me.GDNDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.GDNDATE.ValidatingType = GetType(Date)
-        '
-        'CMBAGENT
-        '
-        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBAGENT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBAGENT.DropDownWidth = 400
-        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBAGENT.FormattingEnabled = True
-        Me.CMBAGENT.Location = New System.Drawing.Point(1478, 0)
-        Me.CMBAGENT.Name = "CMBAGENT"
-        Me.CMBAGENT.Size = New System.Drawing.Size(200, 22)
-        Me.CMBAGENT.TabIndex = 32
-        '
-        'TXTCRDAYS
-        '
-        Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
-        Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCRDAYS.Location = New System.Drawing.Point(1678, 0)
-        Me.TXTCRDAYS.Name = "TXTCRDAYS"
-        Me.TXTCRDAYS.Size = New System.Drawing.Size(100, 22)
-        Me.TXTCRDAYS.TabIndex = 33
         '
         'gsrno
         '
@@ -819,6 +676,154 @@ Partial Class OpeningGreyStockAtTransport
         Me.GPROGRAMDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.GPROGRAMDONE.Visible = False
         '
+        'txtpcs
+        '
+        Me.txtpcs.BackColor = System.Drawing.Color.LemonChiffon
+        Me.txtpcs.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtpcs.Location = New System.Drawing.Point(1058, 0)
+        Me.txtpcs.Name = "txtpcs"
+        Me.txtpcs.Size = New System.Drawing.Size(60, 22)
+        Me.txtpcs.TabIndex = 14
+        Me.txtpcs.Text = "1"
+        Me.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'cmbname
+        '
+        Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbname.DropDownWidth = 400
+        Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbname.FormattingEnabled = True
+        Me.cmbname.Location = New System.Drawing.Point(43, 0)
+        Me.cmbname.Name = "cmbname"
+        Me.cmbname.Size = New System.Drawing.Size(200, 22)
+        Me.cmbname.TabIndex = 7
+        '
+        'cmbcolor
+        '
+        Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbcolor.FormattingEnabled = True
+        Me.cmbcolor.Location = New System.Drawing.Point(878, 0)
+        Me.cmbcolor.Name = "cmbcolor"
+        Me.cmbcolor.Size = New System.Drawing.Size(80, 22)
+        Me.cmbcolor.TabIndex = 6
+        '
+        'txtMtrs
+        '
+        Me.txtMtrs.BackColor = System.Drawing.Color.LemonChiffon
+        Me.txtMtrs.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMtrs.Location = New System.Drawing.Point(1178, 0)
+        Me.txtMtrs.Name = "txtMtrs"
+        Me.txtMtrs.Size = New System.Drawing.Size(80, 22)
+        Me.txtMtrs.TabIndex = 15
+        Me.txtMtrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'cmbunit
+        '
+        Me.cmbunit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbunit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbunit.FormattingEnabled = True
+        Me.cmbunit.Location = New System.Drawing.Point(1118, 0)
+        Me.cmbunit.Name = "cmbunit"
+        Me.cmbunit.Size = New System.Drawing.Size(60, 22)
+        Me.cmbunit.TabIndex = 13
+        '
+        'txtsrno
+        '
+        Me.txtsrno.BackColor = System.Drawing.Color.Linen
+        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtsrno.Location = New System.Drawing.Point(3, 0)
+        Me.txtsrno.Name = "txtsrno"
+        Me.txtsrno.ReadOnly = True
+        Me.txtsrno.Size = New System.Drawing.Size(40, 22)
+        Me.txtsrno.TabIndex = 0
+        Me.txtsrno.TabStop = False
+        Me.txtsrno.Text = " "
+        '
+        'cmbmerchant
+        '
+        Me.cmbmerchant.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbmerchant.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbmerchant.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbmerchant.DropDownWidth = 400
+        Me.cmbmerchant.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbmerchant.FormattingEnabled = True
+        Me.cmbmerchant.Location = New System.Drawing.Point(627, 0)
+        Me.cmbmerchant.Name = "cmbmerchant"
+        Me.cmbmerchant.Size = New System.Drawing.Size(170, 22)
+        Me.cmbmerchant.TabIndex = 3
+        '
+        'txtadd
+        '
+        Me.txtadd.BackColor = System.Drawing.Color.White
+        Me.txtadd.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtadd.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtadd.Location = New System.Drawing.Point(845, 13)
+        Me.txtadd.Name = "txtadd"
+        Me.txtadd.ReadOnly = True
+        Me.txtadd.Size = New System.Drawing.Size(30, 22)
+        Me.txtadd.TabIndex = 15
+        Me.txtadd.Text = " "
+        Me.txtadd.Visible = False
+        '
+        'cmbtype
+        '
+        Me.cmbtype.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbtype.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbtype.DropDownWidth = 400
+        Me.cmbtype.Enabled = False
+        Me.cmbtype.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbtype.FormattingEnabled = True
+        Me.cmbtype.Items.AddRange(New Object() {"INHOUSE", "JOBBERSTOCK"})
+        Me.cmbtype.Location = New System.Drawing.Point(150, 16)
+        Me.cmbtype.Name = "cmbtype"
+        Me.cmbtype.Size = New System.Drawing.Size(99, 23)
+        Me.cmbtype.TabIndex = 1
+        '
+        'openingdate
+        '
+        Me.openingdate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.openingdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.openingdate.Location = New System.Drawing.Point(55, 16)
+        Me.openingdate.Name = "openingdate"
+        Me.openingdate.Size = New System.Drawing.Size(88, 23)
+        Me.openingdate.TabIndex = 0
+        Me.openingdate.Value = New Date(2013, 4, 1, 8, 54, 0, 0)
+        Me.openingdate.Visible = False
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(1035, 530)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 1
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'EP
+        '
+        Me.EP.BlinkRate = 0
+        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EP.ContainerControl = Me
+        '
+        'DTLRDATE
+        '
+        Me.DTLRDATE.CustomFormat = "dd/MM/yyyy"
+        Me.DTLRDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTLRDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTLRDATE.Location = New System.Drawing.Point(543, 0)
+        Me.DTLRDATE.Name = "DTLRDATE"
+        Me.DTLRDATE.Size = New System.Drawing.Size(84, 22)
+        Me.DTLRDATE.TabIndex = 34
+        '
         'OpeningGreyStockAtTransport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -834,6 +839,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -875,7 +881,6 @@ Partial Class OpeningGreyStockAtTransport
     Friend WithEvents openingdate As DateTimePicker
     Friend WithEvents cmdexit As Button
     Friend WithEvents CMBTRANS As ComboBox
-    Friend WithEvents GDNDATE As MaskedTextBox
     Friend WithEvents CMBAGENT As ComboBox
     Friend WithEvents TXTCRDAYS As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
@@ -901,4 +906,6 @@ Partial Class OpeningGreyStockAtTransport
     Friend WithEvents gOutpcs As DataGridViewTextBoxColumn
     Friend WithEvents goutmtrs As DataGridViewTextBoxColumn
     Friend WithEvents GPROGRAMDONE As DataGridViewCheckBoxColumn
+    Friend WithEvents EP As ErrorProvider
+    Friend WithEvents DTLRDATE As DateTimePicker
 End Class
