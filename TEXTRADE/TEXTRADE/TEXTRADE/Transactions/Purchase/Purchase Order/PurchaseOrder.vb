@@ -15,6 +15,7 @@ Public Class PurchaseOrder
     Public tempono As Integer
     Dim tempMsg As Integer
     Dim ALLOWMANUALPONO As Boolean = False
+    Dim ROWENTER As Boolean = False
     Public PATH As New ArrayList
     Public FILENAME As New ArrayList
     Dim RESPONSE As String = ""
@@ -71,7 +72,8 @@ Public Class PurchaseOrder
             TXTPONO.BackColor = Color.Linen
         End If
 
-
+        GRIDMTRS1.RowCount = 0
+        GBYARNSTOCK.Visible = False
         LBLCATEGORY.Text = ""
         tstxtbillno.Clear()
         cmbname.Text = ""
@@ -370,6 +372,7 @@ Public Class PurchaseOrder
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
 
         Try
+
             Cursor.Current = Cursors.WaitCursor
 
             Dim IntResult As Integer
@@ -908,7 +911,7 @@ Public Class PurchaseOrder
         TXTMTRS.Clear()
         If ClientName = "KEMLINO" Then txtrate.Clear()
         'TXTAMOUNT.Clear()
-
+        GRIDMTRS1.RowCount = 0
         cmbitemname.Focus()
 
     End Sub
@@ -1600,11 +1603,43 @@ LINE1:
             CMBDESIGN.Text = ""
             cmbcolor.Text = ""
         End If
-
+        If ClientName = "KARAN" AndAlso cmbname.Text <> "" And cmbitemname.Text <> "" Then
+            GRIDVIEW()
+        End If
     End Sub
+    Sub GRIDVIEW(Optional ROWNO As Integer = -1)
+        Try
+            GBYARNSTOCK.Visible = True
+            Dim OBJCMN As New ClsCommon
+            If cmbitemname.Text.Trim <> "" Then
+                Dim DT As DataTable = OBJCMN.SEARCH(" YARNQUALITY AS YARNNAME, sum(BAGS) AS TOTALBAGS , sum(WT) AS TOTALWT", "", " ITEMMASTER_COMPOSITION INNER JOIN ITEMMASTER ON ITEMMASTER_COMPOSITION.ITEM_ID = ITEMMASTER.item_id INNER JOIN JOBBERYARNSTOCK INNER JOIN YARNQUALITYMASTER ON JOBBERYARNSTOCK.YARNQUALITY = YARNQUALITYMASTER.YARN_NAME ON ITEMMASTER_COMPOSITION.ITEM_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND JOBBERYARNSTOCK.NAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND JOBBERYARNSTOCK.CMPID = " & CmpId & " AND JOBBERYARNSTOCK.YEARID = " & YearId & " GROUP BY JOBBERYARNSTOCK.YARNQUALITY, ITEMMASTER.item_name ")
 
-    Protected Overrides Sub Finalize()
-        MyBase.Finalize()
+                If DT.Rows.Count > 0 Then
+                    ' Safely extract the values and add to GRIDMTRS1
+                    Dim yarnName As String = DT.Rows(0)("YARNNAME").ToString()
+                    Dim totalBags As Integer = Convert.ToInt32(DT.Rows(0)("TOTALBAGS"))
+                    Dim totalWt As Decimal = Convert.ToDecimal(DT.Rows(0)("TOTALWT"))
+
+                    GRIDMTRS1.Rows.Add(0, yarnName, totalBags, totalWt)
+                    getsrno(GRIDMTRS1)
+                End If
+            ElseIf ROWENTER = True Then
+                Dim DT As DataTable = OBJCMN.SEARCH(" YARNQUALITY AS YARNNAME, sum(BAGS) AS TOTALBAGS , sum(WT) AS TOTALWT", "", " ITEMMASTER_COMPOSITION INNER JOIN ITEMMASTER ON ITEMMASTER_COMPOSITION.ITEM_ID = ITEMMASTER.item_id INNER JOIN JOBBERYARNSTOCK INNER JOIN YARNQUALITYMASTER ON JOBBERYARNSTOCK.YARNQUALITY = YARNQUALITYMASTER.YARN_NAME ON ITEMMASTER_COMPOSITION.ITEM_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND JOBBERYARNSTOCK.NAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.item_name = '" & gridpo.Rows(ROWNO).Cells(gitemname.Index).Value & "' AND JOBBERYARNSTOCK.CMPID = " & CmpId & " AND JOBBERYARNSTOCK.YEARID = " & YearId & " GROUP BY JOBBERYARNSTOCK.YARNQUALITY, ITEMMASTER.item_name ")
+
+                If DT.Rows.Count > 0 Then
+                    ' Safely extract the values and add to GRIDMTRS1
+                    Dim yarnName As String = DT.Rows(0)("YARNNAME").ToString()
+                    Dim totalBags As Integer = Convert.ToInt32(DT.Rows(0)("TOTALBAGS"))
+                    Dim totalWt As Decimal = Convert.ToDecimal(DT.Rows(0)("TOTALWT"))
+
+                    GRIDMTRS1.Rows.Add(0, yarnName, totalBags, totalWt)
+                    getsrno(GRIDMTRS1)
+                End If
+                ROWENTER = False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub duedate_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles duedate.Validated
@@ -1952,6 +1987,10 @@ LINE1:
         End Try
     End Sub
 
-
+    Private Sub gridpo_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles gridpo.RowEnter
+        ROWENTER = True
+        GRIDMTRS1.RowCount = 0
+        GRIDVIEW(e.RowIndex)
+    End Sub
 End Class
 

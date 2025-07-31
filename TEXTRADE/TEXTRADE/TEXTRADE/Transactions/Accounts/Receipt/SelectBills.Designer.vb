@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SelectBills
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class SelectBills
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
@@ -57,7 +57,7 @@ Partial Class SelectBills
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(741, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(738, 581)
         Me.BlendPanel1.TabIndex = 1
         '
         'CHKSELECTALL
@@ -118,7 +118,7 @@ Partial Class SelectBills
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "SRNO"
-        Me.gsrno.ImageIndex = 1
+        Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
@@ -129,7 +129,7 @@ Partial Class SelectBills
         '
         Me.GBILLNO.Caption = "Bill No."
         Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.ImageIndex = 0
+        Me.GBILLNO.ImageOptions.ImageIndex = 0
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.OptionsColumn.AllowEdit = False
         Me.GBILLNO.Visible = True
@@ -247,7 +247,7 @@ Partial Class SelectBills
         'SelectBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(741, 581)
+        Me.ClientSize = New System.Drawing.Size(738, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
