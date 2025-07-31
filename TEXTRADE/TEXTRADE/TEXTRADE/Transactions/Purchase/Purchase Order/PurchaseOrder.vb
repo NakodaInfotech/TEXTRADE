@@ -372,6 +372,7 @@ Public Class PurchaseOrder
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
 
         Try
+
             Cursor.Current = Cursors.WaitCursor
 
             Dim IntResult As Integer
