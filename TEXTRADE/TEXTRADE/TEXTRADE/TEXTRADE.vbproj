@@ -7282,9 +7282,7 @@
     <Compile Include="Transactions\Accounts\Receipt\SelectBills.Designer.vb">
       <DependentUpon>SelectBills.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Accounts\Receipt\SelectBills.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Transactions\Accounts\Receipt\SelectBills.vb" />
     <Compile Include="Transactions\Accounts\Registers\Bank Book\BankRegister.Designer.vb">
       <DependentUpon>BankRegister.vb</DependentUpon>
     </Compile>
@@ -7690,9 +7688,7 @@
     <Compile Include="Transactions\Purchase\Purchase Order\PurchaseOrder.Designer.vb">
       <DependentUpon>PurchaseOrder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Purchase\Purchase Order\PurchaseOrder.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Transactions\Purchase\Purchase Order\PurchaseOrder.vb" />
     <Compile Include="Transactions\Purchase\Purchase Order\PurchaseOrderClose.Designer.vb">
       <DependentUpon>PurchaseOrderClose.vb</DependentUpon>
     </Compile>
