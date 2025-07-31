@@ -1,9 +1,17 @@
+<<<<<<< HEAD
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+=======
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
 Partial Class OpeningGreyStockAtTransport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
+<<<<<<< HEAD
+    <System.Diagnostics.DebuggerNonUserCode()>
+=======
     <System.Diagnostics.DebuggerNonUserCode()> _
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,6 +28,18 @@ Partial Class OpeningGreyStockAtTransport
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
+<<<<<<< HEAD
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningGreyStockAtTransport))
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+=======
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningGreyStockAtTransport))
@@ -27,14 +47,18 @@ Partial Class OpeningGreyStockAtTransport
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+<<<<<<< HEAD
+=======
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.TXTYARDS = New System.Windows.Forms.TextBox()
         Me.TXTSEARCHBARCODE = New System.Windows.Forms.TextBox()
@@ -52,6 +76,39 @@ Partial Class OpeningGreyStockAtTransport
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+<<<<<<< HEAD
+        Me.TXTCRDAYS = New System.Windows.Forms.TextBox()
+        Me.TXTPCS = New System.Windows.Forms.TextBox()
+        Me.TXTBALENO = New System.Windows.Forms.TextBox()
+        Me.CMBCOLOR = New System.Windows.Forms.ComboBox()
+        Me.CMBMERCHANT = New System.Windows.Forms.ComboBox()
+        Me.LRDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.TXTLRNO = New System.Windows.Forms.TextBox()
+        Me.CMBPER = New System.Windows.Forms.ComboBox()
+        Me.TXTAMOUNT = New System.Windows.Forms.TextBox()
+        Me.TXTRATE = New System.Windows.Forms.TextBox()
+        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
+        Me.gridstock = New System.Windows.Forms.DataGridView()
+        Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTRANSPORT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMERCHANT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gcolor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBALENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gunit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gMtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAGENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCRDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+=======
         Me.TXTLRNO = New System.Windows.Forms.TextBox()
         Me.CMBDYEINGJOB = New System.Windows.Forms.ComboBox()
         Me.TXTNETTRATE = New System.Windows.Forms.TextBox()
@@ -103,11 +160,28 @@ Partial Class OpeningGreyStockAtTransport
         Me.GDYEINGJOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gBarcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gdone = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.gOutpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.goutmtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPROGRAMDONE = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+<<<<<<< HEAD
+        Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
+        Me.cmbname = New System.Windows.Forms.ComboBox()
+        Me.TXTMTRS = New System.Windows.Forms.TextBox()
+        Me.cmbunit = New System.Windows.Forms.ComboBox()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.CMBTRANS = New System.Windows.Forms.ComboBox()
+        Me.txtadd = New System.Windows.Forms.TextBox()
+        Me.openingdate = New System.Windows.Forms.DateTimePicker()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BlendPanel1.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
+=======
         Me.cmbquality = New System.Windows.Forms.ComboBox()
         Me.txtpcs = New System.Windows.Forms.TextBox()
         Me.cmbname = New System.Windows.Forms.ComboBox()
@@ -125,6 +199,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -148,7 +223,10 @@ Partial Class OpeningGreyStockAtTransport
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Controls.Add(Me.Panel1)
         Me.BlendPanel1.Controls.Add(Me.txtadd)
+<<<<<<< HEAD
+=======
         Me.BlendPanel1.Controls.Add(Me.cmbtype)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.BlendPanel1.Controls.Add(Me.openingdate)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -208,7 +286,11 @@ Partial Class OpeningGreyStockAtTransport
         Me.TXTTO.BackColor = System.Drawing.Color.White
         Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTO.ImeMode = System.Windows.Forms.ImeMode.NoControl
+<<<<<<< HEAD
+        Me.TXTTO.Location = New System.Drawing.Point(667, 15)
+=======
         Me.TXTTO.Location = New System.Drawing.Point(683, 16)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.TXTTO.Name = "TXTTO"
         Me.TXTTO.Size = New System.Drawing.Size(41, 23)
         Me.TXTTO.TabIndex = 720
@@ -340,6 +422,26 @@ Partial Class OpeningGreyStockAtTransport
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.Linen
+<<<<<<< HEAD
+        Me.Panel1.Controls.Add(Me.TXTCRDAYS)
+        Me.Panel1.Controls.Add(Me.TXTPCS)
+        Me.Panel1.Controls.Add(Me.TXTBALENO)
+        Me.Panel1.Controls.Add(Me.CMBCOLOR)
+        Me.Panel1.Controls.Add(Me.CMBMERCHANT)
+        Me.Panel1.Controls.Add(Me.LRDATE)
+        Me.Panel1.Controls.Add(Me.TXTLRNO)
+        Me.Panel1.Controls.Add(Me.CMBPER)
+        Me.Panel1.Controls.Add(Me.TXTAMOUNT)
+        Me.Panel1.Controls.Add(Me.TXTRATE)
+        Me.Panel1.Controls.Add(Me.CMBAGENT)
+        Me.Panel1.Controls.Add(Me.gridstock)
+        Me.Panel1.Controls.Add(Me.CMBDESIGN)
+        Me.Panel1.Controls.Add(Me.cmbname)
+        Me.Panel1.Controls.Add(Me.TXTMTRS)
+        Me.Panel1.Controls.Add(Me.cmbunit)
+        Me.Panel1.Controls.Add(Me.txtsrno)
+        Me.Panel1.Controls.Add(Me.CMBTRANS)
+=======
         Me.Panel1.Controls.Add(Me.TXTLRNO)
         Me.Panel1.Controls.Add(Me.CMBDYEINGJOB)
         Me.Panel1.Controls.Add(Me.TXTNETTRATE)
@@ -370,20 +472,107 @@ Partial Class OpeningGreyStockAtTransport
         Me.Panel1.Controls.Add(Me.txtcut)
         Me.Panel1.Controls.Add(Me.txtsrno)
         Me.Panel1.Controls.Add(Me.cmbmerchant)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.Panel1.Location = New System.Drawing.Point(13, 41)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1209, 482)
         Me.Panel1.TabIndex = 0
         '
+<<<<<<< HEAD
+        'TXTCRDAYS
+        '
+        Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(1763, 1)
+        Me.TXTCRDAYS.Name = "TXTCRDAYS"
+        Me.TXTCRDAYS.Size = New System.Drawing.Size(68, 22)
+        Me.TXTCRDAYS.TabIndex = 37
+        Me.TXTCRDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTPCS
+        '
+        Me.TXTPCS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTPCS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPCS.Location = New System.Drawing.Point(1143, 1)
+        Me.TXTPCS.Name = "TXTPCS"
+        Me.TXTPCS.Size = New System.Drawing.Size(60, 22)
+        Me.TXTPCS.TabIndex = 34
+        Me.TXTPCS.Text = "1"
+        Me.TXTPCS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTBALENO
+        '
+        Me.TXTBALENO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBALENO.Location = New System.Drawing.Point(1065, 1)
+        Me.TXTBALENO.Name = "TXTBALENO"
+        Me.TXTBALENO.Size = New System.Drawing.Size(78, 22)
+        Me.TXTBALENO.TabIndex = 33
+        Me.TXTBALENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBCOLOR
+        '
+        Me.CMBCOLOR.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCOLOR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCOLOR.BackColor = System.Drawing.Color.White
+        Me.CMBCOLOR.DropDownWidth = 400
+        Me.CMBCOLOR.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCOLOR.FormattingEnabled = True
+        Me.CMBCOLOR.Location = New System.Drawing.Point(945, 1)
+        Me.CMBCOLOR.Name = "CMBCOLOR"
+        Me.CMBCOLOR.Size = New System.Drawing.Size(120, 22)
+        Me.CMBCOLOR.TabIndex = 32
+        '
+        'CMBMERCHANT
+        '
+        Me.CMBMERCHANT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBMERCHANT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBMERCHANT.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBMERCHANT.DropDownWidth = 400
+        Me.CMBMERCHANT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBMERCHANT.FormattingEnabled = True
+        Me.CMBMERCHANT.Location = New System.Drawing.Point(625, 1)
+        Me.CMBMERCHANT.Name = "CMBMERCHANT"
+        Me.CMBMERCHANT.Size = New System.Drawing.Size(200, 22)
+        Me.CMBMERCHANT.TabIndex = 31
+        '
+        'LRDATE
+        '
+        Me.LRDATE.AsciiOnly = True
+        Me.LRDATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.LRDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.LRDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.LRDATE.Location = New System.Drawing.Point(541, 0)
+        Me.LRDATE.Mask = "00/00/0000"
+        Me.LRDATE.Name = "LRDATE"
+        Me.LRDATE.Size = New System.Drawing.Size(84, 23)
+        Me.LRDATE.TabIndex = 30
+        Me.LRDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.LRDATE.ValidatingType = GetType(Date)
+        '
+=======
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'TXTLRNO
         '
         Me.TXTLRNO.BackColor = System.Drawing.Color.White
         Me.TXTLRNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+<<<<<<< HEAD
+        Me.TXTLRNO.Location = New System.Drawing.Point(441, 0)
+=======
         Me.TXTLRNO.Location = New System.Drawing.Point(2349, 0)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.TXTLRNO.Name = "TXTLRNO"
         Me.TXTLRNO.Size = New System.Drawing.Size(100, 22)
         Me.TXTLRNO.TabIndex = 29
         '
+<<<<<<< HEAD
+        'CMBPER
+        '
+        Me.CMBPER.AutoCompleteCustomSource.AddRange(New String() {"MTRS", "PCS"})
+        Me.CMBPER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBPER.FormattingEnabled = True
+        Me.CMBPER.Items.AddRange(New Object() {"Mtrs", "Qty"})
+        Me.CMBPER.Location = New System.Drawing.Point(1423, 0)
+=======
         'CMBDYEINGJOB
         '
         Me.CMBDYEINGJOB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -453,10 +642,13 @@ Partial Class OpeningGreyStockAtTransport
         Me.CMBPER.FormattingEnabled = True
         Me.CMBPER.Items.AddRange(New Object() {"Mtrs", "Qty"})
         Me.CMBPER.Location = New System.Drawing.Point(1289, 0)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(60, 22)
         Me.CMBPER.TabIndex = 16
         '
+<<<<<<< HEAD
+=======
         'CMBRACK
         '
         Me.CMBRACK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -486,11 +678,16 @@ Partial Class OpeningGreyStockAtTransport
         Me.TXTREMARKS.Size = New System.Drawing.Size(120, 22)
         Me.TXTREMARKS.TabIndex = 27
         '
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'TXTAMOUNT
         '
         Me.TXTAMOUNT.BackColor = System.Drawing.Color.Linen
         Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+<<<<<<< HEAD
+        Me.TXTAMOUNT.Location = New System.Drawing.Point(1483, 1)
+=======
         Me.TXTAMOUNT.Location = New System.Drawing.Point(1589, 0)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.ReadOnly = True
         Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 22)
@@ -501,12 +698,30 @@ Partial Class OpeningGreyStockAtTransport
         '
         Me.TXTRATE.BackColor = System.Drawing.Color.White
         Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+<<<<<<< HEAD
+        Me.TXTRATE.Location = New System.Drawing.Point(1343, 1)
+=======
         Me.TXTRATE.Location = New System.Drawing.Point(1509, 0)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(80, 22)
         Me.TXTRATE.TabIndex = 19
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+<<<<<<< HEAD
+        'CMBAGENT
+        '
+        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBAGENT.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBAGENT.DropDownWidth = 400
+        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBAGENT.FormattingEnabled = True
+        Me.CMBAGENT.Location = New System.Drawing.Point(1563, 1)
+        Me.CMBAGENT.Name = "CMBAGENT"
+        Me.CMBAGENT.Size = New System.Drawing.Size(200, 22)
+        Me.CMBAGENT.TabIndex = 10
+=======
         'TXTBILLNO
         '
         Me.TXTBILLNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -570,6 +785,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.TXTLOTNO.Size = New System.Drawing.Size(60, 22)
         Me.TXTLOTNO.TabIndex = 1
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'gridstock
         '
@@ -577,6 +793,32 @@ Partial Class OpeningGreyStockAtTransport
         Me.gridstock.AllowUserToDeleteRows = False
         Me.gridstock.AllowUserToResizeColumns = False
         Me.gridstock.AllowUserToResizeRows = False
+<<<<<<< HEAD
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridstock.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
+        Me.gridstock.BackgroundColor = System.Drawing.Color.White
+        Me.gridstock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.gridstock.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
+        Me.gridstock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.gname, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GMERCHANT, Me.GDESIGN, Me.gcolor, Me.GBALENO, Me.Gpcs, Me.Gunit, Me.gMtrs, Me.GRATE, Me.GPer, Me.GAMOUNT, Me.GAGENT, Me.GCRDAYS, Me.GREMARKS, Me.gBarcode, Me.gdone, Me.gOutpcs, Me.goutmtrs, Me.GPROGRAMDONE})
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridstock.DefaultCellStyle = DataGridViewCellStyle19
+        Me.gridstock.GridColor = System.Drawing.SystemColors.Control
+        Me.gridstock.Location = New System.Drawing.Point(3, 23)
+=======
         DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
         DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black
         Me.gridstock.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
@@ -601,20 +843,31 @@ Partial Class OpeningGreyStockAtTransport
         Me.gridstock.DefaultCellStyle = DataGridViewCellStyle23
         Me.gridstock.GridColor = System.Drawing.SystemColors.Control
         Me.gridstock.Location = New System.Drawing.Point(3, 22)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gridstock.MultiSelect = False
         Me.gridstock.Name = "gridstock"
         Me.gridstock.ReadOnly = True
         Me.gridstock.RowHeadersVisible = False
         Me.gridstock.RowHeadersWidth = 30
         Me.gridstock.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+<<<<<<< HEAD
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White
+        Me.gridstock.RowsDefaultCellStyle = DataGridViewCellStyle20
+=======
         DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Black
         DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White
         Me.gridstock.RowsDefaultCellStyle = DataGridViewCellStyle24
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gridstock.RowTemplate.Height = 20
         Me.gridstock.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridstock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridstock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+<<<<<<< HEAD
+        Me.gridstock.Size = New System.Drawing.Size(2125, 439)
+=======
         Me.gridstock.Size = New System.Drawing.Size(2625, 439)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gridstock.TabIndex = 28
         Me.gridstock.TabStop = False
         '
@@ -634,6 +887,40 @@ Partial Class OpeningGreyStockAtTransport
         Me.GNO.ReadOnly = True
         Me.GNO.Visible = False
         '
+<<<<<<< HEAD
+        'gname
+        '
+        Me.gname.HeaderText = "Name"
+        Me.gname.Name = "gname"
+        Me.gname.ReadOnly = True
+        Me.gname.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gname.Width = 200
+        '
+        'GTRANSPORT
+        '
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GTRANSPORT.DefaultCellStyle = DataGridViewCellStyle13
+        Me.GTRANSPORT.HeaderText = "Transport"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        Me.GTRANSPORT.ReadOnly = True
+        Me.GTRANSPORT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTRANSPORT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTRANSPORT.Width = 200
+        '
+        'GLRNO
+        '
+        Me.GLRNO.HeaderText = "LR No"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.ReadOnly = True
+        '
+        'GLRDATE
+        '
+        Me.GLRDATE.HeaderText = "LR Date"
+        Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.ReadOnly = True
+        Me.GLRDATE.Width = 84
+=======
         'GLOTNO
         '
         Me.GLOTNO.HeaderText = "Lot No."
@@ -653,6 +940,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.gpiecetype.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gpiecetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gpiecetype.Width = 80
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'GMERCHANT
         '
@@ -661,6 +949,9 @@ Partial Class OpeningGreyStockAtTransport
         Me.GMERCHANT.ReadOnly = True
         Me.GMERCHANT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GMERCHANT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+<<<<<<< HEAD
+        Me.GMERCHANT.Width = 200
+=======
         Me.GMERCHANT.Width = 133
         '
         'gQuality
@@ -671,6 +962,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.gQuality.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gQuality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gQuality.Width = 120
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'GDESIGN
         '
@@ -679,6 +971,15 @@ Partial Class OpeningGreyStockAtTransport
         Me.GDESIGN.ReadOnly = True
         Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+<<<<<<< HEAD
+        Me.GDESIGN.Width = 120
+        '
+        'gcolor
+        '
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.gcolor.DefaultCellStyle = DataGridViewCellStyle14
+=======
         Me.GDESIGN.Width = 80
         '
         'gcolor
@@ -686,11 +987,36 @@ Partial Class OpeningGreyStockAtTransport
         DataGridViewCellStyle16.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle16.NullValue = Nothing
         Me.gcolor.DefaultCellStyle = DataGridViewCellStyle16
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gcolor.HeaderText = "Shade"
         Me.gcolor.Name = "gcolor"
         Me.gcolor.ReadOnly = True
         Me.gcolor.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gcolor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+<<<<<<< HEAD
+        Me.gcolor.Width = 120
+        '
+        'GBALENO
+        '
+        Me.GBALENO.HeaderText = "Bale No"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.ReadOnly = True
+        Me.GBALENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBALENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBALENO.Width = 78
+        '
+        'Gpcs
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 8.25!)
+        Me.Gpcs.DefaultCellStyle = DataGridViewCellStyle15
+        Me.Gpcs.HeaderText = "Pcs"
+        Me.Gpcs.Name = "Gpcs"
+        Me.Gpcs.ReadOnly = True
+        Me.Gpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Gpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Gpcs.Width = 60
+=======
         Me.gcolor.Width = 80
         '
         'gProcess
@@ -759,6 +1085,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 60
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'Gunit
         '
@@ -769,6 +1096,12 @@ Partial Class OpeningGreyStockAtTransport
         Me.Gunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Gunit.Width = 60
         '
+<<<<<<< HEAD
+        'gMtrs
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.gMtrs.DefaultCellStyle = DataGridViewCellStyle16
+=======
         'Gpcs
         '
         DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
@@ -785,6 +1118,7 @@ Partial Class OpeningGreyStockAtTransport
         '
         DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         Me.gMtrs.DefaultCellStyle = DataGridViewCellStyle20
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.gMtrs.HeaderText = "Mtrs"
         Me.gMtrs.Name = "gMtrs"
         Me.gMtrs.ReadOnly = True
@@ -792,6 +1126,20 @@ Partial Class OpeningGreyStockAtTransport
         Me.gMtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gMtrs.Width = 80
         '
+<<<<<<< HEAD
+        'GRATE
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle17
+        Me.GRATE.HeaderText = "Rate"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.ReadOnly = True
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 80
+        '
+=======
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'GPer
         '
         Me.GPer.HeaderText = "Per"
@@ -801,6 +1149,12 @@ Partial Class OpeningGreyStockAtTransport
         Me.GPer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GPer.Width = 60
         '
+<<<<<<< HEAD
+        'GAMOUNT
+        '
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle18
+=======
         'GRACK
         '
         Me.GRACK.HeaderText = "Rack"
@@ -834,6 +1188,7 @@ Partial Class OpeningGreyStockAtTransport
         '
         DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle22
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.GAMOUNT.HeaderText = "Amount"
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.ReadOnly = True
@@ -841,6 +1196,25 @@ Partial Class OpeningGreyStockAtTransport
         Me.GAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GAMOUNT.Width = 80
         '
+<<<<<<< HEAD
+        'GAGENT
+        '
+        Me.GAGENT.HeaderText = "Agent"
+        Me.GAGENT.Name = "GAGENT"
+        Me.GAGENT.ReadOnly = True
+        Me.GAGENT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAGENT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GAGENT.Width = 200
+        '
+        'GCRDAYS
+        '
+        Me.GCRDAYS.HeaderText = "Cr Days"
+        Me.GCRDAYS.Name = "GCRDAYS"
+        Me.GCRDAYS.ReadOnly = True
+        Me.GCRDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCRDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCRDAYS.Width = 68
+=======
         'GADDLESS
         '
         Me.GADDLESS.HeaderText = "Add Less"
@@ -890,6 +1264,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.GDYEINGJOB.ReadOnly = True
         Me.GDYEINGJOB.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GDYEINGJOB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'GREMARKS
         '
@@ -900,12 +1275,15 @@ Partial Class OpeningGreyStockAtTransport
         Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GREMARKS.Width = 120
         '
+<<<<<<< HEAD
+=======
         'GLRNO
         '
         Me.GLRNO.HeaderText = "LR No"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.ReadOnly = True
         '
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'gBarcode
         '
         Me.gBarcode.HeaderText = "Barcode"
@@ -945,6 +1323,20 @@ Partial Class OpeningGreyStockAtTransport
         Me.GPROGRAMDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.GPROGRAMDONE.Visible = False
         '
+<<<<<<< HEAD
+        'CMBDESIGN
+        '
+        Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBDESIGN.BackColor = System.Drawing.Color.White
+        Me.CMBDESIGN.DropDownWidth = 400
+        Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBDESIGN.FormattingEnabled = True
+        Me.CMBDESIGN.Location = New System.Drawing.Point(825, 1)
+        Me.CMBDESIGN.Name = "CMBDESIGN"
+        Me.CMBDESIGN.Size = New System.Drawing.Size(120, 22)
+        Me.CMBDESIGN.TabIndex = 4
+=======
         'cmbquality
         '
         Me.cmbquality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -968,11 +1360,32 @@ Partial Class OpeningGreyStockAtTransport
         Me.txtpcs.TabIndex = 14
         Me.txtpcs.Text = "1"
         Me.txtpcs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'cmbname
         '
         Me.cmbname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cmbname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+<<<<<<< HEAD
+        Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbname.DropDownWidth = 400
+        Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbname.FormattingEnabled = True
+        Me.cmbname.Location = New System.Drawing.Point(43, 0)
+        Me.cmbname.Name = "cmbname"
+        Me.cmbname.Size = New System.Drawing.Size(200, 22)
+        Me.cmbname.TabIndex = 7
+        '
+        'TXTMTRS
+        '
+        Me.TXTMTRS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTMTRS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTMTRS.Location = New System.Drawing.Point(1263, 0)
+        Me.TXTMTRS.Name = "TXTMTRS"
+        Me.TXTMTRS.Size = New System.Drawing.Size(80, 22)
+        Me.TXTMTRS.TabIndex = 15
+        Me.TXTMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+=======
         Me.cmbname.DropDownWidth = 400
         Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbname.FormattingEnabled = True
@@ -1013,17 +1426,24 @@ Partial Class OpeningGreyStockAtTransport
         Me.txtMtrs.Size = New System.Drawing.Size(80, 22)
         Me.txtMtrs.TabIndex = 15
         Me.txtMtrs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'cmbunit
         '
         Me.cmbunit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cmbunit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbunit.FormattingEnabled = True
+<<<<<<< HEAD
+        Me.cmbunit.Location = New System.Drawing.Point(1203, 1)
+=======
         Me.cmbunit.Location = New System.Drawing.Point(1089, 0)
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.cmbunit.Name = "cmbunit"
         Me.cmbunit.Size = New System.Drawing.Size(60, 22)
         Me.cmbunit.TabIndex = 13
         '
+<<<<<<< HEAD
+=======
         'txtcut
         '
         Me.txtcut.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1033,6 +1453,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.txtcut.TabIndex = 11
         Me.txtcut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'txtsrno
         '
         Me.txtsrno.BackColor = System.Drawing.Color.Linen
@@ -1046,6 +1467,20 @@ Partial Class OpeningGreyStockAtTransport
         Me.txtsrno.TabStop = False
         Me.txtsrno.Text = " "
         '
+<<<<<<< HEAD
+        'CMBTRANS
+        '
+        Me.CMBTRANS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTRANS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTRANS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBTRANS.DropDownWidth = 400
+        Me.CMBTRANS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTRANS.FormattingEnabled = True
+        Me.CMBTRANS.Location = New System.Drawing.Point(241, 0)
+        Me.CMBTRANS.Name = "CMBTRANS"
+        Me.CMBTRANS.Size = New System.Drawing.Size(200, 22)
+        Me.CMBTRANS.TabIndex = 3
+=======
         'cmbmerchant
         '
         Me.cmbmerchant.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -1058,6 +1493,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.cmbmerchant.Name = "cmbmerchant"
         Me.cmbmerchant.Size = New System.Drawing.Size(133, 22)
         Me.cmbmerchant.TabIndex = 3
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         '
         'txtadd
         '
@@ -1072,6 +1508,8 @@ Partial Class OpeningGreyStockAtTransport
         Me.txtadd.Text = " "
         Me.txtadd.Visible = False
         '
+<<<<<<< HEAD
+=======
         'cmbtype
         '
         Me.cmbtype.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -1087,6 +1525,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.cmbtype.Size = New System.Drawing.Size(99, 23)
         Me.cmbtype.TabIndex = 1
         '
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'openingdate
         '
         Me.openingdate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1111,6 +1550,15 @@ Partial Class OpeningGreyStockAtTransport
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
+<<<<<<< HEAD
+        'EP
+        '
+        Me.EP.BlinkRate = 0
+        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EP.ContainerControl = Me
+        '
+=======
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         'OpeningGreyStockAtTransport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1128,6 +1576,10 @@ Partial Class OpeningGreyStockAtTransport
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).EndInit()
+<<<<<<< HEAD
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
+=======
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1151,6 +1603,48 @@ Partial Class OpeningGreyStockAtTransport
     Friend WithEvents CMBCODE As ComboBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents TXTLRNO As TextBox
+<<<<<<< HEAD
+    Friend WithEvents CMBPER As ComboBox
+    Friend WithEvents TXTAMOUNT As TextBox
+    Friend WithEvents TXTRATE As TextBox
+    Friend WithEvents CMBAGENT As ComboBox
+    Friend WithEvents gridstock As DataGridView
+    Friend WithEvents CMBDESIGN As ComboBox
+    Friend WithEvents cmbname As ComboBox
+    Friend WithEvents TXTMTRS As TextBox
+    Friend WithEvents cmbunit As ComboBox
+    Friend WithEvents txtsrno As TextBox
+    Friend WithEvents CMBTRANS As ComboBox
+    Friend WithEvents txtadd As TextBox
+    Friend WithEvents openingdate As DateTimePicker
+    Friend WithEvents cmdexit As Button
+    Friend WithEvents EP As ErrorProvider
+    Friend WithEvents LRDATE As MaskedTextBox
+    Friend WithEvents CMBMERCHANT As ComboBox
+    Friend WithEvents TXTPCS As TextBox
+    Friend WithEvents TXTBALENO As TextBox
+    Friend WithEvents CMBCOLOR As ComboBox
+    Friend WithEvents TXTCRDAYS As TextBox
+    Friend WithEvents gsrno As DataGridViewTextBoxColumn
+    Friend WithEvents GNO As DataGridViewTextBoxColumn
+    Friend WithEvents gname As DataGridViewTextBoxColumn
+    Friend WithEvents GTRANSPORT As DataGridViewTextBoxColumn
+    Friend WithEvents GLRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GLRDATE As DataGridViewTextBoxColumn
+    Friend WithEvents GMERCHANT As DataGridViewTextBoxColumn
+    Friend WithEvents GDESIGN As DataGridViewTextBoxColumn
+    Friend WithEvents gcolor As DataGridViewTextBoxColumn
+    Friend WithEvents GBALENO As DataGridViewTextBoxColumn
+    Friend WithEvents Gpcs As DataGridViewTextBoxColumn
+    Friend WithEvents Gunit As DataGridViewTextBoxColumn
+    Friend WithEvents gMtrs As DataGridViewTextBoxColumn
+    Friend WithEvents GRATE As DataGridViewTextBoxColumn
+    Friend WithEvents GPer As DataGridViewTextBoxColumn
+    Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
+    Friend WithEvents GAGENT As DataGridViewTextBoxColumn
+    Friend WithEvents GCRDAYS As DataGridViewTextBoxColumn
+    Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
+=======
     Friend WithEvents CMBDYEINGJOB As ComboBox
     Friend WithEvents TXTNETTRATE As TextBox
     Friend WithEvents TXTADDLESS As TextBox
@@ -1201,11 +1695,14 @@ Partial Class OpeningGreyStockAtTransport
     Friend WithEvents GDYEINGJOB As DataGridViewTextBoxColumn
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
     Friend WithEvents gBarcode As DataGridViewTextBoxColumn
     Friend WithEvents gdone As DataGridViewCheckBoxColumn
     Friend WithEvents gOutpcs As DataGridViewTextBoxColumn
     Friend WithEvents goutmtrs As DataGridViewTextBoxColumn
     Friend WithEvents GPROGRAMDONE As DataGridViewCheckBoxColumn
+<<<<<<< HEAD
+=======
     Friend WithEvents cmbquality As ComboBox
     Friend WithEvents txtpcs As TextBox
     Friend WithEvents cmbname As ComboBox
@@ -1220,4 +1717,5 @@ Partial Class OpeningGreyStockAtTransport
     Friend WithEvents cmbtype As ComboBox
     Friend WithEvents openingdate As DateTimePicker
     Friend WithEvents cmdexit As Button
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
 End Class

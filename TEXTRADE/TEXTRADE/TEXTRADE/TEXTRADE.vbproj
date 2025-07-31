@@ -12804,7 +12804,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Order\PurchaseOrder.resx">
       <DependentUpon>PurchaseOrder.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Order\PurchaseOrderClose.resx">
       <DependentUpon>PurchaseOrderClose.vb</DependentUpon>
