@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 Imports BL
 
@@ -1236,5 +1237,8 @@ Public Class OpeningGreyStockAtTransport
     ''        e.ThrowException = False
     ''    End If
     ''End Sub
+=======
+﻿Public Class OpeningGreyStockAtTransport
+>>>>>>> 8d8eabba09e913662a00c3dbc5ece057ef4824a1
 
 End Class
