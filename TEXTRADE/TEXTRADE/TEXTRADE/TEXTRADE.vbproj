@@ -437,6 +437,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.Designer.vb">
+      <DependentUpon>GDNUnitSummGridreport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.Designer.vb">
       <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
     </Compile>
@@ -8516,6 +8522,9 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.resx">
+      <DependentUpon>GDNUnitSummGridreport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.resx">
       <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>

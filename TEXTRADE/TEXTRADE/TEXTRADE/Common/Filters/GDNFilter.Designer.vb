@@ -23,6 +23,7 @@ Partial Class GDNFilter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBPARTYGRIDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYITEMSUMM = New System.Windows.Forms.RadioButton()
         Me.RBDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
         Me.RDBDISPPARTYDESIGNSHADECHALLANDTLS = New System.Windows.Forms.RadioButton()
@@ -82,7 +83,7 @@ Partial Class GDNFilter
         Me.CMBAGENT = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBPARTYGRIDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
+        Me.RDBUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.BlendPanel2.SuspendLayout()
@@ -95,6 +96,7 @@ Partial Class GDNFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDBUNITSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYGRIDCHALLANDETAILS)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYITEMSUMM)
         Me.GroupBox3.Controls.Add(Me.RBDCHALLANDETAILS)
@@ -123,6 +125,16 @@ Partial Class GDNFilter
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Reports"
+        '
+        'RDBPARTYGRIDCHALLANDETAILS
+        '
+        Me.RDBPARTYGRIDCHALLANDETAILS.AutoSize = True
+        Me.RDBPARTYGRIDCHALLANDETAILS.Location = New System.Drawing.Point(26, 193)
+        Me.RDBPARTYGRIDCHALLANDETAILS.Name = "RDBPARTYGRIDCHALLANDETAILS"
+        Me.RDBPARTYGRIDCHALLANDETAILS.Size = New System.Drawing.Size(229, 18)
+        Me.RDBPARTYGRIDCHALLANDETAILS.TabIndex = 20
+        Me.RDBPARTYGRIDCHALLANDETAILS.Text = "Party - Grid Challan - Lot Wise Details"
+        Me.RDBPARTYGRIDCHALLANDETAILS.UseVisualStyleBackColor = True
         '
         'RDBPARTYITEMSUMM
         '
@@ -323,6 +335,7 @@ Partial Class GDNFilter
         Me.RDBPARTY.Name = "RDBPARTY"
         Me.RDBPARTY.Size = New System.Drawing.Size(77, 18)
         Me.RDBPARTY.TabIndex = 0
+        Me.RDBPARTY.TabStop = True
         Me.RDBPARTY.Text = "Partywise"
         Me.RDBPARTY.UseVisualStyleBackColor = True
         '
@@ -671,7 +684,7 @@ Partial Class GDNFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -801,15 +814,15 @@ Partial Class GDNFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBPARTYGRIDCHALLANDETAILS
+        'RDBUNITSUMM
         '
-        Me.RDBPARTYGRIDCHALLANDETAILS.AutoSize = True
-        Me.RDBPARTYGRIDCHALLANDETAILS.Location = New System.Drawing.Point(26, 193)
-        Me.RDBPARTYGRIDCHALLANDETAILS.Name = "RDBPARTYGRIDCHALLANDETAILS"
-        Me.RDBPARTYGRIDCHALLANDETAILS.Size = New System.Drawing.Size(229, 18)
-        Me.RDBPARTYGRIDCHALLANDETAILS.TabIndex = 20
-        Me.RDBPARTYGRIDCHALLANDETAILS.Text = "Party - Grid Challan - Lot Wise Details"
-        Me.RDBPARTYGRIDCHALLANDETAILS.UseVisualStyleBackColor = True
+        Me.RDBUNITSUMM.AutoSize = True
+        Me.RDBUNITSUMM.Location = New System.Drawing.Point(298, 193)
+        Me.RDBUNITSUMM.Name = "RDBUNITSUMM"
+        Me.RDBUNITSUMM.Size = New System.Drawing.Size(188, 18)
+        Me.RDBUNITSUMM.TabIndex = 21
+        Me.RDBUNITSUMM.Text = "Unit Wise Summ (Grid Report)"
+        Me.RDBUNITSUMM.UseVisualStyleBackColor = True
         '
         'GDNFilter
         '
@@ -897,4 +910,5 @@ Partial Class GDNFilter
     Friend WithEvents CMBUNIT As ComboBox
     Friend WithEvents RDBPARTYITEMSUMM As RadioButton
     Friend WithEvents RDBPARTYGRIDCHALLANDETAILS As RadioButton
+    Friend WithEvents RDBUNITSUMM As RadioButton
 End Class
