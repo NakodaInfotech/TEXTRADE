@@ -875,6 +875,1191 @@ Public Class RecOutstanding
 
 #End Region
 
+#Region "CITYWISE"
+
+    Sub FILLCITYGRID()
+        Try
+            GRIDOUTSTANDING.RowCount = 0
+            GCMPNAME.Visible = False
+
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+
+            If chkdate.CheckState = CheckState.Checked Then
+                WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+            End If
+            Mydate = dtto.Value.Date
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If TXTOVERDUEDAYS.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  = '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+            'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+            Dim OBJCMN As New ClsCommon
+            Dim DT As New DataTable
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                    GCMPNAME.Visible = True
+                End If
+            Next item
+
+
+
+            DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            Dim DAYS As Integer = 0
+            Dim TOTALDAYS As Integer = 0
+            Dim RUNNINGBAL As Double = 0.0
+            Dim BILLINTEREST As Double = 0.0
+            Dim SRNO As Integer = 0
+
+            'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
+            DT = OBJCMN.Execute_Any_String(" SELECT OUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM OUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY CITY, NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+                DAYS = 0
+                TOTALDAYS = 0
+                RUNNINGBAL = 0.0
+                SRNO = 0
+                BILLINTEREST = 0
+                PARTYINTTOTAL = 0
+                GINTTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("CITY") Then
+                        TEMPNAME = ROW("CITY")
+                        If GRIDOUTSTANDING.RowCount > 0 Then ADDCITYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        RUNNINGBAL = 0.0
+                        SRNO = 0
+                        PARTYINTTOTAL = 0
+                        ADDCITYNAMEROW(ROW("CITY"), "", "", "")
+                    End If
+
+                    DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
+                    TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
+                    If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
+
+                    SRNO += 1
+                    RUNNINGBAL += Val(ROW("BALANCE"))
+                    GRIDOUTSTANDING.Rows.Add(ROW("NAME"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), ROW("MILLNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    PARTYINTTOTAL += Val(BILLINTEREST)
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                    GINTTOTAL += Val(BILLINTEREST)
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDCITYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDCITYGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLCITYSUMMGRID()
+        Try
+            GRIDSUMM.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim BALANCE, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT CITY, SUM(BALANCE) AS BALANCE FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' " & WHERECLAUSE & " GROUP BY CITY HAVING ROUND(SUM(BALANCE),2) <> 0 order by BALANCE", "", "")
+            If DT.Rows.Count > 0 Then
+                BALANCE = 0
+                BALANCEGRANDTOTAL = 0
+                For Each ROW As DataRow In DT.Rows
+                    GRIDSUMM.Rows.Add(ROW("CITY"), Format(Val(ROW("BALANCE")), "0.00"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDSUMM.RowCount > 0 Then ADDCITYSUMMTOTALROW(BALANCE)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLCITYADVGRID()
+        Try
+            GRIDADV.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim RECDTOTAL, RECDGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            'If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            'If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT BILLINITIALS,DATE,NAME, AGENT,RECDAMT, MOBILENO, PHONENO FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND TYPE='RECEIPT' " & WHERECLAUSE & " ORDER BY AGENT, DATE, TYPE", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                RECDTOTAL = 0
+                RECDGRANDTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+                        RECDTOTAL = 0
+                        ADDADVNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDADV.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Val(ROW("RECDAMT")), "0.00"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                Next
+
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLCITYPARTGRID()
+        Try
+            GRIDPART.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT * FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND RECDAMT > 0 AND BALANCE > 0 " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+
+                GRIDOUTSTANDING.DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Regular)
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        ADDPARTNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDPART.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), ROW("ITEMNAME"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                If GRIDPART.RowCount > 0 Then ADDPARTGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDCITYNAMEROW(ByVal NAME, ByVal MOBILENO, ByVal PHONENO, ByVal CITYNAME)
+        Try
+            'PRINT NAME 
+            GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDCITYTOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, PARTYINTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDCITYSUMMTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDCITYSUMMGRANDTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDCITYGRANDTOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, INTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
+
+#Region "STATEWISE"
+
+    Sub FILLSTATEGRID()
+        Try
+            GRIDOUTSTANDING.RowCount = 0
+            GCMPNAME.Visible = False
+
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+
+            If chkdate.CheckState = CheckState.Checked Then
+                WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+            End If
+            Mydate = dtto.Value.Date
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If TXTOVERDUEDAYS.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  = '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+            'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+            Dim OBJCMN As New ClsCommon
+            Dim DT As New DataTable
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                    GCMPNAME.Visible = True
+                End If
+            Next item
+
+
+
+            DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            Dim DAYS As Integer = 0
+            Dim TOTALDAYS As Integer = 0
+            Dim RUNNINGBAL As Double = 0.0
+            Dim BILLINTEREST As Double = 0.0
+            Dim SRNO As Integer = 0
+
+            'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
+            DT = OBJCMN.Execute_Any_String(" SELECT OUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM OUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY STATE, NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+                DAYS = 0
+                TOTALDAYS = 0
+                RUNNINGBAL = 0.0
+                SRNO = 0
+                BILLINTEREST = 0
+                PARTYINTTOTAL = 0
+                GINTTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("STATE") Then
+                        TEMPNAME = ROW("STATE")
+                        If GRIDOUTSTANDING.RowCount > 0 Then ADDSTATETOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        RUNNINGBAL = 0.0
+                        SRNO = 0
+                        PARTYINTTOTAL = 0
+                        ADDSTATENAMEROW(ROW("STATE"), "", "", "")
+                    End If
+
+                    DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
+                    TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
+                    If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
+
+                    SRNO += 1
+                    RUNNINGBAL += Val(ROW("BALANCE"))
+                    GRIDOUTSTANDING.Rows.Add(ROW("NAME"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), ROW("MILLNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    PARTYINTTOTAL += Val(BILLINTEREST)
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                    GINTTOTAL += Val(BILLINTEREST)
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDSTATETOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDSTATEGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLSTATESUMMGRID()
+        Try
+            GRIDSUMM.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim BALANCE, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT STATE, SUM(BALANCE) AS BALANCE FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' " & WHERECLAUSE & " GROUP BY STATE HAVING ROUND(SUM(BALANCE),2) <> 0 order by BALANCE", "", "")
+            If DT.Rows.Count > 0 Then
+                BALANCE = 0
+                BALANCEGRANDTOTAL = 0
+                For Each ROW As DataRow In DT.Rows
+                    GRIDSUMM.Rows.Add(ROW("STATE"), Format(Val(ROW("BALANCE")), "0.00"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDSUMM.RowCount > 0 Then ADDSTATESUMMTOTALROW(BALANCE)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLSTATEADVGRID()
+        Try
+            GRIDADV.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim RECDTOTAL, RECDGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            'If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            'If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT BILLINITIALS,DATE,NAME, AGENT,RECDAMT, MOBILENO, PHONENO FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND TYPE='RECEIPT' " & WHERECLAUSE & " ORDER BY AGENT, DATE, TYPE", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                RECDTOTAL = 0
+                RECDGRANDTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+                        RECDTOTAL = 0
+                        ADDADVNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDADV.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Val(ROW("RECDAMT")), "0.00"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                Next
+
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLSTATEPARTGRID()
+        Try
+            GRIDPART.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT * FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND RECDAMT > 0 AND BALANCE > 0 " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+
+                GRIDOUTSTANDING.DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Regular)
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        ADDPARTNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDPART.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), ROW("ITEMNAME"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                If GRIDPART.RowCount > 0 Then ADDPARTGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDSTATENAMEROW(ByVal NAME, ByVal MOBILENO, ByVal PHONENO, ByVal CITYNAME)
+        Try
+            'PRINT NAME 
+            GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDSTATETOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, PARTYINTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDSTATESUMMTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDSTATESUMMGRANDTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDSTATEGRANDTOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, INTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
+
+#Region "MONTHWISE"
+
+    Sub FILLMONTHGRID()
+        Try
+            GRIDOUTSTANDING.RowCount = 0
+            GCMPNAME.Visible = False
+
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+
+            If chkdate.CheckState = CheckState.Checked Then
+                WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+            End If
+            Mydate = dtto.Value.Date
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If TXTOVERDUEDAYS.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  = '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+            'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+            Dim OBJCMN As New ClsCommon
+            Dim DT As New DataTable
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                    GCMPNAME.Visible = True
+                End If
+            Next item
+
+
+
+            DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            Dim DAYS As Integer = 0
+            Dim TOTALDAYS As Integer = 0
+            Dim RUNNINGBAL As Double = 0.0
+            Dim BILLINTEREST As Double = 0.0
+            Dim SRNO As Integer = 0
+
+            'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
+            DT = OBJCMN.Execute_Any_String(" SELECT OUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM OUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY CASE WHEN MONTHNAME = 'APRIL' THEN 0 WHEN MONTHNAME = 'MAY' THEN 1 WHEN MONTHNAME = 'JUNE' THEN 2 WHEN MONTHNAME = 'JULY' THEN 3 WHEN MONTHNAME = 'AUGUST' THEN 4 WHEN MONTHNAME = 'SEPTEMBER' THEN 5 WHEN MONTHNAME = 'OCTOBER' THEN 6 WHEN MONTHNAME = 'NOVEMBER' THEN 7 WHEN MONTHNAME = 'DECEMBER' THEN 8 WHEN MONTHNAME = 'JANUARY' THEN 9 WHEN MONTHNAME = 'FEBRUARY' THEN 10 WHEN MONTHNAME = 'MARCH' THEN 11 END, NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+                DAYS = 0
+                TOTALDAYS = 0
+                RUNNINGBAL = 0.0
+                SRNO = 0
+                BILLINTEREST = 0
+                PARTYINTTOTAL = 0
+                GINTTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("MONTHNAME") Then
+                        TEMPNAME = ROW("MONTHNAME")
+                        If GRIDOUTSTANDING.RowCount > 0 Then ADDMONTHTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        RUNNINGBAL = 0.0
+                        SRNO = 0
+                        PARTYINTTOTAL = 0
+                        ADDMONTHNAMEROW(ROW("MONTHNAME"), "", "", "")
+                    End If
+
+                    DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
+                    TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
+                    If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
+
+                    SRNO += 1
+                    RUNNINGBAL += Val(ROW("BALANCE"))
+                    GRIDOUTSTANDING.Rows.Add(ROW("NAME"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), ROW("MILLNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    PARTYINTTOTAL += Val(BILLINTEREST)
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                    GINTTOTAL += Val(BILLINTEREST)
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDMONTHTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+                If GRIDOUTSTANDING.RowCount > 0 Then ADDMONTHGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLMONTHSUMMGRID()
+        Try
+            GRIDSUMM.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim BALANCE, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT MONTHNAME, SUM(BALANCE) AS BALANCE FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' " & WHERECLAUSE & " GROUP BY MONTHNAME HAVING ROUND(SUM(BALANCE),2) <> 0 order by BALANCE", "", "")
+            If DT.Rows.Count > 0 Then
+                BALANCE = 0
+                BALANCEGRANDTOTAL = 0
+                For Each ROW As DataRow In DT.Rows
+                    GRIDSUMM.Rows.Add(ROW("MONTHNAME"), Format(Val(ROW("BALANCE")), "0.00"))
+                    BALANCE += Val(ROW("BALANCE"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDSUMM.RowCount > 0 Then ADDMONTHSUMMTOTALROW(BALANCE)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLMONTHADVGRID()
+        Try
+            GRIDADV.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim RECDTOTAL, RECDGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            'If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            'If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT BILLINITIALS,DATE,NAME, AGENT,RECDAMT, MOBILENO, PHONENO FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND TYPE='RECEIPT' " & WHERECLAUSE & " ORDER BY AGENT, DATE, TYPE", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                RECDTOTAL = 0
+                RECDGRANDTOTAL = 0
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+                        RECDTOTAL = 0
+                        ADDADVNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDADV.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Val(ROW("RECDAMT")), "0.00"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                Next
+
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLMONTHPARTGRID()
+        Try
+            GRIDPART.RowCount = 0
+            Dim TEMPNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL As Decimal
+            Dim WHERECLAUSE As String = " "
+
+
+            If CMBNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBNAME.Text.Trim & "'"
+            If CMBBROKERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBROKERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+
+            Dim CMPCLAUSE As String = ""
+            Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+            For Each item As Object In CHECKED_CMP
+                If CMPCLAUSE = "" Then
+                    CMPCLAUSE = "'" & item.ToString() & "'"
+                Else
+                    CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+                End If
+            Next item
+
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            CMPCLAUSE = ""
+            For Each DTROW As DataRow In DT.Rows
+                If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+            Next
+            WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+
+            DT = OBJCMN.Execute_Any_String(" SELECT * FROM OUTSTANDINGREC WHERE SECONDARY = 'Sundry Debtors' AND RECDAMT > 0 AND BALANCE > 0 " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE, BILL", "", "")
+            If DT.Rows.Count > 0 Then
+                TEMPNAME = ""
+                GTOTAL = 0
+                RECDTOTAL = 0
+                BALANCE = 0
+                GRANDTOTAL = 0
+                RECDGRANDTOTAL = 0
+                BALANCEGRANDTOTAL = 0
+
+                GRIDOUTSTANDING.DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Regular)
+
+                For Each ROW As DataRow In DT.Rows
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
+                        If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                        GTOTAL = 0
+                        RECDTOTAL = 0
+                        BALANCE = 0
+                        ADDPARTNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"))
+                    End If
+                    GRIDPART.Rows.Add(ROW("AGENT"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), ROW("ITEMNAME"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date))
+                    GTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCE += Val(ROW("BALANCE"))
+
+                    GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+                    RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+                    BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+                Next
+                'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+                If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
+                If GRIDPART.RowCount > 0 Then ADDPARTGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDMONTHNAMEROW(ByVal NAME, ByVal MOBILENO, ByVal PHONENO, ByVal CITYNAME)
+        Try
+            'PRINT NAME 
+            GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDMONTHTOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, PARTYINTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDMONTHSUMMTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Yellow
+            GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDMONTHSUMMGRANDTOTALROW(ByVal BALANCE As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
+            GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ADDMONTHGRANDTOTALROW(ByVal GTOTAL As Decimal, ByVal RECDTOTAL As Decimal, ByVal BALANCE As Decimal, INTTOTAL As Decimal)
+        Try
+            'PRINT NAME 
+            Dim STYLE As New DataGridViewCellStyle
+            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.BackColor = Color.Orange
+            GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
+            GRIDOUTSTANDING.Rows.Add()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
+
     Private Sub RecOutstanding_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
 
@@ -922,6 +2107,27 @@ Public Class RecOutstanding
                 FILLAGENTSUMMGRID()
                 FILLAGENTADVGRID()
                 FILLAGENTPARTGRID()
+
+            ElseIf CMBREPORTTYPE.Text = "CITYWISE" Then
+
+                FILLCITYGRID()
+                FILLCITYSUMMGRID()
+                FILLCITYADVGRID()
+                FILLCITYPARTGRID()
+
+            ElseIf CMBREPORTTYPE.Text = "STATEWISE" Then
+
+                FILLSTATEGRID()
+                FILLSTATESUMMGRID()
+                FILLSTATEADVGRID()
+                FILLSTATEPARTGRID()
+
+            ElseIf CMBREPORTTYPE.Text = "MONTHWISE" Then
+
+                FILLMONTHGRID()
+                FILLMONTHSUMMGRID()
+                FILLMONTHADVGRID()
+                FILLMONTHPARTGRID()
 
             End If
         Catch ex As Exception
@@ -1315,7 +2521,11 @@ LINE1:
 
     Private Sub GRIDSUMM_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDSUMM.SortCompare
         Try
-            e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+            If e.Column.Index = SBALANCE.Index Then
+                e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+            Else
+                e.SortResult = CStr(e.CellValue1).CompareTo(CStr(e.CellValue2))
+            End If
             e.Handled = True
         Catch ex As Exception
             Throw ex

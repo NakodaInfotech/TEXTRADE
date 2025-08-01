@@ -43,7 +43,6 @@ Partial Class RecOutstanding
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -57,6 +56,7 @@ Partial Class RecOutstanding
         Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.TXTDAYS = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -134,8 +134,6 @@ Partial Class RecOutstanding
         Me.GINTAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBSUMMARY = New System.Windows.Forms.TabPage()
         Me.GRIDSUMM = New System.Windows.Forms.DataGridView()
-        Me.SNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SBALANCE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBADVANCES = New System.Windows.Forms.TabPage()
         Me.GRIDADV = New System.Windows.Forms.DataGridView()
         Me.ANAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -154,6 +152,8 @@ Partial Class RecOutstanding
         Me.PRECDAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PBALANCE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SBALANCE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GBFIND.SuspendLayout()
@@ -1154,27 +1154,6 @@ Partial Class RecOutstanding
         Me.GRIDSUMM.TabIndex = 686
         Me.GRIDSUMM.TabStop = False
         '
-        'SNAME
-        '
-        Me.SNAME.HeaderText = "Name"
-        Me.SNAME.Name = "SNAME"
-        Me.SNAME.ReadOnly = True
-        Me.SNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SNAME.Width = 500
-        '
-        'SBALANCE
-        '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle20.Format = "N2"
-        DataGridViewCellStyle20.NullValue = Nothing
-        Me.SBALANCE.DefaultCellStyle = DataGridViewCellStyle20
-        Me.SBALANCE.HeaderText = "Balance"
-        Me.SBALANCE.Name = "SBALANCE"
-        Me.SBALANCE.ReadOnly = True
-        Me.SBALANCE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SBALANCE.Width = 200
-        '
         'TBADVANCES
         '
         Me.TBADVANCES.Controls.Add(Me.GRIDADV)
@@ -1415,6 +1394,26 @@ Partial Class RecOutstanding
         Me.PDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.PDAYS.Width = 60
+        '
+        'SNAME
+        '
+        Me.SNAME.HeaderText = "Name"
+        Me.SNAME.Name = "SNAME"
+        Me.SNAME.ReadOnly = True
+        Me.SNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SNAME.Width = 500
+        '
+        'SBALANCE
+        '
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle20.Format = "N2"
+        DataGridViewCellStyle20.NullValue = Nothing
+        Me.SBALANCE.DefaultCellStyle = DataGridViewCellStyle20
+        Me.SBALANCE.HeaderText = "Balance"
+        Me.SBALANCE.Name = "SBALANCE"
+        Me.SBALANCE.ReadOnly = True
+        Me.SBALANCE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SBALANCE.Width = 200
         '
         'RecOutstanding
         '
