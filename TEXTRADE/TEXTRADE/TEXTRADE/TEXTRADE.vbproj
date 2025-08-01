@@ -2280,6 +2280,12 @@
     <Compile Include="Transactions\Magic Box\MagicBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForInvoice.Designer.vb">
+      <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
       <DependentUpon>PosterOrder.vb</DependentUpon>
     </Compile>
@@ -9636,6 +9642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\MagicBox.resx">
       <DependentUpon>MagicBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForInvoice.resx">
+      <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>
