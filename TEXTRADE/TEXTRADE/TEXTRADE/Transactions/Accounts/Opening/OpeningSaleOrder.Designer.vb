@@ -37,6 +37,8 @@ Partial Class OpeningSaleOrder
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningSaleOrder))
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.CMBORDERON = New System.Windows.Forms.ComboBox()
         Me.CHKVERIFY = New System.Windows.Forms.CheckBox()
         Me.LBLFROMCITY = New System.Windows.Forms.Label()
         Me.CMBFROMCITY = New System.Windows.Forms.ComboBox()
@@ -269,8 +271,6 @@ Partial Class OpeningSaleOrder
         Me.Label40 = New System.Windows.Forms.Label()
         Me.TXTSTOCKITEMNAME = New System.Windows.Forms.TextBox()
         Me.lbltotalamt = New System.Windows.Forms.Label()
-        Me.CMBORDERON = New System.Windows.Forms.ComboBox()
-        Me.Label60 = New System.Windows.Forms.Label()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -463,6 +463,33 @@ Partial Class OpeningSaleOrder
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 561)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.BackColor = System.Drawing.Color.Transparent
+        Me.Label60.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label60.Location = New System.Drawing.Point(968, 128)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(55, 14)
+        Me.Label60.TabIndex = 938
+        Me.Label60.Text = "Order On"
+        '
+        'CMBORDERON
+        '
+        Me.CMBORDERON.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBORDERON.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBORDERON.BackColor = System.Drawing.Color.White
+        Me.CMBORDERON.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBORDERON.FormattingEnabled = True
+        Me.CMBORDERON.Items.AddRange(New Object() {"PCS", "MTRS"})
+        Me.CMBORDERON.Location = New System.Drawing.Point(1030, 124)
+        Me.CMBORDERON.MaxDropDownItems = 14
+        Me.CMBORDERON.Name = "CMBORDERON"
+        Me.CMBORDERON.Size = New System.Drawing.Size(82, 22)
+        Me.CMBORDERON.TabIndex = 926
+        Me.CMBORDERON.Visible = False
         '
         'CHKVERIFY
         '
@@ -3188,33 +3215,6 @@ Partial Class OpeningSaleOrder
         Me.lbltotalamt.Text = "0"
         Me.lbltotalamt.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.lbltotalamt.Visible = False
-        '
-        'CMBORDERON
-        '
-        Me.CMBORDERON.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBORDERON.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBORDERON.BackColor = System.Drawing.Color.White
-        Me.CMBORDERON.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBORDERON.FormattingEnabled = True
-        Me.CMBORDERON.Items.AddRange(New Object() {"PCS", "MTRS"})
-        Me.CMBORDERON.Location = New System.Drawing.Point(1030, 124)
-        Me.CMBORDERON.MaxDropDownItems = 14
-        Me.CMBORDERON.Name = "CMBORDERON"
-        Me.CMBORDERON.Size = New System.Drawing.Size(82, 22)
-        Me.CMBORDERON.TabIndex = 926
-        Me.CMBORDERON.Visible = False
-        '
-        'Label60
-        '
-        Me.Label60.AutoSize = True
-        Me.Label60.BackColor = System.Drawing.Color.Transparent
-        Me.Label60.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label60.Location = New System.Drawing.Point(968, 128)
-        Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(55, 14)
-        Me.Label60.TabIndex = 938
-        Me.Label60.Text = "Order On"
         '
         'OpeningSaleOrder
         '
