@@ -1110,7 +1110,7 @@ line1:
                     alParaval.Add(Locationid)
                     alParaval.Add(YearId)
 
-                    Dim clspo As New ClsSaleOrder()
+                    Dim clspo As New ClsOpeningSaleOrder()
                     clspo.alParaval = alParaval
                     IntResult = clspo.Delete()
                     MsgBox("sale Order Deleted")
