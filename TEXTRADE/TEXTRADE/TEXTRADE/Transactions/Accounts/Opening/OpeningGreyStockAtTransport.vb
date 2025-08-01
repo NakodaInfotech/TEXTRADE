@@ -1,4 +1,5 @@
-﻿Imports BL
+﻿Imports System.ComponentModel
+Imports BL
 Imports DevExpress.CodeParser
 Imports DevExpress.Xpo.Logger
 
@@ -111,11 +112,11 @@ Public Class OpeningGreyStockAtTransport
     Private Sub gridstock_CellContentClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellContentClick
         Dim OBJ As Object = gridstock.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
 
-        If IsDBNull(OBJ) Then
-            TXTSEARCHBARCODE.Text = "" ' blank if dbnull values
-        Else
-            TXTSEARCHBARCODE.Text = CType(OBJ, String)
-        End If
+        'If IsDBNull(OBJ) Then
+        '    TXTSEARCHBARCODE.Text = "" ' blank if dbnull values
+        'Else
+        '    TXTSEARCHBARCODE.Text = CType(OBJ, String)
+        'End If
     End Sub
 
     Private Sub gridSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
@@ -201,7 +202,7 @@ Public Class OpeningGreyStockAtTransport
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, TXTBARCODE.Text.Trim, 0, 0)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -239,7 +240,7 @@ Public Class OpeningGreyStockAtTransport
 
 
             txtpcs.Text = 1
-            TXTYARDS.Clear()
+            'TXTYARDS.Clear()
             txtMtrs.Clear()
 
             'CMBPER.Text = ""
@@ -250,7 +251,7 @@ Public Class OpeningGreyStockAtTransport
             TXTCRDAYS.Clear()
             TXTBALENO.Clear()
             TXTLRNO.Clear()
-            TXTBARCODE.Clear()
+            'TXTBARCODE.Clear()
             TXTNO.Clear()
             If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
                 txtMtrs.Focus()
@@ -363,24 +364,24 @@ Public Class OpeningGreyStockAtTransport
 
     Private Sub cmbunit_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbunit.Validated
         Try
-            If cmbtype.Text = "STORE" Then
-                If cmbmerchant.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtpcs.Text) <> 0 And cmbunit.Text.Trim <> "" Then
-                    fillgrid()
-                Else
-                    If cmbmerchant.Text.Trim = "" Then
-                        MsgBox("Please Fill Item Name ")
-                        cmbmerchant.Focus()
-                        Exit Sub
-                    End If
+            'If cmbtype.Text = "STORE" Then
+            If cmbmerchant.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtpcs.Text) <> 0 And cmbunit.Text.Trim <> "" Then
+                fillgrid()
+            Else
+                If cmbmerchant.Text.Trim = "" Then
+                    MsgBox("Please Fill Item Name ")
+                    cmbmerchant.Focus()
+                    Exit Sub
+                End If
 
 
-                    If Val(txtpcs.Text.Trim) = 0 Then
-                        MsgBox("Please Fill Quantity ")
-                        txtpcs.Focus()
-                        Exit Sub
-                    End If
+                If Val(txtpcs.Text.Trim) = 0 Then
+                    MsgBox("Please Fill Quantity ")
+                    txtpcs.Focus()
+                    Exit Sub
                 End If
             End If
+            'End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -863,6 +864,35 @@ Public Class OpeningGreyStockAtTransport
             fillgrid()
             CLEAR = True
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBAGENT_Enter(sender As Object, e As EventArgs) Handles CMBAGENT.Enter
+        If CMBAGENT.Text.Trim = "" Then fillledger(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
+
+    End Sub
+
+    Private Sub CMBAGENT_Validating(sender As Object, e As CancelEventArgs) Handles CMBAGENT.Validating
+        Try
+            If CMBAGENT.Text.Trim <> "" Then NAMEVALIDATE(CMBAGENT, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBAGENT_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBAGENT.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT' "
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBAGENT.Text = OBJLEDGER.TEMPNAME
+            End If
         Catch ex As Exception
             Throw ex
         End Try
