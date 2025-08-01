@@ -3254,7 +3254,7 @@ LINE1:
 
 
 
-            GRIDDOUBLECLICK = False
+            If ClientName <> "SNCM" Then GRIDDOUBLECLICK = False
             CMBCHECKSRNO.Enabled = True
         End If
 
@@ -3289,22 +3289,30 @@ LINE1:
         ElseIf ClientName = "SNCM" Then
 
             GRIDMTRS.EndEdit() '
-            DT_MTRSDETAILS.Clear()
-            'ADD DATA FROM GRIDMTRS TO DT_MTRS
-            For Each MTRSROW As DataGridViewRow In GRIDMTRS.Rows
-                Dim newRow As DataRow = DT_MTRSDETAILS.NewRow()
+            ' Remove all rows for the current entry before adding new ones
+            For Each MTRSROW1 As DataGridViewRow In GRIDMTRS.Rows
+                Dim currentMainSrNo As Object = MTRSROW1.Cells(GMAINSRNO.Index).Value
+                For i As Integer = DT_MTRSDETAILS.Rows.Count - 1 To 0 Step -1
+                    If DT_MTRSDETAILS.Rows(i)("MAINSRNO") = currentMainSrNo Then
+                        DT_MTRSDETAILS.Rows.RemoveAt(i)
+                    End If
+                Next
 
-                ' Copy each field from TEMPDTMTRS row to DT_MTRSDETAILS row
-                newRow("DSRNO") = MTRSROW.Cells(DSRNO.Index).Value
-                newRow("DMTRS") = MTRSROW.Cells(DMTRS.Index).Value
-                newRow("MAINSRNO") = MTRSROW.Cells(GMAINSRNO.Index).Value
-
-                ' Add the new row to DT_MTRSDETAILS
-                DT_MTRSDETAILS.Rows.Add(newRow)
+                ' Now add new rows for this entry as usual
+                For Each MTRSROW As DataGridViewRow In GRIDMTRS.Rows
+                    If Not MTRSROW.IsNewRow Then
+                        Dim newRow As DataRow = DT_MTRSDETAILS.NewRow()
+                        newRow("DSRNO") = MTRSROW.Cells(DSRNO.Index).Value
+                        newRow("DMTRS") = MTRSROW.Cells(DMTRS.Index).Value
+                        newRow("MAINSRNO") = currentMainSrNo
+                        DT_MTRSDETAILS.Rows.Add(newRow)
+                    End If
+                Next
             Next
 
             txtqty.Clear()
             TXTBALENO.Focus()
+            GRIDDOUBLECLICK = False
         Else
             txtsrno.Focus()
         End If
@@ -4835,7 +4843,7 @@ line1:
             GBMTRS.Visible = False
 
             ' Focus back to the TXTRECDMTRS field
-            TXTRECDMTRS.Focus()
+            cmbqtyunit.Focus()
 
         Catch ex As Exception
             ' Handle any exceptions
@@ -5291,4 +5299,14 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
+        Try
+            'If GBMTRS.Visible = True Then
+            '    MsgBox("CLOSE THE MTRS BOX", MsgBoxStyle.Critical)
+            '    Exit Sub
+            'End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -229,6 +229,7 @@
     <Compile Include="Masters\ClsSampleTypeMaster.vb" />
     <Compile Include="Masters\ClsTransInsurance.vb" />
     <Compile Include="Masters\ClsVehicleMaster.vb" />
+    <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtTransport.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyReceiptMaster.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Opening\ClsOpeningAgencySaleOrder.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Sale\ClsAgencyInvoiceMaster.vb" />
