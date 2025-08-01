@@ -10483,5 +10483,24 @@ SKIPLINE:
         End Try
     End Sub
 
+    Private Sub OpeningGreyStockAtTransportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningGreyStockAtTransportToolStripMenuItem.Click
+        Try
+            Dim OBJCN As New OpeningGreyStockAtTransport
+            OBJCN.MdiParent = Me
+            OBJCN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OpeningGreyStockAtProcessToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningGreyStockAtProcessToolStripMenuItem.Click
+        Try
+            Dim OBJCN As New OpeningGreyStockAtProcess
+            OBJCN.MdiParent = Me
+            OBJCN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
