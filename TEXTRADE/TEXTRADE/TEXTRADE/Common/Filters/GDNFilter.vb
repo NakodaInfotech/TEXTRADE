@@ -108,7 +108,18 @@ Public Class GDNFilter
 
     Private Sub cmdshow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdshow.Click
         Try
-            Dim OBJGRN As New DispatchDesign
+
+            If RDBUNITSUMM.Checked = True Then
+                Dim GRIDUNITSUMM As New GDNUnitSummGridreport
+                GRIDUNITSUMM.MdiParent = MDIMain
+                GRIDUNITSUMM.Show()
+                If chkdate.Checked = True Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+                If CMBNAME.Text.Trim <> "" Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
+                Exit Sub
+            End If
+
+
+                Dim OBJGRN As New DispatchDesign
             OBJGRN.MdiParent = MDIMain
             OBJGRN.WHERECLAUSE = " {GDN.GDN_yearid}=" & YearId
 

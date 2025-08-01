@@ -4238,7 +4238,7 @@ LINE1:
         End If
 
 
-        If ClientName = "SBA" Or ClientName = "CHINTAN" Then TXTNOOFENTRIES.Visible = True
+        If ClientName = "SBA" Or ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Then TXTNOOFENTRIES.Visible = True
         If ClientName = "SNCM" Then GBALENO.HeaderText = "Beam No"
         If ITEMCOSTCENTRE = True And UserName = "Admin" Then CHKMANUALRATE.Visible = True
 
@@ -4400,9 +4400,9 @@ LINE1:
                     Exit Sub
                 End If
 
-                If ClientName = "SBA" Or ClientName = "SHREENAKODA" Or ClientName = "SONU" Or ClientName = "KARAN" Or ClientName = "MBB" Or ClientName = "CHINTAN" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
+                If ClientName = "SBA" Or ClientName = "SHREENAKODA" Or ClientName = "SONU" Or ClientName = "KARAN" Or ClientName = "MBB" Or ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
                     Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
-                    If ClientName = "CHINTAN" Then
+                    If ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Then
                         If Val(TXTNOOFENTRIES.Text.Trim) = 0 Then TXTNOOFENTRIES.Text = 1
                         TEMPQTY = Val(TXTNOOFENTRIES.Text.Trim)
                     Else
@@ -5044,7 +5044,7 @@ NEXTLINE:
 
     Private Sub cmbqtyunit_Validated(sender As Object, e As EventArgs) Handles cmbqtyunit.Validated
         Try
-            If ClientName = "CHINTAN" Then TXTNOOFENTRIES.Focus()
+            If ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Then TXTNOOFENTRIES.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -5052,7 +5052,7 @@ NEXTLINE:
 
     Private Sub TXTNOOFENTRIES_Validated(sender As Object, e As EventArgs) Handles TXTNOOFENTRIES.Validated
         Try
-            If ClientName = "CHINTAN" Then TXTMTRS.Focus()
+            If ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Then TXTMTRS.Focus()
         Catch ex As Exception
             Throw ex
         End Try
