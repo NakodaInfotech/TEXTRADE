@@ -4531,23 +4531,6 @@ LINE1:
 
     End Sub
 
-    Private Sub txtrefno_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtrefno.Validated
-        Try
-            If (ClientName = "SAKARIA" Or ClientName = "NVAHAN") And txtrefno.Text <> "" And EDIT = False And GRIDINVOICE.Rows.Count = 0 Then
-                'GET PURNO AND PURREGISTER TO FETCH THE DATA FROM PURCHASE
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("BILL_NO AS BILLNO, REGISTER_NAME AS REGNAME", "", "PURCHASEMASTER INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTER_ID ", " AND BILL_INITIALS = '" & txtrefno.Text.Trim & "' AND BILL_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    TEMPPURNO = Val(DT.Rows(0).Item("BILLNO"))
-                    TEMPPURREGNAME = DT.Rows(0).Item("REGNAME")
-                    GETDATAFROMPUR()
-                End If
-            End If
-            If txtrefno.Text.Trim = "" Then CMBSUPPLIERNAME.Text = ""
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
     Private Sub txtrefno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtrefno.Validating
         Try
