@@ -568,13 +568,13 @@ NEXTLINE:
         GRIDMAGICBOX.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Format(Val(BILLDATE.Value.Date), "MM/dd/yyyy"), Format(Val(ENTRYDATE.Value.Date), "MM/dd/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, TXTPARTYBILLNO.Text.Trim, txtcrdays.Text.Trim, TXTPONO.Text.Trim, TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Val(TXTFOLD.Text.Trim), TXTDESC.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, Format(Val(LRDATE.Value.Date), "MM/dd/yyyy"), TXTBALENO.Text.Trim, TXTPCS.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, TXTREMARKS.Text.Trim)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), BILLDATE.Value.ToString("MM/dd/yyyy"), ENTRYDATE.Value.ToString("MM/dd/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, TXTPARTYBILLNO.Text.Trim, txtcrdays.Text.Trim, TXTPONO.Text.Trim, TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Val(TXTFOLD.Text.Trim), TXTDESC.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, LRDATE.Value.ToString("MM/dd/yyyy"), TXTBALENO.Text.Trim, TXTPCS.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, TXTREMARKS.Text.Trim)
 
             getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDMAGICBOX.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
-            GRIDMAGICBOX.Item(gbilldate.Index, TEMPROW).Value = Format(Val(BILLDATE.Value.Date), "MM/dd/yyyy")
-            GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value = Format(Val(ENTRYDATE.Value.Date), "MM/dd/yyyy")
+            GRIDMAGICBOX.Item(GBILLDATE.Index, TEMPROW).Value = BILLDATE.Value.Date
+            GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value = ENTRYDATE.Value.Date
             GRIDMAGICBOX.Item(GSELLERS.Index, TEMPROW).Value = CMBSELLERS.Text.Trim
             GRIDMAGICBOX.Item(GBUYERS.Index, TEMPROW).Value = CMBBUYERS.Text.Trim
             GRIDMAGICBOX.Item(GNO.Index, TEMPROW).Value = TXTPARTYBILLNO.Text.Trim
@@ -588,7 +588,7 @@ NEXTLINE:
             GRIDMAGICBOX.Item(gdesc.Index, TEMPROW).Value = TXTDESC.Text.Trim
             GRIDMAGICBOX.Item(gtrans.Index, TEMPROW).Value = CMBTRANS.Text.Trim
             GRIDMAGICBOX.Item(GLRNO.Index, TEMPROW).Value = TXTLR.Text.Trim
-            GRIDMAGICBOX.Item(glrdate.Index, TEMPROW).Value = Format(Val(LRDATE.Value.Date), "MM/dd/yyyy")
+            GRIDMAGICBOX.Item(GLRDATE.Index, TEMPROW).Value = LRDATE.Value.Date
             GRIDMAGICBOX.Item(gbaleno.Index, TEMPROW).Value = TXTBALENO.Text.Trim
             GRIDMAGICBOX.Item(gpcs.Index, TEMPROW).Value = TXTPCS.Text.Trim
             GRIDMAGICBOX.Item(gmtrs.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
@@ -605,7 +605,7 @@ NEXTLINE:
             GRIDMAGICBOX.Item(GIGSTAMT.Index, TEMPROW).Value = Format(Val(TXTIGSTAMT.Text.Trim), "0.00")
             GRIDMAGICBOX.Item(groundoff.Index, TEMPROW).Value = Val(TXTROUNDOFF.Text.Trim)
             GRIDMAGICBOX.Item(ggrandtotal.Index, TEMPROW).Value = Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00")
-            GRIDMAGICBOX.Item(GCOMPER.Index, TEMPROW).Value = Format(Val(TXTCOMMPER.Text.Trim), "0.00")
+            GRIDMAGICBOX.Item(GCOMPER.Index, TEMPROW).Value = Format(Val(TXTCOMMPER.Text.Trim), "0")
             GRIDMAGICBOX.Item(GCOM.Index, TEMPROW).Value = CMBCOMM.Text.Trim
             GRIDMAGICBOX.Item(gremarks.Index, TEMPROW).Value = TXTREMARKS.Text.Trim
 
@@ -683,14 +683,45 @@ NEXTLINE:
             DTSO = OBJSELECTSO.DT
 
             If DTSO.Rows.Count > 0 Then
-                Dim PER As String = "Mtrs"
-                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
-                For Each DTROW As DataRow In DTSO.Rows
-                    GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Format(Val(DTROW("DATE")), "MM/dd/yyyy"), Format(Val(ENTRYDATE.Value.Date), "MM/dd/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, DTROW("PONO"), txtcrdays.Text.Trim, DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), DTROW("ITEMNAME"), Format(Val(DTROW("QTY").ToString()), "0.00"), Val(TXTFOLD.Text.Trim), TXTDESC.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, Format(Val(LRDATE.Value.Date), "MM/dd/yyyy"), TXTBALENO.Text.Trim, TXTPCS.Text.Trim, Format(Val(DTROW("MTRS")), "0.00"), Format(Val(DTROW("RATE")), "0.00"), PER, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, TXTREMARKS.Text.Trim)
-                Next
+                Dim DTROW As DataRow = DTSO.Rows(0) ' Use first row
 
+                ' Fill controls with values from selected Sales Order row
+                TXTPONO.Text = DTROW("SONO").ToString()
+                TXTPOSRNO.Text = DTROW("GRIDSRNO").ToString()
+                TXTPOTYPE.Text = DTROW("TYPE").ToString()
+                cmbitemname.Text = DTROW("ITEMNAME").ToString()
+                TXTQTY.Text = Val(DTROW("QTY").ToString())
+                TXTFOLD.Text = "0" ' or fill if available
+                TXTDESC.Text = ""     ' or fill if available
+                TXTLR.Text = ""       ' or fill if available
+                TXTBALENO.Text = "" ' DTROW("BALENO").ToString()
+                TXTPCS.Text = DTROW("QTY").ToString()
+                TXTMTRS.Text = Format(Val(DTROW("MTRS").ToString()), "0.00")
+                TXTRATES.Text = Format(Val(DTROW("RATE").ToString()), "0.00")
+                CMBPER.Text = "Mtrs"
+                TXTAMT.Text = "0.00"
+                TXTCHRGS.Text = "0.00"
+                TXTSUBTOTAL.Text = "0.00"
+                TXTCGSTPER.Text = "0.00"
+                TXTCGSTAMT.Text = "0.00"
+                TXTSGSTPER.Text = "0.00"
+                TXTSGSTAMT.Text = "0.00"
+                TXTIGSTPER.Text = "0.00"
+                TXTIGSTAMT.Text = "0.00"
+                TXTROUNDOFF.Text = "0.00"
+                TXTGRANDTOTAL.Text = "0.00"
+                TXTCOMMPER.Text = "0"
+                CMBCOMM.Text = ""
+                TXTREMARKS.Text = DTROW("REMARKS").ToString()
+
+                ' Optional: Set the BILLDATE if present
+                If DTROW.Table.Columns.Contains("DATE") Then
+                    BILLDATE.Value = Convert.ToDateTime(DTROW("DATE"))
+                End If
+
+                TXTPARTYBILLNO.Focus()
                 getsrno(GRIDMAGICBOX)
-
+                TXTPARTYBILLNO.Focus()
 
 
             End If
@@ -752,5 +783,9 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDSELECTPO_Validated(sender As Object, e As EventArgs) Handles CMDSELECTPO.Validated
+        TXTPARTYBILLNO.Focus()
     End Sub
 End Class
