@@ -69,7 +69,7 @@ Public Class OpeningGreyStockAtProcess
         Try
             If gridstock.CurrentRow.Index >= 0 And gridstock.Item(gsrno.Index, gridstock.CurrentRow.Index).Value <> Nothing Then
 
-                If Convert.ToBoolean(gridstock.Rows(gridstock.CurrentRow.Index).Cells(gdone.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
+                If Convert.ToBoolean(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
                     MsgBox("Item Locked", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
@@ -99,7 +99,7 @@ Public Class OpeningGreyStockAtProcess
                 CMBAGENT.Text = gridstock.Item(GAGENT.Index, gridstock.CurrentRow.Index).Value.ToString
                 TXTCRDAYS.Text = gridstock.Item(GCRDAYS.Index, gridstock.CurrentRow.Index).Value.ToString
 
-                TXTBARCODE.Text = gridstock.Item(gBarcode.Index, gridstock.CurrentRow.Index).Value.ToString
+                'TXTBARCODE.Text = gridstock.Item(gBarcode.Index, gridstock.CurrentRow.Index).Value.ToString
                 TEMPROW = gridstock.CurrentRow.Index
                 txtsrno.Focus()
             End If
@@ -111,11 +111,11 @@ Public Class OpeningGreyStockAtProcess
     Private Sub gridstock_CellContentClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellContentClick
         Dim OBJ As Object = gridstock.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
 
-        If IsDBNull(OBJ) Then
-            TXTSEARCHBARCODE.Text = "" ' blank if dbnull values
-        Else
-            TXTSEARCHBARCODE.Text = CType(OBJ, String)
-        End If
+        'If IsDBNull(OBJ) Then
+        '    TXTSEARCHBARCODE.Text = "" ' blank if dbnull values
+        'Else
+        '    TXTSEARCHBARCODE.Text = CType(OBJ, String)
+        'End If
     End Sub
 
     Private Sub gridSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
@@ -166,7 +166,7 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub cmbMERCHANT_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTRANS.Enter
+    Private Sub cmbtrans_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTRANS.Enter
         Try
             If CMBTRANS.Text.Trim = "" Then fillitemname(CMBTRANS, " AND ITEMMASTER.ITEM_FRMSTRING IN ('MERCHANT')")
         Catch ex As Exception
@@ -175,10 +175,52 @@ Public Class OpeningGreyStockAtProcess
     End Sub
 
     Private Sub OpeningGreyStockAtProcess_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'OPENING'")
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
 
+            fillcmb()
+            ' CMBDYEINGJOB.SelectedIndex = 0
+            ' If USERGODOWN <> "" Then cmbgodown.Text = USERGODOWN Else cmbgodown.Text = ""
+            openingdate.Value = AccFrom.Date
+
+            ' cmbpiecetype.Text = "FRESH"
+
+
+
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+
+            Dim OBJCMN As New ClsCommon
+            Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_NO, 0) AS SMNO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_GRIDSRNO, 0) AS SMGRIDSRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DATE AS DATE, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PURLEDGERS.Acc_cmpname, '') AS PURNAME, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRNO, '') AS LRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRDATE AS LRDATE, ISNULL(ITEMMASTER.item_name, '') AS MERCHANT,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_BALENO, '') AS BALENO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PCS, 0) AS PCS, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_MTRS, 0) AS MTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTPCS, 0) AS OUTPCS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_RATE, 0) AS RATE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PER, '') AS PER, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_CRDAYS, 0) AS CRDAYS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_REFLOTNO, '') AS REFLOTNO FROM   STOCKMASTER_GREYPROCESS INNER JOIN LEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LEDGERID = LEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = LEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = AGENTLEDGERS.Acc_yearid AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_UNITID = UNITMASTER.unit_id LEFT OUTER JOIN COLORMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_TRANSID = TRANSLEDGERS.Acc_id AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = TRANSLEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS PURLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PURLEDGERID = PURLEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = PURLEDGERS.Acc_yearid  WHERE SMGREYPROCESS_YEARID = " & YearId & " ORDER BY SMNO", "", "")
+            If dttable.Rows.Count > 0 Then
+                gridstock.RowCount = 0
+                For Each DR As DataRow In dttable.Rows
+                    openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
+                    gridstock.Rows.Add(Val(DR("SMNO")), DR("SMGRIDSRNO"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
+                    If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                Next
+                getsrno(gridstock)
+                gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
+            End If
+
+            If gridstock.RowCount > 0 Then
+                txtsrno.Text = Val(gridstock.Rows(gridstock.RowCount - 1).Cells(0).Value) + 1
+            Else
+                txtsrno.Text = 1
+            End If
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
     End Sub
 
-    Private Sub cmbMERCHANT_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANS.Validating
+    Private Sub cmbtrans_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANS.Validating
         Try
             If CMBTRANS.Text.Trim <> "" Then itemvalidate(CMBTRANS, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
         Catch ex As Exception
@@ -205,7 +247,7 @@ Public Class OpeningGreyStockAtProcess
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, TXTBARCODE.Text.Trim, 0, 0)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTOUTPCS.Text.Trim), Val(TXTOUTMTRS.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -222,12 +264,14 @@ Public Class OpeningGreyStockAtProcess
             gridstock.Item(Gpcs.Index, TEMPROW).Value = Val(txtpcs.Text.Trim)
             gridstock.Item(Gunit.Index, TEMPROW).Value = cmbunit.Text.Trim
             gridstock.Item(gMtrs.Index, TEMPROW).Value = txtMtrs.Text.Trim
+            gridstock.Item(gOutpcs.Index, TEMPROW).Value = TXTOUTPCS.Text.Trim
+            gridstock.Item(goutmtrs.Index, TEMPROW).Value = TXTOUTMTRS.Text.Trim
             gridstock.Item(GRATE.Index, TEMPROW).Value = TXTRATE.Text.Trim
             gridstock.Item(GPer.Index, TEMPROW).Value = CMBPER.Text.Trim
             gridstock.Item(GAMOUNT.Index, TEMPROW).Value = TXTAMOUNT.Text.Trim
             gridstock.Item(GAGENT.Index, TEMPROW).Value = CMBAGENT.Text.Trim
             gridstock.Item(GCRDAYS.Index, TEMPROW).Value = TXTCRDAYS.Text.Trim
-
+            gridstock.Item(GREFLOTNO.Index, TEMPROW).Value = txtreflotno.Text.Trim
 
             GRIDDOUBLECLICK = False
         End If
@@ -323,11 +367,13 @@ Public Class OpeningGreyStockAtProcess
             cmbunit.Text = gridstock.Item(Gunit.Index, TEMPROWINDEX).Value
             txtpcs.Text = gridstock.Item(Gpcs.Index, TEMPROWINDEX).Value
             txtMtrs.Text = gridstock.Item(gMtrs.Index, TEMPROWINDEX).Value
+            TXTOUTPCS.Text = gridstock.Item(gOutpcs.Index, TEMPROWINDEX).Value
+            TXTOUTMTRS.Text = gridstock.Item(goutmtrs.Index, TEMPROWINDEX).Value
             TXTRATE.Text = gridstock.Item(GRATE.Index, TEMPROWINDEX).Value
             TXTAMOUNT.Text = gridstock.Item(GAMOUNT.Index, TEMPROWINDEX).Value
             TXTLRNO.Text = gridstock.Item(GLRNO.Index, TEMPROWINDEX).Value
             TXTBALENO.Text = gridstock.Item(GBALENO.Index, TEMPROWINDEX).Value
-            TXTBARCODE.Text = gridstock.Item(gBarcode.Index, TEMPROWINDEX).Value
+            'TXTBARCODE.Text = gridstock.Item(gBarcode.Index, TEMPROWINDEX).Value
 
             txtMtrs.Focus()
         ElseIf e.KeyCode = Keys.Oemcomma Then
@@ -350,51 +396,51 @@ Public Class OpeningGreyStockAtProcess
     End Sub
 
 
-    Private Sub OpeningStock_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'OPENING'")
-            USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
-            USERVIEW = DTROW(0).Item(3)
-            USERDELETE = DTROW(0).Item(4)
+    'Private Sub OpeningStock_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    '    Try
+    '        Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'OPENING'")
+    '        USERADD = DTROW(0).Item(1)
+    '        USEREDIT = DTROW(0).Item(2)
+    '        USERVIEW = DTROW(0).Item(3)
+    '        USERDELETE = DTROW(0).Item(4)
 
-            fillcmb()
-            ' CMBDYEINGJOB.SelectedIndex = 0
-            ' If USERGODOWN <> "" Then cmbgodown.Text = USERGODOWN Else cmbgodown.Text = ""
-            openingdate.Value = AccFrom.Date
+    '        fillcmb()
+    '        ' CMBDYEINGJOB.SelectedIndex = 0
+    '        ' If USERGODOWN <> "" Then cmbgodown.Text = USERGODOWN Else cmbgodown.Text = ""
+    '        openingdate.Value = AccFrom.Date
 
-            ' cmbpiecetype.Text = "FRESH"
+    '        ' cmbpiecetype.Text = "FRESH"
 
 
 
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+    '        If USEREDIT = False And USERVIEW = False Then
+    '            MsgBox("Insufficient Rights")
+    '            Exit Sub
+    '        End If
 
-            Dim OBJCMN As New ClsCommon
-            Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_NO, 0) AS SMNO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_GRIDSRNO, 0) AS SMGRIDSRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DATE AS DATE, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PURLEDGERS.Acc_cmpname, '') AS PURNAME, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRNO, '') AS LRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRDATE AS LRDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_BALENO, '') AS BALENO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PCS, 0) AS PCS, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_MTRS, 0) AS MTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTPCS, 0) AS OUTPCS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_RATE, 0) AS RATE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PER, '') AS PER, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_CRDAYS, 0) AS CRDAYS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_REFLOTNO, '') AS REFLOTNO FROM   STOCKMASTER_GREYPROCESS INNER JOIN LEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LEDGERID = LEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = LEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = AGENTLEDGERS.Acc_yearid AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_UNITID = UNITMASTER.unit_id LEFT OUTER JOIN COLORMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_TRANSID = TRANSLEDGERS.Acc_id AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = TRANSLEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS PURLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PURLEDGERID = PURLEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = PURLEDGERS.Acc_yearid  WHERE SMGREYPROCESS_YEARID = " & YearId & " ORDER BY SMNO", "", "")
-            If dttable.Rows.Count > 0 Then
-                gridstock.RowCount = 0
-                For Each DR As DataRow In dttable.Rows
-                    openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
-                    gridstock.Rows.Add(Val(DR("GRIDSRNO")), DR("SMNO"), Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("ITEMNAME"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
-                    If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                Next
-                getsrno(gridstock)
-                gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
-            End If
+    '        Dim OBJCMN As New ClsCommon
+    '        Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_NO, 0) AS SMNO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_GRIDSRNO, 0) AS SMGRIDSRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DATE AS DATE, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PURLEDGERS.Acc_cmpname, '') AS PURNAME, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRNO, '') AS LRNO, STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LRDATE AS LRDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_BALENO, '') AS BALENO, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PCS, 0) AS PCS, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_MTRS, 0) AS MTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTPCS, 0) AS OUTPCS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_RATE, 0) AS RATE, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PER, '') AS PER, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_CRDAYS, 0) AS CRDAYS, ISNULL(STOCKMASTER_GREYPROCESS.SMGREYPROCESS_REFLOTNO, '') AS REFLOTNO FROM   STOCKMASTER_GREYPROCESS INNER JOIN LEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_LEDGERID = LEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = LEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = AGENTLEDGERS.Acc_yearid AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_UNITID = UNITMASTER.unit_id LEFT OUTER JOIN COLORMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_TRANSID = TRANSLEDGERS.Acc_id AND  STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = TRANSLEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS PURLEDGERS ON STOCKMASTER_GREYPROCESS.SMGREYPROCESS_PURLEDGERID = PURLEDGERS.Acc_id AND STOCKMASTER_GREYPROCESS.SMGREYPROCESS_YEARID = PURLEDGERS.Acc_yearid  WHERE SMGREYPROCESS_YEARID = " & YearId & " ORDER BY SMNO", "", "")
+    '        If dttable.Rows.Count > 0 Then
+    '            gridstock.RowCount = 0
+    '            For Each DR As DataRow In dttable.Rows
+    '                openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
+    '                gridstock.Rows.Add(Val(DR("SRNO")), DR("SMNO"), Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("ITEMNAME"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
+    '                If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+    '            Next
+    '            getsrno(gridstock)
+    '            gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
+    '        End If
 
-            If gridstock.RowCount > 0 Then
-                txtsrno.Text = Val(gridstock.Rows(gridstock.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
+    '        If gridstock.RowCount > 0 Then
+    '            txtsrno.Text = Val(gridstock.Rows(gridstock.RowCount - 1).Cells(0).Value) + 1
+    '        Else
+    '            txtsrno.Text = 1
+    '        End If
 
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub cmbunit_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbunit.Validated
         Try
@@ -493,8 +539,6 @@ Public Class OpeningGreyStockAtProcess
             ALPARAVAL.Add(CMBTRANS.Text.Trim)
             ALPARAVAL.Add(TXTLRNO.Text.Trim)
             ALPARAVAL.Add(DTLRDATE.Value.Date)
-            'ALPARAVAL.Add(cmbtype.Text.Trim)
-
             ALPARAVAL.Add(cmbmerchant.Text.Trim)
             ALPARAVAL.Add(CMBDESIGN.Text.Trim)
             ALPARAVAL.Add(cmbcolor.Text.Trim)
@@ -502,15 +546,15 @@ Public Class OpeningGreyStockAtProcess
             ALPARAVAL.Add(Val(txtpcs.Text.Trim))
             ALPARAVAL.Add(cmbunit.Text.Trim)
             ALPARAVAL.Add(Val(txtMtrs.Text.Trim))
+            ALPARAVAL.Add(Val(txtOUTPCS.Text.Trim))
+            ALPARAVAL.Add(Val(txtOUTMTRS.Text.Trim))
             ALPARAVAL.Add(Val(TXTRATE.Text.Trim))
             ALPARAVAL.Add(CMBPER.Text.Trim)
             ALPARAVAL.Add(Val(TXTAMOUNT.Text.Trim))
             ALPARAVAL.Add(CMBAGENT.Text.Trim)
             ALPARAVAL.Add(Val(TXTCRDAYS.Text.Trim))
-            ALPARAVAL.Add(TXTBARCODE.Text.Trim)
             ALPARAVAL.Add(txtreflotno.Text.Trim) 'REFLOTNO
             ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(YearId)
             ALPARAVAL.Add(0)
@@ -526,7 +570,7 @@ Public Class OpeningGreyStockAtProcess
 
                 Dim DT As DataTable = OBJSM.save()
                 If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
-                BARCODE()
+                'BARCODE()
             Else
 
                 If USEREDIT = False Then
@@ -542,114 +586,114 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Sub BARCODE()
-        Try
-            'GET BARCODE NO FROM DATABASE
-            Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" SM_BARCODE AS BARCODE ", "", " STOCKMASTER ", " AND SM_NO = " & Val(TXTNO.Text.Trim) & " AND SM_CMPID = " & CmpId & " AND SM_LOCATIONID = " & Locationid & " AND SM_YEARID = " & YearId)
-            If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
-            PRINTBARCODE()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Sub BARCODE()
+    '    Try
+    '        'GET BARCODE NO FROM DATABASE
+    '        Dim OBJCMN As New ClsCommon
+    '        Dim DT As DataTable = OBJCMN.SEARCH(" SM_BARCODE AS BARCODE ", "", " STOCKMASTER ", " AND SM_NO = " & Val(TXTNO.Text.Trim) & " AND SM_CMPID = " & CmpId & " AND SM_LOCATIONID = " & Locationid & " AND SM_YEARID = " & YearId)
+    '        If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
+    '        PRINTBARCODE()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Sub PRINTBARCODE()
-        Try
-            If ALLOWBARCODEPRINT = True Then
+    'Sub PRINTBARCODE()
+    '    Try
+    '        If ALLOWBARCODEPRINT = True Then
 
-                If CHKPRINT.Checked = False And Val(TXTFROM.Text.Trim) = 0 Then Exit Sub
+    '            If CHKPRINT.Checked = False And Val(TXTFROM.Text.Trim) = 0 Then Exit Sub
 
-                    Dim WHOLESALEBARCODE As Integer = 0
-                    If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
+    '                Dim WHOLESALEBARCODE As Integer = 0
+    '                If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
 
-                    Dim TEMPHEADER As String = ""
-                    If ClientName = "YASHVI" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
-                        If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
-                        If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
-                        If TEMPHEADER = "N" Then TEMPHEADER = ""
-                    End If
+    '                Dim TEMPHEADER As String = ""
+    '                If ClientName = "YASHVI" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
+    '                    If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
+    '                    If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
+    '                    If TEMPHEADER = "N" Then TEMPHEADER = ""
+    '                End If
 
-                    If ClientName = "GELATO" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
+    '                If ClientName = "GELATO" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
+    '                End If
 
-                    If ClientName = "RAJKRIPA" Or ClientName = "MOHATUL" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
+    '                If ClientName = "RAJKRIPA" Or ClientName = "MOHATUL" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+    '                End If
 
-                    If ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SIMPLEX" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
+    '                If ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SIMPLEX" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+    '                End If
 
-                    If ClientName = "MANS" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION" & Chr(13) & "2 FOR OCM")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
+    '                If ClientName = "MANS" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION" & Chr(13) & "2 FOR OCM")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
+    '                End If
 
-                    If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
+    '                If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+    '                End If
 
-                    If ClientName = "SST" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
+    '                If ClientName = "SST" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
+    '                End If
 
-                    If ClientName = "MANSI" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP" & Chr(13) & "4 FOR 100 X 50")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" Then Exit Sub
-                    End If
-
-
-                    Dim SUPRIYAHEADER As String = ""
-                    If ClientName = "SUPRIYA" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
-                        If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
-                        If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
-                        If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
-                        If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
-                        If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
-                    End If
+    '                If ClientName = "MANSI" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP" & Chr(13) & "4 FOR 100 X 50")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" Then Exit Sub
+    '                End If
 
 
-                    If CHKPRINT.CheckState = CheckState.Checked Then
-                    BARCODEPRINTING(TXTBARCODE.Text.Trim, "", cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, cmbunit.Text.Trim, TXTBALENO.Text.Trim, Val(txtMtrs.Text.Trim), Val(txtpcs.Text.Trim), TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, cmbname.Text.Trim, AccFrom.Date)
-                Else
-                        If Val(TXTTO.Text.Trim) > 0 And Val(TXTFROM.Text.Trim) > 0 Then
-                            If (Val(TXTTO.Text.Trim) < Val(TXTFROM.Text.Trim)) Or (Val(TXTFROM.Text.Trim) > gridstock.RowCount) Or (Val(TXTTO.Text.Trim) > gridstock.RowCount) Then
-                                MsgBox("Invalid No Entered", MsgBoxStyle.Critical)
-                                TXTFROM.Focus()
-                                Exit Sub
-                            End If
-                            Dim TEMPMSG As Integer = MsgBox("Wish to Print Bar Code?", MsgBoxStyle.YesNo)
-                            If TEMPMSG = vbNo Then Exit Sub
-
-                            For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
-
-                                'IF barcode is used the BARCODE printING WILL BE BLOCKED
-                                If Convert.ToBoolean(gridstock.Item(gdone.Index, i - 1).Value) = False Then
-                                'BARCODEPRINTING(gridstock.Item(gBarcode.Index, i - 1).Value, gridstock.Item(GMERCHANT.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(gcolor.Index, i - 1).Value, gridstock.Item(Gunit.Index, i - 1).Value, gridstock.Item(GBALENO.Index, i - 1).Value, Val(gridstock.Item(gMtrs.Index, i - 1).Value), Val(gridstock.Item(Gpcs.Index, i - 1).Value), TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, gridstock.Item(GNAME.Index, i - 1).Value)
-                            End If
-
-                            Next
-                            TXTFROM.Clear()
-                            TXTTO.Clear()
-                        End If
-                    End If
-                End If
+    '                Dim SUPRIYAHEADER As String = ""
+    '                If ClientName = "SUPRIYA" Then
+    '                    TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
+    '                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
+    '                    If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
+    '                    If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
+    '                    If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
+    '                    If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
+    '                    If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
+    '                End If
 
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '                If CHKPRINT.CheckState = CheckState.Checked Then
+    '                BARCODEPRINTING(TXTBARCODE.Text.Trim, "", cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, cmbunit.Text.Trim, TXTBALENO.Text.Trim, Val(txtMtrs.Text.Trim), Val(txtpcs.Text.Trim), TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, cmbname.Text.Trim, AccFrom.Date)
+    '            Else
+    '                    If Val(TXTTO.Text.Trim) > 0 And Val(TXTFROM.Text.Trim) > 0 Then
+    '                        If (Val(TXTTO.Text.Trim) < Val(TXTFROM.Text.Trim)) Or (Val(TXTFROM.Text.Trim) > gridstock.RowCount) Or (Val(TXTTO.Text.Trim) > gridstock.RowCount) Then
+    '                            MsgBox("Invalid No Entered", MsgBoxStyle.Critical)
+    '                            TXTFROM.Focus()
+    '                            Exit Sub
+    '                        End If
+    '                        Dim TEMPMSG As Integer = MsgBox("Wish to Print Bar Code?", MsgBoxStyle.YesNo)
+    '                        If TEMPMSG = vbNo Then Exit Sub
+
+    '                        For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
+
+    '                        'IF barcode is used the BARCODE printING WILL BE BLOCKED
+    '                        If Convert.ToBoolean(gridstock.Item(GNO.Index, i - 1).Value) = False Then
+    '                            'BARCODEPRINTING(gridstock.Item(gBarcode.Index, i - 1).Value, gridstock.Item(GMERCHANT.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(gcolor.Index, i - 1).Value, gridstock.Item(Gunit.Index, i - 1).Value, gridstock.Item(GBALENO.Index, i - 1).Value, Val(gridstock.Item(gMtrs.Index, i - 1).Value), Val(gridstock.Item(Gpcs.Index, i - 1).Value), TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, gridstock.Item(GNAME.Index, i - 1).Value)
+    '                        End If
+
+    '                    Next
+    '                        TXTFROM.Clear()
+    '                        TXTTO.Clear()
+    '                    End If
+    '                End If
+    '            End If
+
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub txtpcs_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtpcs.Validating
         Try
@@ -729,7 +773,7 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub TXTTO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTTO.Validating
         Try
-            PRINTBARCODE()
+            'PRINTBARCODE()
         Catch ex As Exception
             Throw ex
         End Try
@@ -851,7 +895,7 @@ Public Class OpeningGreyStockAtProcess
         Try
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 TXTBARCODE.Visible = True
-                LBLBARCODE.Visible = True
+                'LBLBARCODE.Visible = True
                 GRATE.HeaderText = "Pur Rate"
                 GAMOUNT.HeaderText = "Sale Rate"
                 TXTAMOUNT.ReadOnly = False
@@ -887,15 +931,15 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub TXTSEARCHBARCODE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTSEARCHBARCODE.Validated
-        For Each ROW As DataGridViewRow In gridstock.Rows
-            If LCase(ROW.Cells(gBarcode.Index).Value) = LCase(TXTSEARCHBARCODE.Text.Trim) Then
-                gridstock.FirstDisplayedScrollingRowIndex = ROW.Index
-                gridstock.Rows(ROW.Index).Selected = True
-                TXTSEARCHBARCODE.Clear()
-                Exit Sub
-            End If
-        Next
+    Private Sub TXTSEARCHBARCODE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        'For Each ROW As DataGridViewRow In gridstock.Rows
+        '    If LCase(ROW.Cells(gBarcode.Index).Value) = LCase(TXTSEARCHBARCODE.Text.Trim) Then
+        '        gridstock.FirstDisplayedScrollingRowIndex = ROW.Index
+        '        gridstock.Rows(ROW.Index).Selected = True
+        '        TXTSEARCHBARCODE.Clear()
+        '        Exit Sub
+        '    End If
+        'Next
     End Sub
 
     Private Sub TXTYARDS_Validated(sender As Object, e As EventArgs) Handles TXTYARDS.Validated
@@ -904,6 +948,22 @@ Public Class OpeningGreyStockAtProcess
             txtMtrs.Focus()
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbmerchant_Enter(sender As Object, e As EventArgs) Handles cmbmerchant.Enter
+        Try
+            If cmbmerchant.Text.Trim = "" Then fillitemname(cmbmerchant, " AND ITEMMASTER.ITEM_FRMSTRING IN ('MERCHANT')")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbmerchant_Validating(sender As Object, e As CancelEventArgs) Handles cmbmerchant.Validating
+        Try
+            If cmbmerchant.Text.Trim <> "" Then itemvalidate(cmbmerchant, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
