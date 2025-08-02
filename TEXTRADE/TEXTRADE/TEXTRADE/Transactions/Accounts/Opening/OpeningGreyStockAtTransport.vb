@@ -7,7 +7,7 @@ Public Class OpeningGreyStockAtTransport
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
-    Dim CLEAR As Boolean = False
+    'Dim CLEAR As Boolean = False
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
@@ -65,6 +65,33 @@ Public Class OpeningGreyStockAtTransport
         Next
         Return bln
     End Function
+    Sub clear()
+
+        'clearing textboxes
+        EP.Clear()
+        openingdate.Value = Now.Date
+        cmbname.Text = ""
+        CMBTRANS.Text = ""
+        TXTLRNO.Clear()
+        DTLRDATE.Value = Now.Date
+        cmbmerchant.Text = ""
+        CMBDESIGN.Text = ""
+        cmbcolor.Text = ""
+        TXTBALENO.Clear()
+        txtpcs.Clear()
+        cmbunit.Text = ""
+        txtMtrs.Clear()
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMOUNT.Clear()
+        CMBAGENT.Text = ""
+        TXTCRDAYS.Clear()
+
+
+        EDIT = False
+        GRIDDOUBLECLICK = False
+
+    End Sub
 
     Sub EDITROW()
         Try
@@ -142,11 +169,9 @@ Public Class OpeningGreyStockAtTransport
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                If ClientName = "RADHA" Then
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')", "Sundry Creditors", "ACCOUNTS")
-                Else
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
-                End If
+
+                NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -228,37 +253,7 @@ Public Class OpeningGreyStockAtTransport
             GRIDDOUBLECLICK = False
         End If
 
-        If CLEAR = True Then
-            txtsrno.Text = gridstock.RowCount + 1
-            If ClientName = "REALCORPORATION" Then
-                cmbmerchant.Text = ""
-                CMBDESIGN.Text = ""
-                cmbcolor.Text = ""
-            End If
-
-            If ClientName <> "TINUMINU" And ClientName <> "RADHA" Then cmbname.Text = ""
-
-
-            txtpcs.Text = 1
-            'TXTYARDS.Clear()
-            txtMtrs.Clear()
-
-            'CMBPER.Text = ""
-            TXTRATE.Clear()
-            DTLRDATE.Value = Now.Date
-            TXTAMOUNT.Clear()
-            CMBAGENT.Text = ""
-            TXTCRDAYS.Clear()
-            TXTBALENO.Clear()
-            TXTLRNO.Clear()
-            'TXTBARCODE.Clear()
-            TXTNO.Clear()
-            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
-                txtMtrs.Focus()
-            ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Then
-                txtpcs.Focus()
-            End If
-        End If
+        clear()
 
     End Sub
 
@@ -339,11 +334,11 @@ Public Class OpeningGreyStockAtTransport
             End If
 
             Dim OBJCMN As New ClsCommon
-            Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_NO, 0) AS SGTNO, STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_DATE AS DATE, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LRNO, '') AS LRNO, STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LRDATE AS LRDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_BALENO, '') AS BALENO, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_PCS, 0) AS PCS, ISNULL(UNITMASTER.unit_name, '') AS UNIT, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_MTRS, 0) AS MTRS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_RATE, 0) AS RATE, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_PER, '') AS PER, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_CRDAYS, 0) AS CRDAYS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_OUTPCS, 0)AS OUTPCS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_OUTMTRS, 0)AS OUTMTRS  FROM STOCKMASTER_GREYTRANSPORT LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_UNITID = UNITMASTER.unit_id LEFT OUTER JOIN COLORMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LEDGERID = LEDGERS.Acc_id  WHERE STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_YEARID = " & YearId & " ORDER BY SMGREYTRANS_NO", "", "")
+            Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_NO, 0) AS SGTNO, STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_DATE AS DATE, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LRNO, '') AS LRNO, STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LRDATE AS LRDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_BALENO, '') AS BALENO, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_PCS, 0) AS PCS, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_MTRS, 0) AS MTRS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_RATE, 0) AS RATE, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_PER, '') AS PER, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_CRDAYS, 0) AS CRDAYS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_OUTPCS, 0)AS OUTPCS, ISNULL(STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_OUTMTRS, 0)AS OUTMTRS  FROM STOCKMASTER_GREYTRANSPORT LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_UNITID = UNITMASTER.unit_id LEFT OUTER JOIN COLORMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_LEDGERID = LEDGERS.Acc_id  WHERE STOCKMASTER_GREYTRANSPORT.SMGREYTRANS_YEARID = " & YearId & " ORDER BY SMGREYTRANS_NO", "", "")
             If dttable.Rows.Count > 0 Then
                 gridstock.RowCount = 0
                 For Each DR As DataRow In dttable.Rows
-                    openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
+                    openingdate.Value = Now.Date
                     gridstock.Rows.Add(Val(DR("GRIDSRNO")), DR("SGTNO"), DR("NAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("ITEMNAME"), DR("DESIGN"), DR("COLOR"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), Val(DR("CRDAYS")), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
@@ -366,7 +361,7 @@ Public Class OpeningGreyStockAtTransport
         Try
             'If cmbtype.Text = "STORE" Then
             If cmbmerchant.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtpcs.Text) <> 0 And cmbunit.Text.Trim <> "" Then
-                fillgrid()
+                'fillgrid()
             Else
                 If cmbmerchant.Text.Trim = "" Then
                     MsgBox("Please Fill Item Name ")
@@ -448,7 +443,7 @@ Public Class OpeningGreyStockAtTransport
 
 
             Dim ALPARAVAL As New ArrayList
-            Dim OBJSM As New ClsStockMaster
+            Dim OBJSM As New ClsOpeningGreyStockAtTransport
 
             ALPARAVAL.Add(openingdate.Value.Date)
 
@@ -472,11 +467,11 @@ Public Class OpeningGreyStockAtTransport
 
 
             ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Locationid)
+            'ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(YearId)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
+            'ALPARAVAL.Add(0)
+            'ALPARAVAL.Add(0)
 
             OBJSM.alParaval = ALPARAVAL
             If GRIDDOUBLECLICK = False Then
@@ -487,9 +482,10 @@ Public Class OpeningGreyStockAtTransport
                 End If
 
                 Dim DT As DataTable = OBJSM.save()
-                '    If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
-                '    BARCODE()
-                'Else
+                MessageBox.Show("Details Added")
+                'If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                'BARCODE()
+            Else
 
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -498,6 +494,7 @@ Public Class OpeningGreyStockAtTransport
 
                 ALPARAVAL.Add(TXTNO.Text.Trim)
                 Dim INTRES As Integer = OBJSM.UPDATE()
+                MessageBox.Show("Details Updated")
             End If
         Catch ex As Exception
             Throw ex
@@ -681,7 +678,7 @@ Public Class OpeningGreyStockAtTransport
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value)
                 ALPARAVAL.Add(CmpId)
-                ALPARAVAL.Add(Locationid)
+                'ALPARAVAL.Add(Locationid)
                 ALPARAVAL.Add(YearId)
 
                 OBJSM.alParaval = ALPARAVAL
@@ -860,9 +857,10 @@ Public Class OpeningGreyStockAtTransport
         Try
 
             SAVE()
-
             fillgrid()
-            CLEAR = True
+
+            clear()
+
 
         Catch ex As Exception
             Throw ex
@@ -898,9 +896,13 @@ Public Class OpeningGreyStockAtTransport
         End Try
     End Sub
 
+    Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
+        clear()
+    End Sub
+
     Private Sub cmbmerchant_Validating(sender As Object, e As CancelEventArgs) Handles cmbmerchant.Validating
         Try
-            If cmbmerchant.Text.Trim <> "" Then itemvalidate(CMBTRANS, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+            If cmbmerchant.Text.Trim <> "" Then itemvalidate(cmbmerchant, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try

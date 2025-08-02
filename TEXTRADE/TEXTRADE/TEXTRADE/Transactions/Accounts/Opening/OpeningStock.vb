@@ -637,8 +637,9 @@ Public Class OpeningStock
                 End If
 
                 Dim DT As DataTable = OBJSM.save()
-                If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
-                BARCODE()
+                MessageBox.Show("Details Added")
+                'If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                'BARCODE()
             Else
 
                 If USEREDIT = False Then
@@ -648,6 +649,7 @@ Public Class OpeningStock
 
                 ALPARAVAL.Add(TXTNO.Text.Trim)
                 Dim INTRES As Integer = OBJSM.UPDATE()
+                MessageBox.Show("Details Updated")
             End If
         Catch ex As Exception
             Throw ex
