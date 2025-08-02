@@ -158,6 +158,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.Label6.Size = New System.Drawing.Size(38, 15)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Date :"
+        Me.Label6.Visible = False
         '
         'CMBCODE
         '
@@ -624,6 +625,7 @@ Partial Class OpeningGreyStockAtTransport
         Me.openingdate.Size = New System.Drawing.Size(88, 23)
         Me.openingdate.TabIndex = 0
         Me.openingdate.Value = New Date(2013, 4, 1, 8, 54, 0, 0)
+        Me.openingdate.Visible = False
         '
         'cmdexit
         '

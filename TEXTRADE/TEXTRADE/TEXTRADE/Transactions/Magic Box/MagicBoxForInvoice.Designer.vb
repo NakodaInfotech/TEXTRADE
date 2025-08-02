@@ -69,14 +69,6 @@ Partial Class MagicBoxForInvoice
         Me.TXTROUNDOFF = New System.Windows.Forms.TextBox()
         Me.TXTGRANDTOTAL = New System.Windows.Forms.TextBox()
         Me.GRIDMAGICBOX = New System.Windows.Forms.DataGridView()
-        Me.cmbitemname = New System.Windows.Forms.ComboBox()
-        Me.txtsrno = New System.Windows.Forms.TextBox()
-        Me.TXTPO = New System.Windows.Forms.TextBox()
-        Me.TXTPARTYBILLNO = New System.Windows.Forms.TextBox()
-        Me.CMBBUYERS = New System.Windows.Forms.ComboBox()
-        Me.cmdOK = New System.Windows.Forms.Button()
-        Me.cmdclear = New System.Windows.Forms.Button()
-        Me.cmdEXIT = New System.Windows.Forms.Button()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBILLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -113,6 +105,14 @@ Partial Class MagicBoxForInvoice
         Me.GCOMPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmbitemname = New System.Windows.Forms.ComboBox()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.txtcrdays = New System.Windows.Forms.TextBox()
+        Me.TXTPARTYBILLNO = New System.Windows.Forms.TextBox()
+        Me.CMBBUYERS = New System.Windows.Forms.ComboBox()
+        Me.cmdOK = New System.Windows.Forms.Button()
+        Me.cmdclear = New System.Windows.Forms.Button()
+        Me.cmdEXIT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -147,7 +147,7 @@ Partial Class MagicBoxForInvoice
         Me.CMDSELECTPO.Location = New System.Drawing.Point(348, 4)
         Me.CMDSELECTPO.Name = "CMDSELECTPO"
         Me.CMDSELECTPO.Size = New System.Drawing.Size(129, 28)
-        Me.CMDSELECTPO.TabIndex = 23
+        Me.CMDSELECTPO.TabIndex = 1
         Me.CMDSELECTPO.Text = "Select PO"
         Me.CMDSELECTPO.UseVisualStyleBackColor = False
         '
@@ -223,7 +223,7 @@ Partial Class MagicBoxForInvoice
         Me.tbitem.Controls.Add(Me.GRIDMAGICBOX)
         Me.tbitem.Controls.Add(Me.cmbitemname)
         Me.tbitem.Controls.Add(Me.txtsrno)
-        Me.tbitem.Controls.Add(Me.TXTPO)
+        Me.tbitem.Controls.Add(Me.txtcrdays)
         Me.tbitem.Controls.Add(Me.TXTPARTYBILLNO)
         Me.tbitem.Controls.Add(Me.CMBBUYERS)
         Me.tbitem.Location = New System.Drawing.Point(4, 23)
@@ -242,7 +242,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBCOMM.Location = New System.Drawing.Point(2982, 4)
         Me.CMBCOMM.Name = "CMBCOMM"
         Me.CMBCOMM.Size = New System.Drawing.Size(69, 23)
-        Me.CMBCOMM.TabIndex = 41
+        Me.CMBCOMM.TabIndex = 34
         '
         'CMBPER
         '
@@ -253,7 +253,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBPER.Location = New System.Drawing.Point(2082, 4)
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(49, 23)
-        Me.CMBPER.TabIndex = 40
+        Me.CMBPER.TabIndex = 21
         '
         'TXTCOMMPER
         '
@@ -262,7 +262,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCOMMPER.Location = New System.Drawing.Point(2912, 4)
         Me.TXTCOMMPER.Name = "TXTCOMMPER"
         Me.TXTCOMMPER.Size = New System.Drawing.Size(70, 23)
-        Me.TXTCOMMPER.TabIndex = 39
+        Me.TXTCOMMPER.TabIndex = 33
         Me.TXTCOMMPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSGSTAMT
@@ -274,7 +274,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTAMT.Name = "TXTSGSTAMT"
         Me.TXTSGSTAMT.ReadOnly = True
         Me.TXTSGSTAMT.Size = New System.Drawing.Size(69, 23)
-        Me.TXTSGSTAMT.TabIndex = 37
+        Me.TXTSGSTAMT.TabIndex = 28
         Me.TXTSGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTIGSTAMT
@@ -286,7 +286,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTAMT.Name = "TXTIGSTAMT"
         Me.TXTIGSTAMT.ReadOnly = True
         Me.TXTIGSTAMT.Size = New System.Drawing.Size(69, 23)
-        Me.TXTIGSTAMT.TabIndex = 36
+        Me.TXTIGSTAMT.TabIndex = 30
         Me.TXTIGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSGSTPER
@@ -298,7 +298,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTPER.Name = "TXTSGSTPER"
         Me.TXTSGSTPER.ReadOnly = True
         Me.TXTSGSTPER.Size = New System.Drawing.Size(61, 23)
-        Me.TXTSGSTPER.TabIndex = 35
+        Me.TXTSGSTPER.TabIndex = 27
         Me.TXTSGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTIGSTPER
@@ -310,7 +310,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTPER.Name = "TXTIGSTPER"
         Me.TXTIGSTPER.ReadOnly = True
         Me.TXTIGSTPER.Size = New System.Drawing.Size(61, 23)
-        Me.TXTIGSTPER.TabIndex = 34
+        Me.TXTIGSTPER.TabIndex = 29
         Me.TXTIGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCGSTPER
@@ -322,7 +322,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTPER.Name = "TXTCGSTPER"
         Me.TXTCGSTPER.ReadOnly = True
         Me.TXTCGSTPER.Size = New System.Drawing.Size(60, 23)
-        Me.TXTCGSTPER.TabIndex = 33
+        Me.TXTCGSTPER.TabIndex = 25
         Me.TXTCGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCGSTAMT
@@ -334,7 +334,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTAMT.Name = "TXTCGSTAMT"
         Me.TXTCGSTAMT.ReadOnly = True
         Me.TXTCGSTAMT.Size = New System.Drawing.Size(69, 23)
-        Me.TXTCGSTAMT.TabIndex = 32
+        Me.TXTCGSTAMT.TabIndex = 26
         Me.TXTCGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTBALENO
@@ -345,7 +345,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTBALENO.Location = New System.Drawing.Point(1798, 4)
         Me.TXTBALENO.Name = "TXTBALENO"
         Me.TXTBALENO.Size = New System.Drawing.Size(99, 23)
-        Me.TXTBALENO.TabIndex = 31
+        Me.TXTBALENO.TabIndex = 17
         Me.TXTBALENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPCS
@@ -356,7 +356,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPCS.Location = New System.Drawing.Point(1897, 4)
         Me.TXTPCS.Name = "TXTPCS"
         Me.TXTPCS.Size = New System.Drawing.Size(61, 23)
-        Me.TXTPCS.TabIndex = 30
+        Me.TXTPCS.TabIndex = 18
         Me.TXTPCS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTMTRS
@@ -367,7 +367,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTMTRS.Location = New System.Drawing.Point(1958, 4)
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(59, 23)
-        Me.TXTMTRS.TabIndex = 29
+        Me.TXTMTRS.TabIndex = 19
         Me.TXTMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTRATES
@@ -378,7 +378,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTRATES.Location = New System.Drawing.Point(2017, 4)
         Me.TXTRATES.Name = "TXTRATES"
         Me.TXTRATES.Size = New System.Drawing.Size(65, 23)
-        Me.TXTRATES.TabIndex = 28
+        Me.TXTRATES.TabIndex = 20
         Me.TXTRATES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTAMT
@@ -390,7 +390,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTAMT.Name = "TXTAMT"
         Me.TXTAMT.ReadOnly = True
         Me.TXTAMT.Size = New System.Drawing.Size(66, 23)
-        Me.TXTAMT.TabIndex = 27
+        Me.TXTAMT.TabIndex = 22
         Me.TXTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCHRGS
@@ -402,7 +402,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCHRGS.Name = "TXTCHRGS"
         Me.TXTCHRGS.ReadOnly = True
         Me.TXTCHRGS.Size = New System.Drawing.Size(65, 23)
-        Me.TXTCHRGS.TabIndex = 26
+        Me.TXTCHRGS.TabIndex = 23
         Me.TXTCHRGS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSUBTOTAL
@@ -414,7 +414,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSUBTOTAL.Name = "TXTSUBTOTAL"
         Me.TXTSUBTOTAL.ReadOnly = True
         Me.TXTSUBTOTAL.Size = New System.Drawing.Size(80, 23)
-        Me.TXTSUBTOTAL.TabIndex = 25
+        Me.TXTSUBTOTAL.TabIndex = 24
         Me.TXTSUBTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTLR
@@ -425,7 +425,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTLR.Location = New System.Drawing.Point(1630, 4)
         Me.TXTLR.Name = "TXTLR"
         Me.TXTLR.Size = New System.Drawing.Size(79, 23)
-        Me.TXTLR.TabIndex = 24
+        Me.TXTLR.TabIndex = 15
         Me.TXTLR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBTRANS
@@ -439,7 +439,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBTRANS.Location = New System.Drawing.Point(1430, 4)
         Me.CMBTRANS.Name = "CMBTRANS"
         Me.CMBTRANS.Size = New System.Drawing.Size(200, 23)
-        Me.CMBTRANS.TabIndex = 23
+        Me.CMBTRANS.TabIndex = 14
         '
         'TXTDESC
         '
@@ -449,7 +449,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTDESC.Location = New System.Drawing.Point(1281, 4)
         Me.TXTDESC.Name = "TXTDESC"
         Me.TXTDESC.Size = New System.Drawing.Size(149, 23)
-        Me.TXTDESC.TabIndex = 22
+        Me.TXTDESC.TabIndex = 13
         Me.TXTDESC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTFOLD
@@ -460,7 +460,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTFOLD.Location = New System.Drawing.Point(1226, 4)
         Me.TXTFOLD.Name = "TXTFOLD"
         Me.TXTFOLD.Size = New System.Drawing.Size(55, 23)
-        Me.TXTFOLD.TabIndex = 21
+        Me.TXTFOLD.TabIndex = 12
         Me.TXTFOLD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTQTY
@@ -471,7 +471,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTQTY.Location = New System.Drawing.Point(1170, 4)
         Me.TXTQTY.Name = "TXTQTY"
         Me.TXTQTY.Size = New System.Drawing.Size(56, 23)
-        Me.TXTQTY.TabIndex = 20
+        Me.TXTQTY.TabIndex = 11
         Me.TXTQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPOTYPE
@@ -483,7 +483,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOTYPE.Name = "TXTPOTYPE"
         Me.TXTPOTYPE.ReadOnly = True
         Me.TXTPOTYPE.Size = New System.Drawing.Size(80, 23)
-        Me.TXTPOTYPE.TabIndex = 19
+        Me.TXTPOTYPE.TabIndex = 8
         Me.TXTPOTYPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'ENTRYDATE
@@ -493,7 +493,7 @@ Partial Class MagicBoxForInvoice
         Me.ENTRYDATE.Location = New System.Drawing.Point(120, 4)
         Me.ENTRYDATE.Name = "ENTRYDATE"
         Me.ENTRYDATE.Size = New System.Drawing.Size(87, 23)
-        Me.ENTRYDATE.TabIndex = 18
+        Me.ENTRYDATE.TabIndex = 1
         '
         'BILLDATE
         '
@@ -502,7 +502,7 @@ Partial Class MagicBoxForInvoice
         Me.BILLDATE.Location = New System.Drawing.Point(33, 4)
         Me.BILLDATE.Name = "BILLDATE"
         Me.BILLDATE.Size = New System.Drawing.Size(87, 23)
-        Me.BILLDATE.TabIndex = 2
+        Me.BILLDATE.TabIndex = 0
         '
         'LRDATE
         '
@@ -511,7 +511,7 @@ Partial Class MagicBoxForInvoice
         Me.LRDATE.Location = New System.Drawing.Point(1709, 4)
         Me.LRDATE.Name = "LRDATE"
         Me.LRDATE.Size = New System.Drawing.Size(89, 23)
-        Me.LRDATE.TabIndex = 8
+        Me.LRDATE.TabIndex = 16
         Me.LRDATE.TabStop = False
         '
         'TXTREMARKS
@@ -521,7 +521,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTREMARKS.Location = New System.Drawing.Point(3051, 4)
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(201, 23)
-        Me.TXTREMARKS.TabIndex = 17
+        Me.TXTREMARKS.TabIndex = 35
         '
         'CMBSELLERS
         '
@@ -534,7 +534,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBSELLERS.Location = New System.Drawing.Point(207, 4)
         Me.CMBSELLERS.Name = "CMBSELLERS"
         Me.CMBSELLERS.Size = New System.Drawing.Size(202, 23)
-        Me.CMBSELLERS.TabIndex = 4
+        Me.CMBSELLERS.TabIndex = 2
         '
         'TXTPOSRNO
         '
@@ -545,7 +545,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOSRNO.Name = "TXTPOSRNO"
         Me.TXTPOSRNO.ReadOnly = True
         Me.TXTPOSRNO.Size = New System.Drawing.Size(69, 23)
-        Me.TXTPOSRNO.TabIndex = 9
+        Me.TXTPOSRNO.TabIndex = 7
         Me.TXTPOSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPONO
@@ -568,7 +568,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTROUNDOFF.Name = "TXTROUNDOFF"
         Me.TXTROUNDOFF.ReadOnly = True
         Me.TXTROUNDOFF.Size = New System.Drawing.Size(81, 23)
-        Me.TXTROUNDOFF.TabIndex = 14
+        Me.TXTROUNDOFF.TabIndex = 31
         Me.TXTROUNDOFF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTGRANDTOTAL
@@ -579,7 +579,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTGRANDTOTAL.Name = "TXTGRANDTOTAL"
         Me.TXTGRANDTOTAL.ReadOnly = True
         Me.TXTGRANDTOTAL.Size = New System.Drawing.Size(100, 23)
-        Me.TXTGRANDTOTAL.TabIndex = 16
+        Me.TXTGRANDTOTAL.TabIndex = 32
         Me.TXTGRANDTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDMAGICBOX
@@ -624,110 +624,8 @@ Partial Class MagicBoxForInvoice
         Me.GRIDMAGICBOX.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDMAGICBOX.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDMAGICBOX.Size = New System.Drawing.Size(3272, 543)
-        Me.GRIDMAGICBOX.TabIndex = 14
+        Me.GRIDMAGICBOX.TabIndex = 10
         Me.GRIDMAGICBOX.TabStop = False
-        '
-        'cmbitemname
-        '
-        Me.cmbitemname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbitemname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbitemname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbitemname.DropDownWidth = 400
-        Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbitemname.FormattingEnabled = True
-        Me.cmbitemname.Location = New System.Drawing.Point(970, 4)
-        Me.cmbitemname.Name = "cmbitemname"
-        Me.cmbitemname.Size = New System.Drawing.Size(200, 23)
-        Me.cmbitemname.TabIndex = 10
-        '
-        'txtsrno
-        '
-        Me.txtsrno.BackColor = System.Drawing.Color.Linen
-        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(3, 4)
-        Me.txtsrno.Name = "txtsrno"
-        Me.txtsrno.ReadOnly = True
-        Me.txtsrno.Size = New System.Drawing.Size(30, 23)
-        Me.txtsrno.TabIndex = 0
-        Me.txtsrno.TabStop = False
-        '
-        'TXTPO
-        '
-        Me.TXTPO.BackColor = System.Drawing.Color.White
-        Me.TXTPO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTPO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPO.Location = New System.Drawing.Point(690, 4)
-        Me.TXTPO.Name = "TXTPO"
-        Me.TXTPO.Size = New System.Drawing.Size(60, 23)
-        Me.TXTPO.TabIndex = 7
-        Me.TXTPO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTPARTYBILLNO
-        '
-        Me.TXTPARTYBILLNO.BackColor = System.Drawing.Color.White
-        Me.TXTPARTYBILLNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTPARTYBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(609, 4)
-        Me.TXTPARTYBILLNO.Name = "TXTPARTYBILLNO"
-        Me.TXTPARTYBILLNO.Size = New System.Drawing.Size(81, 23)
-        Me.TXTPARTYBILLNO.TabIndex = 5
-        Me.TXTPARTYBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBBUYERS
-        '
-        Me.CMBBUYERS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBBUYERS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBBUYERS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBBUYERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBBUYERS.FormattingEnabled = True
-        Me.CMBBUYERS.Items.AddRange(New Object() {""})
-        Me.CMBBUYERS.Location = New System.Drawing.Point(409, 4)
-        Me.CMBBUYERS.Name = "CMBBUYERS"
-        Me.CMBBUYERS.Size = New System.Drawing.Size(200, 23)
-        Me.CMBBUYERS.TabIndex = 3
-        '
-        'cmdOK
-        '
-        Me.cmdOK.BackColor = System.Drawing.Color.Transparent
-        Me.cmdOK.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdOK.FlatAppearance.BorderSize = 0
-        Me.cmdOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdOK.ForeColor = System.Drawing.Color.Black
-        Me.cmdOK.Location = New System.Drawing.Point(596, 621)
-        Me.cmdOK.Name = "cmdOK"
-        Me.cmdOK.Size = New System.Drawing.Size(80, 28)
-        Me.cmdOK.TabIndex = 1
-        Me.cmdOK.Text = "&Save"
-        Me.cmdOK.UseVisualStyleBackColor = False
-        '
-        'cmdclear
-        '
-        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
-        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdclear.FlatAppearance.BorderSize = 0
-        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdclear.ForeColor = System.Drawing.Color.Black
-        Me.cmdclear.Location = New System.Drawing.Point(682, 621)
-        Me.cmdclear.Name = "cmdclear"
-        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 2
-        Me.cmdclear.Text = "&Clear"
-        Me.cmdclear.UseVisualStyleBackColor = False
-        '
-        'cmdEXIT
-        '
-        Me.cmdEXIT.BackColor = System.Drawing.Color.Transparent
-        Me.cmdEXIT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdEXIT.FlatAppearance.BorderSize = 0
-        Me.cmdEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdEXIT.ForeColor = System.Drawing.Color.Black
-        Me.cmdEXIT.Location = New System.Drawing.Point(768, 621)
-        Me.cmdEXIT.Name = "cmdEXIT"
-        Me.cmdEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.cmdEXIT.TabIndex = 3
-        Me.cmdEXIT.Text = "E&xit"
-        Me.cmdEXIT.UseVisualStyleBackColor = False
         '
         'gsrno
         '
@@ -988,6 +886,108 @@ Partial Class MagicBoxForInvoice
         Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GREMARKS.Width = 200
         '
+        'cmbitemname
+        '
+        Me.cmbitemname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbitemname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbitemname.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbitemname.DropDownWidth = 400
+        Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbitemname.FormattingEnabled = True
+        Me.cmbitemname.Location = New System.Drawing.Point(970, 4)
+        Me.cmbitemname.Name = "cmbitemname"
+        Me.cmbitemname.Size = New System.Drawing.Size(200, 23)
+        Me.cmbitemname.TabIndex = 9
+        '
+        'txtsrno
+        '
+        Me.txtsrno.BackColor = System.Drawing.Color.Linen
+        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtsrno.Location = New System.Drawing.Point(3, 4)
+        Me.txtsrno.Name = "txtsrno"
+        Me.txtsrno.ReadOnly = True
+        Me.txtsrno.Size = New System.Drawing.Size(30, 23)
+        Me.txtsrno.TabIndex = 0
+        Me.txtsrno.TabStop = False
+        '
+        'txtcrdays
+        '
+        Me.txtcrdays.BackColor = System.Drawing.Color.White
+        Me.txtcrdays.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtcrdays.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtcrdays.Location = New System.Drawing.Point(690, 4)
+        Me.txtcrdays.Name = "txtcrdays"
+        Me.txtcrdays.Size = New System.Drawing.Size(60, 23)
+        Me.txtcrdays.TabIndex = 5
+        Me.txtcrdays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTPARTYBILLNO
+        '
+        Me.TXTPARTYBILLNO.BackColor = System.Drawing.Color.White
+        Me.TXTPARTYBILLNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTPARTYBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(609, 4)
+        Me.TXTPARTYBILLNO.Name = "TXTPARTYBILLNO"
+        Me.TXTPARTYBILLNO.Size = New System.Drawing.Size(81, 23)
+        Me.TXTPARTYBILLNO.TabIndex = 4
+        Me.TXTPARTYBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBBUYERS
+        '
+        Me.CMBBUYERS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBBUYERS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBBUYERS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBBUYERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBBUYERS.FormattingEnabled = True
+        Me.CMBBUYERS.Items.AddRange(New Object() {""})
+        Me.CMBBUYERS.Location = New System.Drawing.Point(409, 4)
+        Me.CMBBUYERS.Name = "CMBBUYERS"
+        Me.CMBBUYERS.Size = New System.Drawing.Size(200, 23)
+        Me.CMBBUYERS.TabIndex = 3
+        '
+        'cmdOK
+        '
+        Me.cmdOK.BackColor = System.Drawing.Color.Transparent
+        Me.cmdOK.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdOK.FlatAppearance.BorderSize = 0
+        Me.cmdOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdOK.ForeColor = System.Drawing.Color.Black
+        Me.cmdOK.Location = New System.Drawing.Point(596, 621)
+        Me.cmdOK.Name = "cmdOK"
+        Me.cmdOK.Size = New System.Drawing.Size(80, 28)
+        Me.cmdOK.TabIndex = 1
+        Me.cmdOK.Text = "&Save"
+        Me.cmdOK.UseVisualStyleBackColor = False
+        '
+        'cmdclear
+        '
+        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
+        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdclear.FlatAppearance.BorderSize = 0
+        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdclear.ForeColor = System.Drawing.Color.Black
+        Me.cmdclear.Location = New System.Drawing.Point(682, 621)
+        Me.cmdclear.Name = "cmdclear"
+        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
+        Me.cmdclear.TabIndex = 2
+        Me.cmdclear.Text = "&Clear"
+        Me.cmdclear.UseVisualStyleBackColor = False
+        '
+        'cmdEXIT
+        '
+        Me.cmdEXIT.BackColor = System.Drawing.Color.Transparent
+        Me.cmdEXIT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdEXIT.FlatAppearance.BorderSize = 0
+        Me.cmdEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdEXIT.ForeColor = System.Drawing.Color.Black
+        Me.cmdEXIT.Location = New System.Drawing.Point(768, 621)
+        Me.cmdEXIT.Name = "cmdEXIT"
+        Me.cmdEXIT.Size = New System.Drawing.Size(80, 28)
+        Me.cmdEXIT.TabIndex = 3
+        Me.cmdEXIT.Text = "E&xit"
+        Me.cmdEXIT.UseVisualStyleBackColor = False
+        '
         'MagicBoxForInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1026,7 +1026,7 @@ Partial Class MagicBoxForInvoice
     Friend WithEvents GRIDMAGICBOX As DataGridView
     Friend WithEvents cmbitemname As ComboBox
     Friend WithEvents txtsrno As TextBox
-    Friend WithEvents TXTPO As TextBox
+    Friend WithEvents txtcrdays As TextBox
     Friend WithEvents TXTPARTYBILLNO As TextBox
     Friend WithEvents CMBBUYERS As ComboBox
     Friend WithEvents cmdOK As Button
