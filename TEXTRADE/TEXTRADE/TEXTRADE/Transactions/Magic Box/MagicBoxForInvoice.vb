@@ -743,4 +743,14 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBBUYERS_Validated(sender As Object, e As EventArgs) Handles CMBBUYERS.Validated
+        Try
+            If CMBBUYERS.Text.Trim <> "" Then
+                CMDSELECTPO.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

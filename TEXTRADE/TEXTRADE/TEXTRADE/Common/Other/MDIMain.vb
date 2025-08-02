@@ -10502,5 +10502,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub MagicBoxInvoiceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxInvoiceToolStripMenuItem.Click
+        Try
+            Dim OBJMB As New MagicBoxForInvoice
+            OBJMB.MdiParent = Me
+            OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
