@@ -17,6 +17,8 @@ Public Class GDNUnitSummGridreport
 
     Sub FILLGRID()
         Try
+            If CHKINV.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND GDN_DESC.GDN_SALEDONE = 0 AND ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 and ROUND(ISNULL(GDN.GDN_OUTMTRS,0),0) = 0 "
+
             Dim OBJCMN As New ClsCommon
             Dim dt As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT, ROUND(SUM(GDN_DESC.GDN_PCS ),0) AS TOTALPCS, ROUND(SUM(GDN_DESC.GDN_MTRS),2) AS TOTALMTRS FROM GDN_DESC INNER JOIN GDN ON GDN_DESC.GDN_NO = GDN.GDN_NO AND GDN_DESC.GDN_YEARID = GDN.GDN_YEARID INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.ACC_ID LEFT OUTER JOIN UNITMASTER ON GDN_UNITID = UNIT_ID WHERE GDN.GDN_YEARID = " & YearId & WHERECLAUSE & " GROUP BY ISNULL(UNITMASTER.UNIT_ABBR,'') ", "", "")
             gridbilldetails.DataSource = dt
@@ -47,6 +49,14 @@ Public Class GDNUnitSummGridreport
     End Sub
 
     Private Sub GDNUnitSummGridreport_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try
+            FILLGRID()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
         Try
             FILLGRID()
         Catch ex As Exception

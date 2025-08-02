@@ -31,6 +31,8 @@ Partial Class GDNUnitSummGridreport
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
+        Me.CHKINV = New System.Windows.Forms.CheckBox()
+        Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,6 +42,8 @@ Partial Class GDNUnitSummGridreport
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.CMDREFRESH)
+        Me.BlendPanel2.Controls.Add(Me.CHKINV)
         Me.BlendPanel2.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel2.Controls.Add(Me.cmdexit)
         Me.BlendPanel2.Controls.Add(Me.ToolStrip2)
@@ -116,7 +120,7 @@ Partial Class GDNUnitSummGridreport
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(183, 568)
+        Me.cmdexit.Location = New System.Drawing.Point(226, 570)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 1
@@ -140,6 +144,30 @@ Partial Class GDNUnitSummGridreport
         Me.TOOLEXCEL.Name = "TOOLEXCEL"
         Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
         Me.TOOLEXCEL.Text = "&Excel"
+        '
+        'CHKINV
+        '
+        Me.CHKINV.AutoSize = True
+        Me.CHKINV.Location = New System.Drawing.Point(268, 3)
+        Me.CHKINV.Name = "CHKINV"
+        Me.CHKINV.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINV.TabIndex = 653
+        Me.CHKINV.Text = "Invoice Done"
+        Me.CHKINV.UseVisualStyleBackColor = True
+        '
+        'CMDREFRESH
+        '
+        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
+        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
+        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDREFRESH.Location = New System.Drawing.Point(140, 570)
+        Me.CMDREFRESH.Name = "CMDREFRESH"
+        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREFRESH.TabIndex = 654
+        Me.CMDREFRESH.Text = "&Refresh"
+        Me.CMDREFRESH.UseVisualStyleBackColor = False
         '
         'GDNUnitSummGridreport
         '
@@ -171,4 +199,6 @@ Partial Class GDNUnitSummGridreport
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents TOOLEXCEL As ToolStripButton
+    Friend WithEvents CMDREFRESH As Button
+    Friend WithEvents CHKINV As CheckBox
 End Class
