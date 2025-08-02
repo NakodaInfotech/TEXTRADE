@@ -205,6 +205,17 @@ Public Class ClsOpeningGreyStockAtTransport
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@STGNO", alParaval(I)))
                 I = I + 1
 

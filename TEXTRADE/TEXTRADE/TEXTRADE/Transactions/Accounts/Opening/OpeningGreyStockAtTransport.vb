@@ -7,7 +7,7 @@ Public Class OpeningGreyStockAtTransport
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
-    Dim CLEAR As Boolean = False
+    'Dim CLEAR As Boolean = False
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
@@ -65,6 +65,33 @@ Public Class OpeningGreyStockAtTransport
         Next
         Return bln
     End Function
+    Sub clear()
+
+        'clearing textboxes
+        EP.Clear()
+
+        cmbname.Text = ""
+        CMBTRANS.Text = ""
+        TXTLRNO.Clear()
+        DTLRDATE.Value = Now.Date
+        cmbmerchant.Text = ""
+        CMBDESIGN.Text = ""
+        cmbcolor.Text = ""
+        TXTBALENO.Clear()
+        txtpcs.Clear()
+        cmbunit.Text = ""
+        txtMtrs.Clear()
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMOUNT.Clear()
+        CMBAGENT.Text = ""
+        TXTCRDAYS.Clear()
+
+
+        EDIT = False
+        GRIDDOUBLECLICK = False
+
+    End Sub
 
     Sub EDITROW()
         Try
@@ -228,37 +255,7 @@ Public Class OpeningGreyStockAtTransport
             GRIDDOUBLECLICK = False
         End If
 
-        If CLEAR = True Then
-            txtsrno.Text = gridstock.RowCount + 1
-            If ClientName = "REALCORPORATION" Then
-                cmbmerchant.Text = ""
-                CMBDESIGN.Text = ""
-                cmbcolor.Text = ""
-            End If
-
-            If ClientName <> "TINUMINU" And ClientName <> "RADHA" Then cmbname.Text = ""
-
-
-            txtpcs.Text = 1
-            'TXTYARDS.Clear()
-            txtMtrs.Clear()
-
-            'CMBPER.Text = ""
-            TXTRATE.Clear()
-            DTLRDATE.Value = Now.Date
-            TXTAMOUNT.Clear()
-            CMBAGENT.Text = ""
-            TXTCRDAYS.Clear()
-            TXTBALENO.Clear()
-            TXTLRNO.Clear()
-            'TXTBARCODE.Clear()
-            TXTNO.Clear()
-            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
-                txtMtrs.Focus()
-            ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Then
-                txtpcs.Focus()
-            End If
-        End If
+        clear()
 
     End Sub
 
@@ -366,7 +363,7 @@ Public Class OpeningGreyStockAtTransport
         Try
             'If cmbtype.Text = "STORE" Then
             If cmbmerchant.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtpcs.Text) <> 0 And cmbunit.Text.Trim <> "" Then
-                fillgrid()
+                'fillgrid()
             Else
                 If cmbmerchant.Text.Trim = "" Then
                     MsgBox("Please Fill Item Name ")
@@ -448,7 +445,7 @@ Public Class OpeningGreyStockAtTransport
 
 
             Dim ALPARAVAL As New ArrayList
-            Dim OBJSM As New ClsStockMaster
+            Dim OBJSM As New ClsOpeningGreyStockAtTransport
 
             ALPARAVAL.Add(openingdate.Value.Date)
 
@@ -472,11 +469,11 @@ Public Class OpeningGreyStockAtTransport
 
 
             ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Locationid)
+            'ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(YearId)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
+            'ALPARAVAL.Add(0)
+            'ALPARAVAL.Add(0)
 
             OBJSM.alParaval = ALPARAVAL
             If GRIDDOUBLECLICK = False Then
@@ -487,9 +484,10 @@ Public Class OpeningGreyStockAtTransport
                 End If
 
                 Dim DT As DataTable = OBJSM.save()
-                '    If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
-                '    BARCODE()
-                'Else
+                MessageBox.Show("Details Added")
+                'If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                'BARCODE()
+            Else
 
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -498,6 +496,7 @@ Public Class OpeningGreyStockAtTransport
 
                 ALPARAVAL.Add(TXTNO.Text.Trim)
                 Dim INTRES As Integer = OBJSM.UPDATE()
+                MessageBox.Show("Details Updated")
             End If
         Catch ex As Exception
             Throw ex
@@ -861,8 +860,9 @@ Public Class OpeningGreyStockAtTransport
 
             SAVE()
 
+            clear()
             fillgrid()
-            CLEAR = True
+
 
         Catch ex As Exception
             Throw ex
@@ -898,9 +898,13 @@ Public Class OpeningGreyStockAtTransport
         End Try
     End Sub
 
+    Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
+        clear()
+    End Sub
+
     Private Sub cmbmerchant_Validating(sender As Object, e As CancelEventArgs) Handles cmbmerchant.Validating
         Try
-            If cmbmerchant.Text.Trim <> "" Then itemvalidate(CMBTRANS, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+            If cmbmerchant.Text.Trim <> "" Then itemvalidate(cmbmerchant, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
