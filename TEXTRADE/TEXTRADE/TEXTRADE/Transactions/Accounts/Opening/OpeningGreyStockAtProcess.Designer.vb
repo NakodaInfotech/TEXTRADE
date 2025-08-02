@@ -84,16 +84,14 @@ Partial Class OpeningGreyStockAtProcess
         Me.Gpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gunit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gMtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gOutpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.goutmtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAGENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCRDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREFLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TXTOUTPCS = New System.Windows.Forms.TextBox()
-        Me.TXTOUTMTRS = New System.Windows.Forms.TextBox()
+        Me.gOutpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.goutmtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,8 +274,6 @@ Partial Class OpeningGreyStockAtProcess
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.Linen
-        Me.Panel1.Controls.Add(Me.TXTOUTMTRS)
-        Me.Panel1.Controls.Add(Me.TXTOUTPCS)
         Me.Panel1.Controls.Add(Me.txtreflotno)
         Me.Panel1.Controls.Add(Me.CMBPURNAME)
         Me.Panel1.Controls.Add(Me.DTLRDATE)
@@ -307,7 +303,7 @@ Partial Class OpeningGreyStockAtProcess
         '
         Me.txtreflotno.BackColor = System.Drawing.Color.White
         Me.txtreflotno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtreflotno.Location = New System.Drawing.Point(2178, 0)
+        Me.txtreflotno.Location = New System.Drawing.Point(1978, 0)
         Me.txtreflotno.Name = "txtreflotno"
         Me.txtreflotno.Size = New System.Drawing.Size(100, 22)
         Me.txtreflotno.TabIndex = 19
@@ -339,7 +335,7 @@ Partial Class OpeningGreyStockAtProcess
         '
         Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
         Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCRDAYS.Location = New System.Drawing.Point(2079, 0)
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(1879, 0)
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(100, 22)
         Me.TXTCRDAYS.TabIndex = 18
@@ -352,7 +348,7 @@ Partial Class OpeningGreyStockAtProcess
         Me.CMBAGENT.DropDownWidth = 400
         Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBAGENT.FormattingEnabled = True
-        Me.CMBAGENT.Location = New System.Drawing.Point(1879, 0)
+        Me.CMBAGENT.Location = New System.Drawing.Point(1679, 0)
         Me.CMBAGENT.Name = "CMBAGENT"
         Me.CMBAGENT.Size = New System.Drawing.Size(200, 22)
         Me.CMBAGENT.TabIndex = 17
@@ -393,7 +389,7 @@ Partial Class OpeningGreyStockAtProcess
         Me.CMBPER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBPER.FormattingEnabled = True
         Me.CMBPER.Items.AddRange(New Object() {"Mtrs", "Qty"})
-        Me.CMBPER.Location = New System.Drawing.Point(1739, 0)
+        Me.CMBPER.Location = New System.Drawing.Point(1539, 0)
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(60, 22)
         Me.CMBPER.TabIndex = 15
@@ -402,7 +398,7 @@ Partial Class OpeningGreyStockAtProcess
         '
         Me.TXTAMOUNT.BackColor = System.Drawing.Color.Linen
         Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTAMOUNT.Location = New System.Drawing.Point(1799, 0)
+        Me.TXTAMOUNT.Location = New System.Drawing.Point(1599, 0)
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.ReadOnly = True
         Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 22)
@@ -413,7 +409,7 @@ Partial Class OpeningGreyStockAtProcess
         '
         Me.TXTRATE.BackColor = System.Drawing.Color.White
         Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE.Location = New System.Drawing.Point(1658, 1)
+        Me.TXTRATE.Location = New System.Drawing.Point(1458, 1)
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(80, 22)
         Me.TXTRATE.TabIndex = 14
@@ -449,7 +445,7 @@ Partial Class OpeningGreyStockAtProcess
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridstock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GNAME, Me.GPURCHASEPARTY, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GMERCHANT, Me.GDESIGN, Me.gcolor, Me.GBALENO, Me.Gpcs, Me.Gunit, Me.gMtrs, Me.gOutpcs, Me.goutmtrs, Me.GRATE, Me.GPer, Me.GAMOUNT, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO})
+        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GNAME, Me.GPURCHASEPARTY, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GMERCHANT, Me.GDESIGN, Me.gcolor, Me.GBALENO, Me.Gpcs, Me.Gunit, Me.gMtrs, Me.GRATE, Me.GPer, Me.GAMOUNT, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.gOutpcs, Me.goutmtrs})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -473,7 +469,7 @@ Partial Class OpeningGreyStockAtProcess
         Me.gridstock.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridstock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridstock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridstock.Size = New System.Drawing.Size(2353, 439)
+        Me.gridstock.Size = New System.Drawing.Size(2119, 439)
         Me.gridstock.TabIndex = 28
         Me.gridstock.TabStop = False
         '
@@ -722,22 +718,6 @@ Partial Class OpeningGreyStockAtProcess
         Me.gMtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gMtrs.Width = 80
         '
-        'gOutpcs
-        '
-        Me.gOutpcs.HeaderText = "Outpcs"
-        Me.gOutpcs.Name = "gOutpcs"
-        Me.gOutpcs.ReadOnly = True
-        Me.gOutpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gOutpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'goutmtrs
-        '
-        Me.goutmtrs.HeaderText = "Out Mtrs"
-        Me.goutmtrs.Name = "goutmtrs"
-        Me.goutmtrs.ReadOnly = True
-        Me.goutmtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.goutmtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
         'GRATE
         '
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
@@ -788,23 +768,23 @@ Partial Class OpeningGreyStockAtProcess
         Me.GREFLOTNO.Name = "GREFLOTNO"
         Me.GREFLOTNO.ReadOnly = True
         '
-        'TXTOUTPCS
+        'gOutpcs
         '
-        Me.TXTOUTPCS.BackColor = System.Drawing.Color.White
-        Me.TXTOUTPCS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTOUTPCS.Location = New System.Drawing.Point(1458, 1)
-        Me.TXTOUTPCS.Name = "TXTOUTPCS"
-        Me.TXTOUTPCS.Size = New System.Drawing.Size(100, 22)
-        Me.TXTOUTPCS.TabIndex = 12
+        Me.gOutpcs.HeaderText = "Outpcs"
+        Me.gOutpcs.Name = "gOutpcs"
+        Me.gOutpcs.ReadOnly = True
+        Me.gOutpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gOutpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gOutpcs.Visible = False
         '
-        'TXTOUTMTRS
+        'goutmtrs
         '
-        Me.TXTOUTMTRS.BackColor = System.Drawing.Color.White
-        Me.TXTOUTMTRS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTOUTMTRS.Location = New System.Drawing.Point(1558, 1)
-        Me.TXTOUTMTRS.Name = "TXTOUTMTRS"
-        Me.TXTOUTMTRS.Size = New System.Drawing.Size(100, 22)
-        Me.TXTOUTMTRS.TabIndex = 13
+        Me.goutmtrs.HeaderText = "Out Mtrs"
+        Me.goutmtrs.Name = "goutmtrs"
+        Me.goutmtrs.ReadOnly = True
+        Me.goutmtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.goutmtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.goutmtrs.Visible = False
         '
         'OpeningGreyStockAtProcess
         '
@@ -866,8 +846,6 @@ Partial Class OpeningGreyStockAtProcess
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents CMBPURNAME As ComboBox
     Friend WithEvents txtreflotno As TextBox
-    Friend WithEvents TXTOUTMTRS As TextBox
-    Friend WithEvents TXTOUTPCS As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GNO As DataGridViewTextBoxColumn
     Friend WithEvents GNAME As DataGridViewTextBoxColumn
@@ -882,12 +860,12 @@ Partial Class OpeningGreyStockAtProcess
     Friend WithEvents Gpcs As DataGridViewTextBoxColumn
     Friend WithEvents Gunit As DataGridViewTextBoxColumn
     Friend WithEvents gMtrs As DataGridViewTextBoxColumn
-    Friend WithEvents gOutpcs As DataGridViewTextBoxColumn
-    Friend WithEvents goutmtrs As DataGridViewTextBoxColumn
     Friend WithEvents GRATE As DataGridViewTextBoxColumn
     Friend WithEvents GPer As DataGridViewTextBoxColumn
     Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents GAGENT As DataGridViewTextBoxColumn
     Friend WithEvents GCRDAYS As DataGridViewTextBoxColumn
     Friend WithEvents GREFLOTNO As DataGridViewTextBoxColumn
+    Friend WithEvents gOutpcs As DataGridViewTextBoxColumn
+    Friend WithEvents goutmtrs As DataGridViewTextBoxColumn
 End Class

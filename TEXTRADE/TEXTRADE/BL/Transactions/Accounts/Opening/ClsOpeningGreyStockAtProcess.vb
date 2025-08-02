@@ -16,84 +16,6 @@ Public Class ClsOpeningGreyStockAtProcess
 #End Region
 
 #Region "Functions"
-    'DONE BY GULKIT
-    'Public Function save() As Integer
-    '    Dim intResult As Integer
-    '    Try
-    '        'save SALE order
-    '        Dim strCommand As String = "SP_MASTER_STOCKMASTER_SAVE"
-    '        Dim alParameter As New ArrayList
-    '        With alParameter
-
-    '            Dim I As Integer = 0
-
-    '            .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-    '            I = I + 1
-
-    '            .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-    '            I = I + 1
-
-    '            .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@MERCHANT", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@TONAME", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@wt", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
-    '            I = I + 1
-    '            .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-    '            I = I + 1
-    '        End With
-
-    '        intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    '    Return intResult
-
-    'End Function
-
     Public Function save() As DataTable
         Dim DTTABLE As DataTable
         Try
@@ -106,85 +28,49 @@ Public Class ClsOpeningGreyStockAtProcess
 
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PURNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MERCHANT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TONAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@wt", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SHELF", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ADDLESS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@NETTRATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PARTYCHNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DYEINGJOB", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMDONE", alParaval(I)))
                 I = I + 1
 
             End With
@@ -210,82 +96,51 @@ Public Class ClsOpeningGreyStockAtProcess
 
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PURNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MERCHANT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TONAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@wt", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SHELF", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ADDLESS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@NETTRATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PARTYCHNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DYEINGJOB", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMDONE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@SMNO", alParaval(I)))
                 I = I + 1
 

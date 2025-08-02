@@ -202,7 +202,7 @@ Public Class OpeningGreyStockAtProcess
                 gridstock.RowCount = 0
                 For Each DR As DataRow In dttable.Rows
                     openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
-                    gridstock.Rows.Add(Val(DR("SMNO")), DR("SMGRIDSRNO"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
+                    gridstock.Rows.Add(Val(DR("SMNO")), DR("SMGRIDSRNO"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
                 getsrno(gridstock)
@@ -247,7 +247,7 @@ Public Class OpeningGreyStockAtProcess
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTOUTPCS.Text.Trim), Val(TXTOUTMTRS.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -264,8 +264,6 @@ Public Class OpeningGreyStockAtProcess
             gridstock.Item(Gpcs.Index, TEMPROW).Value = Val(txtpcs.Text.Trim)
             gridstock.Item(Gunit.Index, TEMPROW).Value = cmbunit.Text.Trim
             gridstock.Item(gMtrs.Index, TEMPROW).Value = txtMtrs.Text.Trim
-            gridstock.Item(gOutpcs.Index, TEMPROW).Value = TXTOUTPCS.Text.Trim
-            gridstock.Item(goutmtrs.Index, TEMPROW).Value = TXTOUTMTRS.Text.Trim
             gridstock.Item(GRATE.Index, TEMPROW).Value = TXTRATE.Text.Trim
             gridstock.Item(GPer.Index, TEMPROW).Value = CMBPER.Text.Trim
             gridstock.Item(GAMOUNT.Index, TEMPROW).Value = TXTAMOUNT.Text.Trim
@@ -367,8 +365,7 @@ Public Class OpeningGreyStockAtProcess
             cmbunit.Text = gridstock.Item(Gunit.Index, TEMPROWINDEX).Value
             txtpcs.Text = gridstock.Item(Gpcs.Index, TEMPROWINDEX).Value
             txtMtrs.Text = gridstock.Item(gMtrs.Index, TEMPROWINDEX).Value
-            TXTOUTPCS.Text = gridstock.Item(gOutpcs.Index, TEMPROWINDEX).Value
-            TXTOUTMTRS.Text = gridstock.Item(goutmtrs.Index, TEMPROWINDEX).Value
+
             TXTRATE.Text = gridstock.Item(GRATE.Index, TEMPROWINDEX).Value
             TXTAMOUNT.Text = gridstock.Item(GAMOUNT.Index, TEMPROWINDEX).Value
             TXTLRNO.Text = gridstock.Item(GLRNO.Index, TEMPROWINDEX).Value
@@ -527,9 +524,7 @@ Public Class OpeningGreyStockAtProcess
 
 
             Dim ALPARAVAL As New ArrayList
-            Dim OBJSM As New ClsStockMaster
-
-            'Dim OBJSM As New Clsopeninggreystockatprocess
+            Dim OBJSM As New ClsOpeningGreyStockAtProcess
 
             ALPARAVAL.Add(openingdate.Value.Date)
 
@@ -546,8 +541,6 @@ Public Class OpeningGreyStockAtProcess
             ALPARAVAL.Add(Val(txtpcs.Text.Trim))
             ALPARAVAL.Add(cmbunit.Text.Trim)
             ALPARAVAL.Add(Val(txtMtrs.Text.Trim))
-            ALPARAVAL.Add(Val(txtOUTPCS.Text.Trim))
-            ALPARAVAL.Add(Val(txtOUTMTRS.Text.Trim))
             ALPARAVAL.Add(Val(TXTRATE.Text.Trim))
             ALPARAVAL.Add(CMBPER.Text.Trim)
             ALPARAVAL.Add(Val(TXTAMOUNT.Text.Trim))
@@ -557,8 +550,7 @@ Public Class OpeningGreyStockAtProcess
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(YearId)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
+
 
             OBJSM.alParaval = ALPARAVAL
             If GRIDDOUBLECLICK = False Then
