@@ -69,10 +69,10 @@ Public Class OpeningGreyStockAtProcess
         Try
             If gridstock.CurrentRow.Index >= 0 And gridstock.Item(gsrno.Index, gridstock.CurrentRow.Index).Value <> Nothing Then
 
-                If Convert.ToBoolean(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
-                    MsgBox("Item Locked", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
+                'If Convert.ToBoolean(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
+                '    MsgBox("Item Locked", MsgBoxStyle.Critical)
+                '    Exit Sub
+                'End If
 
                 If gridstock.Rows(gridstock.CurrentRow.Index).DefaultCellStyle.BackColor = Color.Yellow Then
                     MsgBox("Item Locked", MsgBoxStyle.Critical)
@@ -204,7 +204,7 @@ Public Class OpeningGreyStockAtProcess
                 For Each DR As DataRow In dttable.Rows
                     openingdate.Value = Now.Date
                     'openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
-                    gridstock.Rows.Add(DR("SMGRIDSRNO"), Val(DR("SMNO")), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
+                    gridstock.Rows.Add(Val(DR("SMNO")), DR("SMGRIDSRNO"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
                 getsrno(gridstock)
@@ -914,8 +914,6 @@ Public Class OpeningGreyStockAtProcess
             Throw ex
         End Try
     End Sub
-
-
 
     Private Sub CMBDESIGN_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDESIGN.Validated
         Try
