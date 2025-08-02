@@ -131,6 +131,7 @@ Partial Class StockFilter
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPDESIGN.SuspendLayout()
         CType(Me.GRIDDESIGNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,7 +333,7 @@ Partial Class StockFilter
         '
         Me.GDESIGNNO.Caption = "Design No"
         Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.ImageIndex = 0
+        Me.GDESIGNNO.ImageOptions.ImageIndex = 0
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
@@ -408,7 +409,7 @@ Partial Class StockFilter
         '
         Me.GSHADE.Caption = "Shade"
         Me.GSHADE.FieldName = "SHADE"
-        Me.GSHADE.ImageIndex = 0
+        Me.GSHADE.ImageOptions.ImageIndex = 0
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.OptionsColumn.AllowEdit = False
         Me.GSHADE.Visible = True
@@ -599,7 +600,7 @@ Partial Class StockFilter
         '
         Me.GUNIT.Caption = "Unit"
         Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.ImageIndex = 0
+        Me.GUNIT.ImageOptions.ImageIndex = 0
         Me.GUNIT.Name = "GUNIT"
         Me.GUNIT.OptionsColumn.AllowEdit = False
         Me.GUNIT.Visible = True
@@ -895,6 +896,7 @@ Partial Class StockFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDBITEMMONTHLYSTOCKSTATEMENT)
         Me.GroupBox3.Controls.Add(Me.RDBGREYSTOCK)
         Me.GroupBox3.Controls.Add(Me.RDBBALECOUNT)
         Me.GroupBox3.Controls.Add(Me.RBCATEGORYITEMDESIGNSHADESMALLNOUNITSUMM)
@@ -1252,10 +1254,10 @@ Partial Class StockFilter
         Me.TabPage2.Controls.Add(Me.LSTCMP)
         Me.TabPage2.Controls.Add(Me.GPREGISTER)
         Me.TabPage2.Controls.Add(Me.GPPARTYNAME)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(669, 337)
+        Me.TabPage2.Size = New System.Drawing.Size(669, 339)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Other Filters"
         '
@@ -1337,7 +1339,7 @@ Partial Class StockFilter
         '
         Me.GREGISTER.Caption = "Register"
         Me.GREGISTER.FieldName = "REGNAME"
-        Me.GREGISTER.ImageIndex = 0
+        Me.GREGISTER.ImageOptions.ImageIndex = 0
         Me.GREGISTER.Name = "GREGISTER"
         Me.GREGISTER.OptionsColumn.AllowEdit = False
         Me.GREGISTER.Visible = True
@@ -1413,12 +1415,22 @@ Partial Class StockFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 1
         Me.GNAME.Width = 230
+        '
+        'RDBITEMMONTHLYSTOCKSTATEMENT
+        '
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.AutoSize = True
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Location = New System.Drawing.Point(21, 273)
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Name = "RDBITEMMONTHLYSTOCKSTATEMENT"
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Size = New System.Drawing.Size(187, 18)
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.TabIndex = 29
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Text = "Item Monthly Stock Statement"
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.UseVisualStyleBackColor = True
         '
         'StockFilter
         '
@@ -1582,4 +1594,5 @@ Partial Class StockFilter
     Friend WithEvents LSTCMP As CheckedListBox
     Friend WithEvents RDBBALECOUNT As RadioButton
     Friend WithEvents RDBGREYSTOCK As RadioButton
+    Friend WithEvents RDBITEMMONTHLYSTOCKSTATEMENT As RadioButton
 End Class
