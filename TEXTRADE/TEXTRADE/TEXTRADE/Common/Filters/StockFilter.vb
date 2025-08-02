@@ -129,6 +129,20 @@ Public Class StockFilter
             Dim OBJCMN As New ClsCommon
 
 
+            If RDBITEMMONTHLYSTOCKSTATEMENT.Checked = True Then
+                If CMBITEMNAME.Text.Trim = "" Then
+                    MsgBox("Select Item Name", MsgBoxStyle.Critical)
+                    CMBITEMNAME.Focus()
+                    Exit Sub
+                End If
+                Dim ITEMSTATEMENT As New ItemMonthlyStockStatement
+                ITEMSTATEMENT.MdiParent = MDIMain
+                ITEMSTATEMENT.WHERECLAUSE = ITEMSTATEMENT.WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "'"
+                ITEMSTATEMENT.Show()
+                Exit Sub
+            End If
+
+
             If RDBGREYSTOCK.Checked = True Then
                 Dim OBJGREYSTOCK As New StockDesign
                 OBJGREYSTOCK.MdiParent = MDIMain

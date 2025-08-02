@@ -50,13 +50,14 @@ Partial Class MaterialReceiptDetails
         Me.GPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQTYUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +125,7 @@ Partial Class MaterialReceiptDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE, Me.GBARCODE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GQTYUNIT, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -169,7 +170,7 @@ Partial Class MaterialReceiptDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -242,7 +243,7 @@ Partial Class MaterialReceiptDetails
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 11
+        Me.GPCS.VisibleIndex = 12
         Me.GPCS.Width = 80
         '
         'GMTRS
@@ -254,7 +255,7 @@ Partial Class MaterialReceiptDetails
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 12
+        Me.GMTRS.VisibleIndex = 13
         Me.GMTRS.Width = 90
         '
         'GRECDMTRS
@@ -266,7 +267,7 @@ Partial Class MaterialReceiptDetails
         Me.GRECDMTRS.Name = "GRECDMTRS"
         Me.GRECDMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDMTRS.Visible = True
-        Me.GRECDMTRS.VisibleIndex = 13
+        Me.GRECDMTRS.VisibleIndex = 14
         Me.GRECDMTRS.Width = 90
         '
         'GDIFF
@@ -278,7 +279,7 @@ Partial Class MaterialReceiptDetails
         Me.GDIFF.Name = "GDIFF"
         Me.GDIFF.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDIFF.Visible = True
-        Me.GDIFF.VisibleIndex = 18
+        Me.GDIFF.VisibleIndex = 19
         '
         'GYESNO
         '
@@ -286,7 +287,7 @@ Partial Class MaterialReceiptDetails
         Me.GYESNO.FieldName = "YESNO"
         Me.GYESNO.Name = "GYESNO"
         Me.GYESNO.Visible = True
-        Me.GYESNO.VisibleIndex = 15
+        Me.GYESNO.VisibleIndex = 16
         Me.GYESNO.Width = 50
         '
         'GREMARKS
@@ -295,7 +296,7 @@ Partial Class MaterialReceiptDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 19
+        Me.GREMARKS.VisibleIndex = 20
         Me.GREMARKS.Width = 150
         '
         'GCONTDESIGNRECD
@@ -304,7 +305,7 @@ Partial Class MaterialReceiptDetails
         Me.GCONTDESIGNRECD.FieldName = "CONTDESIGNRECD"
         Me.GCONTDESIGNRECD.Name = "GCONTDESIGNRECD"
         Me.GCONTDESIGNRECD.Visible = True
-        Me.GCONTDESIGNRECD.VisibleIndex = 20
+        Me.GCONTDESIGNRECD.VisibleIndex = 21
         '
         'CHKFORRETURN
         '
@@ -312,7 +313,7 @@ Partial Class MaterialReceiptDetails
         Me.CHKFORRETURN.FieldName = "FORRETURN"
         Me.CHKFORRETURN.Name = "CHKFORRETURN"
         Me.CHKFORRETURN.Visible = True
-        Me.CHKFORRETURN.VisibleIndex = 21
+        Me.CHKFORRETURN.VisibleIndex = 22
         '
         'GUSERNAME
         '
@@ -320,7 +321,7 @@ Partial Class MaterialReceiptDetails
         Me.GUSERNAME.FieldName = "USERNAME"
         Me.GUSERNAME.Name = "GUSERNAME"
         Me.GUSERNAME.Visible = True
-        Me.GUSERNAME.VisibleIndex = 22
+        Me.GUSERNAME.VisibleIndex = 23
         '
         'GPER
         '
@@ -328,7 +329,7 @@ Partial Class MaterialReceiptDetails
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 16
+        Me.GPER.VisibleIndex = 17
         '
         'GAMOUNT
         '
@@ -336,7 +337,7 @@ Partial Class MaterialReceiptDetails
         Me.GAMOUNT.FieldName = "AMOUNT"
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.Visible = True
-        Me.GAMOUNT.VisibleIndex = 17
+        Me.GAMOUNT.VisibleIndex = 18
         '
         'GRATE
         '
@@ -344,7 +345,16 @@ Partial Class MaterialReceiptDetails
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 14
+        Me.GRATE.VisibleIndex = 15
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 24
+        Me.GBARCODE.Width = 120
         '
         'ToolStrip1
         '
@@ -398,14 +408,13 @@ Partial Class MaterialReceiptDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select Material Receipt to Change"
         '
-        'GBARCODE
+        'GQTYUNIT
         '
-        Me.GBARCODE.Caption = "Barcode"
-        Me.GBARCODE.FieldName = "BARCODE"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 23
-        Me.GBARCODE.Width = 120
+        Me.GQTYUNIT.Caption = "Qty Unit"
+        Me.GQTYUNIT.FieldName = "QTYUNIT"
+        Me.GQTYUNIT.Name = "GQTYUNIT"
+        Me.GQTYUNIT.Visible = True
+        Me.GQTYUNIT.VisibleIndex = 11
         '
         'MaterialReceiptDetails
         '
@@ -463,4 +472,5 @@ Partial Class MaterialReceiptDetails
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GQTYUNIT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

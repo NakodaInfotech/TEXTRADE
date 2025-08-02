@@ -22,15 +22,15 @@ Partial Class MagicBoxForInvoice
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.TXTADD = New System.Windows.Forms.TextBox()
@@ -275,6 +275,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTAMT.ReadOnly = True
         Me.TXTSGSTAMT.Size = New System.Drawing.Size(69, 23)
         Me.TXTSGSTAMT.TabIndex = 28
+        Me.TXTSGSTAMT.TabStop = False
         Me.TXTSGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTIGSTAMT
@@ -287,6 +288,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTAMT.ReadOnly = True
         Me.TXTIGSTAMT.Size = New System.Drawing.Size(69, 23)
         Me.TXTIGSTAMT.TabIndex = 30
+        Me.TXTIGSTAMT.TabStop = False
         Me.TXTIGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSGSTPER
@@ -299,6 +301,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTPER.ReadOnly = True
         Me.TXTSGSTPER.Size = New System.Drawing.Size(61, 23)
         Me.TXTSGSTPER.TabIndex = 27
+        Me.TXTSGSTPER.TabStop = False
         Me.TXTSGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTIGSTPER
@@ -311,6 +314,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTPER.ReadOnly = True
         Me.TXTIGSTPER.Size = New System.Drawing.Size(61, 23)
         Me.TXTIGSTPER.TabIndex = 29
+        Me.TXTIGSTPER.TabStop = False
         Me.TXTIGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCGSTPER
@@ -323,6 +327,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTPER.ReadOnly = True
         Me.TXTCGSTPER.Size = New System.Drawing.Size(60, 23)
         Me.TXTCGSTPER.TabIndex = 25
+        Me.TXTCGSTPER.TabStop = False
         Me.TXTCGSTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCGSTAMT
@@ -335,6 +340,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTAMT.ReadOnly = True
         Me.TXTCGSTAMT.Size = New System.Drawing.Size(69, 23)
         Me.TXTCGSTAMT.TabIndex = 26
+        Me.TXTCGSTAMT.TabStop = False
         Me.TXTCGSTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTBALENO
@@ -391,6 +397,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTAMT.ReadOnly = True
         Me.TXTAMT.Size = New System.Drawing.Size(66, 23)
         Me.TXTAMT.TabIndex = 22
+        Me.TXTAMT.TabStop = False
         Me.TXTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCHRGS
@@ -403,6 +410,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCHRGS.ReadOnly = True
         Me.TXTCHRGS.Size = New System.Drawing.Size(65, 23)
         Me.TXTCHRGS.TabIndex = 23
+        Me.TXTCHRGS.TabStop = False
         Me.TXTCHRGS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSUBTOTAL
@@ -415,6 +423,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSUBTOTAL.ReadOnly = True
         Me.TXTSUBTOTAL.Size = New System.Drawing.Size(80, 23)
         Me.TXTSUBTOTAL.TabIndex = 24
+        Me.TXTSUBTOTAL.TabStop = False
         Me.TXTSUBTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTLR
@@ -484,6 +493,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOTYPE.ReadOnly = True
         Me.TXTPOTYPE.Size = New System.Drawing.Size(80, 23)
         Me.TXTPOTYPE.TabIndex = 8
+        Me.TXTPOTYPE.TabStop = False
         Me.TXTPOTYPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'ENTRYDATE
@@ -546,6 +556,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOSRNO.ReadOnly = True
         Me.TXTPOSRNO.Size = New System.Drawing.Size(69, 23)
         Me.TXTPOSRNO.TabIndex = 7
+        Me.TXTPOSRNO.TabStop = False
         Me.TXTPOSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPONO
@@ -558,6 +569,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPONO.ReadOnly = True
         Me.TXTPONO.Size = New System.Drawing.Size(71, 23)
         Me.TXTPONO.TabIndex = 6
+        Me.TXTPONO.TabStop = False
         Me.TXTPONO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTROUNDOFF
@@ -569,6 +581,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTROUNDOFF.ReadOnly = True
         Me.TXTROUNDOFF.Size = New System.Drawing.Size(81, 23)
         Me.TXTROUNDOFF.TabIndex = 31
+        Me.TXTROUNDOFF.TabStop = False
         Me.TXTROUNDOFF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTGRANDTOTAL
@@ -580,6 +593,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTGRANDTOTAL.ReadOnly = True
         Me.TXTGRANDTOTAL.Size = New System.Drawing.Size(100, 23)
         Me.TXTGRANDTOTAL.TabIndex = 32
+        Me.TXTGRANDTOTAL.TabStop = False
         Me.TXTGRANDTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDMAGICBOX
@@ -588,28 +602,28 @@ Partial Class MagicBoxForInvoice
         Me.GRIDMAGICBOX.AllowUserToDeleteRows = False
         Me.GRIDMAGICBOX.AllowUserToResizeColumns = False
         Me.GRIDMAGICBOX.AllowUserToResizeRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDMAGICBOX.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDMAGICBOX.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDMAGICBOX.BackgroundColor = System.Drawing.Color.White
         Me.GRIDMAGICBOX.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDMAGICBOX.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDMAGICBOX.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDMAGICBOX.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDMAGICBOX.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDMAGICBOX.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GBILLDATE, Me.GDATE, Me.GSELLERS, Me.GBUYERS, Me.GNO, Me.GCRDAYS, Me.GPONO, Me.GPOSRNO, Me.GPOTYPE, Me.gitemname, Me.gQty, Me.GFOLD, Me.GDESC, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GPER, Me.GAMT, Me.GCHARGES, Me.GSUBTOTAL, Me.GCGST, Me.GCGSTAMT, Me.GSGST, Me.GSGSTAMT, Me.GIGST, Me.GIGSTAMT, Me.GROUNDOFF, Me.GGRANDTOTAL, Me.GCOMPER, Me.GCOM, Me.GREMARKS})
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDMAGICBOX.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDMAGICBOX.DefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDMAGICBOX.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDMAGICBOX.Location = New System.Drawing.Point(3, 27)
         Me.GRIDMAGICBOX.MultiSelect = False
@@ -617,15 +631,14 @@ Partial Class MagicBoxForInvoice
         Me.GRIDMAGICBOX.RowHeadersVisible = False
         Me.GRIDMAGICBOX.RowHeadersWidth = 30
         Me.GRIDMAGICBOX.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDMAGICBOX.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDMAGICBOX.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDMAGICBOX.RowTemplate.Height = 20
         Me.GRIDMAGICBOX.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDMAGICBOX.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDMAGICBOX.Size = New System.Drawing.Size(3272, 543)
         Me.GRIDMAGICBOX.TabIndex = 10
-        Me.GRIDMAGICBOX.TabStop = False
         '
         'gsrno
         '
@@ -707,8 +720,8 @@ Partial Class MagicBoxForInvoice
         '
         'gitemname
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle3
         Me.gitemname.HeaderText = "Item Name"
         Me.gitemname.Name = "gitemname"
         Me.gitemname.ReadOnly = True
@@ -718,10 +731,10 @@ Partial Class MagicBoxForInvoice
         '
         'gQty
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle13.NullValue = Nothing
-        Me.gQty.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.gQty.DefaultCellStyle = DataGridViewCellStyle4
         Me.gQty.HeaderText = "Qty"
         Me.gQty.Name = "gQty"
         Me.gQty.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -748,8 +761,8 @@ Partial Class MagicBoxForInvoice
         '
         'GLRNO
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLRNO.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLRNO.DefaultCellStyle = DataGridViewCellStyle5
         Me.GLRNO.HeaderText = "LR"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -777,8 +790,8 @@ Partial Class MagicBoxForInvoice
         '
         'GMTRS
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle6
         Me.GMTRS.HeaderText = "Mtrs."
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -787,8 +800,8 @@ Partial Class MagicBoxForInvoice
         '
         'GRATE
         '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
