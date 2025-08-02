@@ -170,8 +170,8 @@ Public Class ClsOpeningGreyStockAtProcess
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
+                '.Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
+                'I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
 

@@ -83,9 +83,10 @@ Public Class OpeningGreyStockAtProcess
                 TXTNO.Text = gridstock.Item(GNO.Index, gridstock.CurrentRow.Index).Value.ToString
                 txtsrno.Text = gridstock.Item(gsrno.Index, gridstock.CurrentRow.Index).Value.ToString
                 cmbname.Text = gridstock.Item(GNAME.Index, gridstock.CurrentRow.Index).Value.ToString
+                CMBPURNAME.Text = gridstock.Item(GPURCHASEPARTY.Index, gridstock.CurrentRow.Index).Value.ToString
                 CMBTRANS.Text = gridstock.Item(GTRANS.Index, gridstock.CurrentRow.Index).Value.ToString
                 TXTLRNO.Text = gridstock.Item(GLRNO.Index, gridstock.CurrentRow.Index).Value.ToString
-                TXTLRNO.Text = gridstock.Item(GLRNO.Index, gridstock.CurrentRow.Index).Value.ToString
+                DTLRDATE.Text = gridstock.Item(GLRDATE.Index, gridstock.CurrentRow.Index).Value.ToString
                 cmbmerchant.Text = gridstock.Item(GMERCHANT.Index, gridstock.CurrentRow.Index).Value.ToString
                 CMBDESIGN.Text = gridstock.Item(GDESIGN.Index, gridstock.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = gridstock.Item(gcolor.Index, gridstock.CurrentRow.Index).Value.ToString
@@ -98,8 +99,8 @@ Public Class OpeningGreyStockAtProcess
                 TXTAMOUNT.Text = gridstock.Item(GAMOUNT.Index, gridstock.CurrentRow.Index).Value.ToString
                 CMBAGENT.Text = gridstock.Item(GAGENT.Index, gridstock.CurrentRow.Index).Value.ToString
                 TXTCRDAYS.Text = gridstock.Item(GCRDAYS.Index, gridstock.CurrentRow.Index).Value.ToString
+                txtreflotno.Text = gridstock.Item(GREFLOTNO.Index, gridstock.CurrentRow.Index).Value.ToString
 
-                'TXTBARCODE.Text = gridstock.Item(gBarcode.Index, gridstock.CurrentRow.Index).Value.ToString
                 TEMPROW = gridstock.CurrentRow.Index
                 txtsrno.Focus()
             End If
@@ -168,9 +169,9 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub cmbtrans_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTRANS.Enter
         Try
-            If CMBTRANS.Text.Trim = "" Then fillitemname(CMBTRANS, " AND ITEMMASTER.ITEM_FRMSTRING IN ('MERCHANT')")
+            If CMBTRANS.Text.Trim = "" Then FILLNAME(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'")
         Catch ex As Exception
-            Throw ex
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
@@ -202,7 +203,7 @@ Public Class OpeningGreyStockAtProcess
                 gridstock.RowCount = 0
                 For Each DR As DataRow In dttable.Rows
                     openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
-                    gridstock.Rows.Add(Val(DR("SMNO")), DR("SMGRIDSRNO"), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
+                    gridstock.Rows.Add(DR("SMGRIDSRNO"), Val(DR("SMNO")), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
                 getsrno(gridstock)
@@ -222,7 +223,7 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub cmbtrans_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANS.Validating
         Try
-            If CMBTRANS.Text.Trim <> "" Then itemvalidate(CMBTRANS, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+            If CMBTRANS.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANS, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -294,10 +295,11 @@ Public Class OpeningGreyStockAtProcess
             DTLRDATE.Value = Now.Date
             TXTAMOUNT.Clear()
             CMBAGENT.Text = ""
+            CMBPURNAME.Text = ""
             TXTCRDAYS.Clear()
             TXTBALENO.Clear()
             TXTLRNO.Clear()
-            TXTBARCODE.Clear()
+            'TXTBARCODE.Clear()
             TXTNO.Clear()
             If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
                 txtMtrs.Focus()
@@ -310,8 +312,12 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub CMBPURNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBPURNAME.Validating
         Try
-            If cmbname.Text.Trim <> "" Then
-                NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "Sundry Debtors", "ACCOUNTS")
+            If CMBPURNAME.Text.Trim <> "" Then
+                If ClientName = "RADHA" Then
+                    NAMEVALIDATE(CMBPURNAME, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')", "Sundry Creditors", "ACCOUNTS")
+                Else
+                    NAMEVALIDATE(CMBPURNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+                End If
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -320,11 +326,15 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub CMBPURNAME_Enter(sender As Object, e As EventArgs) Handles CMBPURNAME.Enter
         Try
-            If cmbname.Text.Trim = "" Then
-                FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'")
+            If CMBPURNAME.Text.Trim = "" Then
+                If ClientName = "RADHA" Then
+                    FILLNAME(CMBPURNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GroupMaster.GROUP_SECONDARY = 'Sundry Debtors')")
+                Else
+                    FILLNAME(CMBPURNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+                End If
             End If
         Catch ex As Exception
-            Throw ex
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
@@ -353,24 +363,25 @@ Public Class OpeningGreyStockAtProcess
         ElseIf e.KeyCode = Keys.F12 And gridstock.RowCount > 0 Then
             If gridstock.SelectedRows.Count = 0 Then Exit Sub
             Dim TEMPROWINDEX As Integer = gridstock.CurrentRow.Index
+            txtsrno.Text = gridstock.Item(gsrno.Index, TEMPROWINDEX).Value
             cmbname.Text = gridstock.Item(GNAME.Index, TEMPROWINDEX).Value
             CMBPURNAME.Text = gridstock.Item(GPURCHASEPARTY.Index, TEMPROWINDEX).Value
             CMBTRANS.Text = gridstock.Item(GTRANS.Index, TEMPROWINDEX).Value
             TXTLRNO.Text = gridstock.Item(GLRNO.Index, TEMPROWINDEX).Value
-
+            DTLRDATE.Text = gridstock.Item(GLRDATE.Index, TEMPROWINDEX).Value
             cmbmerchant.Text = gridstock.Item(GMERCHANT.Index, TEMPROWINDEX).Value
             CMBDESIGN.Text = gridstock.Item(GDESIGN.Index, TEMPROWINDEX).Value
             cmbcolor.Text = gridstock.Item(gcolor.Index, TEMPROWINDEX).Value
-            cmbname.Text = gridstock.Item(GNAME.Index, TEMPROWINDEX).Value
-            cmbunit.Text = gridstock.Item(Gunit.Index, TEMPROWINDEX).Value
-            txtpcs.Text = gridstock.Item(Gpcs.Index, TEMPROWINDEX).Value
-            txtMtrs.Text = gridstock.Item(gMtrs.Index, TEMPROWINDEX).Value
-
-            TXTRATE.Text = gridstock.Item(GRATE.Index, TEMPROWINDEX).Value
-            TXTAMOUNT.Text = gridstock.Item(GAMOUNT.Index, TEMPROWINDEX).Value
-            TXTLRNO.Text = gridstock.Item(GLRNO.Index, TEMPROWINDEX).Value
             TXTBALENO.Text = gridstock.Item(GBALENO.Index, TEMPROWINDEX).Value
-            'TXTBARCODE.Text = gridstock.Item(gBarcode.Index, TEMPROWINDEX).Value
+            txtpcs.Text = gridstock.Item(Gpcs.Index, TEMPROWINDEX).Value
+            cmbunit.Text = gridstock.Item(Gunit.Index, TEMPROWINDEX).Value
+            txtMtrs.Text = gridstock.Item(gMtrs.Index, TEMPROWINDEX).Value
+            TXTRATE.Text = gridstock.Item(GRATE.Index, TEMPROWINDEX).Value
+            CMBPER.Text = gridstock.Item(GPer.Index, TEMPROWINDEX).Value
+            TXTAMOUNT.Text = gridstock.Item(GAMOUNT.Index, TEMPROWINDEX).Value
+            CMBAGENT.Text = gridstock.Item(GAGENT.Index, TEMPROWINDEX).Value
+            TXTCRDAYS.Text = gridstock.Item(GCRDAYS.Index, TEMPROWINDEX).Value
+            txtreflotno.Text = gridstock.Item(GREFLOTNO.Index, TEMPROWINDEX).Value
 
             txtMtrs.Focus()
         ElseIf e.KeyCode = Keys.Oemcomma Then
@@ -442,7 +453,7 @@ Public Class OpeningGreyStockAtProcess
     Private Sub cmbunit_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbunit.Validated
         Try
             If cmbmerchant.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtpcs.Text) <> 0 And cmbunit.Text.Trim <> "" Then
-                fillgrid()
+                'fillgrid()
             Else
                 If cmbmerchant.Text.Trim = "" Then
                     MsgBox("Please Fill Item Name ")
@@ -703,7 +714,7 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub txtpcs_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtpcs.KeyPress, TXTFROM.KeyPress, TXTTO.KeyPress
+    Private Sub txtpcs_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtpcs.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
@@ -743,7 +754,7 @@ Public Class OpeningGreyStockAtProcess
                 If TEMPMSG = vbNo Then Exit Sub
 
                 'DELETE FROM STOCKMASTER
-                Dim OBJSM As New ClsStockMaster
+                Dim OBJSM As New ClsOpeningGreyStockAtProcess
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value)
                 ALPARAVAL.Add(CmpId)
@@ -763,7 +774,7 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub TXTTO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTTO.Validating
+    Private Sub TXTTO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
         Try
             'PRINTBARCODE()
         Catch ex As Exception
@@ -821,9 +832,6 @@ Public Class OpeningGreyStockAtProcess
             Throw ex
         End Try
     End Sub
-
-
-
 
     Private Sub TXTREflotno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtreflotno.Validating
 
@@ -886,7 +894,7 @@ Public Class OpeningGreyStockAtProcess
     Private Sub OpeningStock_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-                TXTBARCODE.Visible = True
+                'TXTBARCODE.Visible = True
                 'LBLBARCODE.Visible = True
                 GRATE.HeaderText = "Pur Rate"
                 GAMOUNT.HeaderText = "Sale Rate"
@@ -959,9 +967,20 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    'Private Sub gridstock_DataError(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles gridstock.DataError
-    '    If (e.Context = (DataGridViewDataErrorContexts.Formatting Or DataGridViewDataErrorContexts.PreferredSize)) Then
-    '        e.ThrowException = False
-    '    End If
-    'End Sub
+    Private Sub CMBAGENT_Enter(sender As Object, e As EventArgs) Handles CMBAGENT.Enter
+        Try
+            If CMBAGENT.Text.Trim = "" Then fillagentledger(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBAGENT_Validating(sender As Object, e As CancelEventArgs) Handles CMBAGENT.Validating
+        Try
+            If CMBAGENT.Text.Trim <> "" Then NAMEVALIDATE(CMBAGENT, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'", "Sundry Creditors", "AGENT")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
 End Class
