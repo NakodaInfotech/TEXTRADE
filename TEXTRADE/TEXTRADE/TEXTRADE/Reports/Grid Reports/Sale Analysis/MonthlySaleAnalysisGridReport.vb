@@ -691,6 +691,7 @@ Public Class MonthlySaleAnalysisGridReport
             MsgBox("Export failed: " & ex.Message)
         End Try
     End Sub
+
     Private Sub ExportDataGridViewToPDF(dgv As DataGridView)
         Try
             ' Initialize PDF table with column count
@@ -806,6 +807,7 @@ Public Class MonthlySaleAnalysisGridReport
             MessageBox.Show("Error exporting to PDF: " & ex.Message)
         End Try
     End Sub
+
     Sub TEMPSALEANALYSIS()
         Try
             Dim OBJCMN As New ClsCommon
