@@ -33,6 +33,7 @@ Partial Class OpeningGreyStockAtTransport
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.cmdclear = New System.Windows.Forms.Button()
         Me.TXTTRANSADD = New System.Windows.Forms.TextBox()
         Me.TXTNO = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -80,7 +81,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.openingdate = New System.Windows.Forms.DateTimePicker()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.cmdclear = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +106,20 @@ Partial Class OpeningGreyStockAtTransport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 599)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'cmdclear
+        '
+        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
+        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdclear.FlatAppearance.BorderSize = 0
+        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdclear.Location = New System.Drawing.Point(556, 530)
+        Me.cmdclear.Name = "cmdclear"
+        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
+        Me.cmdclear.TabIndex = 4
+        Me.cmdclear.Text = "&Clear"
+        Me.cmdclear.UseVisualStyleBackColor = False
         '
         'TXTTRANSADD
         '
@@ -144,7 +158,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.Label6.Size = New System.Drawing.Size(38, 15)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Date :"
-        Me.Label6.Visible = False
         '
         'CMBCODE
         '
@@ -611,7 +624,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.openingdate.Size = New System.Drawing.Size(88, 23)
         Me.openingdate.TabIndex = 0
         Me.openingdate.Value = New Date(2013, 4, 1, 8, 54, 0, 0)
-        Me.openingdate.Visible = False
         '
         'cmdexit
         '
@@ -631,20 +643,6 @@ Partial Class OpeningGreyStockAtTransport
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'cmdclear
-        '
-        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
-        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdclear.FlatAppearance.BorderSize = 0
-        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdclear.Location = New System.Drawing.Point(556, 530)
-        Me.cmdclear.Name = "cmdclear"
-        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 4
-        Me.cmdclear.Text = "&Clear"
-        Me.cmdclear.UseVisualStyleBackColor = False
         '
         'OpeningGreyStockAtTransport
         '

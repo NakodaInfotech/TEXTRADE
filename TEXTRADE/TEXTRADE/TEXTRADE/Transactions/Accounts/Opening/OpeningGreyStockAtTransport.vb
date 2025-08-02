@@ -69,7 +69,7 @@ Public Class OpeningGreyStockAtTransport
 
         'clearing textboxes
         EP.Clear()
-
+        openingdate.Value = Now.Date
         cmbname.Text = ""
         CMBTRANS.Text = ""
         TXTLRNO.Clear()
@@ -169,11 +169,9 @@ Public Class OpeningGreyStockAtTransport
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                If ClientName = "RADHA" Then
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')", "Sundry Creditors", "ACCOUNTS")
-                Else
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
-                End If
+
+                NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -340,7 +338,7 @@ Public Class OpeningGreyStockAtTransport
             If dttable.Rows.Count > 0 Then
                 gridstock.RowCount = 0
                 For Each DR As DataRow In dttable.Rows
-                    openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
+                    openingdate.Value = Now.Date
                     gridstock.Rows.Add(Val(DR("GRIDSRNO")), DR("SGTNO"), DR("NAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("ITEMNAME"), DR("DESIGN"), DR("COLOR"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), Val(DR("CRDAYS")), Format(Val(DR("OUTPCS")), "0.00"), Format(Val(DR("OUTMTRS")), "0.00"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
@@ -859,9 +857,9 @@ Public Class OpeningGreyStockAtTransport
         Try
 
             SAVE()
+            fillgrid()
 
             clear()
-            fillgrid()
 
 
         Catch ex As Exception
