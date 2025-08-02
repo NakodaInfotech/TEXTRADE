@@ -860,8 +860,9 @@ Public Class OpeningGreyStockAtTransport
 
             SAVE()
 
-            fillgrid()
             clear()
+            fillgrid()
+
 
         Catch ex As Exception
             Throw ex
