@@ -202,7 +202,8 @@ Public Class OpeningGreyStockAtProcess
             If dttable.Rows.Count > 0 Then
                 gridstock.RowCount = 0
                 For Each DR As DataRow In dttable.Rows
-                    openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
+                    openingdate.Value = Now.Date
+                    'openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
                     gridstock.Rows.Add(DR("SMGRIDSRNO"), Val(DR("SMNO")), DR("NAME"), DR("PURNAME"), DR("TRANSNAME"), DR("LRNO"), Format(Convert.ToDateTime(DR("LRDATE")).Date, "dd/MM/yyyy"), DR("MERCHANT"), DR("DESIGN"), DR("SHADE"), DR("BALENO"), Val(DR("PCS")), DR("UNIT"), Format(Val(DR("MTRS")), "0.00"), Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("AGENTNAME"), DR("CRDAYS"), DR("REFLOTNO"))
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
@@ -248,7 +249,7 @@ Public Class OpeningGreyStockAtProcess
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -572,7 +573,8 @@ Public Class OpeningGreyStockAtProcess
                 End If
 
                 Dim DT As DataTable = OBJSM.save()
-                If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                MessageBox.Show("Details Added")
+                'If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
                 'BARCODE()
             Else
 
@@ -583,6 +585,8 @@ Public Class OpeningGreyStockAtProcess
 
                 ALPARAVAL.Add(TXTNO.Text.Trim)
                 Dim INTRES As Integer = OBJSM.UPDATE()
+                MessageBox.Show("Details Updated")
+
             End If
         Catch ex As Exception
             Throw ex
@@ -758,7 +762,7 @@ Public Class OpeningGreyStockAtProcess
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value)
                 ALPARAVAL.Add(CmpId)
-                ALPARAVAL.Add(Locationid)
+                'ALPARAVAL.Add(Locationid)
                 ALPARAVAL.Add(YearId)
 
                 OBJSM.alParaval = ALPARAVAL
@@ -835,26 +839,30 @@ Public Class OpeningGreyStockAtProcess
 
     Private Sub TXTREflotno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtreflotno.Validating
 
-        Dim TEMPPCS As Integer = Val(txtpcs.Text.Trim)
-        Dim TEMPMTRS As Double = Val(txtMtrs.Text.Trim)
-        If ClientName = "MABHAY" Or ClientName = "SVS" Then
-            'If ClientName <> "MSANCHITKUMAR" And ClientName <> "CC" And ClientName <> "BARKHA" Then txtpcs.Text = 1
-            If ALLOWBARCODEPRINT = True Then txtpcs.Text = 1
-            If Val(TEMPPCS) > 1 Then
-                txtMtrs.Text = Format(Val(txtMtrs.Text.Trim) / Val(TEMPPCS), "0.00")
-                CLEAR = False
-            End If
-            For I As Integer = 1 To Val(TEMPPCS)
-                SAVE()
-                If I = TEMPPCS Then CLEAR = True
-                fillgrid()
-            Next
-        Else
-            SAVE()
-            CLEAR = True
-            fillgrid()
-        End If
+        'Dim TEMPPCS As Integer = Val(txtpcs.Text.Trim)
+        'Dim TEMPMTRS As Double = Val(txtMtrs.Text.Trim)
+        'If ClientName = "MABHAY" Or ClientName = "SVS" Then
+        '    'If ClientName <> "MSANCHITKUMAR" And ClientName <> "CC" And ClientName <> "BARKHA" Then txtpcs.Text = 1
+        '    If ALLOWBARCODEPRINT = True Then txtpcs.Text = 1
+        '    If Val(TEMPPCS) > 1 Then
+        '        txtMtrs.Text = Format(Val(txtMtrs.Text.Trim) / Val(TEMPPCS), "0.00")
+        '        CLEAR = False
+        '    End If
+        '    For I As Integer = 1 To Val(TEMPPCS)
+        '        SAVE()
+        '        If I = TEMPPCS Then CLEAR = True
+        '        fillgrid()
+        '    Next
+        'Else
+        '    SAVE()
+        '    CLEAR = True
+        '    fillgrid()
+        'End If
 
+
+        SAVE()
+        CLEAR = True
+        fillgrid()
 
     End Sub
 
@@ -957,6 +965,10 @@ Public Class OpeningGreyStockAtProcess
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
+        CLEAR = True
     End Sub
 
     Private Sub cmbmerchant_Validating(sender As Object, e As CancelEventArgs) Handles cmbmerchant.Validating
