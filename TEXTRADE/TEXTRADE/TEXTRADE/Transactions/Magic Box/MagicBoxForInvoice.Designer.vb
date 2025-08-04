@@ -69,6 +69,14 @@ Partial Class MagicBoxForInvoice
         Me.TXTROUNDOFF = New System.Windows.Forms.TextBox()
         Me.TXTGRANDTOTAL = New System.Windows.Forms.TextBox()
         Me.GRIDMAGICBOX = New System.Windows.Forms.DataGridView()
+        Me.cmbitemname = New System.Windows.Forms.ComboBox()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.txtcrdays = New System.Windows.Forms.TextBox()
+        Me.TXTPARTYBILLNO = New System.Windows.Forms.TextBox()
+        Me.CMBBUYERS = New System.Windows.Forms.ComboBox()
+        Me.cmdOK = New System.Windows.Forms.Button()
+        Me.cmdclear = New System.Windows.Forms.Button()
+        Me.cmdEXIT = New System.Windows.Forms.Button()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBILLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -105,14 +113,8 @@ Partial Class MagicBoxForInvoice
         Me.GCOMPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmbitemname = New System.Windows.Forms.ComboBox()
-        Me.txtsrno = New System.Windows.Forms.TextBox()
-        Me.txtcrdays = New System.Windows.Forms.TextBox()
-        Me.TXTPARTYBILLNO = New System.Windows.Forms.TextBox()
-        Me.CMBBUYERS = New System.Windows.Forms.ComboBox()
-        Me.cmdOK = New System.Windows.Forms.Button()
-        Me.cmdclear = New System.Windows.Forms.Button()
-        Me.cmdEXIT = New System.Windows.Forms.Button()
+        Me.GHSN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TXTHSN = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -156,7 +158,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTADD.BackColor = System.Drawing.Color.White
         Me.TXTADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTADD.Location = New System.Drawing.Point(924, 639)
+        Me.TXTADD.Location = New System.Drawing.Point(924, 537)
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(12, 22)
         Me.TXTADD.TabIndex = 22
@@ -170,7 +172,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCODE.FormattingEnabled = True
         Me.CMBCODE.Items.AddRange(New Object() {""})
-        Me.CMBCODE.Location = New System.Drawing.Point(908, 639)
+        Me.CMBCODE.Location = New System.Drawing.Point(908, 537)
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(10, 22)
         Me.CMBCODE.TabIndex = 21
@@ -182,13 +184,13 @@ Partial Class MagicBoxForInvoice
         Me.TabControl2.Location = New System.Drawing.Point(11, 12)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(3289, 603)
+        Me.TabControl2.Size = New System.Drawing.Size(3289, 501)
         Me.TabControl2.TabIndex = 0
         '
         'tbitem
         '
-        Me.tbitem.AutoScroll = True
         Me.tbitem.BackColor = System.Drawing.Color.Linen
+        Me.tbitem.Controls.Add(Me.TXTHSN)
         Me.tbitem.Controls.Add(Me.CMBCOMM)
         Me.tbitem.Controls.Add(Me.CMBPER)
         Me.tbitem.Controls.Add(Me.TXTCOMMPER)
@@ -229,7 +231,7 @@ Partial Class MagicBoxForInvoice
         Me.tbitem.Location = New System.Drawing.Point(4, 23)
         Me.tbitem.Name = "tbitem"
         Me.tbitem.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbitem.Size = New System.Drawing.Size(3281, 576)
+        Me.tbitem.Size = New System.Drawing.Size(3281, 474)
         Me.tbitem.TabIndex = 0
         Me.tbitem.Text = "Magic Details"
         '
@@ -615,7 +617,7 @@ Partial Class MagicBoxForInvoice
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDMAGICBOX.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDMAGICBOX.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDMAGICBOX.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GBILLDATE, Me.GDATE, Me.GSELLERS, Me.GBUYERS, Me.GNO, Me.GCRDAYS, Me.GPONO, Me.GPOSRNO, Me.GPOTYPE, Me.gitemname, Me.gQty, Me.GFOLD, Me.GDESC, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GPER, Me.GAMT, Me.GCHARGES, Me.GSUBTOTAL, Me.GCGST, Me.GCGSTAMT, Me.GSGST, Me.GSGSTAMT, Me.GIGST, Me.GIGSTAMT, Me.GROUNDOFF, Me.GGRANDTOTAL, Me.GCOMPER, Me.GCOM, Me.GREMARKS})
+        Me.GRIDMAGICBOX.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GBILLDATE, Me.GDATE, Me.GSELLERS, Me.GBUYERS, Me.GNO, Me.GCRDAYS, Me.GPONO, Me.GPOSRNO, Me.GPOTYPE, Me.gitemname, Me.gQty, Me.GFOLD, Me.GDESC, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GPER, Me.GAMT, Me.GCHARGES, Me.GSUBTOTAL, Me.GCGST, Me.GCGSTAMT, Me.GSGST, Me.GSGSTAMT, Me.GIGST, Me.GIGSTAMT, Me.GROUNDOFF, Me.GGRANDTOTAL, Me.GCOMPER, Me.GCOM, Me.GREMARKS, Me.GHSN})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -636,9 +638,112 @@ Partial Class MagicBoxForInvoice
         Me.GRIDMAGICBOX.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDMAGICBOX.RowTemplate.Height = 20
         Me.GRIDMAGICBOX.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDMAGICBOX.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDMAGICBOX.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDMAGICBOX.Size = New System.Drawing.Size(3272, 543)
         Me.GRIDMAGICBOX.TabIndex = 10
+        '
+        'cmbitemname
+        '
+        Me.cmbitemname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbitemname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbitemname.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbitemname.DropDownWidth = 400
+        Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbitemname.FormattingEnabled = True
+        Me.cmbitemname.Location = New System.Drawing.Point(970, 4)
+        Me.cmbitemname.Name = "cmbitemname"
+        Me.cmbitemname.Size = New System.Drawing.Size(200, 23)
+        Me.cmbitemname.TabIndex = 9
+        '
+        'txtsrno
+        '
+        Me.txtsrno.BackColor = System.Drawing.Color.Linen
+        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtsrno.Location = New System.Drawing.Point(3, 4)
+        Me.txtsrno.Name = "txtsrno"
+        Me.txtsrno.ReadOnly = True
+        Me.txtsrno.Size = New System.Drawing.Size(30, 23)
+        Me.txtsrno.TabIndex = 0
+        Me.txtsrno.TabStop = False
+        '
+        'txtcrdays
+        '
+        Me.txtcrdays.BackColor = System.Drawing.Color.White
+        Me.txtcrdays.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtcrdays.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtcrdays.Location = New System.Drawing.Point(690, 4)
+        Me.txtcrdays.Name = "txtcrdays"
+        Me.txtcrdays.Size = New System.Drawing.Size(60, 23)
+        Me.txtcrdays.TabIndex = 5
+        Me.txtcrdays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTPARTYBILLNO
+        '
+        Me.TXTPARTYBILLNO.BackColor = System.Drawing.Color.White
+        Me.TXTPARTYBILLNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTPARTYBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(609, 4)
+        Me.TXTPARTYBILLNO.Name = "TXTPARTYBILLNO"
+        Me.TXTPARTYBILLNO.Size = New System.Drawing.Size(81, 23)
+        Me.TXTPARTYBILLNO.TabIndex = 4
+        Me.TXTPARTYBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBBUYERS
+        '
+        Me.CMBBUYERS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBBUYERS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBBUYERS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBBUYERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBBUYERS.FormattingEnabled = True
+        Me.CMBBUYERS.Items.AddRange(New Object() {""})
+        Me.CMBBUYERS.Location = New System.Drawing.Point(409, 4)
+        Me.CMBBUYERS.Name = "CMBBUYERS"
+        Me.CMBBUYERS.Size = New System.Drawing.Size(200, 23)
+        Me.CMBBUYERS.TabIndex = 3
+        '
+        'cmdOK
+        '
+        Me.cmdOK.BackColor = System.Drawing.Color.Transparent
+        Me.cmdOK.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdOK.FlatAppearance.BorderSize = 0
+        Me.cmdOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdOK.ForeColor = System.Drawing.Color.Black
+        Me.cmdOK.Location = New System.Drawing.Point(596, 519)
+        Me.cmdOK.Name = "cmdOK"
+        Me.cmdOK.Size = New System.Drawing.Size(80, 28)
+        Me.cmdOK.TabIndex = 1
+        Me.cmdOK.Text = "&Save"
+        Me.cmdOK.UseVisualStyleBackColor = False
+        '
+        'cmdclear
+        '
+        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
+        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdclear.FlatAppearance.BorderSize = 0
+        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdclear.ForeColor = System.Drawing.Color.Black
+        Me.cmdclear.Location = New System.Drawing.Point(682, 519)
+        Me.cmdclear.Name = "cmdclear"
+        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
+        Me.cmdclear.TabIndex = 2
+        Me.cmdclear.Text = "&Clear"
+        Me.cmdclear.UseVisualStyleBackColor = False
+        '
+        'cmdEXIT
+        '
+        Me.cmdEXIT.BackColor = System.Drawing.Color.Transparent
+        Me.cmdEXIT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdEXIT.FlatAppearance.BorderSize = 0
+        Me.cmdEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdEXIT.ForeColor = System.Drawing.Color.Black
+        Me.cmdEXIT.Location = New System.Drawing.Point(768, 519)
+        Me.cmdEXIT.Name = "cmdEXIT"
+        Me.cmdEXIT.Size = New System.Drawing.Size(80, 28)
+        Me.cmdEXIT.TabIndex = 3
+        Me.cmdEXIT.Text = "E&xit"
+        Me.cmdEXIT.UseVisualStyleBackColor = False
         '
         'gsrno
         '
@@ -899,107 +1004,22 @@ Partial Class MagicBoxForInvoice
         Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GREMARKS.Width = 200
         '
-        'cmbitemname
+        'GHSN
         '
-        Me.cmbitemname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbitemname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbitemname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbitemname.DropDownWidth = 400
-        Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbitemname.FormattingEnabled = True
-        Me.cmbitemname.Location = New System.Drawing.Point(970, 4)
-        Me.cmbitemname.Name = "cmbitemname"
-        Me.cmbitemname.Size = New System.Drawing.Size(200, 23)
-        Me.cmbitemname.TabIndex = 9
+        Me.GHSN.HeaderText = "HSN"
+        Me.GHSN.Name = "GHSN"
+        Me.GHSN.Visible = False
         '
-        'txtsrno
+        'TXTHSN
         '
-        Me.txtsrno.BackColor = System.Drawing.Color.Linen
-        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(3, 4)
-        Me.txtsrno.Name = "txtsrno"
-        Me.txtsrno.ReadOnly = True
-        Me.txtsrno.Size = New System.Drawing.Size(30, 23)
-        Me.txtsrno.TabIndex = 0
-        Me.txtsrno.TabStop = False
-        '
-        'txtcrdays
-        '
-        Me.txtcrdays.BackColor = System.Drawing.Color.White
-        Me.txtcrdays.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtcrdays.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcrdays.Location = New System.Drawing.Point(690, 4)
-        Me.txtcrdays.Name = "txtcrdays"
-        Me.txtcrdays.Size = New System.Drawing.Size(60, 23)
-        Me.txtcrdays.TabIndex = 5
-        Me.txtcrdays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTPARTYBILLNO
-        '
-        Me.TXTPARTYBILLNO.BackColor = System.Drawing.Color.White
-        Me.TXTPARTYBILLNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTPARTYBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(609, 4)
-        Me.TXTPARTYBILLNO.Name = "TXTPARTYBILLNO"
-        Me.TXTPARTYBILLNO.Size = New System.Drawing.Size(81, 23)
-        Me.TXTPARTYBILLNO.TabIndex = 4
-        Me.TXTPARTYBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBBUYERS
-        '
-        Me.CMBBUYERS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBBUYERS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBBUYERS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBBUYERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBBUYERS.FormattingEnabled = True
-        Me.CMBBUYERS.Items.AddRange(New Object() {""})
-        Me.CMBBUYERS.Location = New System.Drawing.Point(409, 4)
-        Me.CMBBUYERS.Name = "CMBBUYERS"
-        Me.CMBBUYERS.Size = New System.Drawing.Size(200, 23)
-        Me.CMBBUYERS.TabIndex = 3
-        '
-        'cmdOK
-        '
-        Me.cmdOK.BackColor = System.Drawing.Color.Transparent
-        Me.cmdOK.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdOK.FlatAppearance.BorderSize = 0
-        Me.cmdOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdOK.ForeColor = System.Drawing.Color.Black
-        Me.cmdOK.Location = New System.Drawing.Point(596, 621)
-        Me.cmdOK.Name = "cmdOK"
-        Me.cmdOK.Size = New System.Drawing.Size(80, 28)
-        Me.cmdOK.TabIndex = 1
-        Me.cmdOK.Text = "&Save"
-        Me.cmdOK.UseVisualStyleBackColor = False
-        '
-        'cmdclear
-        '
-        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
-        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdclear.FlatAppearance.BorderSize = 0
-        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdclear.ForeColor = System.Drawing.Color.Black
-        Me.cmdclear.Location = New System.Drawing.Point(682, 621)
-        Me.cmdclear.Name = "cmdclear"
-        Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 2
-        Me.cmdclear.Text = "&Clear"
-        Me.cmdclear.UseVisualStyleBackColor = False
-        '
-        'cmdEXIT
-        '
-        Me.cmdEXIT.BackColor = System.Drawing.Color.Transparent
-        Me.cmdEXIT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdEXIT.FlatAppearance.BorderSize = 0
-        Me.cmdEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdEXIT.ForeColor = System.Drawing.Color.Black
-        Me.cmdEXIT.Location = New System.Drawing.Point(768, 621)
-        Me.cmdEXIT.Name = "cmdEXIT"
-        Me.cmdEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.cmdEXIT.TabIndex = 3
-        Me.cmdEXIT.Text = "E&xit"
-        Me.cmdEXIT.UseVisualStyleBackColor = False
+        Me.TXTHSN.BackColor = System.Drawing.Color.White
+        Me.TXTHSN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTHSN.Location = New System.Drawing.Point(3252, 4)
+        Me.TXTHSN.Name = "TXTHSN"
+        Me.TXTHSN.Size = New System.Drawing.Size(70, 23)
+        Me.TXTHSN.TabIndex = 36
+        Me.TXTHSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTHSN.Visible = False
         '
         'MagicBoxForInvoice
         '
@@ -1069,6 +1089,7 @@ Partial Class MagicBoxForInvoice
     Friend WithEvents CMBPER As ComboBox
     Friend WithEvents CMBCOMM As ComboBox
     Friend WithEvents CMDSELECTPO As Button
+    Friend WithEvents TXTHSN As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GBILLDATE As DataGridViewTextBoxColumn
     Friend WithEvents GDATE As DataGridViewTextBoxColumn
@@ -1105,4 +1126,5 @@ Partial Class MagicBoxForInvoice
     Friend WithEvents GCOMPER As DataGridViewTextBoxColumn
     Friend WithEvents GCOM As DataGridViewTextBoxColumn
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
+    Friend WithEvents GHSN As DataGridViewTextBoxColumn
 End Class
