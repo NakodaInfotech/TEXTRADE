@@ -203,7 +203,7 @@ Partial Class MonthlySaleAnalysisGridReport
         Me.CMBSUBGROUP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSUBGROUP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBSUBGROUP.FormattingEnabled = True
-        Me.CMBSUBGROUP.Items.AddRange(New Object() {"", "PARTYWISE", "AGENTWISE", "ITEMWISE"})
+        Me.CMBSUBGROUP.Items.AddRange(New Object() {"", "PARTYWISE", "AGENTWISE", "ITEMWISE", "MILLWISE"})
         Me.CMBSUBGROUP.Location = New System.Drawing.Point(88, 42)
         Me.CMBSUBGROUP.MaxDropDownItems = 14
         Me.CMBSUBGROUP.Name = "CMBSUBGROUP"
