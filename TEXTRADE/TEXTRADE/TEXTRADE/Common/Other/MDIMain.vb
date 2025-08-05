@@ -2559,7 +2559,7 @@ Public Class MDIMain
         Try
             Dim OBJGRN As New GRN
             OBJGRN.MdiParent = Me
-            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "KREEVE" Or ClientName = "PURPLE" Or ClientName = "INDRANI" Or ClientName = "GELATO" Or ClientName = "NVAHAN" Or ClientName = "SAKARIA" Or ClientName = "MANIBHADRA" Or ClientName = "TCOT" Or ClientName = "MOMAI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then OBJGRN.FRMSTRING = "GRN FANCY" Else OBJGRN.FRMSTRING = "GRNJOB"
+            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "KREEVE" Or ClientName = "PURPLE" Or ClientName = "INDRANI" Or ClientName = "GELATO" Or ClientName = "NVAHAN" Or ClientName = "SAKARIA" Or ClientName = "MANIBHADRA" Or ClientName = "TCOT" Or ClientName = "MOMAI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then OBJGRN.FRMSTRING = "GRN FANCY" Else OBJGRN.FRMSTRING = "GRNJOB"
             OBJGRN.Show()
         Catch ex As Exception
             Throw ex
@@ -4978,7 +4978,7 @@ SKIPLINE:
             End If
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then PRICELIST_MASTER.ShortcutKeys = Keys.Alt Or Keys.Control Or Keys.L
             If ClientName = "YASHVI" Then STOCKADJUSTMENT_MASTER.Text = "Item Correction"
-            If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
+            If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
             If ClientName = "MOHAN" Then
                 PRODUCTIONFLOOR_MASTER.Visible = True
                 PRODUCTIONFLOORRETURN_MASTER.Visible = True

@@ -269,6 +269,8 @@ Public Class GDNDetails
                     OBJ = New GDNReport_SNCM
                 ElseIf ClientName = "REALCORPORATION" Then
                     OBJ = New GDNReport_REALCORP
+                ElseIf ClientName = "AARYA" Then
+                    OBJ = New GDNReport_AARYA
                 ElseIf ClientName = "NTC" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KUNAL" Or ClientName = "SURYODAYA" Or ClientName = "SSC" Or ClientName = "VALIANT" Then
                     OBJ = New GDNReport_NTC
                 ElseIf ClientName = "PARAS" Or ClientName = "MARKIN" Then
@@ -432,6 +434,8 @@ Public Class GDNDetails
                         OBJ = New GDNReport_SNCM
                     ElseIf ClientName = "REALCORPORATION" Then
                         OBJ = New GDNReport_REALCORP
+                    ElseIf ClientName = "AARYA" Then
+                        OBJ = New GDNReport_AARYA
                     ElseIf ClientName = "NTC" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KUNAL" Or ClientName = "SURYODAYA" Or ClientName = "SSC" Or ClientName = "VALIANT" Then
                         OBJ = New GDNReport_NTC
                     ElseIf ClientName = "PARAS" Or ClientName = "MARKIN" Then

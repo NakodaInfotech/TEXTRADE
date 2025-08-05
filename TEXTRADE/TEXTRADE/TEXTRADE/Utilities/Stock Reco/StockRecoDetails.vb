@@ -147,7 +147,7 @@ Public Class StockRecoDetails
 
     Private Sub StockRecoDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "AMAN" Or ClientName = "VALIANT" Then
+            If ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VALIANT" Then
                 GNAME.Visible = True
                 GNAME.VisibleIndex = GCHALLANNO.VisibleIndex + 1
             End If

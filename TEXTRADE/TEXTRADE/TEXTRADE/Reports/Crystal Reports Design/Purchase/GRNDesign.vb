@@ -16,6 +16,7 @@ Public Class GRNDesign
 
     Dim RPTGRN As New GRNReport
     Dim RPTBARCODE As New GRNReport_CC
+    Dim RPTGRN_AARYA As New GRNReport_AARYA
     Dim RPTGRNCUTTING As New GRNReportCutting
     Dim RPTWHOLESALEBARCODE As New GRNReport_CC_Wholesale
     Dim RPTGRNSVS As New GRNSVS
@@ -107,6 +108,8 @@ Public Class GRNDesign
                     crTables = RPTGRN_AXIS.Database.Tables
                 ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
                     crTables = RPTGRNCUTTING.Database.Tables
+                ElseIf ClientName = "AARYA" Then
+                    crTables = RPTGRN_AARYA.Database.Tables
                 Else
                     crTables = RPTGRN.Database.Tables
                 End If
@@ -167,6 +170,8 @@ Public Class GRNDesign
                     crpo.ReportSource = RPTGRN_AXIS
                 ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
                     crpo.ReportSource = RPTGRNCUTTING
+                ElseIf ClientName = "AARYA" Then
+                    crpo.ReportSource = RPTGRN_AARYA
                 Else
                     crpo.ReportSource = RPTGRN
                 End If
@@ -306,6 +311,8 @@ Public Class GRNDesign
                     OBJ = New GRN_AXIS
                 ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
                     OBJ = New GRNReportCutting
+                ElseIf ClientName = "AARYA" Then
+                    OBJ = New GRNReport_AARYA
                 Else
                     OBJ = New GRNReport
                 End If
@@ -406,6 +413,12 @@ Public Class GRNDesign
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
                     RPTGRNCUTTING.Export()
+                ElseIf ClientName = "AARYA" Then
+                    expo = RPTGRN_AARYA.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGRN_AARYA.Export()
                 Else
                     expo = RPTGRN.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
