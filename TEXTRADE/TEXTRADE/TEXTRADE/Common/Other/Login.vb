@@ -173,7 +173,13 @@ line1:
                 ITEMCOSTCENTRE = False
 
 
-                If ClientName = "ABHEE" Then  '(ABHISHEK BHAI - AHMEDABAD)
+
+                If ClientName = "AARYA" Then  '(KARAN AGARWAL - BHIWANDI)
+                    If Now.Date > DateTime.Parse("15.08.2026 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
+                        GoTo LINE1
+                    End If
+                ElseIf ClientName = "ABHEE" Then  '(ABHISHEK BHAI - AHMEDABAD)
                     HIDEAGENCY = False
                     If Now.Date > DateTime.Parse("15.06.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
