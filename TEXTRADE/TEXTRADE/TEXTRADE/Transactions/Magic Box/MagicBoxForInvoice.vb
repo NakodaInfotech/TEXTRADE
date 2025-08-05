@@ -5,6 +5,8 @@ Public Class MagicBoxForInvoice
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
     Public EDIT As Boolean
+    Dim DT_CHGSDETAILS As New DataTable
+
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         Try
@@ -91,6 +93,53 @@ Public Class MagicBoxForInvoice
 
 
                 End If
+
+
+                Dim CSRNO As String = ""
+                Dim CCHGS As String = ""
+                Dim CPER As String = ""
+                Dim CAMT As String = ""
+                Dim CTAXID As String = ""
+
+                For Each row1 As Windows.Forms.DataGridViewRow In GRIDCHGS.Rows
+                    If row1.Cells(0).Value <> Nothing Then
+                        If CSRNO = "" Then
+                            CSRNO = row1.Cells(ESRNO.Index).Value.ToString
+                            CCHGS = row1.Cells(ECHARGES.Index).Value.ToString
+                            CPER = row1.Cells(EPER.Index).Value.ToString
+                            CAMT = Val(row1.Cells(EAMT.Index).Value)
+                            CTAXID = Val(row1.Cells(ETAXID.Index).Value)
+                        Else
+                            CSRNO = CSRNO & "|" & row1.Cells(ESRNO.Index).Value.ToString
+                            CCHGS = CCHGS & "|" & row1.Cells(ECHARGES.Index).Value.ToString
+                            CPER = CPER & "|" & row1.Cells(EPER.Index).Value.ToString
+                            CAMT = CAMT & "|" & Val(row1.Cells(EAMT.Index).Value)
+                            CTAXID = CTAXID & "|" & Val(row1.Cells(ETAXID.Index).Value)
+
+                        End If
+                    End If
+                Next
+
+                For i As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
+                    If DT_CHGSDETAILS.Rows(i).Item(0) <> Nothing Then
+                        If CSRNO = "" Then
+                            CSRNO = Val(DT_CHGSDETAILS.Rows(i).Item("ESRNO"))
+                            CCHGS = DT_CHGSDETAILS.Rows(i).Item("ECHGS")
+                            CPER = DT_CHGSDETAILS.Rows(i).Item("EPER")
+                            CAMT = DT_CHGSDETAILS.Rows(i).Item("EAMT")
+                            CTAXID = Val(DT_CHGSDETAILS.Rows(i).Item("ETAXID"))
+                        Else
+                            CSRNO = CSRNO & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("ESRNO"))
+                            CCHGS = CCHGS & "|" & DT_CHGSDETAILS.Rows(i).Item("EMTRS")
+                            CPER = CPER & "|" & DT_CHGSDETAILS.Rows(i).Item("EPER")
+                            CAMT = CAMT & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("EAMT"))
+                            CTAXID = CTAXID & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("ETAXID"))
+                        End If
+                    End If
+                Next
+
+
+
                 alParaval.Add("TOTAL GST")
                 alParaval.Add(GRIDSRNO)
                 alParaval.Add(SELLERS)
@@ -249,11 +298,11 @@ Public Class MagicBoxForInvoice
                 alParaval.Add(0) 'GRIDSONO)
                 alParaval.Add(0) 'GRIDSOSRNO)
 
-                alParaval.Add(0) 'CSRNO)
-                alParaval.Add("") 'CCHGS)
-                alParaval.Add(0) 'CPER)
-                alParaval.Add(0) 'CAMT)
-                alParaval.Add(0) 'CTAXID)
+                alParaval.Add(CSRNO)
+                alParaval.Add(CCHGS)
+                alParaval.Add(CPER)
+                alParaval.Add(CAMT)
+                alParaval.Add(CTAXID)
 
 
                 alParaval.Add("") 'griduploadsrno)
@@ -448,6 +497,14 @@ NEXTLINE:
         CMBCOMM.Text = ""
         GRIDMAGICBOX.RowCount = 0
         getmax_SO_no()
+
+        DT_CHGSDETAILS.Reset()
+        DT_CHGSDETAILS.Columns.Add("ESRNO")
+        DT_CHGSDETAILS.Columns.Add("ECHARGES")
+        DT_CHGSDETAILS.Columns.Add("EPER")
+        DT_CHGSDETAILS.Columns.Add("EAMT")
+        DT_CHGSDETAILS.Columns.Add("ETAXID")
+
     End Sub
 
     Private Sub MagicBoxForInvoice_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -917,5 +974,53 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMBPER_Validated(sender As Object, e As EventArgs) Handles CMBPER.Validated
+        Try
+            GBMTRS.Visible = True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCHARGES_Validated(sender As Object, e As EventArgs) Handles CMBCHARGES.Validated
+        Try
+            If CMBCHARGES.Text.Trim <> "" Then
+                'filltax()
+
+                'GET ADDLESS DONE BY GULKIT
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.ACC_ADDLESS,'ADD') AS ADDLESS, ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER ", "", "LEDGERS", " AND ACC_CMPNAME = '" & CMBCHARGES.Text.Trim & "' AND ACC_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    If DT.Rows(0).Item("ADDLESS") = "LESS" Then
+                        If Val(TXTCHGSPER.Text.Trim) = 0 Then
+                            TXTCHGSPER.Text = "-"
+                            If ClientName = "SOFTAS" And Val(DT.Rows(0).Item("DISCPER")) > 0 Then TXTCHGSPER.Text = Val(DT.Rows(0).Item("DISCPER")) * -1
+                        End If
+                        If Val(TXTCHGSAMT.Text.Trim) = 0 Then TXTCHGSAMT.Text = "-"
+                        TXTCHGSPER.Select(TXTCHGSPER.Text.Length, 0)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCHARGES_Enter(sender As Object, e As EventArgs) Handles CMBCHARGES.Enter
+        Try
+            If CMBCHARGES.Text.Trim = "" Then FILLNAME(CMBCHARGES, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes' OR GROUPMASTER.GROUP_SECONDARY = 'Sales A/C' OR GROUPMASTER.GROUP_SECONDARY = 'Indirect Income' or GROUPMASTER.GROUP_SECONDARY = 'Indirect Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Direct Income' or GROUPMASTER.GROUP_SECONDARY = 'Direct Expenses')")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCHARGES_Validating(sender As Object, e As CancelEventArgs) Handles CMBCHARGES.Validating
+        'Try
+        '    If CMBCHARGES.Text.Trim <> "" Then NAMEVALIDATE(CMBCHARGES, CMBCODE, e, Me " AND (GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes' OR GROUPMASTER.GROUP_SECONDARY = 'Indirect Income' or GROUPMASTER.GROUP_SECONDARY = 'Indirect Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Direct Income' or GROUPMASTER.GROUP_SECONDARY = 'Direct Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Sales A/C' )")
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 End Class

@@ -852,7 +852,7 @@ line1:
 
     Private Sub CMBPACKING_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBPACKING.Validated
         Try
-            If ClientName = "YASHVI" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MNARESH" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "AFW" Then
+            If ClientName = "YASHVI" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MNARESH" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "AFW" Or ClientName = "SUPRIYA" Then
                 If CMBPACKING.Text.Trim <> "" Then
                     'GET REGISTER , AGENCT AND TRANS
                     Dim OBJCMN As New ClsCommon
@@ -870,7 +870,7 @@ line1:
                         End If
 
 
-                        If ClientName = "MNARESH" Or ClientName = "AFW" Then
+                        If ClientName = "MNARESH" Or ClientName = "AFW" Or ClientName = "SUPRIYA" Then
                             cmbcity.Text = DT.Rows(0).Item("CITYNAME")
                             cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
                             CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
