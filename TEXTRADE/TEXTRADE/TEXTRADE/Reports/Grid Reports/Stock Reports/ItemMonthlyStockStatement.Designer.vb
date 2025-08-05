@@ -22,19 +22,13 @@ Partial Class ItemMonthlyStockStatement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDREPORT = New System.Windows.Forms.DataGridView()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CMDREFRESH = New System.Windows.Forms.Button()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.GMONTHNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOPENING = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFINISHINWARD = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -49,6 +43,12 @@ Partial Class ItemMonthlyStockStatement
         Me.GINVOICE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSALERETURN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRUNNINGBAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.CMDREFRESH = New System.Windows.Forms.Button()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDREPORT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -74,27 +74,27 @@ Partial Class ItemMonthlyStockStatement
         Me.GRIDREPORT.AllowUserToDeleteRows = False
         Me.GRIDREPORT.AllowUserToResizeColumns = False
         Me.GRIDREPORT.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDREPORT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDREPORT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDREPORT.BackgroundColor = System.Drawing.Color.White
         Me.GRIDREPORT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDREPORT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDREPORT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDREPORT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.GRIDREPORT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDREPORT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GMONTHNAME, Me.GOPENING, Me.GFINISHINWARD, Me.GPURRETURN, Me.GDYEINGREC, Me.GISSPACKING, Me.GRECPACKING, Me.GJOBOUT, Me.GJOBIN, Me.GSTOCKOUT, Me.GSTOCKIN, Me.GINVOICE, Me.GSALERETURN, Me.GRUNNINGBAL})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDREPORT.DefaultCellStyle = DataGridViewCellStyle19
         Me.GRIDREPORT.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDREPORT.Location = New System.Drawing.Point(12, 39)
         Me.GRIDREPORT.MultiSelect = False
@@ -102,9 +102,9 @@ Partial Class ItemMonthlyStockStatement
         Me.GRIDREPORT.ReadOnly = True
         Me.GRIDREPORT.RowHeadersVisible = False
         Me.GRIDREPORT.RowHeadersWidth = 30
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDREPORT.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDREPORT.RowsDefaultCellStyle = DataGridViewCellStyle20
         Me.GRIDREPORT.RowTemplate.Height = 20
         Me.GRIDREPORT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPORT.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -113,71 +113,10 @@ Partial Class ItemMonthlyStockStatement
         Me.GRIDREPORT.TabIndex = 687
         Me.GRIDREPORT.TabStop = False
         '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(717, 403)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 2
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'CMDREFRESH
-        '
-        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
-        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
-        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDREFRESH.Location = New System.Drawing.Point(632, 403)
-        Me.CMDREFRESH.Name = "CMDREFRESH"
-        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 1
-        Me.CMDREFRESH.Text = "&Refresh"
-        Me.CMDREFRESH.UseVisualStyleBackColor = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton, Me.TOOLWHATSAPP, Me.ToolStripSeparator1})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1405, 25)
-        Me.ToolStrip1.TabIndex = 255
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
-        'TOOLWHATSAPP
-        '
-        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
-        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
-        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLWHATSAPP.Text = "&Whatsapp"
-        Me.TOOLWHATSAPP.Visible = False
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
         'GMONTHNAME
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GMONTHNAME.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GMONTHNAME.DefaultCellStyle = DataGridViewCellStyle18
         Me.GMONTHNAME.HeaderText = "Month Name"
         Me.GMONTHNAME.Name = "GMONTHNAME"
         Me.GMONTHNAME.ReadOnly = True
@@ -299,6 +238,67 @@ Partial Class ItemMonthlyStockStatement
         Me.GRUNNINGBAL.ReadOnly = True
         Me.GRUNNINGBAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRUNNINGBAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdexit.Location = New System.Drawing.Point(717, 403)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 2
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'CMDREFRESH
+        '
+        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
+        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
+        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDREFRESH.Location = New System.Drawing.Point(632, 403)
+        Me.CMDREFRESH.Name = "CMDREFRESH"
+        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREFRESH.TabIndex = 1
+        Me.CMDREFRESH.Text = "&Refresh"
+        Me.CMDREFRESH.UseVisualStyleBackColor = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton, Me.TOOLWHATSAPP, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1405, 25)
+        Me.ToolStrip1.TabIndex = 255
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'PrintToolStripButton
+        '
+        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.PrintToolStripButton.Text = "&Print"
+        '
+        'TOOLWHATSAPP
+        '
+        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
+        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
+        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLWHATSAPP.Text = "&Whatsapp"
+        Me.TOOLWHATSAPP.Visible = False
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'ItemMonthlyStockStatement
         '
