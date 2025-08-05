@@ -216,26 +216,14 @@ END ")
 
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         'Try
-        '    If GRIDREPORT.RowCount = 0 Then Exit Sub
-        '    Dim PRINT As Boolean = True
-        '    Dim WHATSAPP As Boolean = True
-
-        '    If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-
-        '    If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-        '        ExportGridToExcel(GRIDREPORT)
-        '        Exit Sub
-        '    End If
-
-
-        '    TEMPSALEANALYSIS()
-        '    Dim OBJPL As New PLDesign
-        '    OBJPL.frmstring = "SALEANALYSIS"
-        '    OBJPL.MdiParent = MDIMain
-        '    OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
-        '    OBJPL.Show()
+        '    Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
+        '    Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+        '    opti.ShowGridLines = True
+        '    opti.SheetName = "Sale Details"
+        '    GRIDREPORT.ExportToXls(PATH, opti)
+        '    EXCELCMPHEADER(PATH, "Sale Details", GRIDREPORT.VisibleColumns.Count + GRIDREPORT.GroupCount)
         'Catch ex As Exception
-        '    Throw ex
+        '    MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         'End Try
     End Sub
 End Class
