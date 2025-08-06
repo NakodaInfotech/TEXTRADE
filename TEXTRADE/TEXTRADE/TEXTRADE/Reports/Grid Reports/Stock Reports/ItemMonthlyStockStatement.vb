@@ -1,7 +1,9 @@
 ﻿
+Imports System.IO
 Imports BL
 Imports DevExpress.Charts.Native
 Imports DevExpress.ClipboardSource.SpreadsheetML
+Imports DevExpress.DashboardCommon
 Imports DevExpress.Pdf.Drawing
 Imports DevExpress.Pdf.Drawing.DirectX
 Imports DevExpress.XtraGrid.Views.Base
@@ -215,27 +217,106 @@ END ")
     End Sub
 
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
-        'Try
-        '    If GRIDREPORT.RowCount = 0 Then Exit Sub
-        '    Dim PRINT As Boolean = True
-        '    Dim WHATSAPP As Boolean = True
+        Try
+            If GRIDREPORT.RowCount = 0 Then Exit Sub
+            Dim PRINT As Boolean = True
+            Dim WHATSAPP As Boolean = True
 
-        '    If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-        '    If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-        '        ExportGridToExcel(GRIDREPORT)
-        '        Exit Sub
-        '    End If
+            If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                ExportGridToExcel(GRIDREPORT)
+                Exit Sub
+            End If
 
 
-        '    TEMPSALEANALYSIS()
-        '    Dim OBJPL As New PLDesign
-        '    OBJPL.frmstring = "SALEANALYSIS"
-        '    OBJPL.MdiParent = MDIMain
-        '    OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
-        '    OBJPL.Show()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            'TEMPITEMSTOCK()
+            'Dim OBJPL As New PLDesign
+            'OBJPL.frmstring = "SALEANALYSIS"
+            'OBJPL.MdiParent = MDIMain
+            'OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
+            'OBJPL.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
+    Public Sub ExportGridToExcel(dgv As DataGridView)
+        Try
+            Dim ExcelApp As Object = CreateObject("Excel.Application")
+            Dim Workbook As Object = ExcelApp.Workbooks.Add()
+            Dim Worksheet As Object = Workbook.Sheets(1)
+
+            ExcelApp.Visible = False
+
+            ' Write column headers
+            For col As Integer = 0 To dgv.Columns.Count - 1
+                Worksheet.Cells(1, col + 1).Value = dgv.Columns(col).HeaderText
+                Worksheet.Cells(1, col + 1).Font.Bold = True
+            Next
+
+            ' Write data
+            For row As Integer = 0 To dgv.Rows.Count - 1
+                For col As Integer = 0 To dgv.Columns.Count - 1
+                    If dgv.Rows(row).Cells(col).Value IsNot Nothing Then
+                        Worksheet.Cells(row + 2, col + 1).Value = dgv.Rows(row).Cells(col).Value.ToString()
+                    End If
+                Next
+            Next
+
+            Worksheet.Columns.AutoFit()
+
+            ' Save to file
+            Dim exportPath As String = Application.StartupPath & "\ItemMonthlyStockStatement.xlsx"
+            If Not System.IO.Directory.Exists(Application.StartupPath & "\ItemMonthlyStockStatement") Then System.IO.Directory.CreateDirectory(Application.StartupPath & "\ItemMonthlyStockStatement")
+            EXCELCMPHEADER(exportPath, "ItemMonthlyStockStatement", GRIDREPORT.Columns.Count)
+            Workbook.SaveAs(exportPath)
+            ExcelApp.Visible = True
+            ExcelApp.UserControl = True
+
+
+            MsgBox("Exported to Excel successfully at " & exportPath)
+
+        Catch ex As Exception
+            MsgBox("Export failed: " & ex.Message)
+        End Try
+    End Sub
+    'Sub TEMPITEMSTOCK()
+    '    Try
+    '        Dim OBJCMN As New ClsCommon
+    '        Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPSALEANALYSIS WHERE YEARID = " & YearId, "", "")
+
+    '        Dim I As Integer = 1
+
+    '        For Each ROW As DataGridViewRow In GRIDREPORT.Rows
+    '            Dim ALPARAVAL As New ArrayList
+    '            ALPARAVAL.Add(I)
+    '            If ROW.Cells(GMONTHNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GMONTHNAME.Index).Value)
+    '            If ROW.Cells(GOPENING.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GOPENING.Index).Value)
+    '            If ROW.Cells(GFINISHINWARD.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GFINISHINWARD.Index).Value)
+    '            If ROW.Cells(GPURRETURN.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GPURRETURN.Index).Value)
+    '            If ROW.Cells(GDYEINGREC.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GDYEINGREC.Index).Value)
+    '            If ROW.Cells(GISSPACKING.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GISSPACKING.Index).Value)
+    '            If ROW.Cells(GRECPACKING.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GRECPACKING.Index).Value)
+    '            If ROW.Cells(GJOBOUT.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GJOBOUT.Index).Value)
+    '            If ROW.Cells(GJOBIN.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GJOBIN.Index).Value)
+    '            If ROW.Cells(GSTOCKOUT.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GSTOCKOUT.Index).Value)
+    '            If ROW.Cells(GSTOCKIN.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GSTOCKIN.Index).Value)
+    '            If ROW.Cells(GINVOICE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GINVOICE.Index).Value)
+    '            If ROW.Cells(GSALERETURN.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GSALERETURN.Index).Value)
+    '            If ROW.Cells(GRUNNINGBAL.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GRUNNINGBAL.Index).Value)
+
+    '            ALPARAVAL.Add(CmpId)
+    '            ALPARAVAL.Add(YearId)
+
+    '            Dim OBJTB As New ClsTrialBalance
+    '            OBJTB.alParaval = ALPARAVAL
+    '            Dim INT As Integer = OBJTB.SAVESALEANALYSIS()
+
+    '            I += 1
+    '        Next
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 End Class
