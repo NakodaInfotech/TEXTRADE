@@ -299,7 +299,7 @@ END  ", "", "")
             ' Save to file
             Dim exportPath As String = Application.StartupPath & "\ItemMonthlyStockStatement.xlsx"
             If Not System.IO.Directory.Exists(Application.StartupPath & "\ItemMonthlyStockStatement") Then System.IO.Directory.CreateDirectory(Application.StartupPath & "\ItemMonthlyStockStatement")
-            EXCELCMPHEADER(exportPath, "ItemMonthlyStockStatement", GRIDREPORT.Columns.Count)
+            'EXCELCMPHEADER(exportPath, "ItemMonthlyStockStatement", dgv.Columns.Count)
             Workbook.SaveAs(exportPath)
             ExcelApp.Visible = True
             ExcelApp.UserControl = True
@@ -312,4 +312,13 @@ END  ", "", "")
         End Try
     End Sub
 
+    Private Sub ItemMonthlyStockStatement_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If e.KeyCode = Windows.Forms.Keys.Escape Or (e.KeyCode = Keys.X And e.Alt = True) Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
