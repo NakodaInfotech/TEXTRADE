@@ -2074,6 +2074,7 @@ line1:
 
     Private Sub AccountsMaster_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
+            If ClientName = "AARYA" Then LBLBILLTO.Text = "Ship To Name"
             If ClientName = "ALENCOT" Then
                 TXTGSTIN.BackColor = Color.LemonChiffon
                 CMBAGENT.BackColor = Color.LemonChiffon
@@ -2145,7 +2146,7 @@ line1:
                 Label25.Visible = False
                 txtstd.TabStop = False
                 txtstd.Visible = False
-                Label70.Text = "Referred by"
+                LBLBILLTO.Text = "Referred by"
                 CHKTDSONGTOTAL.Visible = False
                 TXTINTPER.Visible = False
                 Label49.Visible = False

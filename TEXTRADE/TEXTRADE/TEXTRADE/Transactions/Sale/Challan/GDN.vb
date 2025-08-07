@@ -32,6 +32,7 @@ Public Class GDN
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
+
     Sub CLEAR()
 
         EP.Clear()
@@ -3214,9 +3215,10 @@ LINE1:
             End If
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(ACC_MOBILE,'') AS MOBILENO, ISNULL(ACC_HOLDFORAPPROVAL,0) AS HOLDFORAPPROVAL, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT ", "", "CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.ACC_DELIVERYATID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(LEDGERS.ACC_HOLDFORAPPROVAL,0) AS HOLDFORAPPROVAL, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(BILLTOLEDGERS.ACC_CMPNAME,'') AS BILLTO ", "", "CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.ACC_DELIVERYATID LEFT OUTER JOIN LEDGERS AS BILLTOLEDGERS ON LEDGERS.ACC_BILLTOID = BILLTOLEDGERS.ACC_ID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 If cmbname.Text.Trim = CMBDISPATCHTO.Text.Trim And ((ClientName = "MANISH" And cmbcity.Text.Trim = "") Or ClientName <> "MANISH") Then cmbcity.Text = DT.Rows(0).Item(0)
+                If DT.Rows(0).Item("BILLTO") <> "" And ClientName = "AARYA" Then CMBDISPATCHTO.Text = DT.Rows(0).Item("BILLTO")
                 TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                 If EDIT = False Then CHKHOLD.Checked = Convert.ToBoolean(DT.Rows(0).Item("HOLDFORAPPROVAL"))
                 If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)

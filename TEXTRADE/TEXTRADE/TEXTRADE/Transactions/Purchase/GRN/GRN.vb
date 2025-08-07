@@ -1444,7 +1444,7 @@ NEXTLINE:
 
             Cursor.Current = Cursors.WaitCursor
             If cmbtype.Items.Count > 0 Then cmbtype.SelectedIndex = (0)
-            If ClientName = "KENCOT" Or ClientName = "LEEFABRICO" Then ALLOWMANUALGRNNO = True
+            If ClientName = "KENCOT" Or ClientName = "LEEFABRICO" Or ClientName = "AARYA" Then ALLOWMANUALGRNNO = True
 
             CLEAR()
 
