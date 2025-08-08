@@ -320,7 +320,7 @@ Public Class StockReco
                 End If
             End If
 
-            If txtchallan.Text.Trim = "" And ClientName = "AMAN" Then
+            If txtchallan.Text.Trim = "" And (ClientName = "AMAN" Or ClientName = "AARYA") Then
                 EP.SetError(txtchallan, " Please Fill Challan No")
                 bln = False
             End If
@@ -947,7 +947,7 @@ NEXTLINE:
 
                     TXTLOTNO.Text = DTROWPS("LOTNO")
 
-                    If ClientName = "AMAN" Then
+                    If ClientName = "AMAN" Or ClientName = "AARYA" Then
                         CMBNAME.Text = DTROWPS("JOBBERNAME")
                         txtchallan.Text = DTROWPS("BALENO")
                     End If
@@ -1672,7 +1672,7 @@ LINE1:
             TXTCHNO.Visible = True
         End If
 
-        If ClientName = "AMAN" Or ClientName = "VALIANT" Then
+        If ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VALIANT" Then
             LBLNAME.Visible = True
             CMBNAME.Visible = True
         End If
@@ -2091,10 +2091,10 @@ LINE1:
     Private Sub txtchallan_Validating(sender As Object, e As CancelEventArgs) Handles txtchallan.Validating
         Try
             'FOR AMAN WE NEED TO CHECK WHETHER THIS PARTYCHALLAN IS CORRECT OR NOT, IF CORRECT THEN CHECK WHETHER WE HAVE STOCK FOR THIS CHALLAN OR NOT
-            If ClientName = "AMAN" And txtchallan.Text.Trim <> "" Then
+            If (ClientName = "AMAN" Or ClientName = "AARYA") And txtchallan.Text.Trim <> "" Then
                 Dim BALPCS As Double = 0
                 Dim OBJCMN As New ClsCommon
-                Dim dt As DataTable = OBJCMN.search(" CHALLANNO, SUM(PCS) AS INPCS, SUM(MTRS) AS INMTRS, SUM(PCS)-SUM(ISSPCS) AS BALPCS, SUM(MTRS)-SUM(ISSMTRS) AS BALMTRS ", "", " STOCKREGISTER ", " AND NAME = '" & CMBNAME.Text.Trim & "' AND CHALLANNO = '" & txtchallan.Text.Trim & "' AND YEARID = " & YearId & " GROUP BY NAME, CHALLANNO ")
+                Dim dt As DataTable = OBJCMN.SEARCH(" CHALLANNO, SUM(PCS) AS INPCS, SUM(MTRS) AS INMTRS, SUM(PCS)-SUM(ISSPCS) AS BALPCS, SUM(MTRS)-SUM(ISSMTRS) AS BALMTRS ", "", " STOCKREGISTER ", " AND NAME = '" & CMBNAME.Text.Trim & "' AND CHALLANNO = '" & txtchallan.Text.Trim & "' AND YEARID = " & YearId & " GROUP BY NAME, CHALLANNO ")
                 If dt.Rows.Count > 0 Then
 
                     'CHECK THE STOCK
@@ -2109,7 +2109,7 @@ LINE1:
                     'WE HAVE GIVE AN OPTION IN GRN TO LOCK THIS CHALLAN MANUALLY IF WE WANT TO CLOSE THIS
                     'IF WE CLOSE THIS CHALLAN NO IN GRN THEN CHECK IT AND DONT ALLOW TO ENTER THAT CHALLANNO
                     'WE HAVE USED LOTREADY CHECK BOX IN GRN FOR THIS PURPOSE
-                    Dim DTGRN As DataTable = OBJCMN.search("ISNULL(GRN_LOTREADY,0) AS CHALLANLOCK", "", " GRN INNER JOIN LEDGERS ON GRN_LEDGERID = LEDGERS.ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND GRN_CHALLANNO = '" & txtchallan.Text.Trim & "' AND GRN.GRN_YEARID = " & YearId)
+                    Dim DTGRN As DataTable = OBJCMN.SEARCH("ISNULL(GRN_LOTREADY,0) AS CHALLANLOCK", "", " GRN INNER JOIN LEDGERS ON GRN_LEDGERID = LEDGERS.ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND GRN_CHALLANNO = '" & txtchallan.Text.Trim & "' AND GRN.GRN_YEARID = " & YearId)
                     If DTGRN.Rows.Count > 0 Then
                         If Convert.ToBoolean(DTGRN.Rows(0).Item("CHALLANLOCK")) = True Then
                             MsgBox("Invalid Challan No., Challan has been Locked ", MsgBoxStyle.Critical, "TEXTRADE")

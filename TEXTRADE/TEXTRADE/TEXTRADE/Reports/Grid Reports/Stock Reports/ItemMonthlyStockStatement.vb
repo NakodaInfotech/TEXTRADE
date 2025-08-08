@@ -1,34 +1,119 @@
 ﻿
 Imports BL
-Imports DevExpress.Charts.Native
-Imports DevExpress.ClipboardSource.SpreadsheetML
-Imports DevExpress.Pdf.Drawing
-Imports DevExpress.Pdf.Drawing.DirectX
-Imports DevExpress.XtraGrid.Views.Base
-Imports DevExpress.XtraRichEdit.Layout
-Imports Org.BouncyCastle.Crypto.Modes
 
 Public Class ItemMonthlyStockStatement
     Public WHERECLAUSE As String = ""
+    Public ITEMNAME As String = ""
 
     Sub FILLGRID()
         Try
-
-
-
-            'Dim DTTABLE As DataTable
-            'Dim OBJSELECTPO As New ItemMonthlyStockStatement
-
-
-
-
-
+            GRIDREPORT.RowCount = 0
             Dim OBJCMN As New ClsCommon()
-            Dim DT1 As New DataTable
+            '            Dim DT As DataTable = OBJCMN.SEARCH(" F.MONTHNAME, ISNULL([OPENING],0) AS [OPENING], ISNULL([FINISH INWARD],0) AS [FINISH INWARD], ISNULL([PUR RETURN],0) AS [PUR RETURN], ISNULL([DYEING REC],0) AS [DYEING REC], ISNULL([ISSUE PACKING],0) AS [ISSUE PACKING], ISNULL([REC PACKING],0) AS [REC PACKING], ISNULL([JOBOUT],0) AS [JOBOUT], ISNULL([JOBIN],0) AS [JOBIN], ISNULL([STOCK OUT],0) AS [STOCK OUT], ISNULL([STOCK IN],0) AS [STOCK IN], ISNULL([SALE INVOICE],0) AS [SALE INVOICE], ISNULL([SALE RETURN],0) AS [SALE RETURN]
+            '", "", "
+            '(
 
-            'DT1 = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, '' AS AGENT, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(DELIVERYLEDGERS.Acc_cmpname, '')  AS DELIVERYNAME, ISNULL(TOCITYMASTER.city_name, '') AS TOCITY, '' AS ITEMNAME, '' AS QUALITY, '' AS DESIGNNO, '' AS COLOR, PURCHASERETURN.PR_NO AS GDNNO, PURCHASERETURN.PR_TOTALPCS AS PCS, SUM(PURCHASERETURN.PR_TOTALMTRS) AS MTRS, ISNULL(PURCHASERETURN.PR_NOOFBALES, 0) AS NOOFBALES, '' AS PARTYPONO, 'PURRETURN' AS FROMTYPE, ISNULL(TRANSLEDGERS.ACC_RD, 0) AS TRANSRATE, CAST(PURCHASERETURN.PR_REMARKS AS VARCHAR(1000)) AS REMARKS, '' as TRANSREFNO  ", "", " PURCHASERETURN INNER JOIN LEDGERS ON PURCHASERETURN.PR_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CITYMASTER AS TOCITYMASTER ON PURCHASERETURN.PR_TOCITYID = TOCITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS DELIVERYLEDGERS ON PURCHASERETURN.PR_DELIVERYATID = DELIVERYLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON PURCHASERETURN.PR_transledgerid = TRANSLEDGERS.Acc_id  ", "  and PURCHASERETURN.PR_NO IN(" & TEMPCHALLANNO & ") and ISNULL(PURCHASERETURN.PR_GPDONE,0) = 0 AND PURCHASERETURN.PR_YEARID = " & YearId & "  GROUP BY PURCHASERETURN.PR_NO, LEDGERS.Acc_cmpname, ISNULL(TRANSLEDGERS.Acc_cmpname, ''), ISNULL(DELIVERYLEDGERS.Acc_cmpname, ''), ISNULL(TOCITYMASTER.city_name, ''), PURCHASERETURN.PR_NOOFBALES, PURCHASERETURN.PR_TOTALPCS, ISNULL(TRANSLEDGERS.ACC_RD, 0), CAST(PURCHASERETURN.PR_REMARKS AS VARCHAR(1000)) ")
-            DT1 = OBJCMN.SEARCH(" F.MONTHNAME, ISNULL([OPENING],0) AS [OPENING], ISNULL([FINISH INWARD],0) AS [FINISH INWARD], ISNULL([PUR RETURN],0) AS [PUR RETURN], ISNULL([DYEING REC],0) AS [DYEING REC], ISNULL([ISSUE PACKING],0) AS [ISSUE PACKING], ISNULL([REC PACKING],0) AS [REC PACKING], ISNULL([JOBOUT],0) AS [JOBOUT], ISNULL([JOBIN],0) AS [JOBIN], ISNULL([STOCK OUT],0) AS [STOCK OUT], ISNULL([STOCK IN],0) AS [STOCK IN], ISNULL([SALE INVOICE],0) AS [SALE INVOICE], ISNULL([SALE RETURN],0) AS [SALE RETURN]
-", "", "
+            'SELECT '' AS MONTHNAME, SUM(STOCKMASTER.SM_MTRS) AS MTRS, 'OPENING' AS TYPE FROM STOCKMASTER INNER JOIN ITEMMASTER ON STOCKMASTER.SM_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND STOCKMASTER.SM_YEARID = " & YearId & "
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,GRN_DATE)) AS MONTHNAME, SUM(GRN_DESC.GRN_MTRS) AS MTRS, 'FINISH INWARD' AS TYPE FROM GRN INNER JOIN GRN_DESC ON GRN.GRN_NO = GRN_DESC.GRN_NO AND GRN.GRN_TYPE = GRN_DESC.GRN_GRIDTYPE AND GRN.GRN_YEARID = GRN_DESC.GRN_YEARID INNER JOIN ITEMMASTER ON GRN_DESC.GRN_ITEMID = ITEMMASTER.ITEM_ID
+            'WHERE GRN.GRN_TYPE = 'FANCY MATERIAL'  " & WHERECLAUSE & " AND GRN.GRN_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,GRN_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,PR_DATE)) AS MONTHNAME, SUM(PURCHASERETURN_DESC.PR_MTRS)*-1 AS MTRS, 'PUR RETURN' AS TYPE FROM PURCHASERETURN INNER JOIN PURCHASERETURN_DESC ON PURCHASERETURN.PR_NO = PURCHASERETURN_DESC.PR_NO AND PURCHASERETURN.PR_YEARID = PURCHASERETURN_DESC.PR_YEARID INNER JOIN ITEMMASTER ON PURCHASERETURN_DESC.PR_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND PURCHASERETURN.PR_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,PR_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,ISS_DATE)) AS MONTHNAME, SUM(ISSUEPACKING_DESC.ISS_MTRS)*-1 AS MTRS, 'ISSUE PACKING' AS TYPE FROM ISSUEPACKING INNER JOIN ISSUEPACKING_DESC ON ISSUEPACKING.ISS_NO = ISSUEPACKING_DESC.ISS_NO AND ISSUEPACKING.ISS_YEARID = ISSUEPACKING_DESC.ISS_YEARID INNER JOIN ITEMMASTER ON ISSUEPACKING_DESC.ISS_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND ISSUEPACKING.ISS_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,ISS_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,REC_DATE)) AS MONTHNAME, SUM(RECPACKING_DESC.REC_MTRS) AS MTRS, 'REC PACKING' AS TYPE FROM RECPACKING INNER JOIN RECPACKING_DESC ON RECPACKING.REC_NO = RECPACKING_DESC.REC_NO AND RECPACKING.REC_YEARID = RECPACKING_DESC.REC_YEARID INNER JOIN ITEMMASTER ON RECPACKING_DESC.REC_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND RECPACKING.REC_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,REC_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,JO_DATE)) AS MONTHNAME, SUM(JOBOUT_DESC.JO_MTRS)*-1 AS MTRS, 'JOBOUT' AS TYPE FROM JOBOUT INNER JOIN JOBOUT_DESC ON JOBOUT.JO_NO = JOBOUT_DESC.JO_NO AND JOBOUT.JO_YEARID = JOBOUT_DESC.JO_YEARID INNER JOIN ITEMMASTER ON JOBOUT_DESC.JO_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND JOBOUT.JO_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,JO_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,JI_DATE)) AS MONTHNAME, SUM(JOBIN_DESC.JI_MTRS) AS MTRS, 'JOBIN' AS TYPE FROM JOBIN INNER JOIN JOBIN_DESC ON JOBIN.JI_NO = JOBIN_DESC.JI_NO AND JOBIN.JI_YEARID = JOBIN_DESC.JI_YEARID INNER JOIN ITEMMASTER ON JOBIN_DESC.JI_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND JOBIN.JI_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,JI_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,SA_DATE)) AS MONTHNAME, SUM(STOCKADJUSTMENT_DESC.SA_MTRS)*-1 AS MTRS, 'STOCK OUT' AS TYPE FROM STOCKADJUSTMENT INNER JOIN STOCKADJUSTMENT_DESC ON STOCKADJUSTMENT.SA_NO = STOCKADJUSTMENT_DESC.SA_NO AND STOCKADJUSTMENT.SA_YEARID = STOCKADJUSTMENT_DESC.SA_YEARID INNER JOIN ITEMMASTER ON STOCKADJUSTMENT_DESC.SA_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND STOCKADJUSTMENT.SA_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,SA_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,SA_DATE)) AS MONTHNAME, SUM(STOCKADJUSTMENT_INDESC.SA_MTRS) AS MTRS, 'STOCK IN' AS TYPE FROM STOCKADJUSTMENT INNER JOIN STOCKADJUSTMENT_INDESC ON STOCKADJUSTMENT.SA_NO = STOCKADJUSTMENT_INDESC.SA_NO AND STOCKADJUSTMENT.SA_YEARID = STOCKADJUSTMENT_INDESC.SA_YEARID INNER JOIN ITEMMASTER ON STOCKADJUSTMENT_INDESC.SA_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND STOCKADJUSTMENT.SA_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,SA_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,SALRET_DATE)) AS MONTHNAME, SUM(SALERETURN_DESC.SALRET_MTRS) AS MTRS, 'SALE RETURN' AS TYPE FROM SALERETURN INNER JOIN SALERETURN_DESC ON SALERETURN.SALRET_NO = SALERETURN_DESC.SALRET_NO AND SALERETURN.SALRET_YEARID = SALERETURN_DESC.SALRET_YEARID INNER JOIN ITEMMASTER ON SALERETURN_DESC.SALRET_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND SALERETURN.SALRET_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,SALRET_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,MATREC_DATE)) AS MONTHNAME, SUM(MATERIALRECEIPT_DESC.MATREC_RECDMTRS) AS MTRS, 'DYEING REC' AS TYPE FROM MATERIALRECEIPT INNER JOIN MATERIALRECEIPT_DESC ON MATERIALRECEIPT.MATREC_NO = MATERIALRECEIPT_DESC.MATREC_NO AND MATERIALRECEIPT.MATREC_YEARID = MATERIALRECEIPT_DESC.MATREC_YEARID INNER JOIN ITEMMASTER ON MATERIALRECEIPT_DESC.MATREC_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " and MATERIALRECEIPT.MATREC_yearid = " & YearId & "
+            'GROUP BY DATENAME(MONTH,MATREC_DATE)
+
+            'UNION ALL
+            'SELECT UPPER(DATENAME(MONTH,INVOICE_DATE)) AS MONTHNAME, SUM(INVOICEMASTER_DESC.INVOICE_MTRS)*-1 AS MTRS, 'SALE INVOICE' AS TYPE FROM INVOICEMASTER INNER JOIN INVOICEMASTER_DESC ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN ITEMMASTER ON INVOICEMASTER_DESC.INVOICE_ITEMID = ITEMMASTER.ITEM_ID
+            '" & WHERECLAUSE & " AND INVOICEMASTER.INVOICE_YEARID = " & YearId & "
+            'GROUP BY DATENAME(MONTH,INVOICE_DATE)
+
+            ') AS T
+            'PIVOT
+            '(
+            'SUM(MTRS) FOR TYPE IN ([OPENING],[FINISH INWARD], [PUR RETURN], [DYEING REC], [ISSUE PACKING], [REC PACKING], [JOBOUT], [JOBIN], [STOCK OUT], [STOCK IN], [SALE INVOICE], [SALE RETURN])
+            ')
+            'AS F", "
+            'ORDER BY CASE WHEN MONTHNAME = '' THEN -1
+            'WHEN MONTHNAME = 'APRIL' THEN 0
+            'WHEN MONTHNAME = 'MAY' THEN 1
+            'WHEN MONTHNAME = 'JUNE' THEN 2
+            'WHEN MONTHNAME = 'JULY' THEN 3
+            'WHEN MONTHNAME = 'AUGUST' THEN 4
+            'WHEN MONTHNAME = 'SEPTEMBER' THEN 5
+            'WHEN MONTHNAME = 'OCTOBER' THEN 6
+            'WHEN MONTHNAME = 'NOVEMBER' THEN 7
+            'WHEN MONTHNAME = 'DECEMBER' THEN 8
+            'WHEN MONTHNAME = 'JANUARY' THEN 9
+            'WHEN MONTHNAME = 'FEBRUARY' THEN 10
+            'WHEN MONTHNAME = 'MARCH' THEN 11
+            'END ")
+
+
+            Dim DT As DataTable = OBJCMN.Execute_Any_String("WITH MONTHS AS (
+        SELECT 'JANUARY' AS MONTHSNAME UNION ALL
+        SELECT 'FEBRUARY' UNION ALL
+        SELECT 'MARCH' UNION ALL
+        SELECT 'APRIL' UNION ALL
+        SELECT 'MAY' UNION ALL
+        SELECT 'JUNE' UNION ALL
+        SELECT 'JULY' UNION ALL
+        SELECT 'AUGUST' UNION ALL
+        SELECT 'SEPTEMBER' UNION ALL
+        SELECT 'OCTOBER' UNION ALL
+        SELECT 'NOVEMBER' UNION ALL
+        SELECT 'DECEMBER' UNION ALL
+		SELECT ''
+    ) SELECT  MONTHSNAME, ISNULL([OPENING],0) AS [OPENING], ISNULL([FINISH INWARD],0) AS [FINISH INWARD], ISNULL([PUR RETURN],0) AS [PUR RETURN], ISNULL([DYEING REC],0) AS [DYEING REC], ISNULL([ISSUE PACKING],0) AS [ISSUE PACKING], ISNULL([REC PACKING],0) AS [REC PACKING], ISNULL([JOBOUT],0) AS [JOBOUT], ISNULL([JOBIN],0) AS [JOBIN], ISNULL([STOCK OUT],0) AS [STOCK OUT], ISNULL([STOCK IN],0) AS [STOCK IN], ISNULL([SALE INVOICE],0) AS [SALE INVOICE], ISNULL([SALE RETURN],0) AS [SALE RETURN]
+FROM
+(
+SELECT M.MONTHSNAME, SOURCETABLE.*
+FROM MONTHS M LEFT OUTER JOIN
+(
+SELECT * FROM
 (
 
 SELECT '' AS MONTHNAME, SUM(STOCKMASTER.SM_MTRS) AS MTRS, 'OPENING' AS TYPE FROM STOCKMASTER INNER JOIN ITEMMASTER ON STOCKMASTER.SM_ITEMID = ITEMMASTER.ITEM_ID
@@ -89,117 +174,64 @@ SELECT UPPER(DATENAME(MONTH,INVOICE_DATE)) AS MONTHNAME, SUM(INVOICEMASTER_DESC.
 " & WHERECLAUSE & " AND INVOICEMASTER.INVOICE_YEARID = " & YearId & "
 GROUP BY DATENAME(MONTH,INVOICE_DATE)
 
+) AS D
+
+) AS SOURCETABLE ON SOURCETABLE.MONTHNAME = M.MONTHSNAME
+
+
 ) AS T
 PIVOT
 (
 SUM(MTRS) FOR TYPE IN ([OPENING],[FINISH INWARD], [PUR RETURN], [DYEING REC], [ISSUE PACKING], [REC PACKING], [JOBOUT], [JOBIN], [STOCK OUT], [STOCK IN], [SALE INVOICE], [SALE RETURN])
 )
-AS F", "
-ORDER BY CASE WHEN MONTHNAME = '' THEN -1
-WHEN MONTHNAME = 'APRIL' THEN 0
-WHEN MONTHNAME = 'MAY' THEN 1
-WHEN MONTHNAME = 'JUNE' THEN 2
-WHEN MONTHNAME = 'JULY' THEN 3
-WHEN MONTHNAME = 'AUGUST' THEN 4
-WHEN MONTHNAME = 'SEPTEMBER' THEN 5
-WHEN MONTHNAME = 'OCTOBER' THEN 6
-WHEN MONTHNAME = 'NOVEMBER' THEN 7
-WHEN MONTHNAME = 'DECEMBER' THEN 8
-WHEN MONTHNAME = 'JANUARY' THEN 9
-WHEN MONTHNAME = 'FEBRUARY' THEN 10
-WHEN MONTHNAME = 'MARCH' THEN 11
-END ")
+AS F 
+ORDER BY CASE WHEN MONTHSNAME = '' THEN -1
+WHEN MONTHSNAME = 'APRIL' THEN 0
+WHEN MONTHSNAME = 'MAY' THEN 1
+WHEN MONTHSNAME = 'JUNE' THEN 2
+WHEN MONTHSNAME = 'JULY' THEN 3
+WHEN MONTHSNAME = 'AUGUST' THEN 4
+WHEN MONTHSNAME = 'SEPTEMBER' THEN 5
+WHEN MONTHSNAME = 'OCTOBER' THEN 6
+WHEN MONTHSNAME = 'NOVEMBER' THEN 7
+WHEN MONTHSNAME = 'DECEMBER' THEN 8
+WHEN MONTHSNAME = 'JANUARY' THEN 9
+WHEN MONTHSNAME = 'FEBRUARY' THEN 10
+WHEN MONTHSNAME = 'MARCH' THEN 11
+END  ", "", "")
 
-
-            If DT1.Rows.Count > 0 Then
-
-                For Each dr As DataRow In DT1.Rows
-
-                    GRIDREPORT.Rows.Add(dr("MONTHNAME"), Format(Val(dr("OPENING")), "0.00"), Format(Val(dr("FINISH INWARD")), "0.00"), Format(Val(dr("PUR RETURN")), "0.00"), Format(Val(dr("DYEING REC")), "0.00"), Format(Val(dr("ISSUE PACKING")), "0.00"), Format(Val(dr("REC PACKING")), "0.00"), Format(Val(dr("JOBOUT")), "0.00"), Format(Val(dr("JOBIN")), "0.00"), Format(Val(dr("STOCK OUT")), "0.00"), Format(Val(dr("STOCK IN")), "0.00"), Format(Val(dr("SALE INVOICE")), "0.00"), Format(Val(dr("SALE RETURN")), "0.00"))
-
-                Next
-            End If
+            For Each DR As DataRow In DT.Rows
+                GRIDREPORT.Rows.Add(DR("MONTHSNAME"), Format(Val(DR("OPENING")), "0.00"), Format(Val(DR("FINISH INWARD")), "0.00"), Format(Val(DR("PUR RETURN")), "0.00"), Format(Val(DR("DYEING REC")), "0.00"), Format(Val(DR("ISSUE PACKING")), "0.00"), Format(Val(DR("REC PACKING")), "0.00"), Format(Val(DR("JOBOUT")), "0.00"), Format(Val(DR("JOBIN")), "0.00"), Format(Val(DR("STOCK OUT")), "0.00"), Format(Val(DR("STOCK IN")), "0.00"), Format(Val(DR("SALE INVOICE")), "0.00"), Format(Val(DR("SALE RETURN")), "0.00"))
+            Next
 
             GRIDREPORT.FirstDisplayedScrollingRowIndex = GRIDREPORT.RowCount - 1
-            'getsrno(GRIDGP)
-            'If ClientName = "SNCM" Then CMDSELECTGDN.Enabled = False
-            ' End If
-            total()
+            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
 
     End Sub
-    Sub total()
+
+    Sub TOTAL()
         Try
-
-
-
-            'Dim dtrow As DataRow
-            'Dim i As Integer
-            'Dim RUNNINGBAL As Double
-
-            'For i = 0 To GRIDREPORT.RowCount - 1
-            '    dtrow = GRIDREPORT.Rows(i)
-            '    If i = 0 Then
-            '        RUNNINGBAL = Val(dtrow("OPENING"))
-            '    Else
-            '        RUNNINGBAL = Val(dtrow("RUNNING BAL"))
-            '    End If
-            '    dtrow("RUNNING BAL") = Format(RUNNINGBAL + Val(dtrow("FINISH INWARD")) + Val(dtrow("PUR RETURN")) + Val(dtrow("DYEING REC")) + Val(dtrow("REC PACKING")) + Val(dtrow("JOBIN")) + Val(dtrow("STOCK IN")) - (Val(dtrow("ISSUE PACKING")) + Val(dtrow("JOBOUT")) + Val(dtrow("STOCK OUT")) + Val(dtrow("SALE INVOICE")) + Val(dtrow("SALE RETURN"))), "0.00")
-            '    RUNNINGBAL = GRIDREPORT.
-
-
-
-            'Next
-            'Dim dtrow As DataGridViewRow
-            'Dim i As Integer
-            Dim RUNNINGBAL As Double
-
+            Dim RUNNINGBAL As Double = 0.0
             For i As Integer = 0 To GRIDREPORT.RowCount - 1
                 Dim row As DataGridViewRow = GRIDREPORT.Rows(i)
-
                 If i = 0 Then
                     RUNNINGBAL = row.Cells(GOPENING.Index).Value
                 Else
-                    GRIDREPORT.Rows(i).Cells(GOPENING.Index).Value = RUNNINGBAL
+                    RUNNINGBAL = Format(Val(RUNNINGBAL) + Val(row.Cells(GFINISHINWARD.Index).Value) + Val(row.Cells(GPURRETURN.Index).Value) + Val(row.Cells(GDYEINGREC.Index).Value) + Val(row.Cells(GRECPACKING.Index).Value) + Val(row.Cells(GJOBIN.Index).Value) + Val(row.Cells(GSTOCKIN.Index).Value) + Val(row.Cells(GISSPACKING.Index).Value) + Val(row.Cells(GJOBOUT.Index).Value) + Val(row.Cells(GSTOCKOUT.Index).Value) + Val(row.Cells(GINVOICE.Index).Value) + Val(row.Cells(GSALERETURN.Index).Value))
                 End If
-                'If i <> 0 Then GRIDREPORT.Rows(i).Cells(GOPENING.Index).Value = RUNNINGBAL
-                ' Calculate new running balance
-                RUNNINGBAL = Format(
-                    Val(row.Cells(GOPENING.Index).Value) +
-                    Val(row.Cells(GFINISHINWARD.Index).Value) +
-                     Val(row.Cells(GPURRETURN.Index).Value) +
-                     Val(row.Cells(GDYEINGREC.Index).Value) +
-                    Val(row.Cells(GRECPACKING.Index).Value) +
-                    Val(row.Cells(GJOBIN.Index).Value) +
-                    Val(row.Cells(GSTOCKIN.Index).Value) +
-                    Val(row.Cells(GISSPACKING.Index).Value) +
-                     Val(row.Cells(GJOBOUT.Index).Value) +
-                     Val(row.Cells(GSTOCKOUT.Index).Value) +
-                     Val(row.Cells(GINVOICE.Index).Value) +
-                     Val(row.Cells(GSALERETURN.Index).Value))
                 row.Cells(GRUNNINGBAL.Index).Value = Format(RUNNINGBAL, "0.00")
             Next
-
-
-            ' Update RUNNINGBAL for next row
-            'RUNNINGBAL = Val(dtrow.Cells("RUNNING BAL").Value)
-
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Private Function ValSafe(value As Object) As Double
-        If IsDBNull(value) OrElse value Is Nothing Then Return 0
-        Dim result As Double = 0
-        Double.TryParse(value.ToString(), result)
-        Return result
-    End Function
 
     Private Sub ItemMonthlyStockStatement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            Me.Text = "Item Monthly Stock Statement For - " & ITEMNAME
             FILLGRID()
         Catch ex As Exception
             Throw ex
@@ -215,27 +247,78 @@ END ")
     End Sub
 
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
-        'Try
-        '    If GRIDREPORT.RowCount = 0 Then Exit Sub
-        '    Dim PRINT As Boolean = True
-        '    Dim WHATSAPP As Boolean = True
+        Try
+            If GRIDREPORT.RowCount = 0 Then Exit Sub
+            Dim PRINT As Boolean = True
+            Dim WHATSAPP As Boolean = True
 
-        '    If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-        '    If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-        '        ExportGridToExcel(GRIDREPORT)
-        '        Exit Sub
-        '    End If
+            If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                ExportGridToExcel(GRIDREPORT)
+                Exit Sub
+            End If
 
 
-        '    TEMPSALEANALYSIS()
-        '    Dim OBJPL As New PLDesign
-        '    OBJPL.frmstring = "SALEANALYSIS"
-        '    OBJPL.MdiParent = MDIMain
-        '    OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
-        '    OBJPL.Show()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            'TEMPITEMSTOCK()
+            'Dim OBJPL As New PLDesign
+            'OBJPL.frmstring = "SALEANALYSIS"
+            'OBJPL.MdiParent = MDIMain
+            'OBJPL.strsearch = "{TEMPSALEANALYSIS.YEARID} = " & YearId
+            'OBJPL.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub ExportGridToExcel(dgv As DataGridView)
+        Try
+            Dim ExcelApp As Object = CreateObject("Excel.Application")
+            Dim Workbook As Object = ExcelApp.Workbooks.Add()
+            Dim Worksheet As Object = Workbook.Sheets(1)
+
+            ExcelApp.Visible = False
+
+            ' Write column headers
+            For col As Integer = 0 To dgv.Columns.Count - 1
+                Worksheet.Cells(1, col + 1).Value = dgv.Columns(col).HeaderText
+                Worksheet.Cells(1, col + 1).Font.Bold = True
+            Next
+
+            ' Write data
+            For row As Integer = 0 To dgv.Rows.Count - 1
+                For col As Integer = 0 To dgv.Columns.Count - 1
+                    If dgv.Rows(row).Cells(col).Value IsNot Nothing Then
+                        Worksheet.Cells(row + 2, col + 1).Value = dgv.Rows(row).Cells(col).Value.ToString()
+                    End If
+                Next
+            Next
+
+            Worksheet.Columns.AutoFit()
+
+            ' Save to file
+            Dim exportPath As String = Application.StartupPath & "\ItemMonthlyStockStatement.xlsx"
+            If Not System.IO.Directory.Exists(Application.StartupPath & "\ItemMonthlyStockStatement") Then System.IO.Directory.CreateDirectory(Application.StartupPath & "\ItemMonthlyStockStatement")
+            'EXCELCMPHEADER(exportPath, "ItemMonthlyStockStatement", dgv.Columns.Count)
+            Workbook.SaveAs(exportPath)
+            ExcelApp.Visible = True
+            ExcelApp.UserControl = True
+
+
+            MsgBox("Exported to Excel successfully at " & exportPath)
+
+        Catch ex As Exception
+            MsgBox("Export failed: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ItemMonthlyStockStatement_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If e.KeyCode = Windows.Forms.Keys.Escape Or (e.KeyCode = Keys.X And e.Alt = True) Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

@@ -28,6 +28,7 @@ Partial Class StockRegisterChallanWise
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GISSPCS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,7 +40,7 @@ Partial Class StockRegisterChallanWise
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +58,7 @@ Partial Class StockRegisterChallanWise
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1117, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1256, 581)
         Me.BlendPanel1.TabIndex = 4
         '
         'CMDREFRESH
@@ -77,11 +78,11 @@ Partial Class StockRegisterChallanWise
         'griddetails
         '
         Me.griddetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.griddetails.Location = New System.Drawing.Point(15, 38)
+        Me.griddetails.Location = New System.Drawing.Point(17, 38)
         Me.griddetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.griddetails.MainView = Me.gridregister
         Me.griddetails.Name = "griddetails"
-        Me.griddetails.Size = New System.Drawing.Size(1087, 497)
+        Me.griddetails.Size = New System.Drawing.Size(1222, 497)
         Me.griddetails.TabIndex = 447
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridregister})
         '
@@ -95,7 +96,7 @@ Partial Class StockRegisterChallanWise
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GCHALLANNO, Me.GDATE, Me.GPCS, Me.GMTRS, Me.GISSPCS, Me.GISSMTRS, Me.GBALPCS, Me.GBALMTRS})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GCHALLANNO, Me.GLOTNO, Me.GDATE, Me.GPCS, Me.GMTRS, Me.GISSPCS, Me.GISSMTRS, Me.GBALPCS, Me.GBALMTRS})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -126,6 +127,17 @@ Partial Class StockRegisterChallanWise
         Me.GCHALLANNO.VisibleIndex = 1
         Me.GCHALLANNO.Width = 100
         '
+        'GDATE
+        '
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDATE.FieldName = "DATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 3
+        Me.GDATE.Width = 100
+        '
         'GPCS
         '
         Me.GPCS.Caption = "Pcs"
@@ -135,7 +147,7 @@ Partial Class StockRegisterChallanWise
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 3
+        Me.GPCS.VisibleIndex = 4
         Me.GPCS.Width = 80
         '
         'GMTRS
@@ -147,7 +159,7 @@ Partial Class StockRegisterChallanWise
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 4
+        Me.GMTRS.VisibleIndex = 5
         Me.GMTRS.Width = 100
         '
         'GISSPCS
@@ -159,7 +171,7 @@ Partial Class StockRegisterChallanWise
         Me.GISSPCS.Name = "GISSPCS"
         Me.GISSPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GISSPCS.Visible = True
-        Me.GISSPCS.VisibleIndex = 5
+        Me.GISSPCS.VisibleIndex = 6
         Me.GISSPCS.Width = 80
         '
         'GISSMTRS
@@ -171,7 +183,7 @@ Partial Class StockRegisterChallanWise
         Me.GISSMTRS.Name = "GISSMTRS"
         Me.GISSMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GISSMTRS.Visible = True
-        Me.GISSMTRS.VisibleIndex = 6
+        Me.GISSMTRS.VisibleIndex = 7
         Me.GISSMTRS.Width = 100
         '
         'GBALPCS
@@ -183,7 +195,7 @@ Partial Class StockRegisterChallanWise
         Me.GBALPCS.Name = "GBALPCS"
         Me.GBALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALPCS.Visible = True
-        Me.GBALPCS.VisibleIndex = 7
+        Me.GBALPCS.VisibleIndex = 8
         Me.GBALPCS.Width = 80
         '
         'GBALMTRS
@@ -195,7 +207,7 @@ Partial Class StockRegisterChallanWise
         Me.GBALMTRS.Name = "GBALMTRS"
         Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 8
+        Me.GBALMTRS.VisibleIndex = 9
         Me.GBALMTRS.Width = 100
         '
         'cmdok
@@ -231,7 +243,7 @@ Partial Class StockRegisterChallanWise
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExcelExport, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1117, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1256, 25)
         Me.ToolStrip1.TabIndex = 430
         Me.ToolStrip1.Text = "v"
         '
@@ -249,21 +261,19 @@ Partial Class StockRegisterChallanWise
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GDATE
+        'GLOTNO
         '
-        Me.GDATE.Caption = "Date"
-        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GDATE.FieldName = "DATE"
-        Me.GDATE.Name = "GDATE"
-        Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 2
-        Me.GDATE.Width = 100
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 2
+        Me.GLOTNO.Width = 120
         '
         'StockRegisterChallanWise
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1117, 581)
+        Me.ClientSize = New System.Drawing.Size(1256, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -299,4 +309,5 @@ Partial Class StockRegisterChallanWise
     Friend WithEvents ExcelExport As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

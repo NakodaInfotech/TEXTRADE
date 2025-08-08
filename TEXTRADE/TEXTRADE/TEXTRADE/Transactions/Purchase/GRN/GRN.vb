@@ -255,6 +255,7 @@ Public Class GRN
         CMBPACKING.Text = ""
         TXTDELIVERYADD.Clear()
         TXTEWAYBILLNO.Clear()
+        If ClientName = "AARYA" And FRMSTRING = "GRN FANCY" Then TXTLOTNO.Text = "AR-" & Val(txtgrnno.Text.Trim)
         If (ClientName = "AVIS" Or ClientName = "SNCM") And FRMSTRING = "GRNJOB" Then TXTLOTNO.Text = "Z-" & Val(txtgrnno.Text.Trim)
         If ClientName = "SNCM" And FRMSTRING = "GRN FANCY" Then TXTLOTNO.Text = Val(txtgrnno.Text.Trim) & "/" & AccFrom.Year.ToString.Substring(2, 2) & "-" & AccTo.Year.ToString.Substring(2, 2)
 
@@ -422,7 +423,7 @@ Public Class GRN
                 bln = False
             End If
 
-            If txtchallan.Text.Trim = "" And (ClientName = "AMAN" Or ClientName = "RADHA" Or ClientName = "LEEFABRICO" Or ClientName = "MOHATUL") Then
+            If txtchallan.Text.Trim = "" And (ClientName = "AMAN" Or ClientName = "RADHA" Or ClientName = "LEEFABRICO" Or ClientName = "AARYA" Or ClientName = "MOHATUL") Then
                 EP.SetError(txtchallan, " Please Fill Challan No")
                 bln = False
             End If
@@ -1443,7 +1444,7 @@ NEXTLINE:
 
             Cursor.Current = Cursors.WaitCursor
             If cmbtype.Items.Count > 0 Then cmbtype.SelectedIndex = (0)
-            If ClientName = "KENCOT" Or ClientName = "LEEFABRICO" Then ALLOWMANUALGRNNO = True
+            If ClientName = "KENCOT" Or ClientName = "LEEFABRICO" Or ClientName = "AARYA" Then ALLOWMANUALGRNNO = True
 
             CLEAR()
 
@@ -1619,7 +1620,7 @@ NEXTLINE:
         Try
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
             If cmbname.Text.Trim = "" Then
-                If ClientName = "AMAN" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
                 ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Then
                     FILLNAME(cmbname, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
@@ -2810,7 +2811,7 @@ LINE1:
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             If cmbname.Text.Trim = "" Then
-                If ClientName = "AMAN" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
                 ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Then
                     FILLNAME(cmbname, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
@@ -2826,7 +2827,7 @@ LINE1:
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                If ClientName = "AMAN" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS", cmbtrans.Text, CMBBROKER.Text)
                 ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Then
                     NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, CMBBROKER.Text)
@@ -3071,7 +3072,7 @@ LINE1:
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                If ClientName = "AMAN" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
                 ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Then
                     OBJLEDGER.STRSEARCH = " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
@@ -3596,7 +3597,7 @@ LINE1:
             End If
 
 
-            If ClientName = "AMAN" Then
+            If ClientName = "AMAN" Or ClientName = "AARYA" Then
                 cmdselectPO.TabStop = False
                 TXTLOTNO.TabStop = False
                 CMBPIECETYPE.TabStop = False
@@ -3605,7 +3606,7 @@ LINE1:
                 CMBDESIGN.TabStop = False
                 cmbcolor.TabStop = False
                 TXTCUT.TabStop = False
-                CMBRACK.TabStop = False
+                If ClientName <> "AARYA" Then CMBRACK.TabStop = False
                 CMBSHELF.TabStop = False
                 txtchallan.BackColor = Color.LemonChiffon
                 CHKLOTREADY.Text = "Lock Challan"
@@ -4589,7 +4590,7 @@ LINE1:
 
     Private Sub CMBRACK_Validated(sender As Object, e As EventArgs) Handles CMBRACK.Validated
         Try
-            If ClientName = "SOFTAS" Then TXTAMOUNT_Validated(sender, e)
+            If ClientName = "SOFTAS" Or ClientName = "AARYA" Then TXTAMOUNT_Validated(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

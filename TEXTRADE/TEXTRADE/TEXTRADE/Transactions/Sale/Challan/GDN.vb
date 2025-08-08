@@ -32,6 +32,7 @@ Public Class GDN
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
+
     Sub CLEAR()
 
         EP.Clear()
@@ -390,7 +391,7 @@ Public Class GDN
             Next
 
 
-            If (ClientName = "KARAN" Or ClientName = "AMAN" Or ClientName = "BALAJI") And txttransref.Text.Trim = "" Then
+            If (ClientName = "KARAN" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI") And txttransref.Text.Trim = "" Then
                 EP.SetError(txttransref, "Enter Challan No")
                 bln = False
             End If
@@ -552,7 +553,7 @@ CHECKNEXTLINEMTRS:
             End If
 
 
-            If txttransref.Text.Trim <> "" And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "RAJKRIPA" Then
+            If txttransref.Text.Trim <> "" And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "AARYA" And ClientName <> "RAJKRIPA" Then
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(txttransref.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
@@ -2363,12 +2364,12 @@ NEXTLINE:
                 TXTMULTISONO.Visible = True
             End If
 
-            If ClientName = "SOFTAS" Or ClientName = "AMAN" Or ClientName = "VINTAGEINDIA" Then
+            If ClientName = "SOFTAS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
                 CMBPIECETYPE.Text = "FRESH"
                 CMBPIECETYPE.TabStop = False
                 CMBQUALITY.TabStop = False
 
-                If ClientName = "AMAN" Or ClientName = "VINTAGEINDIA" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
                     txtpono.TabStop = False
                     LBLCONSIGNEE.Text = "Vehicle No"
                     LBLCHALLAN.Text = "P Challan No"
@@ -2557,7 +2558,7 @@ NEXTLINE:
                 If ClientName <> "SANGHVI" And ClientName <> "TINUMINU" Then OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
                 If ALLOWPACKINGSLIP = True Then OBJSELECTGDN.FILTER = " AND BARCODE = ''"
                 If ALLOWPACKINGSLIP = True And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND JOBBERNAME = '" & cmbname.Text.Trim & "'"
-                If ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND PURNAME = '" & cmbname.Text.Trim & "'"
+                If ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND PURNAME = '" & cmbname.Text.Trim & "'"
                 OBJSELECTGDN.ShowDialog()
                 DTGDN = OBJSELECTGDN.DT
             Else
@@ -2617,7 +2618,7 @@ NEXTLINE:
                     If ClientName = "ANOX" Then DTROWPS("BALENO") = ""
                     If ClientName = "RADHA" Then DTROWPS("BALENO") = DTROWPS("CHALLANNO")
 
-                    If ClientName = "VINTAGEINDIA" Then
+                    If ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" Then
                         txttransref.Text = DTROWPS("CHALLANNO")
                         cmbname.Text = DTROWPS("PURNAME")
                     End If
@@ -2647,6 +2648,12 @@ NEXTLINE:
                             If ClientName = "KRFABRICS" Then
                                 GRIDDESC = DTROWPS("BALENO")
                                 DTROWPS("BALENO") = ""
+                            End If
+
+                            If ClientName = "AARYA" Then
+                                GRIDDESC = Val(DTROWPS("MTRS"))
+                                CUT = 0
+                                DTROWPS("MTRS") = 0
                             End If
                             If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
 
@@ -3104,7 +3111,7 @@ LINE1:
         Try
             Dim OBJCMN As New ClsCommon()
             Dim dt As New DataTable
-            If txttransref.Text.Trim.Length > 0 And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "RAJKRIPA" Then
+            If txttransref.Text.Trim.Length > 0 And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "AARYA" And ClientName <> "RAJKRIPA" Then
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(txttransref.Text.Trim)) Then
                     dt = OBJCMN.SEARCH(" GDN.GDN_TRANSREFNO AS CHALLANNO ", "", " GDN ", " and GDN_TRANSREFNO = '" & txttransref.Text.Trim & "' AND GDN_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
@@ -3116,7 +3123,7 @@ LINE1:
 
 
             'FOR AMAN WE NEED TO CHECK WHETHER THIS PARTYCHALLAN IS CORRECT OR NOT, IF CORRECT THEN CHECK WHETHER WE HAVE STOCK FOR THIS CHALLAN OR NOT
-            If ClientName = "AMAN" And txttransref.Text.Trim <> "" Then
+            If (ClientName = "AMAN" Or ClientName = "AARYA") And txttransref.Text.Trim <> "" Then
                 Dim BALPCS As Double = 0
                 dt = OBJCMN.SEARCH(" CHALLANNO, SUM(PCS) AS INPCS, SUM(MTRS) AS INMTRS, SUM(PCS)-SUM(ISSPCS) AS BALPCS, SUM(MTRS)-SUM(ISSMTRS) AS BALMTRS ", "", " STOCKREGISTER ", " AND NAME = '" & cmbname.Text.Trim & "' AND CHALLANNO = '" & txttransref.Text.Trim & "' AND YEARID = " & YearId & " GROUP BY NAME, CHALLANNO ")
                 If dt.Rows.Count > 0 Then
@@ -3208,9 +3215,10 @@ LINE1:
             End If
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(ACC_MOBILE,'') AS MOBILENO, ISNULL(ACC_HOLDFORAPPROVAL,0) AS HOLDFORAPPROVAL, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT ", "", "CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.ACC_DELIVERYATID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(LEDGERS.ACC_HOLDFORAPPROVAL,0) AS HOLDFORAPPROVAL, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(BILLTOLEDGERS.ACC_CMPNAME,'') AS BILLTO ", "", "CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.ACC_DELIVERYATID LEFT OUTER JOIN LEDGERS AS BILLTOLEDGERS ON LEDGERS.ACC_BILLTOID = BILLTOLEDGERS.ACC_ID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 If cmbname.Text.Trim = CMBDISPATCHTO.Text.Trim And ((ClientName = "MANISH" And cmbcity.Text.Trim = "") Or ClientName <> "MANISH") Then cmbcity.Text = DT.Rows(0).Item(0)
+                If DT.Rows(0).Item("BILLTO") <> "" And ClientName = "AARYA" Then CMBDISPATCHTO.Text = DT.Rows(0).Item("BILLTO")
                 TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                 If EDIT = False Then CHKHOLD.Checked = Convert.ToBoolean(DT.Rows(0).Item("HOLDFORAPPROVAL"))
                 If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
@@ -3311,7 +3319,7 @@ LINE1:
 
     Private Sub TXTMTRS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTMTRS.Validating
         Try
-            If ClientName = "MANIBHADRA" Or ClientName = "AMAN" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then TXTAMOUNT_Validating(sender, e)
+            If ClientName = "MANIBHADRA" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then TXTAMOUNT_Validating(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

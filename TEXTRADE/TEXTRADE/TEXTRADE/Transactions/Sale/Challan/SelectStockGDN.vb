@@ -148,7 +148,7 @@ Public Class SelectStockGDN
                 If GODOWN <> "" Then WHERECLAUSE = " AND GODOWN = '" & GODOWN & "' "
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As New DataTable
-                If ClientName = "AMAN" Then
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     dt = objclscommon.search(" DISTINCT CHALLANNO AS BALENO ", "", " STOCKREGISTER ", WHERECLAUSE & " AND YEARID = " & YearId)
 
                 ElseIf ClientName = "MAHAJAN" Then
@@ -294,7 +294,7 @@ Public Class SelectStockGDN
 
                 gridwo.Columns(I).Width = 80 'BALENO
                 If ClientName = "INDRANI" Then gridwo.Columns(I).HeaderText = "SO No"
-                If ClientName = "AMAN" Then gridwo.Columns(I).HeaderText = "Challan No"
+                If ClientName = "AMAN" Or ClientName = "AARYA" Then gridwo.Columns(I).HeaderText = "Challan No"
                 I = I + 1
 
 
@@ -466,7 +466,7 @@ Public Class SelectStockGDN
         If CMBPIECETYPE.Text.Trim <> "" Then WHERE = WHERE & " and PIECETYPE = '" & CMBPIECETYPE.Text.Trim & "'"
         If CMBLOTNO.Text.Trim <> "" Then WHERE = WHERE & " and LOTNO = '" & CMBLOTNO.Text.Trim & "'"
         If CMBBALENO.Text.Trim <> "" Then
-            If ClientName = "AMAN" Then WHERE = WHERE & " and CHALLANNO = '" & CMBBALENO.Text.Trim & "'" Else WHERE = WHERE & " and BALENO = '" & CMBBALENO.Text.Trim & "'"
+            If ClientName = "AMAN" Or ClientName = "AARYA" Then WHERE = WHERE & " and CHALLANNO = '" & CMBBALENO.Text.Trim & "'" Else WHERE = WHERE & " and BALENO = '" & CMBBALENO.Text.Trim & "'"
         End If
         If CMBUNIT.Text.Trim <> "" Then WHERE = WHERE & " and UNIT = '" & CMBUNIT.Text.Trim & "'"
         If CMBCATEGORY.Text.Trim <> "" Then WHERE = WHERE & " and CATEGORY = '" & CMBCATEGORY.Text.Trim & "'"

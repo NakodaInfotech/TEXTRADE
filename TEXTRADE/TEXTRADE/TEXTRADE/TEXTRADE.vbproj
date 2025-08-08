@@ -407,6 +407,18 @@
     <Compile Include="Masters\CustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
+      <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\GRN\GRNReport_AARYA.vb">
+      <DependentUpon>GRNReport_AARYA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.vb">
       <DependentUpon>GridPurAnalysisPrintReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8510,6 +8522,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_AARYA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GRN\GRNReport_AARYA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GRNReport_AARYA.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\GridPurAnalysisPrintReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

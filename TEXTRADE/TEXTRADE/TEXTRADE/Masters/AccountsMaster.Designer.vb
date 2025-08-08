@@ -80,7 +80,7 @@ Partial Class AccountsMaster
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.CMBBILLTO = New System.Windows.Forms.ComboBox()
-        Me.Label70 = New System.Windows.Forms.Label()
+        Me.LBLBILLTO = New System.Windows.Forms.Label()
         Me.Label71 = New System.Windows.Forms.Label()
         Me.TXTLOCKDAYS = New System.Windows.Forms.TextBox()
         Me.TXTEXMILLLESS = New System.Windows.Forms.TextBox()
@@ -922,7 +922,7 @@ Partial Class AccountsMaster
         '
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage1.Controls.Add(Me.CMBBILLTO)
-        Me.TabPage1.Controls.Add(Me.Label70)
+        Me.TabPage1.Controls.Add(Me.LBLBILLTO)
         Me.TabPage1.Controls.Add(Me.Label71)
         Me.TabPage1.Controls.Add(Me.TXTLOCKDAYS)
         Me.TabPage1.Controls.Add(Me.TXTEXMILLLESS)
@@ -1056,16 +1056,16 @@ Partial Class AccountsMaster
         Me.CMBBILLTO.Size = New System.Drawing.Size(249, 22)
         Me.CMBBILLTO.TabIndex = 11
         '
-        'Label70
+        'LBLBILLTO
         '
-        Me.Label70.AutoSize = True
-        Me.Label70.BackColor = System.Drawing.Color.Transparent
-        Me.Label70.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label70.Location = New System.Drawing.Point(19, 374)
-        Me.Label70.Name = "Label70"
-        Me.Label70.Size = New System.Drawing.Size(76, 14)
-        Me.Label70.TabIndex = 714
-        Me.Label70.Text = "Bill To Name"
+        Me.LBLBILLTO.AutoSize = True
+        Me.LBLBILLTO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLBILLTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLBILLTO.Location = New System.Drawing.Point(19, 374)
+        Me.LBLBILLTO.Name = "LBLBILLTO"
+        Me.LBLBILLTO.Size = New System.Drawing.Size(76, 14)
+        Me.LBLBILLTO.TabIndex = 714
+        Me.LBLBILLTO.Text = "Bill To Name"
         '
         'Label71
         '
@@ -2927,7 +2927,7 @@ Partial Class AccountsMaster
     Friend WithEvents TXTEXMILLLESS As TextBox
     Friend WithEvents Label69 As Label
     Friend WithEvents CMBBILLTO As ComboBox
-    Friend WithEvents Label70 As Label
+    Friend WithEvents LBLBILLTO As Label
     Friend WithEvents Label71 As Label
     Friend WithEvents TXTLOCKDAYS As TextBox
     Friend WithEvents TabPage3 As TabPage

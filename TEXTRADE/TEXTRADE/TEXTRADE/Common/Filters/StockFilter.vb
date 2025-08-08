@@ -137,6 +137,7 @@ Public Class StockFilter
                 End If
                 Dim ITEMSTATEMENT As New ItemMonthlyStockStatement
                 ITEMSTATEMENT.MdiParent = MDIMain
+                ITEMSTATEMENT.ITEMNAME = CMBITEMNAME.Text.Trim
                 ITEMSTATEMENT.WHERECLAUSE = ITEMSTATEMENT.WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "'"
                 ITEMSTATEMENT.Show()
                 Exit Sub

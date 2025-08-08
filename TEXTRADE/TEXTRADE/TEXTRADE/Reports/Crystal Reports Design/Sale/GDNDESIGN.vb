@@ -63,6 +63,7 @@ Public Class GDNDESIGN
     Dim RPTGDN_SNCM As New GDNReport_SNCM
     Dim RPTGDN_GARMENT As New GDNReport_GARMENT
     Dim RPTGDN_REALCORP As New GDNReport_REALCORP
+    Dim RPTGDN_AARYA As New GDNReport_AARYA
 
 
     Dim RPTTRANSGDN As New GDNTransReport
@@ -305,6 +306,8 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_REALCORP.Database.Tables
                 ElseIf ClientName = "BARKHA" Then
                     crTables = RPTGDN_A5.Database.Tables
+                ElseIf ClientName = "AARYA" Then
+                    crTables = RPTGDN_AARYA.Database.Tables
                 Else
                     crTables = RPTGDN.Database.Tables
                 End If
@@ -521,6 +524,8 @@ Public Class GDNDESIGN
                     If PRINTRATE = True Then RPTGDN_SNCM.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGDN_SNCM.DataDefinition.FormulaFields("PRINTRATE").Text = 0
                 ElseIf ClientName = "REALCORPORATION" Then
                     crpo.ReportSource = RPTGDN_REALCORP
+                ElseIf ClientName = "AARYA" Then
+                    crpo.ReportSource = RPTGDN_AARYA
                 ElseIf ClientName = "BARKHA" Then
                     crpo.ReportSource = RPTGDN_A5
                 Else
@@ -854,6 +859,16 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_REALCORP.Export()
                     RPTGDN_REALCORP.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+                ElseIf ClientName = "AARYA" Then
+                    RPTGDN_AARYA.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    expo = RPTGDN_AARYA.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGDN_AARYA.Export()
+                    RPTGDN_AARYA.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
                 ElseIf ClientName = "BARKHA" Then
                     RPTGDN_A5.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     expo = RPTGDN_A5.ExportOptions
@@ -1263,6 +1278,8 @@ Public Class GDNDESIGN
                     If PRINTRATE = True Then OBJ.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else OBJ.DataDefinition.FormulaFields("PRINTRATE").Text = 0
                 ElseIf ClientName = "REALCORPORATION" Then
                     OBJ = New GDNReport_REALCORP
+                ElseIf ClientName = "AARYA" Then
+                    OBJ = New GDNReport_AARYA
                 ElseIf ClientName = "BARKHA" Then
                     OBJ = New GDNReport_A5
                 Else
