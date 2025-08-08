@@ -32,10 +32,10 @@ Public Class SelectAgencySO
                 WHERE = WHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & PARTYNAME & "'"
                 OPWHERE = OPWHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & PARTYNAME & "'"
             End If
-            If FRMSTRING = "" Then
-                If SALEORDERONMTRS = False Then WHERE = WHERE & " and (AGENCYSALEORDER_DESC.ASO_QTY - AGENCYSALEORDER_DESC.ASO_RECDQTY) > 0 AND AGENCYSALEORDER_DESC.ASO_CLOSED=0 " Else WHERE = WHERE & " and (AGENCYSALEORDER_DESC.ASO_MTRS - AGENCYSALEORDER_DESC.ASO_RECDMTRS) > 0 AND AGENCYSALEORDER_DESC.ASO_CLOSED=0 "
-                If SALEORDERONMTRS = False Then OPWHERE = OPWHERE & " and (OPENINGAGENCYSALEORDER_DESC.OPASO_QTY - OPENINGAGENCYSALEORDER_DESC.OPASO_RECDQTY) > 0 AND OPENINGAGENCYSALEORDER_DESC.OPASO_CLOSED=0 " Else OPWHERE = OPWHERE & " and (OPENINGAGENCYSALEORDER_DESC.OPASO_MTRS - OPENINGAGENCYSALEORDER_DESC.OPASO_RECDMTRS) > 0 AND OPENINGAGENCYSALEORDER_DESC.OPASO_CLOSED=0 "
-            End If
+            'If FRMSTRING = "" Then
+            If SALEORDERONMTRS = False Then WHERE = WHERE & " and (AGENCYSALEORDER_DESC.ASO_QTY - AGENCYSALEORDER_DESC.ASO_RECDQTY) > 0 AND AGENCYSALEORDER_DESC.ASO_CLOSED=0 " Else WHERE = WHERE & " and (AGENCYSALEORDER_DESC.ASO_MTRS - AGENCYSALEORDER_DESC.ASO_RECDMTRS) > 0 AND AGENCYSALEORDER_DESC.ASO_CLOSED=0 "
+            If SALEORDERONMTRS = False Then OPWHERE = OPWHERE & " and (OPENINGAGENCYSALEORDER_DESC.OPASO_QTY - OPENINGAGENCYSALEORDER_DESC.OPASO_RECDQTY) > 0 AND OPENINGAGENCYSALEORDER_DESC.OPASO_CLOSED=0 " Else OPWHERE = OPWHERE & " and (OPENINGAGENCYSALEORDER_DESC.OPASO_MTRS - OPENINGAGENCYSALEORDER_DESC.OPASO_RECDMTRS) > 0 AND OPENINGAGENCYSALEORDER_DESC.OPASO_CLOSED=0 "
+            'End If
 
             Dim objclspreq As New ClsCommon()
             'THIS IS CODE WITHOUT YARNSALE ORDER AND YARNOPENIUNG SALE ORDER
@@ -81,6 +81,23 @@ Public Class SelectAgencySO
             Dim TEMPDISPATCHTO As String = ""
             Dim TEMPPARTYPONO As String = ""
             Dim TEMPALLOW As Boolean = False
+
+            'for duplication in magic box invoice
+            If FRMSTRING = "MAGICBOX" Then
+                Dim checkedCount1 As Integer = 0
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        checkedCount1 += 1
+                    End If
+                Next
+                If checkedCount1 > 1 Then
+                    MsgBox("You cannot select multiple orders")
+                    DT.Columns.Clear()
+                    Exit Sub
+                End If
+            End If
+
             'WE NEED TO INTIMATE IF WE HAVE SELECTED ORDER OF DIFF SHIPTO PARTY
 
             For i As Integer = 0 To gridbill.RowCount - 1
@@ -113,9 +130,13 @@ Public Class SelectAgencySO
                         End If
                     End If
 
+
                     DT.Rows.Add(dtrow("DATE"), dtrow("NAME"), dtrow("ITEMNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("QTY")), Val(dtrow("MTRS")), dtrow("PONO"), dtrow("AGENTNAME"), dtrow("TRANSNAME"), dtrow("CITYNAME"), dtrow("DELIVERYAT"), dtrow("REFNO"), Val(dtrow("RATE")), Val(dtrow("SONO")), Val(dtrow("GRIDSRNO")), dtrow("TYPE"), dtrow("GRIDPARTYPONO"), dtrow("PACKINGTYPE"), dtrow("REMARKS"), dtrow("GRIDDESC"))
                 End If
             Next
+
+
+
             Me.Close()
 
         Catch ex As Exception
