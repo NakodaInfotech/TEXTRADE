@@ -180,7 +180,7 @@ Public Class MagicBox
 
                 alParaval.Add("") 'CMBSAMPLE.Text.Trim)
                 alParaval.Add("") 'CMBFROMCITY.Text.Trim)
-                alParaval.Add(0)
+                alParaval.Add(1)    'VERIFIED
 
                 Dim OBJSO As New ClsAgencySaleOrder()
                 OBJSO.alParaval = alParaval
