@@ -477,7 +477,7 @@ NEXTLINE:
         CMBCOMM.Text = ""
         GRIDMAGICBOX.RowCount = 0
         getmax_SO_no()
-
+        GRIDCHGS.RowCount = 0
         DT_CHGSDETAILS.Reset()
         DT_CHGSDETAILS.Columns.Add("ESRNO")
         DT_CHGSDETAILS.Columns.Add("ECHARGES")
@@ -810,6 +810,50 @@ NEXTLINE:
 
 
             End If
+            'FETCH DISCOUNT WITH RESPECT TO SALE ORDER 
+            If ClientName = "ABHEE" And EDIT = False Then
+
+                GRIDCHGS.RowCount = 0
+                Dim DT As New DataTable
+                DT = OBJCMN.SEARCH(" ISNULL(ASO_DISCDEALER, 0) AS DISCPER, ISNULL(ASO_CD, 0) AS CDPER, ISNULL(ASO_DISCRATE,0) AS RATEDIFF, ISNULL(ASO_INT,0) AS AGENTCOMM, ISNULL(ASO_DAYS,0) AS CRDAYS", "", " ALLAGENCYSALEORDER ", " and ALLAGENCYSALEORDER.ASO_NO IN (" & TXTPONO.Text.Trim & ") and ALLAGENCYSALEORDER.ASO_YEARid = " & YearId)
+
+                If DT.Rows.Count > 0 Then
+
+                    txtcrdays.Text = Val(DT.Rows(0).Item("CRDAYS"))
+
+
+                    'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
+                    'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
+                    'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
+                    If SALEAUTODISCOUNT = True And EDIT = False Then
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE2
+                        Next
+                        If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0)
+
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE2
+                        Next
+                        If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+
+
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE2
+                        Next
+                        If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0)
+
+                        'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
+                        If AUTOBROKERAGE = True Then
+                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE2
+                            Next
+                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
+                        End If
+                    End If
+
+LINE2:
+                End If
+            End If
 
         Catch ex As Exception
             Throw ex
@@ -1013,6 +1057,8 @@ NEXTLINE:
                         TXTCHGSPER.Select(TXTCHGSPER.Text.Length, 0)
                     End If
                 End If
+            Else
+                CMDCLOSE.Focus()
             End If
         Catch ex As Exception
             Throw ex
@@ -1049,7 +1095,7 @@ NEXTLINE:
                     TXTCHGSAMT.Text = Convert.ToDecimal(Val(TXTCHGSAMT.Text))
                     ' everything is good
                     fillchgsgrid()
-                    TOTAL()
+                    ' TOTAL()
                 Else
                     MessageBox.Show("Invalid Number Entered")
                     'e.Cancel = True
@@ -1158,12 +1204,15 @@ LINE1:
                         '    End If
                         'End If
                     Next
+
 line1:
                     For I As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
                         If GRIDMAGICBOX.Rows(GRIDMAGICBOX.CurrentRow.Index).Cells(gsrno.Index).Value = Val(DT_CHGSDETAILS.Rows(I).Item("MAINSRNO")) And del = True And row < Val(DT_CHGSDETAILS.Rows(I).Item(gsrno.Index)) Then
                             DT_CHGSDETAILS.Rows(I).Item("DSRNO") = Val(DT_CHGSDETAILS.Rows(I).Item("DSRNO")) - 1
                         End If
                     Next
+                    GRIDCHGS.Rows.RemoveAt(GRIDCHGS.CurrentRow.Index)
+                    TOTAL()
                     getsrno(GRIDCHGS)
                     TXTCHGSSRNO.Text = GRIDCHGS.RowCount + 1
                     CMBCHARGES.Focus()
@@ -1666,6 +1715,73 @@ line1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDCHGS_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDCHGS.CellDoubleClick
+        Try
+            If GRIDCHGS.CurrentRow.Index >= 0 And GRIDCHGS.Item(ECHARGES.Index, GRIDCHGS.CurrentRow.Index).Value <> Nothing Then
+                GRIDCHGSDOUBLECLICK = True
+                TXTCHGSSRNO.Text = GRIDCHGS.Item(ESRNO.Index, GRIDCHGS.CurrentRow.Index).Value.ToString
+                CMBCHARGES.Text = GRIDCHGS.Item(ECHARGES.Index, GRIDCHGS.CurrentRow.Index).Value.ToString
+                TXTCHGSPER.Text = GRIDCHGS.Item(EPER.Index, GRIDCHGS.CurrentRow.Index).Value
+                TXTCHGSAMT.Text = GRIDCHGS.Item(EAMT.Index, GRIDCHGS.CurrentRow.Index).Value
+                TXTTAXID.Text = GRIDCHGS.Item(ETAXID.Index, GRIDCHGS.CurrentRow.Index).Value
+                TEMPCHGSROW = GRIDCHGS.CurrentRow.Index
+                CMBCHARGES.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCHGSPER_Validating(sender As Object, e As CancelEventArgs) Handles TXTCHGSPER.Validating
+        Try
+            Dim dDebit As Decimal
+            Dim bValid As Boolean = Decimal.TryParse(TXTCHGSPER.Text.Trim, dDebit)
+            If bValid Then
+                If Val(TXTCHGSPER.Text) = 0 Then TXTCHGSPER.Text = ""
+                TXTCHGSPER.Text = Convert.ToDecimal(Val(TXTCHGSPER.Text))
+                '' everything is good
+                calchgs()
+            ElseIf Val(TXTCHGSPER.Text.Trim) = 0 Then
+                TXTCHGSAMT.ReadOnly = False
+            Else
+                MessageBox.Show("Invalid Number Entered")
+                'e.Cancel = True
+                TXTCHGSPER.Clear()
+                TXTCHGSPER.Focus()
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub calchgs()
+        Try
+            If Val(TXTCHGSPER.Text) <> 0 Then
+                'before CALC CHECK HOW TO CALC CHARGES
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" (CASE WHEN ISNULL(ACC_CALC,'') = '' THEN 'GROSS' ELSE ACC_CALC END) AS CALC", "", "LEDGERS", " AND ACC_CMPNAME = '" & CMBCHARGES.Text.Trim & "' AND ACC_YEARID = " & YearId)
+                If DT.Rows(0).Item("CALC") = "GROSS" Then
+                    TXTCHGSAMT.Text = Format((Val(TXTAMT.Text) * Val(TXTCHGSPER.Text)) / 100, "0.00")
+                ElseIf DT.Rows(0).Item("CALC") = "NETT" Then
+                    'FIRST CALC NETT THEN ADD CHARGES ON THAT NETT TOTAL
+                    For Each ROW As DataGridViewRow In GRIDCHGS.Rows
+                        If GRIDCHGSDOUBLECLICK = True And ROW.Index >= TEMPCHGSROW Then Exit For
+                        TXTAMT.Text = Format(Val(TXTAMT.Text) + Val(ROW.Cells(EAMT.Index).Value), "0.00")
+                    Next
+                    TXTCHGSAMT.Text = Format((Val(TXTAMT.Text) * Val(TXTCHGSPER.Text)) / 100, "0.00")
+                ElseIf DT.Rows(0).Item("CALC") = "QTY" Then
+                    TXTCHGSAMT.Text = Format((Val(TXTPCS.Text) * Val(TXTCHGSPER.Text)), "0.00")
+                ElseIf DT.Rows(0).Item("CALC") = "MTRS" Then
+                    TXTCHGSAMT.Text = Format((Val(TXTMTRS.Text) * Val(TXTCHGSPER.Text)), "0.00")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
     'Sub GENERATESO(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
     '    Try
 

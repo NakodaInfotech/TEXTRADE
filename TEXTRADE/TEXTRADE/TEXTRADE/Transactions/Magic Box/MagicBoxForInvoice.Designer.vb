@@ -272,7 +272,7 @@ Partial Class MagicBoxForInvoice
         Me.GBMTRS.Controls.Add(Me.CMDCLOSE)
         Me.GBMTRS.Location = New System.Drawing.Point(2129, 50)
         Me.GBMTRS.Name = "GBMTRS"
-        Me.GBMTRS.Size = New System.Drawing.Size(651, 297)
+        Me.GBMTRS.Size = New System.Drawing.Size(513, 297)
         Me.GBMTRS.TabIndex = 37
         Me.GBMTRS.TabStop = False
         Me.GBMTRS.Text = "Taka Details"
@@ -377,7 +377,7 @@ Partial Class MagicBoxForInvoice
         Me.GRIDCHGS.RowTemplate.Height = 20
         Me.GRIDCHGS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCHGS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDCHGS.Size = New System.Drawing.Size(570, 218)
+        Me.GRIDCHGS.Size = New System.Drawing.Size(478, 218)
         Me.GRIDCHGS.TabIndex = 4
         Me.GRIDCHGS.TabStop = False
         '
@@ -432,6 +432,7 @@ Partial Class MagicBoxForInvoice
         Me.EMAINSRNO.HeaderText = "MAINSRNO"
         Me.EMAINSRNO.Name = "EMAINSRNO"
         Me.EMAINSRNO.ReadOnly = True
+        Me.EMAINSRNO.Visible = False
         '
         'CMDCLOSE
         '
