@@ -638,8 +638,8 @@ Public Class OpeningStock
 
                 Dim DT As DataTable = OBJSM.save()
                 MessageBox.Show("Details Added")
-                'If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
-                'BARCODE()
+                If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                BARCODE()
             Else
 
                 If USEREDIT = False Then
