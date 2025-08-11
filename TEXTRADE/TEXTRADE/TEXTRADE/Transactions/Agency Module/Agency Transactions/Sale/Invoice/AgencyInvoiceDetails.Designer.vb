@@ -427,7 +427,7 @@ Partial Class AgencyInvoiceDetails
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "SRNO"
-        Me.gsrno.ImageIndex = 1
+        Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
@@ -478,7 +478,7 @@ Partial Class AgencyInvoiceDetails
         '
         Me.gname.Caption = "Buyer's Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
