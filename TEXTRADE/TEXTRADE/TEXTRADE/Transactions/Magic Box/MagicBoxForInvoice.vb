@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraRichEdit.UI
 Public Class MagicBoxForInvoice
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK, GRIDCHGSDOUBLECLICK As Boolean
@@ -1592,8 +1593,50 @@ line1:
             ALPARAVAL.Add(0) 'footerdisc
             ALPARAVAL.Add(0) 'footerdscamt
 
-            ALPARAVAL.Add("") '
+            ALPARAVAL.Add(0) 'Val(lbltotalqty.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(lbltotalmtrs.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(LBLTOTALAMT.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(LBLTOTALDISCAMT.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(LBLTOTALSPDISCAMT.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(LBLTOTALOTHERAMT.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(LBLTOTALTAXABLEAMT.Text.Trim))
 
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCGST.Index).Value))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCGSTAMT.Index).Value))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGST.Index).Value)) '(Val(TXTSGSTPER.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGSTAMT.Index).Value)) '(Val(TXTSGSTAMT.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GIGST.Index).Value)) '(Val(TXTIGSTPER.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GIGSTAMT.Index).Value)) '(Val(TXTIGSTAMT.Text.Trim))
+
+            ALPARAVAL.Add(Val(0)) 'TXTTOTALWITHGST.Text.Trim))
+            ALPARAVAL.Add(0) 'If CHKMANUALTCS.Checked = True Then ALPARAVAL.Add(1) Else
+            ALPARAVAL.Add(0) 'If CHKTCS.Checked = True Then ALPARAVAL.Add(1) Else 
+            ALPARAVAL.Add(0) 'Val(TXTTCSPER.Text.Trim))
+            ALPARAVAL.Add(0) 'Val(TXTTCSAMT.Text.Trim))
+
+            ALPARAVAL.Add("") 'txtinwords.Text)
+
+
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value)) '(Val(TXTAMT.Text.Trim))
+            ALPARAVAL.Add(Val(0)) 'TXTTOTALTAXAMT.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(0)) 'TXTTOTALOTHERCHGSAMT.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(0)) 'TXTCHARGES.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSUBTOTAL.Index).Value)) '(Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GROUNDOFF.Index).Value)) '(Format(Val(TXTROUNDOFF.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GGRANDTOTAL.Index).Value)) '(Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"))
+
+            ALPARAVAL.Add(Val(0)) 'TXTAMTPAID.Text.Trim))
+            ALPARAVAL.Add(Val(0)) 'TXTEXTRAAMT.Text.Trim))
+            ALPARAVAL.Add(Val(0)) 'TXTRETURN.Text.Trim))
+            ALPARAVAL.Add(Val(0)) 'TXTBAL.Text.Trim))
+
+            ALPARAVAL.Add(Val(0)) 'TXTCHADTI.Text.Trim))
+
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+            ALPARAVAL.Add(0)
 
             'ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDUEDATE.Index).Value).Date, "MM/dd/yyyy"))
             'ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value)
