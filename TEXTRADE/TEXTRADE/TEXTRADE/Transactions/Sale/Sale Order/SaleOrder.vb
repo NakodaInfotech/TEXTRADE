@@ -341,7 +341,7 @@ Public Class SaleOrder
         End If
         If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Then CMBDESIGN.Focus()
 
-        If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "SMS" Or ClientName = "SONU" Or ClientName = "MNARESH" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+        If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "SMS" Or ClientName = "BARKHA" Or ClientName = "SONU" Or ClientName = "MNARESH" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then
             TXTRATE.Clear()
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
                 cmbitemname.Text = ""
