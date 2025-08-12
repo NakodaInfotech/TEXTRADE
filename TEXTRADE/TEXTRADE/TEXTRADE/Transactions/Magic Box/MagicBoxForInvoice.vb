@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.CodeParser
 
 Public Class MagicBoxForInvoice
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -32,6 +33,7 @@ Public Class MagicBoxForInvoice
                 Dim LRDATE As String = ""
                 Dim BALENO As String = ""
                 Dim PCS As String = ""
+                Dim CUT As String = ""
                 Dim MTRS As String = ""
                 Dim RATE As String = ""
                 Dim PER As String = ""
@@ -77,6 +79,7 @@ Public Class MagicBoxForInvoice
                     LRDATE = SafeDate(row.Cells(GLRDATE.Index).Value)
                     BALENO = row.Cells(GBALENO.Index).Value.ToString
                     PCS = row.Cells(GPCS.Index).Value.ToString
+                    CUT = row.Cells(GCUT.Index).Value.ToString
                     MTRS = row.Cells(GMTRS.Index).Value.ToString
                     RATE = row.Cells(GRATE.Index).Value.ToString
                     PER = row.Cells(GPER.Index).Value.ToString
@@ -124,7 +127,7 @@ Public Class MagicBoxForInvoice
 
 
                 alParaval.Add("TOTAL GST")
-                alParaval.Add(GRIDSRNO)
+                alParaval.Add(0)
                 alParaval.Add(SELLERS)
                 alParaval.Add(0)
                 alParaval.Add(PONO)
@@ -168,9 +171,9 @@ Public Class MagicBoxForInvoice
                 alParaval.Add(0)
 
                 alParaval.Add(0) 'Val(LBLTOTALBALES.Text.Trim))
-                alParaval.Add(0) 'Val(lbltotalpcs.Text.Trim))
-                alParaval.Add(0) 'Val(lbltotalmtrs.Text.Trim))
-                alParaval.Add(0) 'Val(LBLTOTALAMT.Text.Trim))
+                alParaval.Add(PCS) 'Val(lbltotalpcs.Text.Trim))
+                alParaval.Add(MTRS) 'Val(lbltotalmtrs.Text.Trim))
+                alParaval.Add(AMOUNT) 'Val(LBLTOTALAMT.Text.Trim))
                 alParaval.Add(0) 'Val(LBLTOTALDISCAMT.Text.Trim))
                 alParaval.Add(0) 'Val(LBLTOTALSPDISCAMT.Text.Trim))
                 alParaval.Add(0) 'Val(LBLTOTALOTHERAMT.Text.Trim))
@@ -251,7 +254,7 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("") 'PRINTDESC)
                 alParaval.Add(BALENO)
                 alParaval.Add(PCS)
-                alParaval.Add("") 'CUT)
+                alParaval.Add(CUT) 'CUT)
                 alParaval.Add(MTRS)
                 alParaval.Add(RATE)
                 alParaval.Add(PER)
@@ -462,6 +465,7 @@ NEXTLINE:
         LRDATE.Value = Now.Date
         TXTBALENO.Clear()
         TXTPCS.Clear()
+        TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATES.Clear()
         TXTAMT.Clear()
@@ -479,7 +483,7 @@ NEXTLINE:
         TXTCHRGS.Clear()
         CMBCOMM.Text = ""
         GRIDMAGICBOX.RowCount = 0
-        getmax_SO_no()
+
         GRIDCHGS.RowCount = 0
 
         DT_CHGSDETAILS.Reset()
@@ -509,13 +513,7 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
-    Sub getmax_SO_no()
-        Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
-        If DTTABLE.Rows.Count > 0 Then
-            txtsrno.Text = DTTABLE.Rows(0).Item(0)
-        End If
-    End Sub
+
     Private Sub CMBSELLERS_Enter(sender As Object, e As EventArgs) Handles CMBSELLERS.Enter
         Try
             If CMBSELLERS.Text.Trim = "" Then FILLNAME(CMBSELLERS, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
@@ -628,7 +626,7 @@ NEXTLINE:
         GRIDMAGICBOX.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), BILLDATE.Value.ToString("MM/dd/yyyy"), ENTRYDATE.Value.ToString("MM/dd/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, TXTPARTYBILLNO.Text.Trim, txtcrdays.Text.Trim, TXTPONO.Text.Trim, TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Val(TXTFOLD.Text.Trim), TXTDESC.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, LRDATE.Value.ToString("MM/dd/yyyy"), TXTBALENO.Text.Trim, TXTPCS.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), BILLDATE.Text.Trim, ENTRYDATE.Value.ToString("dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, TXTPARTYBILLNO.Text.Trim, txtcrdays.Text.Trim, TXTPONO.Text.Trim, TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Val(TXTFOLD.Text.Trim), TXTDESC.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, LRDATE.Value.ToString("MM/dd/yyyy"), TXTBALENO.Text.Trim, TXTPCS.Text.Trim, TXTCUT.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim)
 
             'getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
@@ -651,6 +649,7 @@ NEXTLINE:
             GRIDMAGICBOX.Item(GLRDATE.Index, TEMPROW).Value = LRDATE.Value.Date
             GRIDMAGICBOX.Item(GBALENO.Index, TEMPROW).Value = TXTBALENO.Text.Trim
             GRIDMAGICBOX.Item(GPCS.Index, TEMPROW).Value = TXTPCS.Text.Trim
+            GRIDMAGICBOX.Item(GCUT.Index, TEMPROW).Value = TXTCUT.Text.Trim
             GRIDMAGICBOX.Item(GMTRS.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
             GRIDMAGICBOX.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATES.Text.Trim), "0.00")
             GRIDMAGICBOX.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
@@ -674,7 +673,15 @@ NEXTLINE:
 
             GRIDDOUBLECLICK = False
         End If
-
+        '        If EDIT = False Then
+        'LINE1:
+        '            For I As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
+        '                If GRIDMAGICBOX.Rows(GRIDMAGICBOX.CurrentRow.Index).Cells(gsrno.Index).Value = Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) Then
+        '                    DT_CHGSDETAILS.Rows.RemoveAt(I)
+        '                    GoTo LINE1
+        '                End If
+        '            Next
+        '        End If
 
         GRIDCHGS.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
@@ -786,6 +793,7 @@ NEXTLINE:
                 TXTLR.Text = ""       ' or fill if available
                 TXTBALENO.Text = "" ' DTROW("BALENO").ToString()
                 TXTPCS.Text = DTROW("QTY").ToString()
+                'TXTCUT.Text = DTROW("CUT").ToString()
                 TXTMTRS.Text = Format(Val(DTROW("MTRS").ToString()), "0.00")
                 TXTRATES.Text = Format(Val(DTROW("RATE").ToString()), "0.00")
                 CMBPER.Text = "Mtrs"
@@ -926,7 +934,7 @@ LINE2:
             Else
                 TXTAMT.Text = Format(Val(TXTMTRS.Text) * Val(TXTRATES.Text), "0.00")
             End If
-
+            If Val(TXTPCS.Text.Trim) > 0 And Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Val(TXTPCS.Text.Trim) * (TXTCUT.Text.Trim)
             TXTSUBTOTAL.Text = Format(Val(TXTAMT.Text) + Val(TXTCHRGS.Text), "0.00")
 
             TXTCGSTAMT.Text = Format(Val(TXTCGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
@@ -1019,6 +1027,42 @@ LINE2:
 
     Private Sub CMBPER_Validated(sender As Object, e As EventArgs) Handles CMBPER.Validated
         Try
+            If cmbitemname.Text.Trim = "" Then
+                MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
+                Exit Sub
+            Else
+                GBMTRS.Visible = True
+
+
+                If GRIDDOUBLECLICK = False Then
+                    'TEMPDTMTRS.Clear()
+                    GRIDCHGS.RowCount = 0
+                    GRIDDOUBLECLICK = False
+                    'Dim i As Integer = 0
+                    'While i < TEMPDTMTRS.Rows.Count
+                    '    If TEMPDTMTRS.Rows(i).Item("MAINSRNO") = Val(txtsrno.Text.Trim) Then
+                    '        TEMPDTMTRS.Rows.RemoveAt(i)
+                    '        'GRIDMTRS.Rows.RemoveAt(GRIDMTRS.CurrentRow.Index)
+                    '    Else
+                    '        i += 1 ' Only increment if no row is removed
+                    '    End If
+                    'End While
+                    TOTAL()
+                Else
+                    If GRIDMAGICBOX.Rows.Count > 0 Then
+                        GRIDCHGS.RowCount = 0
+                        GRIDCHGSDOUBLECLICK = False
+                        For i As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
+                            If DT_CHGSDETAILS.Rows(i).Item("EMAINSRNO") = Val(GRIDMAGICBOX.CurrentRow.Cells(gsrno.Index).Value) Then
+                                GRIDCHGS.Rows.Add(DT_CHGSDETAILS.Rows(i).Item("ESRNO"), DT_CHGSDETAILS.Rows(i).Item("ECHARGES"), DT_CHGSDETAILS.Rows(i).Item("EPER"), DT_CHGSDETAILS.Rows(i).Item("EAMT"), DT_CHGSDETAILS.Rows(i).Item("ETAXID"), DT_CHGSDETAILS.Rows(i).Item("EMAINSRNO"))
+                            End If
+                        Next
+                        TOTAL()
+                    End If
+                End If
+                TXTCHGSSRNO.Text = GRIDCHGS.RowCount + 1
+                CMBCHARGES.Focus()
+            End If
             GBMTRS.Visible = True
             TOTAL()
             CMBCHARGES.Focus()
@@ -1190,8 +1234,6 @@ LINE2:
                 Exit Sub
             End If
 
-            'end of block
-
 LINE1:
             For I As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
                 If GRIDMAGICBOX.Rows(GRIDMAGICBOX.CurrentRow.Index).Cells(gsrno.Index).Value = Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) Then
@@ -1204,7 +1246,9 @@ LINE1:
                     DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO") = Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) - 1
                 End If
             Next
-
+            GRIDMAGICBOX.Rows.RemoveAt(GRIDMAGICBOX.CurrentRow.Index)
+            getsrno(GRIDMAGICBOX)
+            TOTAL()
         End If
     End Sub
 
@@ -1261,7 +1305,7 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTFOLD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTFOLD.KeyPress, TXTQTY.KeyPress, TXTPCS.KeyPress, TXTMTRS.KeyPress, TXTRATES.KeyPress, TXTAMT.KeyPress, TXTCHRGS.KeyPress, TXTSUBTOTAL.KeyPress, TXTCGSTPER.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTPER.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTPER.KeyPress, TXTIGSTAMT.KeyPress, TXTROUNDOFF.KeyPress, TXTGRANDTOTAL.KeyPress, TXTCOMMPER.KeyPress
+    Private Sub TXTFOLD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTFOLD.KeyPress, TXTQTY.KeyPress, TXTPCS.KeyPress, TXTCUT.KeyPress, TXTMTRS.KeyPress, TXTRATES.KeyPress, TXTAMT.KeyPress, TXTCHRGS.KeyPress, TXTSUBTOTAL.KeyPress, TXTCGSTPER.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTPER.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTPER.KeyPress, TXTIGSTAMT.KeyPress, TXTROUNDOFF.KeyPress, TXTGRANDTOTAL.KeyPress, TXTCOMMPER.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -1822,7 +1866,7 @@ line1:
                 If Val(TXTCHGSPER.Text) = 0 Then TXTCHGSPER.Text = ""
                 TXTCHGSPER.Text = Convert.ToDecimal(Val(TXTCHGSPER.Text))
                 '' everything is good
-                calchgs()
+                CALCHGS()
             ElseIf Val(TXTCHGSPER.Text.Trim) = 0 Then
                 TXTCHGSAMT.ReadOnly = False
             Else
@@ -1864,11 +1908,71 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTQTY_Validated(sender As Object, e As EventArgs) Handles TXTQTY.Validated, TXTFOLD.Validated, TXTPCS.Validated, TXTMTRS.Validated, TXTRATES.Validated, CMBPER.Validated
+    Private Sub TXTQTY_Validated(sender As Object, e As EventArgs) Handles TXTQTY.Validated, TXTCUT.Validated, TXTFOLD.Validated, TXTPCS.Validated, TXTMTRS.Validated, TXTRATES.Validated, CMBPER.Validated
         CALC()
     End Sub
 
+    Private Sub GRIDMAGICBOX_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDMAGICBOX.CellDoubleClick
+        If e.RowIndex >= 0 Then
+            TEMPROW = e.RowIndex
+            EDITROW()
+        End If
+    End Sub
+    Sub EDITROW()
+        Try
+            If GRIDMAGICBOX.CurrentRow.Index >= 0 And GRIDMAGICBOX.Item(gsrno.Index, GRIDMAGICBOX.CurrentRow.Index).Value <> Nothing Then
 
+                GRIDDOUBLECLICK = True
+                TEMPROW = GRIDMAGICBOX.CurrentRow.Index
+
+                txtsrno.Text = GRIDMAGICBOX.Item(gsrno.Index, TEMPROW).Value.ToString
+                BILLDATE.Text = Format(Convert.ToDateTime(GRIDMAGICBOX.Item(GBILLDATE.Index, TEMPROW).Value).Date, "MM/dd/yyyy")
+                ENTRYDATE.Text = Format(Convert.ToDateTime(GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value).Date, "MM/dd/yyyy")
+                CMBSELLERS.Text = GRIDMAGICBOX.Item(GSELLERS.Index, TEMPROW).Value.ToString
+                CMBBUYERS.Text = GRIDMAGICBOX.Item(GBUYERS.Index, TEMPROW).Value.ToString
+                TXTPARTYBILLNO.Text = GRIDMAGICBOX.Item(GNO.Index, TEMPROW).Value.ToString
+                txtcrdays.Text = GRIDMAGICBOX.Item(GCRDAYS.Index, TEMPROW).Value.ToString
+                TXTPONO.Text = GRIDMAGICBOX.Item(GPONO.Index, TEMPROW).Value.ToString
+                TXTPOSRNO.Text = GRIDMAGICBOX.Item(GPOSRNO.Index, TEMPROW).Value.ToString
+                TXTPOTYPE.Text = GRIDMAGICBOX.Item(GPOTYPE.Index, TEMPROW).Value.ToString
+                cmbitemname.Text = GRIDMAGICBOX.Item(gitemname.Index, TEMPROW).Value.ToString
+                TXTQTY.Text = GRIDMAGICBOX.Item(gQty.Index, TEMPROW).Value.ToString
+                TXTFOLD.Text = GRIDMAGICBOX.Item(GFOLD.Index, TEMPROW).Value.ToString
+                TXTDESC.Text = GRIDMAGICBOX.Item(GDESC.Index, TEMPROW).Value.ToString
+                CMBTRANS.Text = GRIDMAGICBOX.Item(GTRANS.Index, TEMPROW).Value.ToString
+                TXTLR.Text = GRIDMAGICBOX.Item(GLRNO.Index, TEMPROW).Value.ToString
+                LRDATE.Text = GRIDMAGICBOX.Item(GLRDATE.Index, TEMPROW).Value.ToString
+                TXTBALENO.Text = GRIDMAGICBOX.Item(GBALENO.Index, TEMPROW).Value.ToString
+                TXTPCS.Text = GRIDMAGICBOX.Item(GPCS.Index, TEMPROW).Value.ToString
+                TXTCUT.Text = GRIDMAGICBOX.Item(GCUT.Index, TEMPROW).Value.ToString
+                TXTMTRS.Text = GRIDMAGICBOX.Item(GMTRS.Index, TEMPROW).Value.ToString
+                TXTRATES.Text = GRIDMAGICBOX.Item(GRATE.Index, TEMPROW).Value.ToString
+                CMBPER.Text = GRIDMAGICBOX.Item(GPER.Index, TEMPROW).Value.ToString
+                TXTAMT.Text = GRIDMAGICBOX.Item(GAMT.Index, TEMPROW).Value.ToString
+                TXTCHRGS.Text = GRIDMAGICBOX.Item(GCHARGES.Index, TEMPROW).Value.ToString
+                TXTSUBTOTAL.Text = GRIDMAGICBOX.Item(GSUBTOTAL.Index, TEMPROW).Value.ToString
+                TXTCGSTPER.Text = GRIDMAGICBOX.Item(GCGST.Index, TEMPROW).Value.ToString
+                TXTCGSTAMT.Text = GRIDMAGICBOX.Item(GCGSTAMT.Index, TEMPROW).Value.ToString
+                TXTSGSTPER.Text = GRIDMAGICBOX.Item(GSGST.Index, TEMPROW).Value.ToString
+                TXTSGSTAMT.Text = GRIDMAGICBOX.Item(GSGSTAMT.Index, TEMPROW).Value.ToString
+                TXTIGSTPER.Text = GRIDMAGICBOX.Item(GIGST.Index, TEMPROW).Value.ToString
+                TXTIGSTAMT.Text = GRIDMAGICBOX.Item(GIGSTAMT.Index, TEMPROW).Value.ToString
+
+                TXTROUNDOFF.Text = GRIDMAGICBOX.Item(GROUNDOFF.Index, TEMPROW).Value.ToString
+                TXTGRANDTOTAL.Text = GRIDMAGICBOX.Item(GGRANDTOTAL.Index, TEMPROW).Value.ToString
+                TXTCOMMPER.Text = GRIDMAGICBOX.Item(GCOMPER.Index, TEMPROW).Value.ToString
+                CMBCOMM.Text = GRIDMAGICBOX.Item(GCOM.Index, TEMPROW).Value.ToString
+                TXTREMARKS.Text = GRIDMAGICBOX.Item(GREMARKS.Index, TEMPROW).Value.ToString
+                TXTHSN.Text = GRIDMAGICBOX.Item(GHSN.Index, TEMPROW).Value.ToString
+
+
+
+                txtsrno.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     'Sub GENERATESO(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
     '    Try
 
