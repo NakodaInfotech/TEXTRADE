@@ -6,10 +6,39 @@ Public Class OpeningGreyStockAtProcess
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
-    Dim CLEAR As Boolean = False
+    'Dim CLEAR As Boolean = False
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
+    Sub clear()
+
+        'clearing textboxes
+        EP.Clear()
+        openingdate.Value = Now.Date
+        cmbname.Text = ""
+        CMBPURNAME.Text = ""
+        CMBTRANS.Text = ""
+        TXTLRNO.Clear()
+        DTLRDATE.Value = Now.Date
+        cmbmerchant.Text = ""
+        CMBDESIGN.Text = ""
+        cmbcolor.Text = ""
+        TXTBALENO.Clear()
+        txtpcs.Clear()
+        cmbunit.Text = ""
+        txtMtrs.Clear()
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMOUNT.Clear()
+        CMBAGENT.Text = ""
+        TXTCRDAYS.Clear()
+        txtreflotno.Clear()
+
+
+        EDIT = False
+        GRIDDOUBLECLICK = False
+
+    End Sub
 
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -276,38 +305,7 @@ Public Class OpeningGreyStockAtProcess
             GRIDDOUBLECLICK = False
         End If
 
-        If CLEAR = True Then
-            txtsrno.Text = gridstock.RowCount + 1
-            If ClientName = "REALCORPORATION" Then
-                cmbmerchant.Text = ""
-                CMBDESIGN.Text = ""
-                cmbcolor.Text = ""
-            End If
 
-            If ClientName <> "TINUMINU" And ClientName <> "RADHA" Then cmbname.Text = ""
-
-
-            txtpcs.Text = 1
-            TXTYARDS.Clear()
-            txtMtrs.Clear()
-
-            'CMBPER.Text = ""
-            TXTRATE.Clear()
-            DTLRDATE.Value = Now.Date
-            TXTAMOUNT.Clear()
-            CMBAGENT.Text = ""
-            CMBPURNAME.Text = ""
-            TXTCRDAYS.Clear()
-            TXTBALENO.Clear()
-            TXTLRNO.Clear()
-            'TXTBARCODE.Clear()
-            TXTNO.Clear()
-            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
-                txtMtrs.Focus()
-            ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Then
-                txtpcs.Focus()
-            End If
-        End If
 
     End Sub
 
@@ -837,34 +835,34 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub TXTREflotno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtreflotno.Validating
+    'Private Sub TXTREflotno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtreflotno.Validating
 
-        'Dim TEMPPCS As Integer = Val(txtpcs.Text.Trim)
-        'Dim TEMPMTRS As Double = Val(txtMtrs.Text.Trim)
-        'If ClientName = "MABHAY" Or ClientName = "SVS" Then
-        '    'If ClientName <> "MSANCHITKUMAR" And ClientName <> "CC" And ClientName <> "BARKHA" Then txtpcs.Text = 1
-        '    If ALLOWBARCODEPRINT = True Then txtpcs.Text = 1
-        '    If Val(TEMPPCS) > 1 Then
-        '        txtMtrs.Text = Format(Val(txtMtrs.Text.Trim) / Val(TEMPPCS), "0.00")
-        '        CLEAR = False
-        '    End If
-        '    For I As Integer = 1 To Val(TEMPPCS)
-        '        SAVE()
-        '        If I = TEMPPCS Then CLEAR = True
-        '        fillgrid()
-        '    Next
-        'Else
-        '    SAVE()
-        '    CLEAR = True
-        '    fillgrid()
-        'End If
+    '    'Dim TEMPPCS As Integer = Val(txtpcs.Text.Trim)
+    '    'Dim TEMPMTRS As Double = Val(txtMtrs.Text.Trim)
+    '    'If ClientName = "MABHAY" Or ClientName = "SVS" Then
+    '    '    'If ClientName <> "MSANCHITKUMAR" And ClientName <> "CC" And ClientName <> "BARKHA" Then txtpcs.Text = 1
+    '    '    If ALLOWBARCODEPRINT = True Then txtpcs.Text = 1
+    '    '    If Val(TEMPPCS) > 1 Then
+    '    '        txtMtrs.Text = Format(Val(txtMtrs.Text.Trim) / Val(TEMPPCS), "0.00")
+    '    '        CLEAR = False
+    '    '    End If
+    '    '    For I As Integer = 1 To Val(TEMPPCS)
+    '    '        SAVE()
+    '    '        If I = TEMPPCS Then CLEAR = True
+    '    '        fillgrid()
+    '    '    Next
+    '    'Else
+    '    '    SAVE()
+    '    '    CLEAR = True
+    '    '    fillgrid()
+    '    'End If
 
 
-        SAVE()
-        CLEAR = True
-        fillgrid()
+    '    SAVE()
+    '    clear()
+    '    fillgrid()
 
-    End Sub
+    'End Sub
 
     Sub total()
         Try
@@ -929,13 +927,13 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
-    Private Sub txtMtrs_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtMtrs.Validating
-        Try
-            If ClientName = "MANIBHADRA" Then TXTREflotno_Validating(sender, e)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub txtMtrs_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtMtrs.Validating
+    '    Try
+    '        If ClientName = "MANIBHADRA" Then TXTREflotno_Validating(sender, e)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub TXTSEARCHBARCODE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'For Each ROW As DataGridViewRow In gridstock.Rows
@@ -966,7 +964,7 @@ Public Class OpeningGreyStockAtProcess
     End Sub
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
-        CLEAR = True
+        clear()
     End Sub
 
     Private Sub cmbmerchant_Validating(sender As Object, e As CancelEventArgs) Handles cmbmerchant.Validating
@@ -993,4 +991,15 @@ Public Class OpeningGreyStockAtProcess
         End Try
     End Sub
 
+    Private Sub txtreflotno_Validated(sender As Object, e As EventArgs) Handles txtreflotno.Validated
+        Try
+            SAVE()
+            fillgrid()
+
+            clear()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
