@@ -75,6 +75,14 @@ Public Class OpeningGreyStockAtProcess
                 EP.SetError(cmbmerchant, "Item Name cannot be Blank")
                 bln = False
             End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            'If row.Cells(GPURCHASEPARTY.Index).Value = "" Then
+            '    EP.SetError(CMBPURNAME, " Purchase Party Name cannot be Blank")
+            '    bln = False
+            'End If
             If row.Cells(Gunit.Index).Value = "" Then
                 EP.SetError(cmbunit, "Unit cannot be Blank")
                 bln = False
