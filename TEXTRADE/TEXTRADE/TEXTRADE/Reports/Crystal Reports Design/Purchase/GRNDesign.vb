@@ -24,6 +24,7 @@ Public Class GRNDesign
     Dim RPTGRNDYEING As New GRNDYEING_BRILLANTO
     Dim RPTGRNFINISH As New GRNFinishReport
 
+    Dim RPTGREYRECTRANSPORT As New GREYTransportReport
     Dim RPTLETTER As New GREYISSUELetter
 
     Dim RPTPARTYDTLS As New GRNPartyWiseDetails
@@ -139,6 +140,7 @@ Public Class GRNDesign
             If FRMSTRING = "PENDING" Then crTables = RPTPENDING.Database.Tables
             If FRMSTRING = "PARTYITEMWISE" Then crTables = RPTPARTYITEMDTLS.Database.Tables
 
+            If FRMSTRING = "GREYRECTRANSPORT" Then crTables = RPTGREYRECTRANSPORT.Database.Tables
             If FRMSTRING = "LETTER" Then crTables = RPTLETTER.Database.Tables
 
             If FRMSTRING = "LOTSUMM" Then crTables = RPTLOTREPORTSUMMARY.Database.Tables
@@ -243,6 +245,9 @@ Public Class GRNDesign
                 crpo.ReportSource = RPTLOTTAGGING
                 RPTLOTTAGGING.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
+            ElseIf FRMSTRING = "GREYRECTRANSPORT" Then
+                If PRINTTRANS = True Then RPTGREYRECTRANSPORT.DataDefinition.FormulaFields("SHOWPURNAME").Text = 1 Else RPTGREYRECTRANSPORT.DataDefinition.FormulaFields("SHOWPURNAME").Text = 0
+                crpo.ReportSource = RPTGREYRECTRANSPORT
             ElseIf FRMSTRING = "LETTER" Then
                 If PRINTTRANS = True Then RPTLETTER.DataDefinition.FormulaFields("SHOWPURNAME").Text = 1 Else RPTLETTER.DataDefinition.FormulaFields("SHOWPURNAME").Text = 0
                 crpo.ReportSource = RPTLETTER
@@ -380,6 +385,13 @@ Public Class GRNDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTBARCODE.Export()
+
+            ElseIf FRMSTRING = "GREYRECTRANSPORT" Then
+                expo = RPTGREYRECTRANSPORT.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGREYRECTRANSPORT.Export()
 
             ElseIf FRMSTRING = "LETTER" Then
                 expo = RPTLETTER.ExportOptions

@@ -196,7 +196,7 @@ Partial Class GreyReceivedTransportDetails
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(-40, 34)
+        Me.gridbilldetails.Location = New System.Drawing.Point(12, 51)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
@@ -221,6 +221,7 @@ Partial Class GreyReceivedTransportDetails
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
+        Me.gridbill.OptionsView.ShowGroupPanel = False
         '
         'gsrno
         '
@@ -245,7 +246,7 @@ Partial Class GreyReceivedTransportDetails
         '
         Me.GNAME.Caption = "Party name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3

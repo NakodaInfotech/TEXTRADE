@@ -202,23 +202,23 @@ Public Class GreyReceivedTransportDetails
             Dim SRNOCLAUSE As String = ""
             If MsgBox("Wish to Print Mill Letter ?", MsgBoxStyle.YesNo) = vbYes Then
                 OBJGDN.MdiParent = MDIMain
-                OBJGDN.FRMSTRING = "LETTER"
-                OBJGDN.WHERECLAUSE = "' and {GRN.GRN_yearid}=" & YearId
-            End If
+                OBJGDN.FRMSTRING = "GREYRECTRANSPORT"
+                OBJGDN.WHERECLAUSE = " {GREYRECTRANSPORT.GREYREC_YEARID}=" & YearId
 
-            For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
-                Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                If SRNOCLAUSE = "" Then
-                    SRNOCLAUSE = " And ({GRN.GRN_NO} = " & Val(ROW("SRNO"))
-                Else
-                    SRNOCLAUSE = SRNOCLAUSE & " OR {GRN.GRN_NO} = " & Val(ROW("SRNO"))
+                For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
+                    Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+                    If SRNOCLAUSE = "" Then
+                        SRNOCLAUSE = " And ({GREYRECTRANSPORT.GREYREC_NO} = " & Val(ROW("SRNO"))
+                    Else
+                        SRNOCLAUSE = SRNOCLAUSE & " OR {GREYRECTRANSPORT.GREYREC_NO} = " & Val(ROW("SRNO"))
+                    End If
+                Next
+                If SRNOCLAUSE <> "" Then
+                    SRNOCLAUSE = SRNOCLAUSE & ")"
+                    OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & SRNOCLAUSE
                 End If
-            Next
-            If SRNOCLAUSE <> "" Then
-                SRNOCLAUSE = SRNOCLAUSE & ")"
-                OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & SRNOCLAUSE
+                OBJGDN.Show()
             End If
-            OBJGDN.Show()
         Catch ex As Exception
             Throw ex
         End Try
