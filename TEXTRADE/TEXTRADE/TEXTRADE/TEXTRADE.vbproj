@@ -407,6 +407,11 @@
     <Compile Include="Masters\CustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8687,7 +8692,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CoverNoteReport_SNCM.vb</LastGenOutput>
+      <LastGenOutput>CoverNoteReport_SNCM1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_REALCORP.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
