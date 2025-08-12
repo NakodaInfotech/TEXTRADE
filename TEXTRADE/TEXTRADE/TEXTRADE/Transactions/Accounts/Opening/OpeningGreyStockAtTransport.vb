@@ -39,6 +39,18 @@ Public Class OpeningGreyStockAtTransport
                 EP.SetError(txtMtrs, "Mtrs Cannot be 0")
                 bln = False
             End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBAGENT, "Agent Name cannot be Blank")
+                bln = False
+            End If
             'If row.Cells(gQuality.Index).Value = "" Then
             '    EP.SetError(cmbtype, "Quality cannot be Blank")
             '    bln = False

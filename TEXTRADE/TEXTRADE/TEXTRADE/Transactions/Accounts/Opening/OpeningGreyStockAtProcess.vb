@@ -83,6 +83,14 @@ Public Class OpeningGreyStockAtProcess
                 EP.SetError(CMBPURNAME, " Purchase Party Name cannot be Blank")
                 bln = False
             End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Agent Name cannot be Blank")
+                bln = False
+            End If
             If row.Cells(Gunit.Index).Value = "" Then
                 EP.SetError(cmbunit, "Unit cannot be Blank")
                 bln = False
