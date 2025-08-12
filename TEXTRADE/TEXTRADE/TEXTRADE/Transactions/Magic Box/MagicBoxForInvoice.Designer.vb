@@ -26,8 +26,6 @@ Partial Class MagicBoxForInvoice
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -37,6 +35,8 @@ Partial Class MagicBoxForInvoice
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.TXTADD = New System.Windows.Forms.TextBox()
@@ -51,12 +51,6 @@ Partial Class MagicBoxForInvoice
         Me.CMBCHARGES = New System.Windows.Forms.ComboBox()
         Me.TXTCHGSSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDCHGS = New System.Windows.Forms.DataGridView()
-        Me.ESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ECHARGES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ETAXID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EMAINSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMDCLOSE = New System.Windows.Forms.Button()
         Me.TXTHSN = New System.Windows.Forms.TextBox()
         Me.CMBCOMM = New System.Windows.Forms.ComboBox()
@@ -136,6 +130,13 @@ Partial Class MagicBoxForInvoice
         Me.cmdOK = New System.Windows.Forms.Button()
         Me.cmdclear = New System.Windows.Forms.Button()
         Me.cmdEXIT = New System.Windows.Forms.Button()
+        Me.TXTNETTAMT = New System.Windows.Forms.TextBox()
+        Me.ESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ECHARGES = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ETAXID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EMAINSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -262,6 +263,7 @@ Partial Class MagicBoxForInvoice
         'GBMTRS
         '
         Me.GBMTRS.BackColor = System.Drawing.Color.Linen
+        Me.GBMTRS.Controls.Add(Me.TXTNETTAMT)
         Me.GBMTRS.Controls.Add(Me.TextBox1)
         Me.GBMTRS.Controls.Add(Me.TXTTAXID)
         Me.GBMTRS.Controls.Add(Me.TXTCHGSPER)
@@ -272,7 +274,7 @@ Partial Class MagicBoxForInvoice
         Me.GBMTRS.Controls.Add(Me.CMDCLOSE)
         Me.GBMTRS.Location = New System.Drawing.Point(2129, 50)
         Me.GBMTRS.Name = "GBMTRS"
-        Me.GBMTRS.Size = New System.Drawing.Size(513, 297)
+        Me.GBMTRS.Size = New System.Drawing.Size(674, 297)
         Me.GBMTRS.TabIndex = 37
         Me.GBMTRS.TabStop = False
         Me.GBMTRS.Text = "Taka Details"
@@ -377,62 +379,9 @@ Partial Class MagicBoxForInvoice
         Me.GRIDCHGS.RowTemplate.Height = 20
         Me.GRIDCHGS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCHGS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDCHGS.Size = New System.Drawing.Size(478, 218)
+        Me.GRIDCHGS.Size = New System.Drawing.Size(614, 218)
         Me.GRIDCHGS.TabIndex = 4
         Me.GRIDCHGS.TabStop = False
-        '
-        'ESRNO
-        '
-        Me.ESRNO.HeaderText = "Sr."
-        Me.ESRNO.Name = "ESRNO"
-        Me.ESRNO.ReadOnly = True
-        Me.ESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.ESRNO.Width = 30
-        '
-        'ECHARGES
-        '
-        Me.ECHARGES.HeaderText = "Charges"
-        Me.ECHARGES.Name = "ECHARGES"
-        Me.ECHARGES.ReadOnly = True
-        Me.ECHARGES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ECHARGES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.ECHARGES.Width = 250
-        '
-        'EPER
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.EPER.DefaultCellStyle = DataGridViewCellStyle3
-        Me.EPER.HeaderText = "Percentage"
-        Me.EPER.Name = "EPER"
-        Me.EPER.ReadOnly = True
-        Me.EPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.EPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.EPER.Width = 80
-        '
-        'EAMT
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.EAMT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.EAMT.HeaderText = "Amount"
-        Me.EAMT.Name = "EAMT"
-        Me.EAMT.ReadOnly = True
-        Me.EAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.EAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'ETAXID
-        '
-        Me.ETAXID.HeaderText = "TAXID"
-        Me.ETAXID.Name = "ETAXID"
-        Me.ETAXID.ReadOnly = True
-        Me.ETAXID.Visible = False
-        '
-        'EMAINSRNO
-        '
-        Me.EMAINSRNO.HeaderText = "MAINSRNO"
-        Me.EMAINSRNO.Name = "EMAINSRNO"
-        Me.EMAINSRNO.ReadOnly = True
-        Me.EMAINSRNO.Visible = False
         '
         'CMDCLOSE
         '
@@ -1234,6 +1183,72 @@ Partial Class MagicBoxForInvoice
         Me.cmdEXIT.Text = "E&xit"
         Me.cmdEXIT.UseVisualStyleBackColor = False
         '
+        'TXTNETTAMT
+        '
+        Me.TXTNETTAMT.BackColor = System.Drawing.Color.Linen
+        Me.TXTNETTAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTNETTAMT.Location = New System.Drawing.Point(394, 260)
+        Me.TXTNETTAMT.Name = "TXTNETTAMT"
+        Me.TXTNETTAMT.ReadOnly = True
+        Me.TXTNETTAMT.Size = New System.Drawing.Size(95, 23)
+        Me.TXTNETTAMT.TabIndex = 832
+        Me.TXTNETTAMT.TabStop = False
+        Me.TXTNETTAMT.Text = "0.00"
+        Me.TXTNETTAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTNETTAMT.Visible = False
+        '
+        'ESRNO
+        '
+        Me.ESRNO.HeaderText = "Sr."
+        Me.ESRNO.Name = "ESRNO"
+        Me.ESRNO.ReadOnly = True
+        Me.ESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.ESRNO.Width = 30
+        '
+        'ECHARGES
+        '
+        Me.ECHARGES.HeaderText = "Charges"
+        Me.ECHARGES.Name = "ECHARGES"
+        Me.ECHARGES.ReadOnly = True
+        Me.ECHARGES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ECHARGES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.ECHARGES.Width = 250
+        '
+        'EPER
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.EPER.DefaultCellStyle = DataGridViewCellStyle3
+        Me.EPER.HeaderText = "Percentage"
+        Me.EPER.Name = "EPER"
+        Me.EPER.ReadOnly = True
+        Me.EPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.EPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.EPER.Width = 80
+        '
+        'EAMT
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.EAMT.DefaultCellStyle = DataGridViewCellStyle4
+        Me.EAMT.HeaderText = "Amount"
+        Me.EAMT.Name = "EAMT"
+        Me.EAMT.ReadOnly = True
+        Me.EAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.EAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'ETAXID
+        '
+        Me.ETAXID.HeaderText = "TAXID"
+        Me.ETAXID.Name = "ETAXID"
+        Me.ETAXID.ReadOnly = True
+        Me.ETAXID.Visible = False
+        '
+        'EMAINSRNO
+        '
+        Me.EMAINSRNO.HeaderText = "MAINSRNO"
+        Me.EMAINSRNO.Name = "EMAINSRNO"
+        Me.EMAINSRNO.ReadOnly = True
+        '
         'MagicBoxForInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1351,6 +1366,7 @@ Partial Class MagicBoxForInvoice
     Friend WithEvents GRIDCHGS As DataGridView
     Friend WithEvents TXTTAXID As TextBox
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TXTNETTAMT As TextBox
     Friend WithEvents ESRNO As DataGridViewTextBoxColumn
     Friend WithEvents ECHARGES As DataGridViewTextBoxColumn
     Friend WithEvents EPER As DataGridViewTextBoxColumn
