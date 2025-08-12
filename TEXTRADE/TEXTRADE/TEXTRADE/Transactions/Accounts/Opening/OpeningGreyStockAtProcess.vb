@@ -75,6 +75,22 @@ Public Class OpeningGreyStockAtProcess
                 EP.SetError(cmbmerchant, "Item Name cannot be Blank")
                 bln = False
             End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GPURCHASEPARTY.Index).Value = "" Then
+                EP.SetError(CMBPURNAME, " Purchase Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Agent Name cannot be Blank")
+                bln = False
+            End If
             If row.Cells(Gunit.Index).Value = "" Then
                 EP.SetError(cmbunit, "Unit cannot be Blank")
                 bln = False
@@ -148,9 +164,7 @@ Public Class OpeningGreyStockAtProcess
         'End If
     End Sub
 
-    Private Sub gridSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
-        EDITROW()
-    End Sub
+
 
     Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbname.KeyDown
         Try
@@ -265,6 +279,8 @@ Public Class OpeningGreyStockAtProcess
             FILLDESIGN(CMBDESIGN, cmbmerchant.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, cmbmerchant.Text.Trim)
             If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBPURNAME.Text.Trim = "" Then FILLNAME(CMBPURNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             If CMBTRANS.Text.Trim = "" Then filltransname(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
             If cmbunit.Text.Trim = "" Then fillunit(cmbunit)
 
@@ -346,7 +362,7 @@ Public Class OpeningGreyStockAtProcess
                 Dim OBJLEDGER As New SelectLedger
                 OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
+                If OBJLEDGER.TEMPNAME <> "" Then CMBPURNAME.Text = OBJLEDGER.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex
@@ -1001,5 +1017,25 @@ Public Class OpeningGreyStockAtProcess
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMBAGENT_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBAGENT.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT' "
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBAGENT.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub gridstock_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
+        EDITROW()
     End Sub
 End Class

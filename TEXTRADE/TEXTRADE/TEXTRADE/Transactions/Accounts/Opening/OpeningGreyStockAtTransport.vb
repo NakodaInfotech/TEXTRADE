@@ -39,6 +39,18 @@ Public Class OpeningGreyStockAtTransport
                 EP.SetError(txtMtrs, "Mtrs Cannot be 0")
                 bln = False
             End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBAGENT, "Agent Name cannot be Blank")
+                bln = False
+            End If
             'If row.Cells(gQuality.Index).Value = "" Then
             '    EP.SetError(cmbtype, "Quality cannot be Blank")
             '    bln = False
@@ -214,6 +226,7 @@ Public Class OpeningGreyStockAtTransport
             FILLDESIGN(CMBDESIGN, cmbmerchant.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, cmbmerchant.Text.Trim)
             If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             If CMBTRANS.Text.Trim = "" Then filltransname(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
             If cmbunit.Text.Trim = "" Then fillunit(cmbunit)
 
