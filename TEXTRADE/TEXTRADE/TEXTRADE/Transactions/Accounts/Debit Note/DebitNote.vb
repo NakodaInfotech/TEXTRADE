@@ -500,14 +500,12 @@ Public Class DebitNote
                         If DT.Rows.Count > 0 Then
                             TXTTOTALPCS.Text = Val(DT.Rows(0).Item("TOTALPCS"))
                             TXTTOTALMTRS.Text = Val(DT.Rows(0).Item("TOTALMTRS"))
-                            'If ClientName = "SUPRIYA" Then
-                            '    CMBCREDITLEDGER.Focus()
-                            '    TXTACTUALINVAMT.Text = Val(DT.Rows(0).Item("GROSSAMT"))
-                            'Else
-                            '    TXTACTUALINVAMT.Text = Val(DT.Rows(0).Item("TOTALTAXABLEAMT"))
-                            'End If
-                            TXTACTUALINVAMT.Text = Val(DT.Rows(0).Item("GROSSAMT"))
-
+                            If ClientName = "SUPRIYA" Then
+                                CMBCREDITLEDGER.Focus()
+                                TXTACTUALINVAMT.Text = Val(DT.Rows(0).Item("TOTALTAXABLEAMT"))
+                            Else
+                                TXTACTUALINVAMT.Text = Val(DT.Rows(0).Item("GROSSAMT"))
+                            End If
                         End If
 
                         Dim DT1 As DataTable = OBJCMN.SEARCH("top 1 * ", "", "HSNPURSUMMARY ", "and  INITIALS = '" & GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBILLINITIALS").Index).Value & "' AND YEARID = " & YearId)
