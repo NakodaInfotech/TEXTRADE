@@ -50,6 +50,21 @@ Partial Class OpeningGreyStockAtProcess
         Me.TXTRATE = New System.Windows.Forms.TextBox()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
         Me.gridstock = New System.Windows.Forms.DataGridView()
+        Me.txtpcs = New System.Windows.Forms.TextBox()
+        Me.cmbname = New System.Windows.Forms.ComboBox()
+        Me.cmbcolor = New System.Windows.Forms.ComboBox()
+        Me.txtMtrs = New System.Windows.Forms.TextBox()
+        Me.cmbunit = New System.Windows.Forms.ComboBox()
+        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.cmbmerchant = New System.Windows.Forms.ComboBox()
+        Me.CMBCODE = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
+        Me.cmbdyeing = New System.Windows.Forms.ComboBox()
+        Me.TXTNO = New System.Windows.Forms.TextBox()
+        Me.TXTYARDS = New System.Windows.Forms.TextBox()
+        Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.cmdclear = New System.Windows.Forms.Button()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -72,21 +87,6 @@ Partial Class OpeningGreyStockAtProcess
         Me.GREFLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gOutpcs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.goutmtrs = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txtpcs = New System.Windows.Forms.TextBox()
-        Me.cmbname = New System.Windows.Forms.ComboBox()
-        Me.cmbcolor = New System.Windows.Forms.ComboBox()
-        Me.txtMtrs = New System.Windows.Forms.TextBox()
-        Me.cmbunit = New System.Windows.Forms.ComboBox()
-        Me.txtsrno = New System.Windows.Forms.TextBox()
-        Me.cmbmerchant = New System.Windows.Forms.ComboBox()
-        Me.CMBCODE = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
-        Me.cmbdyeing = New System.Windows.Forms.ComboBox()
-        Me.TXTNO = New System.Windows.Forms.TextBox()
-        Me.TXTYARDS = New System.Windows.Forms.TextBox()
-        Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.cmdclear = New System.Windows.Forms.Button()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -340,196 +340,6 @@ Partial Class OpeningGreyStockAtProcess
         Me.gridstock.TabIndex = 28
         Me.gridstock.TabStop = False
         '
-        'gsrno
-        '
-        Me.gsrno.HeaderText = "Sr."
-        Me.gsrno.Name = "gsrno"
-        Me.gsrno.ReadOnly = True
-        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gsrno.Width = 40
-        '
-        'GNO
-        '
-        Me.GNO.HeaderText = "NO"
-        Me.GNO.Name = "GNO"
-        Me.GNO.ReadOnly = True
-        Me.GNO.Visible = False
-        '
-        'GNAME
-        '
-        Me.GNAME.HeaderText = "Party Name"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.ReadOnly = True
-        Me.GNAME.Width = 200
-        '
-        'GPURCHASEPARTY
-        '
-        Me.GPURCHASEPARTY.HeaderText = "Purchase Party"
-        Me.GPURCHASEPARTY.Name = "GPURCHASEPARTY"
-        Me.GPURCHASEPARTY.ReadOnly = True
-        Me.GPURCHASEPARTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPURCHASEPARTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPURCHASEPARTY.Width = 200
-        '
-        'GTRANS
-        '
-        Me.GTRANS.HeaderText = "Transport"
-        Me.GTRANS.Name = "GTRANS"
-        Me.GTRANS.ReadOnly = True
-        Me.GTRANS.Width = 200
-        '
-        'GLRNO
-        '
-        Me.GLRNO.HeaderText = "LR No"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.ReadOnly = True
-        '
-        'GLRDATE
-        '
-        Me.GLRDATE.HeaderText = "LR Date"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.ReadOnly = True
-        Me.GLRDATE.Width = 84
-        '
-        'GMERCHANT
-        '
-        Me.GMERCHANT.HeaderText = "Item Name"
-        Me.GMERCHANT.Name = "GMERCHANT"
-        Me.GMERCHANT.ReadOnly = True
-        Me.GMERCHANT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMERCHANT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMERCHANT.Width = 170
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.HeaderText = "Design"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 80
-        '
-        'gcolor
-        '
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.gcolor.DefaultCellStyle = DataGridViewCellStyle3
-        Me.gcolor.HeaderText = "Shade"
-        Me.gcolor.Name = "gcolor"
-        Me.gcolor.ReadOnly = True
-        Me.gcolor.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gcolor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gcolor.Width = 80
-        '
-        'GBALENO
-        '
-        Me.GBALENO.HeaderText = "Bale No"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.ReadOnly = True
-        Me.GBALENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBALENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Gpcs
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 8.25!)
-        Me.Gpcs.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Gpcs.HeaderText = "Pcs"
-        Me.Gpcs.Name = "Gpcs"
-        Me.Gpcs.ReadOnly = True
-        Me.Gpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Gpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Gpcs.Width = 60
-        '
-        'Gunit
-        '
-        Me.Gunit.HeaderText = "Unit"
-        Me.Gunit.Name = "Gunit"
-        Me.Gunit.ReadOnly = True
-        Me.Gunit.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Gunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Gunit.Width = 60
-        '
-        'gMtrs
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.gMtrs.DefaultCellStyle = DataGridViewCellStyle5
-        Me.gMtrs.HeaderText = "Mtrs"
-        Me.gMtrs.Name = "gMtrs"
-        Me.gMtrs.ReadOnly = True
-        Me.gMtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gMtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gMtrs.Width = 80
-        '
-        'GRATE
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle6
-        Me.GRATE.HeaderText = "Rate"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
-        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GRATE.Width = 80
-        '
-        'GPer
-        '
-        Me.GPer.HeaderText = "Per"
-        Me.GPer.Name = "GPer"
-        Me.GPer.ReadOnly = True
-        Me.GPer.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GPer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPer.Width = 60
-        '
-        'GAMOUNT
-        '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle7
-        Me.GAMOUNT.HeaderText = "Amount"
-        Me.GAMOUNT.Name = "GAMOUNT"
-        Me.GAMOUNT.ReadOnly = True
-        Me.GAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GAMOUNT.Width = 80
-        '
-        'GAGENT
-        '
-        Me.GAGENT.HeaderText = "Agent"
-        Me.GAGENT.Name = "GAGENT"
-        Me.GAGENT.ReadOnly = True
-        Me.GAGENT.Width = 200
-        '
-        'GCRDAYS
-        '
-        Me.GCRDAYS.HeaderText = "Cr Days"
-        Me.GCRDAYS.Name = "GCRDAYS"
-        Me.GCRDAYS.ReadOnly = True
-        '
-        'GREFLOTNO
-        '
-        Me.GREFLOTNO.HeaderText = "Ref Lot No"
-        Me.GREFLOTNO.Name = "GREFLOTNO"
-        Me.GREFLOTNO.ReadOnly = True
-        '
-        'gOutpcs
-        '
-        Me.gOutpcs.HeaderText = "Outpcs"
-        Me.gOutpcs.Name = "gOutpcs"
-        Me.gOutpcs.ReadOnly = True
-        Me.gOutpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gOutpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gOutpcs.Visible = False
-        '
-        'goutmtrs
-        '
-        Me.goutmtrs.HeaderText = "Out Mtrs"
-        Me.goutmtrs.Name = "goutmtrs"
-        Me.goutmtrs.ReadOnly = True
-        Me.goutmtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.goutmtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.goutmtrs.Visible = False
-        '
         'txtpcs
         '
         Me.txtpcs.BackColor = System.Drawing.Color.LemonChiffon
@@ -721,6 +531,196 @@ Partial Class OpeningGreyStockAtProcess
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
+        'gsrno
+        '
+        Me.gsrno.HeaderText = "Sr."
+        Me.gsrno.Name = "gsrno"
+        Me.gsrno.ReadOnly = True
+        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gsrno.Width = 40
+        '
+        'GNO
+        '
+        Me.GNO.HeaderText = "NO"
+        Me.GNO.Name = "GNO"
+        Me.GNO.ReadOnly = True
+        Me.GNO.Visible = False
+        '
+        'GNAME
+        '
+        Me.GNAME.HeaderText = "Party Name"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.ReadOnly = True
+        Me.GNAME.Width = 200
+        '
+        'GPURCHASEPARTY
+        '
+        Me.GPURCHASEPARTY.HeaderText = "Purchase Party"
+        Me.GPURCHASEPARTY.Name = "GPURCHASEPARTY"
+        Me.GPURCHASEPARTY.ReadOnly = True
+        Me.GPURCHASEPARTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPURCHASEPARTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPURCHASEPARTY.Width = 200
+        '
+        'GTRANS
+        '
+        Me.GTRANS.HeaderText = "Transport"
+        Me.GTRANS.Name = "GTRANS"
+        Me.GTRANS.ReadOnly = True
+        Me.GTRANS.Width = 200
+        '
+        'GLRNO
+        '
+        Me.GLRNO.HeaderText = "LR No"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.ReadOnly = True
+        '
+        'GLRDATE
+        '
+        Me.GLRDATE.HeaderText = "LR Date"
+        Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.ReadOnly = True
+        Me.GLRDATE.Width = 84
+        '
+        'GMERCHANT
+        '
+        Me.GMERCHANT.HeaderText = "Item Name"
+        Me.GMERCHANT.Name = "GMERCHANT"
+        Me.GMERCHANT.ReadOnly = True
+        Me.GMERCHANT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMERCHANT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMERCHANT.Width = 170
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.HeaderText = "Design"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESIGN.Width = 80
+        '
+        'gcolor
+        '
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.gcolor.DefaultCellStyle = DataGridViewCellStyle3
+        Me.gcolor.HeaderText = "Shade"
+        Me.gcolor.Name = "gcolor"
+        Me.gcolor.ReadOnly = True
+        Me.gcolor.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gcolor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gcolor.Width = 80
+        '
+        'GBALENO
+        '
+        Me.GBALENO.HeaderText = "Bale No"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.ReadOnly = True
+        Me.GBALENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBALENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Gpcs
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 8.25!)
+        Me.Gpcs.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Gpcs.HeaderText = "Pcs"
+        Me.Gpcs.Name = "Gpcs"
+        Me.Gpcs.ReadOnly = True
+        Me.Gpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Gpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Gpcs.Width = 60
+        '
+        'Gunit
+        '
+        Me.Gunit.HeaderText = "Unit"
+        Me.Gunit.Name = "Gunit"
+        Me.Gunit.ReadOnly = True
+        Me.Gunit.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Gunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Gunit.Width = 60
+        '
+        'gMtrs
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.gMtrs.DefaultCellStyle = DataGridViewCellStyle5
+        Me.gMtrs.HeaderText = "Mtrs"
+        Me.gMtrs.Name = "gMtrs"
+        Me.gMtrs.ReadOnly = True
+        Me.gMtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gMtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gMtrs.Width = 80
+        '
+        'GRATE
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GRATE.HeaderText = "Rate"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.ReadOnly = True
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 80
+        '
+        'GPer
+        '
+        Me.GPer.HeaderText = "Per"
+        Me.GPer.Name = "GPer"
+        Me.GPer.ReadOnly = True
+        Me.GPer.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GPer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPer.Width = 60
+        '
+        'GAMOUNT
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle7
+        Me.GAMOUNT.HeaderText = "Amount"
+        Me.GAMOUNT.Name = "GAMOUNT"
+        Me.GAMOUNT.ReadOnly = True
+        Me.GAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GAMOUNT.Width = 80
+        '
+        'GAGENT
+        '
+        Me.GAGENT.HeaderText = "Agent"
+        Me.GAGENT.Name = "GAGENT"
+        Me.GAGENT.ReadOnly = True
+        Me.GAGENT.Width = 200
+        '
+        'GCRDAYS
+        '
+        Me.GCRDAYS.HeaderText = "Cr Days"
+        Me.GCRDAYS.Name = "GCRDAYS"
+        Me.GCRDAYS.ReadOnly = True
+        '
+        'GREFLOTNO
+        '
+        Me.GREFLOTNO.HeaderText = "Ref Lot No"
+        Me.GREFLOTNO.Name = "GREFLOTNO"
+        Me.GREFLOTNO.ReadOnly = True
+        '
+        'gOutpcs
+        '
+        Me.gOutpcs.HeaderText = "Outpcs"
+        Me.gOutpcs.Name = "gOutpcs"
+        Me.gOutpcs.ReadOnly = True
+        Me.gOutpcs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gOutpcs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gOutpcs.Visible = False
+        '
+        'goutmtrs
+        '
+        Me.goutmtrs.HeaderText = "Out Mtrs"
+        Me.goutmtrs.Name = "goutmtrs"
+        Me.goutmtrs.ReadOnly = True
+        Me.goutmtrs.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.goutmtrs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.goutmtrs.Visible = False
+        '
         'OpeningGreyStockAtProcess
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -764,6 +764,17 @@ Partial Class OpeningGreyStockAtProcess
     Friend WithEvents TXTRATE As TextBox
     Friend WithEvents CMBDESIGN As ComboBox
     Friend WithEvents gridstock As DataGridView
+    Friend WithEvents txtpcs As TextBox
+    Friend WithEvents cmbname As ComboBox
+    Friend WithEvents cmbcolor As ComboBox
+    Friend WithEvents txtMtrs As TextBox
+    Friend WithEvents cmbunit As ComboBox
+    Friend WithEvents txtsrno As TextBox
+    Friend WithEvents cmbmerchant As ComboBox
+    Friend WithEvents txtadd As TextBox
+    Friend WithEvents openingdate As DateTimePicker
+    Friend WithEvents cmdexit As Button
+    Friend WithEvents cmdclear As Button
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GNO As DataGridViewTextBoxColumn
     Friend WithEvents GNAME As DataGridViewTextBoxColumn
@@ -786,15 +797,4 @@ Partial Class OpeningGreyStockAtProcess
     Friend WithEvents GREFLOTNO As DataGridViewTextBoxColumn
     Friend WithEvents gOutpcs As DataGridViewTextBoxColumn
     Friend WithEvents goutmtrs As DataGridViewTextBoxColumn
-    Friend WithEvents txtpcs As TextBox
-    Friend WithEvents cmbname As ComboBox
-    Friend WithEvents cmbcolor As ComboBox
-    Friend WithEvents txtMtrs As TextBox
-    Friend WithEvents cmbunit As ComboBox
-    Friend WithEvents txtsrno As TextBox
-    Friend WithEvents cmbmerchant As ComboBox
-    Friend WithEvents txtadd As TextBox
-    Friend WithEvents openingdate As DateTimePicker
-    Friend WithEvents cmdexit As Button
-    Friend WithEvents cmdclear As Button
 End Class

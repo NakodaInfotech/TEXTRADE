@@ -166,7 +166,7 @@ Public Class ClsOpeningGreyStockAtProcess
 
                 Dim I As Integer = 0
 
-                .Add(New SqlClient.SqlParameter("@SMNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
