@@ -65,8 +65,8 @@ Partial Class OpeningGreyStockAtProcess
         Me.TXTYARDS = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.cmdclear = New System.Windows.Forms.Button()
-        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPURCHASEPARTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTRANS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -312,7 +312,7 @@ Partial Class OpeningGreyStockAtProcess
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridstock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GNO, Me.gsrno, Me.GNAME, Me.GPURCHASEPARTY, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GMERCHANT, Me.GDESIGN, Me.gcolor, Me.GBALENO, Me.Gpcs, Me.Gunit, Me.gMtrs, Me.GRATE, Me.GPer, Me.GAMOUNT, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.gOutpcs, Me.goutmtrs})
+        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GNAME, Me.GPURCHASEPARTY, Me.GTRANS, Me.GLRNO, Me.GLRDATE, Me.GMERCHANT, Me.GDESIGN, Me.gcolor, Me.GBALENO, Me.Gpcs, Me.Gunit, Me.gMtrs, Me.GRATE, Me.GPer, Me.GAMOUNT, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.gOutpcs, Me.goutmtrs})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -531,13 +531,6 @@ Partial Class OpeningGreyStockAtProcess
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
-        'GNO
-        '
-        Me.GNO.HeaderText = "NO"
-        Me.GNO.Name = "GNO"
-        Me.GNO.ReadOnly = True
-        Me.GNO.Visible = False
-        '
         'gsrno
         '
         Me.gsrno.HeaderText = "Sr."
@@ -546,6 +539,13 @@ Partial Class OpeningGreyStockAtProcess
         Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gsrno.Width = 40
+        '
+        'GNO
+        '
+        Me.GNO.HeaderText = "NO"
+        Me.GNO.Name = "GNO"
+        Me.GNO.ReadOnly = True
+        Me.GNO.Visible = False
         '
         'GNAME
         '
@@ -775,8 +775,8 @@ Partial Class OpeningGreyStockAtProcess
     Friend WithEvents openingdate As DateTimePicker
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdclear As Button
-    Friend WithEvents GNO As DataGridViewTextBoxColumn
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
+    Friend WithEvents GNO As DataGridViewTextBoxColumn
     Friend WithEvents GNAME As DataGridViewTextBoxColumn
     Friend WithEvents GPURCHASEPARTY As DataGridViewTextBoxColumn
     Friend WithEvents GTRANS As DataGridViewTextBoxColumn
