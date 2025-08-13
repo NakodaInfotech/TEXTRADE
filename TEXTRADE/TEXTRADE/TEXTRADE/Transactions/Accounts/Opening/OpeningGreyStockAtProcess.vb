@@ -119,10 +119,10 @@ Public Class OpeningGreyStockAtProcess
                 '    Exit Sub
                 'End If
 
-                If gridstock.Rows(gridstock.CurrentRow.Index).DefaultCellStyle.BackColor = Color.Yellow Then
-                    MsgBox("Item Locked", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
+                'If gridstock.Rows(gridstock.CurrentRow.Index).DefaultCellStyle.BackColor = Color.Yellow Then
+                '        MsgBox("Item Locked", MsgBoxStyle.Critical)
+                '        Exit Sub
+                '    End If
 
                 GRIDDOUBLECLICK = True
                 TXTNO.Text = gridstock.Item(GNO.Index, gridstock.CurrentRow.Index).Value.ToString
@@ -299,6 +299,7 @@ Public Class OpeningGreyStockAtProcess
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
             gridstock.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
+            gridstock.Item(GNO.Index, TEMPROW).Value = Val(TXTNO.Text.Trim)
             gridstock.Item(GNAME.Index, TEMPROW).Value = cmbname.Text.Trim
             gridstock.Item(GPURCHASEPARTY.Index, TEMPROW).Value = CMBPURNAME.Text.Trim
             gridstock.Item(GTRANS.Index, TEMPROW).Value = CMBTRANS.Text.Trim
