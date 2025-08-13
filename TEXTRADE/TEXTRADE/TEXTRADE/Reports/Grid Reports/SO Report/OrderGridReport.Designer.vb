@@ -32,7 +32,8 @@ Partial Class OrderGridReport
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.CMDEXPORT = New System.Windows.Forms.Button()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.tbitem = New System.Windows.Forms.TabPage()
         Me.GRIDSO = New System.Windows.Forms.DataGridView()
         Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -46,27 +47,6 @@ Partial Class OrderGridReport
         Me.GBALPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CMDREFRESH = New System.Windows.Forms.Button()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.RDBALL = New System.Windows.Forms.RadioButton()
-        Me.RDBPENDING = New System.Windows.Forms.RadioButton()
-        Me.RDBCOMPLETE = New System.Windows.Forms.RadioButton()
-        Me.RDBCLOSED = New System.Windows.Forms.RadioButton()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.CMBNAME = New System.Windows.Forms.ComboBox()
-        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
-        Me.CMBCATEGORY = New System.Windows.Forms.ComboBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.dtto = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dtfrom = New System.Windows.Forms.DateTimePicker()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.chkdate = New System.Windows.Forms.CheckBox()
-        Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.tbitem = New System.Windows.Forms.TabPage()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GPORDERNO = New System.Windows.Forms.GroupBox()
         Me.CHKSELECTORDER = New System.Windows.Forms.CheckBox()
@@ -99,12 +79,30 @@ Partial Class OrderGridReport
         Me.GAREA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSALESMAN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.dtto = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dtfrom = New System.Windows.Forms.DateTimePicker()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.chkdate = New System.Windows.Forms.CheckBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CMBNAME = New System.Windows.Forms.ComboBox()
+        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
+        Me.CMBCATEGORY = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RDBALL = New System.Windows.Forms.RadioButton()
+        Me.RDBPENDING = New System.Windows.Forms.RadioButton()
+        Me.RDBCOMPLETE = New System.Windows.Forms.RadioButton()
+        Me.RDBCLOSED = New System.Windows.Forms.RadioButton()
+        Me.CMDEXPORT = New System.Windows.Forms.Button()
+        Me.CMDREFRESH = New System.Windows.Forms.Button()
+        Me.cmdexit = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
-        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
+        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.GPORDERNO.SuspendLayout()
         CType(Me.GRIDBILLDETAILSORDER, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +117,8 @@ Partial Class OrderGridReport
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -139,22 +139,29 @@ Partial Class OrderGridReport
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1444, 692)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1594, 692)
         Me.BlendPanel1.TabIndex = 0
         '
-        'CMDEXPORT
+        'TabControl2
         '
-        Me.CMDEXPORT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDEXPORT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDEXPORT.FlatAppearance.BorderSize = 0
-        Me.CMDEXPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDEXPORT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXPORT.Location = New System.Drawing.Point(666, 660)
-        Me.CMDEXPORT.Name = "CMDEXPORT"
-        Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXPORT.TabIndex = 4
-        Me.CMDEXPORT.Text = "&Export"
-        Me.CMDEXPORT.UseVisualStyleBackColor = False
+        Me.TabControl2.Controls.Add(Me.tbitem)
+        Me.TabControl2.Controls.Add(Me.TabPage1)
+        Me.TabControl2.Location = New System.Drawing.Point(12, 94)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(1570, 560)
+        Me.TabControl2.TabIndex = 770
+        '
+        'tbitem
+        '
+        Me.tbitem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.tbitem.Controls.Add(Me.GRIDSO)
+        Me.tbitem.Location = New System.Drawing.Point(4, 24)
+        Me.tbitem.Name = "tbitem"
+        Me.tbitem.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbitem.Size = New System.Drawing.Size(1562, 532)
+        Me.tbitem.TabIndex = 0
+        Me.tbitem.Text = "Item Details"
         '
         'GRIDSO
         '
@@ -182,7 +189,7 @@ Partial Class OrderGridReport
         Me.GRIDSO.RowTemplate.Height = 20
         Me.GRIDSO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSO.Size = New System.Drawing.Size(1391, 500)
+        Me.GRIDSO.Size = New System.Drawing.Size(1550, 523)
         Me.GRIDSO.TabIndex = 0
         '
         'GITEMNAME
@@ -309,254 +316,6 @@ Partial Class OrderGridReport
         Me.GDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GDAYS.Width = 75
         '
-        'CMDREFRESH
-        '
-        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
-        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
-        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(752, 660)
-        Me.CMDREFRESH.Name = "CMDREFRESH"
-        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 1
-        Me.CMDREFRESH.Text = "&Refresh"
-        Me.CMDREFRESH.UseVisualStyleBackColor = False
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(838, 660)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 3
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.RDBALL)
-        Me.GroupBox2.Controls.Add(Me.RDBPENDING)
-        Me.GroupBox2.Controls.Add(Me.RDBCOMPLETE)
-        Me.GroupBox2.Controls.Add(Me.RDBCLOSED)
-        Me.GroupBox2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(325, 14)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(316, 46)
-        Me.GroupBox2.TabIndex = 8
-        Me.GroupBox2.TabStop = False
-        '
-        'RDBALL
-        '
-        Me.RDBALL.AutoSize = True
-        Me.RDBALL.Location = New System.Drawing.Point(234, 19)
-        Me.RDBALL.Name = "RDBALL"
-        Me.RDBALL.Size = New System.Drawing.Size(40, 18)
-        Me.RDBALL.TabIndex = 3
-        Me.RDBALL.Text = "All"
-        Me.RDBALL.UseVisualStyleBackColor = True
-        '
-        'RDBPENDING
-        '
-        Me.RDBPENDING.AutoSize = True
-        Me.RDBPENDING.Checked = True
-        Me.RDBPENDING.Location = New System.Drawing.Point(6, 19)
-        Me.RDBPENDING.Name = "RDBPENDING"
-        Me.RDBPENDING.Size = New System.Drawing.Size(69, 18)
-        Me.RDBPENDING.TabIndex = 0
-        Me.RDBPENDING.TabStop = True
-        Me.RDBPENDING.Text = "Pending"
-        Me.RDBPENDING.UseVisualStyleBackColor = True
-        '
-        'RDBCOMPLETE
-        '
-        Me.RDBCOMPLETE.AutoSize = True
-        Me.RDBCOMPLETE.Location = New System.Drawing.Point(81, 19)
-        Me.RDBCOMPLETE.Name = "RDBCOMPLETE"
-        Me.RDBCOMPLETE.Size = New System.Drawing.Size(84, 18)
-        Me.RDBCOMPLETE.TabIndex = 1
-        Me.RDBCOMPLETE.Text = "Completed"
-        Me.RDBCOMPLETE.UseVisualStyleBackColor = True
-        '
-        'RDBCLOSED
-        '
-        Me.RDBCLOSED.AutoSize = True
-        Me.RDBCLOSED.Location = New System.Drawing.Point(171, 19)
-        Me.RDBCLOSED.Name = "RDBCLOSED"
-        Me.RDBCLOSED.Size = New System.Drawing.Size(62, 18)
-        Me.RDBCLOSED.TabIndex = 2
-        Me.RDBCLOSED.Text = "Closed"
-        Me.RDBCLOSED.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(22, 14)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 14)
-        Me.Label9.TabIndex = 765
-        Me.Label9.Text = "Name"
-        '
-        'CMBNAME
-        '
-        Me.CMBNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBNAME.FormattingEnabled = True
-        Me.CMBNAME.Location = New System.Drawing.Point(63, 10)
-        Me.CMBNAME.MaxDropDownItems = 14
-        Me.CMBNAME.Name = "CMBNAME"
-        Me.CMBNAME.Size = New System.Drawing.Size(230, 22)
-        Me.CMBNAME.TabIndex = 762
-        '
-        'CMBAGENT
-        '
-        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBAGENT.BackColor = System.Drawing.Color.White
-        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBAGENT.FormattingEnabled = True
-        Me.CMBAGENT.Location = New System.Drawing.Point(63, 38)
-        Me.CMBAGENT.MaxDropDownItems = 14
-        Me.CMBAGENT.Name = "CMBAGENT"
-        Me.CMBAGENT.Size = New System.Drawing.Size(230, 22)
-        Me.CMBAGENT.TabIndex = 763
-        '
-        'CMBCATEGORY
-        '
-        Me.CMBCATEGORY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCATEGORY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCATEGORY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBCATEGORY.FormattingEnabled = True
-        Me.CMBCATEGORY.Location = New System.Drawing.Point(63, 66)
-        Me.CMBCATEGORY.MaxDropDownItems = 14
-        Me.CMBCATEGORY.Name = "CMBCATEGORY"
-        Me.CMBCATEGORY.Size = New System.Drawing.Size(85, 22)
-        Me.CMBCATEGORY.TabIndex = 767
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(23, 42)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(38, 14)
-        Me.Label10.TabIndex = 766
-        Me.Label10.Text = "Agent"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(7, 70)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 14)
-        Me.Label5.TabIndex = 768
-        Me.Label5.Text = "Category"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.dtto)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.dtfrom)
-        Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.chkdate)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(647, 9)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
-        Me.GroupBox1.TabIndex = 769
-        Me.GroupBox1.TabStop = False
-        '
-        'dtto
-        '
-        Me.dtto.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.dtto.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtto.Location = New System.Drawing.Point(189, 20)
-        Me.dtto.Name = "dtto"
-        Me.dtto.Size = New System.Drawing.Size(83, 22)
-        Me.dtto.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(161, 24)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(25, 14)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "To :"
-        '
-        'dtfrom
-        '
-        Me.dtfrom.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.dtfrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtfrom.Location = New System.Drawing.Point(50, 20)
-        Me.dtfrom.Name = "dtfrom"
-        Me.dtfrom.Size = New System.Drawing.Size(83, 22)
-        Me.dtfrom.TabIndex = 1
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(9, 24)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(40, 14)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "From :"
-        '
-        'chkdate
-        '
-        Me.chkdate.AutoSize = True
-        Me.chkdate.BackColor = System.Drawing.Color.Transparent
-        Me.chkdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkdate.ForeColor = System.Drawing.Color.Black
-        Me.chkdate.Location = New System.Drawing.Point(6, 0)
-        Me.chkdate.Name = "chkdate"
-        Me.chkdate.Size = New System.Drawing.Size(52, 18)
-        Me.chkdate.TabIndex = 0
-        Me.chkdate.Text = "Date"
-        Me.chkdate.UseVisualStyleBackColor = False
-        '
-        'TabControl2
-        '
-        Me.TabControl2.Controls.Add(Me.tbitem)
-        Me.TabControl2.Controls.Add(Me.TabPage1)
-        Me.TabControl2.Location = New System.Drawing.Point(12, 94)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1420, 560)
-        Me.TabControl2.TabIndex = 770
-        '
-        'tbitem
-        '
-        Me.tbitem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.tbitem.Controls.Add(Me.GRIDSO)
-        Me.tbitem.Location = New System.Drawing.Point(4, 24)
-        Me.tbitem.Name = "tbitem"
-        Me.tbitem.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbitem.Size = New System.Drawing.Size(1412, 532)
-        Me.tbitem.TabIndex = 0
-        Me.tbitem.Text = "Item Details"
-        '
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
@@ -566,7 +325,7 @@ Partial Class OrderGridReport
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1412, 532)
+        Me.TabPage1.Size = New System.Drawing.Size(1562, 532)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Filters"
         '
@@ -901,10 +660,251 @@ Partial Class OrderGridReport
         Me.CHKSELECTALL.Text = "Select All"
         Me.CHKSELECTALL.UseVisualStyleBackColor = False
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.dtto)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.dtfrom)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.chkdate)
+        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(647, 9)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
+        Me.GroupBox1.TabIndex = 769
+        Me.GroupBox1.TabStop = False
+        '
+        'dtto
+        '
+        Me.dtto.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.dtto.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtto.Location = New System.Drawing.Point(189, 20)
+        Me.dtto.Name = "dtto"
+        Me.dtto.Size = New System.Drawing.Size(83, 22)
+        Me.dtto.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(161, 24)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(25, 14)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "To :"
+        '
+        'dtfrom
+        '
+        Me.dtfrom.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.dtfrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtfrom.Location = New System.Drawing.Point(50, 20)
+        Me.dtfrom.Name = "dtfrom"
+        Me.dtfrom.Size = New System.Drawing.Size(83, 22)
+        Me.dtfrom.TabIndex = 1
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(9, 24)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(40, 14)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "From :"
+        '
+        'chkdate
+        '
+        Me.chkdate.AutoSize = True
+        Me.chkdate.BackColor = System.Drawing.Color.Transparent
+        Me.chkdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkdate.ForeColor = System.Drawing.Color.Black
+        Me.chkdate.Location = New System.Drawing.Point(6, 0)
+        Me.chkdate.Name = "chkdate"
+        Me.chkdate.Size = New System.Drawing.Size(52, 18)
+        Me.chkdate.TabIndex = 0
+        Me.chkdate.Text = "Date"
+        Me.chkdate.UseVisualStyleBackColor = False
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(22, 14)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(39, 14)
+        Me.Label9.TabIndex = 765
+        Me.Label9.Text = "Name"
+        '
+        'CMBNAME
+        '
+        Me.CMBNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBNAME.FormattingEnabled = True
+        Me.CMBNAME.Location = New System.Drawing.Point(63, 10)
+        Me.CMBNAME.MaxDropDownItems = 14
+        Me.CMBNAME.Name = "CMBNAME"
+        Me.CMBNAME.Size = New System.Drawing.Size(230, 22)
+        Me.CMBNAME.TabIndex = 762
+        '
+        'CMBAGENT
+        '
+        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBAGENT.BackColor = System.Drawing.Color.White
+        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBAGENT.FormattingEnabled = True
+        Me.CMBAGENT.Location = New System.Drawing.Point(63, 38)
+        Me.CMBAGENT.MaxDropDownItems = 14
+        Me.CMBAGENT.Name = "CMBAGENT"
+        Me.CMBAGENT.Size = New System.Drawing.Size(230, 22)
+        Me.CMBAGENT.TabIndex = 763
+        '
+        'CMBCATEGORY
+        '
+        Me.CMBCATEGORY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCATEGORY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCATEGORY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCATEGORY.FormattingEnabled = True
+        Me.CMBCATEGORY.Location = New System.Drawing.Point(63, 66)
+        Me.CMBCATEGORY.MaxDropDownItems = 14
+        Me.CMBCATEGORY.Name = "CMBCATEGORY"
+        Me.CMBCATEGORY.Size = New System.Drawing.Size(85, 22)
+        Me.CMBCATEGORY.TabIndex = 767
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(23, 42)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(38, 14)
+        Me.Label10.TabIndex = 766
+        Me.Label10.Text = "Agent"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(7, 70)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(53, 14)
+        Me.Label5.TabIndex = 768
+        Me.Label5.Text = "Category"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.RDBALL)
+        Me.GroupBox2.Controls.Add(Me.RDBPENDING)
+        Me.GroupBox2.Controls.Add(Me.RDBCOMPLETE)
+        Me.GroupBox2.Controls.Add(Me.RDBCLOSED)
+        Me.GroupBox2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.Location = New System.Drawing.Point(325, 14)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(316, 46)
+        Me.GroupBox2.TabIndex = 8
+        Me.GroupBox2.TabStop = False
+        '
+        'RDBALL
+        '
+        Me.RDBALL.AutoSize = True
+        Me.RDBALL.Location = New System.Drawing.Point(234, 19)
+        Me.RDBALL.Name = "RDBALL"
+        Me.RDBALL.Size = New System.Drawing.Size(40, 18)
+        Me.RDBALL.TabIndex = 3
+        Me.RDBALL.Text = "All"
+        Me.RDBALL.UseVisualStyleBackColor = True
+        '
+        'RDBPENDING
+        '
+        Me.RDBPENDING.AutoSize = True
+        Me.RDBPENDING.Checked = True
+        Me.RDBPENDING.Location = New System.Drawing.Point(6, 19)
+        Me.RDBPENDING.Name = "RDBPENDING"
+        Me.RDBPENDING.Size = New System.Drawing.Size(69, 18)
+        Me.RDBPENDING.TabIndex = 0
+        Me.RDBPENDING.TabStop = True
+        Me.RDBPENDING.Text = "Pending"
+        Me.RDBPENDING.UseVisualStyleBackColor = True
+        '
+        'RDBCOMPLETE
+        '
+        Me.RDBCOMPLETE.AutoSize = True
+        Me.RDBCOMPLETE.Location = New System.Drawing.Point(81, 19)
+        Me.RDBCOMPLETE.Name = "RDBCOMPLETE"
+        Me.RDBCOMPLETE.Size = New System.Drawing.Size(84, 18)
+        Me.RDBCOMPLETE.TabIndex = 1
+        Me.RDBCOMPLETE.Text = "Completed"
+        Me.RDBCOMPLETE.UseVisualStyleBackColor = True
+        '
+        'RDBCLOSED
+        '
+        Me.RDBCLOSED.AutoSize = True
+        Me.RDBCLOSED.Location = New System.Drawing.Point(171, 19)
+        Me.RDBCLOSED.Name = "RDBCLOSED"
+        Me.RDBCLOSED.Size = New System.Drawing.Size(62, 18)
+        Me.RDBCLOSED.TabIndex = 2
+        Me.RDBCLOSED.Text = "Closed"
+        Me.RDBCLOSED.UseVisualStyleBackColor = True
+        '
+        'CMDEXPORT
+        '
+        Me.CMDEXPORT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDEXPORT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDEXPORT.FlatAppearance.BorderSize = 0
+        Me.CMDEXPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDEXPORT.ForeColor = System.Drawing.Color.Black
+        Me.CMDEXPORT.Location = New System.Drawing.Point(666, 660)
+        Me.CMDEXPORT.Name = "CMDEXPORT"
+        Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXPORT.TabIndex = 4
+        Me.CMDEXPORT.Text = "&Export"
+        Me.CMDEXPORT.UseVisualStyleBackColor = False
+        '
+        'CMDREFRESH
+        '
+        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
+        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
+        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
+        Me.CMDREFRESH.Location = New System.Drawing.Point(752, 660)
+        Me.CMDREFRESH.Name = "CMDREFRESH"
+        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREFRESH.TabIndex = 1
+        Me.CMDREFRESH.Text = "&Refresh"
+        Me.CMDREFRESH.UseVisualStyleBackColor = False
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(838, 660)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 3
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
         'OrderGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1444, 692)
+        Me.ClientSize = New System.Drawing.Size(1594, 692)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -914,13 +914,9 @@ Partial Class OrderGridReport
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
-        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
         Me.tbitem.ResumeLayout(False)
+        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.GPORDERNO.ResumeLayout(False)
         Me.GPORDERNO.PerformLayout()
@@ -939,6 +935,10 @@ Partial Class OrderGridReport
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
