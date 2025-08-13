@@ -294,12 +294,11 @@ Public Class OpeningGreyStockAtProcess
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim, 0, 0)
+            gridstock.Rows.Add(Val(TXTNO.Text.Trim), Val(txtsrno.Text.Trim), cmbname.Text.Trim, CMBPURNAME.Text.Trim, CMBTRANS.Text.Trim, TXTLRNO.Text.Trim, DTLRDATE.Text.Trim, cmbmerchant.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTBALENO.Text.Trim, Val(txtpcs.Text.Trim), cmbunit.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Val(TXTAMOUNT.Text.Trim), CMBAGENT.Text.Trim, TXTCRDAYS.Text.Trim, txtreflotno.Text.Trim, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
             gridstock.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
-            gridstock.Item(GNO.Index, TEMPROW).Value = Val(TXTNO.Text.Trim)
             gridstock.Item(GNAME.Index, TEMPROW).Value = cmbname.Text.Trim
             gridstock.Item(GPURCHASEPARTY.Index, TEMPROW).Value = CMBPURNAME.Text.Trim
             gridstock.Item(GTRANS.Index, TEMPROW).Value = CMBTRANS.Text.Trim
