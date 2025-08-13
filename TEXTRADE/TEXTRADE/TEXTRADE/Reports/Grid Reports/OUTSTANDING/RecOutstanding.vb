@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 
 Public Class RecOutstanding
@@ -111,7 +112,7 @@ Public Class RecOutstanding
 
 
 
-            DT = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -217,7 +218,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -276,7 +277,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -345,7 +346,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -670,7 +671,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -729,7 +730,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -798,7 +799,7 @@ Public Class RecOutstanding
 
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+            Dim DT As DataTable = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
             CMPCLAUSE = ""
             For Each DTROW As DataRow In DT.Rows
                 If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
@@ -2137,27 +2138,27 @@ Public Class RecOutstanding
 
     Private Sub cmbgroup_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBGROUP.Validating
         Try
-            If cmbgroup.Text.Trim <> "" Then
-                pcase(cmbgroup)
+            If CMBGROUP.Text.Trim <> "" Then
+                pcase(CMBGROUP)
                 Dim objClsCommon As New ClsCommonMaster
                 Dim dt As DataTable
-                dt = objClsCommon.search("group_name", "", "groupMaster", " and group_name = '" & cmbgroup.Text.Trim & "' and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
+                dt = objClsCommon.search("group_name", "", "groupMaster", " and group_name = '" & CMBGROUP.Text.Trim & "' and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
                 If dt.Rows.Count = 0 Then
-                    Dim a As String = cmbgroup.Text.Trim
+                    Dim a As String = CMBGROUP.Text.Trim
                     Dim tempmsg As Integer = MsgBox("Group not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
                     If tempmsg = vbYes Then
-                        cmbgroup.Text = a
+                        CMBGROUP.Text = a
                         Dim objgroupmaster As New GroupMaster
-                        objgroupmaster.txtname.Text = cmbgroup.Text.Trim()
+                        objgroupmaster.txtname.Text = CMBGROUP.Text.Trim()
                         objgroupmaster.ShowDialog()
-                        dt = objClsCommon.search("group_name", "", "groupMaster", " and group_name = '" & cmbgroup.Text.Trim & "' and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
+                        dt = objClsCommon.search("group_name", "", "groupMaster", " and group_name = '" & CMBGROUP.Text.Trim & "' and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
                         If dt.Rows.Count > 0 Then
                             Dim dt1 As DataTable
-                            dt1 = cmbgroup.DataSource
-                            If cmbgroup.DataSource <> Nothing Then
+                            dt1 = CMBGROUP.DataSource
+                            If CMBGROUP.DataSource <> Nothing Then
 line1:
-                                dt1.Rows.Add(cmbgroup.Text)
-                                cmbgroup.Text = a
+                                dt1.Rows.Add(CMBGROUP.Text)
+                                CMBGROUP.Text = a
                             End If
                         End If
                         e.Cancel = True
@@ -2174,7 +2175,7 @@ line1:
 
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            namevalidate(cmbname, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2183,7 +2184,7 @@ line1:
 
     Private Sub CMBAGENT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBBROKERNAME.Validating
         Try
-            If CMBBROKERNAME.Text.Trim <> "" Then namevalidate(CMBBROKERNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
+            If CMBBROKERNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBBROKERNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2208,25 +2209,25 @@ line1:
 
     Private Sub cmbstate_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBSTATE.Validating
         Try
-            If cmbstate.Text.Trim <> "" Then
-                pcase(cmbstate)
+            If CMBSTATE.Text.Trim <> "" Then
+                pcase(CMBSTATE)
                 Dim objClsCommon As New ClsCommonMaster
                 Dim objyearmaster As New ClsYearMaster
                 Dim dt As DataTable
-                dt = objClsCommon.search("state_name", "", "StateMaster", " and state_name = '" & cmbstate.Text.Trim & "' and state_cmpid = " & CmpId & " and state_locationid = " & Locationid & " and state_yearid = " & YearId)
+                dt = objClsCommon.search("state_name", "", "StateMaster", " and state_name = '" & CMBSTATE.Text.Trim & "' and state_cmpid = " & CmpId & " and state_locationid = " & Locationid & " and state_yearid = " & YearId)
                 If dt.Rows.Count = 0 Then
-                    Dim a As String = cmbstate.Text.Trim
+                    Dim a As String = CMBSTATE.Text.Trim
                     Dim tempmsg As Integer = MsgBox("State not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
                     If tempmsg = vbYes Then
-                        cmbstate.Text = a
-                        objyearmaster.savestate(cmbstate.Text.Trim, CmpId, Locationid, Userid, YearId, " and state_name = '" & cmbstate.Text.Trim & "' and state_cmpid = " & CmpId & " and state_locationid = " & Locationid & " and state_yearid = " & YearId)
+                        CMBSTATE.Text = a
+                        objyearmaster.savestate(CMBSTATE.Text.Trim, CmpId, Locationid, Userid, YearId, " and state_name = '" & CMBSTATE.Text.Trim & "' and state_cmpid = " & CmpId & " and state_locationid = " & Locationid & " and state_yearid = " & YearId)
                         Dim dt1 As New DataTable
-                        dt1 = cmbstate.DataSource
-                        If cmbstate.DataSource <> Nothing Then
+                        dt1 = CMBSTATE.DataSource
+                        If CMBSTATE.DataSource <> Nothing Then
 line1:
                             If dt1.Rows.Count > 0 Then
-                                dt1.Rows.Add(cmbstate.Text)
-                                cmbstate.Text = a
+                                dt1.Rows.Add(CMBSTATE.Text)
+                                CMBSTATE.Text = a
                             End If
                         End If
                     Else
@@ -2514,6 +2515,13 @@ LINE1:
             OBJWHATSAPP.PATH.Add(Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf")
             OBJWHATSAPP.FILENAME.Add("Outstanding" & PARTYNAME & ".pdf")
             OBJWHATSAPP.ShowDialog()
+            If ClientName = "SNCM" Then
+                For Each filePath As String In OBJWHATSAPP.PATH
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                    End If
+                Next
+            End If
         Catch ex As Exception
             Throw ex
         End Try

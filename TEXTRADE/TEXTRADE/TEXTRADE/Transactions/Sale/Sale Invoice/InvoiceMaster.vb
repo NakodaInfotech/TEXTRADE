@@ -7640,8 +7640,13 @@ ERRORMESSAGE:
             End If
 
             OBJWHATSAPP.ShowDialog()
-
-
+            If ClientName = "SNCM" Then
+                For Each filePath As String In OBJWHATSAPP.PATH
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                    End If
+                Next
+            End If
 
         Catch ex As Exception
             Throw ex
