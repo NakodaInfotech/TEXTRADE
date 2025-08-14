@@ -5424,6 +5424,11 @@ LINE1:
                 CMBPER.Text = "Pcs"
             End If
 
+            If ClientName = "AARYA" Then
+                txtchallan.ReadOnly = False
+                txtchallan.TabStop = True
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
