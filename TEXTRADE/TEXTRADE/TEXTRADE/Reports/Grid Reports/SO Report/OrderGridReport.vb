@@ -73,7 +73,7 @@ Public Class OrderGridReport
             End If
             If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
             If CMBAGENT.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
-
+            If CMBCATEGORY.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMMASTER.ITEM_CATEGORYID = (SELECT CATEGORY_ID FROM CATEGORYMASTER WHERE CATEGORY_NAME = '" & CMBCATEGORY.Text.Trim & "'AND category_yearid=" & YearId & ")"
             If WHERECLAUSE <> "" Then
                 SOCLAUSE = SOCLAUSE & WHERECLAUSE
             End If
@@ -393,11 +393,13 @@ Public Class OrderGridReport
     End Sub
 
     Private Sub RDBALL_CheckedChanged(sender As Object, e As EventArgs) Handles RDBALL.CheckedChanged, RDBCLOSED.CheckedChanged, RDBCOMPLETE.CheckedChanged, RDBPENDING.CheckedChanged
-        Try
-            OrderGridReport_Load(sender, e)
-        Catch ex As Exception
-            Throw ex
-        End Try
+        If sender IsNot Nothing AndAlso CType(sender, RadioButton).Checked Then
+            Try
+                OrderGridReport_Load(sender, e)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End If
     End Sub
     Sub getFromToDate()
         a1 = DatePart(DateInterval.Day, dtfrom.Value)
