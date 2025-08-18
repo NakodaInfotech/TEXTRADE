@@ -1,6 +1,6 @@
 ﻿
 Imports BL
-
+Imports System.IO
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports DevExpress.XtraGrid.Views.Grid
@@ -771,6 +771,13 @@ Public Class OutstandingFilter
             OBJWHATSAPP.DT = DTWHATSAPP
             OBJWHATSAPP.ShowDialog()
 
+            If ClientName = "SNCM" Then
+                For Each filePath As String In OBJWHATSAPP.PATH
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                    End If
+                Next
+            End If
 
             'If MsgBox("Wish to Whats'app ?", MsgBoxStyle.YesNo) = vbYes Then
             '    If RBREC.Checked = True Then FRMSTRING = "OUTSTANDINGRECDTLS" Else FRMSTRING = "OUTSTANDINGPAYDTLS"
