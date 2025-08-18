@@ -106,7 +106,7 @@ Partial Class UpdateLotNo
         Me.CMBTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBTYPE.FormattingEnabled = True
-        Me.CMBTYPE.Items.AddRange(New Object() {"GRN", "JOBOUT", "OPENING"})
+        Me.CMBTYPE.Items.AddRange(New Object() {"GRN", "JOBOUT", "OPENING", "GREYRECINGODOWN"})
         Me.CMBTYPE.Location = New System.Drawing.Point(93, 12)
         Me.CMBTYPE.MaxDropDownItems = 14
         Me.CMBTYPE.Name = "CMBTYPE"
