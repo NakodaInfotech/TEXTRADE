@@ -215,4 +215,27 @@ Public Class GodownwiseDetails
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMDPHOTOVIEW_Click(sender As Object, e As EventArgs) Handles CMDPHOTOVIEW.Click
+        Try
+
+            'GET IMAGES FROM DESIGNMASTER
+            PBIMAGE1.Image = Nothing
+            Dim OBJCMN As New ClsCommon
+            Dim DTIMG As DataTable = OBJCMN.SEARCH("ITEMDESIGNIMAGE.ITEMDESIGN_IMAGE1 AS PHOTO", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.ITEM_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id ", " AND ITEMMASTER.ITEM_NAME = '" & gridbill.GetFocusedRowCellValue("ITEMNAME") & "' AND DESIGNMASTER.DESIGN_NO = '" & gridbill.GetFocusedRowCellValue("DESIGNNO") & "' AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId)
+            If DTIMG.Rows.Count > 0 Then
+                If IsDBNull(DTIMG.Rows(0).Item("PHOTO")) = False Then
+                    PBIMAGE1.Image = Image.FromStream(New IO.MemoryStream(DirectCast(DTIMG.Rows(0).Item("PHOTO"), Byte())))
+                Else
+                    PBIMAGE1.Image = Nothing
+                End If
+            End If
+
+            Dim objVIEW As New ViewImage
+            objVIEW.pbsoftcopy.Image = PBIMAGE1.Image
+            objVIEW.ShowDialog()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
