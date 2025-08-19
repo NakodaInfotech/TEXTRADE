@@ -308,4 +308,10 @@ Public Class UpdateLotNo
             Throw ex
         End Try
     End Sub
+
+    Private Sub UpdateLotNo_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName <> "SNCM" Then
+            CMBTYPE.Items.Remove("GREYRECINGODOWN")
+        End If
+    End Sub
 End Class
