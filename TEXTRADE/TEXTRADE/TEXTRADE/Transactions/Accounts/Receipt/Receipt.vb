@@ -451,6 +451,7 @@ Public Class Receipt
                         txtaccno.ReadOnly = True
 
                         cmbregister.Text = Convert.ToString(dr("REGISTERNAME"))
+                        recreginitial = Convert.ToString(dr("REGINITIAL"))
                         ACCDATE.Text = Format(Convert.ToDateTime(dr("ACCDATE")).Date, "dd/MM/yyyy")
                         CHQDATE.Text = Format(Convert.ToDateTime(dr("CHEQUEDATE")).Date, "dd/MM/yyyy")
                         cmbaccname.Text = Convert.ToString(dr("ACCNAME"))
