@@ -1536,7 +1536,7 @@ Partial Class AgencyReceipt
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(30, 141)
+        Me.Label2.Location = New System.Drawing.Point(40, 141)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(39, 14)
         Me.Label2.TabIndex = 302

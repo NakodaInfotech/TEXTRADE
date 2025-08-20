@@ -34,6 +34,7 @@ Partial Class ReconcileData
         Me.CHKRECOPROGRAM = New System.Windows.Forms.CheckBox()
         Me.CHKRECOORDER = New System.Windows.Forms.CheckBox()
         Me.CHKRECOPENDINGDATA = New System.Windows.Forms.CheckBox()
+        Me.CHKRECOAGENCYINV = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -83,7 +84,7 @@ Partial Class ReconcileData
         '
         'CMDOK
         '
-        Me.CMDOK.Location = New System.Drawing.Point(16, 236)
+        Me.CMDOK.Location = New System.Drawing.Point(42, 312)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 8
@@ -92,7 +93,7 @@ Partial Class ReconcileData
         '
         'CMDCLEAR
         '
-        Me.CMDCLEAR.Location = New System.Drawing.Point(102, 236)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(128, 312)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
         Me.CMDCLEAR.TabIndex = 9
@@ -101,7 +102,7 @@ Partial Class ReconcileData
         '
         'CMDEXIT
         '
-        Me.CMDEXIT.Location = New System.Drawing.Point(188, 236)
+        Me.CMDEXIT.Location = New System.Drawing.Point(214, 312)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 10
@@ -111,6 +112,7 @@ Partial Class ReconcileData
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKRECOAGENCYINV)
         Me.BlendPanel1.Controls.Add(Me.CHKRECOISSUEPACK)
         Me.BlendPanel1.Controls.Add(Me.CHKRECOPROGRAM)
         Me.BlendPanel1.Controls.Add(Me.CHKRECOORDER)
@@ -125,7 +127,7 @@ Partial Class ReconcileData
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(371, 276)
+        Me.BlendPanel1.Size = New System.Drawing.Size(371, 352)
         Me.BlendPanel1.TabIndex = 0
         '
         'CHKRECOISSUEPACK
@@ -172,10 +174,22 @@ Partial Class ReconcileData
         Me.CHKRECOPENDINGDATA.Text = "Pending Data (GRN / Challan)"
         Me.CHKRECOPENDINGDATA.UseVisualStyleBackColor = False
         '
+        'CHKRECOAGENCYINV
+        '
+        Me.CHKRECOAGENCYINV.AutoSize = True
+        Me.CHKRECOAGENCYINV.BackColor = System.Drawing.Color.Transparent
+        Me.CHKRECOAGENCYINV.Location = New System.Drawing.Point(27, 239)
+        Me.CHKRECOAGENCYINV.Name = "CHKRECOAGENCYINV"
+        Me.CHKRECOAGENCYINV.Size = New System.Drawing.Size(133, 19)
+        Me.CHKRECOAGENCYINV.TabIndex = 11
+        Me.CHKRECOAGENCYINV.Text = "Agency Sale Invoice"
+        Me.CHKRECOAGENCYINV.UseVisualStyleBackColor = False
+        Me.CHKRECOAGENCYINV.Visible = False
+        '
         'ReconcileData
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(371, 276)
+        Me.ClientSize = New System.Drawing.Size(371, 352)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -200,4 +214,5 @@ Partial Class ReconcileData
     Friend WithEvents CHKRECOORDER As CheckBox
     Friend WithEvents CHKRECOPROGRAM As CheckBox
     Friend WithEvents CHKRECOISSUEPACK As CheckBox
+    Friend WithEvents CHKRECOAGENCYINV As CheckBox
 End Class

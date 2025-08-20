@@ -209,6 +209,30 @@ Public Class ClsDataReco
 
     End Function
 
+    Public Function AGENCYINVRECO() As Integer
+        Dim intResult As Integer
+        Try
+            Dim strCommand As String = "SP_UTILITIES_RECOAGENCYINVOICE"
+            Dim alParameter As New ArrayList
+            With alParameter
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I = I + 1
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
 #End Region
 
 

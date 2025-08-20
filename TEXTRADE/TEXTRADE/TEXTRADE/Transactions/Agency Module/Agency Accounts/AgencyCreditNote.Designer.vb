@@ -374,7 +374,7 @@ Partial Class AgencyCreditNote
         Me.LBLCOSTCENTER.AutoSize = True
         Me.LBLCOSTCENTER.BackColor = System.Drawing.Color.Transparent
         Me.LBLCOSTCENTER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLCOSTCENTER.Location = New System.Drawing.Point(342, 113)
+        Me.LBLCOSTCENTER.Location = New System.Drawing.Point(342, 85)
         Me.LBLCOSTCENTER.Name = "LBLCOSTCENTER"
         Me.LBLCOSTCENTER.Size = New System.Drawing.Size(69, 15)
         Me.LBLCOSTCENTER.TabIndex = 1012
@@ -387,7 +387,7 @@ Partial Class AgencyCreditNote
         Me.CMBCOSTCENTERNAME.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBCOSTCENTERNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCOSTCENTERNAME.FormattingEnabled = True
-        Me.CMBCOSTCENTERNAME.Location = New System.Drawing.Point(414, 109)
+        Me.CMBCOSTCENTERNAME.Location = New System.Drawing.Point(414, 81)
         Me.CMBCOSTCENTERNAME.MaxDropDownItems = 14
         Me.CMBCOSTCENTERNAME.Name = "CMBCOSTCENTERNAME"
         Me.CMBCOSTCENTERNAME.Size = New System.Drawing.Size(229, 23)
@@ -453,7 +453,7 @@ Partial Class AgencyCreditNote
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(229, 80)
-        Me.TabControl2.TabIndex = 16
+        Me.TabControl2.TabIndex = 14
         '
         'TabPage3
         '
@@ -474,7 +474,7 @@ Partial Class AgencyCreditNote
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Size = New System.Drawing.Size(221, 52)
-        Me.txtremarks.TabIndex = 16
+        Me.txtremarks.TabIndex = 0
         '
         'TabPage4
         '
@@ -520,7 +520,7 @@ Partial Class AgencyCreditNote
         Me.ACTUALINVDATE.Mask = "00/00/0000"
         Me.ACTUALINVDATE.Name = "ACTUALINVDATE"
         Me.ACTUALINVDATE.Size = New System.Drawing.Size(90, 23)
-        Me.ACTUALINVDATE.TabIndex = 989
+        Me.ACTUALINVDATE.TabIndex = 7
         Me.ACTUALINVDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.ACTUALINVDATE.ValidatingType = GetType(Date)
         '
@@ -1438,7 +1438,7 @@ Partial Class AgencyCreditNote
         Me.TXTACTUALINVAMT.Name = "TXTACTUALINVAMT"
         Me.TXTACTUALINVAMT.ReadOnly = True
         Me.TXTACTUALINVAMT.Size = New System.Drawing.Size(90, 23)
-        Me.TXTACTUALINVAMT.TabIndex = 977
+        Me.TXTACTUALINVAMT.TabIndex = 12
         Me.TXTACTUALINVAMT.TabStop = False
         Me.TXTACTUALINVAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1501,7 +1501,7 @@ Partial Class AgencyCreditNote
         '
         Me.LBLPACKING.BackColor = System.Drawing.Color.Transparent
         Me.LBLPACKING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLPACKING.Location = New System.Drawing.Point(333, 84)
+        Me.LBLPACKING.Location = New System.Drawing.Point(333, 56)
         Me.LBLPACKING.Name = "LBLPACKING"
         Me.LBLPACKING.Size = New System.Drawing.Size(78, 14)
         Me.LBLPACKING.TabIndex = 953
@@ -1515,7 +1515,7 @@ Partial Class AgencyCreditNote
         Me.CMBPACKING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBPACKING.FormattingEnabled = True
         Me.CMBPACKING.Items.AddRange(New Object() {""})
-        Me.CMBPACKING.Location = New System.Drawing.Point(414, 80)
+        Me.CMBPACKING.Location = New System.Drawing.Point(414, 52)
         Me.CMBPACKING.Name = "CMBPACKING"
         Me.CMBPACKING.Size = New System.Drawing.Size(229, 23)
         Me.CMBPACKING.TabIndex = 8
@@ -1543,7 +1543,7 @@ Partial Class AgencyCreditNote
         Me.CMBAGENT.Location = New System.Drawing.Point(97, 138)
         Me.CMBAGENT.Name = "CMBAGENT"
         Me.CMBAGENT.Size = New System.Drawing.Size(229, 23)
-        Me.CMBAGENT.TabIndex = 950
+        Me.CMBAGENT.TabIndex = 4
         '
         'Label10
         '
@@ -1558,7 +1558,7 @@ Partial Class AgencyCreditNote
         '
         'TXTADD
         '
-        Me.TXTADD.Location = New System.Drawing.Point(246, 10)
+        Me.TXTADD.Location = New System.Drawing.Point(246, 11)
         Me.TXTADD.MaxLength = 100
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(48, 23)
@@ -1586,7 +1586,7 @@ Partial Class AgencyCreditNote
         Me.CNDATE.Mask = "00/00/0000"
         Me.CNDATE.Name = "CNDATE"
         Me.CNDATE.Size = New System.Drawing.Size(90, 23)
-        Me.CNDATE.TabIndex = 2
+        Me.CNDATE.TabIndex = 1
         Me.CNDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.CNDATE.ValidatingType = GetType(Date)
         '
@@ -2023,21 +2023,21 @@ Partial Class AgencyCreditNote
         Me.CMBDEBITLEDGER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBDEBITLEDGER.FormattingEnabled = True
         Me.CMBDEBITLEDGER.Items.AddRange(New Object() {""})
-        Me.CMBDEBITLEDGER.Location = New System.Drawing.Point(414, 51)
+        Me.CMBDEBITLEDGER.Location = New System.Drawing.Point(97, 51)
         Me.CMBDEBITLEDGER.Name = "CMBDEBITLEDGER"
         Me.CMBDEBITLEDGER.Size = New System.Drawing.Size(229, 23)
-        Me.CMBDEBITLEDGER.TabIndex = 7
+        Me.CMBDEBITLEDGER.TabIndex = 2
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(337, 55)
+        Me.Label6.Location = New System.Drawing.Point(22, 55)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(74, 15)
+        Me.Label6.Size = New System.Drawing.Size(72, 15)
         Me.Label6.TabIndex = 843
-        Me.Label6.Text = "Debit Ledger"
+        Me.Label6.Text = "Seller Name"
         '
         'lbllocked
         '
@@ -2163,7 +2163,7 @@ Partial Class AgencyCreditNote
         Me.cmddelete.Location = New System.Drawing.Point(727, 516)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 24
+        Me.cmddelete.TabIndex = 18
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -2291,11 +2291,11 @@ Partial Class AgencyCreditNote
         Me.Label33.AutoSize = True
         Me.Label33.BackColor = System.Drawing.Color.Transparent
         Me.Label33.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(17, 84)
+        Me.Label33.Location = New System.Drawing.Point(22, 84)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(78, 15)
+        Me.Label33.Size = New System.Drawing.Size(72, 15)
         Me.Label33.TabIndex = 681
-        Me.Label33.Text = "Credit Ledger"
+        Me.Label33.Text = "Buyer Name"
         '
         'txtgrandtotal
         '
@@ -2358,7 +2358,7 @@ Partial Class AgencyCreditNote
         Me.cmdclear.Location = New System.Drawing.Point(641, 516)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 23
+        Me.cmdclear.TabIndex = 17
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -2372,7 +2372,7 @@ Partial Class AgencyCreditNote
         Me.cmdok.Location = New System.Drawing.Point(555, 516)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 22
+        Me.cmdok.TabIndex = 16
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -2386,7 +2386,7 @@ Partial Class AgencyCreditNote
         Me.cmdexit.Location = New System.Drawing.Point(813, 516)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 25
+        Me.cmdexit.TabIndex = 19
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -2409,7 +2409,7 @@ Partial Class AgencyCreditNote
         Me.TXTCNNO.Name = "TXTCNNO"
         Me.TXTCNNO.ReadOnly = True
         Me.TXTCNNO.Size = New System.Drawing.Size(90, 22)
-        Me.TXTCNNO.TabIndex = 1
+        Me.TXTCNNO.TabIndex = 0
         Me.TXTCNNO.TabStop = False
         Me.TXTCNNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '

@@ -152,7 +152,7 @@ Public Class ClsAgencyReceiptMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@accdate", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@accname", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELLER", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@name", alParaval(I)))
                 I += 1
