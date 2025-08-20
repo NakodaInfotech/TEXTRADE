@@ -419,6 +419,8 @@ Public Class ClsInvoiceMaster
 
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -830,6 +832,8 @@ Public Class ClsInvoiceMaster
 
 
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))
