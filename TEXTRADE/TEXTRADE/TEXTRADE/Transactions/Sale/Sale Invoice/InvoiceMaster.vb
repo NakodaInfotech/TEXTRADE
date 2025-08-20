@@ -305,6 +305,7 @@ Public Class InvoiceMaster
         GRIDORDER.RowCount = 0
         LBLCOVERNOTEDONE.Visible = False
         CMDSELECTSO.Enabled = True
+        CHKMANUALROUND.CheckState = CheckState.Unchecked
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -660,6 +661,9 @@ Public Class InvoiceMaster
                     If dr("BILLDISPUTE") = 0 Then CHKBILLDISPUTE.Checked = False Else CHKBILLDISPUTE.Checked = True
                     If Convert.ToBoolean(dr("MANUALGST")) = False Then CHKMANUAL.Checked = False Else CHKMANUAL.Checked = True
                     If Convert.ToBoolean(dr("EXPORTGST")) = False Then CHKEXPORTGST.Checked = False Else CHKEXPORTGST.Checked = True
+
+                    If Convert.ToBoolean(dr("MANUALROUNDOFF")) = False Then CHKMANUALROUND.Checked = False Else CHKMANUALROUND.Checked = True
+
 
                     TXTCGSTPER1.Text = Val(dr("TOTALCGSTPER"))
                     TXTSGSTPER1.Text = Val(dr("TOTALSGSTPER"))
@@ -1366,6 +1370,8 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERON)
 
             alParaval.Add(Val(LBLTOTALWT.Text))
+            If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -2208,7 +2214,9 @@ CHECKNEXTLINE:
             txtbillamt.Text = 0.0
             TXTCHARGES.Text = 0.0
             TXTSUBTOTAL.Text = 0
-            txtroundoff.Text = 0
+            'txtroundoff.Text = 0
+            If CHKMANUALROUND.CheckState = CheckState.Unchecked Then txtroundoff.Text = 0
+
             txtgrandtotal.Text = 0
 
             TXTTOTALWITHMATVALUE.Text = 0.0
@@ -2402,15 +2410,27 @@ NORATE:
                 End If
 
 
-                txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim), "0")
-                txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                'txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim), "0")
+                'txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                If CHKMANUALROUND.Checked = False Then
+                    txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim), "0")
+                    txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                Else
+                    txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim) + Val(TXTTCSAMT.Text.Trim) + Val(txtroundoff.Text.Trim), "0.00")
+                End If
             Else
 
                 TXTTOTALWITHGST.Text = Format(Val(TXTSUBTOTAL.Text.Trim), "0.00")
                 If CHKTCS.CheckState = CheckState.Checked Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
 
-                txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim), "0")
-                txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                'txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim), "0")
+                'txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                If CHKMANUALROUND.Checked = False Then
+                    txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim), "0")
+                    txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim)), "0.00")
+                Else
+                    txtgrandtotal.Text = Format((Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim)) + Val(txtroundoff.Text.Trim), "0.00")
+                End If
             End If
 
 
@@ -9524,5 +9544,18 @@ NEXTLINE:
         End Try
     End Sub
 
-
+    Private Sub CHKMANUALROUND_CheckedChanged(sender As Object, e As EventArgs) Handles CHKMANUALROUND.CheckedChanged
+        Try
+            If CHKMANUALROUND.Checked = True Then
+                txtroundoff.ReadOnly = False
+                txtroundoff.TabStop = True
+            Else
+                txtroundoff.ReadOnly = True
+                txtroundoff.TabStop = False
+                TOTAL()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
