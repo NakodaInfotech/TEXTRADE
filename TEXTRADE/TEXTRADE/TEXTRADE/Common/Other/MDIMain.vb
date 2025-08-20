@@ -10154,7 +10154,7 @@ SKIPLINE:
         Try
             Dim OBJSO As New OrderGridReport
             OBJSO.ORDERTYPE = "PO"
-            OBJSO.POCLAUSE = ""
+            OBJSO.SOCLAUSE = ""
             OBJSO.FRMSTRING = "PO"
             OBJSO.MdiParent = Me
             OBJSO.Show()
