@@ -44,7 +44,7 @@ Partial Class AgencyReceiptDetails
         Me.gchqno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHQDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gregisterid = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gbankname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gsellername = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gremarks = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHECKPDC = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -220,7 +220,7 @@ Partial Class AgencyReceiptDetails
         '
         Me.gridpayment.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridpayment.Appearance.Row.Options.UseFont = True
-        Me.gridpayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gname, Me.gdate, Me.gtotal, Me.gchqno, Me.GCHQDATE, Me.gregisterid, Me.gbankname, Me.GBILLREMARKS, Me.gremarks, Me.GCHECKPDC, Me.GAGENTNAME, Me.GGROUPMASTER, Me.GSPECIALREMARK})
+        Me.gridpayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gname, Me.gsellername, Me.gdate, Me.gtotal, Me.gchqno, Me.GCHQDATE, Me.gregisterid, Me.GBILLREMARKS, Me.gremarks, Me.GCHECKPDC, Me.GAGENTNAME, Me.GGROUPMASTER, Me.GSPECIALREMARK})
         Me.gridpayment.GridControl = Me.griddetails
         Me.gridpayment.Name = "gridpayment"
         Me.gridpayment.OptionsBehavior.AllowIncrementalSearch = True
@@ -248,7 +248,7 @@ Partial Class AgencyReceiptDetails
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "Name"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.Visible = True
         Me.gname.VisibleIndex = 2
@@ -262,7 +262,7 @@ Partial Class AgencyReceiptDetails
         Me.gdate.FieldName = "Date"
         Me.gdate.Name = "gdate"
         Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 3
+        Me.gdate.VisibleIndex = 4
         '
         'gtotal
         '
@@ -273,7 +273,7 @@ Partial Class AgencyReceiptDetails
         Me.gtotal.Name = "gtotal"
         Me.gtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gtotal.Visible = True
-        Me.gtotal.VisibleIndex = 4
+        Me.gtotal.VisibleIndex = 5
         Me.gtotal.Width = 90
         '
         'gchqno
@@ -282,7 +282,7 @@ Partial Class AgencyReceiptDetails
         Me.gchqno.FieldName = "Chq. No."
         Me.gchqno.Name = "gchqno"
         Me.gchqno.Visible = True
-        Me.gchqno.VisibleIndex = 5
+        Me.gchqno.VisibleIndex = 6
         '
         'GCHQDATE
         '
@@ -292,7 +292,7 @@ Partial Class AgencyReceiptDetails
         Me.GCHQDATE.FieldName = "CHQDATE"
         Me.GCHQDATE.Name = "GCHQDATE"
         Me.GCHQDATE.Visible = True
-        Me.GCHQDATE.VisibleIndex = 6
+        Me.GCHQDATE.VisibleIndex = 7
         '
         'gregisterid
         '
@@ -300,14 +300,14 @@ Partial Class AgencyReceiptDetails
         Me.gregisterid.FieldName = "Registerid"
         Me.gregisterid.Name = "gregisterid"
         '
-        'gbankname
+        'gsellername
         '
-        Me.gbankname.Caption = "Bank Name"
-        Me.gbankname.FieldName = "BankName"
-        Me.gbankname.Name = "gbankname"
-        Me.gbankname.Visible = True
-        Me.gbankname.VisibleIndex = 7
-        Me.gbankname.Width = 190
+        Me.gsellername.Caption = "Seller Name"
+        Me.gsellername.FieldName = "SELLER"
+        Me.gsellername.Name = "gsellername"
+        Me.gsellername.Visible = True
+        Me.gsellername.VisibleIndex = 3
+        Me.gsellername.Width = 190
         '
         'GBILLREMARKS
         '
@@ -484,7 +484,7 @@ Partial Class AgencyReceiptDetails
     Friend WithEvents gchqno As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHQDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gregisterid As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gbankname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gsellername As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBILLREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gremarks As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHECKPDC As DevExpress.XtraGrid.Columns.GridColumn

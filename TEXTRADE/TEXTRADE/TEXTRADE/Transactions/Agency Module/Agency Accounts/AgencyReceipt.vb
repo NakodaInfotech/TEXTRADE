@@ -1259,6 +1259,7 @@ Public Class AgencyReceipt
             gridbill.Columns(i).HeaderText = "Temp Bal"
             gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             gridbill.Columns(i).ReadOnly = True
+            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
             i += 1
 
             'gridbill.Columns(i).Visible = False
