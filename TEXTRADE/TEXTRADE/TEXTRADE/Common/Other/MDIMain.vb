@@ -10152,7 +10152,9 @@ SKIPLINE:
 
     Private Sub MASHOK_POFILTER_MENU_Click(sender As Object, e As EventArgs) Handles MASHOK_POFILTER_MENU.Click
         Try
-            Dim OBJSO As New SOFilter
+            Dim OBJSO As New OrderGridReport
+            OBJSO.ORDERTYPE = "PO"
+            OBJSO.SOCLAUSE = ""
             OBJSO.FRMSTRING = "PO"
             OBJSO.MdiParent = Me
             OBJSO.Show()

@@ -1183,7 +1183,7 @@ Public Class AgencyCreditNote
 
     Private Sub CMBNAME_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBNAME.Validated
         Try
-            If CMBNAME.Text.Trim <> "" And CMBDEBITLEDGER.Text.Trim <> "" Then
+            If CMBDEBITLEDGER.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.Acc_cmpname, '') AS TRANSNAME, ISNULL(LEDGERS_2.Acc_cmpname, '') AS AGENTNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN, '') AS GSTIN, ISNULL(LEDGERS.ACC_DISC, 0) AS DISCPER, ISNULL(LEDGERS.ACC_CDPER, 0) AS CDPER, ISNULL(LEDGERS.ACC_AGENTCOMM, '') AS AGENTCOMM, ISNULL(LEDGERS.ACC_RD, 0) AS RATEDIFF, ISNULL(GROUPMASTER.group_secondary, '') AS SECONDARY, ISNULL(LEDGERS.ACC_WARNING, '') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_OVERSEAS, 0) AS OVERSEAS ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_cmpid = GROUPMASTER.group_cmpid AND LEDGERS.Acc_locationid = GROUPMASTER.group_locationid AND LEDGERS.Acc_yearid = GROUPMASTER.group_yearid AND  LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_1.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_1.Acc_locationid AND  LEDGERS.Acc_yearid = LEDGERS_1.Acc_yearid LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_2.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_2.Acc_locationid AND  LEDGERS.Acc_yearid = LEDGERS_2.Acc_yearid ", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' or GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS') and LEDGERS.acc_YEARid = " & YearId)
                 If DT.Rows.Count > 0 Then
@@ -1256,7 +1256,7 @@ LINE1:
                 FILLGRIDINVOICE()
             Else
 
-                MsgBox("Please Fill Both Buyer And Saller Name", MsgBoxStyle.Critical)
+                MsgBox("Please Fill Saller Name", MsgBoxStyle.Critical)
                 CMBDEBITLEDGER.Focus()
                 ' Exit Sub
             End If
@@ -1272,7 +1272,7 @@ LINE1:
             TXTINVTOTAL.Clear()
             Dim objpayment As New ClsAGENCYReceiptMaster
             Dim DT As New DataTable
-            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, CMBDEBITLEDGER.Text.Trim, YearId)
+            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBDEBITLEDGER.Text.Trim)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
         Catch ex As Exception
             Throw ex
