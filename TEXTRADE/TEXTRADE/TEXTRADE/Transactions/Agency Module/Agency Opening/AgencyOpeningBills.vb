@@ -237,9 +237,9 @@ Public Class AgencyOpeningBills
             clear()
 
             fillledger(CMBNAME, EDIT, " and acc_YEARid = " & YearId)
+            If CMBDELIVERYAT.Text.Trim = "" Then FILLNAME(CMBDELIVERYAT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
             'fillregister(CMBREGISTER, "")
             If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
-            If CMBDELIVERYAT.Text.Trim = "" Then FILLNAME(CMBDELIVERYAT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS'")
 
         Catch ex As Exception
             Throw ex
@@ -277,7 +277,7 @@ Public Class AgencyOpeningBills
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             If CMBNAME.Text.Trim <> "" Then ledgervalidate(CMBNAME, CMBACCCODE, e, Me, TXTADD, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS')and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If TXTBILLNO.Text.Trim = "" And CMBNAME.Text.Trim <> "" Then
+            If TXTBILLNO.Text.Trim = "" And CMBNAME.Text.Trim <> "" And CMBDELIVERYAT.Text.Trim <> "" Then
                 FILLGRIDOPENING()
             End If
         Catch ex As Exception
@@ -981,7 +981,7 @@ Public Class AgencyOpeningBills
 
     Private Sub CMBDELIVERYAT_Enter(sender As Object, e As EventArgs) Handles CMBDELIVERYAT.Enter
         Try
-            If CMBDELIVERYAT.Text.Trim = "" Then fillledger(CMBDELIVERYAT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS'")
+            If CMBDELIVERYAT.Text.Trim = "" Then fillledger(CMBDELIVERYAT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -989,7 +989,7 @@ Public Class AgencyOpeningBills
 
     Private Sub CMBDELIVERYAT_Validating(sender As Object, e As CancelEventArgs) Handles CMBDELIVERYAT.Validating
         Try
-            If CMBDELIVERYAT.Text.Trim <> "" Then ledgervalidate(CMBDELIVERYAT, CMBACCCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS'")
+            If CMBDELIVERYAT.Text.Trim <> "" Then NAMEVALIDATE(CMBDELIVERYAT, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try

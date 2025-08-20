@@ -1148,6 +1148,7 @@ Partial Class MDIMain
         Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MagicBoxOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MagicBoxRecPayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MagicBoxInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator319 = New System.Windows.Forms.ToolStripSeparator()
         Me.CustomReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomLayoutsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1200,7 +1201,9 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.MagicBoxInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpeningBillToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewOpeningBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingOpeningBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.ToolStrip1.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7178,14 +7181,14 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
         '
         Me.AgencySaleOrderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleOrderToolStripMenuItem, Me.EditExistingSaleOrderToolStripMenuItem, Me.ToolStripSeparator313, Me.CloseMultipleSaleOrderToolStripMenuItem, Me.ToolStripSeparator312})
         Me.AgencySaleOrderToolStripMenuItem.Name = "AgencySaleOrderToolStripMenuItem"
-        Me.AgencySaleOrderToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.AgencySaleOrderToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleOrderToolStripMenuItem.Text = "&Order"
         '
         'AddNewSaleOrderToolStripMenuItem
@@ -7220,7 +7223,7 @@ Partial Class MDIMain
         '
         Me.SaleInvoiceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleOrderToolStripMenuItem1, Me.EditExistingInvoiceToolStripMenuItem, Me.ToolStripSeparator314})
         Me.SaleInvoiceToolStripMenuItem.Name = "SaleInvoiceToolStripMenuItem"
-        Me.SaleInvoiceToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.SaleInvoiceToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaleInvoiceToolStripMenuItem.Text = "&Invoice"
         '
         'AddNewSaleOrderToolStripMenuItem1
@@ -7244,7 +7247,7 @@ Partial Class MDIMain
         '
         Me.SaleReturnToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleReturnToolStripMenuItem, Me.EditExistingSaleReturnToolStripMenuItem, Me.ToolStripSeparator315})
         Me.SaleReturnToolStripMenuItem.Name = "SaleReturnToolStripMenuItem"
-        Me.SaleReturnToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.SaleReturnToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaleReturnToolStripMenuItem.Text = "Sale &Return"
         '
         'AddNewSaleReturnToolStripMenuItem
@@ -7267,44 +7270,44 @@ Partial Class MDIMain
         'ToolStripSeparator316
         '
         Me.ToolStripSeparator316.Name = "ToolStripSeparator316"
-        Me.ToolStripSeparator316.Size = New System.Drawing.Size(134, 6)
+        Me.ToolStripSeparator316.Size = New System.Drawing.Size(177, 6)
         '
         'AToolStripMenuItem
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
         '
         Me.ReceipToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem6, Me.EditExistingEntryToolStripMenuItem6, Me.ToolStripSeparator318})
         Me.ReceipToolStripMenuItem.Name = "ReceipToolStripMenuItem"
-        Me.ReceipToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.ReceipToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ReceipToolStripMenuItem.Text = "&Receipt"
         '
         'AddNewEntryToolStripMenuItem6
         '
         Me.AddNewEntryToolStripMenuItem6.Name = "AddNewEntryToolStripMenuItem6"
-        Me.AddNewEntryToolStripMenuItem6.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewEntryToolStripMenuItem6.Size = New System.Drawing.Size(180, 22)
         Me.AddNewEntryToolStripMenuItem6.Text = "&Add New Entry"
         '
         'EditExistingEntryToolStripMenuItem6
         '
         Me.EditExistingEntryToolStripMenuItem6.Name = "EditExistingEntryToolStripMenuItem6"
-        Me.EditExistingEntryToolStripMenuItem6.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem6.Size = New System.Drawing.Size(180, 22)
         Me.EditExistingEntryToolStripMenuItem6.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator318
         '
         Me.ToolStripSeparator318.Name = "ToolStripSeparator318"
-        Me.ToolStripSeparator318.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator318.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyCreditNoteToolStripMenuItem
         '
         Me.AgencyCreditNoteToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem4, Me.EditExistingEntryToolStripMenuItem3})
         Me.AgencyCreditNoteToolStripMenuItem.Name = "AgencyCreditNoteToolStripMenuItem"
-        Me.AgencyCreditNoteToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.AgencyCreditNoteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyCreditNoteToolStripMenuItem.Text = "&Credit Note"
         '
         'AddNewEntryToolStripMenuItem4
@@ -7322,22 +7325,24 @@ Partial Class MDIMain
         'ToolStripSeparator317
         '
         Me.ToolStripSeparator317.Name = "ToolStripSeparator317"
-        Me.ToolStripSeparator317.Size = New System.Drawing.Size(132, 6)
+        Me.ToolStripSeparator317.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
+        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpeningBillToolStripMenuItem1})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Text = "Opening"
         '
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
         '
         'Utilitiesmenu
         '
@@ -8358,14 +8363,20 @@ Partial Class MDIMain
         'MagicBoxOrderToolStripMenuItem
         '
         Me.MagicBoxOrderToolStripMenuItem.Name = "MagicBoxOrderToolStripMenuItem"
-        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.MagicBoxOrderToolStripMenuItem.Text = "Magic Box Order"
         '
         'MagicBoxRecPayToolStripMenuItem
         '
         Me.MagicBoxRecPayToolStripMenuItem.Name = "MagicBoxRecPayToolStripMenuItem"
-        Me.MagicBoxRecPayToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MagicBoxRecPayToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.MagicBoxRecPayToolStripMenuItem.Text = "Magic Box Rec/Pay"
+        '
+        'MagicBoxInvoiceToolStripMenuItem
+        '
+        Me.MagicBoxInvoiceToolStripMenuItem.Name = "MagicBoxInvoiceToolStripMenuItem"
+        Me.MagicBoxInvoiceToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.MagicBoxInvoiceToolStripMenuItem.Text = "Magic Box Invoice"
         '
         'ToolStripSeparator319
         '
@@ -8765,11 +8776,24 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'MagicBoxInvoiceToolStripMenuItem
+        'OpeningBillToolStripMenuItem1
         '
-        Me.MagicBoxInvoiceToolStripMenuItem.Name = "MagicBoxInvoiceToolStripMenuItem"
-        Me.MagicBoxInvoiceToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MagicBoxInvoiceToolStripMenuItem.Text = "Magic Box Invoice"
+        Me.OpeningBillToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewOpeningBillToolStripMenuItem, Me.EditExistingOpeningBillToolStripMenuItem})
+        Me.OpeningBillToolStripMenuItem1.Name = "OpeningBillToolStripMenuItem1"
+        Me.OpeningBillToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.OpeningBillToolStripMenuItem1.Text = "Opening Bill"
+        '
+        'AddNewOpeningBillToolStripMenuItem
+        '
+        Me.AddNewOpeningBillToolStripMenuItem.Name = "AddNewOpeningBillToolStripMenuItem"
+        Me.AddNewOpeningBillToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.AddNewOpeningBillToolStripMenuItem.Text = "&Add New Opening Bill"
+        '
+        'EditExistingOpeningBillToolStripMenuItem
+        '
+        Me.EditExistingOpeningBillToolStripMenuItem.Name = "EditExistingOpeningBillToolStripMenuItem"
+        Me.EditExistingOpeningBillToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.EditExistingOpeningBillToolStripMenuItem.Text = "&Edit Existing Opening Bill"
         '
         'MDIMain
         '
@@ -9975,4 +9999,7 @@ Partial Class MDIMain
     Friend WithEvents OpeningGreyStockAtTransportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpeningGreyStockAtProcessToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MagicBoxInvoiceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpeningBillToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents AddNewOpeningBillToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExistingOpeningBillToolStripMenuItem As ToolStripMenuItem
 End Class
