@@ -170,6 +170,7 @@ Partial Class AgencyReceipt
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -222,6 +223,7 @@ Partial Class AgencyReceipt
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.Lavender, System.Drawing.Color.Lavender)
+        Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.LBLCITY)
         Me.BlendPanel1.Controls.Add(Me.CHQDATE)
         Me.BlendPanel1.Controls.Add(Me.Label16)
@@ -1735,6 +1737,20 @@ Partial Class AgencyReceipt
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(681, 475)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 28)
+        Me.Button1.TabIndex = 1000
+        Me.Button1.Text = "&Auto Post"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'AgencyReceipt
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1906,4 +1922,5 @@ Partial Class AgencyReceipt
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
+    Friend WithEvents Button1 As Button
 End Class
