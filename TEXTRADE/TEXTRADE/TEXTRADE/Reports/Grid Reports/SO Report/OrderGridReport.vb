@@ -158,7 +158,7 @@ Public Class OrderGridReport
                     SOCLAUSE = SOCLAUSE & ITEMCLAUSE
                 End If
 
-            ElseIf FRMSTRING = "PO" Then
+            Else
 
                 If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
                 If CMBAGENT.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
@@ -479,7 +479,7 @@ Public Class OrderGridReport
 
             If FRMSTRING = "SO" Then
                 DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ALLSALEORDER.SO_NO AS ORDERNO ", " ", " ALLSALEORDER ", " AND ALLSALEORDER.SO_YEARID = " & YearId & " ORDER BY ALLSALEORDER.SO_NO ")
-            ElseIf FRMSTRING = "PO" Then
+            Else
                 DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ALLSALEORDER.SO_NO AS ORDERNO ", " ", " ALLSALEORDER ", " AND ALLSALEORDER.SO_YEARID = " & YearId & " ORDER BY ALLSALEORDER.SO_NO ")
             End If
             If DT.Rows.Count > 0 Then
