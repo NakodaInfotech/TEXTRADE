@@ -126,6 +126,14 @@ Public Class AgencyInvoiceGridDetails
         End Try
     End Sub
 
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+        Try
+            fillgrid(" and dbo.AGENCYINVOICEMASTER.AINVOICE_yearid=" & YearId)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub AgencyInvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
@@ -161,14 +169,14 @@ Public Class AgencyInvoiceGridDetails
         End Try
     End Sub
 
-    Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+    Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
         Try
-            Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Agency Invoice Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Sale Details"
+            opti.SheetName = "Agency Invoice Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Sale Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Agency Invoice Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
             MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try

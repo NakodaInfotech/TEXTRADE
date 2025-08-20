@@ -33,6 +33,7 @@ Public Class StoreInward
         txtremarks.Clear()
         lbllocked.Visible = False
         PBLOCK.Visible = False
+        GRIDDOUBLECLICK = False
 
         TXTSRNO.Text = 1
         CMBSTOREITEMNAME.Text = ""
@@ -663,6 +664,7 @@ LINE1:
             If GRIDDOUBLECLICK = False Then
                 GRIDINWARD.Rows.Add(0, CMBSTOREITEMNAME.Text.Trim, TXTDESC.Text.Trim, Val(TXTQTY.Text.Trim), CMBUNIT.Text.Trim, 0)
             ElseIf GRIDDOUBLECLICK = True Then
+
                 GRIDINWARD.Item(GITEMNAME.Index, TEMPROW).Value = CMBSTOREITEMNAME.Text.Trim
                 GRIDINWARD.Item(GDESC.Index, TEMPROW).Value = TXTDESC.Text.Trim
                 GRIDINWARD.Item(GQTY.Index, TEMPROW).Value = Val(TXTQTY.Text.Trim)

@@ -10,10 +10,17 @@ Public Class OpeningGreyStockAtProcess
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
+    Sub getmax_SM_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(SMGREYPROCESS_no),0) + 1 ", "STOCKMASTER_GREYPROCESS ", " AND SMGREYPROCESS_cmpid=" & CmpId & " and SMGREYPROCESS_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then TXTNO.Text = DTTABLE.Rows(0).Item(0)
+    End Sub
+
     Sub clear()
 
         'clearing textboxes
         EP.Clear()
+        txtsrno.Text = gridstock.RowCount + 1
         openingdate.Value = Now.Date
         cmbname.Text = ""
         CMBPURNAME.Text = ""
@@ -33,7 +40,7 @@ Public Class OpeningGreyStockAtProcess
         CMBAGENT.Text = ""
         TXTCRDAYS.Clear()
         txtreflotno.Clear()
-
+        getmax_SM_no()
 
         EDIT = False
         GRIDDOUBLECLICK = False
@@ -75,6 +82,22 @@ Public Class OpeningGreyStockAtProcess
                 EP.SetError(cmbmerchant, "Item Name cannot be Blank")
                 bln = False
             End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GPURCHASEPARTY.Index).Value = "" Then
+                EP.SetError(CMBPURNAME, " Purchase Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Agent Name cannot be Blank")
+                bln = False
+            End If
             If row.Cells(Gunit.Index).Value = "" Then
                 EP.SetError(cmbunit, "Unit cannot be Blank")
                 bln = False
@@ -96,17 +119,18 @@ Public Class OpeningGreyStockAtProcess
 
     Sub EDITROW()
         Try
-            If gridstock.CurrentRow.Index >= 0 And gridstock.Item(gsrno.Index, gridstock.CurrentRow.Index).Value <> Nothing Then
+            getmax_SM_no()
+            If gridstock.CurrentRow.Index >= 0 And gridstock.Item(GNO.Index, gridstock.CurrentRow.Index).Value <> Nothing Then
 
                 'If Convert.ToBoolean(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
                 '    MsgBox("Item Locked", MsgBoxStyle.Critical)
                 '    Exit Sub
                 'End If
 
-                If gridstock.Rows(gridstock.CurrentRow.Index).DefaultCellStyle.BackColor = Color.Yellow Then
-                    MsgBox("Item Locked", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
+                'If gridstock.Rows(gridstock.CurrentRow.Index).DefaultCellStyle.BackColor = Color.Yellow Then
+                '        MsgBox("Item Locked", MsgBoxStyle.Critical)
+                '        Exit Sub
+                '    End If
 
                 GRIDDOUBLECLICK = True
                 TXTNO.Text = gridstock.Item(GNO.Index, gridstock.CurrentRow.Index).Value.ToString
@@ -139,7 +163,7 @@ Public Class OpeningGreyStockAtProcess
     End Sub
 
     Private Sub gridstock_CellContentClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellContentClick
-        Dim OBJ As Object = gridstock.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
+        'Dim OBJ As Object = gridstock.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
 
         'If IsDBNull(OBJ) Then
         '    TXTSEARCHBARCODE.Text = "" ' blank if dbnull values
@@ -148,9 +172,7 @@ Public Class OpeningGreyStockAtProcess
         'End If
     End Sub
 
-    Private Sub gridSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
-        EDITROW()
-    End Sub
+
 
     Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbname.KeyDown
         Try
@@ -159,7 +181,7 @@ Public Class OpeningGreyStockAtProcess
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
             End If
@@ -171,11 +193,7 @@ Public Class OpeningGreyStockAtProcess
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                If ClientName = "RADHA" Then
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')", "Sundry Creditors", "ACCOUNTS")
-                Else
-                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
-                End If
+                NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "ACCOUNTS")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -185,11 +203,7 @@ Public Class OpeningGreyStockAtProcess
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             If cmbname.Text.Trim = "" Then
-                If ClientName = "RADHA" Then
-                    FILLNAME(cmbname, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GroupMaster.GROUP_SECONDARY = 'Sundry Debtors')")
-                Else
-                    FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
-                End If
+                FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -237,6 +251,7 @@ Public Class OpeningGreyStockAtProcess
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
                 getsrno(gridstock)
+                getmax_SM_no()
                 gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
             End If
 
@@ -265,6 +280,8 @@ Public Class OpeningGreyStockAtProcess
             FILLDESIGN(CMBDESIGN, cmbmerchant.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, cmbmerchant.Text.Trim)
             If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBPURNAME.Text.Trim = "" Then FILLNAME(CMBPURNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             If CMBTRANS.Text.Trim = "" Then filltransname(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
             If cmbunit.Text.Trim = "" Then fillunit(cmbunit)
 
@@ -312,11 +329,8 @@ Public Class OpeningGreyStockAtProcess
     Private Sub CMBPURNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBPURNAME.Validating
         Try
             If CMBPURNAME.Text.Trim <> "" Then
-                If ClientName = "RADHA" Then
-                    NAMEVALIDATE(CMBPURNAME, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')", "Sundry Creditors", "ACCOUNTS")
-                Else
-                    NAMEVALIDATE(CMBPURNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
-                End If
+
+                NAMEVALIDATE(CMBPURNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -326,11 +340,8 @@ Public Class OpeningGreyStockAtProcess
     Private Sub CMBPURNAME_Enter(sender As Object, e As EventArgs) Handles CMBPURNAME.Enter
         Try
             If CMBPURNAME.Text.Trim = "" Then
-                If ClientName = "RADHA" Then
-                    FILLNAME(CMBPURNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GroupMaster.GROUP_SECONDARY = 'Sundry Debtors')")
-                Else
-                    FILLNAME(CMBPURNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
-                End If
+
+                FILLNAME(CMBPURNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -344,9 +355,9 @@ Public Class OpeningGreyStockAtProcess
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
+                If OBJLEDGER.TEMPNAME <> "" Then CMBPURNAME.Text = OBJLEDGER.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex
@@ -758,7 +769,7 @@ Public Class OpeningGreyStockAtProcess
                 'DELETE FROM STOCKMASTER
                 Dim OBJSM As New ClsOpeningGreyStockAtProcess
                 Dim ALPARAVAL As New ArrayList
-                ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value)
+                ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(gsrno.Index).Value)
                 ALPARAVAL.Add(CmpId)
                 'ALPARAVAL.Add(Locationid)
                 ALPARAVAL.Add(YearId)
@@ -767,7 +778,9 @@ Public Class OpeningGreyStockAtProcess
                 Dim INTRES As Integer = OBJSM.DELETE()
 
                 gridstock.Rows.RemoveAt(gridstock.CurrentRow.Index)
+                getmax_SM_no()
                 getsrno(gridstock)
+                clear()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITROW()
             End If
@@ -1001,5 +1014,25 @@ Public Class OpeningGreyStockAtProcess
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMBAGENT_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBAGENT.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT' "
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBAGENT.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub gridstock_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridstock.CellDoubleClick
+        EDITROW()
     End Sub
 End Class

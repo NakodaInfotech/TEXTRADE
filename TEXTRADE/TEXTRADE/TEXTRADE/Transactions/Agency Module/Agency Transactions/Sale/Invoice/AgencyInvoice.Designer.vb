@@ -73,6 +73,7 @@ Partial Class AgencyInvoice
         Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -80,9 +81,6 @@ Partial Class AgencyInvoice
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLDELETE = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLSMS = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLEINV = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLEWB = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CNNOTE = New System.Windows.Forms.ToolStripButton()
         Me.Toolprevious = New System.Windows.Forms.ToolStripButton()
@@ -323,6 +321,8 @@ Partial Class AgencyInvoice
         Me.EAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ETAXID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TXTSELLERSTATECODE = New System.Windows.Forms.TextBox()
+        Me.Label62 = New System.Windows.Forms.Label()
         Me.ACKDATE = New System.Windows.Forms.DateTimePicker()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
@@ -491,6 +491,7 @@ Partial Class AgencyInvoice
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.tstxtbillno)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMBCOMMTPYE)
@@ -626,6 +627,20 @@ Partial Class AgencyInvoice
         Me.BlendPanel1.Size = New System.Drawing.Size(1291, 595)
         Me.BlendPanel1.TabIndex = 1
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(632, 501)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 28)
+        Me.Button1.TabIndex = 895
+        Me.Button1.Text = "&Auto Post"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'tstxtbillno
         '
         Me.tstxtbillno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
@@ -640,7 +655,7 @@ Partial Class AgencyInvoice
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.TOOLDELETE, Me.TOOLWHATSAPP, Me.TOOLSMS, Me.TOOLEINV, Me.TOOLEWB, Me.ToolStripSeparator1, Me.CNNOTE, Me.Toolprevious, Me.toolnext, Me.ToolStripSeparator3})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.TOOLDELETE, Me.TOOLWHATSAPP, Me.ToolStripSeparator1, Me.CNNOTE, Me.Toolprevious, Me.toolnext, Me.ToolStripSeparator3})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1291, 25)
@@ -691,33 +706,6 @@ Partial Class AgencyInvoice
         Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
         Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
         Me.TOOLWHATSAPP.Text = "&Whatsapp"
-        '
-        'TOOLSMS
-        '
-        Me.TOOLSMS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLSMS.Image = Global.TEXTRADE.My.Resources.Resources.SMS2
-        Me.TOOLSMS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLSMS.Name = "TOOLSMS"
-        Me.TOOLSMS.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLSMS.Text = "&SMS"
-        '
-        'TOOLEINV
-        '
-        Me.TOOLEINV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLEINV.Image = Global.TEXTRADE.My.Resources.Resources.EINVOICE_LOGO
-        Me.TOOLEINV.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLEINV.Name = "TOOLEINV"
-        Me.TOOLEINV.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLEINV.Text = "Generate E-Invoice"
-        '
-        'TOOLEWB
-        '
-        Me.TOOLEWB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLEWB.Image = Global.TEXTRADE.My.Resources.Resources.EWAY_BILL_IMAGE
-        Me.TOOLEWB.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLEWB.Name = "TOOLEWB"
-        Me.TOOLEWB.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLEWB.Text = "Generate EWB"
         '
         'ToolStripSeparator1
         '
@@ -1091,10 +1079,10 @@ Partial Class AgencyInvoice
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1113,10 +1101,10 @@ Partial Class AgencyInvoice
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -3624,6 +3612,8 @@ Partial Class AgencyInvoice
         'TabPage4
         '
         Me.TabPage4.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TabPage4.Controls.Add(Me.TXTSELLERSTATECODE)
+        Me.TabPage4.Controls.Add(Me.Label62)
         Me.TabPage4.Controls.Add(Me.ACKDATE)
         Me.TabPage4.Controls.Add(Me.Label56)
         Me.TabPage4.Controls.Add(Me.LBLCOSTCENTER)
@@ -3676,6 +3666,28 @@ Partial Class AgencyInvoice
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "3. Additional Details"
         '
+        'TXTSELLERSTATECODE
+        '
+        Me.TXTSELLERSTATECODE.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELLERSTATECODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTSELLERSTATECODE.Location = New System.Drawing.Point(501, 37)
+        Me.TXTSELLERSTATECODE.Name = "TXTSELLERSTATECODE"
+        Me.TXTSELLERSTATECODE.ReadOnly = True
+        Me.TXTSELLERSTATECODE.Size = New System.Drawing.Size(81, 22)
+        Me.TXTSELLERSTATECODE.TabIndex = 937
+        Me.TXTSELLERSTATECODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label62
+        '
+        Me.Label62.AutoSize = True
+        Me.Label62.BackColor = System.Drawing.Color.Transparent
+        Me.Label62.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label62.Location = New System.Drawing.Point(397, 41)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(100, 14)
+        Me.Label62.TabIndex = 938
+        Me.Label62.Text = "Seller State Code"
+        '
         'ACKDATE
         '
         Me.ACKDATE.CustomFormat = "dd/MM/yyyy"
@@ -3685,6 +3697,7 @@ Partial Class AgencyInvoice
         Me.ACKDATE.Name = "ACKDATE"
         Me.ACKDATE.Size = New System.Drawing.Size(85, 23)
         Me.ACKDATE.TabIndex = 930
+        Me.ACKDATE.Visible = False
         '
         'Label56
         '
@@ -3697,6 +3710,7 @@ Partial Class AgencyInvoice
         Me.Label56.TabIndex = 931
         Me.Label56.Text = "Ack Date"
         Me.Label56.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label56.Visible = False
         '
         'LBLCOSTCENTER
         '
@@ -3719,6 +3733,7 @@ Partial Class AgencyInvoice
         Me.TXTACKNO.Size = New System.Drawing.Size(170, 23)
         Me.TXTACKNO.TabIndex = 928
         Me.TXTACKNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTACKNO.Visible = False
         '
         'CMBCOSTCENTERNAME
         '
@@ -3746,6 +3761,7 @@ Partial Class AgencyInvoice
         Me.Label58.TabIndex = 929
         Me.Label58.Text = "Ack No"
         Me.Label58.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label58.Visible = False
         '
         'CMDGETQRCODE
         '
@@ -3760,6 +3776,7 @@ Partial Class AgencyInvoice
         Me.CMDGETQRCODE.TabIndex = 927
         Me.CMDGETQRCODE.Text = "&Get QRCode"
         Me.CMDGETQRCODE.UseVisualStyleBackColor = False
+        Me.CMDGETQRCODE.Visible = False
         '
         'CMDUPLOADIRN
         '
@@ -3774,6 +3791,7 @@ Partial Class AgencyInvoice
         Me.CMDUPLOADIRN.TabIndex = 926
         Me.CMDUPLOADIRN.Text = "&Upload"
         Me.CMDUPLOADIRN.UseVisualStyleBackColor = False
+        Me.CMDUPLOADIRN.Visible = False
         '
         'TXTCOURIER
         '
@@ -3849,6 +3867,7 @@ Partial Class AgencyInvoice
         Me.TXTIRNNO.Name = "TXTIRNNO"
         Me.TXTIRNNO.Size = New System.Drawing.Size(394, 22)
         Me.TXTIRNNO.TabIndex = 919
+        Me.TXTIRNNO.Visible = False
         '
         'Label53
         '
@@ -3861,6 +3880,7 @@ Partial Class AgencyInvoice
         Me.Label53.TabIndex = 920
         Me.Label53.Text = "IRN"
         Me.Label53.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label53.Visible = False
         '
         'CHKCHANGEADD
         '
@@ -5675,9 +5695,6 @@ Partial Class AgencyInvoice
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents TOOLDELETE As ToolStripButton
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
-    Friend WithEvents TOOLSMS As ToolStripButton
-    Friend WithEvents TOOLEINV As ToolStripButton
-    Friend WithEvents TOOLEWB As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CNNOTE As ToolStripButton
     Friend WithEvents Toolprevious As ToolStripButton
@@ -5732,4 +5749,7 @@ Partial Class AgencyInvoice
     Friend WithEvents GUNIT As DataGridViewTextBoxColumn
     Friend WithEvents GSONO As DataGridViewTextBoxColumn
     Friend WithEvents GSOSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TXTSELLERSTATECODE As TextBox
+    Friend WithEvents Label62 As Label
 End Class

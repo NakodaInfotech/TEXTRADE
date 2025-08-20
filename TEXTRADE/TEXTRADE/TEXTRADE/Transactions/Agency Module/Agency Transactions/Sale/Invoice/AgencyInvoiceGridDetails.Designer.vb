@@ -97,9 +97,10 @@ Partial Class AgencyInvoiceGridDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +214,7 @@ Partial Class AgencyInvoiceGridDetails
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "INVOICENO"
-        Me.gsrno.ImageIndex = 1
+        Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
@@ -271,7 +272,7 @@ Partial Class AgencyInvoiceGridDetails
         '
         Me.gname.Caption = "Buyer's Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
@@ -837,7 +838,7 @@ Partial Class AgencyInvoiceGridDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.PrintToolStripButton, Me.TOOLMAIL, Me.ToolStripButton2, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.PrintToolStripButton, Me.TOOLMAIL, Me.TOOLEXCEL, Me.ToolStripSeparator1, Me.TOOLREFRESH})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -875,14 +876,14 @@ Partial Class AgencyInvoiceGridDetails
         Me.TOOLMAIL.Size = New System.Drawing.Size(23, 22)
         Me.TOOLMAIL.Text = "Mail Invoice Directly"
         '
-        'ToolStripButton2
+        'TOOLEXCEL
         '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "&Print"
+        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLEXCEL.Name = "TOOLEXCEL"
+        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLEXCEL.Text = "&Print"
         '
         'ToolStripSeparator1
         '
@@ -901,6 +902,15 @@ Partial Class AgencyInvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
+        'TOOLREFRESH
+        '
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "&Refresh"
+        '
         'AgencyInvoiceGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -910,7 +920,7 @@ Partial Class AgencyInvoiceGridDetails
         Me.KeyPreview = True
         Me.Name = "AgencyInvoiceGridDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "AgencyInvoiceGridDetails"
+        Me.Text = "Agency Invoice Grid Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -997,7 +1007,8 @@ Partial Class AgencyInvoiceGridDetails
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents TOOLMAIL As ToolStripButton
-    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents TOOLEXCEL As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents lbl As Label
+    Friend WithEvents TOOLREFRESH As ToolStripButton
 End Class

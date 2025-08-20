@@ -11,6 +11,11 @@ Public Class OpeningGreyStockAtTransport
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
+    Sub getmax_SM_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(SMGREYTRANS_NO),0) + 1 ", "STOCKMASTER_GREYTRANSPORT ", " AND SMGREYTRANS_CMPID=" & CmpId & " and SMGREYTRANS_YEARID=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then TXTNO.Text = DTTABLE.Rows(0).Item(0)
+    End Sub
 
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -37,6 +42,18 @@ Public Class OpeningGreyStockAtTransport
             End If
             If Val(row.Cells(gMtrs.Index).Value) = 0 Then
                 EP.SetError(txtMtrs, "Mtrs Cannot be 0")
+                bln = False
+            End If
+            If row.Cells(GNAME.Index).Value = "" Then
+                EP.SetError(cmbname, "Party Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GTRANS.Index).Value = "" Then
+                EP.SetError(CMBTRANS, " Transport Name cannot be Blank")
+                bln = False
+            End If
+            If row.Cells(GAGENT.Index).Value = "" Then
+                EP.SetError(CMBAGENT, "Agent Name cannot be Blank")
                 bln = False
             End If
             'If row.Cells(gQuality.Index).Value = "" Then
@@ -69,6 +86,7 @@ Public Class OpeningGreyStockAtTransport
 
         'clearing textboxes
         EP.Clear()
+        txtsrno.Text = gridstock.RowCount + 1
         openingdate.Value = Now.Date
         cmbname.Text = ""
         CMBTRANS.Text = ""
@@ -86,6 +104,7 @@ Public Class OpeningGreyStockAtTransport
         TXTAMOUNT.Clear()
         CMBAGENT.Text = ""
         TXTCRDAYS.Clear()
+        getmax_SM_no()
 
 
         EDIT = False
@@ -181,11 +200,8 @@ Public Class OpeningGreyStockAtTransport
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             If cmbname.Text.Trim = "" Then
-                If ClientName = "RADHA" Then
-                    FILLNAME(cmbname, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GroupMaster.GROUP_SECONDARY = 'Sundry Debtors')")
-                Else
-                    FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
-                End If
+
+                FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -214,6 +230,7 @@ Public Class OpeningGreyStockAtTransport
             FILLDESIGN(CMBDESIGN, cmbmerchant.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, cmbmerchant.Text.Trim)
             If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             If CMBTRANS.Text.Trim = "" Then filltransname(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
             If cmbunit.Text.Trim = "" Then fillunit(cmbunit)
 
@@ -343,6 +360,7 @@ Public Class OpeningGreyStockAtTransport
                     If Val(DR("OUTMTRS")) > 0 Or Val(DR("OUTPCS")) > 0 Then gridstock.Rows(gridstock.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
                 getsrno(gridstock)
+                getmax_SM_no()
                 gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
             End If
 
@@ -676,7 +694,7 @@ Public Class OpeningGreyStockAtTransport
                 'DELETE FROM STOCKMASTER
                 Dim OBJSM As New ClsOpeningGreyStockAtTransport
                 Dim ALPARAVAL As New ArrayList
-                ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(GNO.Index).Value)
+                ALPARAVAL.Add(gridstock.Rows(gridstock.CurrentRow.Index).Cells(gsrno.Index).Value)
                 ALPARAVAL.Add(CmpId)
                 'ALPARAVAL.Add(Locationid)
                 ALPARAVAL.Add(YearId)
@@ -685,7 +703,9 @@ Public Class OpeningGreyStockAtTransport
                 Dim INTRES As Integer = OBJSM.DELETE()
 
                 gridstock.Rows.RemoveAt(gridstock.CurrentRow.Index)
+                getmax_SM_no()
                 getsrno(gridstock)
+                clear()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITROW()
             End If

@@ -426,6 +426,18 @@ Public Class AgencyInvoiceDetails
         fillgrid(" and AGENCYINVOICEMASTER.AINVOICE_yearid = " & YearId & "  order by dbo.AGENCYINVOICEMASTER.AINVOICE_no ")
     End Sub
 
+    Private Sub ToolStripButton2_Click_1(sender As Object, e As EventArgs) Handles TOOLEXCEL.Click
+        Try
+            Dim PATH As String = Application.StartupPath & "\Agency Invoice Details.XLS"
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+            opti.SheetName = "Agency Invoice Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Agency Invoice Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+        Catch ex As Exception
+            MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs)
         Try

@@ -31,7 +31,7 @@ Partial Class AgencyInvoiceDetails
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.TOOLCMBINVCOPY = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
@@ -166,7 +166,7 @@ Partial Class AgencyInvoiceDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.PrintToolStripButton, Me.TOOLMAIL, Me.TOOLWHATSAPP, Me.TOOLCMBINVCOPY, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.TOOLGRIDDETAILS, Me.TOOLREFRESH, Me.ToolStripSeparator2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.PrintToolStripButton, Me.TOOLMAIL, Me.TOOLWHATSAPP, Me.TOOLCMBINVCOPY, Me.TOOLEXCEL, Me.ToolStripSeparator1, Me.TOOLGRIDDETAILS, Me.TOOLREFRESH, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -219,14 +219,14 @@ Partial Class AgencyInvoiceDetails
         Me.TOOLCMBINVCOPY.Name = "TOOLCMBINVCOPY"
         Me.TOOLCMBINVCOPY.Size = New System.Drawing.Size(130, 25)
         '
-        'ToolStripButton2
+        'TOOLEXCEL
         '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "&Print"
+        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLEXCEL.Name = "TOOLEXCEL"
+        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLEXCEL.Text = "&Print"
         '
         'ToolStripSeparator1
         '
@@ -1343,7 +1343,7 @@ Partial Class AgencyInvoiceDetails
     Friend WithEvents TOOLMAIL As ToolStripButton
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
     Friend WithEvents TOOLCMBINVCOPY As ToolStripComboBox
-    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents TOOLEXCEL As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TOOLGRIDDETAILS As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator

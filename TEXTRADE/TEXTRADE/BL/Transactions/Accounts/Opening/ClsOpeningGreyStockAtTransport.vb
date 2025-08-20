@@ -241,7 +241,7 @@ Public Class ClsOpeningGreyStockAtTransport
 
                 Dim I As Integer = 0
 
-                .Add(New SqlClient.SqlParameter("@STGNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
