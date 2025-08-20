@@ -34,7 +34,7 @@ Public Class ClsAgencyReceiptMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@accdate", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@accname", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELLER", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@name", alParaval(I)))
                 I += 1
@@ -234,7 +234,7 @@ Public Class ClsAgencyReceiptMaster
         Return 0
     End Function
 
-    Public Function GETBILLS(ByVal CMPID As Integer, ByVal NAME As String, ByVal YEARID As Integer) As DataTable
+    Public Function GETBILLS(ByVal CMPID As Integer, ByVal NAME As String, ByVal YEARID As Integer, Optional ByVal SELLER As String = "") As DataTable
         Dim dtTable As DataTable
         Try
 
@@ -242,6 +242,7 @@ Public Class ClsAgencyReceiptMaster
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@NAME", NAME))
+                .Add(New SqlClient.SqlParameter("@SELLER", SELLER))
                 .Add(New SqlClient.SqlParameter("@CMPID", CMPID))
                 .Add(New SqlClient.SqlParameter("@YEARID", YEARID))
             End With
