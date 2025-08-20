@@ -60,7 +60,6 @@ Partial Class AgencySaleReturn
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
         Me.CHKOVERSEAS = New System.Windows.Forms.CheckBox()
         Me.CHKEXPORTGST = New System.Windows.Forms.CheckBox()
-        Me.LBLENVGENERATED = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TXTNOOFBALES = New System.Windows.Forms.TextBox()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
@@ -261,8 +260,6 @@ Partial Class AgencySaleReturn
         Me.TXTCHALLANNO = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cmbGodown = New System.Windows.Forms.ComboBox()
         Me.LBLTOTALWT = New System.Windows.Forms.Label()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -295,7 +292,6 @@ Partial Class AgencySaleReturn
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.tooldelete = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLEINV = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
@@ -333,7 +329,6 @@ Partial Class AgencySaleReturn
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
         Me.BlendPanel1.Controls.Add(Me.CHKOVERSEAS)
         Me.BlendPanel1.Controls.Add(Me.CHKEXPORTGST)
-        Me.BlendPanel1.Controls.Add(Me.LBLENVGENERATED)
         Me.BlendPanel1.Controls.Add(Me.Label34)
         Me.BlendPanel1.Controls.Add(Me.TXTNOOFBALES)
         Me.BlendPanel1.Controls.Add(Me.LBLWHATSAPP)
@@ -414,8 +409,6 @@ Partial Class AgencySaleReturn
         Me.BlendPanel1.Controls.Add(Me.TXTCHALLANNO)
         Me.BlendPanel1.Controls.Add(Me.Label11)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
-        Me.BlendPanel1.Controls.Add(Me.Label1)
-        Me.BlendPanel1.Controls.Add(Me.cmbGodown)
         Me.BlendPanel1.Controls.Add(Me.LBLTOTALWT)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Controls.Add(Me.GroupBox1)
@@ -506,19 +499,6 @@ Partial Class AgencySaleReturn
         Me.CHKEXPORTGST.TabIndex = 902
         Me.CHKEXPORTGST.Text = "Export GST"
         Me.CHKEXPORTGST.UseVisualStyleBackColor = False
-        '
-        'LBLENVGENERATED
-        '
-        Me.LBLENVGENERATED.AutoSize = True
-        Me.LBLENVGENERATED.BackColor = System.Drawing.Color.Transparent
-        Me.LBLENVGENERATED.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLENVGENERATED.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LBLENVGENERATED.Location = New System.Drawing.Point(158, 25)
-        Me.LBLENVGENERATED.Name = "LBLENVGENERATED"
-        Me.LBLENVGENERATED.Size = New System.Drawing.Size(209, 26)
-        Me.LBLENVGENERATED.TabIndex = 431
-        Me.LBLENVGENERATED.Text = "E-INVOICE GENERATED"
-        Me.LBLENVGENERATED.Visible = False
         '
         'Label34
         '
@@ -869,7 +849,7 @@ Partial Class AgencySaleReturn
         '
         Me.LBLPACKING.BackColor = System.Drawing.Color.Transparent
         Me.LBLPACKING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLPACKING.Location = New System.Drawing.Point(705, 30)
+        Me.LBLPACKING.Location = New System.Drawing.Point(7, 59)
         Me.LBLPACKING.Name = "LBLPACKING"
         Me.LBLPACKING.Size = New System.Drawing.Size(91, 14)
         Me.LBLPACKING.TabIndex = 955
@@ -884,7 +864,7 @@ Partial Class AgencySaleReturn
         Me.CMBPACKING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBPACKING.FormattingEnabled = True
         Me.CMBPACKING.Items.AddRange(New Object() {""})
-        Me.CMBPACKING.Location = New System.Drawing.Point(798, 26)
+        Me.CMBPACKING.Location = New System.Drawing.Point(100, 55)
         Me.CMBPACKING.Name = "CMBPACKING"
         Me.CMBPACKING.Size = New System.Drawing.Size(241, 23)
         Me.CMBPACKING.TabIndex = 7
@@ -2941,33 +2921,6 @@ Partial Class AgencySaleReturn
         Me.TXTBARCODE.TabIndex = 668
         Me.TXTBARCODE.Visible = False
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(45, 59)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 15)
-        Me.Label1.TabIndex = 656
-        Me.Label1.Text = "Godown"
-        Me.Label1.Visible = False
-        '
-        'cmbGodown
-        '
-        Me.cmbGodown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbGodown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbGodown.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbGodown.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbGodown.FormattingEnabled = True
-        Me.cmbGodown.Location = New System.Drawing.Point(100, 55)
-        Me.cmbGodown.MaxDropDownItems = 14
-        Me.cmbGodown.Name = "cmbGodown"
-        Me.cmbGodown.Size = New System.Drawing.Size(239, 23)
-        Me.cmbGodown.TabIndex = 1
-        Me.cmbGodown.Visible = False
-        '
         'LBLTOTALWT
         '
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
@@ -3295,7 +3248,7 @@ Partial Class AgencySaleReturn
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.TOOLWHATSAPP, Me.TOOLEINV, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.TOOLWHATSAPP, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -3347,15 +3300,6 @@ Partial Class AgencySaleReturn
         Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
         Me.TOOLWHATSAPP.Text = "Whatsapp"
         '
-        'TOOLEINV
-        '
-        Me.TOOLEINV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLEINV.Image = Global.TEXTRADE.My.Resources.Resources.EINVOICE_LOGO
-        Me.TOOLEINV.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLEINV.Name = "TOOLEINV"
-        Me.TOOLEINV.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLEINV.Text = "Generate E-Invoice"
-        '
         'toolStripSeparator
         '
         Me.toolStripSeparator.Name = "toolStripSeparator"
@@ -3404,7 +3348,7 @@ Partial Class AgencySaleReturn
         Me.KeyPreview = True
         Me.Name = "AgencySaleReturn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "AgencySaleReturn"
+        Me.Text = "Agency Sale Return"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -3446,7 +3390,6 @@ Partial Class AgencySaleReturn
     Friend WithEvents CMBCOSTCENTERNAME As ComboBox
     Friend WithEvents CHKOVERSEAS As CheckBox
     Friend WithEvents CHKEXPORTGST As CheckBox
-    Friend WithEvents LBLENVGENERATED As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents TXTNOOFBALES As TextBox
     Friend WithEvents LBLWHATSAPP As Label
@@ -3645,8 +3588,6 @@ Partial Class AgencySaleReturn
     Friend WithEvents TXTCHALLANNO As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents TXTBARCODE As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents cmbGodown As ComboBox
     Friend WithEvents LBLTOTALWT As Label
     Friend WithEvents CMBCODE As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
@@ -3679,7 +3620,6 @@ Partial Class AgencySaleReturn
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents tooldelete As ToolStripButton
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
-    Friend WithEvents TOOLEINV As ToolStripButton
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents toolprevious As ToolStripButton
     Friend WithEvents toolnext As ToolStripButton
