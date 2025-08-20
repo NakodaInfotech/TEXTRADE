@@ -10513,5 +10513,25 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewOpeningBillToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewOpeningBillToolStripMenuItem.Click
+        Try
+            Dim OBJMB As New AgencyOpeningBills
+            OBJMB.MdiParent = Me
+            OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingOpeningBillToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingOpeningBillToolStripMenuItem.Click
+        Try
+            Dim OBJMB As New AgencyOpeningBillsDetails
+            OBJMB.MdiParent = Me
+            OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

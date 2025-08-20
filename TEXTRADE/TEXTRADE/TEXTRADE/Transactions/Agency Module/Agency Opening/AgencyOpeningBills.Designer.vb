@@ -125,6 +125,7 @@ Partial Class AgencyOpeningBills
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDOPENING, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +153,7 @@ Partial Class AgencyOpeningBills
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.lbl)
+        Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
@@ -196,7 +198,7 @@ Partial Class AgencyOpeningBills
         '
         Me.CMBDELIVERYAT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBDELIVERYAT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDELIVERYAT.BackColor = System.Drawing.Color.White
+        Me.CMBDELIVERYAT.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBDELIVERYAT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBDELIVERYAT.FormattingEnabled = True
         Me.CMBDELIVERYAT.Items.AddRange(New Object() {""})
@@ -621,7 +623,7 @@ Partial Class AgencyOpeningBills
         '
         Me.TXTADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTADD.Location = New System.Drawing.Point(306, 30)
+        Me.TXTADD.Location = New System.Drawing.Point(439, 27)
         Me.TXTADD.MaxLength = 10
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(30, 22)
@@ -840,7 +842,7 @@ Partial Class AgencyOpeningBills
         '
         'GDELIVERYAT
         '
-        Me.GDELIVERYAT.HeaderText = "Delivery At"
+        Me.GDELIVERYAT.HeaderText = "Seller Name"
         Me.GDELIVERYAT.Name = "GDELIVERYAT"
         Me.GDELIVERYAT.ReadOnly = True
         Me.GDELIVERYAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -1063,6 +1065,17 @@ Partial Class AgencyOpeningBills
         Me.GGRIDREMARKS.ReadOnly = True
         Me.GGRIDREMARKS.Visible = False
         '
+        'CMBCODE
+        '
+        Me.CMBCODE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBCODE.FormattingEnabled = True
+        Me.CMBCODE.Location = New System.Drawing.Point(439, 26)
+        Me.CMBCODE.MaxLength = 100
+        Me.CMBCODE.Name = "CMBCODE"
+        Me.CMBCODE.Size = New System.Drawing.Size(48, 23)
+        Me.CMBCODE.TabIndex = 949
+        Me.CMBCODE.Visible = False
+        '
         'AgencyOpeningBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1169,4 +1182,5 @@ Partial Class AgencyOpeningBills
     Friend WithEvents GRATE As DataGridViewTextBoxColumn
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
+    Friend WithEvents CMBCODE As ComboBox
 End Class
