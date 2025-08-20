@@ -861,7 +861,15 @@ Public Class AgencyReceipt
         Next
 
         For Each row As DataGridViewRow In gridbill.Rows
-            If Convert.ToBoolean(row.Cells("INVCHK").Value) = True Then TXTINVTOTAL.Text = Format(Val(TXTINVTOTAL.Text) + row.Cells(gridbill.Columns("INVBALAMT").Index).Value, "0.00")
+            If Convert.ToBoolean(row.Cells("INVCHK").Value) = True Then
+                TXTINVTOTAL.Text = Format(Val(TXTINVTOTAL.Text) + row.Cells(gridbill.Columns("INVBALAMT").Index).Value, "0.00")
+
+                For Each PAYROW As DataGridViewRow In gridpayment.Rows
+                    If PAYROW.Cells(gbillno.Index).Value = row.Cells("INVBILLINITIALS").Value Then
+                        row.Cells("TEMPBAL").Value = Format(Val(row.Cells("INVBALAMT").Value) - Val(PAYROW.Cells(gamt.Index).Value), "0.00")
+                    End If
+                Next
+            End If
         Next
 
         If Val(txtchqamt.Text) <> 0 Then
@@ -1195,7 +1203,7 @@ Public Class AgencyReceipt
             gridbill.Columns(i).Width = 80
             gridbill.Columns(i).Name = "REFNO"
             gridbill.Columns(i).HeaderText = "Ref No"
-            gridbill.Columns(i).Visible = False
+            gridbill.Columns(i).ReadOnly = True
             i += 1
 
             gridbill.Columns(i).Width = 80
@@ -1228,14 +1236,19 @@ Public Class AgencyReceipt
             gridbill.Columns(i).Name = "INVBILLNO"
             i += 1
 
-            gridbill.Columns(i).Visible = False
-            gridbill.Columns(i).Name = "INVREGNAME"
-            i += 1
 
             gridbill.Columns(i).Width = 150
             gridbill.Columns(i).Name = "INVPURNAME"
             gridbill.Columns(i).HeaderText = "Pur Name"
             gridbill.Columns(i).Visible = True
+            i += 1
+
+
+            gridbill.Columns(i).Width = 80
+            gridbill.Columns(i).Name = "TEMPBAL"
+            gridbill.Columns(i).HeaderText = "Temp Bal"
+            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(i).ReadOnly = True
             i += 1
 
             'gridbill.Columns(i).Visible = False

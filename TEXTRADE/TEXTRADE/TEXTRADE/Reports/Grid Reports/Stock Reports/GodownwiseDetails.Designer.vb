@@ -23,6 +23,7 @@ Partial Class GodownwiseDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.CHKALLCMP = New System.Windows.Forms.CheckBox()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -59,17 +60,21 @@ Partial Class GodownwiseDetails
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.CMDPHOTOVIEW = New System.Windows.Forms.Button()
+        Me.PBIMAGE1 = New System.Windows.Forms.PictureBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.PBIMAGE1)
+        Me.BlendPanel1.Controls.Add(Me.CMDPHOTOVIEW)
         Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.CHKALLCMP)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
@@ -81,6 +86,20 @@ Partial Class GodownwiseDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 582)
         Me.BlendPanel1.TabIndex = 10
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(498, 548)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 450
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'CHKALLCMP
         '
@@ -413,19 +432,29 @@ Partial Class GodownwiseDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'CMDSAVELAYOUT
+        'CMDPHOTOVIEW
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(498, 548)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 450
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.CMDPHOTOVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOVIEW.Location = New System.Drawing.Point(756, 548)
+        Me.CMDPHOTOVIEW.Name = "CMDPHOTOVIEW"
+        Me.CMDPHOTOVIEW.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOVIEW.TabIndex = 764
+        Me.CMDPHOTOVIEW.Text = "&View"
+        Me.CMDPHOTOVIEW.UseVisualStyleBackColor = True
+        '
+        'PBIMAGE1
+        '
+        Me.PBIMAGE1.BackColor = System.Drawing.Color.White
+        Me.PBIMAGE1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBIMAGE1.ErrorImage = Nothing
+        Me.PBIMAGE1.InitialImage = Nothing
+        Me.PBIMAGE1.Location = New System.Drawing.Point(842, 547)
+        Me.PBIMAGE1.Name = "PBIMAGE1"
+        Me.PBIMAGE1.Size = New System.Drawing.Size(28, 29)
+        Me.PBIMAGE1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBIMAGE1.TabIndex = 765
+        Me.PBIMAGE1.TabStop = False
+        Me.PBIMAGE1.Visible = False
         '
         'GodownwiseDetails
         '
@@ -444,6 +473,7 @@ Partial Class GodownwiseDetails
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -486,4 +516,6 @@ Partial Class GodownwiseDetails
     Friend WithEvents GDISPLAYNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents CMDPHOTOVIEW As Button
+    Friend WithEvents PBIMAGE1 As PictureBox
 End Class
