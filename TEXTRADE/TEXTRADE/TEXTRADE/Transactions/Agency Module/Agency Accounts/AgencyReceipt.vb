@@ -784,15 +784,6 @@ Public Class AgencyReceipt
                 MessageBox.Show("Details Added")
                 txtaccno.Text = Val(DTTABLE.Rows(0).Item(0))
                 TEMPAUTOENTRY = False
-                'Dim TEMPMSG As Integer = MsgBox("Print Receipt Voucher?", MsgBoxStyle.YesNo)
-                'If TEMPMSG = vbYes Then
-                '    Dim objREC As New receipt_advice
-                '    objREC.recno = Val(DTTABLE.Rows(0).Item(0))
-                '    objREC.recname = cmbname.Text.Trim
-                '    objREC.REGNAME = cmbregister.Text.Trim
-                '    objREC.MdiParent = MDIMain
-                '    objREC.Show()
-                'End If
 
             Else
                 If USEREDIT = False Then
@@ -801,24 +792,13 @@ Public Class AgencyReceipt
                 End If
                 alparaval.Add(TEMPARECEIPTNO)
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
-                MsgBox("Details Updated")
-                EDIT = False
-                'Dim TEMPMSG As Integer = MsgBox("Print Receipt Voucher?", MsgBoxStyle.YesNo)
-                'If TEMPMSG = vbYes Then
-                '    Dim objREC As New receipt_advice
-                '    objREC.recno = Val(TEMPRECEIPTNO)
-                '    objREC.recname = cmbname.Text.Trim
-                '    objREC.REGNAME = cmbregister.Text.Trim
-                '    objREC.MdiParent = MDIMain
-                '    objREC.Show()
-                'End If
+                'MsgBox("Details Updated")
+                'EDIT = False
 
             End If
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-            Call toolnext_Click(sender, e)
-            If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbseller.Focus()
+            'Call toolnext_Click(sender, e)
+            'If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbseller.Focus()
 
 
         Catch ex As Exception
@@ -2153,6 +2133,27 @@ LINE1:
                     End If
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            'GET INVOICENOS FROM PURCHASEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(AINVOICE_NO) AS BILLNO", "", " AGENCYINVOICEMASTER ", " AND AINVOICE_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
+                gridpayment.RowCount = 0
+                TEMPARECEIPTNO = Val(I)
+                TEMPREGNAME = cmbregister.Text.Trim
+                EDIT = True
+                Receipt_Load(sender, e)
+                If gridpayment.RowCount = 0 Then GoTo NEXTLINE
+                cmdsave_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
         Catch ex As Exception
             Throw ex
         End Try
