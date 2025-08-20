@@ -51,15 +51,11 @@ Public Class AgencySaleReturn
             'TXTINVREGNAME.Clear()
             INVDATE.Value = Now.Date
             TXTINVTYPE.Clear()
-            If USERGODOWN <> "" Then cmbGodown.Text = USERGODOWN Else cmbGodown.Text = ""
             CMBNAME.Enabled = True
             CMBNAME.Text = ""
-            CMBPACKING.Text = ""
-
-            TXTCITY.Text = ""
-
-            CMBDEBITLEDGER.Text = ""
-
+            CMBSELLER.Text = ""
+            CMBFROMCITY.Text = ""
+            CMBTOCITY.Text = ""
             TXTSTATECODE.Clear()
             TXTGSTIN.Clear()
 
@@ -129,8 +125,6 @@ Public Class AgencySaleReturn
             lbltotalqty.Text = 0
             LBLTOTALMTRS.Text = 0
             LBLTOTALAMT.Text = 0
-            LBLENVGENERATED.Visible = False
-            ' CHKEXPORTGST.Checked = False
             CHKOVERSEAS.Checked = False
 
             TXTCGSTPER.Clear()
@@ -562,7 +556,7 @@ Public Class AgencySaleReturn
         Try
             CLEAR()
             EDIT = False
-            cmbGodown.Focus()
+            CMBSELLER.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -595,7 +589,7 @@ Public Class AgencySaleReturn
                 bln = False
             End If
 
-            If CMBPACKING.Text.Trim.Length = 0 Then
+            If CMBSELLER.Text.Trim.Length = 0 Then
                 EP.SetError(CMBNAME, " Please Fill Seller Name ")
                 bln = False
             End If
@@ -633,26 +627,6 @@ Public Class AgencySaleReturn
                 bln = False
             End If
 
-            If CMBDEBITLEDGER.Text.Trim.Length = 0 Then
-                EP.SetError(CMBDEBITLEDGER, " Please Select Debit Ledger Name ")
-                bln = False
-            End If
-
-            If CMBDEBITLEDGER.Text.Trim = CMBNAME.Text.Trim Then
-                EP.SetError(CMBDEBITLEDGER, "Credit and Debit Ledger cannot be kept same")
-                bln = False
-            End If
-
-
-            If cmbGodown.Text.Trim.Length = 0 Then
-                EP.SetError(cmbGodown, " Please Select Godown")
-                bln = False
-            End If
-
-            'If lbllocked.Visible = True Then
-            '    EP.SetError(lbllocked, "Item Used, Item Locked")
-            '    bln = False
-            'End If
 
             If GRIDSALRET.RowCount = 0 Then
                 EP.SetError(TabControl1, "Fill Item Details")
@@ -841,10 +815,8 @@ Public Class AgencySaleReturn
                 alParaval.Add(0)
             End If
             alParaval.Add(Format(Convert.ToDateTime(SALRETDATE.Text).Date, "MM/dd/yyyy"))
-            alParaval.Add(cmbGodown.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
-            alParaval.Add(CMBDEBITLEDGER.Text.Trim)
-            alParaval.Add(CMBPACKING.Text.Trim)
+            alParaval.Add(CMBSELLER.Text.Trim)
 
             alParaval.Add(TXTCHALLANNO.Text.Trim)
             alParaval.Add(CHALLANDATE.Value.Date)
@@ -1194,7 +1166,8 @@ Public Class AgencySaleReturn
             End If
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
-
+            alParaval.Add(CMBFROMCITY.Text.Trim)
+            alParaval.Add(CMBTOCITY.Text.Trim)
             Dim OBJPURCH As New ClsAgencySaleReturn()
             OBJPURCH.alParaval = alParaval
             If EDIT = False Then
@@ -1240,7 +1213,7 @@ Public Class AgencySaleReturn
                 Call toolnext_Click(sender, e)
             End If
 
-            cmbGodown.Focus()
+            CMBSELLER.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1404,15 +1377,12 @@ NEXTLINE:
                         CHALLANDATE.Value = Format(Convert.ToDateTime(dr("CHALLANDATE")).Date, "dd/MM/yyyy")
                         TXTCHALLANNO.Text = dr("CHALLANNO")
                         PARTYCHALLANNO = TXTCHALLANNO.Text.Trim
-                        TXTCITY.Text = dr("CITYNAME")
 
                         ACTUALINVDATE.Text = Format(Convert.ToDateTime(dr("ACTUALINVDATE")), "dd/MM/yyyy")
                         TXTACTUALINVNO.Text = dr("ACTUALINVNO")
 
-                        cmbGodown.Text = Convert.ToString(dr("GODOWN").ToString)
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
-                        CMBDEBITLEDGER.Text = dr("DEBITNAME")
-                        CMBPACKING.Text = dr("DELIVERYAT")
+                        CMBSELLER.Text = dr("DELIVERYAT")
 
                         TXTSTATECODE.Text = dr("STATECODE")
                         TXTGSTIN.Text = dr("GSTIN")
@@ -1474,6 +1444,8 @@ NEXTLINE:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = dr("SPECIALREMARKS")
+                        CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
+                        CMBTOCITY.Text = Convert.ToString(dr("TOCITY"))
                     Next
 
 
@@ -1513,9 +1485,6 @@ NEXTLINE:
                 txtsrno.Text = 1
             End If
 
-            If TXTIRNNO.Text <> "" And TXTACKNO.Text <> "" Then
-                LBLENVGENERATED.Visible = True
-            End If
 
 
         Catch ex As Exception
@@ -1527,7 +1496,8 @@ NEXTLINE:
     End Sub
     Sub fillcmb()
         Try
-            If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
+            If CMBFROMCITY.Text.Trim = "" Then fillCITY(CMBFROMCITY, EDIT)
+            If CMBTOCITY.Text.Trim = "" Then fillCITY(CMBTOCITY, EDIT)
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
             If cmbtrans.Text.Trim = "" Then filltransname(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'")
             fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
@@ -1539,39 +1509,11 @@ NEXTLINE:
             FILLSHELF(CMBSHELF)
             If CMBCHARGES.Text.Trim = "" Then FILLNAME(CMBCHARGES, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='Indirect Income' OR GROUPMASTER.GROUP_SECONDARY ='Sales A/C' OR GROUPMASTER.GROUP_SECONDARY ='Indirect Expenses' or GROUPMASTER.GROUP_SECONDARY ='Direct Income' OR GROUPMASTER.GROUP_SECONDARY ='Direct Expenses' OR GROUPMASTER.GROUP_SECONDARY ='Duties & Taxes')")
             If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
-            If CMBDEBITLEDGER.Text.Trim = "" Then FILLNAME(CMBDEBITLEDGER, EDIT, "")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Private Sub CMBDEBITLEDGER_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDEBITLEDGER.Enter
-        Try
-            If CMBDEBITLEDGER.Text.Trim = "" Then FILLNAME(CMBDEBITLEDGER, EDIT, "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub CMBDEBITLEDGER_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBDEBITLEDGER.Validating
-        Try
-            If CMBDEBITLEDGER.Text.Trim <> "" Then NAMEVALIDATE(CMBDEBITLEDGER, CMBCODE, e, Me, txtadd, "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub CMBGODOWN_ENTER(ByVal sender As Object, ByVal e As System.EventArgs) 
-        Try
-            If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-    Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) 
-        Try
-            If cmbGodown.Text.Trim <> "" Then GODOWNVALIDATE(cmbGodown, e, Me)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
+
     Private Sub CMBRACK_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBRACK.Enter
         Try
             If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
@@ -2152,20 +2094,20 @@ LINE1:
         numdotkeypress(e, TXTWT, Me)
     End Sub
 
-    Private Sub CMBPACKING_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBPACKING.Enter
+    Private Sub CMBPACKING_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBSELLER.Enter, CMBPACKING.Enter
         Try
             If ClientName = "AVIS" Then
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
             Else
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, EDIT, " And (GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " And (GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Private Sub CMBPACKING_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBPACKING.Validating
+    Private Sub CMBPACKING_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBSELLER.Validating, CMBPACKING.Validating
         Try
-            If CMBPACKING.Text.Trim <> "" Then NAMEVALIDATE(CMBPACKING, CMBCODE, e, Me, txtadd, " AND  (GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry Creditors", "ACCOUNTS")
+            If CMBSELLER.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLER, CMBCODE, e, Me, txtadd, " AND  (GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -2290,21 +2232,6 @@ LINE1:
             If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me, cmbitemname.Text.Trim)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-    Private Sub cmbGodown_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) 
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJGODOWN As New SelectGodown
-                OBJGODOWN.FRMSTRING = "GODOWN"
-                OBJGODOWN.ShowDialog()
-                If OBJGODOWN.TEMPNAME <> "" Then cmbGodown.Text = OBJGODOWN.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
         End Try
     End Sub
 
@@ -2473,7 +2400,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDSELECTRET_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTRET.Click
+    Private Sub CMDSELECTRET_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If CMBNAME.Text.Trim = "" Then
                 MsgBox("Please Select Party name First", MsgBoxStyle.Critical)
@@ -2501,7 +2428,6 @@ LINE1:
                 TXTINVNO.Text = DT.Rows(0).Item("INVNO")
                 TXTINVINITIALS.Text = DT.Rows(0).Item("INVINITIALS")
                 'TXTINVREGNAME.Text = DT.Rows(0).Item("INVREGNAME")
-                CMBDEBITLEDGER.Text = DT.Rows(0).Item("DEBITLEDGER")
                 TXTINVTYPE.Text = DTRET.Rows(0).Item("INVOICETYPE")
                 INVDATE.Text = DT.Rows(0).Item("INVDATE")
                 TXTCHALLANNO.Text = DT.Rows(0).Item("GDNNO")
@@ -2741,7 +2667,7 @@ LINE1:
                     'CMBAGENT.Text = DT.Rows(0).Item("AGENTNAME")
                     TXTSTATECODE.Text = DT.Rows(0).Item("STATECODE")
                     TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
-                    TXTCITY.Text = DT.Rows(0).Item("CITYNAME")
+                    CMBFROMCITY.Text = DT.Rows(0).Item("CITYNAME")
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
 
 
@@ -2807,7 +2733,7 @@ LINE1:
             TXTINVTOTAL.Clear()
             Dim objpayment As New ClsAgencyReceiptMaster
             Dim DT As New DataTable
-            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId)
+            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBSELLER.Text.Trim)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
         Catch ex As Exception
             Throw ex
@@ -3256,7 +3182,7 @@ LINE1:
         TOTAL()
     End Sub
 
-    Private Sub CMDSELECTCHALLAN_Click(sender As Object, e As EventArgs) Handles CMDSELECTCHALLAN.Click
+    Private Sub CMDSELECTCHALLAN_Click(sender As Object, e As EventArgs)
         'Try
         '    Dim OBJCMN As New ClsCommon
         '    If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
@@ -3528,7 +3454,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TOOLEINV_Click(sender As Object, e As EventArgs) 
+    Private Sub TOOLEINV_Click(sender As Object, e As EventArgs)
         Try
             If EDIT = False Then Exit Sub
             GENERATEINV()
@@ -4481,11 +4407,15 @@ ERRORMESSAGE:
         TOTAL()
     End Sub
 
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+        Me.Close()
+    End Sub
+
     Private Sub TXTAQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTAQTY.KeyPress, TXTAFOLDPER.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub CMBPACKING_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPACKING.KeyDown
+    Private Sub CMBPACKING_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLER.KeyDown, CMBPACKING.KeyDown
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -4494,7 +4424,68 @@ ERRORMESSAGE:
                 Dim OBJLEDGER As New SelectLedger
                 OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then CMBPACKING.Text = OBJLEDGER.TEMPNAME
+                If OBJLEDGER.TEMPNAME <> "" Then CMBSELLER.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CMBFROMCITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBFROMCITY.Validating
+        Try
+            If CMBFROMCITY.Text.Trim <> "" Then CITYVALIDATE(CMBFROMCITY, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTOCITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTOCITY.Validating
+        Try
+            If CMBTOCITY.Text.Trim <> "" Then CITYVALIDATE(CMBTOCITY, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CMBTRANSCITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBFROMCITY.Enter
+        Try
+            If CMBFROMCITY.Text.Trim = "" Then fillCITY(CMBFROMCITY, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTOCITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBTOCITY.Enter
+        Try
+            If CMBTOCITY.Text.Trim = "" Then fillCITY(CMBTOCITY, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CMBFROMCITY_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBFROMCITY.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJCITY As New SelectCity
+                OBJCITY.FRMSTRING = "CITY"
+                OBJCITY.ShowDialog()
+                If OBJCITY.TEMPNAME <> "" Then CMBFROMCITY.Text = OBJCITY.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTOCITY_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBTOCITY.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJCITY As New SelectCity
+                OBJCITY.FRMSTRING = "CITY"
+                OBJCITY.ShowDialog()
+                If OBJCITY.TEMPNAME <> "" Then CMBTOCITY.Text = OBJCITY.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex

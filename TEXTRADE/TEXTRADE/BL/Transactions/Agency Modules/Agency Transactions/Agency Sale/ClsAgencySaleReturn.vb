@@ -29,11 +29,7 @@ Public Class ClsAgencySaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DEBITNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DELIVERYAT", alParaval(I)))
                 I = I + 1
@@ -253,6 +249,10 @@ Public Class ClsAgencySaleReturn
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
                 I = I + 1
 
             End With
@@ -279,11 +279,7 @@ Public Class ClsAgencySaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DEBITNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DELIVERYAT", alParaval(I)))
                 I = I + 1
@@ -505,6 +501,10 @@ Public Class ClsAgencySaleReturn
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@SALRETNO", alParaval(I)))
