@@ -1558,14 +1558,14 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
-    Private Sub CMBGODOWN_ENTER(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbGodown.Enter
+    Private Sub CMBGODOWN_ENTER(ByVal sender As Object, ByVal e As System.EventArgs) 
         Try
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbGodown.Validating
+    Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) 
         Try
             If cmbGodown.Text.Trim <> "" Then GODOWNVALIDATE(cmbGodown, e, Me)
         Catch ex As Exception
@@ -2292,7 +2292,7 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Private Sub cmbGodown_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbGodown.KeyDown
+    Private Sub cmbGodown_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) 
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -3528,7 +3528,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TOOLEINV_Click(sender As Object, e As EventArgs) Handles TOOLEINV.Click
+    Private Sub TOOLEINV_Click(sender As Object, e As EventArgs) 
         Try
             If EDIT = False Then Exit Sub
             GENERATEINV()
