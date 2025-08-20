@@ -468,7 +468,6 @@ Partial Class MonthlyPurchaseAnalysisGridReport
         '
         Me.GRIDREPORT.AllowUserToAddRows = False
         Me.GRIDREPORT.AllowUserToDeleteRows = False
-        Me.GRIDREPORT.AllowUserToResizeColumns = False
         Me.GRIDREPORT.AllowUserToResizeRows = False
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
         Me.GRIDREPORT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
