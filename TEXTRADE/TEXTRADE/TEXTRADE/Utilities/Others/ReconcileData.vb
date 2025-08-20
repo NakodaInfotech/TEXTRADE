@@ -13,6 +13,7 @@ Public Class ReconcileData
             CHKRECOPENDINGDATA.CheckState = CheckState.Unchecked
             CHKRECOORDER.CheckState = CheckState.Unchecked
             CHKRECOPROGRAM.CheckState = CheckState.Unchecked
+            CHKRECOAGENCYINV.CheckState = CheckState.Unchecked
         Catch ex As Exception
             Throw ex
         End Try
@@ -53,6 +54,10 @@ Public Class ReconcileData
 
                 ElseIf CHKRECOPROGRAM.Checked = True Then
                     INTRES = OBJURECO.PROGRAMRECO()
+
+                    'FOR AGENCY
+                ElseIf CHKRECOAGENCYINV.Checked = True Then
+                    INTRES = OBJURECO.AGENCYINVRECO()
                 End If
                 MsgBox("Reco Done Successfully")
 
@@ -88,5 +93,13 @@ Public Class ReconcileData
         End Try
     End Sub
 
-
+    Private Sub ReconcileData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            If ClientName = "ABHEE" Then
+                CHKRECOAGENCYINV.Visible = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
