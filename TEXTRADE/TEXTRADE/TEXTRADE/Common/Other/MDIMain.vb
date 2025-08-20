@@ -10083,6 +10083,7 @@ SKIPLINE:
             Dim OBJSO As New OrderGridReport
             OBJSO.ORDERTYPE = "SO"
             OBJSO.SOCLAUSE = ""
+            OBJSO.FRMSTRING = "SO"
             OBJSO.MdiParent = Me
             OBJSO.Show()
         Catch ex As Exception
