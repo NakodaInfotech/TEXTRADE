@@ -410,7 +410,8 @@ Public Class ClsAgencyInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERPARTYPONO", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
+                I = I + 1
 
 
 
@@ -815,6 +816,8 @@ Public Class ClsAgencyInvoiceMaster
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERPARTYPONO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))
