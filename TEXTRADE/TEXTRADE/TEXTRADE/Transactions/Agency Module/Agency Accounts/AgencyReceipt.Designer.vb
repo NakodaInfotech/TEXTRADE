@@ -145,7 +145,7 @@ Partial Class AgencyReceipt
         Me.chkselectall = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cmbaccname = New System.Windows.Forms.ComboBox()
+        Me.cmbseller = New System.Windows.Forms.ComboBox()
         Me.txttotal = New System.Windows.Forms.TextBox()
         Me.lblbillno = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -279,7 +279,7 @@ Partial Class AgencyReceipt
         Me.BlendPanel1.Controls.Add(Me.chkselectall)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.Label1)
-        Me.BlendPanel1.Controls.Add(Me.cmbaccname)
+        Me.BlendPanel1.Controls.Add(Me.cmbseller)
         Me.BlendPanel1.Controls.Add(Me.txttotal)
         Me.BlendPanel1.Controls.Add(Me.lblbillno)
         Me.BlendPanel1.Controls.Add(Me.Label2)
@@ -1494,18 +1494,18 @@ Partial Class AgencyReceipt
         Me.Label1.TabIndex = 295
         Me.Label1.Text = "Total Amt"
         '
-        'cmbaccname
+        'cmbseller
         '
-        Me.cmbaccname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbaccname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbaccname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbaccname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbaccname.FormattingEnabled = True
-        Me.cmbaccname.Location = New System.Drawing.Point(81, 137)
-        Me.cmbaccname.MaxDropDownItems = 14
-        Me.cmbaccname.Name = "cmbaccname"
-        Me.cmbaccname.Size = New System.Drawing.Size(252, 22)
-        Me.cmbaccname.TabIndex = 2
+        Me.cmbseller.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbseller.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbseller.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbseller.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbseller.FormattingEnabled = True
+        Me.cmbseller.Location = New System.Drawing.Point(81, 137)
+        Me.cmbseller.MaxDropDownItems = 14
+        Me.cmbseller.Name = "cmbseller"
+        Me.cmbseller.Size = New System.Drawing.Size(252, 22)
+        Me.cmbseller.TabIndex = 2
         '
         'txttotal
         '
@@ -1538,9 +1538,9 @@ Partial Class AgencyReceipt
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(30, 141)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 14)
+        Me.Label2.Size = New System.Drawing.Size(39, 14)
         Me.Label2.TabIndex = 302
-        Me.Label2.Text = "Account"
+        Me.Label2.Text = "Seller"
         '
         'TXTINVTOTAL
         '
@@ -1881,7 +1881,7 @@ Partial Class AgencyReceipt
     Friend WithEvents chkselectall As CheckBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents cmbaccname As ComboBox
+    Friend WithEvents cmbseller As ComboBox
     Friend WithEvents txttotal As TextBox
     Friend WithEvents lblbillno As Label
     Friend WithEvents Label2 As Label

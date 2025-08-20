@@ -52,7 +52,7 @@ Public Class AgencyReceipt
 
         '    'SALE BALANCE
         '    Dim OBJCMN As New ClsCommon
-        '    Dim DT As DataTable = OBJCMN.search("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.Name = LEDGERS.Acc_cmpname AND TRIALBALANCE.acc_cmpid = LEDGERS.Acc_cmpid AND TRIALBALANCE.acc_locationid = LEDGERS.Acc_locationid AND TRIALBALANCE.YEARID = LEDGERS.Acc_yearid ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_CMPID = " & CmpId & " AND LEDGERS.ACC_LOCATIONID = " & 0 & " AND LEDGERS.ACC_YEARID = " & YearId)
+        '    Dim DT As DataTable = OBJCMN.search("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.Name = LEDGERS.Acc_cmpname AND TRIALBALANCE.acc_cmpid = LEDGERS.Acc_cmpid AND TRIALBALANCE.acc_locationid = LEDGERS.Acc_locationid AND TRIALBALANCE.YEARID = LEDGERS.Acc_yearid ", " AND NAME = '" & cmbseller.Text.Trim & "' AND LEDGERS.ACC_CMPID = " & CmpId & " AND LEDGERS.ACC_LOCATIONID = " & 0 & " AND LEDGERS.ACC_YEARID = " & YearId)
         '    If DT.Rows.Count > 0 Then
         '        LBLACCBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
         '        If Val(DT.Rows(0).Item("CRLIMIT")) < Val(DT.Rows(0).Item("BALANCE")) And Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
@@ -102,10 +102,10 @@ Public Class AgencyReceipt
         lblbilltotal.Text = ""
         cmbname.Text = ""
         cmbname.Enabled = True
-        cmbaccname.Enabled = True
+        cmbseller.Enabled = True
         RECODATE.Enabled = True
         'AS THEY WANT TO KEEP THE ACCOUNTNAME SAME
-        'cmbaccname.Text = ""
+        'cmbseller.Text = ""
 
         txtchqamt.Clear()
         txtchqno.Clear()
@@ -148,10 +148,10 @@ Public Class AgencyReceipt
         CMBPARTYBANK.Text = ""
 
 
-        'GET DEFAULT BANK IF BANK A/C AND OVERSEAS IS TRUE THEN FETCH THAT BANK
-        Dim OBJCMN As New ClsCommonMaster
-        Dim DT As DataTable = OBJCMN.search(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.ACC_GROUPID = GROUPMASTER.GROUP_ID", " AND GROUP_SECONDARY = 'BANK A/C' AND ACC_YEARID = " & YearId)
-        If DT.Rows.Count > 0 Then cmbaccname.Text = DT.Rows(0).Item("BANKNAME")
+        ''GET DEFAULT BANK IF BANK A/C AND OVERSEAS IS TRUE THEN FETCH THAT BANK
+        'Dim OBJCMN As New ClsCommonMaster
+        'Dim DT As DataTable = OBJCMN.search(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.ACC_GROUPID = GROUPMASTER.GROUP_ID", " AND GROUP_SECONDARY = 'BANK A/C' AND ACC_YEARID = " & YearId)
+        'If DT.Rows.Count > 0 Then cmbseller.Text = DT.Rows(0).Item("BANKNAME")
 
         recregabbr = ""
         recreginitial = ""
@@ -277,6 +277,10 @@ Public Class AgencyReceipt
                 EP.SetError(cmbname, "Select Name")
                 BLN = False
             End If
+            If cmbseller.Text.Trim.Length = 0 Then
+                EP.SetError(cmbseller, "Select Seller Name")
+                BLN = False
+            End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
                 If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
@@ -290,8 +294,8 @@ Public Class AgencyReceipt
                 End If
             Next
 
-            If cmbaccname.Text.Trim.Length = 0 Then
-                EP.SetError(cmbaccname, "Select Account Name")
+            If cmbseller.Text.Trim.Length = 0 Then
+                EP.SetError(cmbseller, "Select Seller Name")
                 BLN = False
             End If
 
@@ -310,25 +314,25 @@ Public Class AgencyReceipt
                 BLN = False
             End If
 
-            Dim OBJCMN1 As New ClsCommon
-            Dim DT As DataTable = OBJCMN1.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & 0 & " AND ACC_YEARID = " & YearId)
-            If DT.Rows.Count > 0 Then
-                If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
-                    'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
-                    'If txtchqno.Text.Trim.Length = 0 Then
-                    '    EP.SetError(txtchqno, "Enter Chq No.")
-                    '    BLN = False
-                    'End If
-                    If txtchqno.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" Then
-                        If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
-                            EP.SetError(txtchqno, "Enter Chq No.")
-                            BLN = False
-                        End If
-                    End If
-                ElseIf DT.Rows(0).Item(0) = "Cash In Hand" Then
-                    txtchqno.Clear()
-                End If
-            End If
+            'Dim OBJCMN1 As New ClsCommon
+            'Dim DT As DataTable = OBJCMN1.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbseller.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & 0 & " AND ACC_YEARID = " & YearId)
+            'If DT.Rows.Count > 0 Then
+            '    If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
+            '        'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
+            '        'If txtchqno.Text.Trim.Length = 0 Then
+            '        '    EP.SetError(txtchqno, "Enter Chq No.")
+            '        '    BLN = False
+            '        'End If
+            '        If txtchqno.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" Then
+            '            If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
+            '                EP.SetError(txtchqno, "Enter Chq No.")
+            '                BLN = False
+            '            End If
+            '        End If
+            '    ElseIf DT.Rows(0).Item(0) = "Cash In Hand" Then
+            '        txtchqno.Clear()
+            '    End If
+            'End If
 
 
 
@@ -417,13 +421,13 @@ Public Class AgencyReceipt
 
             'getmaxno_receiptmaster()
             fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
-            fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
+            fillledger(cmbseller, EDIT, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
             fillregister(cmbregister, " and register_type = 'RECEIPT'")
 
             'GET DEFAULT BANK IF BANK A/C AND OVERSEAS IS TRUE THEN FETCH THAT BANK
             Dim OBJCMN As New ClsCommonMaster
             Dim DT As DataTable = OBJCMN.search(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.ACC_GROUPID = GROUPMASTER.GROUP_ID", " AND GROUP_SECONDARY = 'BANK A/C' AND ACC_YEARID = " & YearId)
-            If DT.Rows.Count > 0 Then cmbaccname.Text = DT.Rows(0).Item("BANKNAME")
+            'If DT.Rows.Count > 0 Then cmbseller.Text = DT.Rows(0).Item("BANKNAME")
 
 
             If ClientName = "MANSI" Then
@@ -455,7 +459,7 @@ Public Class AgencyReceipt
                         cmbregister.Text = Convert.ToString(dr("REGISTERNAME"))
                         ACCDATE.Text = Format(Convert.ToDateTime(dr("ACCDATE")).Date, "dd/MM/yyyy")
                         CHQDATE.Text = Format(Convert.ToDateTime(dr("CHEQUEDATE")).Date, "dd/MM/yyyy")
-                        cmbaccname.Text = Convert.ToString(dr("ACCNAME"))
+                        cmbseller.Text = Convert.ToString(dr("SELLER"))
                         cmbname.Text = Convert.ToString(dr("LEDGERNAME"))
                         TXTMOBILENO.Text = Convert.ToString(dr("MOBILENO"))
                         CMBPARTYBANK.Text = Convert.ToString(dr("BANKNAME"))
@@ -493,7 +497,7 @@ Public Class AgencyReceipt
                             LBLRECO.Visible = True
                             RECODATE.Visible = True
                             txtchqamt.ReadOnly = True
-                            cmbaccname.Enabled = False
+                            cmbseller.Enabled = False
                             RECODATE.Enabled = False
 
                         End If
@@ -542,31 +546,36 @@ Public Class AgencyReceipt
 
     Private Sub cmbname_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Validated
         Try
-            If cmbname.Text.Trim <> "" And EDIT = True Then
-                gridpayment.DataSource = Nothing
-                gridpaydesc.DataSource = Nothing
-                gridpaydesc.RowCount = 0
-                gridpayment.RowCount = 0
-                GRIDDESC.RowCount = 0
-                txttotal.Clear()
-                txtdesctotal.Clear()
+            If cmbseller.Text <> "" Then
+                If cmbname.Text.Trim <> "" And EDIT = True Then
+                    gridpayment.DataSource = Nothing
+                    gridpaydesc.DataSource = Nothing
+                    gridpaydesc.RowCount = 0
+                    gridpayment.RowCount = 0
+                    GRIDDESC.RowCount = 0
+                    txttotal.Clear()
+                    txtdesctotal.Clear()
 
-                If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
-                    fillgridINVOICE()
-                    'Else
-                    '    Call txtbillno_Validating(sender, e)
+                    If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
+                        fillgridINVOICE()
+                        'Else
+                        '    Call txtbillno_Validating(sender, e)
+                    End If
                 End If
-            End If
-            If cmbname.Text.Trim <> "" Then
-                GETBALANCE()
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(PARTYBANKMASTER.PARTYBANK_name, '') AS PARTYBANKNAME, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO,  ISNULL(CITYMASTER.city_name, '') AS CITY", "", "PARTYBANKMASTER RIGHT OUTER JOIN CITYMASTER AS CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.Acc_cityid ON PARTYBANKMASTER.PARTYBANK_id = LEDGERS.ACC_BANKID", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ACC_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    If CMBPARTYBANK.Text.Trim = "" Then CMBPARTYBANK.Text = DT.Rows(0).Item("PARTYBANKNAME")
-                    TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                    LBLCITY.Text = DT.Rows(0).Item("CITY")
+                If cmbname.Text.Trim <> "" Then
+                    GETBALANCE()
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(PARTYBANKMASTER.PARTYBANK_name, '') AS PARTYBANKNAME, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO,  ISNULL(CITYMASTER.city_name, '') AS CITY", "", "PARTYBANKMASTER RIGHT OUTER JOIN CITYMASTER AS CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.Acc_cityid ON PARTYBANKMASTER.PARTYBANK_id = LEDGERS.ACC_BANKID", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ACC_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        If CMBPARTYBANK.Text.Trim = "" Then CMBPARTYBANK.Text = DT.Rows(0).Item("PARTYBANKNAME")
+                        TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                        LBLCITY.Text = DT.Rows(0).Item("CITY")
 
+                    End If
                 End If
+            Else
+                MsgBox("Enter Seller Name", MsgBoxStyle.Critical, "TEXTRADE")
+                cmbseller.Focus()
             End If
         Catch ex As Exception
             Throw ex
@@ -577,7 +586,7 @@ Public Class AgencyReceipt
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
             If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
-            If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
+            If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" And cmbseller.Text.Trim <> "" Then
                 fillgridINVOICE()
                 'Else
                 '    Call txtbillno_Validating(sender, e)
@@ -641,7 +650,7 @@ Public Class AgencyReceipt
 
             alparaval.Add(cmbregister.Text.Trim)
             alparaval.Add(Format(Convert.ToDateTime(ACCDATE.Text).Date, "MM/dd/yyyy"))
-            alparaval.Add(cmbaccname.Text.Trim)
+            alparaval.Add(cmbseller.Text.Trim)
             alparaval.Add(cmbname.Text.Trim)
             alparaval.Add(Val(txtchqamt.Text))
             alparaval.Add(txtchqno.Text.Trim)
@@ -809,7 +818,7 @@ Public Class AgencyReceipt
             'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
             'clear()
             Call toolnext_Click(sender, e)
-            If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
+            If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbseller.Focus()
 
 
         Catch ex As Exception
@@ -1165,16 +1174,17 @@ Public Class AgencyReceipt
         End Try
     End Sub
 
-    Private Sub cmbaccname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbaccname.Enter
+    Private Sub cmbseller_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbseller.Enter
         Try
             'OPEN BANK A/C AND BANK OD A/C
-            If cmbaccname.Text.Trim = "" Then fillledger(cmbaccname, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
+            If cmbseller.Text.Trim = "" Then fillledger(cmbseller, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
+            'If cmbseller.Text.Trim = "" Then fillledger(cmbseller, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub cmbaccname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbaccname.KeyDown
+    Private Sub cmbseller_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbseller.KeyDown
         If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
     End Sub
 
@@ -1249,6 +1259,7 @@ Public Class AgencyReceipt
             gridbill.Columns(i).HeaderText = "Temp Bal"
             gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             gridbill.Columns(i).ReadOnly = True
+            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
             i += 1
 
             'gridbill.Columns(i).Visible = False
@@ -1286,7 +1297,7 @@ Public Class AgencyReceipt
 
         Dim objpayment As New ClsAgencyReceiptMaster
         Dim DT As New DataTable
-        DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId)
+        DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId, cmbseller.Text.Trim)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
 
@@ -1521,9 +1532,12 @@ LINE1:
         cmbregister.Focus()
     End Sub
 
-    Private Sub cmbaccname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbaccname.Validating
+    Private Sub cmbseller_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbseller.Validating
         Try
-            If cmbaccname.Text.Trim <> "" Then ledgervalidate(cmbaccname, CMBACCCODE, e, Me, txtadd, " AND (GROUPMASTER.group_SECONDARY = 'BANK A/C' OR GROUPMASTER.group_SECONDARY = 'BANK OD A/C' OR GROUPMASTER.group_SECONDARY = 'CASH IN HAND') AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & 0 & " AND ACC_YEARID = " & YearId)
+            If cmbseller.Text.Trim <> "" Then ledgervalidate(cmbseller, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
+            'If txtbillno.Text.Trim = "" And cmbseller.Text.Trim <> "" Then
+            '    fillgridINVOICE()
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1814,7 +1828,7 @@ LINE1:
                     recregid = dt.Rows(0).Item(2)
                     getmaxno_AGENCYRECEIPTMASTER()
                     cmbregister.Enabled = False
-                    If ClientName = "VALIANT" And dt.Rows(0).Item("NAME") <> "" Then cmbaccname.Text = dt.Rows(0).Item("NAME")
+                    If ClientName = "VALIANT" And dt.Rows(0).Item("NAME") <> "" Then cmbseller.Text = dt.Rows(0).Item("NAME")
 
                 Else
                     MsgBox("Register Not Present, Add New from Master Module")
@@ -2057,11 +2071,11 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub cmbaccname_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbaccname.Validated
-        If cmbaccname.Text.Trim <> "" Then
-            GETBALANCE()
+    Private Sub cmbseller_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbseller.Validated
+        'If cmbseller.Text.Trim <> "" Then
+        '    GETBALANCE()
 
-        End If
+        'End If
     End Sub
 
     Private Sub Receipt_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
@@ -2072,7 +2086,7 @@ LINE1:
             ACCDATE.Text = Now.Date
 
             cmbname.Focus()
-            cmbaccname.Text = "Cash In Hand"
+            'cmbseller.Text = "Cash In Hand"
             cmbname.Text = TEMPNAME
             cmbname_Validating(sender, A)
 

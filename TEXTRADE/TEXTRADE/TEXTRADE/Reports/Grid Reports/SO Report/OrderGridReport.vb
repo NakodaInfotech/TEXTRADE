@@ -11,6 +11,8 @@ Public Class OrderGridReport
     Dim a11, a12, a13, a14 As String
     Public SOCLAUSE As String = ""
     Public ORDERTYPE As String = ""
+    Public FRMSTRING As String
+
 
     Public Sub New()
 
@@ -33,7 +35,12 @@ Public Class OrderGridReport
 
     Sub FILLCMB()
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If FRMSTRING = "SO" Then
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            End If
+
             If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, edit, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry CREDITORS' AND ACC_TYPE='AGENT'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -61,91 +68,182 @@ Public Class OrderGridReport
             Dim PERIOD As String = ""
             Dim SOCLAUSE As String = ""
 
+
+            If FRMSTRING = "SO" Then
+                WHERECLAUSE = " ALLSALEORDER.SO_yearid=" & YearId
+            Else
+                WHERECLAUSE = " ALLPURCHASEORDER.PO_yearid=" & YearId
+            End If
             ' Apply date filter
             If chkdate.Checked = True Then
                 getFromToDate() ' This should set fromD and toD
 
-                ' Assuming fromD and toD are declared globally or somewhere accessible
-                'PERIOD = "  AND ALLSALEORDER.so_date BETWEEN '" & Format(AccFrom, "yyyy-MM-dd") & "' AND '" & Format(AccTo, "yyyy-MM-dd") & "'"
-                WHERECLAUSE &= " AND ALLSALEORDER.so_date BETWEEN " & fromD & " AND " & toD & ""
+                If FRMSTRING = "SO" Then WHERECLAUSE &= " AND ALLSALEORDER.so_date BETWEEN " & fromD & " AND " & toD & "" Else WHERECLAUSE &= " AND ALLPURCHASEORDER.so_date BETWEEN " & fromD & " AND " & toD & ""
             Else
-                PERIOD = " AND ALLSALEORDER.so_date BETWEEN '" & Format(AccFrom, "yyyy-MM-dd") & "' AND '" & Format(AccTo, "yyyy-MM-dd") & "'"
+                If FRMSTRING = "SO" Then PERIOD = " AND ALLSALEORDER.so_date BETWEEN '" & Format(AccFrom, "yyyy-MM-dd") & "' AND '" & Format(AccTo, "yyyy-MM-dd") & "'" Else PERIOD = " AND ALLPURCHASEORDER.so_date BETWEEN '" & Format(AccFrom, "yyyy-MM-dd") & "' AND '" & Format(AccTo, "yyyy-MM-dd") & "'"
             End If
-            If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
-            If CMBAGENT.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
-            If CMBCATEGORY.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMMASTER.ITEM_CATEGORYID = (SELECT CATEGORY_ID FROM CATEGORYMASTER WHERE CATEGORY_NAME = '" & CMBCATEGORY.Text.Trim & "'AND category_yearid=" & YearId & ")"
-            If WHERECLAUSE <> "" Then
-                SOCLAUSE = SOCLAUSE & WHERECLAUSE
-            End If
-            If PERIOD <> "" Then
-                SOCLAUSE = SOCLAUSE & PERIOD
-            End If
-            'OPEN ORDERVSSTOCK REPORT
+            If FRMSTRING = "SO" Then
+                If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
+                If CMBAGENT.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
+                If CMBCATEGORY.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMMASTER.ITEM_CATEGORYID = (SELECT CATEGORY_ID FROM CATEGORYMASTER WHERE CATEGORY_NAME = '" & CMBCATEGORY.Text.Trim & "'AND category_yearid=" & YearId & ")"
+                If WHERECLAUSE <> "" Then
+                    SOCLAUSE = SOCLAUSE & WHERECLAUSE
+                End If
+                If PERIOD <> "" Then
+                    SOCLAUSE = SOCLAUSE & PERIOD
+                End If
+                'OPEN ORDERVSSTOCK REPORT
 
-            If RDBPENDING.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.BALANCE > 0 AND ALLSALEORDER_DESC.SO_CLOSED='FALSE' "
-            If RDBCOMPLETE.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.BALANCE <= 0 AND ALLSALEORDER_DESC.SO_CLOSED='FALSE'"
-            If RDBCLOSED.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.SO_CLOSED='TRUE' "
+                If RDBPENDING.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.BALANCE > 0 AND ALLSALEORDER_DESC.SO_CLOSED='FALSE' "
+                If RDBCOMPLETE.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.BALANCE <= 0 AND ALLSALEORDER_DESC.SO_CLOSED='FALSE'"
+                If RDBCLOSED.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER_DESC.SO_CLOSED='TRUE' "
 
 
-
-            'FOR NAME
-            'gridbill.ClearColumnsFilter()
-            For i As Integer = 0 To gridbill.RowCount - 1
-                Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If NAMECLAUSE = "" Then
-                        If RBACCOUNT.Checked = True Then
-                            NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
-                        ElseIf RBAGENT.Checked = True Then
-                            NAMECLAUSE = " AND (AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                'FOR NAME
+                'gridbill.ClearColumnsFilter()
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If NAMECLAUSE = "" Then
+                            If RBACCOUNT.Checked = True Then
+                                NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                            ElseIf RBAGENT.Checked = True Then
+                                NAMECLAUSE = " AND (AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                            End If
+                        Else
+                            If RBACCOUNT.Checked = True Then
+                                NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                            ElseIf RBAGENT.Checked = True Then
+                                NAMECLAUSE = NAMECLAUSE & " OR AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                            End If
                         End If
-                    Else
-                        If RBACCOUNT.Checked = True Then
-                            NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
-                        ElseIf RBAGENT.Checked = True Then
-                            NAMECLAUSE = NAMECLAUSE & " OR AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                    End If
+                Next
+                If NAMECLAUSE <> "" Then
+                    NAMECLAUSE = NAMECLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & NAMECLAUSE
+                End If
+
+                'FOR ORDERNO
+                GRIDBILLORDER.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDBILLORDER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBILLORDER.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ORDERCLAUSE = "" Then
+                            ORDERCLAUSE = " AND (ALLSALEORDER.SO_NO = " & Val(dtrow("ORDERNO"))
+                        Else
+                            ORDERCLAUSE = ORDERCLAUSE & " OR ALLSALEORDER.SO_NO = " & Val(dtrow("ORDERNO"))
                         End If
                     End If
+                Next
+                If ORDERCLAUSE <> "" Then
+                    ORDERCLAUSE = ORDERCLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & ORDERCLAUSE
                 End If
-            Next
-            If NAMECLAUSE <> "" Then
-                NAMECLAUSE = NAMECLAUSE & ")"
-                SOCLAUSE = SOCLAUSE & NAMECLAUSE
+
+                'FOR ITEMNAME
+                'GRIDBILLITEM.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDBILLITEM.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ITEMCLAUSE = "" Then
+                            ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        Else
+                            ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        End If
+                    End If
+                Next
+                If ITEMCLAUSE <> "" Then
+                    ITEMCLAUSE = ITEMCLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & ITEMCLAUSE
+                End If
+
+            ElseIf FRMSTRING = "PO" Then
+
+                If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
+                If CMBAGENT.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
+                If CMBCATEGORY.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMMASTER.ITEM_CATEGORYID = (SELECT CATEGORY_ID FROM CATEGORYMASTER WHERE CATEGORY_NAME = '" & CMBCATEGORY.Text.Trim & "'AND category_yearid=" & YearId & ")"
+                If WHERECLAUSE <> "" Then
+                    SOCLAUSE = SOCLAUSE & WHERECLAUSE
+                End If
+                If PERIOD <> "" Then
+                    SOCLAUSE = SOCLAUSE & PERIOD
+                End If
+                'OPEN ORDERVSSTOCK REPORT
+
+                If RDBPENDING.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLPURCHASEORDER_DESC.BALANCE > 0 AND ALLPURCHASEORDER_DESC.PO_CLOSED='FALSE' "
+                If RDBPENDING.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLPURCHASEORDER_DESC.BALANCE > 0 AND ALLPURCHASEORDER_DESC.PO_CLOSED='FALSE' "
+                If RDBCOMPLETE.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLPURCHASEORDER_DESC.BALANCE <= 0 AND ALLPURCHASEORDER_DESC.PO_CLOSED='FALSE'"
+                If RDBCLOSED.Checked = True Then SOCLAUSE = SOCLAUSE & " AND ALLPURCHASEORDER_DESC.PO_CLOSED='TRUE' "
+
+
+                'FOR NAME
+                'gridbill.ClearColumnsFilter()
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If NAMECLAUSE = "" Then
+                            If RBACCOUNT.Checked = True Then
+                                NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                            ElseIf RBAGENT.Checked = True Then
+                                NAMECLAUSE = " AND (AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                            End If
+                        Else
+                            If RBACCOUNT.Checked = True Then
+                                NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                            ElseIf RBAGENT.Checked = True Then
+                                NAMECLAUSE = NAMECLAUSE & " OR AGENTLEDGERS.ACC_CMPNAME = '" & dtrow("AGENTNAME") & "'"
+                            End If
+                        End If
+                    End If
+                Next
+                If NAMECLAUSE <> "" Then
+                    NAMECLAUSE = NAMECLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & NAMECLAUSE
+                End If
+
+                'FOR ORDERNO
+                GRIDBILLORDER.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDBILLORDER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBILLORDER.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ORDERCLAUSE = "" Then
+                            ORDERCLAUSE = " AND (ALLPURCHASEORDER.PO_NO = " & Val(dtrow("ORDERNO"))
+                        Else
+                            ORDERCLAUSE = ORDERCLAUSE & " OR ALLPURCHASEORDER.PO_NO = " & Val(dtrow("ORDERNO"))
+                        End If
+                    End If
+                Next
+                If ORDERCLAUSE <> "" Then
+                    ORDERCLAUSE = ORDERCLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & ORDERCLAUSE
+                End If
+
+                'FOR ITEMNAME
+                'GRIDBILLITEM.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDBILLITEM.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ITEMCLAUSE = "" Then
+                            ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        Else
+                            ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        End If
+                    End If
+                Next
+                If ITEMCLAUSE <> "" Then
+                    ITEMCLAUSE = ITEMCLAUSE & ")"
+                    SOCLAUSE = SOCLAUSE & ITEMCLAUSE
+                End If
+
             End If
 
-            'FOR ORDERNO
-            GRIDBILLORDER.ClearColumnsFilter()
-            For i As Integer = 0 To GRIDBILLORDER.RowCount - 1
-                Dim dtrow As DataRow = GRIDBILLORDER.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If ORDERCLAUSE = "" Then
-                        ORDERCLAUSE = " AND (ALLSALEORDER.SO_NO = " & Val(dtrow("ORDERNO"))
-                    Else
-                        ORDERCLAUSE = ORDERCLAUSE & " OR ALLSALEORDER.SO_NO = " & Val(dtrow("ORDERNO"))
-                    End If
-                End If
-            Next
-            If ORDERCLAUSE <> "" Then
-                ORDERCLAUSE = ORDERCLAUSE & ")"
-                SOCLAUSE = SOCLAUSE & ORDERCLAUSE
-            End If
 
-            'FOR ITEMNAME
-            'GRIDBILLITEM.ClearColumnsFilter()
-            For i As Integer = 0 To GRIDBILLITEM.RowCount - 1
-                Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If ITEMCLAUSE = "" Then
-                        ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
-                    Else
-                        ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
-                    End If
-                End If
-            Next
-            If ITEMCLAUSE <> "" Then
-                ITEMCLAUSE = ITEMCLAUSE & ")"
-                SOCLAUSE = SOCLAUSE & ITEMCLAUSE
-            End If
+
+
+
+
+
 
             GRIDSO.RowCount = 0
             Dim OBJCMN As New ClsCommon
@@ -156,7 +254,9 @@ Public Class OrderGridReport
             Dim DT As New DataTable
 
             If ORDERTYPE = "SO" Then
-                DT = OBJCMN.SEARCH(" ITEMMASTER.item_name AS ITEMNAME, '' AS MILLNAME, ALLSALEORDER.so_no AS SONO, ALLSALEORDER.so_date AS SODATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME, ALLSALEORDER.so_NOTE AS NOTE, ALLSALEORDER_DESC.SO_QTY AS PCS, ALLSALEORDER_DESC.SO_RECDQTY AS OUTPCS, ALLSALEORDER_DESC.BALANCE AS BALPCS, ALLSALEORDER_DESC.SO_RATE AS RATE, SO_DAYS AS [DAYS], ISNULL(ITEMMASTER.ITEM_REORDER,0) AS PERDAYPROD ", "", " ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.so_no = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.TYPE = ALLSALEORDER_DESC.TYPE AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID INNER JOIN ITEMMASTER ON ALLSALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLSALEORDER.so_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON ALLSALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN DESIGNMASTER ON ALLSALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON ALLSALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_ID", " AND ALLSALEORDER.SO_YEARID =" & YearId & SOCLAUSE & " ORDER BY ITEMMASTER.item_name, ALLSALEORDER.SO_DATE, ALLSALEORDER.SO_NO")
+                DT = OBJCMN.SEARCH(" ITEMMASTER.item_name AS ITEMNAME, '' AS MILLNAME, ALLSALEORDER.so_no AS SONO, ALLSALEORDER.so_date AS SODATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME, ALLSALEORDER.so_NOTE AS NOTE, ALLSALEORDER_DESC.SO_QTY AS PCS, ALLSALEORDER_DESC.SO_RECDQTY AS OUTPCS, ALLSALEORDER_DESC.BALANCE AS BALPCS, ALLSALEORDER_DESC.SO_RATE AS RATE, SO_DAYS AS [DAYS], ISNULL(ITEMMASTER.ITEM_REORDER,0) AS PERDAYPROD ", "", " ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.so_no = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.TYPE = ALLSALEORDER_DESC.TYPE AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID INNER JOIN ITEMMASTER ON ALLSALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLSALEORDER.so_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON ALLSALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN DESIGNMASTER ON ALLSALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON ALLSALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_ID", SOCLAUSE & " ORDER BY ITEMMASTER.item_name, ALLSALEORDER.SO_DATE, ALLSALEORDER.SO_NO")
+            ElseIf ORDERTYPE = "PO" Then
+                DT = OBJCMN.SEARCH(" ITEMMASTER.item_name AS ITEMNAME, '' AS MILLNAME, ALLPURCHASEORDER.PO_no AS SONO, ALLPURCHASEORDER.PO_date AS SODATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME, ALLPURCHASEORDER.PO_NOTE AS NOTE, ALLPURCHASEORDER_DESC.PO_QTY AS PCS, ALLPURCHASEORDER_DESC.PO_RECDQTY AS OUTPCS, ALLPURCHASEORDER_DESC.BALANCE AS BALPCS, ALLPURCHASEORDER_DESC.PO_RATE AS RATE, PO_DAYS AS [DAYS], ISNULL(ITEMMASTER.ITEM_REORDER,0) AS PERDAYPROD ", "", " ALLPURCHASEORDER INNER JOIN ALLPURCHASEORDER_DESC ON ALLPURCHASEORDER.PO_no = ALLPURCHASEORDER_DESC.PO_NO AND ALLPURCHASEORDER.TYPE = ALLPURCHASEORDER_DESC.TYPE AND ALLPURCHASEORDER.PO_YEARID = ALLPURCHASEORDER_DESC.PO_YEARID INNER JOIN ITEMMASTER ON ALLPURCHASEORDER_DESC.PO_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLPURCHASEORDER.PO_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON ALLPURCHASEORDER.PO_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN DESIGNMASTER ON ALLPURCHASEORDER_DESC.PO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON ALLPURCHASEORDER_DESC.PO_COLORID = COLORMASTER.COLOR_ID", SOCLAUSE & " ORDER BY ITEMMASTER.item_name, ALLPURCHASEORDER.PO_DATE, ALLPURCHASEORDER.PO_NO")
             End If
 
             For Each DTROW As DataRow In DT.Rows
@@ -264,8 +364,11 @@ Public Class OrderGridReport
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
-
+            If FRMSTRING = "SO" Then
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -374,7 +477,11 @@ Public Class OrderGridReport
 
 
 
-            DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ALLSALEORDER.SO_NO AS ORDERNO ", " ", " ALLSALEORDER ", " AND ALLSALEORDER.SO_YEARID = " & YearId & " ORDER BY ALLSALEORDER.SO_NO ")
+            If FRMSTRING = "SO" Then
+                DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ALLSALEORDER.SO_NO AS ORDERNO ", " ", " ALLSALEORDER ", " AND ALLSALEORDER.SO_YEARID = " & YearId & " ORDER BY ALLSALEORDER.SO_NO ")
+            ElseIf FRMSTRING = "PO" Then
+                DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ALLSALEORDER.SO_NO AS ORDERNO ", " ", " ALLSALEORDER ", " AND ALLSALEORDER.SO_YEARID = " & YearId & " ORDER BY ALLSALEORDER.SO_NO ")
+            End If
             If DT.Rows.Count > 0 Then
                 GRIDBILLORDER.FocusedRowHandle = GRIDBILLORDER.RowCount - 1
             End If

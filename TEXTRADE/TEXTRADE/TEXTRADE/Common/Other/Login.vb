@@ -906,6 +906,7 @@ line1:
                     HIDESAMPLEMODULE = False
                     HIDECATALOG = False
                     HIDEDYEINGPROGRAM = False
+                    HIDESTORES = False
                     HIGHVERSION = True
                     If Now.Date > DateTime.Parse("15.04.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
@@ -1023,7 +1024,7 @@ line1:
                     GoTo LINE1
                 End If
 
-                If DT.Rows(0).Item("VERSION") <> "1.0.095" Then
+                If DT.Rows(0).Item("VERSION") <> "1.0.096" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)
 LINE1:
                     MsgBox(" VERSION EXPIRED PLEASE CONTACT NAKODA INFOTECH ON 02249724411", MsgBoxStyle.Critical)
