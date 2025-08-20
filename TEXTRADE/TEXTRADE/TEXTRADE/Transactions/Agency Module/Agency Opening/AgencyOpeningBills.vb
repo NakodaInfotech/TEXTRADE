@@ -813,7 +813,7 @@ Public Class AgencyOpeningBills
                 Exit Sub
             End If
 
-            If TXTSRNO.Text.Trim.Length > 0 And Val(TXTAMT.Text) > 0 And TXTBILLNO.Text.Trim <> "" And TXTYEAR.Text.Trim <> "" And CMBTYPE.Text <> "" Then
+            If TXTSRNO.Text.Trim.Length > 0 And Val(TXTAMT.Text) > 0 And TXTBILLNO.Text.Trim <> "" And TXTYEAR.Text.Trim <> "" And CMBTYPE.Text <> "" And CMBDELIVERYAT.Text <> "" Then
                 FILLGRID()
             End If
 
