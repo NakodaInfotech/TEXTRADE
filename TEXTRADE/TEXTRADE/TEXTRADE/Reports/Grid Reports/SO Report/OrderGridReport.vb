@@ -238,13 +238,6 @@ Public Class OrderGridReport
 
             End If
 
-
-
-
-
-
-
-
             GRIDSO.RowCount = 0
             Dim OBJCMN As New ClsCommon
             Dim LASTITEMNAME As String = ""
