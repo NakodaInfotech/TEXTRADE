@@ -41,7 +41,7 @@ Public Class AgencyCreditNote
             edit = False
             'cmbregister.Enabled = True
             'cmbregister.Focus()
-            CMBNAME.Focus()
+            CMBDEBITLEDGER.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -1256,9 +1256,8 @@ LINE1:
                 FILLGRIDINVOICE()
             Else
 
-                MsgBox("Please Fill Saller Name", MsgBoxStyle.Critical)
+                MsgBox("Please Fill Seller Name", MsgBoxStyle.Critical)
                 CMBDEBITLEDGER.Focus()
-                ' Exit Sub
             End If
 
         Catch ex As Exception

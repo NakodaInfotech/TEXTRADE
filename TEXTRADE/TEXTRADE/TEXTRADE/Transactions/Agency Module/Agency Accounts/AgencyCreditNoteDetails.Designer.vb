@@ -226,9 +226,9 @@ Partial Class AgencyCreditNoteDetails
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Name"
+        Me.GNAME.Caption = " Buyer Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -238,10 +238,10 @@ Partial Class AgencyCreditNoteDetails
         '
         Me.GBILLNO.Caption = "Bill No"
         Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.ImageIndex = 1
+        Me.GBILLNO.ImageOptions.ImageIndex = 1
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.Visible = True
-        Me.GBILLNO.VisibleIndex = 4
+        Me.GBILLNO.VisibleIndex = 5
         Me.GBILLNO.Width = 150
         '
         'GAGENT
@@ -250,7 +250,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 9
+        Me.GAGENT.VisibleIndex = 10
         Me.GAGENT.Width = 120
         '
         'GGSTIN
@@ -259,7 +259,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GGSTIN.FieldName = "GSTIN"
         Me.GGSTIN.Name = "GGSTIN"
         Me.GGSTIN.Visible = True
-        Me.GGSTIN.VisibleIndex = 5
+        Me.GGSTIN.VisibleIndex = 6
         Me.GGSTIN.Width = 100
         '
         'GSTATENAME
@@ -268,7 +268,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GSTATENAME.FieldName = "STATENAME"
         Me.GSTATENAME.Name = "GSTATENAME"
         Me.GSTATENAME.Visible = True
-        Me.GSTATENAME.VisibleIndex = 6
+        Me.GSTATENAME.VisibleIndex = 7
         '
         'GSTATECODE
         '
@@ -276,7 +276,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GSTATECODE.FieldName = "STATECODE"
         Me.GSTATECODE.Name = "GSTATECODE"
         Me.GSTATECODE.Visible = True
-        Me.GSTATECODE.VisibleIndex = 7
+        Me.GSTATECODE.VisibleIndex = 8
         Me.GSTATECODE.Width = 40
         '
         'GPARTYREFNO
@@ -285,7 +285,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GPARTYREFNO.FieldName = "PARTYREFNO"
         Me.GPARTYREFNO.Name = "GPARTYREFNO"
         Me.GPARTYREFNO.Visible = True
-        Me.GPARTYREFNO.VisibleIndex = 8
+        Me.GPARTYREFNO.VisibleIndex = 9
         '
         'GHSNITEMDESC
         '
@@ -293,7 +293,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GHSNITEMDESC.FieldName = "HSNITEMDESC"
         Me.GHSNITEMDESC.Name = "GHSNITEMDESC"
         Me.GHSNITEMDESC.Visible = True
-        Me.GHSNITEMDESC.VisibleIndex = 10
+        Me.GHSNITEMDESC.VisibleIndex = 11
         Me.GHSNITEMDESC.Width = 80
         '
         'GHSNCODE
@@ -302,17 +302,17 @@ Partial Class AgencyCreditNoteDetails
         Me.GHSNCODE.FieldName = "HSNCODE"
         Me.GHSNCODE.Name = "GHSNCODE"
         Me.GHSNCODE.Visible = True
-        Me.GHSNCODE.VisibleIndex = 11
+        Me.GHSNCODE.VisibleIndex = 12
         Me.GHSNCODE.Width = 60
         '
         'GDEBITNAME
         '
-        Me.GDEBITNAME.Caption = "Debit Name"
+        Me.GDEBITNAME.Caption = "Seller Name"
         Me.GDEBITNAME.FieldName = "DEBITNAME"
         Me.GDEBITNAME.Name = "GDEBITNAME"
         Me.GDEBITNAME.Visible = True
-        Me.GDEBITNAME.VisibleIndex = 12
-        Me.GDEBITNAME.Width = 150
+        Me.GDEBITNAME.VisibleIndex = 4
+        Me.GDEBITNAME.Width = 250
         '
         'GDELIVERYAT
         '

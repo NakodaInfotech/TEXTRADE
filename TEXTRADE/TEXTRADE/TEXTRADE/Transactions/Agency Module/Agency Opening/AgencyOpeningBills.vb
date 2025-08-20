@@ -275,9 +275,8 @@ Public Class AgencyOpeningBills
 
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             If CMBNAME.Text.Trim <> "" Then ledgervalidate(CMBNAME, CMBACCCODE, e, Me, TXTADD, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS')and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If TXTBILLNO.Text.Trim = "" And CMBNAME.Text.Trim <> "" And CMBDELIVERYAT.Text.Trim <> "" Then
+            If TXTBILLNO.Text.Trim = "" And CMBNAME.Text.Trim <> "" Then
                 FILLGRIDOPENING()
             End If
         Catch ex As Exception
@@ -814,7 +813,7 @@ Public Class AgencyOpeningBills
                 Exit Sub
             End If
 
-            If TXTSRNO.Text.Trim.Length > 0 And Val(TXTAMT.Text) > 0 And TXTBILLNO.Text.Trim <> "" And TXTYEAR.Text.Trim <> "" And CMBTYPE.Text <> "" Then
+            If TXTSRNO.Text.Trim.Length > 0 And Val(TXTAMT.Text) > 0 And TXTBILLNO.Text.Trim <> "" And TXTYEAR.Text.Trim <> "" And CMBTYPE.Text <> "" And CMBDELIVERYAT.Text <> "" Then
                 FILLGRID()
             End If
 
