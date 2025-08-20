@@ -69,7 +69,7 @@ Public Class AgencyShowRecPay
 
 
 
-                If ROW.Cells(4).Value.ToString = "RECEIPT" Then
+                If ROW.Cells(3).Value.ToString = "RECEIPT" Then
 
                     Dim OBJREC As New AgencyReceipt
                     OBJREC.MdiParent = MDIMain
@@ -79,7 +79,7 @@ Public Class AgencyShowRecPay
                     OBJREC.Show()
 
 
-                ElseIf ROW.Cells(4).Value.ToString = "CREDITNOTE" Then
+                ElseIf ROW.Cells(3).Value.ToString = "CREDITNOTE" Then
 
                     Dim OBJCN As New AgencyCreditNote
                     OBJCN.MdiParent = MDIMain
@@ -90,7 +90,7 @@ Public Class AgencyShowRecPay
 
 
 
-                ElseIf ROW.Cells(4).Value.ToString = "SALERETURN" Then
+                ElseIf ROW.Cells(3).Value.ToString = "SALERETURN" Then
 
                     Dim OBJSR As New AgencySaleReturn
                     OBJSR.MdiParent = MDIMain
