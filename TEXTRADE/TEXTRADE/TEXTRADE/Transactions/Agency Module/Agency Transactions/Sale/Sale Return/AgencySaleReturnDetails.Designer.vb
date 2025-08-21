@@ -83,6 +83,8 @@ Partial Class AgencySaleReturnDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.GFROMCITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,7 +224,7 @@ Partial Class AgencySaleReturnDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GAGENT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTAXABLEAMT, Me.CGSTAMT, Me.SGSTAMT, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GACTUALINVNO, Me.GACTUALINVDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GCOSTCENTERNAME, Me.GCREATEDBY})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GAGENT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTAXABLEAMT, Me.CGSTAMT, Me.SGSTAMT, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GACTUALINVNO, Me.GACTUALINVDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GFROMCITY, Me.GTOCITY})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -265,7 +267,7 @@ Partial Class AgencySaleReturnDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -684,6 +686,22 @@ Partial Class AgencySaleReturnDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GFROMCITY
+        '
+        Me.GFROMCITY.Caption = "From City"
+        Me.GFROMCITY.FieldName = "FROMCITY"
+        Me.GFROMCITY.Name = "GFROMCITY"
+        Me.GFROMCITY.Visible = True
+        Me.GFROMCITY.VisibleIndex = 33
+        '
+        'GTOCITY
+        '
+        Me.GTOCITY.Caption = "To City"
+        Me.GTOCITY.FieldName = "TOCITY"
+        Me.GTOCITY.Name = "GTOCITY"
+        Me.GTOCITY.Visible = True
+        Me.GTOCITY.VisibleIndex = 34
+        '
         'AgencySaleReturnDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -765,4 +783,6 @@ Partial Class AgencySaleReturnDetails
     Friend WithEvents lbl As Label
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents GFROMCITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOCITY As DevExpress.XtraGrid.Columns.GridColumn
 End Class
