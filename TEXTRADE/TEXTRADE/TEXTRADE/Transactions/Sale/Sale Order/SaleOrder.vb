@@ -1206,7 +1206,9 @@ line1:
             'GET BALANCE BALES AND GETSTOCK
             If e.RowIndex >= 0 Then
                 GETPENDINGBALES(e.RowIndex)
-                GETSTOCK(GRIDSO.CurrentRow.Cells(gitemname.Index).Value, GRIDSO.CurrentRow.Cells(GDESIGN.Index).Value, GRIDSO.CurrentRow.Cells(gcolor.Index).Value)
+                If ClientName <> "AVIS" Then
+                    GETSTOCK(GRIDSO.CurrentRow.Cells(gitemname.Index).Value, GRIDSO.CurrentRow.Cells(GDESIGN.Index).Value, GRIDSO.CurrentRow.Cells(gcolor.Index).Value)
+                End If
             End If
 
             'GET LAST RATE OF SELECTED ITEM FOR SELECTED PARTY
