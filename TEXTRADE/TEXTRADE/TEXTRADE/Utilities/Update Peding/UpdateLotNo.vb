@@ -57,6 +57,8 @@ Public Class UpdateLotNo
             ElseIf CMBTYPE.Text.Trim = "JOBOUT" Then
                 DT = OBJCMN.Execute_Any_String(" UPDATE JOBOUT SET JOBOUT.JO_LOTNO = '" & TXTLOTNO.Text.Trim & "', JO_LEDGERID = " & DTLEDGER.Rows(0).Item("LEDGERID") & " WHERE JOBOUT.JO_NO = " & Val(TXTGRNNO.Text.Trim) & " And JOBOUT.JO_YEARID = " & YearId, "", "")
                 DT = OBJCMN.Execute_Any_String(" UPDATE JOBIN SET JOBIN.JI_LOTNO = '" & TXTLOTNO.Text.Trim & "', JI_LEDGERID = " & DTLEDGER.Rows(0).Item("LEDGERID") & " WHERE JOBIN.JI_JOBOUTNO = " & Val(TXTGRNNO.Text.Trim) & " And JOBIN.JI_YEARID = " & YearId, "", "")
+            ElseIf CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+                DT = OBJCMN.Execute_Any_String("  UPDATE GREYISSUEPROCESS SET GREYISSUEPROCESS.GREYISS_REFLOTNO = '" & TXTLOTNO.Text.Trim & "'  WHERE GREYISSUEPROCESS.GREYISS_NO = '" & TXTGRNNO.Text.Trim & "' And GREYISSUEPROCESS.GREYISS_YEARID = " & YearId, "", "")
             Else
                 DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET STOCKMASTER.SM_LOTNO = '" & TXTLOTNO.Text.Trim & "', SM_LEDGERIDTO = " & DTLEDGER.Rows(0).Item("LEDGERID") & " WHERE STOCKMASTER.SM_PARTYCHALLANNO = '" & TXTGRNNO.Text.Trim & "' And STOCKMASTER.SM_YEARID = " & YearId, "", "")
             End If
@@ -81,12 +83,19 @@ Public Class UpdateLotNo
         Dim DTTABLE As New DataTable
 
         'CHECK WHETHER MTRS ARE RECD FROM JOBBER OR NOT, IF RECD THEN DONT ALLOW TO UPDATE
-        DTTABLE = OBJCMN.SEARCH("ISNULL(LOT_VIEW.RECDMTRS,0) AS RECDMTRS, ISNULL(LOT_VIEW.LOTNO, '') AS LOTNO", "", "LOT_VIEW", " AND LOT_VIEW.GRNNO = " & Val(TXTGRNNO.Text.Trim) & " AND JOBBERNAME = '" & CMBDYEING.Text.Trim & "' AND GRNTYPE = CASE WHEN '" & CMBTYPE.Text.Trim & "' = 'GRN' THEN 'CHECKING' WHEN '" & CMBTYPE.Text.Trim & "' = 'JOBOUT' THEN 'JOBOUT' ELSE 'OPENING' END AND YEARID = " & YearId)
-        If DTTABLE.Rows.Count > 0 AndAlso Val(DTTABLE.Rows(0).Item("RECDMTRS")) > 0 And (DTTABLE.Rows(0).Item("LOTNO")) <> "" Then
-            EP.SetError(TXTGRNNO, "Unable to Update Lot No, Material Recd")
-            bln = False
+        If CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+            DTTABLE = OBJCMN.SEARCH("ISNULL(GREYISSUEPROCESS_DESC.GREYISS_OUTMTRS, 0) AS RECDMTRS, ISNULL(GREYISSUEPROCESS.GREYISS_REFLOTNO, '') AS LOTNO, ISNULL(LEDGERS.Acc_cmpname, '') AS JOBBERNAME", "", "GREYISSUEPROCESS INNER JOIN GREYISSUEPROCESS_DESC ON GREYISSUEPROCESS.GREYISS_NO = GREYISSUEPROCESS_DESC.GREYISS_NO AND GREYISSUEPROCESS.GREYISS_YEARID = GREYISSUEPROCESS_DESC.GREYISS_YEARID LEFT OUTER JOIN LEDGERS ON GREYISSUEPROCESS.GREYISS_LEDGERID = LEDGERS.Acc_id", " AND GREYISSUEPROCESS.GREYISS_NO = " & Val(TXTGRNNO.Text.Trim) & " AND LEDGERS.Acc_cmpname = '" & CMBDYEING.Text.Trim & "'  AND GREYISSUEPROCESS_DESC.GREYISS_FROMTYPE IN ('GREYREC', 'OPENING') AND GREYISSUEPROCESS.GREYISS_YEARID = " & YearId)
+            If DTTABLE.Rows.Count > 0 AndAlso Val(DTTABLE.Rows(0).Item("RECDMTRS")) > 0 And (DTTABLE.Rows(0).Item("LOTNO")) <> "" Then
+                EP.SetError(TXTGRNNO, "Unable to Update Lot No, Material Recd")
+                bln = False
+            End If
+        Else
+            DTTABLE = OBJCMN.SEARCH("ISNULL(LOT_VIEW.RECDMTRS,0) AS RECDMTRS, ISNULL(LOT_VIEW.LOTNO, '') AS LOTNO", "", "LOT_VIEW", " AND LOT_VIEW.GRNNO = " & Val(TXTGRNNO.Text.Trim) & " AND JOBBERNAME = '" & CMBDYEING.Text.Trim & "' AND GRNTYPE = CASE WHEN '" & CMBTYPE.Text.Trim & "' = 'GRN' THEN 'CHECKING' WHEN '" & CMBTYPE.Text.Trim & "' = 'JOBOUT' THEN 'JOBOUT' ELSE 'OPENING' END AND YEARID = " & YearId)
+            If DTTABLE.Rows.Count > 0 AndAlso Val(DTTABLE.Rows(0).Item("RECDMTRS")) > 0 And (DTTABLE.Rows(0).Item("LOTNO")) <> "" Then
+                EP.SetError(TXTGRNNO, "Unable to Update Lot No, Material Recd")
+                bln = False
+            End If
         End If
-
 
         If Val(TXTGRNNO.Text.Trim) <> 0 Then
             If CMBTYPE.Text.Trim = "GRN" Then
@@ -101,6 +110,14 @@ Public Class UpdateLotNo
                     If Val(TXTGRNNO.Text.Trim) <> 0 Then EP.SetError(TXTGRNNO, "Job In Done or Lot Locked")
                     bln = False
                 End If
+
+            ElseIf CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+                DTTABLE = OBJCMN.SEARCH(" ISNULL(GREYISSUEPROCESS.GREYISS_NO, 0) AS GRNNO, ISNULL(GREYISSUEPROCESS.GREYISS_REFLOTNO, '0') AS LOTNO, ISNULL(GREYISSUEPROCESS_DESC.GREYISS_OUTMTRS, 0) AS RECDMTRS ", "", " GREYISSUEPROCESS INNER JOIN GREYISSUEPROCESS_DESC ON GREYISSUEPROCESS.GREYISS_NO = GREYISSUEPROCESS_DESC.GREYISS_NO AND GREYISSUEPROCESS.GREYISS_YEARID = GREYISSUEPROCESS_DESC.GREYISS_YEARID ", " AND GREYISSUEPROCESS.GREYISS_NO = " & Val(TXTGRNNO.Text.Trim) & " AND GREYISSUEPROCESS.GREYISS_YEARID = " & YearId)
+                If DTTABLE.Rows.Count > 0 AndAlso (Val(DTTABLE.Rows(0).Item("RECDMTRS")) > 0) And (DTTABLE.Rows(0).Item("LOTNO")) <> "" Then
+                    If Val(TXTGRNNO.Text.Trim) <> 0 Then EP.SetError(TXTGRNNO, "Unable to Update Lot No, Material Recd")
+                    bln = False
+                End If
+
             Else
                 'DTTABLE = OBJCMN.SEARCH(" ISNULL(STOCKMASTER.SM_NO, 0) AS SMNO, ISNULL(JOBOUT.JO_LOTNO, '0') AS LOTNO, ISNULL(JOBOUT.JO_RECDMTRS, 0) AS RECDMTRS, ISNULL(JOBOUT.JO_LOTCOMPLETED, 0) AS LOTCOMPLETED", "", " JOBOUT INNER JOIN JOBOUT_DESC ON JOBOUT.JO_NO = JOBOUT_DESC.JO_NO AND JOBOUT.JO_YEARID = JOBOUT_DESC.JO_YEARID ", " AND JOBOUT.JO_NO = " & Val(TXTGRNNO.Text.Trim) & " AND JOBOUT.JO_YEARID = " & YearId)
                 'If DTTABLE.Rows.Count > 0 AndAlso (Val(DTTABLE.Rows(0).Item("RECDMTRS")) > 0 Or Convert.ToBoolean(DTTABLE.Rows(0).Item("LOTCOMPLETED")) = True) Then
@@ -131,6 +148,14 @@ Public Class UpdateLotNo
                         End If
                     End If
 
+                ElseIf CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+                    DT = OBJCMN.SEARCH(" GREYISS_NO AS GREYISSNO ", "", " GREYISSUEPROCESS INNER JOIN LEDGERS ON GREYISS_LEDGERID = ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBDYEING.Text.Trim & "' AND GREYISS_REFLOTNO = '" & TXTLOTNO.Text.Trim & "' AND GREYISS_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        If Val(DT.Rows(0).Item(0)) <> Val(TXTGRNNO.Text.Trim) Then
+                            MsgBox("RefLot No Already Exists in Grey Issue in Godown No " & DT.Rows(0).Item(0), MsgBoxStyle.Critical)
+                            bln = False
+                        End If
+                    End If
                 Else
                     DT = OBJCMN.SEARCH(" SM_PARTYCHALLANNO AS GRNNO ", "", " STOCKMASTER INNER JOIN LEDGERS ON SM_LEDGERIDTO = ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBDYEING.Text.Trim & "' AND SM_LOTNO = '" & TXTLOTNO.Text.Trim & "' AND SM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
@@ -218,6 +243,20 @@ Public Class UpdateLotNo
                         RECDATE.Text = Convert.ToDateTime(DT.Rows(0).Item("RECDATE")).Date
                     End If
 
+                ElseIf CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, ISNULL(GREYISSUEPROCESS.GREYISS_CHALLANNO,'') AS CHALLANNO, ISNULL(ITEMMASTER.ITEM_NAME,'') AS ITEMNAME, ISNULL(GREYISSUEPROCESS.GREYISS_TOTALQTY,0) AS PCS, ISNULL(GREYISSUEPROCESS.GREYISS_TOTALMTRS,0) AS MTRS, ISNULL(LEDGERS.ACC_CMPNAME,'') AS DYEINGNAME, GREYISS_DATE AS RECDATE, ISNULL(GREYISSUEPROCESS.GREYISS_REFLOTNO,'') AS LOTNO ", "", "GREYISSUEPROCESS INNER JOIN LEDGERS ON GREYISSUEPROCESS.GREYISS_LEDGERID = LEDGERS.ACC_ID INNER JOIN GREYISSUEPROCESS_DESC ON GREYISSUEPROCESS.GREYISS_NO = GREYISSUEPROCESS_DESC.GREYISS_NO AND GREYISSUEPROCESS.GREYISS_YEARID = GREYISSUEPROCESS_DESC.GREYISS_YEARID LEFT OUTER JOIN ITEMMASTER ON GREYISSUEPROCESS_DESC.GREYISS_ITEMID = ITEMMASTER.ITEM_ID", " AND GREYISSUEPROCESS.GREYISS_NO = " & Val(TXTGRNNO.Text.Trim) & " AND GREYISSUEPROCESS.GREYISS_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        TXTNAME.Text = DT.Rows(0).Item("NAME")
+                        TXTCHALLANNO.Text = DT.Rows(0).Item("CHALLANNO")
+                        TXTITEMNAME.Text = DT.Rows(0).Item("ITEMNAME")
+                        TXTPCS.Text = Val(DT.Rows(0).Item("PCS"))
+                        TXTMTRS.Text = Val(DT.Rows(0).Item("MTRS"))
+                        TXTDYEINGNAME.Text = DT.Rows(0).Item("DYEINGNAME")
+                        CMBDYEING.Text = DT.Rows(0).Item("DYEINGNAME")
+                        TXTLOTNO.Text = DT.Rows(0).Item("LOTNO")
+                        RECDATE.Text = Convert.ToDateTime(DT.Rows(0).Item("RECDATE")).Date
+                    End If
                 Else
 
                     'GET DYEING NAME
@@ -292,6 +331,15 @@ Public Class UpdateLotNo
                         End If
                     End If
 
+                ElseIf CMBTYPE.Text.Trim = "GREYRECINGODOWN" Then
+                    DT = OBJCMN.SEARCH(" GREYISS_NO AS GREYISSNO ", "", " GREYISSUEPROCESS INNER JOIN LEDGERS ON GREYISS_LEDGERID = ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBDYEING.Text.Trim & "' AND GREYISS_REFLOTNO = '" & TXTLOTNO.Text.Trim & "' AND GREYISS_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        If Val(DT.Rows(0).Item(0)) <> Val(TXTGRNNO.Text.Trim) Then
+                            MsgBox("Ref Lot No Already Exists in Grey Issue No " & DT.Rows(0).Item(0), MsgBoxStyle.Critical)
+                            e.Cancel = True
+                            Exit Sub
+                        End If
+                    End If
                 Else
                     DT = OBJCMN.SEARCH(" SM_PARTYCHALLANNO AS GRNNO ", "", " STOCKMASTER INNER JOIN LEDGERS ON SM_LEDGERIDTO = ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBDYEING.Text.Trim & "' AND SM_LOTNO = '" & TXTLOTNO.Text.Trim & "' AND SM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
