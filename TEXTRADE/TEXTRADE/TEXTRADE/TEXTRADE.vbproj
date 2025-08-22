@@ -311,6 +311,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Common\Filters\AgencyOutstandingfilter.Designer.vb">
+      <DependentUpon>AgencyOutstandingfilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Filters\AgencyOutstandingfilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\CatalogFilter.Designer.vb">
       <DependentUpon>CatalogFilter.vb</DependentUpon>
     </Compile>
@@ -8481,6 +8487,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Common\Filters\AgencyOutstandingfilter.resx">
+      <DependentUpon>AgencyOutstandingfilter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\CatalogFilter.resx">
       <DependentUpon>CatalogFilter.vb</DependentUpon>
     </EmbeddedResource>

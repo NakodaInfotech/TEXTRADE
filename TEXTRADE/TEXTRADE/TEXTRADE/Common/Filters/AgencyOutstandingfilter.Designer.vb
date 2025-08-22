@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class OutstandingFilter
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class AgencyOutstandingfilter
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,8 @@ Partial Class OutstandingFilter
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
         Me.CMDMAIL = New System.Windows.Forms.Button()
         Me.CHKMSME = New System.Windows.Forms.CheckBox()
@@ -118,7 +117,6 @@ Partial Class OutstandingFilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,12 +130,6 @@ Partial Class OutstandingFilter
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
         'BlendPanel2
         '
@@ -190,7 +182,7 @@ Partial Class OutstandingFilter
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
         Me.BlendPanel2.Size = New System.Drawing.Size(1084, 583)
-        Me.BlendPanel2.TabIndex = 0
+        Me.BlendPanel2.TabIndex = 1
         '
         'CMDMAIL
         '
@@ -236,12 +228,13 @@ Partial Class OutstandingFilter
         Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
         Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(459, 543)
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(373, 543)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
         Me.CMDWHATSAPP.TabIndex = 723
         Me.CMDWHATSAPP.Text = "&What's App"
         Me.CMDWHATSAPP.UseVisualStyleBackColor = False
+        Me.CMDWHATSAPP.Visible = False
         '
         'Label12
         '
@@ -406,7 +399,6 @@ Partial Class OutstandingFilter
         '
         'GridColumn1
         '
-        Me.GridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumn1.FieldName = "CHK"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ShowCaption = False
@@ -546,6 +538,7 @@ Partial Class OutstandingFilter
         Me.GroupBox4.TabIndex = 11
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Selection"
+        Me.GroupBox4.Visible = False
         '
         'CHKSELECTALL
         '
@@ -1196,7 +1189,7 @@ Partial Class OutstandingFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.Black
-        Me.cmdshow.Location = New System.Drawing.Point(368, 543)
+        Me.cmdshow.Location = New System.Drawing.Point(456, 543)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(85, 28)
         Me.cmdshow.TabIndex = 15
@@ -1224,18 +1217,18 @@ Partial Class OutstandingFilter
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'OutstandingFilter
+        'AgencyOutstandingfilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1084, 583)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "OutstandingFilter"
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Name = "AgencyOutstandingfilter"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Outstanding Filter"
+        Me.Text = "Agency Outstanding filter"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel2.ResumeLayout(False)
         Me.BlendPanel2.PerformLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1258,100 +1251,100 @@ Partial Class OutstandingFilter
         Me.ResumeLayout(False)
 
     End Sub
+
     Friend WithEvents BlendPanel2 As VbPowerPack.BlendPanel
-    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents RBOUTSTANDING As System.Windows.Forms.RadioButton
-    Friend WithEvents RBINVENTORY As System.Windows.Forms.RadioButton
-    Friend WithEvents RBINT As System.Windows.Forms.RadioButton
-    Friend WithEvents RBALL As System.Windows.Forms.RadioButton
-    Friend WithEvents cmbacccode As System.Windows.Forms.ComboBox
-    Friend WithEvents txtadd As System.Windows.Forms.TextBox
-    Friend WithEvents chkdate As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents dtto As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents dtfrom As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents CMBPARTYNAME As System.Windows.Forms.ComboBox
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents cmdshow As System.Windows.Forms.Button
-    Friend WithEvents cmdexit As System.Windows.Forms.Button
-    Friend WithEvents RBPAYABLE As System.Windows.Forms.RadioButton
-    Friend WithEvents RBREC As System.Windows.Forms.RadioButton
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents RBDUEDATE As System.Windows.Forms.RadioButton
-    Friend WithEvents RBBILLDATE As System.Windows.Forms.RadioButton
-    Friend WithEvents CHKADDRESS As System.Windows.Forms.CheckBox
-    Friend WithEvents CHKSUMMARY As System.Windows.Forms.CheckBox
-    Friend WithEvents CHKGROUPONNEWPG As System.Windows.Forms.CheckBox
-    Friend WithEvents CMBGROUP As System.Windows.Forms.ComboBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents RBOUTSTANDINGBILLS As System.Windows.Forms.RadioButton
-    Friend WithEvents RBALLBILLS As System.Windows.Forms.RadioButton
-    Friend WithEvents TXTDAYS As System.Windows.Forms.TextBox
-    Friend WithEvents TXTINTEREST As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents RBREMINDER As System.Windows.Forms.RadioButton
-    Friend WithEvents CHKPRINTDATE As System.Windows.Forms.CheckBox
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
-    Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
-    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Private WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNDER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents RBSELECTED As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
-    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
-    Friend WithEvents RBGROUP As System.Windows.Forms.RadioButton
-    Friend WithEvents RBACCOUNT As System.Windows.Forms.RadioButton
-    Friend WithEvents CHKSELECTALL As System.Windows.Forms.CheckBox
-    Friend WithEvents RBBROKEROUTSTANDING As System.Windows.Forms.RadioButton
-    Friend WithEvents CMBBROKERNAME As System.Windows.Forms.ComboBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents CHKPARTPAYMENT As System.Windows.Forms.CheckBox
-    Friend WithEvents RBOLDNEWREPORT As System.Windows.Forms.RadioButton
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents TXTOVERDUEDAYS As System.Windows.Forms.TextBox
-    Friend WithEvents GAREA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDMAIL As Button
+    Friend WithEvents CHKMSME As CheckBox
+    Friend WithEvents LSTCMP As CheckedListBox
+    Friend WithEvents CMDWHATSAPP As Button
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents CMBDELIVERYAT As ComboBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents cmbregister As ComboBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents RBALLBILLS As RadioButton
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TXTOVERDUEDAYSLESS As TextBox
+    Friend WithEvents CHKPDC As CheckBox
+    Friend WithEvents CHKNARRATION As CheckBox
+    Friend WithEvents CHKSELECTBILL As CheckBox
     Private WithEvents GBILLDETAILS As DevExpress.XtraGrid.GridControl
     Private WithEvents GBILL As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GBILLINITIALS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBILLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGTOTAL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents CHKSELECTBILL As CheckBox
-    Friend WithEvents CHKNARRATION As CheckBox
-    Friend WithEvents GSTATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CHKPDC As CheckBox
-    Friend WithEvents RBOUTSTANDINGRUNBAL As RadioButton
-    Friend WithEvents Label8 As Label
-    Friend WithEvents TXTOVERDUEDAYSLESS As TextBox
-    Friend WithEvents RBBROKERINVENTORY As RadioButton
-    Friend WithEvents cmbregister As ComboBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents CMBDELIVERYAT As ComboBox
-    Friend WithEvents Label11 As Label
-    Friend WithEvents RBAGENT As RadioButton
-    Friend WithEvents GSALESPERSON As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RBAGEING As RadioButton
-    Friend WithEvents Label12 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents LSTCMP As CheckedListBox
-    Friend WithEvents RBBROKERINVENTORYRUNBAL As RadioButton
-    Friend WithEvents CHKMSME As CheckBox
-    Friend WithEvents GGOC As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CMDWHATSAPP As Button
-    Friend WithEvents CMDMAIL As Button
-    Friend WithEvents PRINTDIALOG As PrintDialog
-    Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
-    Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TXTOVERDUEDAYS As TextBox
+    Friend WithEvents CHKPARTPAYMENT As CheckBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents RBDUEDATE As RadioButton
+    Friend WithEvents RBBILLDATE As RadioButton
+    Friend WithEvents CMBBROKERNAME As ComboBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents CHKSELECTALL As CheckBox
+    Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENTWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GUNDER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAREA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSTATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSALESPERSON As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGOC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENTEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYEMAIL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents RBSELECTED As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents RBAGENT As RadioButton
+    Friend WithEvents RBGROUP As RadioButton
+    Friend WithEvents RBACCOUNT As RadioButton
+    Friend WithEvents CHKPRINTDATE As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TXTDAYS As TextBox
+    Friend WithEvents TXTINTEREST As TextBox
+    Friend WithEvents CMBGROUP As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents CHKGROUPONNEWPG As CheckBox
+    Friend WithEvents CHKADDRESS As CheckBox
+    Friend WithEvents CHKSUMMARY As CheckBox
+    Friend WithEvents RBPAYABLE As RadioButton
+    Friend WithEvents RBREC As RadioButton
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents RBBROKERINVENTORYRUNBAL As RadioButton
+    Friend WithEvents RBAGEING As RadioButton
+    Friend WithEvents RBBROKERINVENTORY As RadioButton
+    Friend WithEvents RBOUTSTANDINGRUNBAL As RadioButton
+    Friend WithEvents RBOLDNEWREPORT As RadioButton
+    Friend WithEvents RBBROKEROUTSTANDING As RadioButton
+    Friend WithEvents RBREMINDER As RadioButton
+    Friend WithEvents RBOUTSTANDINGBILLS As RadioButton
+    Friend WithEvents RBOUTSTANDING As RadioButton
+    Friend WithEvents RBINVENTORY As RadioButton
+    Friend WithEvents RBINT As RadioButton
+    Friend WithEvents RBALL As RadioButton
+    Friend WithEvents cmbacccode As ComboBox
+    Friend WithEvents txtadd As TextBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents dtto As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents dtfrom As DateTimePicker
+    Friend WithEvents Label7 As Label
+    Friend WithEvents chkdate As CheckBox
+    Friend WithEvents CMBPARTYNAME As ComboBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cmdshow As Button
+    Friend WithEvents cmdexit As Button
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
 End Class

@@ -10528,5 +10528,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AGENCYOUTSTANDING_MENU_Click(sender As Object, e As EventArgs) Handles AGENCYOUTSTANDING_MENU.Click
+        Try
+            Dim OBJMB As New AgencyOutstandingfilter
+            OBJMB.MdiParent = Me
+            OBJMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
