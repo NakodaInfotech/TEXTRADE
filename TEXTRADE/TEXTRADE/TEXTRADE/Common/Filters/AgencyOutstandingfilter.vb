@@ -275,6 +275,7 @@ Public Class AgencyOutstandingfilter
                 If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and (({@DAYS} >= " & Val(TXTOVERDUEDAYS.Text.Trim) & " AND {OUTSTANDINGREPORT_DETAILS.TYPE} <> 'RECEIPT') OR ({OUTSTANDINGREPORT_DETAILS.TYPE} = 'RECEIPT'))"
                 If Val(TXTOVERDUEDAYSLESS.Text.Trim) > 0 Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {@DAYS} <= " & Val(TXTOVERDUEDAYSLESS.Text.Trim)
                 If CMBBROKERNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.AGENT} = '" & CMBBROKERNAME.Text.Trim & "'"
+                If CMBSELLERNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.ACCOUNTS}= '" & CMBSELLERNAME.Text.Trim & "'"
                 'If CHKSUMMARY.CheckState = CheckState.Checked Then
                 '    If RBREC.Checked = True Then OBJOUTSTAND.FRMSTRING = "OUTSTANDINGRECSUMM" Else OBJOUTSTAND.FRMSTRING = "OUTSTANDINGPAYSUMM"
                 '    OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_ALL.BALANCE}>0"
@@ -282,8 +283,9 @@ Public Class AgencyOutstandingfilter
                 'If RBREC.Checked = True Then OBJOUTSTAND.FRMSTRING = "OUTSTANDINGRECDTLS" Else OBJOUTSTAND.FRMSTRING = "OUTSTANDINGPAYDTLS"
                 OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.BALANCE}>0"
                 'If CMBDELIVERYAT.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.DELIVERYAT}= '" & CMBDELIVERYAT.Text.Trim & "'"
+                If CMBPARTYNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.ACCOUNTS}= '" & CMBPARTYNAME.Text.Trim & "'"
                 If CHKPDC.CheckState = CheckState.Checked Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.CHKPDC}= FALSE"
-                    If CHKPARTPAYMENT.CheckState = CheckState.Checked Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.GRANDTOTAL}>0 and {OUTSTANDINGREPORT_DETAILS.RECAMT}>0"
+                If CHKPARTPAYMENT.CheckState = CheckState.Checked Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.GRANDTOTAL}>0 and {OUTSTANDINGREPORT_DETAILS.RECAMT}>0"
                 'If cmbregister.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.REGTYPE}= '" & cmbregister.Text.Trim & "'"
             End If
             'ElseIf RBINT.Checked = True Then
@@ -308,6 +310,7 @@ Public Class AgencyOutstandingfilter
             'End If
 
             If RBINVENTORY.Checked = True Then
+                If CMBPARTYNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.ACCOUNTS}= '" & CMBPARTYNAME.Text.Trim & "'"
                 If CMBSELLERNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.ACCOUNTS}= '" & CMBSELLERNAME.Text.Trim & "'"
                 If CMBBROKERNAME.Text.Trim <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {OUTSTANDINGREPORT_DETAILS.AGENT} = '" & CMBBROKERNAME.Text.Trim & "'"
                 If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " and {@DAYS} >= " & Val(TXTOVERDUEDAYS.Text.Trim)
