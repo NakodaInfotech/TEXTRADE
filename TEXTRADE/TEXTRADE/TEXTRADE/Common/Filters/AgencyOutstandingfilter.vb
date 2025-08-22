@@ -1,10 +1,10 @@
 ﻿
 
+Imports System.IO
 Imports BL
-    Imports System.IO
-    Imports CrystalDecisions.Shared
-    Imports CrystalDecisions.CrystalReports.Engine
-    Imports DevExpress.XtraGrid.Views.Grid
+Imports CrystalDecisions.CrystalReports.Engine
+Imports CrystalDecisions.Shared
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class AgencyOutstandingfilter
 
@@ -659,7 +659,6 @@ Public Class AgencyOutstandingfilter
             Throw ex
         End Try
     End Sub
-
     Private Sub RBPAYABLE_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RBPAYABLE.CheckedChanged
         FILLGRID()
     End Sub

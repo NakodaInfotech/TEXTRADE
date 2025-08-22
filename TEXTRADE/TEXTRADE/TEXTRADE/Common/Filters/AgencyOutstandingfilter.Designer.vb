@@ -88,8 +88,6 @@ Partial Class AgencyOutstandingfilter
         Me.CHKGROUPONNEWPG = New System.Windows.Forms.CheckBox()
         Me.CHKADDRESS = New System.Windows.Forms.CheckBox()
         Me.CHKSUMMARY = New System.Windows.Forms.CheckBox()
-        Me.RBPAYABLE = New System.Windows.Forms.RadioButton()
-        Me.RBREC = New System.Windows.Forms.RadioButton()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.RBBROKERINVENTORYRUNBAL = New System.Windows.Forms.RadioButton()
         Me.RBAGEING = New System.Windows.Forms.RadioButton()
@@ -117,6 +115,8 @@ Partial Class AgencyOutstandingfilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.RBPAYABLE = New System.Windows.Forms.RadioButton()
+        Me.RBREC = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -895,30 +895,6 @@ Partial Class AgencyOutstandingfilter
         Me.CHKSUMMARY.UseVisualStyleBackColor = False
         Me.CHKSUMMARY.Visible = False
         '
-        'RBPAYABLE
-        '
-        Me.RBPAYABLE.AutoSize = True
-        Me.RBPAYABLE.BackColor = System.Drawing.Color.Transparent
-        Me.RBPAYABLE.Location = New System.Drawing.Point(255, 13)
-        Me.RBPAYABLE.Name = "RBPAYABLE"
-        Me.RBPAYABLE.Size = New System.Drawing.Size(75, 19)
-        Me.RBPAYABLE.TabIndex = 1
-        Me.RBPAYABLE.Text = "Payables"
-        Me.RBPAYABLE.UseVisualStyleBackColor = False
-        '
-        'RBREC
-        '
-        Me.RBREC.AutoSize = True
-        Me.RBREC.BackColor = System.Drawing.Color.Transparent
-        Me.RBREC.Checked = True
-        Me.RBREC.Location = New System.Drawing.Point(161, 13)
-        Me.RBREC.Name = "RBREC"
-        Me.RBREC.Size = New System.Drawing.Size(90, 19)
-        Me.RBREC.TabIndex = 0
-        Me.RBREC.TabStop = True
-        Me.RBREC.Text = "Receivables"
-        Me.RBREC.UseVisualStyleBackColor = False
-        '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
@@ -1217,6 +1193,30 @@ Partial Class AgencyOutstandingfilter
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'RBPAYABLE
+        '
+        Me.RBPAYABLE.AutoSize = True
+        Me.RBPAYABLE.BackColor = System.Drawing.Color.Transparent
+        Me.RBPAYABLE.Location = New System.Drawing.Point(255, 13)
+        Me.RBPAYABLE.Name = "RBPAYABLE"
+        Me.RBPAYABLE.Size = New System.Drawing.Size(75, 19)
+        Me.RBPAYABLE.TabIndex = 1
+        Me.RBPAYABLE.Text = "Payables"
+        Me.RBPAYABLE.UseVisualStyleBackColor = False
+        '
+        'RBREC
+        '
+        Me.RBREC.AutoSize = True
+        Me.RBREC.BackColor = System.Drawing.Color.Transparent
+        Me.RBREC.Checked = True
+        Me.RBREC.Location = New System.Drawing.Point(161, 13)
+        Me.RBREC.Name = "RBREC"
+        Me.RBREC.Size = New System.Drawing.Size(90, 19)
+        Me.RBREC.TabIndex = 0
+        Me.RBREC.TabStop = True
+        Me.RBREC.Text = "Receivables"
+        Me.RBREC.UseVisualStyleBackColor = False
+        '
         'AgencyOutstandingfilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1318,8 +1318,6 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents CHKGROUPONNEWPG As CheckBox
     Friend WithEvents CHKADDRESS As CheckBox
     Friend WithEvents CHKSUMMARY As CheckBox
-    Friend WithEvents RBPAYABLE As RadioButton
-    Friend WithEvents RBREC As RadioButton
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents RBBROKERINVENTORYRUNBAL As RadioButton
     Friend WithEvents RBAGEING As RadioButton
@@ -1347,4 +1345,6 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents cmdexit As Button
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
+    Friend WithEvents RBPAYABLE As RadioButton
+    Friend WithEvents RBREC As RadioButton
 End Class
