@@ -603,6 +603,10 @@ Public Class PurchaseMaster
         'Dim IntResult As Integer
         Try
 
+            'WHILE ADDING COLUMN IN JOBOUT DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            '1) MAGOCBOXINVOICE -- GENERATEPI
+
+
             If ISLOCKYEAR = True Then
                 MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
                 Exit Sub

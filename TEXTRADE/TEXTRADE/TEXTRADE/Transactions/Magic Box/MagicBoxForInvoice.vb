@@ -2,6 +2,8 @@
 Imports System.ComponentModel
 Imports BL
 Imports DevExpress.CodeParser
+Imports DevExpress.DashboardCommon.Viewer
+Imports DevExpress.PivotGrid.OLAP
 
 Public Class MagicBoxForInvoice
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -117,14 +119,6 @@ Public Class MagicBoxForInvoice
                     Next
 
                 End If
-
-
-
-
-
-
-
-
 
                 alParaval.Add("TOTAL GST")
                 alParaval.Add(0)
@@ -340,9 +334,6 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("") 'ORDERPARTYPONO)
 
 
-
-
-
                 Dim objclsPurord As New ClsAgencyInvoiceMaster()
                 objclsPurord.alParaval = alParaval
                 Dim DT As DataTable = objclsPurord.SAVE()
@@ -350,13 +341,13 @@ Public Class MagicBoxForInvoice
 
 
                 'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
-                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE ORDER IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE INVOICE IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
                 Dim OBJCMN As New ClsCommon
                 Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
                 Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
                 If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
 
-                    'CREATE PO IN ABHEE FABRICS LLP
+                    'CREATE PURCHASE INVOICE IN ABHEE FABRICS LLP
                     'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
                     Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
                     If TEMPDT.Rows.Count > 0 Then
@@ -375,59 +366,19 @@ Public Class MagicBoxForInvoice
                     TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
-                    ' GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
+                    GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
                 End If
                 '******************** END OF PO GENERATION CODE ***************************
 
-
-
-                ''**************** GENERATE SALE ORDER ******************************
-                'DTNAME = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
-                'If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
-
-                '    'CREATE PO IN ABHEE FABRICS LLP
-                '    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
-                '    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
-                '    If TEMPDT.Rows.Count > 0 Then
-                '        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
-                '        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
-                '    Else
-                '        GoTo NEXTLINE
-                '    End If
-
-                '    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                '    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                '    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(row.Cells(GBUYERS.Index).Value, TEMPCMPID, TEMPYEARID)
-
-
-                '    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
-                '    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
-                '    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
-
-                '    GENERATESO(Val(row.Index), TEMPCMPID, TEMPYEARID)
-                'End If
-                '******************** END OF SO GENERATION CODE ***************************
-
-
-
-
-
-
-
-
 NEXTLINE:
             Next
-
             MessageBox.Show("Details Added")
-
-
             CLEAR()
-
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Private Function SafeDate(cellValue As Object) As String
         If IsDate(cellValue) Then
             Return Format(CDate(cellValue), "MM/dd/yyyy")
@@ -435,6 +386,7 @@ NEXTLINE:
             Return ""
         End If
     End Function
+
     Private Function SafeDateString(val As String) As String
         If IsDate(val) Then
             Return Format(CDate(val), "MM/dd/yyyy")
@@ -442,7 +394,6 @@ NEXTLINE:
             Return ""
         End If
     End Function
-
 
     Sub CLEAR()
         TXTGRANDTOTAL.Clear()
@@ -1645,19 +1596,23 @@ line1:
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value))
             ALPARAVAL.Add("TOTAL GST")   'screentype
             ALPARAVAL.Add("PURCHASE REGISTER")   'register
-            ALPARAVAL.Add("")   'servicetype
-            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GHSN.Index).Value))
+            ALPARAVAL.Add("GOODS PURCHASE")   'servicetype
+            ALPARAVAL.Add("")   'SACCODE
             ALPARAVAL.Add(0)   'CHKCRM
-            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GBUYERS.Index).Value)
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value)
             ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))
+
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)
-            ALPARAVAL.Add("")   'partybilldate
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))   'partybilldate
+
             ALPARAVAL.Add("")   'agent
             ALPARAVAL.Add("")   'challan no
             ALPARAVAL.Add("")   'challandate
             ALPARAVAL.Add("")   'refno
+
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GCRDAYS.Index).Value)
-            ALPARAVAL.Add("")   'duedate
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date.AddDays(Val(txtcrdays.Text.Trim)), "MM/dd/yyyy"))   'duedate
+
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GTRANS.Index).Value)
             ALPARAVAL.Add("")   'vehicleno
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GLRNO.Index).Value)
@@ -1665,44 +1620,46 @@ line1:
             ALPARAVAL.Add("")   'fromcity
             ALPARAVAL.Add("")   'tocity
             ALPARAVAL.Add("")   'ewaybillno
-            ALPARAVAL.Add("")   'noofbales
+            ALPARAVAL.Add(1)   'noofbales
             ALPARAVAL.Add("")   'dyeingname
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0) '
-            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GREMARKS.Index).Value)
-            ALPARAVAL.Add(0) 'footerdisc
-            ALPARAVAL.Add(0) 'footerdscamt
+            ALPARAVAL.Add(0)    'BILLCHECKED
+            ALPARAVAL.Add(0)    'DISPUTE
+            ALPARAVAL.Add(0)    'MANUALGST  
+            ALPARAVAL.Add(0)    'MANUALROUNDOFF  
 
-            ALPARAVAL.Add(0) 'Val(lbltotalqty.Text.Trim))
-            ALPARAVAL.Add(0) 'Val(lbltotalmtrs.Text.Trim))
-            ALPARAVAL.Add(0) 'Val(LBLTOTALAMT.Text.Trim))
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GREMARKS.Index).Value) 'REMARKS
+
+            ALPARAVAL.Add(0)    'footerdisc
+            ALPARAVAL.Add(0)    'footerdscamt
+
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPCS.Index).Value)) 'TOTALQTY
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value)) 'TOTALMTRS
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value)) 'TOTALAMT
             ALPARAVAL.Add(0) 'Val(LBLTOTALDISCAMT.Text.Trim))
             ALPARAVAL.Add(0) 'Val(LBLTOTALSPDISCAMT.Text.Trim))
             ALPARAVAL.Add(0) 'Val(LBLTOTALOTHERAMT.Text.Trim))
-            ALPARAVAL.Add(0) 'Val(LBLTOTALTAXABLEAMT.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSUBTOTAL.Index).Value)) 'TOTALTAXABLEAMT
 
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCGST.Index).Value))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCGSTAMT.Index).Value))
-            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGST.Index).Value)) '(Val(TXTSGSTPER.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGST.Index).Value)) 'SGSTPER.Text.Trim))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGSTAMT.Index).Value)) '(Val(TXTSGSTAMT.Text.Trim))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GIGST.Index).Value)) '(Val(TXTIGSTPER.Text.Trim))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GIGSTAMT.Index).Value)) '(Val(TXTIGSTAMT.Text.Trim))
 
-            ALPARAVAL.Add(Val(0)) 'TXTTOTALWITHGST.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSUBTOTAL.Index).Value) + Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCGSTAMT.Index).Value) + Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSGSTAMT.Index).Value) + Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GIGSTAMT.Index).Value)) 'TXTTOTALWITHGST.Text.Trim))
             ALPARAVAL.Add(0) 'If CHKMANUALTCS.Checked = True Then ALPARAVAL.Add(1) Else
             ALPARAVAL.Add(0) 'If CHKTCS.Checked = True Then ALPARAVAL.Add(1) Else 
             ALPARAVAL.Add(0) 'Val(TXTTCSPER.Text.Trim))
             ALPARAVAL.Add(0) 'Val(TXTTCSAMT.Text.Trim))
 
-            ALPARAVAL.Add("") 'txtinwords.Text)
+            ALPARAVAL.Add(CurrencyToWord(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GGRANDTOTAL.Index).Value))) 'txtinwords.Text)
 
 
-            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value)) '(Val(TXTAMT.Text.Trim))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value)) 'BILLAMT
             ALPARAVAL.Add(Val(0)) 'TXTTOTALTAXAMT.Text.Trim), "0.00"))
             ALPARAVAL.Add(Val(0)) 'TXTTOTALOTHERCHGSAMT.Text.Trim), "0.00"))
-            ALPARAVAL.Add(Val(0)) 'TXTCHARGES.Text.Trim), "0.00"))
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCHARGES.Index).Value)) 'TXTCHARGES.Text.Trim), "0.00"))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GSUBTOTAL.Index).Value)) '(Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GROUNDOFF.Index).Value)) '(Format(Val(TXTROUNDOFF.Text.Trim), "0.00"))
             ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GGRANDTOTAL.Index).Value)) '(Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"))
@@ -1710,131 +1667,146 @@ line1:
             ALPARAVAL.Add(Val(0)) 'TXTAMTPAID.Text.Trim))
             ALPARAVAL.Add(Val(0)) 'TXTEXTRAAMT.Text.Trim))
             ALPARAVAL.Add(Val(0)) 'TXTRETURN.Text.Trim))
-            ALPARAVAL.Add(Val(0)) 'TXTBAL.Text.Trim))
-
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GGRANDTOTAL.Index).Value)) 'TXTBAL.Text.Trim))
             ALPARAVAL.Add(Val(0)) 'TXTCHADTI.Text.Trim))
 
-            ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Locationid)
-            ALPARAVAL.Add(Userid)
-            ALPARAVAL.Add(YearId)
-            ALPARAVAL.Add(0)
-
-            'ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDUEDATE.Index).Value).Date, "MM/dd/yyyy"))
-            'ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value)
-            'ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCRDAYS.Index).Value))
-            'ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GDELPERIOD.Index).Value))
-            'ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GORDERNO.Index).Value)
-            'ALPARAVAL.Add(0)
-            'ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))
-            'ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GDISCOUNT.Index).Value)
-            'ALPARAVAL.Add("")   'TRANSPORT
-            'ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GREMARKS.Index).Value)
-            'ALPARAVAL.Add("FINISH")
-            'ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gQty.Index).Value))
-            'ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value))
-            'ALPARAVAL.Add(Format(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value) * Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value), "0.00"))  'TOTALAMT
-
-
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(Val(0))
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add("")
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add("")
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add("")
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-            ALPARAVAL.Add(0)
-
-            ALPARAVAL.Add(0) 'PO DONE
-
-            ALPARAVAL.Add(1)    'VERIFIED (keep verified for everyone)
-
             ALPARAVAL.Add(TEMPCMPID)
-            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(0)    'LOCATIONID
             ALPARAVAL.Add(Userid)
             ALPARAVAL.Add(TEMPYEARID)
-            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(0)    'TRANSFER
 
-            Dim gridsrno As String = "1"
-            Dim ITEMNAME As String = GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value
-            Dim gridremarks As String = ""
-            Dim QUALITY As String = ""
-            Dim COUNT As String = ""
-            Dim REED As String = ""
-            Dim PICK As String = ""
-            Dim WIDTH As String = ""
-            Dim WT As String = ""
-            Dim CUT As String = "" 'Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gcut.Index).Value)
-            Dim DESIGN As String = "" 'GRIDMAGICBOX.Rows(ROWNO).Cells(GDESIGN.Index).Value
-            Dim COLOR As String = ""
-            Dim PDESNO As String = ""
-            Dim PSHADE As String = ""
-            Dim qty As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gQty.Index).Value)
-            Dim qtyunit As String = "" 'GRIDMAGICBOX.Rows(ROWNO).Cells(gqtyunit.Index).Value
-            Dim MTRS As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value)
-            Dim rate As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value)
-            Dim PER As String = "Mtrs"
-            Dim amount As String = Format(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value) * Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value), "0.00")
-            Dim QUOTNO As String = 0         'value of QUOTNO
-            Dim QUOTgridsrno As String = 0   'value of QUOTGRIDSRNO
-            Dim recdqty As String = 0      'Qty recd in GRN
-            Dim GRNDONE As String = 0      'WHETHER GRN IS DONE FOR THIS LINE
-            Dim TONAME As String = ""      'WHETHER GRN IS DONE FOR THIS LINE
-            Dim CLOSED As String = 0
+            ALPARAVAL.Add("")   'FORMTYPE
+
+            ALPARAVAL.Add("1")  'GRIDSRNO
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value)    'ITEMNAME
+
+            'GETHSNCODE FROM ITEMMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE,'') AS HSNCODE", "", "ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID", " AND ITEMMASTER.ITEM_NAME = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & YearId)
+            ALPARAVAL.Add(DTHSN.Rows(0).Item("HSNCODE"))   'HSNCODE
+
+            ALPARAVAL.Add("")   'QUALITY
+            ALPARAVAL.Add("")   'DESIGN
+            ALPARAVAL.Add("")   'SHADE
+
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gQty.Index).Value))    'AQTY
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GFOLD.Index).Value))    'FOLDPER
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GDESC.Index).Value)   'DESC
+            ALPARAVAL.Add("")   'LOTNO
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GBALENO.Index).Value)   'BALENO
+
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPCS.Index).Value))    'PCS
+            ALPARAVAL.Add("Mtrs")    'UNIT
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCUT.Index).Value))    'CUT
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value))    'MTRS
+
+            ALPARAVAL.Add(0)    'WT
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value))    'RATE
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GPER.Index).Value)    'PER
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value))    'AMT
+
+            ALPARAVAL.Add(0)    'DISCPER
+            ALPARAVAL.Add(0)    'DISCAMT
+            ALPARAVAL.Add(0)    'SPDISCPER
+            ALPARAVAL.Add(0)    'SPDISCAMT
+            ALPARAVAL.Add(0)    'OTHERAMT
+
+            ALPARAVAL.Add(0)    'TAXABLEAMT
+            ALPARAVAL.Add(0)    'CGSTPER (GRID)
+            ALPARAVAL.Add(0)    'CGSTAMT (GRID)
+            ALPARAVAL.Add(0)    'SGSTPER (GRID)
+            ALPARAVAL.Add(0)    'SGSTAMT (GRID)
+            ALPARAVAL.Add(0)    'IGSTPER (GRID)
+            ALPARAVAL.Add(0)    'IGSTAMT (GRID)
+            ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GAMT.Index).Value))    'GRIDTOTAL
+
+            ALPARAVAL.Add("")   'GRNNO
+            ALPARAVAL.Add("")   'GRNGRIDSRNO
+            ALPARAVAL.Add("")   'GRNGRIDTYPE
+            ALPARAVAL.Add(0)    'GRIDDONE
+            ALPARAVAL.Add(0)    'OUTPCS
+            ALPARAVAL.Add(0)    'OUTMTRS
+
+            Dim CSRNO As String = ""
+            Dim CCHGS As String = ""
+            Dim CPER As String = ""
+            Dim CAMT As String = ""
+            Dim CTAXID As String = ""
+
+            For Each DTROW As DataRow In DT_CHGSDETAILS.Rows
+                If Val(DTROW("EMAINSRNO")) = Val(ROWNO) Then
+                    If CSRNO = "" Then
+                        CSRNO = Val(DTROW("ESRNO"))
+                        CCHGS = DTROW("ECHARGES")
+                        CPER = Val(DTROW("EPER"))
+                        CAMT = Val(DTROW("EAMT"))
+                        CTAXID = Val(DTROW("ETAXID"))
+                    Else
+                        CSRNO = CSRNO & "|" & Val(DTROW("ESRNO"))
+                        CCHGS = CCHGS & "|" & DTROW("ECHARGES")
+                        CPER = CPER & "|" & Val(DTROW("EPER"))
+                        CAMT = CAMT & "|" & Val(DTROW("EAMT"))
+                        CTAXID = CTAXID & "|" & Val(DTROW("ETAXID"))
+                    End If
+                End If
+            Next
+
+            ALPARAVAL.Add(CSRNO)
+            ALPARAVAL.Add(CCHGS)
+            ALPARAVAL.Add(CPER)
+            ALPARAVAL.Add(CAMT)
+            ALPARAVAL.Add(CTAXID)
+
+            ALPARAVAL.Add(ClientName)
 
 
 
-            ALPARAVAL.Add(gridsrno)
-            ALPARAVAL.Add(ITEMNAME)
-            ALPARAVAL.Add(gridremarks)
-            ALPARAVAL.Add(QUALITY)
-            ALPARAVAL.Add(COUNT)
-            ALPARAVAL.Add(REED)
-            ALPARAVAL.Add(PICK)
-            ALPARAVAL.Add(WIDTH)
-            ALPARAVAL.Add(WT)
-            ALPARAVAL.Add(CUT)
-            ALPARAVAL.Add(PER)
-            ALPARAVAL.Add(DESIGN)
-            ALPARAVAL.Add(COLOR)
-            ALPARAVAL.Add(PDESNO)
-            ALPARAVAL.Add(PSHADE)
-            ALPARAVAL.Add(qty)
-            ALPARAVAL.Add(qtyunit)
-            ALPARAVAL.Add(MTRS)
-            ALPARAVAL.Add(rate)
-            ALPARAVAL.Add(amount)
-            ALPARAVAL.Add(QUOTNO)
-            ALPARAVAL.Add(QUOTgridsrno)
-            ALPARAVAL.Add(recdqty)
-            ALPARAVAL.Add(GRNDONE)
-            ALPARAVAL.Add(TONAME)
-            ALPARAVAL.Add(CLOSED)
+            'GET DETAILS FROM PURCHASE ORDER
+            If Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) > 0 Then
+                Dim DTPO As DataTable = OBJCMN.SEARCH(" ROUND(ASO_QTY - ASO_RECDQTY,2) AS BALPCS, ROUND(ASO_MTRS - ASO_RECDMTRS,2) AS BALMTRS, ASO_RATE AS RATE ", "", " ALLAGENCYSALEORDER_DESC ", " AND ASO_NO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) & " AND ASO_GRIDSRNO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value & "' AND ASO_YEARID = " & YearId)
 
-            ALPARAVAL.Add("")
-            ALPARAVAL.Add("")
-            ALPARAVAL.Add("PCS")
+                ALPARAVAL.Add("1")  'ORDERGRIDSRNO
+                ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value)    'ORDERITEMNAME
+                ALPARAVAL.Add("")   'ORDERDESIGN
+                ALPARAVAL.Add("")   'ORDERCOLOR
+                ALPARAVAL.Add(Val(DTPO.Rows(0).Item("BALPCS")))
+                ALPARAVAL.Add(Val(DTPO.Rows(0).Item("BALMTRS")))
+                ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value))   'FROMNO
+                ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value))   'ORDERFROMSRNO
+                ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value)    'ORDERFROMTYPE
+                ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPCS.Index).Value))    'GRNPCS
+                ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value)) 'ORDERGRNMTRS
+                ALPARAVAL.Add(Val(DTPO.Rows(0).Item("RATE")))   'ORDERRATE
+                ALPARAVAL.Add("PCS")    'ORDERON
 
-            Dim OBJPO As New ClsPurchaseOrder()
-            OBJPO.alParaval = ALPARAVAL
-            Dim DT As DataTable = OBJPO.SAVE()
+            Else
+                ALPARAVAL.Add("")   'ORDERGRIDSRNO
+                ALPARAVAL.Add("")   'ORDERITEMNAME
+                ALPARAVAL.Add("")   'ORDERDESIGN
+                ALPARAVAL.Add("")   'ORDERCOLOR
+                ALPARAVAL.Add("")   'ORDEPCS
+                ALPARAVAL.Add("")   'ORDERMTRS
+                ALPARAVAL.Add("")   'ORDERFROMNO
+                ALPARAVAL.Add("")   'ORDERFROMSRNO
+                ALPARAVAL.Add("")   'ORDERFROMTYPE
+                ALPARAVAL.Add("")   'ORDERGRNPCS
+                ALPARAVAL.Add("")   'ORDERGRNMTRS
+                ALPARAVAL.Add("")   'ORDERRATE
+                ALPARAVAL.Add("")   'ORDERON
+            End If
+
+
+
+            ALPARAVAL.Add("")   'SPECIALREMARKS
+            ALPARAVAL.Add(0)    'CD
+            ALPARAVAL.Add(0)    'COSTCENTRE
+            ALPARAVAL.Add("")   'SHIPTO
+
+
+            Dim OBJPI As New ClsPurchaseMaster()
+            OBJPI.alParaval = ALPARAVAL
+            Dim DT As DataTable = OBJPI.SAVE()
 
         Catch ex As Exception
             Throw ex

@@ -26,6 +26,9 @@ Public Class SaleOrder
 
     Private Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
         Try
+            'WHILE ADDING COLUMN IN SO DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            '1) MAGOCBOX -- GENERATESO 
+
             Cursor.Current = Cursors.WaitCursor
             Dim IntResult As Integer
 

@@ -113,12 +113,6 @@ Public Class ClsPurchaseMaster
                 .Add(New SqlClient.SqlParameter("@TOTALTAXABLEAMT", alParaval(I)))
                 I = I + 1
 
-                '.Add(New SqlClient.SqlParameter("@TOTALCGSTAMT", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@TOTALSGSTAMT", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@TOTALIGSTAMT", alParaval(I)))
-                'I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TOTALCGSTPER", alParaval(I)))
                 I = I + 1
@@ -202,9 +196,9 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DESIGNNO", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@AQTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FOLDPER", alParaval(I)))
@@ -224,6 +218,7 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
@@ -232,6 +227,7 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@amount", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@DISCPER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DISCAMT", alParaval(I)))
@@ -242,6 +238,7 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OTHERAMT", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@TAXABLEAMT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CGSTPER", alParaval(I)))

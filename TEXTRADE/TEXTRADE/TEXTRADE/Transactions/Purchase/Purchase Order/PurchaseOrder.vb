@@ -372,6 +372,8 @@ Public Class PurchaseOrder
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
 
         Try
+            'WHILE ADDING COLUMN IN PO DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            '1) MAGOCBOX -- GENERATEPO 
 
             Cursor.Current = Cursors.WaitCursor
 
