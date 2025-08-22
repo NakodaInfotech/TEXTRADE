@@ -425,6 +425,7 @@ Public Class MDIMain
                 MERGELEDGER.Enabled = True
                 DATATRANSFER_MASTER.Enabled = True
                 STOCKTRANSFER_MASTER.Enabled = True
+                If ClientName = "ABHEE" Then AGENCYDATATRANSFER_MASTER.Enabled = True
                 RECODATA_MASTER.Enabled = True
                 BLOCKDETAILS_MASTER.Enabled = True
                 USERTRANSFER.Enabled = True
@@ -3586,7 +3587,7 @@ Public Class MDIMain
         End Try
     End Sub
 
-    Private Sub DataTransferToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DATATRANSFER_MASTER.Click
+    Private Sub DATATRANSFER_MASTER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DATATRANSFER_MASTER.Click
         Try
             Dim OBJYEAR As New YearTransfer
             OBJYEAR.FRMSTRING = "YEARTRANSFER"
@@ -10186,9 +10187,9 @@ SKIPLINE:
 
     Private Sub AutoWhatsappToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoWhatsappToolStripMenuItem.Click
         Try
-            Dim OBJAW As New AutoWhatsapp
-            OBJAW.MdiParent = Me
-            OBJAW.Show()
+            Dim OBJAUTOWA As New AutoWhatsapp
+            OBJAUTOWA.MdiParent = Me
+            OBJAUTOWA.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -10407,16 +10408,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AutoWhatsappToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AutoWhatsappToolStripMenuItem1.Click
-        Try
-            Dim OBJAUTOWA As New AutoWhatsapp
-            OBJAUTOWA.MdiParent = Me
-            OBJAUTOWA.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub PartyWiseBaleRateReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartyWiseBaleRateReportToolStripMenuItem.Click
         Try
             Dim OBJSENQUIRY As New PartyWiseBaleRateReport
@@ -10517,19 +10508,20 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewOpeningBillToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewOpeningBillToolStripMenuItem.Click
+    Private Sub AGENCYDATATRANSFER_MASTER_Click(sender As Object, e As EventArgs) Handles AGENCYDATATRANSFER_MASTER.Click
         Try
-            Dim OBJMB As New AgencyOpeningBills
-            OBJMB.MdiParent = Me
-            OBJMB.Show()
+            Dim OBJYEAR As New YearTransfer
+            OBJYEAR.FRMSTRING = "AGENCYYEARTRANSFER"
+            OBJYEAR.MdiParent = Me
+            OBJYEAR.Show()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub EditExistingOpeningBillToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingOpeningBillToolStripMenuItem.Click
+    Private Sub AGENCYOPENINGBILL_MASTER_Click(sender As Object, e As EventArgs) Handles AGENCYOPENINGBILL_MASTER.Click
         Try
-            Dim OBJMB As New AgencyOpeningBillsDetails
+            Dim OBJMB As New AgencyOpeningBills
             OBJMB.MdiParent = Me
             OBJMB.Show()
         Catch ex As Exception
