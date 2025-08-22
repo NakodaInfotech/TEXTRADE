@@ -314,7 +314,9 @@
     <Compile Include="Common\Filters\AgencyOutstandingfilter.Designer.vb">
       <DependentUpon>AgencyOutstandingfilter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Common\Filters\AgencyOutstandingfilter.vb" />
+    <Compile Include="Common\Filters\AgencyOutstandingfilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\CatalogFilter.Designer.vb">
       <DependentUpon>CatalogFilter.vb</DependentUpon>
     </Compile>
