@@ -581,7 +581,7 @@ Public Class AgencySaleReturn
     End Sub
     Function ERRORVALID() As Boolean
         Try
-
+            TOTAL()
             Dim bln As Boolean = True
 
             If ClientName = "SVS" And TXTCHALLANNO.Text.Trim.Length = 0 Then
@@ -718,12 +718,12 @@ Public Class AgencySaleReturn
                     bln = False
                 End If
 
-                If TXTGSTIN.Text.Trim.Length = 0 Then
-                    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
-                        bln = False
-                    End If
-                End If
+                'If TXTGSTIN.Text.Trim.Length = 0 Then
+                '    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                '        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
+                '        bln = False
+                '    End If
+                'End If
 
                 If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(TXTCGSTAMT.Text) > 0 Or Val(TXTSGSTAMT.Text.Trim) > 0) Then
                     EP.SetError(CMBNAME, "Invaid Entry Done in CGST/SGST")
@@ -781,14 +781,15 @@ Public Class AgencySaleReturn
             Throw ex
         End Try
     End Function
+
     Private Sub cmdok_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            EP.Clear()
-            If Not ERRORVALID() Then
-                Exit Sub
-            End If
+            'EP.Clear()
+            'If Not ERRORVALID() Then
+            '    Exit Sub
+            'End If
 
 
             'GET BILLREMARKS
@@ -1168,8 +1169,10 @@ Public Class AgencySaleReturn
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
+
             Dim OBJPURCH As New ClsAgencySaleReturn()
             OBJPURCH.alParaval = alParaval
+
             If EDIT = False Then
                 If USERADD = False Then
                     MsgBox("Insufficient Rights")
@@ -1179,6 +1182,7 @@ Public Class AgencySaleReturn
                 MsgBox("Details Added")
                 TXTSALRETNO.Text = DTTABLE.Rows(0).Item(0)
                 PRINTREPORT(DTTABLE.Rows(0).Item(0))
+
             ElseIf EDIT = True Then
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -1186,12 +1190,9 @@ Public Class AgencySaleReturn
                 End If
                 alParaval.Add(TEMPSALRETNO)
                 IntResult = OBJPURCH.UPDATE()
-                MsgBox("Details Updated")
-                PRINTREPORT(TEMPSALRETNO)
+                'MsgBox("Details Updated")
+                'PRINTREPORT(TEMPSALRETNO)
             End If
-
-            PRINTBARCODE()
-
 
             EDIT = False
 
@@ -1205,15 +1206,14 @@ Public Class AgencySaleReturn
                 End If
             Next
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                CLEAR()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
 
-            CMBSELLER.Focus()
+            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    CLEAR()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
+
+            'CMBSELLER.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1221,86 +1221,7 @@ Public Class AgencySaleReturn
             Cursor.Current = Cursors.Default
         End Try
     End Sub
-    Sub PRINTBARCODE()
-        Try
-            If TXTSRCHNO.Text.Trim <> "" Then Exit Sub
-            If ALLOWBARCODEPRINT Then
 
-                'PRINT BARCODE
-                Dim TEMPMSG As Integer = MsgBox("Wish to Print Barcode?", MsgBoxStyle.YesNo)
-                If TEMPMSG = vbNo Then Exit Sub
-
-                GRIDSALRET.RowCount = 0
-                Dim OBJPURCH As New ClsAgencySaleReturn
-                Dim DTTABLE As DataTable = OBJPURCH.SELECTSALRET(Val(TXTSALRETNO.Text.Trim), CmpId, Locationid, YearId)
-                For Each dr As DataRow In DTTABLE.Rows
-                    GRIDSALRET.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMT")), "0.00"), dr("RACK").ToString, dr("SHELF").ToString, dr("BARCODE"), dr("GDNBARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"), dr("FROMNO"), dr("FROMSRNO"))
-                Next
-
-
-                Dim WHOLESALEBARCODE As Integer = 0
-                If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
-
-
-
-                Dim TEMPHEADER As String = ""
-                If ClientName = "YASHVI" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
-                    If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
-                    If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
-                    If TEMPHEADER = "N" Then TEMPHEADER = ""
-                End If
-
-                If ClientName = "GELATO" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "RAJKRIPA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "KRISHNA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-
-                Dim SUPRIYAHEADER As String = ""
-                If ClientName = "SUPRIYA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
-                    If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
-                    If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
-                    If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
-                    If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
-                    If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
-                End If
-
-                For Each ROW As DataGridViewRow In GRIDSALRET.Rows
-                    'TO PRINT BARCODE FROM SELECTED SRNO
-                    If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
-                        If Val(ROW.Cells(gsrno.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(gsrno.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
-                    End If
-                    Dim GRIDDESC As String = ""
-                    Dim TEMPNAME As String = ""
-                    If ClientName = "KCRAYON" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then GRIDDESC = ROW.Cells(GBALENO.Index).Value
-                    If ClientName = "RAJKRIPA" Or ClientName = "MOMAI" Then TEMPNAME = CMBNAME.Text.Trim
-
-                    'IF barcode is used the BARCODE printING WILL BE BLOCKED
-                    If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
-
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, "", ROW.Cells(GBALENO.Index).Value, GRIDDESC, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", TEMPNAME)
-NEXTLINE:
-
-                Next
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Private Sub AgencySaleReturn_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If ERRORVALID() = True Then
@@ -1336,6 +1257,7 @@ NEXTLINE:
             tstxtbillno.SelectAll()
         End If
     End Sub
+
     Private Sub AgencySaleReturn_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
@@ -1494,6 +1416,7 @@ NEXTLINE:
         End Try
 
     End Sub
+
     Sub fillcmb()
         Try
             If CMBFROMCITY.Text.Trim = "" Then fillCITY(CMBFROMCITY, EDIT)
@@ -2497,12 +2420,12 @@ LINE1:
         Try
             If EDIT = True Then
                 PRINTREPORT(TEMPSALRETNO)
-                PRINTBARCODE()
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Private Sub TXTRATE_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTRATE.Validated
         CALC()
         TOTAL()
@@ -4409,6 +4332,26 @@ ERRORMESSAGE:
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            'GET INVOICENOS FROM PURCHASEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(ASALRET_NO) AS BILLNO", "", " AGENCYSALERETURN ", " AND ASALRET_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
+                GRIDSALRET.RowCount = 0
+                TEMPSALRETNO = Val(I)
+                EDIT = True
+                AgencySaleReturn_Load(sender, e)
+                If GRIDSALRET.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TXTAQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTAQTY.KeyPress, TXTAFOLDPER.KeyPress

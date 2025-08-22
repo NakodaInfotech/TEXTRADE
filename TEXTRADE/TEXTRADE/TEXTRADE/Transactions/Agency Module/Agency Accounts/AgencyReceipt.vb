@@ -244,6 +244,8 @@ Public Class AgencyReceipt
 
     Function ERRORVALID() As Boolean
         Try
+
+            total()
             Dim BLN As Boolean = True
 
 
@@ -2142,7 +2144,7 @@ LINE1:
         Try
             'GET INVOICENOS FROM PURCHASEMASTER
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("MAX(AINVOICE_NO) AS BILLNO", "", " AGENCYINVOICEMASTER ", " AND AINVOICE_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(ARECEIPT_NO) AS BILLNO", "", " AGENCYRECEIPTMASTER ", " AND ARECEIPT_YEARID = " & YearId)
             For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
                 gridpayment.RowCount = 0
                 TEMPARECEIPTNO = Val(I)

@@ -818,60 +818,21 @@ Public Class AgencyCreditNote
                 End If
                 alParaval.Add(TEMPCNNO)
                 Dim INTRES As Integer = objclsCNmaster.UPDATE()
-                MsgBox("Details Updated")
-                PRINTREPORT(TEMPCNNO)
-                edit = False
+                'MsgBox("Details Updated")
+                'PRINTREPORT(TEMPCNNO)
+                'edit = False
             End If
 
 
 
-            If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
+            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    CLEAR()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
+            'CNDATE.Focus()
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-
-            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                CLEAR()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
-            CNDATE.Focus()
-
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Sub SENDDIRECTMAIL()
-        Try
-            If MsgBox("Wish To Mail Credit Note?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            Dim ALATTACHMENT As New ArrayList
-
-            'CHECK WHETHER EMAILID IS PRESENT IN LEDGER OR NOT, IF NOT THEN EXIT SUB WITH MESSAGE
-            Dim OBJCMN As New ClsCommon
-            Dim DTEMAIL As DataTable = OBJCMN.SEARCH("ACC_EMAIL AS EMAILID", "", "LEDGERS", "AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND ACC_YEARID = " & YearId)
-            If DTEMAIL.Rows.Count > 0 AndAlso DTEMAIL.Rows(0).Item("EMAILID") <> "" Then
-
-                Dim OBJCN As New CrDrNoteDesign
-                OBJCN.MdiParent = MDIMain
-                OBJCN.DIRECTPRINT = True
-                OBJCN.FRMSTRING = "CREDIT"
-                OBJCN.DIRECTMAIL = True
-                'OBJCN.REGNAME = cmbregister.Text.Trim
-                OBJCN.PRINTSETTING = PRINTDIALOG
-                OBJCN.BILLNO = Val(TXTCNNO.Text.Trim)
-                OBJCN.NOOFCOPIES = 1
-                OBJCN.Show()
-                OBJCN.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\ACN_" & Val(TXTCNNO.Text.Trim) & ".pdf")
-                sendemail(DTEMAIL.Rows(0).Item("EMAILID"), ALATTACHMENT(0), "", "Credit Note", ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
-                MsgBox("Mail Sent")
-            Else
-                MsgBox("Add E-Mail id in Ledger")
-                Exit Sub
-            End If
 
         Catch ex As Exception
             Throw ex
@@ -880,6 +841,7 @@ Public Class AgencyCreditNote
 
     Private Function ERRORVALID() As Boolean
         Try
+            TOTAL()
             Dim bln As Boolean = True
 
             If CNDATE.Text = "__/__/____" Then
@@ -993,7 +955,7 @@ Public Class AgencyCreditNote
                 bln = False
             End If
 
-            If txtgrandtotal.Text.Trim = "" Then
+            If Val(txtgrandtotal.Text.Trim) = 0 Then
                 EP.SetError(txtgrandtotal, "Enter Amount")
                 bln = False
             End If
@@ -1008,10 +970,10 @@ Public Class AgencyCreditNote
                 bln = False
             End If
 
-            If TXTPARTYBILLNO.Text.Trim.Length = 0 Then
-                EP.SetError(TXTPARTYBILLNO, "Enter Party Bill No")
-                bln = False
-            End If
+            'If TXTPARTYBILLNO.Text.Trim.Length = 0 Then
+            '    EP.SetError(TXTPARTYBILLNO, "Enter Party Bill No")
+            '    bln = False
+            'End If
 
             If TXTPARTYBILLNO.Text.Trim <> "" Then
                 If (edit = False) Or (edit = True And TEMPPARTYBILLNO <> TXTPARTYBILLNO.Text.Trim) Then
@@ -2073,10 +2035,10 @@ LINE1:
                 CLEAR()
                 edit = False
             End If
-            'If txtgrandtotal.Text > 0 And TEMPCNNO < MAXNO Then
-            '    TXTCNNO.Text = TEMPCNNO
-            '    ' GoTo LINE1
-            'End If
+            If Val(txtgrandtotal.Text.Trim) = 0 And TEMPCNNO < MAXNO Then
+                TXTCNNO.Text = TEMPCNNO
+                GoTo LINE1
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2100,10 +2062,10 @@ LINE1:
                 edit = False
             End If
 
-            'If txtgrandtotal.Text > 0 And TEMPCNNO > 1 Then
-            '    TXTCNNO.Text = TEMPCNNO
-            '    ' GoTo LINE1
-            'End If
+            If Val(txtgrandtotal.Text.Trim) = 0 And TEMPCNNO > 1 Then
+                TXTCNNO.Text = TEMPCNNO
+                GoTo LINE1
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -3207,6 +3169,26 @@ ERRORMESSAGE:
             End If
 
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            'GET INVOICENOS FROM PURCHASEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(ACN_NO) AS BILLNO", "", " AGENCYCREDITNOTEMASTER ", " AND ACN_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
+                txtgrandtotal.Text = 0
+                TEMPCNNO = Val(I)
+                edit = True
+                CREDITNOTE_Load(sender, e)
+                If Val(txtgrandtotal.Text) = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
         Catch ex As Exception
             Throw ex
         End Try

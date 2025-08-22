@@ -232,6 +232,7 @@ Partial Class AgencyCreditNote
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -257,6 +258,7 @@ Partial Class AgencyCreditNote
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.LBLCOSTCENTER)
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
         Me.BlendPanel1.Controls.Add(Me.CHKOVERSEAS)
@@ -2571,6 +2573,20 @@ Partial Class AgencyCreditNote
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(908, 513)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 28)
+        Me.Button1.TabIndex = 1014
+        Me.Button1.Text = "&Auto Post"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'AgencyCreditNote
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2799,4 +2815,5 @@ Partial Class AgencyCreditNote
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents Button1 As Button
 End Class

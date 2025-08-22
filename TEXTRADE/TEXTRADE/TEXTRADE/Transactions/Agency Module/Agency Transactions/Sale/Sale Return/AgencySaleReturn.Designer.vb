@@ -300,6 +300,7 @@ Partial Class AgencySaleReturn
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.CMBPACKING = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -325,6 +326,8 @@ Partial Class AgencySaleReturn
         '
         'BlendPanel1
         '
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.CMBTOCITY)
         Me.BlendPanel1.Controls.Add(Me.CMBFROMCITY)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -3355,6 +3358,20 @@ Partial Class AgencySaleReturn
         Me.CMBPACKING.Size = New System.Drawing.Size(241, 23)
         Me.CMBPACKING.TabIndex = 7
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(708, 572)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 28)
+        Me.Button1.TabIndex = 1016
+        Me.Button1.Text = "&Auto Post"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'AgencySaleReturn
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3646,4 +3663,5 @@ Partial Class AgencySaleReturn
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents CMBPACKING As ComboBox
+    Friend WithEvents Button1 As Button
 End Class
