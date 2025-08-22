@@ -511,7 +511,7 @@ Public Class AgencyOutstandingfilter
 
     End Sub
 
-    Private Sub RBREC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RBREC.Click
+    Private Sub RBREC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) 
         Try
             CMBPARTYNAME.Text = ""
             CMBGROUP.Text = ""
@@ -522,7 +522,7 @@ Public Class AgencyOutstandingfilter
         End Try
     End Sub
 
-    Private Sub RBPAYABLE_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RBPAYABLE.Click
+    Private Sub RBPAYABLE_Click(ByVal sender As Object, ByVal e As System.EventArgs) 
         Try
             CMBPARTYNAME.Text = ""
             CMBGROUP.Text = ""
@@ -533,11 +533,11 @@ Public Class AgencyOutstandingfilter
         End Try
     End Sub
 
-    Private Sub TXTINTEREST_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTINTEREST.KeyPress
+    Private Sub TXTINTEREST_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) 
         numdotkeypress(e, TXTINTEREST, Me)
     End Sub
 
-    Private Sub TXTDAYS_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTDAYS.KeyPress
+    Private Sub TXTDAYS_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) 
         numkeypress(e, TXTDAYS, Me)
     End Sub
 
@@ -659,11 +659,11 @@ Public Class AgencyOutstandingfilter
             Throw ex
         End Try
     End Sub
-    Private Sub RBPAYABLE_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RBPAYABLE.CheckedChanged
+    Private Sub RBPAYABLE_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) 
         FILLGRID()
     End Sub
 
-    Private Sub RBREC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RBREC.CheckedChanged
+    Private Sub RBREC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) 
         FILLGRID()
     End Sub
 

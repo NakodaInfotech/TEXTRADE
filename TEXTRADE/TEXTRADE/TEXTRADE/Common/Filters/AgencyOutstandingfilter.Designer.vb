@@ -29,11 +29,6 @@ Partial Class AgencyOutstandingfilter
         Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.CMBDELIVERYAT = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.cmbregister = New System.Windows.Forms.ComboBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.RBALLBILLS = New System.Windows.Forms.RadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TXTOVERDUEDAYSLESS = New System.Windows.Forms.TextBox()
         Me.CHKPDC = New System.Windows.Forms.CheckBox()
@@ -79,27 +74,17 @@ Partial Class AgencyOutstandingfilter
         Me.RBGROUP = New System.Windows.Forms.RadioButton()
         Me.RBACCOUNT = New System.Windows.Forms.RadioButton()
         Me.CHKPRINTDATE = New System.Windows.Forms.CheckBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TXTDAYS = New System.Windows.Forms.TextBox()
-        Me.TXTINTEREST = New System.Windows.Forms.TextBox()
         Me.CMBGROUP = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CHKGROUPONNEWPG = New System.Windows.Forms.CheckBox()
         Me.CHKADDRESS = New System.Windows.Forms.CheckBox()
-        Me.CHKSUMMARY = New System.Windows.Forms.CheckBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.RBBROKERINVENTORYRUNBAL = New System.Windows.Forms.RadioButton()
-        Me.RBAGEING = New System.Windows.Forms.RadioButton()
         Me.RBBROKERINVENTORY = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGRUNBAL = New System.Windows.Forms.RadioButton()
-        Me.RBOLDNEWREPORT = New System.Windows.Forms.RadioButton()
         Me.RBBROKEROUTSTANDING = New System.Windows.Forms.RadioButton()
-        Me.RBREMINDER = New System.Windows.Forms.RadioButton()
-        Me.RBOUTSTANDINGBILLS = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDING = New System.Windows.Forms.RadioButton()
         Me.RBINVENTORY = New System.Windows.Forms.RadioButton()
-        Me.RBINT = New System.Windows.Forms.RadioButton()
         Me.RBALL = New System.Windows.Forms.RadioButton()
         Me.cmbacccode = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
@@ -115,8 +100,6 @@ Partial Class AgencyOutstandingfilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.RBPAYABLE = New System.Windows.Forms.RadioButton()
-        Me.RBREC = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,11 +123,6 @@ Partial Class AgencyOutstandingfilter
         Me.BlendPanel2.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel2.Controls.Add(Me.Label12)
         Me.BlendPanel2.Controls.Add(Me.TextBox1)
-        Me.BlendPanel2.Controls.Add(Me.CMBDELIVERYAT)
-        Me.BlendPanel2.Controls.Add(Me.Label11)
-        Me.BlendPanel2.Controls.Add(Me.cmbregister)
-        Me.BlendPanel2.Controls.Add(Me.Label10)
-        Me.BlendPanel2.Controls.Add(Me.RBALLBILLS)
         Me.BlendPanel2.Controls.Add(Me.Label8)
         Me.BlendPanel2.Controls.Add(Me.TXTOVERDUEDAYSLESS)
         Me.BlendPanel2.Controls.Add(Me.CHKPDC)
@@ -159,17 +137,10 @@ Partial Class AgencyOutstandingfilter
         Me.BlendPanel2.Controls.Add(Me.Label5)
         Me.BlendPanel2.Controls.Add(Me.GroupBox4)
         Me.BlendPanel2.Controls.Add(Me.CHKPRINTDATE)
-        Me.BlendPanel2.Controls.Add(Me.Label4)
-        Me.BlendPanel2.Controls.Add(Me.Label3)
-        Me.BlendPanel2.Controls.Add(Me.TXTDAYS)
-        Me.BlendPanel2.Controls.Add(Me.TXTINTEREST)
         Me.BlendPanel2.Controls.Add(Me.CMBGROUP)
         Me.BlendPanel2.Controls.Add(Me.Label2)
         Me.BlendPanel2.Controls.Add(Me.CHKGROUPONNEWPG)
         Me.BlendPanel2.Controls.Add(Me.CHKADDRESS)
-        Me.BlendPanel2.Controls.Add(Me.CHKSUMMARY)
-        Me.BlendPanel2.Controls.Add(Me.RBPAYABLE)
-        Me.BlendPanel2.Controls.Add(Me.RBREC)
         Me.BlendPanel2.Controls.Add(Me.GroupBox3)
         Me.BlendPanel2.Controls.Add(Me.cmbacccode)
         Me.BlendPanel2.Controls.Add(Me.txtadd)
@@ -255,65 +226,6 @@ Partial Class AgencyOutstandingfilter
         Me.TextBox1.Size = New System.Drawing.Size(31, 23)
         Me.TextBox1.TabIndex = 719
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBDELIVERYAT
-        '
-        Me.CMBDELIVERYAT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDELIVERYAT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDELIVERYAT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDELIVERYAT.FormattingEnabled = True
-        Me.CMBDELIVERYAT.Location = New System.Drawing.Point(136, 150)
-        Me.CMBDELIVERYAT.MaxDropDownItems = 14
-        Me.CMBDELIVERYAT.Name = "CMBDELIVERYAT"
-        Me.CMBDELIVERYAT.Size = New System.Drawing.Size(318, 22)
-        Me.CMBDELIVERYAT.TabIndex = 717
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(74, 154)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(65, 14)
-        Me.Label11.TabIndex = 718
-        Me.Label11.Text = "Delivery At"
-        '
-        'cmbregister
-        '
-        Me.cmbregister.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbregister.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbregister.BackColor = System.Drawing.Color.White
-        Me.cmbregister.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbregister.FormattingEnabled = True
-        Me.cmbregister.Items.AddRange(New Object() {""})
-        Me.cmbregister.Location = New System.Drawing.Point(136, 121)
-        Me.cmbregister.Name = "cmbregister"
-        Me.cmbregister.Size = New System.Drawing.Size(318, 23)
-        Me.cmbregister.TabIndex = 714
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(86, 125)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(52, 14)
-        Me.Label10.TabIndex = 715
-        Me.Label10.Text = "Register"
-        '
-        'RBALLBILLS
-        '
-        Me.RBALLBILLS.AutoSize = True
-        Me.RBALLBILLS.Location = New System.Drawing.Point(1044, 37)
-        Me.RBALLBILLS.Name = "RBALLBILLS"
-        Me.RBALLBILLS.Size = New System.Drawing.Size(68, 19)
-        Me.RBALLBILLS.TabIndex = 5
-        Me.RBALLBILLS.Text = "All Bills"
-        Me.RBALLBILLS.UseVisualStyleBackColor = True
-        Me.RBALLBILLS.Visible = False
         '
         'Label8
         '
@@ -790,47 +702,6 @@ Partial Class AgencyOutstandingfilter
         Me.CHKPRINTDATE.Text = "Show Print Date"
         Me.CHKPRINTDATE.UseVisualStyleBackColor = False
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(957, 47)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 14)
-        Me.Label4.TabIndex = 667
-        Me.Label4.Text = "Days"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(940, 18)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(50, 14)
-        Me.Label3.TabIndex = 666
-        Me.Label3.Text = "Interest"
-        '
-        'TXTDAYS
-        '
-        Me.TXTDAYS.Location = New System.Drawing.Point(993, 43)
-        Me.TXTDAYS.Name = "TXTDAYS"
-        Me.TXTDAYS.Size = New System.Drawing.Size(31, 23)
-        Me.TXTDAYS.TabIndex = 13
-        Me.TXTDAYS.Text = "365"
-        Me.TXTDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTINTEREST
-        '
-        Me.TXTINTEREST.Location = New System.Drawing.Point(993, 14)
-        Me.TXTINTEREST.Name = "TXTINTEREST"
-        Me.TXTINTEREST.Size = New System.Drawing.Size(31, 23)
-        Me.TXTINTEREST.TabIndex = 12
-        Me.TXTINTEREST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'CMBGROUP
         '
         Me.CMBGROUP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -851,9 +722,9 @@ Partial Class AgencyOutstandingfilter
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(97, 97)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(40, 14)
+        Me.Label2.Size = New System.Drawing.Size(74, 14)
         Me.Label2.TabIndex = 663
-        Me.Label2.Text = "Group"
+        Me.Label2.Text = "Seller Name"
         '
         'CHKGROUPONNEWPG
         '
@@ -881,34 +752,15 @@ Partial Class AgencyOutstandingfilter
         Me.CHKADDRESS.Text = "Show Address"
         Me.CHKADDRESS.UseVisualStyleBackColor = False
         '
-        'CHKSUMMARY
-        '
-        Me.CHKSUMMARY.AutoSize = True
-        Me.CHKSUMMARY.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSUMMARY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSUMMARY.ForeColor = System.Drawing.Color.Black
-        Me.CHKSUMMARY.Location = New System.Drawing.Point(12, 0)
-        Me.CHKSUMMARY.Name = "CHKSUMMARY"
-        Me.CHKSUMMARY.Size = New System.Drawing.Size(75, 18)
-        Me.CHKSUMMARY.TabIndex = 7
-        Me.CHKSUMMARY.Text = "Summary"
-        Me.CHKSUMMARY.UseVisualStyleBackColor = False
-        Me.CHKSUMMARY.Visible = False
-        '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox3.Controls.Add(Me.RBBROKERINVENTORYRUNBAL)
-        Me.GroupBox3.Controls.Add(Me.RBAGEING)
         Me.GroupBox3.Controls.Add(Me.RBBROKERINVENTORY)
         Me.GroupBox3.Controls.Add(Me.RBOUTSTANDINGRUNBAL)
-        Me.GroupBox3.Controls.Add(Me.RBOLDNEWREPORT)
         Me.GroupBox3.Controls.Add(Me.RBBROKEROUTSTANDING)
-        Me.GroupBox3.Controls.Add(Me.RBREMINDER)
-        Me.GroupBox3.Controls.Add(Me.RBOUTSTANDINGBILLS)
         Me.GroupBox3.Controls.Add(Me.RBOUTSTANDING)
         Me.GroupBox3.Controls.Add(Me.RBINVENTORY)
-        Me.GroupBox3.Controls.Add(Me.RBINT)
         Me.GroupBox3.Controls.Add(Me.RBALL)
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(460, 21)
@@ -927,17 +779,6 @@ Partial Class AgencyOutstandingfilter
         Me.RBBROKERINVENTORYRUNBAL.TabIndex = 10
         Me.RBBROKERINVENTORYRUNBAL.Text = "Broker Out With Inv (Run Bal)"
         Me.RBBROKERINVENTORYRUNBAL.UseVisualStyleBackColor = True
-        '
-        'RBAGEING
-        '
-        Me.RBAGEING.AutoSize = True
-        Me.RBAGEING.BackColor = System.Drawing.Color.Transparent
-        Me.RBAGEING.Location = New System.Drawing.Point(14, 145)
-        Me.RBAGEING.Name = "RBAGEING"
-        Me.RBAGEING.Size = New System.Drawing.Size(101, 18)
-        Me.RBAGEING.TabIndex = 5
-        Me.RBAGEING.Text = "Ageing Report"
-        Me.RBAGEING.UseVisualStyleBackColor = False
         '
         'RBBROKERINVENTORY
         '
@@ -959,17 +800,6 @@ Partial Class AgencyOutstandingfilter
         Me.RBOUTSTANDINGRUNBAL.Text = "Outstanding with Running Bal"
         Me.RBOUTSTANDINGRUNBAL.UseVisualStyleBackColor = True
         '
-        'RBOLDNEWREPORT
-        '
-        Me.RBOLDNEWREPORT.AutoSize = True
-        Me.RBOLDNEWREPORT.BackColor = System.Drawing.Color.Transparent
-        Me.RBOLDNEWREPORT.Location = New System.Drawing.Point(14, 121)
-        Me.RBOLDNEWREPORT.Name = "RBOLDNEWREPORT"
-        Me.RBOLDNEWREPORT.Size = New System.Drawing.Size(165, 18)
-        Me.RBOLDNEWREPORT.TabIndex = 4
-        Me.RBOLDNEWREPORT.Text = "Monthly Old / New Report"
-        Me.RBOLDNEWREPORT.UseVisualStyleBackColor = False
-        '
         'RBBROKEROUTSTANDING
         '
         Me.RBBROKEROUTSTANDING.AutoSize = True
@@ -979,26 +809,6 @@ Partial Class AgencyOutstandingfilter
         Me.RBBROKEROUTSTANDING.TabIndex = 8
         Me.RBBROKEROUTSTANDING.Text = "Broker Wise Outstanding"
         Me.RBBROKEROUTSTANDING.UseVisualStyleBackColor = True
-        '
-        'RBREMINDER
-        '
-        Me.RBREMINDER.AutoSize = True
-        Me.RBREMINDER.Location = New System.Drawing.Point(217, 49)
-        Me.RBREMINDER.Name = "RBREMINDER"
-        Me.RBREMINDER.Size = New System.Drawing.Size(112, 18)
-        Me.RBREMINDER.TabIndex = 7
-        Me.RBREMINDER.Text = "Reminder Letter"
-        Me.RBREMINDER.UseVisualStyleBackColor = True
-        '
-        'RBOUTSTANDINGBILLS
-        '
-        Me.RBOUTSTANDINGBILLS.AutoSize = True
-        Me.RBOUTSTANDINGBILLS.Location = New System.Drawing.Point(217, 25)
-        Me.RBOUTSTANDINGBILLS.Name = "RBOUTSTANDINGBILLS"
-        Me.RBOUTSTANDINGBILLS.Size = New System.Drawing.Size(147, 18)
-        Me.RBOUTSTANDINGBILLS.TabIndex = 6
-        Me.RBOUTSTANDINGBILLS.Text = "Only Outstanding Bills"
-        Me.RBOUTSTANDINGBILLS.UseVisualStyleBackColor = True
         '
         'RBOUTSTANDING
         '
@@ -1021,16 +831,6 @@ Partial Class AgencyOutstandingfilter
         Me.RBINVENTORY.TabIndex = 2
         Me.RBINVENTORY.Text = "Outstanding With Inventory"
         Me.RBINVENTORY.UseVisualStyleBackColor = True
-        '
-        'RBINT
-        '
-        Me.RBINT.AutoSize = True
-        Me.RBINT.Location = New System.Drawing.Point(14, 97)
-        Me.RBINT.Name = "RBINT"
-        Me.RBINT.Size = New System.Drawing.Size(160, 18)
-        Me.RBINT.TabIndex = 3
-        Me.RBINT.Text = "Outstanding With Intrest"
-        Me.RBINT.UseVisualStyleBackColor = True
         '
         'RBALL
         '
@@ -1154,9 +954,9 @@ Partial Class AgencyOutstandingfilter
         Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(97, 41)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 14)
+        Me.Label9.Size = New System.Drawing.Size(72, 14)
         Me.Label9.TabIndex = 419
-        Me.Label9.Text = "Name"
+        Me.Label9.Text = "Buyer Name"
         '
         'cmdshow
         '
@@ -1192,30 +992,6 @@ Partial Class AgencyOutstandingfilter
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'RBPAYABLE
-        '
-        Me.RBPAYABLE.AutoSize = True
-        Me.RBPAYABLE.BackColor = System.Drawing.Color.Transparent
-        Me.RBPAYABLE.Location = New System.Drawing.Point(255, 13)
-        Me.RBPAYABLE.Name = "RBPAYABLE"
-        Me.RBPAYABLE.Size = New System.Drawing.Size(75, 19)
-        Me.RBPAYABLE.TabIndex = 1
-        Me.RBPAYABLE.Text = "Payables"
-        Me.RBPAYABLE.UseVisualStyleBackColor = False
-        '
-        'RBREC
-        '
-        Me.RBREC.AutoSize = True
-        Me.RBREC.BackColor = System.Drawing.Color.Transparent
-        Me.RBREC.Checked = True
-        Me.RBREC.Location = New System.Drawing.Point(161, 13)
-        Me.RBREC.Name = "RBREC"
-        Me.RBREC.Size = New System.Drawing.Size(90, 19)
-        Me.RBREC.TabIndex = 0
-        Me.RBREC.TabStop = True
-        Me.RBREC.Text = "Receivables"
-        Me.RBREC.UseVisualStyleBackColor = False
         '
         'AgencyOutstandingfilter
         '
@@ -1259,11 +1035,6 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents CMDWHATSAPP As Button
     Friend WithEvents Label12 As Label
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents CMBDELIVERYAT As ComboBox
-    Friend WithEvents Label11 As Label
-    Friend WithEvents cmbregister As ComboBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents RBALLBILLS As RadioButton
     Friend WithEvents Label8 As Label
     Friend WithEvents TXTOVERDUEDAYSLESS As TextBox
     Friend WithEvents CHKPDC As CheckBox
@@ -1309,27 +1080,17 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents RBGROUP As RadioButton
     Friend WithEvents RBACCOUNT As RadioButton
     Friend WithEvents CHKPRINTDATE As CheckBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents TXTDAYS As TextBox
-    Friend WithEvents TXTINTEREST As TextBox
     Friend WithEvents CMBGROUP As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents CHKGROUPONNEWPG As CheckBox
     Friend WithEvents CHKADDRESS As CheckBox
-    Friend WithEvents CHKSUMMARY As CheckBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents RBBROKERINVENTORYRUNBAL As RadioButton
-    Friend WithEvents RBAGEING As RadioButton
     Friend WithEvents RBBROKERINVENTORY As RadioButton
     Friend WithEvents RBOUTSTANDINGRUNBAL As RadioButton
-    Friend WithEvents RBOLDNEWREPORT As RadioButton
     Friend WithEvents RBBROKEROUTSTANDING As RadioButton
-    Friend WithEvents RBREMINDER As RadioButton
-    Friend WithEvents RBOUTSTANDINGBILLS As RadioButton
     Friend WithEvents RBOUTSTANDING As RadioButton
     Friend WithEvents RBINVENTORY As RadioButton
-    Friend WithEvents RBINT As RadioButton
     Friend WithEvents RBALL As RadioButton
     Friend WithEvents cmbacccode As ComboBox
     Friend WithEvents txtadd As TextBox
@@ -1345,6 +1106,4 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents cmdexit As Button
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
-    Friend WithEvents RBPAYABLE As RadioButton
-    Friend WithEvents RBREC As RadioButton
 End Class
