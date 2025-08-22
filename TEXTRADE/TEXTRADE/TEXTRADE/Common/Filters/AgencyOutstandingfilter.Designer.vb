@@ -74,7 +74,7 @@ Partial Class AgencyOutstandingfilter
         Me.RBGROUP = New System.Windows.Forms.RadioButton()
         Me.RBACCOUNT = New System.Windows.Forms.RadioButton()
         Me.CHKPRINTDATE = New System.Windows.Forms.CheckBox()
-        Me.CMBGROUP = New System.Windows.Forms.ComboBox()
+        Me.CMBSELLERNAME = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CHKGROUPONNEWPG = New System.Windows.Forms.CheckBox()
         Me.CHKADDRESS = New System.Windows.Forms.CheckBox()
@@ -137,7 +137,7 @@ Partial Class AgencyOutstandingfilter
         Me.BlendPanel2.Controls.Add(Me.Label5)
         Me.BlendPanel2.Controls.Add(Me.GroupBox4)
         Me.BlendPanel2.Controls.Add(Me.CHKPRINTDATE)
-        Me.BlendPanel2.Controls.Add(Me.CMBGROUP)
+        Me.BlendPanel2.Controls.Add(Me.CMBSELLERNAME)
         Me.BlendPanel2.Controls.Add(Me.Label2)
         Me.BlendPanel2.Controls.Add(Me.CHKGROUPONNEWPG)
         Me.BlendPanel2.Controls.Add(Me.CHKADDRESS)
@@ -431,7 +431,7 @@ Partial Class AgencyOutstandingfilter
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(62, 69)
+        Me.Label5.Location = New System.Drawing.Point(58, 69)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(77, 14)
         Me.Label5.TabIndex = 669
@@ -702,17 +702,17 @@ Partial Class AgencyOutstandingfilter
         Me.CHKPRINTDATE.Text = "Show Print Date"
         Me.CHKPRINTDATE.UseVisualStyleBackColor = False
         '
-        'CMBGROUP
+        'CMBSELLERNAME
         '
-        Me.CMBGROUP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBGROUP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBGROUP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBGROUP.FormattingEnabled = True
-        Me.CMBGROUP.Location = New System.Drawing.Point(136, 93)
-        Me.CMBGROUP.MaxDropDownItems = 14
-        Me.CMBGROUP.Name = "CMBGROUP"
-        Me.CMBGROUP.Size = New System.Drawing.Size(318, 22)
-        Me.CMBGROUP.TabIndex = 4
+        Me.CMBSELLERNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELLERNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELLERNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSELLERNAME.FormattingEnabled = True
+        Me.CMBSELLERNAME.Location = New System.Drawing.Point(136, 93)
+        Me.CMBSELLERNAME.MaxDropDownItems = 14
+        Me.CMBSELLERNAME.Name = "CMBSELLERNAME"
+        Me.CMBSELLERNAME.Size = New System.Drawing.Size(318, 22)
+        Me.CMBSELLERNAME.TabIndex = 4
         '
         'Label2
         '
@@ -720,7 +720,7 @@ Partial Class AgencyOutstandingfilter
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(97, 97)
+        Me.Label2.Location = New System.Drawing.Point(61, 97)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(74, 14)
         Me.Label2.TabIndex = 663
@@ -773,7 +773,7 @@ Partial Class AgencyOutstandingfilter
         'RBBROKERINVENTORYRUNBAL
         '
         Me.RBBROKERINVENTORYRUNBAL.AutoSize = True
-        Me.RBBROKERINVENTORYRUNBAL.Location = New System.Drawing.Point(217, 121)
+        Me.RBBROKERINVENTORYRUNBAL.Location = New System.Drawing.Point(217, 78)
         Me.RBBROKERINVENTORYRUNBAL.Name = "RBBROKERINVENTORYRUNBAL"
         Me.RBBROKERINVENTORYRUNBAL.Size = New System.Drawing.Size(183, 18)
         Me.RBBROKERINVENTORYRUNBAL.TabIndex = 10
@@ -783,7 +783,7 @@ Partial Class AgencyOutstandingfilter
         'RBBROKERINVENTORY
         '
         Me.RBBROKERINVENTORY.AutoSize = True
-        Me.RBBROKERINVENTORY.Location = New System.Drawing.Point(217, 97)
+        Me.RBBROKERINVENTORY.Location = New System.Drawing.Point(217, 54)
         Me.RBBROKERINVENTORY.Name = "RBBROKERINVENTORY"
         Me.RBBROKERINVENTORY.Size = New System.Drawing.Size(212, 18)
         Me.RBBROKERINVENTORY.TabIndex = 9
@@ -793,7 +793,7 @@ Partial Class AgencyOutstandingfilter
         'RBOUTSTANDINGRUNBAL
         '
         Me.RBOUTSTANDINGRUNBAL.AutoSize = True
-        Me.RBOUTSTANDINGRUNBAL.Location = New System.Drawing.Point(217, 145)
+        Me.RBOUTSTANDINGRUNBAL.Location = New System.Drawing.Point(217, 102)
         Me.RBOUTSTANDINGRUNBAL.Name = "RBOUTSTANDINGRUNBAL"
         Me.RBOUTSTANDINGRUNBAL.Size = New System.Drawing.Size(188, 18)
         Me.RBOUTSTANDINGRUNBAL.TabIndex = 11
@@ -803,7 +803,7 @@ Partial Class AgencyOutstandingfilter
         'RBBROKEROUTSTANDING
         '
         Me.RBBROKEROUTSTANDING.AutoSize = True
-        Me.RBBROKEROUTSTANDING.Location = New System.Drawing.Point(217, 73)
+        Me.RBBROKEROUTSTANDING.Location = New System.Drawing.Point(217, 30)
         Me.RBBROKEROUTSTANDING.Name = "RBBROKEROUTSTANDING"
         Me.RBBROKEROUTSTANDING.Size = New System.Drawing.Size(161, 18)
         Me.RBBROKEROUTSTANDING.TabIndex = 8
@@ -952,7 +952,7 @@ Partial Class AgencyOutstandingfilter
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(97, 41)
+        Me.Label9.Location = New System.Drawing.Point(61, 41)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(72, 14)
         Me.Label9.TabIndex = 419
@@ -1080,7 +1080,7 @@ Partial Class AgencyOutstandingfilter
     Friend WithEvents RBGROUP As RadioButton
     Friend WithEvents RBACCOUNT As RadioButton
     Friend WithEvents CHKPRINTDATE As CheckBox
-    Friend WithEvents CMBGROUP As ComboBox
+    Friend WithEvents CMBSELLERNAME As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents CHKGROUPONNEWPG As CheckBox
     Friend WithEvents CHKADDRESS As CheckBox
