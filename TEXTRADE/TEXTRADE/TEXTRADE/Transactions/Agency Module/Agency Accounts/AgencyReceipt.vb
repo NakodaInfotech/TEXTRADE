@@ -801,7 +801,8 @@ Public Class AgencyReceipt
 
             'Call toolnext_Click(sender, e)
             'If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbseller.Focus()
-
+            CLEAR()
+            EDIT = False
 
         Catch ex As Exception
             Throw ex
