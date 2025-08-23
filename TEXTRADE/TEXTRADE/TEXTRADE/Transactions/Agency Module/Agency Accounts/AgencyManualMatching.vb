@@ -163,7 +163,7 @@ LINE1:
                 End If
 
                 Dim dt As New DataTable
-                Dim OBJMATCH As New ClsManualMatching()
+                Dim OBJMATCH As New ClsAgencyManualMatching()
                 dt = OBJMATCH.SELECTBILL(TEMPMATCHNO, YearId)
 
                 If dt.Rows.Count > 0 Then
@@ -192,7 +192,7 @@ LINE1:
     Sub GETRECPAY()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" BILL_TYPE AS TYPE, BILL_NO AS BILLNO, BILL_REGISTERID AS REGID, BILL_INITIALS AS BILLINITIALS, BILL_DATE AS DATE, BILL_AMT AS BILLAMT, BILL_BALANCE AS BALAMT ", "", " OPENINGBILL INNER JOIN LEDGERS ON BILL_LEDGERID = ACC_ID ", " AND BILL_BALANCE > 0 AND BILL_TYPE IN('PAYMENT', 'RECEIPT','CREDIT', 'DEBIT') AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND BILL_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ABILL_TYPE AS TYPE, ABILL_NO AS BILLNO, ABILL_REGISTERID AS REGID, ABILL_INITIALS AS BILLINITIALS, ABILL_DATE AS DATE, ABILL_AMT AS BILLAMT, ABILL_BALANCE AS BALAMT ", "", " AGENCYOPENINGBILL INNER JOIN LEDGERS ON ABILL_LEDGERID = ACC_ID ", " AND ABILL_BALANCE > 0 AND ABILL_TYPE IN('PAYMENT', 'RECEIPT','CREDIT', 'DEBIT') AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND ABILL_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 For Each ROW As DataRow In DT.Rows
                     GRIDRECPAY.Rows.Add(0, ROW("TYPE"), Val(ROW("BILLNO")), ROW("REGID"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy"), Val(ROW("BILLAMT")), Val(ROW("BALAMT")))
@@ -315,7 +315,7 @@ LINE1:
             alparaval.Add(PAYAMT)
 
 
-            Dim OBJMATCH As New ClsManualMatching
+            Dim OBJMATCH As New ClsAgencyManualMatching
             OBJMATCH.alParaval = alparaval
 
             If EDIT = False Then
@@ -360,7 +360,7 @@ LINE1:
 
     Sub fillgrid()
         Try
-            Dim OBJPAY As New ClsManualMatching
+            Dim OBJPAY As New ClsAgencyManualMatching
             Dim ALPARAVAL As New ArrayList
             Dim DT As DataTable = OBJPAY.GETBILLS(CMBNAME.Text.Trim, YearId)
             If DT.Rows.Count > 0 Then
@@ -451,10 +451,10 @@ LINE1:
                     Exit Sub
                 End If
 
-                Dim tempmsg As Integer = MsgBox("Delete Matching Entry Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
+                Dim tempmsg As Integer = MsgBox("Delete Agency Matching Entry Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
                 If tempmsg = vbYes Then
 
-                    Dim OBJREC As New ClsManualMatching
+                    Dim OBJREC As New ClsAgencyManualMatching
                     Dim ALPARAVAL As New ArrayList
 
                     ALPARAVAL.Add(TEMPMATCHNO)
