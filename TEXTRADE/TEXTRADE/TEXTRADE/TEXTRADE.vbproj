@@ -2130,6 +2130,12 @@
     <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNoteDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatching.Designer.vb">
+      <DependentUpon>AgencyManualMatching.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatching.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.Designer.vb">
       <DependentUpon>AgencyReceipt.vb</DependentUpon>
     </Compile>
@@ -9594,6 +9600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCreditNoteDetails.resx">
       <DependentUpon>AgencyCreditNoteDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatching.resx">
+      <DependentUpon>AgencyManualMatching.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.resx">
       <DependentUpon>AgencyReceipt.vb</DependentUpon>
