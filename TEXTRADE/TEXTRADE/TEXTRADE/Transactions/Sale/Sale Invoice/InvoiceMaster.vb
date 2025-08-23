@@ -5447,6 +5447,7 @@ LINE1:
             If ClientName = "AARYA" Then
                 txtchallan.ReadOnly = False
                 txtchallan.TabStop = True
+                Label32.Text = "Party Ch No"
             End If
 
         Catch ex As Exception
