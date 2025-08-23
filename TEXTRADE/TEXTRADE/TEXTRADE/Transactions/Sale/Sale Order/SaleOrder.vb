@@ -861,41 +861,45 @@ line1:
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(LEDGERSTRANS.Acc_cmpname, '') AS TRANSNAME, ISNULL(CITYMASTER.city_name, '') AS CITYNAME, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(BILLTOLEDGERS.Acc_cmpname, '') AS BILLTONAME, ISNULL(PACKINGTYPEMASTER.PACKINGTYPE_name, '') AS PACKINGTYPE ", "", " LEDGERS LEFT OUTER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id LEFT OUTER JOIN LEDGERS AS LEDGERSTRANS ON LEDGERS.ACC_TRANSID = LEDGERSTRANS.Acc_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS BILLTOLEDGERS ON LEDGERS.ACC_BILLTOID = BILLTOLEDGERS.Acc_id", " and LEDGERS.acc_cmpname = '" & CMBPACKING.Text.Trim & "'  and LEDGERS.acc_YEARid = " & YearId)
                     If DT.Rows.Count > 0 Then
-                        If DT.Rows(0).Item("TRANSNAME") = "" Then
-                            cmbtrans.Text = cmbtrans.Text.Trim
-                        Else
-                            If ClientName <> "MASHOK" And ClientName <> "ABHEE" Then If cmbname.Text.Trim <> CMBPACKING.Text.Trim Then cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                        If ClientName <> "SUPRIYA" Then
+                            If DT.Rows(0).Item("TRANSNAME") = "" Then
+                                cmbtrans.Text = cmbtrans.Text.Trim
+                            Else
+                                If ClientName <> "MASHOK" And ClientName <> "ABHEE" Then If cmbname.Text.Trim <> CMBPACKING.Text.Trim Then cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                            End If
                         End If
-
                         'CHECK WHETHER NAME IS EQUAL TO BILLTONAME OR NOT, IF NOT THEN CHANGE IT
                         If ClientName = "KOTHARI" And DT.Rows(0).Item("BILLTONAME") <> "" AndAlso DT.Rows(0).Item("BILLTONAME") <> cmbname.Text.Trim Then
-                            cmbname.Text = DT.Rows(0).Item("BILLTONAME")
+                                cmbname.Text = DT.Rows(0).Item("BILLTONAME")
+                            End If
+
+
+                            If ClientName = "MNARESH" Or ClientName = "AFW" Then
+                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                                cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                                CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                            End If
+
+
+                            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                                'cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                                CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                            End If
+
+                            If ClientName = "SUPRIYA" Then
+                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                            End If
+
+                            If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Then
+                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                            End If
+
                         End If
-
-
-                        If ClientName = "MNARESH" Or ClientName = "AFW" Or ClientName = "SUPRIYA" Then
-                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                            cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
-                            CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
-                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                        End If
-
-
-                        If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                            'cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
-                            CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
-                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                        End If
-
-
-                        If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Then
-                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                        End If
-
                     End If
-                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -904,7 +908,9 @@ line1:
 
     Private Sub CMBPACKING_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBPACKING.Validating
         Try
-            If CMBPACKING.Text.Trim <> "" Then NAMEVALIDATE(CMBPACKING, CMBCODE, e, Me, txtDeliveryadd, " AND  (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry Debtors", "ACCOUNTS", cmbtrans.Text, CMBAGENT.Text)
+            If ClientName <> "SUPRIYA" Then
+                If CMBPACKING.Text.Trim <> "" Then NAMEVALIDATE(CMBPACKING, CMBCODE, e, Me, txtDeliveryadd, " AND  (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry Debtors", "ACCOUNTS", cmbtrans.Text, CMBAGENT.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
