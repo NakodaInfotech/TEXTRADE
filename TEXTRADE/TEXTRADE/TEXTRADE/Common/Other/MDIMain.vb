@@ -10538,5 +10538,25 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewManualMatchingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewManualMatchingToolStripMenuItem.Click
+        Try
+            Dim OBJMM As New AgencyManualMatching
+            OBJMM.MdiParent = Me
+            OBJMM.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingManualMatchingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingManualMatchingToolStripMenuItem.Click
+        Try
+            Dim OBJMM As New AgencyManualMatchingDetails
+            OBJMM.MdiParent = Me
+            OBJMM.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

@@ -2136,6 +2136,12 @@
     <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatching.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatchingDetails.Designer.vb">
+      <DependentUpon>AgencyManualMatchingDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatchingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.Designer.vb">
       <DependentUpon>AgencyReceipt.vb</DependentUpon>
     </Compile>
