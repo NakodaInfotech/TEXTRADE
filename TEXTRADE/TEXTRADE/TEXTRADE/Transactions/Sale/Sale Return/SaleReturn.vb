@@ -244,10 +244,10 @@ Public Class SaleReturn
             For Each ROW As DataGridViewRow In GRIDSALRET.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     If Val(ROW.Cells(GRATE.Index).EditedFormattedValue) > 0 Then
-                        If ROW.Cells(GPER.Index).Value = "Mtrs" Then
-                            ROW.Cells(GAMT.Index).Value = Format(Val(ROW.Cells(GMTRS.Index).EditedFormattedValue * ROW.Cells(GRATE.Index).EditedFormattedValue), "0.00")
-                        Else
+                        If ROW.Cells(GPER.Index).Value = "Pcs" Then
                             ROW.Cells(GAMT.Index).Value = Format(Val(ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(GRATE.Index).EditedFormattedValue), "0.00")
+                        Else
+                            ROW.Cells(GAMT.Index).Value = Format(Val(ROW.Cells(GMTRS.Index).EditedFormattedValue * ROW.Cells(GRATE.Index).EditedFormattedValue), "0.00")
                         End If
                     End If
                     If ROW.Cells(gcut.Index).EditedFormattedValue > 0 Then ROW.Cells(GMTRS.Index).Value = ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(gcut.Index).EditedFormattedValue
