@@ -9610,6 +9610,9 @@
     <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatching.resx">
       <DependentUpon>AgencyManualMatching.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyManualMatchingDetails.resx">
+      <DependentUpon>AgencyManualMatchingDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyReceipt.resx">
       <DependentUpon>AgencyReceipt.vb</DependentUpon>
     </EmbeddedResource>
