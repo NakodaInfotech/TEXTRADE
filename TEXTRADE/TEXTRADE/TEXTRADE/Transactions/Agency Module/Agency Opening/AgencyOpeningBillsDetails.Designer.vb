@@ -42,6 +42,10 @@ Partial Class AgencyOpeningBillsDetails
         Me.griduserdetails = New DevExpress.XtraGrid.GridControl()
         Me.GRIDUSERNAME = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.griduserrights, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,7 +69,7 @@ Partial Class AgencyOpeningBillsDetails
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1028, 529)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1282, 529)
         Me.BlendPanel1.TabIndex = 2
         '
         'CMDREFRESH
@@ -104,7 +108,7 @@ Partial Class AgencyOpeningBillsDetails
         Me.griddetails.MainView = Me.griduserrights
         Me.griddetails.Name = "griddetails"
         Me.griddetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cmbformname, Me.RepositoryItemCheckEdit1})
-        Me.griddetails.Size = New System.Drawing.Size(672, 439)
+        Me.griddetails.Size = New System.Drawing.Size(876, 439)
         Me.griddetails.TabIndex = 430
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.griduserrights})
         '
@@ -114,7 +118,7 @@ Partial Class AgencyOpeningBillsDetails
         Me.griduserrights.Appearance.HeaderPanel.Options.UseFont = True
         Me.griduserrights.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.griduserrights.Appearance.Row.Options.UseFont = True
-        Me.griduserrights.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GDATE, Me.GDUEDATE, Me.GAMT})
+        Me.griduserrights.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GDATE, Me.GDUEDATE, Me.GAMT, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GPARTYBILLNO})
         Me.griduserrights.GridControl = Me.griddetails
         Me.griduserrights.Name = "griduserrights"
         Me.griduserrights.OptionsBehavior.Editable = False
@@ -281,16 +285,52 @@ Partial Class AgencyOpeningBillsDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
         Me.GNAME.Width = 150
         '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.Width = 120
+        '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 8
+        Me.GRATE.Width = 100
+        '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 9
+        Me.GLRNO.Width = 100
+        '
+        'GPARTYBILLNO
+        '
+        Me.GPARTYBILLNO.Caption = "Party Bill No"
+        Me.GPARTYBILLNO.FieldName = "PARTYBILLNO"
+        Me.GPARTYBILLNO.Name = "GPARTYBILLNO"
+        Me.GPARTYBILLNO.Visible = True
+        Me.GPARTYBILLNO.VisibleIndex = 10
+        Me.GPARTYBILLNO.Width = 100
+        '
         'AgencyOpeningBillsDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1028, 529)
+        Me.ClientSize = New System.Drawing.Size(1282, 529)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -330,4 +370,8 @@ Partial Class AgencyOpeningBillsDetails
     Friend WithEvents griduserdetails As DevExpress.XtraGrid.GridControl
     Friend WithEvents GRIDUSERNAME As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
