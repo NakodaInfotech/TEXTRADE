@@ -22,15 +22,15 @@ Partial Class OrderGridReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMBORDERTYPE = New System.Windows.Forms.ComboBox()
         Me.LBLTYPE = New System.Windows.Forms.Label()
@@ -50,6 +50,13 @@ Partial Class OrderGridReport
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GPMILLNAME = New System.Windows.Forms.GroupBox()
+        Me.CHKSELECTMILL = New System.Windows.Forms.CheckBox()
+        Me.GRIDMILLDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDMILL = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPORDERNO = New System.Windows.Forms.GroupBox()
         Me.CHKSELECTORDER = New System.Windows.Forms.CheckBox()
         Me.GRIDBILLDETAILSORDER = New DevExpress.XtraGrid.GridControl()
@@ -101,18 +108,15 @@ Partial Class OrderGridReport
         Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.GPMILLNAME = New System.Windows.Forms.GroupBox()
-        Me.CHKSELECTMILL = New System.Windows.Forms.CheckBox()
-        Me.GRIDMILLDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDMILL = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
+        Me.GPMILLNAME.SuspendLayout()
+        CType(Me.GRIDMILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDMILL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GPORDERNO.SuspendLayout()
         CType(Me.GRIDBILLDETAILSORDER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILLORDER, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,10 +132,6 @@ Partial Class OrderGridReport
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GPMILLNAME.SuspendLayout()
-        CType(Me.GRIDMILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDMILL, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -215,9 +215,9 @@ Partial Class OrderGridReport
         Me.GRIDSO.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSO.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDSO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDSO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDSO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDSO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GITEMNAME, Me.GSONO, Me.GSODATE, Me.GNAME, Me.GAGENTNAME, Me.GNOTE, Me.GMILLNAME, Me.GPCS, Me.GOUTPCS, Me.GBALPCS, Me.GRATE, Me.GDAYS})
         Me.GRIDSO.GridColor = System.Drawing.SystemColors.Control
@@ -227,8 +227,8 @@ Partial Class OrderGridReport
         Me.GRIDSO.RowHeadersVisible = False
         Me.GRIDSO.RowHeadersWidth = 30
         Me.GRIDSO.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.GRIDSO.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.GRIDSO.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDSO.RowTemplate.Height = 20
         Me.GRIDSO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -237,9 +237,9 @@ Partial Class OrderGridReport
         '
         'GITEMNAME
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle2
         Me.GITEMNAME.HeaderText = "Item Name"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.ReadOnly = True
@@ -249,8 +249,8 @@ Partial Class OrderGridReport
         '
         'GSONO
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle3
         Me.GSONO.HeaderText = "SO No"
         Me.GSONO.Name = "GSONO"
         Me.GSONO.ReadOnly = True
@@ -305,9 +305,9 @@ Partial Class OrderGridReport
         '
         'GPCS
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle13.NullValue = Nothing
-        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle4
         Me.GPCS.HeaderText = "Pcs"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.ReadOnly = True
@@ -317,8 +317,8 @@ Partial Class OrderGridReport
         '
         'GOUTPCS
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle5
         Me.GOUTPCS.HeaderText = "Del Pcs"
         Me.GOUTPCS.Name = "GOUTPCS"
         Me.GOUTPCS.ReadOnly = True
@@ -328,8 +328,8 @@ Partial Class OrderGridReport
         '
         'GBALPCS
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle6
         Me.GBALPCS.HeaderText = "Bal Pcs"
         Me.GBALPCS.Name = "GBALPCS"
         Me.GBALPCS.ReadOnly = True
@@ -339,8 +339,8 @@ Partial Class OrderGridReport
         '
         'GRATE
         '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.ReadOnly = True
@@ -350,8 +350,8 @@ Partial Class OrderGridReport
         '
         'GDAYS
         '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle8
         Me.GDAYS.HeaderText = "Cr Days"
         Me.GDAYS.Name = "GDAYS"
         Me.GDAYS.ReadOnly = True
@@ -372,6 +372,82 @@ Partial Class OrderGridReport
         Me.TabPage1.Size = New System.Drawing.Size(1562, 532)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Filters"
+        '
+        'GPMILLNAME
+        '
+        Me.GPMILLNAME.BackColor = System.Drawing.Color.Transparent
+        Me.GPMILLNAME.Controls.Add(Me.CHKSELECTMILL)
+        Me.GPMILLNAME.Controls.Add(Me.GRIDMILLDETAILS)
+        Me.GPMILLNAME.Location = New System.Drawing.Point(1012, 21)
+        Me.GPMILLNAME.Name = "GPMILLNAME"
+        Me.GPMILLNAME.Size = New System.Drawing.Size(296, 492)
+        Me.GPMILLNAME.TabIndex = 766
+        Me.GPMILLNAME.TabStop = False
+        Me.GPMILLNAME.Text = "Mill Name"
+        '
+        'CHKSELECTMILL
+        '
+        Me.CHKSELECTMILL.AutoSize = True
+        Me.CHKSELECTMILL.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTMILL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTMILL.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTMILL.Location = New System.Drawing.Point(18, 22)
+        Me.CHKSELECTMILL.Name = "CHKSELECTMILL"
+        Me.CHKSELECTMILL.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTMILL.TabIndex = 0
+        Me.CHKSELECTMILL.Text = "Select All"
+        Me.CHKSELECTMILL.UseVisualStyleBackColor = False
+        '
+        'GRIDMILLDETAILS
+        '
+        Me.GRIDMILLDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDMILLDETAILS.Location = New System.Drawing.Point(6, 43)
+        Me.GRIDMILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDMILLDETAILS.MainView = Me.GRIDMILL
+        Me.GRIDMILLDETAILS.Name = "GRIDMILLDETAILS"
+        Me.GRIDMILLDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6})
+        Me.GRIDMILLDETAILS.Size = New System.Drawing.Size(285, 422)
+        Me.GRIDMILLDETAILS.TabIndex = 1
+        Me.GRIDMILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDMILL})
+        '
+        'GRIDMILL
+        '
+        Me.GRIDMILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDMILL.Appearance.Row.Options.UseFont = True
+        Me.GRIDMILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKMILL, Me.GridColumn3})
+        Me.GRIDMILL.GridControl = Me.GRIDMILLDETAILS
+        Me.GRIDMILL.Name = "GRIDMILL"
+        Me.GRIDMILL.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDMILL.OptionsView.ColumnAutoWidth = False
+        Me.GRIDMILL.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDMILL.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKMILL
+        '
+        Me.GCHKMILL.ColumnEdit = Me.RepositoryItemCheckEdit6
+        Me.GCHKMILL.FieldName = "CHK"
+        Me.GCHKMILL.Name = "GCHKMILL"
+        Me.GCHKMILL.OptionsColumn.ShowCaption = False
+        Me.GCHKMILL.Visible = True
+        Me.GCHKMILL.VisibleIndex = 0
+        Me.GCHKMILL.Width = 35
+        '
+        'RepositoryItemCheckEdit6
+        '
+        Me.RepositoryItemCheckEdit6.AutoHeight = False
+        Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
+        Me.RepositoryItemCheckEdit6.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Mill Name"
+        Me.GridColumn3.FieldName = "MILLNAME"
+        Me.GridColumn3.ImageOptions.ImageIndex = 0
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 200
         '
         'GPORDERNO
         '
@@ -945,83 +1021,6 @@ Partial Class OrderGridReport
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'GPMILLNAME
-        '
-        Me.GPMILLNAME.BackColor = System.Drawing.Color.Transparent
-        Me.GPMILLNAME.Controls.Add(Me.CHKSELECTMILL)
-        Me.GPMILLNAME.Controls.Add(Me.GRIDMILLDETAILS)
-        Me.GPMILLNAME.Location = New System.Drawing.Point(1012, 21)
-        Me.GPMILLNAME.Name = "GPMILLNAME"
-        Me.GPMILLNAME.Size = New System.Drawing.Size(296, 492)
-        Me.GPMILLNAME.TabIndex = 766
-        Me.GPMILLNAME.TabStop = False
-        Me.GPMILLNAME.Text = "Mill Name"
-        Me.GPMILLNAME.Visible = False
-        '
-        'CHKSELECTMILL
-        '
-        Me.CHKSELECTMILL.AutoSize = True
-        Me.CHKSELECTMILL.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSELECTMILL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSELECTMILL.ForeColor = System.Drawing.Color.Black
-        Me.CHKSELECTMILL.Location = New System.Drawing.Point(18, 22)
-        Me.CHKSELECTMILL.Name = "CHKSELECTMILL"
-        Me.CHKSELECTMILL.Size = New System.Drawing.Size(77, 18)
-        Me.CHKSELECTMILL.TabIndex = 0
-        Me.CHKSELECTMILL.Text = "Select All"
-        Me.CHKSELECTMILL.UseVisualStyleBackColor = False
-        '
-        'GRIDMILLDETAILS
-        '
-        Me.GRIDMILLDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDMILLDETAILS.Location = New System.Drawing.Point(6, 43)
-        Me.GRIDMILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDMILLDETAILS.MainView = Me.GRIDMILL
-        Me.GRIDMILLDETAILS.Name = "GRIDMILLDETAILS"
-        Me.GRIDMILLDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit6})
-        Me.GRIDMILLDETAILS.Size = New System.Drawing.Size(285, 422)
-        Me.GRIDMILLDETAILS.TabIndex = 1
-        Me.GRIDMILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDMILL})
-        '
-        'GRIDMILL
-        '
-        Me.GRIDMILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDMILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDMILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKMILL, Me.GridColumn3})
-        Me.GRIDMILL.GridControl = Me.GRIDMILLDETAILS
-        Me.GRIDMILL.Name = "GRIDMILL"
-        Me.GRIDMILL.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GRIDMILL.OptionsView.ColumnAutoWidth = False
-        Me.GRIDMILL.OptionsView.ShowAutoFilterRow = True
-        Me.GRIDMILL.OptionsView.ShowGroupPanel = False
-        '
-        'GCHKMILL
-        '
-        Me.GCHKMILL.ColumnEdit = Me.RepositoryItemCheckEdit6
-        Me.GCHKMILL.FieldName = "CHK"
-        Me.GCHKMILL.Name = "GCHKMILL"
-        Me.GCHKMILL.OptionsColumn.ShowCaption = False
-        Me.GCHKMILL.Visible = True
-        Me.GCHKMILL.VisibleIndex = 0
-        Me.GCHKMILL.Width = 35
-        '
-        'RepositoryItemCheckEdit6
-        '
-        Me.RepositoryItemCheckEdit6.AutoHeight = False
-        Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
-        Me.RepositoryItemCheckEdit6.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Mill Name"
-        Me.GridColumn3.FieldName = "MILLNAME"
-        Me.GridColumn3.ImageOptions.ImageIndex = 0
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 200
-        '
         'OrderGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1039,6 +1038,11 @@ Partial Class OrderGridReport
         Me.tbitem.ResumeLayout(False)
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
+        Me.GPMILLNAME.ResumeLayout(False)
+        Me.GPMILLNAME.PerformLayout()
+        CType(Me.GRIDMILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDMILL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GPORDERNO.ResumeLayout(False)
         Me.GPORDERNO.PerformLayout()
         CType(Me.GRIDBILLDETAILSORDER, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1060,11 +1064,6 @@ Partial Class OrderGridReport
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GPMILLNAME.ResumeLayout(False)
-        Me.GPMILLNAME.PerformLayout()
-        CType(Me.GRIDMILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDMILL, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

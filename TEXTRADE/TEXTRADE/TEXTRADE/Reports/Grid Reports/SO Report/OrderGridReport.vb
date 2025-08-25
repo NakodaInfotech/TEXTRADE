@@ -345,6 +345,7 @@ Public Class OrderGridReport
                 CMBORDERTYPE.Items.Clear()
                 CMBORDERTYPE.Items.Add("GREY")
                 CMBORDERTYPE.Items.Add("YARN")
+                GPMILLNAME.Visible = True
             End If
         Catch ex As Exception
             Throw ex
