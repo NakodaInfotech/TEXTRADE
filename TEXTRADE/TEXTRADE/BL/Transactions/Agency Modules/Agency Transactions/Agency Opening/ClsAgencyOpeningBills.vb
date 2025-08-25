@@ -112,7 +112,7 @@ Public Class ClsAgencyOpeningBills
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PARTYBILLNO", alParaval(I)))
                 I = I + 1
 
 
@@ -212,78 +212,11 @@ Public Class ClsAgencyOpeningBills
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BALANCE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PRINTINITIALS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PARTYBILLNO", alParaval(I)))
                 I = I + 1
 
 
 
-
-            End With
-
-            INTRESULT = objDBOperation.executeNonQuery(strCommand, alParameter)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return 0
-
-    End Function
-
-    Public Function SAVEINT() As Integer
-        Dim INTRESULT As Integer
-        Try
-            'save OPENING BILLS
-            Dim strCommand As String = "SP_TRANS_AGENCY_AGENCYOPENINGINT_SAVE"
-            Dim alParameter As New ArrayList
-            With alParameter
-
-                Dim I As Integer = 0
-
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@YEAR", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BILLDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DUEDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DISPUTE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AMT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AMTPAIDREC", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@EXTRAAMT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@RETURN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALANCE", alParaval(I)))
-                I = I + 1
-                '.Add(New SqlClient.SqlParameter("@REGISTERNAME", alParaval(I)))
-                'I = I + 1
-                .Add(New SqlClient.SqlParameter("@REGTYPE", alParaval(I)))
-                I = I + 1
 
             End With
 
@@ -335,38 +268,6 @@ Public Class ClsAgencyOpeningBills
         Try
             'save OPENING BILLS
             Dim strCommand As String = "SP_TRANS_AGENCY_AGENCYOPENINGBILLS_DELETE"
-            Dim alParameter As New ArrayList
-            With alParameter
-
-                Dim I As Integer = 0
-
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                I = I + 1
-
-            End With
-
-            INTRESULT = objDBOperation.executeNonQuery(strCommand, alParameter)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return 0
-
-    End Function
-
-    Public Function DELETEINT() As Integer
-        Dim INTRESULT As Integer
-        Try
-            'save OPENING INTEREST
-            Dim strCommand As String = "SP_TRANS_AGENCY_AGENCYOPENINGINT_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
 

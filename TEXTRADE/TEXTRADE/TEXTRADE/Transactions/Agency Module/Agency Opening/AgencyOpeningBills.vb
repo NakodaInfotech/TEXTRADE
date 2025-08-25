@@ -393,7 +393,7 @@ Public Class AgencyOpeningBills
             Dim ITEMNAME As String = ""
             Dim RATE As String = ""
             Dim LRNO As String = ""
-            Dim GRIDREMARKS As String = ""
+            Dim PARTYBILLNO As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDOPENING.Rows
                 If row.Cells(GSRNO.Index).Value <> Nothing Then
@@ -433,7 +433,7 @@ Public Class AgencyOpeningBills
                         ITEMNAME = row.Cells(GITEMNAME.Index).Value.ToString
                         RATE = row.Cells(GRATE.Index).Value
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
-                        GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value.ToString
+                        PARTYBILLNO = row.Cells(GPARTYBILLNO.Index).Value.ToString
 
                     Else
 
@@ -471,7 +471,7 @@ Public Class AgencyOpeningBills
                         ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value.ToString
                         RATE = RATE & "|" & row.Cells(GRATE.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
-                        GRIDREMARKS = GRIDREMARKS & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
+                        PARTYBILLNO = PARTYBILLNO & "|" & row.Cells(GPARTYBILLNO.Index).Value.ToString
 
                     End If
                 End If
@@ -512,20 +512,8 @@ Public Class AgencyOpeningBills
             alparaval.Add(ITEMNAME)
             alparaval.Add(RATE)
             alparaval.Add(LRNO)
-            alparaval.Add(GRIDREMARKS)
+            alparaval.Add(PARTYBILLNO)
 
-
-            'Dim OBJCMN As New ClsCommon
-            'Dim DT As DataTable = OBJCMN.search(" GROUP_SECONDARY AS SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON GROUP_ID = ACC_GROUPID AND GROUP_CMPID = ACC_CMPID AND GROUP_LOCATIONID = ACC_LOCATIONID AND GROUP_YEARID = ACC_YEARID  ", " AND LEDGERS.ACC_CODE = '" & CMBACCCODE.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
-            'If DT.Rows.Count > 0 Then
-            '    If DT.Rows(0).Item(0) = "Sundry Creditors" Then
-            '        alparaval.Add("PURCHASE REGISTER")
-            '        alparaval.Add("PURCHASE")
-            '    Else
-            '        alparaval.Add("SALE REGISTER")
-            '        alparaval.Add("SALE")
-            '    End If
-            'End If
 
 
             Dim OBJOPENING As New ClsAgencyOpeningBills
@@ -608,7 +596,7 @@ Public Class AgencyOpeningBills
                 GRIDOPENING.Item(GITEMNAME.Index, TEMPROW).Value = 0
                 GRIDOPENING.Item(GRATE.Index, TEMPROW).Value = 0
                 GRIDOPENING.Item(GLRNO.Index, TEMPROW).Value = 0
-                GRIDOPENING.Item(GGRIDREMARKS.Index, TEMPROW).Value = 0
+                GRIDOPENING.Item(GPARTYBILLNO.Index, TEMPROW).Value = 0
                 GRIDDOUBLECLICK = False
             End If
             total()

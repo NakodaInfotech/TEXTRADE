@@ -413,6 +413,24 @@
     <Compile Include="Masters\CustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.Designer.vb">
+      <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.vb">
+      <DependentUpon>AgencyOutstandingReport_BuyerDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerDetails.vb">
+      <DependentUpon>AgencyOutstandingReport_SellerDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8550,6 +8568,17 @@
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
+      <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyOutstandingReport_BuyerDetails.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyOutstandingReport_SellerDetails.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_AARYA.vb</LastGenOutput>
@@ -13979,7 +14008,7 @@
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reports\Crystal Reports\Agency Module\Sale Order\" />
+    <Folder Include="Reports\Crystal Reports\Agency Reports\Sale Order\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

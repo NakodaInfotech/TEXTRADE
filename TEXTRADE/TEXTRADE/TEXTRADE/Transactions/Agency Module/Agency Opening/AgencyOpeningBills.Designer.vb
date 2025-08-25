@@ -90,6 +90,7 @@ Partial Class AgencyOpeningBills
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBILLTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -124,8 +125,7 @@ Partial Class AgencyOpeningBills
         Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CMBCODE = New System.Windows.Forms.ComboBox()
+        Me.GPARTYBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDOPENING, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -396,7 +396,7 @@ Partial Class AgencyOpeningBills
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDOPENING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDOPENING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GGRIDREMARKS})
+        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GPARTYBILLNO})
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -420,7 +420,7 @@ Partial Class AgencyOpeningBills
         Me.GRIDOPENING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDOPENING.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDOPENING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDOPENING.Size = New System.Drawing.Size(2033, 393)
+        Me.GRIDOPENING.Size = New System.Drawing.Size(2507, 407)
         Me.GRIDOPENING.TabIndex = 11
         Me.GRIDOPENING.TabStop = False
         '
@@ -744,6 +744,17 @@ Partial Class AgencyOpeningBills
         Me.lbl.TabIndex = 313
         Me.lbl.Text = "Agency Opening Bill"
         '
+        'CMBCODE
+        '
+        Me.CMBCODE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBCODE.FormattingEnabled = True
+        Me.CMBCODE.Location = New System.Drawing.Point(439, 26)
+        Me.CMBCODE.MaxLength = 100
+        Me.CMBCODE.Name = "CMBCODE"
+        Me.CMBCODE.Size = New System.Drawing.Size(48, 23)
+        Me.CMBCODE.TabIndex = 949
+        Me.CMBCODE.Visible = False
+        '
         'EP
         '
         Me.EP.BlinkRate = 0
@@ -1039,42 +1050,39 @@ Partial Class AgencyOpeningBills
         '
         'GITEMNAME
         '
-        Me.GITEMNAME.HeaderText = "ItemName"
+        Me.GITEMNAME.HeaderText = "Item Name"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Visible = False
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 140
         '
         'GRATE
         '
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.ReadOnly = True
-        Me.GRATE.Visible = False
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 60
         '
         'GLRNO
         '
         Me.GLRNO.HeaderText = "LR No"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.ReadOnly = True
-        Me.GLRNO.Visible = False
+        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRNO.Width = 150
         '
-        'GGRIDREMARKS
+        'GPARTYBILLNO
         '
-        Me.GGRIDREMARKS.HeaderText = "GRIDREMARKS"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.ReadOnly = True
-        Me.GGRIDREMARKS.Visible = False
-        '
-        'CMBCODE
-        '
-        Me.CMBCODE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBCODE.FormattingEnabled = True
-        Me.CMBCODE.Location = New System.Drawing.Point(439, 26)
-        Me.CMBCODE.MaxLength = 100
-        Me.CMBCODE.Name = "CMBCODE"
-        Me.CMBCODE.Size = New System.Drawing.Size(48, 23)
-        Me.CMBCODE.TabIndex = 949
-        Me.CMBCODE.Visible = False
+        Me.GPARTYBILLNO.HeaderText = "Party Bill No"
+        Me.GPARTYBILLNO.Name = "GPARTYBILLNO"
+        Me.GPARTYBILLNO.ReadOnly = True
+        Me.GPARTYBILLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPARTYBILLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPARTYBILLNO.Width = 140
         '
         'AgencyOpeningBills
         '
@@ -1148,6 +1156,7 @@ Partial Class AgencyOpeningBills
     Friend WithEvents cmdexit As Button
     Friend WithEvents lbl As Label
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents CMBCODE As ComboBox
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GBILLTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GBILLNO As DataGridViewTextBoxColumn
@@ -1181,6 +1190,5 @@ Partial Class AgencyOpeningBills
     Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
     Friend WithEvents GRATE As DataGridViewTextBoxColumn
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
-    Friend WithEvents CMBCODE As ComboBox
+    Friend WithEvents GPARTYBILLNO As DataGridViewTextBoxColumn
 End Class
