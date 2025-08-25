@@ -716,8 +716,6 @@ Public Class AgencyOpeningBills
 
                     If FRMSTRING = "AGENCYOPENINGBILLS" Then
                         Dim INTRES As Integer = OBJOP.DELETE
-                    Else
-                        Dim INTRES As Integer = OBJOP.DELETEINT
                     End If
 
                     GRIDOPENING.Rows.RemoveAt(GRIDOPENING.CurrentRow.Index)
@@ -840,8 +838,6 @@ Public Class AgencyOpeningBills
 
                         If FRMSTRING = "AGENCYOPENINGBILLS" Then
                             Dim INTRES As Integer = OBJOP.DELETE
-                        Else
-                            Dim INTRES As Integer = OBJOP.DELETEINT
                         End If
                     Next
                     clear()
