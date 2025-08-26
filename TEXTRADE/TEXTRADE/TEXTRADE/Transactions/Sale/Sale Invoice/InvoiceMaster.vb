@@ -7570,7 +7570,7 @@ ERRORMESSAGE:
             Dim OBJCMN As New ClsCommon
 
             If EDIT = True Then SENDWHATSAPP(TEMPINVOICENO)
-            DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_SENDWHATSAPP = 1 FROM InvoiceMaster INNER JOIN REGISTERMASTER On INVOICEMASTER.INVOICE_REGISTERID = REGISTERMASTER.register_id WHERE INVOICE_NO = " & TEMPINVOICENO & " AND INVOICE_REGISTERID " & TEMPREGNAME & "  AND INVOICE_YEARID = " & YearId, "", "")
+            DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_SENDWHATSAPP = 1 FROM InvoiceMaster INNER JOIN REGISTERMASTER On INVOICEMASTER.INVOICE_REGISTERID = REGISTERMASTER.register_id WHERE INVOICE_NO = " & TEMPINVOICENO & " AND REGISTERMASTER.REGISTER_NAME = '" & TEMPREGNAME & "'  AND INVOICE_YEARID = " & YearId, "", "")
             LBLWHATSAPP.Visible = True
         Catch ex As Exception
             Throw ex
@@ -7586,10 +7586,6 @@ ERRORMESSAGE:
             End If
 
             If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-
-
-
-
 
             Dim WHATSAPPNO As String = ""
             Dim OBJINVOICE As New saledesign
