@@ -7,6 +7,7 @@ Imports CrystalDecisions.Shared
 Imports RestSharp
 Imports Newtonsoft.Json
 Imports TaxProEInvoice.API
+Imports DevExpress.Map.Native
 
 Public Class AgencyInvoice
 
@@ -1353,19 +1354,15 @@ Public Class AgencyInvoice
                 End If
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
-                'MessageBox.Show("Details Updated")
+                MessageBox.Show("Details Updated")
 
                 'SMSCODE()
-                'EDIT = False
+                EDIT = False
             End If
 
 
-            'If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-            'If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
+            Call toolnext_Click(sender, e)
+            INVOICEDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -3508,7 +3505,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTMTRS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTPCS.KeyPress,TXTCOMM.KeyPress
+    Private Sub TXTMTRS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTPCS.KeyPress, TXTCOMM.KeyPress
         AMOUNTNUMDOTKYEPRESS(e, sender, Me)
     End Sub
 
@@ -6006,6 +6003,17 @@ NEXTLINE:
                 txtroundoff.TabStop = False
                 TOTAL()
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSUPPLIERNAME_Validated(sender As Object, e As EventArgs) Handles CMBSUPPLIERNAME.Validated
+        Try
+            If CMBSUPPLIERNAME.Text.Trim = "" Then Exit Sub
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBSUPPLIERNAME.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.acc_YEARid = " & YearId)
+            TXTSELLERSTATECODE.Text = DT.Rows(0).Item("STATECODE")
         Catch ex As Exception
             Throw ex
         End Try

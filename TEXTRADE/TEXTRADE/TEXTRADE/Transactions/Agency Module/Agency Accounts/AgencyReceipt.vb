@@ -794,13 +794,13 @@ Public Class AgencyReceipt
                 End If
                 alparaval.Add(TEMPARECEIPTNO)
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
-                'MsgBox("Details Updated")
-                'EDIT = False
+                MsgBox("Details Updated")
+                EDIT = False
 
             End If
 
-            'Call toolnext_Click(sender, e)
-            'If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbseller.Focus()
+            Call toolnext_Click(sender, e)
+            cmbseller.Focus()
             CLEAR()
             EDIT = False
 

@@ -978,6 +978,9 @@ Partial Class MDIMain
         Me.ToolStripSeparator317 = New System.Windows.Forms.ToolStripSeparator()
         Me.AGENCYOPENINGBILL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator320 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AgencyManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator311 = New System.Windows.Forms.ToolStripSeparator()
         Me.AgencyOpeningBillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYOUTSTANDING_MENU = New System.Windows.Forms.ToolStripMenuItem()
@@ -1207,9 +1210,6 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.AgencyManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingManualMatchingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.ToolStrip1.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1218,7 +1218,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.ReportsToolStripMenuItem, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.Utilitiesmenu, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.MASHOK_REPORTS, Me.CustomReportsToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.ReportsToolStripMenuItem, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.MASHOK_REPORTS, Me.CustomReportsToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -7194,7 +7194,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleOrderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleOrderToolStripMenuItem, Me.EditExistingSaleOrderToolStripMenuItem, Me.ToolStripSeparator313, Me.CloseMultipleSaleOrderToolStripMenuItem, Me.ToolStripSeparator312})
         Me.AgencySaleOrderToolStripMenuItem.Name = "AgencySaleOrderToolStripMenuItem"
-        Me.AgencySaleOrderToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.AgencySaleOrderToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleOrderToolStripMenuItem.Text = "&Order"
         '
         'AddNewSaleOrderToolStripMenuItem
@@ -7229,7 +7229,7 @@ Partial Class MDIMain
         '
         Me.SaleInvoiceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleOrderToolStripMenuItem1, Me.EditExistingInvoiceToolStripMenuItem, Me.ToolStripSeparator314})
         Me.SaleInvoiceToolStripMenuItem.Name = "SaleInvoiceToolStripMenuItem"
-        Me.SaleInvoiceToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.SaleInvoiceToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaleInvoiceToolStripMenuItem.Text = "&Invoice"
         '
         'AddNewSaleOrderToolStripMenuItem1
@@ -7253,7 +7253,7 @@ Partial Class MDIMain
         '
         Me.SaleReturnToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewSaleReturnToolStripMenuItem, Me.EditExistingSaleReturnToolStripMenuItem, Me.ToolStripSeparator315})
         Me.SaleReturnToolStripMenuItem.Name = "SaleReturnToolStripMenuItem"
-        Me.SaleReturnToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.SaleReturnToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaleReturnToolStripMenuItem.Text = "Sale &Return"
         '
         'AddNewSaleReturnToolStripMenuItem
@@ -7276,11 +7276,11 @@ Partial Class MDIMain
         'ToolStripSeparator316
         '
         Me.ToolStripSeparator316.Name = "ToolStripSeparator316"
-        Me.ToolStripSeparator316.Size = New System.Drawing.Size(134, 6)
+        Me.ToolStripSeparator316.Size = New System.Drawing.Size(177, 6)
         '
         'AToolStripMenuItem
         '
-        Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320, Me.AgencyManualMatchingToolStripMenuItem})
+        Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
         Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
@@ -7343,6 +7343,25 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator320.Name = "ToolStripSeparator320"
         Me.ToolStripSeparator320.Size = New System.Drawing.Size(206, 6)
+        '
+        'AgencyManualMatchingToolStripMenuItem
+        '
+        Me.AgencyManualMatchingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewManualMatchingToolStripMenuItem, Me.EditExistingManualMatchingToolStripMenuItem})
+        Me.AgencyManualMatchingToolStripMenuItem.Name = "AgencyManualMatchingToolStripMenuItem"
+        Me.AgencyManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.AgencyManualMatchingToolStripMenuItem.Text = "Agency Manual Matching"
+        '
+        'AddNewManualMatchingToolStripMenuItem
+        '
+        Me.AddNewManualMatchingToolStripMenuItem.Name = "AddNewManualMatchingToolStripMenuItem"
+        Me.AddNewManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
+        Me.AddNewManualMatchingToolStripMenuItem.Text = "Add New Manual Matching"
+        '
+        'EditExistingManualMatchingToolStripMenuItem
+        '
+        Me.EditExistingManualMatchingToolStripMenuItem.Name = "EditExistingManualMatchingToolStripMenuItem"
+        Me.EditExistingManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
+        Me.EditExistingManualMatchingToolStripMenuItem.Text = "Edit Existing Manual Matching"
         '
         'ToolStripSeparator311
         '
@@ -8816,25 +8835,6 @@ Partial Class MDIMain
         'Timer1
         '
         Me.Timer1.Interval = 10
-        '
-        'AgencyManualMatchingToolStripMenuItem
-        '
-        Me.AgencyManualMatchingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewManualMatchingToolStripMenuItem, Me.EditExistingManualMatchingToolStripMenuItem})
-        Me.AgencyManualMatchingToolStripMenuItem.Name = "AgencyManualMatchingToolStripMenuItem"
-        Me.AgencyManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.AgencyManualMatchingToolStripMenuItem.Text = "Agency Manual Matching"
-        '
-        'AddNewManualMatchingToolStripMenuItem
-        '
-        Me.AddNewManualMatchingToolStripMenuItem.Name = "AddNewManualMatchingToolStripMenuItem"
-        Me.AddNewManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
-        Me.AddNewManualMatchingToolStripMenuItem.Text = "Add New Manual Matching"
-        '
-        'EditExistingManualMatchingToolStripMenuItem
-        '
-        Me.EditExistingManualMatchingToolStripMenuItem.Name = "EditExistingManualMatchingToolStripMenuItem"
-        Me.EditExistingManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(237, 22)
-        Me.EditExistingManualMatchingToolStripMenuItem.Text = "Edit Existing Manual Matching"
         '
         'MDIMain
         '
