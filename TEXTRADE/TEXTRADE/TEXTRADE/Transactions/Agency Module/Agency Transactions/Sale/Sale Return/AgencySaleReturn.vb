@@ -6,7 +6,9 @@ Imports System.Net
 Imports RestSharp
 Imports TaxProEInvoice.API
 Imports Newtonsoft.Json
+
 Public Class AgencySaleReturn
+
     Dim IntResult As Integer
     Dim GRIDDOUBLECLICK, GRIDADJDOUBLECLICK As Boolean
     Dim GRIDUPLOADDOUBLECLICK, GRIDCHGSDOUBLECLICK As Boolean
@@ -18,6 +20,7 @@ Public Class AgencySaleReturn
     Dim PARTYCHALLANNO As String
     Dim a As Integer = 0
     Dim col As New DataGridViewCheckBoxColumn
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -26,6 +29,7 @@ Public Class AgencySaleReturn
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Sub CLEAR()
         Try
             EP.Clear()
@@ -193,6 +197,8 @@ Public Class AgencySaleReturn
             LBLWHATSAPP.Visible = False
             TXTNOOFBALES.Clear()
             CMBCOSTCENTERNAME.Text = ""
+            TXTSELLERSTATECODE.Clear()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -579,9 +585,9 @@ Public Class AgencySaleReturn
             Throw ex
         End Try
     End Sub
+
     Function ERRORVALID() As Boolean
         Try
-            TOTAL()
             Dim bln As Boolean = True
 
             If ClientName = "SVS" And TXTCHALLANNO.Text.Trim.Length = 0 Then
@@ -656,30 +662,6 @@ Public Class AgencySaleReturn
 
             End If
 
-            ''''by guklit sir 
-
-            'If Val(TXTCHALLANNO.Text.Trim) > 0 Then
-            '    If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLANNO.Text.Trim)) Then
-            '        'for search
-            '        Dim objclscommon As New ClsCommon()
-            '        Dim DT As DataTable = objclscommon.search(" SALRET_challanno, LEDGERS.ACC_cmpname", "", " SALERETURN inner join LEDGERS on LEDGERS.ACC_id = SALRET_ledgerid ", " and SALRET_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND SALRET_YEARID =" & YearId)
-            '        If DT.Rows.Count > 0 Then
-            '            EP.SetError(TXTCHALLANNO, "Challan No. Already Exists")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
-
-            'DONE BY GULKIT
-            'If Convert.ToDateTime(SALRETDATE.Text).Date >= "01/02/2018" And txtgrandtotal.Text > 50000 Then
-            '    If TXTEWAYBILLNO.Text.Trim.Length = 0 Then
-            '        If MsgBox("E-Way No. Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-            '            EP.SetError(TXTEWAYBILLNO, " Please Enter E-Way No..... ")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
-
 
             If SALRETDATE.Text = "__/__/____" Then
                 EP.SetError(SALRETDATE, " Please Enter Proper Date")
@@ -714,23 +696,23 @@ Public Class AgencySaleReturn
 
             If Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
                 If TXTSTATECODE.Text.Trim.Length = 0 Then
-                    EP.SetError(TXTSTATECODE, "Please enter the state code")
+                    EP.SetError(CMBNAME, "Please enter the state code")
                     bln = False
                 End If
 
-                'If TXTGSTIN.Text.Trim.Length = 0 Then
-                '    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
-                '        bln = False
-                '    End If
-                'End If
+                If TXTGSTIN.Text.Trim.Length = 0 Then
+                    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
+                        bln = False
+                    End If
+                End If
 
-                If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(TXTCGSTAMT.Text) > 0 Or Val(TXTSGSTAMT.Text.Trim) > 0) Then
+                If TXTSELLERSTATECODE.Text.Trim <> TXTSTATECODE.Text.Trim And (Val(TXTCGSTAMT.Text) > 0 Or Val(TXTSGSTAMT.Text.Trim) > 0) Then
                     EP.SetError(CMBNAME, "Invaid Entry Done in CGST/SGST")
                     bln = False
                 End If
 
-                If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(TXTIGSTAMT.Text) > 0 Then
+                If TXTSELLERSTATECODE.Text.Trim = TXTSTATECODE.Text.Trim And Val(TXTIGSTAMT.Text) > 0 Then
                     EP.SetError(CMBNAME, "Invaid Entry Done in IGST")
                     bln = False
                 End If
@@ -786,10 +768,10 @@ Public Class AgencySaleReturn
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            'EP.Clear()
-            'If Not ERRORVALID() Then
-            '    Exit Sub
-            'End If
+            EP.Clear()
+            If Not ERRORVALID() Then
+                Exit Sub
+            End If
 
 
             'GET BILLREMARKS
@@ -1190,8 +1172,8 @@ Public Class AgencySaleReturn
                 End If
                 alParaval.Add(TEMPSALRETNO)
                 IntResult = OBJPURCH.UPDATE()
-                'MsgBox("Details Updated")
-                'PRINTREPORT(TEMPSALRETNO)
+                MsgBox("Details Updated")
+                PRINTREPORT(TEMPSALRETNO)
             End If
 
             EDIT = False
@@ -1207,13 +1189,8 @@ Public Class AgencySaleReturn
             Next
 
 
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-
-            'CMBSELLER.Focus()
+            Call toolnext_Click(sender, e)
+            CMBSELLER.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1305,6 +1282,7 @@ Public Class AgencySaleReturn
 
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                         CMBSELLER.Text = dr("DELIVERYAT")
+                        TXTSELLERSTATECODE.Text = dr("PURSTATECODE")
 
                         TXTSTATECODE.Text = dr("STATECODE")
                         TXTGSTIN.Text = dr("GSTIN")
@@ -2323,83 +2301,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDSELECTRET_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            If CMBNAME.Text.Trim = "" Then
-                MsgBox("Please Select Party name First", MsgBoxStyle.Critical)
-                CMBNAME.Focus()
-                Exit Sub
-            End If
-
-            Dim DTRET As New DataTable
-            Dim OBJSELECTRET As New SelectInvoiceForReturn
-            If ClientName <> "SVS" Then OBJSELECTRET.PARTYNAME = CMBNAME.Text.Trim
-            OBJSELECTRET.ShowDialog()
-            DTRET = OBJSELECTRET.DT
-
-            If DTRET.Rows.Count > 0 Then
-
-                Dim objclspreq As New ClsCommon()
-                'Dim DT As DataTable = objclspreq.search(" DISTINCT  ISNULL(INVOICEMASTER.INVOICE_NO, 0) AS INVNO, ISNULL(INVOICEMASTER.INVOICE_DATE, GETDATE()) AS INVDATE, ISNULL(INVOICEMASTER.INVOICE_GDNNO, '') AS GDNNO, ISNULL(INVOICEMASTER.INVOICE_GDNDATE, GETDATE()) AS GDNDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(INVOICEMASTER_DESC.INVOICE_PCS, 0) AS PCS, ISNULL(INVOICEMASTER_DESC.INVOICE_MTRS, 0) AS MTRS, ISNULL(INVOICEMASTER_DESC.INVOICE_RATE, 0) AS RATE, ISNULL(INVOICEMASTER_DESC.INVOICE_PER, '') AS PER, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(INVOICEMASTER.INVOICE_TOTALPCS, 0) AS TOTALPCS, ISNULL(INVOICEMASTER.INVOICE_TOTALMTRS, 0) AS TOTALMTRS ", "", " ITEMMASTER INNER JOIN INVOICEMASTER_DESC ON ITEMMASTER.item_id = INVOICEMASTER_DESC.INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER_DESC.INVOICE_NO = INVOICEMASTER.INVOICE_NO AND INVOICEMASTER_DESC.INVOICE_YEARID = INVOICEMASTER.INVOICE_YEARID INNER JOIN QUALITYMASTER ON INVOICEMASTER_DESC.INVOICE_QUALITYID = QUALITYMASTER.QUALITY_id INNER JOIN DESIGNMASTER ON INVOICEMASTER_DESC.INVOICE_DESIGNID = DESIGNMASTER.DESIGN_id INNER JOIN COLORMASTER ON INVOICEMASTER_DESC.INVOICE_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN HSNMASTER ON INVOICEMASTER_DESC.INVOICE_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.Acc_id ", "  AND INVOICEMASTER.INVOICE_NO =" & Val(DTRET.Rows(0).Item("INVNO")) & "  AND INVOICEMASTER.INVOICE_REGISTERID =" & Val(DTRET.Rows(0).Item("REGID")) & "  AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " AND INVOICEMASTER.INVOICE_RETURN = " & 0 & " ORDER BY INVNO")
-                Dim DT As New DataTable
-
-                If DTRET.Rows(0).Item("INVOICETYPE") = "INVOICE" Then
-                    DT = objclspreq.SEARCH(" ISNULL(AGENCYINVOICEMASTER.AINVOICE_NO, 0) AS INVNO, ISNULL(AGENCYINVOICEMASTER.AINVOICE_INITIALS, 0) AS INVINITIALS, ISNULL(AGENCYINVOICEMASTER.AINVOICE_DATE, GETDATE()) AS INVDATE, ISNULL(AGENCYINVOICEMASTER.AINVOICE_GDNNO, '') AS GDNNO, ISNULL(AGENCYINVOICEMASTER.AINVOICE_GDNDATE, GETDATE()) AS GDNDATE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(AGENCYINVOICEMASTER_DESC.AINVOICE_PCS, 0) AS PCS, ISNULL(AGENCYINVOICEMASTER_DESC.AINVOICE_MTRS, 0) AS MTRS, ISNULL(AGENCYINVOICEMASTER_DESC.AINVOICE_RATE, 0) AS RATE, ISNULL(AGENCYINVOICEMASTER_DESC.AINVOICE_PER, '') AS PER, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(AGENCYINVOICEMASTER.AINVOICE_TOTALPCS, 0) AS TOTALPCS, ISNULL(AGENCYINVOICEMASTER.AINVOICE_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(HSNMASTER.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER.HSN_IGST, 0) AS IGSTPER,  ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, ISNULL(AGENCYINVOICEMASTER_DESC.AINVOICE_BALENO,'') AS BALENO ", "", " ITEMMASTER INNER JOIN AGENCYINVOICEMASTER_DESC ON ITEMMASTER.item_id = AGENCYINVOICEMASTER_DESC.AINVOICE_ITEMID INNER JOIN AGENCYINVOICEMASTER ON AGENCYINVOICEMASTER_DESC. AINVOICE_NO = AGENCYINVOICEMASTER.AINVOICE_NO AND AGENCYINVOICEMASTER_DESC.AINVOICE_YEARID = AGENCYINVOICEMASTER.AINVOICE_YEARID INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN COLORMASTER ON AGENCYINVOICEMASTER_DESC.AINVOICE_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON AGENCYINVOICEMASTER_DESC.AINVOICE_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON AGENCYINVOICEMASTER_DESC.AINVOICE_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN HSNMASTER ON AGENCYINVOICEMASTER_DESC.AINVOICE_HSNCODEID = HSNMASTER.HSN_ID    LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON AGENCYINVOICEMASTER.AINVOICE_AGENTID = AGENTLEDGERS.Acc_id   ", "  AND AGENCYINVOICEMASTER.AINVOICE_NO =" & Val(DTRET.Rows(0).Item("INVNO")) & "   AND AGENCYINVOICEMASTER.AINVOICE_YEARID = " & YearId & " ORDER BY INVNO")
-                Else
-                    DT = objclspreq.SEARCH(" ISNULL(OPENINGBILL.BILL_NO, 0) AS INVNO, ISNULL(OPENINGBILL.BILL_INITIALS, 0) AS INVINITIALS, ISNULL(OPENINGBILL.BILL_DATE, GETDATE()) AS INVDATE, 0 AS GDNNO, ISNULL(OPENINGBILL.BILL_DATE, GETDATE()) AS GDNDATE, '' AS ITEM, '' AS HSNCODE, '' AS QUALITY, '' AS DESIGN, '' AS COLOR, 0 AS PCS, 0 AS MTRS, 0 AS RATE, 'Mtrs' AS PER, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, 0 AS TOTALPCS, 0 AS TOTALMTRS, 0 AS CGSTPER, 0 AS SGSTPER, 0 AS IGSTPER,  ISNULL(REGISTERMASTER.register_name, '') AS INVREGNAME , ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, '' AS BALENO, REGLEDGERS.Acc_cmpname AS DEBITLEDGER ", "", " OPENINGBILL INNER JOIN LEDGERS ON OPENINGBILL.BILL_LEDGERID = LEDGERS.Acc_id INNER JOIN REGISTERMASTER ON OPENINGBILL.BILL_REGISTERID = REGISTERMASTER.register_id  INNER JOIN LEDGERS AS REGLEDGERS ON REGISTERMASTER.register_abbr = REGLEDGERS.Acc_cmpname AND REGISTERMASTER.register_yearid = REGLEDGERS.Acc_yearid  LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON OPENINGBILL.BILL_AGENTID = AGENTLEDGERS.Acc_id", "  AND OPENINGBILL.BILL_INITIALS = '" & DTRET.Rows(0).Item("INVINITIALS") & "' AND OPENINGBILL.BILL_NO =" & Val(DTRET.Rows(0).Item("INVNO")) & "  AND OPENINGBILL.BILL_REGISTERID =" & Val(DTRET.Rows(0).Item("REGID")) & "  AND OPENINGBILL.BILL_YEARID = " & YearId & " ORDER BY INVNO")
-                End If
-                TXTINVNO.Text = DT.Rows(0).Item("INVNO")
-                TXTINVINITIALS.Text = DT.Rows(0).Item("INVINITIALS")
-                'TXTINVREGNAME.Text = DT.Rows(0).Item("INVREGNAME")
-                TXTINVTYPE.Text = DTRET.Rows(0).Item("INVOICETYPE")
-                INVDATE.Text = DT.Rows(0).Item("INVDATE")
-                TXTCHALLANNO.Text = DT.Rows(0).Item("GDNNO")
-                CHALLANDATE.Text = DT.Rows(0).Item("GDNDATE")
-                CMBAGENT.Text = DT.Rows(0).Item("AGENT")
-
-                If TXTINVTYPE.Text.Trim = "INVOICE" And ClientName <> "AVIS" And ClientName <> "SUPRIYA" Then
-                    Dim SNO As Integer = 0
-                    For Each DTROWPS As DataRow In DT.Rows
-                        If EDIT = False Then
-                            'GRIDSALRET.Rows.Add(0, "", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Mtrs", Format(Val(DTROWPS("MTRS")), "0.00"), 0, DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId, DTROWPS("GDNBARCODE"), 0, 0, 0, DTROWPS("GDNNO"), DTROWPS("SRNO"))
-                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), "")
-
-                        Else
-                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & GRIDSALRET.RowCount + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), DTROWPS("INVNO"))
-                        End If
-                        SNO += 1
-
-                        If DTROWPS("ITEM").ToString <> "" And Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
-                            If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
-                                TXTCGSTPER.Text = Val(DTROWPS("CGSTPER"))
-                                TXTSGSTPER.Text = Val(DTROWPS("SGSTPER"))
-                                TXTIGSTPER.Text = 0
-                            Else
-                                TXTCGSTPER.Text = 0
-                                TXTSGSTPER.Text = 0
-                                TXTIGSTPER.Text = Val(DTROWPS("IGSTPER"))
-                            End If
-                        End If
-                    Next
-                    getsrno(GRIDSALRET)
-                    TOTAL()
-                End If
-
-
-                'CHARGES GRID
-
-                Dim dttable As DataTable = objclspreq.SEARCH(" AGENCYINVOICEMASTER_CHGS.AINVOICE_gridsrno AS GRIDSRNO, LEDGERS.Acc_cmpname AS CHARGES, AGENCYINVOICEMASTER_CHGS.AINVOICE_PER AS PER, AGENCYINVOICEMASTER_CHGS.AINVOICE_AMT AS AMT, AGENCYINVOICEMASTER_CHGS.AINVOICE_TAXID AS TAXID ", "", " AGENCYINVOICEMASTER_CHGS INNER JOIN LEDGERS ON AGENCYINVOICEMASTER_CHGS.AINVOICE_CHARGESID = LEDGERS.Acc_id  ", " AND AGENCYINVOICEMASTER_CHGS.AINVOICE_NO =" & Val(DTRET.Rows(0).Item("INVNO")) & "  AND AGENCYINVOICEMASTER_CHGS.AINVOICE_YEARID = " & YearId & " ORDER BY AGENCYINVOICEMASTER_CHGS.AINVOICE_gridsrno")
-                If dttable.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable.Rows
-                        GRIDCHGS.Rows.Add(DTR("GRIDSRNO"), DTR("CHARGES"), DTR("PER"), 0, DTR("TAXID"))
-                    Next
-                End If
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Sub PRINTREPORT(ByVal SRNO As Integer)
         'Try
         '    TEMPMSG = MsgBox("Wish to Print Sale Return?", MsgBoxStyle.YesNo)
@@ -2538,7 +2439,6 @@ LINE1:
     Sub GETHSNCODE()
         Try
 
-
             Dim OBJCMN As New ClsCommon
             'DT = OBJCMN.search("  ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER.HSN_IGST, 0) AS IGSTPER ", "", "HSNMASTER INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND ITEMMASTER.ITEM_NAME= '" & cmbitemname.Text.Trim & "' AND HSNMASTER.HSN_YEARID='" & YearId & "' ORDER BY HSNMASTER.HSN_ID DESC")
             Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & cmbitemname.Text.Trim & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
@@ -2553,7 +2453,7 @@ LINE1:
                 TXTIGSTAMT.Clear()
 
                 TXTHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
-                If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
+                If TXTSTATECODE.Text.Trim = TXTSELLERSTATECODE.Text.Trim Then
                     TXTIGSTPER.Text = 0
 
                     If CHKEXPORTGST.CheckState = CheckState.Unchecked Then
@@ -2579,6 +2479,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub cmbname_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBNAME.Validated
         Try
             If CMBNAME.Text.Trim <> "" Then
@@ -3105,151 +3006,6 @@ LINE1:
         TOTAL()
     End Sub
 
-    Private Sub CMDSELECTCHALLAN_Click(sender As Object, e As EventArgs)
-        'Try
-        '    Dim OBJCMN As New ClsCommon
-        '    If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
-        '        MsgBox("Insufficient Rights")
-        '        Exit Sub
-        '    End If
-
-        '    If ClientName <> "KCRAYON" And ClientName <> "YASHVI" And ClientName <> "SUPRIYA" Then
-        '        If CMBNAME.Text = "" Then
-        '            MsgBox("Select Party Name First !", MsgBoxStyle.Critical)
-        '            Exit Sub
-        '        End If
-        '    End If
-
-
-        '    Dim DTTABLE As DataTable
-        '    Dim OBJSELECTPO As New SelectReturnChallan
-        '    OBJSELECTPO.PARTYNAME = CMBNAME.Text.Trim
-        '    OBJSELECTPO.FRMSTRING = "SALERETURN"
-        '    OBJSELECTPO.ShowDialog()
-
-        '    DTTABLE = OBJSELECTPO.DT1
-
-        '    Dim i As Integer = 0
-        '    If DTTABLE.Rows.Count > 0 Then
-
-        '        ''  GETTING DISTINCT CHALLAN NO IN TEXTBOX
-        '        Dim DV As DataView = DTTABLE.DefaultView
-        '        Dim NEWDT As DataTable = DV.ToTable(True, "SRCHNO")
-        '        For Each DTR As DataRow In NEWDT.Rows
-        '            If TXTSRCHNO.Text.Trim = "" Then
-        '                TXTSRCHNO.Text = DTR("SRCHNO").ToString
-        '            Else
-        '                TXTSRCHNO.Text = TXTSRCHNO.Text & "," & DTR("SRCHNO").ToString
-        '            End If
-        '        Next
-
-        '        CMBNAME.Text = DTTABLE.Rows(0).Item("NAME")
-        '        CMBNAME.Enabled = False
-        '        TXTSTATECODE.Text = DTTABLE.Rows(0).Item("STATECODE")
-        '        TXTGSTIN.Text = DTTABLE.Rows(0).Item("GSTIN")
-        '        TXTNOOFBALES.Text = DTTABLE.Rows(0).Item("NOOFBALES")
-        '        cmbtrans.Text = DTTABLE.Rows(0).Item("TRANSNAME")
-        '        txtlrno.Text = DTTABLE.Rows(0).Item("LRNO")
-        '        If DTTABLE.Rows(0).Item("LRDATE") <> "" And DTTABLE.Rows(0).Item("LRDATE") <> "__/__/____" Then lrdate.Text = DTTABLE.Rows(0).Item("LRDATE")
-
-        '        Dim DT1 As New DataTable
-        '        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AVIS" Then
-        '            DT1 = OBJCMN.SEARCH(" SALERETURNCHALLAN.SRCH_NO AS SRCHNO, ISNULL(PIECETYPEMASTER.PIECETYPE_name,'') AS PIECETYPE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, SUM(ISNULL(SALERETURNCHALLAN_DESC.SRCH_QTY, 0)) AS PCS, SUM(ISNULL(SALERETURNCHALLAN_DESC.SRCH_MTRS, 0)) AS MTRS , ISNULL(HSN_CODE,'') AS HSNCODE, ISNULL(HSN_CGST,0) AS CGSTPER, ISNULL(HSN_SGST,0) AS SGSTPER, ISNULL(HSN_IGST,0) AS IGSTPER, 0 AS GDNSRNO, ISNULL(SALERETURNCHALLAN_DESC.SRCH_BALENO, '') AS BALENO,ISNULL(SALERETURNCHALLAN_DESC.SRCH_GRIDREMARKS, '') AS PRINTDESC, ISNULL(UNIT_ABBR,'') AS UNIT, ISNULL(SALERETURNCHALLAN_DESC.SRCH_RATE,0) AS RATE, ISNULL(SALERETURNCHALLAN_DESC.SRCH_PER,'Mtrs') AS PER, ISNULL(SALERETURNCHALLAN_DESC.SRCH_AMOUNT, 0) AS AMOUNT ", "", " SALERETURNCHALLAN INNER JOIN SALERETURNCHALLAN_DESC ON SALERETURNCHALLAN.SRCH_NO = SALERETURNCHALLAN_DESC.SRCH_NO AND SALERETURNCHALLAN.SRCH_YEARID = SALERETURNCHALLAN_DESC.SRCH_YEARID LEFT OUTER JOIN ITEMMASTER ON SALERETURNCHALLAN_DESC.SRCH_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SALERETURNCHALLAN_DESC.SRCH_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON SALERETURNCHALLAN_DESC.SRCH_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN QUALITYMASTER ON SALERETURNCHALLAN_DESC.SRCH_QUALITYID = QUALITYMASTER.QUALITY_ID LEFT OUTER JOIN PIECETYPEMASTER ON SALERETURNCHALLAN_DESC.SRCH_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON SRCH_QTYUNITID = UNIT_ID ", "  and SALERETURNCHALLAN.SRCH_NO IN(" & TXTSRCHNO.Text.Trim & ")  and SALERETURNCHALLAN.SRCH_YEARID = " & YearId & " GROUP BY SALERETURNCHALLAN.SRCH_NO, ISNULL(PIECETYPEMASTER.PIECETYPE_name,'') , ISNULL(ITEMMASTER.item_name, '') , ISNULL(QUALITYMASTER.QUALITY_name, ''), ISNULL(DESIGN_NO,''), ISNULL(COLORMASTER.COLOR_name, '') , ISNULL(HSN_CODE,'') , ISNULL(HSN_CGST,0) , ISNULL(HSN_SGST,0) , ISNULL(HSN_IGST,0) ,ISNULL(SALERETURNCHALLAN_DESC.SRCH_BALENO, '') ,ISNULL(SALERETURNCHALLAN_DESC.SRCH_GRIDREMARKS, ''), ISNULL(UNIT_ABBR,''), ISNULL(SALERETURNCHALLAN_DESC.SRCH_RATE,0), ISNULL(SALERETURNCHALLAN_DESC.SRCH_PER,'Mtrs'), ISNULL(SALERETURNCHALLAN_DESC.SRCH_AMOUNT, 0)   order by SALERETURNCHALLAN.SRCH_NO ")
-        '        Else
-        '            DT1 = OBJCMN.SEARCH(" SALERETURNCHALLAN.SRCH_NO AS SRCHNO, ISNULL(PIECETYPEMASTER.PIECETYPE_name,'') AS PIECETYPE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, '' AS QUALITY, ISNULL(DESIGN_NO,'') AS DESIGN, '' AS COLOR, SUM(ISNULL(SALERETURNCHALLAN_DESC.SRCH_QTY, 0)) AS PCS, SUM(ISNULL(SALERETURNCHALLAN_DESC.SRCH_MTRS, 0)) AS MTRS , ISNULL(HSN_CODE,'') AS HSNCODE, ISNULL(HSN_CGST,0) AS CGSTPER, ISNULL(HSN_SGST,0) AS SGSTPER, ISNULL(HSN_IGST,0) AS IGSTPER, 0 AS GDNSRNO, ISNULL(SALERETURNCHALLAN_DESC.SRCH_BALENO, '') AS BALENO,ISNULL(SALERETURNCHALLAN_DESC.SRCH_GRIDREMARKS, '') AS PRINTDESC, ISNULL(UNIT_ABBR,'') AS UNIT, ISNULL(SALERETURNCHALLAN_DESC.SRCH_RATE,0) AS RATE, ISNULL(SALERETURNCHALLAN_DESC.SRCH_PER,'Mtrs') AS PER, ISNULL(SALERETURNCHALLAN_DESC.SRCH_AMOUNT, 0) AS AMOUNT ", "", " SALERETURNCHALLAN INNER JOIN SALERETURNCHALLAN_DESC ON SALERETURNCHALLAN.SRCH_NO = SALERETURNCHALLAN_DESC.SRCH_NO AND SALERETURNCHALLAN.SRCH_YEARID = SALERETURNCHALLAN_DESC.SRCH_YEARID LEFT OUTER JOIN ITEMMASTER ON SALERETURNCHALLAN_DESC.SRCH_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SALERETURNCHALLAN_DESC.SRCH_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON SALERETURNCHALLAN_DESC.SRCH_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN PIECETYPEMASTER ON SALERETURNCHALLAN_DESC.SRCH_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON SRCH_QTYUNITID = UNIT_ID ", "  and SALERETURNCHALLAN.SRCH_NO IN(" & TXTSRCHNO.Text.Trim & ")  and SALERETURNCHALLAN.SRCH_YEARID = " & YearId & " GROUP BY SALERETURNCHALLAN.SRCH_NO, ISNULL(PIECETYPEMASTER.PIECETYPE_name,'') , ISNULL(ITEMMASTER.item_name, '') ,ISNULL(DESIGN_NO,'') , ISNULL(HSN_CODE,'') , ISNULL(HSN_CGST,0) , ISNULL(HSN_SGST,0) , ISNULL(HSN_IGST,0) ,ISNULL(SALERETURNCHALLAN_DESC.SRCH_BALENO, '') ,ISNULL(SALERETURNCHALLAN_DESC.SRCH_GRIDREMARKS, ''), ISNULL(UNIT_ABBR,''), ISNULL(SALERETURNCHALLAN_DESC.SRCH_RATE,0), ISNULL(SALERETURNCHALLAN_DESC.SRCH_PER,'Mtrs'), ISNULL(SALERETURNCHALLAN_DESC.SRCH_AMOUNT, 0)  order by SALERETURNCHALLAN.SRCH_NO ")
-        '        End If
-        '        If DT1.Rows.Count > 0 Then
-        '            For Each dr As DataRow In DT1.Rows
-
-        '                Dim PER As String = dr("PER")
-        '                Dim INVRATE As Double = dr("RATE")
-
-
-        '                'getting per from itemmaster
-        '                If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "AXIS" Then
-        '                    Dim DTPER As DataTable = OBJCMN.SEARCH("ISNULL(UNIT_ABBR,'Mtrs') AS PER", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON item_unitid = UNIT_ID ", " AND ITEMMASTER.ITEM_NAME = '" & dr("ITEM") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-        '                    If DTPER.Rows.Count > 0 Then
-        '                        If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
-        '                    End If
-        '                End If
-        '                If ClientName = "MOMAI" Or ClientName = "CC" Or ClientName = "C3" Then PER = "Pcs"
-
-
-        '                Dim DTRATE As New DataTable
-        '                If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then
-        '                    Dim WHERECLAUSE As String = ""
-        '                    If (ClientName = "SANGHVI" Or ClientName = "TINUMINU") AndAlso dr("QUALITY") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(QUALITYMASTER.QUALITY_NAME,'') = '" & dr("QUALITY") & "'"
-        '                    If dr("DESIGN") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(DESIGNMASTER.DESIGN_NO,'') = '" & dr("DESIGN") & "'"
-        '                    If (ClientName = "SANGHVI" Or ClientName = "TINUMINU") AndAlso dr("COLOR") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(COLORMASTER.COLOR_NAME,'') = '" & dr("COLOR") & "'"
-        '                    DTRATE = OBJCMN.SEARCH("PRICELISTMASTER.PL_RATE AS SALERATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR ", "", "PRICELISTMASTER INNER JOIN ITEMMASTER ON PRICELISTMASTER.PL_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON PRICELISTMASTER.PL_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON PRICELISTMASTER.PL_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON PRICELISTMASTER.PL_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN LEDGERS ON PRICELISTMASTER.PL_LEDGERID = LEDGERS.ACC_ID ", " AND ISNULL(ITEMMASTER.ITEM_NAME,'') = '" & dr("ITEM") & "'" & WHERECLAUSE & " AND PL_YEARID = " & YearId)
-        '                    If DTRATE.Rows.Count > 0 Then INVRATE = DTRATE.Rows(0).Item("SALERATE")
-        '                End If
-
-
-
-        '                Dim BALENO As String = dr("BALENO")
-
-        '                If ClientName = "CC" Or ClientName = "C3" Then
-        '                    DTRATE = OBJCMN.SEARCH("DESIGN_WRATE AS WRATE, DESIGN_SALERATE AS SALERATE", "", "DESIGNMASTER", " AND DESIGN_NO = '" & dr("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
-        '                    If DTRATE.Rows.Count > 0 Then INVRATE = Val(DTRATE.Rows(0).Item("WRATE"))
-
-        '                    'GET BALENO
-        '                    'GET LAST INV DATE WHERE THIS DESIGN WAS SAVED FOR THIS PARTY
-        '                    'DONT ADD YEARID CLAUSE, WE NEED DATA FROM ANY YEAR
-        '                    If dr("DESIGN") <> "" And CMBNAME.Text.Trim <> "" Then
-        '                        Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 INVOICEMASTER.INVOICE_DATE AS INVDATE", "", " INVOICEMASTER INNER JOIN INVOICEMASTER_DESC ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN DESIGNMASTER ON DESIGN_ID = INVOICEMASTER_DESC.INVOICE_DESIGNID INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.ACC_ID", " AND DESIGNMASTER.DESIGN_NO = '" & dr("DESIGN") & "' AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' ORDER BY INVOICEMASTER.INVOICE_DATE DESC")
-        '                        If DT.Rows.Count > 0 Then BALENO = Format(Convert.ToDateTime(DT.Rows(0).Item("INVDATE")).Date, "dd/MM/yyyy")
-        '                    End If
-        '                End If
-
-
-
-        '                GRIDSALRET.Rows.Add(0, dr("PIECETYPE"), dr("ITEM"), dr("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, BALENO, "0.00", "0.00", Format(Val(dr("PCS")), "0.00"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, Format(Val(dr("AMOUNT")), "0.00"), "", "", "", "", 0, 0, 0, dr("SRCHNO"), "")
-
-
-        '                If dr("ITEM").ToString <> "" And Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
-        '                    Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & dr("ITEM") & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
-        '                    If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
-        '                        TXTIGSTPER.Text = 0
-
-        '                        If CHKEXPORTGST.CheckState = CheckState.Unchecked Then
-        '                            TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("CGSTPER"))
-        '                            TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("SGSTPER"))
-        '                        Else
-        '                            TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("EXPCGSTPER"))
-        '                            TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("EXPSGSTPER"))
-        '                        End If
-
-        '                    Else
-        '                        TXTCGSTPER.Text = 0
-        '                        TXTSGSTPER.Text = 0
-        '                        If CHKEXPORTGST.CheckState = CheckState.Unchecked Then
-        '                            TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("IGSTPER"))
-        '                        Else
-        '                            TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("EXPIGSTPER"))
-        '                        End If
-        '                    End If
-        '                End If
-
-        '            Next
-
-        '        End If
-
-
-
-        '        GRIDSALRET.FirstDisplayedScrollingRowIndex = GRIDSALRET.RowCount - 1
-        '        If GRIDSALRET.RowCount > 0 Then
-        '            GRIDSALRET.Focus()
-        '            GRIDSALRET.CurrentCell = GRIDSALRET.Rows(0).Cells(GRATE.Index)
-        '        End If
-        '        getsrno(GRIDSALRET)
-        '        TOTAL()
-        '    End If
-
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-    End Sub
     Private Sub CMBAGENT_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBAGENT.Enter
         If CMBAGENT.Text.Trim = "" Then fillledger(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
     End Sub
@@ -4430,6 +4186,17 @@ NEXTLINE:
                 OBJCITY.ShowDialog()
                 If OBJCITY.TEMPNAME <> "" Then CMBTOCITY.Text = OBJCITY.TEMPNAME
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLER_Validated(sender As Object, e As EventArgs) Handles CMBSELLER.Validated
+        Try
+            If CMBSELLER.Text.Trim = "" Then Exit Sub
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBSELLER.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.acc_YEARid = " & YearId)
+            TXTSELLERSTATECODE.Text = DT.Rows(0).Item("STATECODE")
         Catch ex As Exception
             Throw ex
         End Try
