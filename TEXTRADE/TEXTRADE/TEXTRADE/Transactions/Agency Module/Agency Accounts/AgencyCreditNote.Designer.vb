@@ -50,6 +50,7 @@ Partial Class AgencyCreditNote
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgencyCreditNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
         Me.CHKOVERSEAS = New System.Windows.Forms.CheckBox()
@@ -232,7 +233,7 @@ Partial Class AgencyCreditNote
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TXTSELLERSTATECODE = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -258,6 +259,7 @@ Partial Class AgencyCreditNote
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTSELLERSTATECODE)
         Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.LBLCOSTCENTER)
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
@@ -370,6 +372,21 @@ Partial Class AgencyCreditNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 556)
         Me.BlendPanel1.TabIndex = 612
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(908, 513)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 28)
+        Me.Button1.TabIndex = 1014
+        Me.Button1.Text = "&Auto Post"
+        Me.Button1.UseVisualStyleBackColor = False
+        Me.Button1.Visible = False
         '
         'LBLCOSTCENTER
         '
@@ -2573,19 +2590,20 @@ Partial Class AgencyCreditNote
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'Button1
+        'TXTSELLERSTATECODE
         '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(908, 513)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(89, 28)
-        Me.Button1.TabIndex = 1014
-        Me.Button1.Text = "&Auto Post"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.TXTSELLERSTATECODE.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELLERSTATECODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTSELLERSTATECODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTSELLERSTATECODE.Location = New System.Drawing.Point(270, 32)
+        Me.TXTSELLERSTATECODE.MaxLength = 10
+        Me.TXTSELLERSTATECODE.Name = "TXTSELLERSTATECODE"
+        Me.TXTSELLERSTATECODE.ReadOnly = True
+        Me.TXTSELLERSTATECODE.Size = New System.Drawing.Size(56, 23)
+        Me.TXTSELLERSTATECODE.TabIndex = 1015
+        Me.TXTSELLERSTATECODE.TabStop = False
+        Me.TXTSELLERSTATECODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTSELLERSTATECODE.Visible = False
         '
         'AgencyCreditNote
         '
@@ -2816,4 +2834,5 @@ Partial Class AgencyCreditNote
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents Button1 As Button
+    Friend WithEvents TXTSELLERSTATECODE As TextBox
 End Class
