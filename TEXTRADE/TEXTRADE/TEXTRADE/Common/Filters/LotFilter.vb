@@ -205,6 +205,8 @@ Public Class LotFilter
             End If
 
             If CMBJOBBER.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.JOBBERNAME}='" & CMBJOBBER.Text.Trim & "'"
+            OBJGRN.JOBBERNAME = CMBJOBBER.Text.Trim
+
             If CMBGROUP.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.GROUPNAME}='" & CMBGROUP.Text.Trim & "'"
             If CMBITEMNAME.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.ITEMNAME}='" & CMBITEMNAME.Text.Trim & "'"
             If CMBQUALITY.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.QUALITY}='" & CMBQUALITY.Text.Trim & "'"
