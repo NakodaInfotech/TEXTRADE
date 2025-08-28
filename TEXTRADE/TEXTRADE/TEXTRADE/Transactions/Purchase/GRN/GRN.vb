@@ -3286,7 +3286,7 @@ LINE1:
                     OBJGDN.FRMSTRING = "GRN"
                 End If
                 OBJGDN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(GRNNO) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
-                If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = 'FALSE'"
+                If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = FALSE"
                 OBJGDN.Show()
             End If
 

@@ -217,7 +217,7 @@ Public Class GRNDetails
                 OBJGRN.DIRECTWHATSAPP = WHATSAPP
                 OBJGRN.PRINTSETTING = PRINTDIALOG
                 OBJGRN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(I) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
-                If ClientName = "AARYA" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = 'FALSE'"
+                If ClientName = "AARYA" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = FALSE"
                 OBJGRN.GRNNO = Val(I)
                 OBJGRN.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJGRN.Show()
@@ -270,7 +270,7 @@ Public Class GRNDetails
                 OBJGRN.DIRECTWHATSAPP = WHATSAPP
                 OBJGRN.PRINTSETTING = PRINTDIALOG
                 OBJGRN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(ROW("SRNO")) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
-                If ClientName = "AARYA" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = 'FALSE'"
+                If ClientName = "AARYA" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " AND {GRN_DESC.GRN_DONE} = FALSE"
                 OBJGRN.GRNNO = Val(ROW("SRNO"))
                 OBJGRN.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJGRN.Show()
