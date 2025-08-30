@@ -151,6 +151,7 @@ Public Class DebitNote
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
+            CHKINTCALC.Checked = False
 
         Catch ex As Exception
             Throw ex
@@ -770,6 +771,7 @@ Public Class DebitNote
             alParaval.Add(TXTSPECIALREMARKS.Text.Trim)
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim objclsDNmaster As New ClsDebitNote()
             objclsDNmaster.alParaval = alParaval
@@ -1398,6 +1400,8 @@ Public Class DebitNote
 
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
+
                     Next
 
                     'CHARGES GRID

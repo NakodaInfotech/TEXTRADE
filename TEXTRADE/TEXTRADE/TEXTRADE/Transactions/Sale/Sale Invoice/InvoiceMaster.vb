@@ -306,6 +306,8 @@ Public Class InvoiceMaster
         LBLCOVERNOTEDONE.Visible = False
         CMDSELECTSO.Enabled = True
         CHKMANUALROUND.CheckState = CheckState.Unchecked
+        CHKINTCALC.Checked = False
+
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -751,6 +753,7 @@ Public Class InvoiceMaster
                     End If
                     CMBDISPATCHFROM.Text = dr("DISPATCHFROM")
 
+                    If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
                     If ClientName = "YASHVI" And txtchallan.Text.Trim <> "" Then
                         Gmtrs.ReadOnly = True
@@ -1371,6 +1374,7 @@ Public Class InvoiceMaster
 
             alParaval.Add(Val(LBLTOTALWT.Text))
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
 
             Dim objclsPurord As New ClsInvoiceMaster()

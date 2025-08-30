@@ -375,6 +375,7 @@ Partial Class PurchaseMaster
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBTDS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBDN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -403,6 +404,7 @@ Partial Class PurchaseMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.CMBSHIPTO)
         Me.BlendPanel1.Controls.Add(Me.Label42)
         Me.BlendPanel1.Controls.Add(Me.TXTTDSPER)
@@ -4116,6 +4118,19 @@ Partial Class PurchaseMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(967, 158)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 929
+        Me.CHKINTCALC.TabStop = False
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        '
         'PurchaseMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4462,4 +4477,5 @@ Partial Class PurchaseMaster
     Friend WithEvents OGRNMTRS As DataGridViewTextBoxColumn
     Friend WithEvents ORATE As DataGridViewTextBoxColumn
     Friend WithEvents OORDERON As DataGridViewTextBoxColumn
+    Friend WithEvents CHKINTCALC As CheckBox
 End Class

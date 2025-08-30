@@ -183,6 +183,8 @@ Public Class ClsCreditNote
                 I += 1
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
+                I = I + 1
             End With
 
             DT = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -376,6 +378,8 @@ Public Class ClsCreditNote
                 .Add(New SqlClient.SqlParameter("@CD", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CNNO", alParaval(I)))
                 I = I + 1

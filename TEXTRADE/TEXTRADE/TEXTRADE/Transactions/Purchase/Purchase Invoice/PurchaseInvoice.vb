@@ -227,6 +227,7 @@ Public Class PurchaseMaster
         TXTSPLREMARKS.Clear()
 
         CMBCOSTCENTERNAME.Text = ""
+        CHKINTCALC.Checked = False
     End Sub
 
     Sub FILLUPLOAD()
@@ -480,6 +481,7 @@ Public Class PurchaseMaster
                         TXTCHADTI.Text = Val(dr("CHADTI"))
                         TXTSPLREMARKS.Text = dr("SPLREMARKS")
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
 
                         'Item Grid
@@ -1047,6 +1049,7 @@ Public Class PurchaseMaster
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             alParaval.Add(CMBSHIPTO.Text.Trim)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval

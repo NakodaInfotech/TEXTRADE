@@ -164,10 +164,10 @@ Partial Class PurchaseReturn
         Me.TXTMTRS = New System.Windows.Forms.TextBox()
         Me.TXTQTY = New System.Windows.Forms.TextBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
-        Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
-        Me.cmbcolor = New System.Windows.Forms.ComboBox()
         Me.TXTAQTY = New System.Windows.Forms.TextBox()
         Me.TXTAFOLDPER = New System.Windows.Forms.TextBox()
+        Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
+        Me.cmbcolor = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.CHKCD = New System.Windows.Forms.CheckBox()
         Me.TXTCHGSPER = New System.Windows.Forms.TextBox()
@@ -282,6 +282,7 @@ Partial Class PurchaseReturn
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl2.SuspendLayout()
@@ -309,6 +310,7 @@ Partial Class PurchaseReturn
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.CHKMANUALROUND)
         Me.BlendPanel1.Controls.Add(Me.LBLCOSTCENTER)
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
@@ -1688,28 +1690,6 @@ Partial Class PurchaseReturn
         Me.TXTSRNO.TabStop = False
         Me.TXTSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'CMBDESIGN
-        '
-        Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDESIGN.FormattingEnabled = True
-        Me.CMBDESIGN.Location = New System.Drawing.Point(413, 1)
-        Me.CMBDESIGN.Name = "CMBDESIGN"
-        Me.CMBDESIGN.Size = New System.Drawing.Size(90, 23)
-        Me.CMBDESIGN.TabIndex = 3
-        '
-        'cmbcolor
-        '
-        Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbcolor.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbcolor.FormattingEnabled = True
-        Me.cmbcolor.Location = New System.Drawing.Point(503, 1)
-        Me.cmbcolor.Name = "cmbcolor"
-        Me.cmbcolor.Size = New System.Drawing.Size(90, 23)
-        Me.cmbcolor.TabIndex = 4
-        '
         'TXTAQTY
         '
         Me.TXTAQTY.BackColor = System.Drawing.Color.White
@@ -1731,6 +1711,28 @@ Partial Class PurchaseReturn
         Me.TXTAFOLDPER.TabIndex = 4
         Me.TXTAFOLDPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TXTAFOLDPER.Visible = False
+        '
+        'CMBDESIGN
+        '
+        Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBDESIGN.FormattingEnabled = True
+        Me.CMBDESIGN.Location = New System.Drawing.Point(413, 1)
+        Me.CMBDESIGN.Name = "CMBDESIGN"
+        Me.CMBDESIGN.Size = New System.Drawing.Size(90, 23)
+        Me.CMBDESIGN.TabIndex = 3
+        '
+        'cmbcolor
+        '
+        Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbcolor.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbcolor.FormattingEnabled = True
+        Me.cmbcolor.Location = New System.Drawing.Point(503, 1)
+        Me.cmbcolor.Name = "cmbcolor"
+        Me.cmbcolor.Size = New System.Drawing.Size(90, 23)
+        Me.cmbcolor.TabIndex = 4
         '
         'TabPage2
         '
@@ -3127,6 +3129,18 @@ Partial Class PurchaseReturn
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(899, 109)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 1012
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        '
         'PurchaseReturn
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3399,4 +3413,5 @@ Partial Class PurchaseReturn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
+    Friend WithEvents CHKINTCALC As CheckBox
 End Class
