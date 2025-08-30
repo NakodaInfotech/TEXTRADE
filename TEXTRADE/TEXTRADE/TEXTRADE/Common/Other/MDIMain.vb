@@ -5067,7 +5067,7 @@ SKIPLINE:
                 GRNGREY_MASTER.Text = "Grey Issue To Process"
             End If
 
-            If ClientName = "VINTAGEINDIA" Then
+            If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAJAN" Then
                 GODOWNCHANGE_MASTER.Enabled = True
             Else
                 GODOWNCHANGE_MASTER.Enabled = False
