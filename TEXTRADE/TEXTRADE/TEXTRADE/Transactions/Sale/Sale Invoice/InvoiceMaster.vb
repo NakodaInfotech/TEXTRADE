@@ -2707,6 +2707,12 @@ LINE1:
         Try
             If EDIT = True Then PRINTREPORT(TEMPINVOICENO)
             If ClientName <> "SUPRIYA" Then PRINTEWB()
+            If ClientName = "KCRAYON" Then
+                Dim dttable As New DataTable
+                Dim OBJCMN As New ClsCommon
+                dttable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PRINT = 1 WHERE INVOICE_NO = " & TXTINVOICENO.Text.Trim & " AND INVOICE_YEARID = " & YearId, "", "")
+                LBLPRINT.Visible = True
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
