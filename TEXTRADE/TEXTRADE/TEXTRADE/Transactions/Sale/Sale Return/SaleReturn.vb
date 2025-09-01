@@ -210,6 +210,8 @@ Public Class SaleReturn
             LBLWHATSAPP.Visible = False
             TXTNOOFBALES.Clear()
             CMBCOSTCENTERNAME.Text = ""
+            CHKINTCALC.Checked = False
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1217,6 +1219,7 @@ Public Class SaleReturn
             End If
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim OBJPURCH As New ClsSaleReturn()
             OBJPURCH.alParaval = alParaval
@@ -1500,6 +1503,8 @@ NEXTLINE:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = dr("SPECIALREMARKS")
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
+
                     Next
 
 

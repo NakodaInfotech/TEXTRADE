@@ -28,9 +28,9 @@ Public Class OrderGridReport
             If FRMSTRING = "SO" Then
                 If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             Else
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CRFALSEORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             End If
-            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry CRFALSEORS' AND ACC_TYPE='AGENT'")
+            'If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND ACC_TYPE='AGENT'")
 
 
             Dim OBJCMN As New ClsCommon
@@ -39,8 +39,8 @@ Public Class OrderGridReport
                 gridbill.Columns("NAME").Visible = True
                 If FRMSTRING = "SO" Then
                     DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.ACC_CMPNAME,'') AS AGENTNAME, GROUPMASTER.GROUP_NAME AS GROUPNAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA, ISNULL(SALESMANMASTER.SALESMAN_NAME,'') AS SALESMAN ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID  ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
-                Else
-                    DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.ACC_CMPNAME,'') AS AGENTNAME, GROUPMASTER.GROUP_NAME AS GROUPNAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA, ISNULL(SALESMANMASTER.SALESMAN_NAME,'') AS SALESMAN ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID  ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry CrFALSEors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+                ElseIf FRMSTRING <> Nothing Then
+                    DT = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.ACC_CMPNAME,'') AS AGENTNAME, GROUPMASTER.GROUP_NAME AS GROUPNAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA, ISNULL(SALESMANMASTER.SALESMAN_NAME,'') AS SALESMAN ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID  ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
                 End If
             ElseIf RBAGENT.Checked = True Then
                 gridbill.Columns("NAME").Visible = False
@@ -101,15 +101,15 @@ Public Class OrderGridReport
 
 
             If CMBNAME.Text <> "" Then SOCLAUSE = SOCLAUSE & " and LEDGERS.ACC_CMPNAME='" & CMBNAME.Text.Trim & "'"
-            If CMBAGENT.Text <> "" Then SOCLAUSE = SOCLAUSE & " and agent.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
+            If CMBAGENT.Text <> "" Then SOCLAUSE = SOCLAUSE & " and agentledgers.ACC_CMPNAME='" & CMBAGENT.Text.Trim & "'"
             If CMBCATEGORY.Text <> "" Then SOCLAUSE = SOCLAUSE & " AND ITEMMASTER.ITEM_CATEGORYID = (SELECT CATEGORY_ID FROM CATEGORYMASTER WHERE CATEGORY_NAME = '" & CMBCATEGORY.Text.Trim & "'AND category_yearid=" & YearId & ")"
             If chkdate.Checked = True Then
                 If ORDERTYPE = "SO" Then
                     SOCLAUSE &= " AND ALLSALEORDER.so_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
                 ElseIf ORDERTYPE = "PO" Then
-                    SOCLAUSE& = " AND ALLPURCHASEORDER.Po_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
+                    SOCLAUSE &= " AND ALLPURCHASEORDER.Po_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
                 ElseIf ORDERTYPE = "YARNSO" Then
-                    SOCLAUSE& = " AND ALLYARNSALEORDER.Yso_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
+                    SOCLAUSE &= " AND ALLYARNSALEORDER.Yso_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
                 ElseIf ORDERTYPE = "YARNPO" Then
                     SOCLAUSE &= " AND ALLYARNPURCHASEORDER.YPo_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
                 End If
@@ -357,7 +357,7 @@ Public Class OrderGridReport
             If FRMSTRING = "SO" Then
                 If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             Else
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CRFALSEORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             End If
         Catch ex As Exception
             Throw ex
@@ -366,7 +366,7 @@ Public Class OrderGridReport
 
     Private Sub CMBAGENT_Enter(sender As Object, e As EventArgs) Handles CMBAGENT.Enter
         Try
-            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry CrFALSEors' AND ACC_TYPE='AGENT'")
+            If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND ACC_TYPE='AGENT'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -446,5 +446,59 @@ Public Class OrderGridReport
             End Try
         End If
     End Sub
+    Private Sub GRIDSO_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSO.CellDoubleClick
+        Try
+            ' Ensure valid row index
+            If e.RowIndex >= 0 Then
+                ' Get gsono from clicked row
+                Dim gsono As String = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
+
+                ' Call ShowReport with gsono
+                ShowReport(gsono)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+
+
+
+    Private Sub ShowReport(orderNo As Integer)
+        Try
+            Dim rpt As New SaleInvoiceDesign() ' or another CrystalReport
+            rpt.MdiParent = MDIMain
+
+            ' ✅ Set WHERECLAUSE
+            If ORDERTYPE = "SO" Or ORDERTYPE = "YARNSO" Then
+                rpt.WHERECLAUSE = " {ALLSALEORDER.SO_NO}=" & orderNo & " AND {ALLSALEORDER.SO_yearid}=" & YearId
+                If ORDERTYPE = "YARNSO" Then
+                    rpt.WHERECLAUSE = rpt.WHERECLAUSE.Replace("ALLSALEORDER", "ALLYARNSALEORDER").Replace("SO_", "YSO_")
+                End If
+            Else
+                rpt.WHERECLAUSE = " {ALLPURCHASEORDER.PO_NO}=" & orderNo & " AND {ALLPURCHASEORDER.PO_yearid}=" & YearId
+                If ORDERTYPE = "YARNPO" Then
+                    rpt.WHERECLAUSE = rpt.WHERECLAUSE.Replace("ALLPURCHASEORDER", "ALLYARNPURCHASEORDER").Replace("PO_", "YPO_")
+                End If
+            End If
+
+            ' ✅ Set FRMSTRING based on type
+            Select Case ORDERTYPE
+                Case "SO"
+                    rpt.FRMSTRING = "SOSTATUSDTLS"
+                Case "YARNSO"
+                    rpt.FRMSTRING = "YARNSOSTATUSDTLS"
+                Case "PO"
+                    rpt.FRMSTRING = "POSTATUSDTLS"
+                Case "YARNPO"
+                    rpt.FRMSTRING = "YARNPOSTATUSDTLS"
+            End Select
+
+            rpt.Show()
+        Catch ex As Exception
+            MessageBox.Show("Error loading report: " & ex.Message)
+        End Try
+    End Sub
+
 
 End Class

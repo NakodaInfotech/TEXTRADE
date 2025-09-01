@@ -173,6 +173,7 @@ Public Class PurchaseReturn
         CMBDISPATCHFROM.Text = ""
         TXTVEHICLENO.Clear()
         If CMPCITYNAME <> "" Then CMBFROMCITY.Text = CMPCITYNAME Else CMBFROMCITY.Text = ""
+        CHKINTCALC.Checked = False
 
 
     End Sub
@@ -820,6 +821,7 @@ Public Class PurchaseReturn
             alParaval.Add(CMBDISPATCHFROM.Text.Trim)
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
 
 
@@ -1073,6 +1075,7 @@ Public Class PurchaseReturn
                         CMBDISPATCHFROM.Text = dr("DISPATCHFROM")
                         TXTVEHICLENO.Text = dr("VEHICLENO")
                         CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
                         'Item Grid
                         GRIDPURRET.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEM").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGNNO"), dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO").ToString, dr("PCS").ToString, dr("UNIT").ToString, dr("MTRS").ToString, dr("WT").ToString, dr("RATE").ToString, dr("PER").ToString, dr("AMT").ToString, dr("BARCODE"), dr("GRNNO"), dr("GRNSRNO"), dr("TYPE"), dr("DONE"))

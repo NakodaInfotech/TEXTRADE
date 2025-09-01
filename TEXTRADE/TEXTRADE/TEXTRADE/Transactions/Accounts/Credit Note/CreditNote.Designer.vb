@@ -22,6 +22,7 @@ Partial Class CREDITNOTE
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -38,17 +39,17 @@ Partial Class CREDITNOTE
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CREDITNOTE))
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.EP = New System.Windows.Forms.ErrorProvider()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CREDITNOTE))
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
@@ -116,6 +117,15 @@ Partial Class CREDITNOTE
         Me.TXTIRNNO = New System.Windows.Forms.TextBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.GRIDINVOICE = New System.Windows.Forms.DataGridView()
+        Me.GCHK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINVDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBILLAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRANDTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBILLINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.TXTINVTOTAL = New System.Windows.Forms.TextBox()
         Me.GRIDBILL = New System.Windows.Forms.DataGridView()
@@ -224,15 +234,7 @@ Partial Class CREDITNOTE
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.GCHK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINVDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBILLAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRANDTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBILLINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -275,6 +277,7 @@ Partial Class CREDITNOTE
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.LBLCOSTCENTER)
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
         Me.BlendPanel1.Controls.Add(Me.CHKOVERSEAS)
@@ -608,7 +611,7 @@ Partial Class CREDITNOTE
         Me.TBADJ.Location = New System.Drawing.Point(4, 24)
         Me.TBADJ.Name = "TBADJ"
         Me.TBADJ.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBADJ.Size = New System.Drawing.Size(538, 210)
+        Me.TBADJ.Size = New System.Drawing.Size(559, 210)
         Me.TBADJ.TabIndex = 0
         Me.TBADJ.Text = "1. Bill Adjustment"
         '
@@ -860,7 +863,7 @@ Partial Class CREDITNOTE
         Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(538, 210)
+        Me.TabPage2.Size = New System.Drawing.Size(559, 210)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2. Charges"
         '
@@ -1042,7 +1045,7 @@ Partial Class CREDITNOTE
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(538, 210)
+        Me.TabPage1.Size = New System.Drawing.Size(559, 210)
         Me.TabPage1.TabIndex = 2
         Me.TabPage1.Text = "3. Additional Details"
         '
@@ -1218,6 +1221,93 @@ Partial Class CREDITNOTE
         Me.GRIDINVOICE.Size = New System.Drawing.Size(553, 201)
         Me.GRIDINVOICE.TabIndex = 9
         Me.GRIDINVOICE.TabStop = False
+        '
+        'GCHK
+        '
+        Me.GCHK.HeaderText = "Chk"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Width = 40
+        '
+        'gsrno
+        '
+        Me.gsrno.HeaderText = "Sr."
+        Me.gsrno.Name = "gsrno"
+        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gsrno.Visible = False
+        Me.gsrno.Width = 30
+        '
+        'GINVNO
+        '
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GINVNO.DefaultCellStyle = DataGridViewCellStyle15
+        Me.GINVNO.HeaderText = "Inv No"
+        Me.GINVNO.Name = "GINVNO"
+        Me.GINVNO.ReadOnly = True
+        Me.GINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GINVDATE
+        '
+        Me.GINVDATE.HeaderText = "Inv Date"
+        Me.GINVDATE.Name = "GINVDATE"
+        Me.GINVDATE.ReadOnly = True
+        Me.GINVDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINVDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GINVDATE.Width = 80
+        '
+        'GPCS
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle16
+        Me.GPCS.HeaderText = "Pcs"
+        Me.GPCS.Name = "GPCS"
+        Me.GPCS.ReadOnly = True
+        Me.GPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPCS.Width = 45
+        '
+        'GMTRS
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle17
+        Me.GMTRS.HeaderText = "Mtrs"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
+        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMTRS.Width = 60
+        '
+        'GBILLAMT
+        '
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBILLAMT.DefaultCellStyle = DataGridViewCellStyle18
+        Me.GBILLAMT.HeaderText = "Bill Amt"
+        Me.GBILLAMT.Name = "GBILLAMT"
+        Me.GBILLAMT.ReadOnly = True
+        Me.GBILLAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBILLAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBILLAMT.Width = 95
+        '
+        'GGRANDTOTAL
+        '
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle19
+        Me.GGRANDTOTAL.HeaderText = "Grand Total"
+        Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
+        Me.GGRANDTOTAL.ReadOnly = True
+        Me.GGRANDTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRANDTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRANDTOTAL.Width = 95
+        '
+        'GBILLINVNO
+        '
+        Me.GBILLINVNO.HeaderText = "Bill No"
+        Me.GBILLINVNO.Name = "GBILLINVNO"
+        Me.GBILLINVNO.ReadOnly = True
+        Me.GBILLINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBILLINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBILLINVNO.Visible = False
         '
         'Label32
         '
@@ -2509,92 +2599,17 @@ Partial Class CREDITNOTE
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GCHK
+        'CHKINTCALC
         '
-        Me.GCHK.HeaderText = "Chk"
-        Me.GCHK.Name = "GCHK"
-        Me.GCHK.Width = 40
-        '
-        'gsrno
-        '
-        Me.gsrno.HeaderText = "Sr."
-        Me.gsrno.Name = "gsrno"
-        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gsrno.Visible = False
-        Me.gsrno.Width = 30
-        '
-        'GINVNO
-        '
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GINVNO.DefaultCellStyle = DataGridViewCellStyle15
-        Me.GINVNO.HeaderText = "Inv No"
-        Me.GINVNO.Name = "GINVNO"
-        Me.GINVNO.ReadOnly = True
-        Me.GINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GINVDATE
-        '
-        Me.GINVDATE.HeaderText = "Inv Date"
-        Me.GINVDATE.Name = "GINVDATE"
-        Me.GINVDATE.ReadOnly = True
-        Me.GINVDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINVDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GINVDATE.Width = 80
-        '
-        'GPCS
-        '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle16
-        Me.GPCS.HeaderText = "Pcs"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.ReadOnly = True
-        Me.GPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPCS.Width = 45
-        '
-        'GMTRS
-        '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle17
-        Me.GMTRS.HeaderText = "Mtrs"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.ReadOnly = True
-        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMTRS.Width = 60
-        '
-        'GBILLAMT
-        '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBILLAMT.DefaultCellStyle = DataGridViewCellStyle18
-        Me.GBILLAMT.HeaderText = "Bill Amt"
-        Me.GBILLAMT.Name = "GBILLAMT"
-        Me.GBILLAMT.ReadOnly = True
-        Me.GBILLAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBILLAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBILLAMT.Width = 95
-        '
-        'GGRANDTOTAL
-        '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGRANDTOTAL.DefaultCellStyle = DataGridViewCellStyle19
-        Me.GGRANDTOTAL.HeaderText = "Grand Total"
-        Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
-        Me.GGRANDTOTAL.ReadOnly = True
-        Me.GGRANDTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGRANDTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGRANDTOTAL.Width = 95
-        '
-        'GBILLINVNO
-        '
-        Me.GBILLINVNO.HeaderText = "Bill No"
-        Me.GBILLINVNO.Name = "GBILLINVNO"
-        Me.GBILLINVNO.ReadOnly = True
-        Me.GBILLINVNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBILLINVNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBILLINVNO.Visible = False
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(642, 262)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 1013
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'CREDITNOTE
         '
@@ -2825,4 +2840,5 @@ Partial Class CREDITNOTE
     Friend WithEvents GBILLAMT As DataGridViewTextBoxColumn
     Friend WithEvents GGRANDTOTAL As DataGridViewTextBoxColumn
     Friend WithEvents GBILLINVNO As DataGridViewTextBoxColumn
+    Friend WithEvents CHKINTCALC As CheckBox
 End Class

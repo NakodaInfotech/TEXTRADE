@@ -158,6 +158,8 @@ Public Class CREDITNOTE
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
+            CHKINTCALC.Checked = False
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -786,6 +788,7 @@ Public Class CREDITNOTE
             alParaval.Add(TXTSPECIALREMARKS.Text.Trim)
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim objclsCNmaster As New ClsCreditNote()
             objclsCNmaster.alParaval = alParaval
@@ -1474,6 +1477,7 @@ LINE1:
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
                         txtinwords.Text = Convert.ToString(dr("INWORDS"))
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
                         If Convert.ToBoolean(dr("DONE")) = True Then
                             lbllocked.Visible = True

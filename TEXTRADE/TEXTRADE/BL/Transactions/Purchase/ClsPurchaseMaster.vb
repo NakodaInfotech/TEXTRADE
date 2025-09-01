@@ -324,6 +324,8 @@ Public Class ClsPurchaseMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -643,6 +645,8 @@ Public Class ClsPurchaseMaster
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))

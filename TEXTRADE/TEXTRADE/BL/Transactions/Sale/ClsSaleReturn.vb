@@ -256,6 +256,8 @@ Public Class ClsSaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -507,6 +509,8 @@ Public Class ClsSaleReturn
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MANUALROUNDOFF", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@SALRETNO", alParaval(I)))

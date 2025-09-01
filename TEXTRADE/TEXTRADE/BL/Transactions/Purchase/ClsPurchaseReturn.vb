@@ -227,6 +227,8 @@ Public Class ClsPurchaseReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -452,6 +454,8 @@ Public Class ClsPurchaseReturn
                 .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@PRNO", alParaval(I)))

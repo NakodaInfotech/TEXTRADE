@@ -101,6 +101,7 @@ Partial Class InvoiceMaster
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKMANUALROUND = New System.Windows.Forms.CheckBox()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.LBLCOVERNOTEDONE = New System.Windows.Forms.Label()
         Me.CHKTRADINGACC = New System.Windows.Forms.CheckBox()
@@ -464,7 +465,7 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
-        Me.CHKMANUALROUND = New System.Windows.Forms.CheckBox()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -779,6 +780,7 @@ Partial Class InvoiceMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.CHKMANUALROUND)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTSTOCK)
         Me.BlendPanel1.Controls.Add(Me.LBLCOVERNOTEDONE)
@@ -913,6 +915,18 @@ Partial Class InvoiceMaster
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1291, 595)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKMANUALROUND
+        '
+        Me.CHKMANUALROUND.AutoSize = True
+        Me.CHKMANUALROUND.BackColor = System.Drawing.Color.Transparent
+        Me.CHKMANUALROUND.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKMANUALROUND.Location = New System.Drawing.Point(1038, 573)
+        Me.CHKMANUALROUND.Name = "CHKMANUALROUND"
+        Me.CHKMANUALROUND.Size = New System.Drawing.Size(127, 19)
+        Me.CHKMANUALROUND.TabIndex = 947
+        Me.CHKMANUALROUND.Text = "Manual Round Off"
+        Me.CHKMANUALROUND.UseVisualStyleBackColor = False
         '
         'CMDSELECTSTOCK
         '
@@ -5346,17 +5360,18 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CHKMANUALROUND
+        'CHKINTCALC
         '
-        Me.CHKMANUALROUND.AutoSize = True
-        Me.CHKMANUALROUND.BackColor = System.Drawing.Color.Transparent
-        Me.CHKMANUALROUND.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKMANUALROUND.Location = New System.Drawing.Point(1038, 573)
-        Me.CHKMANUALROUND.Name = "CHKMANUALROUND"
-        Me.CHKMANUALROUND.Size = New System.Drawing.Size(127, 19)
-        Me.CHKMANUALROUND.TabIndex = 947
-        Me.CHKMANUALROUND.Text = "Manual Round Off"
-        Me.CHKMANUALROUND.UseVisualStyleBackColor = False
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Enabled = False
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(403, 478)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 948
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'InvoiceMaster
         '
@@ -5802,4 +5817,5 @@ Partial Class InvoiceMaster
     Friend WithEvents OPARTYPONO As DataGridViewTextBoxColumn
     Friend WithEvents OORDERON As DataGridViewTextBoxColumn
     Friend WithEvents CHKMANUALROUND As CheckBox
+    Friend WithEvents CHKINTCALC As CheckBox
 End Class
