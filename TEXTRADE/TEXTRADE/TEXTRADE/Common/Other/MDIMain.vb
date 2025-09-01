@@ -5061,16 +5061,14 @@ SKIPLINE:
                 AUTODESIGNCREATION_MASTER.Visible = True
             End If
 
+            If ClientName = "MAHAJAN" Then
+                GODOWNCHANGE_MASTER.Visible = True
+            End If
+
             If ClientName = "SNCM" Then
                 GREYISSUEPROCESS_MASTER.Text = "Grey Rec In Godown"
                 GRNGREY_TOOL.Text = "Grey Iss Process"
                 GRNGREY_MASTER.Text = "Grey Issue To Process"
-            End If
-
-            If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAJAN" Then
-                GODOWNCHANGE_MASTER.Enabled = True
-            Else
-                GODOWNCHANGE_MASTER.Enabled = False
             End If
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then MASHOK_REPORTS.Visible = True

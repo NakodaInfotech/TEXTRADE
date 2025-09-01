@@ -117,7 +117,9 @@ Public Class StockOnHandSummary
                 End If
 
             End If
-
+            If Not DT.Columns.Contains("TIMESTAMP") Then
+                DT.Columns.Add("TIMESTAMP", GetType(DateTime))
+            End If
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -193,6 +195,7 @@ Public Class StockOnHandSummary
             If TXTBARCODE.Text.Trim.Length > 0 Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
+                Dim matchedRowIndex As Integer = -1
                 Dim MATCHFOUND As Boolean = False
                 'GET DATA FROM SAMPLE BARCODE
                 'no need for yearid clause here as we need to fetch this barcode in all acccouting year
@@ -204,6 +207,7 @@ Public Class StockOnHandSummary
                         If (ClientName = "AVIS" And ROW("ITEMNAME") = DT.Rows(0).Item("ITEMNAME") And ROW("DESIGNNO") = DT.Rows(0).Item("DESIGNNO")) Or (ClientName <> "AVIS" And ROW("ITEMNAME") = DT.Rows(0).Item("ITEMNAME") And ROW("DESIGNNO") = DT.Rows(0).Item("DESIGNNO") And ROW("COLOR") = DT.Rows(0).Item("COLOR")) Then
                             ROW("SAMPLEMATCH") = True
                             MATCHFOUND = True
+                            matchedRowIndex = I
                             If ClientName <> "AVIS" THEN GoTo LINE1
                         End If
                     Next
@@ -212,6 +216,25 @@ Public Class StockOnHandSummary
 
 
 LINE1:
+                    If MATCHFOUND AndAlso matchedRowIndex >= 0 Then
+                        DT = CType(gridbill.DataSource, DataView).ToTable()
+
+                        Dim matchedRow As DataRow = DT.Rows(matchedRowIndex)
+                        Dim rowData As Object() = matchedRow.ItemArray
+
+                        DT.Rows.Remove(matchedRow)
+
+                        Dim newRow As DataRow = DT.NewRow()
+                        newRow.ItemArray = rowData
+                        DT.Rows.Add(newRow)
+
+                        gridbilldetails.DataSource = DT
+                        gridbilldetails.RefreshDataSource()
+
+                        Dim lastRowHandle As Integer = gridbill.RowCount - 1
+                        gridbill.FocusedRowHandle = lastRowHandle
+                        gridbill.MakeRowVisible(lastRowHandle)
+                    End If
                     TXTBARCODE.Clear()
                     TXTBARCODE.Focus()
 

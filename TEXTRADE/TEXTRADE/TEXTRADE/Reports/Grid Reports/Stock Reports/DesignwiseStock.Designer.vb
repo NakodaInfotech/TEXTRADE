@@ -29,15 +29,16 @@ Partial Class DesignwiseStock
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSAMPLEMATCH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTIMESTAMP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +124,7 @@ Partial Class DesignwiseStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GCATEGORY, Me.GQUALITY, Me.GDESIGNNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GSAMPLEMATCH})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GCATEGORY, Me.GQUALITY, Me.GDESIGNNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GSAMPLEMATCH, Me.GTIMESTAMP})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -134,6 +135,24 @@ Partial Class DesignwiseStock
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 0
+        Me.GITEMNAME.Width = 200
+        '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.Visible = True
+        Me.GCATEGORY.VisibleIndex = 1
+        Me.GCATEGORY.Width = 130
         '
         'GQUALITY
         '
@@ -177,15 +196,6 @@ Partial Class DesignwiseStock
         Me.GTOTALMTRS.VisibleIndex = 5
         Me.GTOTALMTRS.Width = 100
         '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 0
-        Me.GITEMNAME.Width = 200
-        '
         'GSAMPLEMATCH
         '
         Me.GSAMPLEMATCH.Caption = "Sample Match"
@@ -213,14 +223,11 @@ Partial Class DesignwiseStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'GCATEGORY
+        'GTIMESTAMP
         '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 1
-        Me.GCATEGORY.Width = 130
+        Me.GTIMESTAMP.Caption = "Time Stamp"
+        Me.GTIMESTAMP.FieldName = "TIMESTAMP"
+        Me.GTIMESTAMP.Name = "GTIMESTAMP"
         '
         'DesignwiseStock
         '
@@ -259,4 +266,5 @@ Partial Class DesignwiseStock
     Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents GSAMPLEMATCH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTIMESTAMP As DevExpress.XtraGrid.Columns.GridColumn
 End Class
