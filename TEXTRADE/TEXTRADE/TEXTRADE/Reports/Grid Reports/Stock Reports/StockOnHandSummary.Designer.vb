@@ -47,6 +47,7 @@ Partial Class StockOnHandSummary
         Me.GSAMPLEMATCH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GTIMESTAMP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,7 +147,7 @@ Partial Class StockOnHandSummary
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GUNIT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GPURRATE, Me.GCUT, Me.GCATEGORY, Me.GMILLNAME, Me.GVALUATIONRATE, Me.GSTOCKVALUE, Me.GSAMPLEMATCH})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GUNIT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GPURRATE, Me.GCUT, Me.GCATEGORY, Me.GMILLNAME, Me.GVALUATIONRATE, Me.GSTOCKVALUE, Me.GSAMPLEMATCH, Me.GTIMESTAMP})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
@@ -313,6 +314,12 @@ Partial Class StockOnHandSummary
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'GTIMESTAMP
+        '
+        Me.GTIMESTAMP.Caption = "Time Stamp"
+        Me.GTIMESTAMP.FieldName = "TIMESTAMP"
+        Me.GTIMESTAMP.Name = "GTIMESTAMP"
+        '
         'StockOnHandSummary
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -358,4 +365,5 @@ Partial Class StockOnHandSummary
     Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents lblbarcode As Label
     Friend WithEvents GSAMPLEMATCH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTIMESTAMP As DevExpress.XtraGrid.Columns.GridColumn
 End Class
