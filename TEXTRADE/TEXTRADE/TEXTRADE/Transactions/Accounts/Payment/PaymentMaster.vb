@@ -50,10 +50,10 @@ Public Class PaymentMaster
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable
             If ClientName = "DILIP" Then
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
 
             Else
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND LEDGERS.Acc_cmpname = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND TRIALBALANCE.NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             End If
             If DT.Rows.Count > 0 Then
                     LBLACCBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
@@ -66,7 +66,7 @@ Public Class PaymentMaster
 
 
 
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
                 If Val(DT.Rows(0).Item("CRLIMIT")) < Val(DT.Rows(0).Item("BALANCE")) And Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
