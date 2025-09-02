@@ -1985,26 +1985,9 @@ LINE1:
         End Try
     End Sub
 
-    Sub INSERTPAYMENT()
-        Try
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Sub PRINTREPORT()
         Try
             If MsgBox("Wish to Print Advice?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-
-
-                ''DONE TEMPORARITY
-                'Dim OBJCMN As New ClsCommon
-                'Dim DT As DataTable = OBJCMN.search("PAYMENT_NO AS PAYNO, PAYMENT_BILLINITIALS ", "", " PAYMENTMASTER_DESC ", " AND PAYMENT_NO = " & Val(txtaccno.Text.Trim) & " AND PAYMENT_YEARID = " & YearId)
-                'For Each DTROW As DataRow In DT.Rows
-
-                'Next
-
 
 
                 Dim objPAY As New payment_advice
@@ -2270,7 +2253,7 @@ LINE1:
         If ClientName = "SVS" Then Me.Close()
         If ClientName = "MAHAVIR" Or ClientName = "RAJKRIPA" Then ALLOWMANUALPAYNO = True
         If ClientName = "PARAS" Then LBLCITY.Visible = False
-        If ClientName = "NAYRA" Then GPPRINT.Visible = True
+
         If ClientName = "MAHAVIR" Then
             GPPAYMENT.Height = 195
             GRIDBILL.Height = 175

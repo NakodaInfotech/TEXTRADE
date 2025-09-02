@@ -60,6 +60,8 @@ Partial Class PaymentDetails
         Me.GPARTYMAILID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTMAILID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPRINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKPRINT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -74,18 +76,22 @@ Partial Class PaymentDetails
         Me.gchqno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GPRINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CHKPRINT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GPPRINT = New System.Windows.Forms.GroupBox()
+        Me.RBNORMAL = New System.Windows.Forms.RadioButton()
+        Me.RBRTGS = New System.Windows.Forms.RadioButton()
+        Me.RBNEFT = New System.Windows.Forms.RadioButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridpayment, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip1.SuspendLayout()
         CType(Me.CHKPRINT, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
+        Me.GPPRINT.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.GPPRINT)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
         Me.BlendPanel1.Controls.Add(Me.Label9)
@@ -271,7 +277,7 @@ Partial Class PaymentDetails
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "Name"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
@@ -460,6 +466,22 @@ Partial Class PaymentDetails
         Me.GWHATSAPP.FieldName = "PARTYWHATSAPP"
         Me.GWHATSAPP.Name = "GWHATSAPP"
         '
+        'GPRINT
+        '
+        Me.GPRINT.Caption = "Printed"
+        Me.GPRINT.ColumnEdit = Me.CHKPRINT
+        Me.GPRINT.FieldName = "PRINT"
+        Me.GPRINT.Name = "GPRINT"
+        Me.GPRINT.Visible = True
+        Me.GPRINT.VisibleIndex = 19
+        Me.GPRINT.Width = 60
+        '
+        'CHKPRINT
+        '
+        Me.CHKPRINT.AutoHeight = False
+        Me.CHKPRINT.Name = "CHKPRINT"
+        Me.CHKPRINT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -562,21 +584,49 @@ Partial Class PaymentDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GPRINT
+        'GPPRINT
         '
-        Me.GPRINT.Caption = "Printed"
-        Me.GPRINT.ColumnEdit = Me.CHKPRINT
-        Me.GPRINT.FieldName = "PRINT"
-        Me.GPRINT.Name = "GPRINT"
-        Me.GPRINT.Visible = True
-        Me.GPRINT.VisibleIndex = 19
-        Me.GPRINT.Width = 60
+        Me.GPPRINT.BackColor = System.Drawing.Color.Transparent
+        Me.GPPRINT.Controls.Add(Me.RBNORMAL)
+        Me.GPPRINT.Controls.Add(Me.RBRTGS)
+        Me.GPPRINT.Controls.Add(Me.RBNEFT)
+        Me.GPPRINT.Location = New System.Drawing.Point(1014, 28)
+        Me.GPPRINT.Name = "GPPRINT"
+        Me.GPPRINT.Size = New System.Drawing.Size(223, 35)
+        Me.GPPRINT.TabIndex = 662
+        Me.GPPRINT.TabStop = False
         '
-        'CHKPRINT
+        'RBNORMAL
         '
-        Me.CHKPRINT.AutoHeight = False
-        Me.CHKPRINT.Name = "CHKPRINT"
-        Me.CHKPRINT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        Me.RBNORMAL.AutoSize = True
+        Me.RBNORMAL.Checked = True
+        Me.RBNORMAL.Location = New System.Drawing.Point(143, 12)
+        Me.RBNORMAL.Name = "RBNORMAL"
+        Me.RBNORMAL.Size = New System.Drawing.Size(61, 17)
+        Me.RBNORMAL.TabIndex = 2
+        Me.RBNORMAL.TabStop = True
+        Me.RBNORMAL.Text = "PARTY"
+        Me.RBNORMAL.UseVisualStyleBackColor = True
+        '
+        'RBRTGS
+        '
+        Me.RBRTGS.AutoSize = True
+        Me.RBRTGS.Location = New System.Drawing.Point(73, 12)
+        Me.RBRTGS.Name = "RBRTGS"
+        Me.RBRTGS.Size = New System.Drawing.Size(55, 17)
+        Me.RBRTGS.TabIndex = 1
+        Me.RBRTGS.Text = "RTGS"
+        Me.RBRTGS.UseVisualStyleBackColor = True
+        '
+        'RBNEFT
+        '
+        Me.RBNEFT.AutoSize = True
+        Me.RBNEFT.Location = New System.Drawing.Point(14, 12)
+        Me.RBNEFT.Name = "RBNEFT"
+        Me.RBNEFT.Size = New System.Drawing.Size(53, 17)
+        Me.RBNEFT.TabIndex = 0
+        Me.RBNEFT.Text = "NEFT"
+        Me.RBNEFT.UseVisualStyleBackColor = True
         '
         'PaymentDetails
         '
@@ -592,9 +642,11 @@ Partial Class PaymentDetails
         Me.BlendPanel1.PerformLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridpayment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CHKPRINT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.CHKPRINT, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GPPRINT.ResumeLayout(False)
+        Me.GPPRINT.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -650,4 +702,8 @@ Partial Class PaymentDetails
     Friend WithEvents GWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPRINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKPRINT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GPPRINT As GroupBox
+    Friend WithEvents RBNORMAL As RadioButton
+    Friend WithEvents RBRTGS As RadioButton
+    Friend WithEvents RBNEFT As RadioButton
 End Class

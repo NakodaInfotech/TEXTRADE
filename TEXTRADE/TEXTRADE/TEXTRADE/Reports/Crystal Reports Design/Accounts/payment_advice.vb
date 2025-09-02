@@ -180,40 +180,55 @@ Public Class payment_advice
 
                 If BANKFORCHQPRINT = "DENA" Then
                     CRPO.ReportSource = OBJCHQPAY_DENA
+                    OBJCHQPAY_DENA.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "PNB" Then
                     CRPO.ReportSource = OBJCHQPAY_PNB
+                    OBJCHQPAY_PNB.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "HDFC" Then
                     CRPO.ReportSource = OBJCHQPAY_HDFC
                     OBJCHQPAY_HDFC.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "CITIBANK" Then
                     CRPO.ReportSource = OBJCHQPAY_CITIBANK
+                    OBJCHQPAY_CITIBANK.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "UNION" Then
                     CRPO.ReportSource = OBJCHQPAY_UNION
+                    OBJCHQPAY_UNION.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "KOTAK" Then
                     CRPO.ReportSource = OBJCHQPAY_KOTAK
                     OBJCHQPAY_KOTAK.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "SYNDICATE" Then
                     CRPO.ReportSource = OBJCHQPAY_SYNDICATE
+                    OBJCHQPAY_SYNDICATE.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "IDBI" Then
                     CRPO.ReportSource = OBJCHQPAY_IDBI
+                    OBJCHQPAY_IDBI.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "CANARA" Then
                     CRPO.ReportSource = OBJCHQPAY_CANARA
+                    OBJCHQPAY_CANARA.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "ICICI" Then
                     CRPO.ReportSource = OBJCHQPAY_ICICI
+                    OBJCHQPAY_ICICI.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "STANDARD" Then
                     CRPO.ReportSource = OBJCHQPAY_STANDARD
+                    OBJCHQPAY_STANDARD.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "MAHESH" Then
                     CRPO.ReportSource = OBJCHQPAY_MAHESH
+                    OBJCHQPAY_MAHESH.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "BOB" Then
                     CRPO.ReportSource = OBJCHQPAY_BOB
+                    OBJCHQPAY_BOB.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "INDUS" Then
                     CRPO.ReportSource = OBJCHQPAY_INDUS
+                    OBJCHQPAY_INDUS.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "COSMOS" Then
                     CRPO.ReportSource = OBJCHQPAY_COSMOS
+                    OBJCHQPAY_COSMOS.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "CITYUNION" Then
                     CRPO.ReportSource = OBJCHQPAY_CITYUNION
+                    OBJCHQPAY_CITYUNION.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 Else
                     CRPO.ReportSource = OBJCHQPAY
+                    OBJCHQPAY.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 End If
 
             ElseIf FRMSTRING = "CHQPRINTBACK" Then
@@ -344,6 +359,7 @@ Public Class payment_advice
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
+            OBJ.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
             OBJ.RecordSelectionFormula = " {PAYMENTMASTER.PAYMENT_NO}= " & I & " And {REGISTERMASTER.REGISTER_NAME} = '" & REGNAME & "' and {PAYMENTMASTER.PAYMENT_YEARID} = " & YearId
             OBJ.PrintToPrinter(1, True, 0, 0)
 
