@@ -391,6 +391,14 @@ Public Class MDIMain
 
             'End If
 
+
+            If ClientName = "JAINAMGOLD" Then
+                TRANSACTION_MENU.Enabled = False
+                REPORTS_MENU.Enabled = False
+                TOOLSTRIP_MAIN.Visible = False
+            End If
+
+
         Catch ex As Exception
             Throw ex
 

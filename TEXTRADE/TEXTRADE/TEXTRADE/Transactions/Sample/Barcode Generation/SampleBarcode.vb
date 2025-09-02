@@ -1462,6 +1462,8 @@ PRINT 1,1")
 
                         For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
 
+                            Dim ROW As DataRow = gridbill.GetDataRow(i - 1)
+
                             'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                             Dim TEMPREMARKS As String = ""
                             Dim TEMPITEMNAME As String = ""
@@ -1477,13 +1479,7 @@ PRINT 1,1")
                             End If
 
 
-
-
-
                             For J As Integer = 1 To Val(TXTCOPIES.Text.Trim)
-
-
-                                Dim ROW As DataRow = gridbill.GetDataRow(i - 1)
 
                                 If CHKPRINTSELECTED.CheckState = CheckState.Checked And Convert.ToBoolean(ROW("CHK")) = False Then GoTo NEXTLINE
                                 If Convert.ToBoolean(ROW("ITEMBLOCKED")) = True Or Convert.ToBoolean(ROW("DESIGNBLOCKED")) = True Or Convert.ToBoolean(ROW("COLORBLOCKED")) = True Then GoTo NEXTLINE
