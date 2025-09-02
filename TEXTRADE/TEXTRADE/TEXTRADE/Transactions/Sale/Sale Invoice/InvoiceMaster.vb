@@ -2249,7 +2249,7 @@ CHECKNEXTLINE:
 
 
                     If Val(row.Cells(GRATE.Index).EditedFormattedValue) > 0 Then
-                        If row.Cells(GPER.Index).Value = "Pcs" Then
+                        If row.Cells(GPER.Index).EditedFormattedValue = "Pcs" Then
                             row.Cells(GAMT.Index).Value = Format(Val(row.Cells(Gpcs.Index).EditedFormattedValue) * Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00")
                         Else
                             row.Cells(GAMT.Index).Value = Format(Val(row.Cells(Gmtrs.Index).EditedFormattedValue) * Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00")
@@ -5252,6 +5252,7 @@ LINE1:
                 Gmtrs.ReadOnly = False
                 txtchallan.ReadOnly = False
                 CHKTRADINGACC.Visible = True
+                CHKINTCALC.Visible = True
 
                 If ClientName = "ABHEE" Then
                     LBLTRANS.Visible = False

@@ -77,6 +77,7 @@ Partial Class PurchaseMaster
         Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PurchaseMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.CMBSHIPTO = New System.Windows.Forms.ComboBox()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.TXTTDSPER = New System.Windows.Forms.TextBox()
@@ -375,7 +376,6 @@ Partial Class PurchaseMaster
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBTDS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBDN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -516,6 +516,20 @@ Partial Class PurchaseMaster
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1284, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(967, 162)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 929
+        Me.CHKINTCALC.TabStop = False
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        Me.CHKINTCALC.Visible = False
         '
         'CMBSHIPTO
         '
@@ -4117,19 +4131,6 @@ Partial Class PurchaseMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'CHKINTCALC
-        '
-        Me.CHKINTCALC.AutoSize = True
-        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
-        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKINTCALC.Location = New System.Drawing.Point(967, 158)
-        Me.CHKINTCALC.Name = "CHKINTCALC"
-        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
-        Me.CHKINTCALC.TabIndex = 929
-        Me.CHKINTCALC.TabStop = False
-        Me.CHKINTCALC.Text = "Hold Int Calc"
-        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'PurchaseMaster
         '
