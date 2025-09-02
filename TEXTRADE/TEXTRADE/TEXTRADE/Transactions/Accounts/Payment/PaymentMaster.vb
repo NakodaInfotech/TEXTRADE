@@ -50,10 +50,10 @@ Public Class PaymentMaster
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable
             If ClientName = "DILIP" Then
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
 
             Else
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND LEDGERS.Acc_cmpname = '" & cmbaccname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND TRIALBALANCE.NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             End If
             If DT.Rows.Count > 0 Then
                     LBLACCBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
@@ -66,7 +66,7 @@ Public Class PaymentMaster
 
 
 
-                DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+            DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLBAL.Text = Convert.ToString(Val(DT.Rows(0).Item("BALANCE"))) & "  " & DT.Rows(0).Item("SALEBAL")
                 If Val(DT.Rows(0).Item("CRLIMIT")) < Val(DT.Rows(0).Item("BALANCE")) And Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
@@ -1985,26 +1985,9 @@ LINE1:
         End Try
     End Sub
 
-    Sub INSERTPAYMENT()
-        Try
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Sub PRINTREPORT()
         Try
             If MsgBox("Wish to Print Advice?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-
-
-                ''DONE TEMPORARITY
-                'Dim OBJCMN As New ClsCommon
-                'Dim DT As DataTable = OBJCMN.search("PAYMENT_NO AS PAYNO, PAYMENT_BILLINITIALS ", "", " PAYMENTMASTER_DESC ", " AND PAYMENT_NO = " & Val(txtaccno.Text.Trim) & " AND PAYMENT_YEARID = " & YearId)
-                'For Each DTROW As DataRow In DT.Rows
-
-                'Next
-
 
 
                 Dim objPAY As New payment_advice
@@ -2270,7 +2253,7 @@ LINE1:
         If ClientName = "SVS" Then Me.Close()
         If ClientName = "MAHAVIR" Or ClientName = "RAJKRIPA" Then ALLOWMANUALPAYNO = True
         If ClientName = "PARAS" Then LBLCITY.Visible = False
-        If ClientName = "NAYRA" Then GPPRINT.Visible = True
+
         If ClientName = "MAHAVIR" Then
             GPPAYMENT.Height = 195
             GRIDBILL.Height = 175

@@ -52,6 +52,7 @@ Partial Class DebitNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
         Me.LBLEINVOICEGENERATED = New System.Windows.Forms.Label()
@@ -230,7 +231,6 @@ Partial Class DebitNote
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -381,6 +381,19 @@ Partial Class DebitNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 556)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(778, 242)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 1015
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        Me.CHKINTCALC.Visible = False
         '
         'LBLCOSTCENTER
         '
@@ -2544,18 +2557,6 @@ Partial Class DebitNote
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'CHKINTCALC
-        '
-        Me.CHKINTCALC.AutoSize = True
-        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
-        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKINTCALC.Location = New System.Drawing.Point(778, 242)
-        Me.CHKINTCALC.Name = "CHKINTCALC"
-        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
-        Me.CHKINTCALC.TabIndex = 1015
-        Me.CHKINTCALC.Text = "Hold Int Calc"
-        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'DebitNote
         '

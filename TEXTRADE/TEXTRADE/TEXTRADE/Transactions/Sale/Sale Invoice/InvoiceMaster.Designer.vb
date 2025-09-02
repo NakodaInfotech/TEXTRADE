@@ -101,6 +101,7 @@ Partial Class InvoiceMaster
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.CHKMANUALROUND = New System.Windows.Forms.CheckBox()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.LBLCOVERNOTEDONE = New System.Windows.Forms.Label()
@@ -465,7 +466,6 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
-        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -916,6 +916,19 @@ Partial Class InvoiceMaster
         Me.BlendPanel1.Size = New System.Drawing.Size(1291, 595)
         Me.BlendPanel1.TabIndex = 0
         '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(404, 477)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 948
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        Me.CHKINTCALC.Visible = False
+        '
         'CHKMANUALROUND
         '
         Me.CHKMANUALROUND.AutoSize = True
@@ -1093,7 +1106,7 @@ Partial Class InvoiceMaster
         '
         Me.CHKREVERSECALC.AutoSize = True
         Me.CHKREVERSECALC.BackColor = System.Drawing.Color.Transparent
-        Me.CHKREVERSECALC.Location = New System.Drawing.Point(403, 457)
+        Me.CHKREVERSECALC.Location = New System.Drawing.Point(404, 455)
         Me.CHKREVERSECALC.Name = "CHKREVERSECALC"
         Me.CHKREVERSECALC.Size = New System.Drawing.Size(94, 18)
         Me.CHKREVERSECALC.TabIndex = 921
@@ -5359,19 +5372,6 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'CHKINTCALC
-        '
-        Me.CHKINTCALC.AutoSize = True
-        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
-        Me.CHKINTCALC.Enabled = False
-        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKINTCALC.Location = New System.Drawing.Point(403, 478)
-        Me.CHKINTCALC.Name = "CHKINTCALC"
-        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
-        Me.CHKINTCALC.TabIndex = 948
-        Me.CHKINTCALC.Text = "Hold Int Calc"
-        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'InvoiceMaster
         '

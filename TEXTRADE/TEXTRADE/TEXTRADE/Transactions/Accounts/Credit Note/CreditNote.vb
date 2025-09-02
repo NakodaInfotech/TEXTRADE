@@ -2027,6 +2027,7 @@ LINE1:
                 LBLCOSTCENTER.Visible = True
                 CMBCOSTCENTERNAME.Visible = True
             End If
+            If ClientName = "ABHEE" Or ClientName = "MASHOK" Then CHKINTCALC.Visible = True
         Catch ex As Exception
             Throw ex
         End Try

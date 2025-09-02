@@ -3282,11 +3282,10 @@ LINE1:
                 TXTAFOLDPER.TabStop = True
                 GAQTY.Visible = True
                 GAFOLDPER.Visible = True
-                'TXTAFOLDPER.TabIndex = 0.1.
-
-
-
             End If
+
+            If ClientName = "ABHEE" Or ClientName = "MASHOK" Then CHKINTCALC.Visible = True
+
         Catch ex As Exception
             Throw ex
         End Try

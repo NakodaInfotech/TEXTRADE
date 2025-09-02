@@ -431,6 +431,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -734,12 +740,6 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteAgentReport_SNCM.vb">
       <DependentUpon>CoverNoteAgentReport_SNCM.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\Cover Note\CoverNoteReport_SNCM.vb">
-      <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
