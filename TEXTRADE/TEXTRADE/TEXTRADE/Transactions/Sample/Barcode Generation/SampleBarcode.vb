@@ -319,8 +319,28 @@ Public Class SampleBarcode
                 End If
 
 
+
+
+
+
                 If CHKPRINT.CheckState = CheckState.Checked Then
                     Dim dirresults As String = ""
+
+                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                    Dim TEMPREMARKS As String = ""
+                    Dim TEMPITEMNAME As String = ""
+                    Dim TEMPWIDTH As String
+                    Dim TEMPCATEGORY As String
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                        TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
+                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                        TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                    End If
+
+
 
                     'Writing in file
                     Dim oWrite As System.IO.StreamWriter
@@ -351,31 +371,32 @@ Public Class SampleBarcode
 
                         ElseIf ClientName = "AVIS" Then
 
-                            oWrite.WriteLine("n")
-                            oWrite.WriteLine("M0500")
-                            oWrite.WriteLine("O0214")
-                            oWrite.WriteLine("V0")
-                            oWrite.WriteLine("t1")
-                            oWrite.WriteLine("Kf0070")
-                            oWrite.WriteLine("L")
-                            oWrite.WriteLine("D11")
-                            oWrite.WriteLine("ySPM")
-                            oWrite.WriteLine("A2")
-                            oWrite.WriteLine("1911A1201200006" & CMBMERCHANT.Text.Trim)
-                            oWrite.WriteLine("1911A1200930006" & CMBDESIGNNO.Text.Trim)
-                            oWrite.WriteLine("1W1D66000002601092,LA," & TXTBARCODE.Text.Trim)
-                            oWrite.WriteLine("1911A1200660006WIDTH:")
-
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
-                            oWrite.WriteLine("1911A1200660071" & TEMPWIDTH)
-                            oWrite.WriteLine("1911A0800330006" & TXTBARCODE.Text.Trim)
-                            oWrite.WriteLine("Q0001")
-                            oWrite.WriteLine("E")
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
+n
+M0500
+MT
+O0214
+V0
+t1
+Kf0070
+c0000
+e
+<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>
+L
+D11
+H22
+A2
+4W1D66000001201792,LA," & TXTBARCODE.Text.Trim & "
+ySPM
+1911C1200560007" & CMBDESIGNNO.Text.Trim & "
+1911C0800790007" & CMBMERCHANT.Text.Trim & "
+1911C1200340007" & TEMPWIDTH & "
+1Y1100000030000gfx0
+Q0001
+E
+<xpml></page></xpml>xCGgfx0
+zC
+<xpml><end/></xpml>")
                             oWrite.Dispose()
 
 
@@ -399,8 +420,7 @@ Public Class SampleBarcode
                             'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                             Dim TEMPMRP As Double = 0
                             Dim TEMPWSP As Double = 0
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(DESIGNMASTER.DESIGN_SALERATE, 0) AS MRP, ISNULL(DESIGNMASTER.DESIGN_WRATE,0) AS WSP", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
+                            DT = OBJCMN.SEARCH(" ISNULL(DESIGNMASTER.DESIGN_SALERATE, 0) AS MRP, ISNULL(DESIGNMASTER.DESIGN_WRATE,0) AS WSP", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
                             If DT.Rows.Count > 0 Then
                                 TEMPMRP = Val(DT.Rows(0).Item("MRP"))
                                 TEMPWSP = Val(DT.Rows(0).Item("WSP"))
@@ -461,12 +481,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 439,167,""ROMAN.TTF"",180,1,18,"":""")
 
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                             oWrite.WriteLine("TEXT 411,167,""ROMAN.TTF"",180,1,18,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("BARCODE 619,99,""128M"",59,0,180,3,6,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
                             oWrite.WriteLine("TEXT 401,34,""ROMAN.TTF"",180,1,8,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
@@ -497,11 +511,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 289,140,""ROMAN.TTF"",180,1,12,""WIDTH""")
                             oWrite.WriteLine("TEXT 191,145,""ROMAN.TTF"",180,1,14,"":""")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
 
                             oWrite.WriteLine("TEXT 172,139,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("PRINT 1,1")
@@ -527,12 +536,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 259,174,""ROMAN.TTF"",180,1,12,""" & CMBCOLOR.Text.Trim & """")
                             oWrite.WriteLine("TEXT 373,113,""ROMAN.TTF"",180,1,12,""WIDTH""")
                             oWrite.WriteLine("TEXT 275,113,""ROMAN.TTF"",180,1,12,"":""")
-
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
 
                             oWrite.WriteLine("TEXT 259,113,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("QRCODE 113,134,L,5,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
@@ -579,14 +582,8 @@ Public Class SampleBarcode
                             oWrite.WriteLine("A379,161,2,1,2,2,N,""WIDTH""")
                             oWrite.WriteLine("A272,161,2,1,2,2,N,"":""")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim TEMPRATE As Double = 0
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            oWrite.WriteLine("A246,161,2,1,2,2,N,""" & TEMPWIDTH & """")
 
+                            oWrite.WriteLine("A246,161,2,1,2,2,N,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("A379,126,2,1,2,2,N,""D.NO""")
                             oWrite.WriteLine("A272,126,2,1,2,2,N,"":""")
                             oWrite.WriteLine("A246,126,2,1,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
@@ -596,6 +593,7 @@ Public Class SampleBarcode
 
                             If TEMPHEADER = "1" Then
                                 'GET RATE
+                                Dim TEMPRATE As Double = 0
                                 Dim WHERECLAUSE As String = ""
                                 'If CMBDESIGNNO.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(DESIGNMASTER.DESIGN_NO,'') = '" & CMBDESIGNNO.Text.Trim & "'"
                                 'If CMBCOLOR.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(COLORMASTER.COLOR_NAME,'') = '" & CMBCOLOR.Text.Trim & "'"
@@ -674,14 +672,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 578,123,""ROMAN.TTF"",180,1,14,"":""")
                             oWrite.WriteLine("TEXT 551,128,""ROMAN.TTF"",180,1,18,""" & TXTREMARKS.Text.Trim & """")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
-
                             oWrite.WriteLine("TEXT 746,68,""ROMAN.TTF"",180,1,14,""WIDTH""")
                             oWrite.WriteLine("TEXT 578,68,""ROMAN.TTF"",180,1,14,"":""")
                             oWrite.WriteLine("TEXT 551,68,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
@@ -715,14 +705,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("TEXT 418,225,""ROMAN.TTF"",180,1,12,""" & CMBDESIGNNO.Text.Trim & """")
                             oWrite.WriteLine("TEXT 418,184,""ROMAN.TTF"",180,1,12,""" & CMBCOLOR.Text.Trim & """")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
-
                             oWrite.WriteLine("TEXT 418,144,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("BARCODE 560,93,""128M"",51,0,180,2,4,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
                             oWrite.WriteLine("TEXT 447,38,""ROMAN.TTF"",180,1,8,""" & TXTBARCODE.Text.Trim & """")
@@ -749,13 +731,10 @@ Public Class SampleBarcode
                                 oWrite.WriteLine("A205,352,2,1,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
 
                                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPWIDTH As String = ""
                                 Dim TEMPHSN As String = ""
                                 Dim TEMPRATE As String = ""
                                 Dim TEMPQUALITY As String = ""
-                                Dim TEMPREMARKS As String = ""
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.search(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                                DT = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
                                 If DT.Rows.Count > 0 Then
                                     TEMPHSN = DT.Rows(0).Item("HSNCODE")
                                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
@@ -828,15 +807,6 @@ Public Class SampleBarcode
                             oWrite.WriteLine("CODEPAGE 1252")
                             oWrite.WriteLine("TEXT 5,363,""ROMAN.TTF"",270,12,12,""" & CMBMERCHANT.Text.Trim & """")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String
-                            Dim TEMPCATEGORY As String
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
-                            End If
 
                             oWrite.WriteLine("TEXT 42,290,""ROMAN.TTF"",270,1,8,""" & TEMPCATEGORY & """")
                             oWrite.WriteLine("TEXT 76,363,""ROMAN.TTF"",270,1,12,""WIDTH""")
@@ -851,14 +821,6 @@ Public Class SampleBarcode
                             oWrite.Dispose()
 
                         ElseIf ClientName = "MNARESH" Then
-
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
 
                             If TEMPHEADER = "1" Then
 
@@ -960,14 +922,6 @@ PRINT 1,1")
                             oWrite.WriteLine("TEXT 375,65,""ROMAN.TTF"",180,1,12,""Width""")
                             oWrite.WriteLine("TEXT 270,65,""ROMAN.TTF"",180,1,12,"":""")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
-
                             oWrite.WriteLine("TEXT 253,65,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("BAR 30,128, 344, 3")
                             oWrite.WriteLine("PRINT 1,1")
@@ -1000,15 +954,6 @@ PRINT 1,1")
                             oWrite.WriteLine("^A0N,23,30^FDEXCLUSIVE SHIRTING^FS")
                             oWrite.WriteLine("^FT9,197")
 
-                            'GET ITEMDISPLAYNAME FROM ITEMMASTER
-                            Dim TEMPITEMNAME As String = ""
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
 
                             oWrite.WriteLine("^A0N,23,30^FD" & TEMPITEMNAME & "^FS")
                             oWrite.WriteLine("^FT10,235")
@@ -1058,17 +1003,6 @@ PRINT 1,1")
                                 oWrite.WriteLine("TEXT 275,95,""0"",180,10,10,"":""")
 
 
-
-                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPREMARKS As String = ""
-                                Dim TEMPWIDTH As String = ""
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_WIDTH,'') AS WIDTH", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count > 0 Then
-                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                End If
-
                                 oWrite.WriteLine("TEXT 261,95,""0"",180,10,10,""" & TEMPWIDTH & """")
                                 oWrite.WriteLine("TEXT 364,48,""0"",180,10,10,""" & TEMPREMARKS & """")
                                 oWrite.WriteLine("QRCODE 121,106,L,4,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
@@ -1097,17 +1031,6 @@ PRINT 1,1")
                                 oWrite.WriteLine("TEXT 364,74,""0"",180,10,10,""WIDTH""")
                                 oWrite.WriteLine("TEXT 275,74,""0"",180,10,10,"":""")
 
-
-
-                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPREMARKS As String = ""
-                                Dim TEMPWIDTH As String = ""
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_WIDTH,'') AS WIDTH", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count > 0 Then
-                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                End If
 
                                 oWrite.WriteLine("TEXT 261,74,""0"",180,10,10,""" & TEMPWIDTH & """")
                                 oWrite.WriteLine("TEXT 364,40,""0"",180,10,10,""" & TEMPREMARKS & """")
@@ -1147,12 +1070,6 @@ PRINT 1,1")
                             oWrite.WriteLine("TEXT 365,219,""0"",180,12,12,""BASE""")
                             oWrite.WriteLine("TEXT 264,219,""0"",180,12,12,"":""")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPREMARKS As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-
                             oWrite.WriteLine("TEXT 242,219,""0"",180,12,12,""" & TEMPREMARKS & """")
                             oWrite.WriteLine("PRINT 1,1")
                             oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
@@ -1177,14 +1094,8 @@ PRINT 1,1")
                             oWrite.WriteLine("A283,273,2,4,1,1,N,""" & CMBCOLOR.Text.Trim & """")
 
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim TEMPRATE As Double = 0
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                             'GET RATE
+                            Dim TEMPRATE As Double = 0
                             Dim WHERECLAUSE As String = ""
                             If CMBDESIGNNO.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(DESIGNMASTER.DESIGN_NO,'') = '" & CMBDESIGNNO.Text.Trim & "'"
                             If CMBCOLOR.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(COLORMASTER.COLOR_NAME,'') = '" & CMBCOLOR.Text.Trim & "'"
@@ -1218,9 +1129,7 @@ PRINT 1,1")
 
                             'GET PACKINGTYPE FROM PARTYMASTER AND SHOW HERE, WHEN WEAVERNAME IS PRESENT
                             Dim TEMPPACKINGTYPE As String = ""
-                            Dim TEMPWIDTH As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(PACKINGTYPE_NAME, '') AS PACKINGTYPE ", "", " LEDGERS LEFT OUTER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                            DT = OBJCMN.SEARCH(" ISNULL(PACKINGTYPE_NAME, '') AS PACKINGTYPE ", "", " LEDGERS LEFT OUTER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
                             If DT.Rows.Count > 0 Then
                                 TEMPPACKINGTYPE = DT.Rows(0).Item("PACKINGTYPE")
                             End If
@@ -1273,13 +1182,6 @@ PRINT 1,1")
                             oWrite.WriteLine("TEXT 404,175,""ROMAN.TTF"",180,1,12,""" & CMBDESIGNNO.Text.Trim & """")
 
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String = ""
-                            Dim TEMPREMARKS As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS,'') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                             oWrite.WriteLine("TEXT 557,113,""ROMAN.TTF"",180,1,12,""WIDTH""")
                             oWrite.WriteLine("TEXT 425,113,""ROMAN.TTF"",180,1,12,"":""")
                             oWrite.WriteLine("TEXT 404,113,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
@@ -1314,14 +1216,6 @@ PRINT 1,1")
                             oWrite.WriteLine("A439,288,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
                             oWrite.WriteLine("A439,242,2,3,2,2,N,""" & CMBCOLOR.Text.Trim & """")
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
-
                             oWrite.WriteLine("A439,186,2,2,2,2,N,""" & TEMPWIDTH & """")
                             oWrite.WriteLine("P1")
                             oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
@@ -1347,14 +1241,6 @@ PRINT 1,1")
                             oWrite.WriteLine("A293,42,2,4,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
                             oWrite.WriteLine("A362,171,2,4,1,1,N,""WIDTH""")
                             oWrite.WriteLine("A266,171,2,4,1,1,N,"":""")
-
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPWIDTH As String
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                            End If
 
                             oWrite.WriteLine("A241,171,2,4,1,1,N,""" & TEMPWIDTH & """")
                             'oWrite.WriteLine("A279,385,2,5,1,1,N,""SEHCO""")
@@ -1391,16 +1277,6 @@ PRINT 1,1")
                                 oWrite.WriteLine("1911A0800450010WIDTH")
                                 oWrite.WriteLine("1911A0800450048:")
 
-
-                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPWIDTH As String = ""
-                                Dim TEMPREMARKS As String = ""
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count > 0 Then
-                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                End If
 
                                 oWrite.WriteLine("1911A0800450056" & TEMPWIDTH)
                                 oWrite.WriteLine("1X1100001240006L176001")
@@ -1462,15 +1338,6 @@ PRINT 1,1")
                                 oWrite.WriteLine("TEXT 354,252,""ROMAN.TTF"",180,1,11,""" & CMBMERCHANT.Text.Trim & """")
                                 oWrite.WriteLine("TEXT 354,212,""ROMAN.TTF"",180,1,11,""" & CMBDESIGNNO.Text.Trim & """")
 
-                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPWIDTH As String = ""
-                                Dim TEMPREMARKS As String = ""
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count > 0 Then
-                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                End If
 
                                 oWrite.WriteLine("TEXT 354,129,""ROMAN.TTF"",180,1,11,""" & TEMPWIDTH & """")
                                 oWrite.WriteLine("TEXT 495,83,""ROMAN.TTF"",180,1,9,""" & TEMPREMARKS & """")
@@ -1503,16 +1370,6 @@ PRINT 1,1")
                                 oWrite.WriteLine("TEXT 555,465,""0"",180,16,16,"":""")
                                 oWrite.WriteLine("TEXT 525,591,""0"",180,16,16,""" & CMBMERCHANT.Text.Trim & """")
                                 oWrite.WriteLine("TEXT 525,532,""0"",180,16,16,""" & CMBDESIGNNO.Text.Trim & """")
-
-                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                Dim TEMPWIDTH, TEMPCATEGORY, TEMPREMARKS As String
-                                Dim OBJCMN As New ClsCommon
-                                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count > 0 Then
-                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
-                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                End If
 
                                 oWrite.WriteLine("TEXT 525,465,""0"",180,16,16,""" & TEMPWIDTH & """")
                                 oWrite.WriteLine("QRCODE 281,521,L,10,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
@@ -1605,6 +1462,24 @@ PRINT 1,1")
 
                         For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
 
+                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                            Dim TEMPREMARKS As String = ""
+                            Dim TEMPITEMNAME As String = ""
+                            Dim TEMPWIDTH As String
+                            Dim TEMPCATEGORY As String
+                            Dim OBJCMN As New ClsCommon
+                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                                TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
+                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                                TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                            End If
+
+
+
+
+
                             For J As Integer = 1 To Val(TXTCOPIES.Text.Trim)
 
 
@@ -1640,31 +1515,32 @@ PRINT 1,1")
 
                                 ElseIf ClientName = "AVIS" Then
 
-                                    oWrite.WriteLine("n")
-                                    oWrite.WriteLine("M0500")
-                                    oWrite.WriteLine("O0214")
-                                    oWrite.WriteLine("V0")
-                                    oWrite.WriteLine("t1")
-                                    oWrite.WriteLine("Kf0070")
-                                    oWrite.WriteLine("L")
-                                    oWrite.WriteLine("D11")
-                                    oWrite.WriteLine("ySPM")
-                                    oWrite.WriteLine("A2")
-                                    oWrite.WriteLine("1911A1201200006" & ROW("ITEMNAME"))
-                                    oWrite.WriteLine("1911A1200930006" & ROW("DESIGNNO"))
-                                    oWrite.WriteLine("1W1D66000002601092,LA," & ROW("BARCODE"))
-                                    oWrite.WriteLine("1911A1200660006WIDTH:")
-
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("BARCODE") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
-                                    oWrite.WriteLine("1911A1200660071" & TEMPWIDTH)
-                                    oWrite.WriteLine("1911A0800330006" & ROW("BARCODE"))
-                                    oWrite.WriteLine("Q0001")
-                                    oWrite.WriteLine("E")
+                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
+n
+M0500
+MT
+O0214
+V0
+t1
+Kf0070
+c0000
+e
+<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>
+L
+D11
+H22
+A2
+4W1D66000001201792,LA," & ROW("BARCODE") & "
+ySPM
+1911C1200560007" & ROW("DESIGNNO") & "
+1911C0800790007" & ROW("ITEMNAME") & "
+1911C1200340007" & TEMPWIDTH & "
+1Y1100000030000gfx0
+Q0001
+E
+<xpml></page></xpml>
+zC
+<xpml><end/></xpml>")
                                     oWrite.Dispose()
 
                                 ElseIf ClientName = "GELATO" Then
@@ -1687,8 +1563,7 @@ PRINT 1,1")
                                     'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                                     Dim TEMPMRP As Double = 0
                                     Dim TEMPWSP As Double = 0
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(DESIGNMASTER.DESIGN_SALERATE, 0) AS MRP, ISNULL(DESIGNMASTER.DESIGN_WRATE,0) AS WSP", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
+                                    DT = OBJCMN.SEARCH(" ISNULL(DESIGNMASTER.DESIGN_SALERATE, 0) AS MRP, ISNULL(DESIGNMASTER.DESIGN_WRATE,0) AS WSP", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
                                     If DT.Rows.Count > 0 Then
                                         TEMPMRP = Val(DT.Rows(0).Item("MRP"))
                                         TEMPWSP = Val(DT.Rows(0).Item("WSP"))
@@ -1749,13 +1624,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 614,167,""ROMAN.TTF"",180,1,18,""WIDTH""")
                                     oWrite.WriteLine("TEXT 439,167,""ROMAN.TTF"",180,1,18,"":""")
 
-
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                                     oWrite.WriteLine("TEXT 411,167,""ROMAN.TTF"",180,1,18,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("BARCODE 619,99,""128M"",59,0,180,3,6,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("TEXT 401,34,""ROMAN.TTF"",180,1,8,""" & ROW("BARCODE") & """") 'BARCODE
@@ -1786,12 +1654,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 289,140,""ROMAN.TTF"",180,1,12,""WIDTH""")
                                     oWrite.WriteLine("TEXT 191,145,""ROMAN.TTF"",180,1,14,"":""")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                                     oWrite.WriteLine("TEXT 172,139,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("PRINT 1,1")
                                     oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
@@ -1817,12 +1679,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 259,174,""ROMAN.TTF"",180,1,12,""" & ROW("SHADE") & """")
                                     oWrite.WriteLine("TEXT 373,113,""ROMAN.TTF"",180,1,12,""WIDTH""")
                                     oWrite.WriteLine("TEXT 275,113,""ROMAN.TTF"",180,1,12,"":""")
-
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
 
                                     oWrite.WriteLine("TEXT 259,113,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("QRCODE 113,134,L,5,A,180,M2,S7,""" & ROW("BARCODE") & """") 'BARCODE
@@ -1867,14 +1723,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("A379,161,2,1,2,2,N,""WIDTH""")
                                     oWrite.WriteLine("A272,161,2,1,2,2,N,"":""")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim TEMPRATE As Double = 0
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    oWrite.WriteLine("A246,161,2,1,2,2,N,""" & TEMPWIDTH & """")
-
                                     oWrite.WriteLine("A379,126,2,1,2,2,N,""D.NO""")
                                     oWrite.WriteLine("A272,126,2,1,2,2,N,"":""")
                                     oWrite.WriteLine("A246,126,2,1,2,2,N,""" & ROW("DESIGNNO") & """")
@@ -1884,6 +1732,7 @@ PRINT 1,1")
 
                                     If TEMPHEADER = "1" Then
                                         'GET RATE
+                                        Dim TEMPRATE As Double = 0
                                         Dim WHERECLAUSE As String = ""
                                         'If ROW("DESIGNNO") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(DESIGNMASTER.DESIGN_NO,'') = '" & ROW("DESIGNNO") & "'"
                                         'If ROW("SHADE") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(COLORMASTER.COLOR_NAME,'') = '" & ROW("SHADE") & "'"
@@ -1960,14 +1809,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 578,123,""ROMAN.TTF"",180,1,14,"":""")
                                     oWrite.WriteLine("TEXT 551,128,""ROMAN.TTF"",180,1,18,""" & ROW("REMARKS") & """")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
-
                                     oWrite.WriteLine("TEXT 746,68,""ROMAN.TTF"",180,1,14,""WIDTH""")
                                     oWrite.WriteLine("TEXT 578,68,""ROMAN.TTF"",180,1,14,"":""")
                                     oWrite.WriteLine("TEXT 551,68,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
@@ -2001,14 +1842,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 418,225,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """")
                                     oWrite.WriteLine("TEXT 418,184,""ROMAN.TTF"",180,1,12,""" & ROW("SHADE") & """")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
-
                                     oWrite.WriteLine("TEXT 418,144,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("BARCODE 560,93,""128M"",51,0,180,2,4,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("TEXT 447,38,""ROMAN.TTF"",180,1,8,""" & ROW("BARCODE") & """")
@@ -2037,13 +1870,10 @@ PRINT 1,1")
                                         oWrite.WriteLine("A205,352,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
 
                                         'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPWIDTH As String = ""
                                         Dim TEMPHSN As String = ""
                                         Dim TEMPRATE As String = ""
                                         Dim TEMPQUALITY As String = ""
-                                        Dim TEMPREMARKS As String = ""
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.search(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                        DT = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
                                         If DT.Rows.Count > 0 Then
                                             TEMPHSN = DT.Rows(0).Item("HSNCODE")
                                             TEMPWIDTH = DT.Rows(0).Item("WIDTH")
@@ -2117,16 +1947,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("CODEPAGE 1252")
                                     oWrite.WriteLine("TEXT 5,363,""ROMAN.TTF"",270,12,12,""" & ROW("ITEMNAME") & """")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String
-                                    Dim TEMPCATEGORY As String
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                        TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
-                                    End If
-
                                     oWrite.WriteLine("TEXT 42,290,""ROMAN.TTF"",270,1,8,""" & TEMPCATEGORY & """")
                                     oWrite.WriteLine("TEXT 76,363,""ROMAN.TTF"",270,1,12,""WIDTH""")
                                     oWrite.WriteLine("TEXT 76,256,""ROMAN.TTF"",270,1,12,"":""")
@@ -2141,13 +1961,6 @@ PRINT 1,1")
 
                                 ElseIf ClientName = "MNARESH" Then
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
 
                                     If TEMPHEADER = "1" Then
 
@@ -2249,14 +2062,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 375,65,""ROMAN.TTF"",180,1,12,""Width""")
                                     oWrite.WriteLine("TEXT 270,65,""ROMAN.TTF"",180,1,12,"":""")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
-
                                     oWrite.WriteLine("TEXT 253,65,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("BAR 30,128, 344, 3")
                                     oWrite.WriteLine("PRINT 1,1")
@@ -2289,15 +2094,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("^A0N,23,30^FDEXCLUSIVE SHIRTING^FS")
                                     oWrite.WriteLine("^FT9,197")
 
-                                    'GET ITEMDISPLAYNAME FROM ITEMMASTER
-                                    Dim TEMPITEMNAME As String = ""
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
 
                                     oWrite.WriteLine("^A0N,23,30^FD" & TEMPITEMNAME & "^FS")
                                     oWrite.WriteLine("^FT10,235")
@@ -2347,18 +2143,6 @@ PRINT 1,1")
                                         oWrite.WriteLine("TEXT 364,95,""0"",180,10,10,""WIDTH""")
                                         oWrite.WriteLine("TEXT 275,95,""0"",180,10,10,"":""")
 
-
-
-                                        'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPREMARKS As String = ""
-                                        Dim TEMPWIDTH As String = ""
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_WIDTH,'') AS WIDTH", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                        If DT.Rows.Count > 0 Then
-                                            TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                            TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                        End If
-
                                         oWrite.WriteLine("TEXT 261,95,""0"",180,10,10,""" & TEMPWIDTH & """")
                                         oWrite.WriteLine("TEXT 364,48,""0"",180,10,10,""" & TEMPREMARKS & """")
                                         oWrite.WriteLine("QRCODE 121,106,L,4,A,180,M2,S7,""" & ROW("BARCODE") & """") 'BARCODE
@@ -2386,18 +2170,6 @@ PRINT 1,1")
                                         oWrite.WriteLine("TEXT 261,144,""0"",180,10,10,""" & ROW("DESIGNNO") & """")
                                         oWrite.WriteLine("TEXT 364,74,""0"",180,10,10,""WIDTH""")
                                         oWrite.WriteLine("TEXT 275,74,""0"",180,10,10,"":""")
-
-
-
-                                        'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPREMARKS As String = ""
-                                        Dim TEMPWIDTH As String = ""
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_WIDTH,'') AS WIDTH", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                        If DT.Rows.Count > 0 Then
-                                            TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                            TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                        End If
 
                                         oWrite.WriteLine("TEXT 261,74,""0"",180,10,10,""" & TEMPWIDTH & """")
                                         oWrite.WriteLine("TEXT 364,40,""0"",180,10,10,""" & TEMPREMARKS & """")
@@ -2438,12 +2210,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 365,219,""0"",180,12,12,""BASE""")
                                     oWrite.WriteLine("TEXT 264,219,""0"",180,12,12,"":""")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPREMARKS As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-
                                     oWrite.WriteLine("TEXT 242,219,""0"",180,12,12,""" & TEMPREMARKS & """")
                                     oWrite.WriteLine("PRINT 1,1")
                                     oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
@@ -2468,14 +2234,8 @@ PRINT 1,1")
                                     oWrite.WriteLine("A283,273,2,4,1,1,N,""" & ROW("SHADE") & """")
 
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim TEMPRATE As Double = 0
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                                     'GET RATE
+                                    Dim TEMPRATE As Double = 0
                                     Dim WHERECLAUSE As String = ""
                                     If ROW("DESIGNNO") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(DESIGNMASTER.DESIGN_NO,'') = '" & ROW("DESIGNNO") & "'"
                                     If ROW("SHADE") <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ISNULL(COLORMASTER.COLOR_NAME,'') = '" & ROW("SHADE") & "'"
@@ -2509,9 +2269,7 @@ PRINT 1,1")
 
                                     'GET PACKINGTYPE FROM PARTYMASTER AND SHOW HERE, WHEN WEAVERNAME IS PRESENT
                                     Dim TEMPPACKINGTYPE As String = ""
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(PACKINGTYPE_NAME, '') AS PACKINGTYPE ", "", " LEDGERS LEFT OUTER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                                    DT = OBJCMN.SEARCH(" ISNULL(PACKINGTYPE_NAME, '') AS PACKINGTYPE ", "", " LEDGERS LEFT OUTER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id ", " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
                                     If DT.Rows.Count > 0 Then
                                         TEMPPACKINGTYPE = DT.Rows(0).Item("PACKINGTYPE")
                                     End If
@@ -2565,13 +2323,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("TEXT 404,175,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """")
 
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String = ""
-                                    Dim TEMPREMARKS As String = ""
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS,'') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-
                                     oWrite.WriteLine("TEXT 557,113,""ROMAN.TTF"",180,1,12,""WIDTH""")
                                     oWrite.WriteLine("TEXT 425,113,""ROMAN.TTF"",180,1,12,"":""")
                                     oWrite.WriteLine("TEXT 404,113,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
@@ -2606,14 +2357,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("A439,288,2,2,2,2,N,""" & ROW("DESIGNNO") & """")
                                     oWrite.WriteLine("A439,242,2,3,2,2,N,""" & ROW("SHADE") & """")
 
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
-
                                     oWrite.WriteLine("A439,186,2,2,2,2,N,""" & TEMPWIDTH & """")
                                     oWrite.WriteLine("P1")
                                     oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
@@ -2638,14 +2381,6 @@ PRINT 1,1")
                                     oWrite.WriteLine("A293,42,2,4,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("A362,171,2,4,1,1,N,""WIDTH""")
                                     oWrite.WriteLine("A266,171,2,4,1,1,N,"":""")
-
-                                    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                    Dim TEMPWIDTH As String
-                                    Dim OBJCMN As New ClsCommon
-                                    Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                    If DT.Rows.Count > 0 Then
-                                        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                    End If
 
                                     oWrite.WriteLine("A241,171,2,4,1,1,N,""" & TEMPWIDTH & """")
                                     'oWrite.WriteLine("A279,385,2,5,1,1,N,""SEHCO""")
@@ -2681,17 +2416,6 @@ PRINT 1,1")
                                         oWrite.WriteLine("1911A0800640056" & ROW("SHADE"))
                                         oWrite.WriteLine("1911A0800450010WIDTH")
                                         oWrite.WriteLine("1911A0800450048:")
-
-
-                                        'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPWIDTH As String = ""
-                                        Dim TEMPREMARKS As String = ""
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                        If DT.Rows.Count > 0 Then
-                                            TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                            TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                        End If
 
                                         oWrite.WriteLine("1911A0800450056" & TEMPWIDTH)
                                         oWrite.WriteLine("1X1100001240006L176001")
@@ -2751,16 +2475,6 @@ PRINT 1,1")
                                         oWrite.WriteLine("TEXT 354,252,""ROMAN.TTF"",180,1,11,""" & ROW("ITEMNAME") & """")
                                         oWrite.WriteLine("TEXT 354,212,""ROMAN.TTF"",180,1,11,""" & ROW("DESIGNNO") & """")
 
-                                        'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPWIDTH As String = ""
-                                        Dim TEMPREMARKS As String = ""
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                        If DT.Rows.Count > 0 Then
-                                            TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                            TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                        End If
-
                                         oWrite.WriteLine("TEXT 354,129,""ROMAN.TTF"",180,1,11,""" & TEMPWIDTH & """")
                                         oWrite.WriteLine("TEXT 495,83,""ROMAN.TTF"",180,1,9,""" & TEMPREMARKS & """")
                                         oWrite.WriteLine("QRCODE 161,169,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """") 'BARCODE
@@ -2793,16 +2507,6 @@ PRINT 1,1")
                                         oWrite.WriteLine("TEXT 555,465,""0"",180,16,16,"":""")
                                         oWrite.WriteLine("TEXT 525,591,""0"",180,16,16,""" & ROW("ITEMNAME") & """")
                                         oWrite.WriteLine("TEXT 525,532,""0"",180,16,16,""" & ROW("DESIGNNO") & """")
-
-                                        'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                                        Dim TEMPWIDTH, TEMPCATEGORY, TEMPREMARKS As String
-                                        Dim OBJCMN As New ClsCommon
-                                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                        If DT.Rows.Count > 0 Then
-                                            TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                            TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
-                                            TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                        End If
 
                                         oWrite.WriteLine("TEXT 525,465,""0"",180,16,16,""" & TEMPWIDTH & """")
                                         oWrite.WriteLine("QRCODE 281,521,L,10,A,180,M2,S7,""" & ROW("BARCODE") & """") 'BARCODE
