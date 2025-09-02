@@ -329,8 +329,8 @@ Public Class SampleBarcode
                     'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                     Dim TEMPREMARKS As String = ""
                     Dim TEMPITEMNAME As String = ""
-                    Dim TEMPWIDTH As String
-                    Dim TEMPCATEGORY As String
+                    Dim TEMPWIDTH As String = ""
+                    Dim TEMPCATEGORY As String = ""
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
@@ -381,8 +381,7 @@ Public Class SampleBarcode
 Kf0070
 c0000
 e
-<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>
-L
+<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
 D11
 H22
 A2
@@ -391,12 +390,13 @@ ySPM
 1911C1200560007" & CMBDESIGNNO.Text.Trim & "
 1911C0800790007" & CMBMERCHANT.Text.Trim & "
 1911C1200340007" & TEMPWIDTH & "
-1Y1100000030000gfx0
+1X1100000960000L187001
+1X1100000060000L187001
+1X1100000060000L001090
+1X1100000070185L001090
 Q0001
 E
-<xpml></page></xpml>xCGgfx0
-zC
-<xpml><end/></xpml>")
+<xpml></page></xpml><xpml><end/></xpml>")
                             oWrite.Dispose()
 
 
@@ -1465,8 +1465,8 @@ PRINT 1,1")
                             'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                             Dim TEMPREMARKS As String = ""
                             Dim TEMPITEMNAME As String = ""
-                            Dim TEMPWIDTH As String
-                            Dim TEMPCATEGORY As String
+                            Dim TEMPWIDTH As String = ""
+                            Dim TEMPCATEGORY As String = ""
                             Dim OBJCMN As New ClsCommon
                             Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
                             If DT.Rows.Count > 0 Then
@@ -1525,8 +1525,7 @@ PRINT 1,1")
 Kf0070
 c0000
 e
-<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>
-L
+<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
 D11
 H22
 A2
@@ -1535,12 +1534,13 @@ ySPM
 1911C1200560007" & ROW("DESIGNNO") & "
 1911C0800790007" & ROW("ITEMNAME") & "
 1911C1200340007" & TEMPWIDTH & "
-1Y1100000030000gfx0
+1X1100000960000L187001
+1X1100000060000L187001
+1X1100000060000L001090
+1X1100000070185L001090
 Q0001
 E
-<xpml></page></xpml>
-zC
-<xpml><end/></xpml>")
+<xpml></page></xpml><xpml><end/></xpml>")
                                     oWrite.Dispose()
 
                                 ElseIf ClientName = "GELATO" Then
