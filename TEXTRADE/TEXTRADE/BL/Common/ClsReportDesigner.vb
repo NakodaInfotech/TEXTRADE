@@ -12771,10 +12771,10 @@ fontItalic As Boolean = False)
                 Write(Val(DT.Rows(0).Item("VALUELOSS_PERCENT")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
                 Write(ROW("REMARKS"), Range("12"), XlHAlign.xlHAlignLeft, , True, 10)
 
-                FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
-                FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
-                FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
-                FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
 
                 'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
 
