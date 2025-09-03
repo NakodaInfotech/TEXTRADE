@@ -4059,6 +4059,7 @@ LINE1:
         If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
             CMDSELECTPO.Visible = True
             CMDSELECTGRN.Visible = False
+            CHKINTCALC.Visible = True
         End If
 
     End Sub

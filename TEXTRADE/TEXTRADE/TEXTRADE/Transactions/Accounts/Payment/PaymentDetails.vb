@@ -243,7 +243,10 @@ Public Class PaymentDetails
                     OBJPAY.FROMNO = Val(TXTFROM.Text.Trim)
                     OBJPAY.TONO = Val(TXTTO.Text.Trim)
                     OBJPAY.REGNAME = cmbregister.Text.Trim
-                    OBJPAY.FRMSTRING = "CHQPAY"
+                    OBJPAY.FRMSTRING = "CHQPRINT"
+                    If RBNEFT.Checked = True Then OBJPAY.NEFTRTGSNORMAL = "NEFT"
+                    If RBRTGS.Checked = True Then OBJPAY.NEFTRTGSNORMAL = "RTGS"
+                    If RBNORMAL.Checked = True Then OBJPAY.NEFTRTGSNORMAL = "PARTY"
                     OBJPAY.Show()
                     OBJPAY.Close()
                 End If

@@ -44,7 +44,7 @@ Public Class SaleReturnChallan
             CMBQTYUNIT.Text = "THAN"
         ElseIf ClientName = "YUMILONE" Or ClientName = "REVAANT" Then
             CMBQTYUNIT.Text = "PCS"
-        ElseIf ClientName = "SOFTAS" Then
+        ElseIf ClientName = "SOFTAS" Or ClientName = "MAHAVIRPOLYCOT" Then
             CMBQTYUNIT.Text = "ROLL"
         ElseIf ClientName = "SHREENAKODA" Then
             CMBQTYUNIT.Text = "LUMP"

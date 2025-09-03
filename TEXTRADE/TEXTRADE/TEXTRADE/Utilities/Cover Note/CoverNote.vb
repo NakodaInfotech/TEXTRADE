@@ -1,14 +1,16 @@
 ﻿
 Imports BL
 Imports System.ComponentModel
-Imports System.IO
+
 Public Class CoverNote
+
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
     Public EDIT As Boolean
     Public TEMPVERIFIED As Boolean = False  'THIS IS USED TO CHECK WHETHER THE ORDER WAS ALREADY VERIFIED OR NOT, ON EDIT MODE, USED ON ERRORVALID FOR SNCM
     Public TEMPCOVERNO As String
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -80,11 +82,13 @@ Public Class CoverNote
             Throw ex
         End Try
     End Sub
+
     Sub GETMAXNO()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(COVER_no),0) + 1 ", " COVERNOTE ", " and COVER_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTCOVERNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
+
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             For Each row As DataGridViewRow In grid.Rows
@@ -221,6 +225,7 @@ Public Class CoverNote
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+
     Private Function errorvalid() As Boolean
         Dim bln As Boolean = True
         If CMBNAME.Text.Trim.Length = 0 AndAlso CMBAGENT.Text.Trim.Length = 0 Then
@@ -347,6 +352,7 @@ LINE1:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+
     Sub fillcmb()
         Try
             If CMBAGENT.Text.Trim = "" Then fillagentledger(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND ACC_TYPE='AGENT'")
@@ -355,6 +361,7 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
     Sub CLEAR()
         Try
             CMBNAME.Text = ""
@@ -370,6 +377,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub CMBAGENT_Enter(sender As Object, e As EventArgs) Handles CMBAGENT.Enter
         Try
             If CMBAGENT.Text.Trim = "" Then fillledger(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
@@ -405,40 +413,6 @@ LINE1:
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Try
             Me.Close()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub GRIDCOVER_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDCOVER.CellDoubleClick
-        'Try
-        '    EDITROW()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-    End Sub
-
-    Sub EDITROW()
-        Try
-            If GRIDCOVER.CurrentRow.Index >= 0 And GRIDCOVER.Item(GSRNO.Index, GRIDCOVER.CurrentRow.Index).Value <> Nothing Then
-                GRIDDOUBLECLICK = True
-
-                GRIDCOVER.Item(GSRNO.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GINVNO.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GREGNAME.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GINVINITIALS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GPRINTINITIALS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GINVDATE.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GLRNO.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GLRDATE.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GTRANSPORT.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GTOTALMTRS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GTOTALPCS.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-                GRIDCOVER.Item(GGRANDTOTAL.Index, GRIDCOVER.CurrentRow.Index).Value.ToString()
-
-                TEMPROW = GRIDCOVER.CurrentRow.Index
-                CMBNAME.Focus()
-
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -504,21 +478,26 @@ LINE1:
     Sub PRINTREPORT(ByVal CoverNote As Integer)
         Try
 
-            Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Cover Note ?", MsgBoxStyle.YesNo)
-            If CMBNAME.Text.Trim <> "" And TEMPMSG2 = vbYes Then
+            If CMBNAME.Text.Trim <> "" AndAlso MsgBox("Wish to Print Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJINV As New SaleInvoiceDesign
                 OBJINV.MdiParent = MDIMain
                 OBJINV.FRMSTRING = "MAINCOVERNOTE"
                 OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(TXTCOVERNO.Text) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-                'OBJINV.COVERNOTENO = CoverNote
                 OBJINV.PARTYNAME = CMBNAME.Text.Trim
                 OBJINV.AGENTNAME = CMBAGENT.Text.Trim
                 OBJINV.Show()
-
             End If
 
-            Dim TEMPMSG As Integer = MsgBox("Wish to Print AGENT Cover Note ?", MsgBoxStyle.YesNo)
-            If CMBAGENT.Text.Trim <> "" And TEMPMSG = vbYes Then
+            If CMBNAME.Text.Trim <> "" AndAlso MsgBox("Wish to Print Party Envelope?", MsgBoxStyle.YesNo) = vbYes Then
+                Dim OBJENV As New payment_advice
+                OBJENV.WHERECLAUSE = " {LEDGERS.Acc_cmpname} = '" & CMBNAME.Text.Trim & "' and {LEDGERS.ACC_YEARID} = " & YearId
+                OBJENV.FRMSTRING = "ENVELOPE"
+                OBJENV.MdiParent = MDIMain
+                OBJENV.Show()
+            End If
+
+
+            If CMBAGENT.Text.Trim <> "" AndAlso MsgBox("Wish to Print Agent Cover Note ?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJAGENT As New SaleInvoiceDesign
                 OBJAGENT.MdiParent = MDIMain
                 OBJAGENT.FRMSTRING = "MAINAGENTCOVERNOTE"
@@ -528,18 +507,7 @@ LINE1:
                 OBJAGENT.Show()
             End If
 
-
-            Dim TEMPMSG3 As Integer = MsgBox("Wish to Print Party Envelope?", MsgBoxStyle.YesNo)
-            If CMBNAME.Text.Trim <> "" And TEMPMSG3 = vbYes Then
-                Dim OBJENV As New payment_advice
-                OBJENV.WHERECLAUSE = " {LEDGERS.Acc_cmpname} = '" & CMBNAME.Text.Trim & "' and {LEDGERS.ACC_YEARID} = " & YearId
-                OBJENV.FRMSTRING = "ENVELOPE"
-                OBJENV.MdiParent = MDIMain
-                OBJENV.Show()
-            End If
-
-            Dim TEMPMSG4 As Integer = MsgBox("Wish to Print AGENT Envelope?", MsgBoxStyle.YesNo)
-            If CMBAGENT.Text.Trim <> "" And TEMPMSG4 = vbYes Then
+            If CMBAGENT.Text.Trim <> "" AndAlso MsgBox("Wish to Print Agent Envelope?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJENV As New payment_advice
                 OBJENV.WHERECLAUSE = " {LEDGERS.Acc_cmpname} = '" & CMBAGENT.Text.Trim & "' and {LEDGERS.ACC_YEARID} = " & YearId
                 OBJENV.FRMSTRING = "ENVELOPE"

@@ -4,6 +4,7 @@ Imports WAProAPI
 Imports System.IO.Compression
 Imports HtmlAgilityPack
 Imports TEXTRADE.Win_Dashboards
+Imports DevExpress.CodeParser
 
 Public Class MDIMain
 
@@ -61,7 +62,7 @@ Public Class MDIMain
 
             'GET COMPANY'S DATA FOR VALIDATIONS OF EWB AND GST
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("ISNULL(CMP_EWBUSER,'') AS EWBUSER, ISNULL(CMP_EWBPASS,'') AS EWBPASS, ISNULL(CMP_GSTIN,'') AS CMPGSTIN, ISNULL(CMP_ZIPCODE,'') AS CMPPINCODE, ISNULL(CITY_NAME,'') AS CITYNAME, CAST(STATE_NAME AS VARCHAR(50)) AS STATENAME, CAST(STATE_REMARK AS VARCHAR(50)) AS STATECODE, ISNULL(NOOFEWAYBILLS,0) AS EWAYCOUNTER, ISNULL(CMPMASTER.CMP_BANKNAME,'') AS BANKNAME, ISNULL(CMPMASTER.CMP_BANKACNO,'') AS ACCOUNTNO, ISNULL(CMPMASTER.CMP_IFSCCODE,'') AS IFSC, ISNULL(CMPMASTER.CMP_UPI,'') AS UPI, ISNULL(CMP_ADD1,'') AS CMPADDRESS, ISNULL(CMP_TEL,'') AS CMPTEL", "", " STATEMASTER INNER JOIN CMPMASTER ON STATE_ID = CMP_STATEID LEFT OUTER JOIN CITYMASTER ON CMP_FROMCITYID = CITY_ID LEFT OUTER JOIN EWAYCOUNTER ON CMP_ID = EWAYCOUNTER.CMPID ", " AND CMP_ID = " & CmpId)
+            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(CMP_EWBUSER,'') AS EWBUSER, ISNULL(CMP_EWBPASS,'') AS EWBPASS, ISNULL(CMP_GSTIN,'') AS CMPGSTIN, ISNULL(CMP_ZIPCODE,'') AS CMPPINCODE, ISNULL(CITY_NAME,'') AS CITYNAME, CAST(STATE_NAME AS VARCHAR(50)) AS STATENAME, CAST(STATE_REMARK AS VARCHAR(50)) AS STATECODE, ISNULL(NOOFEWAYBILLS,0) AS EWAYCOUNTER, ISNULL(CMPMASTER.CMP_BANKNAME,'') AS BANKNAME, ISNULL(CMPMASTER.CMP_BANKACNO,'') AS ACCOUNTNO, ISNULL(CMPMASTER.CMP_IFSCCODE,'') AS IFSC, ISNULL(CMPMASTER.CMP_UPI,'') AS UPI, ISNULL(CMP_ADD1,'') AS CMPADDRESS, ISNULL(CMP_TEL,'') AS CMPTEL", "", " STATEMASTER INNER JOIN CMPMASTER ON STATE_ID = CMP_STATEID LEFT OUTER JOIN CITYMASTER ON CMP_FROMCITYID = CITY_ID LEFT OUTER JOIN EWAYCOUNTER ON CMP_ID = EWAYCOUNTER.CMPID ", " AND CMP_ID = " & CmpId)
             If DT.Rows.Count > 0 Then
                 CMPEWBUSER = DT.Rows(0).Item("EWBUSER")
                 CMPEWBPASS = DT.Rows(0).Item("EWBPASS")
@@ -77,20 +78,20 @@ Public Class MDIMain
                 CMPADDRESS = DT.Rows(0).Item("CMPADDRESS")
                 CMPTEL = DT.Rows(0).Item("CMPTEL")
 
-                DT = OBJCMN.search("ISNULL(SUM(NOOFEWAYBILLS),0) AS EWAYCOUNTER", "", " EWAYCOUNTER ", " AND CMPID = " & CmpId)
+                DT = OBJCMN.SEARCH("ISNULL(SUM(NOOFEWAYBILLS),0) AS EWAYCOUNTER", "", " EWAYCOUNTER ", " AND CMPID = " & CmpId)
                 CMPEWAYCOUNTER = Val(DT.Rows(0).Item("EWAYCOUNTER"))
-                DT = OBJCMN.search("ISNULL(MAX(DATE), GETDATE()) AS EWAYEXPDATE", "", " EWAYCOUNTER ", " AND CMPID = " & CmpId)
+                DT = OBJCMN.SEARCH("ISNULL(MAX(DATE), GETDATE()) AS EWAYEXPDATE", "", " EWAYCOUNTER ", " AND CMPID = " & CmpId)
                 EWAYEXPDATE = Convert.ToDateTime(DT.Rows(0).Item("EWAYEXPDATE")).Date.AddYears(1)
 
-                DT = OBJCMN.search("ISNULL(SUM(NOOFEINVOICE),0) AS EINVOICECOUNTER", "", " EINVOICECOUNTER ", " AND CMPID = " & CmpId)
+                DT = OBJCMN.SEARCH("ISNULL(SUM(NOOFEINVOICE),0) AS EINVOICECOUNTER", "", " EINVOICECOUNTER ", " AND CMPID = " & CmpId)
                 CMPEINVOICECOUNTER = Val(DT.Rows(0).Item("EINVOICECOUNTER"))
-                DT = OBJCMN.search("ISNULL(MAX(DATE), GETDATE()) AS EINVOICEEXPDATE", "", " EINVOICECOUNTER ", " AND CMPID = " & CmpId)
+                DT = OBJCMN.SEARCH("ISNULL(MAX(DATE), GETDATE()) AS EINVOICEEXPDATE", "", " EINVOICECOUNTER ", " AND CMPID = " & CmpId)
                 EINVOICEEXPDATE = Convert.ToDateTime(DT.Rows(0).Item("EINVOICEEXPDATE")).Date.AddYears(1)
             End If
 
 
             'GET USERGODOWN
-            DT = OBJCMN.search("ISNULL(GODOWN_NAME,'') AS USERGODOWN", "", " USERGODOWNTAGGING INNER JOIN USERMASTER ON USERGODOWNTAGGING.GODOWN_USERID = USERMASTER.[User_id]	 INNER JOIN GODOWNMASTER ON USERGODOWNTAGGING.GODOWN_GODOWNID = GODOWNMASTER.GODOWN_id  ", " AND USER_NAME ='" & UserName & "' AND  USERGODOWNTAGGING.GODOWN_CMPID = " & CmpId)
+            DT = OBJCMN.SEARCH("ISNULL(GODOWN_NAME,'') AS USERGODOWN", "", " USERGODOWNTAGGING INNER JOIN USERMASTER ON USERGODOWNTAGGING.GODOWN_USERID = USERMASTER.[User_id]	 INNER JOIN GODOWNMASTER ON USERGODOWNTAGGING.GODOWN_GODOWNID = GODOWNMASTER.GODOWN_id  ", " AND USER_NAME ='" & UserName & "' AND  USERGODOWNTAGGING.GODOWN_CMPID = " & CmpId)
             If DT.Rows.Count > 0 Then USERGODOWN = DT.Rows(0).Item("USERGODOWN")
 
 
@@ -156,7 +157,7 @@ Public Class MDIMain
 
 
             'CHECKING BLOCKDATE FOR BACK DATED ENTRIES
-            DT = OBJCMN.search("*", "", "BLOCKDATE", " AND YEARID = " & YearId)
+            DT = OBJCMN.SEARCH("*", "", "BLOCKDATE", " AND YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 SALEBLOCKDATE = DT.Rows(0).Item("SALEDATE")
                 PURBLOCKDATE = DT.Rows(0).Item("PURDATE")
@@ -203,8 +204,10 @@ Public Class MDIMain
             End If
 
 
-            SETENABILITY()
-            HEADERVISIBLE()
+            If ClientName <> "JAINAMGOLD" Then
+                SETENABILITY()
+                HEADERVISIBLE()
+            End If
 
             If ALLOWWHATSAPP = True Then
                 Dim BASEURL As String = GETWHATSAPPBASEURL()
@@ -390,6 +393,31 @@ Public Class MDIMain
             '    OBJSALORDER.CHKVERIFY.Enabled = False
 
             'End If
+
+
+            If ClientName = "JAINAMGOLD" Then
+                TRANSACTION_MENU.Visible = False
+                REPORTS_MENU.Visible = False
+                TOOLSTRIP_MAIN.Visible = False
+                OTHERREPORT_MAIN.Visible = False
+                CUSTOMREPORTS_MENU.Visible = False
+
+                ACC_MASTER.Enabled = True
+                ACCADD.Enabled = True
+                ACCEDIT.Enabled = True
+
+                ITEM_MASTER.Enabled = True
+                ITEMADD.Enabled = True
+                ITEMEDIT.Enabled = True
+                ITEMDESIGNIMAGE_MASTER.Enabled = True
+
+                DESIGN_MASTER.Enabled = True
+                DESIGNADD.Enabled = True
+                DESIGNEDIT.Enabled = True
+
+                ADMIN_MASTER.Enabled = True
+            End If
+
 
         Catch ex As Exception
             Throw ex
@@ -773,6 +801,8 @@ Public Class MDIMain
                         OPENINGSTOCKVALUE.Enabled = True
                         OPENINGBALANCE.Enabled = True
                         PROVISIONALBS_MASTER.Enabled = True
+                        OPSTOCKGREYTRANS_MASTER.Enabled = True
+                        OPSTOCKGREYPROCESS_MASTER.Enabled = True
                     End If
 
                 ElseIf DTROW(0).ToString = "LOCATION MASTER" Then
@@ -4997,7 +5027,6 @@ SKIPLINE:
 
             If HIDEYARN = False Then
                 YARNSTOCK_GODOWN.Visible = True
-                YARNSTOCKGODOWN_TOOL.Visible = True
                 YARNSTOCK_JOBBER.Visible = True
                 YARNSTOCKJOBBER_TOOL.Visible = True
                 YARNRECDJOBBER_MASTER.Visible = True
@@ -10476,7 +10505,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub OpeningGreyStockAtTransportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningGreyStockAtTransportToolStripMenuItem.Click
+    Private Sub OPSTOCKGREYTRANS_MASTER_Click(sender As Object, e As EventArgs) Handles OPSTOCKGREYTRANS_MASTER.Click
         Try
             Dim OBJCN As New OpeningGreyStockAtTransport
             OBJCN.MdiParent = Me
@@ -10486,7 +10515,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub OpeningGreyStockAtProcessToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningGreyStockAtProcessToolStripMenuItem.Click
+    Private Sub OPSTOCKGREYPROCESS_MASTER_Click(sender As Object, e As EventArgs) Handles OPSTOCKGREYPROCESS_MASTER.Click
         Try
             Dim OBJCN As New OpeningGreyStockAtProcess
             OBJCN.MdiParent = Me

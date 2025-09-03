@@ -2530,6 +2530,7 @@ LINE1:
             GAQTY.Visible = True
             GAFOLDPER.Visible = True
         End If
+        If ClientName = "ABHEE" Or ClientName = "MASHOK" Then CHKINTCALC.Visible = True
 
         'KEEP IT OPEN FOR SVS
     End Sub
