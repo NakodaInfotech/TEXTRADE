@@ -12683,6 +12683,7 @@ fontItalic As Boolean = False)
             objSheet.Name = "VALUE LOSS %"
 
             RowIndex = 1
+            objColumn.Clear()
             For I As Integer = 1 To 26
                 SetColumn(I, Chr(64 + I))
             Next
