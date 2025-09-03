@@ -12071,6 +12071,8 @@ fontItalic As Boolean = False)
         Try
 
             SetWorkSheet()
+            objSheet.Name = "MIS"
+
             For I As Integer = 1 To 26
                 SetColumn(I, Chr(64 + I))
             Next
@@ -12647,8 +12649,6 @@ fontItalic As Boolean = False)
             Next
 
 
-
-
             SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
             SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
             SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
@@ -12664,7 +12664,9 @@ fontItalic As Boolean = False)
 
 
             objBook.Application.ActiveWindow.Zoom = 100
-
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
             'With objSheet.PageSetup
             '    .Orientation = XlPageOrientation.xlPortrait
             '    .TopMargin = 20
@@ -12673,6 +12675,127 @@ fontItalic As Boolean = False)
             '    .BottomMargin = 10
             '    .Zoom = False
             'End With
+
+
+            '****************** END OF MIS CODE ***************************
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "VALUE LOSS %"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+            DTCMP = OBJCMN.SEARCH(" CMP_DISPLAYEDNAME AS CMPNAME, CMP_ADD1 As ADD1, CMP_ADD2 AS ADD2", "", " CMPMASTER", " AND CMP_ID = " & CMPID)
+
+            RowIndex = 2
+            Write(DTCMP.Rows(0).Item("CMPNAME"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 14)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD1
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD1"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD2
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD2"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            RowIndex += 1
+            Write("VALUE LOSS PERCENTAGE REPORT (" & Format(FROMDATE, "dd/MM/yyyy") & "-" & Format(TODATE, "dd/MM/yyyy") & ")", Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 12)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+
+            'FREEZE TOP 6 ROWS
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Select()
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Application.ActiveWindow.FreezePanes = True
+
+
+            SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("CHALLANNO", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("CHALLANDATE", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("MILL", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("LOTNO", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DESIGNNO", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("SHADE", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("INWARDMTR", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("ISSUECARDNO", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("FRESHMTRS", Range("9"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("SECONDMTRS", Range("10"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("VALUELOSS_PERCENT", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("REMARKS", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+            'LOOP MILL WISE FOR CURRENT MONTH
+            DT = OBJCMN.SEARCH(" * ", "", "(SELECT MIN(ISSUEPACKING.ISS_CHALLANNO) AS CHALLANNO,MIN(ISSUEPACKING.ISS_date) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(RECPACKING.REC_LOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,MAX(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) AS INWARDMTR,MIN(ISNULL(RECPACKING.REC_FROMNO, 0)) AS ISSUECARDNO,SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS FRESHMTRS,MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS SECONDMTRS,ROUND(CASE WHEN MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) = 0 THEN 0 ELSE ((MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0))) * 100.0 / MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)))END, 2) AS VALUELOSS_PERCENT,MIN(CAST(ISNULL(RECPACKING.REC_REMARKS, '') AS NVARCHAR(255))) AS REMARKS,MIN(ISNULL(RECPACKING.REC_NO, 0)) AS SRNO,MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM RECPACKING INNER JOIN RECPACKING_DESC ON RECPACKING.REC_NO = RECPACKING_DESC.REC_NO AND RECPACKING.REC_YEARID = RECPACKING_DESC.REC_YEARID INNER JOIN ISSUEPACKING ON RECPACKING.REC_FROMNO = ISSUEPACKING.ISS_no AND RECPACKING.REC_YEARID = ISSUEPACKING.ISS_yearid LEFT JOIN PIECETYPEMASTER ON RECPACKING_DESC.REC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN DESIGNMASTER ON RECPACKING_DESC.REC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON RECPACKING_DESC.REC_COLORID = COLORMASTER.COLOR_id LEFT JOIN UNITMASTER ON RECPACKING_DESC.REC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON RECPACKING_DESC.REC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON RECPACKING.REC_USERID = USERMASTER.User_id LEFT JOIN CONTRACTMASTER ON ISSUEPACKING.ISS_CONTRACTID = CONTRACTMASTER.CONTRACT_ID LEFT JOIN LEDGERS ON RECPACKING.REC_LEDGERID = LEDGERS.Acc_id LEFT JOIN GODOWNMASTER ON RECPACKING.REC_GODOWNID = GODOWNMASTER.GODOWN_id  WHERE RECPACKING.REC_YEARID =
+             15 GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, RECPACKING.REC_LOTNO UNION ALL SELECT MIN(MATERIALRECEIPT.MATREC_CHALLANNO) AS CHALLANNO,MIN(MATERIALRECEIPT.MATREC_DATE) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) AS INWARDMTR,MIN(ISNULL(MATERIALRECEIPT.MATREC_CHKNO, 0)) AS ISSUECARDNO,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0)) AS FRESHMTRS,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_DIFF, 0)) AS SECONDMTRS,ROUND(CASE WHEN SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) = 0 THEN 0 ELSE ((SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) - SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0))) * 100.0 / SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)))END, 2) AS VALUELOSS_PERCENT , MIN(CAST(ISNULL(MATERIALRECEIPT.MATREC_remarks, '') AS NVARCHAR(255))) AS REMARKS, MIN(ISNULL(MATERIALRECEIPT.MATREC_NO, 0)) AS SRNO, MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM MATERIALRECEIPT INNER JOIN MATERIALRECEIPT_DESC ON MATERIALRECEIPT.MATREC_NO = MATERIALRECEIPT_DESC.MATREC_NO AND MATERIALRECEIPT.MATREC_yearid = MATERIALRECEIPT_DESC.MATREC_YEARID LEFT JOIN LEDGERS ON MATERIALRECEIPT.MATREC_ledgerid = LEDGERS.Acc_id LEFT JOIN DESIGNMASTER ON MATERIALRECEIPT_DESC.MATREC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON MATERIALRECEIPT_DESC.MATREC_COLORID = COLORMASTER.COLOR_id LEFT JOIN PIECETYPEMASTER ON MATERIALRECEIPT_DESC.MATREC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN UNITMASTER ON MATERIALRECEIPT_DESC.MATREC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON MATERIALRECEIPT_DESC.MATREC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON MATERIALRECEIPT.MATREC_userid = USERMASTER.User_id  WHERE MATERIALRECEIPT.MATREC_yearid =
+             15 GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO) as T")
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("CHALLANNO"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("CHALLANDATE"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("MILL"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("LOTNO"), Range("4"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("DESIGNNO"), Range("5"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("SHADE"), Range("6"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(Val(DT.Rows(0).Item("INWARDMTR")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DT.Rows(0).Item("ISSUECARDNO")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DT.Rows(0).Item("FRESHMTRS")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DT.Rows(0).Item("SECONDMTRS")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DT.Rows(0).Item("VALUELOSS_PERCENT")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(ROW("REMARKS"), Range("12"), XlHAlign.xlHAlignLeft, , True, 10)
+
+                FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 8, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 8, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 8, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 8, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 8, objColumn.Item("12").ToString & RowIndex)
+
+            objBook.Application.ActiveWindow.Zoom = 100
 
             SaveAndClose()
 
@@ -12820,6 +12943,137 @@ fontItalic As Boolean = False)
         End Try
         Return Nothing
     End Function
+
+    '    Public Function VALUELOSS_EXCEL(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date) As Object
+    '        Try
+
+    '            SetWorkSheet()
+    '            For I As Integer = 1 To 26
+    '                SetColumn(I, Chr(64 + I))
+    '            Next
+
+
+    '            RowIndex = 1
+    '            For i As Integer = 1 To 26
+    '                SetColumnWidth(Range(i), 15)
+    '            Next
+
+
+
+    '            '''''''''''Report Title
+    '            Dim OBJCMN As New ClsCommon
+    '            Dim DT As New System.Data.DataTable
+    '            Dim DTNP As New System.Data.DataTable
+    '            'CMPNAME
+    '            Dim DTCMP As System.Data.DataTable = OBJCMN.SEARCH(" CMP_DISPLAYEDNAME AS CMPNAME, CMP_ADD1 As ADD1, CMP_ADD2 AS ADD2", "", " CMPMASTER", " AND CMP_ID = " & CMPID)
+
+    '            RowIndex = 2
+    '            Write(DTCMP.Rows(0).Item("CMPNAME"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 14)
+    '            SetBorder(RowIndex, Range("1"), Range("12"))
+
+    '            'ADD1
+    '            RowIndex += 1
+    '            Write(DTCMP.Rows(0).Item("ADD1"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+    '            SetBorder(RowIndex, Range("1"), Range("12"))
+
+    '            'ADD2
+    '            RowIndex += 1
+    '            Write(DTCMP.Rows(0).Item("ADD2"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+    '            SetBorder(RowIndex, Range("1"), Range("12"))
+
+    '            RowIndex += 1
+    '            Write("VALUE LOSS PERCENTAGE REPORT (" & Format(FROMDATE, "dd/MM/yyyy") & "-" & Format(TODATE, "dd/MM/yyyy") & ")", Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 12)
+    '            SetBorder(RowIndex, Range("1"), Range("12"))
+
+
+    '            'FREEZE TOP 6 ROWS
+    '            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Select()
+    '            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Application.ActiveWindow.FreezePanes = True
+
+
+    '            SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+    '            RowIndex += 2
+    '            Write("CHALLANNO", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+    '            Write("CHALLANDATE", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("MILL", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("LOTNO", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("DESIGNNO", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("SHADE", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("INWARDMTR", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("ISSUECARDNO", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("FRESHMTRS", Range("9"), XlHAlign.xlHAlignLeft, , True, 10)
+    '            Write("SECONDMTRS", Range("10"), XlHAlign.xlHAlignLeft, , True, 10)
+    '            Write("VALUELOSS_PERCENT", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+    '            Write("REMARKS", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+
+    '            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+    '            'LOOP MILL WISE FOR CURRENT MONTH
+    '            DT = OBJCMN.SEARCH(" * ", "", "(SELECT MIN(ISSUEPACKING.ISS_CHALLANNO) AS CHALLANNO,MIN(ISSUEPACKING.ISS_date) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(RECPACKING.REC_LOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,MAX(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) AS INWARDMTR,MIN(ISNULL(RECPACKING.REC_FROMNO, 0)) AS ISSUECARDNO,SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS FRESHMTRS,MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS SECONDMTRS,ROUND(CASE WHEN MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) = 0 THEN 0 ELSE ((MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0))) * 100.0 / MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)))END, 2) AS VALUELOSS_PERCENT,MIN(CAST(ISNULL(RECPACKING.REC_REMARKS, '') AS NVARCHAR(255))) AS REMARKS,MIN(ISNULL(RECPACKING.REC_NO, 0)) AS SRNO,MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM RECPACKING INNER JOIN RECPACKING_DESC ON RECPACKING.REC_NO = RECPACKING_DESC.REC_NO AND RECPACKING.REC_YEARID = RECPACKING_DESC.REC_YEARID INNER JOIN ISSUEPACKING ON RECPACKING.REC_FROMNO = ISSUEPACKING.ISS_no AND RECPACKING.REC_YEARID = ISSUEPACKING.ISS_yearid LEFT JOIN PIECETYPEMASTER ON RECPACKING_DESC.REC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN DESIGNMASTER ON RECPACKING_DESC.REC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON RECPACKING_DESC.REC_COLORID = COLORMASTER.COLOR_id LEFT JOIN UNITMASTER ON RECPACKING_DESC.REC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON RECPACKING_DESC.REC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON RECPACKING.REC_USERID = USERMASTER.User_id LEFT JOIN CONTRACTMASTER ON ISSUEPACKING.ISS_CONTRACTID = CONTRACTMASTER.CONTRACT_ID LEFT JOIN LEDGERS ON RECPACKING.REC_LEDGERID = LEDGERS.Acc_id LEFT JOIN GODOWNMASTER ON RECPACKING.REC_GODOWNID = GODOWNMASTER.GODOWN_id  WHERE RECPACKING.REC_YEARID =
+    '15 GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, RECPACKING.REC_LOTNO UNION ALL SELECT MIN(MATERIALRECEIPT.MATREC_CHALLANNO) AS CHALLANNO,MIN(MATERIALRECEIPT.MATREC_DATE) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) AS INWARDMTR,MIN(ISNULL(MATERIALRECEIPT.MATREC_CHKNO, 0)) AS ISSUECARDNO,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0)) AS FRESHMTRS,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_DIFF, 0)) AS SECONDMTRS,ROUND(CASE WHEN SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) = 0 THEN 0 ELSE ((SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) - SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0))) * 100.0 / SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)))END, 2) AS VALUELOSS_PERCENT , MIN(CAST(ISNULL(MATERIALRECEIPT.MATREC_remarks, '') AS NVARCHAR(255))) AS REMARKS, MIN(ISNULL(MATERIALRECEIPT.MATREC_NO, 0)) AS SRNO, MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM MATERIALRECEIPT INNER JOIN MATERIALRECEIPT_DESC ON MATERIALRECEIPT.MATREC_NO = MATERIALRECEIPT_DESC.MATREC_NO AND MATERIALRECEIPT.MATREC_yearid = MATERIALRECEIPT_DESC.MATREC_YEARID LEFT JOIN LEDGERS ON MATERIALRECEIPT.MATREC_ledgerid = LEDGERS.Acc_id LEFT JOIN DESIGNMASTER ON MATERIALRECEIPT_DESC.MATREC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON MATERIALRECEIPT_DESC.MATREC_COLORID = COLORMASTER.COLOR_id LEFT JOIN PIECETYPEMASTER ON MATERIALRECEIPT_DESC.MATREC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN UNITMASTER ON MATERIALRECEIPT_DESC.MATREC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON MATERIALRECEIPT_DESC.MATREC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON MATERIALRECEIPT.MATREC_userid = USERMASTER.User_id  WHERE MATERIALRECEIPT.MATREC_yearid =
+    '15 GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO) as T")
+    '            For Each ROW As DataRow In DT.Rows
+    '                RowIndex += 1
+    '                Write(ROW("CHALLANNO"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(ROW("CHALLANDATE"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(ROW("MILL"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(ROW("LOTNO"), Range("4"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(ROW("DESIGNNO"), Range("5"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(ROW("SHADE"), Range("6"), XlHAlign.xlHAlignLeft, , True, 10)
+    '                Write(Val(DT.Rows(0).Item("INWARDMTR")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+    '                Write(Val(DT.Rows(0).Item("ISSUECARDNO")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+    '                Write(Val(DT.Rows(0).Item("FRESHMTRS")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+    '                Write(Val(DT.Rows(0).Item("SECONDMTRS")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+    '                Write(Val(DT.Rows(0).Item("VALUELOSS_PERCENT")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+    '                Write(ROW("REMARKS"), Range("12"), XlHAlign.xlHAlignLeft, , True, 10)
+
+    '                FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+    '                FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+    '                FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+    '                FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+    '                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+    '                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+    '            Next
+
+    '            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("8").ToString & 8, objColumn.Item("8").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("9").ToString & 8, objColumn.Item("9").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("10").ToString & 8, objColumn.Item("10").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("11").ToString & 8, objColumn.Item("11").ToString & RowIndex)
+    '            SetBorder(RowIndex, objColumn.Item("12").ToString & 8, objColumn.Item("12").ToString & RowIndex)
+
+    '            objBook.Application.ActiveWindow.Zoom = 100
+
+    '            SaveAndClose()
+
+    '        Catch ex As Exception
+    '            Throw ex
+    '        End Try
+    '        Return Nothing
+    '    End Function
 
 #End Region
 

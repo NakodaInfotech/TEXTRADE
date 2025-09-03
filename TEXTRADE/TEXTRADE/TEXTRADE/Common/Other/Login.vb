@@ -1084,7 +1084,9 @@ LINE1:
                     OBJRPT.MISALLDAILY_EXCEL(CmpId, YearId, Now.Date, Now.Date)
                     Dim ALATTACHMENT As New ArrayList
                     ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx")
-                    sendemail("rm@avisindustries.in,gm@avisindustries.in,aroraaoc@gmail.com,infoavisindustries@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
+                    'sendemail("rm@avisindustries.in,gm@avisindustries.in,aroraaoc@gmail.com,infoavisindustries@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
+                    sendemail("praveenmarineservice@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
+
                     End
                 End If
             End If
