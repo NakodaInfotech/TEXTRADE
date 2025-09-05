@@ -10585,5 +10585,25 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub DESIGNCARDADD_Click(sender As Object, e As EventArgs) Handles DESIGNCARDADD.Click
+        Try
+            Dim OBJDESIGNCARD As New DesignCardMaster
+            OBJDESIGNCARD.MdiParent = Me
+            OBJDESIGNCARD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub DESIGNCARDEDIT_Click(sender As Object, e As EventArgs) Handles DESIGNCARDEDIT.Click
+        Try
+            Dim OBJDESIGNCARD As New DesignCardMasterDetails
+            OBJDESIGNCARD.MdiParent = Me
+            OBJDESIGNCARD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

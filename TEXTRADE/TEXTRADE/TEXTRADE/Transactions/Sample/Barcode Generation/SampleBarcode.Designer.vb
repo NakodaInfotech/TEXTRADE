@@ -50,6 +50,7 @@ Partial Class SampleBarcode
         Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOLORBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.CMBDESIGNNO = New System.Windows.Forms.ComboBox()
@@ -64,7 +65,6 @@ Partial Class SampleBarcode
         Me.CHKPRINT = New System.Windows.Forms.CheckBox()
         Me.TXTNO = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GCOLORBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,7 +225,7 @@ Partial Class SampleBarcode
         Me.CMBQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBQUALITY.BackColor = System.Drawing.Color.White
         Me.CMBQUALITY.FormattingEnabled = True
-        Me.CMBQUALITY.Location = New System.Drawing.Point(346, 35)
+        Me.CMBQUALITY.Location = New System.Drawing.Point(354, 35)
         Me.CMBQUALITY.Name = "CMBQUALITY"
         Me.CMBQUALITY.Size = New System.Drawing.Size(200, 23)
         Me.CMBQUALITY.TabIndex = 1
@@ -378,9 +378,15 @@ Partial Class SampleBarcode
         Me.GDESIGNBLOCKED.FieldName = "DESIGNBLOCKED"
         Me.GDESIGNBLOCKED.Name = "GDESIGNBLOCKED"
         '
+        'GCOLORBLOCKED
+        '
+        Me.GCOLORBLOCKED.Caption = "COLORBLOCKED"
+        Me.GCOLORBLOCKED.FieldName = "COLORBLOCKED"
+        Me.GCOLORBLOCKED.Name = "GCOLORBLOCKED"
+        '
         'TXTREMARKS
         '
-        Me.TXTREMARKS.Location = New System.Drawing.Point(897, 35)
+        Me.TXTREMARKS.Location = New System.Drawing.Point(905, 35)
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(200, 23)
         Me.TXTREMARKS.TabIndex = 4
@@ -401,7 +407,7 @@ Partial Class SampleBarcode
         Me.CMBDESIGNNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGNNO.BackColor = System.Drawing.Color.White
         Me.CMBDESIGNNO.FormattingEnabled = True
-        Me.CMBDESIGNNO.Location = New System.Drawing.Point(546, 35)
+        Me.CMBDESIGNNO.Location = New System.Drawing.Point(554, 35)
         Me.CMBDESIGNNO.Name = "CMBDESIGNNO"
         Me.CMBDESIGNNO.Size = New System.Drawing.Size(250, 23)
         Me.CMBDESIGNNO.TabIndex = 2
@@ -424,7 +430,7 @@ Partial Class SampleBarcode
         Me.CMBCOLOR.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBCOLOR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBCOLOR.FormattingEnabled = True
-        Me.CMBCOLOR.Location = New System.Drawing.Point(796, 35)
+        Me.CMBCOLOR.Location = New System.Drawing.Point(804, 35)
         Me.CMBCOLOR.Name = "CMBCOLOR"
         Me.CMBCOLOR.Size = New System.Drawing.Size(101, 23)
         Me.CMBCOLOR.TabIndex = 3
@@ -437,7 +443,7 @@ Partial Class SampleBarcode
         Me.CMBMERCHANT.DropDownWidth = 400
         Me.CMBMERCHANT.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.CMBMERCHANT.FormattingEnabled = True
-        Me.CMBMERCHANT.Location = New System.Drawing.Point(96, 35)
+        Me.CMBMERCHANT.Location = New System.Drawing.Point(104, 35)
         Me.CMBMERCHANT.Name = "CMBMERCHANT"
         Me.CMBMERCHANT.Size = New System.Drawing.Size(250, 23)
         Me.CMBMERCHANT.TabIndex = 0
@@ -459,7 +465,7 @@ Partial Class SampleBarcode
         Me.txtsrno.BackColor = System.Drawing.Color.Linen
         Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(56, 35)
+        Me.txtsrno.Location = New System.Drawing.Point(64, 35)
         Me.txtsrno.Name = "txtsrno"
         Me.txtsrno.ReadOnly = True
         Me.txtsrno.Size = New System.Drawing.Size(40, 23)
@@ -534,12 +540,6 @@ Partial Class SampleBarcode
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'GCOLORBLOCKED
-        '
-        Me.GCOLORBLOCKED.Caption = "COLORBLOCKED"
-        Me.GCOLORBLOCKED.FieldName = "COLORBLOCKED"
-        Me.GCOLORBLOCKED.Name = "GCOLORBLOCKED"
         '
         'SampleBarcode
         '

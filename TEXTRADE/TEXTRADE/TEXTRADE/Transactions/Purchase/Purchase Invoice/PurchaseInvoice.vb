@@ -1349,8 +1349,7 @@ Public Class PurchaseMaster
                                     GoTo CHECKNEXTLINEABHEEPCS
                                 End If
 
-                                'NO NEED OF PCS
-                                'ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                                If ClientName = "MASHOK" Then ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                                 ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                                 ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
                                 TEMPORDERROWNO = -1
@@ -1361,8 +1360,7 @@ CHECKNEXTLINEABHEEPCS:
 
                         ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
                         If TEMPORDERROWNO >= 0 Then
-                            'NO NEED OF PCS
-                            'GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                            If ClientName = "MASHOK" Then GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                             GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                             ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
                             TEMPORDERROWNO = -1

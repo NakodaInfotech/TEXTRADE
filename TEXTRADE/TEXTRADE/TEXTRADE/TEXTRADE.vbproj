@@ -413,6 +413,18 @@
     <Compile Include="Masters\CustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\DesignCardMasterDetails.Designer.vb">
+      <DependentUpon>DesignCardMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\DesignCardMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\DesignCardMaster.Designer.vb">
+      <DependentUpon>DesignCardMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\DesignCardMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.Designer.vb">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
     </Compile>
@@ -8567,6 +8579,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\DesignCardMaster.resx">
+      <DependentUpon>DesignCardMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\DesignCardMasterDetails.resx">
+      <DependentUpon>DesignCardMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
