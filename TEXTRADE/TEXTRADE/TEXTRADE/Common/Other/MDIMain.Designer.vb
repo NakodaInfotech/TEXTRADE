@@ -245,6 +245,12 @@ Partial Class MDIMain
         Me.EditExistingEntryToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator308 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator307 = New System.Windows.Forms.ToolStripSeparator()
+        Me.WEAVE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WEAVEADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WEAVEEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOOM_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOOMADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOOMEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITYADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITYEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -267,6 +273,10 @@ Partial Class MDIMain
         Me.BLANKETADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.BLANKETEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator295 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DESIGNCARD_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DESIGNCARDADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DESIGNCARDEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator324 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator294 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator198 = New System.Windows.Forms.ToolStripSeparator()
         Me.TAX_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1210,12 +1220,8 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.WeaveMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewWeaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingWeaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LoomMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewLoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingLoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator325 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator326 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1639,7 +1645,7 @@ Partial Class MDIMain
         '
         'OtherMastersToolStripMenuItem
         '
-        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307, Me.WeaveMasterToolStripMenuItem, Me.LoomMasterToolStripMenuItem})
+        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.WEAVE_MASTER, Me.LOOM_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307})
         Me.OtherMastersToolStripMenuItem.Name = "OtherMastersToolStripMenuItem"
         Me.OtherMastersToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OtherMastersToolStripMenuItem.Text = "Other Masters"
@@ -2632,6 +2638,50 @@ Partial Class MDIMain
         Me.ToolStripSeparator307.Name = "ToolStripSeparator307"
         Me.ToolStripSeparator307.Size = New System.Drawing.Size(218, 6)
         '
+        'WEAVE_MASTER
+        '
+        Me.WEAVE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WEAVEADD, Me.WEAVEEDIT, Me.ToolStripSeparator325})
+        Me.WEAVE_MASTER.Enabled = False
+        Me.WEAVE_MASTER.Name = "WEAVE_MASTER"
+        Me.WEAVE_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.WEAVE_MASTER.Text = "Weave Master"
+        '
+        'WEAVEADD
+        '
+        Me.WEAVEADD.Enabled = False
+        Me.WEAVEADD.Name = "WEAVEADD"
+        Me.WEAVEADD.Size = New System.Drawing.Size(180, 22)
+        Me.WEAVEADD.Text = "Add New Weave"
+        '
+        'WEAVEEDIT
+        '
+        Me.WEAVEEDIT.Enabled = False
+        Me.WEAVEEDIT.Name = "WEAVEEDIT"
+        Me.WEAVEEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.WEAVEEDIT.Text = "Edit Existing Weave"
+        '
+        'LOOM_MASTER
+        '
+        Me.LOOM_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LOOMADD, Me.LOOMEDIT, Me.ToolStripSeparator326})
+        Me.LOOM_MASTER.Enabled = False
+        Me.LOOM_MASTER.Name = "LOOM_MASTER"
+        Me.LOOM_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.LOOM_MASTER.Text = "Loom Master"
+        '
+        'LOOMADD
+        '
+        Me.LOOMADD.Enabled = False
+        Me.LOOMADD.Name = "LOOMADD"
+        Me.LOOMADD.Size = New System.Drawing.Size(180, 22)
+        Me.LOOMADD.Text = "Add New Loom"
+        '
+        'LOOMEDIT
+        '
+        Me.LOOMEDIT.Enabled = False
+        Me.LOOMEDIT.Name = "LOOMEDIT"
+        Me.LOOMEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.LOOMEDIT.Text = "Edit Existing Loom"
+        '
         'QUALITY_MASTER
         '
         Me.QUALITY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QUALITYADD, Me.QUALITYEDIT, Me.ToolStripSeparator105})
@@ -2728,7 +2778,7 @@ Partial Class MDIMain
         '
         'DESIGN_MASTER
         '
-        Me.DESIGN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DESIGNADD, Me.DESIGNEDIT, Me.ToolStripSeparator80, Me.BLANKET_MASTER, Me.ToolStripSeparator294})
+        Me.DESIGN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DESIGNADD, Me.DESIGNEDIT, Me.ToolStripSeparator80, Me.BLANKET_MASTER, Me.DESIGNCARD_MASTER, Me.ToolStripSeparator294})
         Me.DESIGN_MASTER.Enabled = False
         Me.DESIGN_MASTER.Name = "DESIGN_MASTER"
         Me.DESIGN_MASTER.Size = New System.Drawing.Size(180, 22)
@@ -2779,6 +2829,33 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator295.Name = "ToolStripSeparator295"
         Me.ToolStripSeparator295.Size = New System.Drawing.Size(165, 6)
+        '
+        'DESIGNCARD_MASTER
+        '
+        Me.DESIGNCARD_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DESIGNCARDADD, Me.DESIGNCARDEDIT, Me.ToolStripSeparator324})
+        Me.DESIGNCARD_MASTER.Enabled = False
+        Me.DESIGNCARD_MASTER.Name = "DESIGNCARD_MASTER"
+        Me.DESIGNCARD_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.DESIGNCARD_MASTER.Text = "Design Card Master"
+        '
+        'DESIGNCARDADD
+        '
+        Me.DESIGNCARDADD.Enabled = False
+        Me.DESIGNCARDADD.Name = "DESIGNCARDADD"
+        Me.DESIGNCARDADD.Size = New System.Drawing.Size(207, 22)
+        Me.DESIGNCARDADD.Text = "&Add New Design Card"
+        '
+        'DESIGNCARDEDIT
+        '
+        Me.DESIGNCARDEDIT.Enabled = False
+        Me.DESIGNCARDEDIT.Name = "DESIGNCARDEDIT"
+        Me.DESIGNCARDEDIT.Size = New System.Drawing.Size(207, 22)
+        Me.DESIGNCARDEDIT.Text = "&Edit Existing Design Card"
+        '
+        'ToolStripSeparator324
+        '
+        Me.ToolStripSeparator324.Name = "ToolStripSeparator324"
+        Me.ToolStripSeparator324.Size = New System.Drawing.Size(204, 6)
         '
         'ToolStripSeparator294
         '
@@ -8843,43 +8920,15 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'WeaveMasterToolStripMenuItem
+        'ToolStripSeparator325
         '
-        Me.WeaveMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewWeaveToolStripMenuItem, Me.EditExistingWeaveToolStripMenuItem})
-        Me.WeaveMasterToolStripMenuItem.Name = "WeaveMasterToolStripMenuItem"
-        Me.WeaveMasterToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.WeaveMasterToolStripMenuItem.Text = "Weave Master"
+        Me.ToolStripSeparator325.Name = "ToolStripSeparator325"
+        Me.ToolStripSeparator325.Size = New System.Drawing.Size(177, 6)
         '
-        'AddNewWeaveToolStripMenuItem
+        'ToolStripSeparator326
         '
-        Me.AddNewWeaveToolStripMenuItem.Name = "AddNewWeaveToolStripMenuItem"
-        Me.AddNewWeaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AddNewWeaveToolStripMenuItem.Text = "Add New Weave"
-        '
-        'EditExistingWeaveToolStripMenuItem
-        '
-        Me.EditExistingWeaveToolStripMenuItem.Name = "EditExistingWeaveToolStripMenuItem"
-        Me.EditExistingWeaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingWeaveToolStripMenuItem.Text = "Edit Existing Weave"
-        '
-        'LoomMasterToolStripMenuItem
-        '
-        Me.LoomMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewLoomToolStripMenuItem, Me.EditExistingLoomToolStripMenuItem})
-        Me.LoomMasterToolStripMenuItem.Name = "LoomMasterToolStripMenuItem"
-        Me.LoomMasterToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.LoomMasterToolStripMenuItem.Text = "Loom Master"
-        '
-        'AddNewLoomToolStripMenuItem
-        '
-        Me.AddNewLoomToolStripMenuItem.Name = "AddNewLoomToolStripMenuItem"
-        Me.AddNewLoomToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AddNewLoomToolStripMenuItem.Text = "Add New Loom"
-        '
-        'EditExistingLoomToolStripMenuItem
-        '
-        Me.EditExistingLoomToolStripMenuItem.Name = "EditExistingLoomToolStripMenuItem"
-        Me.EditExistingLoomToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingLoomToolStripMenuItem.Text = "Edit Existing Loom"
+        Me.ToolStripSeparator326.Name = "ToolStripSeparator326"
+        Me.ToolStripSeparator326.Size = New System.Drawing.Size(177, 6)
         '
         'MDIMain
         '
@@ -10094,10 +10143,16 @@ Partial Class MDIMain
     Friend WithEvents OPSTOCKGREYTRANS_MASTER As ToolStripMenuItem
     Friend WithEvents OPSTOCKGREYPROCESS_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator323 As ToolStripSeparator
-    Friend WithEvents WeaveMasterToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AddNewWeaveToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EditExistingWeaveToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LoomMasterToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AddNewLoomToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EditExistingLoomToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WEAVE_MASTER As ToolStripMenuItem
+    Friend WithEvents WEAVEADD As ToolStripMenuItem
+    Friend WithEvents WEAVEEDIT As ToolStripMenuItem
+    Friend WithEvents LOOM_MASTER As ToolStripMenuItem
+    Friend WithEvents LOOMADD As ToolStripMenuItem
+    Friend WithEvents LOOMEDIT As ToolStripMenuItem
+    Friend WithEvents DESIGNCARD_MASTER As ToolStripMenuItem
+    Friend WithEvents DESIGNCARDADD As ToolStripMenuItem
+    Friend WithEvents DESIGNCARDEDIT As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator324 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator325 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator326 As ToolStripSeparator
 End Class

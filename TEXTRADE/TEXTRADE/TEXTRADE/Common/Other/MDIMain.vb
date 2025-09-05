@@ -2,9 +2,6 @@
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
-Imports HtmlAgilityPack
-Imports TEXTRADE.Win_Dashboards
-Imports DevExpress.CodeParser
 
 Public Class MDIMain
 
@@ -647,6 +644,8 @@ Public Class MDIMain
                         YARNQUALITY_MASTER.Enabled = True
                         MACHINE_MASTER.Enabled = True
                         REORDERLEVEL_MASTER.Enabled = True
+                        WEAVE_MASTER.Enabled = True
+                        LOOM_MASTER.Enabled = True
 
                         MATERIALADD.Enabled = True
                         CATEGORYADD.Enabled = True
@@ -661,6 +660,8 @@ Public Class MDIMain
                         MILLADD.Enabled = True
                         MACHINEADD.Enabled = True
                         ITEMPACKINGCONFIG_MASTER.Enabled = True
+                        WEAVEADD.Enabled = True
+                        LOOMADD.Enabled = True
                     Else
                         MATERIALADD.Enabled = False
                         CATEGORYADD.Enabled = False
@@ -675,6 +676,8 @@ Public Class MDIMain
                         MILLADD.Enabled = False
                         MACHINEADD.Enabled = False
                         ITEMPACKINGCONFIG_MASTER.Enabled = False
+                        WEAVEADD.Enabled = False
+                        LOOMADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         MATERIAL_MASTER.Enabled = True
@@ -690,6 +693,8 @@ Public Class MDIMain
                         MILL_MASTER.Enabled = True
                         MACHINE_MASTER.Enabled = True
                         REORDERLEVEL_MASTER.Enabled = True
+                        WEAVE_MASTER.Enabled = True
+                        LOOM_MASTER.Enabled = True
 
                         MATERIALEDIT.Enabled = True
                         CATEGORYEDIT.Enabled = True
@@ -704,6 +709,8 @@ Public Class MDIMain
                         MILLEDIT.Enabled = True
                         MACHINEEDIT.Enabled = True
                         ITEMPACKINGCONFIG_MASTER.Enabled = True
+                        WEAVEEDIT.Enabled = True
+                        LOOMEDIT.Enabled = True
                     Else
                         MATERIALEDIT.Enabled = False
                         CATEGORYEDIT.Enabled = False
@@ -720,6 +727,8 @@ Public Class MDIMain
                         MILLEDIT.Enabled = False
                         MACHINEEDIT.Enabled = False
                         ITEMPACKINGCONFIG_MASTER.Enabled = False
+                        WEAVEEDIT.Enabled = False
+                        LOOMEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "DESIGN MASTER" Then
@@ -730,10 +739,13 @@ Public Class MDIMain
                         BLANKETADD.Enabled = True
                         DESIGNER_MASTER.Enabled = True
                         DESIGNERADD.Enabled = True
+                        DESIGNCARD_MASTER.Enabled = True
+                        DESIGNCARDADD.Enabled = True
                     Else
                         DESIGNADD.Enabled = False
                         BLANKETADD.Enabled = False
                         DESIGNERADD.Enabled = False
+                        DESIGNCARDADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         DESIGN_MASTER.Enabled = True
@@ -742,10 +754,13 @@ Public Class MDIMain
                         BLANKETEDIT.Enabled = True
                         DESIGNER_MASTER.Enabled = True
                         DESIGNEREDIT.Enabled = True
+                        DESIGNCARD_MASTER.Enabled = True
+                        DESIGNCARDEDIT.Enabled = True
                     Else
                         DESIGNEDIT.Enabled = False
                         BLANKETEDIT.Enabled = False
                         DESIGNEREDIT.Enabled = False
+                        DESIGNCARDEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "DEPARTMENT MASTER" Then
@@ -10586,7 +10601,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewWeaveToolStripMenuItem.Click
+    Private Sub AddNewWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WEAVEADD.Click
         Try
             Dim objCategory As New CategoryMaster
             objCategory.frmString = "WEAVE"
@@ -10598,7 +10613,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingWeaveToolStripMenuItem.Click
+    Private Sub EditExistingWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WEAVEEDIT.Click
         Try
             Dim objCategoryDetails As New CategoryDetails
             objCategoryDetails.MdiParent = Me
@@ -10610,7 +10625,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewLoomToolStripMenuItem.Click
+    Private Sub AddNewLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LOOMADD.Click
         Try
             Dim objCategory As New CategoryMaster
             objCategory.frmString = "LOOM"
@@ -10622,7 +10637,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingLoomToolStripMenuItem.Click
+    Private Sub EditExistingLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LOOMEDIT.Click
         Try
             Dim objCategoryDetails As New CategoryDetails
             objCategoryDetails.MdiParent = Me
@@ -10631,6 +10646,26 @@ SKIPLINE:
             objCategoryDetails.BringToFront()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub DESIGNCARDADD_Click(sender As Object, e As EventArgs) Handles DESIGNCARDADD.Click
+        Try
+            Dim OBJDESIGNCARD As New DesignCardMaster
+            OBJDESIGNCARD.MdiParent = Me
+            OBJDESIGNCARD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub DESIGNCARDEDIT_Click(sender As Object, e As EventArgs) Handles DESIGNCARDEDIT.Click
+        Try
+            Dim OBJDESIGNCARD As New DesignCardMasterDetails
+            OBJDESIGNCARD.MdiParent = Me
+            OBJDESIGNCARD.Show()
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
