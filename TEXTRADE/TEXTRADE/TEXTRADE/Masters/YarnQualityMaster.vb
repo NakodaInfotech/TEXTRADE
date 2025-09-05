@@ -467,6 +467,10 @@ Public Class YarnQualityMaster
             If ClientName = "VAISHALI" Then
                 CMBCATEGORY.BackColor = Color.LemonChiffon
             End If
+
+            If ClientName = "AADHAR" Then
+                GPSTORES.Visible = False
+            End If
         Catch ex As Exception
             Throw ex
         End Try
