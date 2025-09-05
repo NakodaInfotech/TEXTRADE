@@ -111,27 +111,27 @@ Public Class CategoryMaster
                             MsgBox("DYEDTYPE Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                             e.Cancel = True
                         End If
-                    End If
-                ElseIf frmString = "COSTCENTER" Then
-                    dt = objclscommon.search("COSTCENTER_name", "", "COSTCENTERMASTER", " and COSTCENTER_name = '" & txtname.Text.Trim & "' and COSTCENTER_cmpid = " & CmpId & " and COSTCENTER_Locationid = " & Locationid & " and COSTCENTER_Yearid = " & YearId)
-                    If dt.Rows.Count > 0 Then
-                        MsgBox("COSTCENTER Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
-                        e.Cancel = True
-                    End If
-                ElseIf frmString = "WEAVE" Then
-                    dt = objclscommon.search("WEAVE_name", "", "WEAVEMASTER", " and WEAVE_name = '" & txtname.Text.Trim & "' and WEAVE_cmpid = " & CmpId & " and WEAVE_locationid = " & Locationid & " and WEAVE_yearid = " & YearId)
-                    If dt.Rows.Count > 0 Then
-                        MsgBox("WEAVE Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
-                        e.Cancel = True
-                    End If
-                ElseIf frmString = "LOOM" Then
-                    dt = objclscommon.search("LOOM_name", "", "LOOMMASTER", " and LOOM_name = '" & txtname.Text.Trim & "' and LOOM_cmpid = " & CmpId & " and LOOM_locationid = " & Locationid & " and LOOM_yearid = " & YearId)
-                    If dt.Rows.Count > 0 Then
-                        MsgBox("LOOM Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
-                        e.Cancel = True
+
+                    ElseIf frmString = "COSTCENTER" Then
+                        dt = objclscommon.search("COSTCENTER_name", "", "COSTCENTERMASTER", " and COSTCENTER_name = '" & txtname.Text.Trim & "' and COSTCENTER_cmpid = " & CmpId & " and COSTCENTER_Locationid = " & Locationid & " and COSTCENTER_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("COSTCENTER Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
+                    ElseIf frmString = "WEAVE" Then
+                        dt = objclscommon.search("WEAVE_name", "", "WEAVEMASTER", " and WEAVE_name = '" & txtname.Text.Trim & "' and WEAVE_cmpid = " & CmpId & " and WEAVE_locationid = " & Locationid & " and WEAVE_yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("WEAVE Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
+                    ElseIf frmString = "LOOM" Then
+                        dt = objclscommon.search("LOOM_name", "", "LOOMMASTER", " and LOOM_name = '" & txtname.Text.Trim & "' and LOOM_cmpid = " & CmpId & " and LOOM_locationid = " & Locationid & " and LOOM_yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("LOOM Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
                     End If
                 End If
-
                 uppercase(txtname)
             End If
         Catch ex As Exception
