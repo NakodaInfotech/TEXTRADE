@@ -64,7 +64,7 @@ Public Class ClsWeaveMaster
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
-                .Add(New SqlClient.SqlParameter("@LOOMid", alParaval(7)))
+                .Add(New SqlClient.SqlParameter("@WEAVEid", alParaval(7)))
 
             End With
 
