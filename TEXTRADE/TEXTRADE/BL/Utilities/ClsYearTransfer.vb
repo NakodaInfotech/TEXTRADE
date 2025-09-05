@@ -1737,6 +1737,66 @@ Public Class ClsYearTransfer
         Return intResult
 
     End Function
+    Public Function TRANSFERWEAVE() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERWEAVE"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+    Public Function TRANSFERLOOM() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERLOOM"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
 
     Public Function TRANSFERBALANCE() As Integer
         Dim intResult As Integer

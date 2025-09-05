@@ -111,13 +111,25 @@ Public Class CategoryMaster
                             MsgBox("DYEDTYPE Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                             e.Cancel = True
                         End If
-                    End If
-                ElseIf frmString = "COSTCENTER" Then
-                    dt = objclscommon.search("COSTCENTER_name", "", "COSTCENTERMASTER", " and COSTCENTER_name = '" & txtname.Text.Trim & "' and COSTCENTER_cmpid = " & CmpId & " and COSTCENTER_Locationid = " & Locationid & " and COSTCENTER_Yearid = " & YearId)
-                    If dt.Rows.Count > 0 Then
-                        MsgBox("COSTCENTER Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
-                        e.Cancel = True
 
+                    ElseIf frmString = "COSTCENTER" Then
+                        dt = objclscommon.search("COSTCENTER_name", "", "COSTCENTERMASTER", " and COSTCENTER_name = '" & txtname.Text.Trim & "' and COSTCENTER_cmpid = " & CmpId & " and COSTCENTER_Locationid = " & Locationid & " and COSTCENTER_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("COSTCENTER Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
+                    ElseIf frmString = "WEAVE" Then
+                        dt = objclscommon.search("WEAVE_name", "", "WEAVEMASTER", " and WEAVE_name = '" & txtname.Text.Trim & "' and WEAVE_cmpid = " & CmpId & " and WEAVE_locationid = " & Locationid & " and WEAVE_yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("WEAVE Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
+                    ElseIf frmString = "LOOM" Then
+                        dt = objclscommon.search("LOOM_name", "", "LOOMMASTER", " and LOOM_name = '" & txtname.Text.Trim & "' and LOOM_cmpid = " & CmpId & " and LOOM_locationid = " & Locationid & " and LOOM_yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("LOOM Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
                     End If
                 End If
                 uppercase(txtname)
@@ -506,6 +518,51 @@ Public Class CategoryMaster
                     EDIT = False
 
                 End If
+            ElseIf frmString = "WEAVE" Then
+                Dim objclscategorymaster As New ClsWeaveMaster
+                objclscategorymaster.alParaval = alParaval
+
+                If EDIT = False Then
+                    If USERADD = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    IntResult = objclscategorymaster.save()
+                    MsgBox("Details Added")
+                ElseIf EDIT = True Then
+                    If USEREDIT = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    alParaval.Add(TempID)
+                    IntResult = objclscategorymaster.Update()
+                    MsgBox("Details Updated")
+                    EDIT = False
+
+                End If
+
+            ElseIf frmString = "LOOM" Then
+                Dim objclscategorymaster As New ClsLoomMaster
+                objclscategorymaster.alParaval = alParaval
+
+                If EDIT = False Then
+                    If USERADD = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    IntResult = objclscategorymaster.save()
+                    MsgBox("Details Added")
+                ElseIf EDIT = True Then
+                    If USEREDIT = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    alParaval.Add(TempID)
+                    IntResult = objclscategorymaster.Update()
+                    MsgBox("Details Updated")
+                    EDIT = False
+
+                End If
             End If
 
 
@@ -805,6 +862,36 @@ Public Class CategoryMaster
                 End If
                 If EDIT = True Then dttable = objCommon.search(" COSTCENTER_name, COSTCENTER_REMARKS", "", "COSTCENTERMaster", " and COSTCENTER_id = " & TempID & " and COSTCENTER_cmpid = " & CmpId & " and COSTCENTER_locationid = " & Locationid & " and COSTCENTER_yearid = " & YearId)
 
+            ElseIf frmString = "WEAVE" Then
+                Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'WEAVE MASTER'")
+                USERADD = DTROW(0).Item(1)
+                USEREDIT = DTROW(0).Item(2)
+                USERVIEW = DTROW(0).Item(3)
+                USERDELETE = DTROW(0).Item(4)
+                Me.Text = "WEAVE MASTER"
+                lblgroup.Text = "WEAVE"
+                lbl.Text = "Enter WEAVE"
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                If EDIT = True Then dttable = objCommon.search(" WEAVE_name, WEAVE_remarks", "", "WEAVEMASTER", " and WEAVE_id = " & TempID & " and WEAVE_cmpid = " & CmpId & " and WEAVE_locationid = " & Locationid & " and WEAVE_yearid = " & YearId)
+
+            ElseIf frmString = "LOOM" Then
+                Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'LOOM MASTER'")
+                USERADD = DTROW(0).Item(1)
+                USEREDIT = DTROW(0).Item(2)
+                USERVIEW = DTROW(0).Item(3)
+                USERDELETE = DTROW(0).Item(4)
+                Me.Text = "LOOM MASTER"
+                lblgroup.Text = "LOOM"
+                lbl.Text = "Enter LOOM"
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                If EDIT = True Then dttable = objCommon.search(" LOOM_name, LOOM_remarks", "", "LOOMMASTER", " and LOOM_id = " & TempID & " and LOOM_cmpid = " & CmpId & " and LOOM_locationid = " & Locationid & " and LOOM_yearid = " & YearId)
+
             End If
 
             txtname.Text = TempName
@@ -898,7 +985,7 @@ Public Class CategoryMaster
 
                 ElseIf frmString = "COSTCENTER" Then
 
-                    DT = OBJCMN.SEARCH("COSTCENTERMASTER.DYEDTYPE_NAME", "", "COSTCENTERMASTER", " AND COSTCENTER_name = '" & TempName & "' AND COSTCENTER_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH("COSTCENTERMASTER.COSTCENTER_name", "", "COSTCENTERMASTER", " AND COSTCENTER_name = '" & TempName & "' AND COSTCENTER_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         MsgBox(" Cost Center Name Used Further", MsgBoxStyle.Critical)
                         Exit Sub
@@ -906,6 +993,34 @@ Public Class CategoryMaster
 
                     'IF NOT PRESENT IN ABOVE TABLES THEN DELETE THE ENTRY
                     DT = OBJCMN.Execute_Any_String("DELETE FROM COSTCENTERMaster WHERE COSTCENTER_name = '" & TempName & "' AND COSTCENTER_YEARID= " & YearId, "", "")
+                    MsgBox("Entry Deleted Successfully")
+                    EDIT = False
+                    clear()
+
+                ElseIf frmString = "WEAVE" Then
+
+                    DT = OBJCMN.SEARCH("WEAVEMASTER.WEAVE_name", "", "WEAVEMASTER", " AND WEAVE_name = '" & TempName & "' AND WEAVE_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        MsgBox(" Weave Name Used Further", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    'IF NOT PRESENT IN ABOVE TABLES THEN DELETE THE ENTRY
+                    DT = OBJCMN.Execute_Any_String("DELETE FROM WEAVEMASTER WHERE WEAVE_name = '" & TempName & "' AND WEAVE_YEARID= " & YearId, "", "")
+                    MsgBox("Entry Deleted Successfully")
+                    EDIT = False
+                    clear()
+
+                ElseIf frmString = "LOOM" Then
+
+                    DT = OBJCMN.SEARCH("LOOMMASTER.LOOM_name", "", "LOOMMASTER", " AND LOOM_name = '" & TempName & "' AND LOOM_yearid = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        MsgBox(" Loom Name Used Further", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    'IF NOT PRESENT IN ABOVE TABLES THEN DELETE THE ENTRY
+                    DT = OBJCMN.Execute_Any_String("DELETE FROM LOOMMASTER WHERE LOOM_name = '" & TempName & "' AND LOOM_yearid= " & YearId, "", "")
                     MsgBox("Entry Deleted Successfully")
                     EDIT = False
                     clear()

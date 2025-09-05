@@ -10586,23 +10586,51 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DESIGNCARDADD_Click(sender As Object, e As EventArgs) Handles DESIGNCARDADD.Click
+    Private Sub AddNewWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewWeaveToolStripMenuItem.Click
         Try
-            Dim OBJDESIGNCARD As New DesignCardMaster
-            OBJDESIGNCARD.MdiParent = Me
-            OBJDESIGNCARD.Show()
+            Dim objCategory As New CategoryMaster
+            objCategory.frmString = "WEAVE"
+            objCategory.MdiParent = Me
+            objCategory.Show()
+            objCategory.BringToFront()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub DESIGNCARDEDIT_Click(sender As Object, e As EventArgs) Handles DESIGNCARDEDIT.Click
+    Private Sub EditExistingWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingWeaveToolStripMenuItem.Click
         Try
-            Dim OBJDESIGNCARD As New DesignCardMasterDetails
-            OBJDESIGNCARD.MdiParent = Me
-            OBJDESIGNCARD.Show()
+            Dim objCategoryDetails As New CategoryDetails
+            objCategoryDetails.MdiParent = Me
+            objCategoryDetails.FRMSTRING = "WEAVE"
+            objCategoryDetails.Show()
+            objCategoryDetails.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewLoomToolStripMenuItem.Click
+        Try
+            Dim objCategory As New CategoryMaster
+            objCategory.frmString = "LOOM"
+            objCategory.MdiParent = Me
+            objCategory.Show()
+            objCategory.BringToFront()
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingLoomToolStripMenuItem.Click
+        Try
+            Dim objCategoryDetails As New CategoryDetails
+            objCategoryDetails.MdiParent = Me
+            objCategoryDetails.FRMSTRING = "LOOM"
+            objCategoryDetails.Show()
+            objCategoryDetails.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class

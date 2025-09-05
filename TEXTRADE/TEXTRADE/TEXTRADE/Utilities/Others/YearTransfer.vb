@@ -60,6 +60,10 @@ Public Class YearTransfer
                             TRANSFERMILL(SELECTEDYEARID)
                             TRANSFERDESIGNER(SELECTEDYEARID) 'USED IN DESIGN MASTER
                             TRANSFERVEHICLE(SELECTEDYEARID)
+
+                            TRANSFERWEAVE(SELECTEDYEARID)
+                            TRANSFERLOOM(SELECTEDYEARID)
+
                             TRANSFERITEM(SELECTEDYEARID)
                             TRANSFERCOLOR(SELECTEDYEARID)
 
@@ -1442,6 +1446,40 @@ Public Class YearTransfer
 
             OBJTRF.alParaval = ALPARAVAL
             INTRES = OBJTRF.TRANSFERAGENCYBILLS()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub TRANSFERWEAVE(ByVal SELECTEDYEARID As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.TRANSFERWEAVE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub TRANSFERLOOM(ByVal SELECTEDYEARID As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.TRANSFERLOOM()
         Catch ex As Exception
             Throw ex
         End Try

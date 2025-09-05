@@ -225,10 +225,12 @@
     <Compile Include="Masters\ClsGroupOfCompanies.vb" />
     <Compile Include="Masters\ClsHSNMaster.vb" />
     <Compile Include="Masters\ClsInterGodownTransfer.vb" />
+    <Compile Include="Masters\ClsLoomMaster.vb" />
     <Compile Include="Masters\ClsPartyWiseBaleRate.vb" />
     <Compile Include="Masters\ClsSampleTypeMaster.vb" />
     <Compile Include="Masters\ClsTransInsurance.vb" />
     <Compile Include="Masters\ClsVehicleMaster.vb" />
+    <Compile Include="Masters\ClsWeaveMaster.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtProcess.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtTransport.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyManualMatching.vb" />
