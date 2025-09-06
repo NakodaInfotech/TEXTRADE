@@ -415,7 +415,7 @@ Public Class ItemMaster
             bln = False
         End If
 
-        If CMBHSNCODE.Text.Trim.Length = 0 And ClientName <> "VINTAGEINDIA" And ClientName <> "CC" Then
+        If CMBHSNCODE.Text.Trim.Length = 0 And ClientName <> "VINTAGEINDIA" And ClientName <> "CC" And ClientName <> "JAINAMGOLD" And ClientName <> "AADHAR" Then
             Ep.SetError(CMBHSNCODE, "Fill HSN Code")
             bln = False
         End If
