@@ -264,7 +264,8 @@ Public Class GRN
             TXTBALENO.Text = gridgrn.RowCount + 1
             cmbGodown.Enabled = True
         End If
-
+        CMBSHIPTO.Text = ""
+        TXTPARTYITEMNAME.Clear()
     End Sub
 
     Sub HIDEVIEW()
@@ -996,6 +997,9 @@ CHECKNEXTLINE:
             alParaval.Add(Val(TXTCHNO.Text.Trim))   'USED FOR KNOWING WHETHER WE HAVE FETCHED DATA FROM OTHER COMPANY
             alParaval.Add(TXTREFLOTNO.Text.Trim)
 
+            alParaval.Add(CMBSHIPTO.Text.Trim)
+            alParaval.Add(TXTPARTYITEMNAME.Text.Trim)
+
 
 
 
@@ -1387,6 +1391,11 @@ NEXTLINE:
             alParaval.Add(0)    'DISPATCHFROM
             alParaval.Add(0)   'width
 
+            alParaval.Add("")  'CHNO
+            alParaval.Add("")  'REFLOTNO
+            alParaval.Add("")  'SHIPTO
+            alParaval.Add("")  'PARTYITEMNAME
+
             Dim OBJJO As New ClsCuttingIssue()
             OBJJO.alParaval = alParaval
             If USERADD = False Then
@@ -1540,6 +1549,8 @@ NEXTLINE:
                         CMBPACKING.Text = Convert.ToString(dr("PACKING"))
                         TXTEWAYBILLNO.Text = dr("EWAYBILLNO")
                         TXTREFLOTNO.Text = dr("REFLOTNO")
+                        CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
+                        TXTPARTYITEMNAME.Text = dr("PARTYITEMNAME")
 
 
 
@@ -3481,66 +3492,66 @@ LINE1:
                 CMBQUALITY.TabStop = False
                 If ClientName <> "REALCORPORATION" Then TXTBALENO.TabStop = False
                 GPURRATE.ReadOnly = False
-                    GMTRS.ReadOnly = False
-                    If ClientName = "AVIS" Then
-                        RECDATE.TabStop = False
-                        CMBBROKER.TabStop = False
-                        txtchallan.TabStop = False
+                GMTRS.ReadOnly = False
+                If ClientName = "AVIS" Then
+                    RECDATE.TabStop = False
+                    CMBBROKER.TabStop = False
+                    txtchallan.TabStop = False
+                End If
+
+                If cmbtype.Text = "Job Work" Then
+                    cmbname.Enabled = False
+                    txtsrno.Visible = False
+                    CMBPIECETYPE.Visible = False
+                    cmbitemname.Visible = False
+                    CMBQUALITY.Visible = False
+                    TXTBALENO.Visible = False
+                    CMBDESIGN.Visible = False
+                    cmbcolor.Visible = False
+                    txtqty.Visible = False
+                    cmbqtyunit.Visible = False
+                    TXTCUT.Visible = False
+                    TXTMTRS.Visible = False
+                    CMBRACK.Visible = False
+                    CMBSHELF.Visible = False
+                    TXTWT.Visible = False
+                    cmdselectPO.Text = "Select Grey"
+                    gQty.ReadOnly = False
+                    CMBPER.Visible = False
+                    TXTAMOUNT.Visible = False
+                    If ClientName = "SNCM" Then
+                        Me.Text = "Grey Iss To Process"
+                        LBLGRN.Text = "Grey Iss To Process"
+                        LBLREFLOTNO.Visible = True
+                        TXTREFLOTNO.Visible = True
                     End If
+                Else
+                    TXTPURRATE.Visible = True
+                    GPURRATE.Visible = True
+                    GPURRATE.ReadOnly = False
 
-                    If cmbtype.Text = "Job Work" Then
-                        cmbname.Enabled = False
-                        txtsrno.Visible = False
-                        CMBPIECETYPE.Visible = False
-                        cmbitemname.Visible = False
-                        CMBQUALITY.Visible = False
-                        TXTBALENO.Visible = False
-                        CMBDESIGN.Visible = False
-                        cmbcolor.Visible = False
-                        txtqty.Visible = False
-                        cmbqtyunit.Visible = False
-                        TXTCUT.Visible = False
-                        TXTMTRS.Visible = False
-                        CMBRACK.Visible = False
-                        CMBSHELF.Visible = False
-                        TXTWT.Visible = False
-                        cmdselectPO.Text = "Select Grey"
-                        gQty.ReadOnly = False
-                        CMBPER.Visible = False
-                        TXTAMOUNT.Visible = False
-                        If ClientName = "SNCM" Then
-                            Me.Text = "Grey Iss To Process"
-                            LBLGRN.Text = "Grey Iss To Process"
-                            LBLREFLOTNO.Visible = True
-                            TXTREFLOTNO.Visible = True
-                        End If
-                    Else
-                        TXTPURRATE.Visible = True
-                        GPURRATE.Visible = True
-                        GPURRATE.ReadOnly = False
+                    CMBPER.Visible = True
+                    CMBPER.Left = TXTPURRATE.Left + TXTPURRATE.Width
+                    GPER.Visible = True
 
-                        CMBPER.Visible = True
-                        CMBPER.Left = TXTPURRATE.Left + TXTPURRATE.Width
-                        GPER.Visible = True
-
-                        TXTAMOUNT.Visible = True
-                        TXTAMOUNT.Left = CMBPER.Left + CMBPER.Width
-                        GAMOUNT.Visible = True
-                    End If
-
-
-
-                    LBLBALES.Visible = True
-                    TXTTOTALBALES.Visible = True
-                    TXTTOTALBALES.TabStop = True
-
-                    cmbqtyunit.Text = "Mtrs"
-                    CMBPIECETYPE.TabStop = False
-
+                    TXTAMOUNT.Visible = True
+                    TXTAMOUNT.Left = CMBPER.Left + CMBPER.Width
+                    GAMOUNT.Visible = True
                 End If
 
 
-                If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MNARESH" Then
+
+                LBLBALES.Visible = True
+                TXTTOTALBALES.Visible = True
+                TXTTOTALBALES.TabStop = True
+
+                cmbqtyunit.Text = "Mtrs"
+                CMBPIECETYPE.TabStop = False
+
+            End If
+
+
+            If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MNARESH" Then
                 GPURRATE.Visible = True
                 GPURRATE.ReadOnly = False
             End If
@@ -3656,6 +3667,13 @@ LINE1:
 
                 If UserName <> "Admin" Then TXTLOTNO.ReadOnly = True
 
+            End If
+
+            If ClientName = "AARYA" Then
+                LBLSHIPTO.Visible = True
+                CMBSHIPTO.Visible = True
+                Label3.Visible = True
+                TXTPARTYITEMNAME.Visible = True
             End If
 
         Catch ex As Exception
@@ -5479,6 +5497,22 @@ SKIPLINE:
             '        MsgBox("This Challan No Does Not Exists in Challan Entry")
             '    End If
             'End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDELIVERY_Enter(sender As Object, e As EventArgs) Handles CMBSHIPTO.Enter
+        Try
+            If CMBSHIPTO.Text.Trim = "" Then FILLNAME(CMBSHIPTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDELIVERY_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHIPTO.Validating
+        Try
+            If CMBSHIPTO.Text.Trim <> "" Then NAMEVALIDATE(CMBSHIPTO, CMBCODE, e, Me, txtadd, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry CREDITORS", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
