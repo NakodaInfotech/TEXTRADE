@@ -470,7 +470,7 @@ Public Class AutoWhatsapp
                 If ROWNO = -1 Then ROWNO = GRIDAUTOWA.CurrentRow.Index
 
                 Dim objclsCMST As New ClsCommonMaster
-                Dim dt As DataTable = objclsCMST.search("DISTINCT  CASE  WHEN A.AUTOWA_AGENTCHK = 1 THEN 1         ELSE 0     END AS AGENTCHK,    L.Acc_cmpname AS AGENTNAME,    C.city_name AS AGENTCITY", "", " LEDGERS AS L LEFT JOIN CITYMASTER AS C ON L.Acc_cityid = C.city_id AND L.Acc_cmpid = C.city_cmpid LEFT JOIN AUTOWHATSAPP_AGENTDESC AS A ON     A.AUTOWA_AGENTID = L.Acc_id AND A.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'    AND A.AUTOWA_CMPID = " & CmpId & "", " L.Acc_YEARID =" & YearId)
+                Dim dt As DataTable = objclsCMST.search("DISTINCT  CASE  WHEN A.AUTOWA_AGENTCHK = 1 THEN 1         ELSE 0     END AS AGENTCHK,    L.Acc_cmpname AS AGENTNAME,    C.city_name AS AGENTCITY", "", " LEDGERS AS L LEFT JOIN CITYMASTER AS C ON L.Acc_cityid = C.city_id AND L.Acc_cmpid = C.city_cmpid LEFT JOIN AUTOWHATSAPP_AGENTDESC AS A ON     A.AUTOWA_AGENTID = L.Acc_id AND A.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'    AND A.AUTOWA_CMPID = " & CmpId & "", " AND L.Acc_YEARID =" & YearId)
                 GridControl1.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     GridView1.FocusedRowHandle = GridView1.RowCount - 1
