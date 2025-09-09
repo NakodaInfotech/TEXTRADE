@@ -17,7 +17,7 @@ Public Class ClsDesignCardMaster
 #Region "Functions"
     Public Function SAVE() As Integer
         Try
-            Dim strCommand As String = "SP_DESIGN_CARD_MASTER_SAVE"
+            Dim strCommand As String = "SP_MASTER_DESIGNCARDMASTER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -169,37 +169,107 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TotalWeftPERepeat", alParaval(I)))
                 I += 1
 
-                ' Warp Grid data serializations
+                'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WarpGridSrNo", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WarpGridPE", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@WarpGridSym", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WarpYarnQuality", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPDenier", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPMillName", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPShade", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPTE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPWt", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPCons", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPRate", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPCost", alParaval(I)))
+                I += 1
+
+                ' Warp Gridpattern data serializations
+                .Add(New SqlClient.SqlParameter("@WarpPatternGridSrNo", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WarpPatternGridPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WarpPatternGridSym", alParaval(I)))
                 I += 1
 
                 ' Selvedge Grid data serialization
                 .Add(New SqlClient.SqlParameter("@SelvedgeGridSrNo", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridSym", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridYarnQuality", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridDenier", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridMillName", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridShade", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@SelvedgeGridPE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@SelvedgeGridSym", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridTE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridWt", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridCons", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridRate", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SelvedgeGridCost", alParaval(I)))
                 I += 1
 
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WeftGridSrNo", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WeftGridPE", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@WeftGridSym", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridYarnQuality", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridDenier", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridMillName", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridShade", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridTE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridWt", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridCons", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridRate", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WeftGridCost", alParaval(I)))
+                I += 1
 
-                ' Weft Repeat Grid data serialization
-                .Add(New SqlClient.SqlParameter("@WeftRepeatGridSrNo", alParaval(I)))
+                ' Weft GridPattern data serialization
+                .Add(New SqlClient.SqlParameter("@WeftGridPatternSrNo", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WeftRepeatGridPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WeftGridPatternPE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WeftRepeatGridSym", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WeftGridPatternSym", alParaval(I)))
                 I += 1
+
+
 
                 ' Company and user details
                 .Add(New SqlClient.SqlParameter("@CmpId", alParaval(I)))
@@ -224,7 +294,7 @@ Public Class ClsDesignCardMaster
 
     Public Function UPDATE() As Integer
         Try
-            Dim strCommand As String = "SP_DESIGN_CARD_MASTER_UPDATE"
+            Dim strCommand As String = "SP_MASTER_DESIGNCARDMASTER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
