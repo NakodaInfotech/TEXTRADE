@@ -228,7 +228,7 @@ Public Class GRNDesign
             ElseIf FRMSTRING = "LOTSUMM" Then
                 crpo.ReportSource = RPTLOTREPORTSUMMARY
                 RPTLOTREPORTSUMMARY.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
-                If JOBBERNAME <> "" Then RPTLOTREPORTSUMMARY.Subreports("GREYSTOCKPROCESS").RecordSelectionFormula = " {GREYSTOCKPROCESS.NAME} = '" & JOBBERNAME & "' AND {GREYSTOCKPROCESS.YEARID} = " & YearId
+                'If JOBBERNAME <> "" Then RPTLOTREPORTSUMMARY.Subreports("GREYSTOCKPROCESS").RecordSelectionFormula = " {GREYSTOCKPROCESS.NAME} = '" & JOBBERNAME & "' AND {GREYSTOCKPROCESS.YEARID} = " & YearId
 
             ElseIf FRMSTRING = "LOTREGISTER" Then
                 crpo.ReportSource = RPTLOTREGISTER
