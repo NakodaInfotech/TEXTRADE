@@ -6054,7 +6054,7 @@ LINE1:
 
             'FOR GENERATING EINVOICE BILL WE NEED TO FIRST GENERATE THE TOKEN
             'THIS IS FOR SANDBOX TEST
-            'Dim URL As New Uri("http://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&user_name=TaxProEnvPON&eInvPwd=abc34*")
+            'Dim URL As New Uri("https://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&user_name=TaxProEnvPON&eInvPwd=abc34*")
             Dim URL As New Uri("https://einvapi.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&eInvPwd=" & CMPEWBPASS)
 
             ServicePointManager.Expect100Continue = True
@@ -6108,7 +6108,7 @@ LINE1:
 
             'GENERATING EINVOICE
             'FOR SANBOX TEST
-            'Dim FURL As New Uri("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&AuthToken=" & TOKEN & "&user_name=TaxProEnvPON&QrCodeSize=250")
+            'Dim FURL As New Uri("https://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&AuthToken=" & TOKEN & "&user_name=TaxProEnvPON&QrCodeSize=250")
             Dim FURL As New Uri("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=" & CMPGSTIN & "&AuthToken=" & TOKEN & "&user_name=" & CMPEWBUSER & "&QrCodeSize=250")
             REQUEST = WebRequest.CreateDefault(FURL)
             REQUEST.Method = "POST"
@@ -6562,38 +6562,70 @@ ERRORMESSAGE:
             If TEMPSTATUS = "SUCCESS" Then
 
                 ''GET SIGNED QRCODE
-                Dim req As New RestRequest
-                req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
-                'Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
-                Dim respPl = New RespPl()
-                respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
-                Dim respPlGenIRNDec As New RespPlGenIRNDec()
-                respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
-                'MsgBox(respPlGenIRNDec.Irn)
-                Dim qrImg As Byte() = Convert.FromBase64String(respPlGenIRNDec.QrCodeImage)
-                Dim tc As TypeConverter = TypeDescriptor.GetConverter(GetType(Bitmap))
-                Dim bitmap1 As Bitmap = CType(tc.ConvertFrom(qrImg), Bitmap)
+                'Dim req As New RestRequest
+                'req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
+                ''Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
+                'Dim respPl = New RespPl()
+                'respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                'Dim respPlGenIRNDec As New RespPlGenIRNDec()
+                'respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
+                ''MsgBox(respPlGenIRNDec.Irn)
+                'Dim qrImg As Byte() = Convert.FromBase64String(respPlGenIRNDec.QrCodeImage)
+                'Dim tc As TypeConverter = TypeDescriptor.GetConverter(GetType(Bitmap))
+                'Dim bitmap1 As Bitmap = CType(tc.ConvertFrom(qrImg), Bitmap)
 
-                'GET REGINITIALS AS SAVE WITH IT
-                Dim TEMPREG As DataTable = OBJCMN.Execute_Any_String("SELECT REGISTER_INITIALS AS INITIALS FROM REGISTERMASTER WHERE REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE ='SALE' AND REGISTER_YEARID = " & YearId, "", "")
-                bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
-                PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
-                PBQRCODE.Refresh()
+                ''GET REGINITIALS AS SAVE WITH IT
+                'Dim TEMPREG As DataTable = OBJCMN.Execute_Any_String("SELECT REGISTER_INITIALS AS INITIALS FROM REGISTERMASTER WHERE REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE ='SALE' AND REGISTER_YEARID = " & YearId, "", "")
+                'bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
+                'PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
+                'PBQRCODE.Refresh()
 
-                If PBQRCODE.Image IsNot Nothing Then
-                    Dim OBJINVOICE As New ClsInvoiceMaster
-                    Dim MS As New IO.MemoryStream
-                    PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
-                    OBJINVOICE.alParaval.Add(TXTINVOICENO.Text.Trim)
-                    OBJINVOICE.alParaval.Add(cmbregister.Text.Trim)
-                    OBJINVOICE.alParaval.Add(MS.ToArray)
-                    OBJINVOICE.alParaval.Add(YearId)
-                    Dim INTRES As Integer = OBJINVOICE.SAVEQRCODE()
-                End If
+                'If PBQRCODE.Image IsNot Nothing Then
+                '    Dim OBJINVOICE As New ClsInvoiceMaster
+                '    Dim MS As New IO.MemoryStream
+                '    PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                '    OBJINVOICE.alParaval.Add(TXTINVOICENO.Text.Trim)
+                '    OBJINVOICE.alParaval.Add(cmbregister.Text.Trim)
+                '    OBJINVOICE.alParaval.Add(MS.ToArray)
+                '    OBJINVOICE.alParaval.Add(YearId)
+                '    Dim INTRES As Integer = OBJINVOICE.SAVEQRCODE()
+                'End If
 
                 'DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_QRCODE = (SELECT * FROM OPENROWSET(BULK '" & Application.StartupPath & "\" & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png',SINGLE_BLOB) AS IMG) FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTER_ID WHERE INVOICE_NO = " & Val(TXTINVOICENO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId, "", "")
+                TEMPSTATUS = "SUCCESS"
+
+
+                ' Instead of calling 3rd API, reuse the response from 2nd API stored in REQUESTEDTEXT
+                Dim res As New RestResponse() With {.Content = REQUESTEDTEXT}
+
+                    ' Deserialize and process QR code exactly as your 3rd API code does
+                    Dim respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                    Dim respPlGenIRNDec As New RespPlGenIRNDec()
+                    respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
+
+                    Dim qrImg As Byte() = Convert.FromBase64String(respPlGenIRNDec.QrCodeImage)
+
+                    Dim tc As TypeConverter = TypeDescriptor.GetConverter(GetType(Bitmap))
+                    Dim bitmap1 As Bitmap = CType(tc.ConvertFrom(qrImg), Bitmap)
+
+                    Dim TEMPREG As DataTable = OBJCMN.Execute_Any_String("SELECT REGISTER_INITIALS AS INITIALS FROM REGISTERMASTER WHERE REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE ='SALE' AND REGISTER_YEARID = " & YearId, "", "")
+
+                    bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
+                    PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
+                    PBQRCODE.Refresh()
+
+                    If PBQRCODE.Image IsNot Nothing Then
+                        Dim OBJINVOICE As New ClsInvoiceMaster
+                        Dim MS As New IO.MemoryStream
+                        PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                        OBJINVOICE.alParaval.Add(TXTINVOICENO.Text.Trim)
+                        OBJINVOICE.alParaval.Add(cmbregister.Text.Trim)
+                        OBJINVOICE.alParaval.Add(MS.ToArray)
+                        OBJINVOICE.alParaval.Add(YearId)
+                        Dim INTRES As Integer = OBJINVOICE.SAVEQRCODE()
+                    End If
 
 
                 DT = OBJCMN.Execute_Any_String("INSERT INTO EINVOICEENTRY VALUES (" & Val(TXTINVOICENO.Text.Trim) & ",'INVOICE','" & TOKEN & "','" & IRNNO & "','QRCODE SUCCESS', '', GETDATE(), " & CmpId & "," & Userid & "," & YearId & ")", "", "")
