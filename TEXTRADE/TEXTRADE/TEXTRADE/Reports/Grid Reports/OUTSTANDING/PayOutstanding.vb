@@ -874,7 +874,7 @@ line1:
                     If ROW.Cells(GRECDAMT.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GRECDAMT.Index).Value))
                     If ROW.Cells(GBALANCE.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(Val(ROW.Cells(GBALANCE.Index).Value))
                     If ROW.Cells(GDAYS.Index).Value = Nothing Then ALPARAVAL.Add(0) Else ALPARAVAL.Add(Val(ROW.Cells(GDAYS.Index).Value))
-                    If ROW.Cells(GOVERDUEDAYS.Index).Value = Nothing Then ALPARAVAL.Add(0) Else ALPARAVAL.Add(Val(ROW.Cells(GOVERDUEDAYS.Index).Value))
+                    'If ROW.Cells(GOVERDUEDAYS.Index).Value = Nothing Then ALPARAVAL.Add(0) Else ALPARAVAL.Add(Val(ROW.Cells(GOVERDUEDAYS.Index).Value))
                     If ROW.Cells(GCMPNAME.Index).Value = Nothing Then ALPARAVAL.Add("") Else ALPARAVAL.Add(ROW.Cells(GCMPNAME.Index).Value)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(YearId)
