@@ -2960,14 +2960,18 @@ ERRORMESSAGE:
             'ADD DATA IN EINVOICEENTRY FOR QRCODE
             If TEMPSTATUS = "SUCCESS" Then
 
-                ''GET SIGNED QRCODE
-                Dim req As New RestRequest
-                req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
-                'Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
-                Dim respPl = New RespPl()
-                respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                '''GET SIGNED QRCODE
+                'Dim req As New RestRequest
+                'req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
+                ''Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
+                'Dim respPl = New RespPl()
+                'respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                ' Instead of calling 3rd API, reuse the response from 2nd API stored in REQUESTEDTEXT
+                Dim res As New RestResponse() With {.Content = REQUESTEDTEXT}
+                ' Deserialize and process QR code exactly as your 3rd API code does
+                Dim respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
                 Dim respPlGenIRNDec As New RespPlGenIRNDec()
                 respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
                 'MsgBox(respPlGenIRNDec.Irn)
