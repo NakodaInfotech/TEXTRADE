@@ -216,6 +216,7 @@
     <Compile Include="Masters\ClsDeducteetypeMaster.vb" />
     <Compile Include="Masters\ClsDepartmentMaster.vb" />
     <Compile Include="Masters\ClsdesignationMaster.vb" />
+    <Compile Include="Masters\ClsDesignCardMaster.vb" />
     <Compile Include="Masters\ClsDesignerMaster.vb" />
     <Compile Include="Masters\ClsDesignMaster.vb" />
     <Compile Include="Masters\ClsDesignProcessWiseRateChart.vb" />
