@@ -1047,7 +1047,7 @@ CHECKNEXTLINE:
             End If
 SKIPLINE:
             If FRMSTRING = "GRN FANCY" Then
-                If ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "VINTAGEINDIA" And ClientName <> "BIGAPPLE" Then PRINTBARCODE()
+                If ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "VINTAGEINDIA" And ClientName <> "BIGAPPLE" And ClientName <> "AARYA" Then PRINTBARCODE()
                 If ClientName <> "AMAN" And ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "BIGAPPLE" Then PRINTREPORT(Val(txtgrnno.Text.Trim))
 
                 'DIRECTLY ISSUE TO JOBOUT
@@ -3301,8 +3301,6 @@ LINE1:
                 OBJGDN.Show()
             End If
 
-
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -3313,7 +3311,7 @@ LINE1:
             If EDIT = True Then
                 PRINTREPORT(tempgrnno)
                 PRINTEWB()
-                If cmbtype.Text.Trim = "FANCY MATERIAL" Then PRINTBARCODE()
+                If cmbtype.Text.Trim = "FANCY MATERIAL" And ClientName <> "AARYA" Then PRINTBARCODE()
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
