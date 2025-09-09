@@ -66,6 +66,7 @@ Public Class PurchaseReturnChallan
         TXTRATE.Clear()
         CMBPER.Text = "Mtrs"
         TXTAMOUNT.Clear()
+        CMBDISPATCHTO.Text = ""
         LBLTOTALAMT.Text = 0.0
 
     End Sub
@@ -94,7 +95,7 @@ Public Class PurchaseReturnChallan
     End Sub
 
     Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
-        clear()
+        CLEAR()
         EDIT = False
         CMBNAME.Focus()
     End Sub
@@ -149,7 +150,7 @@ Public Class PurchaseReturnChallan
                 For Each ROW As DataGridViewRow In GRIDPR.Rows
                     If ROW.Cells(GBARCODE.Index).Value <> "" Then
                         Dim OBJCMN As New ClsCommon
-                        Dim DT As DataTable = OBJCMN.search("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
+                        Dim DT As DataTable = OBJCMN.SEARCH("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             Ep.SetError(CMBNAME, "Barcode Already Used")
                             bln = False
@@ -185,7 +186,7 @@ Public Class PurchaseReturnChallan
             Cursor.Current = Cursors.WaitCursor
 
             Ep.Clear()
-            If Not errorvalid() Then
+            If Not ERRORVALID() Then
                 Exit Sub
             End If
 
@@ -322,6 +323,7 @@ Public Class PurchaseReturnChallan
             alParaval.Add(PRLRDATE.Text)
 
             alParaval.Add(Val(LBLTOTALAMT.Text.Trim))
+            alParaval.Add(CMBDISPATCHTO.Text.Trim)
 
             Dim OBJSR As New ClsPurchaseReturnChallan()
             OBJSR.alParaval = alParaval
@@ -330,7 +332,7 @@ Public Class PurchaseReturnChallan
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                Dim DTTABLE As DataTable = OBJSR.save()
+                Dim DTTABLE As DataTable = OBJSR.SAVE()
                 MsgBox("Details Added")
                 TXTPRCHNO.Text = Val(DTTABLE.Rows(0).Item(0))
                 TEMPPRCHNO = Val(DTTABLE.Rows(0).Item(0))
@@ -347,7 +349,7 @@ Public Class PurchaseReturnChallan
             PRINTREPORT(TEMPPRCHNO)
 
             EDIT = False
-            clear()
+            CLEAR()
             CMBNAME.Focus()
 
         Catch ex As Exception
@@ -375,7 +377,7 @@ Public Class PurchaseReturnChallan
     Private Sub PurchaseReturnChallan_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
-                If errorvalid() = True Then
+                If ERRORVALID() = True Then
                     Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNoCancel)
                     If tempmsg = vbCancel Then Exit Sub
                     If tempmsg = vbYes Then CMDOK_Click(sender, e)
@@ -417,7 +419,7 @@ Public Class PurchaseReturnChallan
             Cursor.Current = Cursors.WaitCursor
 
             FILLCMB()
-            clear()
+            CLEAR()
             CMBNAME.Enabled = True
 
             If ClientName = "SVS" Then
@@ -462,6 +464,7 @@ Public Class PurchaseReturnChallan
                         TXTLRNO.Text = dr("LRNO")
                         PRLRDATE.Text = dr("LRDATE")
                         LBLTOTALAMT.Text = Format(Val(dr("TOTALAMOUNT")), "0.00")
+                        CMBDISPATCHTO.Text = dr("DISPATCHTO").ToString
 
                         'Item Grid
                         GRIDPR.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("TYPE"), dr("GRIDDONE"))
@@ -477,7 +480,7 @@ Public Class PurchaseReturnChallan
                     GRIDPR.FirstDisplayedScrollingRowIndex = GRIDPR.RowCount - 1
                 Else
                     EDIT = False
-                    clear()
+                    CLEAR()
                 End If
 
             End If
@@ -493,9 +496,17 @@ Public Class PurchaseReturnChallan
 
     Sub FILLCMB()
         Try
-            If CMBNAME.Text.Trim = "" Then fillname(CMBNAME, EDIT, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
             If CMBPIECETYPE.Text.Trim = "" Then fillPIECETYPE(CMBPIECETYPE)
+            'If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
+            If ClientName = "AVIS" Then
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS'  AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+            Else
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            End If
             fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
             fillQUALITY(CMBQUALITY, EDIT)
             FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
@@ -557,7 +568,7 @@ Public Class PurchaseReturnChallan
                     EDIT = True
                     PurchaseReturnChallan_Load(sender, e)
                 Else
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             End If
@@ -634,7 +645,7 @@ LINE1:
                 EDIT = True
                 PurchaseReturnChallan_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDPR.RowCount = 0 And TEMPPRCHNO > 1 Then
@@ -659,12 +670,12 @@ LINE1:
             TEMPPRCHNO = Val(TXTPRCHNO.Text) + 1
             GETMAXNO()
             Dim MAXNO As Integer = TXTPRCHNO.Text.Trim
-            clear()
+            CLEAR()
             If Val(TXTPRCHNO.Text) - 1 >= TEMPPRCHNO Then
                 EDIT = True
                 PurchaseReturnChallan_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDPR.RowCount = 0 And TEMPPRCHNO < MAXNO Then
@@ -710,7 +721,7 @@ LINE1:
                 OBJSR.alParaval = alParaval
                 IntResult = OBJSR.DELETE()
                 MsgBox("Purchase Return Challan Deleted")
-                clear()
+                CLEAR()
                 EDIT = False
 
             Else
@@ -866,7 +877,7 @@ LINE1:
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
             If CMBITEMNAME.Text.Trim <> "" And EDIT = False Then
-                DT = OBJCMN.search(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART INNER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & " ' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART INNER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & " ' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     For Each DTROW As DataRow In DT.Rows
                         TXTGRIDREMARKS.Text = (DT.Rows(0).Item("STAMPING"))
@@ -875,7 +886,7 @@ LINE1:
             End If
 
             'GET CATEGORY
-            DT = OBJCMN.search("ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID", " AND ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+            DT = OBJCMN.SEARCH("ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID", " AND ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "' AND ITEM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLCATEGORY.Text = DT.Rows(0).Item("CATEGORY")
             End If
@@ -1069,7 +1080,7 @@ LINE1:
         Try
             Dim BLN As Boolean = True
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search(" ISNULL(PRCH_BARCODE,'') AS BARCODE ", "", " PURCHASERETURNCHALLAN_DESC ", " AND PURCHASERETURNCHALLAN_DESC.PRCH_YEARID =  " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(PRCH_BARCODE,'') AS BARCODE ", "", " PURCHASERETURNCHALLAN_DESC ", " AND PURCHASERETURNCHALLAN_DESC.PRCH_YEARID =  " & YearId)
             If DT.Rows.Count > 0 Then
                 For Each DTR As DataRow In DT.Rows
                     For Each ROW As Windows.Forms.DataGridViewRow In GRIDPR.Rows
@@ -1145,7 +1156,7 @@ LINE1:
 
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            namevalidate(CMBNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+            NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1153,7 +1164,7 @@ LINE1:
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then fillname(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1209,7 +1220,7 @@ LINE1:
             'GET ITEMNAME AUTO
             If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") And CMBDESIGN.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("ISNULL(ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID", " AND DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID", " AND DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then CMBITEMNAME.Text = DT.Rows(0).Item("ITEMNAME")
             End If
         Catch ex As Exception
@@ -1293,7 +1304,7 @@ LINE1:
 
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
                     'VALIDATE GODOWN
@@ -1335,7 +1346,7 @@ LINE1:
             If TXTBARCODE.Text.Trim <> "" And CHECKBARCODEERRORVALID = True Then
                 'CHECKING WHETHER IS IS GONE OUT OR NOT
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("TOP 1 TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
                     TXTBARCODE.Clear()
@@ -1375,7 +1386,7 @@ LINE1:
 
     Private Sub CMBTRANSPORTNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBTRANSPORTNAME.Validating
         Try
-            If CMBTRANSPORTNAME.Text.Trim <> "" Then namevalidate(CMBTRANSPORTNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'  AND LEDGERS.ACC_TYPE = 'TRANSPORT'", "SUNDRY CREDITORS", "TRANSPORT")
+            If CMBTRANSPORTNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANSPORTNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'  AND LEDGERS.ACC_TYPE = 'TRANSPORT'", "SUNDRY CREDITORS", "TRANSPORT")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1423,8 +1434,28 @@ LINE1:
                 TXTMTRS.ReadOnly = True
                 TXTQTY.ReadOnly = True
             End If
+            If ClientName = "AARYA" Then
+                CMBDISPATCHTO.Visible = True
+                LBLDISPATCHTO.Visible = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMBDISPATCHTO_Enter(sender As Object, e As EventArgs)
+        Try
+            If ClientName = "AVIS" Then
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDISPATCHTO_Validating(sender As Object, e As CancelEventArgs)
+        If CMBDISPATCHTO.Text.Trim <> "" Then NAMEVALIDATE(CMBDISPATCHTO, CMBCODE, e, Me, txtadd, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry CREDITORS", "ACCOUNTS")
     End Sub
 End Class
