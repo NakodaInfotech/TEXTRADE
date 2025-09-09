@@ -210,12 +210,12 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "ANMOL" Then
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "ANANT" Then
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -291,7 +291,7 @@ line1:
                     '    GoTo LINE1
                     'End If
                 ElseIf ClientName = "CC" Then
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -494,7 +494,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "MAHAVIR" Then      '(SANJAY JAIN)
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -804,7 +804,7 @@ line1:
                 ElseIf ClientName = "SHREENAKODA" Then  '(MEHUL JAIN)
                     HIDESAMPLEMODULE = False
                     HIDECATALOG = False
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -814,7 +814,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "SHUBHI" Then
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -850,7 +850,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "SMT" Then 'SHREE MANIRATNA TEXTILES
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -1012,7 +1012,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "VSTRADERS" Then
-                    If Now.Date > DateTime.Parse("15.09.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.09.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If

@@ -225,6 +225,10 @@ Public Class ClsGrn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
+                I = I + 1
 
 
 
@@ -428,7 +432,6 @@ Public Class ClsGrn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GREYKNITTINGNO", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
@@ -439,10 +442,14 @@ Public Class ClsGrn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@EWAYBILLNO", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@CHNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@GRNNO", alParaval(I)))

@@ -699,6 +699,10 @@ LINE1:
             ALPARAVAL.Add(0)    'DISPATCHFROM
             ALPARAVAL.Add(0)   'width
 
+            ALPARAVAL.Add("")   'CHNO
+            ALPARAVAL.Add("")    'REFLOTNO
+            ALPARAVAL.Add(0)    'SHIPTO
+            ALPARAVAL.Add("")   'PARTYITEMNAME
 
 
             Dim OBJYAARNISSUE As New ClsCuttingIssue
@@ -962,7 +966,8 @@ LINE1:
             ALPARAVAL.Add(0)    'CHNO
             ALPARAVAL.Add("")   'REFLOTNO
 
-
+            ALPARAVAL.Add(0)    'SHIPTO
+            ALPARAVAL.Add("")   'PARTYITEMNAME
 
             Dim OBJYAARNISSUE As New ClsGrn
             OBJYAARNISSUE.alParaval = ALPARAVAL

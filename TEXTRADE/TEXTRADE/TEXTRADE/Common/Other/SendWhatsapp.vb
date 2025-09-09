@@ -313,6 +313,7 @@ NEXTLINE:
 
 
             If PATH.Count = 0 Then Exit Sub
+            Dim strArray() As String
 
 
             For I As Integer = 0 To PATH.Count - 1
@@ -320,7 +321,6 @@ NEXTLINE:
                 '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTPARTYNO.Text.Trim, PATH(I), FILENAME(I))
                 '    ERRORMESSAGE(TXTPARTYNO.Text)
                 'End If
-                Dim strArray() As String
                 strArray = Split(TXTPARTYNO.Text.Trim, ";")
 
                 For J As Integer = 0 To strArray.Count - 1
@@ -389,8 +389,16 @@ NEXTLINE:
                     For J As Integer = 0 To gridbill.RowCount - 1
                         Dim dtrow As DataRow = gridbill.GetDataRow(J)
                         If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & dtrow("WHATSAPP"), PATH(I), FILENAME(I))
-                            ERRORMESSAGE(dtrow("WHATSAPP"))
+                            strArray = Split(dtrow("WHATSAPP"), ";")
+
+                            For M As Integer = 0 To strArray.Count - 1
+                                If dtrow("WHATSAPP") <> "" Then
+                                    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I))
+                                    ERRORMESSAGE(dtrow("WHATSAPP"))
+                                End If
+                            Next
+                            'RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & dtrow("WHATSAPP"), PATH(I), FILENAME(I))
+                            'ERRORMESSAGE(dtrow("WHATSAPP"))
                         End If
                     Next
                 End If
@@ -401,12 +409,42 @@ NEXTLINE:
 
             'TEXT MESSAGE SHOULD BE SEND ONLY ONCE
             If TXTMESSAGE.Text.Trim <> "" Then
-                If TXTPARTYNO.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTPARTYNO.Text.Trim, TXTMESSAGE.Text.Trim)
-                If TXTAGENTNO.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTAGENTNO.Text.Trim, TXTMESSAGE.Text.Trim)
-                If TXTOTHERNO1.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTOTHERNO1.Text.Trim, TXTMESSAGE.Text.Trim)
-                If TXTOTHERNO2.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTOTHERNO2.Text.Trim, TXTMESSAGE.Text.Trim)
-                If TXTOTHERNO3.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTOTHERNO3.Text.Trim, TXTMESSAGE.Text.Trim)
-                If TXTAUTOCC.Text.Trim <> "" Then Await SENDWHATSAPPMESSAGE("91" & TXTAUTOCC.Text.Trim, TXTMESSAGE.Text.Trim)
+                If TXTPARTYNO.Text.Trim <> "" Then
+                    strArray = Split(TXTPARTYNO.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTAGENTNO.Text.Trim <> "" Then
+                    strArray = Split(TXTAGENTNO.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTOTHERNO1.Text.Trim <> "" Then
+                    strArray = Split(TXTOTHERNO1.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTOTHERNO2.Text.Trim <> "" Then
+                    strArray = Split(TXTOTHERNO2.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTOTHERNO3.Text.Trim <> "" Then
+                    strArray = Split(TXTOTHERNO3.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTAUTOCC.Text.Trim <> "" Then
+                    strArray = Split(TXTAUTOCC.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
 
                 'SENDING WHATSAPP TO MULTIPLE LEDGERS SELECTED
                 If FRMSTRING = "DIRECTWHATSAPP" Then
@@ -414,7 +452,10 @@ NEXTLINE:
                     For J As Integer = 0 To gridbill.RowCount - 1
                         Dim dtrow As DataRow = gridbill.GetDataRow(J)
                         If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            RESPONSE = Await SENDWHATSAPPMESSAGE("91" & dtrow("WHATSAPP"), TXTMESSAGE.Text.Trim)
+                            strArray = Split(dtrow("WHATSAPP").Text.Trim, ";")
+                            For N As Integer = 0 To strArray.Count - 1
+                                RESPONSE = Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                            Next
                         End If
                     Next
                 End If

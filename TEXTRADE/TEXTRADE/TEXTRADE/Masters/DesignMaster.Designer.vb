@@ -22,6 +22,7 @@ Partial Class DesignMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -85,7 +86,7 @@ Partial Class DesignMaster
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.lbldesign = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.Ep = New System.Windows.Forms.ErrorProvider()
+        Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BlendPanel1.SuspendLayout()
         Me.GRPSHADE.SuspendLayout()

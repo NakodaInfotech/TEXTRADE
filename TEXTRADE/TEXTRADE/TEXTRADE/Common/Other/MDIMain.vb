@@ -2,6 +2,7 @@
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
+Imports DevExpress.XtraScheduler
 
 Public Class MDIMain
 
@@ -201,7 +202,7 @@ Public Class MDIMain
             End If
 
 
-            If ClientName <> "JAINAMGOLD" Then
+            If ClientName <> "JAINAMGOLD" And ClientName <> "AADHAR" Then
                 SETENABILITY()
                 HEADERVISIBLE()
             End If
@@ -392,12 +393,23 @@ Public Class MDIMain
             'End If
 
 
-            If ClientName = "JAINAMGOLD" Then
+            If ClientName = "JAINAMGOLD" Or ClientName = "AADHAR" Then
                 TRANSACTION_MENU.Visible = False
                 REPORTS_MENU.Visible = False
                 TOOLSTRIP_MAIN.Visible = False
                 OTHERREPORT_MAIN.Visible = False
                 CUSTOMREPORTS_MENU.Visible = False
+                STORES_MASTER.Visible = False
+                REGISTER_MAIN.Visible = False
+                ACCOUNTREPORT_MAIN.Visible = False
+                YARNMODULE_MENU.Visible = False
+                EMPLOYEE_MASTER.Visible = False
+                REG_MASTER.Visible = False
+                QUALITY_MASTER.Visible = False
+                SALESMAN_MASTER.Visible = False
+                TAX_MASTER.Visible = False
+                OPENING_MASTER.Visible = False
+                OPENST_MASTER.Visible = False
 
                 ACC_MASTER.Enabled = True
                 ACCADD.Enabled = True
@@ -411,8 +423,26 @@ Public Class MDIMain
                 DESIGN_MASTER.Enabled = True
                 DESIGNADD.Enabled = True
                 DESIGNEDIT.Enabled = True
+                DESIGNCARD_MASTER.Enabled = True
+                DESIGNCARDADD.Enabled = True
+                DESIGNCARDEDIT.Enabled = True
 
                 ADMIN_MASTER.Enabled = True
+
+                If ClientName = "AADHAR" Then
+                    MILL_MASTER.Enabled = True
+                    MILLADD.Enabled = True
+                    MILLEDIT.Enabled = True
+                    YARNQUALITY_MASTER.Enabled = True
+                    YARNADD.Enabled = True
+                    YARNEDIT.Enabled = True
+                    LOOM_MASTER.Enabled = True
+                    LOOMADD.Enabled = True
+                    LOOMEDIT.Enabled = True
+                    WEAVE_MASTER.Enabled = True
+                    WEAVEADD.Enabled = True
+                    WEAVEEDIT.Enabled = True
+                End If
             End If
 
 

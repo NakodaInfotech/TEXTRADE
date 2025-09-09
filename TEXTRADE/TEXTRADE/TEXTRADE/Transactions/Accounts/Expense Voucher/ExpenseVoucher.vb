@@ -1232,7 +1232,7 @@ LINE1:
     Private Sub ExpenseVoucher_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         If ClientName = "SVS" Then Me.Close()
         If ClientName = "PARAS" Then LBLGROUPNAME.Visible = True
-        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "LEEFABRICO" Or ClientName = "SURYODAYA" Then ALLOWMANUALNPNO = True
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "LEEFABRICO" Or ClientName = "SURYODAYA" Or ClientName = "AARYA" Then ALLOWMANUALNPNO = True
         If ClientName = "SOFTAS" Or ClientName = "AVIS" Then NPDATE.TabStop = False
         If ClientName = "LEEFABRICO" Then
             CHKTDS.TabStop = False

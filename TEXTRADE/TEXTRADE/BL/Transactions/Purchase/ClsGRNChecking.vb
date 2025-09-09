@@ -136,6 +136,10 @@ Public Class ClsGRNChecking
 
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
+                I = I + 1
             End With
 
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -264,6 +268,10 @@ Public Class ClsGRNChecking
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@CHECKINGNO", alParaval(I)))
