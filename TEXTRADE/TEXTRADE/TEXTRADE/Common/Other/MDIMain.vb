@@ -5150,6 +5150,7 @@ SKIPLINE:
                 LRStockToolStripMenuItem.Enabled = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
+            If ClientName = "NAKODAINFOTECH" Then AutoWhatsappToolStripMenuItem.Visible = True
         Catch ex As Exception
             Throw ex
         End Try
