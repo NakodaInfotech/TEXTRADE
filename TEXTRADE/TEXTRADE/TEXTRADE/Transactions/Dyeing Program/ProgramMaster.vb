@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Xml
 Imports BL
 
 Public Class ProgramMaster
@@ -108,7 +109,7 @@ Public Class ProgramMaster
     End Sub
 
     Private Sub cmdclear_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMDCLEAR.Click
-        clear()
+        CLEAR()
         EDIT = False
         PROGRAMDATE.Focus()
     End Sub
@@ -186,7 +187,7 @@ Public Class ProgramMaster
             If ALLOWMANUALPROGNO = True Then
                 If Val(TXTPROGRAMNO.Text.Trim) <> 0 And EDIT = False Then
                     Dim OBJCMNn As New ClsCommon
-                    Dim dttable As DataTable = OBJCMNn.search(" ISNULL(PROGRAM_NO, 0)  As PROGRAM", "", " PROGRAMMASTER ", "  And PROGRAM_NO=" & Val(TXTPROGRAMNO.Text.Trim) & " And PROGRAM_YEARID = " & YearId)
+                    Dim dttable As DataTable = OBJCMNn.SEARCH(" ISNULL(PROGRAM_NO, 0)  As PROGRAM", "", " PROGRAMMASTER ", "  And PROGRAM_NO=" & Val(TXTPROGRAMNO.Text.Trim) & " And PROGRAM_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         MsgBox("Program No Already Exist")
                         bln = False
@@ -408,10 +409,10 @@ Public Class ProgramMaster
                 MsgBox("Details Updated")
             End If
 
-            If TXTSONO.Text.Trim = "" Then  PRINTREPORT()
+            If TXTSONO.Text.Trim = "" Then PRINTREPORT()
 
             EDIT = False
-            clear()
+            CLEAR()
             PROGRAMDATE.Focus()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -447,69 +448,69 @@ Public Class ProgramMaster
                 'SO WE WILL ADD BARCODE IN SP AND THEN FETCH THAT DATA HERE AFTER THAT WE WILL PRINT BARCODES
                 GRIDLOT.RowCount = 0
                 Dim OBJCMN As New ClsCommon
-                Dim dttable As DataTable = OBJCMN.search(" PROGRAMMASTER.PROGRAM_NO As PROGRAMNO, PROGRAMMASTER.PROGRAM_DATE As Date, ISNULL(LEDGERS.Acc_cmpname,'') AS NAME, ISNULL(PROGRAMMASTER.PROGRAM_CARDRECDATE,'') AS CARDRECDATE, PROGRAMMASTER.PROGRAM_LBLTOTALPCS AS TOTALPCS, PROGRAMMASTER.PROGRAM_REMARKS AS REMARKS, PROGRAMMASTER.PROGRAM_DONE AS DONE, PROGRAMMASTER_DESC.PROGRAM_GRIDSRNO AS GRIDSRNO, PROGRAMMASTER_DESC.PROGRAM_LOTNO AS LOTNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO,'') AS DESIGNNO, PROGRAMMASTER_DESC.PROGRAM_TOTALPCS AS GRIDTOTALPCS, COLORMASTER.COLOR_name AS COLOR, ISNULL(PROGRAMMASTER_DESC.PROGRAM_URGENT,0) AS URGENT, PROGRAMMASTER_DESC.PROGRAM_PCS AS PCS, ISNULL(PROGRAMMASTER_DESC.PROGRAM_PROGISSDATE,'') AS PROGISSDATE, ISNULL(PROGRAMMASTER_DESC.PROGRAM_STATUS,'') AS STATUS, ISNULL(PROGRAMMASTER_DESC.PROGRAM_PRODCUTTING,'') AS PRODCUTTING, ISNULL(PROGRAMMASTER_DESC.PROGRAM_FINISHCUTTING,'') AS FINISHCUTTING, ISNULL(PROGRAMMASTER_DESC.PROGRAM_INWARDDATE,'') AS INWARDDATE, PROGRAMMASTER_DESC.PROGRAM_GRNNO AS GRNNO, PROGRAMMASTER_DESC.PROGRAM_GRNTYPE AS GRNTYPE, PROGRAMMASTER_DESC.PROGRAM_RECDPCS as RECDPCS, PROGRAMMASTER_DESC.PROGRAM_BARCODE as BARCODE ", "", " PROGRAMMASTER INNER JOIN PROGRAMMASTER_DESC ON PROGRAMMASTER.PROGRAM_NO = PROGRAMMASTER_DESC.PROGRAM_NO AND PROGRAMMASTER.PROGRAM_YEARID = PROGRAMMASTER_DESC.PROGRAM_YEARID LEFT OUTER JOIN LEDGERS ON PROGRAMMASTER.PROGRAM_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PROGRAMMASTER_DESC.PROGRAM_ITEMID = ITEMMASTER.item_id INNER JOIN COLORMASTER ON PROGRAMMASTER_DESC.PROGRAM_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON PROGRAM_DESIGNID = DESIGN_ID", " AND PROGRAMMASTER.PROGRAM_NO = " & PROGRAMNO & " AND PROGRAMMASTER.PROGRAM_YEARID = " & YearId & " ORDER BY PROGRAMMASTER_DESC.PROGRAM_GRIDSRNO")
+                Dim dttable As DataTable = OBJCMN.SEARCH(" PROGRAMMASTER.PROGRAM_NO As PROGRAMNO, PROGRAMMASTER.PROGRAM_DATE As Date, ISNULL(LEDGERS.Acc_cmpname,'') AS NAME, ISNULL(PROGRAMMASTER.PROGRAM_CARDRECDATE,'') AS CARDRECDATE, PROGRAMMASTER.PROGRAM_LBLTOTALPCS AS TOTALPCS, PROGRAMMASTER.PROGRAM_REMARKS AS REMARKS, PROGRAMMASTER.PROGRAM_DONE AS DONE, PROGRAMMASTER_DESC.PROGRAM_GRIDSRNO AS GRIDSRNO, PROGRAMMASTER_DESC.PROGRAM_LOTNO AS LOTNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO,'') AS DESIGNNO, PROGRAMMASTER_DESC.PROGRAM_TOTALPCS AS GRIDTOTALPCS, COLORMASTER.COLOR_name AS COLOR, ISNULL(PROGRAMMASTER_DESC.PROGRAM_URGENT,0) AS URGENT, PROGRAMMASTER_DESC.PROGRAM_PCS AS PCS, ISNULL(PROGRAMMASTER_DESC.PROGRAM_PROGISSDATE,'') AS PROGISSDATE, ISNULL(PROGRAMMASTER_DESC.PROGRAM_STATUS,'') AS STATUS, ISNULL(PROGRAMMASTER_DESC.PROGRAM_PRODCUTTING,'') AS PRODCUTTING, ISNULL(PROGRAMMASTER_DESC.PROGRAM_FINISHCUTTING,'') AS FINISHCUTTING, ISNULL(PROGRAMMASTER_DESC.PROGRAM_INWARDDATE,'') AS INWARDDATE, PROGRAMMASTER_DESC.PROGRAM_GRNNO AS GRNNO, PROGRAMMASTER_DESC.PROGRAM_GRNTYPE AS GRNTYPE, PROGRAMMASTER_DESC.PROGRAM_RECDPCS as RECDPCS, PROGRAMMASTER_DESC.PROGRAM_BARCODE as BARCODE ", "", " PROGRAMMASTER INNER JOIN PROGRAMMASTER_DESC ON PROGRAMMASTER.PROGRAM_NO = PROGRAMMASTER_DESC.PROGRAM_NO AND PROGRAMMASTER.PROGRAM_YEARID = PROGRAMMASTER_DESC.PROGRAM_YEARID LEFT OUTER JOIN LEDGERS ON PROGRAMMASTER.PROGRAM_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PROGRAMMASTER_DESC.PROGRAM_ITEMID = ITEMMASTER.item_id INNER JOIN COLORMASTER ON PROGRAMMASTER_DESC.PROGRAM_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON PROGRAM_DESIGNID = DESIGN_ID", " AND PROGRAMMASTER.PROGRAM_NO = " & PROGRAMNO & " AND PROGRAMMASTER.PROGRAM_YEARID = " & YearId & " ORDER BY PROGRAMMASTER_DESC.PROGRAM_GRIDSRNO")
                 For Each dr As DataRow In dttable.Rows
-                        GRIDLOT.Rows.Add(Val(dr("GRIDSRNO")), dr("LOTNO"), dr("ITEMNAME"), dr("DESIGNNO"), Val(dr("GRIDTOTALPCS")), dr("COLOR"), dr("URGENT"), Val(dr("PCS")), dr("PROGISSDATE"), dr("STATUS"), dr("PRODCUTTING"), dr("FINISHCUTTING"), dr("INWARDDATE"), Val(dr("GRNNO")), dr("GRNTYPE"), Val(dr("RECDPCS")), dr("BARCODE"))
-                    Next
+                    GRIDLOT.Rows.Add(Val(dr("GRIDSRNO")), dr("LOTNO"), dr("ITEMNAME"), dr("DESIGNNO"), Val(dr("GRIDTOTALPCS")), dr("COLOR"), dr("URGENT"), Val(dr("PCS")), dr("PROGISSDATE"), dr("STATUS"), dr("PRODCUTTING"), dr("FINISHCUTTING"), dr("INWARDDATE"), Val(dr("GRNNO")), dr("GRNTYPE"), Val(dr("RECDPCS")), dr("BARCODE"))
+                Next
 
-                    If Val(TXTCOPIES.Text.Trim) = 0 Then TXTCOPIES.Text = 3
+                If Val(TXTCOPIES.Text.Trim) = 0 Then TXTCOPIES.Text = 3
 
-                    For Each ROW As DataGridViewRow In GRIDLOT.Rows
-                        For COPIES As Integer = 1 To Val(TXTCOPIES.Text.Trim)
+                For Each ROW As DataGridViewRow In GRIDLOT.Rows
+                    For COPIES As Integer = 1 To Val(TXTCOPIES.Text.Trim)
 
-                            Dim oWrite As System.IO.StreamWriter
-                            oWrite = File.CreateText("D:\Barcode.txt")
+                        Dim oWrite As System.IO.StreamWriter
+                        oWrite = File.CreateText("D:\Barcode.txt")
 
-                            'TO PRINT BARCODE FROM SELECTED SRNO
-                            If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
-                                If Val(ROW.Cells(GSRNO.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(GSRNO.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
-                            End If
+                        'TO PRINT BARCODE FROM SELECTED SRNO
+                        If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
+                            If Val(ROW.Cells(GSRNO.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(GSRNO.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
+                        End If
 
-                            If ClientName = "AVIS" Then
-                                'Writing in file
+                        If ClientName = "AVIS" Then
+                            'Writing in file
 
-                                oWrite.WriteLine("<xpml><page quantity='0' pitch='15.0 mm'></xpml>G0")
-                                oWrite.WriteLine("n")
-                                oWrite.WriteLine("M0500")
-                                oWrite.WriteLine("O0214")
-                                oWrite.WriteLine("V0")
-                                oWrite.WriteLine("t1")
-                                oWrite.WriteLine("Kf0070")
-                                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='15.0 mm'></xpml>L")
-                                oWrite.WriteLine("D11")
-                                oWrite.WriteLine("A2")
-                                oWrite.WriteLine("1W1D44000001200152,LA," & ROW.Cells(GBARCODE.Index).Value)
-                                oWrite.WriteLine("ySPM")
-                                oWrite.WriteLine("1911A0600020005" & ROW.Cells(GBARCODE.Index).Value)
-                                oWrite.WriteLine("1911A0800340067" & ROW.Cells(GDESIGNNO.Index).Value)
-                                oWrite.WriteLine("1911A0800170067" & ROW.Cells(GCOLOR.Index).Value)
-                                oWrite.WriteLine("Q0001")
-                                oWrite.WriteLine("E")
-                                oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
-                                oWrite.Dispose()
-                            End If
-
-
-                            'Printing Barcode
-                            Dim psi As New ProcessStartInfo()
-                            psi.FileName = "cmd.exe"
-                            psi.RedirectStandardInput = False
-                            psi.RedirectStandardOutput = True
-                            'psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
-                            psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
-                            psi.UseShellExecute = False
-
-                            Dim proc As Process
-                            proc = Process.Start(psi)
-                            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
-                            '// do something with result stream
-                            proc.WaitForExit()
-NEXTLINE:
-                            'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='15.0 mm'></xpml>G0")
+                            oWrite.WriteLine("n")
+                            oWrite.WriteLine("M0500")
+                            oWrite.WriteLine("O0214")
+                            oWrite.WriteLine("V0")
+                            oWrite.WriteLine("t1")
+                            oWrite.WriteLine("Kf0070")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='15.0 mm'></xpml>L")
+                            oWrite.WriteLine("D11")
+                            oWrite.WriteLine("A2")
+                            oWrite.WriteLine("1W1D44000001200152,LA," & ROW.Cells(GBARCODE.Index).Value)
+                            oWrite.WriteLine("ySPM")
+                            oWrite.WriteLine("1911A0600020005" & ROW.Cells(GBARCODE.Index).Value)
+                            oWrite.WriteLine("1911A0800340067" & ROW.Cells(GDESIGNNO.Index).Value)
+                            oWrite.WriteLine("1911A0800170067" & ROW.Cells(GCOLOR.Index).Value)
+                            oWrite.WriteLine("Q0001")
+                            oWrite.WriteLine("E")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
                             oWrite.Dispose()
-                        Next
+                        End If
+
+
+                        'Printing Barcode
+                        Dim psi As New ProcessStartInfo()
+                        psi.FileName = "cmd.exe"
+                        psi.RedirectStandardInput = False
+                        psi.RedirectStandardOutput = True
+                        'psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+                        psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
+                        psi.UseShellExecute = False
+
+                        Dim proc As Process
+                        proc = Process.Start(psi)
+                        dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+                        '// do something with result stream
+                        proc.WaitForExit()
+NEXTLINE:
+                        'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
+                        oWrite.Dispose()
                     Next
-                End If
+                Next
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -546,7 +547,7 @@ NEXTLINE:
             Cursor.Current = Cursors.WaitCursor
 
             If ClientName = "SUPRIYA" Then ALLOWMANUALPROGNO = True
-            fillcmb()
+            FILLCMB()
             fillcheckboxlist()
             CLEAR()
 
@@ -757,7 +758,7 @@ NEXTLINE:
                 IntResult = OBJPROGRAM.DELETE()
                 MsgBox("Program Deleted")
                 EDIT = False
-                clear()
+                CLEAR()
 
             End If
         Catch ex As Exception
@@ -1139,6 +1140,7 @@ NEXTLINE:
                 CMBLOTNO.BackColor = Color.White
                 CMBITEMNAME.Enabled = True
                 CMBDESIGNNO.Enabled = True
+                If ClientName = "REALCORPORATION" Then CMBCOLOR.BackColor = Color.White
             End If
 
             If ClientName = "VINTAGEINDIA" Then
@@ -1485,14 +1487,20 @@ NEXTLINE:
     Private Sub CMBRATETYPE_Validated(sender As Object, e As EventArgs) Handles CMBRATETYPE.Validated
         Try
             If ClientName = "AVIS" Or ClientName = "SUPRIYA" Then
+                'LOTNO NO NOT MANDATE
                 If CMBNAME.Text.Trim = "" And CMBLOTNO.Text.Trim <> "" Then CMBLOTNO.Text = ""
                 If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNO.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
+
+                'LOTNO AND COLOR NOT MANDATE
+            ElseIf ClientName = "REALCORPORATION" Then
+                If CMBITEMNAME.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
+
             Else
                 'COLOR NOT MANDATE
-                If ClientName = "SUPEEMA" Or ClientName = "YASHVI" Or ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Or ClientName = "REALCORPORATION" Or ClientName = "KARAN" Then
+                If ClientName = "SUPEEMA" Or ClientName = "YASHVI" Or ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Or ClientName = "KARAN" Then
                     If CMBLOTNO.Text.Trim <> "" And Val(TXTTOTALPCS.Text) > 0 And CMBITEMNAME.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
                 Else
-                    If CMBLOTNO.Text.Trim <> "" And Val(TXTTOTALPCS.Text) > 0 And CMBITEMNAME.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then fillgrid()
+                    If CMBLOTNO.Text.Trim <> "" And Val(TXTTOTALPCS.Text) > 0 And CMBITEMNAME.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
                 End If
             End If
         Catch ex As Exception
