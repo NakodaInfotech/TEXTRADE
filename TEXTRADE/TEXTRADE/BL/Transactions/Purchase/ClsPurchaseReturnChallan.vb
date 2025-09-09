@@ -110,6 +110,8 @@ Public Class ClsPurchaseReturnChallan
 
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@DISPATCHTO", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -210,6 +212,8 @@ Public Class ClsPurchaseReturnChallan
                 .Add(New SqlClient.SqlParameter("@LRDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DISPATCHTO", alParaval(I)))
                 I = I + 1
 
 

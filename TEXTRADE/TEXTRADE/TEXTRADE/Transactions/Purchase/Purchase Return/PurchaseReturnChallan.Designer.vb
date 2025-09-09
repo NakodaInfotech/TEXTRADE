@@ -35,6 +35,7 @@ Partial Class PurchaseReturnChallan
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PurchaseReturnChallan))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLDISPATCHTO = New System.Windows.Forms.Label()
         Me.CMBTRANSPORTNAME = New System.Windows.Forms.ComboBox()
         Me.PRLRDATE = New System.Windows.Forms.MaskedTextBox()
         Me.LBLLRDATE = New System.Windows.Forms.Label()
@@ -128,6 +129,7 @@ Partial Class PurchaseReturnChallan
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CMBDISPATCHTO = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -141,6 +143,8 @@ Partial Class PurchaseReturnChallan
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBDISPATCHTO)
+        Me.BlendPanel1.Controls.Add(Me.LBLDISPATCHTO)
         Me.BlendPanel1.Controls.Add(Me.CMBTRANSPORTNAME)
         Me.BlendPanel1.Controls.Add(Me.PRLRDATE)
         Me.BlendPanel1.Controls.Add(Me.LBLLRDATE)
@@ -187,6 +191,18 @@ Partial Class PurchaseReturnChallan
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'LBLDISPATCHTO
+        '
+        Me.LBLDISPATCHTO.AutoSize = True
+        Me.LBLDISPATCHTO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLDISPATCHTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLDISPATCHTO.Location = New System.Drawing.Point(677, 132)
+        Me.LBLDISPATCHTO.Name = "LBLDISPATCHTO"
+        Me.LBLDISPATCHTO.Size = New System.Drawing.Size(70, 14)
+        Me.LBLDISPATCHTO.TabIndex = 1019
+        Me.LBLDISPATCHTO.Text = "Dispatch To"
+        Me.LBLDISPATCHTO.Visible = False
         '
         'CMBTRANSPORTNAME
         '
@@ -1242,6 +1258,19 @@ Partial Class PurchaseReturnChallan
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
         '
+        'CMBDISPATCHTO
+        '
+        Me.CMBDISPATCHTO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBDISPATCHTO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBDISPATCHTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBDISPATCHTO.FormattingEnabled = True
+        Me.CMBDISPATCHTO.Items.AddRange(New Object() {""})
+        Me.CMBDISPATCHTO.Location = New System.Drawing.Point(750, 128)
+        Me.CMBDISPATCHTO.Name = "CMBDISPATCHTO"
+        Me.CMBDISPATCHTO.Size = New System.Drawing.Size(203, 23)
+        Me.CMBDISPATCHTO.TabIndex = 909
+        Me.CMBDISPATCHTO.Visible = False
+        '
         'PurchaseReturnChallan
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1363,4 +1392,6 @@ Partial Class PurchaseReturnChallan
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
+    Friend WithEvents LBLDISPATCHTO As Label
+    Friend WithEvents CMBDISPATCHTO As ComboBox
 End Class
