@@ -2690,42 +2690,44 @@ LINESINGLE:
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
 
-                If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
-                Dim DTITEM As New DataTable
+                If ClientName <> "KRISHNA" Then
 
-                'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN
-                DT = OBJCMN.SEARCH(" DESIGNMASTER_COLOR.DESIGN_SRNO", "", " DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID ", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
-                If FETCHITEMWISEDESIGN = True And DT.Rows.Count > 0 And (ClientName = "YASHVI" Or ClientName = "MAHAVIRPOLYCOT") Then
-                    Dim OBJ As New SelectItemSO
-                    OBJ.ITEMNAME = cmbitemname.Text.Trim
-                    OBJ.DESIGNNO = CMBDESIGN.Text.Trim
-                    OBJ.UNIT = cmbqtyunit.Text.Trim
-                    OBJ.ShowDialog()
-                    DTITEM = OBJ.DT
-                End If
-                If DTITEM.Rows.Count > 0 Then
-                    For Each DTROWPS As DataRow In DTITEM.Rows
-                        GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, 0, 0, 0, 0, 0)
-                    Next
-                    GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
-                    getsrno(GRIDSO)
+                    If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
+                    Dim DTITEM As New DataTable
 
-                    TOTAL()
-                    cmbitemname.Text = ""
-                    CMBDESIGN.Text = ""
-                    txtgridremarks.Clear()
-                    TXTRATE.Clear()
-                    cmbitemname.Focus()
-                End If
+                    'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN
+                    DT = OBJCMN.SEARCH(" DESIGNMASTER_COLOR.DESIGN_SRNO", "", " DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR On DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID ", " And DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
+                    If FETCHITEMWISEDESIGN = True And DT.Rows.Count > 0 And (ClientName = "YASHVI" Or ClientName = "MAHAVIRPOLYCOT") Then
+                        Dim OBJ As New SelectItemSO
+                        OBJ.ITEMNAME = cmbitemname.Text.Trim
+                        OBJ.DESIGNNO = CMBDESIGN.Text.Trim
+                        OBJ.UNIT = cmbqtyunit.Text.Trim
+                        OBJ.ShowDialog()
+                        DTITEM = OBJ.DT
+                    End If
+                    If DTITEM.Rows.Count > 0 Then
+                        For Each DTROWPS As DataRow In DTITEM.Rows
+                            GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, 0, 0, 0, 0, 0)
+                        Next
+                        GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
+                        getsrno(GRIDSO)
 
-                If ClientName = "SNCM" Then
-                    If cmbitemname.Text.Trim <> "" And CMBFORWARD.Text = "READY" Then
-                        DT = OBJCMN.SEARCH(" ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_SETMTRS,0) AS SETMTRS ", "", " ITEMDESIGNIMAGE LEFT OUTER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = ITEMMASTER.item_yearid AND ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND ITEMMASTER.item_NAME  = '" & cmbitemname.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
-                        If DT.Rows.Count > 0 Then TXTCUT.Text = DT.Rows(0).Item("SETMTRS")
+                        TOTAL()
+                        cmbitemname.Text = ""
+                        CMBDESIGN.Text = ""
+                        txtgridremarks.Clear()
+                        TXTRATE.Clear()
+                        cmbitemname.Focus()
                     End If
                 End If
+                If ClientName = "SNCM" Then
+                        If cmbitemname.Text.Trim <> "" And CMBFORWARD.Text = "READY" Then
+                            DT = OBJCMN.SEARCH(" ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_SETMTRS,0) AS SETMTRS ", "", " ITEMDESIGNIMAGE LEFT OUTER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = ITEMMASTER.item_yearid AND ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND ITEMMASTER.item_NAME  = '" & cmbitemname.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then TXTCUT.Text = DT.Rows(0).Item("SETMTRS")
+                        End If
+                    End If
 
-            End If
+                End If
 
 
         Catch ex As Exception

@@ -4,6 +4,8 @@ Imports System.IO
 Imports BL
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPivotGrid.Design
 Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
@@ -79,7 +81,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALWARPCONS.Text.Trim))     ' Cons (Warp Consumption)
             alParaval.Add(Val(TXTTOTALWARPRATE.Text.Trim))     ' Rate (Rate per unit)
             alParaval.Add(Val(TXTTOTALWARPCOST.Text.Trim))     ' Cost (Warp Cost)
-            alParaval.Add(Val(TXTTOTALWARPPE.Text.Trim))
+            alParaval.Add(Val(TXTTOTALWARPGRIDPE.Text.Trim))
             'Selvedge Total
             alParaval.Add(Val(TXTTOTALSELPE.Text.Trim))        ' P.E. (Selvedge)
             alParaval.Add(Val(TXTTOTALSELBE.Text.Trim))        ' B.E. (Selvedge)
@@ -96,7 +98,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALWEFTCONS.Text.Trim))      ' Cons (Weft Consumption)
             alParaval.Add(Val(TXTTOTALWEFTRATE.Text.Trim))      ' Rate (Weft Rate)
             alParaval.Add(Val(TXTTOTALWEFTCOST.Text.Trim))      ' Cost (Weft Cost)
-            alParaval.Add(Val(TXTTOTALWEFTPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
+            alParaval.Add(Val(TXTTOTALWEFTGRIDPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
 
             '*************************************************************************
             'GRID WARP
@@ -427,6 +429,36 @@ Public Class DesignCardMaster
         TXTTOTALWARPPE.Clear()       ' P.E. (Possible: Ends per repeat)
         TXTTOTALWARPBE.Clear()       ' B.E. (Possible: Ends for Border)
         TXTTOTALWARPTE.Clear()      ' T.E. (Possible: Ends for Total)
+        TXTTOTALWARPWT.Clear()      ' Wt (Warp Weight)
+        TXTTOTALWARPCONS.Clear()    ' Cons (Warp Consumption)
+        TXTTOTALWARPRATE.Clear()    ' Rate (Rate per unit)
+        TXTTOTALWARPCOST.Clear()    ' Cost (Warp Cost)
+        TXTTOTALWARPGRIDPE.Clear()
+        'Selvedge Total
+        TXTTOTALSELPE.Clear()       ' P.E. (Selvedge)
+        TXTTOTALSELBE.Clear()       ' B.E. (Selvedge)
+        TXTTOTALSELTE.Clear()       ' T.E. (Selvedge)
+        TXTTOTALSELWT.Clear()       ' Wt (Selvedge)
+        TXTTOTALSELCONS.Clear()     ' Cons (Selvedge)
+        TXTSELTOTALRATE.Clear()     ' Rate (Selvedge)
+        TXTSELTOTALCOST.Clear()     ' Cost (Selvedge)
+        'Weft Total
+        TXTTOTALWEFTPE.Clear()       ' P.E. (Weft)
+        TXTTOTALWEFTBE.Clear()       ' B.E. (Weft)
+        TXTTOTALWEFTTE.Clear()       ' T.E. (Weft)
+        TXTTOTALWEFTWT.Clear()       ' Wt (Weft Weight)
+        TXTTOTALWEFTCONS.Clear()     ' Cons (Weft Consumption)
+        TXTTOTALWEFTRATE.Clear()     ' Rate (Weft Rate)
+        TXTTOTALWEFTCOST.Clear()     ' Cost (Weft Cost)
+        TXTTOTALWEFTGRIDPE.Clear()       ' P.E. (Repeated for field order continuity)
+        'GRID WARP
+        GRIDWARP.Rows.Clear()
+        'GRID SLEVAGE
+        GRIDSELVEDGE.Rows.Clear()
+        'GRID WEFT
+        GRIDWEFT.Rows.Clear()
+        'GRID WEFT PATTERN
+        GRIDWEFTPATTERN.Rows.Clear()
 
     End Sub
     Private Function errorvalid() As Boolean
@@ -464,7 +496,115 @@ Public Class DesignCardMaster
         Me.Close()
     End Sub
 
+    Private Sub DesignCardMaster_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If (e.Alt = True And e.KeyCode = Windows.Forms.Keys.X) Or (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+                If errorvalid() = True Then
+                    Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
+                    If tempmsg = vbYes Then cmdok_Click(sender, e)
+                End If
+                Me.Close()
+            ElseIf e.KeyCode = Keys.Oemcomma Then
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub fillcmb()
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
+        If DT.Rows.Count > 0 Then
+            DT.DefaultView.Sort = "DESIGN_NO"
+            CMBDESIGNNO.DataSource = DT
+            CMBDESIGNNO.DisplayMember = "DESIGN_NO"
+            CMBDESIGNNO.Text = tempdesignno
+        End If
+        FILLDESIGN(CMBCOPYDESIGN, EDIT)
+        FILLCOLOR(CMBWARPSHADE, "", "")
+        FILLCOLOR(CMBSELSHADE, "", "")
+        FILLCOLOR(cmbweftshade, "", "")
+        If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEM_FRMSTRING = 'MERCHANT'")
+        FILLMILL(CMBWARPMILLNAME, EDIT)
+        FILLMILL(CMBWEFTMILLNAME, EDIT)
+        FILLMILL(CMBSELMILLNAME, EDIT)
+        fillYARNQUALITY(CMBSELYARNQUALITY, EDIT)
+        fillYARNQUALITY(CMBWEFTYARNQUALITY, EDIT)
+        fillYARNQUALITY(CMBWARPQUALITY, EDIT)
+        If CMBAGENTNAME.Text.Trim = "" Then FILLNAME(CMBAGENTNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
+        If CMBDELAT.Text.Trim = "" Then FILLNAME(CMBDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+        If CMBGREYDELAT.Text.Trim = "" Then FILLNAME(CMBGREYDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE<>'ACCOUNTS'")
+    End Sub
+    Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
+        Try
+            'If edit = False Then
+            For Each row As DataGridViewRow In grid.Rows
+                row.Cells(0).Value = row.Index + 1
+            Next
+            'End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub fillwarpgrid()
 
+        If GRIDDOUBLECLICK = False Then
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), TXTWARPSYMBOL.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
+            getsrno(GRIDWARP)
+        ElseIf GRIDDOUBLECLICK = True Then
+            GRIDWARP.Item(WSRNO.Index, TEMPROW).Value = Val(TXTWARPSRNO.Text.Trim)
+            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = TXTWARPSYMBOL.Text.Trim
+            GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value = CMBWARPQUALITY.Text.Trim
+            GRIDWARP.Item(WDENIER.Index, TEMPROW).Value = TXTWARPDENIER.Text.Trim
+            GRIDWARP.Item(WMILL.Index, TEMPROW).Value = CMBWARPMILLNAME.Text.Trim
+            GRIDWARP.Item(WSHADE.Index, TEMPROW).Value = CMBWARPSHADE.Text.Trim
+            GRIDWARP.Item(WPE.Index, TEMPROW).Value = Val(TXTWARPPE.Text.Trim)
+            GRIDWARP.Item(WBE.Index, TEMPROW).Value = Val(TXTWARPBE.Text.Trim)
+            GRIDWARP.Item(WENDS.Index, TEMPROW).Value = Val(TXTWARPTE.Text.Trim)
+            GRIDWARP.Item(WWT.Index, TEMPROW).Value = Val(TXTWARPWT.Text.Trim)
+            GRIDWARP.Item(WCONS.Index, TEMPROW).Value = Val(TXTWARPCONS.Text.Trim)
+            GRIDWARP.Item(WRATE.Index, TEMPROW).Value = Val(TXTWARPRATE.Text.Trim)
+            GRIDWARP.Item(WCOST.Index, TEMPROW).Value = Val(TXTWARPCOST.Text.Trim)
+            TEMPPROW = GRIDWARP.CurrentRow.Index
+            TXTWARPSRNO.Focus()
+            GRIDDOUBLECLICK = False
+        End If
+        GRIDWARP.ClearSelection()
+        clearwarp()
+    End Sub
+    Sub clearwarp()
+        'TXTWARPSRNO.Clear()
+        TXTWARPSYMBOL.Clear()
+        CMBWARPQUALITY.Text = ""
+        TXTWARPDENIER.Clear()
+        CMBWARPMILLNAME.Text = ""
+        CMBWARPSHADE.Text = ""
+        TXTWARPPE.Clear()
+        TXTWARPBE.Clear()
+        TXTWARPTE.Clear()
+        TXTWARPWT.Clear()
+        TXTWARPCONS.Clear()
+        TXTWARPRATE.Clear()
+        TXTWARPCOST.Clear()
+    End Sub
+    Sub fillwarppatterngrid()
+        If GRIDDOUBLECLICK = False Then
+            GRIDWARPPATTERN.Rows.Add(Val(TXTWARPGSRNO.Text.Trim), TXTGRIDPE.Text.Trim, TXTGRIDSYMBOL.Text.Trim)
+            getsrno(GRIDWARP)
+        ElseIf GRIDDOUBLECLICK = True Then
+            GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPROW).Value = Val(TXTWARPGSRNO.Text.Trim)
+            GRIDWARPPATTERN.Item(WPENDS.Index, TEMPROW).Value = TXTGRIDPE.Text.Trim
+            GRIDWARPPATTERN.Item(WPSYM.Index, TEMPROW).Value = TXTGRIDSYMBOL.Text.Trim
 
-
+            TEMPPROW = GRIDWARPPATTERN.CurrentRow.Index
+            TXTWARPGSRNO.Focus()
+            GRIDDOUBLECLICK = False
+        End If
+        GRIDWARPPATTERN.ClearSelection()
+        TXTGRIDPE.Clear()
+        TXTGRIDSYMBOL.Clear()
+    End Sub
 End Class
