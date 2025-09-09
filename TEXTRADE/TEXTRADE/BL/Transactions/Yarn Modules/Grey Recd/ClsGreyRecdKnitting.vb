@@ -142,6 +142,16 @@ Public Class ClsGreyRecdKnitting
                 .Add(New SqlClient.SqlParameter("@EWAYBILLNO", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PACKING", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@EWAYBILLNO", alParaval(I)))
+                I = I + 1
+
+
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)

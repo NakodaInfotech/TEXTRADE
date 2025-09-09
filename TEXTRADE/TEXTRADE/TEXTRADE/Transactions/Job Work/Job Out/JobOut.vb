@@ -579,6 +579,11 @@ Public Class JobOut
             alParaval.Add(CMBDISPATCHFROM.Text.Trim)
             alParaval.Add(txtwidth.Text.Trim)
 
+            alParaval.Add("")  'CHNO
+            alParaval.Add("")     'REFLOTNO
+            alParaval.Add("")     'SHIPTO
+            alParaval.Add("")   'PARTYNAME
+
             Dim objCUTTING As New ClsCuttingIssue()
             objCUTTING.alParaval = alParaval
             If EDIT = False Then

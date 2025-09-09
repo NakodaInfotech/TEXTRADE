@@ -179,6 +179,15 @@ Public Class ClsCuttingIssue
 
                 .Add(New SqlClient.SqlParameter("@WIDTH", alParaval(I)))
                 I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@CHNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
+                I = I + 1
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -345,8 +354,16 @@ Public Class ClsCuttingIssue
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DISPATCHFROM", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@WIDTH", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@CHNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))

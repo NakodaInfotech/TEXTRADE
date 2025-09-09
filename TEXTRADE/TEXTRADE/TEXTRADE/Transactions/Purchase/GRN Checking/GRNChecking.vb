@@ -390,6 +390,10 @@ Public Class GRNChecking
             alParaval.Add("")   'EWAYBILLNO
             alParaval.Add(TXTREFLOTNO.Text)
 
+            alParaval.Add("")     'SHIPTO
+            alParaval.Add("")   'PARTYITEMNAME
+
+
             Dim OBJCHECKING As New ClsGRNChecking()
             OBJCHECKING.alParaval = alParaval
             If edit = False Then
