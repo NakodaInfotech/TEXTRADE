@@ -17,7 +17,7 @@ Public Class ClsDesignCardMaster
 #Region "Functions"
     Public Function SAVE() As Integer
         Try
-            Dim strCommand As String = "SP_DESIGN_CARD_MASTER_SAVE"
+            Dim strCommand As String = "SP_MASTER_DESIGNCARDMASTER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -294,7 +294,7 @@ Public Class ClsDesignCardMaster
 
     Public Function UPDATE() As Integer
         Try
-            Dim strCommand As String = "SP_DESIGN_CARD_MASTER_UPDATE"
+            Dim strCommand As String = "SP_MASTER_DESIGNCARDMASTER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0

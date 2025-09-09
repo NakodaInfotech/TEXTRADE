@@ -538,12 +538,73 @@ Public Class DesignCardMaster
         If CMBGREYDELAT.Text.Trim = "" Then FILLNAME(CMBGREYDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE<>'ACCOUNTS'")
     End Sub
-    Sub fillgrid()
+    Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
+        Try
+            'If edit = False Then
+            For Each row As DataGridViewRow In grid.Rows
+                row.Cells(0).Value = row.Index + 1
+            Next
+            'End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub fillwarpgrid()
 
         If GRIDDOUBLECLICK = False Then
-            'GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), TXTWARPSYMBOL.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, TXTWARP.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
-
-            'getsrno(GRIDSHADE)
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), TXTWARPSYMBOL.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
+            getsrno(GRIDWARP)
+        ElseIf GRIDDOUBLECLICK = True Then
+            GRIDWARP.Item(WSRNO.Index, TEMPROW).Value = Val(TXTWARPSRNO.Text.Trim)
+            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = TXTWARPSYMBOL.Text.Trim
+            GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value = CMBWARPQUALITY.Text.Trim
+            GRIDWARP.Item(WDENIER.Index, TEMPROW).Value = TXTWARPDENIER.Text.Trim
+            GRIDWARP.Item(WMILL.Index, TEMPROW).Value = CMBWARPMILLNAME.Text.Trim
+            GRIDWARP.Item(WSHADE.Index, TEMPROW).Value = CMBWARPSHADE.Text.Trim
+            GRIDWARP.Item(WPE.Index, TEMPROW).Value = Val(TXTWARPPE.Text.Trim)
+            GRIDWARP.Item(WBE.Index, TEMPROW).Value = Val(TXTWARPBE.Text.Trim)
+            GRIDWARP.Item(WENDS.Index, TEMPROW).Value = Val(TXTWARPTE.Text.Trim)
+            GRIDWARP.Item(WWT.Index, TEMPROW).Value = Val(TXTWARPWT.Text.Trim)
+            GRIDWARP.Item(WCONS.Index, TEMPROW).Value = Val(TXTWARPCONS.Text.Trim)
+            GRIDWARP.Item(WRATE.Index, TEMPROW).Value = Val(TXTWARPRATE.Text.Trim)
+            GRIDWARP.Item(WCOST.Index, TEMPROW).Value = Val(TXTWARPCOST.Text.Trim)
+            TEMPPROW = GRIDWARP.CurrentRow.Index
+            TXTWARPSRNO.Focus()
+            GRIDDOUBLECLICK = False
         End If
+        GRIDWARP.ClearSelection()
+        clearwarp()
+    End Sub
+    Sub clearwarp()
+        'TXTWARPSRNO.Clear()
+        TXTWARPSYMBOL.Clear()
+        CMBWARPQUALITY.Text = ""
+        TXTWARPDENIER.Clear()
+        CMBWARPMILLNAME.Text = ""
+        CMBWARPSHADE.Text = ""
+        TXTWARPPE.Clear()
+        TXTWARPBE.Clear()
+        TXTWARPTE.Clear()
+        TXTWARPWT.Clear()
+        TXTWARPCONS.Clear()
+        TXTWARPRATE.Clear()
+        TXTWARPCOST.Clear()
+    End Sub
+    Sub fillwarppatterngrid()
+        If GRIDDOUBLECLICK = False Then
+            GRIDWARPPATTERN.Rows.Add(Val(TXTWARPGSRNO.Text.Trim), TXTGRIDPE.Text.Trim, TXTGRIDSYMBOL.Text.Trim)
+            getsrno(GRIDWARP)
+        ElseIf GRIDDOUBLECLICK = True Then
+            GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPROW).Value = Val(TXTWARPGSRNO.Text.Trim)
+            GRIDWARPPATTERN.Item(WPENDS.Index, TEMPROW).Value = TXTGRIDPE.Text.Trim
+            GRIDWARPPATTERN.Item(WPSYM.Index, TEMPROW).Value = TXTGRIDSYMBOL.Text.Trim
+
+            TEMPPROW = GRIDWARPPATTERN.CurrentRow.Index
+            TXTWARPGSRNO.Focus()
+            GRIDDOUBLECLICK = False
+        End If
+        GRIDWARPPATTERN.ClearSelection()
+        TXTGRIDPE.Clear()
+        TXTGRIDSYMBOL.Clear()
     End Sub
 End Class
