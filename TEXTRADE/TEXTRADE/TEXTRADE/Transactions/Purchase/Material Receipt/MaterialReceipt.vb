@@ -343,7 +343,7 @@ Public Class MaterialReceipt
             End If
 
 
-            If GRIDORDER.RowCount = 0 And CHKRETURN.CheckState = CheckState.Unchecked And (ClientName = "AVIS" Or ClientName = "YASHVI") Then
+            If GRIDORDER.RowCount = 0 And CHKRETURN.CheckState = CheckState.Unchecked And ClientName = "AVIS" Then
                 EP.SetError(cmbname, "Select Program Details")
                 bln = False
             End If
@@ -444,7 +444,7 @@ CHECKNEXTLINEMTRS:
                     End If
                     If TEMPORDERMATCH = False Then
                         ROW.DefaultCellStyle.BackColor = Color.LightGreen
-                        If (ClientName = "AVIS" Or ClientName = "YASHVI") And CHKRETURN.CheckState = CheckState.Unchecked Then
+                        If ClientName = "AVIS" And CHKRETURN.CheckState = CheckState.Unchecked Then
                             EP.SetError(cmbname, "There are Items which are not Present in Selected Program")
                             bln = False
                         Else

@@ -3,8 +3,18 @@ Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
 Imports DevExpress.XtraScheduler
+Imports DevExpress.XtraTabbedMdi
 
 Public Class MDIMain
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        XtraTabbedMdiManager1.AppearancePage.HeaderActive.BackColor = Color.LemonChiffon
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
 
     Sub SCROLLERS()
         Try
@@ -10709,5 +10719,7 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+
 End Class
 
