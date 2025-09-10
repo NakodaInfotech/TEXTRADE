@@ -85,6 +85,8 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALSELVEDGEENDS", alParaval(I)))
                 I += 1
+
+
                 ' Reference and names
                 .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
                 I += 1
@@ -94,7 +96,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DELIVERYAT", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@GREY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@DELDATE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ORDERDATE", alParaval(I)))
                 I += 1
                 ' Other details
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))

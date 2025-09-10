@@ -62,15 +62,26 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTLEFTSELTOTALENDS.Text.Trim))
             alParaval.Add(Val(TXTRIGHTSELTOTALENDS.Text.Trim))
             alParaval.Add(Val(TXTTOTALSELENDS.Text.Trim))
-            alParaval.Add(Val(TXTREFNO.Text.Trim))
+
+
+            alParaval.Add(TXTREFNO.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBAGENTNAME.Text.Trim)
             alParaval.Add(CMBDELAT.Text.Trim)
+            alParaval.Add(Val(TXTORDERNO.Text.Trim))
+            alParaval.Add(CMBGREY.Text.Trim)
             If IsDate(DELDATE.Text.Trim) Then
                 alParaval.Add(Format(CDate(DELDATE.Text.Trim), "MM/dd/yyyy"))
             Else
                 alParaval.Add("")
             End If
+            If IsDate(ORDERDATE.Text.Trim) Then
+                alParaval.Add(Format(CDate(ORDERDATE.Text.Trim), "MM/dd/yyyy"))
+            Else
+                alParaval.Add("")
+            End If
+
+
 
             'OTHERS
             alParaval.Add(Val(TXTMTRS.Text.Trim))          ' Piece Mtrs
@@ -144,36 +155,36 @@ Public Class DesignCardMaster
                         WARPRate = row.Cells(WRATE.Index).Value
                         WARPCost = row.Cells(WCOST.Index).Value
                     Else
-                        WARPSrNo &= "|" & row.Cells(WSRNO.Index).Value
-                        WARPSym &= "|" & row.Cells(WSYM.Index).Value.ToString
-                        WARPYarnQuality &= "|" & row.Cells(WQUALITY.Index).Value.ToString
-                        WARPDenier &= "|" & row.Cells(WDENIER.Index).Value
-                        WARPMillName &= "|" & row.Cells(WMILL.Index).Value.ToString
-                        WARPShade &= "|" & row.Cells(WSHADE.Index).Value.ToString
-                        WARPPE &= "|" & row.Cells(WPE.Index).Value
-                        WARPBE &= "|" & row.Cells(WBE.Index).Value
-                        WARPTE &= "|" & row.Cells(WENDS.Index).Value
-                        WARPWt &= "|" & row.Cells(WWT.Index).Value
-                        WARPCons &= "|" & row.Cells(WCONS.Index).Value
-                        WARPRate &= "|" & row.Cells(WRATE.Index).Value
-                        WARPCost &= "|" & row.Cells(WCOST.Index).Value
+                        WARPSrNo = WARPSrNo & "|" & row.Cells(WSRNO.Index).Value
+                        WARPSym = WARPSym & "|" & row.Cells(WSYM.Index).Value.ToString
+                        WARPYarnQuality = WARPYarnQuality & "|" & row.Cells(WQUALITY.Index).Value.ToString
+                        WARPDenier = WARPDenier & "|" & row.Cells(WDENIER.Index).Value
+                        WARPMillName = WARPMillName & "|" & row.Cells(WMILL.Index).Value.ToString
+                        WARPShade = WARPShade & "|" & row.Cells(WSHADE.Index).Value.ToString
+                        WARPPE = WARPPE & "|" & row.Cells(WPE.Index).Value
+                        WARPBE = WARPBE & "|" & row.Cells(WBE.Index).Value
+                        WARPTE = WARPTE & "|" & row.Cells(WENDS.Index).Value
+                        WARPWt = WARPWt & "|" & row.Cells(WWT.Index).Value
+                        WARPCons = WARPCons & "|" & row.Cells(WCONS.Index).Value
+                        WARPRate = WARPRate & "|" & row.Cells(WRATE.Index).Value
+                        WARPCost = WARPCost & "|" & row.Cells(WCOST.Index).Value
                     End If
                 End If
             Next
 
-            alParaval.Add(WARPSrNo)
+            alParaval.Add(Val(WARPSrNo))
             alParaval.Add(WARPSym)
             alParaval.Add(WARPYarnQuality)
-            alParaval.Add(WARPDenier)
+            alParaval.Add(Val(WARPDenier))
             alParaval.Add(WARPMillName)
             alParaval.Add(WARPShade)
-            alParaval.Add(WARPPE)
-            alParaval.Add(WARPBE)
-            alParaval.Add(WARPTE)
-            alParaval.Add(WARPWt)
-            alParaval.Add(WARPCons)
-            alParaval.Add(WARPRate)
-            alParaval.Add(WARPCost)
+            alParaval.Add(Val(WARPPE))
+            alParaval.Add(Val(WARPBE))
+            alParaval.Add(Val(WARPTE))
+            alParaval.Add(Val(WARPWt))
+            alParaval.Add(Val(WARPCons))
+            alParaval.Add(Val(WARPRate))
+            alParaval.Add(Val(WARPCost))
 
 
             Dim WARPGRIDSRNO As String = ""
@@ -187,16 +198,16 @@ Public Class DesignCardMaster
                         WARPGRIDPE = row.Cells(WPENDS.Index).Value
                         WARPGRIDSYM = row.Cells(WPSYM.Index).Value.ToString
                     Else
-                        WARPGRIDSRNO &= "|" & row.Cells(WPSRNO.Index).Value
-                        WARPGRIDPE &= "|" & row.Cells(WPENDS.Index).Value
-                        WARPGRIDSYM &= "|" & row.Cells(WPSYM.Index).Value.ToString
+                        WARPGRIDSRNO = WARPGRIDSRNO & "|" & row.Cells(WPSRNO.Index).Value
+                        WARPGRIDPE = WARPGRIDPE & "|" & row.Cells(WPENDS.Index).Value
+                        WARPGRIDSYM = WARPGRIDSYM & "|" & row.Cells(WPSYM.Index).Value.ToString
                     End If
                 End If
             Next
 
-            alParaval.Add(WARPGRIDSRNO)
-            alParaval.Add(WARPGRIDPE)
-            alParaval.Add(WARPGRIDSYM)
+            alParaval.Add(Val(WARPGRIDSRNO))
+            alParaval.Add(Val(WARPGRIDPE))
+            alParaval.Add(Val(WARPGRIDSYM))
             '*************************************************************************
             'GRID SLEVAGE
             Dim ALOSrNo As String = ""
@@ -230,38 +241,38 @@ Public Class DesignCardMaster
                         ALORate = row.Cells(SRATE.Index).Value
                         ALOCost = row.Cells(SCOST.Index).Value
                     Else
-                        ALOSrNo &= "|" & row.Cells(SSRNO.Index).Value
-                        ALOSym &= "|" & row.Cells(SSYM.Index).Value.ToString
-                        ALOYarnQuality &= "|" & row.Cells(SQUALITY.Index).Value.ToString
-                        ALODenier &= "|" & row.Cells(SDENIER.Index).Value
-                        ALOMillName &= "|" & row.Cells(SMILL.Index).Value.ToString
-                        ALOShade &= "|" & row.Cells(SSHADE.Index).Value.ToString
-                        ALOPE &= "|" & row.Cells(SPE.Index).Value
-                        ALOBE &= "|" & row.Cells(SBE.Index).Value
-                        ALOTE &= "|" & row.Cells(SENDS.Index).Value
-                        ALOWt &= "|" & row.Cells(SWT.Index).Value
-                        ALOCons &= "|" & row.Cells(SCONS.Index).Value
-                        ALORate &= "|" & row.Cells(SRATE.Index).Value
-                        ALOCost &= "|" & row.Cells(SCOST.Index).Value
+                        ALOSrNo = ALOSrNo & "|" & row.Cells(SSRNO.Index).Value
+                        ALOSym = ALOSym & "|" & row.Cells(SSYM.Index).Value.ToString
+                        ALOYarnQuality = ALOYarnQuality & "|" & row.Cells(SQUALITY.Index).Value.ToString
+                        ALODenier = ALODenier & "|" & row.Cells(SDENIER.Index).Value
+                        ALOMillName = ALOMillName & "|" & row.Cells(SMILL.Index).Value.ToString
+                        ALOShade = ALOShade & "|" & row.Cells(SSHADE.Index).Value.ToString
+                        ALOPE = ALOPE & "|" & row.Cells(SPE.Index).Value
+                        ALOBE = ALOBE & "|" & row.Cells(SBE.Index).Value
+                        ALOTE = ALOTE & "|" & row.Cells(SENDS.Index).Value
+                        ALOWt = ALOWt & "|" & row.Cells(SWT.Index).Value
+                        ALOCons = ALOCons & "|" & row.Cells(SCONS.Index).Value
+                        ALORate = ALORate & "|" & row.Cells(SRATE.Index).Value
+                        ALOCost = ALOCost & "|" & row.Cells(SCOST.Index).Value
                     End If
                 End If
 
             Next
 
             ' Add these variables to your parameter list (ArrayList, etc.)
-            alParaval.Add(ALOSrNo)
+            alParaval.Add(Val(ALOSrNo))
             alParaval.Add(ALOSym)
             alParaval.Add(ALOYarnQuality)
-            alParaval.Add(ALODenier)
+            alParaval.Add(Val(ALODenier))
             alParaval.Add(ALOMillName)
             alParaval.Add(ALOShade)
-            alParaval.Add(ALOPE)
-            alParaval.Add(ALOBE)
-            alParaval.Add(ALOTE)
-            alParaval.Add(ALOWt)
-            alParaval.Add(ALOCons)
-            alParaval.Add(ALORate)
-            alParaval.Add(ALOCost)
+            alParaval.Add(Val(ALOPE))
+            alParaval.Add(Val(ALOBE))
+            alParaval.Add(Val(ALOTE))
+            alParaval.Add(Val(ALOWt))
+            alParaval.Add(Val(ALOCons))
+            alParaval.Add(Val(ALORate))
+            alParaval.Add(Val(ALOCost))
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -296,36 +307,36 @@ Public Class DesignCardMaster
                         WEFTRate = row.Cells(FRATE.Index).Value
                         WEFTCost = row.Cells(FCOST.Index).Value
                     Else
-                        WEFTSrNo &= "|" & row.Cells(FSRNO.Index).Value
-                        WEFTSym &= "|" & row.Cells(FSYM.Index).Value.ToString
-                        WEFTYarnQuality &= "|" & row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTDenier &= "|" & row.Cells(FDENIER.Index).Value
-                        WEFTMillName &= "|" & row.Cells(FMILL.Index).Value.ToString
-                        WEFTShade &= "|" & row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPE &= "|" & row.Cells(FPE.Index).Value
-                        WEFTBE &= "|" & row.Cells(FBE.Index).Value
-                        WEFTTE &= "|" & row.Cells(FENDS.Index).Value
-                        WEFTWt &= "|" & row.Cells(FWT.Index).Value
-                        WEFTCons &= "|" & row.Cells(FCONS.Index).Value
-                        WEFTRate &= "|" & row.Cells(FRATE.Index).Value
-                        WEFTCost &= "|" & row.Cells(FCOST.Index).Value
+                        WEFTSrNo = WEFTSrNo & "|" & row.Cells(FSRNO.Index).Value
+                        WEFTSym = WEFTSym & "|" & row.Cells(FSYM.Index).Value.ToString
+                        WEFTYarnQuality = WEFTYarnQuality & "|" & row.Cells(FQUALITY.Index).Value.ToString
+                        WEFTDenier = WEFTDenier & "|" & row.Cells(FDENIER.Index).Value
+                        WEFTMillName = WEFTMillName & "|" & row.Cells(FMILL.Index).Value.ToString
+                        WEFTShade = WEFTShade & "|" & row.Cells(FSHADE.Index).Value.ToString
+                        WEFTPE = WEFTPE & "|" & row.Cells(FPE.Index).Value
+                        WEFTBE = WEFTBE & "|" & row.Cells(FBE.Index).Value
+                        WEFTTE = WEFTTE & "|" & row.Cells(FENDS.Index).Value
+                        WEFTWt = WEFTWt & "|" & row.Cells(FWT.Index).Value
+                        WEFTCons = WEFTCons & "|" & row.Cells(FCONS.Index).Value
+                        WEFTRate = WEFTRate & "|" & row.Cells(FRATE.Index).Value
+                        WEFTCost = WEFTCost & "|" & row.Cells(FCOST.Index).Value
                     End If
                 End If
             Next
 
-            alParaval.Add(WEFTSrNo)
+            alParaval.Add(Val(WEFTSrNo))
             alParaval.Add(WEFTSym)
             alParaval.Add(WEFTYarnQuality)
-            alParaval.Add(WEFTDenier)
+            alParaval.Add(Val(WEFTDenier))
             alParaval.Add(WEFTMillName)
             alParaval.Add(WEFTShade)
-            alParaval.Add(WEFTPE)
-            alParaval.Add(WEFTBE)
-            alParaval.Add(WEFTTE)
-            alParaval.Add(WEFTWt)
-            alParaval.Add(WEFTCons)
-            alParaval.Add(WEFTRate)
-            alParaval.Add(WEFTCost)
+            alParaval.Add(Val(WEFTPE))
+            alParaval.Add(Val(WEFTBE))
+            alParaval.Add(Val(WEFTTE))
+            alParaval.Add(Val(WEFTWt))
+            alParaval.Add(Val(WEFTCons))
+            alParaval.Add(Val(WEFTRate))
+            alParaval.Add(Val(WEFTCost))
 
 
             Dim WEFTTRSrNo As String = ""
@@ -339,16 +350,16 @@ Public Class DesignCardMaster
                         WEFTTRPE = row.Cells(FPENDS.Index).Value
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
-                        WEFTTRSrNo &= "|" & row.Cells(FSRNO.Index).Value
-                        WEFTTRPE &= "|" & row.Cells(FPE.Index).Value
-                        WEFTTRSym &= "|" & row.Cells(FPSYM.Index).Value.ToString
+                        WEFTTRSrNo = WEFTTRSrNo & "|" & row.Cells(FSRNO.Index).Value
+                        WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPE.Index).Value
+                        WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
                 End If
             Next
 
-            alParaval.Add(WEFTTRSrNo)
-            alParaval.Add(WEFTTRPE)
-            alParaval.Add(WEFTTRSym)
+            alParaval.Add(Val(WEFTTRSrNo))
+            alParaval.Add(Val(WEFTTRPE))
+            alParaval.Add(Val(WEFTTRSym))
 
 
             alParaval.Add(CmpId)
@@ -498,6 +509,7 @@ Public Class DesignCardMaster
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
+            fillcmb()
             clear()
 
             If EDIT = True Then
@@ -535,14 +547,14 @@ Public Class DesignCardMaster
     End Sub
     Sub fillcmb()
         Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
-        If DT.Rows.Count > 0 Then
-            DT.DefaultView.Sort = "DESIGN_NO"
-            CMBDESIGNNO.DataSource = DT
-            CMBDESIGNNO.DisplayMember = "DESIGN_NO"
-            CMBDESIGNNO.Text = tempdesignno
-        End If
-        FILLDESIGN(CMBCOPYDESIGN, EDIT)
+        'Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
+        'If DT.Rows.Count > 0 Then
+        '    DT.DefaultView.Sort = "DESIGN_NO"
+        '    CMBDESIGNNO.DataSource = DT
+        '    CMBDESIGNNO.DisplayMember = "DESIGN_NO"
+        '    CMBDESIGNNO.Text = tempdesignno
+        'End If
+        FILLDESIGN(CMBDESIGNNO, CMBITEMNAME.Text.Trim)
         FILLCOLOR(CMBWARPSHADE, "", "")
         FILLCOLOR(CMBSELSHADE, "", "")
         FILLCOLOR(cmbweftshade, "", "")
@@ -876,6 +888,11 @@ Public Class DesignCardMaster
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
+        clear()
+        EDIT = False
     End Sub
 
     Private Sub CMBWARPMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBWARPMILLNAME.Validating
