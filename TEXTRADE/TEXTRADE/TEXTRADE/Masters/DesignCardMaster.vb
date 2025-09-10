@@ -25,6 +25,7 @@ Public Class DesignCardMaster
             Dim IntResult As Integer
 
             Dim alParaval As New ArrayList
+            alParaval.Add(txtcardno.Text.Trim)
             alParaval.Add(CMBITEMNAME.Text.Trim)
             alParaval.Add(CMBDESIGNNO.Text.Trim)
 
@@ -61,7 +62,12 @@ Public Class DesignCardMaster
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBAGENTNAME.Text.Trim)
             alParaval.Add(CMBDELAT.Text.Trim)
-            alParaval.Add(Format(Convert.ToDateTime(DELDATE.Text).Date, "MM/dd/yyyy"))
+            If IsDate(DELDATE.Text.Trim) Then
+                alParaval.Add(Format(CDate(DELDATE.Text.Trim), "MM/dd/yyyy"))
+            Else
+                alParaval.Add("")
+            End If
+
             'OTHERS
             alParaval.Add(Val(TXTMTRS.Text.Trim))          ' Piece Mtrs
             alParaval.Add(Val(TXTNOOFPCS.Text.Trim))            ' No of Pcs
@@ -72,7 +78,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTLOOMPROD.Text.Trim))           ' Loom Prod
             alParaval.Add(Val(TXTRPM.Text.Trim))                ' RPM
             alParaval.Add(CMBGREYDELAT.Text.Trim)          ' Grey Delivery At (ComboBox)
-            alParaval.Add(Format(Convert.ToDateTime(GREYDELDATE.Text).Date, "MM/dd/yyyy"))
+            If IsDate(GREYDELDATE.Text.Trim) Then alParaval.Add(Format(Convert.ToDateTime(GREYDELDATE.Text).Date, "MM/dd/yyyy")) Else alParaval.Add("")
             'TOTAL
             alParaval.Add(Val(TXTTOTALWARPPE.Text.Trim))        ' P.E. (Possible: Ends per repeat)
             alParaval.Add(Val(TXTTOTALWARPBE.Text.Trim))        ' B.E. (Possible: Ends for Border)
@@ -326,7 +332,7 @@ Public Class DesignCardMaster
                 If row.Cells(FSRNO.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
                         WEFTTRSrNo = row.Cells(FSRNO.Index).Value.ToString
-                        WEFTTRPE = row.Cells(FPE.Index).Value.ToString
+                        WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
                         WEFTTRSrNo &= "|" & row.Cells(FSRNO.Index).Value.ToString
@@ -844,7 +850,7 @@ Public Class DesignCardMaster
 
     Private Sub CMBWEFTMILLNAME_Enter(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Enter
         Try
-            If CMBWEFTMILLNAME.Text.Trim = "" Then FILLMILL(CMBWEFTMILLNAME, CMBITEMNAME.Text.Trim)
+            If CMBWEFTMILLNAME.Text.Trim = "" Then FILLMILL(CMBWEFTMILLNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -915,7 +921,7 @@ Public Class DesignCardMaster
     End Sub
     Private Sub CMBWEFTYARNQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Enter
         Try
-            If CMBWEFTYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBWEFTYARNQUALITY, CMBITEMNAME.Text.Trim)
+            If CMBWEFTYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBWEFTYARNQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try

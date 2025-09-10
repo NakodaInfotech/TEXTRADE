@@ -22,6 +22,8 @@ Public Class ClsDesignCardMaster
             With alParameter
                 Dim I As Integer = 0
                 ' Add parameters in the exact order of alParaval
+                .Add(New SqlClient.SqlParameter("@CARDNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@ItemName", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DesignNo", alParaval(I)))
@@ -141,6 +143,8 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TotalSelvedgePE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TotalSelvedgeBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TotalSelvedgeTE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TotalSelvedgeWt", alParaval(I)))
                 I += 1
