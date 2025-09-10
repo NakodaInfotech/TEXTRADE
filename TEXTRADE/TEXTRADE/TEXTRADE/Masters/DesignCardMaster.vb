@@ -64,7 +64,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALSELENDS.Text.Trim))
 
 
-            alParaval.Add(Val(TXTREFNO.Text.Trim))
+            alParaval.Add(TXTREFNO.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBAGENTNAME.Text.Trim)
             alParaval.Add(CMBDELAT.Text.Trim)
@@ -172,19 +172,19 @@ Public Class DesignCardMaster
                 End If
             Next
 
-            alParaval.Add(WARPSrNo)
+            alParaval.Add(Val(WARPSrNo))
             alParaval.Add(WARPSym)
             alParaval.Add(WARPYarnQuality)
-            alParaval.Add(WARPDenier)
+            alParaval.Add(Val(WARPDenier))
             alParaval.Add(WARPMillName)
             alParaval.Add(WARPShade)
-            alParaval.Add(WARPPE)
-            alParaval.Add(WARPBE)
-            alParaval.Add(WARPTE)
-            alParaval.Add(WARPWt)
-            alParaval.Add(WARPCons)
-            alParaval.Add(WARPRate)
-            alParaval.Add(WARPCost)
+            alParaval.Add(Val(WARPPE))
+            alParaval.Add(Val(WARPBE))
+            alParaval.Add(Val(WARPTE))
+            alParaval.Add(Val(WARPWt))
+            alParaval.Add(Val(WARPCons))
+            alParaval.Add(Val(WARPRate))
+            alParaval.Add(Val(WARPCost))
 
 
             Dim WARPGRIDSRNO As String = ""
@@ -205,9 +205,9 @@ Public Class DesignCardMaster
                 End If
             Next
 
-            alParaval.Add(WARPGRIDSRNO)
-            alParaval.Add(WARPGRIDPE)
-            alParaval.Add(WARPGRIDSYM)
+            alParaval.Add(Val(WARPGRIDSRNO))
+            alParaval.Add(Val(WARPGRIDPE))
+            alParaval.Add(Val(WARPGRIDSYM))
             '*************************************************************************
             'GRID SLEVAGE
             Dim ALOSrNo As String = ""
@@ -260,19 +260,19 @@ Public Class DesignCardMaster
             Next
 
             ' Add these variables to your parameter list (ArrayList, etc.)
-            alParaval.Add(ALOSrNo)
+            alParaval.Add(Val(ALOSrNo))
             alParaval.Add(ALOSym)
             alParaval.Add(ALOYarnQuality)
-            alParaval.Add(ALODenier)
+            alParaval.Add(Val(ALODenier))
             alParaval.Add(ALOMillName)
             alParaval.Add(ALOShade)
-            alParaval.Add(ALOPE)
-            alParaval.Add(ALOBE)
-            alParaval.Add(ALOTE)
-            alParaval.Add(ALOWt)
-            alParaval.Add(ALOCons)
-            alParaval.Add(ALORate)
-            alParaval.Add(ALOCost)
+            alParaval.Add(Val(ALOPE))
+            alParaval.Add(Val(ALOBE))
+            alParaval.Add(Val(ALOTE))
+            alParaval.Add(Val(ALOWt))
+            alParaval.Add(Val(ALOCons))
+            alParaval.Add(Val(ALORate))
+            alParaval.Add(Val(ALOCost))
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -324,19 +324,19 @@ Public Class DesignCardMaster
                 End If
             Next
 
-            alParaval.Add(WEFTSrNo)
+            alParaval.Add(Val(WEFTSrNo))
             alParaval.Add(WEFTSym)
             alParaval.Add(WEFTYarnQuality)
-            alParaval.Add(WEFTDenier)
+            alParaval.Add(Val(WEFTDenier))
             alParaval.Add(WEFTMillName)
             alParaval.Add(WEFTShade)
-            alParaval.Add(WEFTPE)
-            alParaval.Add(WEFTBE)
-            alParaval.Add(WEFTTE)
-            alParaval.Add(WEFTWt)
-            alParaval.Add(WEFTCons)
-            alParaval.Add(WEFTRate)
-            alParaval.Add(WEFTCost)
+            alParaval.Add(Val(WEFTPE))
+            alParaval.Add(Val(WEFTBE))
+            alParaval.Add(Val(WEFTTE))
+            alParaval.Add(Val(WEFTWt))
+            alParaval.Add(Val(WEFTCons))
+            alParaval.Add(Val(WEFTRate))
+            alParaval.Add(Val(WEFTCost))
 
 
             Dim WEFTTRSrNo As String = ""
@@ -357,9 +357,9 @@ Public Class DesignCardMaster
                 End If
             Next
 
-            alParaval.Add(WEFTTRSrNo)
-            alParaval.Add(WEFTTRPE)
-            alParaval.Add(WEFTTRSym)
+            alParaval.Add(Val(WEFTTRSrNo))
+            alParaval.Add(Val(WEFTTRPE))
+            alParaval.Add(Val(WEFTTRSym))
 
 
             alParaval.Add(CmpId)
@@ -509,6 +509,7 @@ Public Class DesignCardMaster
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
+            fillcmb()
             clear()
 
             If EDIT = True Then
@@ -546,14 +547,14 @@ Public Class DesignCardMaster
     End Sub
     Sub fillcmb()
         Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
-        If DT.Rows.Count > 0 Then
-            DT.DefaultView.Sort = "DESIGN_NO"
-            CMBDESIGNNO.DataSource = DT
-            CMBDESIGNNO.DisplayMember = "DESIGN_NO"
-            CMBDESIGNNO.Text = tempdesignno
-        End If
-        FILLDESIGN(CMBCOPYDESIGN, EDIT)
+        'Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
+        'If DT.Rows.Count > 0 Then
+        '    DT.DefaultView.Sort = "DESIGN_NO"
+        '    CMBDESIGNNO.DataSource = DT
+        '    CMBDESIGNNO.DisplayMember = "DESIGN_NO"
+        '    CMBDESIGNNO.Text = tempdesignno
+        'End If
+        FILLDESIGN(CMBDESIGNNO, CMBITEMNAME.Text.Trim)
         FILLCOLOR(CMBWARPSHADE, "", "")
         FILLCOLOR(CMBSELSHADE, "", "")
         FILLCOLOR(cmbweftshade, "", "")
@@ -887,6 +888,11 @@ Public Class DesignCardMaster
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
+        clear()
+        EDIT = False
     End Sub
 
     Private Sub CMBWARPMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBWARPMILLNAME.Validating
