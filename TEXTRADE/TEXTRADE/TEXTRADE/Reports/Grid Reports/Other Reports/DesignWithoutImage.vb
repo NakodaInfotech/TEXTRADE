@@ -9,20 +9,14 @@ Public Class DesignWithoutImage
 
     Private Sub ExcelExport_Click(sender As Object, e As EventArgs) Handles ExcelExport.Click
         Try
-            Dim PATH As String = "" = ""
-            If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
-            PATH = Application.StartupPath & "\Design Without Image.XLS"
-
+            Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-
-            Dim PERIOD As String = AccFrom & " - " & AccTo
-            opti.SheetName = "Design Without Image"
+            opti.SheetName = "Sale Details"
             GRIDBILL.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Design Without Image", GRIDBILL.VisibleColumns.Count + GRIDBILL.GroupCount, "", PERIOD)
-
+            EXCELCMPHEADER(PATH, "Sale Details", GRIDBILL.VisibleColumns.Count + GRIDBILL.GroupCount)
         Catch ex As Exception
-            MsgBox("Design Without Image Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
@@ -41,7 +35,20 @@ Public Class DesignWithoutImage
                 Exit Sub
             End If
 
-            ' FILLGRID()
+            FILLGRID()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRID()
+        Try
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable = objclsCMST.search("DESIGN_NO AS DESIGNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID LEFT OUTER JOIN ITEMDESIGNIMAGE ON DESIGNMASTER.DESIGN_ID = ITEMDESIGN_DESIGNID ", " AND ITEMDESIGN_PATH IS NULL AND DESIGNMASTER.DESIGN_yearid = " & YearId)
+            If dt.Rows.Count > 0 Then
+                GRIDBILL.FocusedRowHandle = GRIDBILL.RowCount - 1
+                GRIDBILL.TopRowIndex = GRIDBILL.RowCount - 15
+            End If
+            GRIDBILLDETAILS.DataSource = dt
         Catch ex As Exception
             Throw ex
         End Try
