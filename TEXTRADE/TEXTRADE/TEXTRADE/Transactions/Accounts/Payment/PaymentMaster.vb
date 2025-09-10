@@ -161,7 +161,7 @@ Public Class PaymentMaster
         gridpayment.RowCount = 0
         getmaxno_PAYMENTmaster()
         TXTSPECIALREMARKS.Clear()
-
+        TXTINFAVR.Clear()
         'AS THEY WANT TO KEEP THE DATE SAME
         'ACCDATE.Text = Now.Date
 
@@ -430,6 +430,7 @@ Public Class PaymentMaster
                         txtremarks.Text = Convert.ToString(dr("remarks"))
                         TXTOURREMARKS.Text = Convert.ToString(dr("OURREMARKS"))
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
+                        TXTINFAVR.Text = Convert.ToString(dr("INFAVR"))
                         LBLCITY.Text = dr("CITY")
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
                         If Convert.ToBoolean(dr("PRINT")) = True Then LBLPRINT.Visible = True
@@ -717,6 +718,7 @@ Public Class PaymentMaster
             alparaval.Add(DESCPAYGRIDSRNO)
             alparaval.Add(DESCPAYBILLINITIALS)
             alparaval.Add(TXTSPECIALREMARKS.Text.Trim)
+            alparaval.Add(TXTINFAVR.Text.Trim)
             Dim OBJpayment As New ClsPaymentMaster
             OBJpayment.alParaval = alparaval
 
@@ -2008,8 +2010,23 @@ LINE1:
                     OBJCHQPRINT.payno = Val(txtaccno.Text.Trim)
                     OBJCHQPRINT.REGNAME = cmbregister.Text.Trim
                     OBJCHQPRINT.FRMSTRING = "CHQPRINT"
-                    If RBNEFT.Checked = True Then OBJCHQPRINT.NEFTRTGSNORMAL = "NEFT"
-                    If RBRTGS.Checked = True Then OBJCHQPRINT.NEFTRTGSNORMAL = "RTGS"
+                    If RBNEFT.Checked = True Then
+                        OBJCHQPRINT.NEFTRTGSNORMAL = "NEFT"
+                        If TXTINFAVR.Text.Trim <> "" Then
+                            OBJCHQPRINT.NEFTRTGSNORMAL = TXTINFAVR.Text.Trim
+                        Else
+                            OBJCHQPRINT.NEFTRTGSNORMAL = "NEFT"
+                        End If
+                    End If
+
+                    If RBRTGS.Checked = True Then
+                        OBJCHQPRINT.NEFTRTGSNORMAL = "RTGS"
+                        If TXTINFAVR.Text.Trim <> "" Then
+                            OBJCHQPRINT.NEFTRTGSNORMAL = TXTINFAVR.Text.Trim
+                        Else
+                            OBJCHQPRINT.NEFTRTGSNORMAL = "RTGS"
+                        End If
+                    End If
                     If RBNORMAL.Checked = True Then OBJCHQPRINT.NEFTRTGSNORMAL = "PARTY"
                     OBJCHQPRINT.MdiParent = MDIMain
                     OBJCHQPRINT.Show()
@@ -2463,6 +2480,7 @@ LINE1:
                         txtremarks.Text = Convert.ToString(dr("remarks"))
                         TXTOURREMARKS.Text = Convert.ToString(dr("OURREMARKS"))
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
+                        TXTINFAVR.Text = Convert.ToString(dr("INFAVR"))
 
                         CHKRECO.CheckState = CheckState.Unchecked
 
