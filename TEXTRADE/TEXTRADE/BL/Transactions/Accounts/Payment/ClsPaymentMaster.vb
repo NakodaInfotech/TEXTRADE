@@ -94,6 +94,8 @@ Public Class ClsPaymentMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SPECIALREMARKS", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@INFAVR", alParaval(I)))
+                I += 1
 
             End With
 
@@ -205,6 +207,8 @@ Public Class ClsPaymentMaster
                 .Add(New SqlClient.SqlParameter("@descPAYBILLINITIALS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SPECIALREMARKS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@INFAVR", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@PAYno", alParaval(I)))
