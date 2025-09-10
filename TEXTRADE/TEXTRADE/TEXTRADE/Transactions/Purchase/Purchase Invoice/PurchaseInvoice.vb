@@ -1884,7 +1884,7 @@ CHECKNEXTLINE:
 
 
                 'CHECKING WHETHER PURCHASEITC ENTRY IS DONE OR NOT
-                DT = OBJCMN.SEARCH("PURITC_INVOICENOBOOKS", "", " PURCHASEITCENTRY_DESC", " AND PURITC_INVOICENOBOOKS = '" & TXTPARTYBILLNO.Text.Trim & "' AND PURITC_TYPE = 'PURCHASE' AND PURITC_YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("PURITC_INVOICENOBOOKS", "", " PURCHASEITCENTRY_DESC", " AND PURITC_GSTIN = '" & TXTGSTIN.Text.Trim & "' AND PURITC_INVOICENOBOOKS = '" & TXTPARTYBILLNO.Text.Trim & "' AND PURITC_TYPE = 'PURCHASE' AND PURITC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     MsgBox("Purchase ITC Entry Done, Delete Form First", MsgBoxStyle.Critical)
                     Exit Sub
