@@ -255,11 +255,11 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@WEFTCOST", alParaval(I)))
                 I += 1
                 ' Weft GridPattern data serialization
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDPATTERNSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSRNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDPATTERNPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDPE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDPATTERNSYM", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
                 I += 1
                 ' Company and user details
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
