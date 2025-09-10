@@ -7054,6 +7054,46 @@ line1:
             Throw ex
         End Try
     End Sub
+    Sub FILLLOOM(ByRef CMBLOOM As ComboBox, ByRef EDIT As Boolean)
+        Try
+            If CMBLOOM.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable
+
+                dt = objclscommon.search(" LOOM_name ", "", " LOOMMASTER", " and LOOM_cmpid=" & CmpId & " AND LOOM_YEARID = " & YearId)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "LOOM_name"
+                    CMBLOOM.DisplayMember = "LOOM_name"
+                    CMBLOOM.Text = ""
+                End If
+                CMBLOOM.DataSource = dt
+                CMBLOOM.SelectedIndex = -1
+                CMBLOOM.SelectAll()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLWEAVE(ByRef CMBWEAVE As ComboBox, ByRef EDIT As Boolean)
+        Try
+            If CMBWEAVE.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable
+
+                dt = objclscommon.search(" WEAVE_name ", "", " WEAVEMASTER", " and WEAVE_cmpid=" & CmpId & " AND WEAVE_YEARID = " & YearId)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "WEAVE_name"
+                    CMBWEAVE.DisplayMember = "WEAVE_name"
+                    CMBWEAVE.Text = ""
+                End If
+                CMBWEAVE.DataSource = dt
+                CMBWEAVE.SelectedIndex = -1
+                CMBWEAVE.SelectAll()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Sub fillQUALITY(ByRef CMBQUALITY As ComboBox, ByRef edit As Boolean)
         Try
@@ -7817,7 +7857,88 @@ line1:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
-
+    Sub WEAVEVALIDATE(ByRef CMBWEAVE As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBWEAVE.Text.Trim <> "" Then
+                uppercase(CMBWEAVE)
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable
+                dt = objclscommon.search("WEAVE_id", "", "WEAVEMASTER", " and WEAVE_NAME = '" & CMBWEAVE.Text.Trim & "' and WEAVE_cmpid = " & CmpId & "and WEAVE_YEARid = " & YearId)
+                If dt.Rows.Count = 0 Then
+                    Dim a As String = CMBWEAVE.Text.Trim
+                    Dim tempmsg As Integer = MsgBox("WEAVE  not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+                    If tempmsg = vbYes Then
+                        CMBWEAVE.Text = a
+                        Dim OBJYARN As New CategoryMaster
+                        OBJYARN.TempName = CMBWEAVE.Text.Trim()
+                        OBJYARN.ShowDialog()
+                        dt = objclscommon.search("WEAVE_name", "", " WEAVEMASTER ", " and  WEAVE_name = '" & CMBWEAVE.Text.Trim & "' and WEAVE_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            Dim dt1 As New DataTable
+                            dt1 = CMBWEAVE.DataSource
+                            If CMBWEAVE.DataSource <> Nothing Then
+line1:
+                                If dt1.Rows.Count > 0 Then
+                                    dt1.Rows.Add(CMBWEAVE.Text.Trim)
+                                    CMBWEAVE.Text = a
+                                End If
+                            End If
+                        End If
+                        e.Cancel = True
+                    Else
+                        e.Cancel = True
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            GoTo line1
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+    Sub LOOMVALIDATE(ByRef CMBLOOM As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBLOOM.Text.Trim <> "" Then
+                uppercase(CMBLOOM)
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable
+                dt = objclscommon.search("LOOM_id", "", "LOOMMASTER", " and LOOM_NAME = '" & CMBLOOM.Text.Trim & "' and LOOM_cmpid = " & CmpId & "and LOOM_YEARid = " & YearId)
+                If dt.Rows.Count = 0 Then
+                    Dim a As String = CMBLOOM.Text.Trim
+                    Dim tempmsg As Integer = MsgBox("LOOM  not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+                    If tempmsg = vbYes Then
+                        CMBLOOM.Text = a
+                        Dim OBJYARN As New CategoryMaster
+                        OBJYARN.tempname = CMBLOOM.Text.Trim()
+                        OBJYARN.ShowDialog()
+                        dt = objclscommon.search("LOOM_name", "", " LOOMMASTER ", " and  LOOM_name = '" & CMBLOOM.Text.Trim & "' and LOOM_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            Dim dt1 As New DataTable
+                            dt1 = CMBLOOM.DataSource
+                            If CMBLOOM.DataSource <> Nothing Then
+line1:
+                                If dt1.Rows.Count > 0 Then
+                                    dt1.Rows.Add(CMBLOOM.Text.Trim)
+                                    CMBLOOM.Text = a
+                                End If
+                            End If
+                        End If
+                        e.Cancel = True
+                    Else
+                        e.Cancel = True
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            GoTo line1
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
     Sub YARNQUALITYVALIDATE(ByRef CMBYARNQUALITY As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
         Try
             Cursor.Current = Cursors.WaitCursor

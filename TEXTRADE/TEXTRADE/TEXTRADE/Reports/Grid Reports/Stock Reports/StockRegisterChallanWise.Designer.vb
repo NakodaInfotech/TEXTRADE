@@ -28,6 +28,7 @@ Partial Class StockRegisterChallanWise
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,7 +41,8 @@ Partial Class StockRegisterChallanWise
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +70,7 @@ Partial Class StockRegisterChallanWise
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(518, 541)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(588, 541)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 448
@@ -96,7 +98,7 @@ Partial Class StockRegisterChallanWise
         Me.gridregister.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gridregister.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridregister.Appearance.ViewCaption.Options.UseFont = True
-        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GCHALLANNO, Me.GLOTNO, Me.GDATE, Me.GPCS, Me.GMTRS, Me.GISSPCS, Me.GISSMTRS, Me.GBALPCS, Me.GBALMTRS})
+        Me.gridregister.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GCHALLANNO, Me.GLOTNO, Me.GDATE, Me.GPCS, Me.GMTRS, Me.GISSPCS, Me.GISSMTRS, Me.GBALPCS, Me.GBALMTRS, Me.GENTRYTYPE, Me.GENTRYNO})
         Me.gridregister.GridControl = Me.griddetails
         Me.gridregister.Name = "gridregister"
         Me.gridregister.OptionsBehavior.AllowIncrementalSearch = True
@@ -126,6 +128,15 @@ Partial Class StockRegisterChallanWise
         Me.GCHALLANNO.Visible = True
         Me.GCHALLANNO.VisibleIndex = 1
         Me.GCHALLANNO.Width = 100
+        '
+        'GLOTNO
+        '
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 2
+        Me.GLOTNO.Width = 120
         '
         'GDATE
         '
@@ -217,7 +228,7 @@ Partial Class StockRegisterChallanWise
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(432, 541)
+        Me.cmdok.Location = New System.Drawing.Point(502, 541)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 5
@@ -231,7 +242,7 @@ Partial Class StockRegisterChallanWise
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(604, 541)
+        Me.cmdexit.Location = New System.Drawing.Point(674, 541)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 6
@@ -261,14 +272,17 @@ Partial Class StockRegisterChallanWise
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GLOTNO
+        'GENTRYTYPE
         '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 2
-        Me.GLOTNO.Width = 120
+        Me.GENTRYTYPE.Caption = "Entry Type"
+        Me.GENTRYTYPE.FieldName = "ENTRYTYPE"
+        Me.GENTRYTYPE.Name = "GENTRYTYPE"
+        '
+        'GENTRYNO
+        '
+        Me.GENTRYNO.Caption = "Entry No"
+        Me.GENTRYNO.FieldName = "ENTRYNO"
+        Me.GENTRYNO.Name = "GENTRYNO"
         '
         'StockRegisterChallanWise
         '
@@ -310,4 +324,6 @@ Partial Class StockRegisterChallanWise
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GENTRYTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GENTRYNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
