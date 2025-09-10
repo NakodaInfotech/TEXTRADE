@@ -19,13 +19,17 @@ Public Class DesignCardMaster
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
             Ep.Clear()
-            If Not errorvalid() Then
-                Exit Sub
-            End If
+            'If Not errorvalid() Then
+            '    Exit Sub
+            'End If
             Dim IntResult As Integer
 
             Dim alParaval As New ArrayList
-            alParaval.Add(txtcardno.Text.Trim)
+            If txtcardno.ReadOnly = True Then
+                alParaval.Add(0)
+            Else
+                alParaval.Add(Val(txtcardno.Text.Trim))
+            End If
             alParaval.Add(CMBITEMNAME.Text.Trim)
             alParaval.Add(CMBDESIGNNO.Text.Trim)
 
@@ -126,33 +130,33 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
                 If row.Cells(0).Value IsNot Nothing Then
                     If WARPSrNo = "" Then
-                        WARPSrNo = row.Cells(WSRNO.Index).Value.ToString
+                        WARPSrNo = row.Cells(WSRNO.Index).Value
                         WARPSym = row.Cells(WSYM.Index).Value.ToString
                         WARPYarnQuality = row.Cells(WQUALITY.Index).Value.ToString
-                        WARPDenier = row.Cells(WDENIER.Index).Value.ToString
+                        WARPDenier = row.Cells(WDENIER.Index).Value
                         WARPMillName = row.Cells(WMILL.Index).Value.ToString
                         WARPShade = row.Cells(WSHADE.Index).Value.ToString
-                        WARPPE = row.Cells(WPE.Index).Value.ToString
-                        WARPBE = row.Cells(WBE.Index).Value.ToString
-                        WARPTE = row.Cells(WENDS.Index).Value.ToString
-                        WARPWt = row.Cells(WWT.Index).Value.ToString
-                        WARPCons = row.Cells(WCONS.Index).Value.ToString
-                        WARPRate = row.Cells(WRATE.Index).Value.ToString
-                        WARPCost = row.Cells(WCOST.Index).Value.ToString
+                        WARPPE = row.Cells(WPE.Index).Value
+                        WARPBE = row.Cells(WBE.Index).Value
+                        WARPTE = row.Cells(WENDS.Index).Value
+                        WARPWt = row.Cells(WWT.Index).Value
+                        WARPCons = row.Cells(WCONS.Index).Value
+                        WARPRate = row.Cells(WRATE.Index).Value
+                        WARPCost = row.Cells(WCOST.Index).Value
                     Else
-                        WARPSrNo &= "|" & row.Cells(WSRNO.Index).Value.ToString
+                        WARPSrNo &= "|" & row.Cells(WSRNO.Index).Value
                         WARPSym &= "|" & row.Cells(WSYM.Index).Value.ToString
                         WARPYarnQuality &= "|" & row.Cells(WQUALITY.Index).Value.ToString
-                        WARPDenier &= "|" & row.Cells(WDENIER.Index).Value.ToString
+                        WARPDenier &= "|" & row.Cells(WDENIER.Index).Value
                         WARPMillName &= "|" & row.Cells(WMILL.Index).Value.ToString
                         WARPShade &= "|" & row.Cells(WSHADE.Index).Value.ToString
-                        WARPPE &= "|" & row.Cells(WPE.Index).Value.ToString
-                        WARPBE &= "|" & row.Cells(WBE.Index).Value.ToString
-                        WARPTE &= "|" & row.Cells(WENDS.Index).Value.ToString
-                        WARPWt &= "|" & row.Cells(WWT.Index).Value.ToString
-                        WARPCons &= "|" & row.Cells(WCONS.Index).Value.ToString
-                        WARPRate &= "|" & row.Cells(WRATE.Index).Value.ToString
-                        WARPCost &= "|" & row.Cells(WCOST.Index).Value.ToString
+                        WARPPE &= "|" & row.Cells(WPE.Index).Value
+                        WARPBE &= "|" & row.Cells(WBE.Index).Value
+                        WARPTE &= "|" & row.Cells(WENDS.Index).Value
+                        WARPWt &= "|" & row.Cells(WWT.Index).Value
+                        WARPCons &= "|" & row.Cells(WCONS.Index).Value
+                        WARPRate &= "|" & row.Cells(WRATE.Index).Value
+                        WARPCost &= "|" & row.Cells(WCOST.Index).Value
                     End If
                 End If
             Next
@@ -179,12 +183,12 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
                 If row.Cells(0).Value IsNot Nothing Then
                     If WARPGRIDSRNO = "" Then
-                        WARPGRIDSRNO = row.Cells(WPSRNO.Index).Value.ToString
-                        WARPGRIDPE = row.Cells(WPENDS.Index).Value.ToString
+                        WARPGRIDSRNO = row.Cells(WPSRNO.Index).Value
+                        WARPGRIDPE = row.Cells(WPENDS.Index).Value
                         WARPGRIDSYM = row.Cells(WPSYM.Index).Value.ToString
                     Else
-                        WARPGRIDSRNO &= "|" & row.Cells(WPSRNO.Index).Value.ToString
-                        WARPGRIDPE &= "|" & row.Cells(WPENDS.Index).Value.ToString
+                        WARPGRIDSRNO &= "|" & row.Cells(WPSRNO.Index).Value
+                        WARPGRIDPE &= "|" & row.Cells(WPENDS.Index).Value
                         WARPGRIDSYM &= "|" & row.Cells(WPSYM.Index).Value.ToString
                     End If
                 End If
@@ -212,33 +216,33 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDSELVEDGE.Rows
                 If row.Cells(SSRNO.Index).Value IsNot Nothing Then
                     If ALOSrNo = "" Then
-                        ALOSrNo = row.Cells(SSRNO.Index).Value.ToString
+                        ALOSrNo = row.Cells(SSRNO.Index).Value
                         ALOSym = row.Cells(SSYM.Index).Value.ToString
                         ALOYarnQuality = row.Cells(SQUALITY.Index).Value.ToString
-                        ALODenier = row.Cells(SDENIER.Index).Value.ToString
+                        ALODenier = row.Cells(SDENIER.Index).Value
                         ALOMillName = row.Cells(SMILL.Index).Value.ToString
                         ALOShade = row.Cells(SSHADE.Index).Value.ToString
-                        ALOPE = row.Cells(SPE.Index).Value.ToString
-                        ALOBE = row.Cells(SBE.Index).Value.ToString
-                        ALOTE = row.Cells(SENDS.Index).Value.ToString
-                        ALOWt = row.Cells(SWT.Index).Value.ToString
-                        ALOCons = row.Cells(SCONS.Index).Value.ToString
-                        ALORate = row.Cells(SRATE.Index).Value.ToString
-                        ALOCost = row.Cells(SCOST.Index).Value.ToString
+                        ALOPE = row.Cells(SPE.Index).Value
+                        ALOBE = row.Cells(SBE.Index).Value
+                        ALOTE = row.Cells(SENDS.Index).Value
+                        ALOWt = row.Cells(SWT.Index).Value
+                        ALOCons = row.Cells(SCONS.Index).Value
+                        ALORate = row.Cells(SRATE.Index).Value
+                        ALOCost = row.Cells(SCOST.Index).Value
                     Else
-                        ALOSrNo &= "|" & row.Cells(SSRNO.Index).Value.ToString
+                        ALOSrNo &= "|" & row.Cells(SSRNO.Index).Value
                         ALOSym &= "|" & row.Cells(SSYM.Index).Value.ToString
                         ALOYarnQuality &= "|" & row.Cells(SQUALITY.Index).Value.ToString
-                        ALODenier &= "|" & row.Cells(SDENIER.Index).Value.ToString
+                        ALODenier &= "|" & row.Cells(SDENIER.Index).Value
                         ALOMillName &= "|" & row.Cells(SMILL.Index).Value.ToString
                         ALOShade &= "|" & row.Cells(SSHADE.Index).Value.ToString
-                        ALOPE &= "|" & row.Cells(SPE.Index).Value.ToString
-                        ALOBE &= "|" & row.Cells(SBE.Index).Value.ToString
-                        ALOTE &= "|" & row.Cells(SENDS.Index).Value.ToString
-                        ALOWt &= "|" & row.Cells(SWT.Index).Value.ToString
-                        ALOCons &= "|" & row.Cells(SCONS.Index).Value.ToString
-                        ALORate &= "|" & row.Cells(SRATE.Index).Value.ToString
-                        ALOCost &= "|" & row.Cells(SCOST.Index).Value.ToString
+                        ALOPE &= "|" & row.Cells(SPE.Index).Value
+                        ALOBE &= "|" & row.Cells(SBE.Index).Value
+                        ALOTE &= "|" & row.Cells(SENDS.Index).Value
+                        ALOWt &= "|" & row.Cells(SWT.Index).Value
+                        ALOCons &= "|" & row.Cells(SCONS.Index).Value
+                        ALORate &= "|" & row.Cells(SRATE.Index).Value
+                        ALOCost &= "|" & row.Cells(SCOST.Index).Value
                     End If
                 End If
 
@@ -278,33 +282,33 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFT.Rows
                 If row.Cells(FSRNO.Index).Value IsNot Nothing Then
                     If WEFTSrNo = "" Then
-                        WEFTSrNo = row.Cells(FSRNO.Index).Value.ToString
+                        WEFTSrNo = row.Cells(FSRNO.Index).Value
                         WEFTSym = row.Cells(FSYM.Index).Value.ToString
                         WEFTYarnQuality = row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTDenier = row.Cells(FDENIER.Index).Value.ToString
+                        WEFTDenier = row.Cells(FDENIER.Index).Value
                         WEFTMillName = row.Cells(FMILL.Index).Value.ToString
                         WEFTShade = row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPE = row.Cells(FPE.Index).Value.ToString
-                        WEFTBE = row.Cells(FBE.Index).Value.ToString
-                        WEFTTE = row.Cells(FENDS.Index).Value.ToString
-                        WEFTWt = row.Cells(FWT.Index).Value.ToString
-                        WEFTCons = row.Cells(FCONS.Index).Value.ToString
-                        WEFTRate = row.Cells(FRATE.Index).Value.ToString
-                        WEFTCost = row.Cells(FCOST.Index).Value.ToString
+                        WEFTPE = row.Cells(FPE.Index).Value
+                        WEFTBE = row.Cells(FBE.Index).Value
+                        WEFTTE = row.Cells(FENDS.Index).Value
+                        WEFTWt = row.Cells(FWT.Index).Value
+                        WEFTCons = row.Cells(FCONS.Index).Value
+                        WEFTRate = row.Cells(FRATE.Index).Value
+                        WEFTCost = row.Cells(FCOST.Index).Value
                     Else
-                        WEFTSrNo &= "|" & row.Cells(FSRNO.Index).Value.ToString
+                        WEFTSrNo &= "|" & row.Cells(FSRNO.Index).Value
                         WEFTSym &= "|" & row.Cells(FSYM.Index).Value.ToString
                         WEFTYarnQuality &= "|" & row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTDenier &= "|" & row.Cells(FDENIER.Index).Value.ToString
+                        WEFTDenier &= "|" & row.Cells(FDENIER.Index).Value
                         WEFTMillName &= "|" & row.Cells(FMILL.Index).Value.ToString
                         WEFTShade &= "|" & row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPE &= "|" & row.Cells(FPE.Index).Value.ToString
-                        WEFTBE &= "|" & row.Cells(FBE.Index).Value.ToString
-                        WEFTTE &= "|" & row.Cells(FENDS.Index).Value.ToString
-                        WEFTWt &= "|" & row.Cells(FWT.Index).Value.ToString
-                        WEFTCons &= "|" & row.Cells(FCONS.Index).Value.ToString
-                        WEFTRate &= "|" & row.Cells(FRATE.Index).Value.ToString
-                        WEFTCost &= "|" & row.Cells(FCOST.Index).Value.ToString
+                        WEFTPE &= "|" & row.Cells(FPE.Index).Value
+                        WEFTBE &= "|" & row.Cells(FBE.Index).Value
+                        WEFTTE &= "|" & row.Cells(FENDS.Index).Value
+                        WEFTWt &= "|" & row.Cells(FWT.Index).Value
+                        WEFTCons &= "|" & row.Cells(FCONS.Index).Value
+                        WEFTRate &= "|" & row.Cells(FRATE.Index).Value
+                        WEFTCost &= "|" & row.Cells(FCOST.Index).Value
                     End If
                 End If
             Next
@@ -331,12 +335,12 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
                 If row.Cells(FSRNO.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
-                        WEFTTRSrNo = row.Cells(FSRNO.Index).Value.ToString
-                        WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
+                        WEFTTRSrNo = row.Cells(FSRNO.Index).Value
+                        WEFTTRPE = row.Cells(FPENDS.Index).Value
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
-                        WEFTTRSrNo &= "|" & row.Cells(FSRNO.Index).Value.ToString
-                        WEFTTRPE &= "|" & row.Cells(FPE.Index).Value.ToString
+                        WEFTTRSrNo &= "|" & row.Cells(FSRNO.Index).Value
+                        WEFTTRPE &= "|" & row.Cells(FPE.Index).Value
                         WEFTTRSym &= "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
                 End If
@@ -382,7 +386,15 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
+    Sub getmax_SO_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(DESIGN_CARDno),0) + 1 ", "DESIGNCARD", " AND DESIGN_cmpid=" & CmpId & " and DESIGN_locationid=" & Locationid & " and DESIGN_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            txtcardno.Text = DTTABLE.Rows(0).Item(0)
+        End If
+    End Sub
     Sub clear()
+        getmax_SO_no()
 
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
@@ -485,7 +497,8 @@ Public Class DesignCardMaster
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
-
+            Cursor.Current = Cursors.WaitCursor
+            clear()
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
@@ -493,6 +506,7 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
             End If
+
         Catch ex As Exception
             Throw ex
         End Try

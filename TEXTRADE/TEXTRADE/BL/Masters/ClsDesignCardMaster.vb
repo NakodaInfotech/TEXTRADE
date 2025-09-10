@@ -79,9 +79,9 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGEDENTS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@LEFTSELVEDGETOTALENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@LEFTSELVEDGETOTALEND", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGETOTALENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGETOTALEND", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALSELVEDGEENDS", alParaval(I)))
                 I += 1
