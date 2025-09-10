@@ -127,14 +127,6 @@ Partial Class GSTR1GridReport
         Me.G6CGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.G6SGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.G6CESSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TBDOCS = New System.Windows.Forms.TabPage()
-        Me.GRIDDOCSDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDDOCS = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.G7DOCUMENT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7FROM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TOTALNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TOTALCANCELLED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TBHSNB2C = New System.Windows.Forms.TabPage()
         Me.GRIDHSNB2CDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDHSNB2C = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -149,6 +141,14 @@ Partial Class GSTR1GridReport
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TBDOCS = New System.Windows.Forms.TabPage()
+        Me.GRIDDOCSDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDDOCS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.G7DOCUMENT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7FROM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TOTALNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TOTALCANCELLED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.PBEXCEL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TABGSTR1.SuspendLayout()
@@ -170,12 +170,12 @@ Partial Class GSTR1GridReport
         Me.TBHSN.SuspendLayout()
         CType(Me.GRIDHSNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDHSN, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TBDOCS.SuspendLayout()
-        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBHSNB2C.SuspendLayout()
         CType(Me.GRIDHSNB2CDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDHSNB2C, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBDOCS.SuspendLayout()
+        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel2
@@ -298,7 +298,7 @@ Partial Class GSTR1GridReport
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 1
@@ -800,7 +800,7 @@ Partial Class GSTR1GridReport
         '
         Me.G4NAME.Caption = "Name"
         Me.G4NAME.FieldName = "NAME"
-        Me.G4NAME.ImageIndex = 0
+        Me.G4NAME.ImageOptions.ImageIndex = 0
         Me.G4NAME.Name = "G4NAME"
         Me.G4NAME.Visible = True
         Me.G4NAME.VisibleIndex = 1
@@ -1210,7 +1210,7 @@ Partial Class GSTR1GridReport
         '
         Me.G6HSNDESC.Caption = "HSN Desc"
         Me.G6HSNDESC.FieldName = "HSNDESC"
-        Me.G6HSNDESC.ImageIndex = 0
+        Me.G6HSNDESC.ImageOptions.ImageIndex = 0
         Me.G6HSNDESC.Name = "G6HSNDESC"
         Me.G6HSNDESC.Visible = True
         Me.G6HSNDESC.VisibleIndex = 1
@@ -1230,7 +1230,7 @@ Partial Class GSTR1GridReport
         Me.G6TOTALQTY.Caption = "Total Qty"
         Me.G6TOTALQTY.DisplayFormat.FormatString = "0.00"
         Me.G6TOTALQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.G6TOTALQTY.FieldName = "TOTALQTY"
+        Me.G6TOTALQTY.FieldName = "QTY"
         Me.G6TOTALQTY.Name = "G6TOTALQTY"
         Me.G6TOTALQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.G6TOTALQTY.Visible = True
@@ -1317,90 +1317,6 @@ Partial Class GSTR1GridReport
         Me.G6CESSAMT.Visible = True
         Me.G6CESSAMT.VisibleIndex = 10
         '
-        'TBDOCS
-        '
-        Me.TBDOCS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBDOCS.Controls.Add(Me.GRIDDOCSDETAILS)
-        Me.TBDOCS.Location = New System.Drawing.Point(4, 23)
-        Me.TBDOCS.Name = "TBDOCS"
-        Me.TBDOCS.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDOCS.Size = New System.Drawing.Size(1250, 499)
-        Me.TBDOCS.TabIndex = 6
-        Me.TBDOCS.Text = "8. DOCS"
-        '
-        'GRIDDOCSDETAILS
-        '
-        Me.GRIDDOCSDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDDOCSDETAILS.Location = New System.Drawing.Point(3, 1)
-        Me.GRIDDOCSDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDDOCSDETAILS.MainView = Me.GRIDDOCS
-        Me.GRIDDOCSDETAILS.Name = "GRIDDOCSDETAILS"
-        Me.GRIDDOCSDETAILS.Size = New System.Drawing.Size(1245, 496)
-        Me.GRIDDOCSDETAILS.TabIndex = 10
-        Me.GRIDDOCSDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDDOCS})
-        '
-        'GRIDDOCS
-        '
-        Me.GRIDDOCS.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDDOCS.Appearance.Row.Options.UseFont = True
-        Me.GRIDDOCS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.G7DOCUMENT, Me.G7FROM, Me.G7TO, Me.G7TOTALNO, Me.G7TOTALCANCELLED})
-        Me.GRIDDOCS.GridControl = Me.GRIDDOCSDETAILS
-        Me.GRIDDOCS.Name = "GRIDDOCS"
-        Me.GRIDDOCS.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GRIDDOCS.OptionsBehavior.Editable = False
-        Me.GRIDDOCS.OptionsView.ColumnAutoWidth = False
-        Me.GRIDDOCS.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GRIDDOCS.OptionsView.ShowAutoFilterRow = True
-        Me.GRIDDOCS.OptionsView.ShowFooter = True
-        Me.GRIDDOCS.OptionsView.ShowGroupPanel = False
-        '
-        'G7DOCUMENT
-        '
-        Me.G7DOCUMENT.Caption = "Name Of Document"
-        Me.G7DOCUMENT.FieldName = "DOCUMENT"
-        Me.G7DOCUMENT.Name = "G7DOCUMENT"
-        Me.G7DOCUMENT.Visible = True
-        Me.G7DOCUMENT.VisibleIndex = 0
-        Me.G7DOCUMENT.Width = 400
-        '
-        'G7FROM
-        '
-        Me.G7FROM.Caption = "Sr No From"
-        Me.G7FROM.FieldName = "FROM"
-        Me.G7FROM.Name = "G7FROM"
-        Me.G7FROM.Visible = True
-        Me.G7FROM.VisibleIndex = 1
-        Me.G7FROM.Width = 140
-        '
-        'G7TO
-        '
-        Me.G7TO.Caption = "Sr No To"
-        Me.G7TO.FieldName = "TO"
-        Me.G7TO.Name = "G7TO"
-        Me.G7TO.Visible = True
-        Me.G7TO.VisibleIndex = 2
-        Me.G7TO.Width = 140
-        '
-        'G7TOTALNO
-        '
-        Me.G7TOTALNO.Caption = "Total Number"
-        Me.G7TOTALNO.FieldName = "TOTALNUMBER"
-        Me.G7TOTALNO.Name = "G7TOTALNO"
-        Me.G7TOTALNO.Visible = True
-        Me.G7TOTALNO.VisibleIndex = 3
-        Me.G7TOTALNO.Width = 120
-        '
-        'G7TOTALCANCELLED
-        '
-        Me.G7TOTALCANCELLED.Caption = "Total Cancelled"
-        Me.G7TOTALCANCELLED.DisplayFormat.FormatString = "0"
-        Me.G7TOTALCANCELLED.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.G7TOTALCANCELLED.FieldName = "TOTALCANCELLED"
-        Me.G7TOTALCANCELLED.Name = "G7TOTALCANCELLED"
-        Me.G7TOTALCANCELLED.Visible = True
-        Me.G7TOTALCANCELLED.VisibleIndex = 4
-        Me.G7TOTALCANCELLED.Width = 120
-        '
         'TBHSNB2C
         '
         Me.TBHSNB2C.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -1451,7 +1367,7 @@ Partial Class GSTR1GridReport
         '
         Me.GridColumn2.Caption = "HSN Desc"
         Me.GridColumn2.FieldName = "HSNDESC"
-        Me.GridColumn2.ImageIndex = 0
+        Me.GridColumn2.ImageOptions.ImageIndex = 0
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -1471,7 +1387,7 @@ Partial Class GSTR1GridReport
         Me.GridColumn4.Caption = "Total Qty"
         Me.GridColumn4.DisplayFormat.FormatString = "0.00"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "TOTALQTY"
+        Me.GridColumn4.FieldName = "QTY"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn4.Visible = True
@@ -1558,6 +1474,90 @@ Partial Class GSTR1GridReport
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 10
         '
+        'TBDOCS
+        '
+        Me.TBDOCS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDOCS.Controls.Add(Me.GRIDDOCSDETAILS)
+        Me.TBDOCS.Location = New System.Drawing.Point(4, 23)
+        Me.TBDOCS.Name = "TBDOCS"
+        Me.TBDOCS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBDOCS.Size = New System.Drawing.Size(1250, 499)
+        Me.TBDOCS.TabIndex = 6
+        Me.TBDOCS.Text = "8. DOCS"
+        '
+        'GRIDDOCSDETAILS
+        '
+        Me.GRIDDOCSDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDDOCSDETAILS.Location = New System.Drawing.Point(3, 1)
+        Me.GRIDDOCSDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDDOCSDETAILS.MainView = Me.GRIDDOCS
+        Me.GRIDDOCSDETAILS.Name = "GRIDDOCSDETAILS"
+        Me.GRIDDOCSDETAILS.Size = New System.Drawing.Size(1245, 496)
+        Me.GRIDDOCSDETAILS.TabIndex = 10
+        Me.GRIDDOCSDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDDOCS})
+        '
+        'GRIDDOCS
+        '
+        Me.GRIDDOCS.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDDOCS.Appearance.Row.Options.UseFont = True
+        Me.GRIDDOCS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.G7DOCUMENT, Me.G7FROM, Me.G7TO, Me.G7TOTALNO, Me.G7TOTALCANCELLED})
+        Me.GRIDDOCS.GridControl = Me.GRIDDOCSDETAILS
+        Me.GRIDDOCS.Name = "GRIDDOCS"
+        Me.GRIDDOCS.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDDOCS.OptionsBehavior.Editable = False
+        Me.GRIDDOCS.OptionsView.ColumnAutoWidth = False
+        Me.GRIDDOCS.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDDOCS.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDDOCS.OptionsView.ShowFooter = True
+        Me.GRIDDOCS.OptionsView.ShowGroupPanel = False
+        '
+        'G7DOCUMENT
+        '
+        Me.G7DOCUMENT.Caption = "Name Of Document"
+        Me.G7DOCUMENT.FieldName = "DOCUMENT"
+        Me.G7DOCUMENT.Name = "G7DOCUMENT"
+        Me.G7DOCUMENT.Visible = True
+        Me.G7DOCUMENT.VisibleIndex = 0
+        Me.G7DOCUMENT.Width = 400
+        '
+        'G7FROM
+        '
+        Me.G7FROM.Caption = "Sr No From"
+        Me.G7FROM.FieldName = "FROM"
+        Me.G7FROM.Name = "G7FROM"
+        Me.G7FROM.Visible = True
+        Me.G7FROM.VisibleIndex = 1
+        Me.G7FROM.Width = 140
+        '
+        'G7TO
+        '
+        Me.G7TO.Caption = "Sr No To"
+        Me.G7TO.FieldName = "TO"
+        Me.G7TO.Name = "G7TO"
+        Me.G7TO.Visible = True
+        Me.G7TO.VisibleIndex = 2
+        Me.G7TO.Width = 140
+        '
+        'G7TOTALNO
+        '
+        Me.G7TOTALNO.Caption = "Total Number"
+        Me.G7TOTALNO.FieldName = "TOTALNUMBER"
+        Me.G7TOTALNO.Name = "G7TOTALNO"
+        Me.G7TOTALNO.Visible = True
+        Me.G7TOTALNO.VisibleIndex = 3
+        Me.G7TOTALNO.Width = 120
+        '
+        'G7TOTALCANCELLED
+        '
+        Me.G7TOTALCANCELLED.Caption = "Total Cancelled"
+        Me.G7TOTALCANCELLED.DisplayFormat.FormatString = "0"
+        Me.G7TOTALCANCELLED.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.G7TOTALCANCELLED.FieldName = "TOTALCANCELLED"
+        Me.G7TOTALCANCELLED.Name = "G7TOTALCANCELLED"
+        Me.G7TOTALCANCELLED.Visible = True
+        Me.G7TOTALCANCELLED.VisibleIndex = 4
+        Me.G7TOTALCANCELLED.Width = 120
+        '
         'GSTR1GridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1590,12 +1590,12 @@ Partial Class GSTR1GridReport
         Me.TBHSN.ResumeLayout(False)
         CType(Me.GRIDHSNDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDHSN, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TBDOCS.ResumeLayout(False)
-        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBHSNB2C.ResumeLayout(False)
         CType(Me.GRIDHSNB2CDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDHSNB2C, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBDOCS.ResumeLayout(False)
+        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
