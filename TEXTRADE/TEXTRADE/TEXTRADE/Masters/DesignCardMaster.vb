@@ -63,13 +63,13 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTRIGHTSELTOTALENDS.Text.Trim))
             alParaval.Add(Val(TXTTOTALSELENDS.Text.Trim))
 
-
+            'party and other ledgers
             alParaval.Add(TXTREFNO.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBAGENTNAME.Text.Trim)
             alParaval.Add(CMBDELAT.Text.Trim)
-            alParaval.Add(Val(TXTORDERNO.Text.Trim))
             alParaval.Add(CMBGREY.Text.Trim)
+            alParaval.Add(Val(TXTORDERNO.Text.Trim))
             If IsDate(DELDATE.Text.Trim) Then
                 alParaval.Add(Format(CDate(DELDATE.Text.Trim), "MM/dd/yyyy"))
             Else
@@ -230,7 +230,7 @@ Public Class DesignCardMaster
                         ALOSrNo = row.Cells(SSRNO.Index).Value
                         ALOSym = row.Cells(SSYM.Index).Value.ToString
                         ALOYarnQuality = row.Cells(SQUALITY.Index).Value.ToString
-                        ALODenier = row.Cells(SDENIER.Index).Value
+                        ALODenier = Val(row.Cells(SDENIER.Index).Value)
                         ALOMillName = row.Cells(SMILL.Index).Value.ToString
                         ALOShade = row.Cells(SSHADE.Index).Value.ToString
                         ALOPE = row.Cells(SPE.Index).Value
@@ -244,7 +244,7 @@ Public Class DesignCardMaster
                         ALOSrNo = ALOSrNo & "|" & row.Cells(SSRNO.Index).Value
                         ALOSym = ALOSym & "|" & row.Cells(SSYM.Index).Value.ToString
                         ALOYarnQuality = ALOYarnQuality & "|" & row.Cells(SQUALITY.Index).Value.ToString
-                        ALODenier = ALODenier & "|" & row.Cells(SDENIER.Index).Value
+                        ALODenier = ALODenier & "|" & Val(row.Cells(SDENIER.Index).Value)
                         ALOMillName = ALOMillName & "|" & row.Cells(SMILL.Index).Value.ToString
                         ALOShade = ALOShade & "|" & row.Cells(SSHADE.Index).Value.ToString
                         ALOPE = ALOPE & "|" & row.Cells(SPE.Index).Value
@@ -293,50 +293,50 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFT.Rows
                 If row.Cells(FSRNO.Index).Value IsNot Nothing Then
                     If WEFTSrNo = "" Then
-                        WEFTSrNo = row.Cells(FSRNO.Index).Value
+                        WEFTSrNo = Val(row.Cells(FSRNO.Index).Value)
                         WEFTSym = row.Cells(FSYM.Index).Value.ToString
                         WEFTYarnQuality = row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTDenier = row.Cells(FDENIER.Index).Value
+                        WEFTDenier = Val(row.Cells(FDENIER.Index).Value)
                         WEFTMillName = row.Cells(FMILL.Index).Value.ToString
                         WEFTShade = row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPE = row.Cells(FPE.Index).Value
-                        WEFTBE = row.Cells(FBE.Index).Value
-                        WEFTTE = row.Cells(FENDS.Index).Value
-                        WEFTWt = row.Cells(FWT.Index).Value
-                        WEFTCons = row.Cells(FCONS.Index).Value
-                        WEFTRate = row.Cells(FRATE.Index).Value
-                        WEFTCost = row.Cells(FCOST.Index).Value
+                        WEFTPE = Val(row.Cells(FPE.Index).Value)
+                        WEFTBE = Val(row.Cells(FBE.Index).Value)
+                        WEFTTE = Val(row.Cells(FENDS.Index).Value)
+                        WEFTWt = Val(row.Cells(FWT.Index).Value)
+                        WEFTCons = Val(row.Cells(FCONS.Index).Value)
+                        WEFTRate = Val(row.Cells(FRATE.Index).Value)
+                        WEFTCost = Val(row.Cells(FCOST.Index).Value)
                     Else
-                        WEFTSrNo = WEFTSrNo & "|" & row.Cells(FSRNO.Index).Value
+                        WEFTSrNo = WEFTSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
                         WEFTSym = WEFTSym & "|" & row.Cells(FSYM.Index).Value.ToString
                         WEFTYarnQuality = WEFTYarnQuality & "|" & row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTDenier = WEFTDenier & "|" & row.Cells(FDENIER.Index).Value
+                        WEFTDenier = WEFTDenier & "|" & Val(row.Cells(FDENIER.Index).Value)
                         WEFTMillName = WEFTMillName & "|" & row.Cells(FMILL.Index).Value.ToString
                         WEFTShade = WEFTShade & "|" & row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPE = WEFTPE & "|" & row.Cells(FPE.Index).Value
-                        WEFTBE = WEFTBE & "|" & row.Cells(FBE.Index).Value
-                        WEFTTE = WEFTTE & "|" & row.Cells(FENDS.Index).Value
-                        WEFTWt = WEFTWt & "|" & row.Cells(FWT.Index).Value
-                        WEFTCons = WEFTCons & "|" & row.Cells(FCONS.Index).Value
-                        WEFTRate = WEFTRate & "|" & row.Cells(FRATE.Index).Value
-                        WEFTCost = WEFTCost & "|" & row.Cells(FCOST.Index).Value
+                        WEFTPE = WEFTPE & "|" & Val(row.Cells(FPE.Index).Value)
+                        WEFTBE = WEFTBE & "|" & Val(row.Cells(FBE.Index).Value)
+                        WEFTTE = WEFTTE & "|" & Val(row.Cells(FENDS.Index).Value)
+                        WEFTWt = WEFTWt & "|" & Val(row.Cells(FWT.Index).Value)
+                        WEFTCons = WEFTCons & "|" & Val(row.Cells(FCONS.Index).Value)
+                        WEFTRate = WEFTRate & "|" & Val(row.Cells(FRATE.Index).Value)
+                        WEFTCost = WEFTCost & "|" & Val(row.Cells(FCOST.Index).Value)
                     End If
                 End If
             Next
 
-            alParaval.Add(Val(WEFTSrNo))
+            alParaval.Add(WEFTSrNo)
             alParaval.Add(WEFTSym)
             alParaval.Add(WEFTYarnQuality)
-            alParaval.Add(Val(WEFTDenier))
+            alParaval.Add(WEFTDenier)
             alParaval.Add(WEFTMillName)
             alParaval.Add(WEFTShade)
-            alParaval.Add(Val(WEFTPE))
-            alParaval.Add(Val(WEFTBE))
-            alParaval.Add(Val(WEFTTE))
-            alParaval.Add(Val(WEFTWt))
-            alParaval.Add(Val(WEFTCons))
-            alParaval.Add(Val(WEFTRate))
-            alParaval.Add(Val(WEFTCost))
+            alParaval.Add(WEFTPE)
+            alParaval.Add(WEFTBE)
+            alParaval.Add(WEFTTE)
+            alParaval.Add(WEFTWt)
+            alParaval.Add(WEFTCons)
+            alParaval.Add(WEFTRate)
+            alParaval.Add(WEFTCost)
 
 
             Dim WEFTTRSrNo As String = ""
@@ -346,20 +346,20 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
                 If row.Cells(FSRNO.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
-                        WEFTTRSrNo = row.Cells(FSRNO.Index).Value
-                        WEFTTRPE = row.Cells(FPENDS.Index).Value
+                        WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
+                        WEFTTRPE = Val(row.Cells(FPENDS.Index).Value)
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
-                        WEFTTRSrNo = WEFTTRSrNo & "|" & row.Cells(FSRNO.Index).Value
-                        WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPE.Index).Value
+                        WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
+                        WEFTTRPE = WEFTTRPE & "|" & Val(row.Cells(FPENDS.Index).Value)
                         WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
                 End If
             Next
 
-            alParaval.Add(Val(WEFTTRSrNo))
-            alParaval.Add(Val(WEFTTRPE))
-            alParaval.Add(Val(WEFTTRSym))
+            alParaval.Add(WEFTTRSrNo)
+            alParaval.Add(WEFTTRPE)
+            alParaval.Add(WEFTTRSym)
 
 
             alParaval.Add(CmpId)
