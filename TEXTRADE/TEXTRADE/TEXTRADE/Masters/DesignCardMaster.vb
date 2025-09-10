@@ -828,7 +828,7 @@ Public Class DesignCardMaster
 
     Private Sub CMBSELMILLNAME_Enter(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Enter
         Try
-            If CMBSELMILLNAME.Text.Trim = "" Then FILLMILL(CMBSELMILLNAME, CMBITEMNAME.Text.Trim)
+            If CMBSELMILLNAME.Text.Trim = "" Then FILLMILL(CMBSELMILLNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -836,7 +836,7 @@ Public Class DesignCardMaster
 
     Private Sub CMBWARPMILLNAME_Enter(sender As Object, e As EventArgs) Handles CMBWARPMILLNAME.Enter
         Try
-            If CMBWARPMILLNAME.Text.Trim = "" Then FILLMILL(CMBWARPMILLNAME, CMBITEMNAME.Text.Trim)
+            If CMBWARPMILLNAME.Text.Trim = "" Then FILLMILL(CMBWARPMILLNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -876,7 +876,7 @@ Public Class DesignCardMaster
 
     Private Sub CMBWARPQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Enter
         Try
-            If CMBWARPQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBWARPQUALITY, CMBITEMNAME.Text.Trim)
+            If CMBWARPQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBWARPQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -908,7 +908,7 @@ Public Class DesignCardMaster
 
     Private Sub CMBSELYARNQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBSELYARNQUALITY.Enter
         Try
-            If CMBSELYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBSELYARNQUALITY, CMBITEMNAME.Text.Trim)
+            If CMBSELYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBSELYARNQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
