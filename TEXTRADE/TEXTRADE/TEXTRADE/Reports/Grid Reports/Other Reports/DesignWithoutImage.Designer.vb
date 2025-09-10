@@ -26,9 +26,8 @@ Partial Class DesignWithoutImage
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.GRIDBILLDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
@@ -58,7 +57,7 @@ Partial Class DesignWithoutImage
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(529, 541)
+        Me.CMDEXIT.Location = New System.Drawing.Point(246, 541)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 322
@@ -71,7 +70,7 @@ Partial Class DesignWithoutImage
         Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
         Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
-        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(951, 490)
+        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(539, 490)
         Me.GRIDBILLDETAILS.TabIndex = 315
         Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
         '
@@ -79,7 +78,7 @@ Partial Class DesignWithoutImage
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GITEMNAME, Me.GDESIGN})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GDESIGN, Me.GITEMNAME})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
@@ -90,14 +89,14 @@ Partial Class DesignWithoutImage
         Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
         Me.GRIDBILL.OptionsView.ShowGroupPanel = False
         '
-        'GSRNO
+        'GDESIGN
         '
-        Me.GSRNO.Caption = "Sr. No"
-        Me.GSRNO.FieldName = "ITEMDESIGNNO"
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.Visible = True
-        Me.GSRNO.VisibleIndex = 0
-        Me.GSRNO.Width = 50
+        Me.GDESIGN.Caption = "Design Name"
+        Me.GDESIGN.FieldName = "DESIGNNO"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.Visible = True
+        Me.GDESIGN.VisibleIndex = 0
+        Me.GDESIGN.Width = 250
         '
         'GITEMNAME
         '
@@ -105,17 +104,8 @@ Partial Class DesignWithoutImage
         Me.GITEMNAME.FieldName = "ITEMNAME"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
+        Me.GITEMNAME.VisibleIndex = 0
         Me.GITEMNAME.Width = 250
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.Caption = "Design Name"
-        Me.GDESIGN.FieldName = "DESIGNNAME"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 2
-        Me.GDESIGN.Width = 250
         '
         'ToolStrip1
         '
@@ -171,7 +161,6 @@ Partial Class DesignWithoutImage
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents GRIDBILLDETAILS As DevExpress.XtraGrid.GridControl
     Friend WithEvents GRIDBILL As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
