@@ -71,9 +71,9 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@LEFTSELVEDGEENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@LEFTSELVEDGEEND", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGEENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@RIGHTSELVEDGEEND", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LEFTSELVEDGEDENTS", alParaval(I)))
                 I += 1
@@ -164,7 +164,7 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALWEFTCOST", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@TOTALWARPGRIDPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALWEFTGRIDPE", alParaval(I)))
                 I += 1
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
