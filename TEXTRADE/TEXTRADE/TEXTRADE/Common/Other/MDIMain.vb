@@ -3,8 +3,18 @@ Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
 Imports DevExpress.XtraScheduler
+Imports DevExpress.XtraTabbedMdi
 
 Public Class MDIMain
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        XtraTabbedMdiManager1.AppearancePage.HeaderActive.BackColor = Color.LemonChiffon
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
 
     Sub SCROLLERS()
         Try
@@ -10699,5 +10709,17 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub DesignWithoutImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesignWithoutImageToolStripMenuItem.Click
+        Try
+            Dim Objpinvoice As New DesignWithoutImage
+            Objpinvoice.MdiParent = Me
+            Objpinvoice.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 End Class
 

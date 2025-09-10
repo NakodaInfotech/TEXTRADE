@@ -2519,7 +2519,7 @@ LINE1:
 
             'FOR GENERATING EINVOICE BILL WE NEED TO FIRST GENERATE THE TOKEN
             'THIS IS FOR SANDBOX TEST
-            'Dim URL As New Uri("http://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&user_name=TaxProEnvPON&eInvPwd=abc34*")
+            'Dim URL As New Uri("https://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&user_name=TaxProEnvPON&eInvPwd=abc34*")
             Dim URL As New Uri("https://einvapi.charteredinfo.com/eivital/dec/v1.04/auth?aspid=1602611918&password=infosys123&Gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&eInvPwd=" & CMPEWBPASS)
 
             ServicePointManager.Expect100Continue = True
@@ -2573,7 +2573,7 @@ LINE1:
 
             'GENERATING EINVOICE
             'FOR SANBOX TEST
-            'Dim FURL As New Uri("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&AuthToken=" & TOKEN & "&user_name=TaxProEnvPON&QrCodeSize=250")
+            'Dim FURL As New Uri("https://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=34AACCC1596Q002&AuthToken=" & TOKEN & "&user_name=TaxProEnvPON&QrCodeSize=250")
             Dim FURL As New Uri("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice?aspid=1602611918&password=infosys123&Gstin=" & CMPGSTIN & "&AuthToken=" & TOKEN & "&user_name=" & CMPEWBUSER & "&QrCodeSize=250")
             REQUEST = WebRequest.CreateDefault(FURL)
             REQUEST.Method = "POST"
@@ -2866,14 +2866,17 @@ ERRORMESSAGE:
             'ADD DATA IN EINVOICEENTRY FOR QRCODE
             If TEMPSTATUS = "SUCCESS" Then
 
-                ''GET SIGNED QRCODE
-                Dim req As New RestRequest
-                req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
-                'Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
-                Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
-                Dim respPl = New RespPl()
-                respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                '''GET SIGNED QRCODE
+                'Dim req As New RestRequest
+                'req.AddParameter("application/json", j, RestSharp.ParameterType.RequestBody)
+                ''Dim client As New RestClient("http://gstsandbox.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=34AACCC1596Q002&user_name=TaxProEnvPON&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim client As New RestClient("https://einvapi.charteredinfo.com/eicore/dec/v1.03/Invoice/irn/" & TXTIRNNO.Text.Trim & "?aspid=1602611918&password=infosys123&gstin=" & CMPGSTIN & "&user_name=" & CMPEWBUSER & "&AuthToken=" & TOKEN & "&QrCodeSize=250")
+                'Dim res As IRestResponse = Await client.ExecuteTaskAsync(req)
+                'Dim respPl = New RespPl()
+                'respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                Dim res As New RestResponse() With {.Content = REQUESTEDTEXT}
+                ' Deserialize and process QR code exactly as your 3rd API code does
+                Dim respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
                 Dim respPlGenIRNDec As New RespPlGenIRNDec()
                 respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
                 'MsgBox(respPlGenIRNDec.Irn)
