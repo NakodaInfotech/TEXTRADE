@@ -1254,7 +1254,7 @@ Partial Class GSTR1GridReport
         Me.G6RATE.Caption = "Rate"
         Me.G6RATE.DisplayFormat.FormatString = "0.00"
         Me.G6RATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.G6RATE.FieldName = "RATE"
+        Me.G6RATE.FieldName = "HSNRATE"
         Me.G6RATE.Name = "G6RATE"
         Me.G6RATE.Visible = True
         Me.G6RATE.VisibleIndex = 5
@@ -1411,7 +1411,7 @@ Partial Class GSTR1GridReport
         Me.GridColumn6.Caption = "Rate"
         Me.GridColumn6.DisplayFormat.FormatString = "0.00"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "RATE"
+        Me.GridColumn6.FieldName = "HSNRATE"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
