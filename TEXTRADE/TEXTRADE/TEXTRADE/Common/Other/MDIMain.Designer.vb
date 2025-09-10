@@ -1222,6 +1222,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.DesignWithoutImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1406,7 +1407,7 @@ Partial Class MDIMain
         '
         Me.PurchaseRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewRegisterToolStripMenuItem, Me.EditExistingREgisterToolStripMenuItem, Me.ToolStripSeparator93})
         Me.PurchaseRegisterToolStripMenuItem.Name = "PurchaseRegisterToolStripMenuItem"
-        Me.PurchaseRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PurchaseRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.PurchaseRegisterToolStripMenuItem.Text = "&Purchase Register"
         '
         'AddNewRegisterToolStripMenuItem
@@ -1430,7 +1431,7 @@ Partial Class MDIMain
         '
         Me.SaleRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem14, Me.ToolStripMenuItem16, Me.ToolStripSeparator94})
         Me.SaleRegisterToolStripMenuItem.Name = "SaleRegisterToolStripMenuItem"
-        Me.SaleRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaleRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.SaleRegisterToolStripMenuItem.Text = "&Sale Register"
         '
         'ToolStripMenuItem14
@@ -1453,13 +1454,13 @@ Partial Class MDIMain
         'ToolStripSeparator41
         '
         Me.ToolStripSeparator41.Name = "ToolStripSeparator41"
-        Me.ToolStripSeparator41.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator41.Size = New System.Drawing.Size(168, 6)
         '
         'JournalRegisterToolStripMenuItem
         '
         Me.JournalRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem17, Me.ToolStripMenuItem18, Me.ToolStripSeparator95})
         Me.JournalRegisterToolStripMenuItem.Name = "JournalRegisterToolStripMenuItem"
-        Me.JournalRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.JournalRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.JournalRegisterToolStripMenuItem.Text = "&Journal Register"
         '
         'ToolStripMenuItem17
@@ -1483,7 +1484,7 @@ Partial Class MDIMain
         '
         Me.ContraRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem19, Me.ToolStripMenuItem20, Me.ToolStripSeparator96})
         Me.ContraRegisterToolStripMenuItem.Name = "ContraRegisterToolStripMenuItem"
-        Me.ContraRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ContraRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ContraRegisterToolStripMenuItem.Text = "Contra Register"
         '
         'ToolStripMenuItem19
@@ -1507,7 +1508,7 @@ Partial Class MDIMain
         '
         Me.ExpenseREgisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewExpenseRegisterToolStripMenuItem, Me.EditExistingExpenseRegisterToolStripMenuItem, Me.ToolStripSeparator166})
         Me.ExpenseREgisterToolStripMenuItem.Name = "ExpenseREgisterToolStripMenuItem"
-        Me.ExpenseREgisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExpenseREgisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ExpenseREgisterToolStripMenuItem.Text = "&Expense Register"
         '
         'AddNewExpenseRegisterToolStripMenuItem
@@ -1530,13 +1531,13 @@ Partial Class MDIMain
         'ToolStripSeparator42
         '
         Me.ToolStripSeparator42.Name = "ToolStripSeparator42"
-        Me.ToolStripSeparator42.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator42.Size = New System.Drawing.Size(168, 6)
         '
         'PaymentRegisterToolStripMenuItem
         '
         Me.PaymentRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem21, Me.ToolStripMenuItem22, Me.ToolStripSeparator97})
         Me.PaymentRegisterToolStripMenuItem.Name = "PaymentRegisterToolStripMenuItem"
-        Me.PaymentRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PaymentRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.PaymentRegisterToolStripMenuItem.Text = "Payment Register"
         '
         'ToolStripMenuItem21
@@ -1560,7 +1561,7 @@ Partial Class MDIMain
         '
         Me.RecieptRegisterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem23, Me.ToolStripMenuItem24, Me.ToolStripSeparator98})
         Me.RecieptRegisterToolStripMenuItem.Name = "RecieptRegisterToolStripMenuItem"
-        Me.RecieptRegisterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RecieptRegisterToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.RecieptRegisterToolStripMenuItem.Text = "Receipt Register"
         '
         'ToolStripMenuItem23
@@ -1583,13 +1584,13 @@ Partial Class MDIMain
         'ToolStripSeparator40
         '
         Me.ToolStripSeparator40.Name = "ToolStripSeparator40"
-        Me.ToolStripSeparator40.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator40.Size = New System.Drawing.Size(168, 6)
         '
         'CreditNoteToolStripMenuItem1
         '
         Me.CreditNoteToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewRegisterToolStripMenuItem1, Me.DeleteExistingRegisterToolStripMenuItem, Me.ToolStripSeparator167})
         Me.CreditNoteToolStripMenuItem1.Name = "CreditNoteToolStripMenuItem1"
-        Me.CreditNoteToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.CreditNoteToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
         Me.CreditNoteToolStripMenuItem1.Text = "Credit Note"
         '
         'AddNewRegisterToolStripMenuItem1
@@ -1613,7 +1614,7 @@ Partial Class MDIMain
         '
         Me.DebitNoteToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewRegisterToolStripMenuItem2, Me.DeleteExistingRegisterToolStripMenuItem1, Me.ToolStripSeparator168})
         Me.DebitNoteToolStripMenuItem1.Name = "DebitNoteToolStripMenuItem1"
-        Me.DebitNoteToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.DebitNoteToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
         Me.DebitNoteToolStripMenuItem1.Text = "Debit Note"
         '
         'AddNewRegisterToolStripMenuItem2
@@ -1636,7 +1637,7 @@ Partial Class MDIMain
         'ToolStripSeparator169
         '
         Me.ToolStripSeparator169.Name = "ToolStripSeparator169"
-        Me.ToolStripSeparator169.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator169.Size = New System.Drawing.Size(168, 6)
         '
         'ToolStripSeparator7
         '
@@ -2076,7 +2077,7 @@ Partial Class MDIMain
         '
         'ITEMDESIGNIMAGE_MASTER
         '
-        Me.ITEMDESIGNIMAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDNEWIMAGE, Me.EDITEXISTINGIMAGE, Me.ToolStripSeparator262, Me.DELETEMULTIPLEIMAGE, Me.ToolStripSeparator285})
+        Me.ITEMDESIGNIMAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDNEWIMAGE, Me.EDITEXISTINGIMAGE, Me.ToolStripSeparator262, Me.DELETEMULTIPLEIMAGE, Me.ToolStripSeparator285, Me.DesignWithoutImageToolStripMenuItem})
         Me.ITEMDESIGNIMAGE_MASTER.Enabled = False
         Me.ITEMDESIGNIMAGE_MASTER.Name = "ITEMDESIGNIMAGE_MASTER"
         Me.ITEMDESIGNIMAGE_MASTER.Size = New System.Drawing.Size(228, 22)
@@ -8930,6 +8931,12 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
+        'DesignWithoutImageToolStripMenuItem
+        '
+        Me.DesignWithoutImageToolStripMenuItem.Name = "DesignWithoutImageToolStripMenuItem"
+        Me.DesignWithoutImageToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.DesignWithoutImageToolStripMenuItem.Text = "Design Without Image"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10155,4 +10162,5 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator324 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator325 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator326 As ToolStripSeparator
+    Friend WithEvents DesignWithoutImageToolStripMenuItem As ToolStripMenuItem
 End Class

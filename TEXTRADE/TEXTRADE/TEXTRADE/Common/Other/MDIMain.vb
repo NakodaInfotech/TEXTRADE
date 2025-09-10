@@ -10699,5 +10699,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub DesignWithoutImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesignWithoutImageToolStripMenuItem.Click
+        Try
+            Dim Objpinvoice As New DesignWithoutImage
+            Objpinvoice.MdiParent = Me
+            Objpinvoice.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
