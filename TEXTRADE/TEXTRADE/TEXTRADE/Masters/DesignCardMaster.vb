@@ -617,6 +617,12 @@ Public Class DesignCardMaster
         clearwarp()
         TOTALWARP()
         COPYSYM()
+        If GRIDWARP.RowCount > 0 Then
+            TXTWARPSRNO.Text = Val(GRIDWARP.Rows(GRIDWARP.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTWARPSRNO.Text = 1
+        End If
     End Sub
     Sub COPYSYM()
         CMBGRIDSYM.Items.Clear()
@@ -635,7 +641,7 @@ Public Class DesignCardMaster
 
     End Sub
     Sub clearwarp()
-        'TXTWARPSRNO.Clear()
+        TXTWARPSRNO.Clear()
         TXTWARPSYMBOL.Clear()
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
@@ -667,6 +673,12 @@ Public Class DesignCardMaster
         CMBGRIDSYM.Text = ""
         TOTALWARP()
         TXTGRIDPE.Focus()
+        If GRIDWARPPATTERN.RowCount > 0 Then
+            TXTWARPGSRNO.Text = Val(GRIDWARPPATTERN.Rows(GRIDWARPPATTERN.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTWARPGSRNO.Text = 1
+        End If
     End Sub
     Sub fillselvedgegrid()
         If GRIDSELDOUBLECLICK = False Then
@@ -688,14 +700,20 @@ Public Class DesignCardMaster
             GRIDSELVEDGE.Item(SRATE.Index, TEMPSELROW).Value = Val(TXTSELRATE.Text.Trim)
             GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value = Val(TXTSELCOST.Text.Trim)
             TEMPSELROW = GRIDSELVEDGE.CurrentRow.Index
-            TXTSELSRNO.Focus()
             GRIDSELDOUBLECLICK = False
         End If
         GRIDSELVEDGE.ClearSelection()
         CLEARSELVEDGE()
+        If GRIDSELVEDGE.RowCount > 0 Then
+            TXTSELSRNO.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTSELSRNO.Text = 1
+        End If
+        TXTSELSYMBOL.Focus()
     End Sub
     Sub CLEARSELVEDGE()
-        'TXTSELSRNO.Clear()
+        TXTSELSRNO.Clear()
         TXTSELSYMBOL.Clear()
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
@@ -733,6 +751,30 @@ Public Class DesignCardMaster
         End If
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
+        COPYWEFTSYM()
+        TXTWEFTSYMBOL.Focus()
+        If GRIDWEFT.RowCount > 0 Then
+            TXTWEFTSRNO.Text = Val(GRIDWEFT.Rows(GRIDWEFT.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTWEFTSRNO.Text = 1
+        End If
+    End Sub
+    Sub COPYWEFTSYM()
+        CMBWEFTGRIDSYMBOL.Items.Clear()
+
+        Dim symSet As New HashSet(Of String)
+        For Each row As DataGridViewRow In GRIDWEFT.Rows
+            If Not IsDBNull(row.Cells(FSYM.Name).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(FSYM.Name).Value.ToString) Then
+                symSet.Add(row.Cells(FSYM.Name).Value.ToString)
+            End If
+        Next
+
+        For Each symVal As String In symSet
+            CMBWEFTGRIDSYMBOL.Items.Add(symVal)
+        Next
+
+
     End Sub
     Sub CLEARWEFT()
         'TXTWEFTSRNO.Clear()
@@ -751,18 +793,25 @@ Public Class DesignCardMaster
     End Sub
     Sub FILLWEFTPATTERNGRID()
         If GRIDWEFTPDOUBLECLICK = False Then
-            GRIDWEFTPATTERN.Rows.Add(Val(TXTWEFTGRIDSRNO.Text.Trim), TXTWEFTGRIDPE.Text.Trim, TXTWEFTGRIDSYMBOL.Text.Trim)
+            GRIDWEFTPATTERN.Rows.Add(Val(TXTWEFTGRIDSRNO.Text.Trim), TXTWEFTGRIDPE.Text.Trim, CMBWEFTGRIDSYMBOL.Text.Trim)
             getsrno(GRIDWEFTPATTERN)
         ElseIf GRIDWEFTPDOUBLECLICK = True Then
             GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value = Val(TXTWEFTGRIDSRNO.Text.Trim)
             GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value = Val(TXTWEFTGRIDPE.Text.Trim)
-            GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value = Val(TXTWEFTGRIDSYMBOL.Text.Trim)
+            GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value = Val(CMBWEFTGRIDSYMBOL.Text.Trim)
             TXTWEFTGRIDSRNO.Focus()
             GRIDWEFTPDOUBLECLICK = False
         End If
         GRIDWEFTPATTERN.ClearSelection()
         TXTWEFTGRIDPE.Clear()
-        TXTWEFTGRIDSYMBOL.Clear()
+        CMBWEFTGRIDSYMBOL.Text = ""
+        TXTWEFTGRIDPE.Focus()
+        If GRIDWEFTPATTERN.RowCount > 0 Then
+            TXTWEFTGRIDSRNO.Text = Val(GRIDWEFTPATTERN.Rows(GRIDWEFTPATTERN.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTWEFTGRIDSRNO.Text = 1
+        End If
     End Sub
 
     Private Sub TXTWARPCOST_Validated(sender As Object, e As EventArgs) Handles TXTWARPCOST.Validated
@@ -797,7 +846,7 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
-    Private Sub TXTWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWEFTGRIDSYMBOL.Validated
+    Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
         Try
             FILLWEFTPATTERNGRID()
         Catch ex As Exception
@@ -1187,7 +1236,7 @@ Public Class DesignCardMaster
                 TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
                 TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
                 TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
-                TXTWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
+                CMBWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
                 GRIDWEFTPDOUBLECLICK = True
                 TXTWEFTGRIDPE.Focus()
             End If
@@ -1235,9 +1284,9 @@ Public Class DesignCardMaster
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
         fillwarppatterngrid()
-        GETPE()
+        GETWARPPE()
     End Sub
-    Sub GETPE()
+    Sub GETWARPPE()
         ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
         Dim peSumBySym As New Dictionary(Of String, Double)
 
@@ -1264,6 +1313,33 @@ Public Class DesignCardMaster
         Next
 
     End Sub
+    Sub GETWEFTPE()
+        ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
+        Dim peSumBySym As New Dictionary(Of String, Double)
+
+        For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(FPSYM.Index).Value?.ToString()
+            Dim peVal As Double = 0
+            Double.TryParse(row.Cells(FPENDS.Index).Value?.ToString(), peVal) ' Replace WPE with your PE column Name/variable
+            If Not String.IsNullOrWhiteSpace(symVal) Then
+                If Not peSumBySym.ContainsKey(symVal) Then
+                    peSumBySym(symVal) = 0
+                End If
+                peSumBySym(symVal) += peVal
+            End If
+        Next
+
+        ' --- Step 2: Write the sum into the matching Sym row's P.E. cell in the GRIDWARP ---
+        For Each row As DataGridViewRow In GRIDWEFT.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(FSYM.Index).Value?.ToString()
+            If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
+                row.Cells(FPE.Index).Value = peSumBySym(symVal) ' Replace WPE with your PE column Name/variable
+            End If
+        Next
+
+    End Sub
 
     Private Sub TXTWARPSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWARPSYMBOL.Validating
         Try
@@ -1276,6 +1352,38 @@ Public Class DesignCardMaster
                     End If
                 Next
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTWEFTSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWEFTSYMBOL.Validating
+        Try
+            If TXTWEFTSYMBOL.Text <> "" And GRIDWEFT.RowCount > 0 Then
+                For Each row As DataGridViewRow In GRIDWEFT.Rows
+                    If TXTWEFTSYMBOL.Text = row.Cells(FSYM.Index).Value Then
+                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
+                        e.Cancel = True
+                        TXTWEFTSYMBOL.Focus()
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTWEFTSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWEFTSYMBOL.Validated
+        Try
+            If TXTWEFTSYMBOL.Text = "" Then TXTWEFTGRIDPE.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTWEFTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTWEFTGRIDPE.Validated
+        Try
+            If TXTWEFTGRIDPE.Text = "" Then cmdok.Focus()
         Catch ex As Exception
             Throw ex
         End Try
