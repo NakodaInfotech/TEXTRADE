@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports BL
+Imports DevExpress.Charts.Native
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
 Imports DevExpress.XtraGrid.Views.Grid
@@ -141,50 +142,50 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
                 If row.Cells(0).Value IsNot Nothing Then
                     If WARPSrNo = "" Then
-                        WARPSrNo = row.Cells(WSRNO.Index).Value
+                        WARPSrNo = Val(row.Cells(WSRNO.Index).Value)
                         WARPSym = row.Cells(WSYM.Index).Value.ToString
                         WARPYarnQuality = row.Cells(WQUALITY.Index).Value.ToString
-                        WARPDenier = row.Cells(WDENIER.Index).Value
+                        WARPDenier = Val(row.Cells(WDENIER.Index).Value)
                         WARPMillName = row.Cells(WMILL.Index).Value.ToString
                         WARPShade = row.Cells(WSHADE.Index).Value.ToString
-                        WARPPE = row.Cells(WPE.Index).Value
-                        WARPBE = row.Cells(WBE.Index).Value
-                        WARPTE = row.Cells(WENDS.Index).Value
-                        WARPWt = row.Cells(WWT.Index).Value
-                        WARPCons = row.Cells(WCONS.Index).Value
-                        WARPRate = row.Cells(WRATE.Index).Value
-                        WARPCost = row.Cells(WCOST.Index).Value
+                        WARPPE = Val(row.Cells(WPE.Index).Value)
+                        WARPBE = Val(row.Cells(WBE.Index).Value)
+                        WARPTE = Val(row.Cells(WENDS.Index).Value)
+                        WARPWt = Val(row.Cells(WWT.Index).Value)
+                        WARPCons = Val(row.Cells(WCONS.Index).Value)
+                        WARPRate = Val(row.Cells(WRATE.Index).Value)
+                        WARPCost = Val(row.Cells(WCOST.Index).Value)
                     Else
-                        WARPSrNo = WARPSrNo & "|" & row.Cells(WSRNO.Index).Value
+                        WARPSrNo = WARPSrNo & "|" & Val(row.Cells(WSRNO.Index).Value)
                         WARPSym = WARPSym & "|" & row.Cells(WSYM.Index).Value.ToString
                         WARPYarnQuality = WARPYarnQuality & "|" & row.Cells(WQUALITY.Index).Value.ToString
-                        WARPDenier = WARPDenier & "|" & row.Cells(WDENIER.Index).Value
+                        WARPDenier = WARPDenier & "|" & Val(row.Cells(WDENIER.Index).Value)
                         WARPMillName = WARPMillName & "|" & row.Cells(WMILL.Index).Value.ToString
                         WARPShade = WARPShade & "|" & row.Cells(WSHADE.Index).Value.ToString
-                        WARPPE = WARPPE & "|" & row.Cells(WPE.Index).Value
-                        WARPBE = WARPBE & "|" & row.Cells(WBE.Index).Value
-                        WARPTE = WARPTE & "|" & row.Cells(WENDS.Index).Value
-                        WARPWt = WARPWt & "|" & row.Cells(WWT.Index).Value
-                        WARPCons = WARPCons & "|" & row.Cells(WCONS.Index).Value
-                        WARPRate = WARPRate & "|" & row.Cells(WRATE.Index).Value
-                        WARPCost = WARPCost & "|" & row.Cells(WCOST.Index).Value
+                        WARPPE = WARPPE & "|" & Val(row.Cells(WPE.Index).Value)
+                        WARPBE = WARPBE & "|" & Val(row.Cells(WBE.Index).Value)
+                        WARPTE = WARPTE & "|" & Val(row.Cells(WENDS.Index).Value)
+                        WARPWt = WARPWt & "|" & Val(row.Cells(WWT.Index).Value)
+                        WARPCons = WARPCons & "|" & Val(row.Cells(WCONS.Index).Value)
+                        WARPRate = WARPRate & "|" & Val(row.Cells(WRATE.Index).Value)
+                        WARPCost = WARPCost & "|" & Val(row.Cells(WCOST.Index).Value)
                     End If
                 End If
             Next
 
-            alParaval.Add(Val(WARPSrNo))
+            alParaval.Add(WARPSrNo)
             alParaval.Add(WARPSym)
             alParaval.Add(WARPYarnQuality)
-            alParaval.Add(Val(WARPDenier))
+            alParaval.Add(WARPDenier)
             alParaval.Add(WARPMillName)
             alParaval.Add(WARPShade)
-            alParaval.Add(Val(WARPPE))
-            alParaval.Add(Val(WARPBE))
-            alParaval.Add(Val(WARPTE))
-            alParaval.Add(Val(WARPWt))
-            alParaval.Add(Val(WARPCons))
-            alParaval.Add(Val(WARPRate))
-            alParaval.Add(Val(WARPCost))
+            alParaval.Add(WARPPE)
+            alParaval.Add(WARPBE)
+            alParaval.Add(WARPTE)
+            alParaval.Add(WARPWt)
+            alParaval.Add(WARPCons)
+            alParaval.Add(WARPRate)
+            alParaval.Add(WARPCost)
 
 
             Dim WARPGRIDSRNO As String = ""
@@ -194,20 +195,20 @@ Public Class DesignCardMaster
             For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
                 If row.Cells(0).Value IsNot Nothing Then
                     If WARPGRIDSRNO = "" Then
-                        WARPGRIDSRNO = row.Cells(WPSRNO.Index).Value
-                        WARPGRIDPE = row.Cells(WPENDS.Index).Value
+                        WARPGRIDSRNO = Val(row.Cells(WPSRNO.Index).Value)
+                        WARPGRIDPE = Val(row.Cells(WPENDS.Index).Value)
                         WARPGRIDSYM = row.Cells(WPSYM.Index).Value.ToString
                     Else
-                        WARPGRIDSRNO = WARPGRIDSRNO & "|" & row.Cells(WPSRNO.Index).Value
-                        WARPGRIDPE = WARPGRIDPE & "|" & row.Cells(WPENDS.Index).Value
+                        WARPGRIDSRNO = WARPGRIDSRNO & "|" & Val(row.Cells(WPSRNO.Index).Value)
+                        WARPGRIDPE = WARPGRIDPE & "|" & Val(row.Cells(WPENDS.Index).Value)
                         WARPGRIDSYM = WARPGRIDSYM & "|" & row.Cells(WPSYM.Index).Value.ToString
                     End If
                 End If
             Next
 
-            alParaval.Add(Val(WARPGRIDSRNO))
-            alParaval.Add(Val(WARPGRIDPE))
-            alParaval.Add(Val(WARPGRIDSYM))
+            alParaval.Add(WARPGRIDSRNO)
+            alParaval.Add(WARPGRIDPE)
+            alParaval.Add(WARPGRIDSYM)
             '*************************************************************************
             'GRID SLEVAGE
             Dim ALOSrNo As String = ""
@@ -233,13 +234,13 @@ Public Class DesignCardMaster
                         ALODenier = Val(row.Cells(SDENIER.Index).Value)
                         ALOMillName = row.Cells(SMILL.Index).Value.ToString
                         ALOShade = row.Cells(SSHADE.Index).Value.ToString
-                        ALOPE = row.Cells(SPE.Index).Value
-                        ALOBE = row.Cells(SBE.Index).Value
-                        ALOTE = row.Cells(SENDS.Index).Value
-                        ALOWt = row.Cells(SWT.Index).Value
-                        ALOCons = row.Cells(SCONS.Index).Value
-                        ALORate = row.Cells(SRATE.Index).Value
-                        ALOCost = row.Cells(SCOST.Index).Value
+                        ALOPE = Val(row.Cells(SPE.Index).Value)
+                        ALOBE = Val(row.Cells(SBE.Index).Value)
+                        ALOTE = Val(row.Cells(SENDS.Index).Value)
+                        ALOWt = Val(row.Cells(SWT.Index).Value)
+                        ALOCons = Val(row.Cells(SCONS.Index).Value)
+                        ALORate = Val(row.Cells(SRATE.Index).Value)
+                        ALOCost = Val(row.Cells(SCOST.Index).Value)
                     Else
                         ALOSrNo = ALOSrNo & "|" & row.Cells(SSRNO.Index).Value
                         ALOSym = ALOSym & "|" & row.Cells(SSYM.Index).Value.ToString
@@ -247,32 +248,32 @@ Public Class DesignCardMaster
                         ALODenier = ALODenier & "|" & Val(row.Cells(SDENIER.Index).Value)
                         ALOMillName = ALOMillName & "|" & row.Cells(SMILL.Index).Value.ToString
                         ALOShade = ALOShade & "|" & row.Cells(SSHADE.Index).Value.ToString
-                        ALOPE = ALOPE & "|" & row.Cells(SPE.Index).Value
-                        ALOBE = ALOBE & "|" & row.Cells(SBE.Index).Value
-                        ALOTE = ALOTE & "|" & row.Cells(SENDS.Index).Value
-                        ALOWt = ALOWt & "|" & row.Cells(SWT.Index).Value
-                        ALOCons = ALOCons & "|" & row.Cells(SCONS.Index).Value
-                        ALORate = ALORate & "|" & row.Cells(SRATE.Index).Value
-                        ALOCost = ALOCost & "|" & row.Cells(SCOST.Index).Value
+                        ALOPE = ALOPE & "|" & Val(row.Cells(SPE.Index).Value)
+                        ALOBE = ALOBE & "|" & Val(row.Cells(SBE.Index).Value)
+                        ALOTE = ALOTE & "|" & Val(row.Cells(SENDS.Index).Value)
+                        ALOWt = ALOWt & "|" & Val(row.Cells(SWT.Index).Value)
+                        ALOCons = ALOCons & "|" & Val(row.Cells(SCONS.Index).Value)
+                        ALORate = ALORate & "|" & Val(row.Cells(SRATE.Index).Value)
+                        ALOCost = ALOCost & "|" & Val(row.Cells(SCOST.Index).Value)
                     End If
                 End If
 
             Next
 
             ' Add these variables to your parameter list (ArrayList, etc.)
-            alParaval.Add(Val(ALOSrNo))
+            alParaval.Add(ALOSrNo)
             alParaval.Add(ALOSym)
             alParaval.Add(ALOYarnQuality)
-            alParaval.Add(Val(ALODenier))
+            alParaval.Add(ALODenier)
             alParaval.Add(ALOMillName)
             alParaval.Add(ALOShade)
-            alParaval.Add(Val(ALOPE))
-            alParaval.Add(Val(ALOBE))
-            alParaval.Add(Val(ALOTE))
-            alParaval.Add(Val(ALOWt))
-            alParaval.Add(Val(ALOCons))
-            alParaval.Add(Val(ALORate))
-            alParaval.Add(Val(ALOCost))
+            alParaval.Add(ALOPE)
+            alParaval.Add(ALOBE)
+            alParaval.Add(ALOTE)
+            alParaval.Add(ALOWt)
+            alParaval.Add(ALOCons)
+            alParaval.Add(ALORate)
+            alParaval.Add(ALOCost)
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -307,7 +308,7 @@ Public Class DesignCardMaster
                         WEFTRate = Val(row.Cells(FRATE.Index).Value)
                         WEFTCost = Val(row.Cells(FCOST.Index).Value)
                     Else
-                        WEFTSrNo = WEFTSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
+                        WEFTSrNo = WEFTSrNo & "|" & row.Cells(FSRNO.Index).Value
                         WEFTSym = WEFTSym & "|" & row.Cells(FSYM.Index).Value.ToString
                         WEFTYarnQuality = WEFTYarnQuality & "|" & row.Cells(FQUALITY.Index).Value.ToString
                         WEFTDenier = WEFTDenier & "|" & Val(row.Cells(FDENIER.Index).Value)
@@ -480,8 +481,13 @@ Public Class DesignCardMaster
         TXTTOTALWEFTRATE.Clear()     ' Rate (Weft Rate)
         TXTTOTALWEFTCOST.Clear()     ' Cost (Weft Cost)
         TXTTOTALWEFTGRIDPE.Clear()       ' P.E. (Repeated for field order continuity)
+        'WARPMATCHING TEXTBOXES
+        TXTGRIDPE.Clear()
+        CMBGRIDSYM.Text = ""
         'GRID WARP
         GRIDWARP.Rows.Clear()
+        'GRID WARP PATTERN
+        GRIDWARPPATTERN.Rows.Clear()
         'GRID SLEVAGE
         GRIDSELVEDGE.Rows.Clear()
         'GRID WEFT
@@ -607,7 +613,26 @@ Public Class DesignCardMaster
             GRIDDOUBLECLICK = False
         End If
         GRIDWARP.ClearSelection()
+        TXTWARPSYMBOL.Focus()
         clearwarp()
+        TOTALWARP()
+        COPYSYM()
+    End Sub
+    Sub COPYSYM()
+        CMBGRIDSYM.Items.Clear()
+
+        Dim symSet As New HashSet(Of String)
+        For Each row As DataGridViewRow In GRIDWARP.Rows
+            If Not IsDBNull(row.Cells(WSYM.Name).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(WSYM.Name).Value.ToString) Then
+                symSet.Add(row.Cells(WSYM.Name).Value.ToString)
+            End If
+        Next
+
+        For Each symVal As String In symSet
+            CMBGRIDSYM.Items.Add(symVal)
+        Next
+
+
     End Sub
     Sub clearwarp()
         'TXTWARPSRNO.Clear()
@@ -626,12 +651,12 @@ Public Class DesignCardMaster
     End Sub
     Sub fillwarppatterngrid()
         If GRIDWPDOUBLECLICK = False Then
-            GRIDWARPPATTERN.Rows.Add(Val(TXTWARPGSRNO.Text.Trim), TXTGRIDPE.Text.Trim, TXTGRIDSYMBOL.Text.Trim)
+            GRIDWARPPATTERN.Rows.Add(Val(TXTWARPGSRNO.Text.Trim), TXTGRIDPE.Text.Trim, CMBGRIDSYM.Text.Trim)
             getsrno(GRIDWARPPATTERN)
         ElseIf GRIDWPDOUBLECLICK = True Then
             GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value = Val(TXTWARPGSRNO.Text.Trim)
             GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value = TXTGRIDPE.Text.Trim
-            GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value = TXTGRIDSYMBOL.Text.Trim
+            GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value = CMBGRIDSYM.Text.Trim
 
             TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
             TXTWARPGSRNO.Focus()
@@ -639,7 +664,9 @@ Public Class DesignCardMaster
         End If
         GRIDWARPPATTERN.ClearSelection()
         TXTGRIDPE.Clear()
-        TXTGRIDSYMBOL.Clear()
+        CMBGRIDSYM.Text = ""
+        TOTALWARP()
+        TXTGRIDPE.Focus()
     End Sub
     Sub fillselvedgegrid()
         If GRIDSELDOUBLECLICK = False Then
@@ -684,7 +711,7 @@ Public Class DesignCardMaster
     End Sub
     Sub FILLWEFTGRID()
         If GRIDWEFTDOUBLECLICK = False Then
-            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), TXTWEFTSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, TXTWEFTDEN.Text.Trim, CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
+            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), TXTWEFTSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
             getsrno(GRIDWEFT)
         ElseIf GRIDWEFTDOUBLECLICK = True Then
             GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = Val(TXTWEFTSRNO.Text.Trim)
@@ -746,7 +773,7 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
-    Private Sub TXTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTGRIDSYMBOL.Validated
+    Private Sub TXTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
         Try
             fillwarppatterngrid()
         Catch ex As Exception
@@ -985,6 +1012,272 @@ Public Class DesignCardMaster
             If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTreed_Validated(sender As Object, e As EventArgs) Handles TXTREED.Validated
+        Try
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CALC()
+        TXTMAINRS.Text = 0.00
+        TXTDENTS.Text = 0.00
+        TXTTOTALDENTSMAIN.Text = 0.00
+        TXTTOTALSELVEDGEDENTS.Text = 0.00
+        TXTTOTALDENTS.Text = 0.00
+        TXTLEFTSELDENTS.Text = 0.00
+        TXTRIGHTSELDENTS.Text = 0.00
+        TXTLEFTSELTOTALENDS.Text = 0.00
+        TXTRIGHTSELTOTALENDS.Text = 0.00
+        TXTTOTALSELENDS.Text = 0.00
+
+
+        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text)
+        If TXTREED.Text <> "" Then TXTDENTS.Text = Val(TXTREED.Text) / 2
+        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Val(TXTDENTS.Text) * Val(TXTMAINRS.Text)
+        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text)
+        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text)
+        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text)
+        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text)
+        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text)
+        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text)
+        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text)
+    End Sub
+    Sub TOTALWARP()
+        Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
+        PE = 0.00
+        BE = 0.00
+        TE = 0.00
+        WT = 0.00
+        CONS = 0.00
+        RATE = 0.00
+        COST = 0.00
+        GRIDPE = 0.00
+        For Each row As DataGridViewRow In GRIDWARP.Rows
+            If row.Cells(WPE.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(WPE.Index).Value)
+            End If
+            If row.Cells(WBE.Index).Value IsNot DBNull.Value Then
+                BE = BE + Val(row.Cells(WBE.Index).Value)
+            End If
+            If row.Cells(WENDS.Index).Value IsNot DBNull.Value Then
+                TE = TE + Val(row.Cells(WENDS.Index).Value)
+            End If
+            If row.Cells(WWT.Index).Value IsNot DBNull.Value Then
+                WT = WT + Val(row.Cells(WWT.Index).Value)
+            End If
+            If row.Cells(WCONS.Index).Value IsNot DBNull.Value Then
+                CONS = CONS + Val(row.Cells(WCONS.Index).Value)
+            End If
+            If row.Cells(WRATE.Index).Value IsNot DBNull.Value Then
+                RATE = RATE + Val(row.Cells(WRATE.Index).Value)
+            End If
+            If row.Cells(WCOST.Index).Value IsNot DBNull.Value Then
+                COST = COST + Val(row.Cells(WCOST.Index).Value)
+            End If
+        Next
+        For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
+            If row.Cells(WPENDS.Index).Value IsNot DBNull.Value Then
+                GRIDPE = GRIDPE + Val(row.Cells(WPENDS.Index).Value)
+            End If
+        Next
+        TXTTOTALWARPPE.Text = Format(PE, "0.00")
+        TXTTOTALWARPBE.Text = Format(BE, "0.00")
+        TXTTOTALWARPTE.Text = Format(TE, "0.00")
+        TXTTOTALWARPWT.Text = Format(WT, "0.00")
+        TXTTOTALWARPCONS.Text = Format(CONS, "0.00")
+        TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
+        TXTTOTALWARPCOST.Text = Format(COST, "0.00")
+        TXTTOTALWARPGRIDPE.Text = Format(GRIDPE, "0.00")
+
+
+    End Sub
+
+    Private Sub GRIDWARP_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARP.CellDoubleClick
+        Try
+            EDITWARPROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub EDITWARPROW()
+        If GRIDWARP.CurrentRow IsNot Nothing Then
+            If GRIDWARP.CurrentRow.Index >= 0 Then
+                TEMPROW = GRIDWARP.CurrentRow.Index
+                TXTWARPSRNO.Text = GRIDWARP.Item(WSRNO.Index, TEMPROW).Value
+                TXTWARPSYMBOL.Text = GRIDWARP.Item(WSYM.Index, TEMPROW).Value
+                CMBWARPQUALITY.Text = GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value
+                TXTWARPDENIER.Text = GRIDWARP.Item(WDENIER.Index, TEMPROW).Value
+                CMBWARPMILLNAME.Text = GRIDWARP.Item(WMILL.Index, TEMPROW).Value
+                CMBWARPSHADE.Text = GRIDWARP.Item(WSHADE.Index, TEMPROW).Value
+                TXTWARPPE.Text = GRIDWARP.Item(WPE.Index, TEMPROW).Value
+                TXTWARPBE.Text = GRIDWARP.Item(WBE.Index, TEMPROW).Value
+                TXTWARPTE.Text = GRIDWARP.Item(WENDS.Index, TEMPROW).Value
+                TXTWARPWT.Text = GRIDWARP.Item(WWT.Index, TEMPROW).Value
+                TXTWARPCONS.Text = GRIDWARP.Item(WCONS.Index, TEMPROW).Value
+                TXTWARPRATE.Text = GRIDWARP.Item(WRATE.Index, TEMPROW).Value
+                TXTWARPCOST.Text = GRIDWARP.Item(WCOST.Index, TEMPROW).Value
+                GRIDDOUBLECLICK = True
+                TXTWARPSYMBOL.Focus()
+            End If
+        End If
+    End Sub
+    Sub EDITWARPPATTERNROW()
+        If GRIDWARPPATTERN.CurrentRow IsNot Nothing Then
+            If GRIDWARPPATTERN.CurrentRow.Index >= 0 Then
+                TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
+                TXTWARPGSRNO.Text = GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value
+                TXTGRIDPE.Text = GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value
+                CMBGRIDSYM.Text = GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value
+                GRIDWPDOUBLECLICK = True
+                TXTGRIDPE.Focus()
+            End If
+        End If
+    End Sub
+    Sub EDITSELVEDGEROW()
+        If GRIDSELVEDGE.CurrentRow IsNot Nothing Then
+            If GRIDSELVEDGE.CurrentRow.Index >= 0 Then
+                TEMPSELROW = GRIDSELVEDGE.CurrentRow.Index
+                TXTSELSRNO.Text = GRIDSELVEDGE.Item(SSRNO.Index, TEMPSELROW).Value
+                TXTSELSYMBOL.Text = GRIDSELVEDGE.Item(SSYM.Index, TEMPSELROW).Value
+                CMBSELYARNQUALITY.Text = GRIDSELVEDGE.Item(SQUALITY.Index, TEMPSELROW).Value
+                TXTSELDEN.Text = GRIDSELVEDGE.Item(SDENIER.Index, TEMPSELROW).Value
+                CMBSELMILLNAME.Text = GRIDSELVEDGE.Item(SMILL.Index, TEMPSELROW).Value
+                CMBSELSHADE.Text = GRIDSELVEDGE.Item(SSHADE.Index, TEMPSELROW).Value
+                TXTSELPE.Text = GRIDSELVEDGE.Item(SPE.Index, TEMPSELROW).Value
+                TXTSELBE.Text = GRIDSELVEDGE.Item(SBE.Index, TEMPSELROW).Value
+                TXTSELTE.Text = GRIDSELVEDGE.Item(SENDS.Index, TEMPSELROW).Value
+                TXTSELWT.Text = GRIDSELVEDGE.Item(SWT.Index, TEMPSELROW).Value
+                TXTSELCONS.Text = GRIDSELVEDGE.Item(SCONS.Index, TEMPSELROW).Value
+                TXTSELRATE.Text = GRIDSELVEDGE.Item(SRATE.Index, TEMPSELROW).Value
+                TXTSELCOST.Text = GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value
+                GRIDSELDOUBLECLICK = True
+                TXTSELSYMBOL.Focus()
+            End If
+        End If
+    End Sub
+    Sub EDITWEFTROW()
+        If GRIDWEFT.CurrentRow IsNot Nothing Then
+            If GRIDWEFT.CurrentRow.Index >= 0 Then
+                TEMPWEFTROW = GRIDWEFT.CurrentRow.Index
+                TXTWEFTSRNO.Text = GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value
+                TXTWEFTSYMBOL.Text = GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value
+                CMBWEFTYARNQUALITY.Text = GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value
+                TXTWEFTDEN.Text = GRIDWEFT.Item(FDENIER.Index, TEMPWEFTROW).Value
+                CMBWEFTMILLNAME.Text = GRIDWEFT.Item(FMILL.Index, TEMPWEFTROW).Value
+                cmbweftshade.Text = GRIDWEFT.Item(FSHADE.Index, TEMPWEFTROW).Value
+                TXTWEFTPE.Text = GRIDWEFT.Item(FPE.Index, TEMPWEFTROW).Value
+                TXTWEFTBE.Text = GRIDWEFT.Item(FBE.Index, TEMPWEFTROW).Value
+                TXTWEFTTE.Text = GRIDWEFT.Item(FENDS.Index, TEMPWEFTROW).Value
+                TXTWEFTWT.Text = GRIDWEFT.Item(FWT.Index, TEMPWEFTROW).Value
+                TXTWEFTCONS.Text = GRIDWEFT.Item(FCONS.Index, TEMPWEFTROW).Value
+                TXTWEFTRATE.Text = GRIDWEFT.Item(FRATE.Index, TEMPWEFTROW).Value
+                TXTWEFTCOST.Text = GRIDWEFT.Item(FCOST.Index, TEMPWEFTROW).Value
+                GRIDWEFTDOUBLECLICK = True
+                TXTWEFTSYMBOL.Focus()
+            End If
+        End If
+    End Sub
+    Sub EDITWEFTPATTERNROW()
+        If GRIDWEFTPATTERN.CurrentRow IsNot Nothing Then
+            If GRIDWEFTPATTERN.CurrentRow.Index >= 0 Then
+                TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
+                TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
+                TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
+                TXTWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
+                GRIDWEFTPDOUBLECLICK = True
+                TXTWEFTGRIDPE.Focus()
+            End If
+        End If
+    End Sub
+
+    Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
+        Try
+            EDITWARPPATTERNROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTWARPSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWARPSYMBOL.Validated
+        Try
+            If TXTWARPSYMBOL.Text = "" Then TXTGRIDPE.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTGRIDPE.Validated
+        Try
+            If TXTGRIDPE.Text = "" Then cmdok.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFT_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellDoubleClick
+        EDITWEFTROW()
+    End Sub
+
+    Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
+        EDITWARPPATTERNROW()
+    End Sub
+    Private Sub GRIDSELVEDGE_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellDoubleClick
+        EDITSELVEDGEROW()
+    End Sub
+
+    Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated, TXTRIGHTSEL.Validated, TXTLEFTSEL.Validated, TXTLEFTSELENDS.Validated, TXTRIGHTSELENDS.Validated
+        CALC()
+    End Sub
+
+    Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
+        fillwarppatterngrid()
+        GETPE()
+    End Sub
+    Sub GETPE()
+        ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
+        Dim peSumBySym As New Dictionary(Of String, Double)
+
+        For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(WPSYM.Index).Value?.ToString()
+            Dim peVal As Double = 0
+            Double.TryParse(row.Cells(WPENDS.Index).Value?.ToString(), peVal) ' Replace WPE with your PE column Name/variable
+            If Not String.IsNullOrWhiteSpace(symVal) Then
+                If Not peSumBySym.ContainsKey(symVal) Then
+                    peSumBySym(symVal) = 0
+                End If
+                peSumBySym(symVal) += peVal
+            End If
+        Next
+
+        ' --- Step 2: Write the sum into the matching Sym row's P.E. cell in the GRIDWARP ---
+        For Each row As DataGridViewRow In GRIDWARP.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(WSYM.Index).Value?.ToString()
+            If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
+                row.Cells(WPE.Index).Value = peSumBySym(symVal) ' Replace WPE with your PE column Name/variable
+            End If
+        Next
+
+    End Sub
+
+    Private Sub TXTWARPSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWARPSYMBOL.Validating
+        Try
+            If TXTWARPSYMBOL.Text <> "" And GRIDWARP.RowCount > 0 Then
+                For Each row As DataGridViewRow In GRIDWARP.Rows
+                    If TXTWARPSYMBOL.Text = row.Cells(WSYM.Index).Value Then
+                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
+                        e.Cancel = True
+                        TXTWARPSYMBOL.Focus()
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
