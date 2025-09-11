@@ -1259,6 +1259,27 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
+    Private Sub CMDPHOTOUPLOAD_Click(sender As Object, e As EventArgs) Handles CMDPHOTOUPLOAD.Click
+        If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
+            MsgBox("Insufficient Rights")
+            Exit Sub
+        End If
+
+        OpenFileDialog1.Filter = "Pictures (*.bmp;*.jpeg;*.png;*.pdf)|*.bmp;*.jpeg;*.png;*.pdf"
+        OpenFileDialog1.ShowDialog()
+
+        OpenFileDialog1.AddExtension = True
+        TXTFILENAME.Text = OpenFileDialog1.SafeFileName
+        txtimgpath.Text = OpenFileDialog1.FileName
+        TXTNEWIMGPATH.Text = Application.StartupPath & "\UPLOADDOCS\" & txtcardno.Text.Trim & TXTFILENAME.Text.Trim
+        On Error Resume Next
+
+        If txtimgpath.Text.Trim.Length <> 0 Then
+            PBPHOTO.ImageLocation = txtimgpath.Text.Trim
+            PBPHOTO.Load(txtimgpath.Text.Trim)
+        End If
+    End Sub
+
     Private Sub TXTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTGRIDPE.Validated
         Try
             If TXTGRIDPE.Text = "" Then cmdok.Focus()
