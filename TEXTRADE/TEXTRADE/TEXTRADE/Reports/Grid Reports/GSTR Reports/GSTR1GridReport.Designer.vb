@@ -127,14 +127,6 @@ Partial Class GSTR1GridReport
         Me.G6CGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.G6SGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.G6CESSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TBDOCS = New System.Windows.Forms.TabPage()
-        Me.GRIDDOCSDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDDOCS = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.G7DOCUMENT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7FROM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TOTALNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.G7TOTALCANCELLED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TBHSNB2C = New System.Windows.Forms.TabPage()
         Me.GRIDHSNB2CDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDHSNB2C = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -149,6 +141,14 @@ Partial Class GSTR1GridReport
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TBDOCS = New System.Windows.Forms.TabPage()
+        Me.GRIDDOCSDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDDOCS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.G7DOCUMENT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7FROM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TOTALNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.G7TOTALCANCELLED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.PBEXCEL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TABGSTR1.SuspendLayout()
@@ -170,12 +170,12 @@ Partial Class GSTR1GridReport
         Me.TBHSN.SuspendLayout()
         CType(Me.GRIDHSNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDHSN, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TBDOCS.SuspendLayout()
-        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBHSNB2C.SuspendLayout()
         CType(Me.GRIDHSNB2CDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDHSNB2C, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBDOCS.SuspendLayout()
+        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel2
@@ -298,7 +298,7 @@ Partial Class GSTR1GridReport
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 1
@@ -800,7 +800,7 @@ Partial Class GSTR1GridReport
         '
         Me.G4NAME.Caption = "Name"
         Me.G4NAME.FieldName = "NAME"
-        Me.G4NAME.ImageIndex = 0
+        Me.G4NAME.ImageOptions.ImageIndex = 0
         Me.G4NAME.Name = "G4NAME"
         Me.G4NAME.Visible = True
         Me.G4NAME.VisibleIndex = 1
@@ -1210,7 +1210,7 @@ Partial Class GSTR1GridReport
         '
         Me.G6HSNDESC.Caption = "HSN Desc"
         Me.G6HSNDESC.FieldName = "HSNDESC"
-        Me.G6HSNDESC.ImageIndex = 0
+        Me.G6HSNDESC.ImageOptions.ImageIndex = 0
         Me.G6HSNDESC.Name = "G6HSNDESC"
         Me.G6HSNDESC.Visible = True
         Me.G6HSNDESC.VisibleIndex = 1
@@ -1230,7 +1230,7 @@ Partial Class GSTR1GridReport
         Me.G6TOTALQTY.Caption = "Total Qty"
         Me.G6TOTALQTY.DisplayFormat.FormatString = "0.00"
         Me.G6TOTALQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.G6TOTALQTY.FieldName = "TOTALQTY"
+        Me.G6TOTALQTY.FieldName = "QTY"
         Me.G6TOTALQTY.Name = "G6TOTALQTY"
         Me.G6TOTALQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.G6TOTALQTY.Visible = True
@@ -1254,7 +1254,7 @@ Partial Class GSTR1GridReport
         Me.G6RATE.Caption = "Rate"
         Me.G6RATE.DisplayFormat.FormatString = "0.00"
         Me.G6RATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.G6RATE.FieldName = "RATE"
+        Me.G6RATE.FieldName = "HSNRATE"
         Me.G6RATE.Name = "G6RATE"
         Me.G6RATE.Visible = True
         Me.G6RATE.VisibleIndex = 5
@@ -1316,6 +1316,163 @@ Partial Class GSTR1GridReport
         Me.G6CESSAMT.Name = "G6CESSAMT"
         Me.G6CESSAMT.Visible = True
         Me.G6CESSAMT.VisibleIndex = 10
+        '
+        'TBHSNB2C
+        '
+        Me.TBHSNB2C.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBHSNB2C.Controls.Add(Me.GRIDHSNB2CDETAILS)
+        Me.TBHSNB2C.Location = New System.Drawing.Point(4, 23)
+        Me.TBHSNB2C.Name = "TBHSNB2C"
+        Me.TBHSNB2C.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBHSNB2C.Size = New System.Drawing.Size(1250, 499)
+        Me.TBHSNB2C.TabIndex = 7
+        Me.TBHSNB2C.Text = "7. HSN (B2C)"
+        '
+        'GRIDHSNB2CDETAILS
+        '
+        Me.GRIDHSNB2CDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDHSNB2CDETAILS.Location = New System.Drawing.Point(3, 1)
+        Me.GRIDHSNB2CDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDHSNB2CDETAILS.MainView = Me.GRIDHSNB2C
+        Me.GRIDHSNB2CDETAILS.Name = "GRIDHSNB2CDETAILS"
+        Me.GRIDHSNB2CDETAILS.Size = New System.Drawing.Size(1244, 497)
+        Me.GRIDHSNB2CDETAILS.TabIndex = 9
+        Me.GRIDHSNB2CDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDHSNB2C})
+        '
+        'GRIDHSNB2C
+        '
+        Me.GRIDHSNB2C.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDHSNB2C.Appearance.Row.Options.UseFont = True
+        Me.GRIDHSNB2C.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GRIDHSNB2C.GridControl = Me.GRIDHSNB2CDETAILS
+        Me.GRIDHSNB2C.Name = "GRIDHSNB2C"
+        Me.GRIDHSNB2C.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDHSNB2C.OptionsBehavior.Editable = False
+        Me.GRIDHSNB2C.OptionsView.ColumnAutoWidth = False
+        Me.GRIDHSNB2C.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDHSNB2C.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDHSNB2C.OptionsView.ShowFooter = True
+        Me.GRIDHSNB2C.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "HSN Code"
+        Me.GridColumn1.FieldName = "HSNCODE"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 130
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "HSN Desc"
+        Me.GridColumn2.FieldName = "HSNDESC"
+        Me.GridColumn2.ImageOptions.ImageIndex = 0
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 130
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "UQC"
+        Me.GridColumn3.FieldName = "UNIT"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 120
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Total Qty"
+        Me.GridColumn4.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "QTY"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 100
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Total Value"
+        Me.GridColumn5.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "GRANDTOTAL"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 130
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Rate"
+        Me.GridColumn6.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "HSNRATE"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Taxable Amt."
+        Me.GridColumn7.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "TAXABLEAMT"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.Width = 130
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "IGST Amt."
+        Me.GridColumn8.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "IGSTAMT"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 100
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "CGST Amt."
+        Me.GridColumn9.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "CGSTAMT"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.Width = 100
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "SGST Amt."
+        Me.GridColumn10.DisplayFormat.FormatString = "0.00"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "SGSTAMT"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.Width = 100
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Cess Amt"
+        Me.GridColumn11.DisplayFormat.FormatString = "0"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "CESSAMT"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 10
         '
         'TBDOCS
         '
@@ -1401,163 +1558,6 @@ Partial Class GSTR1GridReport
         Me.G7TOTALCANCELLED.VisibleIndex = 4
         Me.G7TOTALCANCELLED.Width = 120
         '
-        'TBHSNB2C
-        '
-        Me.TBHSNB2C.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBHSNB2C.Controls.Add(Me.GRIDHSNB2CDETAILS)
-        Me.TBHSNB2C.Location = New System.Drawing.Point(4, 23)
-        Me.TBHSNB2C.Name = "TBHSNB2C"
-        Me.TBHSNB2C.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBHSNB2C.Size = New System.Drawing.Size(1250, 499)
-        Me.TBHSNB2C.TabIndex = 7
-        Me.TBHSNB2C.Text = "7. HSN (B2C)"
-        '
-        'GRIDHSNB2CDETAILS
-        '
-        Me.GRIDHSNB2CDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDHSNB2CDETAILS.Location = New System.Drawing.Point(3, 1)
-        Me.GRIDHSNB2CDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDHSNB2CDETAILS.MainView = Me.GRIDHSNB2C
-        Me.GRIDHSNB2CDETAILS.Name = "GRIDHSNB2CDETAILS"
-        Me.GRIDHSNB2CDETAILS.Size = New System.Drawing.Size(1244, 497)
-        Me.GRIDHSNB2CDETAILS.TabIndex = 9
-        Me.GRIDHSNB2CDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDHSNB2C})
-        '
-        'GRIDHSNB2C
-        '
-        Me.GRIDHSNB2C.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDHSNB2C.Appearance.Row.Options.UseFont = True
-        Me.GRIDHSNB2C.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
-        Me.GRIDHSNB2C.GridControl = Me.GRIDHSNB2CDETAILS
-        Me.GRIDHSNB2C.Name = "GRIDHSNB2C"
-        Me.GRIDHSNB2C.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GRIDHSNB2C.OptionsBehavior.Editable = False
-        Me.GRIDHSNB2C.OptionsView.ColumnAutoWidth = False
-        Me.GRIDHSNB2C.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GRIDHSNB2C.OptionsView.ShowAutoFilterRow = True
-        Me.GRIDHSNB2C.OptionsView.ShowFooter = True
-        Me.GRIDHSNB2C.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "HSN Code"
-        Me.GridColumn1.FieldName = "HSNCODE"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 130
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "HSN Desc"
-        Me.GridColumn2.FieldName = "HSNDESC"
-        Me.GridColumn2.ImageIndex = 0
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 130
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "UQC"
-        Me.GridColumn3.FieldName = "UNIT"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 120
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Total Qty"
-        Me.GridColumn4.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "TOTALQTY"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 100
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Total Value"
-        Me.GridColumn5.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "GRANDTOTAL"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 130
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Rate"
-        Me.GridColumn6.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "RATE"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Taxable Amt."
-        Me.GridColumn7.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "TAXABLEAMT"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 130
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "IGST Amt."
-        Me.GridColumn8.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "IGSTAMT"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 100
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "CGST Amt."
-        Me.GridColumn9.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "CGSTAMT"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 100
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "SGST Amt."
-        Me.GridColumn10.DisplayFormat.FormatString = "0.00"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "SGSTAMT"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
-        Me.GridColumn10.Width = 100
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Cess Amt"
-        Me.GridColumn11.DisplayFormat.FormatString = "0"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "CESSAMT"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
-        '
         'GSTR1GridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1590,12 +1590,12 @@ Partial Class GSTR1GridReport
         Me.TBHSN.ResumeLayout(False)
         CType(Me.GRIDHSNDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDHSN, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TBDOCS.ResumeLayout(False)
-        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBHSNB2C.ResumeLayout(False)
         CType(Me.GRIDHSNB2CDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDHSNB2C, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBDOCS.ResumeLayout(False)
+        CType(Me.GRIDDOCSDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDDOCS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
