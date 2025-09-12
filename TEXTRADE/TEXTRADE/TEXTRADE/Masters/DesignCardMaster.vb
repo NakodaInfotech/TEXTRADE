@@ -607,17 +607,17 @@ Public Class DesignCardMaster
         TXTDRAWSRNO.Clear()
         TXTDRAWENDS.Clear()
         'GRID WARP
-        GRIDWARP.Rows.Clear()
+        GRIDWARP.RowCount = 0
         'GRID WARP PATTERN
-        GRIDWARPPATTERN.Rows.Clear()
+        GRIDWARPPATTERN.RowCount = 0
         'GRID SLEVAGE
-        GRIDSELVEDGE.Rows.Clear()
+        GRIDSELVEDGE.RowCount = 0
         'GRID WEFT
-        GRIDWEFT.Rows.Clear()
+        GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
-        GRIDWEFTPATTERN.Rows.Clear()
+        GRIDWEFTPATTERN.RowCount = 0
         'GRID DRAWING
-        GRIDDRAWING.Rows.Clear()
+        GRIDDRAWING.RowCount = 0
 
     End Sub
     Private Function errorvalid() As Boolean
@@ -1555,27 +1555,87 @@ Public Class DesignCardMaster
             e.Handled = True
         End If
     End Sub
-    Sub TOTALDRAWDENTS()
-        Dim drawEndsCount As Integer = 0
-        For Each row As DataGridViewRow In GRIDDRAWING.Rows
-            If Not row.IsNewRow Then
-                drawEndsCount += 1
-            End If
-        Next
-        TXTTOTALDRAWDENTS.Text = drawEndsCount.ToString()
+    'Sub TOTALDRAWDENTS()
+    '    Dim drawEndsCount As Integer = 0
+    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
+    '        If Not row.IsNewRow Then
+    '            drawEndsCount += 1
+    '        End If
+    '    Next
+    '    TXTTOTALDRAWDENTS.Text = drawEndsCount.ToString()
 
+    '    Dim totalEnds As Integer = 0
+    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
+    '        If row.IsNewRow Then Continue For
+    '        Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
+    '        If Not String.IsNullOrWhiteSpace(endsValue) Then
+    '            Dim parts() As String = endsValue.Split("."c) ' Split by dot
+    '            For Each s As String In parts
+    '                ' Ignore blank and "0" or "0.0" values for ends count
+    '                If Not String.IsNullOrWhiteSpace(s) AndAlso s.Trim() <> "0" AndAlso s.Trim() <> "0.0" Then
+    '                    totalEnds += 1
+    '                End If
+    '            Next
+    '        End If
+    '    Next
+    '    TXTTOTALDRAWENDS.Text = totalEnds.ToString()
+    'End Sub
+    Sub TOTALDRAWDENTS()
+        Dim repeatBlocks As New List(Of Tuple(Of Integer, Integer, Integer)) ' (start, end, repeatCount)
         Dim totalEnds As Integer = 0
+        Dim totalDents As Integer = 0
+
+        ' Find all Start/End paired blocks and their repeat counts
+        Dim startRow As Integer = -1
         For Each row As DataGridViewRow In GRIDDRAWING.Rows
             If row.IsNewRow Then Continue For
-            Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
-            If Not String.IsNullOrWhiteSpace(endsValue) And String.IsNullOrWhiteSpace(endsValue) > 0 Then
-                Dim parts() As String = endsValue.Split("."c) ' Split by dot
-                totalEnds += parts.Count(Function(s) Not String.IsNullOrWhiteSpace(s))
+            Dim mark As String = row.Cells(DREPEATMARK.Index).Value?.ToString()
+            If Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("Start") Then
+                startRow = row.Index
+            ElseIf Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
+                Dim repeatCount As Integer = 1
+                Dim repeatVal = row.Cells(DREPEAT.Index).Value
+                If repeatVal IsNot Nothing AndAlso Integer.TryParse(repeatVal.ToString(), repeatCount) AndAlso repeatCount > 1 Then
+                    repeatCount = CInt(repeatVal)
+                End If
+                repeatBlocks.Add(Tuple.Create(startRow, row.Index, repeatCount))
+                startRow = -1
             End If
         Next
-        TXTTOTALDRAWENDS.Text = totalEnds.ToString()
 
+        ' Track which rows are inside repeat blocks
+        Dim repeatedRows As New HashSet(Of Integer)
+        For Each block In repeatBlocks
+            For i = block.Item1 To block.Item2
+                If Not GRIDDRAWING.Rows(i).IsNewRow Then
+                    Dim endsValue As String = GRIDDRAWING.Rows(i).Cells(DENDS.Index).Value?.ToString()
+                    If Not String.IsNullOrWhiteSpace(endsValue) Then
+                        totalEnds += endsValue.Split("."c).Length * block.Item3
+                    End If
+                    totalDents += block.Item3
+                    repeatedRows.Add(i)
+                End If
+            Next
+        Next
+
+        ' Rows not in any repeat block, count only once
+        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+            If row.IsNewRow Then Continue For
+            If Not repeatedRows.Contains(row.Index) Then
+                Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
+                If Not String.IsNullOrWhiteSpace(endsValue) Then
+                    totalEnds += endsValue.Split("."c).Length
+                End If
+                totalDents += 1
+            End If
+        Next
+
+        TXTTOTALDRAWENDS.Text = totalEnds.ToString()
+        TXTTOTALDRAWDENTS.Text = totalDents.ToString()
     End Sub
+
+
+
     Sub FILLDRAWGRID()
         If TXTDRAWENDS.Text.Trim = "" Then
             MsgBox("Please Enter Ends")
@@ -1616,7 +1676,9 @@ Public Class DesignCardMaster
         If e.ColumnIndex = DREPEATMARK.Index Then
             HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK.Index, DREPEAT.Index)
         ElseIf e.ColumnIndex = DREPEATMARK1.Index Then
-            HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK1.Index, DREPEATS1.Index) ' Assuming you have a Repeats1 column
+            HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK1.Index, DREPEATS1.Index)
+        ElseIf e.ColumnIndex = DREPEATMARK2.Index Then
+            HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK2.Index, DREPEATS2.Index)
         End If
     End Sub
     Private Sub HandleRepeatMarkToggle(rowIndex As Integer, repeatMarkColIndex As Integer, repeatsColIndex As Integer)
@@ -1697,6 +1759,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             End If
+            TOTALDRAWDENTS()
         Catch ex As Exception
             Throw ex
         End Try
