@@ -63,7 +63,7 @@ Public Class YarnQualityMaster
             bln = False
         End If
 
-        If ClientName = "NAYRA" And TXTDENIER.Text.Trim.Length = 0 Then
+        If ClientName = "NAYRA" Or ClientName = "AADHAR" And TXTDENIER.Text.Trim.Length = 0 Then
             Ep.SetError(TXTDENIER, "Fill Denier")
             bln = False
         End If
@@ -93,7 +93,7 @@ Public Class YarnQualityMaster
             If txtname.Text.Trim <> "" Then
                 If (EDIT = False) Or (EDIT = True And LCase(tempname) <> LCase(txtname.Text.Trim)) Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("YARN_ID AS ID", "", "YARNQUALITYMASTER", " AND YARN_NAME = '" & txtname.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("YARN_ID AS ID", "", "YARNQUALITYMASTER", " AND YARN_NAME = '" & txtname.Text.Trim & "' AND YARN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         MsgBox("Yarn Quality Name Already Exists", MsgBoxStyle.Critical)
                         e.Cancel = True
@@ -223,7 +223,7 @@ Public Class YarnQualityMaster
             Dim objclscommon As New ClsCommon
             Dim dt As DataTable
 
-            dt = objclscommon.search(" ISNULL(HSN_CODE, '') AS HSNCODE ", "", " HSNMASTER ", " AND HSN_YEARID = " & YearId)
+            dt = objclscommon.SEARCH(" ISNULL(HSN_CODE, '') AS HSNCODE ", "", " HSNMASTER ", " AND HSN_YEARID = " & YearId)
             If dt.Rows.Count > 0 Then
                 dt.DefaultView.Sort = "HSNCODE"
                 CMBHSNCODE.DataSource = dt
@@ -294,7 +294,7 @@ Public Class YarnQualityMaster
 
                     'CHARGES GRID
                     Dim OBJCMN As New ClsCommon
-                    Dim dttable1 As DataTable = OBJCMN.search(" ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(YARNQUALITYMASTER_COMPOSITION.YARN_PER, 0) AS PER ", "", " YARNQUALITYMASTER INNER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID AND YARNQUALITYMASTER.YARN_YEARID = YARNQUALITYMASTER_COMPOSITION.YARN_YEARID  ", " AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = " & tempid & " AND YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = " & YearId)
+                    Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(YARNQUALITYMASTER_COMPOSITION.YARN_PER, 0) AS PER ", "", " YARNQUALITYMASTER INNER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID AND YARNQUALITYMASTER.YARN_YEARID = YARNQUALITYMASTER_COMPOSITION.YARN_YEARID  ", " AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = " & tempid & " AND YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = " & YearId)
                     If dttable1.Rows.Count > 0 Then
                         For Each DTR As DataRow In dttable1.Rows
                             GRIDCOMP.Rows.Add(DTR("YARNQUALITY"), DTR("PER"))
@@ -305,7 +305,7 @@ Public Class YarnQualityMaster
 
 
                     'STORES GRID
-                    DT = OBJCMN.search(" ISNULL(YARNQUALITYMASTER_STORES.YARN_SRNO, 0) AS GRIDSRNO, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS STOREITEM, ISNULL(YARNQUALITYMASTER_STORES.YARN_QTY, 0) AS STOREQTY", "", "  STOREITEMMASTER INNER JOIN YARNQUALITYMASTER_STORES ON STOREITEMMASTER.STOREITEM_ID = YARNQUALITYMASTER_STORES.YARN_STOREITEMID ", " AND YARNQUALITYMASTER_STORES.YARN_ID = " & tempid & " AND YARNQUALITYMASTER_STORES.YARN_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(YARNQUALITYMASTER_STORES.YARN_SRNO, 0) AS GRIDSRNO, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS STOREITEM, ISNULL(YARNQUALITYMASTER_STORES.YARN_QTY, 0) AS STOREQTY", "", "  STOREITEMMASTER INNER JOIN YARNQUALITYMASTER_STORES ON STOREITEMMASTER.STOREITEM_ID = YARNQUALITYMASTER_STORES.YARN_STOREITEMID ", " AND YARNQUALITYMASTER_STORES.YARN_ID = " & tempid & " AND YARNQUALITYMASTER_STORES.YARN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         For Each DTR1 As DataRow In DT.Rows
                             GRIDSTORES.Rows.Add(DTR1("GRIDSRNO"), DTR1("STOREITEM"), Val(DTR1("STOREQTY")))
@@ -470,6 +470,10 @@ Public Class YarnQualityMaster
 
             If ClientName = "AADHAR" Then
                 GPSTORES.Visible = False
+            End If
+
+            If ClientName = "AADHAR" Then
+                TXTDENIER.BackColor = Color.LemonChiffon
             End If
         Catch ex As Exception
             Throw ex
