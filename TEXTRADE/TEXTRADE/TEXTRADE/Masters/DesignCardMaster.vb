@@ -13,8 +13,8 @@ Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
-    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
+    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -1366,6 +1366,19 @@ Public Class DesignCardMaster
             End If
         End If
     End Sub
+    Sub EDITSELVEDGEPATTERNROW()
+        If GRIDSELVEDGEPATTERN.CurrentRow IsNot Nothing Then
+            If GRIDSELVEDGEPATTERN.CurrentRow.Index >= 0 Then
+                TEMPSELPROW = GRIDSELVEDGEPATTERN.CurrentRow.Index
+                TXTSELGSRNO.Text = GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value
+                TXTSELGPE.Text = GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value
+                CMBSELGSYM.Text = GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value
+                GRIDSELPDOUBLECLICK = True
+                TXTSELGPE.Focus()
+            End If
+        End If
+    End Sub
+
 
     Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
         Try
@@ -1426,6 +1439,10 @@ Public Class DesignCardMaster
         CALC()
     End Sub
 
+    Private Sub BTNMARKBLOCK_Click(sender As Object, e As EventArgs) Handles BTNMARKBLOCK.Click
+
+    End Sub
+
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
         fillwarppatterngrid()
         GETWARPPE()
@@ -1438,7 +1455,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(WPSYM.Index).Value?.ToString()
             Dim peVal As Double = 0
-            Double.TryParse(row.Cells(WPENDS.Index).Value?.ToString(), peVal) ' Replace WPE with your PE column Name/variable
+            Double.TryParse(row.Cells(WPENDS.Index).Value?.ToString(), peVal)
             If Not String.IsNullOrWhiteSpace(symVal) Then
                 If Not peSumBySym.ContainsKey(symVal) Then
                     peSumBySym(symVal) = 0
@@ -1452,7 +1469,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(WSYM.Index).Value?.ToString()
             If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
-                row.Cells(WPE.Index).Value = peSumBySym(symVal) ' Replace WPE with your PE column Name/variable
+                row.Cells(WPE.Index).Value = peSumBySym(symVal)
             End If
         Next
 
@@ -1465,7 +1482,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(FPSYM.Index).Value?.ToString()
             Dim peVal As Double = 0
-            Double.TryParse(row.Cells(FPENDS.Index).Value?.ToString(), peVal) ' Replace WPE with your PE column Name/variable
+            Double.TryParse(row.Cells(FPENDS.Index).Value?.ToString(), peVal)
             If Not String.IsNullOrWhiteSpace(symVal) Then
                 If Not peSumBySym.ContainsKey(symVal) Then
                     peSumBySym(symVal) = 0
@@ -1479,7 +1496,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(FSYM.Index).Value?.ToString()
             If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
-                row.Cells(FPE.Index).Value = peSumBySym(symVal) ' Replace WPE with your PE column Name/variable
+                row.Cells(FPE.Index).Value = peSumBySym(symVal)
             End If
         Next
 
@@ -1683,5 +1700,9 @@ Public Class DesignCardMaster
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellDoubleClick
+        EDITSELVEDGEPATTERNROW()
     End Sub
 End Class
