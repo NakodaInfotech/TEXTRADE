@@ -3,6 +3,7 @@ Imports System.ComponentModel
 Imports System.IO
 Imports BL
 Imports DevExpress.Charts.Native
+Imports DevExpress.CodeParser
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
 Imports DevExpress.XtraGrid.Views.Grid
@@ -557,6 +558,9 @@ Public Class DesignCardMaster
         TXTTOTALWEFTRATE.Clear()     ' Rate (Weft Rate)
         TXTTOTALWEFTCOST.Clear()     ' Cost (Weft Cost)
         TXTTOTALWEFTGRIDPE.Clear()       ' P.E. (Repeated for field order continuity)
+        'drawing total
+        TXTTOTALDRAWDENTS.Clear()
+        TXTTOTALDRAWENDS.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
@@ -1441,6 +1445,16 @@ Public Class DesignCardMaster
 
     Private Sub BTNMARKBLOCK_Click(sender As Object, e As EventArgs) Handles BTNMARKBLOCK.Click
 
+        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+            If row.IsNewRow Then Continue For
+            row.Cells(DREPEATMARK.Index).Value = Nothing
+            row.Cells(DREPEATMARK1.Index).Value = Nothing
+            row.Cells(DREPEATMARK2.Index).Value = Nothing
+            row.Cells(DREPEAT.Index).Value = Nothing
+            row.Cells(DREPEATS1.Index).Value = Nothing
+            row.Cells(DREPEATS2.Index).Value = Nothing
+        Next
+
     End Sub
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
@@ -1555,91 +1569,135 @@ Public Class DesignCardMaster
             e.Handled = True
         End If
     End Sub
-    'Sub TOTALDRAWDENTS()
-    '    Dim drawEndsCount As Integer = 0
-    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
-    '        If Not row.IsNewRow Then
-    '            drawEndsCount += 1
-    '        End If
-    '    Next
-    '    TXTTOTALDRAWDENTS.Text = drawEndsCount.ToString()
-
-    '    Dim totalEnds As Integer = 0
-    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
-    '        If row.IsNewRow Then Continue For
-    '        Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
-    '        If Not String.IsNullOrWhiteSpace(endsValue) Then
-    '            Dim parts() As String = endsValue.Split("."c) ' Split by dot
-    '            For Each s As String In parts
-    '                ' Ignore blank and "0" or "0.0" values for ends count
-    '                If Not String.IsNullOrWhiteSpace(s) AndAlso s.Trim() <> "0" AndAlso s.Trim() <> "0.0" Then
-    '                    totalEnds += 1
-    '                End If
-    '            Next
-    '        End If
-    '    Next
-    '    TXTTOTALDRAWENDS.Text = totalEnds.ToString()
-    'End Sub
-    Sub TOTALDRAWDENTS()
+    ' Collect repeat blocks with start/end and repeat counts
+    Private Function CollectRepeatBlockRows(grid As DataGridView,
+                                        repeatMarkCol As Integer,
+                                        repeatCol As Integer) As List(Of Tuple(Of Integer, Integer, Integer))
         Dim repeatBlocks As New List(Of Tuple(Of Integer, Integer, Integer)) ' (start, end, repeatCount)
-        Dim totalEnds As Integer = 0
-        Dim totalDents As Integer = 0
-
-        ' Find all Start/End paired blocks and their repeat counts
         Dim startRow As Integer = -1
-        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+        For Each row As DataGridViewRow In grid.Rows
             If row.IsNewRow Then Continue For
-            Dim mark As String = row.Cells(DREPEATMARK.Index).Value?.ToString()
-            If Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("Start") Then
+            Dim mark = CStr(row.Cells(repeatMarkCol).Value)
+            If Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("Start") Then
                 startRow = row.Index
-            ElseIf Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
+            ElseIf Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
+                Dim repeatVal = row.Cells(repeatCol).Value
                 Dim repeatCount As Integer = 1
-                Dim repeatVal = row.Cells(DREPEAT.Index).Value
-                If repeatVal IsNot Nothing AndAlso Integer.TryParse(repeatVal.ToString(), repeatCount) AndAlso repeatCount > 1 Then
-                    repeatCount = CInt(repeatVal)
+                If repeatVal IsNot Nothing AndAlso Integer.TryParse(CStr(repeatVal), repeatCount) AndAlso repeatCount >= 1 Then
+                    ' Use parsed repeatCount or default to 1
                 End If
                 repeatBlocks.Add(Tuple.Create(startRow, row.Index, repeatCount))
                 startRow = -1
             End If
         Next
+        Return repeatBlocks
+    End Function
 
-        ' Track which rows are inside repeat blocks
-        Dim repeatedRows As New HashSet(Of Integer)
-        For Each block In repeatBlocks
-            For i = block.Item1 To block.Item2
-                If Not GRIDDRAWING.Rows(i).IsNewRow Then
-                    Dim endsValue As String = GRIDDRAWING.Rows(i).Cells(DENDS.Index).Value?.ToString()
-                    If Not String.IsNullOrWhiteSpace(endsValue) Then
-                        totalEnds += endsValue.Split("."c).Length * block.Item3
-                    End If
-                    totalDents += block.Item3
-                    repeatedRows.Add(i)
+    ' Calculate dents and ends for one block, tracking rows to exclude from single count later
+    Private Sub CalculateBlockTotals(grid As DataGridView,
+                                 block As Tuple(Of Integer, Integer, Integer),
+                                 ByRef totalEnds As Integer,
+                                 ByRef totalDents As Integer,
+                                 ByRef blockRows As HashSet(Of Integer))
+        Dim startRow As Integer = block.Item1
+        Dim endRow As Integer = block.Item2
+        Dim repeatCount As Integer = block.Item3
+        Dim blockEnds As Integer = 0
+        Dim blockDents As Integer = 0
+        For i = startRow To endRow
+            If Not grid.Rows(i).IsNewRow Then
+                Dim endsVal = CStr(grid.Rows(i).Cells(DENDS.Index).Value)
+                If Not String.IsNullOrWhiteSpace(endsVal) Then
+                    blockEnds += endsVal.Split("."c).Length
                 End If
+                blockDents += 1
+                blockRows.Add(i)
+            End If
+        Next
+        totalEnds += blockEnds * repeatCount
+        totalDents += blockDents * repeatCount
+    End Sub
+
+    Public Sub TOTALDRAWDENTS()
+        Dim totalEnds As Integer = 0
+        Dim totalDents As Integer = 0
+
+        ' Track rows included in each repeat block
+        Dim innerBlockRows As New HashSet(Of Integer)
+        Dim outerBlockRows As New HashSet(Of Integer)
+        Dim topLevelBlockRows As New HashSet(Of Integer)
+
+        ' Calculate inner repeat blocks (REPEAT1)
+        Dim innerEnds As Integer = 0
+        Dim innerDents As Integer = 0
+        Dim repeatBlocks1 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK.Index, DREPEAT.Index)
+        For Each block In repeatBlocks1
+            CalculateBlockTotals(GRIDDRAWING, block, innerEnds, innerDents, innerBlockRows)
+        Next
+
+        ' Calculate outer repeat blocks (REPEAT2) including inner block totals
+        Dim outerEnds As Integer = 0
+        Dim outerDents As Integer = 0
+        Dim repeatBlocks2 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK1.Index, DREPEATS1.Index)
+
+        For Each block In repeatBlocks2
+            Dim blockEnds As Integer = 0
+            Dim blockDents As Integer = 0
+            Dim tempBlockRows As New HashSet(Of Integer)
+            For i = block.Item1 To block.Item2
+                If Not GRIDDRAWING.Rows(i).IsNewRow AndAlso Not innerBlockRows.Contains(i) Then
+                    Dim endsVal = CStr(GRIDDRAWING.Rows(i).Cells(DENDS.Index).Value)
+                    If Not String.IsNullOrWhiteSpace(endsVal) Then
+                        blockEnds += endsVal.Split("."c).Length
+                    End If
+                    blockDents += 1
+                    tempBlockRows.Add(i)
+                End If
+            Next
+            ' Add inner block totals once per outer repeat count
+            blockEnds += innerEnds
+            blockDents += innerDents
+            outerEnds += blockEnds * block.Item3
+            outerDents += blockDents * block.Item3
+            For Each r In tempBlockRows
+                outerBlockRows.Add(r)
             Next
         Next
 
-        ' Rows not in any repeat block, count only once
+        totalEnds += outerEnds
+        totalDents += outerDents
+
+        ' Calculate top-level repeat blocks (REPEAT)
+        Dim repeatBlocks0 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK2.Index, DREPEATS2.Index)
+        For Each block In repeatBlocks0
+            CalculateBlockTotals(GRIDDRAWING, block, totalEnds, totalDents, topLevelBlockRows)
+        Next
+
+        ' Combine all block rows to exclude from singles counting
+        Dim allBlockRows As New HashSet(Of Integer)(innerBlockRows)
+        allBlockRows.UnionWith(outerBlockRows)
+        allBlockRows.UnionWith(topLevelBlockRows)
+
+        ' Count single rows (not in any block) once each
         For Each row As DataGridViewRow In GRIDDRAWING.Rows
             If row.IsNewRow Then Continue For
-            If Not repeatedRows.Contains(row.Index) Then
-                Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
-                If Not String.IsNullOrWhiteSpace(endsValue) Then
-                    totalEnds += endsValue.Split("."c).Length
+            If Not allBlockRows.Contains(row.Index) Then
+                Dim endsVal = CStr(row.Cells(DENDS.Index).Value)
+                If Not String.IsNullOrWhiteSpace(endsVal) Then
+                    totalEnds += endsVal.Split("."c).Length
                 End If
                 totalDents += 1
             End If
         Next
 
+        ' Update totals in UI
         TXTTOTALDRAWENDS.Text = totalEnds.ToString()
         TXTTOTALDRAWDENTS.Text = totalDents.ToString()
     End Sub
 
 
-
     Sub FILLDRAWGRID()
         If TXTDRAWENDS.Text.Trim = "" Then
-            MsgBox("Please Enter Ends")
-
             Exit Sub
         End If
         If GRIDDRAWDOUBLECLICK = False Then
