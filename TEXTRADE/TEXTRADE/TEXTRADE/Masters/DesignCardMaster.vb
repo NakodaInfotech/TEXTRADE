@@ -7,12 +7,14 @@ Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraPivotGrid.Design
+Imports DevExpress.XtraRichEdit.Commands
+Imports DevExpress.XtraRichEdit.Model
 Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK As Boolean
-    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPWEFTROW, TEMPWEFTPROW As Integer
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
+    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -112,6 +114,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALSELCONS.Text.Trim))      ' Cons (Selvedge)
             alParaval.Add(Val(TXTSELTOTALRATE.Text.Trim))      ' Rate (Selvedge)
             alParaval.Add(Val(TXTSELTOTALCOST.Text.Trim))      ' Cost (Selvedge)
+            alParaval.Add(Val(TXTTOTALSELGPE.Text.Trim))
             'Weft Total
             alParaval.Add(Val(TXTTOTALWEFTPE.Text.Trim))        ' P.E. (Weft)
             alParaval.Add(Val(TXTTOTALWEFTBE.Text.Trim))        ' B.E. (Weft)
@@ -121,6 +124,9 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALWEFTRATE.Text.Trim))      ' Rate (Weft Rate)
             alParaval.Add(Val(TXTTOTALWEFTCOST.Text.Trim))      ' Cost (Weft Cost)
             alParaval.Add(Val(TXTTOTALWEFTGRIDPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
+            'DRAWING TOTAL  
+            alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
+            alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
 
             '*************************************************************************
             'GRID WARP
@@ -274,6 +280,30 @@ Public Class DesignCardMaster
             alParaval.Add(ALOCons)
             alParaval.Add(ALORate)
             alParaval.Add(ALOCost)
+
+
+            '*************************************************************************
+            'GRID SELVEDGE PATTERN
+
+            Dim ALOTRSrNo As String = ""
+            Dim ALOTRPE As String = ""
+            Dim ALOTRSym As String = ""
+            For Each row As Windows.Forms.DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
+                If row.Cells(SSRNO.Index).Value IsNot Nothing Then
+                    If ALOTRSrNo = "" Then
+                        ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
+                        ALOTRPE = Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRSym = row.Cells(SPSYM.Index).Value.ToString
+                    Else
+                        ALOTRSrNo = ALOTRSrNo & "|" & Val(row.Cells(SPSRNO.Index).Value)
+                        ALOTRPE = ALOTRPE & "|" & Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRSym = ALOTRSym & "|" & row.Cells(SPSYM.Index).Value.ToString
+                    End If
+                End If
+            Next
+            alParaval.Add(ALOTRSrNo)
+            alParaval.Add(ALOTRPE)
+            alParaval.Add(ALOTRSym)
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -361,6 +391,51 @@ Public Class DesignCardMaster
             alParaval.Add(WEFTTRSrNo)
             alParaval.Add(WEFTTRPE)
             alParaval.Add(WEFTTRSym)
+
+            '*************************************************************************
+            'GRID DRAWING
+            Dim DRAWSrNo As String = ""
+            Dim DRAWEnds As String = ""
+            Dim DRAWREPEATMARK As String = ""
+            Dim DRAWREPEATS As String = ""
+            Dim DRAWREPEATMARK1 As String = ""
+            Dim DRAWREPEATS1 As String = ""
+            Dim DRAWREPEATMARK2 As String = ""
+            Dim DRAWREPEATS2 As String = ""
+            For Each row As Windows.Forms.DataGridViewRow In GRIDDRAWING.Rows
+                If row.Cells(DSRNO.Index).Value IsNot Nothing Then
+                    If DRAWSrNo = "" Then
+                        DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
+                        DRAWEnds = Val(row.Cells(DENDS.Index).Value)
+                        DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value.ToString
+                        DRAWREPEATS = Val(row.Cells(DREPEAT.Index).Value)
+                        DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value.ToString
+                        DRAWREPEATS1 = Val(row.Cells(DREPEATS1.Index).Value)
+                        DRAWREPEATMARK2 = row.Cells(DREPEATMARK2.Index).Value.ToString
+                        DRAWREPEATS2 = Val(row.Cells(DREPEATS2.Index).Value)
+                    Else
+                        DRAWSrNo = DRAWSrNo & "|" & Val(row.Cells(DSRNO.Index).Value)
+                        DRAWEnds = DRAWEnds & "|" & Val(row.Cells(DENDS.Index).Value)
+                        DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value.ToString
+                        DRAWREPEATS = DRAWREPEATS & "|" & Val(row.Cells(DREPEAT.Index).Value)
+                        DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value.ToString
+                        DRAWREPEATS1 = DRAWREPEATS1 & "|" & Val(row.Cells(DREPEATS1.Index).Value)
+                        DRAWREPEATMARK2 = DRAWREPEATMARK2 & "|" & row.Cells(DREPEATMARK2.Index).Value.ToString
+                        DRAWREPEATS2 = DRAWREPEATS2 & "|" & Val(row.Cells(DREPEATS2.Index).Value)
+                    End If
+                End If
+            Next
+            alParaval.Add(DRAWSrNo)
+            alParaval.Add(DRAWEnds)
+            alParaval.Add(DRAWREPEATMARK)
+            alParaval.Add(DRAWREPEATS)
+            alParaval.Add(DRAWREPEATMARK1)
+            alParaval.Add(DRAWREPEATS1)
+            alParaval.Add(DRAWREPEATMARK2)
+            alParaval.Add(DRAWREPEATS2)
+
+            '*************************************************************************
+
 
 
             alParaval.Add(CmpId)
@@ -472,6 +547,7 @@ Public Class DesignCardMaster
         TXTTOTALSELCONS.Clear()     ' Cons (Selvedge)
         TXTSELTOTALRATE.Clear()     ' Rate (Selvedge)
         TXTSELTOTALCOST.Clear()     ' Cost (Selvedge)
+        TXTTOTALSELGPE.Clear()
         'Weft Total
         TXTTOTALWEFTPE.Clear()       ' P.E. (Weft)
         TXTTOTALWEFTBE.Clear()       ' B.E. (Weft)
@@ -484,6 +560,52 @@ Public Class DesignCardMaster
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
+        TXTWARPSRNO.Clear()
+        TXTWARPSYMBOL.Clear()
+        CMBWARPQUALITY.Text = ""
+        TXTWARPDENIER.Clear()
+        CMBWARPMILLNAME.Text = ""
+        CMBWARPSHADE.Text = ""
+        TXTWARPPE.Clear()
+        TXTWARPBE.Clear()
+        TXTWARPTE.Clear()
+        TXTWARPWT.Clear()
+        TXTWARPCONS.Clear()
+        TXTWARPRATE.Clear()
+        TXTWARPCOST.Clear()
+        'SELVMATCHING TEXTBOXES
+        TXTSELSRNO.Clear()
+        TXTSELSYMBOL.Clear()
+        CMBSELYARNQUALITY.Text = ""
+        TXTSELDEN.Clear()
+        CMBSELMILLNAME.Text = ""
+        CMBSELSHADE.Text = ""
+        TXTSELPE.Clear()
+        TXTSELBE.Clear()
+        TXTSELTE.Clear()
+        TXTSELWT.Clear()
+        TXTSELCONS.Clear()
+        TXTSELRATE.Clear()
+        TXTSELCOST.Clear()
+        TXTSELGSRNO.Clear()
+        TXTSELGPE.Clear()
+        'WEFTMATCHING TEXTBOXES
+        TXTWEFTSRNO.Clear()
+        TXTWEFTSYMBOL.Clear()
+        CMBWEFTYARNQUALITY.Text = ""
+        TXTWEFTDEN.Clear()
+        CMBWEFTMILLNAME.Text = ""
+        cmbweftshade.Text = ""
+        TXTWEFTPE.Clear()
+        TXTWEFTBE.Clear()
+        TXTWEFTTE.Clear()
+        TXTWEFTWT.Clear()
+        TXTWEFTCONS.Clear()
+        TXTWEFTRATE.Clear()
+        TXTWEFTCOST.Clear()
+        'DRAWING TEXTBOXES
+        TXTDRAWSRNO.Clear()
+        TXTDRAWENDS.Clear()
         'GRID WARP
         GRIDWARP.Rows.Clear()
         'GRID WARP PATTERN
@@ -494,6 +616,8 @@ Public Class DesignCardMaster
         GRIDWEFT.Rows.Clear()
         'GRID WEFT PATTERN
         GRIDWEFTPATTERN.Rows.Clear()
+        'GRID DRAWING
+        GRIDDRAWING.Rows.Clear()
 
     End Sub
     Private Function errorvalid() As Boolean
@@ -1291,7 +1415,6 @@ Public Class DesignCardMaster
     Private Sub GRIDWEFT_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellDoubleClick
         EDITWEFTROW()
     End Sub
-
     Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
         EDITWARPPATTERNROW()
     End Sub
@@ -1405,6 +1528,158 @@ Public Class DesignCardMaster
     Private Sub TXTWEFTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTWEFTGRIDPE.Validated
         Try
             If TXTWEFTGRIDPE.Text = "" Then cmdok.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTDRAWENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTDRAWENDS.KeyPress
+        If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = Convert.ToChar(".") Or e.KeyChar = Convert.ToChar(Keys.Back)) Then
+            e.Handled = True
+        End If
+    End Sub
+    Sub TOTALDRAWDENTS()
+        Dim drawEndsCount As Integer = 0
+        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+            If Not row.IsNewRow Then
+                drawEndsCount += 1
+            End If
+        Next
+        TXTTOTALDRAWDENTS.Text = drawEndsCount.ToString()
+
+        Dim totalEnds As Integer = 0
+        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+            If row.IsNewRow Then Continue For
+            Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
+            If Not String.IsNullOrWhiteSpace(endsValue) And String.IsNullOrWhiteSpace(endsValue) > 0 Then
+                Dim parts() As String = endsValue.Split("."c) ' Split by dot
+                totalEnds += parts.Count(Function(s) Not String.IsNullOrWhiteSpace(s))
+            End If
+        Next
+        TXTTOTALDRAWENDS.Text = totalEnds.ToString()
+
+    End Sub
+    Sub FILLDRAWGRID()
+        If TXTDRAWENDS.Text.Trim = "" Then
+            MsgBox("Please Enter Ends")
+
+            Exit Sub
+        End If
+        If GRIDDRAWDOUBLECLICK = False Then
+            GRIDDRAWING.Rows.Add(Val(TXTDRAWSRNO.Text.Trim), TXTDRAWENDS.Text.Trim)
+            getsrno(GRIDDRAWING)
+        ElseIf GRIDDRAWDOUBLECLICK = True Then
+            GRIDDRAWING.Item(DSRNO.Index, TEMPDRAWROW).Value = Val(TXTDRAWSRNO.Text.Trim)
+            GRIDDRAWING.Item(DENDS.Index, TEMPDRAWROW).Value = TXTDRAWENDS.Text.Trim
+            TXTDRAWSRNO.Focus()
+            GRIDDRAWDOUBLECLICK = False
+        End If
+        GRIDDRAWING.ClearSelection()
+        TXTDRAWENDS.Clear()
+        TXTDRAWENDS.Focus()
+        If GRIDDRAWING.RowCount > 0 Then
+            TXTDRAWSRNO.Text = Val(GRIDDRAWING.Rows(GRIDDRAWING.RowCount - 1).Cells(0).Value) + 1
+        Else
+            TXTDRAWSRNO.Text = 1
+        End If
+        TOTALDRAWDENTS()
+    End Sub
+
+    Private Sub TXTDRAWENDS_Validated(sender As Object, e As EventArgs) Handles TXTDRAWENDS.Validated
+        Try
+            FILLDRAWGRID()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDDRAWING_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDDRAWING.CellClick
+        If e.RowIndex < 0 Then Exit Sub
+
+        If e.ColumnIndex = DREPEATMARK.Index Then
+            HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK.Index, DREPEAT.Index)
+        ElseIf e.ColumnIndex = DREPEATMARK1.Index Then
+            HandleRepeatMarkToggle(e.RowIndex, DREPEATMARK1.Index, DREPEATS1.Index) ' Assuming you have a Repeats1 column
+        End If
+    End Sub
+    Private Sub HandleRepeatMarkToggle(rowIndex As Integer, repeatMarkColIndex As Integer, repeatsColIndex As Integer)
+        Try
+            Dim row = GRIDDRAWING.Rows(rowIndex)
+
+            ' Collect existing block numbers for this repeat mark column
+            Dim existingBlocks As New HashSet(Of Integer)
+            For Each r As DataGridViewRow In GRIDDRAWING.Rows
+                If Not r.IsNewRow Then
+                    Dim val As String = Convert.ToString(r.Cells(repeatMarkColIndex).Value)
+                    If Not String.IsNullOrEmpty(val) Then
+                        Dim parts = val.Split(" "c)
+                        If parts.Length = 2 AndAlso (parts(0).ToLower().StartsWith("start") Or parts(0).ToLower().StartsWith("end")) Then
+                            Dim blockNum As Integer
+                            If Integer.TryParse(parts(1), blockNum) Then existingBlocks.Add(blockNum)
+                        End If
+                    End If
+                End If
+            Next
+
+            ' Determine next block number
+            Dim nextBlockNum As Integer = 1
+            While existingBlocks.Contains(nextBlockNum)
+                nextBlockNum += 1
+            End While
+
+            ' Find unmatched Start blocks in this column
+            Dim unmatchedStartBlockNum As Integer = -1
+            For i = 0 To GRIDDRAWING.Rows.Count - 1
+                Dim currRow = GRIDDRAWING.Rows(i)
+                If Not currRow.IsNewRow Then
+                    Dim val As String = Convert.ToString(currRow.Cells(repeatMarkColIndex).Value)
+                    If val IsNot Nothing AndAlso val.ToLower().StartsWith("start") Then
+                        Dim parts = val.Split(" "c)
+                        Dim startNum As Integer
+                        If parts.Length = 2 AndAlso Integer.TryParse(parts(1), startNum) Then
+                            Dim hasEnd As Boolean = False
+                            For j = i + 1 To GRIDDRAWING.Rows.Count - 1
+                                Dim endVal As String = Convert.ToString(GRIDDRAWING.Rows(j).Cells(repeatMarkColIndex).Value)
+                                If endVal IsNot Nothing AndAlso endVal.ToLower() = $"end {startNum}" Then
+                                    hasEnd = True
+                                    Exit For
+                                End If
+                            Next
+                            If Not hasEnd Then
+                                unmatchedStartBlockNum = startNum
+                            End If
+                        End If
+                    End If
+                End If
+            Next
+
+            If unmatchedStartBlockNum <> -1 Then
+                ' Mark End for last unmatched Start
+                row.Cells(repeatMarkColIndex).Value = $"End {unmatchedStartBlockNum}"
+                GRIDDRAWING.CurrentCell = row.Cells(repeatsColIndex)
+                GRIDDRAWING.BeginEdit(True)
+            Else
+                ' Mark new Start block
+                row.Cells(repeatMarkColIndex).Value = $"Start {nextBlockNum}"
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
+        Try
+            If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
+                Dim value = Convert.ToString(e.FormattedValue)
+                If value IsNot Nothing AndAlso value.Trim() <> "" Then
+                    Dim repeatCount As Integer
+                    If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+                        MessageBox.Show("Please enter a positive integer for repeats.")
+                        e.Cancel = True
+                    End If
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
