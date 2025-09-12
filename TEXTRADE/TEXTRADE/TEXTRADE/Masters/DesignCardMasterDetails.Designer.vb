@@ -71,10 +71,21 @@ Partial Class DesignCardMasterDetails
         Me.GORDERNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GORDERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.GGREYFIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDELDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.GPIECEMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNOOFPCS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOOMPROD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRPM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOVERFACTOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEFFICIENCY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGREYDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGREYDELDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCARDNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,7 +217,7 @@ Partial Class DesignCardMasterDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GDESIGN, Me.GCOPYDESIGN, Me.GREED, Me.GREEDSPACE, Me.GDENTSIN, Me.GWARPTL, Me.GWEFTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALDENTSSEL, Me.GWEAVE, Me.GFINISHEPI, Me.GFINISHWIDTH, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFINISHPPI, Me.GFINISHWT, Me.GSELVEDGEL, Me.GSELDENTSL, Me.GPHOTOGRAPH, Me.GSELVEDGER, Me.GSELDENTSR, Me.GSELENDSL, Me.GSELTENDSL, Me.GSELENDSR, Me.GSELTENDSR, Me.GSELTENDSLR, Me.GSORTREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GDESIGN, Me.GCOPYDESIGN, Me.GREED, Me.GREEDSPACE, Me.GDENTSIN, Me.GWARPTL, Me.GWEFTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALDENTSSEL, Me.GWEAVE, Me.GFINISHEPI, Me.GFINISHWIDTH, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFINISHPPI, Me.GFINISHWT, Me.GSELVEDGEL, Me.GSELDENTSL, Me.GPHOTOGRAPH, Me.GSELVEDGER, Me.GSELDENTSR, Me.GSELENDSL, Me.GSELTENDSL, Me.GSELENDSR, Me.GSELTENDSR, Me.GSELTENDSLR, Me.GSORTREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE, Me.GPIECEMTRS, Me.GNOOFPCS, Me.GLOOM, Me.GBEAMMTRS, Me.GLOOMPROD, Me.GRPM, Me.GCOVERFACTOR, Me.GEFFICIENCY, Me.GGREYDELIVERYAT, Me.GGREYDELDATE, Me.GCARDNO})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
@@ -553,15 +564,6 @@ Partial Class DesignCardMasterDetails
         Me.GAGENTNAME.Visible = True
         Me.GAGENTNAME.VisibleIndex = 36
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
-        Me.ToolStrip1.TabIndex = 318
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
         'GGREYFIN
         '
         Me.GGREYFIN.Caption = "Grey/Fin"
@@ -588,6 +590,114 @@ Partial Class DesignCardMasterDetails
         Me.GDELDATE.OptionsColumn.AllowEdit = False
         Me.GDELDATE.Visible = True
         Me.GDELDATE.VisibleIndex = 39
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.TabIndex = 318
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'GPIECEMTRS
+        '
+        Me.GPIECEMTRS.Caption = "Piece Mtrs"
+        Me.GPIECEMTRS.FieldName = "PIECEMTRS"
+        Me.GPIECEMTRS.Name = "GPIECEMTRS"
+        Me.GPIECEMTRS.OptionsColumn.AllowEdit = False
+        Me.GPIECEMTRS.Visible = True
+        Me.GPIECEMTRS.VisibleIndex = 40
+        '
+        'GNOOFPCS
+        '
+        Me.GNOOFPCS.Caption = "No of Pcs"
+        Me.GNOOFPCS.FieldName = "NOOFPCS"
+        Me.GNOOFPCS.Name = "GNOOFPCS"
+        Me.GNOOFPCS.OptionsColumn.AllowEdit = False
+        Me.GNOOFPCS.Visible = True
+        Me.GNOOFPCS.VisibleIndex = 41
+        '
+        'GLOOM
+        '
+        Me.GLOOM.Caption = "Loom"
+        Me.GLOOM.FieldName = "LOOM"
+        Me.GLOOM.Name = "GLOOM"
+        Me.GLOOM.OptionsColumn.AllowEdit = False
+        Me.GLOOM.Visible = True
+        Me.GLOOM.VisibleIndex = 42
+        '
+        'GBEAMMTRS
+        '
+        Me.GBEAMMTRS.Caption = "Beam Mtrs"
+        Me.GBEAMMTRS.FieldName = "BEAMMTRS"
+        Me.GBEAMMTRS.Name = "GBEAMMTRS"
+        Me.GBEAMMTRS.OptionsColumn.AllowEdit = False
+        Me.GBEAMMTRS.Visible = True
+        Me.GBEAMMTRS.VisibleIndex = 43
+        '
+        'GLOOMPROD
+        '
+        Me.GLOOMPROD.Caption = "Loom Prod"
+        Me.GLOOMPROD.FieldName = "LOOMPROD"
+        Me.GLOOMPROD.Name = "GLOOMPROD"
+        Me.GLOOMPROD.OptionsColumn.AllowEdit = False
+        Me.GLOOMPROD.Visible = True
+        Me.GLOOMPROD.VisibleIndex = 44
+        '
+        'GRPM
+        '
+        Me.GRPM.Caption = "RPM"
+        Me.GRPM.FieldName = "RPM"
+        Me.GRPM.Name = "GRPM"
+        Me.GRPM.OptionsColumn.AllowEdit = False
+        Me.GRPM.Visible = True
+        Me.GRPM.VisibleIndex = 45
+        '
+        'GCOVERFACTOR
+        '
+        Me.GCOVERFACTOR.Caption = "Cover Factor"
+        Me.GCOVERFACTOR.FieldName = "COVERFACTOR"
+        Me.GCOVERFACTOR.Name = "GCOVERFACTOR"
+        Me.GCOVERFACTOR.OptionsColumn.AllowEdit = False
+        Me.GCOVERFACTOR.Visible = True
+        Me.GCOVERFACTOR.VisibleIndex = 46
+        '
+        'GEFFICIENCY
+        '
+        Me.GEFFICIENCY.Caption = "Efficiency"
+        Me.GEFFICIENCY.FieldName = "EFFICIENCY"
+        Me.GEFFICIENCY.Name = "GEFFICIENCY"
+        Me.GEFFICIENCY.OptionsColumn.AllowEdit = False
+        Me.GEFFICIENCY.Visible = True
+        Me.GEFFICIENCY.VisibleIndex = 47
+        '
+        'GGREYDELIVERYAT
+        '
+        Me.GGREYDELIVERYAT.Caption = "Grey Delivery At"
+        Me.GGREYDELIVERYAT.FieldName = "GRYEDELIVERYAT"
+        Me.GGREYDELIVERYAT.Name = "GGREYDELIVERYAT"
+        Me.GGREYDELIVERYAT.OptionsColumn.AllowEdit = False
+        Me.GGREYDELIVERYAT.Visible = True
+        Me.GGREYDELIVERYAT.VisibleIndex = 48
+        '
+        'GGREYDELDATE
+        '
+        Me.GGREYDELDATE.Caption = "Grey Del Date"
+        Me.GGREYDELDATE.FieldName = "GREYDELDATE"
+        Me.GGREYDELDATE.Name = "GGREYDELDATE"
+        Me.GGREYDELDATE.OptionsColumn.AllowEdit = False
+        Me.GGREYDELDATE.Visible = True
+        Me.GGREYDELDATE.VisibleIndex = 49
+        '
+        'GCARDNO
+        '
+        Me.GCARDNO.Caption = "Card No"
+        Me.GCARDNO.FieldName = "CARDNO"
+        Me.GCARDNO.Name = "GCARDNO"
+        Me.GCARDNO.OptionsColumn.AllowEdit = False
+        Me.GCARDNO.Visible = True
+        Me.GCARDNO.VisibleIndex = 50
         '
         'DesignCardMasterDetails
         '
@@ -663,4 +773,15 @@ Partial Class DesignCardMasterDetails
     Friend WithEvents GGREYFIN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDELIVERYAT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDELDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPIECEMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNOOFPCS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOOM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOOMPROD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRPM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOVERFACTOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEFFICIENCY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGREYDELIVERYAT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGREYDELDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCARDNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
