@@ -157,6 +157,8 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALSELVEDGECOST", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALSELVEDGEGRIDPE", alParaval(I)))
+                I += 1
                 ' Total Weft
                 .Add(New SqlClient.SqlParameter("@TOTALWEFTPE", alParaval(I)))
                 I += 1
@@ -173,6 +175,11 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TOTALWEFTCOST", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALWEFTGRIDPE", alParaval(I)))
+                I += 1
+                ' Total DRAWING 
+                .Add(New SqlClient.SqlParameter("@TOTALDRAWENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALDRAWDENTS", alParaval(I)))
                 I += 1
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
@@ -235,6 +242,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SELVEDGECOST", alParaval(I)))
                 I += 1
+                ' Warp Gridpattern data serializations
+                .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSYM", alParaval(I)))
+                I += 1
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
                 I += 1
@@ -269,6 +283,27 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                'DRAWING FIELD
+                .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEATMARK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEAT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEATMARK1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEAT1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEATMARK2", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAWINGREPEAT2", alParaval(I)))
+                I += 1
+
+
+
+
                 ' Company and user details
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
