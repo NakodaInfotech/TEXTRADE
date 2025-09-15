@@ -802,6 +802,16 @@ line1:
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
+                ElseIf ClientName = "SHEETAL" Then      '(HARDIK BHAI SHRAVAK)
+                    HIGHVERSION = True
+                    HIDESAMPLEMODULE = False
+                    HIDEPOSTER = False
+                    HIDEDYEINGPROGRAM = False
+                    HIDESTORES = False
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
+                        GoTo LINE1
+                    End If
                 ElseIf ClientName = "SHREENAKODA" Then  '(MEHUL JAIN)
                     HIDESAMPLEMODULE = False
                     HIDECATALOG = False
