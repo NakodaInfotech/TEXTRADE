@@ -60,7 +60,7 @@ Public Class DesignwiseStock
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable
             If TEMPQUALITY = "" Then
-                dt = objclsCMST.search("CAST(0 AS BIT) AS SAMPLEMATCH, ITEMNAME, QUALITY, DESIGNNO, SUM(PCS) AS TOTALPCS, SUM(MTRS) AS TOTALMTRS, CATEGORY", "", "  BARCODESTOCK", WHERECLAUSE & TEMPCONDITION & "GROUP BY ITEMNAME, QUALITY, DESIGNNO, CATEGORY")
+                dt = objclsCMST.search("CAST(0 AS BIT) AS SAMPLEMATCH, ITEMNAME, QUALITY, DESIGNNO, SUM(PCS) AS TOTALPCS, SUM(MTRS) AS TOTALMTRS, CATEGORY", "", "  BARCODESTOCK", WHERECLAUSE & TEMPCONDITION & "GROUP BY ITEMNAME, QUALITY, DESIGNNO, CATEGORY ORDER BY ITEMNAME, DESIGNNO")
             Else
                 dt = objclsCMST.search("CAST(0 AS BIT) AS SAMPLEMATCH, SUM(PCS) AS TOTALPCS, SUM(MTRS) AS TOTALMTRS,'" & TEMPQUALITY & "' AS QUALITY, DESIGNNO", "", "  BARCODESTOCK", TEMPCONDITION & GROUPBY)
             End If
@@ -183,4 +183,13 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
+        Try
+            gridbill.ClearColumnsFilter()
+            fillgrid(" and yearid=" & YearId)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
