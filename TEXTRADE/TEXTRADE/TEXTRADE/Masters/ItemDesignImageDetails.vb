@@ -71,6 +71,10 @@ Public Class ItemDesignImageDetails
         End Try
     End Sub
 
+    Private Sub CMDADDNEW_Click(sender As Object, e As EventArgs) Handles CMDADDNEW.Click
+        showform(False, 0)
+    End Sub
+
     Private Sub GRIDBILL_DoubleClick(sender As Object, e As EventArgs) Handles GRIDBILL.DoubleClick
         showform(True, GRIDBILL.GetFocusedRowCellValue("ITEMDESIGNNO"))
     End Sub

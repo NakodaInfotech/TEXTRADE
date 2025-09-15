@@ -35,13 +35,13 @@ Partial Class ItemDesignImageDetails
         Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSET = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GIMG2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFILENAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GIMAGEPATH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GFILENAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GIMAGEPATH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBIMAGE2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +203,24 @@ Partial Class ItemDesignImageDetails
         Me.GIMG2.FieldName = "IMAGE2"
         Me.GIMG2.Name = "GIMG2"
         '
+        'GFILENAME
+        '
+        Me.GFILENAME.Caption = "File Name"
+        Me.GFILENAME.FieldName = "FILENAME"
+        Me.GFILENAME.Name = "GFILENAME"
+        Me.GFILENAME.Visible = True
+        Me.GFILENAME.VisibleIndex = 4
+        Me.GFILENAME.Width = 100
+        '
+        'GIMAGEPATH
+        '
+        Me.GIMAGEPATH.Caption = "Image Path"
+        Me.GIMAGEPATH.FieldName = "IMAGEPATH"
+        Me.GIMAGEPATH.Name = "GIMAGEPATH"
+        Me.GIMAGEPATH.Visible = True
+        Me.GIMAGEPATH.VisibleIndex = 5
+        Me.GIMAGEPATH.Width = 150
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
@@ -238,24 +256,6 @@ Partial Class ItemDesignImageDetails
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'GFILENAME
-        '
-        Me.GFILENAME.Caption = "File Name"
-        Me.GFILENAME.FieldName = "FILENAME"
-        Me.GFILENAME.Name = "GFILENAME"
-        Me.GFILENAME.Visible = True
-        Me.GFILENAME.VisibleIndex = 4
-        Me.GFILENAME.Width = 100
-        '
-        'GIMAGEPATH
-        '
-        Me.GIMAGEPATH.Caption = "Image Path"
-        Me.GIMAGEPATH.FieldName = "IMAGEPATH"
-        Me.GIMAGEPATH.Name = "GIMAGEPATH"
-        Me.GIMAGEPATH.Visible = True
-        Me.GIMAGEPATH.VisibleIndex = 5
-        Me.GIMAGEPATH.Width = 150
         '
         'ItemDesignImageDetails
         '
