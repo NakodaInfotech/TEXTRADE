@@ -1493,6 +1493,7 @@ Partial Class InvoiceMaster
         Me.CMDAUTOPOST.TabIndex = 893
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'CHALLANDATE
         '

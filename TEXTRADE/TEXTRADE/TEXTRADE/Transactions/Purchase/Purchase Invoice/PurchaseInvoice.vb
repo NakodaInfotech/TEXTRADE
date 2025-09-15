@@ -1077,7 +1077,7 @@ Public Class PurchaseMaster
                 End If
                 alParaval.Add(TEMPBILLNO)
                 IntResult = OBJINV.UPDATE()
-                'MessageBox.Show("Details Updated")
+                MessageBox.Show("Details Updated")
             End If
 
             'ADD DATA IN PURCHASEORDER DATATABLE AND THEN SAVE IN DATABASE
@@ -1107,18 +1107,18 @@ Public Class PurchaseMaster
             ElseIf ClientName = "SAKARIA" Or ClientName = "ABHEE" Then
 
                 'WE WILL UPDATE THE PARTYNAME IN SALE INVOICE
-                'Dim OBJCMN As New ClsCommon
-                'Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PURLEDGERID = PURCHASEMASTER.BILL_LEDGERID FROM INVOICEMASTER INNER JOIN PURCHASEMASTER ON INVOICE_REFNO = BILL_INITIALS AND INVOICE_YEARID = BILL_YEARID INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTER_ID WHERE BILL_YEARID = " & YearId & " AND BILL_NO = " & Val(TXTBILLNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "'", "", "")
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PURLEDGERID = PURCHASEMASTER.BILL_LEDGERID FROM INVOICEMASTER INNER JOIN PURCHASEMASTER ON INVOICE_REFNO = BILL_INITIALS AND INVOICE_YEARID = BILL_YEARID INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTER_ID WHERE BILL_YEARID = " & YearId & " AND BILL_NO = " & Val(TXTBILLNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "'", "", "")
 
             End If
 
 
             EDIT = False
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
+            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
 
             If CMBSERVICETYPE.Visible = True Then CMBSERVICETYPE.Focus() Else BILLDATE.Focus()
 
@@ -1347,7 +1347,6 @@ Public Class PurchaseMaster
                                     GoTo CHECKNEXTLINEABHEEPCS
                                 End If
 
-                                If ClientName = "MASHOK" Then ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                                 ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                                 ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
                                 TEMPORDERROWNO = -1
@@ -1358,7 +1357,6 @@ CHECKNEXTLINEABHEEPCS:
 
                         ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
                         If TEMPORDERROWNO >= 0 Then
-                            If ClientName = "MASHOK" Then GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                             GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
                             ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
                             TEMPORDERROWNO = -1
@@ -1479,6 +1477,7 @@ CHECKNEXTLINEABHEEMTRS:
                             BALQTY = Val(ROW.Cells(gQty.Index).Value) - ALLOWEDQTY
                             ALLOWEDQTY = Val(ORDROW.Cells(OPCS.Index).Value) - Val(ORDROW.Cells(OGRNQTY.Index).Value)
 
+                            If ALLOWEDQTY = 0 Then GoTo CHECKNEXTLINE
 
                             If (Val(ORDROW.Cells(OGRNQTY.Index).Value) = 0 And Val(ORDROW.Cells(OPCS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGRNQTY.Index).Value) >= Val(ORDROW.Cells(OPCS.Index).Value)) Then
                                 TEMPORDERROWNO = ORDROW.Index
@@ -1512,8 +1511,8 @@ CHECKNEXTLINE:
                     If TEMPORDERMATCH = False Then
                         ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
-                        If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                            EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+                        If MsgBox("There are Items which are Not Present In Selected Order, Wish To Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                            EP.SetError(cmbname, "There are Items which are Not Present In Selected Order")
                             bln = False
                         End If
                     End If
@@ -1558,8 +1557,8 @@ CHECKNEXTLINE:
             End If
 
             If TXTGSTIN.Text.Trim.Length = 0 Then
-                If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                    EP.SetError(TXTSTATECODE, "Enter GSTIN in Party Master")
+                If MsgBox("GSTIN Not Entered, Wish To Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    EP.SetError(TXTSTATECODE, "Enter GSTIN In Party Master")
                     bln = False
                 End If
             End If
@@ -1573,12 +1572,12 @@ CHECKNEXTLINE:
             End If
 
             If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(LBLTOTALCGSTAMT.Text) > 0 Or Val(LBLTOTALSGSTAMT.Text.Trim) > 0) Then
-                EP.SetError(TXTSTATECODE, "Invaid Entry Done in CGST/SGST")
+                EP.SetError(TXTSTATECODE, "Invaid Entry Done In CGST/SGST")
                 bln = False
             End If
 
             If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(LBLTOTALIGSTAMT.Text) > 0 Then
-                EP.SetError(TXTSTATECODE, "Invaid Entry Done in IGST")
+                EP.SetError(TXTSTATECODE, "Invaid Entry Done In IGST")
                 bln = False
             End If
         End If
@@ -1612,7 +1611,7 @@ CHECKNEXTLINE:
         Dim DT As New DataTable
         'If CHKTDS.CheckState = CheckState.Unchecked Then
         '    Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-        '    DT = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(BILL_GRANDTOTAL),0) AS GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
+        '    DT = OBJCMN.Execute_Any_String("Select ISNULL(SUM(BILL_GRANDTOTAL),0) As GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS On BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " And LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
         '    If DT.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
         '    If TEMPTDSTOTAL > 5000000 Then
         '        If MsgBox("Amount Exceeds 5000000, and TDS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then

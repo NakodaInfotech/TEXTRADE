@@ -1418,7 +1418,7 @@ Public Class InvoiceMaster
                 End If
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
-                'MessageBox.Show("Details Updated")
+                MessageBox.Show("Details Updated")
 
                 'WE NEED TO UPDATE LRNO IN PURCHASE
                 If ClientName = "SAKARIA" And txtlrno.Text.Trim <> "" And txtrefno.Text.Trim <> "" Then
@@ -1430,18 +1430,18 @@ Public Class InvoiceMaster
                 If ClientName = "AVIS" And txtlrno.Text.Trim <> "" Then SENDDIRECTMAIL()
 
                 SMSCODE()
-                'EDIT = False
+                EDIT = False
             End If
 
-            'If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
+            If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
 
 
-            'If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-            'If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
+            If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
+            If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -2077,6 +2077,10 @@ CHECKNEXTLINEABHEEMTRS:
                             'IF NO MATCHING IS FOUND IN FURTHER ROWS THEN WE NEED TO ADD QTY IN THIS TEMPROW
                             BALQTY = Val(ROW.Cells(Gpcs.Index).Value) - ALLOWEDQTY
                             ALLOWEDQTY = Val(ORDROW.Cells(OPCS.Index).Value) - Val(ORDROW.Cells(OGDNQTY.Index).Value)
+
+                            If ALLOWEDQTY = 0 Then GoTo CHECKNEXTLINE
+
+
                             If (Val(ORDROW.Cells(OGDNQTY.Index).Value) = 0 And Val(ORDROW.Cells(OPCS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGDNQTY.Index).Value) >= Val(ORDROW.Cells(OPCS.Index).Value)) Then
                                 TEMPORDERROWNO = ORDROW.Index
 
