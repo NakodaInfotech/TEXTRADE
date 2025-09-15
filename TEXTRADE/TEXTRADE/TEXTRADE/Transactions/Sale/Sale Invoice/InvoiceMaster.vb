@@ -1418,7 +1418,7 @@ Public Class InvoiceMaster
                 End If
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
-                MessageBox.Show("Details Updated")
+                'MessageBox.Show("Details Updated")
 
                 'WE NEED TO UPDATE LRNO IN PURCHASE
                 If ClientName = "SAKARIA" And txtlrno.Text.Trim <> "" And txtrefno.Text.Trim <> "" Then
@@ -1430,21 +1430,18 @@ Public Class InvoiceMaster
                 If ClientName = "AVIS" And txtlrno.Text.Trim <> "" Then SENDDIRECTMAIL()
 
                 SMSCODE()
-                EDIT = False
+                'EDIT = False
             End If
 
-            If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
+            'If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
 
-            'TEMPORARILY DONE FOR ALENCOT   
-            If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                CLEAR()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
-            If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
+            'If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    CLEAR()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
+            'If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -4830,7 +4827,7 @@ LINE1:
         If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
         Select Case colNum
 
-            Case GRATE.Index, Gpcs.Index, GOTHERAMT.Index, GDISCPER.Index, GSPDISCPER.Index, GCUT.Index, GGRIDTOTAL.Index
+            Case GRATE.Index, Gpcs.Index, GOTHERAMT.Index, GDISCPER.Index, GSPDISCPER.Index, GCUT.Index, GGRIDTOTAL.Index, Gmtrs.Index
                 Dim dDebit As Decimal
                 Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
 
@@ -5288,6 +5285,11 @@ LINE1:
 
                     GLRNO.Visible = True
                     GTRANS.Visible = True
+
+                    GDESIGN.Visible = False
+                    GSHADE.Visible = False
+                    GQTY.Visible = True
+                    GFOLDPER.Visible = True
 
                     GWT.Visible = True
                     LBLTOTALWT.Visible = True
@@ -7727,7 +7729,7 @@ ERRORMESSAGE:
             'GET INVOICENOS FROM INVOICEMASTER
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("MAX(INVOICE_NO) As INVOICENO", "", " INVOICEMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = INVOICE_REGISTERID", " And REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId)
-            For I As Integer = 3001 To Val(DT.Rows(0).Item("INVOICENO"))
+            For I As Integer = 1 To Val(DT.Rows(0).Item("INVOICENO"))
                 GRIDINVOICE.RowCount = 0
                 TEMPINVOICENO = Val(I)
                 TEMPREGNAME = cmbregister.Text.Trim

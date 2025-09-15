@@ -1077,7 +1077,7 @@ Public Class PurchaseMaster
                 End If
                 alParaval.Add(TEMPBILLNO)
                 IntResult = OBJINV.UPDATE()
-                MessageBox.Show("Details Updated")
+                'MessageBox.Show("Details Updated")
             End If
 
             'ADD DATA IN PURCHASEORDER DATATABLE AND THEN SAVE IN DATABASE
@@ -1107,20 +1107,18 @@ Public Class PurchaseMaster
             ElseIf ClientName = "SAKARIA" Or ClientName = "ABHEE" Then
 
                 'WE WILL UPDATE THE PARTYNAME IN SALE INVOICE
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PURLEDGERID = PURCHASEMASTER.BILL_LEDGERID FROM INVOICEMASTER INNER JOIN PURCHASEMASTER ON INVOICE_REFNO = BILL_INITIALS AND INVOICE_YEARID = BILL_YEARID INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTER_ID WHERE BILL_YEARID = " & YearId & " AND BILL_NO = " & Val(TXTBILLNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "'", "", "")
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PURLEDGERID = PURCHASEMASTER.BILL_LEDGERID FROM INVOICEMASTER INNER JOIN PURCHASEMASTER ON INVOICE_REFNO = BILL_INITIALS AND INVOICE_YEARID = BILL_YEARID INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTER_ID WHERE BILL_YEARID = " & YearId & " AND BILL_NO = " & Val(TXTBILLNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "'", "", "")
 
             End If
 
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             EDIT = False
-            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                CLEAR()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
+            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    CLEAR()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
 
             If CMBSERVICETYPE.Visible = True Then CMBSERVICETYPE.Focus() Else BILLDATE.Focus()
 
@@ -1612,27 +1610,19 @@ CHECKNEXTLINE:
 
         'CHECK WHETHER PURCHASER HAS CROSSED 50LAKHS OR NOT
         Dim DT As New DataTable
-        If CHKTDS.CheckState = CheckState.Unchecked Then
-            Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-            DT = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(BILL_GRANDTOTAL),0) AS GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
-            If DT.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
-            If TEMPTDSTOTAL > 5000000 Then
-                If MsgBox("Amount Exceeds 5000000, and TDS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                    EP.SetError(cmbname, "Apply TDS")
-                    bln = False
-                End If
-            End If
-        End If
-
-
-        'Dim FORMTYPE As String = ""
-        'For Each DTROW As DataRowView In CHKFORMBOX.CheckedItems
-        '    FORMTYPE = DTROW.Item(0)
-        'Next
-        'If FORMTYPE = Nothing Then
-        '    EP.SetError(CHKFORMBOX, "Pls Select Form Type")
-        '    bln = False
+        'If CHKTDS.CheckState = CheckState.Unchecked Then
+        '    Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
+        '    DT = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(BILL_GRANDTOTAL),0) AS GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
+        '    If DT.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
+        '    If TEMPTDSTOTAL > 5000000 Then
+        '        If MsgBox("Amount Exceeds 5000000, and TDS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+        '            EP.SetError(cmbname, "Apply TDS")
+        '            bln = False
+        '        End If
+        '    End If
         'End If
+
+
 
         If UserName <> "Admin" Then
             If (ClientName <> "DAKSH" And ClientName <> "RSONS") And lbllocked.Visible = True Then
