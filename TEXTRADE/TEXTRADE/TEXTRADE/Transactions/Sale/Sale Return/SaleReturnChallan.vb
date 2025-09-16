@@ -1035,13 +1035,12 @@ LINE1:
                 End If
             End If
 
-            'GET DISPLAY NAME IN GRIDREMARKS
-            If ClientName = "RAJKRIPA" Then
-                DT = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+            'GET DISPLAY NAME IN GRIDREMARKS AND FETCH RATES 
+            If ClientName = "RAJKRIPA" Or ClientName = "REALCORPORATION" Then
+                DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    For Each DTROW As DataRow In DT.Rows
-                        TXTGRIDREMARKS.Text = (DT.Rows(0).Item("DISPLAYNAME"))
-                    Next
+                    If ClientName = "RAJKRIPA" Then TXTGRIDREMARKS.Text = DT.Rows(0).Item("DISPLAYNAME")
+                    If ClientName = "REALCORPORATION" Then TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
                 End If
             End If
 
@@ -1573,6 +1572,12 @@ LINE1:
                 'no need for yearid clause here as we need to fetch this barcode in all acccouting year
                 DT = OBJCMN.SEARCH(" TOP 1 * ", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTOUTBARCODE.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
+
+                    'GET RATES 
+                    If ClientName = "REALCORPORATION" Then
+                        DT = OBJCMN.SEARCH("ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & DT.Rows(0).Item("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 And ClientName = "REALCORPORATION" Then TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
+                    End If
 
                     GRIDSR.Rows.Add(GRIDSR.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", 0, 1, DT.Rows(0).Item("UNIT"), Val(DT.Rows(0).Item("MTRS")), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), "", "", "", 0, 0, 0)
                     GRIDSR.FirstDisplayedScrollingRowIndex = GRIDSR.RowCount - 1
