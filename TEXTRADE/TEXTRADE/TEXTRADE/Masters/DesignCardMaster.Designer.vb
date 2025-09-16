@@ -76,6 +76,12 @@ Partial Class DesignCardMaster
         Me.SPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEATMARKING = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTSELTOTALCOST = New System.Windows.Forms.TextBox()
         Me.TXTSELTOTALRATE = New System.Windows.Forms.TextBox()
         Me.TXTTOTALSELCONS = New System.Windows.Forms.TextBox()
@@ -114,13 +120,8 @@ Partial Class DesignCardMaster
         Me.TBWARP = New System.Windows.Forms.TabPage()
         Me.CMBGRIDSYM = New System.Windows.Forms.ComboBox()
         Me.TXTTOTALWARPGRIDPE = New System.Windows.Forms.TextBox()
-        Me.Label49 = New System.Windows.Forms.Label()
         Me.TXTGRIDPE = New System.Windows.Forms.TextBox()
         Me.TXTWARPGSRNO = New System.Windows.Forms.TextBox()
-        Me.GRIDWARPPATTERN = New System.Windows.Forms.DataGridView()
-        Me.WPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTTOTALWARPCOST = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWARPRATE = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWARPCONS = New System.Windows.Forms.TextBox()
@@ -133,6 +134,8 @@ Partial Class DesignCardMaster
         Me.TXTWARPCONS = New System.Windows.Forms.TextBox()
         Me.TXTWARPBE = New System.Windows.Forms.TextBox()
         Me.TXTWARPPE = New System.Windows.Forms.TextBox()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.GRIDWARPPATTERN = New System.Windows.Forms.DataGridView()
         Me.CMBWARPMILLNAME = New System.Windows.Forms.ComboBox()
         Me.TXTWARPSYMBOL = New System.Windows.Forms.TextBox()
         Me.TXTWARPSRNO = New System.Windows.Forms.TextBox()
@@ -163,9 +166,6 @@ Partial Class DesignCardMaster
         Me.TXTWEFTGRIDPE = New System.Windows.Forms.TextBox()
         Me.TXTWEFTGRIDSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDWEFTPATTERN = New System.Windows.Forms.DataGridView()
-        Me.FPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTTOTALWEFTCOST = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWEFTRATE = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWEFTCONS = New System.Windows.Forms.TextBox()
@@ -202,6 +202,7 @@ Partial Class DesignCardMaster
         Me.FRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FCOST = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBDRAWING = New System.Windows.Forms.TabPage()
+        Me.cmdbtn1 = New System.Windows.Forms.Button()
         Me.BTNMARKBLOCK = New System.Windows.Forms.Button()
         Me.TXTTOTALDRAWDENTS = New System.Windows.Forms.TextBox()
         Me.Label55 = New System.Windows.Forms.Label()
@@ -210,14 +211,6 @@ Partial Class DesignCardMaster
         Me.TXTDRAWENDS = New System.Windows.Forms.TextBox()
         Me.TXTDRAWSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDDRAWING = New System.Windows.Forms.DataGridView()
-        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBDESIGNNO = New System.Windows.Forms.ComboBox()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -346,6 +339,43 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.WPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBSELVEDGE.SuspendLayout()
@@ -494,7 +524,7 @@ Partial Class DesignCardMaster
         Me.CMBSELGSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBSELGSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSELGSYM.FormattingEnabled = True
-        Me.CMBSELGSYM.Location = New System.Drawing.Point(1200, 6)
+        Me.CMBSELGSYM.Location = New System.Drawing.Point(1133, 6)
         Me.CMBSELGSYM.Name = "CMBSELGSYM"
         Me.CMBSELGSYM.Size = New System.Drawing.Size(62, 23)
         Me.CMBSELGSYM.TabIndex = 14
@@ -502,7 +532,7 @@ Partial Class DesignCardMaster
         'TXTTOTALSELGPE
         '
         Me.TXTTOTALSELGPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELGPE.Location = New System.Drawing.Point(1151, 212)
+        Me.TXTTOTALSELGPE.Location = New System.Drawing.Point(1101, 212)
         Me.TXTTOTALSELGPE.Name = "TXTTOTALSELGPE"
         Me.TXTTOTALSELGPE.ReadOnly = True
         Me.TXTTOTALSELGPE.Size = New System.Drawing.Size(50, 23)
@@ -515,7 +545,7 @@ Partial Class DesignCardMaster
         Me.Label56.AutoSize = True
         Me.Label56.BackColor = System.Drawing.Color.Transparent
         Me.Label56.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label56.Location = New System.Drawing.Point(1073, 216)
+        Me.Label56.Location = New System.Drawing.Point(1023, 216)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(74, 15)
         Me.Label56.TabIndex = 898
@@ -524,7 +554,7 @@ Partial Class DesignCardMaster
         'TXTSELGPE
         '
         Me.TXTSELGPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELGPE.Location = New System.Drawing.Point(1150, 6)
+        Me.TXTSELGPE.Location = New System.Drawing.Point(1083, 6)
         Me.TXTSELGPE.Name = "TXTSELGPE"
         Me.TXTSELGPE.Size = New System.Drawing.Size(50, 23)
         Me.TXTSELGPE.TabIndex = 13
@@ -533,7 +563,7 @@ Partial Class DesignCardMaster
         'TXTSELGSRNO
         '
         Me.TXTSELGSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELGSRNO.Location = New System.Drawing.Point(1120, 6)
+        Me.TXTSELGSRNO.Location = New System.Drawing.Point(1053, 6)
         Me.TXTSELGSRNO.Name = "TXTSELGSRNO"
         Me.TXTSELGSRNO.ReadOnly = True
         Me.TXTSELGSRNO.Size = New System.Drawing.Size(30, 23)
@@ -560,7 +590,7 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDSELVEDGEPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDSELVEDGEPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSELVEDGEPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SPSRNO, Me.SPENDS, Me.SPSYM})
+        Me.GRIDSELVEDGEPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SPSRNO, Me.SPENDS, Me.SPSYM, Me.SPREPEATMARKING, Me.SPREPEAT, Me.SPREPEATMARK1, Me.SPREPEAT1, Me.SPREPEATMARK2, Me.SPREPEAT2})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -570,7 +600,7 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSELVEDGEPATTERN.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDSELVEDGEPATTERN.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSELVEDGEPATTERN.Location = New System.Drawing.Point(1120, 28)
+        Me.GRIDSELVEDGEPATTERN.Location = New System.Drawing.Point(1053, 28)
         Me.GRIDSELVEDGEPATTERN.MultiSelect = False
         Me.GRIDSELVEDGEPATTERN.Name = "GRIDSELVEDGEPATTERN"
         Me.GRIDSELVEDGEPATTERN.ReadOnly = True
@@ -583,7 +613,7 @@ Partial Class DesignCardMaster
         Me.GRIDSELVEDGEPATTERN.RowTemplate.Height = 20
         Me.GRIDSELVEDGEPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSELVEDGEPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(173, 179)
+        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(167, 179)
         Me.GRIDSELVEDGEPATTERN.TabIndex = 15
         Me.GRIDSELVEDGEPATTERN.TabStop = False
         '
@@ -613,6 +643,54 @@ Partial Class DesignCardMaster
         Me.SPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.SPSYM.Width = 60
+        '
+        'SPREPEATMARKING
+        '
+        Me.SPREPEATMARKING.HeaderText = "RM"
+        Me.SPREPEATMARKING.Name = "SPREPEATMARKING"
+        Me.SPREPEATMARKING.ReadOnly = True
+        Me.SPREPEATMARKING.Visible = False
+        Me.SPREPEATMARKING.Width = 45
+        '
+        'SPREPEAT
+        '
+        Me.SPREPEAT.HeaderText = "R"
+        Me.SPREPEAT.Name = "SPREPEAT"
+        Me.SPREPEAT.ReadOnly = True
+        Me.SPREPEAT.Visible = False
+        Me.SPREPEAT.Width = 30
+        '
+        'SPREPEATMARK1
+        '
+        Me.SPREPEATMARK1.HeaderText = "RM1"
+        Me.SPREPEATMARK1.Name = "SPREPEATMARK1"
+        Me.SPREPEATMARK1.ReadOnly = True
+        Me.SPREPEATMARK1.Visible = False
+        Me.SPREPEATMARK1.Width = 45
+        '
+        'SPREPEAT1
+        '
+        Me.SPREPEAT1.HeaderText = "R1"
+        Me.SPREPEAT1.Name = "SPREPEAT1"
+        Me.SPREPEAT1.ReadOnly = True
+        Me.SPREPEAT1.Visible = False
+        Me.SPREPEAT1.Width = 30
+        '
+        'SPREPEATMARK2
+        '
+        Me.SPREPEATMARK2.HeaderText = "RM2"
+        Me.SPREPEATMARK2.Name = "SPREPEATMARK2"
+        Me.SPREPEATMARK2.ReadOnly = True
+        Me.SPREPEATMARK2.Visible = False
+        Me.SPREPEATMARK2.Width = 45
+        '
+        'SPREPEAT2
+        '
+        Me.SPREPEAT2.HeaderText = "R2"
+        Me.SPREPEAT2.Name = "SPREPEAT2"
+        Me.SPREPEAT2.ReadOnly = True
+        Me.SPREPEAT2.Visible = False
+        Me.SPREPEAT2.Width = 30
         '
         'TXTSELTOTALCOST
         '
@@ -868,7 +946,7 @@ Partial Class DesignCardMaster
         Me.GRIDSELVEDGE.RowTemplate.Height = 20
         Me.GRIDSELVEDGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSELVEDGE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSELVEDGE.Size = New System.Drawing.Size(1052, 179)
+        Me.GRIDSELVEDGE.Size = New System.Drawing.Size(1031, 179)
         Me.GRIDSELVEDGE.TabIndex = 12
         Me.GRIDSELVEDGE.TabStop = False
         '
@@ -997,12 +1075,11 @@ Partial Class DesignCardMaster
         'TBWARP
         '
         Me.TBWARP.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBWARP.Controls.Add(Me.Button1)
         Me.TBWARP.Controls.Add(Me.CMBGRIDSYM)
         Me.TBWARP.Controls.Add(Me.TXTTOTALWARPGRIDPE)
-        Me.TBWARP.Controls.Add(Me.Label49)
         Me.TBWARP.Controls.Add(Me.TXTGRIDPE)
         Me.TBWARP.Controls.Add(Me.TXTWARPGSRNO)
-        Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
         Me.TBWARP.Controls.Add(Me.TXTTOTALWARPCOST)
         Me.TBWARP.Controls.Add(Me.TXTTOTALWARPRATE)
         Me.TBWARP.Controls.Add(Me.TXTTOTALWARPCONS)
@@ -1015,6 +1092,8 @@ Partial Class DesignCardMaster
         Me.TBWARP.Controls.Add(Me.TXTWARPCONS)
         Me.TBWARP.Controls.Add(Me.TXTWARPBE)
         Me.TBWARP.Controls.Add(Me.TXTWARPPE)
+        Me.TBWARP.Controls.Add(Me.Label49)
+        Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
         Me.TBWARP.Controls.Add(Me.CMBWARPMILLNAME)
         Me.TBWARP.Controls.Add(Me.TXTWARPSYMBOL)
         Me.TBWARP.Controls.Add(Me.TXTWARPSRNO)
@@ -1038,7 +1117,7 @@ Partial Class DesignCardMaster
         Me.CMBGRIDSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBGRIDSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBGRIDSYM.FormattingEnabled = True
-        Me.CMBGRIDSYM.Location = New System.Drawing.Point(1188, 6)
+        Me.CMBGRIDSYM.Location = New System.Drawing.Point(1143, 5)
         Me.CMBGRIDSYM.Name = "CMBGRIDSYM"
         Me.CMBGRIDSYM.Size = New System.Drawing.Size(62, 23)
         Me.CMBGRIDSYM.TabIndex = 879
@@ -1046,7 +1125,7 @@ Partial Class DesignCardMaster
         'TXTTOTALWARPGRIDPE
         '
         Me.TXTTOTALWARPGRIDPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWARPGRIDPE.Location = New System.Drawing.Point(1139, 212)
+        Me.TXTTOTALWARPGRIDPE.Location = New System.Drawing.Point(1097, 212)
         Me.TXTTOTALWARPGRIDPE.Name = "TXTTOTALWARPGRIDPE"
         Me.TXTTOTALWARPGRIDPE.ReadOnly = True
         Me.TXTTOTALWARPGRIDPE.Size = New System.Drawing.Size(50, 23)
@@ -1054,21 +1133,10 @@ Partial Class DesignCardMaster
         Me.TXTTOTALWARPGRIDPE.TabStop = False
         Me.TXTTOTALWARPGRIDPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.BackColor = System.Drawing.Color.Transparent
-        Me.Label49.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.Location = New System.Drawing.Point(1061, 216)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(74, 15)
-        Me.Label49.TabIndex = 877
-        Me.Label49.Text = "Total Repeat"
-        '
         'TXTGRIDPE
         '
         Me.TXTGRIDPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTGRIDPE.Location = New System.Drawing.Point(1138, 6)
+        Me.TXTGRIDPE.Location = New System.Drawing.Point(1093, 5)
         Me.TXTGRIDPE.Name = "TXTGRIDPE"
         Me.TXTGRIDPE.Size = New System.Drawing.Size(50, 23)
         Me.TXTGRIDPE.TabIndex = 13
@@ -1077,86 +1145,13 @@ Partial Class DesignCardMaster
         'TXTWARPGSRNO
         '
         Me.TXTWARPGSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTWARPGSRNO.Location = New System.Drawing.Point(1108, 6)
+        Me.TXTWARPGSRNO.Location = New System.Drawing.Point(1063, 5)
         Me.TXTWARPGSRNO.Name = "TXTWARPGSRNO"
         Me.TXTWARPGSRNO.ReadOnly = True
         Me.TXTWARPGSRNO.Size = New System.Drawing.Size(30, 23)
         Me.TXTWARPGSRNO.TabIndex = 12
         Me.TXTWARPGSRNO.TabStop = False
         Me.TXTWARPGSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'GRIDWARPPATTERN
-        '
-        Me.GRIDWARPPATTERN.AllowUserToAddRows = False
-        Me.GRIDWARPPATTERN.AllowUserToDeleteRows = False
-        Me.GRIDWARPPATTERN.AllowUserToResizeColumns = False
-        Me.GRIDWARPPATTERN.AllowUserToResizeRows = False
-        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWARPPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
-        Me.GRIDWARPPATTERN.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDWARPPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDWARPPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWARPPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
-        Me.GRIDWARPPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDWARPPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WPSRNO, Me.WPENDS, Me.WPSYM})
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWARPPATTERN.DefaultCellStyle = DataGridViewCellStyle14
-        Me.GRIDWARPPATTERN.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDWARPPATTERN.Location = New System.Drawing.Point(1108, 28)
-        Me.GRIDWARPPATTERN.MultiSelect = False
-        Me.GRIDWARPPATTERN.Name = "GRIDWARPPATTERN"
-        Me.GRIDWARPPATTERN.ReadOnly = True
-        Me.GRIDWARPPATTERN.RowHeadersVisible = False
-        Me.GRIDWARPPATTERN.RowHeadersWidth = 30
-        Me.GRIDWARPPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWARPPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle15
-        Me.GRIDWARPPATTERN.RowTemplate.Height = 20
-        Me.GRIDWARPPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWARPPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDWARPPATTERN.Size = New System.Drawing.Size(173, 179)
-        Me.GRIDWARPPATTERN.TabIndex = 15
-        Me.GRIDWARPPATTERN.TabStop = False
-        '
-        'WPSRNO
-        '
-        Me.WPSRNO.HeaderText = "Sr."
-        Me.WPSRNO.Name = "WPSRNO"
-        Me.WPSRNO.ReadOnly = True
-        Me.WPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WPSRNO.Width = 30
-        '
-        'WPENDS
-        '
-        Me.WPENDS.HeaderText = "P.E."
-        Me.WPENDS.Name = "WPENDS"
-        Me.WPENDS.ReadOnly = True
-        Me.WPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WPENDS.Width = 50
-        '
-        'WPSYM
-        '
-        Me.WPSYM.HeaderText = "Sym"
-        Me.WPSYM.Name = "WPSYM"
-        Me.WPSYM.ReadOnly = True
-        Me.WPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WPSYM.Width = 60
         '
         'TXTTOTALWARPCOST
         '
@@ -1281,6 +1276,62 @@ Partial Class DesignCardMaster
         Me.TXTWARPPE.TabIndex = 4
         Me.TXTWARPPE.TabStop = False
         Me.TXTWARPPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.BackColor = System.Drawing.Color.Transparent
+        Me.Label49.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label49.Location = New System.Drawing.Point(1019, 216)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(74, 15)
+        Me.Label49.TabIndex = 877
+        Me.Label49.Text = "Total Repeat"
+        '
+        'GRIDWARPPATTERN
+        '
+        Me.GRIDWARPPATTERN.AllowUserToAddRows = False
+        Me.GRIDWARPPATTERN.AllowUserToDeleteRows = False
+        Me.GRIDWARPPATTERN.AllowUserToResizeColumns = False
+        Me.GRIDWARPPATTERN.AllowUserToResizeRows = False
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWARPPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
+        Me.GRIDWARPPATTERN.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDWARPPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDWARPPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWARPPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        Me.GRIDWARPPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDWARPPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WPSRNO, Me.WPENDS, Me.WPSYM, Me.WPRM, Me.WPR, Me.WPTR, Me.WPRM1, Me.WPR1, Me.WPTR1, Me.WPRM2, Me.WPR2, Me.WPTR2})
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWARPPATTERN.DefaultCellStyle = DataGridViewCellStyle14
+        Me.GRIDWARPPATTERN.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDWARPPATTERN.Location = New System.Drawing.Point(1063, 27)
+        Me.GRIDWARPPATTERN.MultiSelect = False
+        Me.GRIDWARPPATTERN.Name = "GRIDWARPPATTERN"
+        Me.GRIDWARPPATTERN.RowHeadersVisible = False
+        Me.GRIDWARPPATTERN.RowHeadersWidth = 30
+        Me.GRIDWARPPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWARPPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle15
+        Me.GRIDWARPPATTERN.RowTemplate.Height = 20
+        Me.GRIDWARPPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWARPPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDWARPPATTERN.Size = New System.Drawing.Size(230, 179)
+        Me.GRIDWARPPATTERN.TabIndex = 15
+        Me.GRIDWARPPATTERN.TabStop = False
         '
         'CMBWARPMILLNAME
         '
@@ -1545,6 +1596,7 @@ Partial Class DesignCardMaster
         'TBWEFT
         '
         Me.TBWEFT.BackColor = System.Drawing.Color.Honeydew
+        Me.TBWEFT.Controls.Add(Me.Button2)
         Me.TBWEFT.Controls.Add(Me.CMBWEFTGRIDSYMBOL)
         Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTGRIDPE)
         Me.TBWEFT.Controls.Add(Me.Label50)
@@ -1573,10 +1625,10 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Controls.Add(Me.Label51)
         Me.TBWEFT.Controls.Add(Me.CMBWEFTYARNQUALITY)
         Me.TBWEFT.Controls.Add(Me.GRIDWEFT)
-        Me.TBWEFT.Location = New System.Drawing.Point(4, 22)
+        Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1299, 244)
+        Me.TBWEFT.Size = New System.Drawing.Size(1299, 242)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Weft Matching && Weft Pattern"
         '
@@ -1586,7 +1638,7 @@ Partial Class DesignCardMaster
         Me.CMBWEFTGRIDSYMBOL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBWEFTGRIDSYMBOL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBWEFTGRIDSYMBOL.FormattingEnabled = True
-        Me.CMBWEFTGRIDSYMBOL.Location = New System.Drawing.Point(1194, 7)
+        Me.CMBWEFTGRIDSYMBOL.Location = New System.Drawing.Point(1132, 7)
         Me.CMBWEFTGRIDSYMBOL.Name = "CMBWEFTGRIDSYMBOL"
         Me.CMBWEFTGRIDSYMBOL.Size = New System.Drawing.Size(61, 23)
         Me.CMBWEFTGRIDSYMBOL.TabIndex = 907
@@ -1594,7 +1646,7 @@ Partial Class DesignCardMaster
         'TXTTOTALWEFTGRIDPE
         '
         Me.TXTTOTALWEFTGRIDPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTGRIDPE.Location = New System.Drawing.Point(1145, 213)
+        Me.TXTTOTALWEFTGRIDPE.Location = New System.Drawing.Point(1100, 211)
         Me.TXTTOTALWEFTGRIDPE.Name = "TXTTOTALWEFTGRIDPE"
         Me.TXTTOTALWEFTGRIDPE.ReadOnly = True
         Me.TXTTOTALWEFTGRIDPE.Size = New System.Drawing.Size(50, 23)
@@ -1607,7 +1659,7 @@ Partial Class DesignCardMaster
         Me.Label50.AutoSize = True
         Me.Label50.BackColor = System.Drawing.Color.Transparent
         Me.Label50.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.Location = New System.Drawing.Point(1067, 217)
+        Me.Label50.Location = New System.Drawing.Point(1022, 215)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(74, 15)
         Me.Label50.TabIndex = 905
@@ -1616,7 +1668,7 @@ Partial Class DesignCardMaster
         'TXTWEFTGRIDPE
         '
         Me.TXTWEFTGRIDPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTGRIDPE.Location = New System.Drawing.Point(1144, 7)
+        Me.TXTWEFTGRIDPE.Location = New System.Drawing.Point(1082, 7)
         Me.TXTWEFTGRIDPE.Name = "TXTWEFTGRIDPE"
         Me.TXTWEFTGRIDPE.Size = New System.Drawing.Size(50, 23)
         Me.TXTWEFTGRIDPE.TabIndex = 11
@@ -1625,7 +1677,7 @@ Partial Class DesignCardMaster
         'TXTWEFTGRIDSRNO
         '
         Me.TXTWEFTGRIDSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTGRIDSRNO.Location = New System.Drawing.Point(1114, 7)
+        Me.TXTWEFTGRIDSRNO.Location = New System.Drawing.Point(1052, 7)
         Me.TXTWEFTGRIDSRNO.Name = "TXTWEFTGRIDSRNO"
         Me.TXTWEFTGRIDSRNO.ReadOnly = True
         Me.TXTWEFTGRIDSRNO.Size = New System.Drawing.Size(30, 23)
@@ -1652,7 +1704,7 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDWEFTPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.GRIDWEFTPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDWEFTPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FPSRNO, Me.FPENDS, Me.FPSYM})
+        Me.GRIDWEFTPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FPSRNO, Me.FPENDS, Me.FPSYM, Me.FPRM, Me.FPR, Me.FPTR, Me.FPRM1, Me.FPR1, Me.FPTR1, Me.FPRM2, Me.FPR2, Me.FPTR2})
         DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle25.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1662,10 +1714,9 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFTPATTERN.DefaultCellStyle = DataGridViewCellStyle25
         Me.GRIDWEFTPATTERN.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDWEFTPATTERN.Location = New System.Drawing.Point(1114, 29)
+        Me.GRIDWEFTPATTERN.Location = New System.Drawing.Point(1052, 29)
         Me.GRIDWEFTPATTERN.MultiSelect = False
         Me.GRIDWEFTPATTERN.Name = "GRIDWEFTPATTERN"
-        Me.GRIDWEFTPATTERN.ReadOnly = True
         Me.GRIDWEFTPATTERN.RowHeadersVisible = False
         Me.GRIDWEFTPATTERN.RowHeadersWidth = 30
         Me.GRIDWEFTPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -1675,36 +1726,9 @@ Partial Class DesignCardMaster
         Me.GRIDWEFTPATTERN.RowTemplate.Height = 20
         Me.GRIDWEFTPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFTPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDWEFTPATTERN.Size = New System.Drawing.Size(173, 179)
+        Me.GRIDWEFTPATTERN.Size = New System.Drawing.Size(223, 179)
         Me.GRIDWEFTPATTERN.TabIndex = 14
         Me.GRIDWEFTPATTERN.TabStop = False
-        '
-        'FPSRNO
-        '
-        Me.FPSRNO.HeaderText = "Sr."
-        Me.FPSRNO.Name = "FPSRNO"
-        Me.FPSRNO.ReadOnly = True
-        Me.FPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FPSRNO.Width = 30
-        '
-        'FPENDS
-        '
-        Me.FPENDS.HeaderText = "P.E."
-        Me.FPENDS.Name = "FPENDS"
-        Me.FPENDS.ReadOnly = True
-        Me.FPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FPENDS.Width = 50
-        '
-        'FPSYM
-        '
-        Me.FPSYM.HeaderText = "Sym"
-        Me.FPSYM.Name = "FPSYM"
-        Me.FPSYM.ReadOnly = True
-        Me.FPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FPSYM.Width = 60
         '
         'TXTTOTALWEFTCOST
         '
@@ -1960,7 +1984,7 @@ Partial Class DesignCardMaster
         Me.GRIDWEFT.RowTemplate.Height = 20
         Me.GRIDWEFT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDWEFT.Size = New System.Drawing.Size(1052, 179)
+        Me.GRIDWEFT.Size = New System.Drawing.Size(1035, 179)
         Me.GRIDWEFT.TabIndex = 13
         Me.GRIDWEFT.TabStop = False
         '
@@ -2089,6 +2113,7 @@ Partial Class DesignCardMaster
         'TBDRAWING
         '
         Me.TBDRAWING.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDRAWING.Controls.Add(Me.cmdbtn1)
         Me.TBDRAWING.Controls.Add(Me.BTNMARKBLOCK)
         Me.TBDRAWING.Controls.Add(Me.TXTTOTALDRAWDENTS)
         Me.TBDRAWING.Controls.Add(Me.Label55)
@@ -2097,16 +2122,25 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Controls.Add(Me.TXTDRAWENDS)
         Me.TBDRAWING.Controls.Add(Me.TXTDRAWSRNO)
         Me.TBDRAWING.Controls.Add(Me.GRIDDRAWING)
-        Me.TBDRAWING.Location = New System.Drawing.Point(4, 22)
+        Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1299, 244)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1299, 242)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
+        'cmdbtn1
+        '
+        Me.cmdbtn1.Location = New System.Drawing.Point(1218, 135)
+        Me.cmdbtn1.Name = "cmdbtn1"
+        Me.cmdbtn1.Size = New System.Drawing.Size(75, 23)
+        Me.cmdbtn1.TabIndex = 917
+        Me.cmdbtn1.Text = "Button1"
+        Me.cmdbtn1.UseVisualStyleBackColor = True
+        '
         'BTNMARKBLOCK
         '
-        Me.BTNMARKBLOCK.Location = New System.Drawing.Point(821, 30)
+        Me.BTNMARKBLOCK.Location = New System.Drawing.Point(1208, 30)
         Me.BTNMARKBLOCK.Name = "BTNMARKBLOCK"
         Me.BTNMARKBLOCK.Size = New System.Drawing.Size(75, 23)
         Me.BTNMARKBLOCK.TabIndex = 916
@@ -2196,7 +2230,7 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDDRAWING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle35
         Me.GRIDDRAWING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDDRAWING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DSRNO, Me.DENDS, Me.DREPEATMARK, Me.DREPEAT, Me.DREPEATMARK1, Me.DREPEATS1, Me.DREPEATMARK2, Me.DREPEATS2})
+        Me.GRIDDRAWING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DSRNO, Me.DENDS, Me.DREPEATMARK, Me.DREPEAT, Me.DTOTALREPEAT, Me.DREPEATMARK1, Me.DREPEATS1, Me.DTOTALREPEAT1, Me.DREPEATMARK2, Me.DREPEATS2, Me.DTOTALREPEAT2})
         DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle36.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2218,66 +2252,9 @@ Partial Class DesignCardMaster
         Me.GRIDDRAWING.RowTemplate.Height = 20
         Me.GRIDDRAWING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDDRAWING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDDRAWING.Size = New System.Drawing.Size(755, 179)
+        Me.GRIDDRAWING.Size = New System.Drawing.Size(1056, 179)
         Me.GRIDDRAWING.TabIndex = 909
         Me.GRIDDRAWING.TabStop = False
-        '
-        'DSRNO
-        '
-        Me.DSRNO.HeaderText = "Sr."
-        Me.DSRNO.Name = "DSRNO"
-        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DSRNO.Width = 30
-        '
-        'DENDS
-        '
-        Me.DENDS.HeaderText = "Ends"
-        Me.DENDS.Name = "DENDS"
-        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK
-        '
-        Me.DREPEATMARK.HeaderText = "Repeat Mark"
-        Me.DREPEATMARK.Name = "DREPEATMARK"
-        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEAT
-        '
-        Me.DREPEAT.HeaderText = "Repeats"
-        Me.DREPEAT.Name = "DREPEAT"
-        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK1
-        '
-        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
-        Me.DREPEATMARK1.Name = "DREPEATMARK1"
-        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATS1
-        '
-        Me.DREPEATS1.HeaderText = "Repeats 1"
-        Me.DREPEATS1.Name = "DREPEATS1"
-        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK2
-        '
-        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
-        Me.DREPEATMARK2.Name = "DREPEATMARK2"
-        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATS2
-        '
-        Me.DREPEATS2.HeaderText = "Repeats 2"
-        Me.DREPEATS2.Name = "DREPEATS2"
-        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'CMBDESIGNNO
         '
@@ -3779,6 +3756,256 @@ Partial Class DesignCardMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1170, 211)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 918
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'WPSRNO
+        '
+        Me.WPSRNO.HeaderText = "Sr."
+        Me.WPSRNO.Name = "WPSRNO"
+        Me.WPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WPSRNO.Width = 30
+        '
+        'WPENDS
+        '
+        Me.WPENDS.HeaderText = "P.E."
+        Me.WPENDS.Name = "WPENDS"
+        Me.WPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WPENDS.Width = 50
+        '
+        'WPSYM
+        '
+        Me.WPSYM.HeaderText = "Sym"
+        Me.WPSYM.Name = "WPSYM"
+        Me.WPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WPSYM.Width = 60
+        '
+        'WPRM
+        '
+        Me.WPRM.HeaderText = "RM"
+        Me.WPRM.Name = "WPRM"
+        Me.WPRM.Width = 45
+        '
+        'WPR
+        '
+        Me.WPR.HeaderText = "R"
+        Me.WPR.Name = "WPR"
+        Me.WPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WPR.Width = 30
+        '
+        'WPTR
+        '
+        Me.WPTR.HeaderText = "Column1"
+        Me.WPTR.Name = "WPTR"
+        Me.WPTR.Visible = False
+        '
+        'WPRM1
+        '
+        Me.WPRM1.HeaderText = "RM1"
+        Me.WPRM1.Name = "WPRM1"
+        Me.WPRM1.Width = 45
+        '
+        'WPR1
+        '
+        Me.WPR1.HeaderText = "R1"
+        Me.WPR1.Name = "WPR1"
+        Me.WPR1.Width = 30
+        '
+        'WPTR1
+        '
+        Me.WPTR1.HeaderText = "Column1"
+        Me.WPTR1.Name = "WPTR1"
+        Me.WPTR1.Visible = False
+        '
+        'WPRM2
+        '
+        Me.WPRM2.HeaderText = "RM2"
+        Me.WPRM2.Name = "WPRM2"
+        Me.WPRM2.Width = 45
+        '
+        'WPR2
+        '
+        Me.WPR2.HeaderText = "R2"
+        Me.WPR2.Name = "WPR2"
+        Me.WPR2.Width = 30
+        '
+        'WPTR2
+        '
+        Me.WPTR2.HeaderText = "Column1"
+        Me.WPTR2.Name = "WPTR2"
+        Me.WPTR2.Visible = False
+        '
+        'FPSRNO
+        '
+        Me.FPSRNO.HeaderText = "Sr."
+        Me.FPSRNO.Name = "FPSRNO"
+        Me.FPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FPSRNO.Width = 30
+        '
+        'FPENDS
+        '
+        Me.FPENDS.HeaderText = "P.E."
+        Me.FPENDS.Name = "FPENDS"
+        Me.FPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FPENDS.Width = 50
+        '
+        'FPSYM
+        '
+        Me.FPSYM.HeaderText = "Sym"
+        Me.FPSYM.Name = "FPSYM"
+        Me.FPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FPSYM.Width = 60
+        '
+        'FPRM
+        '
+        Me.FPRM.HeaderText = "RM"
+        Me.FPRM.Name = "FPRM"
+        Me.FPRM.Width = 45
+        '
+        'FPR
+        '
+        Me.FPR.HeaderText = "R"
+        Me.FPR.Name = "FPR"
+        Me.FPR.Width = 30
+        '
+        'FPTR
+        '
+        Me.FPTR.HeaderText = "Column1"
+        Me.FPTR.Name = "FPTR"
+        Me.FPTR.Visible = False
+        '
+        'FPRM1
+        '
+        Me.FPRM1.HeaderText = "RM1"
+        Me.FPRM1.Name = "FPRM1"
+        Me.FPRM1.Width = 45
+        '
+        'FPR1
+        '
+        Me.FPR1.HeaderText = "R1"
+        Me.FPR1.Name = "FPR1"
+        Me.FPR1.Width = 30
+        '
+        'FPTR1
+        '
+        Me.FPTR1.HeaderText = "Column1"
+        Me.FPTR1.Name = "FPTR1"
+        Me.FPTR1.Visible = False
+        '
+        'FPRM2
+        '
+        Me.FPRM2.HeaderText = "RM2"
+        Me.FPRM2.Name = "FPRM2"
+        Me.FPRM2.Width = 45
+        '
+        'FPR2
+        '
+        Me.FPR2.HeaderText = "R2"
+        Me.FPR2.Name = "FPR2"
+        Me.FPR2.Width = 30
+        '
+        'FPTR2
+        '
+        Me.FPTR2.HeaderText = "Column1"
+        Me.FPTR2.Name = "FPTR2"
+        Me.FPTR2.Visible = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(1172, 211)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 919
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'DSRNO
+        '
+        Me.DSRNO.HeaderText = "Sr."
+        Me.DSRNO.Name = "DSRNO"
+        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DSRNO.Width = 30
+        '
+        'DENDS
+        '
+        Me.DENDS.HeaderText = "Ends"
+        Me.DENDS.Name = "DENDS"
+        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATMARK
+        '
+        Me.DREPEATMARK.HeaderText = "Repeat Mark"
+        Me.DREPEATMARK.Name = "DREPEATMARK"
+        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK.Visible = False
+        '
+        'DREPEAT
+        '
+        Me.DREPEAT.HeaderText = "Repeats"
+        Me.DREPEAT.Name = "DREPEAT"
+        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT
+        '
+        Me.DTOTALREPEAT.HeaderText = "Total Repeat"
+        Me.DTOTALREPEAT.Name = "DTOTALREPEAT"
+        '
+        'DREPEATMARK1
+        '
+        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
+        Me.DREPEATMARK1.Name = "DREPEATMARK1"
+        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK1.Visible = False
+        '
+        'DREPEATS1
+        '
+        Me.DREPEATS1.HeaderText = "Repeats 1"
+        Me.DREPEATS1.Name = "DREPEATS1"
+        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT1
+        '
+        Me.DTOTALREPEAT1.HeaderText = "Total Repeat 1"
+        Me.DTOTALREPEAT1.Name = "DTOTALREPEAT1"
+        '
+        'DREPEATMARK2
+        '
+        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
+        Me.DREPEATMARK2.Name = "DREPEATMARK2"
+        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK2.Visible = False
+        '
+        'DREPEATS2
+        '
+        Me.DREPEATS2.HeaderText = "Repeats 2"
+        Me.DREPEATS2.Name = "DREPEATS2"
+        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT2
+        '
+        Me.DTOTALREPEAT2.HeaderText = "Total Repeat 2"
+        Me.DTOTALREPEAT2.Name = "DTOTALREPEAT2"
+        '
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3961,14 +4188,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTTOTALWARPPE As TextBox
     Friend WithEvents TXTTOTALWARPWT As TextBox
     Friend WithEvents TXTTOTALWARPTE As TextBox
-    Friend WithEvents TXTGRIDPE As TextBox
-    Friend WithEvents TXTWARPGSRNO As TextBox
-    Friend WithEvents GRIDWARPPATTERN As DataGridView
-    Friend WithEvents WPSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents WPENDS As DataGridViewTextBoxColumn
-    Friend WithEvents WPSYM As DataGridViewTextBoxColumn
-    Friend WithEvents TXTTOTALWARPGRIDPE As TextBox
-    Friend WithEvents Label49 As Label
     Friend WithEvents TXTTOTALWEFTGRIDPE As TextBox
     Friend WithEvents Label50 As Label
     Friend WithEvents TXTWEFTGRIDPE As TextBox
@@ -4009,9 +4228,6 @@ Partial Class DesignCardMaster
     Friend WithEvents FCONS As DataGridViewTextBoxColumn
     Friend WithEvents FRATE As DataGridViewTextBoxColumn
     Friend WithEvents FCOST As DataGridViewTextBoxColumn
-    Friend WithEvents FPSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents FPENDS As DataGridViewTextBoxColumn
-    Friend WithEvents FPSYM As DataGridViewTextBoxColumn
     Friend WithEvents TXTSELTOTALCOST As TextBox
     Friend WithEvents TXTSELTOTALRATE As TextBox
     Friend WithEvents TXTTOTALSELCONS As TextBox
@@ -4069,7 +4285,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTPHOTOIMGPATH As TextBox
     Friend WithEvents txtcardno As TextBox
     Friend WithEvents LBLNO As Label
-    Friend WithEvents CMBGRIDSYM As ComboBox
     Friend WithEvents CMBWEFTGRIDSYMBOL As ComboBox
     Friend WithEvents TXTNEWIMGPATH As TextBox
     Friend WithEvents TXTFILENAME As TextBox
@@ -4088,17 +4303,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTSELGPE As TextBox
     Friend WithEvents TXTSELGSRNO As TextBox
     Friend WithEvents GRIDSELVEDGEPATTERN As DataGridView
-    Friend WithEvents SPSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents SPENDS As DataGridViewTextBoxColumn
-    Friend WithEvents SPSYM As DataGridViewTextBoxColumn
-    Friend WithEvents DSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents DENDS As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEAT As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK1 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATS1 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK2 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATS2 As DataGridViewTextBoxColumn
     Friend WithEvents txttotaldentsrepeat As TextBox
     Friend WithEvents Label57 As Label
     Friend WithEvents TXTTOTALENDS As TextBox
@@ -4109,4 +4313,57 @@ Partial Class DesignCardMaster
     Friend WithEvents lblTOTALMAINENDS As Label
     Friend WithEvents txtxvalue As TextBox
     Friend WithEvents Label60 As Label
+    Friend WithEvents CMBGRIDSYM As ComboBox
+    Friend WithEvents TXTTOTALWARPGRIDPE As TextBox
+    Friend WithEvents TXTGRIDPE As TextBox
+    Friend WithEvents TXTWARPGSRNO As TextBox
+    Friend WithEvents Label49 As Label
+    Friend WithEvents GRIDWARPPATTERN As DataGridView
+    Friend WithEvents SPSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents SPENDS As DataGridViewTextBoxColumn
+    Friend WithEvents SPSYM As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEATMARKING As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEATMARK1 As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEAT1 As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEATMARK2 As DataGridViewTextBoxColumn
+    Friend WithEvents SPREPEAT2 As DataGridViewTextBoxColumn
+    Friend WithEvents cmdbtn1 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents WPSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents WPENDS As DataGridViewTextBoxColumn
+    Friend WithEvents WPSYM As DataGridViewTextBoxColumn
+    Friend WithEvents WPRM As DataGridViewTextBoxColumn
+    Friend WithEvents WPR As DataGridViewTextBoxColumn
+    Friend WithEvents WPTR As DataGridViewTextBoxColumn
+    Friend WithEvents WPRM1 As DataGridViewTextBoxColumn
+    Friend WithEvents WPR1 As DataGridViewTextBoxColumn
+    Friend WithEvents WPTR1 As DataGridViewTextBoxColumn
+    Friend WithEvents WPRM2 As DataGridViewTextBoxColumn
+    Friend WithEvents WPR2 As DataGridViewTextBoxColumn
+    Friend WithEvents WPTR2 As DataGridViewTextBoxColumn
+    Friend WithEvents FPSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents FPENDS As DataGridViewTextBoxColumn
+    Friend WithEvents FPSYM As DataGridViewTextBoxColumn
+    Friend WithEvents FPRM As DataGridViewTextBoxColumn
+    Friend WithEvents FPR As DataGridViewTextBoxColumn
+    Friend WithEvents FPTR As DataGridViewTextBoxColumn
+    Friend WithEvents FPRM1 As DataGridViewTextBoxColumn
+    Friend WithEvents FPR1 As DataGridViewTextBoxColumn
+    Friend WithEvents FPTR1 As DataGridViewTextBoxColumn
+    Friend WithEvents FPRM2 As DataGridViewTextBoxColumn
+    Friend WithEvents FPR2 As DataGridViewTextBoxColumn
+    Friend WithEvents FPTR2 As DataGridViewTextBoxColumn
+    Friend WithEvents Button2 As Button
+    Friend WithEvents DSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents DENDS As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK1 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATS1 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT1 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK2 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATS2 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT2 As DataGridViewTextBoxColumn
 End Class
