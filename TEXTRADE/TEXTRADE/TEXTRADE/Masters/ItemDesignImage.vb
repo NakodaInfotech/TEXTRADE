@@ -274,6 +274,7 @@ Public Class ItemDesignImage
             If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNAME.Text.Trim <> "" Then
                 TXTFILENAME.Text = CMBITEMNAME.Text.Split(" "c).[Select](Function(x) x.ToUpper.First()).ToArray()
                 TXTFILENAME.Text = TXTFILENAME.Text & "_" & Val(TXTITEMNO.Text.Trim) & "_" & CMBDESIGNNAME.Text.Trim & ".jpg"
+                TXTUPLOADPATH.Text = CATALOGPATH & "\" & TXTFILENAME.Text.Trim
             End If
 
 

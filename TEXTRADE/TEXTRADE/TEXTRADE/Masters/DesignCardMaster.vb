@@ -3,6 +3,7 @@ Imports System.ComponentModel
 Imports System.IO
 Imports BL
 Imports DevExpress.Charts.Native
+Imports DevExpress.CodeParser
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
 Imports DevExpress.XtraGrid.Views.Grid
@@ -407,20 +408,20 @@ Public Class DesignCardMaster
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = Val(row.Cells(DENDS.Index).Value)
-                        DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value.ToString
+                        DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = Val(row.Cells(DREPEAT.Index).Value)
-                        DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value.ToString
+                        DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value
                         DRAWREPEATS1 = Val(row.Cells(DREPEATS1.Index).Value)
-                        DRAWREPEATMARK2 = row.Cells(DREPEATMARK2.Index).Value.ToString
+                        DRAWREPEATMARK2 = row.Cells(DREPEATMARK2.Index).Value
                         DRAWREPEATS2 = Val(row.Cells(DREPEATS2.Index).Value)
                     Else
                         DRAWSrNo = DRAWSrNo & "|" & Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = DRAWEnds & "|" & Val(row.Cells(DENDS.Index).Value)
-                        DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value.ToString
+                        DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = DRAWREPEATS & "|" & Val(row.Cells(DREPEAT.Index).Value)
-                        DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value.ToString
+                        DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value
                         DRAWREPEATS1 = DRAWREPEATS1 & "|" & Val(row.Cells(DREPEATS1.Index).Value)
-                        DRAWREPEATMARK2 = DRAWREPEATMARK2 & "|" & row.Cells(DREPEATMARK2.Index).Value.ToString
+                        DRAWREPEATMARK2 = DRAWREPEATMARK2 & "|" & row.Cells(DREPEATMARK2.Index).Value
                         DRAWREPEATS2 = DRAWREPEATS2 & "|" & Val(row.Cells(DREPEATS2.Index).Value)
                     End If
                 End If
@@ -557,6 +558,9 @@ Public Class DesignCardMaster
         TXTTOTALWEFTRATE.Clear()     ' Rate (Weft Rate)
         TXTTOTALWEFTCOST.Clear()     ' Cost (Weft Cost)
         TXTTOTALWEFTGRIDPE.Clear()       ' P.E. (Repeated for field order continuity)
+        'drawing total
+        TXTTOTALDRAWDENTS.Clear()
+        TXTTOTALDRAWENDS.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
@@ -753,8 +757,8 @@ Public Class DesignCardMaster
 
         Dim symSet As New HashSet(Of String)
         For Each row As DataGridViewRow In GRIDWARP.Rows
-            If Not IsDBNull(row.Cells(WSYM.Name).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(WSYM.Name).Value.ToString) Then
-                symSet.Add(row.Cells(WSYM.Name).Value.ToString)
+            If Not IsDBNull(row.Cells(WSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(WSYM.Index).Value.ToString) Then
+                symSet.Add(row.Cells(WSYM.Index).Value.ToString)
             End If
         Next
 
@@ -828,6 +832,8 @@ Public Class DesignCardMaster
         End If
         GRIDSELVEDGE.ClearSelection()
         CLEARSELVEDGE()
+        COPYSELSYM()
+
         If GRIDSELVEDGE.RowCount > 0 Then
             TXTSELSRNO.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
@@ -835,6 +841,44 @@ Public Class DesignCardMaster
             TXTSELSRNO.Text = 1
         End If
         TXTSELSYMBOL.Focus()
+    End Sub
+    Sub COPYSELSYM()
+        CMBSELGSYM.Items.Clear()
+
+        Dim symSet As New HashSet(Of String)
+        For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+            If Not IsDBNull(row.Cells(SSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(SSYM.Index).Value.ToString) Then
+                symSet.Add(row.Cells(SSYM.Index).Value.ToString)
+            End If
+        Next
+
+        For Each symVal As String In symSet
+            CMBSELGSYM.Items.Add(symVal)
+        Next
+
+
+    End Sub
+    Sub FILLSELPATTERNGRID()
+        If GRIDSELPDOUBLECLICK = False Then
+            GRIDSELVEDGEPATTERN.Rows.Add(Val(TXTSELGSRNO.Text.Trim), TXTSELGPE.Text.Trim, CMBSELGSYM.Text.Trim)
+            getsrno(GRIDSELVEDGEPATTERN)
+        ElseIf GRIDSELPDOUBLECLICK = True Then
+            GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value = Val(TXTSELGSRNO.Text.Trim)
+            GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value = Val(TXTSELGPE.Text.Trim)
+            GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value = Val(CMBSELGSYM.Text.Trim)
+            TXTSELGSRNO.Focus()
+            GRIDSELPDOUBLECLICK = False
+        End If
+        GRIDSELVEDGEPATTERN.ClearSelection()
+        TXTSELGPE.Clear()
+        CMBSELGSYM.Text = ""
+        TXTSELGPE.Focus()
+        If GRIDSELVEDGEPATTERN.RowCount > 0 Then
+            TXTSELGSRNO.Text = Val(GRIDSELVEDGEPATTERN.Rows(GRIDSELVEDGEPATTERN.RowCount - 1).Cells(0).Value) + 1
+            ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
+        Else
+            TXTSELGSRNO.Text = 1
+        End If
     End Sub
     Sub CLEARSELVEDGE()
         TXTSELSRNO.Clear()
@@ -889,8 +933,8 @@ Public Class DesignCardMaster
 
         Dim symSet As New HashSet(Of String)
         For Each row As DataGridViewRow In GRIDWEFT.Rows
-            If Not IsDBNull(row.Cells(FSYM.Name).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(FSYM.Name).Value.ToString) Then
-                symSet.Add(row.Cells(FSYM.Name).Value.ToString)
+            If Not IsDBNull(row.Cells(FSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(FSYM.Index).Value.ToString) Then
+                symSet.Add(row.Cells(FSYM.Index).Value.ToString)
             End If
         Next
 
@@ -969,15 +1013,6 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
-
-    Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
-        Try
-            FILLWEFTPATTERNGRID()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
             If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
@@ -1206,7 +1241,11 @@ Public Class DesignCardMaster
         TXTLEFTSELTOTALENDS.Text = 0.00
         TXTRIGHTSELTOTALENDS.Text = 0.00
         TXTTOTALSELENDS.Text = 0.00
-
+        TXTENDPERINCH.Text = 0.00
+        txttotaldentsrepeat.Text = 0.00
+        TXTTOTALENDS.Text = 0.00
+        TXTTOTALMAINENDS.Text = 0.00
+        txtxvalue.Text = 0.00
 
         If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text)
         If TXTREED.Text <> "" Then TXTDENTS.Text = Val(TXTREED.Text) / 2
@@ -1218,6 +1257,28 @@ Public Class DesignCardMaster
         If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text)
         If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text)
         If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text)
+        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text)
+        If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
+            Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
+            Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
+            Dim result As Double = totalDents * totalDrawEnds
+            TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
+        End If
+        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text)
+        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text)
+        If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
+            Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
+            Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
+            Dim result As Double = totalMainEnds / pcs
+            txtxvalue.Text = Math.Ceiling(result).ToString()
+        End If
+        If txtxvalue.Text <> "" Then
+            For Each row As DataGridViewRow In GRIDWARP.Rows
+                If row.Cells(WPE.Index).Value IsNot DBNull.Value Then
+                    row.Cells(WPE.Index).Value = Format(Val(txtxvalue.Text) * Val(row.Cells(WPE.Index).Value), "0")
+                End If
+            Next
+        End If
     End Sub
     Sub TOTALWARP()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1332,6 +1393,7 @@ Public Class DesignCardMaster
             End If
         End If
     End Sub
+
     Sub EDITWEFTROW()
         If GRIDWEFT.CurrentRow IsNot Nothing Then
             If GRIDWEFT.CurrentRow.Index >= 0 Then
@@ -1441,6 +1503,16 @@ Public Class DesignCardMaster
 
     Private Sub BTNMARKBLOCK_Click(sender As Object, e As EventArgs) Handles BTNMARKBLOCK.Click
 
+        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+            If row.IsNewRow Then Continue For
+            row.Cells(DREPEATMARK.Index).Value = Nothing
+            row.Cells(DREPEATMARK1.Index).Value = Nothing
+            row.Cells(DREPEATMARK2.Index).Value = Nothing
+            row.Cells(DREPEAT.Index).Value = Nothing
+            row.Cells(DREPEATS1.Index).Value = Nothing
+            row.Cells(DREPEATS2.Index).Value = Nothing
+        Next
+
     End Sub
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
@@ -1474,6 +1546,7 @@ Public Class DesignCardMaster
         Next
 
     End Sub
+
     Sub GETWEFTPE()
         ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
         Dim peSumBySym As New Dictionary(Of String, Double)
@@ -1497,6 +1570,33 @@ Public Class DesignCardMaster
             Dim symVal As String = row.Cells(FSYM.Index).Value?.ToString()
             If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
                 row.Cells(FPE.Index).Value = peSumBySym(symVal)
+            End If
+        Next
+
+    End Sub
+    Sub GETSELPE()
+        ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
+        Dim peSumBySym As New Dictionary(Of String, Double)
+
+        For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(SPSYM.Index).Value?.ToString()
+            Dim peVal As Double = 0
+            Double.TryParse(row.Cells(SPENDS.Index).Value?.ToString(), peVal)
+            If Not String.IsNullOrWhiteSpace(symVal) Then
+                If Not peSumBySym.ContainsKey(symVal) Then
+                    peSumBySym(symVal) = 0
+                End If
+                peSumBySym(symVal) += peVal
+            End If
+        Next
+
+        ' --- Step 2: Write the sum into the matching Sym row's P.E. cell in the GRIDWARP ---
+        For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+            If row.IsNewRow Then Continue For
+            Dim symVal As String = row.Cells(SSYM.Index).Value?.ToString()
+            If Not String.IsNullOrWhiteSpace(symVal) AndAlso peSumBySym.ContainsKey(symVal) Then
+                row.Cells(SPE.Index).Value = peSumBySym(symVal)
             End If
         Next
 
@@ -1555,91 +1655,135 @@ Public Class DesignCardMaster
             e.Handled = True
         End If
     End Sub
-    'Sub TOTALDRAWDENTS()
-    '    Dim drawEndsCount As Integer = 0
-    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
-    '        If Not row.IsNewRow Then
-    '            drawEndsCount += 1
-    '        End If
-    '    Next
-    '    TXTTOTALDRAWDENTS.Text = drawEndsCount.ToString()
-
-    '    Dim totalEnds As Integer = 0
-    '    For Each row As DataGridViewRow In GRIDDRAWING.Rows
-    '        If row.IsNewRow Then Continue For
-    '        Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
-    '        If Not String.IsNullOrWhiteSpace(endsValue) Then
-    '            Dim parts() As String = endsValue.Split("."c) ' Split by dot
-    '            For Each s As String In parts
-    '                ' Ignore blank and "0" or "0.0" values for ends count
-    '                If Not String.IsNullOrWhiteSpace(s) AndAlso s.Trim() <> "0" AndAlso s.Trim() <> "0.0" Then
-    '                    totalEnds += 1
-    '                End If
-    '            Next
-    '        End If
-    '    Next
-    '    TXTTOTALDRAWENDS.Text = totalEnds.ToString()
-    'End Sub
-    Sub TOTALDRAWDENTS()
+    ' Collect repeat blocks with start/end and repeat counts
+    Private Function CollectRepeatBlockRows(grid As DataGridView,
+                                        repeatMarkCol As Integer,
+                                        repeatCol As Integer) As List(Of Tuple(Of Integer, Integer, Integer))
         Dim repeatBlocks As New List(Of Tuple(Of Integer, Integer, Integer)) ' (start, end, repeatCount)
-        Dim totalEnds As Integer = 0
-        Dim totalDents As Integer = 0
-
-        ' Find all Start/End paired blocks and their repeat counts
         Dim startRow As Integer = -1
-        For Each row As DataGridViewRow In GRIDDRAWING.Rows
+        For Each row As DataGridViewRow In grid.Rows
             If row.IsNewRow Then Continue For
-            Dim mark As String = row.Cells(DREPEATMARK.Index).Value?.ToString()
-            If Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("Start") Then
+            Dim mark = CStr(row.Cells(repeatMarkCol).Value)
+            If Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("Start") Then
                 startRow = row.Index
-            ElseIf Not String.IsNullOrWhiteSpace(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
+            ElseIf Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
+                Dim repeatVal = row.Cells(repeatCol).Value
                 Dim repeatCount As Integer = 1
-                Dim repeatVal = row.Cells(DREPEAT.Index).Value
-                If repeatVal IsNot Nothing AndAlso Integer.TryParse(repeatVal.ToString(), repeatCount) AndAlso repeatCount > 1 Then
-                    repeatCount = CInt(repeatVal)
+                If repeatVal IsNot Nothing AndAlso Integer.TryParse(CStr(repeatVal), repeatCount) AndAlso repeatCount >= 1 Then
+                    ' Use parsed repeatCount or default to 1
                 End If
                 repeatBlocks.Add(Tuple.Create(startRow, row.Index, repeatCount))
                 startRow = -1
             End If
         Next
+        Return repeatBlocks
+    End Function
 
-        ' Track which rows are inside repeat blocks
-        Dim repeatedRows As New HashSet(Of Integer)
-        For Each block In repeatBlocks
-            For i = block.Item1 To block.Item2
-                If Not GRIDDRAWING.Rows(i).IsNewRow Then
-                    Dim endsValue As String = GRIDDRAWING.Rows(i).Cells(DENDS.Index).Value?.ToString()
-                    If Not String.IsNullOrWhiteSpace(endsValue) Then
-                        totalEnds += endsValue.Split("."c).Length * block.Item3
-                    End If
-                    totalDents += block.Item3
-                    repeatedRows.Add(i)
+    ' Calculate dents and ends for one block, tracking rows to exclude from single count later
+    Private Sub CalculateBlockTotals(grid As DataGridView,
+                                 block As Tuple(Of Integer, Integer, Integer),
+                                 ByRef totalEnds As Integer,
+                                 ByRef totalDents As Integer,
+                                 ByRef blockRows As HashSet(Of Integer))
+        Dim startRow As Integer = block.Item1
+        Dim endRow As Integer = block.Item2
+        Dim repeatCount As Integer = block.Item3
+        Dim blockEnds As Integer = 0
+        Dim blockDents As Integer = 0
+        For i = startRow To endRow
+            If Not grid.Rows(i).IsNewRow Then
+                Dim endsVal = CStr(grid.Rows(i).Cells(DENDS.Index).Value)
+                If Not String.IsNullOrWhiteSpace(endsVal) Then
+                    blockEnds += endsVal.Split("."c).Length
                 End If
+                blockDents += 1
+                blockRows.Add(i)
+            End If
+        Next
+        totalEnds += blockEnds * repeatCount
+        totalDents += blockDents * repeatCount
+    End Sub
+
+    Public Sub TOTALDRAWDENTS()
+        Dim totalEnds As Integer = 0
+        Dim totalDents As Integer = 0
+
+        ' Track rows included in each repeat block
+        Dim innerBlockRows As New HashSet(Of Integer)
+        Dim outerBlockRows As New HashSet(Of Integer)
+        Dim topLevelBlockRows As New HashSet(Of Integer)
+
+        ' Calculate inner repeat blocks (REPEAT1)
+        Dim innerEnds As Integer = 0
+        Dim innerDents As Integer = 0
+        Dim repeatBlocks1 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK.Index, DREPEAT.Index)
+        For Each block In repeatBlocks1
+            CalculateBlockTotals(GRIDDRAWING, block, innerEnds, innerDents, innerBlockRows)
+        Next
+
+        ' Calculate outer repeat blocks (REPEAT2) including inner block totals
+        Dim outerEnds As Integer = 0
+        Dim outerDents As Integer = 0
+        Dim repeatBlocks2 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK1.Index, DREPEATS1.Index)
+
+        For Each block In repeatBlocks2
+            Dim blockEnds As Integer = 0
+            Dim blockDents As Integer = 0
+            Dim tempBlockRows As New HashSet(Of Integer)
+            For i = block.Item1 To block.Item2
+                If Not GRIDDRAWING.Rows(i).IsNewRow AndAlso Not innerBlockRows.Contains(i) Then
+                    Dim endsVal = CStr(GRIDDRAWING.Rows(i).Cells(DENDS.Index).Value)
+                    If Not String.IsNullOrWhiteSpace(endsVal) Then
+                        blockEnds += endsVal.Split("."c).Length
+                    End If
+                    blockDents += 1
+                    tempBlockRows.Add(i)
+                End If
+            Next
+            ' Add inner block totals once per outer repeat count
+            blockEnds += innerEnds
+            blockDents += innerDents
+            outerEnds += blockEnds * block.Item3
+            outerDents += blockDents * block.Item3
+            For Each r In tempBlockRows
+                outerBlockRows.Add(r)
             Next
         Next
 
-        ' Rows not in any repeat block, count only once
+        totalEnds += outerEnds
+        totalDents += outerDents
+
+        ' Calculate top-level repeat blocks (REPEAT)
+        Dim repeatBlocks0 = CollectRepeatBlockRows(GRIDDRAWING, DREPEATMARK2.Index, DREPEATS2.Index)
+        For Each block In repeatBlocks0
+            CalculateBlockTotals(GRIDDRAWING, block, totalEnds, totalDents, topLevelBlockRows)
+        Next
+
+        ' Combine all block rows to exclude from singles counting
+        Dim allBlockRows As New HashSet(Of Integer)(innerBlockRows)
+        allBlockRows.UnionWith(outerBlockRows)
+        allBlockRows.UnionWith(topLevelBlockRows)
+
+        ' Count single rows (not in any block) once each
         For Each row As DataGridViewRow In GRIDDRAWING.Rows
             If row.IsNewRow Then Continue For
-            If Not repeatedRows.Contains(row.Index) Then
-                Dim endsValue As String = row.Cells(DENDS.Index).Value?.ToString()
-                If Not String.IsNullOrWhiteSpace(endsValue) Then
-                    totalEnds += endsValue.Split("."c).Length
+            If Not allBlockRows.Contains(row.Index) Then
+                Dim endsVal = CStr(row.Cells(DENDS.Index).Value)
+                If Not String.IsNullOrWhiteSpace(endsVal) Then
+                    totalEnds += endsVal.Split("."c).Length
                 End If
                 totalDents += 1
             End If
         Next
 
+        ' Update totals in UI
         TXTTOTALDRAWENDS.Text = totalEnds.ToString()
         TXTTOTALDRAWDENTS.Text = totalDents.ToString()
     End Sub
 
 
-
     Sub FILLDRAWGRID()
         If TXTDRAWENDS.Text.Trim = "" Then
-            MsgBox("Please Enter Ends")
-
             Exit Sub
         End If
         If GRIDDRAWDOUBLECLICK = False Then
@@ -1767,5 +1911,29 @@ Public Class DesignCardMaster
 
     Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellDoubleClick
         EDITSELVEDGEPATTERNROW()
+    End Sub
+
+    Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
+        Try
+            FILLWEFTPATTERNGRID()
+            GETWEFTPE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
+        Try
+            If CMBWARPQUALITY.Text <> "" Then
+                Dim OBJCLS As New ClsCommon()
+                Dim DT2 As New DataTable
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER", "", "  YARNQUALITYMASTER  ", "  and YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                If DT2.Rows.Count > 0 Then
+                    TXTWARPDENIER.Text = DT2.Rows(0).Item("DENIER")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

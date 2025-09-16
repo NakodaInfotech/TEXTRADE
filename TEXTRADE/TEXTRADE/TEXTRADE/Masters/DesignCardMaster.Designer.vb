@@ -23,49 +23,94 @@ Partial Class DesignCardMaster
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle58 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle59 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle56 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle57 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle60 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle61 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle62 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle63 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle64 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle65 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle69 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle70 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle66 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle67 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle68 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle71 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle72 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle73 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle74 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
         Me.txtcardno = New System.Windows.Forms.TextBox()
         Me.LBLNO = New System.Windows.Forms.Label()
         Me.CMBCOPYDESIGN = New System.Windows.Forms.ComboBox()
         Me.lbldesign = New System.Windows.Forms.Label()
         Me.TABCONTROLDETAILS = New System.Windows.Forms.TabControl()
+        Me.TBSELVEDGE = New System.Windows.Forms.TabPage()
+        Me.CMBSELGSYM = New System.Windows.Forms.ComboBox()
+        Me.TXTTOTALSELGPE = New System.Windows.Forms.TextBox()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.TXTSELGPE = New System.Windows.Forms.TextBox()
+        Me.TXTSELGSRNO = New System.Windows.Forms.TextBox()
+        Me.GRIDSELVEDGEPATTERN = New System.Windows.Forms.DataGridView()
+        Me.SPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TXTSELTOTALCOST = New System.Windows.Forms.TextBox()
+        Me.TXTSELTOTALRATE = New System.Windows.Forms.TextBox()
+        Me.TXTTOTALSELCONS = New System.Windows.Forms.TextBox()
+        Me.TXTTOTALSELBE = New System.Windows.Forms.TextBox()
+        Me.TXTTOTALSELPE = New System.Windows.Forms.TextBox()
+        Me.TXTTOTALSELWT = New System.Windows.Forms.TextBox()
+        Me.TXTTOTALSELTE = New System.Windows.Forms.TextBox()
+        Me.TXTSELCOST = New System.Windows.Forms.TextBox()
+        Me.TXTSELRATE = New System.Windows.Forms.TextBox()
+        Me.TXTSELCONS = New System.Windows.Forms.TextBox()
+        Me.TXTSELBE = New System.Windows.Forms.TextBox()
+        Me.TXTSELPE = New System.Windows.Forms.TextBox()
+        Me.CMBSELSHADE = New System.Windows.Forms.ComboBox()
+        Me.TXTSELSYMBOL = New System.Windows.Forms.TextBox()
+        Me.TXTSELSRNO = New System.Windows.Forms.TextBox()
+        Me.TXTSELWT = New System.Windows.Forms.TextBox()
+        Me.CMBSELMILLNAME = New System.Windows.Forms.ComboBox()
+        Me.TXTSELDEN = New System.Windows.Forms.TextBox()
+        Me.TXTSELTE = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CMBSELYARNQUALITY = New System.Windows.Forms.ComboBox()
+        Me.GRIDSELVEDGE = New System.Windows.Forms.DataGridView()
+        Me.SSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SMILL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SBE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SCONS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SCOST = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBWARP = New System.Windows.Forms.TabPage()
         Me.CMBGRIDSYM = New System.Windows.Forms.ComboBox()
         Me.TXTTOTALWARPGRIDPE = New System.Windows.Forms.TextBox()
@@ -111,42 +156,6 @@ Partial Class DesignCardMaster
         Me.WCONS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WCOST = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TBSELVEDGE = New System.Windows.Forms.TabPage()
-        Me.TXTSELTOTALCOST = New System.Windows.Forms.TextBox()
-        Me.TXTSELTOTALRATE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALSELCONS = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALSELBE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALSELPE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALSELWT = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALSELTE = New System.Windows.Forms.TextBox()
-        Me.TXTSELCOST = New System.Windows.Forms.TextBox()
-        Me.TXTSELRATE = New System.Windows.Forms.TextBox()
-        Me.TXTSELCONS = New System.Windows.Forms.TextBox()
-        Me.TXTSELBE = New System.Windows.Forms.TextBox()
-        Me.TXTSELPE = New System.Windows.Forms.TextBox()
-        Me.CMBSELSHADE = New System.Windows.Forms.ComboBox()
-        Me.TXTSELSYMBOL = New System.Windows.Forms.TextBox()
-        Me.TXTSELSRNO = New System.Windows.Forms.TextBox()
-        Me.TXTSELWT = New System.Windows.Forms.TextBox()
-        Me.CMBSELMILLNAME = New System.Windows.Forms.ComboBox()
-        Me.TXTSELDEN = New System.Windows.Forms.TextBox()
-        Me.TXTSELTE = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.CMBSELYARNQUALITY = New System.Windows.Forms.ComboBox()
-        Me.GRIDSELVEDGE = New System.Windows.Forms.DataGridView()
-        Me.SSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SMILL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SBE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SCONS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SCOST = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBWEFT = New System.Windows.Forms.TabPage()
         Me.CMBWEFTGRIDSYMBOL = New System.Windows.Forms.ComboBox()
         Me.TXTTOTALWEFTGRIDPE = New System.Windows.Forms.TextBox()
@@ -201,6 +210,14 @@ Partial Class DesignCardMaster
         Me.TXTDRAWENDS = New System.Windows.Forms.TextBox()
         Me.TXTDRAWSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDDRAWING = New System.Windows.Forms.DataGridView()
+        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBDESIGNNO = New System.Windows.Forms.ComboBox()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -213,6 +230,16 @@ Partial Class DesignCardMaster
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.TABCONTROLMAIN = New System.Windows.Forms.TabControl()
         Me.TBMAIN = New System.Windows.Forms.TabPage()
+        Me.txtxvalue = New System.Windows.Forms.TextBox()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.TXTTOTALMAINENDS = New System.Windows.Forms.TextBox()
+        Me.lblTOTALMAINENDS = New System.Windows.Forms.Label()
+        Me.TXTENDPERINCH = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.txttotaldentsrepeat = New System.Windows.Forms.TextBox()
+        Me.Label57 = New System.Windows.Forms.Label()
         Me.TXTTHREADPERDENT = New System.Windows.Forms.TextBox()
         Me.Label53 = New System.Windows.Forms.Label()
         Me.TXTREED = New System.Windows.Forms.TextBox()
@@ -319,30 +346,14 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMBSELGSYM = New System.Windows.Forms.ComboBox()
-        Me.TXTTOTALSELGPE = New System.Windows.Forms.TextBox()
-        Me.Label56 = New System.Windows.Forms.Label()
-        Me.TXTSELGPE = New System.Windows.Forms.TextBox()
-        Me.TXTSELGSRNO = New System.Windows.Forms.TextBox()
-        Me.GRIDSELVEDGEPATTERN = New System.Windows.Forms.DataGridView()
-        Me.SPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
+        Me.TBSELVEDGE.SuspendLayout()
+        CType(Me.GRIDSELVEDGEPATTERN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDSELVEDGE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBWARP.SuspendLayout()
         CType(Me.GRIDWARPPATTERN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDWARP, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TBSELVEDGE.SuspendLayout()
-        CType(Me.GRIDSELVEDGE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBWEFT.SuspendLayout()
         CType(Me.GRIDWEFTPATTERN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDWEFT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -355,7 +366,6 @@ Partial Class DesignCardMaster
         Me.TBPARTY.SuspendLayout()
         Me.TBOTHER.SuspendLayout()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDSELVEDGEPATTERN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BLENDPANEL1
@@ -439,6 +449,550 @@ Partial Class DesignCardMaster
         Me.TABCONTROLDETAILS.SelectedIndex = 0
         Me.TABCONTROLDETAILS.Size = New System.Drawing.Size(1307, 270)
         Me.TABCONTROLDETAILS.TabIndex = 5
+        '
+        'TBSELVEDGE
+        '
+        Me.TBSELVEDGE.BackColor = System.Drawing.Color.PeachPuff
+        Me.TBSELVEDGE.Controls.Add(Me.CMBSELGSYM)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELGPE)
+        Me.TBSELVEDGE.Controls.Add(Me.Label56)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELGPE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELGSRNO)
+        Me.TBSELVEDGE.Controls.Add(Me.GRIDSELVEDGEPATTERN)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTOTALCOST)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTOTALRATE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELCONS)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELBE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELPE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELWT)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELTE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELCOST)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELRATE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELCONS)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELBE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELPE)
+        Me.TBSELVEDGE.Controls.Add(Me.CMBSELSHADE)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELSYMBOL)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELSRNO)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELWT)
+        Me.TBSELVEDGE.Controls.Add(Me.CMBSELMILLNAME)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELDEN)
+        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTE)
+        Me.TBSELVEDGE.Controls.Add(Me.Label9)
+        Me.TBSELVEDGE.Controls.Add(Me.CMBSELYARNQUALITY)
+        Me.TBSELVEDGE.Controls.Add(Me.GRIDSELVEDGE)
+        Me.TBSELVEDGE.Location = New System.Drawing.Point(4, 24)
+        Me.TBSELVEDGE.Name = "TBSELVEDGE"
+        Me.TBSELVEDGE.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBSELVEDGE.Size = New System.Drawing.Size(1299, 242)
+        Me.TBSELVEDGE.TabIndex = 1
+        Me.TBSELVEDGE.Text = "1. Selvedge Matching"
+        '
+        'CMBSELGSYM
+        '
+        Me.CMBSELGSYM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELGSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELGSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBSELGSYM.FormattingEnabled = True
+        Me.CMBSELGSYM.Location = New System.Drawing.Point(1200, 6)
+        Me.CMBSELGSYM.Name = "CMBSELGSYM"
+        Me.CMBSELGSYM.Size = New System.Drawing.Size(62, 23)
+        Me.CMBSELGSYM.TabIndex = 14
+        '
+        'TXTTOTALSELGPE
+        '
+        Me.TXTTOTALSELGPE.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELGPE.Location = New System.Drawing.Point(1151, 212)
+        Me.TXTTOTALSELGPE.Name = "TXTTOTALSELGPE"
+        Me.TXTTOTALSELGPE.ReadOnly = True
+        Me.TXTTOTALSELGPE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTTOTALSELGPE.TabIndex = 899
+        Me.TXTTOTALSELGPE.TabStop = False
+        Me.TXTTOTALSELGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.BackColor = System.Drawing.Color.Transparent
+        Me.Label56.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label56.Location = New System.Drawing.Point(1073, 216)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(74, 15)
+        Me.Label56.TabIndex = 898
+        Me.Label56.Text = "Total Repeat"
+        '
+        'TXTSELGPE
+        '
+        Me.TXTSELGPE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELGPE.Location = New System.Drawing.Point(1150, 6)
+        Me.TXTSELGPE.Name = "TXTSELGPE"
+        Me.TXTSELGPE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTSELGPE.TabIndex = 13
+        Me.TXTSELGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELGSRNO
+        '
+        Me.TXTSELGSRNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELGSRNO.Location = New System.Drawing.Point(1120, 6)
+        Me.TXTSELGSRNO.Name = "TXTSELGSRNO"
+        Me.TXTSELGSRNO.ReadOnly = True
+        Me.TXTSELGSRNO.Size = New System.Drawing.Size(30, 23)
+        Me.TXTSELGSRNO.TabIndex = 895
+        Me.TXTSELGSRNO.TabStop = False
+        Me.TXTSELGSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'GRIDSELVEDGEPATTERN
+        '
+        Me.GRIDSELVEDGEPATTERN.AllowUserToAddRows = False
+        Me.GRIDSELVEDGEPATTERN.AllowUserToDeleteRows = False
+        Me.GRIDSELVEDGEPATTERN.AllowUserToResizeColumns = False
+        Me.GRIDSELVEDGEPATTERN.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSELVEDGEPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.GRIDSELVEDGEPATTERN.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDSELVEDGEPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDSELVEDGEPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSELVEDGEPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.GRIDSELVEDGEPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDSELVEDGEPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SPSRNO, Me.SPENDS, Me.SPSYM})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSELVEDGEPATTERN.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GRIDSELVEDGEPATTERN.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDSELVEDGEPATTERN.Location = New System.Drawing.Point(1120, 28)
+        Me.GRIDSELVEDGEPATTERN.MultiSelect = False
+        Me.GRIDSELVEDGEPATTERN.Name = "GRIDSELVEDGEPATTERN"
+        Me.GRIDSELVEDGEPATTERN.ReadOnly = True
+        Me.GRIDSELVEDGEPATTERN.RowHeadersVisible = False
+        Me.GRIDSELVEDGEPATTERN.RowHeadersWidth = 30
+        Me.GRIDSELVEDGEPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSELVEDGEPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.GRIDSELVEDGEPATTERN.RowTemplate.Height = 20
+        Me.GRIDSELVEDGEPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSELVEDGEPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(173, 179)
+        Me.GRIDSELVEDGEPATTERN.TabIndex = 15
+        Me.GRIDSELVEDGEPATTERN.TabStop = False
+        '
+        'SPSRNO
+        '
+        Me.SPSRNO.HeaderText = "Sr."
+        Me.SPSRNO.Name = "SPSRNO"
+        Me.SPSRNO.ReadOnly = True
+        Me.SPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SPSRNO.Width = 30
+        '
+        'SPENDS
+        '
+        Me.SPENDS.HeaderText = "P.E."
+        Me.SPENDS.Name = "SPENDS"
+        Me.SPENDS.ReadOnly = True
+        Me.SPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SPENDS.Width = 50
+        '
+        'SPSYM
+        '
+        Me.SPSYM.HeaderText = "Sym"
+        Me.SPSYM.Name = "SPSYM"
+        Me.SPSYM.ReadOnly = True
+        Me.SPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SPSYM.Width = 60
+        '
+        'TXTSELTOTALCOST
+        '
+        Me.TXTSELTOTALCOST.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELTOTALCOST.Location = New System.Drawing.Point(962, 211)
+        Me.TXTSELTOTALCOST.Name = "TXTSELTOTALCOST"
+        Me.TXTSELTOTALCOST.ReadOnly = True
+        Me.TXTSELTOTALCOST.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELTOTALCOST.TabIndex = 894
+        Me.TXTSELTOTALCOST.TabStop = False
+        Me.TXTSELTOTALCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELTOTALRATE
+        '
+        Me.TXTSELTOTALRATE.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELTOTALRATE.Location = New System.Drawing.Point(902, 211)
+        Me.TXTSELTOTALRATE.Name = "TXTSELTOTALRATE"
+        Me.TXTSELTOTALRATE.ReadOnly = True
+        Me.TXTSELTOTALRATE.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELTOTALRATE.TabIndex = 893
+        Me.TXTSELTOTALRATE.TabStop = False
+        Me.TXTSELTOTALRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTOTALSELCONS
+        '
+        Me.TXTTOTALSELCONS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELCONS.Location = New System.Drawing.Point(842, 211)
+        Me.TXTTOTALSELCONS.Name = "TXTTOTALSELCONS"
+        Me.TXTTOTALSELCONS.ReadOnly = True
+        Me.TXTTOTALSELCONS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALSELCONS.TabIndex = 892
+        Me.TXTTOTALSELCONS.TabStop = False
+        Me.TXTTOTALSELCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTOTALSELBE
+        '
+        Me.TXTTOTALSELBE.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELBE.Location = New System.Drawing.Point(673, 211)
+        Me.TXTTOTALSELBE.Name = "TXTTOTALSELBE"
+        Me.TXTTOTALSELBE.ReadOnly = True
+        Me.TXTTOTALSELBE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTTOTALSELBE.TabIndex = 891
+        Me.TXTTOTALSELBE.TabStop = False
+        Me.TXTTOTALSELBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTOTALSELPE
+        '
+        Me.TXTTOTALSELPE.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELPE.Location = New System.Drawing.Point(623, 211)
+        Me.TXTTOTALSELPE.Name = "TXTTOTALSELPE"
+        Me.TXTTOTALSELPE.ReadOnly = True
+        Me.TXTTOTALSELPE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTTOTALSELPE.TabIndex = 890
+        Me.TXTTOTALSELPE.TabStop = False
+        Me.TXTTOTALSELPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTOTALSELWT
+        '
+        Me.TXTTOTALSELWT.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELWT.Location = New System.Drawing.Point(783, 211)
+        Me.TXTTOTALSELWT.Name = "TXTTOTALSELWT"
+        Me.TXTTOTALSELWT.ReadOnly = True
+        Me.TXTTOTALSELWT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALSELWT.TabIndex = 889
+        Me.TXTTOTALSELWT.TabStop = False
+        Me.TXTTOTALSELWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTOTALSELTE
+        '
+        Me.TXTTOTALSELTE.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALSELTE.Location = New System.Drawing.Point(723, 211)
+        Me.TXTTOTALSELTE.Name = "TXTTOTALSELTE"
+        Me.TXTTOTALSELTE.ReadOnly = True
+        Me.TXTTOTALSELTE.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALSELTE.TabIndex = 888
+        Me.TXTTOTALSELTE.TabStop = False
+        Me.TXTTOTALSELTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELCOST
+        '
+        Me.TXTSELCOST.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELCOST.Location = New System.Drawing.Point(962, 6)
+        Me.TXTSELCOST.Name = "TXTSELCOST"
+        Me.TXTSELCOST.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELCOST.TabIndex = 11
+        Me.TXTSELCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELRATE
+        '
+        Me.TXTSELRATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELRATE.Location = New System.Drawing.Point(902, 6)
+        Me.TXTSELRATE.Name = "TXTSELRATE"
+        Me.TXTSELRATE.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELRATE.TabIndex = 10
+        Me.TXTSELRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELCONS
+        '
+        Me.TXTSELCONS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELCONS.Location = New System.Drawing.Point(842, 6)
+        Me.TXTSELCONS.Name = "TXTSELCONS"
+        Me.TXTSELCONS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELCONS.TabIndex = 9
+        Me.TXTSELCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELBE
+        '
+        Me.TXTSELBE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELBE.Location = New System.Drawing.Point(673, 6)
+        Me.TXTSELBE.Name = "TXTSELBE"
+        Me.TXTSELBE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTSELBE.TabIndex = 6
+        Me.TXTSELBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELPE
+        '
+        Me.TXTSELPE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELPE.Location = New System.Drawing.Point(623, 6)
+        Me.TXTSELPE.Name = "TXTSELPE"
+        Me.TXTSELPE.Size = New System.Drawing.Size(50, 23)
+        Me.TXTSELPE.TabIndex = 5
+        Me.TXTSELPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBSELSHADE
+        '
+        Me.CMBSELSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELSHADE.FormattingEnabled = True
+        Me.CMBSELSHADE.Location = New System.Drawing.Point(523, 6)
+        Me.CMBSELSHADE.Name = "CMBSELSHADE"
+        Me.CMBSELSHADE.Size = New System.Drawing.Size(100, 23)
+        Me.CMBSELSHADE.TabIndex = 4
+        '
+        'TXTSELSYMBOL
+        '
+        Me.TXTSELSYMBOL.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELSYMBOL.Location = New System.Drawing.Point(43, 6)
+        Me.TXTSELSYMBOL.Name = "TXTSELSYMBOL"
+        Me.TXTSELSYMBOL.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELSYMBOL.TabIndex = 0
+        '
+        'TXTSELSRNO
+        '
+        Me.TXTSELSRNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELSRNO.Location = New System.Drawing.Point(13, 6)
+        Me.TXTSELSRNO.Name = "TXTSELSRNO"
+        Me.TXTSELSRNO.ReadOnly = True
+        Me.TXTSELSRNO.Size = New System.Drawing.Size(30, 23)
+        Me.TXTSELSRNO.TabIndex = 879
+        Me.TXTSELSRNO.TabStop = False
+        Me.TXTSELSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELWT
+        '
+        Me.TXTSELWT.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELWT.Location = New System.Drawing.Point(783, 6)
+        Me.TXTSELWT.Name = "TXTSELWT"
+        Me.TXTSELWT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELWT.TabIndex = 8
+        Me.TXTSELWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBSELMILLNAME
+        '
+        Me.CMBSELMILLNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELMILLNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELMILLNAME.FormattingEnabled = True
+        Me.CMBSELMILLNAME.Location = New System.Drawing.Point(373, 6)
+        Me.CMBSELMILLNAME.Name = "CMBSELMILLNAME"
+        Me.CMBSELMILLNAME.Size = New System.Drawing.Size(150, 23)
+        Me.CMBSELMILLNAME.TabIndex = 3
+        '
+        'TXTSELDEN
+        '
+        Me.TXTSELDEN.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELDEN.Location = New System.Drawing.Point(303, 6)
+        Me.TXTSELDEN.Name = "TXTSELDEN"
+        Me.TXTSELDEN.ReadOnly = True
+        Me.TXTSELDEN.Size = New System.Drawing.Size(70, 23)
+        Me.TXTSELDEN.TabIndex = 2
+        Me.TXTSELDEN.TabStop = False
+        Me.TXTSELDEN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSELTE
+        '
+        Me.TXTSELTE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSELTE.Location = New System.Drawing.Point(723, 6)
+        Me.TXTSELTE.Name = "TXTSELTE"
+        Me.TXTSELTE.Size = New System.Drawing.Size(60, 23)
+        Me.TXTSELTE.TabIndex = 7
+        Me.TXTSELTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(589, 215)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(34, 15)
+        Me.Label9.TabIndex = 880
+        Me.Label9.Text = "Total"
+        '
+        'CMBSELYARNQUALITY
+        '
+        Me.CMBSELYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBSELYARNQUALITY.FormattingEnabled = True
+        Me.CMBSELYARNQUALITY.Location = New System.Drawing.Point(103, 6)
+        Me.CMBSELYARNQUALITY.Name = "CMBSELYARNQUALITY"
+        Me.CMBSELYARNQUALITY.Size = New System.Drawing.Size(200, 23)
+        Me.CMBSELYARNQUALITY.TabIndex = 1
+        '
+        'GRIDSELVEDGE
+        '
+        Me.GRIDSELVEDGE.AllowUserToAddRows = False
+        Me.GRIDSELVEDGE.AllowUserToDeleteRows = False
+        Me.GRIDSELVEDGE.AllowUserToResizeColumns = False
+        Me.GRIDSELVEDGE.AllowUserToResizeRows = False
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSELVEDGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.GRIDSELVEDGE.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDSELVEDGE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDSELVEDGE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSELVEDGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.GRIDSELVEDGE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDSELVEDGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SSRNO, Me.SSYM, Me.SQUALITY, Me.SDENIER, Me.SMILL, Me.SSHADE, Me.SPE, Me.SBE, Me.SENDS, Me.SWT, Me.SCONS, Me.SRATE, Me.SCOST})
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSELVEDGE.DefaultCellStyle = DataGridViewCellStyle10
+        Me.GRIDSELVEDGE.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDSELVEDGE.Location = New System.Drawing.Point(12, 28)
+        Me.GRIDSELVEDGE.MultiSelect = False
+        Me.GRIDSELVEDGE.Name = "GRIDSELVEDGE"
+        Me.GRIDSELVEDGE.ReadOnly = True
+        Me.GRIDSELVEDGE.RowHeadersVisible = False
+        Me.GRIDSELVEDGE.RowHeadersWidth = 30
+        Me.GRIDSELVEDGE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSELVEDGE.RowsDefaultCellStyle = DataGridViewCellStyle11
+        Me.GRIDSELVEDGE.RowTemplate.Height = 20
+        Me.GRIDSELVEDGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSELVEDGE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDSELVEDGE.Size = New System.Drawing.Size(1052, 179)
+        Me.GRIDSELVEDGE.TabIndex = 12
+        Me.GRIDSELVEDGE.TabStop = False
+        '
+        'SSRNO
+        '
+        Me.SSRNO.HeaderText = "Sr."
+        Me.SSRNO.Name = "SSRNO"
+        Me.SSRNO.ReadOnly = True
+        Me.SSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SSRNO.Width = 30
+        '
+        'SSYM
+        '
+        Me.SSYM.HeaderText = "Sym"
+        Me.SSYM.Name = "SSYM"
+        Me.SSYM.ReadOnly = True
+        Me.SSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SSYM.Width = 60
+        '
+        'SQUALITY
+        '
+        Me.SQUALITY.HeaderText = "Yarn Quality"
+        Me.SQUALITY.Name = "SQUALITY"
+        Me.SQUALITY.ReadOnly = True
+        Me.SQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SQUALITY.Width = 200
+        '
+        'SDENIER
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.SDENIER.DefaultCellStyle = DataGridViewCellStyle7
+        Me.SDENIER.HeaderText = "Denier"
+        Me.SDENIER.Name = "SDENIER"
+        Me.SDENIER.ReadOnly = True
+        Me.SDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SDENIER.Width = 70
+        '
+        'SMILL
+        '
+        Me.SMILL.HeaderText = "Mill Name"
+        Me.SMILL.Name = "SMILL"
+        Me.SMILL.ReadOnly = True
+        Me.SMILL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SMILL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SMILL.Width = 150
+        '
+        'SSHADE
+        '
+        Me.SSHADE.HeaderText = "Shade"
+        Me.SSHADE.Name = "SSHADE"
+        Me.SSHADE.ReadOnly = True
+        Me.SSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'SPE
+        '
+        Me.SPE.HeaderText = "P.E."
+        Me.SPE.Name = "SPE"
+        Me.SPE.ReadOnly = True
+        Me.SPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SPE.Width = 50
+        '
+        'SBE
+        '
+        Me.SBE.HeaderText = "B.E."
+        Me.SBE.Name = "SBE"
+        Me.SBE.ReadOnly = True
+        Me.SBE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SBE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SBE.Width = 50
+        '
+        'SENDS
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.SENDS.DefaultCellStyle = DataGridViewCellStyle8
+        Me.SENDS.HeaderText = "T.E."
+        Me.SENDS.Name = "SENDS"
+        Me.SENDS.ReadOnly = True
+        Me.SENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SENDS.Width = 60
+        '
+        'SWT
+        '
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.SWT.DefaultCellStyle = DataGridViewCellStyle9
+        Me.SWT.HeaderText = "Wt"
+        Me.SWT.Name = "SWT"
+        Me.SWT.ReadOnly = True
+        Me.SWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SWT.Width = 60
+        '
+        'SCONS
+        '
+        Me.SCONS.HeaderText = "Cons"
+        Me.SCONS.Name = "SCONS"
+        Me.SCONS.ReadOnly = True
+        Me.SCONS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SCONS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SCONS.Width = 60
+        '
+        'SRATE
+        '
+        Me.SRATE.HeaderText = "Rate"
+        Me.SRATE.Name = "SRATE"
+        Me.SRATE.ReadOnly = True
+        Me.SRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SRATE.Width = 60
+        '
+        'SCOST
+        '
+        Me.SCOST.HeaderText = "Cost"
+        Me.SCOST.Name = "SCOST"
+        Me.SCOST.ReadOnly = True
+        Me.SCOST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SCOST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SCOST.Width = 60
         '
         'TBWARP
         '
@@ -537,28 +1091,28 @@ Partial Class DesignCardMaster
         Me.GRIDWARPPATTERN.AllowUserToDeleteRows = False
         Me.GRIDWARPPATTERN.AllowUserToResizeColumns = False
         Me.GRIDWARPPATTERN.AllowUserToResizeRows = False
-        DataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWARPPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle42
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWARPPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
         Me.GRIDWARPPATTERN.BackgroundColor = System.Drawing.Color.White
         Me.GRIDWARPPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDWARPPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle43.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWARPPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle43
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWARPPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         Me.GRIDWARPPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDWARPPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WPSRNO, Me.WPENDS, Me.WPSYM})
-        DataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle44.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWARPPATTERN.DefaultCellStyle = DataGridViewCellStyle44
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWARPPATTERN.DefaultCellStyle = DataGridViewCellStyle14
         Me.GRIDWARPPATTERN.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDWARPPATTERN.Location = New System.Drawing.Point(1108, 28)
         Me.GRIDWARPPATTERN.MultiSelect = False
@@ -567,9 +1121,9 @@ Partial Class DesignCardMaster
         Me.GRIDWARPPATTERN.RowHeadersVisible = False
         Me.GRIDWARPPATTERN.RowHeadersWidth = 30
         Me.GRIDWARPPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWARPPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle45
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWARPPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle15
         Me.GRIDWARPPATTERN.RowTemplate.Height = 20
         Me.GRIDWARPPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWARPPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -826,28 +1380,28 @@ Partial Class DesignCardMaster
         Me.GRIDWARP.AllowUserToDeleteRows = False
         Me.GRIDWARP.AllowUserToResizeColumns = False
         Me.GRIDWARP.AllowUserToResizeRows = False
-        DataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWARP.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle46
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWARP.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDWARP.BackgroundColor = System.Drawing.Color.White
         Me.GRIDWARP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDWARP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle47.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWARP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle47
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWARP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.GRIDWARP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDWARP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WSRNO, Me.WSYM, Me.WQUALITY, Me.WDENIER, Me.WMILL, Me.WSHADE, Me.WPE, Me.WBE, Me.WENDS, Me.WWT, Me.WCONS, Me.WRATE, Me.WCOST})
-        DataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle51.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle51.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle51.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle51.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWARP.DefaultCellStyle = DataGridViewCellStyle51
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWARP.DefaultCellStyle = DataGridViewCellStyle21
         Me.GRIDWARP.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDWARP.Location = New System.Drawing.Point(5, 28)
         Me.GRIDWARP.MultiSelect = False
@@ -856,9 +1410,9 @@ Partial Class DesignCardMaster
         Me.GRIDWARP.RowHeadersVisible = False
         Me.GRIDWARP.RowHeadersWidth = 30
         Me.GRIDWARP.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle52.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle52.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWARP.RowsDefaultCellStyle = DataGridViewCellStyle52
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWARP.RowsDefaultCellStyle = DataGridViewCellStyle22
         Me.GRIDWARP.RowTemplate.Height = 20
         Me.GRIDWARP.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWARP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -895,8 +1449,8 @@ Partial Class DesignCardMaster
         '
         'WDENIER
         '
-        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WDENIER.DefaultCellStyle = DataGridViewCellStyle48
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WDENIER.DefaultCellStyle = DataGridViewCellStyle18
         Me.WDENIER.HeaderText = "Denier"
         Me.WDENIER.Name = "WDENIER"
         Me.WDENIER.ReadOnly = True
@@ -941,8 +1495,8 @@ Partial Class DesignCardMaster
         '
         'WENDS
         '
-        DataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WENDS.DefaultCellStyle = DataGridViewCellStyle49
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WENDS.DefaultCellStyle = DataGridViewCellStyle19
         Me.WENDS.HeaderText = "T.E."
         Me.WENDS.Name = "WENDS"
         Me.WENDS.ReadOnly = True
@@ -952,8 +1506,8 @@ Partial Class DesignCardMaster
         '
         'WWT
         '
-        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WWT.DefaultCellStyle = DataGridViewCellStyle50
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WWT.DefaultCellStyle = DataGridViewCellStyle20
         Me.WWT.HeaderText = "Wt"
         Me.WWT.Name = "WWT"
         Me.WWT.ReadOnly = True
@@ -988,424 +1542,6 @@ Partial Class DesignCardMaster
         Me.WCOST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.WCOST.Width = 60
         '
-        'TBSELVEDGE
-        '
-        Me.TBSELVEDGE.BackColor = System.Drawing.Color.PeachPuff
-        Me.TBSELVEDGE.Controls.Add(Me.CMBSELGSYM)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELGPE)
-        Me.TBSELVEDGE.Controls.Add(Me.Label56)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELGPE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELGSRNO)
-        Me.TBSELVEDGE.Controls.Add(Me.GRIDSELVEDGEPATTERN)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTOTALCOST)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTOTALRATE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELCONS)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELBE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELPE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELWT)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTTOTALSELTE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELCOST)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELRATE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELCONS)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELBE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELPE)
-        Me.TBSELVEDGE.Controls.Add(Me.CMBSELSHADE)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELSYMBOL)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELSRNO)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELWT)
-        Me.TBSELVEDGE.Controls.Add(Me.CMBSELMILLNAME)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELDEN)
-        Me.TBSELVEDGE.Controls.Add(Me.TXTSELTE)
-        Me.TBSELVEDGE.Controls.Add(Me.Label9)
-        Me.TBSELVEDGE.Controls.Add(Me.CMBSELYARNQUALITY)
-        Me.TBSELVEDGE.Controls.Add(Me.GRIDSELVEDGE)
-        Me.TBSELVEDGE.Location = New System.Drawing.Point(4, 24)
-        Me.TBSELVEDGE.Name = "TBSELVEDGE"
-        Me.TBSELVEDGE.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBSELVEDGE.Size = New System.Drawing.Size(1299, 242)
-        Me.TBSELVEDGE.TabIndex = 1
-        Me.TBSELVEDGE.Text = "1. Selvedge Matching"
-        '
-        'TXTSELTOTALCOST
-        '
-        Me.TXTSELTOTALCOST.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELTOTALCOST.Location = New System.Drawing.Point(962, 211)
-        Me.TXTSELTOTALCOST.Name = "TXTSELTOTALCOST"
-        Me.TXTSELTOTALCOST.ReadOnly = True
-        Me.TXTSELTOTALCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELTOTALCOST.TabIndex = 894
-        Me.TXTSELTOTALCOST.TabStop = False
-        Me.TXTSELTOTALCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELTOTALRATE
-        '
-        Me.TXTSELTOTALRATE.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELTOTALRATE.Location = New System.Drawing.Point(902, 211)
-        Me.TXTSELTOTALRATE.Name = "TXTSELTOTALRATE"
-        Me.TXTSELTOTALRATE.ReadOnly = True
-        Me.TXTSELTOTALRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELTOTALRATE.TabIndex = 893
-        Me.TXTSELTOTALRATE.TabStop = False
-        Me.TXTSELTOTALRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALSELCONS
-        '
-        Me.TXTTOTALSELCONS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELCONS.Location = New System.Drawing.Point(842, 211)
-        Me.TXTTOTALSELCONS.Name = "TXTTOTALSELCONS"
-        Me.TXTTOTALSELCONS.ReadOnly = True
-        Me.TXTTOTALSELCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALSELCONS.TabIndex = 892
-        Me.TXTTOTALSELCONS.TabStop = False
-        Me.TXTTOTALSELCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALSELBE
-        '
-        Me.TXTTOTALSELBE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELBE.Location = New System.Drawing.Point(673, 211)
-        Me.TXTTOTALSELBE.Name = "TXTTOTALSELBE"
-        Me.TXTTOTALSELBE.ReadOnly = True
-        Me.TXTTOTALSELBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALSELBE.TabIndex = 891
-        Me.TXTTOTALSELBE.TabStop = False
-        Me.TXTTOTALSELBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALSELPE
-        '
-        Me.TXTTOTALSELPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELPE.Location = New System.Drawing.Point(623, 211)
-        Me.TXTTOTALSELPE.Name = "TXTTOTALSELPE"
-        Me.TXTTOTALSELPE.ReadOnly = True
-        Me.TXTTOTALSELPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALSELPE.TabIndex = 890
-        Me.TXTTOTALSELPE.TabStop = False
-        Me.TXTTOTALSELPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALSELWT
-        '
-        Me.TXTTOTALSELWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELWT.Location = New System.Drawing.Point(783, 211)
-        Me.TXTTOTALSELWT.Name = "TXTTOTALSELWT"
-        Me.TXTTOTALSELWT.ReadOnly = True
-        Me.TXTTOTALSELWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALSELWT.TabIndex = 889
-        Me.TXTTOTALSELWT.TabStop = False
-        Me.TXTTOTALSELWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALSELTE
-        '
-        Me.TXTTOTALSELTE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELTE.Location = New System.Drawing.Point(723, 211)
-        Me.TXTTOTALSELTE.Name = "TXTTOTALSELTE"
-        Me.TXTTOTALSELTE.ReadOnly = True
-        Me.TXTTOTALSELTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALSELTE.TabIndex = 888
-        Me.TXTTOTALSELTE.TabStop = False
-        Me.TXTTOTALSELTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELCOST
-        '
-        Me.TXTSELCOST.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELCOST.Location = New System.Drawing.Point(962, 6)
-        Me.TXTSELCOST.Name = "TXTSELCOST"
-        Me.TXTSELCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELCOST.TabIndex = 11
-        Me.TXTSELCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELRATE
-        '
-        Me.TXTSELRATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELRATE.Location = New System.Drawing.Point(902, 6)
-        Me.TXTSELRATE.Name = "TXTSELRATE"
-        Me.TXTSELRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELRATE.TabIndex = 10
-        Me.TXTSELRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELCONS
-        '
-        Me.TXTSELCONS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELCONS.Location = New System.Drawing.Point(842, 6)
-        Me.TXTSELCONS.Name = "TXTSELCONS"
-        Me.TXTSELCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELCONS.TabIndex = 9
-        Me.TXTSELCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELBE
-        '
-        Me.TXTSELBE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELBE.Location = New System.Drawing.Point(673, 6)
-        Me.TXTSELBE.Name = "TXTSELBE"
-        Me.TXTSELBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTSELBE.TabIndex = 6
-        Me.TXTSELBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELPE
-        '
-        Me.TXTSELPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELPE.Location = New System.Drawing.Point(623, 6)
-        Me.TXTSELPE.Name = "TXTSELPE"
-        Me.TXTSELPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTSELPE.TabIndex = 5
-        Me.TXTSELPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBSELSHADE
-        '
-        Me.CMBSELSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSELSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSELSHADE.FormattingEnabled = True
-        Me.CMBSELSHADE.Location = New System.Drawing.Point(523, 6)
-        Me.CMBSELSHADE.Name = "CMBSELSHADE"
-        Me.CMBSELSHADE.Size = New System.Drawing.Size(100, 23)
-        Me.CMBSELSHADE.TabIndex = 4
-        '
-        'TXTSELSYMBOL
-        '
-        Me.TXTSELSYMBOL.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELSYMBOL.Location = New System.Drawing.Point(43, 6)
-        Me.TXTSELSYMBOL.Name = "TXTSELSYMBOL"
-        Me.TXTSELSYMBOL.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELSYMBOL.TabIndex = 0
-        '
-        'TXTSELSRNO
-        '
-        Me.TXTSELSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELSRNO.Location = New System.Drawing.Point(13, 6)
-        Me.TXTSELSRNO.Name = "TXTSELSRNO"
-        Me.TXTSELSRNO.ReadOnly = True
-        Me.TXTSELSRNO.Size = New System.Drawing.Size(30, 23)
-        Me.TXTSELSRNO.TabIndex = 879
-        Me.TXTSELSRNO.TabStop = False
-        Me.TXTSELSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELWT
-        '
-        Me.TXTSELWT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELWT.Location = New System.Drawing.Point(783, 6)
-        Me.TXTSELWT.Name = "TXTSELWT"
-        Me.TXTSELWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELWT.TabIndex = 8
-        Me.TXTSELWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBSELMILLNAME
-        '
-        Me.CMBSELMILLNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSELMILLNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSELMILLNAME.FormattingEnabled = True
-        Me.CMBSELMILLNAME.Location = New System.Drawing.Point(373, 6)
-        Me.CMBSELMILLNAME.Name = "CMBSELMILLNAME"
-        Me.CMBSELMILLNAME.Size = New System.Drawing.Size(150, 23)
-        Me.CMBSELMILLNAME.TabIndex = 3
-        '
-        'TXTSELDEN
-        '
-        Me.TXTSELDEN.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELDEN.Location = New System.Drawing.Point(303, 6)
-        Me.TXTSELDEN.Name = "TXTSELDEN"
-        Me.TXTSELDEN.ReadOnly = True
-        Me.TXTSELDEN.Size = New System.Drawing.Size(70, 23)
-        Me.TXTSELDEN.TabIndex = 2
-        Me.TXTSELDEN.TabStop = False
-        Me.TXTSELDEN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELTE
-        '
-        Me.TXTSELTE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELTE.Location = New System.Drawing.Point(723, 6)
-        Me.TXTSELTE.Name = "TXTSELTE"
-        Me.TXTSELTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTSELTE.TabIndex = 7
-        Me.TXTSELTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(589, 215)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(34, 15)
-        Me.Label9.TabIndex = 880
-        Me.Label9.Text = "Total"
-        '
-        'CMBSELYARNQUALITY
-        '
-        Me.CMBSELYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSELYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSELYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBSELYARNQUALITY.FormattingEnabled = True
-        Me.CMBSELYARNQUALITY.Location = New System.Drawing.Point(103, 6)
-        Me.CMBSELYARNQUALITY.Name = "CMBSELYARNQUALITY"
-        Me.CMBSELYARNQUALITY.Size = New System.Drawing.Size(200, 23)
-        Me.CMBSELYARNQUALITY.TabIndex = 1
-        '
-        'GRIDSELVEDGE
-        '
-        Me.GRIDSELVEDGE.AllowUserToAddRows = False
-        Me.GRIDSELVEDGE.AllowUserToDeleteRows = False
-        Me.GRIDSELVEDGE.AllowUserToResizeColumns = False
-        Me.GRIDSELVEDGE.AllowUserToResizeRows = False
-        DataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle53.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSELVEDGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle53
-        Me.GRIDSELVEDGE.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDSELVEDGE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDSELVEDGE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle54.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSELVEDGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle54
-        Me.GRIDSELVEDGE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSELVEDGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SSRNO, Me.SSYM, Me.SQUALITY, Me.SDENIER, Me.SMILL, Me.SSHADE, Me.SPE, Me.SBE, Me.SENDS, Me.SWT, Me.SCONS, Me.SRATE, Me.SCOST})
-        DataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle58.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle58.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle58.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle58.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSELVEDGE.DefaultCellStyle = DataGridViewCellStyle58
-        Me.GRIDSELVEDGE.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSELVEDGE.Location = New System.Drawing.Point(12, 28)
-        Me.GRIDSELVEDGE.MultiSelect = False
-        Me.GRIDSELVEDGE.Name = "GRIDSELVEDGE"
-        Me.GRIDSELVEDGE.ReadOnly = True
-        Me.GRIDSELVEDGE.RowHeadersVisible = False
-        Me.GRIDSELVEDGE.RowHeadersWidth = 30
-        Me.GRIDSELVEDGE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSELVEDGE.RowsDefaultCellStyle = DataGridViewCellStyle59
-        Me.GRIDSELVEDGE.RowTemplate.Height = 20
-        Me.GRIDSELVEDGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSELVEDGE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSELVEDGE.Size = New System.Drawing.Size(1052, 179)
-        Me.GRIDSELVEDGE.TabIndex = 12
-        Me.GRIDSELVEDGE.TabStop = False
-        '
-        'SSRNO
-        '
-        Me.SSRNO.HeaderText = "Sr."
-        Me.SSRNO.Name = "SSRNO"
-        Me.SSRNO.ReadOnly = True
-        Me.SSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SSRNO.Width = 30
-        '
-        'SSYM
-        '
-        Me.SSYM.HeaderText = "Sym"
-        Me.SSYM.Name = "SSYM"
-        Me.SSYM.ReadOnly = True
-        Me.SSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SSYM.Width = 60
-        '
-        'SQUALITY
-        '
-        Me.SQUALITY.HeaderText = "Yarn Quality"
-        Me.SQUALITY.Name = "SQUALITY"
-        Me.SQUALITY.ReadOnly = True
-        Me.SQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SQUALITY.Width = 200
-        '
-        'SDENIER
-        '
-        DataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.SDENIER.DefaultCellStyle = DataGridViewCellStyle55
-        Me.SDENIER.HeaderText = "Denier"
-        Me.SDENIER.Name = "SDENIER"
-        Me.SDENIER.ReadOnly = True
-        Me.SDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SDENIER.Width = 70
-        '
-        'SMILL
-        '
-        Me.SMILL.HeaderText = "Mill Name"
-        Me.SMILL.Name = "SMILL"
-        Me.SMILL.ReadOnly = True
-        Me.SMILL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SMILL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SMILL.Width = 150
-        '
-        'SSHADE
-        '
-        Me.SSHADE.HeaderText = "Shade"
-        Me.SSHADE.Name = "SSHADE"
-        Me.SSHADE.ReadOnly = True
-        Me.SSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'SPE
-        '
-        Me.SPE.HeaderText = "P.E."
-        Me.SPE.Name = "SPE"
-        Me.SPE.ReadOnly = True
-        Me.SPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPE.Width = 50
-        '
-        'SBE
-        '
-        Me.SBE.HeaderText = "B.E."
-        Me.SBE.Name = "SBE"
-        Me.SBE.ReadOnly = True
-        Me.SBE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SBE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SBE.Width = 50
-        '
-        'SENDS
-        '
-        DataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.SENDS.DefaultCellStyle = DataGridViewCellStyle56
-        Me.SENDS.HeaderText = "T.E."
-        Me.SENDS.Name = "SENDS"
-        Me.SENDS.ReadOnly = True
-        Me.SENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SENDS.Width = 60
-        '
-        'SWT
-        '
-        DataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.SWT.DefaultCellStyle = DataGridViewCellStyle57
-        Me.SWT.HeaderText = "Wt"
-        Me.SWT.Name = "SWT"
-        Me.SWT.ReadOnly = True
-        Me.SWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SWT.Width = 60
-        '
-        'SCONS
-        '
-        Me.SCONS.HeaderText = "Cons"
-        Me.SCONS.Name = "SCONS"
-        Me.SCONS.ReadOnly = True
-        Me.SCONS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SCONS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SCONS.Width = 60
-        '
-        'SRATE
-        '
-        Me.SRATE.HeaderText = "Rate"
-        Me.SRATE.Name = "SRATE"
-        Me.SRATE.ReadOnly = True
-        Me.SRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SRATE.Width = 60
-        '
-        'SCOST
-        '
-        Me.SCOST.HeaderText = "Cost"
-        Me.SCOST.Name = "SCOST"
-        Me.SCOST.ReadOnly = True
-        Me.SCOST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SCOST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SCOST.Width = 60
-        '
         'TBWEFT
         '
         Me.TBWEFT.BackColor = System.Drawing.Color.Honeydew
@@ -1437,10 +1573,10 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Controls.Add(Me.Label51)
         Me.TBWEFT.Controls.Add(Me.CMBWEFTYARNQUALITY)
         Me.TBWEFT.Controls.Add(Me.GRIDWEFT)
-        Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
+        Me.TBWEFT.Location = New System.Drawing.Point(4, 22)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1299, 242)
+        Me.TBWEFT.Size = New System.Drawing.Size(1299, 244)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Weft Matching && Weft Pattern"
         '
@@ -1503,28 +1639,28 @@ Partial Class DesignCardMaster
         Me.GRIDWEFTPATTERN.AllowUserToDeleteRows = False
         Me.GRIDWEFTPATTERN.AllowUserToResizeColumns = False
         Me.GRIDWEFTPATTERN.AllowUserToResizeRows = False
-        DataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWEFTPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle60
+        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWEFTPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
         Me.GRIDWEFTPATTERN.BackgroundColor = System.Drawing.Color.White
         Me.GRIDWEFTPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDWEFTPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle61.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle61.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle61.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle61.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWEFTPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle61
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWEFTPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.GRIDWEFTPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDWEFTPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FPSRNO, Me.FPENDS, Me.FPSYM})
-        DataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle62.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle62.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle62.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWEFTPATTERN.DefaultCellStyle = DataGridViewCellStyle62
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle25.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWEFTPATTERN.DefaultCellStyle = DataGridViewCellStyle25
         Me.GRIDWEFTPATTERN.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDWEFTPATTERN.Location = New System.Drawing.Point(1114, 29)
         Me.GRIDWEFTPATTERN.MultiSelect = False
@@ -1533,9 +1669,9 @@ Partial Class DesignCardMaster
         Me.GRIDWEFTPATTERN.RowHeadersVisible = False
         Me.GRIDWEFTPATTERN.RowHeadersWidth = 30
         Me.GRIDWEFTPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle63.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWEFTPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle63
+        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWEFTPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle26
         Me.GRIDWEFTPATTERN.RowTemplate.Height = 20
         Me.GRIDWEFTPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFTPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -1788,28 +1924,28 @@ Partial Class DesignCardMaster
         Me.GRIDWEFT.AllowUserToDeleteRows = False
         Me.GRIDWEFT.AllowUserToResizeColumns = False
         Me.GRIDWEFT.AllowUserToResizeRows = False
-        DataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWEFT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle64
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWEFT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle27
         Me.GRIDWEFT.BackgroundColor = System.Drawing.Color.White
         Me.GRIDWEFT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDWEFT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle65.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle65.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWEFT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle65
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle28.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWEFT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle28
         Me.GRIDWEFT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDWEFT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FSRNO, Me.FSYM, Me.FQUALITY, Me.FDENIER, Me.FMILL, Me.FSHADE, Me.FPE, Me.FBE, Me.FENDS, Me.FWT, Me.FCONS, Me.FRATE, Me.FCOST})
-        DataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle69.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle69.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle69.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle69.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle69.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle69.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWEFT.DefaultCellStyle = DataGridViewCellStyle69
+        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle32.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWEFT.DefaultCellStyle = DataGridViewCellStyle32
         Me.GRIDWEFT.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDWEFT.Location = New System.Drawing.Point(11, 29)
         Me.GRIDWEFT.MultiSelect = False
@@ -1818,9 +1954,9 @@ Partial Class DesignCardMaster
         Me.GRIDWEFT.RowHeadersVisible = False
         Me.GRIDWEFT.RowHeadersWidth = 30
         Me.GRIDWEFT.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle70.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle70.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWEFT.RowsDefaultCellStyle = DataGridViewCellStyle70
+        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWEFT.RowsDefaultCellStyle = DataGridViewCellStyle33
         Me.GRIDWEFT.RowTemplate.Height = 20
         Me.GRIDWEFT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -1857,8 +1993,8 @@ Partial Class DesignCardMaster
         '
         'FDENIER
         '
-        DataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle66
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle29
         Me.FDENIER.HeaderText = "Denier"
         Me.FDENIER.Name = "FDENIER"
         Me.FDENIER.ReadOnly = True
@@ -1903,8 +2039,8 @@ Partial Class DesignCardMaster
         '
         'FENDS
         '
-        DataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FENDS.DefaultCellStyle = DataGridViewCellStyle67
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FENDS.DefaultCellStyle = DataGridViewCellStyle30
         Me.FENDS.HeaderText = "T.E."
         Me.FENDS.Name = "FENDS"
         Me.FENDS.ReadOnly = True
@@ -1914,8 +2050,8 @@ Partial Class DesignCardMaster
         '
         'FWT
         '
-        DataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FWT.DefaultCellStyle = DataGridViewCellStyle68
+        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FWT.DefaultCellStyle = DataGridViewCellStyle31
         Me.FWT.HeaderText = "Wt"
         Me.FWT.Name = "FWT"
         Me.FWT.ReadOnly = True
@@ -1961,10 +2097,10 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Controls.Add(Me.TXTDRAWENDS)
         Me.TBDRAWING.Controls.Add(Me.TXTDRAWSRNO)
         Me.TBDRAWING.Controls.Add(Me.GRIDDRAWING)
-        Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
+        Me.TBDRAWING.Location = New System.Drawing.Point(4, 22)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1299, 242)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1299, 244)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
@@ -2047,28 +2183,28 @@ Partial Class DesignCardMaster
         Me.GRIDDRAWING.AllowUserToDeleteRows = False
         Me.GRIDDRAWING.AllowUserToResizeColumns = False
         Me.GRIDDRAWING.AllowUserToResizeRows = False
-        DataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDDRAWING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDDRAWING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle34
         Me.GRIDDRAWING.BackgroundColor = System.Drawing.Color.White
         Me.GRIDDRAWING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDDRAWING.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle39.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDDRAWING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle35.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDDRAWING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle35
         Me.GRIDDRAWING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDDRAWING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DSRNO, Me.DENDS, Me.DREPEATMARK, Me.DREPEAT, Me.DREPEATMARK1, Me.DREPEATS1, Me.DREPEATMARK2, Me.DREPEATS2})
-        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle40.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDDRAWING.DefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle36.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDDRAWING.DefaultCellStyle = DataGridViewCellStyle36
         Me.GRIDDRAWING.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDDRAWING.Location = New System.Drawing.Point(46, 30)
         Me.GRIDDRAWING.MultiSelect = False
@@ -2076,15 +2212,72 @@ Partial Class DesignCardMaster
         Me.GRIDDRAWING.RowHeadersVisible = False
         Me.GRIDDRAWING.RowHeadersWidth = 30
         Me.GRIDDRAWING.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDDRAWING.RowsDefaultCellStyle = DataGridViewCellStyle41
+        DataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDDRAWING.RowsDefaultCellStyle = DataGridViewCellStyle37
         Me.GRIDDRAWING.RowTemplate.Height = 20
         Me.GRIDDRAWING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDDRAWING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDDRAWING.Size = New System.Drawing.Size(755, 179)
         Me.GRIDDRAWING.TabIndex = 909
         Me.GRIDDRAWING.TabStop = False
+        '
+        'DSRNO
+        '
+        Me.DSRNO.HeaderText = "Sr."
+        Me.DSRNO.Name = "DSRNO"
+        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DSRNO.Width = 30
+        '
+        'DENDS
+        '
+        Me.DENDS.HeaderText = "Ends"
+        Me.DENDS.Name = "DENDS"
+        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATMARK
+        '
+        Me.DREPEATMARK.HeaderText = "Repeat Mark"
+        Me.DREPEATMARK.Name = "DREPEATMARK"
+        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEAT
+        '
+        Me.DREPEAT.HeaderText = "Repeats"
+        Me.DREPEAT.Name = "DREPEAT"
+        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATMARK1
+        '
+        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
+        Me.DREPEATMARK1.Name = "DREPEATMARK1"
+        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATS1
+        '
+        Me.DREPEATS1.HeaderText = "Repeats 1"
+        Me.DREPEATS1.Name = "DREPEATS1"
+        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATMARK2
+        '
+        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
+        Me.DREPEATMARK2.Name = "DREPEATMARK2"
+        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATS2
+        '
+        Me.DREPEATS2.HeaderText = "Repeats 2"
+        Me.DREPEATS2.Name = "DREPEATS2"
+        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'CMBDESIGNNO
         '
@@ -2222,6 +2415,16 @@ Partial Class DesignCardMaster
         'TBMAIN
         '
         Me.TBMAIN.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBMAIN.Controls.Add(Me.txtxvalue)
+        Me.TBMAIN.Controls.Add(Me.Label60)
+        Me.TBMAIN.Controls.Add(Me.TXTTOTALMAINENDS)
+        Me.TBMAIN.Controls.Add(Me.lblTOTALMAINENDS)
+        Me.TBMAIN.Controls.Add(Me.TXTENDPERINCH)
+        Me.TBMAIN.Controls.Add(Me.Label59)
+        Me.TBMAIN.Controls.Add(Me.TXTTOTALENDS)
+        Me.TBMAIN.Controls.Add(Me.Label58)
+        Me.TBMAIN.Controls.Add(Me.txttotaldentsrepeat)
+        Me.TBMAIN.Controls.Add(Me.Label57)
         Me.TBMAIN.Controls.Add(Me.TXTTHREADPERDENT)
         Me.TBMAIN.Controls.Add(Me.Label53)
         Me.TBMAIN.Controls.Add(Me.TXTREED)
@@ -2266,6 +2469,118 @@ Partial Class DesignCardMaster
         Me.TBMAIN.Size = New System.Drawing.Size(1094, 179)
         Me.TBMAIN.TabIndex = 0
         Me.TBMAIN.Text = "1. Reed && Pick Details"
+        '
+        'txtxvalue
+        '
+        Me.txtxvalue.BackColor = System.Drawing.Color.Linen
+        Me.txtxvalue.Location = New System.Drawing.Point(964, 131)
+        Me.txtxvalue.Name = "txtxvalue"
+        Me.txtxvalue.ReadOnly = True
+        Me.txtxvalue.Size = New System.Drawing.Size(60, 23)
+        Me.txtxvalue.TabIndex = 980
+        Me.txtxvalue.TabStop = False
+        Me.txtxvalue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtxvalue.Visible = False
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.BackColor = System.Drawing.Color.Transparent
+        Me.Label60.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label60.Location = New System.Drawing.Point(925, 134)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(14, 15)
+        Me.Label60.TabIndex = 981
+        Me.Label60.Text = "X"
+        Me.Label60.Visible = False
+        '
+        'TXTTOTALMAINENDS
+        '
+        Me.TXTTOTALMAINENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALMAINENDS.Location = New System.Drawing.Point(964, 102)
+        Me.TXTTOTALMAINENDS.Name = "TXTTOTALMAINENDS"
+        Me.TXTTOTALMAINENDS.ReadOnly = True
+        Me.TXTTOTALMAINENDS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALMAINENDS.TabIndex = 978
+        Me.TXTTOTALMAINENDS.TabStop = False
+        Me.TXTTOTALMAINENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'lblTOTALMAINENDS
+        '
+        Me.lblTOTALMAINENDS.AutoSize = True
+        Me.lblTOTALMAINENDS.BackColor = System.Drawing.Color.Transparent
+        Me.lblTOTALMAINENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTOTALMAINENDS.Location = New System.Drawing.Point(851, 106)
+        Me.lblTOTALMAINENDS.Name = "lblTOTALMAINENDS"
+        Me.lblTOTALMAINENDS.Size = New System.Drawing.Size(95, 15)
+        Me.lblTOTALMAINENDS.TabIndex = 979
+        Me.lblTOTALMAINENDS.Text = "Total Main Ends"
+        '
+        'TXTENDPERINCH
+        '
+        Me.TXTENDPERINCH.BackColor = System.Drawing.Color.Linen
+        Me.TXTENDPERINCH.Location = New System.Drawing.Point(964, 72)
+        Me.TXTENDPERINCH.Name = "TXTENDPERINCH"
+        Me.TXTENDPERINCH.ReadOnly = True
+        Me.TXTENDPERINCH.Size = New System.Drawing.Size(60, 23)
+        Me.TXTENDPERINCH.TabIndex = 976
+        Me.TXTENDPERINCH.TabStop = False
+        Me.TXTENDPERINCH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.BackColor = System.Drawing.Color.Transparent
+        Me.Label59.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label59.Location = New System.Drawing.Point(851, 76)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(81, 15)
+        Me.Label59.TabIndex = 977
+        Me.Label59.Text = "Ends Per Inch"
+        '
+        'TXTTOTALENDS
+        '
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALENDS.Location = New System.Drawing.Point(964, 43)
+        Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
+        Me.TXTTOTALENDS.ReadOnly = True
+        Me.TXTTOTALENDS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALENDS.TabIndex = 974
+        Me.TXTTOTALENDS.TabStop = False
+        Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.BackColor = System.Drawing.Color.Transparent
+        Me.Label58.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label58.Location = New System.Drawing.Point(851, 47)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(63, 15)
+        Me.Label58.TabIndex = 975
+        Me.Label58.Text = "Total Ends"
+        '
+        'txttotaldentsrepeat
+        '
+        Me.txttotaldentsrepeat.BackColor = System.Drawing.Color.Linen
+        Me.txttotaldentsrepeat.Location = New System.Drawing.Point(964, 14)
+        Me.txttotaldentsrepeat.Name = "txttotaldentsrepeat"
+        Me.txttotaldentsrepeat.ReadOnly = True
+        Me.txttotaldentsrepeat.Size = New System.Drawing.Size(60, 23)
+        Me.txttotaldentsrepeat.TabIndex = 972
+        Me.txttotaldentsrepeat.TabStop = False
+        Me.txttotaldentsrepeat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.BackColor = System.Drawing.Color.Transparent
+        Me.Label57.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label57.Location = New System.Drawing.Point(851, 18)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(108, 15)
+        Me.Label57.TabIndex = 973
+        Me.Label57.Text = "Total Dents Repeat"
         '
         'TXTTHREADPERDENT
         '
@@ -3464,189 +3779,6 @@ Partial Class DesignCardMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'CMBSELGSYM
-        '
-        Me.CMBSELGSYM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSELGSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSELGSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBSELGSYM.FormattingEnabled = True
-        Me.CMBSELGSYM.Location = New System.Drawing.Point(1200, 6)
-        Me.CMBSELGSYM.Name = "CMBSELGSYM"
-        Me.CMBSELGSYM.Size = New System.Drawing.Size(62, 23)
-        Me.CMBSELGSYM.TabIndex = 14
-        '
-        'TXTTOTALSELGPE
-        '
-        Me.TXTTOTALSELGPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELGPE.Location = New System.Drawing.Point(1151, 212)
-        Me.TXTTOTALSELGPE.Name = "TXTTOTALSELGPE"
-        Me.TXTTOTALSELGPE.ReadOnly = True
-        Me.TXTTOTALSELGPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALSELGPE.TabIndex = 899
-        Me.TXTTOTALSELGPE.TabStop = False
-        Me.TXTTOTALSELGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label56
-        '
-        Me.Label56.AutoSize = True
-        Me.Label56.BackColor = System.Drawing.Color.Transparent
-        Me.Label56.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label56.Location = New System.Drawing.Point(1073, 216)
-        Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(74, 15)
-        Me.Label56.TabIndex = 898
-        Me.Label56.Text = "Total Repeat"
-        '
-        'TXTSELGPE
-        '
-        Me.TXTSELGPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSELGPE.Location = New System.Drawing.Point(1150, 6)
-        Me.TXTSELGPE.Name = "TXTSELGPE"
-        Me.TXTSELGPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTSELGPE.TabIndex = 13
-        Me.TXTSELGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTSELGSRNO
-        '
-        Me.TXTSELGSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELGSRNO.Location = New System.Drawing.Point(1120, 6)
-        Me.TXTSELGSRNO.Name = "TXTSELGSRNO"
-        Me.TXTSELGSRNO.ReadOnly = True
-        Me.TXTSELGSRNO.Size = New System.Drawing.Size(30, 23)
-        Me.TXTSELGSRNO.TabIndex = 895
-        Me.TXTSELGSRNO.TabStop = False
-        Me.TXTSELGSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'GRIDSELVEDGEPATTERN
-        '
-        Me.GRIDSELVEDGEPATTERN.AllowUserToAddRows = False
-        Me.GRIDSELVEDGEPATTERN.AllowUserToDeleteRows = False
-        Me.GRIDSELVEDGEPATTERN.AllowUserToResizeColumns = False
-        Me.GRIDSELVEDGEPATTERN.AllowUserToResizeRows = False
-        DataGridViewCellStyle71.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle71.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSELVEDGEPATTERN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle71
-        Me.GRIDSELVEDGEPATTERN.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDSELVEDGEPATTERN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDSELVEDGEPATTERN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle72.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle72.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle72.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle72.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSELVEDGEPATTERN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle72
-        Me.GRIDSELVEDGEPATTERN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSELVEDGEPATTERN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SPSRNO, Me.SPENDS, Me.SPSYM})
-        DataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle73.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle73.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle73.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle73.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle73.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle73.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSELVEDGEPATTERN.DefaultCellStyle = DataGridViewCellStyle73
-        Me.GRIDSELVEDGEPATTERN.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSELVEDGEPATTERN.Location = New System.Drawing.Point(1120, 28)
-        Me.GRIDSELVEDGEPATTERN.MultiSelect = False
-        Me.GRIDSELVEDGEPATTERN.Name = "GRIDSELVEDGEPATTERN"
-        Me.GRIDSELVEDGEPATTERN.ReadOnly = True
-        Me.GRIDSELVEDGEPATTERN.RowHeadersVisible = False
-        Me.GRIDSELVEDGEPATTERN.RowHeadersWidth = 30
-        Me.GRIDSELVEDGEPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle74.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle74.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSELVEDGEPATTERN.RowsDefaultCellStyle = DataGridViewCellStyle74
-        Me.GRIDSELVEDGEPATTERN.RowTemplate.Height = 20
-        Me.GRIDSELVEDGEPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSELVEDGEPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(173, 179)
-        Me.GRIDSELVEDGEPATTERN.TabIndex = 15
-        Me.GRIDSELVEDGEPATTERN.TabStop = False
-        '
-        'SPSRNO
-        '
-        Me.SPSRNO.HeaderText = "Sr."
-        Me.SPSRNO.Name = "SPSRNO"
-        Me.SPSRNO.ReadOnly = True
-        Me.SPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPSRNO.Width = 30
-        '
-        'SPENDS
-        '
-        Me.SPENDS.HeaderText = "P.E."
-        Me.SPENDS.Name = "SPENDS"
-        Me.SPENDS.ReadOnly = True
-        Me.SPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPENDS.Width = 50
-        '
-        'SPSYM
-        '
-        Me.SPSYM.HeaderText = "Sym"
-        Me.SPSYM.Name = "SPSYM"
-        Me.SPSYM.ReadOnly = True
-        Me.SPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPSYM.Width = 60
-        '
-        'DSRNO
-        '
-        Me.DSRNO.HeaderText = "Sr."
-        Me.DSRNO.Name = "DSRNO"
-        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DSRNO.Width = 30
-        '
-        'DENDS
-        '
-        Me.DENDS.HeaderText = "Ends"
-        Me.DENDS.Name = "DENDS"
-        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK
-        '
-        Me.DREPEATMARK.HeaderText = "Repeat Mark"
-        Me.DREPEATMARK.Name = "DREPEATMARK"
-        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEAT
-        '
-        Me.DREPEAT.HeaderText = "Repeats"
-        Me.DREPEAT.Name = "DREPEAT"
-        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK1
-        '
-        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
-        Me.DREPEATMARK1.Name = "DREPEATMARK1"
-        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATS1
-        '
-        Me.DREPEATS1.HeaderText = "Repeats 1"
-        Me.DREPEATS1.Name = "DREPEATS1"
-        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK2
-        '
-        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
-        Me.DREPEATMARK2.Name = "DREPEATMARK2"
-        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATS2
-        '
-        Me.DREPEATS2.HeaderText = "Repeats 2"
-        Me.DREPEATS2.Name = "DREPEATS2"
-        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3661,13 +3793,14 @@ Partial Class DesignCardMaster
         Me.BLENDPANEL1.ResumeLayout(False)
         Me.BLENDPANEL1.PerformLayout()
         Me.TABCONTROLDETAILS.ResumeLayout(False)
+        Me.TBSELVEDGE.ResumeLayout(False)
+        Me.TBSELVEDGE.PerformLayout()
+        CType(Me.GRIDSELVEDGEPATTERN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDSELVEDGE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBWARP.ResumeLayout(False)
         Me.TBWARP.PerformLayout()
         CType(Me.GRIDWARPPATTERN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDWARP, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TBSELVEDGE.ResumeLayout(False)
-        Me.TBSELVEDGE.PerformLayout()
-        CType(Me.GRIDSELVEDGE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBWEFT.ResumeLayout(False)
         Me.TBWEFT.PerformLayout()
         CType(Me.GRIDWEFTPATTERN, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3686,7 +3819,6 @@ Partial Class DesignCardMaster
         Me.TBOTHER.ResumeLayout(False)
         Me.TBOTHER.PerformLayout()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDSELVEDGEPATTERN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3967,4 +4099,14 @@ Partial Class DesignCardMaster
     Friend WithEvents DREPEATS1 As DataGridViewTextBoxColumn
     Friend WithEvents DREPEATMARK2 As DataGridViewTextBoxColumn
     Friend WithEvents DREPEATS2 As DataGridViewTextBoxColumn
+    Friend WithEvents txttotaldentsrepeat As TextBox
+    Friend WithEvents Label57 As Label
+    Friend WithEvents TXTTOTALENDS As TextBox
+    Friend WithEvents Label58 As Label
+    Friend WithEvents TXTENDPERINCH As TextBox
+    Friend WithEvents Label59 As Label
+    Friend WithEvents TXTTOTALMAINENDS As TextBox
+    Friend WithEvents lblTOTALMAINENDS As Label
+    Friend WithEvents txtxvalue As TextBox
+    Friend WithEvents Label60 As Label
 End Class
