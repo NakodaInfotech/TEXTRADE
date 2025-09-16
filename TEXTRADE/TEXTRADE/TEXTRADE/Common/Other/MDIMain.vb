@@ -6579,17 +6579,19 @@ SKIPLINE:
 
                         OBJDESIGN.alParaval.Add(DBNull.Value)
 
-                        OBJDESIGN.alParaval.Add("")   'LINE1
-                        OBJDESIGN.alParaval.Add("")   'LINE2
-                        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
-                        OBJDESIGN.alParaval.Add("")    'DESIGNER
-
                         OBJDESIGN.alParaval.Add("") 'GRIDSRNO
                         OBJDESIGN.alParaval.Add("") 'BASE
                         OBJDESIGN.alParaval.Add("") 'PRINT
                         OBJDESIGN.alParaval.Add("") 'COLOR
                         OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
                         OBJDESIGN.alParaval.Add("") 'SHADETYPE
+
+                        OBJDESIGN.alParaval.Add("")   'LINE1
+                        OBJDESIGN.alParaval.Add("")   'LINE2
+                        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                        OBJDESIGN.alParaval.Add("")    'DESIGNER
+
+
 
 
                         Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
@@ -6644,6 +6646,7 @@ SKIPLINE:
                         OBJQUALITY.alParaval.Add(Userid)
                         OBJQUALITY.alParaval.Add(YearId)
                         OBJQUALITY.alParaval.Add(0)
+                        OBJQUALITY.alParaval.Add(DBNull.Value)
                         Dim INTRESCAT As Integer = OBJQUALITY.save()
                     End If
                 End If
@@ -6738,6 +6741,8 @@ SKIPLINE:
 
                 ALPARAVAL.Add(DTROWSAVE("DYEINGJOB"))    'DYEINGJOB
                 ALPARAVAL.Add("")                   'REMARKS
+                ALPARAVAL.Add("")                   'LRNO
+
                 ALPARAVAL.Add(DTROWSAVE("BARCODE"))
 
                 ALPARAVAL.Add(CmpId)
@@ -10722,4 +10727,3 @@ SKIPLINE:
 
 
 End Class
-
