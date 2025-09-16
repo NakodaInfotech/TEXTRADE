@@ -12,6 +12,7 @@ Public Class HomePage
 
     Private Sub HomePage_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            GBMONTHLYSALE.Visible = False
 
             If HIDEACCOUNTS = True Then
                 RECOUTSTANDTOOLVISIBLE = False
