@@ -36,9 +36,10 @@ Partial Class DesignwiseStock
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSAMPLEMATCH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTIMESTAMP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GTIMESTAMP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +50,7 @@ Partial Class DesignwiseStock
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.lblbarcode)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
@@ -100,7 +102,7 @@ Partial Class DesignwiseStock
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdok.Location = New System.Drawing.Point(385, 549)
+        Me.cmdok.Location = New System.Drawing.Point(298, 549)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 1
@@ -205,6 +207,12 @@ Partial Class DesignwiseStock
         Me.GSAMPLEMATCH.VisibleIndex = 6
         Me.GSAMPLEMATCH.Width = 30
         '
+        'GTIMESTAMP
+        '
+        Me.GTIMESTAMP.Caption = "Time Stamp"
+        Me.GTIMESTAMP.FieldName = "TIMESTAMP"
+        Me.GTIMESTAMP.Name = "GTIMESTAMP"
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
@@ -223,11 +231,19 @@ Partial Class DesignwiseStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'GTIMESTAMP
+        'CMDREFRESH
         '
-        Me.GTIMESTAMP.Caption = "Time Stamp"
-        Me.GTIMESTAMP.FieldName = "TIMESTAMP"
-        Me.GTIMESTAMP.Name = "GTIMESTAMP"
+        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
+        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
+        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
+        Me.CMDREFRESH.Location = New System.Drawing.Point(384, 549)
+        Me.CMDREFRESH.Name = "CMDREFRESH"
+        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREFRESH.TabIndex = 759
+        Me.CMDREFRESH.Text = "&Refresh"
+        Me.CMDREFRESH.UseVisualStyleBackColor = False
         '
         'DesignwiseStock
         '
@@ -267,4 +283,5 @@ Partial Class DesignwiseStock
     Friend WithEvents GSAMPLEMATCH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTIMESTAMP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDREFRESH As Button
 End Class
