@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class HomePage
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,15 +20,22 @@ Partial Class HomePage
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-        Dim Series1 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-        Dim SideBySideBarSeriesLabel1 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
-        Dim Series2 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-        Dim SideBySideBarSeriesLabel2 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
-        Dim SideBySideBarSeriesLabel3 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim XyDiagram5 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim Series9 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim SideBySideBarSeriesLabel13 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim Series10 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim SideBySideBarSeriesLabel14 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim SideBySideBarSeriesLabel15 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.GBMONTHLYSALE = New System.Windows.Forms.GroupBox()
+        Me.GRIDMONTHLYSALEDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDMONTHLYSALE = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GMMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMTAXABLE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBOVERDUE = New System.Windows.Forms.GroupBox()
         Me.GRIDOVERDUEDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDOVERDUE = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -43,6 +50,7 @@ Partial Class HomePage
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOCITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBSTOCK = New System.Windows.Forms.GroupBox()
         Me.GRIDSTOCKDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDSTOCK = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,8 +86,10 @@ Partial Class HomePage
         Me.GRIDREC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRBALANCE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
+        Me.GBMONTHLYSALE.SuspendLayout()
+        CType(Me.GRIDMONTHLYSALEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDMONTHLYSALE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBOVERDUE.SuspendLayout()
         CType(Me.GRIDOVERDUEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDOVERDUE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,12 +104,12 @@ Partial Class HomePage
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBSALE.SuspendLayout()
         CType(Me.PURSALECHART, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBPAYOUTSTANDING.SuspendLayout()
         CType(Me.GRIDPAYDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDPAY, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +121,7 @@ Partial Class HomePage
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.GBMONTHLYSALE)
         Me.BlendPanel2.Controls.Add(Me.GBOVERDUE)
         Me.BlendPanel2.Controls.Add(Me.GBSTOCK)
         Me.BlendPanel2.Controls.Add(Me.GBPURORDER)
@@ -121,8 +132,99 @@ Partial Class HomePage
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 661)
         Me.BlendPanel2.TabIndex = 13
+        '
+        'GBMONTHLYSALE
+        '
+        Me.GBMONTHLYSALE.BackColor = System.Drawing.Color.Transparent
+        Me.GBMONTHLYSALE.Controls.Add(Me.GRIDMONTHLYSALEDETAILS)
+        Me.GBMONTHLYSALE.Location = New System.Drawing.Point(14, 3)
+        Me.GBMONTHLYSALE.Name = "GBMONTHLYSALE"
+        Me.GBMONTHLYSALE.Size = New System.Drawing.Size(387, 342)
+        Me.GBMONTHLYSALE.TabIndex = 20
+        Me.GBMONTHLYSALE.TabStop = False
+        Me.GBMONTHLYSALE.Text = "Monthly Sale"
+        '
+        'GRIDMONTHLYSALEDETAILS
+        '
+        Me.GRIDMONTHLYSALEDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDMONTHLYSALEDETAILS.Location = New System.Drawing.Point(2, 21)
+        Me.GRIDMONTHLYSALEDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDMONTHLYSALEDETAILS.MainView = Me.GRIDMONTHLYSALE
+        Me.GRIDMONTHLYSALEDETAILS.Name = "GRIDMONTHLYSALEDETAILS"
+        Me.GRIDMONTHLYSALEDETAILS.Size = New System.Drawing.Size(382, 318)
+        Me.GRIDMONTHLYSALEDETAILS.TabIndex = 5
+        Me.GRIDMONTHLYSALEDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDMONTHLYSALE})
+        '
+        'GRIDMONTHLYSALE
+        '
+        Me.GRIDMONTHLYSALE.Appearance.Empty.BackColor = System.Drawing.Color.Linen
+        Me.GRIDMONTHLYSALE.Appearance.Empty.Options.UseBackColor = True
+        Me.GRIDMONTHLYSALE.Appearance.Row.BackColor = System.Drawing.Color.Linen
+        Me.GRIDMONTHLYSALE.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDMONTHLYSALE.Appearance.Row.Options.UseBackColor = True
+        Me.GRIDMONTHLYSALE.Appearance.Row.Options.UseFont = True
+        Me.GRIDMONTHLYSALE.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDMONTHLYSALE.Appearance.ViewCaption.Options.UseFont = True
+        Me.GRIDMONTHLYSALE.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GMMONTHNAME, Me.GMTAXABLE, Me.GMGRANDTOTAL, Me.GMPER})
+        Me.GRIDMONTHLYSALE.GridControl = Me.GRIDMONTHLYSALEDETAILS
+        Me.GRIDMONTHLYSALE.Name = "GRIDMONTHLYSALE"
+        Me.GRIDMONTHLYSALE.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDMONTHLYSALE.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDMONTHLYSALE.OptionsBehavior.Editable = False
+        Me.GRIDMONTHLYSALE.OptionsView.ColumnAutoWidth = False
+        Me.GRIDMONTHLYSALE.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDMONTHLYSALE.OptionsView.ShowFooter = True
+        Me.GRIDMONTHLYSALE.OptionsView.ShowGroupPanel = False
+        '
+        'GMMONTHNAME
+        '
+        Me.GMMONTHNAME.Caption = "Name"
+        Me.GMMONTHNAME.FieldName = "MONTHNAME"
+        Me.GMMONTHNAME.ImageOptions.ImageIndex = 0
+        Me.GMMONTHNAME.Name = "GMMONTHNAME"
+        Me.GMMONTHNAME.Visible = True
+        Me.GMMONTHNAME.VisibleIndex = 0
+        Me.GMMONTHNAME.Width = 120
+        '
+        'GMTAXABLE
+        '
+        Me.GMTAXABLE.AppearanceCell.Options.UseTextOptions = True
+        Me.GMTAXABLE.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GMTAXABLE.Caption = "Taxable Amt"
+        Me.GMTAXABLE.DisplayFormat.FormatString = "0.00"
+        Me.GMTAXABLE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GMTAXABLE.FieldName = "TAXABLEAMT"
+        Me.GMTAXABLE.ImageOptions.ImageIndex = 1
+        Me.GMTAXABLE.Name = "GMTAXABLE"
+        Me.GMTAXABLE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GMTAXABLE.Visible = True
+        Me.GMTAXABLE.VisibleIndex = 1
+        Me.GMTAXABLE.Width = 90
+        '
+        'GMGRANDTOTAL
+        '
+        Me.GMGRANDTOTAL.Caption = "Total Amt"
+        Me.GMGRANDTOTAL.DisplayFormat.FormatString = "0.00"
+        Me.GMGRANDTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GMGRANDTOTAL.FieldName = "GRANDTOTAL"
+        Me.GMGRANDTOTAL.Name = "GMGRANDTOTAL"
+        Me.GMGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GMGRANDTOTAL.Visible = True
+        Me.GMGRANDTOTAL.VisibleIndex = 2
+        Me.GMGRANDTOTAL.Width = 90
+        '
+        'GMPER
+        '
+        Me.GMPER.Caption = "%"
+        Me.GMPER.DisplayFormat.FormatString = "0.00"
+        Me.GMPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GMPER.FieldName = "PER"
+        Me.GMPER.Name = "GMPER"
+        Me.GMPER.Visible = True
+        Me.GMPER.VisibleIndex = 3
+        Me.GMPER.Width = 55
         '
         'GBOVERDUE
         '
@@ -263,11 +365,19 @@ Partial Class HomePage
         Me.GTOCITY.Name = "GTOCITY"
         Me.GTOCITY.Width = 100
         '
+        'GDAYS
+        '
+        Me.GDAYS.Caption = "Days"
+        Me.GDAYS.FieldName = "OVERDUEDAYS"
+        Me.GDAYS.Name = "GDAYS"
+        Me.GDAYS.Visible = True
+        Me.GDAYS.VisibleIndex = 6
+        '
         'GBSTOCK
         '
         Me.GBSTOCK.BackColor = System.Drawing.Color.Transparent
         Me.GBSTOCK.Controls.Add(Me.GRIDSTOCKDETAILS)
-        Me.GBSTOCK.Location = New System.Drawing.Point(607, 293)
+        Me.GBSTOCK.Location = New System.Drawing.Point(607, 359)
         Me.GBSTOCK.Name = "GBSTOCK"
         Me.GBSTOCK.Size = New System.Drawing.Size(277, 290)
         Me.GBSTOCK.TabIndex = 18
@@ -310,7 +420,7 @@ Partial Class HomePage
         '
         Me.GITEMNAME.Caption = "Item Name"
         Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.ImageIndex = 0
+        Me.GITEMNAME.ImageOptions.ImageIndex = 0
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.Visible = True
         Me.GITEMNAME.VisibleIndex = 0
@@ -336,7 +446,7 @@ Partial Class HomePage
         Me.GPCS.DisplayFormat.FormatString = "0"
         Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GPCS.FieldName = "PCS"
-        Me.GPCS.ImageIndex = 1
+        Me.GPCS.ImageOptions.ImageIndex = 1
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
@@ -365,7 +475,7 @@ Partial Class HomePage
         '
         Me.GBPURORDER.BackColor = System.Drawing.Color.Transparent
         Me.GBPURORDER.Controls.Add(Me.GRIDPODETAILS)
-        Me.GBPURORDER.Location = New System.Drawing.Point(315, 293)
+        Me.GBPURORDER.Location = New System.Drawing.Point(315, 359)
         Me.GBPURORDER.Name = "GBPURORDER"
         Me.GBPURORDER.Size = New System.Drawing.Size(277, 290)
         Me.GBPURORDER.TabIndex = 17
@@ -408,7 +518,7 @@ Partial Class HomePage
         '
         Me.GPONAME.Caption = "Name"
         Me.GPONAME.FieldName = "NAME"
-        Me.GPONAME.ImageIndex = 0
+        Me.GPONAME.ImageOptions.ImageIndex = 0
         Me.GPONAME.Name = "GPONAME"
         Me.GPONAME.Visible = True
         Me.GPONAME.VisibleIndex = 0
@@ -431,7 +541,7 @@ Partial Class HomePage
         Me.GPOMTRS.DisplayFormat.FormatString = "0.00"
         Me.GPOMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GPOMTRS.FieldName = "MTRS"
-        Me.GPOMTRS.ImageIndex = 1
+        Me.GPOMTRS.ImageOptions.ImageIndex = 1
         Me.GPOMTRS.Name = "GPOMTRS"
         Me.GPOMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPOMTRS.Visible = True
@@ -442,7 +552,7 @@ Partial Class HomePage
         '
         Me.GBSALEORDER.BackColor = System.Drawing.Color.Transparent
         Me.GBSALEORDER.Controls.Add(Me.GRIDSODETAILS)
-        Me.GBSALEORDER.Location = New System.Drawing.Point(14, 293)
+        Me.GBSALEORDER.Location = New System.Drawing.Point(14, 359)
         Me.GBSALEORDER.Name = "GBSALEORDER"
         Me.GBSALEORDER.Size = New System.Drawing.Size(277, 290)
         Me.GBSALEORDER.TabIndex = 16
@@ -487,7 +597,7 @@ Partial Class HomePage
         '
         Me.GSONAME.Caption = "Name"
         Me.GSONAME.FieldName = "NAME"
-        Me.GSONAME.ImageIndex = 0
+        Me.GSONAME.ImageOptions.ImageIndex = 0
         Me.GSONAME.Name = "GSONAME"
         Me.GSONAME.Visible = True
         Me.GSONAME.VisibleIndex = 0
@@ -521,7 +631,7 @@ Partial Class HomePage
         Me.GSOPCS.Caption = "Pcs"
         Me.GSOPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GSOPCS.FieldName = "PCS"
-        Me.GSOPCS.ImageIndex = 1
+        Me.GSOPCS.ImageOptions.ImageIndex = 1
         Me.GSOPCS.Name = "GSOPCS"
         Me.GSOPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSOPCS.Visible = True
@@ -542,21 +652,23 @@ Partial Class HomePage
         'PURSALECHART
         '
         Me.PURSALECHART.BackColor = System.Drawing.Color.Beige
-        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
-        Me.PURSALECHART.Diagram = XyDiagram1
+        XyDiagram5.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram5.AxisY.VisibleInPanesSerializable = "-1"
+        Me.PURSALECHART.Diagram = XyDiagram5
         Me.PURSALECHART.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
         Me.PURSALECHART.Location = New System.Drawing.Point(8, 21)
         Me.PURSALECHART.Name = "PURSALECHART"
-        SideBySideBarSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series1.Label = SideBySideBarSeriesLabel1
-        Series1.Name = "PURCHASE"
-        SideBySideBarSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series2.Label = SideBySideBarSeriesLabel2
-        Series2.Name = "SALE"
-        Me.PURSALECHART.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series1, Series2}
-        SideBySideBarSeriesLabel3.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PURSALECHART.SeriesTemplate.Label = SideBySideBarSeriesLabel3
+        SideBySideBarSeriesLabel13.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series9.Label = SideBySideBarSeriesLabel13
+        Series9.Name = "PURCHASE"
+        Series9.SeriesID = 0
+        SideBySideBarSeriesLabel14.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series10.Label = SideBySideBarSeriesLabel14
+        Series10.Name = "SALE"
+        Series10.SeriesID = 1
+        Me.PURSALECHART.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series9, Series10}
+        SideBySideBarSeriesLabel15.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PURSALECHART.SeriesTemplate.Label = SideBySideBarSeriesLabel15
         Me.PURSALECHART.Size = New System.Drawing.Size(858, 262)
         Me.PURSALECHART.TabIndex = 0
         '
@@ -564,7 +676,7 @@ Partial Class HomePage
         '
         Me.GBPAYOUTSTANDING.BackColor = System.Drawing.Color.Transparent
         Me.GBPAYOUTSTANDING.Controls.Add(Me.GRIDPAYDETAILS)
-        Me.GBPAYOUTSTANDING.Location = New System.Drawing.Point(909, 293)
+        Me.GBPAYOUTSTANDING.Location = New System.Drawing.Point(909, 359)
         Me.GBPAYOUTSTANDING.Name = "GBPAYOUTSTANDING"
         Me.GBPAYOUTSTANDING.Size = New System.Drawing.Size(315, 290)
         Me.GBPAYOUTSTANDING.TabIndex = 15
@@ -607,7 +719,7 @@ Partial Class HomePage
         '
         Me.GPNAME.Caption = "Name"
         Me.GPNAME.FieldName = "NAME"
-        Me.GPNAME.ImageIndex = 0
+        Me.GPNAME.ImageOptions.ImageIndex = 0
         Me.GPNAME.Name = "GPNAME"
         Me.GPNAME.Visible = True
         Me.GPNAME.VisibleIndex = 0
@@ -621,7 +733,7 @@ Partial Class HomePage
         Me.GPBALANCE.DisplayFormat.FormatString = "0.00"
         Me.GPBALANCE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GPBALANCE.FieldName = "BALANCE"
-        Me.GPBALANCE.ImageIndex = 1
+        Me.GPBALANCE.ImageOptions.ImageIndex = 1
         Me.GPBALANCE.Name = "GPBALANCE"
         Me.GPBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPBALANCE.Visible = True
@@ -675,7 +787,7 @@ Partial Class HomePage
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
@@ -689,25 +801,17 @@ Partial Class HomePage
         Me.GRBALANCE.DisplayFormat.FormatString = "0.00"
         Me.GRBALANCE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GRBALANCE.FieldName = "BALANCE"
-        Me.GRBALANCE.ImageIndex = 1
+        Me.GRBALANCE.ImageOptions.ImageIndex = 1
         Me.GRBALANCE.Name = "GRBALANCE"
         Me.GRBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRBALANCE.Visible = True
         Me.GRBALANCE.VisibleIndex = 1
         Me.GRBALANCE.Width = 70
         '
-        'GDAYS
-        '
-        Me.GDAYS.Caption = "Days"
-        Me.GDAYS.FieldName = "OVERDUEDAYS"
-        Me.GDAYS.Name = "GDAYS"
-        Me.GDAYS.Visible = True
-        Me.GDAYS.VisibleIndex = 6
-        '
         'HomePage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 661)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
@@ -718,6 +822,9 @@ Partial Class HomePage
         Me.Text = "Home"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel2.ResumeLayout(False)
+        Me.GBMONTHLYSALE.ResumeLayout(False)
+        CType(Me.GRIDMONTHLYSALEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDMONTHLYSALE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBOVERDUE.ResumeLayout(False)
         CType(Me.GRIDOVERDUEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDOVERDUE, System.ComponentModel.ISupportInitialize).EndInit()
@@ -731,12 +838,12 @@ Partial Class HomePage
         CType(Me.GRIDSODETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBSALE.ResumeLayout(False)
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PURSALECHART, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBPAYOUTSTANDING.ResumeLayout(False)
         CType(Me.GRIDPAYDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -798,4 +905,11 @@ Partial Class HomePage
     Friend WithEvents GTOCITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDAYS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBMONTHLYSALE As GroupBox
+    Private WithEvents GRIDMONTHLYSALEDETAILS As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDMONTHLYSALE As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GMMONTHNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMTAXABLE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMPER As DevExpress.XtraGrid.Columns.GridColumn
 End Class
