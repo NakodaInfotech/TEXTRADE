@@ -808,6 +808,8 @@ line1:
                     HIDEPOSTER = False
                     HIDEDYEINGPROGRAM = False
                     HIDESTORES = False
+                    HIDECATALOG = False
+                    HIDEPAYROLL = False
                     If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1

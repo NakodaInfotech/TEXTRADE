@@ -12882,14 +12882,14 @@ fontItalic As Boolean = False)
                 Write(" " & I & "/" & Now.Month & "/" & Now.Year, Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
 
                 'GET SALEMTRS
-                DT = OBJCMN.search(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND DAY(invoice_DATE) = " & I & " AND MONTH(invoice_DATE) = " & Now.Month & " And INVOICE_YEARID = " & YEARID)
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND DAY(invoice_DATE) = " & I & " AND MONTH(invoice_DATE) = " & Now.Month & " And INVOICE_YEARID = " & YEARID)
                 If DT.Rows.Count > 0 Then
                     Write(Val(DT.Rows(0).Item("INVMTRS")), Range("2"), XlHAlign.xlHAlignRight, , False, 10)
                     If I = 1 Then Write(Val(DT.Rows(0).Item("INVMTRS")), Range("3"), XlHAlign.xlHAlignRight, , False, 10)
                 End If
 
                 'GET DISPATCHMTRS
-                DT = OBJCMN.search(" ISNULL(SUM(GDN_TOTALMTRS),0) AS GDNMTRS", "", " GDN ", " AND DAY(GDN_DATE) = " & I & " AND MONTH(GDN_DATE) = " & Now.Month & " And GDN_YEARID = " & YEARID)
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(GDN_TOTALMTRS),0) AS GDNMTRS", "", " GDN ", " AND DAY(GDN_DATE) = " & I & " AND MONTH(GDN_DATE) = " & Now.Month & " And GDN_YEARID = " & YEARID)
                 If DT.Rows.Count > 0 Then
                     Write(Val(DT.Rows(0).Item("GDNMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
                     If I = 1 Then Write(Val(DT.Rows(0).Item("GDNMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
@@ -12897,7 +12897,7 @@ fontItalic As Boolean = False)
 
 
                 'GET GRMTRS
-                DT = OBJCMN.search(" ISNULL(SUM(SALRET_TOTALMTRS),0) AS GRMTRS", "", " SALERETURN ", " AND DAY(SALRET_DATE) = " & I & " AND MONTH(SALRET_DATE) = " & Now.Month & " And SALRET_YEARID = " & YEARID)
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(SALRET_TOTALMTRS),0) AS GRMTRS", "", " SALERETURN ", " AND DAY(SALRET_DATE) = " & I & " AND MONTH(SALRET_DATE) = " & Now.Month & " And SALRET_YEARID = " & YEARID)
                 If DT.Rows.Count > 0 Then
                     Write(Val(DT.Rows(0).Item("GRMTRS")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
                     If I = 1 Then Write(Val(DT.Rows(0).Item("GRMTRS")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
