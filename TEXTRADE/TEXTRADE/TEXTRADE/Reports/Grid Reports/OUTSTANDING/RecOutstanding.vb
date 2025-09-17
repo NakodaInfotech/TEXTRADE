@@ -2563,7 +2563,7 @@ LINE1:
             doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
             doc.Add(New Paragraph(" "))
 
-            ' Count visible columns only
+            ' Count visible columns
             Dim visibleColumns As New List(Of DataGridViewColumn)
             For Each col As DataGridViewColumn In dgv.Columns
                 If col.Visible Then visibleColumns.Add(col)
@@ -2572,7 +2572,7 @@ LINE1:
             Dim table As New PdfPTable(visibleColumns.Count)
             table.WidthPercentage = 100
 
-            ' Set column widths proportionally based on DataGridView column widths
+            ' Set column widths
             Dim columnWidths As Single() = GetColumnWidths(dgv)
             table.SetWidths(columnWidths)
 
@@ -2581,14 +2581,15 @@ LINE1:
                 Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold))
                 headerCell.BackgroundColor = BaseColor.LIGHT_GRAY
                 headerCell.HorizontalAlignment = Element.ALIGN_CENTER
+                '' headerCell.NoWrap = True
                 table.AddCell(headerCell)
             Next
 
-            ' Add all rows
+            ' Add rows
             For Each row As DataGridViewRow In dgv.Rows
                 If Not row.IsNewRow Then
 
-                    ' Detect if this row is GRANDTOTAL row (case-insensitive check)
+                    ' Detect grand total row
                     Dim isGrandTotalRow As Boolean = False
                     For Each cell As DataGridViewCell In row.Cells
                         If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
@@ -2612,34 +2613,28 @@ LINE1:
                         Dim pdfCell As PdfPCell
 
                         If isGrandTotalRow Then
-                            ' Linen color RGB (250, 240, 230)
+                            ' Linen color
                             Dim linenColor As New BaseColor(250, 240, 230)
-
                             pdfCell = New PdfPCell(New Phrase(value, verdana10Bold))
                             pdfCell.BackgroundColor = linenColor
-
-                            ' Align numeric columns right, text left
-                            If IsNumeric(value) Then
-                                pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
-                            Else
-                                pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
-                            End If
                         Else
                             pdfCell = New PdfPCell(New Phrase(value, verdana10))
 
-                            ' Optional: Styling for subtotal or group rows
+                            ' Highlight subtotal/group rows
                             If row.DefaultCellStyle.BackColor = Color.Yellow Then
                                 pdfCell.BackgroundColor = BaseColor.YELLOW
                             ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
                                 pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
                             End If
+                        End If
 
-                            ' Align numeric columns to right, text left
-                            If IsNumeric(value) Then
-                                pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
-                            Else
-                                pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
-                            End If
+                        pdfCell.NoWrap = True ' ❗ Ensure all data stays in one line
+
+                        ' Align numeric to right, text to left
+                        If IsNumeric(value) Then
+                            pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                        Else
+                            pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
                         End If
 
                         table.AddCell(pdfCell)
@@ -2648,9 +2643,6 @@ LINE1:
             Next
 
             doc.Add(table)
-
-            ' Optional: Uncomment to show confirmation
-            ' MessageBox.Show("PDF exported successfully at: " & filePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
             MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2661,11 +2653,11 @@ LINE1:
 
 
 
+
     Private Function GetColumnWidths(dgv As DataGridView) As Single()
         Dim visibleCols As New List(Of DataGridViewColumn)
         Dim totalWidth As Single = 0
 
-        ' Collect visible columns and total width
         For Each col As DataGridViewColumn In dgv.Columns
             If col.Visible Then
                 visibleCols.Add(col)
@@ -2673,7 +2665,6 @@ LINE1:
             End If
         Next
 
-        ' Calculate proportional widths
         Dim widths(visibleCols.Count - 1) As Single
         For i As Integer = 0 To visibleCols.Count - 1
             widths(i) = (visibleCols(i).Width / totalWidth) * 100
@@ -2681,6 +2672,9 @@ LINE1:
 
         Return widths
     End Function
+
+
+
 
 
     'Private Function GetCustomColumnWidths(dgv As DataGridView) As Single()
