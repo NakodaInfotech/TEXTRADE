@@ -3,6 +3,7 @@ Imports System.IO
 Imports BL
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
+Imports System.Drawing
 
 Public Class RecOutstanding
 
@@ -2545,6 +2546,7 @@ LINE1:
     End Sub
 
 
+
     Public Sub ExportDataGridViewToPdf(dgv As DataGridView, filePath As String)
         Dim doc As New Document(PageSize.A4.Rotate(), 20, 20, 20, 20) ' Landscape mode
 
@@ -2554,43 +2556,52 @@ LINE1:
 
             ' Load Verdana font
             Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
-            Dim verdana10 As New Font(verdanaBaseFont, 10)
-            Dim verdana10Bold As New Font(verdanaBaseFont, 10, Font.Bold)
-            Dim verdana16Bold As New Font(verdanaBaseFont, 16, Font.Bold)
+            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
 
-            ' Add Title
+            ' Add title and timestamp
             doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
             doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
             doc.Add(New Paragraph(" "))
 
-            ' Count visible columns
+            ' Get visible columns
             Dim visibleColumns As New List(Of DataGridViewColumn)
             For Each col As DataGridViewColumn In dgv.Columns
                 If col.Visible Then visibleColumns.Add(col)
             Next
 
+            ' Initialize PDF table
             Dim table As New PdfPTable(visibleColumns.Count)
             table.WidthPercentage = 100
+            table.HeaderRows = 1 ' Repeat on each page
 
-            ' Set column widths
-            Dim columnWidths As Single() = GetColumnWidths(dgv)
+            ' --- Fix: Adjust dynamic width percentages to avoid overflow ---
+            Dim columnWidths(visibleColumns.Count - 1) As Single
+            Dim baseWidth As Single = 100.0F / visibleColumns.Count
+            For i As Integer = 0 To visibleColumns.Count - 1
+                columnWidths(i) = baseWidth
+            Next
             table.SetWidths(columnWidths)
 
-            ' Add column headers
+            ' Add table headers
             For Each col As DataGridViewColumn In visibleColumns
-                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold))
-                headerCell.BackgroundColor = BaseColor.LIGHT_GRAY
-                headerCell.HorizontalAlignment = Element.ALIGN_CENTER
-                '' headerCell.NoWrap = True
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+                .BackgroundColor = BaseColor.LIGHT_GRAY,
+                .HorizontalAlignment = Element.ALIGN_CENTER,
+                .VerticalAlignment = Element.ALIGN_MIDDLE,
+                .Padding = 5,
+                .NoWrap = False
+            }
                 table.AddCell(headerCell)
             Next
 
-            ' Add rows
+            ' Add data rows
             For Each row As DataGridViewRow In dgv.Rows
                 If Not row.IsNewRow Then
-
-                    ' Detect grand total row
                     Dim isGrandTotalRow As Boolean = False
+
+                    ' Detect total row
                     For Each cell As DataGridViewCell In row.Cells
                         If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
                             isGrandTotalRow = True
@@ -2611,26 +2622,32 @@ LINE1:
                         End If
 
                         Dim pdfCell As PdfPCell
+                        Dim cellFont As iTextSharp.text.Font = If(isGrandTotalRow, verdana10Bold, verdana10)
 
+                        pdfCell = New PdfPCell(New Phrase(value, cellFont)) With {
+                        .VerticalAlignment = Element.ALIGN_MIDDLE,
+                        .Padding = 4
+                    }
+
+                        ' Conditional row color
                         If isGrandTotalRow Then
-                            ' Linen color
-                            Dim linenColor As New BaseColor(250, 240, 230)
-                            pdfCell = New PdfPCell(New Phrase(value, verdana10Bold))
-                            pdfCell.BackgroundColor = linenColor
-                        Else
-                            pdfCell = New PdfPCell(New Phrase(value, verdana10))
-
-                            ' Highlight subtotal/group rows
-                            If row.DefaultCellStyle.BackColor = Color.Yellow Then
-                                pdfCell.BackgroundColor = BaseColor.YELLOW
-                            ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
-                                pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
-                            End If
+                            pdfCell.BackgroundColor = New BaseColor(250, 240, 230)
+                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+                            pdfCell.BackgroundColor = BaseColor.YELLOW
+                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
                         End If
 
-                        pdfCell.NoWrap = True ' ❗ Ensure all data stays in one line
+                        ' ✅ Allow wrapping for selected columns
+                        Dim colName As String = col.HeaderText.Trim().ToUpper()
+                        Select Case colName
+                            Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
+                                pdfCell.NoWrap = False
+                            Case Else
+                                pdfCell.NoWrap = True
+                        End Select
 
-                        ' Align numeric to right, text to left
+                        ' Alignment
                         If IsNumeric(value) Then
                             pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
                         Else
@@ -2642,6 +2659,7 @@ LINE1:
                 End If
             Next
 
+            ' Add the completed table to the document
             doc.Add(table)
 
         Catch ex As Exception
@@ -2650,6 +2668,10 @@ LINE1:
             doc.Close()
         End Try
     End Sub
+
+
+
+
 
 
 
