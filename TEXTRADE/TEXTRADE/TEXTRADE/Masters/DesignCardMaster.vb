@@ -1316,7 +1316,7 @@ Public Class DesignCardMaster
             If TXTTOTALSELENDS.Text <> "" And TXTWARPTL.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
                     If row.Cells(SDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(SWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text) * Val(row.Cells(SDENIER.Index).Value) * Val(TXTSELTL.Text) / 9000000, "0.000")
+                        row.Cells(SWT.Index).Value = Format(Val(row.Cells(SDENIER.Index).Value) * Val(TXTWARPTL.Text) * Val(TXTTOTALSELENDS.Text) / 9000000, "0.000")
                     End If
                 Next
             End If
