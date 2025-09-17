@@ -2698,12 +2698,15 @@ LINE1:
             table.WidthPercentage = 100
             table.HeaderRows = 1
 
-            ' 👉 Slightly better width distribution
+            ' 👉 Custom width logic: NAME & BILL AMT are wider
             Dim columnWidths(visibleColumns.Count - 1) As Single
             Dim totalWeight As Single = 0.0F
+
             For i As Integer = 0 To visibleColumns.Count - 1
                 Dim header As String = visibleColumns(i).HeaderText.Trim().ToUpper()
                 Select Case header
+                    Case "NAME"
+                        columnWidths(i) = 2.5F  ' 👈 Increased
                     Case "BILL AMT"
                         columnWidths(i) = 2.0F
                     Case "RECD AMT", "BALANCE", "RUNNING BAL"
@@ -2714,6 +2717,7 @@ LINE1:
                 totalWeight += columnWidths(i)
             Next
 
+            ' Normalize widths to make total = 100%
             For i As Integer = 0 To columnWidths.Length - 1
                 columnWidths(i) = columnWidths(i) / totalWeight * 100.0F
             Next
@@ -2770,7 +2774,7 @@ LINE1:
                             pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
                         End If
 
-                        ' Wrapping for certain columns
+                        ' Wrapping for specific columns
                         Dim colName As String = col.HeaderText.Trim().ToUpper()
                         Select Case colName
                             Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
@@ -2799,6 +2803,7 @@ LINE1:
             doc.Close()
         End Try
     End Sub
+
 
 
     Private Sub GRIDSUMM_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDSUMM.SortCompare
