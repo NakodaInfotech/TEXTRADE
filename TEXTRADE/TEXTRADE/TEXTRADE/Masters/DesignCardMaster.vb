@@ -201,8 +201,8 @@ Public Class DesignCardMaster
             Dim WARPGRIDPE As String = ""
             Dim WARPGRIDSYM As String = ""
 
-            For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
-                If row.Cells(0).Value IsNot Nothing Then
+            For Each row As Windows.Forms.DataGridViewRow In GRIDWARPPATTERN.Rows
+                If row.Cells(2).Value <> "" Then
                     If WARPGRIDSRNO = "" Then
                         WARPGRIDSRNO = Val(row.Cells(WPSRNO.Index).Value)
                         WARPGRIDPE = Val(row.Cells(WPENDS.Index).Value)
@@ -214,6 +214,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             Next
+
 
             alParaval.Add(WARPGRIDSRNO)
             alParaval.Add(WARPGRIDPE)
@@ -292,7 +293,7 @@ Public Class DesignCardMaster
             Dim ALOTRPE As String = ""
             Dim ALOTRSym As String = ""
             For Each row As Windows.Forms.DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-                If row.Cells(SSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(SPSYM.Index).Value IsNot Nothing Then
                     If ALOTRSrNo = "" Then
                         ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
                         ALOTRPE = Val(row.Cells(SPENDS.Index).Value)
@@ -378,7 +379,7 @@ Public Class DesignCardMaster
             Dim WEFTTRSym As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-                If row.Cells(FSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(FSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
                         WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
                         WEFTTRPE = Val(row.Cells(FPENDS.Index).Value)
@@ -406,7 +407,7 @@ Public Class DesignCardMaster
             Dim DRAWREPEATMARK2 As String = ""
             Dim DRAWREPEATS2 As String = ""
             For Each row As Windows.Forms.DataGridViewRow In GRIDDRAWING.Rows
-                If row.Cells(DSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(DSRNO.Index).Value IsNot Nothing AndAlso row.Cells(DENDS.Index).Value IsNot Nothing Then
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = Val(row.Cells(DENDS.Index).Value)
@@ -615,15 +616,17 @@ Public Class DesignCardMaster
         'GRID WARP
         GRIDWARP.RowCount = 0
         'GRID WARP PATTERN
-        GRIDWARPPATTERN.RowCount = 0
+        GRIDWARPPATTERN.RowCount = 1
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
+
+        GRIDSELVEDGEPATTERN.Rows.Clear()
         'GRID WEFT
         GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
-        GRIDWEFTPATTERN.RowCount = 0
+        GRIDWEFTPATTERN.RowCount = 1
         'GRID DRAWING
-        GRIDDRAWING.RowCount = 0
+        GRIDDRAWING.RowCount = 1
 
     End Sub
     Private Function errorvalid() As Boolean
@@ -809,6 +812,7 @@ Public Class DesignCardMaster
         Else
             TXTWARPGSRNO.Text = 1
         End If
+        Button1_Click(errorvalid, New EventArgs)
     End Sub
     Sub fillselvedgegrid()
         If GRIDSELDOUBLECLICK = False Then
@@ -1662,20 +1666,6 @@ Public Class DesignCardMaster
         CALC()
     End Sub
 
-    Private Sub BTNMARKBLOCK_Click(sender As Object, e As EventArgs) Handles BTNMARKBLOCK.Click
-
-        For Each row As DataGridViewRow In GRIDDRAWING.Rows
-            If row.IsNewRow Then Continue For
-            row.Cells(DREPEATMARK.Index).Value = Nothing
-            row.Cells(DREPEATMARK1.Index).Value = Nothing
-            row.Cells(DREPEATMARK2.Index).Value = Nothing
-            row.Cells(DREPEAT.Index).Value = Nothing
-            row.Cells(DREPEATS1.Index).Value = Nothing
-            row.Cells(DREPEATS2.Index).Value = Nothing
-        Next
-
-    End Sub
-
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
         Try
             If CMBGRIDSYM.Text <> "" And TXTGRIDPE.Text.Trim <> "" Then
@@ -2064,6 +2054,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             End If
+            cmdbtn1_Click(sender, e)
             ' TOTALDRAWDENTS(GRIDDRAWING)
         Catch ex As Exception
             Throw ex
@@ -2145,9 +2136,31 @@ Public Class DesignCardMaster
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
+
+                ' Store SYM value of the current row before deletion
+                Dim deletedSym As String = ""
+                If GRIDWARP.CurrentRow.Cells("WSYM").Value IsNot Nothing Then
+                    deletedSym = GRIDWARP.CurrentRow.Cells("WSYM").Value.ToString().Trim()
+                End If
+
+                ' Remove row from main grid
                 GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
+
+                ' Remove matching SYM rows from small grid GRIDWARPPATTERN
+                For i As Integer = GRIDWARPPATTERN.Rows.Count - 1 To 0 Step -1
+                    Dim row As DataGridViewRow = GRIDWARPPATTERN.Rows(i)
+                    If Not row.IsNewRow AndAlso row.Cells("WPSYM").Value IsNot Nothing Then
+                        If row.Cells("WPSYM").Value.ToString().Trim() = deletedSym Then
+                            GRIDWARPPATTERN.Rows.RemoveAt(i)
+                        End If
+                    End If
+                Next
+
+                ' Refresh totals and serial numbers
                 TOTALWARP()
+                TOTALWARPPATTERN()
                 getsrno(GRIDWARP)
+                getsrno(GRIDWARPPATTERN)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWARPROW()
             End If
@@ -2155,6 +2168,7 @@ Public Class DesignCardMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
@@ -2331,7 +2345,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             End If
-            TOTALWEFT()
+            Button2_Click(sender, e)
         Catch ex As Exception
             Throw ex
         End Try
@@ -2339,6 +2353,27 @@ Public Class DesignCardMaster
 
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
         Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Check if the "SYM" column is being edited
+            If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+
+                ' Search for a matching value in the SYM column of the big grid
+                Dim matchFound As Boolean = False
+                For Each row As DataGridViewRow In GRIDWARP.Rows
+                    If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing AndAlso
+                inputValue = row.Cells("WSYM").Value.ToString().Trim() Then
+                        matchFound = True
+                        Exit For
+                    End If
+                Next
+
+                If Not matchFound Then
+                    MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    e.Cancel = True ' Block the edit!
+                End If
+            End If
             If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2349,7 +2384,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             End If
-            TOTALWARP()
+            Button1_Click(sender, e)
         Catch ex As Exception
             Throw ex
         End Try
@@ -2567,5 +2602,25 @@ Public Class DesignCardMaster
         CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         TOTALWEFTPATTERN()
         TOTALWEFT()
+    End Sub
+
+    Private Sub GRIDDRAWING_DefaultValuesNeeded(ByVal sender As Object, ByVal e As DataGridViewRowEventArgs) Handles GRIDDRAWING.DefaultValuesNeeded
+        e.Row.Cells("DSRNO").Value = GRIDDRAWING.Rows.Count
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDSELVEDGEPATTERN.DefaultValuesNeeded
+        e.Row.Cells("SPSRNO").Value = GRIDSELVEDGEPATTERN.Rows.Count
+    End Sub
+
+    Private Sub GRIDWARPPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDWARPPATTERN.DefaultValuesNeeded
+        e.Row.Cells("WPSRNO").Value = GRIDWARPPATTERN.Rows.Count
+    End Sub
+
+    Private Sub GRIDWEFTPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDWEFTPATTERN.DefaultValuesNeeded
+        e.Row.Cells("FPSRNO").Value = GRIDWEFTPATTERN.Rows.Count
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
+        GRIDSELVEDGEPATTERN.RowCount = 1
     End Sub
 End Class
