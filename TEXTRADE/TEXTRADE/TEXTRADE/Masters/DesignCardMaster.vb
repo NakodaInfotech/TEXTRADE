@@ -801,7 +801,7 @@ Public Class DesignCardMaster
         GRIDWARPPATTERN.ClearSelection()
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
-        TOTALWARP()
+        TOTALWARPPATTERN()
         TXTGRIDPE.Focus()
         If GRIDWARPPATTERN.RowCount > 0 Then
             TXTWARPGSRNO.Text = Val(GRIDWARPPATTERN.Rows(GRIDWARPPATTERN.RowCount - 1).Cells(0).Value) + 1
@@ -881,7 +881,7 @@ Public Class DesignCardMaster
         Else
             TXTSELGSRNO.Text = 1
         End If
-        TOTALSELVEDGE()
+        TOTALSELVEDGEPATTERN()
     End Sub
     Sub CLEARSELVEDGE()
         TXTSELSRNO.Clear()
@@ -977,6 +977,7 @@ Public Class DesignCardMaster
         TXTWEFTGRIDPE.Clear()
         CMBWEFTGRIDSYMBOL.Text = ""
         TXTWEFTGRIDPE.Focus()
+        TOTALWEFTPATTERN()
         If GRIDWEFTPATTERN.RowCount > 0 Then
             TXTWEFTGRIDSRNO.Text = Val(GRIDWEFTPATTERN.Rows(GRIDWEFTPATTERN.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
@@ -1287,6 +1288,7 @@ Public Class DesignCardMaster
             Dim result As Double = totalMainEnds / pcs
             txtxvalue.Text = Math.Ceiling(result).ToString()
         End If
+        If TXTTOTALSELENDS.Text <> "" Then TXTSELTE.Text = Format(Val(TXTTOTALSELENDS.Text), "0.00")
         If txtxvalue.Text <> "" Then
             'WARP ENDS IN GRID
             For Each row As DataGridViewRow In GRIDWARP.Rows
@@ -1307,6 +1309,14 @@ Public Class DesignCardMaster
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
                         row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
+                    End If
+                Next
+            End If
+            'SELVEDGE WT IN GRID
+            If TXTTOTALSELENDS.Text <> "" And TXTWARPTL.Text <> "" Then
+                For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+                    If row.Cells(SDENIER.Index).Value IsNot DBNull.Value Then
+                        row.Cells(SWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text) * Val(row.Cells(SDENIER.Index).Value) * Val(TXTSELTL.Text) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -1354,21 +1364,25 @@ Public Class DesignCardMaster
                 COST = COST + Val(row.Cells(WCOST.Index).Value)
             End If
         Next
-        For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
-            If row.Cells("WPTR2").Value IsNot DBNull.Value Then
-                GRIDPE = GRIDPE + Val(row.Cells("WPTR2").Value)
-            End If
-        Next
+
         TXTTOTALWARPPE.Text = Format(PE, "0.00")
         TXTTOTALWARPBE.Text = Format(BE, "0.00")
         TXTTOTALWARPTE.Text = Format(TE, "0.00")
-        TXTTOTALWARPWT.Text = Format(WT, "0.00")
+        TXTTOTALWARPWT.Text = Format(WT, "0.000")
         TXTTOTALWARPCONS.Text = Format(CONS, "0.00")
         TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
-        TXTTOTALWARPGRIDPE.Text = Format(GRIDPE, "0.00")
-
-
+    End Sub
+    Sub TOTALWARPPATTERN()
+        Dim PE As Double
+        PE = 0.00
+        For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
+            If row.Cells(WPTR2.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(WPTR2.Index).Value)
+            End If
+        Next
+        TXTTOTALWARPGRIDPE.Text = Format(PE, "0.00")
+        If GRIDWARP.RowCount > 0 Then GETWARPPE()
     End Sub
     Sub TOTALSELVEDGE()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDSPE As Double
@@ -1379,12 +1393,6 @@ Public Class DesignCardMaster
         CONS = 0.00
         RATE = 0.00
         COST = 0.00
-        GRIDSPE = 0.00
-        For Each row1 As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If row1.Cells(FPENDS.Index).Value IsNot DBNull.Value Then
-                GRIDSPE = GRIDSPE + Val(row1.Cells(SPENDS.Index).Value)
-            End If
-        Next
         For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
             If row.Cells(SPE.Index).Value IsNot DBNull.Value Then
                 PE = PE + Val(row.Cells(SPE.Index).Value)
@@ -1412,11 +1420,21 @@ Public Class DesignCardMaster
         TXTTOTALSELPE.Text = Format(PE, "0.00")
         TXTTOTALSELBE.Text = Format(BE, "0.00")
         TXTTOTALSELTE.Text = Format(TE, "0.00")
-        TXTTOTALSELWT.Text = Format(WT, "0.00")
+        TXTTOTALSELWT.Text = Format(WT, "0.000")
         TXTTOTALSELCONS.Text = Format(CONS, "0.00")
         TXTSELTOTALRATE.Text = Format(RATE, "0.00")
         TXTSELTOTALCOST.Text = Format(COST, "0.00")
-        TXTTOTALSELGPE.Text = Format(GRIDSPE, "0.00")
+    End Sub
+    Sub TOTALSELVEDGEPATTERN()
+        Dim PE As Double
+        PE = 0.00
+        For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
+            If row.Cells(SPENDS.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(SPENDS.Index).Value)
+            End If
+        Next
+        TXTTOTALSELGPE.Text = Format(PE, "0.00")
+        If GRIDSELVEDGE.RowCount > 0 Then GETSELPE()
     End Sub
     Sub TOTALWEFT()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1451,19 +1469,24 @@ Public Class DesignCardMaster
                 COST = COST + Val(row.Cells(FCOST.Index).Value)
             End If
         Next
-        For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
-            If row.Cells(FPTR2.Index).Value IsNot DBNull.Value Then
-                GRIDPE = GRIDPE + Val(row.Cells(FPTR2.Index).Value)
-            End If
-        Next
         TXTTOTALWEFTPE.Text = Format(PE, "0.00")
         TXTTOTALWEFTBE.Text = Format(BE, "0.00")
         TXTTOTALWEFTTE.Text = Format(TE, "0.00")
-        TXTTOTALWEFTWT.Text = Format(WT, "0.00")
+        TXTTOTALWEFTWT.Text = Format(WT, "0.000")
         TXTTOTALWEFTCONS.Text = Format(CONS, "0.00")
         TXTTOTALWEFTRATE.Text = Format(RATE, "0.00")
         TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
-        TXTTOTALWEFTGRIDPE.Text = Format(GRIDPE, "0.00")
+    End Sub
+    Sub TOTALWEFTPATTERN()
+        Dim PE As Double
+        PE = 0.00
+        For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
+            If row.Cells(FPTR2.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(FPTR2.Index).Value)
+            End If
+        Next
+        TXTTOTALWEFTGRIDPE.Text = Format(PE, "0.00")
+        If GRIDWEFT.RowCount > 0 Then GETWEFTPE()
     End Sub
 
     Private Sub GRIDWARP_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARP.CellDoubleClick
@@ -1674,7 +1697,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(WPSYM.Index).Value?.ToString()
             Dim peVal As Double = 0
-            Double.TryParse(row.Cells(WPENDS.Index).Value?.ToString(), peVal)
+            Double.TryParse(row.Cells(WPTR2.Index).Value?.ToString(), peVal)
             If Not String.IsNullOrWhiteSpace(symVal) Then
                 If Not peSumBySym.ContainsKey(symVal) Then
                     peSumBySym(symVal) = 0
@@ -1702,7 +1725,7 @@ Public Class DesignCardMaster
             If row.IsNewRow Then Continue For
             Dim symVal As String = row.Cells(FPSYM.Index).Value?.ToString()
             Dim peVal As Double = 0
-            Double.TryParse(row.Cells(FPENDS.Index).Value?.ToString(), peVal)
+            Double.TryParse(row.Cells(FPTR2.Index).Value?.ToString(), peVal)
             If Not String.IsNullOrWhiteSpace(symVal) Then
                 If Not peSumBySym.ContainsKey(symVal) Then
                     peSumBySym(symVal) = 0
@@ -2133,6 +2156,40 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Try
+            If MsgBox("Wish to Copy Warp Matching Grid?", MsgBoxStyle.YesNo) = vbYes Then
+                CopyGridEntries(GRIDWARP, GRIDWEFT)
+            ElseIf MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
+                CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
+            End If
+            'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
+            'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
+            MsgBox("Copied Successfully")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CopyGridEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
+        ' Clear existing rows in target if needed
+        targetGrid.Rows.Clear()
+
+        ' Loop through each non-new row in source
+        For Each srcRow As DataGridViewRow In sourceGrid.Rows
+            If Not srcRow.IsNewRow Then
+                ' Create a new row in target grid
+                Dim targetRowIndex As Integer = targetGrid.Rows.Add()
+                Dim targetRow As DataGridViewRow = targetGrid.Rows(targetRowIndex)
+
+                ' Copy cell values from source to target
+                For i As Integer = 0 To sourceGrid.Columns.Count - 1
+                    targetRow.Cells(i).Value = srcRow.Cells(i).Value
+                Next
+            End If
+        Next
+    End Sub
+
+
     Private Sub GRIDWARPPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPPATTERN.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDWARPPATTERN.RowCount > 0 Then
@@ -2412,58 +2469,103 @@ Public Class DesignCardMaster
     Private Function ExtractValuesInsideBrackets(startIndex As Integer, dgv As DataGridView, endsCol As String) As Integer
         Dim valuesList As New List(Of String)
         For i As Integer = startIndex To dgv.Rows.Count - 1
-            Dim cellValue As String = Convert.ToString(dgv.Rows(i).Cells(endsCol).Value)
-            valuesList.Add(cellValue)
-            If cellValue.Contains(")") Then
-                Exit For
+            If i < 0 OrElse i >= dgv.Rows.Count Then Exit For
+            If dgv.Rows(i).IsNewRow Then Exit For
+            If dgv.Rows(i).Cells(endsCol).Value IsNot Nothing Then
+                Dim cellValue As String = dgv.Rows(i).Cells(endsCol).Value.ToString()
+                If Not String.IsNullOrWhiteSpace(cellValue) Then
+                    valuesList.Add(cellValue)
+                    If cellValue.Contains("]") Then Exit For
+                End If
             End If
         Next
-
         Dim joinedValues As String = String.Join("", valuesList).
         Replace("(", "").Replace(")", "").
         Replace("[", "").Replace("]", "").
         Replace("{", "").Replace("}", "")
-
-        Dim splitVals = joinedValues.Split("."c)
-        Return splitVals.Length
+        If String.IsNullOrWhiteSpace(joinedValues) Then
+            Return 0
+        End If
+        Dim splitVals As String() = joinedValues.Split("."c)
+        Return splitVals.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
     End Function
     Private Sub ExtractEndsAndRepeatation(input As String, ByRef endsValue As Integer, ByRef repeatationValue As Integer)
         endsValue = 1
         repeatationValue = 1
-        If String.IsNullOrWhiteSpace(input) Then Return
-
+        If String.IsNullOrWhiteSpace(input) Then
+            endsValue = 0
+            repeatationValue = 1
+            Return
+        End If
         ' Extract repeatation: number after closing bracket, e.g. )5 or ]5 or }5
         Dim repeatMatch As Match = Regex.Match(input, "[)\]\}]\s*(\d+)")
         If repeatMatch.Success Then
             Integer.TryParse(repeatMatch.Groups(1).Value, repeatationValue)
         End If
-
         ' Extract count of dot-separated numbers BEFORE the closing bracket
-        ' Get all chars before first closing bracket, ignoring opening
         Dim beforeCloseBracket As String = input.Split({")", "]", "}"}, StringSplitOptions.None)(0)
-        Dim valsInside As String() = beforeCloseBracket.Replace("(", "").
-                                                Replace("[", "").
-                                                Replace("{", "").Split("."c)
-        endsValue = valsInside.Length
+        Dim core As String = beforeCloseBracket.Replace("(", "").Replace("[", "").Replace("{", "")
+        If String.IsNullOrWhiteSpace(core) Then
+            endsValue = 0
+            Return
+        End If
+        Dim valsInside As String() = core.Split("."c)
+        endsValue = valsInside.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
     End Sub
+
+    Public Function CalculateTotalDents(dgv As DataGridView,
+                                      endsCol As String, repeatsCol As String,
+                                      repeats1Col As String, repeats2Col As String,
+                                      totalRepeatCol As String, totalRepeat1Col As String, totalRepeat2Col As String)
+        Try
+            For Each row As DataGridViewRow In dgv.Rows
+                If row.IsNewRow Then Continue For
+                Dim endsStr As String = Convert.ToString(row.Cells(endsCol).Value)
+                Dim ends As Integer = 1, repeatsFromEnds As Integer = 1
+                ExtractEndsAndRepeatation(endsStr, ends, repeatsFromEnds)
+                Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).Value))
+                Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+                Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+                Dim totalRepeat = 1 * repeats
+                Dim totalRepeat1 = totalRepeat * repeats1
+                Dim totalRepeat2 = totalRepeat1 * repeats2
+                row.Cells(totalRepeatCol).Value = totalRepeat
+                row.Cells(totalRepeat1Col).Value = totalRepeat1
+                row.Cells(totalRepeat2Col).Value = totalRepeat2
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Private Sub cmdbtn1_Click(sender As Object, e As EventArgs) Handles cmdbtn1.Click
         CalculateTotalsForGrid(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALREPEAT", "DTOTALREPEAT1", "DTOTALREPEAT2")
+
+        Dim totalDentsCount As Integer = CalculateTotalDents(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALDENTREPEAT", "DTOTALDENTREPEAT1", "DTOTALDENTREPEAT2")
+        TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
+
+        ' Reset TextBoxes before summing to avoid accumulation
+        TXTTOTALDRAWENDS.Text = "0"
+        TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
+
         For Each row As DataGridViewRow In GRIDDRAWING.Rows
             If row.IsNewRow Then Continue For
-            If IsDBNull(row.Cells("DTOTALREPEAT2").Value) Then
-                TXTTOTALDRAWDENTS.Text = "0"
-                Exit Sub
-            Else
-                TXTTOTALDRAWDENTS.Text = Val(TXTTOTALDRAWDENTS.Text) + Val(row.Cells("DTOTALREPEAT2").Value)
-            End If
+
+            Dim totalRepeat2Val = If(IsDBNull(row.Cells("DTOTALREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALREPEAT2").Value))
+            TXTTOTALDRAWENDS.Text = (Convert.ToDecimal(TXTTOTALDRAWENDS.Text) + totalRepeat2Val).ToString()
+
+            Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("DTOTALDENTREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALDENTREPEAT2").Value))
+            TXTTOTALDRAWDENTS.Text = (Convert.ToDecimal(TXTTOTALDRAWDENTS.Text) + totalDentRepeat2Val).ToString()
         Next
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+        TOTALWARPPATTERN()
         TOTALWARP()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+        TOTALWEFTPATTERN()
         TOTALWEFT()
     End Sub
 End Class
