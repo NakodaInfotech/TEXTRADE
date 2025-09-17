@@ -2552,10 +2552,15 @@ LINE1:
             PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
             doc.Open()
 
-            ' Optional: Add Title
-            Dim titleFont As New iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16, iTextSharp.text.Font.BOLD)
-            doc.Add(New Paragraph("Receivable Outstanding Report", titleFont))
-            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")))
+            ' Load Verdana font
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana10 As New Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New Font(verdanaBaseFont, 10, Font.Bold)
+            Dim verdana16Bold As New Font(verdanaBaseFont, 16, Font.Bold)
+
+            ' Add Title
+            doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
+            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
             doc.Add(New Paragraph(" "))
 
             ' Count visible columns only
@@ -2567,20 +2572,31 @@ LINE1:
             Dim table As New PdfPTable(visibleColumns.Count)
             table.WidthPercentage = 100
 
-            ' ✅ Set column widths proportionally based on DataGridView column widths
+            ' Set column widths proportionally based on DataGridView column widths
             Dim columnWidths As Single() = GetColumnWidths(dgv)
             table.SetWidths(columnWidths)
 
             ' Add column headers
             For Each col As DataGridViewColumn In visibleColumns
-                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10)))
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold))
                 headerCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                headerCell.HorizontalAlignment = Element.ALIGN_CENTER
                 table.AddCell(headerCell)
             Next
 
             ' Add all rows
             For Each row As DataGridViewRow In dgv.Rows
                 If Not row.IsNewRow Then
+
+                    ' Detect if this row is GRANDTOTAL row (case-insensitive check)
+                    Dim isGrandTotalRow As Boolean = False
+                    For Each cell As DataGridViewCell In row.Cells
+                        If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                            isGrandTotalRow = True
+                            Exit For
+                        End If
+                    Next
+
                     For Each col As DataGridViewColumn In visibleColumns
                         Dim cell As DataGridViewCell = row.Cells(col.Index)
                         Dim value As String = ""
@@ -2593,13 +2609,37 @@ LINE1:
                             End If
                         End If
 
-                        Dim pdfCell As New PdfPCell(New Phrase(value, FontFactory.GetFont(FontFactory.HELVETICA, 9)))
+                        Dim pdfCell As PdfPCell
 
-                        ' Optional: Styling for subtotal or group rows
-                        If row.DefaultCellStyle.BackColor = Color.Yellow Then
-                            pdfCell.BackgroundColor = BaseColor.YELLOW
-                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
-                            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                        If isGrandTotalRow Then
+                            ' Linen color RGB (250, 240, 230)
+                            Dim linenColor As New BaseColor(250, 240, 230)
+
+                            pdfCell = New PdfPCell(New Phrase(value, verdana10Bold))
+                            pdfCell.BackgroundColor = linenColor
+
+                            ' Align numeric columns right, text left
+                            If IsNumeric(value) Then
+                                pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                            Else
+                                pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+                            End If
+                        Else
+                            pdfCell = New PdfPCell(New Phrase(value, verdana10))
+
+                            ' Optional: Styling for subtotal or group rows
+                            If row.DefaultCellStyle.BackColor = Color.Yellow Then
+                                pdfCell.BackgroundColor = BaseColor.YELLOW
+                            ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                                pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                            End If
+
+                            ' Align numeric columns to right, text left
+                            If IsNumeric(value) Then
+                                pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                            Else
+                                pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+                            End If
                         End If
 
                         table.AddCell(pdfCell)
@@ -2609,7 +2649,8 @@ LINE1:
 
             doc.Add(table)
 
-            'MessageBox.Show("PDF exported successfully at: " & filePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Optional: Uncomment to show confirmation
+            ' MessageBox.Show("PDF exported successfully at: " & filePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
             MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2617,6 +2658,7 @@ LINE1:
             doc.Close()
         End Try
     End Sub
+
 
 
     Private Function GetColumnWidths(dgv As DataGridView) As Single()
