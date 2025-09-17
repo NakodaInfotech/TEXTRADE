@@ -201,8 +201,8 @@ Public Class DesignCardMaster
             Dim WARPGRIDPE As String = ""
             Dim WARPGRIDSYM As String = ""
 
-            For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
-                If row.Cells(0).Value IsNot Nothing Then
+            For Each row As Windows.Forms.DataGridViewRow In GRIDWARPPATTERN.Rows
+                If row.Cells(2).Value <> "" Then
                     If WARPGRIDSRNO = "" Then
                         WARPGRIDSRNO = Val(row.Cells(WPSRNO.Index).Value)
                         WARPGRIDPE = Val(row.Cells(WPENDS.Index).Value)
@@ -214,6 +214,7 @@ Public Class DesignCardMaster
                     End If
                 End If
             Next
+
 
             alParaval.Add(WARPGRIDSRNO)
             alParaval.Add(WARPGRIDPE)
@@ -292,7 +293,7 @@ Public Class DesignCardMaster
             Dim ALOTRPE As String = ""
             Dim ALOTRSym As String = ""
             For Each row As Windows.Forms.DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-                If row.Cells(SSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(SPSYM.Index).Value IsNot Nothing Then
                     If ALOTRSrNo = "" Then
                         ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
                         ALOTRPE = Val(row.Cells(SPENDS.Index).Value)
@@ -378,7 +379,7 @@ Public Class DesignCardMaster
             Dim WEFTTRSym As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-                If row.Cells(FSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(FSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
                         WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
                         WEFTTRPE = Val(row.Cells(FPENDS.Index).Value)
@@ -406,7 +407,7 @@ Public Class DesignCardMaster
             Dim DRAWREPEATMARK2 As String = ""
             Dim DRAWREPEATS2 As String = ""
             For Each row As Windows.Forms.DataGridViewRow In GRIDDRAWING.Rows
-                If row.Cells(DSRNO.Index).Value IsNot Nothing Then
+                If row.Cells(DSRNO.Index).Value IsNot Nothing AndAlso row.Cells(DENDS.Index).Value IsNot Nothing Then
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = Val(row.Cells(DENDS.Index).Value)
@@ -618,6 +619,8 @@ Public Class DesignCardMaster
         GRIDWARPPATTERN.RowCount = 1
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
+
+        GRIDSELVEDGEPATTERN.Rows.Clear()
         'GRID WEFT
         GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
@@ -2615,5 +2618,9 @@ Public Class DesignCardMaster
 
     Private Sub GRIDWEFTPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDWEFTPATTERN.DefaultValuesNeeded
         e.Row.Cells("FPSRNO").Value = GRIDWEFTPATTERN.Rows.Count
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
+        GRIDSELVEDGEPATTERN.RowCount = 1
     End Sub
 End Class

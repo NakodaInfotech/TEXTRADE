@@ -531,6 +531,7 @@ Partial Class DesignCardMaster
         Me.CMBSELGSYM.Name = "CMBSELGSYM"
         Me.CMBSELGSYM.Size = New System.Drawing.Size(62, 23)
         Me.CMBSELGSYM.TabIndex = 14
+        Me.CMBSELGSYM.Visible = False
         '
         'TXTTOTALSELGPE
         '
@@ -562,6 +563,7 @@ Partial Class DesignCardMaster
         Me.TXTSELGPE.Size = New System.Drawing.Size(50, 23)
         Me.TXTSELGPE.TabIndex = 13
         Me.TXTSELGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTSELGPE.Visible = False
         '
         'TXTSELGSRNO
         '
@@ -573,6 +575,7 @@ Partial Class DesignCardMaster
         Me.TXTSELGSRNO.TabIndex = 895
         Me.TXTSELGSRNO.TabStop = False
         Me.TXTSELGSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTSELGSRNO.Visible = False
         '
         'GRIDSELVEDGEPATTERN
         '
@@ -605,7 +608,6 @@ Partial Class DesignCardMaster
         Me.GRIDSELVEDGEPATTERN.Location = New System.Drawing.Point(1053, 28)
         Me.GRIDSELVEDGEPATTERN.MultiSelect = False
         Me.GRIDSELVEDGEPATTERN.Name = "GRIDSELVEDGEPATTERN"
-        Me.GRIDSELVEDGEPATTERN.ReadOnly = True
         Me.GRIDSELVEDGEPATTERN.RowHeadersVisible = False
         Me.GRIDSELVEDGEPATTERN.RowHeadersWidth = 30
         Me.GRIDSELVEDGEPATTERN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -3996,7 +3998,6 @@ Partial Class DesignCardMaster
         '
         Me.SPENDS.HeaderText = "P.E."
         Me.SPENDS.Name = "SPENDS"
-        Me.SPENDS.ReadOnly = True
         Me.SPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.SPENDS.Width = 50
@@ -4005,7 +4006,6 @@ Partial Class DesignCardMaster
         '
         Me.SPSYM.HeaderText = "Sym"
         Me.SPSYM.Name = "SPSYM"
-        Me.SPSYM.ReadOnly = True
         Me.SPSYM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SPSYM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.SPSYM.Width = 60
@@ -4014,7 +4014,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEATMARKING.HeaderText = "RM"
         Me.SPREPEATMARKING.Name = "SPREPEATMARKING"
-        Me.SPREPEATMARKING.ReadOnly = True
         Me.SPREPEATMARKING.Visible = False
         Me.SPREPEATMARKING.Width = 45
         '
@@ -4022,7 +4021,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT.HeaderText = "R"
         Me.SPREPEAT.Name = "SPREPEAT"
-        Me.SPREPEAT.ReadOnly = True
         Me.SPREPEAT.Visible = False
         Me.SPREPEAT.Width = 30
         '
@@ -4030,7 +4028,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEATMARK1.HeaderText = "RM1"
         Me.SPREPEATMARK1.Name = "SPREPEATMARK1"
-        Me.SPREPEATMARK1.ReadOnly = True
         Me.SPREPEATMARK1.Visible = False
         Me.SPREPEATMARK1.Width = 45
         '
@@ -4038,7 +4035,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT1.HeaderText = "R1"
         Me.SPREPEAT1.Name = "SPREPEAT1"
-        Me.SPREPEAT1.ReadOnly = True
         Me.SPREPEAT1.Visible = False
         Me.SPREPEAT1.Width = 30
         '
@@ -4046,7 +4042,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEATMARK2.HeaderText = "RM2"
         Me.SPREPEATMARK2.Name = "SPREPEATMARK2"
-        Me.SPREPEATMARK2.ReadOnly = True
         Me.SPREPEATMARK2.Visible = False
         Me.SPREPEATMARK2.Width = 45
         '
@@ -4054,7 +4049,6 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT2.HeaderText = "R2"
         Me.SPREPEAT2.Name = "SPREPEAT2"
-        Me.SPREPEAT2.ReadOnly = True
         Me.SPREPEAT2.Visible = False
         Me.SPREPEAT2.Width = 30
         '
