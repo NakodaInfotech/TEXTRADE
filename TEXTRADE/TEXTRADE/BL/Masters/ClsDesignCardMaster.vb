@@ -24,6 +24,8 @@ Public Class ClsDesignCardMaster
                 ' Add parameters in the exact order of alParaval
                 .Add(New SqlClient.SqlParameter("@CARDNO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DESIGNNO", alParaval(I)))
@@ -331,6 +333,8 @@ Public Class ClsDesignCardMaster
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@ItemName", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DesignNo", alParaval(I)))
@@ -534,7 +538,8 @@ Public Class ClsDesignCardMaster
         Return intResult
     End Function
 
-    Public Function Delete() As DataTable
+    Public Function Delete() As Integer
+        Dim intResult As Integer
         Try
             Dim strCommand As String = "SP_DESIGN_CARD_MASTER_DELETE"
             Dim alParameter As New ArrayList
@@ -545,22 +550,37 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
             End With
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
             Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
-            Return DT
+            'Return DT
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function SelectDesignCard(ByVal designNo As String, ByVal Itemname As String, ByVal cmpId As Integer, ByVal locationId As Integer, ByVal yearId As Integer) As DataTable
+    'Public Function SelectDesignCard(ByVal designNo As String, ByVal Itemname As String, ByVal cmpId As Integer, ByVal locationId As Integer, ByVal yearId As Integer) As DataTable
+    '    Try
+    '        Dim strCommand As String = "SP_SELECT_DESIGN_CARD_FOR_EDIT"
+    '        Dim alParameter As New ArrayList
+    '        With alParameter
+    '            .Add(New SqlClient.SqlParameter("@DesignNo", designNo))
+    '            .Add(New SqlClient.SqlParameter("@Itemname", Itemname))
+    '            .Add(New SqlClient.SqlParameter("@CmpId", cmpId))
+    '            .Add(New SqlClient.SqlParameter("@LocationId", locationId))
+    '            .Add(New SqlClient.SqlParameter("@YearId", yearId))
+    '        End With
+    '        Dim dtTable As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
+    '        Return dtTable
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
+    Public Function SelectDesignCard(ByVal CARDNO As String, ByVal yearId As Integer) As DataTable
         Try
             Dim strCommand As String = "SP_SELECT_DESIGN_CARD_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@DesignNo", designNo))
-                .Add(New SqlClient.SqlParameter("@Itemname", Itemname))
-                .Add(New SqlClient.SqlParameter("@CmpId", cmpId))
-                .Add(New SqlClient.SqlParameter("@LocationId", locationId))
+                .Add(New SqlClient.SqlParameter("@CARDNO", CARDNO))
                 .Add(New SqlClient.SqlParameter("@YearId", yearId))
             End With
             Dim dtTable As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)

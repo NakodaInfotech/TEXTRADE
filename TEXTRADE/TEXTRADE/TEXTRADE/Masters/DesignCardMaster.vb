@@ -21,6 +21,10 @@ Public Class DesignCardMaster
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Public FRMSTRING As String
+    Dim TEMPMSG As Integer
+
+
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
@@ -36,6 +40,7 @@ Public Class DesignCardMaster
             Else
                 alParaval.Add(Val(txtcardno.Text.Trim))
             End If
+            alParaval.Add(Format(Convert.ToDateTime(DTDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBITEMNAME.Text.Trim)
             alParaval.Add(CMBDESIGNNO.Text.Trim)
 
@@ -486,7 +491,7 @@ Public Class DesignCardMaster
     End Sub
     Sub clear()
         getmax_SO_no()
-
+        DTDATE.Text = Now.Date
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
@@ -637,6 +642,20 @@ Public Class DesignCardMaster
             Ep.SetError(CMBDESIGNNO, "Fill Design No")
             bln = False
         End If
+        If DTDATE.Text = "__/__/____" Then
+            Ep.SetError(DTDATE, " Please Enter Proper Date")
+            bln = False
+        Else
+            If Not datecheck(DTDATE.Text) Then
+                Ep.SetError(DTDATE, "Date not in Accounting Year")
+                bln = False
+            End If
+
+            If Convert.ToDateTime(DTDATE.Text).Date < SALEBLOCKDATE.Date Then
+                Ep.SetError(DTDATE, "Date is Blocked, Please make entries after " & Format(SALEBLOCKDATE.Date, "dd/MM/yyyy"))
+                bln = False
+            End If
+        End If
     End Function
 
     Private Sub DesignCardMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -656,6 +675,119 @@ Public Class DesignCardMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+            End If
+
+            Dim objclsGRN As New ClsDesignCardMaster()
+            Dim dttable As New DataTable
+
+            dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
+
+            If dttable.Rows.Count > 0 Then
+
+                'For Each dr As DataRow In dttable.Rows
+
+                '    txtcardno.Text = tempdesignno
+                '    txtcardno.ReadOnly = True
+
+                '    DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
+                '    CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
+                '    CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
+                '    '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
+                '    TXTREED.Text = dr("REED").ToString
+                '    TXTREEDSPACE.Text = dr("REEDSPACE").ToString
+                '    TXTPICKS.Text = dr("PICKS").ToString
+                '    TXTMAINRS.Text = dr("MAINRS").ToString
+                '    TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
+                '    TXTFEPI.Text = dr("FEPI").ToString
+                '    TXTFWIDTH.Text = dr("FWIDTH").ToString
+                '    TXTFPPI.Text = dr("FPPI").ToString
+                '    TXTFWT.Text = dr("FWT").ToString
+                '    TXTDENTS.Text = dr("DENTS").ToString
+                '    TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
+                '    TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
+                '    TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
+
+                '    TXTWARPTL.Text = dr("WARPTTL").ToString
+                '    TXTWEFTTL.Text = dr("WEFTTTL").ToString
+                '    TXTGSM.Text = dr("GSM").ToString
+                '    CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
+                '    CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
+                '    TXTTOTALWT.Text = Val(dr("TOTALWT"))
+
+                '    TXTDENTS.Text = dr("DENTS").ToString
+
+
+
+
+
+                '    CMBBROKER.Text = Convert.ToString(dr("BROKER").ToString)
+                '    CMBSENDER.Text = Convert.ToString(dr("SENDER").ToString)
+                '    cmbGodown.Text = Convert.ToString(dr("GODOWN").ToString)
+                '    cmbprocess.Text = Convert.ToString(dr("PROCESS").ToString)
+                '    RECDATE.Text = dr("RECDATE")
+                '    TXTPOUTNO.Text = dr("POUTNO").ToString
+
+                '    txtchallan.Text = Convert.ToString(dr("CHALLANNO").ToString)
+                '    PARTYCHALLANNO = txtchallan.Text.Trim
+
+                '    CHALLANDATE.Text = Format(Convert.ToDateTime(dr("CHALLANDATE")).Date, "dd/MM/yyyy")
+
+                '    txtpono.Text = Convert.ToString(dr("PONO").ToString)
+                '    podate.Value = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
+
+
+                '    cmbtrans.Text = dr("TRANSNAME").ToString
+                '    txttransref.Text = dr("transrefno").ToString
+                '    txtlrno.Text = dr("LRNO").ToString
+                '    lrdate.Text = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
+                '    txttransremarks.Text = dr("transremarks").ToString
+                '    TXTBALEWT.Text = Val(dr("BALEWT"))
+
+                '    TXTTOTALBALES.Text = Format(Val(dr("TOTALBALES")), "0.00")
+                '    CMBDYEINGTYPE.Text = dr("DYEINGTYPE")
+                '    txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+
+                '    TXTPARTYBILLNO.Text = dr("PARTYBILLNO")
+                '    TEMPPARTYBILLNO = dr("PARTYBILLNO")
+                '    PARTYBILLDATE.Value = Format(Convert.ToDateTime(dr("PARTYBILLDATE")).Date, "dd/MM/yyyy")
+
+                '    CHKDIRECTFROMKNITTING.Checked = Convert.ToBoolean(dr("DIRECTFROMKNITTING"))
+                '    TXTGREYKNITTINGNO.Text = Val(dr("GREYKNITTINGNO"))
+
+                '    CHKLOTREADY.Checked = Convert.ToBoolean(dr("LOTREADY"))
+                '    If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
+
+                '    TXTVEHICLENO.Text = dr("VEHICLENO")
+                '    CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
+                '    CMBTOCITY.Text = Convert.ToString(dr("TOCITY"))
+                '    CMBPACKING.Text = Convert.ToString(dr("PACKING"))
+                '    TXTEWAYBILLNO.Text = dr("EWAYBILLNO")
+                '    TXTREFLOTNO.Text = dr("REFLOTNO")
+                '    CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
+                '    TXTPARTYITEMNAME.Text = dr("PARTYITEMNAME")
+
+
+
+                '    'Item Grid
+                '    gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("DESC").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), dr("RACK"), dr("SHELF"), Format(dr("WT"), "0.00"), Format(dr("PURRATE"), "0.00"), Format(dr("SALERATE"), "0.00"), Format(dr("WHOLESALERATE"), "0.00"), dr("PER"), Format(dr("AMOUNT"), "0.00"), dr("BARCODE").ToString, dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("CHECKDONE"), dr("FROMTYPE"))
+
+                '    If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Or Convert.ToBoolean(dr("DONE")) = True Or Convert.ToBoolean(dr("PROGRAMDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
+                '        If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Then TXTLOTNO.Enabled = False
+                '        gridgrn.Rows(gridgrn.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                '        If ClientName <> "KARAN" Then
+                '            lbllocked.Visible = True
+                '            PBlock.Visible = True
+                '        End If
+                '    End If
+                '    If Convert.ToBoolean(dr("BARCODEPRINTED")) = True Then LBLBARCODE.Visible = True
+                'Next
+                'cmbtype.Enabled = False
+
+                'TOTAL()
+                Validate()
+            Else
+                EDIT = False
+                clear()
             End If
 
         Catch ex As Exception
@@ -2286,6 +2418,165 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
+    Private Sub Toolprevious_Click(sender As Object, e As EventArgs) Handles Toolprevious.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Cursor.Current = Cursors.WaitCursor
+
+            GRIDSELVEDGE.RowCount = 0
+LINE1:
+            'temptypename = cmbtype.Text.Trim
+            tempdesignno = Val(txtcardno.Text) - 1
+            If tempdesignno > 0 Then
+                EDIT = True
+                DesignCardMaster_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+            If GRIDSELVEDGE.RowCount = 0 And tempdesignno > 1 Then
+                txtcardno.Text = tempdesignno
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub toolnext_Click(sender As Object, e As EventArgs) Handles toolnext.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            GRIDSELVEDGE.RowCount = 0
+LINE1:
+            tempdesignno = Val(txtcardno.Text) + 1
+            'temptypename = cmbtype.Text.Trim
+            getmaxno()
+            Dim MAXNO As Integer = txtcardno.Text.Trim
+            clear()
+            If Val(txtcardno.Text) - 1 >= tempdesignno Then
+                EDIT = True
+                DesignCardMaster_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+            If GRIDSELVEDGE.RowCount = 0 And tempdesignno < MAXNO Then
+                txtcardno.Text = tempdesignno
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub getmaxno()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(DESIGN_CARDNO),0) + 1 ", "DESIGNCARD", " AND  DESIGN_CMPID=" & CmpId & " and DESIGN_LOCATIONID=" & Locationid & " and DESIGN_YEARID=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            txtcardno.Text = DTTABLE.Rows(0).Item(0)
+        End If
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If EDIT = True Then
+                PRINTREPORT(tempdesignno)
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub PRINTREPORT(ByVal GRNNO As Integer)
+        'Try
+        '    If MsgBox("Wish to Print GRN...?", MsgBoxStyle.YesNo) = vbYes Then
+        '        Dim OBJGDN As New GRNDesign
+        '        OBJGDN.MdiParent = MDIMain
+        '        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VINIT" Then
+        '            If cmbtype.Text.Trim = "FANCY MATERIAL" Then OBJGDN.FRMSTRING = "FINISHGRN" Else OBJGDN.FRMSTRING = "GRN"
+        '        Else
+        '            OBJGDN.FRMSTRING = "GRN"
+        '        End If
+        '        OBJGDN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(GRNNO) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
+        '        If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_OUTPCS} = 0"
+        '        OBJGDN.Show()
+        '    End If
+
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+    End Sub
+
+    Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
+        cmdok_Click(sender, e)
+    End Sub
+
+    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+        Try
+
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+
+            Dim objgrndetails As New DesignCardMasterDetails
+            objgrndetails.MdiParent = MDIMain
+            objgrndetails.FRMSTRING = FRMSTRING
+            objgrndetails.Show()
+            objgrndetails.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLDELETE_Click(sender As Object, e As EventArgs) Handles TOOLDELETE.Click
+        Try
+            Call cmddelete_Click(sender, e)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
+        Dim IntResult As Integer
+        Try
+
+            If EDIT = True Then
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                TEMPMSG = MsgBox("Delete GRN?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbYes Then
+                    Dim alParaval As New ArrayList
+                    alParaval.Add(txtcardno.Text.Trim)
+                    alParaval.Add(CMBITEMNAME.Text.Trim)
+                    alParaval.Add(CmpId)
+                    alParaval.Add(Locationid)
+                    alParaval.Add(YearId)
+
+                    Dim Clsgrn As New ClsDesignCardMaster()
+                    Clsgrn.alParaval = alParaval
+                    IntResult = Clsgrn.Delete()
+                    MsgBox("GRN Deleted")
+                    clear()
+                    EDIT = False
+                End If
+            Else
+                MsgBox("Delete Is only In Edit Mode")
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBWEFTYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Validated
         Try
             If CMBWEFTYARNQUALITY.Text <> "" Then
@@ -2623,4 +2914,5 @@ Public Class DesignCardMaster
     Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
         GRIDSELVEDGEPATTERN.RowCount = 1
     End Sub
+
 End Class
