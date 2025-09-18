@@ -431,6 +431,12 @@
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.Designer.vb">
+      <DependentUpon>DesignCardDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.vb">
       <DependentUpon>AgencyOutstandingReport_BuyerDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8594,6 +8600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.resx">
+      <DependentUpon>DesignCardDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
