@@ -1,8 +1,9 @@
 ﻿
 Imports System.IO
 Imports BL
-'Imports iTextSharp.text
-'Imports iTextSharp.text.pdf
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports System.Drawing
 
 Public Class RecOutstanding
 
@@ -1211,7 +1212,7 @@ Public Class RecOutstanding
             'PRINT NAME 
             GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
-            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Bold)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1221,7 +1222,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -1235,7 +1236,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -1248,7 +1249,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -1261,7 +1262,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -1572,7 +1573,7 @@ Public Class RecOutstanding
                 RECDGRANDTOTAL = 0
                 BALANCEGRANDTOTAL = 0
 
-                GRIDOUTSTANDING.DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Regular)
+                GRIDOUTSTANDING.DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Regular)
 
                 For Each ROW As DataRow In DT.Rows
                     If TEMPNAME <> ROW("NAME") Then
@@ -1606,7 +1607,7 @@ Public Class RecOutstanding
             'PRINT NAME 
             GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
-            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Bold)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1616,7 +1617,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -1630,7 +1631,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -1643,7 +1644,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -1656,7 +1657,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -1967,7 +1968,7 @@ Public Class RecOutstanding
                 RECDGRANDTOTAL = 0
                 BALANCEGRANDTOTAL = 0
 
-                GRIDOUTSTANDING.DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Regular)
+                GRIDOUTSTANDING.DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Regular)
 
                 For Each ROW As DataRow In DT.Rows
                     If TEMPNAME <> ROW("NAME") Then
@@ -2001,7 +2002,7 @@ Public Class RecOutstanding
             'PRINT NAME 
             GRIDOUTSTANDING.Rows.Add(NAME, "", "", "", MOBILENO, PHONENO)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
-            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Font("Verdana", 8, FontStyle.Bold)
+            GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Bold)
         Catch ex As Exception
             Throw ex
         End Try
@@ -2011,7 +2012,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -2025,7 +2026,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
             GRIDSUMM.Rows.Add("TOTAL", Format(Val(BALANCE), "0.00"))
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -2038,7 +2039,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDSUMM.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDSUMM.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDSUMM.Rows.Add("GRANDTOTAL", Format(Val(BALANCE), "0.00"), "")
             GRIDSUMM.Rows(GRIDSUMM.RowCount - 1).DefaultCellStyle = STYLE
@@ -2051,7 +2052,7 @@ Public Class RecOutstanding
         Try
             'PRINT NAME 
             Dim STYLE As New DataGridViewCellStyle
-            STYLE.Font = New Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
+            STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
             GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
@@ -2495,41 +2496,56 @@ LINE1:
     Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
         Try
             If ALLOWWHATSAPP = False Then Exit Sub
+
             If Not CHECKWHASTAPPEXP() Then
                 MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
                 Exit Sub
             End If
 
             If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            TEMPOUTSTANDING()
-            ' ExportDataGridViewToPdf(GRIDOUTSTANDING)
 
-            Dim WHATSAPPNO As String = ""
-            Dim OBJPL As New PLDesign
-            OBJPL.frmstring = "OUTSTANDING"
-            OBJPL.MdiParent = MDIMain
-            OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-            OBJPL.DIRECTPRINT = True
-            OBJPL.PARTYNAME = CMBNAME.Text.Trim
-            OBJPL.Show()
-            OBJPL.Close()
+            ' Prepare data for grid
+            ' TEMPOUTSTANDING()
 
+            ' Generate the PDF from DataGridView
+            Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+
+            ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
+            ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
+
+            '' Prepare PLDesign object (seems related to internal processing or display)
+            'Dim OBJPL As New PLDesign
+            'OBJPL.frmstring = "OUTSTANDING"
+            'OBJPL.MdiParent = MDIMain
+            'OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
+            'OBJPL.DIRECTPRINT = True
+            'OBJPL.PARTYNAME = CMBNAME.Text.Trim
+            'OBJPL.Show()
+            'OBJPL.Close()
+
+            ' Prepare WhatsApp sending form
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("Outstanding" & PARTYNAME & ".pdf")
+            OBJWHATSAPP.PATH.Add(filePath)
+            OBJWHATSAPP.FILENAME.Add("Outstanding" & CMBNAME.Text.Trim & ".pdf")
             OBJWHATSAPP.ShowDialog()
+
+            ' Delete PDF if client is SNCM
             If ClientName = "SNCM" Then
-                For Each filePath As String In OBJWHATSAPP.PATH
-                    If File.Exists(filePath) Then
-                        File.Delete(filePath)
+                For Each path As String In OBJWHATSAPP.PATH
+                    If File.Exists(path) Then
+                        File.Delete(path)
                     End If
                 Next
             End If
+
         Catch ex As Exception
             Throw ex
         End Try
+
     End Sub
+
+
 
     'Public Sub ExportDataGridViewToPdf(dgv As DataGridView, filePath As String)
     '    Dim doc As New Document(PageSize.A4.Rotate(), 20, 20, 20, 20) ' Landscape mode
@@ -2538,61 +2554,113 @@ LINE1:
     '        PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
     '        doc.Open()
 
-    '        ' Optional: Add Title
-    '        Dim titleFont As New iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16, iTextSharp.text.Font.BOLD)
-    '        doc.Add(New Paragraph("Receivable Outstanding Report", titleFont))
-    '        doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")))
+    '        ' Load Verdana font
+    '        Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+    '        Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+    '        Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+    '        Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+    '        ' Add title and timestamp
+    '        doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
+    '        doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
     '        doc.Add(New Paragraph(" "))
 
-    '        ' Create table
-    '        Dim table As New PdfPTable(dgv.Columns.Count)
-    '        table.WidthPercentage = 100
-
-    '        ' Set column widths if needed (optional)
-    '        'table.SetWidths(New Single() {10, 20, 15, ... })
-
-    '        ' Add column headers
+    '        ' Get visible columns
+    '        Dim visibleColumns As New List(Of DataGridViewColumn)
     '        For Each col As DataGridViewColumn In dgv.Columns
-    '            If col.Visible Then
-    '                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10)))
-    '                headerCell.BackgroundColor = BaseColor.LIGHT_GRAY
-    '                table.AddCell(headerCell)
-    '            End If
+    '            If col.Visible Then visibleColumns.Add(col)
     '        Next
 
-    '        ' Add all rows
+    '        ' Initialize PDF table
+    '        Dim table As New PdfPTable(visibleColumns.Count)
+    '        table.WidthPercentage = 100
+    '        table.HeaderRows = 1 ' Repeat on each page
+
+    '        ' --- Fix: Adjust dynamic width percentages to avoid overflow ---
+    '        Dim columnWidths(visibleColumns.Count - 1) As Single
+    '        Dim baseWidth As Single = 100.0F / visibleColumns.Count
+    '        For i As Integer = 0 To visibleColumns.Count - 1
+    '            columnWidths(i) = baseWidth
+    '        Next
+    '        table.SetWidths(columnWidths)
+
+    '        ' Add table headers
+    '        For Each col As DataGridViewColumn In visibleColumns
+    '            Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+    '            .BackgroundColor = BaseColor.LIGHT_GRAY,
+    '            .HorizontalAlignment = Element.ALIGN_CENTER,
+    '            .VerticalAlignment = Element.ALIGN_MIDDLE,
+    '            .Padding = 5,
+    '            .NoWrap = False
+    '        }
+    '            table.AddCell(headerCell)
+    '        Next
+
+    '        ' Add data rows
     '        For Each row As DataGridViewRow In dgv.Rows
     '            If Not row.IsNewRow Then
+    '                Dim isGrandTotalRow As Boolean = False
+
+    '                ' Detect total row
     '                For Each cell As DataGridViewCell In row.Cells
-    '                    If dgv.Columns(cell.ColumnIndex).Visible Then
-    '                        Dim value As String = ""
-
-    '                        If cell.Value IsNot Nothing Then
-    '                            If TypeOf cell.Value Is DateTime Then
-    '                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
-    '                            Else
-    '                                value = cell.Value.ToString()
-    '                            End If
-    '                        End If
-
-    '                        Dim pdfCell As New PdfPCell(New Phrase(value, FontFactory.GetFont(FontFactory.HELVETICA, 9)))
-
-    '                        ' Optional: Styling for subtotal or group rows
-    '                        If row.DefaultCellStyle.BackColor = Color.Yellow Then
-    '                            pdfCell.BackgroundColor = BaseColor.YELLOW
-    '                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
-    '                            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
-    '                        End If
-
-    '                        table.AddCell(pdfCell)
+    '                    If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+    '                        isGrandTotalRow = True
+    '                        Exit For
     '                    End If
+    '                Next
+
+    '                For Each col As DataGridViewColumn In visibleColumns
+    '                    Dim cell As DataGridViewCell = row.Cells(col.Index)
+    '                    Dim value As String = ""
+
+    '                    If cell.Value IsNot Nothing Then
+    '                        If TypeOf cell.Value Is DateTime Then
+    '                            value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+    '                        Else
+    '                            value = cell.Value.ToString()
+    '                        End If
+    '                    End If
+
+    '                    Dim pdfCell As PdfPCell
+    '                    Dim cellFont As iTextSharp.text.Font = If(isGrandTotalRow, verdana10Bold, verdana10)
+
+    '                    pdfCell = New PdfPCell(New Phrase(value, cellFont)) With {
+    '                    .VerticalAlignment = Element.ALIGN_MIDDLE,
+    '                    .Padding = 4
+    '                }
+
+    '                    ' Conditional row color
+    '                    If isGrandTotalRow Then
+    '                        pdfCell.BackgroundColor = New BaseColor(250, 240, 230)
+    '                    ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+    '                        pdfCell.BackgroundColor = BaseColor.YELLOW
+    '                    ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+    '                        pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+    '                    End If
+
+    '                    ' ✅ Allow wrapping for selected columns
+    '                    Dim colName As String = col.HeaderText.Trim().ToUpper()
+    '                    Select Case colName
+    '                        Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
+    '                            pdfCell.NoWrap = False
+    '                        Case Else
+    '                            pdfCell.NoWrap = True
+    '                    End Select
+
+    '                    ' Alignment
+    '                    If IsNumeric(value) Then
+    '                        pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+    '                    Else
+    '                        pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+    '                    End If
+
+    '                    table.AddCell(pdfCell)
     '                Next
     '            End If
     '        Next
 
+    '        ' Add the completed table to the document
     '        doc.Add(table)
-
-    '        MessageBox.Show("PDF exported successfully at: " & filePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     '    Catch ex As Exception
     '        MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2600,6 +2668,143 @@ LINE1:
     '        doc.Close()
     '    End Try
     'End Sub
+
+    Public Sub ExportDataGridViewToPdf(dgv As DataGridView, filePath As String)
+        ' 👉 Changed to A3 for bigger page size
+        Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
+
+        Try
+            PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
+            doc.Open()
+
+            ' Load Verdana font
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+            ' Title & Date
+            doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
+            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+            doc.Add(New Paragraph(" "))
+
+            ' Collect visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then visibleColumns.Add(col)
+            Next
+
+            Dim table As New PdfPTable(visibleColumns.Count)
+            table.WidthPercentage = 100
+            table.HeaderRows = 1
+
+            ' 👉 Custom width logic: NAME & BILL AMT are wider
+            Dim columnWidths(visibleColumns.Count - 1) As Single
+            Dim totalWeight As Single = 0.0F
+
+            For i As Integer = 0 To visibleColumns.Count - 1
+                Dim header As String = visibleColumns(i).HeaderText.Trim().ToUpper()
+                Select Case header
+                    Case "NAME"
+                        columnWidths(i) = 2.5F  ' 👈 Increased
+                    Case "BILL AMT"
+                        columnWidths(i) = 2.0F
+                    Case "RECD AMT", "BALANCE", "RUNNING BAL"
+                        columnWidths(i) = 1.5F
+                    Case Else
+                        columnWidths(i) = 1.0F
+                End Select
+                totalWeight += columnWidths(i)
+            Next
+
+            ' Normalize widths to make total = 100%
+            For i As Integer = 0 To columnWidths.Length - 1
+                columnWidths(i) = columnWidths(i) / totalWeight * 100.0F
+            Next
+
+            table.SetWidths(columnWidths)
+
+            ' Headers
+            For Each col As DataGridViewColumn In visibleColumns
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+                .BackgroundColor = BaseColor.LIGHT_GRAY,
+                .HorizontalAlignment = Element.ALIGN_CENTER,
+                .VerticalAlignment = Element.ALIGN_MIDDLE,
+                .Padding = 5,
+                .NoWrap = False
+            }
+                table.AddCell(headerCell)
+            Next
+
+            ' Data rows
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    Dim isGrandTotalRow As Boolean = False
+
+                    For Each cell As DataGridViewCell In row.Cells
+                        If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                            isGrandTotalRow = True
+                            Exit For
+                        End If
+                    Next
+
+                    For Each col As DataGridViewColumn In visibleColumns
+                        Dim cell As DataGridViewCell = row.Cells(col.Index)
+                        Dim value As String = ""
+
+                        If cell.Value IsNot Nothing Then
+                            If TypeOf cell.Value Is DateTime Then
+                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                value = cell.Value.ToString()
+                            End If
+                        End If
+
+                        Dim pdfCell As PdfPCell = New PdfPCell(New Phrase(value, If(isGrandTotalRow, verdana10Bold, verdana10))) With {
+                        .VerticalAlignment = Element.ALIGN_MIDDLE,
+                        .Padding = 4
+                    }
+
+                        ' Color logic
+                        If isGrandTotalRow Then
+                            pdfCell.BackgroundColor = New BaseColor(250, 240, 230)
+                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+                            pdfCell.BackgroundColor = BaseColor.YELLOW
+                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                        End If
+
+                        ' Wrapping for specific columns
+                        Dim colName As String = col.HeaderText.Trim().ToUpper()
+                        Select Case colName
+                            Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
+                                pdfCell.NoWrap = False
+                            Case Else
+                                pdfCell.NoWrap = True
+                        End Select
+
+                        ' Alignment
+                        If IsNumeric(value) Then
+                            pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                        Else
+                            pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+                        End If
+
+                        table.AddCell(pdfCell)
+                    Next
+                End If
+            Next
+
+            doc.Add(table)
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            doc.Close()
+        End Try
+    End Sub
+
+
 
     Private Sub GRIDSUMM_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDSUMM.SortCompare
         Try
