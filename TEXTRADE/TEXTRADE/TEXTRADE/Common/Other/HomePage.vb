@@ -47,13 +47,15 @@ Public Class HomePage
                 GBSALE.Visible = False
                 GBOVERDUE.Visible = False
                 GBMONTHLYSALE.Visible = True
+                GBPARTYPERFORMANCE.Visible = True
                 GBSTOCK.Visible = False
                 GRIDSODETAILS.Width = GRIDSO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBSALEORDER.Width = GRIDSODETAILS.Width + 10
                 GBPURORDER.Left = GBSALEORDER.Left + GBSALEORDER.Width + 10
                 GRIDPODETAILS.Width = GRIDPO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBPURORDER.Width = GRIDPODETAILS.Width + 10
-                FILLMONTHLYSALE
+                FILLMONTHLYSALE()
+                FILLPERFORMANCE()
             End If
 
         Catch ex As Exception
@@ -70,9 +72,27 @@ Public Class HomePage
         End Try
     End Sub
 
+    Sub FILLPERFORMANCE()
+        Try
+            Dim DT As New DataTable
+            If RBPARTY.Checked = True Then
+                DT = OBJCMN.SEARCH(" LEDGERS.ACC_CMPNAME AS NAME, SUM(INVOICE_GRANDTOTAL) AS GRANDTOTAL, ROUND(SUM(INVOICE_GRANDTOTAL)/GTOTAL* 100,2) AS PER ", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID CROSS APPLY (SELECT TOP 1 SUM(INVOICE_GRANDTOTAL) AS GTOTAL FROM INVOICEMASTER AS GINV WHERE INVOICEMASTER.INVOICE_YEARID = GINV.INVOICE_YEARID ) AS GINV ", " AND INVOICE_YEARID = " & YearId & " GROUP BY LEDGERS.ACC_CMPNAME, GTOTAL ORDER BY ROUND(SUM(INVOICE_GRANDTOTAL)/GTOTAL* 100,2) DESC ")
+                GPPNAME.Caption = "Party Name"
+                GPPGRANDTOTAL.Caption = "Grand Total"
+            Else
+                DT = OBJCMN.SEARCH(" ITEMMASTER.ITEM_NAME AS NAME, SUM(INVOICE_AMOUNT) AS GRANDTOTAL, ROUND(SUM(INVOICE_AMOUNT)/ATOTAL* 100,2) AS PER ", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON INVOICE_ITEMID = ITEMMASTER.ITEM_ID CROSS APPLY (SELECT TOP 1 SUM(INVOICE_AMOUNT) AS ATOTAL FROM INVOICEMASTER_DESC AS GINV WHERE INVOICEMASTER_DESC.INVOICE_YEARID = GINV.INVOICE_YEARID ) AS GINV ", " AND INVOICEMASTER_DESC.INVOICE_YEARID = " & YearId & " GROUP BY ITEMMASTER.ITEM_NAME, ATOTAL ORDER BY ROUND(SUM(INVOICEMASTER_DESC.INVOICE_AMOUNT)/ATOTAL* 100,2) DESC ")
+                GPPNAME.Caption = "Item Name"
+                GPPGRANDTOTAL.Caption = "Total Amount"
+            End If
+            GRIDPARTYPERFORMANCEDETAILS.DataSource = DT
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Sub FILLRECGRID()
         Try
-            Dim dt As DataTable = OBJCMN.search(" NAME, (CASE WHEN ROUND(DR,0) > 0 THEN DR ELSE ROUND(CR,0)*-1 END) AS BALANCE ", "", " TRIALBALANCE ", " AND SECONDARY = 'Sundry Debtors' AND (ROUND(DR,0) > 0 OR ROUND(CR,0) > 0) AND YEARID = " & YearId & " ORDER BY NAME")
+            Dim dt As DataTable = OBJCMN.SEARCH(" NAME, (CASE WHEN ROUND(DR,0) > 0 THEN DR ELSE ROUND(CR,0)*-1 END) AS BALANCE ", "", " TRIALBALANCE ", " AND SECONDARY = 'Sundry Debtors' AND (ROUND(DR,0) > 0 OR ROUND(CR,0) > 0) AND YEARID = " & YearId & " ORDER BY NAME")
             GRIDRECDETAILS.DataSource = dt
         Catch ex As Exception
             Throw ex
@@ -358,6 +378,10 @@ Public Class HomePage
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub RBPARTY_CheckedChanged(sender As Object, e As EventArgs) Handles RBPARTY.CheckedChanged, RBITEM.CheckedChanged
+        FILLPERFORMANCE()
     End Sub
 
     Private Sub GRIDSTOCK_DoubleClick(sender As Object, e As EventArgs) Handles GRIDSTOCK.DoubleClick

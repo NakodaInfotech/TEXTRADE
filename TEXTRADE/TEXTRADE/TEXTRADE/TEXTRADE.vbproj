@@ -2145,6 +2145,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Receipt\SelectAdjustBills.Designer.vb">
+      <DependentUpon>SelectAdjustBills.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Receipt\SelectAdjustBills.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Accounts\Registers\Group Trans Register\GroupSummaryMonthly.Designer.vb">
       <DependentUpon>GroupSummaryMonthly.vb</DependentUpon>
     </Compile>
@@ -2365,6 +2371,12 @@
       <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Magic Box\MagicBoxForInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.Designer.vb">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
@@ -9667,6 +9679,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramMaster.resx">
       <DependentUpon>OpeningProgramMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Receipt\SelectAdjustBills.resx">
+      <DependentUpon>SelectAdjustBills.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Registers\Group Trans Register\GroupSummaryMonthly.resx">
       <DependentUpon>GroupSummaryMonthly.vb</DependentUpon>
     </EmbeddedResource>
@@ -9777,6 +9792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForInvoice.resx">
       <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForRecPay.resx">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>
