@@ -10558,7 +10558,7 @@ SKIPLINE:
 
     Private Sub MagicBoxRecPayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxRecPayToolStripMenuItem.Click
         Try
-            Dim OBJPUR As New ChqEnteries
+            Dim OBJPUR As New MagicBoxForRecPay
             OBJPUR.MdiParent = Me
             OBJPUR.Show()
         Catch ex As Exception

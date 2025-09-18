@@ -1,11 +1,8 @@
-﻿
-
-Imports BL
+﻿Imports BL
 Imports System.Windows.Forms
 Imports System.Globalization
 Imports System.IO
-
-Public Class ChqEnteries
+Public Class MagicBoxForRecPay
 
     Public EDIT As Boolean          'used for editing
     Dim IntResult As Integer
@@ -235,9 +232,11 @@ Public Class ChqEnteries
                 End If
                 Dim DTTABLE As DataTable = objCUTTING.SAVE()
                 'for saving the entry no in recptmaster or paymentmaster
-
+                If CMBTYPE.Text <> "" Then
+                    SAVERECIEPT()
+                End If
                 MsgBox("Details Added")
-                    TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
+                TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
                 PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
             ElseIf EDIT = True Then
@@ -340,7 +339,7 @@ Public Class ChqEnteries
                         alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
 
                         ' Initialize the receipt object
-                        Dim OBJCLRECEIPT As New ClsReceiptMaster()
+                        Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
                         OBJCLRECEIPT.alParaval = alparaval
 
                         ' Only save if not in edit mode
@@ -679,7 +678,7 @@ LINE1:
                 OBJEMB.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJEMB.Delete()
                 MsgBox("Cheque Entry Deleted Succesfully")
-                clear()
+                CLEAR()
                 EDIT = False
             End If
         Catch ex As Exception
@@ -752,7 +751,7 @@ LINE1:
     Private Sub cmbaccname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbaccname.Enter
         Try
             'OPEN BANK A/C AND BANK OD A/C
-            If cmbaccname.Text.Trim = "" Then fillledger(cmbaccname, edit, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            If cmbaccname.Text.Trim = "" Then fillledger(cmbaccname, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
@@ -784,7 +783,7 @@ LINE1:
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Creditors' or groupmaster.group_SECONDARY = 'Indirect Expenses' or groupmaster.group_SECONDARY = 'Direct Expenses') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-           
+
         Catch ex As Exception
             Throw ex
         End Try

@@ -2358,6 +2358,12 @@
     <Compile Include="Transactions\Magic Box\MagicBoxForInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.Designer.vb">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
       <DependentUpon>PosterOrder.vb</DependentUpon>
     </Compile>
@@ -9764,6 +9770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForInvoice.resx">
       <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForRecPay.resx">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>
