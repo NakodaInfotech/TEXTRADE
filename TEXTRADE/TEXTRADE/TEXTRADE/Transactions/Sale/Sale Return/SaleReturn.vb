@@ -636,10 +636,10 @@ Public Class SaleReturn
             End If
 
 
-            'If Val(TXTGRANDTOTAL.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-            '    EP.SetError(TXTGRANDTOTAL, "Total does not match Adjusted Amt")
-            '    bln = False
-            'End If
+            If Val(TXTGRANDTOTAL.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+                EP.SetError(TXTGRANDTOTAL, "Total does not match Adjusted Amt")
+                bln = False
+            End If
 
 
             'GET DEFAULT SALEREGISTER IF INVOICENO IS BLANK
@@ -812,10 +812,10 @@ Public Class SaleReturn
             Next
 
             For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                '    EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    bln = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    bln = False
+                End If
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = "SR-" & Val(TXTSALRETNO.Text.Trim)
             Next
 
@@ -1234,11 +1234,11 @@ Public Class SaleReturn
                 End If
                 alParaval.Add(TEMPSALRETNO)
                 IntResult = OBJPURCH.UPDATE()
-                'MsgBox("Details Updated")
-                'PRINTREPORT(TEMPSALRETNO)
+                MsgBox("Details Updated")
+                PRINTREPORT(TEMPSALRETNO)
             End If
 
-            'PRINTBARCODE()
+            PRINTBARCODE()
 
 
             EDIT = False
@@ -1253,13 +1253,13 @@ Public Class SaleReturn
                 End If
             Next
 
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
+            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
 
-            'cmbGodown.Focus()
+            cmbGodown.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
