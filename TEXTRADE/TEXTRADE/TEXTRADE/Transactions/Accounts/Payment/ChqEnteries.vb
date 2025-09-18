@@ -235,9 +235,7 @@ Public Class ChqEnteries
                 End If
                 Dim DTTABLE As DataTable = objCUTTING.SAVE()
                 'for saving the entry no in recptmaster or paymentmaster
-                If CMBTYPE.Text <> "" Then
-                    SAVERECIEPT()
-                End If
+
                 MsgBox("Details Added")
                     TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
                 PRINTREPORT(DTTABLE.Rows(0).Item(0))
