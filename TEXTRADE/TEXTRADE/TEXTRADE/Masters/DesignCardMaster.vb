@@ -415,7 +415,7 @@ Public Class DesignCardMaster
                 If row.Cells(DSRNO.Index).Value IsNot Nothing AndAlso row.Cells(DENDS.Index).Value IsNot Nothing Then
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
-                        DRAWEnds = Val(row.Cells(DENDS.Index).Value)
+                        DRAWEnds = row.Cells(DENDS.Index).Value.ToString()
                         DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = Val(row.Cells(DREPEAT.Index).Value)
                         DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value
@@ -424,7 +424,7 @@ Public Class DesignCardMaster
                         DRAWREPEATS2 = Val(row.Cells(DREPEATS2.Index).Value)
                     Else
                         DRAWSrNo = DRAWSrNo & "|" & Val(row.Cells(DSRNO.Index).Value)
-                        DRAWEnds = DRAWEnds & "|" & Val(row.Cells(DENDS.Index).Value)
+                        DRAWEnds = DRAWEnds & "|" & row.Cells(DENDS.Index).Value.ToString()
                         DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = DRAWREPEATS & "|" & Val(row.Cells(DREPEAT.Index).Value)
                         DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value
@@ -462,13 +462,16 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 IntResult = objDESIGN.SAVE()
+                txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
+                tempdesignno = txtcardno.Text.Trim
+
             Else
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                alParaval.Add(tempid)
+                alParaval.Add(tempdesignno)
                 IntResult = objDESIGN.UPDATE()
                 MsgBox("Details Updated")
             End If
@@ -675,121 +678,178 @@ Public Class DesignCardMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+                Dim OBJCMN As New ClsCommon
+                Dim objclsGRN As New ClsDesignCardMaster()
+                Dim dttable As New DataTable
+
+                dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
+
+                If dttable.Rows.Count > 0 Then
+
+                    For Each dr As DataRow In dttable.Rows
+
+                        txtcardno.Text = tempdesignno
+                        txtcardno.ReadOnly = True
+
+                        DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
+                        CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
+                        CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
+                        '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
+                        TXTREED.Text = dr("REED").ToString
+                        TXTREEDSPACE.Text = dr("REEDSPACE").ToString
+                        TXTPICKS.Text = dr("PICKS").ToString
+                        TXTMAINRS.Text = dr("MAINRS").ToString
+                        TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
+                        TXTFEPI.Text = dr("FEPI").ToString
+                        TXTFWIDTH.Text = dr("FWIDTH").ToString
+                        TXTFPPI.Text = dr("FPPI").ToString
+                        TXTFWT.Text = dr("FWT").ToString
+                        TXTDENTS.Text = dr("DENTS").ToString
+                        TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
+                        TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
+                        TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
+
+                        TXTWARPTL.Text = dr("WARPTTL").ToString
+                        TXTWEFTTL.Text = dr("WEFTTTL").ToString
+                        TXTGSM.Text = dr("GSM").ToString
+                        CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
+                        CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
+                        TXTTOTALWT.Text = Val(dr("TOTALWT"))
+                        ' Selvedge fields
+                        TXTLEFTSEL.Text = dr("LEFTSELVEDGE").ToString
+                        TXTRIGHTSEL.Text = dr("RIGHTSELVEDGE").ToString
+                        TXTLEFTSELENDS.Text = dr("LEFTSELVEDGEEND").ToString
+                        TXTRIGHTSELENDS.Text = dr("RIGHTSELVEDGEEND").ToString
+                        TXTLEFTSELDENTS.Text = dr("LEFTSELVEDGEDENTS").ToString
+                        TXTRIGHTSELDENTS.Text = dr("RIGHTSELVEDGEDENTS").ToString
+                        TXTLEFTSELTOTALENDS.Text = dr("LEFTSELVEDGETOTALEND").ToString
+                        TXTRIGHTSELTOTALENDS.Text = dr("RIGHTSELVEDGETOTALEND").ToString
+                        TXTTOTALSELENDS.Text = dr("TOTALSELVEDGEENDS").ToString
+                        ' Reference and names
+                        TXTREFNO.Text = dr("REFNO").ToString
+                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
+                        CMBAGENTNAME.Text = Convert.ToString(dr("AGENTNAME").ToString)
+                        CMBDELAT.Text = Convert.ToString(dr("DELIVERYAT").ToString)
+                        CMBGREY.Text = Convert.ToString(dr("GREY").ToString)
+                        TXTORDERNO.Text = dr("ORDERNO").ToString
+                        DELDATE.Text = Format(Convert.ToDateTime(dr("DELDATE")).Date, "dd/MM/yyyy")
+                        ORDERDATE.Text = Format(Convert.ToDateTime(dr("ORDERDATE")).Date, "dd/MM/yyyy")
+                        ' Other details
+                        TXTMTRS.Text = Val(dr("MTRS"))
+                        TXTNOOFPCS.Text = Val(dr("NOOFPCS"))
+                        CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
+                        TXTBEAMMTRS.Text = dr("BEAMMTRS").ToString
+                        TXTCOVERFACTOR.Text = dr("COVERFACTOR").ToString
+                        TXTEFFICIENCY.Text = dr("EFFICIENCY").ToString
+                        TXTLOOMPROD.Text = dr("LOOMPROD").ToString
+                        TXTRPM.Text = dr("RPM").ToString
+                        CMBGREYDELAT.Text = Convert.ToString(dr("GREYDELIVERYAT").ToString)
+                        GREYDELDATE.Text = Format(Convert.ToDateTime(dr("GREYDELDATE")).Date, "dd/MM/yyyy")
+                        ' Total Warp
+
+                        TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
+                        TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
+                        TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
+                        TXTTOTALWARPWT.Text = Val(dr("TOTALWARPWT"))
+                        TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
+                        TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
+                        TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
+                        TXTTOTALWARPGRIDPE.Text = Val(dr("TOTALWARPGRIDPE"))
+                        ' Total Selvedge
+
+                        TXTTOTALSELPE.Text = Val(dr("TOTALSELVEDGEPE"))
+                        TXTTOTALSELBE.Text = Val(dr("TOTALSELVEDGEBE"))
+                        TXTTOTALSELTE.Text = Val(dr("TOTALSELVEDGETE"))
+                        TXTTOTALSELWT.Text = Val(dr("TOTALSELVEDGEWT"))
+                        TXTTOTALSELCONS.Text = Val(dr("TOTALSELVEDGECONS"))
+                        TXTSELTOTALRATE.Text = Val(dr("TOTALSELVEDGERATE"))
+                        TXTSELTOTALCOST.Text = Val(dr("TOTALSELVEDGECOST"))
+                        TXTTOTALSELGPE.Text = Val(dr("TOTALSELVEDGEGRIDPE"))
+                        ' Total Weft
+
+                        TXTTOTALWEFTPE.Text = Val(dr("TOTALWEFTPE"))
+                        TXTTOTALWEFTBE.Text = Val(dr("TOTALWEFTBE"))
+                        TXTTOTALWEFTTE.Text = Val(dr("TOTALWEFTTE"))
+                        TXTTOTALWEFTWT.Text = Val(dr("TOTALWEFTWT"))
+                        TXTTOTALWEFTCONS.Text = Val(dr("TOTALWEFTCONS"))
+                        TXTTOTALWEFTRATE.Text = Val(dr("TOTALWEFTRATE"))
+                        TXTTOTALWEFTCOST.Text = Val(dr("TOTALWEFTCOST"))
+                        TXTTOTALWEFTGRIDPE.Text = Val(dr("TOTALWEFTGRIDPE"))
+                        ' Total DRAWING 
+
+                        TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
+                        TXTTOTALDRAWDENTS.Text = Val(dr("TOTALDRAWDENTS"))
+                        TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
+
+
+
+
+
+                    Next
+                    'cmbtype.Enabled = False
+
+                    'TOTAL()
+                    Validate()
+                Else
+                    EDIT = False
+                    clear()
+                End If
+                'warp gridmatching data serializations
+                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSRNO, 0) AS WARPGRIDSRNO, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPPE, 0) AS WARPPE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPBE, 0) AS WARPBE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPTE, 0) AS WARPTE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPWT, 0) AS WARPWT, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCONS, 0) AS WARPCONS, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPRATE, 0) AS WARPRATE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCOST, 0) AS WARPCOST ", "", " DESIGNCARD_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = DESIGNCARD_WARPMATCHING.DESIGN_WARPMILLID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = DESIGNCARD_WARPMATCHING.DESIGN_WARPCOLORID  ", " AND  DESIGNCARD_WARPMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
+                If dttable1.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable1.Rows
+                        GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.00"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
+                    Next
+                End If
+                ' Warp Gridpattern data serializations
+                Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, 0) AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
+                If dttable2.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable2.Rows
+                        GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), Format(DTR("WARPPATTERNGRIDPE"), "0.00"), DTR("WARPPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+                ' Selvedge Grid data serialization
+                Dim dttable3 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESRNO, 0) AS SELVEDGEGRIDSRNO, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESYM, '') AS SELVEDGEGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS SELVEDGEYARNQUALITY, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDENIER, 0) AS SELVEDGEDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS SELVEDGEMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SELVEDGESHADE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEPE, 0) AS SELVEDGEPE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEBE, 0) AS SELVEDGEBE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDTE, 0) AS SELVEDGETE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEWT, 0) AS SELVEDGEWT, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECONS, 0) AS SELVEDGECONS, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGERATE, 0) AS SELVEDGERATE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOST, 0) AS SELVEDGECOST ", "", " DESIGNCARD_SELVEDGEMATCHING LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEYARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOLORID = COLORMASTER.COLOR_id   ", " AND  DESIGNCARD_SELVEDGEMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEGRIDSRNO")
+                If dttable3.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable3.Rows
+                        GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.00"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
+                    Next
+                End If
+                ' Selvedge Gridpattern data serializations
+                Dim dttable4 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS SELVEDGEPATTERNGRIDSRNO, ISNULL(DESIGN_SELVEDGEPE, 0) AS SELVEDGEPATTERNGRIDPE, ISNULL(DESIGN_SELVEDGESYM, '') AS SELVEDGEPATTERNGRIDSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEPATTERNGRIDSRNO")
+                If dttable4.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable4.Rows
+                        GRIDSELVEDGEPATTERN.Rows.Add(DTR("SELVEDGEPATTERNGRIDSRNO"), Format(DTR("SELVEDGEPATTERNGRIDPE"), "0.00"), DTR("SELVEDGEPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+                ' Weft Grid data serialization
+                Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTPE, 0) AS WEFTPE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTBE, 0) AS WEFTBE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTTE, 0) AS WEFTTE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTWT, 0) AS WEFTWT, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCONS, 0) AS WEFTCONS, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTRATE, 0) AS WEFTRATE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOST, 0) AS WEFTCOST", "", " DESIGNCARD_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  DESIGNCARD_WEFTMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
+                If dttable5.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable5.Rows
+                        GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.00"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
+                    Next
+                End If
+                ' Weft GridPattern data serialization
+                Dim dttable6 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WEFTPATTERNGRIDSRNO, ISNULL(DESIGN_WEFTPE, 0) AS WEFTPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WEFTPATTERNGRIDSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WEFTPATTERNGRIDSRNO")
+                If dttable6.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable6.Rows
+                        GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), Format(DTR("WEFTPATTERNGRIDPE"), "0.00"), DTR("WEFTPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+                'DRAWING FIELD
+                Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
+                If dttable7.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable7.Rows
+                        GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
+
+                    Next
+                End If
             End If
-
-            Dim objclsGRN As New ClsDesignCardMaster()
-            Dim dttable As New DataTable
-
-            dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
-
-            If dttable.Rows.Count > 0 Then
-
-                'For Each dr As DataRow In dttable.Rows
-
-                '    txtcardno.Text = tempdesignno
-                '    txtcardno.ReadOnly = True
-
-                '    DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
-                '    CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
-                '    CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
-                '    '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
-                '    TXTREED.Text = dr("REED").ToString
-                '    TXTREEDSPACE.Text = dr("REEDSPACE").ToString
-                '    TXTPICKS.Text = dr("PICKS").ToString
-                '    TXTMAINRS.Text = dr("MAINRS").ToString
-                '    TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
-                '    TXTFEPI.Text = dr("FEPI").ToString
-                '    TXTFWIDTH.Text = dr("FWIDTH").ToString
-                '    TXTFPPI.Text = dr("FPPI").ToString
-                '    TXTFWT.Text = dr("FWT").ToString
-                '    TXTDENTS.Text = dr("DENTS").ToString
-                '    TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
-                '    TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
-                '    TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
-
-                '    TXTWARPTL.Text = dr("WARPTTL").ToString
-                '    TXTWEFTTL.Text = dr("WEFTTTL").ToString
-                '    TXTGSM.Text = dr("GSM").ToString
-                '    CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
-                '    CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
-                '    TXTTOTALWT.Text = Val(dr("TOTALWT"))
-
-                '    TXTDENTS.Text = dr("DENTS").ToString
-
-
-
-
-
-                '    CMBBROKER.Text = Convert.ToString(dr("BROKER").ToString)
-                '    CMBSENDER.Text = Convert.ToString(dr("SENDER").ToString)
-                '    cmbGodown.Text = Convert.ToString(dr("GODOWN").ToString)
-                '    cmbprocess.Text = Convert.ToString(dr("PROCESS").ToString)
-                '    RECDATE.Text = dr("RECDATE")
-                '    TXTPOUTNO.Text = dr("POUTNO").ToString
-
-                '    txtchallan.Text = Convert.ToString(dr("CHALLANNO").ToString)
-                '    PARTYCHALLANNO = txtchallan.Text.Trim
-
-                '    CHALLANDATE.Text = Format(Convert.ToDateTime(dr("CHALLANDATE")).Date, "dd/MM/yyyy")
-
-                '    txtpono.Text = Convert.ToString(dr("PONO").ToString)
-                '    podate.Value = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
-
-
-                '    cmbtrans.Text = dr("TRANSNAME").ToString
-                '    txttransref.Text = dr("transrefno").ToString
-                '    txtlrno.Text = dr("LRNO").ToString
-                '    lrdate.Text = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
-                '    txttransremarks.Text = dr("transremarks").ToString
-                '    TXTBALEWT.Text = Val(dr("BALEWT"))
-
-                '    TXTTOTALBALES.Text = Format(Val(dr("TOTALBALES")), "0.00")
-                '    CMBDYEINGTYPE.Text = dr("DYEINGTYPE")
-                '    txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-
-                '    TXTPARTYBILLNO.Text = dr("PARTYBILLNO")
-                '    TEMPPARTYBILLNO = dr("PARTYBILLNO")
-                '    PARTYBILLDATE.Value = Format(Convert.ToDateTime(dr("PARTYBILLDATE")).Date, "dd/MM/yyyy")
-
-                '    CHKDIRECTFROMKNITTING.Checked = Convert.ToBoolean(dr("DIRECTFROMKNITTING"))
-                '    TXTGREYKNITTINGNO.Text = Val(dr("GREYKNITTINGNO"))
-
-                '    CHKLOTREADY.Checked = Convert.ToBoolean(dr("LOTREADY"))
-                '    If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
-
-                '    TXTVEHICLENO.Text = dr("VEHICLENO")
-                '    CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
-                '    CMBTOCITY.Text = Convert.ToString(dr("TOCITY"))
-                '    CMBPACKING.Text = Convert.ToString(dr("PACKING"))
-                '    TXTEWAYBILLNO.Text = dr("EWAYBILLNO")
-                '    TXTREFLOTNO.Text = dr("REFLOTNO")
-                '    CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
-                '    TXTPARTYITEMNAME.Text = dr("PARTYITEMNAME")
-
-
-
-                '    'Item Grid
-                '    gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("DESC").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), dr("RACK"), dr("SHELF"), Format(dr("WT"), "0.00"), Format(dr("PURRATE"), "0.00"), Format(dr("SALERATE"), "0.00"), Format(dr("WHOLESALERATE"), "0.00"), dr("PER"), Format(dr("AMOUNT"), "0.00"), dr("BARCODE").ToString, dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("CHECKDONE"), dr("FROMTYPE"))
-
-                '    If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Or Convert.ToBoolean(dr("DONE")) = True Or Convert.ToBoolean(dr("PROGRAMDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
-                '        If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Then TXTLOTNO.Enabled = False
-                '        gridgrn.Rows(gridgrn.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                '        If ClientName <> "KARAN" Then
-                '            lbllocked.Visible = True
-                '            PBlock.Visible = True
-                '        End If
-                '    End If
-                '    If Convert.ToBoolean(dr("BARCODEPRINTED")) = True Then LBLBARCODE.Visible = True
-                'Next
-                'cmbtype.Enabled = False
-
-                'TOTAL()
-                Validate()
-            Else
-                EDIT = False
-                clear()
-            End If
-
+            'If GRIDSELVEDGE.RowCount > 0 Then
+            '    txtcardno.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
+            'Else
+            '    txtcardno.Text = 1
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
