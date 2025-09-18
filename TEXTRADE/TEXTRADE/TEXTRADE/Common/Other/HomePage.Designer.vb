@@ -22,16 +22,18 @@ Partial Class HomePage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim XyDiagram3 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-        Dim Series5 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-        Dim SideBySideBarSeriesLabel7 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
-        Dim Series6 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-        Dim SideBySideBarSeriesLabel8 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
-        Dim SideBySideBarSeriesLabel9 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim Series1 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim SideBySideBarSeriesLabel1 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim Series2 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim SideBySideBarSeriesLabel2 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
+        Dim SideBySideBarSeriesLabel3 As DevExpress.XtraCharts.SideBySideBarSeriesLabel = New DevExpress.XtraCharts.SideBySideBarSeriesLabel()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
         Me.GBPARTYPERFORMANCE = New System.Windows.Forms.GroupBox()
-        Me.GRIDPARTYPERFORMANCEDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDPARTYPERFORMANCE = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RBITEM = New System.Windows.Forms.RadioButton()
+        Me.RBPARTY = New System.Windows.Forms.RadioButton()
+        Me.GRIDPERFORMANCEDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDPERFORMANCE = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GPPNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPPGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPPPERCENT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,12 +94,10 @@ Partial Class HomePage
         Me.GRIDREC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRBALANCE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RBPARTY = New System.Windows.Forms.RadioButton()
-        Me.RBITEM = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GBPARTYPERFORMANCE.SuspendLayout()
-        CType(Me.GRIDPARTYPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDPARTYPERFORMANCE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDPERFORMANCE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBMONTHLYSALE.SuspendLayout()
         CType(Me.GRIDMONTHLYSALEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDMONTHLYSALE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,12 +115,12 @@ Partial Class HomePage
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBSALE.SuspendLayout()
         CType(Me.PURSALECHART, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(SideBySideBarSeriesLabel9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(SideBySideBarSeriesLabel3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBPAYOUTSTANDING.SuspendLayout()
         CType(Me.GRIDPAYDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDPAY, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,45 +152,67 @@ Partial Class HomePage
         Me.GBPARTYPERFORMANCE.BackColor = System.Drawing.Color.Transparent
         Me.GBPARTYPERFORMANCE.Controls.Add(Me.RBITEM)
         Me.GBPARTYPERFORMANCE.Controls.Add(Me.RBPARTY)
-        Me.GBPARTYPERFORMANCE.Controls.Add(Me.GRIDPARTYPERFORMANCEDETAILS)
+        Me.GBPARTYPERFORMANCE.Controls.Add(Me.GRIDPERFORMANCEDETAILS)
         Me.GBPARTYPERFORMANCE.Location = New System.Drawing.Point(407, 3)
         Me.GBPARTYPERFORMANCE.Name = "GBPARTYPERFORMANCE"
         Me.GBPARTYPERFORMANCE.Size = New System.Drawing.Size(494, 342)
         Me.GBPARTYPERFORMANCE.TabIndex = 21
         Me.GBPARTYPERFORMANCE.TabStop = False
-        Me.GBPARTYPERFORMANCE.Text = "Party Performace"
+        Me.GBPARTYPERFORMANCE.Text = "Performace"
         '
-        'GRIDPARTYPERFORMANCEDETAILS
+        'RBITEM
         '
-        Me.GRIDPARTYPERFORMANCEDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDPARTYPERFORMANCEDETAILS.Location = New System.Drawing.Point(2, 21)
-        Me.GRIDPARTYPERFORMANCEDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDPARTYPERFORMANCEDETAILS.MainView = Me.GRIDPARTYPERFORMANCE
-        Me.GRIDPARTYPERFORMANCEDETAILS.Name = "GRIDPARTYPERFORMANCEDETAILS"
-        Me.GRIDPARTYPERFORMANCEDETAILS.Size = New System.Drawing.Size(486, 318)
-        Me.GRIDPARTYPERFORMANCEDETAILS.TabIndex = 5
-        Me.GRIDPARTYPERFORMANCEDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDPARTYPERFORMANCE})
+        Me.RBITEM.AutoSize = True
+        Me.RBITEM.Location = New System.Drawing.Point(191, 2)
+        Me.RBITEM.Name = "RBITEM"
+        Me.RBITEM.Size = New System.Drawing.Size(50, 18)
+        Me.RBITEM.TabIndex = 7
+        Me.RBITEM.Text = "Item"
+        Me.RBITEM.UseVisualStyleBackColor = False
         '
-        'GRIDPARTYPERFORMANCE
+        'RBPARTY
         '
-        Me.GRIDPARTYPERFORMANCE.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GRIDPARTYPERFORMANCE.Appearance.Empty.Options.UseBackColor = True
-        Me.GRIDPARTYPERFORMANCE.Appearance.Row.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GRIDPARTYPERFORMANCE.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDPARTYPERFORMANCE.Appearance.Row.Options.UseBackColor = True
-        Me.GRIDPARTYPERFORMANCE.Appearance.Row.Options.UseFont = True
-        Me.GRIDPARTYPERFORMANCE.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDPARTYPERFORMANCE.Appearance.ViewCaption.Options.UseFont = True
-        Me.GRIDPARTYPERFORMANCE.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPPNAME, Me.GPPGRANDTOTAL, Me.GPPPERCENT})
-        Me.GRIDPARTYPERFORMANCE.GridControl = Me.GRIDPARTYPERFORMANCEDETAILS
-        Me.GRIDPARTYPERFORMANCE.Name = "GRIDPARTYPERFORMANCE"
-        Me.GRIDPARTYPERFORMANCE.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GRIDPARTYPERFORMANCE.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GRIDPARTYPERFORMANCE.OptionsBehavior.Editable = False
-        Me.GRIDPARTYPERFORMANCE.OptionsView.ColumnAutoWidth = False
-        Me.GRIDPARTYPERFORMANCE.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GRIDPARTYPERFORMANCE.OptionsView.ShowFooter = True
-        Me.GRIDPARTYPERFORMANCE.OptionsView.ShowGroupPanel = False
+        Me.RBPARTY.AutoSize = True
+        Me.RBPARTY.Checked = True
+        Me.RBPARTY.Location = New System.Drawing.Point(134, 2)
+        Me.RBPARTY.Name = "RBPARTY"
+        Me.RBPARTY.Size = New System.Drawing.Size(51, 18)
+        Me.RBPARTY.TabIndex = 6
+        Me.RBPARTY.TabStop = True
+        Me.RBPARTY.Text = "Party"
+        Me.RBPARTY.UseVisualStyleBackColor = True
+        '
+        'GRIDPERFORMANCEDETAILS
+        '
+        Me.GRIDPERFORMANCEDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDPERFORMANCEDETAILS.Location = New System.Drawing.Point(2, 21)
+        Me.GRIDPERFORMANCEDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDPERFORMANCEDETAILS.MainView = Me.GRIDPERFORMANCE
+        Me.GRIDPERFORMANCEDETAILS.Name = "GRIDPERFORMANCEDETAILS"
+        Me.GRIDPERFORMANCEDETAILS.Size = New System.Drawing.Size(486, 318)
+        Me.GRIDPERFORMANCEDETAILS.TabIndex = 5
+        Me.GRIDPERFORMANCEDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDPERFORMANCE})
+        '
+        'GRIDPERFORMANCE
+        '
+        Me.GRIDPERFORMANCE.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GRIDPERFORMANCE.Appearance.Empty.Options.UseBackColor = True
+        Me.GRIDPERFORMANCE.Appearance.Row.BackColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GRIDPERFORMANCE.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDPERFORMANCE.Appearance.Row.Options.UseBackColor = True
+        Me.GRIDPERFORMANCE.Appearance.Row.Options.UseFont = True
+        Me.GRIDPERFORMANCE.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDPERFORMANCE.Appearance.ViewCaption.Options.UseFont = True
+        Me.GRIDPERFORMANCE.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPPNAME, Me.GPPGRANDTOTAL, Me.GPPPERCENT})
+        Me.GRIDPERFORMANCE.GridControl = Me.GRIDPERFORMANCEDETAILS
+        Me.GRIDPERFORMANCE.Name = "GRIDPERFORMANCE"
+        Me.GRIDPERFORMANCE.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDPERFORMANCE.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDPERFORMANCE.OptionsBehavior.Editable = False
+        Me.GRIDPERFORMANCE.OptionsView.ColumnAutoWidth = False
+        Me.GRIDPERFORMANCE.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDPERFORMANCE.OptionsView.ShowFooter = True
+        Me.GRIDPERFORMANCE.OptionsView.ShowGroupPanel = False
         '
         'GPPNAME
         '
@@ -742,23 +764,23 @@ Partial Class HomePage
         'PURSALECHART
         '
         Me.PURSALECHART.BackColor = System.Drawing.Color.Beige
-        XyDiagram3.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram3.AxisY.VisibleInPanesSerializable = "-1"
-        Me.PURSALECHART.Diagram = XyDiagram3
+        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
+        Me.PURSALECHART.Diagram = XyDiagram1
         Me.PURSALECHART.Legend.Visibility = DevExpress.Utils.DefaultBoolean.[False]
         Me.PURSALECHART.Location = New System.Drawing.Point(8, 21)
         Me.PURSALECHART.Name = "PURSALECHART"
-        SideBySideBarSeriesLabel7.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series5.Label = SideBySideBarSeriesLabel7
-        Series5.Name = "PURCHASE"
-        Series5.SeriesID = 0
-        SideBySideBarSeriesLabel8.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series6.Label = SideBySideBarSeriesLabel8
-        Series6.Name = "SALE"
-        Series6.SeriesID = 1
-        Me.PURSALECHART.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series5, Series6}
-        SideBySideBarSeriesLabel9.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PURSALECHART.SeriesTemplate.Label = SideBySideBarSeriesLabel9
+        SideBySideBarSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series1.Label = SideBySideBarSeriesLabel1
+        Series1.Name = "PURCHASE"
+        Series1.SeriesID = 0
+        SideBySideBarSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series2.Label = SideBySideBarSeriesLabel2
+        Series2.Name = "SALE"
+        Series2.SeriesID = 1
+        Me.PURSALECHART.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series1, Series2}
+        SideBySideBarSeriesLabel3.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PURSALECHART.SeriesTemplate.Label = SideBySideBarSeriesLabel3
         Me.PURSALECHART.Size = New System.Drawing.Size(858, 262)
         Me.PURSALECHART.TabIndex = 0
         '
@@ -898,27 +920,6 @@ Partial Class HomePage
         Me.GRBALANCE.VisibleIndex = 1
         Me.GRBALANCE.Width = 70
         '
-        'RBPARTY
-        '
-        Me.RBPARTY.AutoSize = True
-        Me.RBPARTY.Checked = True
-        Me.RBPARTY.Location = New System.Drawing.Point(134, 2)
-        Me.RBPARTY.Name = "RBPARTY"
-        Me.RBPARTY.Size = New System.Drawing.Size(51, 18)
-        Me.RBPARTY.TabIndex = 6
-        Me.RBPARTY.Text = "Party"
-        Me.RBPARTY.UseVisualStyleBackColor = True
-        '
-        'RBITEM
-        '
-        Me.RBITEM.AutoSize = True
-        Me.RBITEM.Location = New System.Drawing.Point(191, 2)
-        Me.RBITEM.Name = "RBITEM"
-        Me.RBITEM.Size = New System.Drawing.Size(50, 18)
-        Me.RBITEM.TabIndex = 7
-        Me.RBITEM.Text = "Item"
-        Me.RBITEM.UseVisualStyleBackColor = False
-        '
         'HomePage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -935,8 +936,8 @@ Partial Class HomePage
         Me.BlendPanel2.ResumeLayout(False)
         Me.GBPARTYPERFORMANCE.ResumeLayout(False)
         Me.GBPARTYPERFORMANCE.PerformLayout()
-        CType(Me.GRIDPARTYPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDPARTYPERFORMANCE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDPERFORMANCE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBMONTHLYSALE.ResumeLayout(False)
         CType(Me.GRIDMONTHLYSALEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDMONTHLYSALE, System.ComponentModel.ISupportInitialize).EndInit()
@@ -953,12 +954,12 @@ Partial Class HomePage
         CType(Me.GRIDSODETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBSALE.ResumeLayout(False)
-        CType(XyDiagram3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(SideBySideBarSeriesLabel9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(SideBySideBarSeriesLabel3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PURSALECHART, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBPAYOUTSTANDING.ResumeLayout(False)
         CType(Me.GRIDPAYDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1028,8 +1029,8 @@ Partial Class HomePage
     Friend WithEvents GMGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBPARTYPERFORMANCE As GroupBox
-    Private WithEvents GRIDPARTYPERFORMANCEDETAILS As DevExpress.XtraGrid.GridControl
-    Private WithEvents GRIDPARTYPERFORMANCE As DevExpress.XtraGrid.Views.Grid.GridView
+    Private WithEvents GRIDPERFORMANCEDETAILS As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDPERFORMANCE As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GPPNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPPGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPPPERCENT As DevExpress.XtraGrid.Columns.GridColumn
