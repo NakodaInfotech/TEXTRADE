@@ -339,7 +339,7 @@ Public Class MagicBoxForRecPay
                         alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
 
                         ' Initialize the receipt object
-                        Dim OBJCLRECEIPT As New ClsReceiptMaster()
+                        Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
                         OBJCLRECEIPT.alParaval = alparaval
 
                         ' Only save if not in edit mode
