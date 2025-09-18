@@ -513,7 +513,15 @@ Public Class InvoiceDetails
             TOOLCMBINVCOPY.Items.Add("CUSTOMER COPY")
             TOOLCMBINVCOPY.Items.Add("TRANSPORT COPY")
             If ClientName = "MASHOK" Then TOOLCMBINVCOPY.Items.Add("YARN DO") Else TOOLCMBINVCOPY.Items.Add("OFFICE COPY")
-            If ClientName = "MSANCHITKUMAR" Then TOOLCMBINVCOPY.Items.Add("AGENT COPY") Else TOOLCMBINVCOPY.Items.Add("DUPLICATE COPY")
+
+            If ClientName = "MSANCHITKUMAR" Then
+                TOOLCMBINVCOPY.Items.Add("AGENT COPY")
+            ElseIf ClientName = "SUPEEMA" Then
+                TOOLCMBINVCOPY.Items.Add("EXPORT COPY")
+            Else
+                TOOLCMBINVCOPY.Items.Add("DUPLICATE COPY")
+            End If
+
             TOOLCMBINVCOPY.Items.Add("RETAIL COPY (A5)")
 
 
