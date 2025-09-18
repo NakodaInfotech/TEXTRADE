@@ -1,4 +1,5 @@
 ﻿Imports BL
+Imports DevExpress.Utils.Internal
 Public Class AutoWhatsapp
     Dim GRIDDOUBLECLICK As Boolean
     Dim EDIT As Boolean
@@ -163,7 +164,7 @@ Public Class AutoWhatsapp
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-
+            FILLCMB()
             Dim OBJCMN As New ClsCommon
             Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT   AUTOWA_TYPE AS TYPE, ISNULL(AUTOWHATSAPP.AUTOWA_MON,0) AS MON, ISNULL(AUTOWHATSAPP.AUTOWA_TUE,0) AS TUE, ISNULL(AUTOWHATSAPP.AUTOWA_WED,0) AS WED, ISNULL(AUTOWHATSAPP.AUTOWA_THU,0) AS THU, ISNULL(AUTOWHATSAPP.AUTOWA_FRI,0) AS FRI, ISNULL(AUTOWHATSAPP.AUTOWA_SAT,0) AS SAT, ISNULL(AUTOWHATSAPP.AUTOWA_SUN,0)  AS SUN, AUTOWA_TIME AS TIME FROM AUTOWHATSAPP WHERE AUTOWA_CMPID = " & CmpId & "", "", "")
             If dttable.Rows.Count > 0 Then
@@ -174,7 +175,16 @@ Public Class AutoWhatsapp
                 getsrno(GRIDAUTOWA)
                 GRIDAUTOWA.FirstDisplayedScrollingRowIndex = GRIDAUTOWA.RowCount - 1
             End If
-            FILLCMB()
+            If GRIDAUTOWA.Rows.Count > 0 Then
+                ' Assign the value from the "Type" column (for example, column index 1) of the first row to the TextBox
+                TXTTYPE1.Text = GRIDAUTOWA.Rows(0).Cells(1).Value.ToString()
+                TXTTYPE2.Text = GRIDAUTOWA.Rows(0).Cells(1).Value.ToString()
+            End If
+            Dim dt1table As DataTable = OBJCMN.SEARCH(" AUTOWHATSAPP_DESC.AUTOWA_TYPE AS TYPE, ISNULL(AUTOWHATSAPP_DESC.AUTOWA_CHK, 0) AS CHK, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(CITYMASTER.city_name, '') AS CITY", "", " LEDGERS LEFT OUTER JOIN AUTOWHATSAPP_DESC  ON AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid LEFT OUTER JOIN CITYMASTER  ON AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid ", "  AND ledgers.acc_yearid = " & YearId)
+            If dt1table.Rows.Count > 0 Then
+                gridbilldetails.DataSource = dt1table
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+            End If
             If GRIDAUTOWA.RowCount > 0 Then
                 TXTSRNO.Text = Val(GRIDAUTOWA.Rows(GRIDAUTOWA.RowCount - 1).Cells(0).Value) + 1
             Else
