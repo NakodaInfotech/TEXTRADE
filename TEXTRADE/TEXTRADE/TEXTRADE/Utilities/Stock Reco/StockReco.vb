@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.CodeParser
 
 Public Class StockReco
 
@@ -1201,10 +1202,15 @@ LINE1:
         Try
             If CMBPIECETYPE.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And Val(txtqty.Text.Trim) > 0 And cmbqtyunit.Text.Trim <> "" Then
                 If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
-                If ClientName = "SBA" Or ClientName = "KARAN" Or ClientName = "RMANILAL" Or ClientName = "SST" Or ClientName = "MBB" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
+                If ClientName = "SBA" Or ClientName = "SUPEEMA" Or ClientName = "KARAN" Or ClientName = "RMANILAL" Or ClientName = "SST" Or ClientName = "MBB" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
                     Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
-                    If Val(TXTNOOFENTRIES.Text.Trim) = 0 Then txtqty.Text = 1 Else txtqty.Text = Val(TXTNOOFENTRIES.Text.Trim)
-                    If Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Val(TXTCUT.Text.Trim) * Val(txtqty.Text.Trim)
+                    If ClientName = "SUPEEMA" Then
+                        If Val(TXTNOOFENTRIES.Text.Trim) = 0 Then TXTNOOFENTRIES.Text = 1
+                        TEMPQTY = Val(TXTNOOFENTRIES.Text.Trim)
+                    Else
+                        If Val(TXTNOOFENTRIES.Text.Trim) = 0 Then txtqty.Text = 1 Else txtqty.Text = Val(TXTNOOFENTRIES.Text.Trim)
+                        If Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Val(TXTCUT.Text.Trim) * Val(txtqty.Text.Trim)
+                    End If
                     For I As Integer = 1 To Val(TEMPQTY)
                         If GRIDDOUBLECLICK = False Then
                             If EDIT = True Then
@@ -1639,7 +1645,7 @@ LINE1:
         If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KDFAB" Or ClientName = "KCRAYON" Then GBARCODE.HeaderText = "Desc"
         txtqty.ReadOnly = False
 
-        If ClientName = "SBA" Then TXTNOOFENTRIES.Visible = True
+        If ClientName = "SBA" Or ClientName = "SUPEEMA" Then TXTNOOFENTRIES.Visible = True
         If ClientName = "SNCM" Then GINMTRS.ReadOnly = False
 
         If ClientName = "SOFTAS" Then
@@ -2231,6 +2237,22 @@ LINE1:
     Private Sub CMBCONTRACTOR_Enter(sender As Object, e As EventArgs) Handles CMBCONTRACTOR.Enter
         Try
             If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbqtyunit_Validated(sender As Object, e As EventArgs) Handles cmbqtyunit.Validated
+        Try
+            If ClientName = "SUPEEMA" Then TXTNOOFENTRIES.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTNOOFENTRIES_Validated(sender As Object, e As EventArgs) Handles TXTNOOFENTRIES.Validated
+        Try
+            If ClientName = "SUPEEMA" Then TXTMTRS.Focus()
         Catch ex As Exception
             Throw ex
         End Try
