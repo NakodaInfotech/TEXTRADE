@@ -27,11 +27,11 @@ Partial Class MagicBoxForRecPay
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MagicBoxForRecPay))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MagicBoxForRecPay))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMBTYPE = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -39,13 +39,6 @@ Partial Class MagicBoxForRecPay
         Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCHQNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCHQDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCHQAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBANKNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtsrno = New System.Windows.Forms.TextBox()
@@ -78,6 +71,15 @@ Partial Class MagicBoxForRecPay
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.cmbpaytype = New System.Windows.Forms.ComboBox()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCHQAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPAYTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBANKNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +91,7 @@ Partial Class MagicBoxForRecPay
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.cmbpaytype)
         Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
         Me.BlendPanel1.Controls.Add(Me.GroupBox3)
         Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
@@ -208,7 +211,7 @@ Partial Class MagicBoxForRecPay
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GBANKNAME})
+        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GPAYTYPE, Me.GBANKNAME})
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -229,79 +232,9 @@ Partial Class MagicBoxForRecPay
         DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
         Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDISSUE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDISSUE.Size = New System.Drawing.Size(920, 367)
+        Me.GRIDISSUE.Size = New System.Drawing.Size(1019, 367)
         Me.GRIDISSUE.TabIndex = 703
         Me.GRIDISSUE.TabStop = False
-        '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 40
-        '
-        'GACCNAME
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GACCNAME.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GACCNAME.HeaderText = "Bank Name"
-        Me.GACCNAME.Name = "GACCNAME"
-        Me.GACCNAME.ReadOnly = True
-        Me.GACCNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GACCNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GACCNAME.Width = 200
-        '
-        'GPARTYNAME
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GPARTYNAME.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GPARTYNAME.HeaderText = "Party Name"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.ReadOnly = True
-        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPARTYNAME.Width = 200
-        '
-        'GCHQNO
-        '
-        Me.GCHQNO.HeaderText = "Chq No"
-        Me.GCHQNO.Name = "GCHQNO"
-        Me.GCHQNO.ReadOnly = True
-        Me.GCHQNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCHQNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GCHQNO.Width = 80
-        '
-        'GCHQDATE
-        '
-        Me.GCHQDATE.HeaderText = "Chq Date"
-        Me.GCHQDATE.Name = "GCHQDATE"
-        Me.GCHQDATE.ReadOnly = True
-        Me.GCHQDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCHQDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GCHQDATE.Width = 80
-        '
-        'GCHQAMT
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCHQAMT.DefaultCellStyle = DataGridViewCellStyle5
-        Me.GCHQAMT.HeaderText = "Amt."
-        Me.GCHQAMT.Name = "GCHQAMT"
-        Me.GCHQAMT.ReadOnly = True
-        Me.GCHQAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCHQAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GBANKNAME
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBANKNAME.DefaultCellStyle = DataGridViewCellStyle6
-        Me.GBANKNAME.HeaderText = "Bank Name"
-        Me.GBANKNAME.Name = "GBANKNAME"
-        Me.GBANKNAME.ReadOnly = True
-        Me.GBANKNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBANKNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBANKNAME.Width = 200
         '
         'tstxtbillno
         '
@@ -342,7 +275,7 @@ Partial Class MagicBoxForRecPay
         Me.TXTBANKNAME.BackColor = System.Drawing.Color.White
         Me.TXTBANKNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBANKNAME.ForeColor = System.Drawing.Color.Black
-        Me.TXTBANKNAME.Location = New System.Drawing.Point(708, 64)
+        Me.TXTBANKNAME.Location = New System.Drawing.Point(799, 64)
         Me.TXTBANKNAME.Name = "TXTBANKNAME"
         Me.TXTBANKNAME.Size = New System.Drawing.Size(199, 22)
         Me.TXTBANKNAME.TabIndex = 7
@@ -641,6 +574,95 @@ Partial Class MagicBoxForRecPay
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'cmbpaytype
+        '
+        Me.cmbpaytype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbpaytype.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbpaytype.FormattingEnabled = True
+        Me.cmbpaytype.Items.AddRange(New Object() {"On Account", "New Ref.", "Advance", "Against Bill"})
+        Me.cmbpaytype.Location = New System.Drawing.Point(709, 64)
+        Me.cmbpaytype.MaxDropDownItems = 14
+        Me.cmbpaytype.Name = "cmbpaytype"
+        Me.cmbpaytype.Size = New System.Drawing.Size(90, 22)
+        Me.cmbpaytype.TabIndex = 708
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 40
+        '
+        'GACCNAME
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GACCNAME.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GACCNAME.HeaderText = "Bank Name"
+        Me.GACCNAME.Name = "GACCNAME"
+        Me.GACCNAME.ReadOnly = True
+        Me.GACCNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GACCNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GACCNAME.Width = 200
+        '
+        'GPARTYNAME
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GPARTYNAME.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GPARTYNAME.HeaderText = "Party Name"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.ReadOnly = True
+        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPARTYNAME.Width = 200
+        '
+        'GCHQNO
+        '
+        Me.GCHQNO.HeaderText = "Chq No"
+        Me.GCHQNO.Name = "GCHQNO"
+        Me.GCHQNO.ReadOnly = True
+        Me.GCHQNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCHQNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCHQNO.Width = 80
+        '
+        'GCHQDATE
+        '
+        Me.GCHQDATE.HeaderText = "Chq Date"
+        Me.GCHQDATE.Name = "GCHQDATE"
+        Me.GCHQDATE.ReadOnly = True
+        Me.GCHQDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCHQDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCHQDATE.Width = 80
+        '
+        'GCHQAMT
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCHQAMT.DefaultCellStyle = DataGridViewCellStyle5
+        Me.GCHQAMT.HeaderText = "Amt."
+        Me.GCHQAMT.Name = "GCHQAMT"
+        Me.GCHQAMT.ReadOnly = True
+        Me.GCHQAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCHQAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GPAYTYPE
+        '
+        Me.GPAYTYPE.HeaderText = "Pay Type"
+        Me.GPAYTYPE.Name = "GPAYTYPE"
+        Me.GPAYTYPE.ReadOnly = True
+        Me.GPAYTYPE.Width = 90
+        '
+        'GBANKNAME
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBANKNAME.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GBANKNAME.HeaderText = "Bank Name"
+        Me.GBANKNAME.Name = "GBANKNAME"
+        Me.GBANKNAME.ReadOnly = True
+        Me.GBANKNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBANKNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBANKNAME.Width = 200
+        '
         'MagicBoxForRecPay
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -673,13 +695,6 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents CMBACCCODE As ComboBox
     Friend WithEvents txtadd As TextBox
     Friend WithEvents GRIDISSUE As DataGridView
-    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GACCNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GPARTYNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GCHQNO As DataGridViewTextBoxColumn
-    Friend WithEvents GCHQDATE As DataGridViewTextBoxColumn
-    Friend WithEvents GCHQAMT As DataGridViewTextBoxColumn
-    Friend WithEvents GBANKNAME As DataGridViewTextBoxColumn
     Friend WithEvents tstxtbillno As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents txtsrno As TextBox
@@ -712,4 +727,13 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents cmbpaytype As ComboBox
+    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GACCNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GPARTYNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GCHQNO As DataGridViewTextBoxColumn
+    Friend WithEvents GCHQDATE As DataGridViewTextBoxColumn
+    Friend WithEvents GCHQAMT As DataGridViewTextBoxColumn
+    Friend WithEvents GPAYTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents GBANKNAME As DataGridViewTextBoxColumn
 End Class
