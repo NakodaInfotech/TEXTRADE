@@ -431,6 +431,12 @@
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.Designer.vb">
+      <DependentUpon>DesignCardDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.vb">
       <DependentUpon>AgencyOutstandingReport_BuyerDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -448,6 +454,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Design Card\DesignCardRep.vb">
+      <DependentUpon>DesignCardRep.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
@@ -2130,6 +2142,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Receipt\SelectAdjustBills.Designer.vb">
+      <DependentUpon>SelectAdjustBills.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Receipt\SelectAdjustBills.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Accounts\Registers\Group Trans Register\GroupSummaryMonthly.Designer.vb">
       <DependentUpon>GroupSummaryMonthly.vb</DependentUpon>
     </Compile>
@@ -2350,6 +2368,12 @@
       <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Magic Box\MagicBoxForInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.Designer.vb">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Magic Box\MagicBoxForRecPay.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Poster Module\Poster Order\PosterOrder.Designer.vb">
@@ -8595,6 +8619,9 @@
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.resx">
+      <DependentUpon>DesignCardDesign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_BuyerDetails.vb</LastGenOutput>
@@ -8602,6 +8629,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_SellerDetails.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DesignCardRep.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -9645,6 +9676,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramMaster.resx">
       <DependentUpon>OpeningProgramMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Receipt\SelectAdjustBills.resx">
+      <DependentUpon>SelectAdjustBills.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Registers\Group Trans Register\GroupSummaryMonthly.resx">
       <DependentUpon>GroupSummaryMonthly.vb</DependentUpon>
     </EmbeddedResource>
@@ -9755,6 +9789,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForInvoice.resx">
       <DependentUpon>MagicBoxForInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Magic Box\MagicBoxForRecPay.resx">
+      <DependentUpon>MagicBoxForRecPay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Poster Module\Poster Order\PosterOrder.resx">
       <DependentUpon>PosterOrder.vb</DependentUpon>

@@ -1,11 +1,8 @@
-﻿
-
-Imports BL
+﻿Imports BL
 Imports System.Windows.Forms
 Imports System.Globalization
 Imports System.IO
-
-Public Class ChqEnteries
+Public Class MagicBoxForRecPay
 
     Public EDIT As Boolean          'used for editing
     Dim IntResult As Integer
@@ -29,7 +26,6 @@ Public Class ChqEnteries
         GRIDISSUE.RowCount = 0
         GRIDDOUBLECLICK = False
         txtinwords.Clear()
-        getmaxno()
         If ClientName = "ABHEE" Then getmaxgrid_no()
     End Sub
 
@@ -174,87 +170,91 @@ Public Class ChqEnteries
                 Exit Sub
             End If
 
-            Dim alParaval As New ArrayList
+            'Dim alParaval As New ArrayList
 
-            alParaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
-            alParaval.Add(Val(LBLTOTALAMT.Text))
-            alParaval.Add(txtremarks.Text.Trim)
-            alParaval.Add(txtinwords.Text.Trim)
-            alParaval.Add(CmpId)
-            alParaval.Add(Userid)
-            alParaval.Add(YearId)
+            'alParaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+            'alParaval.Add(Val(LBLTOTALAMT.Text))
+            'alParaval.Add(txtremarks.Text.Trim)
+            'alParaval.Add(txtinwords.Text.Trim)
+            'alParaval.Add(CmpId)
+            'alParaval.Add(Userid)
+            'alParaval.Add(YearId)
 
-            Dim gridsrno As String = ""
-            Dim ACCNAME As String = ""
-            Dim NAME As String = ""
-            Dim CHQNO As String = ""
-            Dim CHQDATE As String = ""
-            Dim AMT As String = ""
-            Dim BANKNAME As String = ""
+            'Dim gridsrno As String = ""
+            'Dim ACCNAME As String = ""
+            'Dim NAME As String = ""
+            'Dim CHQNO As String = ""
+            'Dim CHQDATE As String = ""
+            'Dim AMT As String = ""
+            'Dim BANKNAME As String = ""
 
 
-            For Each row As Windows.Forms.DataGridViewRow In GRIDISSUE.Rows
-                If row.Cells(0).Value <> Nothing Then
-                    If gridsrno = "" Then
-                        gridsrno = row.Cells(GSRNO.Index).Value.ToString
-                        ACCNAME = row.Cells(GACCNAME.Index).Value.ToString
-                        NAME = row.Cells(GPARTYNAME.Index).Value.ToString
-                        CHQNO = row.Cells(GCHQNO.Index).Value.ToString
-                        CHQDATE = Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
-                        AMT = row.Cells(GCHQAMT.Index).Value
-                        BANKNAME = row.Cells(GBANKNAME.Index).Value.ToString
+            'For Each row As Windows.Forms.DataGridViewRow In GRIDISSUE.Rows
+            '    If row.Cells(0).Value <> Nothing Then
+            '        If gridsrno = "" Then
+            '            gridsrno = row.Cells(GSRNO.Index).Value.ToString
+            '            ACCNAME = row.Cells(GACCNAME.Index).Value.ToString
+            '            NAME = row.Cells(GPARTYNAME.Index).Value.ToString
+            '            CHQNO = row.Cells(GCHQNO.Index).Value.ToString
+            '            CHQDATE = Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
+            '            AMT = row.Cells(GCHQAMT.Index).Value
+            '            BANKNAME = row.Cells(GBANKNAME.Index).Value.ToString
 
-                    Else
-                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
-                        ACCNAME = ACCNAME & "|" & row.Cells(GACCNAME.Index).Value.ToString
-                        NAME = NAME & "|" & row.Cells(GPARTYNAME.Index).Value.ToString
-                        CHQNO = CHQNO & "|" & row.Cells(GCHQNO.Index).Value.ToString
-                        CHQDATE = CHQDATE & "|" & Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
-                        AMT = AMT & "|" & row.Cells(GCHQAMT.Index).Value
-                        BANKNAME = BANKNAME & "|" & row.Cells(GBANKNAME.Index).Value.ToString
-                    End If
-                End If
-            Next
+            '        Else
+            '            gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
+            '            ACCNAME = ACCNAME & "|" & row.Cells(GACCNAME.Index).Value.ToString
+            '            NAME = NAME & "|" & row.Cells(GPARTYNAME.Index).Value.ToString
+            '            CHQNO = CHQNO & "|" & row.Cells(GCHQNO.Index).Value.ToString
+            '            CHQDATE = CHQDATE & "|" & Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
+            '            AMT = AMT & "|" & row.Cells(GCHQAMT.Index).Value
+            '            BANKNAME = BANKNAME & "|" & row.Cells(GBANKNAME.Index).Value.ToString
+            '        End If
+            '    End If
+            'Next
 
-            alParaval.Add(gridsrno)
-            alParaval.Add(ACCNAME)
-            alParaval.Add(NAME)
-            alParaval.Add(CHQNO)
-            alParaval.Add(CHQDATE)
-            alParaval.Add(AMT)
-            alParaval.Add(BANKNAME)
+            'alParaval.Add(gridsrno)
+            'alParaval.Add(ACCNAME)
+            'alParaval.Add(NAME)
+            'alParaval.Add(CHQNO)
+            'alParaval.Add(CHQDATE)
+            'alParaval.Add(AMT)
+            'alParaval.Add(BANKNAME)
 
-            alParaval.Add(CMBTYPE.Text.Trim)
+            'alParaval.Add(CMBTYPE.Text.Trim)
 
-            Dim objCUTTING As New ClsChqEntries()
-            objCUTTING.alParaval = alParaval
-            If EDIT = False Then
-                If USERADD = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
-                Dim DTTABLE As DataTable = objCUTTING.SAVE()
-                'for saving the entry no in recptmaster or paymentmaster
+            'Dim objCUTTING As New ClsChqEntries()
+            'objCUTTING.alParaval = alParaval
+            'If EDIT = False Then
+            '    If USERADD = False Then
+            '        MsgBox("Insufficient Rights")
+            '        Exit Sub
+            '    End If
+            '    Dim DTTABLE As DataTable = objCUTTING.SAVE()
+            '    'for saving the entry no in recptmaster or paymentmaster
+            '    If CMBTYPE.Text <> "" Then
+            '        SAVERECIEPT()
+            '    End If
+            '    MsgBox("Details Added")
+            '    TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
+            '    PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
-                MsgBox("Details Added")
-                    TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
-                PRINTREPORT(DTTABLE.Rows(0).Item(0))
+            'ElseIf EDIT = True Then
+            '    If USEREDIT = False Then
+            '        MsgBox("Insufficient Rights")
+            '        Exit Sub
+            '    End If
 
-            ElseIf EDIT = True Then
-                If USEREDIT = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+            '    alParaval.Add(TEMPCHQENTNO)
+            '    IntResult = objCUTTING.UPDATE()
+            '    MsgBox("Details Updated")
+            '    PRINTREPORT(TEMPCHQENTNO)
 
-                alParaval.Add(TEMPCHQENTNO)
-                IntResult = objCUTTING.UPDATE()
-                MsgBox("Details Updated")
-                PRINTREPORT(TEMPCHQENTNO)
+            '    EDIT = False
+            'End If
 
-                EDIT = False
+            If CMBTYPE.Text <> "" Then
+                SAVERECIEPT()
             End If
-
-
             CLEAR()
             DTENTERYDATE.Focus()
 
@@ -340,7 +340,7 @@ Public Class ChqEnteries
                         alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
 
                         ' Initialize the receipt object
-                        Dim OBJCLRECEIPT As New ClsReceiptMaster()
+                        Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
                         OBJCLRECEIPT.alParaval = alparaval
 
                         ' Only save if not in edit mode
@@ -679,7 +679,7 @@ LINE1:
                 OBJEMB.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJEMB.Delete()
                 MsgBox("Cheque Entry Deleted Succesfully")
-                clear()
+                CLEAR()
                 EDIT = False
             End If
         Catch ex As Exception
@@ -752,7 +752,7 @@ LINE1:
     Private Sub cmbaccname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbaccname.Enter
         Try
             'OPEN BANK A/C AND BANK OD A/C
-            If cmbaccname.Text.Trim = "" Then fillledger(cmbaccname, edit, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            If cmbaccname.Text.Trim = "" Then fillledger(cmbaccname, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
@@ -784,7 +784,7 @@ LINE1:
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Creditors' or groupmaster.group_SECONDARY = 'Indirect Expenses' or groupmaster.group_SECONDARY = 'Direct Expenses') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-           
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -828,6 +828,39 @@ LINE1:
             If CMBTYPE.Text <> "" Then
                 getmaxgrid_no()
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbpaytype_Validated(sender As Object, e As EventArgs) Handles cmbpaytype.Validated
+        Try
+            If cmbname.Text.Trim <> "" And cmbpaytype.Text.Trim = "Against Bill" Then
+
+
+                Dim OBJSELECTBILL As New SelectAdjustBills
+                OBJSELECTBILL.CMPNAME = cmbname.Text.Trim
+                OBJSELECTBILL.AMOUNT = txtamt.Text.Trim
+                OBJSELECTBILL.ShowDialog()
+                Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
+                'For Each DTROW As DataRow In DTBILLS.Rows
+                '    GETBILL(DTROW("BILLNO"))
+                '    If txtrefno.Text.Trim <> "" And (Val(txtdebit.Text.Trim) > 0 Or Val(txtcredit.Text.Trim) > 0) And ClientName <> "SUPRIYA" Then txtcredit_Validated(sender, e)
+                'Next
+
+                'If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
+                'If SELECTEDBILLNO.Trim <> "" Then
+                '    If Not GETBILL(SELECTEDBILLNO) Then
+                '        Exit Sub
+                '    End If
+                '    txtrefno.Focus()
+                'End If
+            Else
+                MsgBox("Select Name")
+                cmbname.Focus()
+                Exit Sub
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

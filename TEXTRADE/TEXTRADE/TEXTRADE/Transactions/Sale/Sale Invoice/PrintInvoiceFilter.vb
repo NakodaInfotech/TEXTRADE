@@ -214,6 +214,7 @@ Public Class PrintInvoiceFilter
             If ClientName = "GELATO" Then CHKTRANSPORT.Text = "DUPLICATE FOR TRANSPORT"
             If ClientName = "SONU" Then CHKCUSTOMER.CheckState = CheckState.Unchecked
             If ClientName = "SUPRIYA" Then CHKOFFICE.CheckState = CheckState.Checked
+            If ClientName = "SUPEEMA" Then CHKDUPLICATE.Text = "EXPORT COPY"
             If ClientName = "CC"  Or ClientName = "C3" Then CHKRETAIL.Visible = True
         Catch ex As Exception
             Throw ex
