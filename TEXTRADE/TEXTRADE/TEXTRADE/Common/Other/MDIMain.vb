@@ -10725,5 +10725,15 @@ SKIPLINE:
         End Try
     End Sub
 
-
+    Private Sub AddNewProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewProjectToolStripMenuItem.Click
+        Try
+            Dim objCategory As New CategoryMaster
+            objCategory.frmString = "PROJECT"
+            objCategory.MdiParent = Me
+            objCategory.Show()
+            objCategory.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
