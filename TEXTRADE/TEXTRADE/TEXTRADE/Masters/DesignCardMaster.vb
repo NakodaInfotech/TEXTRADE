@@ -7,6 +7,7 @@ Imports DevExpress.Charts.Native
 Imports DevExpress.CodeParser
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
+Imports DevExpress.XtraGauges.Core.Model
 Imports DevExpress.XtraGrid.Drawing
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraPivotGrid.Design
@@ -21,6 +22,10 @@ Public Class DesignCardMaster
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Public FRMSTRING As String
+    Dim TEMPMSG As Integer
+
+
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
@@ -31,11 +36,8 @@ Public Class DesignCardMaster
             Dim IntResult As Integer
 
             Dim alParaval As New ArrayList
-            If txtcardno.ReadOnly = True Then
-                alParaval.Add(0)
-            Else
-                alParaval.Add(Val(txtcardno.Text.Trim))
-            End If
+            alParaval.Add(Val(txtcardno.Text.Trim))
+            alParaval.Add(Format(Convert.ToDateTime(DTDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBITEMNAME.Text.Trim)
             alParaval.Add(CMBDESIGNNO.Text.Trim)
 
@@ -129,7 +131,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALWEFTGRIDPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
             'DRAWING TOTAL  
             alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
-            alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
+            alParaval.Add(Val(TXTTOTALDRAWDENTS.Text.Trim))
 
             '*************************************************************************
             'GRID WARP
@@ -205,11 +207,11 @@ Public Class DesignCardMaster
                 If row.Cells(2).Value <> "" Then
                     If WARPGRIDSRNO = "" Then
                         WARPGRIDSRNO = Val(row.Cells(WPSRNO.Index).Value)
-                        WARPGRIDPE = Val(row.Cells(WPENDS.Index).Value)
+                        WARPGRIDPE = row.Cells(WPENDS.Index).Value.ToString
                         WARPGRIDSYM = row.Cells(WPSYM.Index).Value.ToString
                     Else
                         WARPGRIDSRNO = WARPGRIDSRNO & "|" & Val(row.Cells(WPSRNO.Index).Value)
-                        WARPGRIDPE = WARPGRIDPE & "|" & Val(row.Cells(WPENDS.Index).Value)
+                        WARPGRIDPE = WARPGRIDPE & "|" & row.Cells(WPENDS.Index).Value.ToString
                         WARPGRIDSYM = WARPGRIDSYM & "|" & row.Cells(WPSYM.Index).Value.ToString
                     End If
                 End If
@@ -296,11 +298,11 @@ Public Class DesignCardMaster
                 If row.Cells(SPSYM.Index).Value IsNot Nothing Then
                     If ALOTRSrNo = "" Then
                         ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
-                        ALOTRPE = Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRPE = row.Cells(SPENDS.Index).Value.ToString
                         ALOTRSym = row.Cells(SPSYM.Index).Value.ToString
                     Else
                         ALOTRSrNo = ALOTRSrNo & "|" & Val(row.Cells(SPSRNO.Index).Value)
-                        ALOTRPE = ALOTRPE & "|" & Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRPE = ALOTRPE & "|" & row.Cells(SPENDS.Index).Value.ToString
                         ALOTRSym = ALOTRSym & "|" & row.Cells(SPSYM.Index).Value.ToString
                     End If
                 End If
@@ -382,11 +384,11 @@ Public Class DesignCardMaster
                 If row.Cells(FSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
                         WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
-                        WEFTTRPE = Val(row.Cells(FPENDS.Index).Value)
+                        WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
                         WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
-                        WEFTTRPE = WEFTTRPE & "|" & Val(row.Cells(FPENDS.Index).Value)
+                        WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
                 End If
@@ -410,7 +412,7 @@ Public Class DesignCardMaster
                 If row.Cells(DSRNO.Index).Value IsNot Nothing AndAlso row.Cells(DENDS.Index).Value IsNot Nothing Then
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
-                        DRAWEnds = Val(row.Cells(DENDS.Index).Value)
+                        DRAWEnds = row.Cells(DENDS.Index).Value.ToString()
                         DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = Val(row.Cells(DREPEAT.Index).Value)
                         DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value
@@ -419,7 +421,7 @@ Public Class DesignCardMaster
                         DRAWREPEATS2 = Val(row.Cells(DREPEATS2.Index).Value)
                     Else
                         DRAWSrNo = DRAWSrNo & "|" & Val(row.Cells(DSRNO.Index).Value)
-                        DRAWEnds = DRAWEnds & "|" & Val(row.Cells(DENDS.Index).Value)
+                        DRAWEnds = DRAWEnds & "|" & row.Cells(DENDS.Index).Value.ToString()
                         DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value
                         DRAWREPEATS = DRAWREPEATS & "|" & Val(row.Cells(DREPEAT.Index).Value)
                         DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value
@@ -457,13 +459,16 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 IntResult = objDESIGN.SAVE()
+                txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
+                tempdesignno = txtcardno.Text.Trim
+
             Else
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                alParaval.Add(tempid)
+                alParaval.Add(tempdesignno)
                 IntResult = objDESIGN.UPDATE()
                 MsgBox("Details Updated")
             End If
@@ -486,7 +491,7 @@ Public Class DesignCardMaster
     End Sub
     Sub clear()
         getmax_SO_no()
-
+        DTDATE.Text = Now.Date
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
@@ -610,6 +615,11 @@ Public Class DesignCardMaster
         TXTWEFTCONS.Clear()
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
+        txttotaldentsrepeat.Clear()
+        TXTTOTALENDS.Clear()
+        TXTENDPERINCH.Clear()
+        TXTTOTALMAINENDS.Clear()
+        txtxvalue.Clear()
         'DRAWING TEXTBOXES
         TXTDRAWSRNO.Clear()
         TXTDRAWENDS.Clear()
@@ -637,6 +647,20 @@ Public Class DesignCardMaster
             Ep.SetError(CMBDESIGNNO, "Fill Design No")
             bln = False
         End If
+        If DTDATE.Text = "__/__/____" Then
+            Ep.SetError(DTDATE, " Please Enter Proper Date")
+            bln = False
+        Else
+            If Not datecheck(DTDATE.Text) Then
+                Ep.SetError(DTDATE, "Date not in Accounting Year")
+                bln = False
+            End If
+
+            If Convert.ToDateTime(DTDATE.Text).Date < SALEBLOCKDATE.Date Then
+                Ep.SetError(DTDATE, "Date is Blocked, Please make entries after " & Format(SALEBLOCKDATE.Date, "dd/MM/yyyy"))
+                bln = False
+            End If
+        End If
     End Function
 
     Private Sub DesignCardMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -656,12 +680,193 @@ Public Class DesignCardMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+                Dim OBJCMN As New ClsCommon
+                Dim objclsGRN As New ClsDesignCardMaster()
+                Dim dttable As New DataTable
+
+                dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
+
+                If dttable.Rows.Count > 0 Then
+
+                    For Each dr As DataRow In dttable.Rows
+
+                        txtcardno.Text = tempdesignno
+                        txtcardno.ReadOnly = True
+
+                        DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
+                        CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
+                        CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
+                        '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
+                        TXTREED.Text = dr("REED").ToString
+                        TXTREEDSPACE.Text = dr("REEDSPACE").ToString
+                        TXTPICKS.Text = dr("PICKS").ToString
+                        TXTMAINRS.Text = dr("MAINRS").ToString
+                        TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
+                        TXTFEPI.Text = dr("FEPI").ToString
+                        TXTFWIDTH.Text = dr("FWIDTH").ToString
+                        TXTFPPI.Text = dr("FPPI").ToString
+                        TXTFWT.Text = dr("FWT").ToString
+                        TXTDENTS.Text = dr("DENTS").ToString
+                        TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
+                        TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
+                        TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
+
+                        TXTWARPTL.Text = dr("WARPTTL").ToString
+                        TXTWEFTTL.Text = dr("WEFTTTL").ToString
+                        TXTGSM.Text = dr("GSM").ToString
+                        CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
+                        CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
+                        TXTTOTALWT.Text = Val(dr("TOTALWT"))
+                        ' Selvedge fields
+                        TXTLEFTSEL.Text = dr("LEFTSELVEDGE").ToString
+                        TXTRIGHTSEL.Text = dr("RIGHTSELVEDGE").ToString
+                        TXTLEFTSELENDS.Text = dr("LEFTSELVEDGEEND").ToString
+                        TXTRIGHTSELENDS.Text = dr("RIGHTSELVEDGEEND").ToString
+                        TXTLEFTSELDENTS.Text = dr("LEFTSELVEDGEDENTS").ToString
+                        TXTRIGHTSELDENTS.Text = dr("RIGHTSELVEDGEDENTS").ToString
+                        TXTLEFTSELTOTALENDS.Text = dr("LEFTSELVEDGETOTALEND").ToString
+                        TXTRIGHTSELTOTALENDS.Text = dr("RIGHTSELVEDGETOTALEND").ToString
+                        TXTTOTALSELENDS.Text = dr("TOTALSELVEDGEENDS").ToString
+                        ' Reference and names
+                        TXTREFNO.Text = dr("REFNO").ToString
+                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
+                        CMBAGENTNAME.Text = Convert.ToString(dr("AGENTNAME").ToString)
+                        CMBDELAT.Text = Convert.ToString(dr("DELIVERYAT").ToString)
+                        CMBGREY.Text = Convert.ToString(dr("GREY").ToString)
+                        TXTORDERNO.Text = dr("ORDERNO").ToString
+                        DELDATE.Text = Format(Convert.ToDateTime(dr("DELDATE")).Date, "dd/MM/yyyy")
+                        ORDERDATE.Text = Format(Convert.ToDateTime(dr("ORDERDATE")).Date, "dd/MM/yyyy")
+                        ' Other details
+                        TXTMTRS.Text = Val(dr("MTRS"))
+                        TXTNOOFPCS.Text = Val(dr("NOOFPCS"))
+                        CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
+                        TXTBEAMMTRS.Text = dr("BEAMMTRS").ToString
+                        TXTCOVERFACTOR.Text = dr("COVERFACTOR").ToString
+                        TXTEFFICIENCY.Text = dr("EFFICIENCY").ToString
+                        TXTLOOMPROD.Text = dr("LOOMPROD").ToString
+                        TXTRPM.Text = dr("RPM").ToString
+                        CMBGREYDELAT.Text = Convert.ToString(dr("GREYDELIVERYAT").ToString)
+                        GREYDELDATE.Text = Format(Convert.ToDateTime(dr("GREYDELDATE")).Date, "dd/MM/yyyy")
+                        ' Total Warp
+
+                        'TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
+                        'TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
+                        'TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
+                        'TXTTOTALWARPWT.Text = Val(dr("TOTALWARPWT"))
+                        'TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
+                        'TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
+                        'TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
+                        'TXTTOTALWARPGRIDPE.Text = Val(dr("TOTALWARPGRIDPE"))
+                        '' Total Selvedge
+
+                        'TXTTOTALSELPE.Text = Val(dr("TOTALSELVEDGEPE"))
+                        'TXTTOTALSELBE.Text = Val(dr("TOTALSELVEDGEBE"))
+                        'TXTTOTALSELTE.Text = Val(dr("TOTALSELVEDGETE"))
+                        'TXTTOTALSELWT.Text = Val(dr("TOTALSELVEDGEWT"))
+                        'TXTTOTALSELCONS.Text = Val(dr("TOTALSELVEDGECONS"))
+                        'TXTSELTOTALRATE.Text = Val(dr("TOTALSELVEDGERATE"))
+                        'TXTSELTOTALCOST.Text = Val(dr("TOTALSELVEDGECOST"))
+                        'TXTTOTALSELGPE.Text = Val(dr("TOTALSELVEDGEGRIDPE"))
+                        '' Total Weft
+
+                        'TXTTOTALWEFTPE.Text = Val(dr("TOTALWEFTPE"))
+                        'TXTTOTALWEFTBE.Text = Val(dr("TOTALWEFTBE"))
+                        'TXTTOTALWEFTTE.Text = Val(dr("TOTALWEFTTE"))
+                        'TXTTOTALWEFTWT.Text = Val(dr("TOTALWEFTWT"))
+                        'TXTTOTALWEFTCONS.Text = Val(dr("TOTALWEFTCONS"))
+                        'TXTTOTALWEFTRATE.Text = Val(dr("TOTALWEFTRATE"))
+                        'TXTTOTALWEFTCOST.Text = Val(dr("TOTALWEFTCOST"))
+                        'TXTTOTALWEFTGRIDPE.Text = Val(dr("TOTALWEFTGRIDPE"))
+                        '' Total DRAWING 
+
+                        'TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
+                        'TXTTOTALDRAWDENTS.Text = Val(dr("TOTALDRAWDENTS"))
+
+
+
+
+
+                    Next
+                    'cmbtype.Enabled = False
+
+                    'TOTAL()
+
+                    'warp gridmatching data serializations
+                    Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSRNO, 0) AS WARPGRIDSRNO, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPPE, 0) AS WARPPE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPBE, 0) AS WARPBE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPTE, 0) AS WARPTE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPWT, 0) AS WARPWT, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCONS, 0) AS WARPCONS, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPRATE, 0) AS WARPRATE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCOST, 0) AS WARPCOST ", "", " DESIGNCARD_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = DESIGNCARD_WARPMATCHING.DESIGN_WARPMILLID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = DESIGNCARD_WARPMATCHING.DESIGN_WARPCOLORID  ", " AND  DESIGNCARD_WARPMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
+                    If dttable1.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable1.Rows
+                            GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.00"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
+                        Next
+                    End If
+                    ' Warp Gridpattern data serializations
+                    Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, '') AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
+                    If dttable2.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable2.Rows
+                            GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), DTR("WARPPATTERNGRIDPE"), DTR("WARPPATTERNGRIDSYM").ToString)
+                        Next
+                    End If
+                    ' Selvedge Grid data serialization
+                    Dim dttable3 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESRNO, 0) AS SELVEDGEGRIDSRNO, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESYM, '') AS SELVEDGEGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS SELVEDGEYARNQUALITY, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDENIER, 0) AS SELVEDGEDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS SELVEDGEMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SELVEDGESHADE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEPE, 0) AS SELVEDGEPE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEBE, 0) AS SELVEDGEBE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDTE, 0) AS SELVEDGETE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEWT, 0) AS SELVEDGEWT, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECONS, 0) AS SELVEDGECONS, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGERATE, 0) AS SELVEDGERATE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOST, 0) AS SELVEDGECOST ", "", " DESIGNCARD_SELVEDGEMATCHING LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEYARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOLORID = COLORMASTER.COLOR_id   ", " AND  DESIGNCARD_SELVEDGEMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEGRIDSRNO")
+                    If dttable3.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable3.Rows
+                            GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.00"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
+                        Next
+                    End If
+                    ' Selvedge Gridpattern data serializations
+                    Dim dttable4 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS SELVEDGEPATTERNGRIDSRNO, ISNULL(DESIGN_SELVEDGEPE, '') AS SELVEDGEPATTERNGRIDPE, ISNULL(DESIGN_SELVEDGESYM, '') AS SELVEDGEPATTERNGRIDSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEPATTERNGRIDSRNO")
+                    If dttable4.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable4.Rows
+                            GRIDSELVEDGEPATTERN.Rows.Add(DTR("SELVEDGEPATTERNGRIDSRNO"), DTR("SELVEDGEPATTERNGRIDPE"), DTR("SELVEDGEPATTERNGRIDSYM").ToString)
+                        Next
+                    End If
+                    ' Weft Grid data serialization
+                    Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTPE, 0) AS WEFTPE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTBE, 0) AS WEFTBE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTTE, 0) AS WEFTTE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTWT, 0) AS WEFTWT, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCONS, 0) AS WEFTCONS, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTRATE, 0) AS WEFTRATE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOST, 0) AS WEFTCOST", "", " DESIGNCARD_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  DESIGNCARD_WEFTMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
+                    If dttable5.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable5.Rows
+                            GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.00"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
+                        Next
+                    End If
+                    ' Weft GridPattern data serialization
+                    Dim dttable6 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WEFTPATTERNGRIDSRNO, ISNULL(DESIGN_WEFTPE, '') AS WEFTPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WEFTPATTERNGRIDSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WEFTPATTERNGRIDSRNO")
+                    If dttable6.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable6.Rows
+                            GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), DTR("WEFTPATTERNGRIDPE"), DTR("WEFTPATTERNGRIDSYM").ToString)
+                        Next
+                    End If
+                    'DRAWING FIELD
+                    Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
+                    If dttable7.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable7.Rows
+                            GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
+
+                        Next
+                    End If
+                    TOTAL()
+                    CALC()
+
+                End If
             End If
 
+            'If GRIDSELVEDGE.RowCount > 0 Then
+            '    txtcardno.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
+            'Else
+            '    txtcardno.Text = 1
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+    Sub TOTAL()
+        TOTALSELVEDGE()
+        TOTALSELVEDGEPATTERN()
+        GETSELPE()
+        GETWARPPE()
+        GETWEFTPE()
+        cmdbtn1_Click(Nothing, Nothing)
+        Button2_Click(Nothing, Nothing)
+        Button1_Click(Nothing, Nothing)
+    End Sub
+
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -1267,25 +1472,25 @@ Public Class DesignCardMaster
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
 
-        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text)
-        If TXTREED.Text <> "" Then TXTDENTS.Text = Val(TXTREED.Text) / 2
-        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Val(TXTDENTS.Text) * Val(TXTMAINRS.Text)
-        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text)
-        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text)
-        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text)
-        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text)
-        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text)
-        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text)
-        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text)
-        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text)
+        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
+        If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
+        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
+        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
+        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
+        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
+        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
         If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
             Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             Dim result As Double = totalDents * totalDrawEnds
             TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
         End If
-        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text)
-        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text)
+        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0.00")
+        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
@@ -1672,7 +1877,7 @@ Public Class DesignCardMaster
                 fillwarppatterngrid()
                 GETWARPPE()
             Else
-                MsgBox("Please Enter Symbol and P.E.")
+                MsgBox("Please Enter Symbol And P.E.")
             End If
         Catch ex As Exception
             Throw ex
@@ -1767,7 +1972,7 @@ Public Class DesignCardMaster
         Try
             If TXTWARPSYMBOL.Text <> "" And GRIDWARP.RowCount > 0 Then
                 For Each row As DataGridViewRow In GRIDWARP.Rows
-                    If TXTWARPSYMBOL.Text = row.Cells(WSYM.Index).Value Then
+                    If TXTWARPSYMBOL.Text = row.Cells(WSYM.Index).Value AndAlso GRIDDOUBLECLICK = False Then
                         MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
                         e.Cancel = True
                         TXTWARPSYMBOL.Focus()
@@ -1783,7 +1988,7 @@ Public Class DesignCardMaster
         Try
             If TXTWEFTSYMBOL.Text <> "" And GRIDWEFT.RowCount > 0 Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    If TXTWEFTSYMBOL.Text = row.Cells(FSYM.Index).Value Then
+                    If TXTWEFTSYMBOL.Text = row.Cells(FSYM.Index).Value AndAlso GRIDWEFTDOUBLECLICK = False Then
                         MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
                         e.Cancel = True
                         TXTWEFTSYMBOL.Focus()
@@ -1816,122 +2021,6 @@ Public Class DesignCardMaster
             e.Handled = True
         End If
     End Sub
-    ' Collect repeat blocks with start/end and repeat counts
-    'Private Function CollectRepeatBlockRows(grid As DataGridView, repeatMarkCol As Integer, repeatCol As Integer) As List(Of Tuple(Of Integer, Integer, Integer))
-    '    Dim repeatBlocks As New List(Of Tuple(Of Integer, Integer, Integer)) ' (start, end, repeatCount)
-    '    Dim startRow As Integer = -1
-    '    For Each row As DataGridViewRow In grid.Rows
-    '        If row.IsNewRow Then Continue For
-    '        Dim mark = CStr(row.Cells(repeatMarkCol).Value)
-    '        If Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("Start") Then
-    '            startRow = row.Index
-    '        ElseIf Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
-    '            Dim repeatVal = row.Cells(repeatCol).Value
-    '            Dim repeatCount As Integer = 1
-    '            If repeatVal IsNot Nothing AndAlso Integer.TryParse(CStr(repeatVal), repeatCount) AndAlso repeatCount >= 1 Then
-    '                ' Use parsed repeatCount or default to 1
-    '            End If
-    '            repeatBlocks.Add(Tuple.Create(startRow, row.Index, repeatCount))
-    '            startRow = -1
-    '        End If
-    '    Next
-    '    Return repeatBlocks
-    'End Function
-
-    'Public Sub TOTALDRAWDENTS(grid As DataGridView)
-
-    '    Dim totalEnds As Integer = 0
-    '    Dim totalDents As Integer = 0
-
-    '    ' Define repeat column pairs (column name for Repeat Mark, Repeats)
-    '    Dim repeatColumnPairs As New List(Of Tuple(Of String, String)) From {
-    '    Tuple.Create("DREPEATMARK2", "DREPEATS2"),
-    '    Tuple.Create("DREPEATMARK1", "DREPEATS1"),
-    '    Tuple.Create("DREPEATMARK", "DREPEAT")
-    '}
-
-    '    Dim colIndexes As New List(Of Tuple(Of Integer, Integer))()
-    '    For Each pair In repeatColumnPairs
-    '        Dim markIndex = GetColIndex(grid, pair.Item1)
-    '        Dim repeatsIndex = GetColIndex(grid, pair.Item2)
-    '        colIndexes.Add(Tuple.Create(markIndex, repeatsIndex))
-    '    Next
-
-    '    Dim endsColIndex As Integer = GetColIndex(grid, "DENDS")
-    '    If endsColIndex = -1 Then
-    '        TXTTOTALDRAWENDS.Text = "0"
-    '        TXTTOTALDRAWDENTS.Text = "0"
-    '        Return
-    '    End If
-
-    '    ' Handles all repeat columns one by one: outer loop for each level
-    '    Dim usedRows As New HashSet(Of Integer)()
-    '    For colLevel = 0 To colIndexes.Count - 1
-    '        Dim markCol = colIndexes(colLevel).Item1
-    '        Dim repeatsCol = colIndexes(colLevel).Item2
-    '        If markCol = -1 Or repeatsCol = -1 Then Continue For
-
-    '        ' Stack to track start of each block
-    '        Dim blockStack As New Stack(Of Integer)()
-
-    '        For i = 0 To grid.Rows.Count - 1
-    '            Dim row = grid.Rows(i)
-    '            If row.IsNewRow Or usedRows.Contains(i) Then Continue For
-
-    '            Dim cellVal = Convert.ToString(row.Cells(markCol).Value)?.Trim()?.ToLower()
-    '            If Not String.IsNullOrEmpty(cellVal) Then
-    '                If cellVal.StartsWith("start") Then
-    '                    blockStack.Push(i)
-    '                ElseIf cellVal.StartsWith("end") AndAlso blockStack.Count > 0 Then
-    '                    Dim startRow = blockStack.Pop()
-    '                    ' Calculate block's ends and dents
-    '                    Dim blockEnds As Integer = 0
-    '                    Dim blockDents As Integer = 0
-    '                    For j = startRow To i
-    '                        If grid.Rows(j).IsNewRow Then Continue For
-    '                        Dim endsVal = Convert.ToString(grid.Rows(j).Cells(endsColIndex).Value)
-    '                        If Not String.IsNullOrWhiteSpace(endsVal) Then
-    '                            blockEnds += endsVal.Split("."c).Length
-    '                        End If
-    '                        blockDents += 1
-    '                        usedRows.Add(j) ' Mark these rows as processed
-    '                    Next
-
-    '                    Dim repeatCount As Integer = 1
-    '                    Dim repeatVal = grid.Rows(i).Cells(repeatsCol).Value
-    '                    If repeatVal IsNot Nothing AndAlso Integer.TryParse(repeatVal.ToString(), repeatCount) AndAlso repeatCount > 0 Then
-    '                        ' valid
-    '                    Else
-    '                        repeatCount = 1
-    '                    End If
-
-    '                    totalEnds += blockEnds * repeatCount
-    '                    totalDents += blockDents * repeatCount
-    '                End If
-    '            End If
-    '        Next
-    '    Next
-
-    '    ' Any remaining rows not counted (not inside any repeat block)
-    '    For i = 0 To grid.Rows.Count - 1
-    '        Dim row = grid.Rows(i)
-    '        If row.IsNewRow Or usedRows.Contains(i) Then Continue For
-    '        Dim endsVal = Convert.ToString(row.Cells(endsColIndex).Value)
-    '        If Not String.IsNullOrWhiteSpace(endsVal) Then
-    '            totalEnds += endsVal.Split("."c).Length
-    '        End If
-    '        totalDents += 1
-    '    Next
-
-    '    TXTTOTALDRAWENDS.Text = totalEnds.ToString()
-    '    TXTTOTALDRAWDENTS.Text = totalDents.ToString()
-    'End Sub
-    'Private Function GetColIndex(grid As DataGridView, colName As String) As Integer
-    '    For Each col As DataGridViewColumn In grid.Columns
-    '        If col.Name = colName Then Return col.Index
-    '    Next
-    '    Return -1
-    'End Function
 
     Sub FILLDRAWGRID()
         If TXTDRAWENDS.Text.Trim = "" Then
@@ -1964,84 +2053,6 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
-
-    'Private Sub GRIDDRAWING_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDDRAWING.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = DREPEATMARK.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK.Index, DREPEAT.Index)
-    '    ElseIf e.ColumnIndex = DREPEATMARK1.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK1.Index, DREPEATS1.Index)
-    '    ElseIf e.ColumnIndex = DREPEATMARK2.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK2.Index, DREPEATS2.Index)
-    '    End If
-    'End Sub
-    'Private Sub HandleRepeatMarkToggle(grid As DataGridView, rowIndex As Integer, repeatMarkColIndex As Integer, repeatsColIndex As Integer)
-    '    Try
-    '        Dim row = (grid).Rows(rowIndex)
-
-    '        ' Collect existing block numbers for this repeat mark column
-    '        Dim existingBlocks As New HashSet(Of Integer)
-    '        For Each r As DataGridViewRow In grid.Rows
-    '            If Not r.IsNewRow Then
-    '                Dim val As String = Convert.ToString(r.Cells(repeatMarkColIndex).Value)
-    '                If Not String.IsNullOrEmpty(val) Then
-    '                    Dim parts = val.Split(" "c)
-    '                    If parts.Length = 2 AndAlso (parts(0).ToLower().StartsWith("start") Or parts(0).ToLower().StartsWith("end")) Then
-    '                        Dim blockNum As Integer
-    '                        If Integer.TryParse(parts(1), blockNum) Then existingBlocks.Add(blockNum)
-    '                    End If
-    '                End If
-    '            End If
-    '        Next
-
-    '        ' Determine next block number
-    '        Dim nextBlockNum As Integer = 1
-    '        While existingBlocks.Contains(nextBlockNum)
-    '            nextBlockNum += 1
-    '        End While
-
-    '        ' Find unmatched Start blocks in this column
-    '        Dim unmatchedStartBlockNum As Integer = -1
-    '        For i = 0 To grid.Rows.Count - 1
-    '            Dim currRow = grid.Rows(i)
-    '            If Not currRow.IsNewRow Then
-    '                Dim val As String = Convert.ToString(currRow.Cells(repeatMarkColIndex).Value)
-    '                If val IsNot Nothing AndAlso val.ToLower().StartsWith("start") Then
-    '                    Dim parts = val.Split(" "c)
-    '                    Dim startNum As Integer
-    '                    If parts.Length = 2 AndAlso Integer.TryParse(parts(1), startNum) Then
-    '                        Dim hasEnd As Boolean = False
-    '                        For j = i + 1 To grid.Rows.Count - 1
-    '                            Dim endVal As String = Convert.ToString(grid.Rows(j).Cells(repeatMarkColIndex).Value)
-    '                            If endVal IsNot Nothing AndAlso endVal.ToLower() = $"end {startNum}" Then
-    '                                hasEnd = True
-    '                                Exit For
-    '                            End If
-    '                        Next
-    '                        If Not hasEnd Then
-    '                            unmatchedStartBlockNum = startNum
-    '                        End If
-    '                    End If
-    '                End If
-    '            End If
-    '        Next
-
-    '        If unmatchedStartBlockNum <> -1 Then
-    '            ' Mark End for last unmatched Start
-    '            row.Cells(repeatMarkColIndex).Value = $"End {unmatchedStartBlockNum}"
-    '            grid.CurrentCell = row.Cells(repeatsColIndex)
-    '            grid.BeginEdit(True)
-    '        Else
-    '            ' Mark new Start block
-    '            row.Cells(repeatMarkColIndex).Value = $"Start {nextBlockNum}"
-    '        End If
-
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error: " & ex.Message)
-    '    End Try
-    'End Sub
-
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
@@ -2049,7 +2060,7 @@ Public Class DesignCardMaster
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
                     If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
-                        MessageBox.Show("Please enter a positive integer for repeats.")
+                        MessageBox.Show("Please enter a positive Integer For repeats.")
                         e.Cancel = True
                     End If
                 End If
@@ -2070,7 +2081,7 @@ Public Class DesignCardMaster
                 FILLWEFTPATTERNGRID()
                 GETWEFTPE()
             Else
-                MsgBox("Please Enter Symbol and P.E.")
+                MsgBox("Please Enter Symbol And P.E.")
             End If
         Catch ex As Exception
             Throw ex
@@ -2083,7 +2094,7 @@ Public Class DesignCardMaster
             If CMBWARPQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER", "", "  YARNQUALITYMASTER  ", "  and YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER", "", "  YARNQUALITYMASTER  ", "  And YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWARPDENIER.Text = DT2.Rows(0).Item("DENIER")
                 End If
@@ -2286,6 +2297,155 @@ Public Class DesignCardMaster
         End Try
     End Sub
 
+    Private Sub Toolprevious_Click(sender As Object, e As EventArgs) Handles Toolprevious.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Cursor.Current = Cursors.WaitCursor
+
+            GRIDSELVEDGE.RowCount = 0
+LINE1:
+            'temptypename = cmbtype.Text.Trim
+            tempdesignno = Val(txtcardno.Text) - 1
+            If tempdesignno > 0 Then
+                EDIT = True
+                DesignCardMaster_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+            If GRIDSELVEDGE.RowCount = 0 And tempdesignno > 1 Then
+                txtcardno.Text = tempdesignno
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub toolnext_Click(sender As Object, e As EventArgs) Handles toolnext.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            GRIDSELVEDGE.RowCount = 0
+LINE1:
+            tempdesignno = Val(txtcardno.Text) + 1
+            'temptypename = cmbtype.Text.Trim
+            getmaxno()
+            Dim MAXNO As Integer = txtcardno.Text.Trim
+            clear()
+            If Val(txtcardno.Text) - 1 >= tempdesignno Then
+                EDIT = True
+                DesignCardMaster_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+            If GRIDSELVEDGE.RowCount = 0 And tempdesignno < MAXNO Then
+                txtcardno.Text = tempdesignno
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub getmaxno()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(DESIGN_CARDNO),0) + 1 ", "DESIGNCARD", " AND  DESIGN_CMPID=" & CmpId & " and DESIGN_LOCATIONID=" & Locationid & " and DESIGN_YEARID=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            txtcardno.Text = DTTABLE.Rows(0).Item(0)
+        End If
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If EDIT = True Then
+                PRINTREPORT(tempdesignno)
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub PRINTREPORT(ByVal CARDNO As Integer)
+
+        If MsgBox("Wish to Print Design Card ?", MsgBoxStyle.YesNo) = vbYes Then
+            Dim OBJCARD As New DesignCardDesign
+            OBJCARD.MdiParent = MDIMain
+            OBJCARD.FRMSTRING = "DESIGNCARD"
+            OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
+            OBJCARD.Show()
+        End If
+    End Sub
+
+    Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
+        cmdok_Click(sender, e)
+    End Sub
+
+    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+        Try
+
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+
+            Dim objgrndetails As New DesignCardMasterDetails
+            objgrndetails.MdiParent = MDIMain
+            objgrndetails.FRMSTRING = FRMSTRING
+            objgrndetails.Show()
+            objgrndetails.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLDELETE_Click(sender As Object, e As EventArgs) Handles TOOLDELETE.Click
+        Try
+            Call cmddelete_Click(sender, e)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
+        Dim IntResult As Integer
+        Try
+
+            If EDIT = True Then
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                TEMPMSG = MsgBox("Delete Design Card ?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbYes Then
+                    Dim alParaval As New ArrayList
+                    alParaval.Add(txtcardno.Text.Trim)
+                    alParaval.Add(CmpId)
+                    alParaval.Add(Locationid)
+                    alParaval.Add(YearId)
+
+                    Dim Clsgrn As New ClsDesignCardMaster()
+                    Clsgrn.alParaval = alParaval
+                    IntResult = Clsgrn.Delete()
+                    MsgBox("Design Card Deleted")
+                    clear()
+                    EDIT = False
+                End If
+            Else
+                MsgBox("Delete Is only In Edit Mode")
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBWEFTYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Validated
         Try
             If CMBWEFTYARNQUALITY.Text <> "" Then
@@ -2355,26 +2515,33 @@ Public Class DesignCardMaster
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            ' Check if the "SYM" column is being edited
+            ' Proceed only if the column being edited is "WPSYM"
             If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
                 Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
 
-                ' Search for a matching value in the SYM column of the big grid
-                Dim matchFound As Boolean = False
-                For Each row As DataGridViewRow In GRIDWARP.Rows
-                    If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing AndAlso
-                inputValue = row.Cells("WSYM").Value.ToString().Trim() Then
-                        matchFound = True
-                        Exit For
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDWARP.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
                     End If
-                Next
-
-                If Not matchFound Then
-                    MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    e.Cancel = True ' Block the edit!
                 End If
             End If
-            If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
+                If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
@@ -2623,4 +2790,5 @@ Public Class DesignCardMaster
     Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
         GRIDSELVEDGEPATTERN.RowCount = 1
     End Sub
+
 End Class

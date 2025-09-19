@@ -455,14 +455,11 @@
       <DependentUpon>CoverNoteReport_SNCM.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Design Card\JobOrderReport.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\Design Card\DesignCardReport.vb">
+    <Compile Include="Reports\Crystal Reports\Design Card\DesignCardRep.vb">
+      <DependentUpon>DesignCardRep.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DesignCardReport.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
@@ -8627,9 +8624,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_SellerDetails.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardRep.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>DesignCardReport.vb</LastGenOutput>
+      <LastGenOutput>DesignCardRep.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

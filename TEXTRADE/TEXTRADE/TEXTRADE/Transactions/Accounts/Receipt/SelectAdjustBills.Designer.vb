@@ -126,6 +126,7 @@ Partial Class SelectAdjustBills
         Me.gridrec.OptionsCustomization.AllowQuickHideColumns = False
         Me.gridrec.OptionsView.ColumnAutoWidth = False
         Me.gridrec.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.gridrec.OptionsView.ShowFooter = True
         Me.gridrec.OptionsView.ShowGroupPanel = False
         '
         'GCHK
@@ -223,6 +224,8 @@ Partial Class SelectAdjustBills
         'GADJUSTAMT
         '
         Me.GADJUSTAMT.Caption = "Adjust Amt"
+        Me.GADJUSTAMT.DisplayFormat.FormatString = "0.00"
+        Me.GADJUSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GADJUSTAMT.FieldName = "ADJUSTAMT"
         Me.GADJUSTAMT.Name = "GADJUSTAMT"
         Me.GADJUSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})

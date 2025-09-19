@@ -1,7 +1,11 @@
-﻿Imports BL
-Imports System.Windows.Forms
+﻿Imports System.ComponentModel
 Imports System.Globalization
 Imports System.IO
+Imports System.Windows.Forms
+Imports BL
+Imports DevExpress.DataProcessing.InMemoryDataProcessor
+Imports DevExpress.XtraRichEdit.Model
+Imports iTextSharp
 Public Class MagicBoxForRecPay
 
     Public EDIT As Boolean          'used for editing
@@ -21,7 +25,8 @@ Public Class MagicBoxForRecPay
         cmbname.Text = ""
         TXTCHQNO.Clear()
         txtremarks.Clear()
-        CMBTYPE.Enabled = True
+        CMBBUYER.Text = ""
+        CMBSELLER.Text = ""
         LBLTOTALAMT.Text = 0.0
         GRIDISSUE.RowCount = 0
         GRIDDOUBLECLICK = False
@@ -41,6 +46,14 @@ Public Class MagicBoxForRecPay
 
             If GRIDISSUE.RowCount = 0 Then
                 EP.SetError(GRIDISSUE, "Fill Item Details")
+                bln = False
+            End If
+            If CMBSELLER.Text.Trim.Length = 0 Then
+                EP.SetError(cmbname, " Please Fill Seller Name ")
+                bln = False
+            End If
+            If CMBBUYER.Text.Trim.Length = 0 Then
+                EP.SetError(cmbname, " Please Fill Buyer Name ")
                 bln = False
             End If
 
@@ -110,6 +123,8 @@ Public Class MagicBoxForRecPay
             'getmaxno_receiptmaster()
             fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            If CMBBUYER.Text.Trim = "" Then FILLNAME(CMBBUYER, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
             CLEAR()
             If EDIT = True Then
 
@@ -170,91 +185,122 @@ Public Class MagicBoxForRecPay
                 Exit Sub
             End If
 
-            'Dim alParaval As New ArrayList
+            Dim DTTABLE As DataTable
+            Dim alparaval As New ArrayList()
 
-            'alParaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
-            'alParaval.Add(Val(LBLTOTALAMT.Text))
-            'alParaval.Add(txtremarks.Text.Trim)
-            'alParaval.Add(txtinwords.Text.Trim)
-            'alParaval.Add(CmpId)
-            'alParaval.Add(Userid)
-            'alParaval.Add(YearId)
+            ' Create a HashSet to track unique entries
+            Dim addedEntries As New HashSet(Of String)
 
-            'Dim gridsrno As String = ""
-            'Dim ACCNAME As String = ""
-            'Dim NAME As String = ""
-            'Dim CHQNO As String = ""
-            'Dim CHQDATE As String = ""
-            'Dim AMT As String = ""
-            'Dim BANKNAME As String = ""
+            For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+                If ROW.Cells(0).Value IsNot Nothing Then
+                    ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
+                    Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
+                                     ROW.Cells(GACCNAME.Index).Value.ToString() &
+                                     ROW.Cells(GPARTYNAME.Index).Value.ToString()
 
+                    ' If the entry has already been added, skip it
+                    If addedEntries.Contains(entryKey) Then
+                        Continue For
+                    End If
 
-            'For Each row As Windows.Forms.DataGridViewRow In GRIDISSUE.Rows
-            '    If row.Cells(0).Value <> Nothing Then
-            '        If gridsrno = "" Then
-            '            gridsrno = row.Cells(GSRNO.Index).Value.ToString
-            '            ACCNAME = row.Cells(GACCNAME.Index).Value.ToString
-            '            NAME = row.Cells(GPARTYNAME.Index).Value.ToString
-            '            CHQNO = row.Cells(GCHQNO.Index).Value.ToString
-            '            CHQDATE = Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
-            '            AMT = row.Cells(GCHQAMT.Index).Value
-            '            BANKNAME = row.Cells(GBANKNAME.Index).Value.ToString
+                    ' Add this entry to the HashSet to prevent duplicates
+                    addedEntries.Add(entryKey)
 
-            '        Else
-            '            gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
-            '            ACCNAME = ACCNAME & "|" & row.Cells(GACCNAME.Index).Value.ToString
-            '            NAME = NAME & "|" & row.Cells(GPARTYNAME.Index).Value.ToString
-            '            CHQNO = CHQNO & "|" & row.Cells(GCHQNO.Index).Value.ToString
-            '            CHQDATE = CHQDATE & "|" & Format(Convert.ToDateTime(row.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy")
-            '            AMT = AMT & "|" & row.Cells(GCHQAMT.Index).Value
-            '            BANKNAME = BANKNAME & "|" & row.Cells(GBANKNAME.Index).Value.ToString
-            '        End If
-            '    End If
-            'Next
+                    ' Add the row values to alparaval
+                    alparaval.Clear()
+                    alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
+                    alparaval.Add("RECEIPT")
+                    alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+                    alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
+                    alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
+                    alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
+                    alparaval.Add(ROW.Cells(GCHQNO.Index).Value.ToString())
+                    alparaval.Add(txtremarks.Text.Trim())
+                    alparaval.Add("") 'TXTBILLREMARKS.Text.Trim()
+                    alparaval.Add("") 'TXTOURREMARKS.Text.Trim()
+                    alparaval.Add("") 'txtinwords.Text.Trim()
+                    alparaval.Add(0) 'CHKPDC
+                    alparaval.Add("") 'CHKRECO
+                    alparaval.Add(CmpId)
+                    alparaval.Add(Locationid)
+                    alparaval.Add(Userid)
+                    alparaval.Add(YearId)
+                    alparaval.Add(0)
 
-            'alParaval.Add(gridsrno)
-            'alParaval.Add(ACCNAME)
-            'alParaval.Add(NAME)
-            'alParaval.Add(CHQNO)
-            'alParaval.Add(CHQDATE)
-            'alParaval.Add(AMT)
-            'alParaval.Add(BANKNAME)
+                    Dim pgridsrno As String = ""
+                    Dim paytype As String = ""
+                    Dim billINITIALS As String = ""
+                    Dim narr As String = ""
+                    Dim amt As String = ""
+                    Dim AMTPAID As String = ""
+                    Dim EXTRAAMT As String = ""
+                    Dim RETURNAMT As String = ""
+                    Dim BALANCE As String = ""
 
-            'alParaval.Add(CMBTYPE.Text.Trim)
+                    Dim billNos() As String = ROW.Cells(GAMOUNT.Index).Value.ToString().Split("|"c)
+                    For i As Integer = 0 To billNos.Length - 1
+                        If ROW.Cells(GAMOUNT.Index).Value.ToString() <> Nothing Then
+                            If pgridsrno = "" Then
 
-            'Dim objCUTTING As New ClsChqEntries()
-            'objCUTTING.alParaval = alParaval
-            'If EDIT = False Then
-            '    If USERADD = False Then
-            '        MsgBox("Insufficient Rights")
-            '        Exit Sub
-            '    End If
-            '    Dim DTTABLE As DataTable = objCUTTING.SAVE()
-            '    'for saving the entry no in recptmaster or paymentmaster
-            '    If CMBTYPE.Text <> "" Then
-            '        SAVERECIEPT()
-            '    End If
-            '    MsgBox("Details Added")
-            '    TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
-            '    PRINTREPORT(DTTABLE.Rows(0).Item(0))
+                                pgridsrno = 1
+                                paytype = ROW.Cells(GPAYTYPE.Index).Value.ToString()
+                                ' billINITIALS = ""
+                                narr = ""
+                                'amt = Val(row.Cells(gamt.Index).Value)
+                                AMTPAID = ""
+                                EXTRAAMT = "" ' row.Cells(GEXTRAAMT.Index).Value
+                                RETURNAMT = "" 'row.Cells(GRETURN.Index).Value
+                                BALANCE = "" 'row.Cells(GBALANCE.Index).Value
+                            Else
+                                pgridsrno = pgridsrno & "|" & pgridsrno + 1
+                                paytype = paytype & "|" & ROW.Cells(GPAYTYPE.Index).Value.ToString()
+                                'billINITIALS = billINITIALS & "|" & row.Cells(GBILLNO.Index).Value.ToString
+                                narr = narr & "|" & ""
+                                'amt = amt & "|" & Val(row.Cells(gamt.Index).Value)
+                                AMTPAID = AMTPAID & "|" & "" 'row.Cells(GAMTPAID.Index).Value
+                                EXTRAAMT = EXTRAAMT & "|" & "" 'row.Cells(GEXTRAAMT.Index).Value
+                                RETURNAMT = RETURNAMT & "|" & "" 'row.Cells(GRETURN.Index).Value
+                                BALANCE = BALANCE & "|" & "" 'row.Cells(GBALANCE.Index).Value
+                            End If
+                        End If
+                    Next
 
-            'ElseIf EDIT = True Then
-            '    If USEREDIT = False Then
-            '        MsgBox("Insufficient Rights")
-            '        Exit Sub
-            '    End If
+                    alparaval.Add(pgridsrno)
+                    alparaval.Add(paytype)
+                    alparaval.Add(ROW.Cells(GBILLNO.Index).Value.ToString())
+                    alparaval.Add(narr)
+                    alparaval.Add(ROW.Cells(GAMOUNT.Index).Value.ToString())
+                    alparaval.Add(AMTPAID)
+                    alparaval.Add(EXTRAAMT)
+                    alparaval.Add(RETURNAMT)
+                    alparaval.Add(BALANCE)
 
-            '    alParaval.Add(TEMPCHQENTNO)
-            '    IntResult = objCUTTING.UPDATE()
-            '    MsgBox("Details Updated")
-            '    PRINTREPORT(TEMPCHQENTNO)
+                    alparaval.Add("") 'dgridsrno
+                    alparaval.Add("") 'descledgername
+                    alparaval.Add("") 'descnarration
+                    alparaval.Add("") 'descamount
+                    alparaval.Add("") 'DESCPAYGRIDSRNO
+                    alparaval.Add("") 'DESCPAYBILLINITIALS
+                    alparaval.Add("") 'CMBPARTYBANK.Text.Trim
+                    alparaval.Add("") 'TXTSPECIALREMARKS.Text.Trim
+                    alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
 
-            '    EDIT = False
-            'End If
+                    ' Initialize the receipt object
+                    Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
+                    OBJCLRECEIPT.alParaval = alparaval
 
-            If CMBTYPE.Text <> "" Then
-                SAVERECIEPT()
-            End If
+                    ' Only save if not in edit mode
+                    If Not EDIT Then
+                        If Not USERADD Then
+                            MsgBox("Insufficient Rights")
+                            Exit Sub
+                        End If
+                        DTTABLE = OBJCLRECEIPT.SAVE()
+                    End If
+                End If
+            Next
+
+            SAVERECIEPT()
             CLEAR()
             DTENTERYDATE.Focus()
 
@@ -264,12 +310,12 @@ Public Class MagicBoxForRecPay
     End Sub
     Sub getmaxgrid_no()
         Dim DTTABLE As New DataTable
-        If CMBTYPE.Text = "RECEIPT" Then
+        If CMBBUYER.Text = "RECEIPT" Then
             DTTABLE = getmax(" isnull(max(RECEIPT_no),0) + 1 ", "RECEIPTMASTER", " AND RECEIPT_cmpid=" & CmpId & " and RECEIPT_locationid=" & Locationid & " and RECEIPT_yearid=" & YearId)
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
             End If
-        ElseIf CMBTYPE.Text = "PAYMENT" Then
+        ElseIf CMBBUYER.Text = "PAYMENT" Then
             DTTABLE = getmax(" isnull(max(PAYMENT_no),0) + 1 ", "PAYMENTMASTER", " AND PAYMENT_cmpid=" & CmpId & " and PAYMENT_locationid=" & Locationid & " and PAYMENT_yearid=" & YearId)
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
@@ -277,89 +323,46 @@ Public Class MagicBoxForRecPay
         End If
     End Sub
     Sub SAVERECIEPT()
-        Try
-            If CMBTYPE.Text = "RECEIPT" Then
-                Dim DTTABLE As DataTable
-                Dim alparaval As New ArrayList()
+        'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
+        'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE INVOICE IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+        Dim OBJCMN As New ClsCommon
+        Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
+        Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & CMBBUYER.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+        If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
 
-                ' Create a HashSet to track unique entries
-                Dim addedEntries As New HashSet(Of String)
-
-                For Each ROW As DataGridViewRow In GRIDISSUE.Rows
-                    If ROW.Cells(0).Value IsNot Nothing Then
-                        ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
-                        Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
-                                     ROW.Cells(GACCNAME.Index).Value.ToString() &
-                                     ROW.Cells(GPARTYNAME.Index).Value.ToString()
-
-                        ' If the entry has already been added, skip it
-                        If addedEntries.Contains(entryKey) Then
-                            Continue For
-                        End If
-
-                        ' Add this entry to the HashSet to prevent duplicates
-                        addedEntries.Add(entryKey)
-
-                        ' Add the row values to alparaval
-                        alparaval.Clear()
-                        alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
-                        alparaval.Add(CMBTYPE.Text.Trim())
-                        alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
-                        alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
-                        alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
-                        alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
-                        alparaval.Add(ROW.Cells(GCHQNO.Index).Value.ToString())
-                        alparaval.Add(txtremarks.Text.Trim())
-                        alparaval.Add("") 'TXTBILLREMARKS.Text.Trim()
-                        alparaval.Add("") 'TXTOURREMARKS.Text.Trim()
-                        alparaval.Add("") 'txtinwords.Text.Trim()
-                        alparaval.Add(0) 'CHKPDC
-                        alparaval.Add("") 'CHKRECO
-                        alparaval.Add(CmpId)
-                        alparaval.Add(Locationid)
-                        alparaval.Add(Userid)
-                        alparaval.Add(YearId)
-                        alparaval.Add(0)
-                        alparaval.Add("1") 'pgridsrno
-                        alparaval.Add("On Account") 'paytype
-                        alparaval.Add("") 'billINITIALS
-                        alparaval.Add("") 'narr
-                        alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
-                        alparaval.Add("") 'AMTPAID
-                        alparaval.Add("") 'EXTRAAMT
-                        alparaval.Add("") 'RETURNAMT
-                        alparaval.Add("") 'BALANCE
-                        alparaval.Add("") 'dgridsrno
-                        alparaval.Add("") 'descledgername
-                        alparaval.Add("") 'descnarration
-                        alparaval.Add("") 'descamount
-                        alparaval.Add("") 'DESCPAYGRIDSRNO
-                        alparaval.Add("") 'DESCPAYBILLINITIALS
-                        alparaval.Add("") 'CMBPARTYBANK.Text.Trim
-                        alparaval.Add("") 'TXTSPECIALREMARKS.Text.Trim
-                        alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
-
-                        ' Initialize the receipt object
-                        Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
-                        OBJCLRECEIPT.alParaval = alparaval
-
-                        ' Only save if not in edit mode
-                        If Not EDIT Then
-                            If Not USERADD Then
-                                MsgBox("Insufficient Rights")
-                                Exit Sub
-                            End If
-                            DTTABLE = OBJCLRECEIPT.SAVE()
-                        End If
-                    End If
-                Next
-
+            'CREATE PURCHASE INVOICE IN ABHEE FABRICS LLP
+            'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+            Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+            If TEMPDT.Rows.Count > 0 Then
+                TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
             Else
-                Dim DTTABLE As DataTable
-                Dim alparaval As New ArrayList()
+                GoTo NEXTLINE
+            End If
+
+            '    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+            '    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & CMBSELLER.Text.Trim & "' AND ACC_YEARID = " & TEMPYEARID)
+            '    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(CMBSELLER.Text.Trim, TEMPCMPID, TEMPYEARID)
+
+
+            '    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+            '    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
+            '    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
+
+            '    GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
+        End If
+        '******************** END OF PO GENERATION CODE ***************************
+
+NEXTLINE:
+        MessageBox.Show("Details Added")
+        CLEAR()
+        Try
+            If CMBBUYER.Text = "ABHEE FABRICS LLP" Then
+                Dim DTTABLE1 As DataTable
+                Dim alparaval1 As New ArrayList()
 
                 ' Create a HashSet to track unique entries
-                Dim addedEntries As New HashSet(Of String)
+                Dim addedEntries1 As New HashSet(Of String)
 
                 For Each ROW As DataGridViewRow In GRIDISSUE.Rows
                     If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
@@ -369,52 +372,52 @@ Public Class MagicBoxForRecPay
                                  ROW.Cells(GPARTYNAME.Index).Value.ToString()
 
                         ' If the entry has already been added, skip it
-                        If addedEntries.Contains(entryKey) Then
+                        If addedEntries1.Contains(entryKey) Then
                             Continue For
                         End If
 
                         ' Add this entry to the HashSet to prevent duplicates
-                        addedEntries.Add(entryKey)
+                        addedEntries1.Add(entryKey)
 
-                        ' Add the row values to alparaval
-                        alparaval.Clear()
-                        alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
-                        alparaval.Add(CMBTYPE.Text.Trim())
-                        alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
-                        alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
-                        alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
-                        alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
-                        alparaval.Add(ROW.Cells(GCHQNO.Index).Value.ToString())
-                        alparaval.Add(txtremarks.Text.Trim())
-                        alparaval.Add("") 'TXTBILLREMARKS.Text.Trim()
-                        alparaval.Add("") 'TXTOURREMARKS.Text.Trim()
-                        alparaval.Add("") 'txtinwords.Text.Trim()
-                        alparaval.Add("") 'CHKRECO
-                        alparaval.Add(CmpId)
-                        alparaval.Add(Locationid)
-                        alparaval.Add(Userid)
-                        alparaval.Add(YearId)
-                        alparaval.Add(0)
-                        alparaval.Add("1") 'pgridsrno
-                        alparaval.Add("On Account") 'paytype
-                        alparaval.Add("") 'billINITIALS
-                        alparaval.Add("") '(narr)
-                        alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
-                        alparaval.Add("") 'AMTPAID
-                        alparaval.Add("") 'EXTRAAMT
-                        alparaval.Add("") 'RETURNAMT
-                        alparaval.Add("") 'BALANCE
-                        alparaval.Add("") 'dgridsrno
-                        alparaval.Add("") 'descledgername
-                        alparaval.Add("") 'descnarration
-                        alparaval.Add("") 'descamount
-                        alparaval.Add("") 'DESCPAYGRIDSRNO
-                        alparaval.Add("") 'DESCPAYBILLINITIALS
-                        alparaval.Add("") 'TXTSPECIALREMARKS.Text.Trim()
+                        ' Add the row values to alparaval1
+                        alparaval1.Clear()
+                        alparaval1.Add(ROW.Cells(GSRNO.Index).Value.ToString())
+                        alparaval1.Add("PAYMENT")
+                        alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+                        alparaval1.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
+                        alparaval1.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
+                        alparaval1.Add(ROW.Cells(GCHQAMT.Index).Value)
+                        alparaval1.Add(ROW.Cells(GCHQNO.Index).Value.ToString())
+                        alparaval1.Add(txtremarks.Text.Trim())
+                        alparaval1.Add("") 'TXTBILLREMARKS.Text.Trim()
+                        alparaval1.Add("") 'TXTOURREMARKS.Text.Trim()
+                        alparaval1.Add("") 'txtinwords.Text.Trim()
+                        alparaval1.Add("") 'CHKRECO
+                        alparaval1.Add(CmpId)
+                        alparaval1.Add(Locationid)
+                        alparaval1.Add(Userid)
+                        alparaval1.Add(YearId)
+                        alparaval1.Add(0)
+                        alparaval1.Add("1") 'pgridsrno
+                        alparaval1.Add("On Account") 'paytype
+                        alparaval1.Add("") 'billINITIALS
+                        alparaval1.Add("") '(narr)
+                        alparaval1.Add(ROW.Cells(GCHQAMT.Index).Value)
+                        alparaval1.Add("") 'AMTPAID
+                        alparaval1.Add("") 'EXTRAAMT
+                        alparaval1.Add("") 'RETURNAMT
+                        alparaval1.Add("") 'BALANCE
+                        alparaval1.Add("") 'dgridsrno
+                        alparaval1.Add("") 'descledgername
+                        alparaval1.Add("") 'descnarration
+                        alparaval1.Add("") 'descamount
+                        alparaval1.Add("") 'DESCPAYGRIDSRNO
+                        alparaval1.Add("") 'DESCPAYBILLINITIALS
+                        alparaval1.Add("") 'TXTSPECIALREMARKS.Text.Trim()
 
                         ' Initialize the payment object
                         Dim OBJCLRECEIPT As New ClsPaymentMaster()
-                        OBJCLRECEIPT.alParaval = alparaval
+                        OBJCLRECEIPT.alParaval = alparaval1
 
                         ' Only save if not in edit mode
                         If Not EDIT Then
@@ -422,7 +425,7 @@ Public Class MagicBoxForRecPay
                                 MsgBox("Insufficient Rights")
                                 Exit Sub
                             End If
-                            DTTABLE = OBJCLRECEIPT.SAVE()
+                            DTTABLE1 = OBJCLRECEIPT.SAVE()
                         End If
                     End If
                 Next
@@ -431,6 +434,14 @@ Public Class MagicBoxForRecPay
             Throw ex
         End Try
     End Sub
+    ' Returns an array of bill numbers split by comma
+    Function GetBillNumbers(billNos As String) As String()
+        If String.IsNullOrEmpty(billNos) Then
+            Return New String() {}
+        End If
+        Return billNos.Split(","c).Select(Function(s) s.Trim()).ToArray()
+    End Function
+
 
     Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
         Try
@@ -532,8 +543,8 @@ LINE1:
 
 
         If GRIDDOUBLECLICK = False Then
-            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), TXTBANKNAME.Text.Trim)
-            If CMBTYPE.Text = "" Then getsrno(GRIDISSUE)
+            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim)
+            getsrno(GRIDISSUE)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDISSUE.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
             GRIDISSUE.Item(GACCNAME.Index, TEMPROW).Value = cmbaccname.Text.Trim
@@ -542,6 +553,9 @@ LINE1:
             GRIDISSUE.Item(GCHQDATE.Index, TEMPROW).Value = Format(DTCHQDATE.Value.Date, "dd/MM/yyyy")
             GRIDISSUE.Item(GCHQAMT.Index, TEMPROW).Value = Format(Val(txtamt.Text.Trim), "0.00")
             GRIDISSUE.Item(GBANKNAME.Index, TEMPROW).Value = TXTBANKNAME.Text.Trim
+            GRIDISSUE.Item(GPAYTYPE.Index, TEMPROW).Value = cmbpaytype.Text.Trim
+            GRIDISSUE.Item(GBILLNO.Index, TEMPROW).Value = TXTBILLNO.Text.Trim
+            GRIDISSUE.Item(GAMOUNT.Index, TEMPROW).Value = TXTADJAMOUNT.Text.Trim
 
 
             GRIDDOUBLECLICK = False
@@ -558,7 +572,9 @@ LINE1:
         TXTBANKNAME.Clear()
         cmbaccname.Text = ""
         cmbname.Text = ""
-
+        TXTADJAMOUNT.Clear()
+        TXTBILLNO.Clear()
+        cmbpaytype.Text = ""
         DTCHQDATE.Value = Now.Date
 
         'txtPartyMtrs.Clear()
@@ -609,8 +625,10 @@ LINE1:
                 TXTCHQNO.Text = GRIDISSUE.Item(GCHQNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 DTCHQDATE.Text = GRIDISSUE.Item(GCHQDATE.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 txtamt.Text = GRIDISSUE.Item(GCHQAMT.Index, GRIDISSUE.CurrentRow.Index).Value
-
+                cmbpaytype.Text = GRIDISSUE.Item(GPAYTYPE.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTBANKNAME.Text = GRIDISSUE.Item(GBANKNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
+                TXTBILLNO.Text = GRIDISSUE.Item(GBILLNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
+                TXTADJAMOUNT.Text = GRIDISSUE.Item(GAMOUNT.Index, GRIDISSUE.CurrentRow.Index).Value
 
                 TEMPROW = GRIDISSUE.CurrentRow.Index
                 txtsrno.Focus()
@@ -813,26 +831,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
-    Private Sub ChqEnteries_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        Try
-            If ClientName = "ABHEE" Then CMBTYPE.Visible = True
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBTYPE_Validated(sender As Object, e As EventArgs) Handles CMBTYPE.Validated
-        Try
-            CMBTYPE.Enabled = False
-            If CMBTYPE.Text <> "" Then
-                getmaxgrid_no()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub cmbpaytype_Validated(sender As Object, e As EventArgs) Handles cmbpaytype.Validated
         Try
             If cmbname.Text.Trim <> "" And cmbpaytype.Text.Trim = "Against Bill" Then
@@ -843,24 +841,92 @@ LINE1:
                 OBJSELECTBILL.AMOUNT = txtamt.Text.Trim
                 OBJSELECTBILL.ShowDialog()
                 Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
-                'For Each DTROW As DataRow In DTBILLS.Rows
-                '    GETBILL(DTROW("BILLNO"))
-                '    If txtrefno.Text.Trim <> "" And (Val(txtdebit.Text.Trim) > 0 Or Val(txtcredit.Text.Trim) > 0) And ClientName <> "SUPRIYA" Then txtcredit_Validated(sender, e)
-                'Next
+                Dim SELECTEDBILLNO As String = ""
+                Dim SELECTEDAMOUNT As String = ""
+                For Each DTROW As DataRow In DTBILLS.Rows
+                    If SELECTEDBILLNO = "" Then
+                        SELECTEDBILLNO = DTROW("BILLNO")
+                        SELECTEDAMOUNT = Val(DTROW("ADJUSTAMT"))
+                    Else
+                        SELECTEDBILLNO = DTROW("BILLNO") & "|" & SELECTEDBILLNO
+                        SELECTEDAMOUNT = SELECTEDAMOUNT & "|" & Val(DTROW("ADJUSTAMT"))
+                    End If
+                Next
+                TXTBILLNO.Text = SELECTEDBILLNO
+                TXTADJAMOUNT.Text = SELECTEDAMOUNT
+                If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
 
-                'If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
-                'If SELECTEDBILLNO.Trim <> "" Then
-                '    If Not GETBILL(SELECTEDBILLNO) Then
-                '        Exit Sub
-                '    End If
-                '    txtrefno.Focus()
-                'End If
             Else
                 MsgBox("Select Name")
                 cmbname.Focus()
                 Exit Sub
             End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLER_Enter(sender As Object, e As EventArgs) Handles CMBSELLER.Enter
+        Try
+            If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLER_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELLER.Validating
+        Try
+            If CMBSELLER.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLER, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBBUYER_Validating(sender As Object, e As CancelEventArgs) Handles CMBBUYER.Validating
+        Try
+            If CMBBUYER.Text.Trim = "" Then FILLNAME(CMBBUYER, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBBUYER_Enter(sender As Object, e As EventArgs) Handles CMBBUYER.Enter
+        Try
+            If CMBBUYER.Text.Trim <> "" Then NAMEVALIDATE(CMBBUYER, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLER_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLER.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBSELLER.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBBUYER_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBUYER.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBBUYER.Text = OBJLEDGER.TEMPNAME
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class JobOrderReport
+Public Class DesignCardRep
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class JobOrderReport
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "JobOrderReport.rpt"
+            Return "DesignCardRep.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class JobOrderReport
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "ZALANI.JobOrderReport.rpt"
+            Return "TEXTRADE.DesignCardRep.rpt"
         End Get
         Set
             'Do nothing
@@ -62,7 +62,7 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(1)
         End Get
@@ -70,7 +70,7 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -94,7 +94,7 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(5)
         End Get
@@ -102,31 +102,15 @@ Public Class JobOrderReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(6)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(7)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(8)
         End Get
     End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedJobOrderReport
+Public Class CachedDesignCardRep
     Inherits Component
     Implements ICachedReport
     
@@ -168,7 +152,7 @@ Public Class CachedJobOrderReport
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As JobOrderReport = New JobOrderReport()
+        Dim rpt As DesignCardRep = New DesignCardRep()
         rpt.Site = Me.Site
         Return rpt
     End Function
