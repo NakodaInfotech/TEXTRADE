@@ -1225,6 +1225,7 @@ Partial Class MDIMain
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ProjectMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -8943,7 +8944,7 @@ Partial Class MDIMain
         '
         'ProjectMasterToolStripMenuItem
         '
-        Me.ProjectMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewProjectToolStripMenuItem})
+        Me.ProjectMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewProjectToolStripMenuItem, Me.EditExistingProjectToolStripMenuItem})
         Me.ProjectMasterToolStripMenuItem.Name = "ProjectMasterToolStripMenuItem"
         Me.ProjectMasterToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
         Me.ProjectMasterToolStripMenuItem.Text = "Project Master"
@@ -8953,6 +8954,12 @@ Partial Class MDIMain
         Me.AddNewProjectToolStripMenuItem.Name = "AddNewProjectToolStripMenuItem"
         Me.AddNewProjectToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AddNewProjectToolStripMenuItem.Text = "Add New Project"
+        '
+        'EditExistingProjectToolStripMenuItem
+        '
+        Me.EditExistingProjectToolStripMenuItem.Name = "EditExistingProjectToolStripMenuItem"
+        Me.EditExistingProjectToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingProjectToolStripMenuItem.Text = "Edit Existing Project"
         '
         'MDIMain
         '
@@ -10182,4 +10189,5 @@ Partial Class MDIMain
     Friend WithEvents DesignWithoutImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProjectMasterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddNewProjectToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExistingProjectToolStripMenuItem As ToolStripMenuItem
 End Class

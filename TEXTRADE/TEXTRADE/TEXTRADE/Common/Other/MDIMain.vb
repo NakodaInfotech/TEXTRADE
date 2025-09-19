@@ -10736,4 +10736,16 @@ SKIPLINE:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub EditExistingProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingProjectToolStripMenuItem.Click
+        Try
+            Dim objCategoryDetails As New CategoryDetails
+            objCategoryDetails.MdiParent = Me
+            objCategoryDetails.FRMSTRING = "PROJECT"
+            objCategoryDetails.Show()
+            objCategoryDetails.BringToFront()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
