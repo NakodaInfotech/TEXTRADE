@@ -1085,6 +1085,7 @@ LINE1:
                 End If
 
                 TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+                If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
 
                 'GET DATA FROM BARCODE
                 Dim GREYMTRS As Double = 0.0

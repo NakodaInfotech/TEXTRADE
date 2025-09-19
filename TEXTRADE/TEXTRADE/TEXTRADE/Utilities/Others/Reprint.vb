@@ -154,6 +154,7 @@ LINE1:
         Try
             If txtbarcode.Text.Trim = "" Then Exit Sub
             txtbarcode.Text = txtbarcode.Text.Replace(" TRIAL", "")
+            If ClientName = "SHEETAL" And Len(txtbarcode.Text.Trim) > 7 And Char.IsDigit(txtbarcode.Text(0)) = True Then txtbarcode.Text = txtbarcode.Text.Substring(0, txtbarcode.Text.Length - 1)
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & txtbarcode.Text.Trim & "' AND YEARID = " & YearId)
             If DT.Rows.Count > 0 Then

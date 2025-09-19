@@ -844,16 +844,14 @@ Public Class PurchaseReturn
 
                 alParaval.Add(TEMPPRNO)
                 IntResult = objPurchaseReturn.UPDATE()
-                MsgBox("Details Updated")
+                'MsgBox("Details Updated")
                 EDIT = False
             End If
 
-            PRINTREPORT(TEMPPRNO)
+            'PRINTREPORT(TEMPPRNO)
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-            If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else clear()
+            'If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else clear()
 
             PRDATE.Focus()
 
@@ -3168,6 +3166,26 @@ LINE1:
 
     Private Sub ACTUALINVDATE_GotFocus(sender As Object, e As EventArgs) Handles ACTUALINVDATE.GotFocus
         ACTUALINVDATE.SelectionStart = 0
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET INVOICENOS FROM INVOICEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(PR_NO) As PURRETNO", "", " PURCHASERETURN ", " AND PR_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("PURRETNO"))
+                GRIDPURRET.RowCount = 0
+                TEMPPRNO = Val(I)
+                EDIT = True
+                PurchaseReturn_Load(sender, e)
+                If GRIDPURRET.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                clear()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TOOLEWB_Click(sender As Object, e As EventArgs) Handles TOOLEWB.Click

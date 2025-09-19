@@ -178,8 +178,6 @@ Public Class OpeningGDNDetails
                 Dim OBJ As New Object
                 If ClientName = "MAFATLAL" Then
                     OBJ = New GDNReport_A5
-                ElseIf ClientName = "BRILLANTO" Then
-                    OBJ = New GDNReport_BRILLANTO
                 ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                     OBJ = New GDNReport_CC
                 ElseIf ClientName = "DRDRAPES" Then
@@ -188,8 +186,6 @@ Public Class OpeningGDNDetails
                     OBJ = New GDNReport_KCRAYON
                 ElseIf ClientName = "KDFAB" Then
                     OBJ = New GDNReport_KDFAB
-                ElseIf ClientName = "AKASHDEEP" Then
-                    OBJ = New GDNReport_AKASHDEEP
                 ElseIf ClientName = "MANINATH" Then
                     OBJ = New GDNReport_MANINATH
                 ElseIf ClientName = "MOMAI" Then
@@ -299,8 +295,6 @@ Public Class OpeningGDNDetails
                     Dim OBJ As New Object
                     If ClientName = "MAFATLAL" Then
                         OBJ = New GDNReport_A5
-                    ElseIf ClientName = "BRILLANTO" Then
-                        OBJ = New GDNReport_BRILLANTO
                     ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                         OBJ = New GDNReport_CC
                     ElseIf ClientName = "DRDRAPES" Then
@@ -309,8 +303,6 @@ Public Class OpeningGDNDetails
                         OBJ = New GDNReport_KCRAYON
                     ElseIf ClientName = "KDFAB" Then
                         OBJ = New GDNReport_KDFAB
-                    ElseIf ClientName = "AKASHDEEP" Then
-                        OBJ = New GDNReport_AKASHDEEP
                     ElseIf ClientName = "MANINATH" Then
                         OBJ = New GDNReport_MANINATH
                     ElseIf ClientName = "MOMAI" Then
