@@ -3,6 +3,7 @@
 Public Class DesignCardMasterDetails
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean
+    Public FRMSTRING As String
     Private Sub DesignCardMasterDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
