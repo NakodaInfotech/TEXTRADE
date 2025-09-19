@@ -84,7 +84,7 @@ Public Class HomePage
                 GPPNAME.Caption = "Item Name"
                 GPPGRANDTOTAL.Caption = "Total Amount"
             End If
-            GRIDPARTYPERFORMANCEDETAILS.DataSource = DT
+            GRIDPERFORMANCEDETAILS.DataSource = DT
         Catch ex As Exception
             Throw ex
         End Try

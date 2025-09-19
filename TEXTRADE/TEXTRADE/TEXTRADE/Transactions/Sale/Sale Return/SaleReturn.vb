@@ -754,7 +754,7 @@ Public Class SaleReturn
             End If
 
             'CHEKC BARCODE IS PRESENT IN DATABASE OR NOT
-            If TXTSRCHNO.Text.Trim = "" Then
+            If TXTSRCHNO.Text.Trim = "" And ALLOWBARCODEPRINT = True Then
                 If Not CHECKBARCODE() Then
                     bln = False
                     EP.SetError(TabControl1, "Barcode already present, Please re-enter data")
@@ -816,11 +816,6 @@ Public Class SaleReturn
                     EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     bln = False
                 End If
-
-                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                '    EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    bln = False
-                'End If
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = "SR-" & Val(TXTSALRETNO.Text.Trim)
             Next
 
@@ -1258,8 +1253,6 @@ Public Class SaleReturn
                 End If
             Next
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
                 CLEAR()
             Else
@@ -4548,6 +4541,26 @@ ERRORMESSAGE:
                     e.Cancel = True
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET INVOICENOS FROM INVOICEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(SALRET_NO) As SALRETNO", "", " SALERETURN ", " AND SALRET_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("SALRETNO"))
+                GRIDSALRET.RowCount = 0
+                TEMPSALRETNO = Val(I)
+                EDIT = True
+                SaleReturn_Load(sender, e)
+                If GRIDSALRET.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
         Catch ex As Exception
             Throw ex
         End Try
