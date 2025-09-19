@@ -650,14 +650,13 @@ Public Class ClsDesignCardMaster
             Dim strCommand As String = "SP_DESIGN_CARD_MASTER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@DesignNo", alParaval(0))) ' Or correct index
-                .Add(New SqlClient.SqlParameter("@ItemName", alParaval(0))) ' Or correct index
+                .Add(New SqlClient.SqlParameter("@CARDNO", alParaval(0))) ' Or correct index
                 .Add(New SqlClient.SqlParameter("@CmpId", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-            Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
+            'Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
             'Return DT
         Catch ex As Exception
             Throw ex
