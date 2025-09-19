@@ -35,11 +35,7 @@ Public Class DesignCardMaster
             Dim IntResult As Integer
 
             Dim alParaval As New ArrayList
-            If txtcardno.ReadOnly = True Then
-                alParaval.Add(0)
-            Else
-                alParaval.Add(Val(txtcardno.Text.Trim))
-            End If
+            alParaval.Add(Val(txtcardno.Text.Trim))
             alParaval.Add(Format(Convert.ToDateTime(DTDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBITEMNAME.Text.Trim)
             alParaval.Add(CMBDESIGNNO.Text.Trim)
