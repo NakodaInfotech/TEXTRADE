@@ -42,12 +42,14 @@ Public Class HomePage
             GRIDPO.OptionsView.ShowFooter = True
             GRIDSTOCK.OptionsView.ShowFooter = True
 
+            GBSALE.Visible = False
+            GBOVERDUE.Visible = False
+            GBMONTHLYSALE.Visible = True
+            GBPARTYPERFORMANCE.Visible = True
 
             If ClientName = "MASHOK" Then
                 GBSALE.Visible = False
-                GBOVERDUE.Visible = False
-                GBMONTHLYSALE.Visible = True
-                GBPARTYPERFORMANCE.Visible = True
+
                 GBSTOCK.Visible = False
                 GRIDSODETAILS.Width = GRIDSO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBSALEORDER.Width = GRIDSODETAILS.Width + 10

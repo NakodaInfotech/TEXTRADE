@@ -1780,7 +1780,7 @@ LINE1:
                 OBJGDN.Show()
             End If
 
-            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Then
+            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Or ClientName = "SHEETAL" Then
                 Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Challan Banner?", MsgBoxStyle.YesNo)
                 If TEMPMSG2 = vbYes Then
                     Dim OBJGDN As New GDNDESIGN
@@ -2466,7 +2466,13 @@ NEXTLINE:
                 cmbcity.BackColor = Color.LemonChiffon
                 If UserName <> "Admin" Then GRIDGDN.ReadOnly = True
                 If UserName <> "Admin" Then CMDSELECTSTOCK.Enabled = False
-                End If
+            End If
+
+            If ClientName = "SHEETAL" Then
+                TXTDESCRIPTION.Visible = True
+                TXTDESCRIPTION.TextAlign = HorizontalAlignment.Left
+                TXTDESCRIPTION.Left = CMBQUALITY.Left
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3460,6 +3466,8 @@ LINE1:
 
 
                 TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+                If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
+
 
 
                 Dim OBJCMN As New ClsCommon
@@ -3472,6 +3480,8 @@ LINE1:
                         TXTBARCODE.Clear()
                         Exit Sub
                     End If
+
+
 
                     'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
                     For Each ROW As DataGridViewRow In GRIDGDN.Rows
@@ -3552,6 +3562,7 @@ LINE1:
                     End If
 
                     If ClientName = "GELATO" Then PER = "Pcs"
+                    If ClientName = "SHEETAL" Then GRIDREMARKS = TXTDESCRIPTION.Text.Trim
 
                     GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), GRIDREMARKS, DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, PER, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, 0, 0, "")
                     TOTAL()

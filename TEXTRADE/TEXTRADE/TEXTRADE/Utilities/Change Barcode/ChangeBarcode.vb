@@ -768,6 +768,7 @@ Public Class ChangeBarcode
             If txtbarcode.Text.Trim <> "" Then
 
                 txtbarcode.Text = txtbarcode.Text.Replace(" TRIAL", "")
+                If ClientName = "SHEETAL" And Len(txtbarcode.Text.Trim) > 7 And Char.IsDigit(txtbarcode.Text(0)) = True Then txtbarcode.Text = txtbarcode.Text.Substring(0, txtbarcode.Text.Length - 1)
 
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon

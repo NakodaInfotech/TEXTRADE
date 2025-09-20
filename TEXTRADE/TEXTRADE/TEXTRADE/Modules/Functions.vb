@@ -108,7 +108,7 @@ TEXT 839,88,""0"",180,14,14,"":""
 TEXT 801,382,""0"",180,14,14,""" & TEMPHSNCODE & """
 TEXT 801,284,""0"",180,14,14,""" & TEMPWIDTH & """
 TEXT 801,186,""0"",180,14,14,""" & Format(Val(MTRS), "0.00") & GRIDDESC & """
-TEXT 801,88,""0"",180,14,14,"""  & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """
+TEXT 801,88,""0"",180,14,14,""" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """
 TEXT 801,578,""0"",180,14,14,""" & DESIGNNO & """
 TEXT 801,478,""0"",180,14,14,""" & SHADE & """
 TEXT 801,676,""0"",180,14,14,""" & ITEMNAME & """
@@ -118,33 +118,6 @@ PRINT 1,1
 <xpml></page></xpml><xpml><end/></xpml>")
                     oWrite.Dispose()
 
-
-                    'oWrite.WriteLine("TEXT 511,52,""ROMAN.TTF"",90,1,18,""ITEM NAME""")
-                    'oWrite.WriteLine("TEXT 511,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 511,503,""ROMAN.TTF"",90,1,18,""" & ITEMNAME & """")
-                    'oWrite.WriteLine("TEXT 418,52,""ROMAN.TTF"",90,1,18,""DESIGN NO""")
-                    'oWrite.WriteLine("TEXT 418,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 418,503,""ROMAN.TTF"",90,1,18,""" & DESIGNNO & """")
-                    'oWrite.WriteLine("TEXT 325,52,""ROMAN.TTF"",90,1,18,""SHADE""")
-                    'oWrite.WriteLine("TEXT 325,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 325,503,""ROMAN.TTF"",90,1,18,""" & SHADE & """")
-                    'oWrite.WriteLine("TEXT 232,52,""ROMAN.TTF"",90,1,18,""WIDTH""")
-                    'oWrite.WriteLine("TEXT 232,451,""ROMAN.TTF"",90,1,18,"":""")
-
-
-
-
-                    'oWrite.WriteLine("TEXT 232,503,""ROMAN.TTF"",90,1,18,""" & TEMPWIDTH & """")
-                    'oWrite.WriteLine("TEXT 137,52,""ROMAN.TTF"",90,1,18,""LTH. (MTRS)""")
-                    'oWrite.WriteLine("TEXT 137,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 137,499,""ROMAN.TTF"",90,1,18,""" & Format(Val(MTRS), "0.00") & GRIDDESC & """")
-                    'oWrite.WriteLine("TEXT 90,1241,""ROMAN.TTF"",90,1,10,""MADE IN INDIA""")
-                    'oWrite.WriteLine("TEXT 723,1142,""ROMAN.TTF"",90,1,10,""SKU" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """")
-                    'oWrite.WriteLine("QRCODE 606,1185,L,10,A,90,M2,S7,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 201,1262,""ROMAN.TTF"",90,1,9,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 129,1589,""ROMAN.TTF"",0,10,10,""HSN CODE : " & TEMPHSNCODE & """")
-                    'oWrite.WriteLine("PRINT 1,1")
-                    'oWrite.Dispose()
                 Else
 
                     oWrite.WriteLine("<xpml><page quantity='0' pitch='75.0 mm'></xpml>SIZE 101.3 mm, 75 mm
@@ -187,37 +160,6 @@ TEXT 236,88,""0"",180,14,14,""PER PC""
 PRINT 1,1
 <xpml></page></xpml><xpml><end/></xpml>")
                     oWrite.Dispose()
-
-
-                    'oWrite.WriteLine("TEXT 518,52,""ROMAN.TTF"",90,1,22,""" & ITEMNAME & """")
-                    'oWrite.WriteLine("TEXT 371,52,""ROMAN.TTF"",90,1,22,""" & DESIGNNO & """")
-                    'oWrite.WriteLine("TEXT 371,536,""ROMAN.TTF"",90,1,22,""" & SHADE & """")
-                    'oWrite.WriteLine("TEXT 221,52,""ROMAN.TTF"",90,1,16,""WIDTH""")
-                    'oWrite.WriteLine("TEXT 221,287,""ROMAN.TTF"",90,1,16,"":""")
-
-
-
-                    'oWrite.WriteLine("TEXT 221,338,""ROMAN.TTF"",90,1,16,""" & TEMPWIDTH & """")
-                    'oWrite.WriteLine("TEXT 128,52,""ROMAN.TTF"",90,1,16,""QTY""")
-                    'oWrite.WriteLine("TEXT 128,287,""ROMAN.TTF"",90,1,16,"":""")
-                    'oWrite.WriteLine("TEXT 128,338,""ROMAN.TTF"",90,1,16,""" & Format(Val(CUT), "0.00") & """")
-                    'oWrite.WriteLine("TEXT 128,487,""ROMAN.TTF"",90,1,16,""X""")
-                    'oWrite.WriteLine("QRCODE 686,1185,Q,10,A,90,M2,S7,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 294,1226,""ROMAN.TTF"",90,1,12,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 128,555,""ROMAN.TTF"",90,1,16,""" & Format(Val(QTY), "0") & " Pcs""")
-                    'oWrite.WriteLine("TEXT 221,892,""ROMAN.TTF"",90,1,16,""M.R.P.""")
-                    'oWrite.WriteLine("TEXT 221,1161,""ROMAN.TTF"",90,1,16,"":""")
-                    'oWrite.WriteLine("TEXT 221,1207,""ROMAN.TTF"",90,1,16,""" & TEMPMRP & "/- PER PC""")
-                    'oWrite.WriteLine("TEXT 128,892,""ROMAN.TTF"",90,1,16,""PKG ON""")
-                    'oWrite.WriteLine("TEXT 128,1161,""ROMAN.TTF"",90,1,16,"":""")
-
-
-
-                    'oWrite.WriteLine("TEXT 128,1207,""ROMAN.TTF"",90,1,16,""" & UCase(TEMPMONTH) & " " & TEMPYEAR & """")
-                    'oWrite.WriteLine("TEXT 740,1142,""ROMAN.TTF"",90,1,10,""SKU" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """")
-                    'oWrite.WriteLine("TEXT 198,1589,""ROMAN.TTF"",0,10,10,""HSN CODE : " & TEMPHSNCODE & """")
-                    'oWrite.WriteLine("PRINT 1,1")
-                    'oWrite.Dispose()
 
                 End If
 
@@ -347,6 +289,57 @@ PRINT 1,1
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+            ElseIf ClientName = "SHEETAL" Then
+
+                oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>^XA
+^SZ2^JMA
+^MCY^PMN
+^PW799
+^MMT
+^MD20
+^PR2,2,2
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='75.1 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>^XA
+^FT104,172
+^CI0
+^A0N,34,46^FDQuality^FS
+^FT240,172
+^A0N,34,46^FD:^FS
+^FT263,172
+^A0N,34,46^FD" & ITEMNAME & "^FS
+^FT104,228
+^A0N,34,46^FDDesign^FS
+^FT240,228
+^A0N,34,46^FD:^FS
+^FT264,228
+^A0N,34,46^FD" & DESIGNNO & "^FS
+^FT104,284
+^A0N,34,46^FDColor^FS
+^FT240,284
+^A0N,34,46^FD:^FS
+^FT264,284
+^A0N,34,46^FD" & SHADE & "^FS
+^FO104,423
+^BY2,2.5^B3N,N,88,N,N^FD" & BARCODE & "^FS
+^FT104,340
+^A0N,34,46^FDMtrs^FS
+^FT240,340
+^A0N,34,46^FD:^FS
+^FT264,340
+^A0N,34,46^FD" & Format(Val(MTRS), "0.00") & "^FS
+^FT104,396
+^A0N,34,46^FDRoll No^FS
+^FT240,395
+^A0N,34,46^FD:^FS
+^FT264,396
+^A0N,34,46^FD" & BARCODE & "^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>")
+                oWrite.WriteLine("PRINT 1,1")
+                oWrite.Dispose()
 
             ElseIf ClientName = "MBB" Then
 

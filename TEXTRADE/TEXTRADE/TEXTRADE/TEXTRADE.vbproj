@@ -467,6 +467,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_SHEETAL.vb">
+      <DependentUpon>GDNReport_SHEETAL.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GRN\GREYTransportReport.vb">
       <DependentUpon>GREYTransportReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1019,12 +1025,6 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AKASHDEEP.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GDNReport_AKASHDEEP.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_BALAJI.vb">
       <DependentUpon>GDNReport_BALAJI.rpt</DependentUpon>
@@ -6312,12 +6312,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_BRILLANTO.vb">
-      <DependentUpon>GDNReport_BRILLANTO.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\Grid Reports\Interest Calculator\InterestCalc_BillWise.Designer.vb">
       <DependentUpon>InterestCalc_BillWise.vb</DependentUpon>
     </Compile>
@@ -8638,6 +8632,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_AARYA.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_SHEETAL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_SHEETAL.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GRN\GREYTransportReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GREYTransportReport.vb</LastGenOutput>
@@ -8970,10 +8968,6 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Gate Pass\GatePassReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GatePassReport.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AKASHDEEP.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GDNReport_AKASHDEEP.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_BALAJI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -12231,10 +12225,6 @@
     <EmbeddedResource Include="Reports\Crystal Reports\YarnIssue\YarnIssueKnittingReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>YarnIssueKnittingReport.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_BRILLANTO.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GDNReport_BRILLANTO.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Interest Calculator\InterestCalc_BillWise.resx">
       <DependentUpon>InterestCalc_BillWise.vb</DependentUpon>

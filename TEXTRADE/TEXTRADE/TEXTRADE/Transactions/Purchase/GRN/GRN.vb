@@ -3475,8 +3475,8 @@ LINE1:
                 GAMOUNT.Visible = True
             End If
 
-            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Then
-                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Then
+            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Then
+                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Then
                     LBLCMPNAME.Visible = True
                     CMBCMPNAME.Visible = True
                 End If
@@ -3863,7 +3863,7 @@ LINE1:
 
     Private Sub TXTCHNO_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCHNO.Validated
         Try
-            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
+            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SHEETAL" Or ClientName = "SNCM") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
                 'GET YEARID FROM SELECTED CMP 
                 Dim TEMPYEARID As Integer = 0
                 Dim TEMPCMPID As Integer = 0

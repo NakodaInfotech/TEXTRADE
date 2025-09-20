@@ -233,8 +233,8 @@ Public Class GDNDetails
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 ElseIf ClientName = "SOFTAS" Then
                     OBJ = New GDNReport_SOFTAS
-                ElseIf ClientName = "BRILLANTO" Then
-                    OBJ = New GDNReport_BRILLANTO
+                ElseIf ClientName = "SHEETAL" Then
+                    OBJ = New GDNReport_SHEETAL
                 ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                     OBJ = New GDNReport_CC
                 ElseIf ClientName = "DRDRAPES" Then
@@ -243,8 +243,6 @@ Public Class GDNDetails
                     OBJ = New GDNReport_KCRAYON
                 ElseIf ClientName = "KDFAB" Then
                     OBJ = New GDNReport_KDFAB
-                ElseIf ClientName = "AKASHDEEP" Then
-                    OBJ = New GDNReport_AKASHDEEP
                 ElseIf ClientName = "MANINATH" Then
                     OBJ = New GDNReport_MANINATH
                 ElseIf ClientName = "MOMAI" Then
@@ -398,8 +396,8 @@ Public Class GDNDetails
                         OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     ElseIf ClientName = "SOFTAS" Then
                         OBJ = New GDNReport_SOFTAS
-                    ElseIf ClientName = "BRILLANTO" Then
-                        OBJ = New GDNReport_BRILLANTO
+                    ElseIf ClientName = "SHEETAL" Then
+                        OBJ = New GDNReport_SHEETAL
                     ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                         OBJ = New GDNReport_CC
                     ElseIf ClientName = "DRDRAPES" Then
@@ -408,8 +406,6 @@ Public Class GDNDetails
                         OBJ = New GDNReport_KCRAYON
                     ElseIf ClientName = "KDFAB" Then
                         OBJ = New GDNReport_KDFAB
-                    ElseIf ClientName = "AKASHDEEP" Then
-                        OBJ = New GDNReport_AKASHDEEP
                     ElseIf ClientName = "MANINATH" Then
                         OBJ = New GDNReport_MANINATH
                     ElseIf ClientName = "MOMAI" Then

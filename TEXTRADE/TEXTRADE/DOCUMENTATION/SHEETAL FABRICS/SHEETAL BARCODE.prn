@@ -1,0 +1,47 @@
+﻿<xpml><page quantity='0' pitch='75.1 mm'></xpml>^XA
+^SZ2^JMA
+^MCY^PMN
+^PW799
+^MMT
+^MD20
+^PR2,2,2
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='75.1 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>^XA
+^FT104,172
+^CI0
+^A0N,34,46^FDQuality^FS
+^FT240,172
+^A0N,34,46^FD:^FS
+^FT263,172
+^A0N,34,46^FDADITYA BUTTA EMBROIDERY^FS
+^FT104,228
+^A0N,34,46^FDDesign^FS
+^FT240,228
+^A0N,34,46^FD:^FS
+^FT264,228
+^A0N,34,46^FDAJ-120^FS
+^FT104,284
+^A0N,34,46^FDColor^FS
+^FT240,284
+^A0N,34,46^FD:^FS
+^FT264,284
+^A0N,34,46^FDMAROON^FS
+^FO104,423
+^BY2,2.5^B3N,N,88,N,N^FDR-99999/O99/O99^FS
+^FT104,340
+^A0N,34,46^FDMtrs^FS
+^FT240,340
+^A0N,34,46^FD:^FS
+^FT264,340
+^A0N,34,46^FD99.9^FS
+^FT104,396
+^A0N,34,46^FDRoll No^FS
+^FT240,395
+^A0N,34,46^FD:^FS
+^FT264,396
+^A0N,34,46^FDR-99999/99/99^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>

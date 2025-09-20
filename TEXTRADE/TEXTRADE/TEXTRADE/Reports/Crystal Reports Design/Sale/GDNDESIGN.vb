@@ -49,8 +49,7 @@ Public Class GDNDESIGN
     Dim RPTGDN_MANINATH As New GDNReport_MANINATH
     Dim RPTGDN_A5 As New GDNReport_A5
     Dim RPTGDN_SHREENAKODA As New GDNReport_SHREENAKODA
-    Dim RPTGDN_BRILLANTO As New GDNReport_BRILLANTO
-    Dim RPTGDN_AKASHDEEP As New GDNReport_AKASHDEEP
+    Dim RPTGDN_SHEETAL As New GDNReport_SHEETAL
     Dim RPTGDN_SBA As New GDNReport_SBA
     Dim RPTGDN_DRDRAPES As New GDNReport_DRDRAPES
     Dim RPTGDN_AVIS As New GDNReport_AVIS
@@ -280,10 +279,8 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_SUPRIYA.Database.Tables
                 ElseIf ClientName = "SUPEEMA" Then
                     crTables = RPTGDN_SUPEEMA.Database.Tables
-                ElseIf ClientName = "BRILLANTO" Then
-                    crTables = RPTGDN_BRILLANTO.Database.Tables
-                ElseIf ClientName = "AKASHDEEP" Then
-                    crTables = RPTGDN_AKASHDEEP.Database.Tables
+                ElseIf ClientName = "SHEETAL" Then
+                    crTables = RPTGDN_SHEETAL.Database.Tables
                 ElseIf ClientName = "SBA" Then
                     crTables = RPTGDN_SBA.Database.Tables
                 ElseIf ClientName = "DRDRAPES" Then
@@ -485,10 +482,8 @@ Public Class GDNDESIGN
                     crpo.ReportSource = RPTGDN_SUPRIYA
                 ElseIf ClientName = "SUPEEMA" Then
                     crpo.ReportSource = RPTGDN_SUPEEMA
-                ElseIf ClientName = "BRILLANTO" Then
-                    crpo.ReportSource = RPTGDN_BRILLANTO
-                ElseIf ClientName = "AKASHDEEP" Then
-                    crpo.ReportSource = RPTGDN_AKASHDEEP
+                ElseIf ClientName = "SHEETAL" Then
+                    crpo.ReportSource = RPTGDN_SHEETAL
                 ElseIf ClientName = "SBA" Then
                     crpo.ReportSource = RPTGDN_SBA
                 ElseIf ClientName = "DRDRAPES" Then
@@ -712,21 +707,13 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_A5.Export()
 
-                ElseIf ClientName = "BRILLANTO" Then
+                ElseIf ClientName = "SHEETAL" Then
 
-                    expo = RPTGDN_BRILLANTO.ExportOptions
+                    expo = RPTGDN_SHEETAL.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
-                    RPTGDN_BRILLANTO.Export()
-
-                ElseIf ClientName = "AKASHDEEP" Then
-
-                    expo = RPTGDN_AKASHDEEP.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTGDN_AKASHDEEP.Export()
+                    RPTGDN_SHEETAL.Export()
 
                 ElseIf ClientName = "SBA" Then
 
@@ -1240,10 +1227,8 @@ Public Class GDNDESIGN
                     OBJ = New GDNReport_SUPRIYA
                 ElseIf ClientName = "SUPEEMA" Then
                     OBJ = New GDNReport_SUPEEMA
-                ElseIf ClientName = "BRILLANTO" Then
-                    OBJ = New GDNReport_BRILLANTO
-                ElseIf ClientName = "AKASHDEEP" Then
-                    OBJ = New GDNReport_AKASHDEEP
+                ElseIf ClientName = "SHEETAL" Then
+                    OBJ = New GDNReport_SHEETAL
                 ElseIf ClientName = "SBA" Then
                     OBJ = New GDNReport_SBA
                 ElseIf ClientName = "DRDRAPES" Then

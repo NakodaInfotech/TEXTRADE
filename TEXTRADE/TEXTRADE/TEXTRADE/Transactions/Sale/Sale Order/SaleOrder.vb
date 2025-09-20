@@ -321,7 +321,7 @@ Public Class SaleOrder
             cmbcolor.Text = ""
         End If
         If ClientName <> "SIDDHGIRI" Then TXTPARTYPONO.Clear()
-        If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then txtQTY.Clear()
+        If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
         If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then TXTMTRS.Clear()
 
         CMBPER.Text = "Mtrs"
@@ -339,7 +339,7 @@ Public Class SaleOrder
             If ClientName <> "SUPEEMA" Then TXTRATE.Clear()
             cmbitemname.Focus()
         Else
-            If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then TXTCUT.Clear()
+            If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then TXTCUT.Clear()
             cmbcolor.Focus()
         End If
         If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Then CMBDESIGN.Focus()
@@ -2690,7 +2690,7 @@ LINESINGLE:
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
 
-                If ClientName <> "KRISHNA" Then
+                If ClientName <> "KRISHNA" And ClientName <> "SHEETAL" Then
 
                     If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
                     Dim DTITEM As New DataTable
@@ -2782,7 +2782,7 @@ LINESINGLE:
                     If DTRATE.Rows.Count > 0 AndAlso Val(TXTRATE.Text.Trim) = 0 Then TXTRATE.Text = Val(DTRATE.Rows(0).Item("RATE"))
                 End If
 
-                If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "RAJKRIPA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "AFW") Then
+                If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "RAJKRIPA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "AFW" Or ClientName = "SHEETAL") Then
                     DT = OBJCMN.SEARCH("  ISNULL(item_reorder, 0) AS CUT, ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC],ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
                     If DT.Rows.Count > 0 Then
                         If ClientName <> "SIDDHGIRI" And ClientName <> "MASHOK" And ClientName <> "ABHEE" And ClientName <> "AFW" Then TXTCUT.Text = DT.Rows(0).Item("CUT")
