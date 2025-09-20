@@ -315,7 +315,7 @@ Public Class MagicBoxForRecPay
                 'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE INVOICE IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
                 Dim OBJCMN As New ClsCommon
                 Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
-                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & ROW.Cells(GPARTYNAME.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_CMPNAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & ROW.Cells(GPARTYNAME.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
                 If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
 
                     'CREATE PURCHASE INVOICE IN ABHEE FABRICS LLP
@@ -1266,10 +1266,19 @@ LINE1:
         Try
             If cmbname.Text.Trim <> "" And cmbpaytype.Text.Trim = "Against Bill" Then
 
-
+                Dim OBJCMN As New ClsCommon
+                Dim TEMPCMPID As Integer = 0
+                Dim TEMPYEARID As Integer = 0
+                Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+                If TEMPDT.Rows.Count > 0 Then
+                    TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                    TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+                End If
                 Dim OBJSELECTBILL As New SelectAdjustBills
                 If cmbname.Text = "ABHEE FABRICS LLP" Then OBJSELECTBILL.CMPNAME = CMBSELLERNAME.Text.Trim Else OBJSELECTBILL.CMPNAME = cmbname.Text.Trim
                 OBJSELECTBILL.AMOUNT = txtamt.Text.Trim
+                OBJSELECTBILL.TEMPCMPID = TEMPCMPID
+                OBJSELECTBILL.TEMPYEARID = TEMPYEARID
                 OBJSELECTBILL.ShowDialog()
                 Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
                 Dim SELECTEDBILLNO As String = ""
