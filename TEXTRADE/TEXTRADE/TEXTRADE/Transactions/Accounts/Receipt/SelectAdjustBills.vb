@@ -11,6 +11,8 @@ Public Class SelectAdjustBills
     Public BILLINTWHERECLAUSE As String = ""
     Public BILLINTPRINTWHERECLAUSE As String = ""
     Public DTBILLS As New DataTable
+    Public Property RemAmount As String
+
 
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         Me.Close()
@@ -25,6 +27,10 @@ Public Class SelectAdjustBills
             If totalAdjustAmt > billAmt Then
                 MessageBox.Show("Total Adjust Amt cannot be greater than Bill Amt.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
+            ElseIf totalAdjustAmt < billAmt Then
+                MessageBox.Show("Total Adjust Amt Is less than Bill Amt. Remaining Amount will be OnAccount.", "", MessageBoxButtons.OK)
+                Dim remamount1 As Decimal = billAmt - totalAdjustAmt
+                RemAmount = remamount1
             End If
             Dim totalSelectedAdjustAmt As Decimal = 0
             For i As Integer = 0 To gridrec.RowCount - 1
@@ -41,11 +47,12 @@ Public Class SelectAdjustBills
 
 
             For i As Integer = 0 To gridrec.RowCount - 1
-                    Dim dtrow As DataRow = gridrec.GetDataRow(i)
-                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                Dim dtrow As DataRow = gridrec.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
                     DTBILLS.Rows.Add(dtrow("SRNO"), dtrow("REFNO"), dtrow("DATE"), dtrow("ADJUSTAMT"))
                 End If
-                Next
+            Next
+            ' assign your remamount string value here
 
             ' BILLNO = gridrec.GetFocusedRowCellValue("SRNO")
             ' REFNO = gridrec.GetFocusedRowCellValue("REFNO")
