@@ -569,6 +569,7 @@ Public Class DesignCardMaster
         'drawing total
         TXTTOTALDRAWDENTS.Clear()
         TXTTOTALDRAWENDS.Clear()
+        TXTFINISHWT.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
