@@ -58,7 +58,7 @@ Public Class YarnQualityMaster
             bln = False
         End If
 
-        If CMBHSNCODE.Text.Trim.Length = 0 Then
+        If ClientName <> "AADHAR" And CMBHSNCODE.Text.Trim.Length = 0 Then
             Ep.SetError(CMBHSNCODE, "Fill HSN Code")
             bln = False
         End If

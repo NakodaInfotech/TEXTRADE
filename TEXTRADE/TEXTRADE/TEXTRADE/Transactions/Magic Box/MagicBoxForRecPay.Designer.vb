@@ -24,14 +24,14 @@ Partial Class MagicBoxForRecPay
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MagicBoxForRecPay))
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
@@ -68,15 +68,14 @@ Partial Class MagicBoxForRecPay
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.txtinwords = New System.Windows.Forms.TextBox()
         Me.cmbpaytype = New System.Windows.Forms.ComboBox()
-        Me.CMBBUYER = New System.Windows.Forms.ComboBox()
+        Me.CMBSELLERNAME = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LBLPACKING = New System.Windows.Forms.Label()
         Me.TXTBILLNO = New System.Windows.Forms.TextBox()
         Me.TXTADJAMOUNT = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
         Me.txtremamount = New System.Windows.Forms.TextBox()
+        Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -89,12 +88,13 @@ Partial Class MagicBoxForRecPay
         Me.GBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gremamt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
         CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'EP
@@ -369,7 +369,7 @@ Partial Class MagicBoxForRecPay
         Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
         Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Location = New System.Drawing.Point(448, 90)
+        Me.cmbname.Location = New System.Drawing.Point(248, 90)
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(200, 22)
@@ -490,19 +490,18 @@ Partial Class MagicBoxForRecPay
         Me.cmbpaytype.Size = New System.Drawing.Size(90, 22)
         Me.cmbpaytype.TabIndex = 10
         '
-        'CMBBUYER
+        'CMBSELLERNAME
         '
-        Me.CMBBUYER.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBBUYER.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBBUYER.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBBUYER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBBUYER.FormattingEnabled = True
-        Me.CMBBUYER.Items.AddRange(New Object() {""})
-        Me.CMBBUYER.Location = New System.Drawing.Point(248, 90)
-        Me.CMBBUYER.Name = "CMBBUYER"
-        Me.CMBBUYER.Size = New System.Drawing.Size(200, 22)
-        Me.CMBBUYER.TabIndex = 3
-        Me.CMBBUYER.Visible = False
+        Me.CMBSELLERNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELLERNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELLERNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBSELLERNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSELLERNAME.FormattingEnabled = True
+        Me.CMBSELLERNAME.Items.AddRange(New Object() {""})
+        Me.CMBSELLERNAME.Location = New System.Drawing.Point(448, 90)
+        Me.CMBSELLERNAME.Name = "CMBSELLERNAME"
+        Me.CMBSELLERNAME.Size = New System.Drawing.Size(200, 22)
+        Me.CMBSELLERNAME.TabIndex = 3
         '
         'Label2
         '
@@ -561,7 +560,7 @@ Partial Class MagicBoxForRecPay
         Me.BlendPanel1.Controls.Add(Me.TXTBILLNO)
         Me.BlendPanel1.Controls.Add(Me.LBLPACKING)
         Me.BlendPanel1.Controls.Add(Me.Label2)
-        Me.BlendPanel1.Controls.Add(Me.CMBBUYER)
+        Me.BlendPanel1.Controls.Add(Me.CMBSELLERNAME)
         Me.BlendPanel1.Controls.Add(Me.cmbpaytype)
         Me.BlendPanel1.Controls.Add(Me.GroupBox3)
         Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
@@ -594,62 +593,6 @@ Partial Class MagicBoxForRecPay
         Me.BlendPanel1.Size = New System.Drawing.Size(1398, 606)
         Me.BlendPanel1.TabIndex = 0
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1398, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'GRIDISSUE
-        '
-        Me.GRIDISSUE.AllowUserToAddRows = False
-        Me.GRIDISSUE.AllowUserToDeleteRows = False
-        Me.GRIDISSUE.AllowUserToResizeColumns = False
-        Me.GRIDISSUE.AllowUserToResizeRows = False
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black
-        Me.GRIDISSUE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
-        Me.GRIDISSUE.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDISSUE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDISSUE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
-        Me.GRIDISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GSELLERNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GPAYTYPE, Me.GBANKNAME, Me.GBILLNO, Me.GAMOUNT, Me.gremamt})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.Transparent
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDISSUE.DefaultCellStyle = DataGridViewCellStyle15
-        Me.GRIDISSUE.GridColor = System.Drawing.SystemColors.ControlText
-        Me.GRIDISSUE.Location = New System.Drawing.Point(8, 111)
-        Me.GRIDISSUE.Margin = New System.Windows.Forms.Padding(2)
-        Me.GRIDISSUE.Name = "GRIDISSUE"
-        Me.GRIDISSUE.ReadOnly = True
-        Me.GRIDISSUE.RowHeadersVisible = False
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle16
-        Me.GRIDISSUE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDISSUE.Size = New System.Drawing.Size(1369, 367)
-        Me.GRIDISSUE.TabIndex = 12
-        Me.GRIDISSUE.TabStop = False
-        '
         'txtremamount
         '
         Me.txtremamount.BackColor = System.Drawing.Color.Linen
@@ -662,6 +605,52 @@ Partial Class MagicBoxForRecPay
         Me.txtremamount.TabIndex = 747
         Me.txtremamount.Visible = False
         '
+        'GRIDISSUE
+        '
+        Me.GRIDISSUE.AllowUserToAddRows = False
+        Me.GRIDISSUE.AllowUserToDeleteRows = False
+        Me.GRIDISSUE.AllowUserToResizeColumns = False
+        Me.GRIDISSUE.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        Me.GRIDISSUE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.GRIDISSUE.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDISSUE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDISSUE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.GRIDISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GSELLERNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GPAYTYPE, Me.GBANKNAME, Me.GBILLNO, Me.GAMOUNT, Me.gremamt})
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Transparent
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDISSUE.DefaultCellStyle = DataGridViewCellStyle7
+        Me.GRIDISSUE.GridColor = System.Drawing.SystemColors.ControlText
+        Me.GRIDISSUE.Location = New System.Drawing.Point(8, 111)
+        Me.GRIDISSUE.Margin = New System.Windows.Forms.Padding(2)
+        Me.GRIDISSUE.Name = "GRIDISSUE"
+        Me.GRIDISSUE.ReadOnly = True
+        Me.GRIDISSUE.RowHeadersVisible = False
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle8
+        Me.GRIDISSUE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDISSUE.Size = New System.Drawing.Size(1369, 367)
+        Me.GRIDISSUE.TabIndex = 12
+        Me.GRIDISSUE.TabStop = False
+        '
         'GSRNO
         '
         Me.GSRNO.HeaderText = "Sr."
@@ -673,8 +662,8 @@ Partial Class MagicBoxForRecPay
         '
         'GACCNAME
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GACCNAME.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GACCNAME.DefaultCellStyle = DataGridViewCellStyle3
         Me.GACCNAME.HeaderText = "Bank Name"
         Me.GACCNAME.Name = "GACCNAME"
         Me.GACCNAME.ReadOnly = True
@@ -684,8 +673,8 @@ Partial Class MagicBoxForRecPay
         '
         'GPARTYNAME
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GPARTYNAME.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GPARTYNAME.DefaultCellStyle = DataGridViewCellStyle4
         Me.GPARTYNAME.HeaderText = "Buyer Name"
         Me.GPARTYNAME.Name = "GPARTYNAME"
         Me.GPARTYNAME.ReadOnly = True
@@ -720,8 +709,8 @@ Partial Class MagicBoxForRecPay
         '
         'GCHQAMT
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCHQAMT.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCHQAMT.DefaultCellStyle = DataGridViewCellStyle5
         Me.GCHQAMT.HeaderText = "Amt."
         Me.GCHQAMT.Name = "GCHQAMT"
         Me.GCHQAMT.ReadOnly = True
@@ -737,8 +726,8 @@ Partial Class MagicBoxForRecPay
         '
         'GBANKNAME
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBANKNAME.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBANKNAME.DefaultCellStyle = DataGridViewCellStyle6
         Me.GBANKNAME.HeaderText = "Bank Name"
         Me.GBANKNAME.Name = "GBANKNAME"
         Me.GBANKNAME.ReadOnly = True
@@ -768,6 +757,16 @@ Partial Class MagicBoxForRecPay
         Me.gremamt.ReadOnly = True
         Me.gremamt.Visible = False
         '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1398, 25)
+        Me.ToolStrip1.TabIndex = 0
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
         'MagicBoxForRecPay
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -786,9 +785,9 @@ Partial Class MagicBoxForRecPay
         Me.GroupBox3.PerformLayout()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.GRIDISSUE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -800,7 +799,7 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents TXTBILLNO As TextBox
     Friend WithEvents LBLPACKING As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents CMBBUYER As ComboBox
+    Friend WithEvents CMBSELLERNAME As ComboBox
     Friend WithEvents cmbpaytype As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents txtinwords As TextBox
