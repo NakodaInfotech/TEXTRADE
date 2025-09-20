@@ -3,6 +3,7 @@ Imports System.Globalization
 Imports System.IO
 Imports System.Windows.Forms
 Imports BL
+Imports DevExpress.CodeParser
 Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraRichEdit.Model
 Imports iTextSharp
@@ -19,14 +20,13 @@ Public Class MagicBoxForRecPay
     Sub CLEAR()
         EP.Clear()
         DTENTERYDATE.Text = Now.Date
-
-        txtsrno.Clear()
+        getmaxno()
         cmbaccname.Text = ""
         cmbname.Text = ""
         TXTCHQNO.Clear()
         txtremarks.Clear()
         CMBBUYER.Text = ""
-        CMBSELLER.Text = ""
+        'CMBSELLER.Text = ""
         LBLTOTALAMT.Text = 0.0
         GRIDISSUE.RowCount = 0
         GRIDDOUBLECLICK = False
@@ -36,8 +36,8 @@ Public Class MagicBoxForRecPay
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(CHQ_NO),0) + 1 ", " CHQENTERIES ", " AND CHQ_cmpid=" & CmpId & " and CHQ_yearid=" & YearId)
-        If DTTABLE.Rows.Count > 0 Then TXTENTERYNO.Text = DTTABLE.Rows(0).Item(0)
+        DTTABLE = getmax(" isnull(max(Areceipt_NO),0) + 1 ", " AGENCYRECEIPTMASTER ", " AND Areceipt_cmpid=" & CmpId & " and Areceipt_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then txtsrno.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
     Function errorvalid() As Boolean
@@ -48,14 +48,14 @@ Public Class MagicBoxForRecPay
                 EP.SetError(GRIDISSUE, "Fill Item Details")
                 bln = False
             End If
-            If CMBSELLER.Text.Trim.Length = 0 Then
-                EP.SetError(cmbname, " Please Fill Seller Name ")
-                bln = False
-            End If
-            If CMBBUYER.Text.Trim.Length = 0 Then
-                EP.SetError(cmbname, " Please Fill Buyer Name ")
-                bln = False
-            End If
+            'If CMBSELLER.Text.Trim.Length = 0 Then
+            '    EP.SetError(cmbname, " Please Fill Seller Name ")
+            '    bln = False
+            'End If
+            'If CMBBUYER.Text.Trim.Length = 0 Then
+            '    EP.SetError(cmbname, " Please Fill Buyer Name ")
+            '    bln = False
+            'End If
 
             If DTENTERYDATE.Text = "__/__/____" Then
                 EP.SetError(DTENTERYDATE, " Please Enter Proper Date")
@@ -123,7 +123,7 @@ Public Class MagicBoxForRecPay
             'getmaxno_receiptmaster()
             fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            'If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
             If CMBBUYER.Text.Trim = "" Then FILLNAME(CMBBUYER, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
             CLEAR()
             If EDIT = True Then
@@ -209,10 +209,10 @@ Public Class MagicBoxForRecPay
                     ' Add the row values to alparaval
                     alparaval.Clear()
                     alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
-                    alparaval.Add("RECEIPT")
+                    alparaval.Add("AGENCYRECEIPT")
                     alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
                     alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
-                    alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
+                    alparaval.Add(CMBBUYER.Text.Trim) 'ROW.Cells(GPARTYNAME.Index).Value.ToString())
                     alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
                     alparaval.Add(ROW.Cells(GCHQNO.Index).Value.ToString())
                     alparaval.Add(txtremarks.Text.Trim())
@@ -236,13 +236,13 @@ Public Class MagicBoxForRecPay
                     Dim EXTRAAMT As String = ""
                     Dim RETURNAMT As String = ""
                     Dim BALANCE As String = ""
-
+                    Dim serialCounter As Integer = 1
                     Dim billNos() As String = ROW.Cells(GAMOUNT.Index).Value.ToString().Split("|"c)
-                    For i As Integer = 0 To billNos.Length - 1
-                        If ROW.Cells(GAMOUNT.Index).Value.ToString() <> Nothing Then
-                            If pgridsrno = "" Then
 
-                                pgridsrno = 1
+                    For i As Integer = 0 To billNos.Length - 1
+                        If ROW.Cells(GBILLNO.Index).Value.ToString() <> Nothing Then
+                            If pgridsrno = "" Then
+                                pgridsrno = serialCounter.ToString
                                 paytype = ROW.Cells(GPAYTYPE.Index).Value.ToString()
                                 ' billINITIALS = ""
                                 narr = ""
@@ -252,7 +252,8 @@ Public Class MagicBoxForRecPay
                                 RETURNAMT = "" 'row.Cells(GRETURN.Index).Value
                                 BALANCE = "" 'row.Cells(GBALANCE.Index).Value
                             Else
-                                pgridsrno = pgridsrno & "|" & pgridsrno + 1
+                                serialCounter += 1
+                                pgridsrno = pgridsrno & "|" & serialCounter.ToString
                                 paytype = paytype & "|" & ROW.Cells(GPAYTYPE.Index).Value.ToString()
                                 'billINITIALS = billINITIALS & "|" & row.Cells(GBILLNO.Index).Value.ToString
                                 narr = narr & "|" & ""
@@ -264,16 +265,28 @@ Public Class MagicBoxForRecPay
                             End If
                         End If
                     Next
-
+                    If Not IsDBNull(ROW.Cells(gremamt.Index).Value) AndAlso ROW.Cells(gremamt.Index).Value.ToString().Trim() <> "" Then
+                        serialCounter += 1
+                        pgridsrno = pgridsrno & "|" & serialCounter.ToString
+                        paytype = paytype & "|" & "On Account"
+                        narr = narr & "|" & ""
+                        AMTPAID = AMTPAID & "|" & ""
+                        EXTRAAMT = EXTRAAMT & "|" & ""
+                        RETURNAMT = RETURNAMT & "|" & ""
+                        BALANCE = BALANCE & "|" & ""
+                    End If
                     alparaval.Add(pgridsrno)
                     alparaval.Add(paytype)
-                    alparaval.Add(ROW.Cells(GBILLNO.Index).Value.ToString())
+
+                    If ROW.Cells(gremamt.Index).Value.ToString() <> "" Then alparaval.Add(ROW.Cells(GBILLNO.Index).Value.ToString() & "|" & "") Else alparaval.Add(ROW.Cells(GBILLNO.Index).Value.ToString())
+
                     alparaval.Add(narr)
-                    alparaval.Add(ROW.Cells(GAMOUNT.Index).Value.ToString())
+                    If ROW.Cells(gremamt.Index).Value.ToString() <> "" Then alparaval.Add(ROW.Cells(GAMOUNT.Index).Value.ToString() & "|" & ROW.Cells(gremamt.Index).Value.ToString()) Else alparaval.Add(ROW.Cells(GAMOUNT.Index).Value.ToString())
                     alparaval.Add(AMTPAID)
                     alparaval.Add(EXTRAAMT)
                     alparaval.Add(RETURNAMT)
                     alparaval.Add(BALANCE)
+
 
                     alparaval.Add("") 'dgridsrno
                     alparaval.Add("") 'descledgername
@@ -340,22 +353,25 @@ Public Class MagicBoxForRecPay
                 GoTo NEXTLINE
             End If
 
-            '    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-            '    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & CMBSELLER.Text.Trim & "' AND ACC_YEARID = " & TEMPYEARID)
-            '    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(CMBSELLER.Text.Trim, TEMPCMPID, TEMPYEARID)
+            'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & TEMPYEARID)
+            If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(cmbname.Text.Trim, TEMPCMPID, TEMPYEARID)
+
+            'CHECK WHETHER bank NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_YEARID = " & TEMPYEARID)
+            If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(cmbaccname.Text.Trim, TEMPCMPID, TEMPYEARID)
 
 
-            '    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
-            '    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
-            '    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
-
-            '    GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
+            'CREATEPAYMENT(Val(row.Index), TEMPCMPID, TEMPYEARID)
         End If
         '******************** END OF PO GENERATION CODE ***************************
 
 NEXTLINE:
         MessageBox.Show("Details Added")
         CLEAR()
+
+    End Sub
+    Sub CREATEPAYMENT()
         Try
             If CMBBUYER.Text = "ABHEE FABRICS LLP" Then
                 Dim DTTABLE1 As DataTable
@@ -430,6 +446,203 @@ NEXTLINE:
                     End If
                 Next
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub CREATELEDGER(NAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+
+            'ADD IN ACCOUNTSMASTER
+            Dim ALPARAVAL As New ArrayList
+            Dim OBJSM As New ClsAccountsMaster
+            Dim OBJCMN As New ClsCommon
+            Dim DTLEDGER As DataTable = OBJCMN.SEARCH(" GROUPMASTER.group_name AS GROUPNAME, ISNULL(LEDGERS.ACC_INTPER, 0) AS INTPER, ISNULL(LEDGERS.Acc_add1,'') AS ADD1, ISNULL(LEDGERS.Acc_add2,'') AS ADD2, ISNULL(AREAMASTER.area_name, '') AS AREA, ISNULL(CITYMASTER.city_name, '') AS CITYNAME, ISNULL(LEDGERS.Acc_zipcode, '') AS PINCODE, ISNULL(STATEMASTER.state_name, '') AS STATE, ISNULL(COUNTRYMASTER.country_name, '') AS COUNTRY, ISNULL(LEDGERS.Acc_crdays, 0) AS CRDAYS, ISNULL(LEDGERS.Acc_crlimit, 0) AS CRLIMIT, ISNULL(LEDGERS.Acc_resino, '') AS RESINO, ISNULL(LEDGERS.Acc_altno, '') AS ALTNO, ISNULL(LEDGERS.Acc_phone, '') 
+                         AS PHONENO, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS WHATSAPPNO, ISNULL(LEDGERS.Acc_fax, '') AS FAX, ISNULL(LEDGERS.Acc_website, '') AS WEBSITE, 
+                         ISNULL(LEDGERS.Acc_email, '') AS EMAIL, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(LEDGERS.ACC_AGENTCOMM, 0) AS COMMISSION, 
+                         ISNULL(LEDGERS.ACC_DISC, 0) AS DISCOUNT, ISNULL(LEDGERS.ACC_CDPER, 0) AS CASHDISC, ISNULL(LEDGERS.ACC_KMS, 0) AS KMS, ISNULL(LEDGERS.Acc_panno, '') AS PANNO, ISNULL(LEDGERS.ACC_GSTIN, '') 
+                         AS GSTIN, ISNULL(LEDGERS.Acc_add, '') AS ADDRESS, ISNULL(LEDGERS.Acc_shippingadd, '') AS SHIPPINGADDRESS, ISNULL(LEDGERS.Acc_remarks, '') AS REMARKS, LEDGERS.Acc_code AS CODE, 
+                         ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN, ISNULL(DELIVERYCITYMASTER.city_name, '') AS DELIVERYAT, LEDGERS.Acc_TYPE AS TYPE, ISNULL(LEDGERS.ACC_DELIVERYPINCODE, '') 
+                         AS DELIVERYPINNO, ISNULL(LEDGERS.ACC_UPI, '') AS UPI, ISNULL(LEDGERS.ACC_MSMENO, '') AS MSME, ISNULL(LEDGERS.ACC_COMMISSION, 0) AS BROKERAGECOMM, ISNULL(LEDGERS.ACC_WARNING, '') 
+                         AS WARNINGTEXT, ISNULL(LEDGERS.ACC_GSTINVERIFIED, 0) AS GSTVERIFIED, ISNULL(LEDGERS.ACC_MSMETYPE, '') AS MSMETYPE, ISNULL(LEDGERS.ACC_EXMILLLESS, 0) AS EXMILLLESS, 
+                         ISNULL(LEDGERS.ACC_LOCKDAYS, 0) AS LOCKDAYS ", "", " LEDGERS INNER JOIN
+                         GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN
+						 SALESMANMASTER ON SALESMANMASTER.SALESMAN_ID = LEDGERS.ACC_SALESMANID LEFT OUTER JOIN
+                         CITYMASTER AS DELIVERYCITYMASTER ON LEDGERS.ACC_DELIVERYATID = DELIVERYCITYMASTER.city_id LEFT OUTER JOIN
+                         LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN
+						 LEDGERS AS TRANSLEDGERS ON TRANSLEDGERS.Acc_id = LEDGERS.ACC_TRANSID LEFT OUTER JOIN
+                         COUNTRYMASTER ON LEDGERS.Acc_countryid = COUNTRYMASTER.country_id LEFT OUTER JOIN
+                         STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN
+                         CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN 
+						 AREAMASTER ON AREAMASTER.area_id = LEDGERS.Acc_areaid ", " AND LEDGERS.ACC_CMPNAME = '" & NAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+
+
+
+            Dim DTTABLE As DataTable = OBJCMN.SEARCH("CITY_ID AS CITYID", "", "CITYMASTER ", "AND CITY_NAME = '" & DTLEDGER.Rows(0).Item("CITYNAME") & "' AND CITY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW CITYNAME
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecity(DTLEDGER.Rows(0).Item("CITYNAME"), TEMPCMPID, 0, Userid, TEMPYEARID, " and city_name = '" & DTLEDGER.Rows(0).Item("CITYNAME") & "' AND CITY_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("CITY_ID AS CITYID", "", "CITYMASTER ", "AND CITY_NAME = '" & DTLEDGER.Rows(0).Item("DELIVERYAT") & "' AND CITY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW CITYNAME
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecity(DTLEDGER.Rows(0).Item("DELIVERYAT"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and city_name = '" & DTLEDGER.Rows(0).Item("DELIVERYAT") & "' AND CITY_CMPID = " & TEMPCMPID & " AND CITY_LOCATIONID = " & Locationid & " AND CITY_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("AREA_ID AS AREAID", "", "AREAMASTER ", "AND AREA_NAME = '" & DTLEDGER.Rows(0).Item("AREA") & "' AND AREA_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW AREA
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savearea(DTLEDGER.Rows(0).Item("AREA"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and AREA_name = '" & DTLEDGER.Rows(0).Item("AREA") & "' AND AREA_CMPID = " & TEMPCMPID & " AND AREA_LOCATIONID = " & Locationid & " AND AREA_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("STATE_ID AS STATEID", "", "STATEMASTER ", "AND STATE_NAME = '" & DTLEDGER.Rows(0).Item("STATE") & "' AND STATE_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW STATE
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savestate(DTLEDGER.Rows(0).Item("STATE"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and STATE_name = '" & DTLEDGER.Rows(0).Item("STATE") & "' AND STATE_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("COUNTRY_ID AS COUNTRYID", "", "COUNTRYMASTER ", "AND COUNTRY_NAME = '" & DTLEDGER.Rows(0).Item("COUNTRY") & "' AND COUNTRY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW COUNTRY
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecountry(DTLEDGER.Rows(0).Item("COUNTRY"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and COUNTRY_name = '" & DTLEDGER.Rows(0).Item("COUNTRY") & "' AND COUNTRY_YEARID = " & TEMPYEARID)
+            End If
+
+
+
+
+
+            ALPARAVAL.Add(NAME)
+            ALPARAVAL.Add("")   'NAME
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GROUPNAME"))
+            ALPARAVAL.Add(0)    'OPBAL
+            ALPARAVAL.Add("Cr.")
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("INTPER")))    'INTPER
+            ALPARAVAL.Add(0)    'PROFITPER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD1"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD2"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("AREA"))   'AREA
+            ALPARAVAL.Add("")   'STD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("CITYNAME"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PINCODE"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("STATE"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("COUNTRY"))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRDAYS")))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRLIMIT")))    'CRLIMIT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("RESINO"))   'RESI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ALTNO"))   'ALT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PHONENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MOBILENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WHATSAPPNO"))   'WHATSAPPNO
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("FAX"))   'FAX
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WEBSITE"))   'WEBSITE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("EMAIL"))   'EMAIL
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TRANSPORT"))   'TRANS
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("BROKER"))   'AGENT
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("COMMISSION")))    'AGENTCOM
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("DISCOUNT")))    'DISC
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CASHDISC")))    'CDPER
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("KMS")))    'KMS
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PANNO"))   'PAN
+            ALPARAVAL.Add("")   'EXISE
+            ALPARAVAL.Add("")   'RANGE
+            ALPARAVAL.Add("")   'ADDLESS
+            ALPARAVAL.Add("")   'CST
+            ALPARAVAL.Add("")   'TIN
+            ALPARAVAL.Add("")   'ST
+            ALPARAVAL.Add("")   'VAT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTIN"))
+            ALPARAVAL.Add("")   'REGISTER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADDRESS"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SHIPPINGADDRESS"))   'SHIPADD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("REMARKS"))   'REMARKS
+            ALPARAVAL.Add("")   'PARTYBANK
+            ALPARAVAL.Add("")   'ACCTYPE
+            ALPARAVAL.Add("")   'ACCNO
+            ALPARAVAL.Add("")   'IFSCCODE
+            ALPARAVAL.Add("")   'BRANCH
+            ALPARAVAL.Add("")   'BANKCITY
+            ALPARAVAL.Add("")   'GROUPOFCOMPANIES
+            ALPARAVAL.Add(0)    'BLOCKED
+            ALPARAVAL.Add(0)    'RCM
+            ALPARAVAL.Add(0)    'OVERSEAS
+            ALPARAVAL.Add(0)    'HOLDFORAPPROVAL
+            ALPARAVAL.Add(TEMPCMPID)
+            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(TEMPYEARID)
+            ALPARAVAL.Add(0)    'TRANSFER
+            ALPARAVAL.Add(NAME) 'CODE
+            ALPARAVAL.Add("")    'PRICELIST
+            ALPARAVAL.Add("")    'PACKINGTYPE
+            ALPARAVAL.Add("")    'TERM
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SALESMAN"))    'SALESMAN
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYAT"))    'DELIVERYAT (SAME AS CITY WHILE UPLOADING)
+
+
+
+            'TDS
+            '*******************************
+            ALPARAVAL.Add(0)    'ISTDS
+            ALPARAVAL.Add("")   'DEDUCTEETYPER
+            ALPARAVAL.Add("")   'TDSFORM
+            ALPARAVAL.Add("")   'TDSCOMPANY
+            ALPARAVAL.Add(0)    'ISLOWER
+
+            ALPARAVAL.Add("")   'SECTION
+            ALPARAVAL.Add(Val(0))   'TDSRATE
+            ALPARAVAL.Add(0)    'TDSPER
+            ALPARAVAL.Add(0) 'SURCHARGE
+            ALPARAVAL.Add(0) 'LIMIT
+            '*******************************
+
+            ALPARAVAL.Add(0)    'TDSAC
+            ALPARAVAL.Add("NON SEZ")    'SEZTYPE
+            ALPARAVAL.Add("")   'NATUREOFPAY
+            If DTLEDGER.Rows(0).Item("TYPE") <> "" Then ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TYPE")) Else ALPARAVAL.Add("ACCOUNTS")   'TYPE
+            ALPARAVAL.Add("")   'CALC
+            ALPARAVAL.Add(0)                        'POMNADTE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYPINNO"))       'DELIVERYPINCODE (SAME AS PINCODE WHILE UPLOADING)
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("UPI"))   'UPI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSME"))   'MSME
+            ALPARAVAL.Add(0)    'TCS
+            ALPARAVAL.Add("")   'TDSDEDUCTEDAC
+            ALPARAVAL.Add(0)    'TDSONGTOTAL
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("BROKERAGECOMM")))    'COMMISSION
+            ALPARAVAL.Add("")   'DISTRICT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WARNINGTEXT"))   'WARNING TEXT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTVERIFIED"))   'GSTINVERIFIED
+            ALPARAVAL.Add(0)   'PARTYTDS
+            ALPARAVAL.Add(0)   'RD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSMETYPE"))   'MSME TYPE
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("EXMILLLESS")))   'EXMILL
+            ALPARAVAL.Add(0)   'BILLTOID
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("LOCKDAYS")))   'LOCKDAYS
+
+            'CONTACT DETAILS
+            '*******************************
+            ALPARAVAL.Add("")   'FOR NAME
+            ALPARAVAL.Add(0)   'FOR DESIGNATION
+            ALPARAVAL.Add("")   'FOR MOBILE
+            ALPARAVAL.Add("")   'FOR EMAIL
+
+
+
+            OBJSM.alParaval = ALPARAVAL
+            Dim INTRES As Integer = OBJSM.SAVE()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -543,12 +756,13 @@ LINE1:
 
 
         If GRIDDOUBLECLICK = False Then
-            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim)
-            getsrno(GRIDISSUE)
+            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim, txtremamount.Text.Trim)
+            getmaxno()
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDISSUE.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
             GRIDISSUE.Item(GACCNAME.Index, TEMPROW).Value = cmbaccname.Text.Trim
             GRIDISSUE.Item(GPARTYNAME.Index, TEMPROW).Value = cmbname.Text.Trim
+            GRIDISSUE.Item(GSELLERNAME.Index, TEMPROW).Value = CMBBUYER.Text.Trim
             GRIDISSUE.Item(GCHQNO.Index, TEMPROW).Value = TXTCHQNO.Text.Trim
             GRIDISSUE.Item(GCHQDATE.Index, TEMPROW).Value = Format(DTCHQDATE.Value.Date, "dd/MM/yyyy")
             GRIDISSUE.Item(GCHQAMT.Index, TEMPROW).Value = Format(Val(txtamt.Text.Trim), "0.00")
@@ -556,6 +770,7 @@ LINE1:
             GRIDISSUE.Item(GPAYTYPE.Index, TEMPROW).Value = cmbpaytype.Text.Trim
             GRIDISSUE.Item(GBILLNO.Index, TEMPROW).Value = TXTBILLNO.Text.Trim
             GRIDISSUE.Item(GAMOUNT.Index, TEMPROW).Value = TXTADJAMOUNT.Text.Trim
+            GRIDISSUE.Item(gremamt.Index, TEMPROW).Value = txtremamount.Text.Trim
 
 
             GRIDDOUBLECLICK = False
@@ -576,7 +791,7 @@ LINE1:
         TXTBILLNO.Clear()
         cmbpaytype.Text = ""
         DTCHQDATE.Value = Now.Date
-
+        txtremamount.Clear()
         'txtPartyMtrs.Clear()
         'txtCheckPcs.Clear()
         'TXTBARCODE.Clear()
@@ -584,7 +799,7 @@ LINE1:
             txtsrno.Text = Val(GRIDISSUE.Rows(GRIDISSUE.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDINVOICE.RowCount) + 1
         Else
-            txtsrno.Text = 1
+            getmaxno()
         End If
         txtsrno.Focus()
     End Sub
@@ -622,6 +837,7 @@ LINE1:
                 txtsrno.Text = GRIDISSUE.Item(GSRNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 cmbaccname.Text = GRIDISSUE.Item(GACCNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 cmbname.Text = GRIDISSUE.Item(GPARTYNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
+                CMBBUYER.Text = GRIDISSUE.Item(GPARTYNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTCHQNO.Text = GRIDISSUE.Item(GCHQNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 DTCHQDATE.Text = GRIDISSUE.Item(GCHQDATE.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 txtamt.Text = GRIDISSUE.Item(GCHQAMT.Index, GRIDISSUE.CurrentRow.Index).Value
@@ -629,6 +845,7 @@ LINE1:
                 TXTBANKNAME.Text = GRIDISSUE.Item(GBANKNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTBILLNO.Text = GRIDISSUE.Item(GBILLNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTADJAMOUNT.Text = GRIDISSUE.Item(GAMOUNT.Index, GRIDISSUE.CurrentRow.Index).Value
+                TXTADJAMOUNT.Text = GRIDISSUE.Item(gremamt.Index, GRIDISSUE.CurrentRow.Index).Value
 
                 TEMPROW = GRIDISSUE.CurrentRow.Index
                 txtsrno.Focus()
@@ -852,6 +1069,8 @@ LINE1:
                         SELECTEDAMOUNT = SELECTEDAMOUNT & "|" & Val(DTROW("ADJUSTAMT"))
                     End If
                 Next
+                txtremamount.Text = OBJSELECTBILL.RemAmount
+
                 TXTBILLNO.Text = SELECTEDBILLNO
                 TXTADJAMOUNT.Text = SELECTEDAMOUNT
                 If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
@@ -867,21 +1086,21 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBSELLER_Enter(sender As Object, e As EventArgs) Handles CMBSELLER.Enter
-        Try
-            If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBSELLER_Enter(sender As Object, e As EventArgs)
+    '    Try
+    '        If CMBSELLER.Text.Trim = "" Then FILLNAME(CMBSELLER, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Private Sub CMBSELLER_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELLER.Validating
-        Try
-            If CMBSELLER.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLER, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBSELLER_Validating(sender As Object, e As CancelEventArgs)
+    '    Try
+    '        If CMBSELLER.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLER, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub CMBBUYER_Validating(sender As Object, e As CancelEventArgs) Handles CMBBUYER.Validating
         Try
@@ -900,21 +1119,21 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBSELLER_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLER.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+    'Private Sub CMBSELLER_KeyDown(sender As Object, e As KeyEventArgs)
+    '    Try
+    '        If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+    '        If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
 
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
-                OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then CMBSELLER.Text = OBJLEDGER.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '        If e.KeyCode = Keys.F1 Then
+    '            Dim OBJLEDGER As New SelectLedger
+    '            OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+    '            OBJLEDGER.ShowDialog()
+    '            If OBJLEDGER.TEMPNAME <> "" Then CMBSELLER.Text = OBJLEDGER.TEMPNAME
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub CMBBUYER_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBUYER.KeyDown
         Try

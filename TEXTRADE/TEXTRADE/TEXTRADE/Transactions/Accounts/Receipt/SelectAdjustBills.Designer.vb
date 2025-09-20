@@ -43,6 +43,8 @@ Partial Class SelectAdjustBills
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.txtremaining = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridrec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +54,8 @@ Partial Class SelectAdjustBills
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label3)
+        Me.BlendPanel1.Controls.Add(Me.txtremaining)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTBILLAMT)
         Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
@@ -288,6 +292,31 @@ Partial Class SelectAdjustBills
         Me.cmdok.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'txtremaining
+        '
+        Me.txtremaining.BackColor = System.Drawing.Color.Linen
+        Me.txtremaining.Enabled = False
+        Me.txtremaining.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtremaining.Location = New System.Drawing.Point(712, 546)
+        Me.txtremaining.Name = "txtremaining"
+        Me.txtremaining.ReadOnly = True
+        Me.txtremaining.Size = New System.Drawing.Size(89, 23)
+        Me.txtremaining.TabIndex = 636
+        Me.txtremaining.TabStop = False
+        Me.txtremaining.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(617, 549)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(89, 15)
+        Me.Label3.TabIndex = 637
+        Me.Label3.Text = "Remaining Amt"
+        '
         'SelectAdjustBills
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,4 +355,6 @@ Partial Class SelectAdjustBills
     Friend WithEvents cmdcancel As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents GADJUSTAMT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtremaining As TextBox
 End Class
