@@ -391,6 +391,8 @@ Partial Class DesignCardMaster
         Me.FPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TXTFINISHWT = New System.Windows.Forms.TextBox()
+        Me.Label62 = New System.Windows.Forms.Label()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -574,6 +576,7 @@ Partial Class DesignCardMaster
         Me.CMBCOPYDESIGN.Name = "CMBCOPYDESIGN"
         Me.CMBCOPYDESIGN.Size = New System.Drawing.Size(233, 23)
         Me.CMBCOPYDESIGN.TabIndex = 3
+        Me.CMBCOPYDESIGN.Visible = False
         '
         'lbldesign
         '
@@ -597,7 +600,7 @@ Partial Class DesignCardMaster
         Me.TABCONTROLDETAILS.Location = New System.Drawing.Point(12, 345)
         Me.TABCONTROLDETAILS.Name = "TABCONTROLDETAILS"
         Me.TABCONTROLDETAILS.SelectedIndex = 0
-        Me.TABCONTROLDETAILS.Size = New System.Drawing.Size(1448, 270)
+        Me.TABCONTROLDETAILS.Size = New System.Drawing.Size(1289, 270)
         Me.TABCONTROLDETAILS.TabIndex = 5
         '
         'TBSELVEDGE
@@ -634,7 +637,7 @@ Partial Class DesignCardMaster
         Me.TBSELVEDGE.Location = New System.Drawing.Point(4, 24)
         Me.TBSELVEDGE.Name = "TBSELVEDGE"
         Me.TBSELVEDGE.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBSELVEDGE.Size = New System.Drawing.Size(1440, 242)
+        Me.TBSELVEDGE.Size = New System.Drawing.Size(1281, 242)
         Me.TBSELVEDGE.TabIndex = 1
         Me.TBSELVEDGE.Text = "1. Selvedge Matching"
         '
@@ -734,7 +737,7 @@ Partial Class DesignCardMaster
         Me.GRIDSELVEDGEPATTERN.RowTemplate.Height = 20
         Me.GRIDSELVEDGEPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSELVEDGEPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(372, 179)
+        Me.GRIDSELVEDGEPATTERN.Size = New System.Drawing.Size(167, 179)
         Me.GRIDSELVEDGEPATTERN.TabIndex = 15
         Me.GRIDSELVEDGEPATTERN.TabStop = False
         '
@@ -1386,7 +1389,7 @@ Partial Class DesignCardMaster
         Me.GRIDWARPPATTERN.RowTemplate.Height = 20
         Me.GRIDWARPPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWARPPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDWARPPATTERN.Size = New System.Drawing.Size(355, 179)
+        Me.GRIDWARPPATTERN.Size = New System.Drawing.Size(165, 179)
         Me.GRIDWARPPATTERN.TabIndex = 15
         Me.GRIDWARPPATTERN.TabStop = False
         '
@@ -1686,7 +1689,7 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1440, 242)
+        Me.TBWEFT.Size = New System.Drawing.Size(1281, 242)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Weft Matching && Weft Pattern"
         '
@@ -1804,7 +1807,7 @@ Partial Class DesignCardMaster
         Me.GRIDWEFTPATTERN.RowTemplate.Height = 20
         Me.GRIDWEFTPATTERN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFTPATTERN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDWEFTPATTERN.Size = New System.Drawing.Size(370, 179)
+        Me.GRIDWEFTPATTERN.Size = New System.Drawing.Size(162, 179)
         Me.GRIDWEFTPATTERN.TabIndex = 14
         Me.GRIDWEFTPATTERN.TabStop = False
         '
@@ -2208,7 +2211,7 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1282, 242)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1281, 242)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
@@ -2498,6 +2501,7 @@ Partial Class DesignCardMaster
         Me.Label12.TabIndex = 904
         Me.Label12.Text = "Copy Design"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label12.Visible = False
         '
         'CMDCLEAR
         '
@@ -2568,6 +2572,8 @@ Partial Class DesignCardMaster
         'TBMAIN
         '
         Me.TBMAIN.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBMAIN.Controls.Add(Me.TXTFINISHWT)
+        Me.TBMAIN.Controls.Add(Me.Label62)
         Me.TBMAIN.Controls.Add(Me.txtxvalue)
         Me.TBMAIN.Controls.Add(Me.Label60)
         Me.TBMAIN.Controls.Add(Me.TXTTOTALMAINENDS)
@@ -2626,7 +2632,7 @@ Partial Class DesignCardMaster
         'txtxvalue
         '
         Me.txtxvalue.BackColor = System.Drawing.Color.Linen
-        Me.txtxvalue.Location = New System.Drawing.Point(964, 131)
+        Me.txtxvalue.Location = New System.Drawing.Point(964, 150)
         Me.txtxvalue.Name = "txtxvalue"
         Me.txtxvalue.ReadOnly = True
         Me.txtxvalue.Size = New System.Drawing.Size(60, 23)
@@ -2640,7 +2646,7 @@ Partial Class DesignCardMaster
         Me.Label60.AutoSize = True
         Me.Label60.BackColor = System.Drawing.Color.Transparent
         Me.Label60.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label60.Location = New System.Drawing.Point(925, 134)
+        Me.Label60.Location = New System.Drawing.Point(925, 153)
         Me.Label60.Name = "Label60"
         Me.Label60.Size = New System.Drawing.Size(14, 15)
         Me.Label60.TabIndex = 981
@@ -2772,7 +2778,7 @@ Partial Class DesignCardMaster
         Me.CMBSHAFTS.BackColor = System.Drawing.Color.White
         Me.CMBSHAFTS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSHAFTS.FormattingEnabled = True
-        Me.CMBSHAFTS.Items.AddRange(New Object() {"24", "36"})
+        Me.CMBSHAFTS.Items.AddRange(New Object() {"4", "6", "8", "12", "16", "20", "22", "24", "36"})
         Me.CMBSHAFTS.Location = New System.Drawing.Point(587, 101)
         Me.CMBSHAFTS.Name = "CMBSHAFTS"
         Me.CMBSHAFTS.Size = New System.Drawing.Size(60, 23)
@@ -3968,6 +3974,7 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT.HeaderText = "R"
         Me.SPREPEAT.Name = "SPREPEAT"
+        Me.SPREPEAT.Visible = False
         Me.SPREPEAT.Width = 30
         '
         'SPREPEATMARK1
@@ -3981,6 +3988,7 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT1.HeaderText = "R1"
         Me.SPREPEAT1.Name = "SPREPEAT1"
+        Me.SPREPEAT1.Visible = False
         Me.SPREPEAT1.Width = 30
         '
         'SPREPEATMARK2
@@ -3994,6 +4002,7 @@ Partial Class DesignCardMaster
         '
         Me.SPREPEAT2.HeaderText = "R2"
         Me.SPREPEAT2.Name = "SPREPEAT2"
+        Me.SPREPEAT2.Visible = False
         Me.SPREPEAT2.Width = 30
         '
         'WPSRNO
@@ -4033,12 +4042,14 @@ Partial Class DesignCardMaster
         Me.WPR.HeaderText = "R"
         Me.WPR.Name = "WPR"
         Me.WPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WPR.Visible = False
         Me.WPR.Width = 30
         '
         'WPTR
         '
         Me.WPTR.HeaderText = "Column1"
         Me.WPTR.Name = "WPTR"
+        Me.WPTR.Visible = False
         '
         'WPRM1
         '
@@ -4051,12 +4062,14 @@ Partial Class DesignCardMaster
         '
         Me.WPR1.HeaderText = "R1"
         Me.WPR1.Name = "WPR1"
+        Me.WPR1.Visible = False
         Me.WPR1.Width = 30
         '
         'WPTR1
         '
         Me.WPTR1.HeaderText = "Column1"
         Me.WPTR1.Name = "WPTR1"
+        Me.WPTR1.Visible = False
         '
         'WPRM2
         '
@@ -4069,12 +4082,14 @@ Partial Class DesignCardMaster
         '
         Me.WPR2.HeaderText = "R2"
         Me.WPR2.Name = "WPR2"
+        Me.WPR2.Visible = False
         Me.WPR2.Width = 30
         '
         'WPTR2
         '
         Me.WPTR2.HeaderText = "Column1"
         Me.WPTR2.Name = "WPTR2"
+        Me.WPTR2.Visible = False
         '
         'FPSRNO
         '
@@ -4112,12 +4127,14 @@ Partial Class DesignCardMaster
         '
         Me.FPR.HeaderText = "R"
         Me.FPR.Name = "FPR"
+        Me.FPR.Visible = False
         Me.FPR.Width = 30
         '
         'FPTR
         '
         Me.FPTR.HeaderText = "Column1"
         Me.FPTR.Name = "FPTR"
+        Me.FPTR.Visible = False
         '
         'FPRM1
         '
@@ -4130,12 +4147,14 @@ Partial Class DesignCardMaster
         '
         Me.FPR1.HeaderText = "R1"
         Me.FPR1.Name = "FPR1"
+        Me.FPR1.Visible = False
         Me.FPR1.Width = 30
         '
         'FPTR1
         '
         Me.FPTR1.HeaderText = "Column1"
         Me.FPTR1.Name = "FPTR1"
+        Me.FPTR1.Visible = False
         '
         'FPRM2
         '
@@ -4148,12 +4167,36 @@ Partial Class DesignCardMaster
         '
         Me.FPR2.HeaderText = "R2"
         Me.FPR2.Name = "FPR2"
+        Me.FPR2.Visible = False
         Me.FPR2.Width = 30
         '
         'FPTR2
         '
         Me.FPTR2.HeaderText = "Column1"
         Me.FPTR2.Name = "FPTR2"
+        Me.FPTR2.Visible = False
+        '
+        'TXTFINISHWT
+        '
+        Me.TXTFINISHWT.BackColor = System.Drawing.Color.Linen
+        Me.TXTFINISHWT.Location = New System.Drawing.Point(438, 130)
+        Me.TXTFINISHWT.Name = "TXTFINISHWT"
+        Me.TXTFINISHWT.ReadOnly = True
+        Me.TXTFINISHWT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTFINISHWT.TabIndex = 982
+        Me.TXTFINISHWT.TabStop = False
+        Me.TXTFINISHWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label62
+        '
+        Me.Label62.AutoSize = True
+        Me.Label62.BackColor = System.Drawing.Color.Transparent
+        Me.Label62.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label62.Location = New System.Drawing.Point(339, 134)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(90, 15)
+        Me.Label62.TabIndex = 983
+        Me.Label62.Text = "Total Finish Wt"
         '
         'DesignCardMaster
         '
@@ -4531,4 +4574,6 @@ Partial Class DesignCardMaster
     Friend WithEvents FPRM2 As DataGridViewTextBoxColumn
     Friend WithEvents FPR2 As DataGridViewTextBoxColumn
     Friend WithEvents FPTR2 As DataGridViewTextBoxColumn
+    Friend WithEvents TXTFINISHWT As TextBox
+    Friend WithEvents Label62 As Label
 End Class

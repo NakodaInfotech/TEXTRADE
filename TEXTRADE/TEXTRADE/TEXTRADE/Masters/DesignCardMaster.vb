@@ -1536,6 +1536,8 @@ Public Class DesignCardMaster
                 Next
             End If
         End If
+        TXTFINISHWT.Text = 0.000
+        TXTFINISHWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
@@ -2055,6 +2057,32 @@ Public Class DesignCardMaster
     End Sub
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
+            ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
+            Dim maxShaft As Integer = 0
+            If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
+                ' maxShaft will hold the correct integer value
+            Else
+                MessageBox.Show("Please select a valid shaft number.", "Error")
+                Exit Sub
+            End If ' or use Integer.Parse(txtShafts.Text)
+
+            ' Check if editing the "Ends" column by column name or index
+            If GRIDDRAWING.Columns(e.ColumnIndex).Name = "DENDS" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    Dim nums = inputValue.Split("."c)
+                    For Each n In nums
+                        Dim value As Integer
+                        If Integer.TryParse(n.Trim(), value) Then
+                            If value > maxShaft Then
+                                MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                e.Cancel = True
+                                Return
+                            End If
+                        End If
+                    Next
+                End If
+            End If
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2495,6 +2523,35 @@ LINE1:
 
     Private Sub GRIDWEFTPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFTPATTERN.CellValidating
         Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Proceed only if the column being edited is "WPSYM"
+            If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
+
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDWEFT.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
+                    End If
+                End If
+            End If
+
             If e.ColumnIndex = FPR.Index OrElse e.ColumnIndex = FPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2791,4 +2848,49 @@ LINE1:
         GRIDSELVEDGEPATTERN.RowCount = 1
     End Sub
 
+    Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
+        Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Proceed only if the column being edited is "WPSYM"
+            If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
+
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
+                    End If
+                End If
+            End If
+            'If e.ColumnIndex = SPR.Index OrElse e.ColumnIndex = SPR1.Index Then ' For both repeats columns if needed
+            '    Dim value = Convert.ToString(e.FormattedValue)
+            '    If value IsNot Nothing AndAlso value.Trim() <> "" Then
+            '        Dim repeatCount As Integer
+            '        If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+            '            MessageBox.Show("Please enter a positive integer for repeats.")
+            '            e.Cancel = True
+            '        End If
+            '    End If
+            'End If
+            TOTALSELVEDGEPATTERN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
