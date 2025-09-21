@@ -631,7 +631,7 @@ Public Class DesignCardMaster
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
 
-        GRIDSELVEDGEPATTERN.Rows.Clear()
+        GRIDSELVEDGEPATTERN.RowCount = 1
         'GRID WEFT
         GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
@@ -1586,6 +1586,8 @@ Public Class DesignCardMaster
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWARPPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
@@ -1638,15 +1640,19 @@ Public Class DesignCardMaster
         TXTSELTOTALCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALSELVEDGEPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDSELVEDGEPATTERN, "SPENDS", "SPREPEAT", "SPREPEAT1", "SPREPEAT2", "SPTR", "SPTR1", "SPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If row.Cells(SPENDS.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(SPENDS.Index).Value)
+            If row.Cells(SPTR2.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(SPTR2.Index).Value)
             End If
         Next
         TXTTOTALSELGPE.Text = Format(PE, "0.00")
-        If GRIDSELVEDGE.RowCount > 0 Then GETSELPE()
+        ' Call GETSELPE() only if the grid exists and has data rows
+        If GRIDSELVEDGE IsNot Nothing AndAlso GRIDSELVEDGE.RowCount > 0 Then
+            GETSELPE()
+        End If
     End Sub
     Sub TOTALWEFT()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1690,6 +1696,7 @@ Public Class DesignCardMaster
         TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWEFTPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
@@ -2819,12 +2826,12 @@ LINE1:
         Next
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+        'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
         TOTALWARPPATTERN()
         TOTALWARP()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+        'CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         TOTALWEFTPATTERN()
         TOTALWEFT()
     End Sub
@@ -2845,9 +2852,6 @@ LINE1:
         e.Row.Cells("FPSRNO").Value = GRIDWEFTPATTERN.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
-        GRIDSELVEDGEPATTERN.RowCount = 1
-    End Sub
 
     Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
         Try
@@ -2893,5 +2897,146 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Public Sub CalculateTotalsForGridPATTERN(dgv As DataGridView,
+                                    endsCol As String, repeatsCol As String,
+                                    repeats1Col As String, repeats2Col As String,
+                                    totalRepeatCol As String, totalRepeat1Col As String, totalRepeat2Col As String)
+        'For Each row As DataGridViewRow In dgv.Rows
+        '    If row.IsNewRow Then Continue For
+
+        '    Dim ends As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(endsCol).Value)), 1, Convert.ToInt32(row.Cells(endsCol).Value))
+        '    Dim repeats As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), 1, Convert.ToInt32(row.Cells(repeatsCol).Value))
+        '    Dim repeats1 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+        '    Dim repeats2 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+
+        '    Dim totalRepeat As Integer = ends * repeats
+        '    Dim totalRepeat1 As Integer = totalRepeat * repeats1
+        '    Dim totalRepeat2 As Integer = totalRepeat1 * repeats2
+
+        '    row.Cells(totalRepeatCol).Value = totalRepeat
+        '    row.Cells(totalRepeat1Col).Value = totalRepeat1
+        '    row.Cells(totalRepeat2Col).Value = totalRepeat2
+        'Next
+
+        ' --- Group State Variables ---
+        Dim inGroupParen As Boolean = False, groupStartParen As Integer = -1, repeatValueParen As Integer = 1
+        Dim inGroupSquare As Boolean = False, groupStartSquare As Integer = -1, repeatValueSquare As Integer = 1
+        Dim inGroupCurly As Boolean = False, groupStartCurly As Integer = -1, repeatValueCurly As Integer = 1
+        Dim totalEndsInGroupParen As Integer = 0
+        ' --- Main Pass: Assign Repeats Based on Group Patterns ---
+        For i As Integer = 0 To dgv.Rows.Count - 1
+            If dgv.Rows(i).IsNewRow Then Continue For
+            Dim endsVal As String = Convert.ToString(dgv.Rows(i).Cells(endsCol).Value)
+
+            ' ( ) brackets for repeatsCol
+            If endsVal.Contains("(") Then inGroupParen = True : groupStartParen = i
+            If inGroupParen And endsVal.Contains(")") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\)(\d+)")
+                repeatValueParen = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartParen To i
+                    dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+                Next
+                inGroupParen = False : groupStartParen = -1
+            ElseIf Not inGroupParen Then
+                dgv.Rows(i).Cells(repeatsCol).Value = 1
+            End If
+
+            ' [ ] brackets for repeats1Col
+            If endsVal.Contains("[") Then inGroupSquare = True : groupStartSquare = i
+            If inGroupSquare And endsVal.Contains("]") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\](\d+)")
+                repeatValueSquare = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartSquare To i
+                    dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+                Next
+                inGroupSquare = False : groupStartSquare = -1
+            ElseIf Not inGroupSquare Then
+                dgv.Rows(i).Cells(repeats1Col).Value = 1
+            End If
+
+            ' { } brackets for repeats2Col
+            If endsVal.Contains("{") Then inGroupCurly = True : groupStartCurly = i
+            If inGroupCurly And endsVal.Contains("}") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\}(\d+)")
+                repeatValueCurly = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartCurly To i
+                    dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+                Next
+                inGroupCurly = False : groupStartCurly = -1
+            ElseIf Not inGroupCurly Then
+                dgv.Rows(i).Cells(repeats2Col).Value = 1
+            End If
+        Next
+
+        ' --- Handle any unclosed groups ---
+        If inGroupParen And groupStartParen <> -1 Then
+            For j As Integer = groupStartParen To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+            Next
+        End If
+        If inGroupSquare And groupStartSquare <> -1 Then
+            For j As Integer = groupStartSquare To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+            Next
+        End If
+        If inGroupCurly And groupStartCurly <> -1 Then
+            For j As Integer = groupStartCurly To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+            Next
+        End If
+
+        ' --- Final Calculation: Totals using assigned repeats ---
+        For Each row As DataGridViewRow In dgv.Rows
+            If row.IsNewRow Then Continue For
+            Dim endsStr As String = Convert.ToString(row.Cells(endsCol).Value)
+            Dim ends As Integer = 1, repeatsFromEnds As Integer = 1
+            ExtractEndsAndRepeatationPATTERN(endsStr, ends, repeatsFromEnds)
+            Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).Value))
+            Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+            Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+            Dim totalRepeat = ends * repeats
+            Dim totalRepeat1 = totalRepeat * repeats1
+            Dim totalRepeat2 = totalRepeat1 * repeats2
+            row.Cells(totalRepeatCol).Value = totalRepeat
+            row.Cells(totalRepeat1Col).Value = totalRepeat1
+            row.Cells(totalRepeat2Col).Value = totalRepeat2
+        Next
+
+    End Sub
+    Private Sub ExtractEndsAndRepeatationPATTERN(input As String, ByRef endsValue As Integer, ByRef repeatationValue As Integer)
+        endsValue = 1
+        repeatationValue = 1
+        If String.IsNullOrWhiteSpace(input) Then
+            endsValue = 0
+            repeatationValue = 1
+            Return
+        End If
+        ' Extract repeatation: number after closing bracket, e.g. )5 or ]5 or }5
+        Dim repeatMatch As Match = Regex.Match(input, "[)\]\}]\s*(\d+)")
+        If repeatMatch.Success Then
+            Integer.TryParse(repeatMatch.Groups(1).Value, repeatationValue)
+        End If
+        ' Extract count of dot-separated numbers BEFORE the closing bracket
+        Dim beforeCloseBracket As String = input.Split({")", "]", "}"}, StringSplitOptions.None)(0)
+        Dim core As String = beforeCloseBracket.Replace("(", "").Replace("[", "").Replace("{", "")
+        If String.IsNullOrWhiteSpace(core) Then
+            endsValue = 0
+            Return
+        End If
+        Dim valsInside As String() = core.Split("."c)
+        endsValue = valsInside.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).
+                    Select(Function(x)
+                               Dim v As Integer = 0
+                               Integer.TryParse(x, v)
+                               Return v
+                           End Function).Sum()
+
     End Sub
 End Class
