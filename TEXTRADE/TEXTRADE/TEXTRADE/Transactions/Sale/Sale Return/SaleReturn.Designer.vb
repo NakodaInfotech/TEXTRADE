@@ -462,7 +462,6 @@ Partial Class SaleReturn
         Me.CMDAUTOPOST.TabIndex = 1015
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
-        Me.CMDAUTOPOST.Visible = False
         '
         'CHKINTCALC
         '
