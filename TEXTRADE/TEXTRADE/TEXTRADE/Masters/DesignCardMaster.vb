@@ -3059,11 +3059,19 @@ LINE1:
 
     End Sub
 
+    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+        GBSSHADEDETAILS.Visible = True
+    End Sub
     Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
     End Sub
 End Class
