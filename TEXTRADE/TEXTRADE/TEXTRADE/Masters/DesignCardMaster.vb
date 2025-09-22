@@ -2505,6 +2505,19 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+
+    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs)
+
+    End Sub
+
+    Private Sub TXTDMTRS_Validated(sender As Object, e As EventArgs)
+
+    End Sub
+
     'Private Sub GRIDWARPPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellClick
     '    If e.RowIndex < 0 Then Exit Sub
 
@@ -2576,6 +2589,11 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSE.Click
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
+    End Sub
+
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
@@ -2606,7 +2624,7 @@ LINE1:
                     End If
                 End If
             End If
-                If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
+            If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
@@ -3038,5 +3056,19 @@ LINE1:
                                Return v
                            End Function).Sum()
 
+    End Sub
+
+    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+        Try
+            GBSSHADEDETAILS.Visible = True
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
     End Sub
 End Class
