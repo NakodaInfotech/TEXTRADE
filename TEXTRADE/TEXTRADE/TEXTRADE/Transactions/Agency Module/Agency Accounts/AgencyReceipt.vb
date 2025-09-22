@@ -285,15 +285,16 @@ Public Class AgencyReceipt
             End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
-                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    BLN = False
-                End If
+                'DONE TEMP
+                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                '    BLN = False
+                'End If
 
-                If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    BLN = False
-                End If
+                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
+                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                '    BLN = False
+                'End If
             Next
 
             If cmbseller.Text.Trim.Length = 0 Then
@@ -311,31 +312,11 @@ Public Class AgencyReceipt
                 BLN = False
             End If
 
-            If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
-                EP.SetError(txttotal, "Total does not match Specified Amt")
-                BLN = False
-            End If
-
-            'Dim OBJCMN1 As New ClsCommon
-            'Dim DT As DataTable = OBJCMN1.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbseller.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & 0 & " AND ACC_YEARID = " & YearId)
-            'If DT.Rows.Count > 0 Then
-            '    If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
-            '        'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
-            '        'If txtchqno.Text.Trim.Length = 0 Then
-            '        '    EP.SetError(txtchqno, "Enter Chq No.")
-            '        '    BLN = False
-            '        'End If
-            '        If txtchqno.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" Then
-            '            If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
-            '                EP.SetError(txtchqno, "Enter Chq No.")
-            '                BLN = False
-            '            End If
-            '        End If
-            '    ElseIf DT.Rows(0).Item(0) = "Cash In Hand" Then
-            '        txtchqno.Clear()
-            '    End If
+            'DONE TEMP
+            'If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
+            '    EP.SetError(txttotal, "Total does not match Specified Amt")
+            '    BLN = False
             'End If
-
 
 
             If ACCDATE.Text = "__/__/____" Then
@@ -794,14 +775,16 @@ Public Class AgencyReceipt
                 End If
                 alparaval.Add(TEMPARECEIPTNO)
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
-                MsgBox("Details Updated")
+                'DONE TEMP
+                'MsgBox("Details Updated")
                 EDIT = False
 
             End If
 
-            Call toolnext_Click(sender, e)
-            cmbseller.Focus()
-            CLEAR()
+            'DONE TEMP
+            'Call toolnext_Click(sender, e)
+            'cmbseller.Focus()
+            'CLEAR()
             EDIT = False
 
         Catch ex As Exception
