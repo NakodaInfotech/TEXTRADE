@@ -2590,7 +2590,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDCLOSE_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSE.Click
+    Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
         GBSSHADEDETAILS.Visible = False
         TXTSELBE.Focus()
     End Sub
@@ -3070,8 +3070,20 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
+    Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
         GBSSHADEDETAILS.Visible = False
         TXTSELBE.Focus()
+    End Sub
+
+    Private Sub GRIDSELDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELDESC.KeyDown
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDSELDESC()
+
+
     End Sub
 End Class
