@@ -17,7 +17,7 @@ Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK, GRIDSELDESCDOUBLECLICK As Boolean
     Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
@@ -449,7 +449,7 @@ Public Class DesignCardMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
-
+            alParaval.Add(TXTFINISHWT.Text.Trim)
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
 
@@ -639,6 +639,7 @@ Public Class DesignCardMaster
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
 
+
     End Sub
     Private Function errorvalid() As Boolean
 
@@ -786,7 +787,7 @@ Public Class DesignCardMaster
 
 
 
-
+                        TXTFINISHWT.Text = Val(dr("TOTALFINISHWT"))
                     Next
                     'cmbtype.Enabled = False
 
@@ -2148,7 +2149,7 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
-                TOTALselvedge()
+                TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
@@ -2505,6 +2506,19 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+
+    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs)
+
+    End Sub
+
+    Private Sub TXTDMTRS_Validated(sender As Object, e As EventArgs)
+
+    End Sub
+
     'Private Sub GRIDWARPPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellClick
     '    If e.RowIndex < 0 Then Exit Sub
 
@@ -2576,6 +2590,11 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
+    End Sub
+
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
@@ -2606,7 +2625,7 @@ LINE1:
                     End If
                 End If
             End If
-                If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
+            If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
@@ -3037,6 +3056,59 @@ LINE1:
                                Integer.TryParse(x, v)
                                Return v
                            End Function).Sum()
+
+    End Sub
+
+    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+        GBSSHADEDETAILS.Visible = True
+    End Sub
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
+        Try
+            numkeypress(e, sender, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
+    End Sub
+
+    Private Sub GRIDSELDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELDESC.KeyDown
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDSELDESC()
+        'Try
+        '    If GRIDSELDESCDOUBLECLICK = False Then
+        '        GRIDSELDESC.Rows.Add(Val(TXTSDNO.Text.Trim), Format(Val(TXTDSELDESC.Text.Trim), "0.00"), Val(txtsrno.Text.Trim))
+        '        'TEMPDTSELDESC.Rows.Add(Val(TXTDSRNO.Text.Trim), Format(Val(TXTDSELDESC.Text.Trim), "0.00"), Val(txtsrno.Text.Trim))
+        '        getsrno(GRIDSELDESC)
+        '    ElseIf GRIDSELDESCDOUBLECLICK = True Then
+        '        'For I As Integer = 0 To TEMPDTSELDESC.Rows.Count - 1
+        '        '    If GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value = TEMPDTSELDESC.Rows(I).Item("DSRNO") And GRIDSELDESC.Item(GMAINSRNO.Index, TEMPSELDESCROW).Value = TEMPDTSELDESC.Rows(I).Item("MAINSRNO") Then
+        '        '        TEMPDTSELDESC.Rows(I).Item("DSELDESC") = Format(Val(TXTDSELDESC.Text.Trim), "0.00")
+        '        '        TEMPDTSELDESC.Rows(I).Item("MAINSRNO") = Val(txtsrno.Text.Trim)
+        '        '    End If
+        '        'Next
+
+        '        GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value = Val(TXTDSRNO.Text.Trim)
+        '        GRIDSELDESC.Item(DSELDESC.Index, TEMPSELDESCROW).Value = Format(Val(TXTDSELDESC.Text.Trim), "0.00")
+        '        GRIDSELDESC.Item(GMAINSRNO.Index, TEMPSELDESCROW).Value = Val(txtsrno.Text.Trim)
+        '        GRIDSELDESCDOUBLECLICK = False
+        '    End If
+        '    TXTDSELDESC.Clear()
+        '    TXTDSRNO.Clear()
+        '    TXTDSELDESC.Focus()
+        '    TXTDSRNO.Text = GRIDSELDESC.RowCount + 1
+        '    TOTALSELDESC()
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
 
     End Sub
 End Class
