@@ -318,7 +318,8 @@ Public Class ClsDesignCardMaster
                 ' Additional flags or reserved parameter
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
                 I += 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
+                I += 1
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
         Catch ex As Exception
@@ -630,6 +631,9 @@ Public Class ClsDesignCardMaster
                 I += 1
                 ' Additional flags or reserved parameter
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
                 I += 1

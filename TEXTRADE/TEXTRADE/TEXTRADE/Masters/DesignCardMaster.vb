@@ -449,7 +449,7 @@ Public Class DesignCardMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
-
+            alParaval.Add(TXTFINISHWT.Text.Trim)
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
 
@@ -639,6 +639,7 @@ Public Class DesignCardMaster
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
 
+
     End Sub
     Private Function errorvalid() As Boolean
 
@@ -786,7 +787,7 @@ Public Class DesignCardMaster
 
 
 
-
+                        TXTFINISHWT.Text = Val(dr("TOTALFINISHWT"))
                     Next
                     'cmbtype.Enabled = False
 
@@ -2148,7 +2149,7 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
-                TOTALselvedge()
+                TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
@@ -3058,17 +3059,11 @@ LINE1:
 
     End Sub
 
-    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
         Try
-            GBSSHADEDETAILS.Visible = True
-
+            numkeypress(e, sender, Me)
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
-        GBSSHADEDETAILS.Visible = False
-        TXTSELBE.Focus()
     End Sub
 End Class
