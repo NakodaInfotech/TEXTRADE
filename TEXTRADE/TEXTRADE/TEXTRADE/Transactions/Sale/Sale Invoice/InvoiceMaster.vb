@@ -2287,7 +2287,7 @@ CHECKNEXTLINE:
         Try
 
             TXTTCSPER.Text = 0
-            TXTTCSAMT.Text = 0
+            'TXTTCSAMT.Text = 0
 
             'FETCH TCSPERCENT WITH RESPECT TO DATE
             Dim dt As New DataTable
@@ -2502,7 +2502,7 @@ NORATE:
                 End If
 
                 TXTTOTALWITHGST.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT1.Text.Trim) + Val(TXTSGSTAMT1.Text.Trim) + Val(TXTIGSTAMT1.Text.Trim), "0.00")
-                If CHKTCS.CheckState = CheckState.Checked Then
+                If CHKTCS.CheckState = CheckState.Checked And Val(TXTTCSPER.Text.Trim) > 0 Then
                     If ClientName = "MNIKHIL" Then
                         TXTTCSAMT.Text = Format((Val(TXTSUBTOTAL.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
                     Else
@@ -2522,7 +2522,7 @@ NORATE:
             Else
 
                 TXTTOTALWITHGST.Text = Format(Val(TXTSUBTOTAL.Text.Trim), "0.00")
-                If CHKTCS.CheckState = CheckState.Checked Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
+                If CHKTCS.CheckState = CheckState.Checked And Val(TXTTCSPER.Text.Trim) > 0 Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
 
                 'txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim), "0")
                 'txtroundoff.Text = Format(Val(txtgrandtotal.Text) - (Val(TXTSUBTOTAL.Text) + Val(TXTTCSAMT.Text.Trim)), "0.00")
