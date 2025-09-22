@@ -17,7 +17,7 @@ Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK, GRIDSELDESCDOUBLECLICK As Boolean
     Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
@@ -449,7 +449,7 @@ Public Class DesignCardMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
-
+            alParaval.Add(TXTFINISHWT.Text.Trim)
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
 
@@ -569,6 +569,7 @@ Public Class DesignCardMaster
         'drawing total
         TXTTOTALDRAWDENTS.Clear()
         TXTTOTALDRAWENDS.Clear()
+        TXTFINISHWT.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
@@ -630,13 +631,14 @@ Public Class DesignCardMaster
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
 
-        GRIDSELVEDGEPATTERN.Rows.Clear()
+        GRIDSELVEDGEPATTERN.RowCount = 1
         'GRID WEFT
         GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
         GRIDWEFTPATTERN.RowCount = 1
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
+
 
     End Sub
     Private Function errorvalid() As Boolean
@@ -785,7 +787,7 @@ Public Class DesignCardMaster
 
 
 
-
+                        TXTFINISHWT.Text = Val(dr("TOTALFINISHWT"))
                     Next
                     'cmbtype.Enabled = False
 
@@ -1536,6 +1538,8 @@ Public Class DesignCardMaster
                 Next
             End If
         End If
+        TXTFINISHWT.Text = 0.000
+        TXTFINISHWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
@@ -1583,6 +1587,8 @@ Public Class DesignCardMaster
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWARPPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
@@ -1635,15 +1641,19 @@ Public Class DesignCardMaster
         TXTSELTOTALCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALSELVEDGEPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDSELVEDGEPATTERN, "SPENDS", "SPREPEAT", "SPREPEAT1", "SPREPEAT2", "SPTR", "SPTR1", "SPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If row.Cells(SPENDS.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(SPENDS.Index).Value)
+            If row.Cells(SPTR2.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(SPTR2.Index).Value)
             End If
         Next
         TXTTOTALSELGPE.Text = Format(PE, "0.00")
-        If GRIDSELVEDGE.RowCount > 0 Then GETSELPE()
+        ' Call GETSELPE() only if the grid exists and has data rows
+        If GRIDSELVEDGE IsNot Nothing AndAlso GRIDSELVEDGE.RowCount > 0 Then
+            GETSELPE()
+        End If
     End Sub
     Sub TOTALWEFT()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1687,6 +1697,7 @@ Public Class DesignCardMaster
         TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWEFTPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
@@ -2055,6 +2066,32 @@ Public Class DesignCardMaster
     End Sub
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
+            ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
+            Dim maxShaft As Integer = 0
+            If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
+                ' maxShaft will hold the correct integer value
+            Else
+                MessageBox.Show("Please select a valid shaft number.", "Error")
+                Exit Sub
+            End If ' or use Integer.Parse(txtShafts.Text)
+
+            ' Check if editing the "Ends" column by column name or index
+            If GRIDDRAWING.Columns(e.ColumnIndex).Name = "DENDS" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    Dim nums = inputValue.Split("."c)
+                    For Each n In nums
+                        Dim value As Integer
+                        If Integer.TryParse(n.Trim(), value) Then
+                            If value > maxShaft Then
+                                MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                e.Cancel = True
+                                Return
+                            End If
+                        End If
+                    Next
+                End If
+            End If
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2112,7 +2149,7 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
-                TOTALselvedge()
+                TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
@@ -2469,6 +2506,19 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+
+    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs)
+
+    End Sub
+
+    Private Sub TXTDMTRS_Validated(sender As Object, e As EventArgs)
+
+    End Sub
+
     'Private Sub GRIDWARPPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellClick
     '    If e.RowIndex < 0 Then Exit Sub
 
@@ -2495,6 +2545,35 @@ LINE1:
 
     Private Sub GRIDWEFTPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFTPATTERN.CellValidating
         Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Proceed only if the column being edited is "WPSYM"
+            If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
+
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDWEFT.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
+                    End If
+                End If
+            End If
+
             If e.ColumnIndex = FPR.Index OrElse e.ColumnIndex = FPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2509,6 +2588,11 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
     End Sub
 
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
@@ -2541,7 +2625,7 @@ LINE1:
                     End If
                 End If
             End If
-                If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
+            If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
@@ -2761,12 +2845,12 @@ LINE1:
         Next
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+        'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
         TOTALWARPPATTERN()
         TOTALWARP()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+        'CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         TOTALWEFTPATTERN()
         TOTALWEFT()
     End Sub
@@ -2787,8 +2871,244 @@ LINE1:
         e.Row.Cells("FPSRNO").Value = GRIDWEFTPATTERN.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
-        GRIDSELVEDGEPATTERN.RowCount = 1
+
+    Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
+        Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Proceed only if the column being edited is "WPSYM"
+            If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
+
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
+                    End If
+                End If
+            End If
+            'If e.ColumnIndex = SPR.Index OrElse e.ColumnIndex = SPR1.Index Then ' For both repeats columns if needed
+            '    Dim value = Convert.ToString(e.FormattedValue)
+            '    If value IsNot Nothing AndAlso value.Trim() <> "" Then
+            '        Dim repeatCount As Integer
+            '        If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+            '            MessageBox.Show("Please enter a positive integer for repeats.")
+            '            e.Cancel = True
+            '        End If
+            '    End If
+            'End If
+            TOTALSELVEDGEPATTERN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub CalculateTotalsForGridPATTERN(dgv As DataGridView,
+                                    endsCol As String, repeatsCol As String,
+                                    repeats1Col As String, repeats2Col As String,
+                                    totalRepeatCol As String, totalRepeat1Col As String, totalRepeat2Col As String)
+        'For Each row As DataGridViewRow In dgv.Rows
+        '    If row.IsNewRow Then Continue For
+
+        '    Dim ends As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(endsCol).Value)), 1, Convert.ToInt32(row.Cells(endsCol).Value))
+        '    Dim repeats As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), 1, Convert.ToInt32(row.Cells(repeatsCol).Value))
+        '    Dim repeats1 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+        '    Dim repeats2 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+
+        '    Dim totalRepeat As Integer = ends * repeats
+        '    Dim totalRepeat1 As Integer = totalRepeat * repeats1
+        '    Dim totalRepeat2 As Integer = totalRepeat1 * repeats2
+
+        '    row.Cells(totalRepeatCol).Value = totalRepeat
+        '    row.Cells(totalRepeat1Col).Value = totalRepeat1
+        '    row.Cells(totalRepeat2Col).Value = totalRepeat2
+        'Next
+
+        ' --- Group State Variables ---
+        Dim inGroupParen As Boolean = False, groupStartParen As Integer = -1, repeatValueParen As Integer = 1
+        Dim inGroupSquare As Boolean = False, groupStartSquare As Integer = -1, repeatValueSquare As Integer = 1
+        Dim inGroupCurly As Boolean = False, groupStartCurly As Integer = -1, repeatValueCurly As Integer = 1
+        Dim totalEndsInGroupParen As Integer = 0
+        ' --- Main Pass: Assign Repeats Based on Group Patterns ---
+        For i As Integer = 0 To dgv.Rows.Count - 1
+            If dgv.Rows(i).IsNewRow Then Continue For
+            Dim endsVal As String = Convert.ToString(dgv.Rows(i).Cells(endsCol).Value)
+
+            ' ( ) brackets for repeatsCol
+            If endsVal.Contains("(") Then inGroupParen = True : groupStartParen = i
+            If inGroupParen And endsVal.Contains(")") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\)(\d+)")
+                repeatValueParen = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartParen To i
+                    dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+                Next
+                inGroupParen = False : groupStartParen = -1
+            ElseIf Not inGroupParen Then
+                dgv.Rows(i).Cells(repeatsCol).Value = 1
+            End If
+
+            ' [ ] brackets for repeats1Col
+            If endsVal.Contains("[") Then inGroupSquare = True : groupStartSquare = i
+            If inGroupSquare And endsVal.Contains("]") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\](\d+)")
+                repeatValueSquare = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartSquare To i
+                    dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+                Next
+                inGroupSquare = False : groupStartSquare = -1
+            ElseIf Not inGroupSquare Then
+                dgv.Rows(i).Cells(repeats1Col).Value = 1
+            End If
+
+            ' { } brackets for repeats2Col
+            If endsVal.Contains("{") Then inGroupCurly = True : groupStartCurly = i
+            If inGroupCurly And endsVal.Contains("}") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\}(\d+)")
+                repeatValueCurly = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartCurly To i
+                    dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+                Next
+                inGroupCurly = False : groupStartCurly = -1
+            ElseIf Not inGroupCurly Then
+                dgv.Rows(i).Cells(repeats2Col).Value = 1
+            End If
+        Next
+
+        ' --- Handle any unclosed groups ---
+        If inGroupParen And groupStartParen <> -1 Then
+            For j As Integer = groupStartParen To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+            Next
+        End If
+        If inGroupSquare And groupStartSquare <> -1 Then
+            For j As Integer = groupStartSquare To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+            Next
+        End If
+        If inGroupCurly And groupStartCurly <> -1 Then
+            For j As Integer = groupStartCurly To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+            Next
+        End If
+
+        ' --- Final Calculation: Totals using assigned repeats ---
+        For Each row As DataGridViewRow In dgv.Rows
+            If row.IsNewRow Then Continue For
+            Dim endsStr As String = Convert.ToString(row.Cells(endsCol).Value)
+            Dim ends As Integer = 1, repeatsFromEnds As Integer = 1
+            ExtractEndsAndRepeatationPATTERN(endsStr, ends, repeatsFromEnds)
+            Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).Value))
+            Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+            Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+            Dim totalRepeat = ends * repeats
+            Dim totalRepeat1 = totalRepeat * repeats1
+            Dim totalRepeat2 = totalRepeat1 * repeats2
+            row.Cells(totalRepeatCol).Value = totalRepeat
+            row.Cells(totalRepeat1Col).Value = totalRepeat1
+            row.Cells(totalRepeat2Col).Value = totalRepeat2
+        Next
+
+    End Sub
+    Private Sub ExtractEndsAndRepeatationPATTERN(input As String, ByRef endsValue As Integer, ByRef repeatationValue As Integer)
+        endsValue = 1
+        repeatationValue = 1
+        If String.IsNullOrWhiteSpace(input) Then
+            endsValue = 0
+            repeatationValue = 1
+            Return
+        End If
+        ' Extract repeatation: number after closing bracket, e.g. )5 or ]5 or }5
+        Dim repeatMatch As Match = Regex.Match(input, "[)\]\}]\s*(\d+)")
+        If repeatMatch.Success Then
+            Integer.TryParse(repeatMatch.Groups(1).Value, repeatationValue)
+        End If
+        ' Extract count of dot-separated numbers BEFORE the closing bracket
+        Dim beforeCloseBracket As String = input.Split({")", "]", "}"}, StringSplitOptions.None)(0)
+        Dim core As String = beforeCloseBracket.Replace("(", "").Replace("[", "").Replace("{", "")
+        If String.IsNullOrWhiteSpace(core) Then
+            endsValue = 0
+            Return
+        End If
+        Dim valsInside As String() = core.Split("."c)
+        endsValue = valsInside.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).
+                    Select(Function(x)
+                               Dim v As Integer = 0
+                               Integer.TryParse(x, v)
+                               Return v
+                           End Function).Sum()
+
     End Sub
 
+    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+        GBSSHADEDETAILS.Visible = True
+    End Sub
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
+        Try
+            numkeypress(e, sender, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
+        GBSSHADEDETAILS.Visible = False
+        TXTSELBE.Focus()
+    End Sub
+
+    Private Sub GRIDSELDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELDESC.KeyDown
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDSELDESC()
+        'Try
+        '    If GRIDSELDESCDOUBLECLICK = False Then
+        '        GRIDSELDESC.Rows.Add(Val(TXTSDNO.Text.Trim), Format(Val(TXTDSELDESC.Text.Trim), "0.00"), Val(txtsrno.Text.Trim))
+        '        'TEMPDTSELDESC.Rows.Add(Val(TXTDSRNO.Text.Trim), Format(Val(TXTDSELDESC.Text.Trim), "0.00"), Val(txtsrno.Text.Trim))
+        '        getsrno(GRIDSELDESC)
+        '    ElseIf GRIDSELDESCDOUBLECLICK = True Then
+        '        'For I As Integer = 0 To TEMPDTSELDESC.Rows.Count - 1
+        '        '    If GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value = TEMPDTSELDESC.Rows(I).Item("DSRNO") And GRIDSELDESC.Item(GMAINSRNO.Index, TEMPSELDESCROW).Value = TEMPDTSELDESC.Rows(I).Item("MAINSRNO") Then
+        '        '        TEMPDTSELDESC.Rows(I).Item("DSELDESC") = Format(Val(TXTDSELDESC.Text.Trim), "0.00")
+        '        '        TEMPDTSELDESC.Rows(I).Item("MAINSRNO") = Val(txtsrno.Text.Trim)
+        '        '    End If
+        '        'Next
+
+        '        GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value = Val(TXTDSRNO.Text.Trim)
+        '        GRIDSELDESC.Item(DSELDESC.Index, TEMPSELDESCROW).Value = Format(Val(TXTDSELDESC.Text.Trim), "0.00")
+        '        GRIDSELDESC.Item(GMAINSRNO.Index, TEMPSELDESCROW).Value = Val(txtsrno.Text.Trim)
+        '        GRIDSELDESCDOUBLECLICK = False
+        '    End If
+        '    TXTDSELDESC.Clear()
+        '    TXTDSRNO.Clear()
+        '    TXTDSELDESC.Focus()
+        '    TXTDSRNO.Text = GRIDSELDESC.RowCount + 1
+        '    TOTALSELDESC()
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+
+    End Sub
 End Class
