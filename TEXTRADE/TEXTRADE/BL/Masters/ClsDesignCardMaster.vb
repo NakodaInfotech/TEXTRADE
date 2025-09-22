@@ -251,6 +251,15 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+
+                ' selvedge Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@SDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDMAINSRNO", alParaval(I)))
+                I += 1
+
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
                 I += 1
@@ -320,6 +329,8 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
                 I += 1
+
+
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
         Catch ex As Exception
@@ -565,6 +576,15 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+
+                ' selvedge Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@SDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDMAINSRNO", alParaval(I)))
+                I += 1
+
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
                 I += 1
