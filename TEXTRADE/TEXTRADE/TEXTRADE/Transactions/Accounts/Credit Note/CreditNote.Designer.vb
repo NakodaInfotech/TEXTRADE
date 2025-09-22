@@ -235,6 +235,7 @@ Partial Class CREDITNOTE
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -277,6 +278,7 @@ Partial Class CREDITNOTE
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDAUTOPOST)
         Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.LBLCOSTCENTER)
         Me.BlendPanel1.Controls.Add(Me.CMBCOSTCENTERNAME)
@@ -2612,6 +2614,20 @@ Partial Class CREDITNOTE
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(899, 516)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1014
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        '
         'CREDITNOTE
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2842,4 +2858,5 @@ Partial Class CREDITNOTE
     Friend WithEvents GGRANDTOTAL As DataGridViewTextBoxColumn
     Friend WithEvents GBILLINVNO As DataGridViewTextBoxColumn
     Friend WithEvents CHKINTCALC As CheckBox
+    Friend WithEvents CMDAUTOPOST As Button
 End Class

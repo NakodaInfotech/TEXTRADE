@@ -794,21 +794,19 @@ Public Class DebitNote
                 End If
                 alParaval.Add(TEMPDNNO)
                 Dim INTRES As Integer = objclsDNmaster.UPDATE()
-                MsgBox("Details Updated")
-                PRINTREPORT(TEMPDNNO)
+                'MsgBox("Details Updated")
+                'PRINTREPORT(TEMPDNNO)
                 edit = False
             End If
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                clear()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
-            TXTBILLNO.Focus()
+            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    clear()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
+            'TXTBILLNO.Focus()
 
         Catch ex As Exception
             Throw ex
@@ -862,20 +860,6 @@ Public Class DebitNote
         If TXTIRNNO.Text.Trim <> "" And CHKGSTR1.Checked = False Then CHKGSTR1.Checked = True
 
 
-        'THIS CODE WONT ALLOW MULTIPLE DEBITNOTES
-        'REMOVED THIS CODE BY GULKIT, AS USER CAN ADD MULTIPLE DEBITNOTES AGAINST SINGLE PURCHASE
-        'If TXTBILLNO.Text.Trim <> "" And edit = False Then
-        '    Dim OBJCMN As New ClsCommon
-        '    Dim DT As DataTable = OBJCMN.search("*", "", "(SELECT BILL_RETURN AS PURRETURN FROM PURCHASEMASTER WHERE BILL_INITIALS = '" & TXTBILLNO.Text.Trim & "' AND BILL_YEARID = " & YearId & " UNION ALL SELECT BILL_RETURN FROM OPENINGBILL WHERE OPENINGBILL.BILL_INITIALS = '" & TXTBILLNO.Text.Trim & "' AND BILL_YEARID = " & YearId & ") AS T", "")
-        '    If DT.Rows.Count > 0 Then
-        '        If Val(DT.Rows(0).Item("PURRETURN")) > 0 Then
-        '            EP.SetError(TXTBILLNO, "Debit Note Already Raised")
-        '            bln = False
-        '        End If
-        '    End If
-        'End If
-
-
         'IF BILL NOT ADJUSTED AND GRID IS BLANK THEN MAKE ON ACCOUNT ENTRY
         If TXTBILLNO.Text.Trim = "" And GRIDPAYMENT.RowCount = 0 Then
             GRIDPAYMENT.Rows.Add(1, "On Account", "", "", Val(txtgrandtotal.Text.Trim), 0, 0, 0, Val(txtgrandtotal.Text.Trim))
@@ -889,10 +873,10 @@ Public Class DebitNote
         End If
 
 
-        If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-            EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
-            bln = False
-        End If
+        'If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+        '    EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
+        '    bln = False
+        'End If
 
 
         'IF INVOICENO IS NOT BLANK THEN CHECK THAT FIGURES CANNOT BE GREATER THEN BALANCEAMT
@@ -922,12 +906,7 @@ Public Class DebitNote
 
 
         For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-            If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                bln = False
-            End If
-
-            'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
+            'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
             '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
             '    bln = False
             'End If
@@ -3115,6 +3094,27 @@ ERRORMESSAGE:
             End If
 
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET MAX RECEIPTNO 
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(DN_NO) As DNNO", "", " DEBITNOTEMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = DN_REGISTERID", " And REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND DN_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("DNNO"))
+                GRIDPAYMENT.RowCount = 0
+                TEMPDNNO = Val(I)
+                TEMPREGNAME = cmbregister.Text.Trim
+                edit = True
+                DEBITNOTE_Load(sender, e)
+                If GRIDPAYMENT.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                clear()
+            Next
         Catch ex As Exception
             Throw ex
         End Try

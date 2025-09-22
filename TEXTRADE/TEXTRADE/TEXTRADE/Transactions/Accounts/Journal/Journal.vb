@@ -266,13 +266,13 @@ Public Class journal
                 alParaval.Add(tempamt)
                 alParaval.Add(temptds)
                 DT = objclsjvmaster.update()
-                MsgBox("Details Updated")
+                'MsgBox("Details Updated")
             End If
 
             'ACCOUNTS ENTRY TO BE DONE HERE COZ LOOP IS NOT POSSIBLE IN SP
             txtjournalno.Text = DT.Rows(0).Item(0)
             ACCOUNTSENTRY(DT.Rows(0).Item(0))
-            clear()
+            'clear()
             EDIT = False
             cmbtype.Focus()
 
@@ -509,10 +509,10 @@ Public Class journal
                 bln = False
             End If
 
-            If row.Cells(GPAYTYPE.Index).Value = "Against Bill" And row.Cells(GREFNO.Index).Value = "" Then
-                EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                bln = False
-            End If
+            'If row.Cells(GPAYTYPE.Index).Value = "Against Bill" And row.Cells(GREFNO.Index).Value = "" Then
+            '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+            '    bln = False
+            'End If
 
             If Val(row.Cells(GAMTPAIDREC.Index).Value) > 0 And UserName <> "Admin" Then
                 EP.SetError(cmbregister, "Journal Locked, Rec/Pay/JV Raised")
