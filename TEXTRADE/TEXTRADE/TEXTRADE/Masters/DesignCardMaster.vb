@@ -17,8 +17,8 @@ Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As String           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK, GRIDSELDESCDOUBLECLICK, GRIDWARPDESCDOUBLECLICK As Boolean
-    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW, TEMPSELDESCROW, TEMPWARPDESCROW As Integer
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK, GRIDSELDESCDOUBLECLICK, GRIDWARPDESCDOUBLECLICK, GRIDWEFTDESCDOUBLECLICK As Boolean
+    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW, TEMPSELDESCROW, TEMPWARPDESCROW, TEMPWEFTDESCROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -26,6 +26,7 @@ Public Class DesignCardMaster
     Dim TEMPMSG As Integer
     Dim DT_SELDETAILS As New DataTable
     Dim DT_WARPDETAILS As New DataTable
+    Dim DT_WEFTDETAILS As New DataTable
 
 
 
@@ -449,6 +450,30 @@ Public Class DesignCardMaster
             alParaval.Add(WEFTTRPE)
             alParaval.Add(WEFTTRSym)
 
+
+            Dim FDSRNO As String = ""
+            Dim FDMTRS As String = ""
+            Dim FDMAINSRNO As String = ""
+
+            For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                If DT_WEFTDETAILS.Rows(i).Item(0) <> Nothing Then
+                    If FDSRNO = "" Then
+                        FDSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
+                        FDMTRS = DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
+                        FDMAINSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                    Else
+                        FDSRNO = FDSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
+                        FDMTRS = FDMTRS & "|" & DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
+                        FDMAINSRNO = FDMAINSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(FDSRNO)
+            alParaval.Add(FDMTRS)
+            alParaval.Add(FDMAINSRNO)
+
             '*************************************************************************
             'GRID DRAWING
             Dim DRAWSrNo As String = ""
@@ -703,6 +728,12 @@ Public Class DesignCardMaster
         DT_WARPDETAILS.Columns.Add("WDSRNO")
         DT_WARPDETAILS.Columns.Add("WDSHADE")
         DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
+        'DT TABLE FOR WEFT
+        DT_WEFTDETAILS.Reset()
+        DT_WEFTDETAILS.Columns.Add("FDSRNO")
+        DT_WEFTDETAILS.Columns.Add("FDSHADE")
+        DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
+
         Ep.Clear()
         GBSELVIEW.Visible = False
 
@@ -919,6 +950,14 @@ Public Class DesignCardMaster
                             GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), DTR("WEFTPATTERNGRIDPE"), DTR("WEFTPATTERNGRIDSYM").ToString)
                         Next
                     End If
+                    'WEFT grid shade data serializations
+
+                    Dim dttableWEFTshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_FDSRNO, 0) AS FDSRNO, ISNULL(DESIGN_FDSHADE, '') AS FDSHADE, ISNULL(DESIGN_FDMAINSRNO, 0) AS FDMAINSRNO", "", " DESIGNCARD_WEFTSHADE  ", " AND  DESIGNCARD_WEFTSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTSHADE.DESIGN_YEARID = " & YearId & " ORDER BY FDSRNO")
+                    If dttableWEFTshade.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttableWEFTshade.Rows
+                            DT_WEFTDETAILS.Rows.Add(Val(DTR("FDSRNO")), DTR("FDSHADE").ToString, Val(DTR("FDMAINSRNO")))
+                        Next
+                    End If
                     'DRAWING FIELD
                     Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
                     If dttable7.Rows.Count > 0 Then
@@ -1036,7 +1075,40 @@ Public Class DesignCardMaster
             TXTWARPSRNO.Focus()
             GRIDDOUBLECLICK = False
 
+            'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            If EDIT = False Then
+LINE1:
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+            End If
         End If
+
+
+        GRIDWARPDESC.EndEdit() '
+        ' Remove all rows for the current entry before adding new ones
+        For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
+            For i As Integer = DT_WARPDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_WARPDETAILS.Rows(i)("WDMAINSRNO") = currentMainSrNo Then
+                    DT_WARPDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
+
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDWARPDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_WARPDETAILS.NewRow()
+                    newRow("WDSRNO") = MTRSROW.Cells(WDSRNO.Index).Value
+                    newRow("WDSHADE") = MTRSROW.Cells(WDSHADE.Index).Value
+                    newRow("WDMAINSRNO") = currentMainSrNo
+                    DT_WARPDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
         GRIDWARP.ClearSelection()
         TXTWARPSYMBOL.Focus()
         clearwarp()
@@ -1250,7 +1322,41 @@ LINE1:
             TEMPWEFTROW = GRIDWEFT.CurrentRow.Index
             TXTSELSRNO.Focus()
             GRIDWEFTDOUBLECLICK = False
+
+            'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            If EDIT = False Then
+LINE1:
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+            End If
         End If
+
+
+        GRIDWEFTDESC.EndEdit() '
+        ' Remove all rows for the current entry before adding new ones
+        For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(FDMAINSRNO.Index).Value
+            For i As Integer = DT_WEFTDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_WEFTDETAILS.Rows(i)("FDMAINSRNO") = currentMainSrNo Then
+                    DT_WEFTDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
+
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDWEFTDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_WEFTDETAILS.NewRow()
+                    newRow("FDSRNO") = MTRSROW.Cells(FDSRNO.Index).Value
+                    newRow("FDSHADE") = MTRSROW.Cells(FDSHADE.Index).Value
+                    newRow("FDMAINSRNO") = currentMainSrNo
+                    DT_WEFTDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
         COPYWEFTSYM()
@@ -2268,24 +2374,25 @@ LINE1:
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
+LINE1:
+                For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                        DT_SELDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                        DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
+                    End If
+                Next
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
             End If
-LINE1:
-            For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
-                    DT_SELDETAILS.Rows.RemoveAt(I)
-                    GoTo LINE1
-                End If
-            Next
-            For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
-                    DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
-                End If
-            Next
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2323,8 +2430,7 @@ LINE1:
                     deletedSym = GRIDWARP.CurrentRow.Cells("WSYM").Value.ToString().Trim()
                 End If
 
-                ' Remove row from main grid
-                GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
+
 
                 ' Remove matching SYM rows from small grid GRIDWARPPATTERN
                 For i As Integer = GRIDWARPPATTERN.Rows.Count - 1 To 0 Step -1
@@ -2336,6 +2442,20 @@ LINE1:
                     End If
                 Next
 
+LINE1:
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value < Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO") = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) - 1
+                    End If
+                Next
+                ' Remove row from main grid
+                GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
                 ' Refresh totals and serial numbers
                 TOTALWARP()
                 TOTALWARPPATTERN()
@@ -2344,6 +2464,7 @@ LINE1:
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWARPROW()
             End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2409,7 +2530,22 @@ LINE1:
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
+
+LINE1:
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value < Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) - 1
+                    End If
+                Next
+
                 GRIDWEFT.Rows.RemoveAt(GRIDWEFT.CurrentRow.Index)
+
                 TOTALWEFT()
                 getsrno(GRIDWEFT)
             ElseIf e.KeyCode = Keys.F5 Then
@@ -3232,8 +3368,8 @@ LINE1:
     End Sub
 
     Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
-        GBSSHADEDETAILS.Visible = False
-        TXTSELBE.Focus()
+        'GBSSHADEDETAILS.Visible = False
+        'TXTSELBE.Focus()
     End Sub
 
     Private Sub GRIDSELDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELDESC.KeyDown
@@ -3243,7 +3379,7 @@ LINE1:
                 If GRIDSELDESC.RowCount > 0 Then
                     Dim row As Integer = GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value
                     For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                        If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) And GRIDSELDESC.Rows(GRIDSELDESC.CurrentRow.Index).Cells(DSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDSRNO")) Then
+                        If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) And GRIDSELDESC.Rows(GRIDSELDESC.CurrentRow.Index).Cells(SDSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDSRNO")) Then
                             If del = False Then
                                 DT_SELDETAILS.Rows.RemoveAt(I)
                                 GRIDSELDESC.Rows.RemoveAt(GRIDSELDESC.CurrentRow.Index)
@@ -3260,7 +3396,7 @@ line1:
                     Next
                     getsrno(GRIDSELDESC)
                     TXTSDNO.Text = GRIDSELDESC.RowCount + 1
-                    CMBSELSHADE.Focus()
+                    'CMBSELSHADE.Focus()
                 End If
             End If
         Catch ex As Exception
@@ -3295,7 +3431,7 @@ line1:
         Try
             If GRIDSELDESC.CurrentRow IsNot Nothing Then
                 TEMPSELDESCROW = GRIDSELDESC.CurrentRow.Index
-                TXTSDNO.Text = GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value.ToString()
+                TXTSDNO.Text = GRIDSELDESC.Item(SDSRNO.Index, TEMPSELDESCROW).Value.ToString()
                 CMBSELSHADE.Text = GRIDSELDESC.Item(SDSHADE.Index, TEMPSELDESCROW).Value.ToString()
                 TXTSDMAINSRNO.Text = GRIDSELDESC.Item(SDMAINSRNO.Index, TEMPSELDESCROW).Value.ToString()
                 GRIDSELDESCDOUBLECLICK = True
@@ -3312,15 +3448,28 @@ line1:
             Throw ex
         End Try
     End Sub
-    Sub GRIDSELVIEW(Optional ROWNO As Integer = -1)
+    Sub GRIDTEMPVIEW(mainGrid As DataGridView,
+    DataTable As DataTable,
+    mainSrnoColName As String,
+    dataSrnoColName As String,
+    dataShadeColName As String,
+    dataMainSrnoColName As String,
+    Optional rowNo As Integer = -1
+)
         Try
             GBSELVIEW.Visible = True
-            If GRIDSELVEDGE.Rows.Count > 0 Then
-                If ROWNO = -1 Then ROWNO = GRIDSELVEDGE.CurrentRow.Index
-                GRIDSELVIEWS.RowCount = 0
-                For i As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                    If DT_SELDETAILS.Rows(i).Item("SDMAINSRNO") = Val(GRIDSELVEDGE.Rows(ROWNO).Cells(SSRNO.Index).Value) Then
-                        GRIDSELVIEWS.Rows.Add(DT_SELDETAILS.Rows(i).Item("SDSRNO"), DT_SELDETAILS.Rows(i).Item("SDSHADE"), DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
+            If mainGrid.Rows.Count > 0 Then
+                If rowNo = -1 Then rowNo = mainGrid.CurrentRow.Index
+                GRIDSELVIEWS.Rows.Clear()
+
+                Dim mainSrnoValue As Integer = Val(mainGrid.Rows(rowNo).Cells(mainSrnoColName).Value)
+                For i As Integer = 0 To DataTable.Rows.Count - 1
+                    If Val(DataTable.Rows(i).Item(dataMainSrnoColName)) = mainSrnoValue Then
+                        GRIDSELVIEWS.Rows.Add(
+                        DataTable.Rows(i).Item(dataSrnoColName),
+                        DataTable.Rows(i).Item(dataShadeColName),
+                        DataTable.Rows(i).Item(dataMainSrnoColName)
+                    )
                     End If
                 Next
             End If
@@ -3329,6 +3478,254 @@ line1:
         End Try
     End Sub
     Private Sub GRIDSELVEDGE_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.RowEnter
-        GRIDSELVIEW(e.RowIndex)
+        'Try
+        '    If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+
+    End Sub
+
+    Private Sub CMBWARPMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWARPMILLNAME.Validated
+        Try
+            GBWARP.Visible = True
+
+
+            If GRIDDOUBLECLICK = False Then
+                'TEMPDTMTRS.Clear()
+                GRIDWARPDESC.RowCount = 0
+                GRIDWARPDESCDOUBLECLICK = False
+
+            Else
+                If GRIDWARP.Rows.Count > 0 Then
+                    GRIDWARPDESC.RowCount = 0
+                    GRIDWARPDESCDOUBLECLICK = False
+                    For i As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO") = Val(GRIDWARP.CurrentRow.Cells(WSRNO.Index).Value) Then
+                            GRIDWARPDESC.Rows.Add(DT_WARPDETAILS.Rows(i).Item("WDSRNO"), DT_WARPDETAILS.Rows(i).Item("WDSHADE"), DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
+                        End If
+                    Next
+                End If
+            End If
+            TXTSDNO.Text = GRIDWARPDESC.RowCount + 1
+            CMBWARPSHADE.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARPDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPDESC.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDWARPDESC.RowCount > 0 Then
+                    Dim row As Integer = GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value
+                    For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) And GRIDWARPDESC.Rows(GRIDWARPDESC.CurrentRow.Index).Cells(WDSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDSRNO")) Then
+                            If del = False Then
+                                DT_WARPDETAILS.Rows.RemoveAt(I)
+                                GRIDWARPDESC.Rows.RemoveAt(GRIDWARPDESC.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) And del = True And row < Val(DT_WARPDETAILS.Rows(I).Item(WSRNO.Index)) Then
+                            DT_WARPDETAILS.Rows(I).Item("WDSRNO") = Val(DT_WARPDETAILS.Rows(I).Item("WDSRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDWARPDESC)
+                    TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
+                    'CMBWARPSHADE.Focus()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDWARPCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Validated
+        'GBWARP.Visible = False
+        'TXTWARPBE.Focus()
+    End Sub
+    Sub FILLGRIDWARPDESC()
+        Try
+            If GRIDWARPDESCDOUBLECLICK = False Then
+                GRIDWARPDESC.Rows.Add(Val(TXTWDSRNO.Text.Trim), CMBWARPSHADE.Text.Trim, Val(TXTWARPSRNO.Text.Trim))
+                getsrno(GRIDWARPDESC)
+            ElseIf GRIDWARPDESCDOUBLECLICK = True Then
+                GRIDWARPDESC.Item(WDSRNO.Index, TEMPWARPDESCROW).Value = Val(TXTWDSRNO.Text.Trim)
+                GRIDWARPDESC.Item(WDSHADE.Index, TEMPWARPDESCROW).Value = CMBWARPSHADE.Text.Trim
+                GRIDWARPDESC.Item(WDMAINSRNO.Index, TEMPWARPDESCROW).Value = Val(TXTWARPSRNO.Text.Trim)
+                GRIDWARPDESCDOUBLECLICK = False
+            End If
+            TXTWDMAINSRNO.Clear()
+            CMBWARPSHADE.Text = ""
+            CMBWARPSHADE.Focus()
+            TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDWEFTDESC()
+        Try
+            If GRIDWEFTDESCDOUBLECLICK = False Then
+                GRIDWEFTDESC.Rows.Add(Val(TXTFDSRNO.Text.Trim), cmbweftshade.Text.Trim, Val(TXTWEFTSRNO.Text.Trim))
+                getsrno(GRIDWEFTDESC)
+            ElseIf GRIDWEFTDESCDOUBLECLICK = True Then
+                GRIDWEFTDESC.Item(FDSRNO.Index, TEMPWEFTDESCROW).Value = Val(TXTFDSRNO.Text.Trim)
+                GRIDWEFTDESC.Item(FDSHADE.Index, TEMPWEFTDESCROW).Value = cmbweftshade.Text.Trim
+                GRIDWEFTDESC.Item(FDMAINSRNO.Index, TEMPWEFTDESCROW).Value = Val(TXTWEFTSRNO.Text.Trim)
+                GRIDWEFTDESCDOUBLECLICK = False
+            End If
+            TXTFDMAINSRNO.Clear()
+            cmbweftshade.Text = ""
+            cmbweftshade.Focus()
+            TXTWDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
+        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC() Else CMDWARPCLOSE.Focus()
+    End Sub
+    Sub EDITGRIDWARPDESCROW()
+
+        Try
+            If GRIDWARPDESC.CurrentRow IsNot Nothing Then
+                TEMPWARPDESCROW = GRIDWARPDESC.CurrentRow.Index
+                TXTWDSRNO.Text = GRIDWARPDESC.Item(WDSRNO.Index, TEMPWARPDESCROW).Value.ToString()
+                CMBWARPSHADE.Text = GRIDWARPDESC.Item(WDSHADE.Index, TEMPWARPDESCROW).Value.ToString()
+                TXTWDMAINSRNO.Text = GRIDWARPDESC.Item(WDMAINSRNO.Index, TEMPWARPDESCROW).Value.ToString()
+                GRIDWARPDESCDOUBLECLICK = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARPDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPDESC.CellDoubleClick
+        Try
+            EDITGRIDWARPDESCROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GRIDSELVEDGE_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellClick
+        Try
+            If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARP_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARP.CellClick
+        Try
+            If GRIDWARP.RowCount > 0 Then GRIDTEMPVIEW(GRIDWARP, DT_WARPDETAILS, "WSRNO", "WDSRNO", "WDSHADE", "WDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBWEFTMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Validated
+        Try
+            GBWEFT.Visible = True
+            If GRIDWEFTDOUBLECLICK = False Then
+                'TEMPDTMTRS.Clear()
+                GRIDWEFTDESC.RowCount = 0
+                GRIDWEFTDESCDOUBLECLICK = False
+            Else
+                If GRIDWEFT.Rows.Count > 0 Then
+                    GRIDWEFTDESC.RowCount = 0
+                    GRIDWEFTDESCDOUBLECLICK = False
+                    For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO") = Val(GRIDWEFT.CurrentRow.Cells(FSRNO.Index).Value) Then
+                            GRIDWEFTDESC.Rows.Add(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"), DT_WEFTDETAILS.Rows(i).Item("FDSHADE"), DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                        End If
+                    Next
+                End If
+            End If
+            TXTSDNO.Text = GRIDWEFTDESC.RowCount + 1
+            cmbweftshade.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFTDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWEFTDESC.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDWEFTDESC.RowCount > 0 Then
+                    Dim row As Integer = GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) And GRIDWEFTDESC.Rows(GRIDWEFTDESC.CurrentRow.Index).Cells(FDSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDSRNO")) Then
+                            If del = False Then
+                                DT_WEFTDETAILS.Rows.RemoveAt(I)
+                                GRIDWEFTDESC.Rows.RemoveAt(GRIDWEFTDESC.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) And del = True And row < Val(DT_WEFTDETAILS.Rows(I).Item(FSRNO.Index)) Then
+                            DT_WEFTDETAILS.Rows(I).Item("FDSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDSRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDWEFTDESC)
+                    TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+                    'CMBWARPSHADE.Focus()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbweftshade_Validated(sender As Object, e As EventArgs) Handles cmbweftshade.Validated
+        If cmbweftshade.Text <> "" Then FILLGRIDWEFTDESC() Else CMDWEFTCLOSE.Focus()
+    End Sub
+    Sub EDITGRIDWEFTDESCROW()
+        Try
+            If GRIDWEFTDESC.CurrentRow IsNot Nothing Then
+                TEMPWEFTDESCROW = GRIDWEFTDESC.CurrentRow.Index
+                TXTFDSRNO.Text = GRIDWEFTDESC.Item(FDSRNO.Index, TEMPWEFTDESCROW).Value.ToString()
+                cmbweftshade.Text = GRIDWEFTDESC.Item(FDSHADE.Index, TEMPWEFTDESCROW).Value.ToString()
+                TXTFDMAINSRNO.Text = GRIDWEFTDESC.Item(FDMAINSRNO.Index, TEMPWEFTDESCROW).Value.ToString()
+                GRIDWEFTDESCDOUBLECLICK = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFTDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTDESC.CellDoubleClick
+        Try
+            EDITGRIDWEFTDESCROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFT_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellClick
+        Try
+            If GRIDWEFT.RowCount > 0 Then GRIDTEMPVIEW(GRIDWEFT, DT_WEFTDETAILS, "FSRNO", "FDSRNO", "FDSHADE", "FDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
+        GBWARP.Visible = False
+        TXTWARPBE.Focus()
+    End Sub
+    Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
+        GBWEFT.Visible = False
+        TXTWEFTBE.Focus()
     End Sub
 End Class
