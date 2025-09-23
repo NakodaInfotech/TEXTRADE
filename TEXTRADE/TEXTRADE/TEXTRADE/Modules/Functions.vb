@@ -18,7 +18,7 @@ Module Functions
             oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
 
             'IF CLIENT WANT TO PRINT ALL THE BARCODE THEN USE THE CODE BELOW
-            If ClientName = "TARUN" Then GoTo PRINTALL
+            If ClientName = "TARUN" Or ClientName = "SHEETAL" Then GoTo PRINTALL
 
             If (PIECETYPE <> "FRESH" And ClientName <> "KENCOT" And ClientName <> "KARAN" And ClientName <> "SPCORP") Or ((ClientName = "KARAN" Or ClientName = "SPCORP") And PIECETYPE <> "FRESH" And PIECETYPE <> "TP") Then
                 oWrite.Dispose()

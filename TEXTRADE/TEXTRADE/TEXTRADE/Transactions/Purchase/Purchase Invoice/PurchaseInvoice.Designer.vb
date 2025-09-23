@@ -748,7 +748,6 @@ Partial Class PurchaseMaster
         Me.CMDAUTOPOST.TabIndex = 894
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
-        Me.CMDAUTOPOST.Visible = False
         '
         'TXTFOOTERDISCAMT
         '

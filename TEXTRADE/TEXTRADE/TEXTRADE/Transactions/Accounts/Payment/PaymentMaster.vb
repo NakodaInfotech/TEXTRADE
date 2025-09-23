@@ -246,15 +246,15 @@ Public Class PaymentMaster
             End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
-                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    BLN = False
-                End If
+                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                '    BLN = False
+                'End If
 
-                If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    BLN = False
-                End If
+                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
+                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                '    BLN = False
+                'End If
             Next
 
             If cmbregister.Text.Trim.Length = 0 Then
@@ -287,10 +287,10 @@ Public Class PaymentMaster
                 BLN = False
             End If
 
-            If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
-                EP.SetError(txttotal, "Total does not match Amount")
-                BLN = False
-            End If
+            'If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
+            '    EP.SetError(txttotal, "Total does not match Amount")
+            '    BLN = False
+            'End If
 
 
 
@@ -299,18 +299,12 @@ Public Class PaymentMaster
                 Dim DT As DataTable = OBJCMN1.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
-                        'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
-                        'If txtchqno.Text.Trim.Length = 0 Then
-                        '    EP.SetError(txtchqno, "Enter Chq No.")
-                        '    BLN = False
+                        'If TXTCHQNO.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" And ClientName <> "NAKODAINFOTECH" Then
+                        '    If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
+                        '        EP.SetError(TXTCHQNO, "Enter Chq No.")
+                        '        BLN = False
+                        '    End If
                         'End If
-
-                        If TXTCHQNO.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" And ClientName <> "NAKODAINFOTECH" Then
-                            If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
-                                EP.SetError(TXTCHQNO, "Enter Chq No.")
-                                BLN = False
-                            End If
-                        End If
                     ElseIf DT.Rows(0).Item(0) = "Cash In Hand" Then
                         TXTCHQNO.Clear()
                     End If
@@ -760,18 +754,8 @@ Public Class PaymentMaster
                 End If
                 alparaval.Add(TEMPPAYMENTNO)
                 Dim IntResult As Integer = OBJpayment.UPDATE()
-                MsgBox("Details Updated")
+                'MsgBox("Details Updated")
                 EDIT = False
-
-                'Dim TEMPMSG As Integer = MsgBox("Print Payment Voucher?", MsgBoxStyle.YesNo)
-                'If TEMPMSG = vbYes Then
-                '    Dim objPAY As New payment_advice
-                '    objPAY.payno = Val(TEMPPAYMENTNO)
-                '    objPAY.payname = cmbname.Text.Trim
-                '    objPAY.REGNAME = cmbregister.Text.Trim
-                '    objPAY.MdiParent = MDIMain
-                '    objPAY.Show()
-                'End If
 
 
                 If ClientName = "SIDDHGIRI" Then
@@ -790,12 +774,10 @@ Public Class PaymentMaster
                 End If
 
             End If
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             If ClientName = "NVAHAN" Or ClientName = "SAKARIA" Then SENDDIRECTMAIL()
-            If ClientName <> "SOFTAS" And ClientName <> "RMANILAL" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "RAJKRIPA" And ClientName <> "REVAANT" And ClientName <> "YUMILONE" And ClientName <> "SIDDHGIRI" And ClientName <> "NAKODAINFOTECH" Then PRINTREPORT()
-            If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else CLEAR()
-            If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
+            'If ClientName <> "SOFTAS" And ClientName <> "RMANILAL" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "RAJKRIPA" And ClientName <> "REVAANT" And ClientName <> "YUMILONE" And ClientName <> "SIDDHGIRI" And ClientName <> "NAKODAINFOTECH" Then PRINTREPORT()
+            'If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else CLEAR()
+            'If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
 
         Catch ex As Exception
             Throw ex
@@ -2439,6 +2421,27 @@ LINE1:
 
     Private Sub txtaccno_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtaccno.KeyPress, tstxtbillno.KeyPress, TXTCOPY.KeyPress
         numkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET MAX RECEIPTNO 
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(PAYMENT_NO) As PAYNO", "", " PAYMENTMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = PAYMENT_REGISTERID", " And REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND PAYMENT_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("PAYNO"))
+                gridpayment.RowCount = 0
+                TEMPPAYMENTNO = Val(I)
+                TEMPREGNAME = cmbregister.Text.Trim
+                EDIT = True
+                PaymentMaster_Load(sender, e)
+                If gridpayment.RowCount = 0 Then GoTo NEXTLINE
+                cmdsave_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDBILL_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDBILL.KeyDown

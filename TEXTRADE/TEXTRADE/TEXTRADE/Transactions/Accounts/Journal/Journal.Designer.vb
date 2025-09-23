@@ -19,6 +19,7 @@ Partial Class journal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(journal))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -99,7 +100,7 @@ Partial Class journal
         Me.lblsrno = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.EP = New System.Windows.Forms.ErrorProvider()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
@@ -402,7 +403,6 @@ Partial Class journal
         Me.CMDAUTOPOST.TabIndex = 895
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
-        Me.CMDAUTOPOST.Visible = False
         '
         'CMDDELETE
         '

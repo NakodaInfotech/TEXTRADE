@@ -1077,7 +1077,8 @@ Public Class PurchaseMaster
                 End If
                 alParaval.Add(TEMPBILLNO)
                 IntResult = OBJINV.UPDATE()
-                MessageBox.Show("Details Updated")
+                'DONE TEMP
+                'MessageBox.Show("Details Updated")
             End If
 
             'ADD DATA IN PURCHASEORDER DATATABLE AND THEN SAVE IN DATABASE
@@ -1114,11 +1115,12 @@ Public Class PurchaseMaster
 
 
             EDIT = False
-            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-                CLEAR()
-            Else
-                Call toolnext_Click(sender, e)
-            End If
+            'DONE TEMP
+            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            '    CLEAR()
+            'Else
+            '    Call toolnext_Click(sender, e)
+            'End If
 
             If CMBSERVICETYPE.Visible = True Then CMBSERVICETYPE.Focus() Else BILLDATE.Focus()
 
@@ -1589,21 +1591,21 @@ CHECKNEXTLINE:
         End If
 
 
+        'DONE TEMP
+        'If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
+        '    EP.SetError(cmbname, "Please Select Purchase Order")
+        '    bln = False
+        'End If
 
-        If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
-            EP.SetError(cmbname, "Please Select Purchase Order")
-            bln = False
-        End If
-
-        'TO BLOCK EXCESS QTY
-        If ClientName = "ABHEE" Then
-            For Each ROW As DataGridViewRow In GRIDORDER.Rows
-                If (ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
-                    EP.SetError(cmbname, "Excess Qty Not Allowed")
-                    bln = False
-                End If
-            Next
-        End If
+        ''TO BLOCK EXCESS QTY
+        'If ClientName = "ABHEE" Then
+        '    For Each ROW As DataGridViewRow In GRIDORDER.Rows
+        '        If (ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
+        '            EP.SetError(cmbname, "Excess Qty Not Allowed")
+        '            bln = False
+        '        End If
+        '    Next
+        'End If
         If ClientName = "MASHOK" Then
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
                 If (ROW.Cells(OGRNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value) Then
@@ -1616,17 +1618,18 @@ CHECKNEXTLINE:
 
 
         If Convert.ToDateTime(DTPARTYBILLDATE.Text).Date >= "01/07/2017" Then
-            If TXTSTATECODE.Text.Trim.Length = 0 Then
-                EP.SetError(TXTSTATECODE, "Please enter the state code")
-                bln = False
-            End If
+            'DONE TEMP
+            'If TXTSTATECODE.Text.Trim.Length = 0 Then
+            '    EP.SetError(TXTSTATECODE, "Please enter the state code")
+            '    bln = False
+            'End If
 
-            If TXTGSTIN.Text.Trim.Length = 0 Then
-                If MsgBox("GSTIN Not Entered, Wish To Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                    EP.SetError(TXTSTATECODE, "Enter GSTIN In Party Master")
-                    bln = False
-                End If
-            End If
+            'If TXTGSTIN.Text.Trim.Length = 0 Then
+            '    If MsgBox("GSTIN Not Entered, Wish To Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+            '        EP.SetError(TXTSTATECODE, "Enter GSTIN In Party Master")
+            '        bln = False
+            '    End If
+            'End If
 
             'AS PER KUMAR BHAI WE NEED TO ENTER 0 IN GST
             If CMBSCREENTYPE.Text = "TOTAL GST" And ClientName <> "ALENCOT" And ClientName <> "YASHVI" And ClientName <> "SHALIBHADRA" And ClientName <> "KREEVE" And ClientName <> "VINAYAK" And ClientName <> "KRISHNA" And ClientName <> "MASHOK" And ClientName <> "ABHEE" Then
@@ -1664,28 +1667,15 @@ CHECKNEXTLINE:
                     bln = False
                 End If
 
-                If row.Cells(GHSNCODE.Index).Value = "" Then
-                    EP.SetError(CMBSERVICETYPE, "HSN Cannot be Blank")
-                    bln = False
-                End If
+                'DONE TEMP
+                'If row.Cells(GHSNCODE.Index).Value = "" Then
+                '    EP.SetError(CMBSERVICETYPE, "HSN Cannot be Blank")
+                '    bln = False
+                'End If
             Next
         End If
 
-
-        'CHECK WHETHER PURCHASER HAS CROSSED 50LAKHS OR NOT
         Dim DT As New DataTable
-        'If CHKTDS.CheckState = CheckState.Unchecked Then
-        '    Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-        '    DT = OBJCMN.Execute_Any_String("Select ISNULL(SUM(BILL_GRANDTOTAL),0) As GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS On BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " And LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
-        '    If DT.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
-        '    If TEMPTDSTOTAL > 5000000 Then
-        '        If MsgBox("Amount Exceeds 5000000, and TDS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-        '            EP.SetError(cmbname, "Apply TDS")
-        '            bln = False
-        '        End If
-        '    End If
-        'End If
-
 
 
         If UserName <> "Admin" Then

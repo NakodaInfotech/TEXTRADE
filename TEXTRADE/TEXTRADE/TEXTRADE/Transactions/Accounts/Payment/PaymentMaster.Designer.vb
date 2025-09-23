@@ -44,6 +44,8 @@ Partial Class PaymentMaster
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaymentMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTSEARCHAMT = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TXTINFAVR = New System.Windows.Forms.TextBox()
         Me.LBLPRINT = New System.Windows.Forms.Label()
@@ -174,8 +176,7 @@ Partial Class PaymentMaster
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.TXTSEARCHAMT = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -198,6 +199,7 @@ Partial Class PaymentMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.LemonChiffon, System.Drawing.Color.LemonChiffon)
+        Me.BlendPanel1.Controls.Add(Me.CMDAUTOPOST)
         Me.BlendPanel1.Controls.Add(Me.TXTSEARCHAMT)
         Me.BlendPanel1.Controls.Add(Me.Label16)
         Me.BlendPanel1.Controls.Add(Me.Label15)
@@ -277,6 +279,27 @@ Partial Class PaymentMaster
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1304, 608)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'TXTSEARCHAMT
+        '
+        Me.TXTSEARCHAMT.BackColor = System.Drawing.Color.White
+        Me.TXTSEARCHAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTSEARCHAMT.Location = New System.Drawing.Point(963, 43)
+        Me.TXTSEARCHAMT.Name = "TXTSEARCHAMT"
+        Me.TXTSEARCHAMT.Size = New System.Drawing.Size(65, 22)
+        Me.TXTSEARCHAMT.TabIndex = 999
+        Me.TXTSEARCHAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Location = New System.Drawing.Point(911, 47)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(49, 14)
+        Me.Label16.TabIndex = 1000
+        Me.Label16.Text = "Amount"
         '
         'Label15
         '
@@ -1781,26 +1804,19 @@ Partial Class PaymentMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'TXTSEARCHAMT
+        'CMDAUTOPOST
         '
-        Me.TXTSEARCHAMT.BackColor = System.Drawing.Color.White
-        Me.TXTSEARCHAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSEARCHAMT.Location = New System.Drawing.Point(963, 43)
-        Me.TXTSEARCHAMT.Name = "TXTSEARCHAMT"
-        Me.TXTSEARCHAMT.Size = New System.Drawing.Size(65, 22)
-        Me.TXTSEARCHAMT.TabIndex = 999
-        Me.TXTSEARCHAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(911, 47)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(49, 14)
-        Me.Label16.TabIndex = 1000
-        Me.Label16.Text = "Amount"
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(658, 540)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1001
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
         '
         'PaymentMaster
         '
@@ -1975,4 +1991,5 @@ Partial Class PaymentMaster
     Friend WithEvents TXTINFAVR As TextBox
     Friend WithEvents TXTSEARCHAMT As TextBox
     Friend WithEvents Label16 As Label
+    Friend WithEvents CMDAUTOPOST As Button
 End Class
