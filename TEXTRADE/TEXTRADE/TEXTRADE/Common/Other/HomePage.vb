@@ -47,7 +47,11 @@ Public Class HomePage
             GBMONTHLYSALE.Visible = True
             GBPARTYPERFORMANCE.Visible = True
 
-            If ClientName = "MASHOK" Then
+            FILLMONTHLYSALE()
+            FILLPERFORMANCE()
+
+
+            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
                 GBSALE.Visible = False
 
                 GBSTOCK.Visible = False
@@ -56,8 +60,7 @@ Public Class HomePage
                 GBPURORDER.Left = GBSALEORDER.Left + GBSALEORDER.Width + 10
                 GRIDPODETAILS.Width = GRIDPO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBPURORDER.Width = GRIDPODETAILS.Width + 10
-                FILLMONTHLYSALE()
-                FILLPERFORMANCE()
+
             End If
 
         Catch ex As Exception

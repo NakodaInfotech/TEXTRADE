@@ -644,14 +644,12 @@ Public Class ExpenseVoucher
                 End If
                 alParaval.Add(TEMPEXPNO)
                 IntResult = objclsNP.UPDATE()
-                MsgBox("Details Updated")
+                'MsgBox("Details Updated")
                 EDIT = False
             End If
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
-            Call toolnext_Click(sender, e)
-            CMBNAME.Focus()
+            'Call toolnext_Click(sender, e)
+            'CMBNAME.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -738,23 +736,9 @@ Public Class ExpenseVoucher
             End If
 
             If Convert.ToDateTime(PARTYBILLDATE.Text).Date >= "01/07/2017" Then
-                If TXTSTATECODE.Text.Trim.Length = 0 Then
-                    EP.SetError(TXTSTATECODE, "Please enter the state code")
-                    bln = False
-                End If
-
-                'NOT MANDATE, DONE BY GULKIT
-                'If TXTGSTIN.Text.Trim.Length = 0 And CHKRCM.CheckState = CheckState.Unchecked Then
-                '    EP.SetError(CHKRCM, "Select Reverse Charge")
+                'If TXTSTATECODE.Text.Trim.Length = 0 Then
+                '    EP.SetError(TXTSTATECODE, "Please enter the state code")
                 '    bln = False
-                'End If
-
-
-                'If TXTGSTIN.Text.Trim.Length > 0 And CHKRCM.CheckState = CheckState.Checked Then
-                '    If MsgBox("Reverse Charge Not Applicable, Wish to Continue?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '        EP.SetError(CHKRCM, "Reverse Charge Not Applicable")
-                '        bln = False
-                '    End If
                 'End If
 
                 If ClientName <> "NVAHAN" And ClientName <> "NAKODAINFOTECH" Then
@@ -1835,6 +1819,27 @@ NEXTLINE:
 
     Private Sub NPDATE_GotFocus(sender As Object, e As EventArgs) Handles NPDATE.GotFocus
         NPDATE.SelectionStart = 0
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET INVOICENOS FROM PURCHASEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(NP_NO) AS BILLNO", "", " NONPURCHASE INNER JOIN REGISTERMASTER ON REGISTER_ID = NP_REGISTERID", " AND REGISTER_NAME = '" & CMBREGISTER.Text.Trim & "' AND NP_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
+                GRIDEXPENSE.RowCount = 0
+                TEMPEXPNO = Val(I)
+                TEMPREGNAME = CMBREGISTER.Text.Trim
+                EDIT = True
+                NonPurchase_Load(sender, e)
+                If GRIDEXPENSE.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub CMBCOSTCENTERNAME_Enter(sender As Object, e As EventArgs) Handles CMBCOSTCENTERNAME.Enter

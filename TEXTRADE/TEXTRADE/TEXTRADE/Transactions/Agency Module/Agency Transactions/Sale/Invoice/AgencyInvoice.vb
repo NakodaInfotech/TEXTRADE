@@ -1354,15 +1354,16 @@ Public Class AgencyInvoice
                 End If
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
-                MessageBox.Show("Details Updated")
+                'DONE TEMP
+                'MessageBox.Show("Details Updated")
 
-                'SMSCODE()
                 EDIT = False
             End If
 
 
-            Call toolnext_Click(sender, e)
-            INVOICEDATE.Focus()
+            'DONE TEMP
+            'Call toolnext_Click(sender, e)
+            'INVOICEDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1437,10 +1438,11 @@ Public Class AgencyInvoice
             bln = False
         End If
 
-        If Val(txtpartypono.Text.Trim) = 0 Then
-            EP.SetError(txtpartypono, "Enter Party Bill No")
-            bln = False
-        End If
+        'DONE TEMP
+        'If Val(txtpartypono.Text.Trim) = 0 Then
+        '    EP.SetError(txtpartypono, "Enter Party Bill No")
+        '    bln = False
+        'End If
 
         If cmbname.Text.Trim.Length = 0 Then
             EP.SetError(cmbname, " Please Fill Company Name ")
@@ -1492,14 +1494,15 @@ Public Class AgencyInvoice
         End If
 
         For Each row As DataGridViewRow In GRIDINVOICE.Rows
-            If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
-                EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
-                bln = False
-            End If
-            If Val(row.Cells(GAMT.Index).Value) = 0 And ClientName <> "MOMAI" Then
-                EP.SetError(cmbname, "Amt Cannot be 0")
-                bln = False
-            End If
+            'DONE TEMPORARILY
+            'If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
+            '    EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
+            '    bln = False
+            'End If
+            'If Val(row.Cells(GAMT.Index).Value) = 0 And ClientName <> "MOMAI" Then
+            '    EP.SetError(cmbname, "Amt Cannot be 0")
+            '    bln = False
+            'End If
             If row.Cells(GHSNCODE.Index).Value = "" And ClientName <> "CC" Then
                 EP.SetError(cmbname, "HSN Cannot be Blank")
                 bln = False
@@ -1511,25 +1514,6 @@ Public Class AgencyInvoice
             bln = False
         End If
 
-
-        'SET CREDIT LIMIT
-        'IF EDIT IS TRUE THEN WE NEED TO SUBTRACT THAT GRANDTOTAL FROM THEN TRIALBALANCE AMONT
-        'Dim OLDBAL As Double = 0
-        'If EDIT = True Then
-        '    Dim DTOLD As DataTable = OBJCMN.SEARCH("AINVOICE_GRANDTOTAL AS OLDGTOTAL ", "", "AGENCYINVOICEMASTER ", " AND AINVOICE_NO = " & TEMPINVOICENO & " And AINVOICE_YEARID = " & YearId)
-        '    If DTOLD.Rows.Count > 0 Then OLDBAL = Val(DTOLD.Rows(0).Item("OLDGTOTAL"))
-        'End If
-
-
-        ''TAKE CREDIT LIMIT FROM ALL THE COMPANIES
-
-        'DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) As BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE On ACC_CMPNAME = NAME And ACC_YEARID = YEARID", " And ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & YearId)
-        'If DT.Rows.Count > 0 AndAlso Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
-        '    If Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) + Val(txtgrandtotal.Text.Trim), "0.00") > Val(DT.Rows(0).Item("CRLIMIT")) Then
-        '        EP.SetError(cmbname, "Amount Greater then Credit Limit, Only " & Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) - Val(DT.Rows(0).Item("CRLIMIT")), "0.00") & " allowed")
-        '        bln = False
-        '    End If
-        'End If
 
 
         If UserName <> "Admin" Then
@@ -1553,20 +1537,6 @@ Public Class AgencyInvoice
                 bln = False
             End If
         End If
-
-        'CHECK WHETHER SALES LEDGER HAS CROSSED 50LAKHS OR NOT
-        'Dim DTB As New DataTable
-        'If CHKTCS.CheckState = CheckState.Unchecked And CHKPARTYTDS.CheckState = CheckState.Unchecked Then
-        '    Dim TEMPTCSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-        '    DT = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(AINVOICE_GRANDTOTAL),0) AS GTOTAL FROM INVOICEMASTER INNER JOIN LEDGERS ON AINVOICE_LEDGERID = LEDGERS.ACC_ID WHERE AINVOICE_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
-        '    If DT.Rows.Count > 0 Then TEMPTCSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
-        '    If TEMPTCSTOTAL > 5000000 Then
-        '        If MsgBox("Amount Exceeds 5000000, and TCS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-        '            EP.SetError(cmbname, "Apply TCS")
-        '            bln = False
-        '        End If
-        '    End If
-        'End If
 
 
 
@@ -5370,27 +5340,6 @@ LINE1:
 
 
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMDAUTOPOST_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDAUTOPOST.Click
-        Try
-            'GET INVOICENOS FROM INVOICEMASTER
-            Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("MAX(AINVOICE_NO) As INVOICENO", "", " INVOICEMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = AINVOICE_REGISTERID", "  AND AINVOICE_YEARID = " & YearId)
-            For I As Integer = 3001 To Val(DT.Rows(0).Item("INVOICENO"))
-                GRIDINVOICE.RowCount = 0
-                TEMPINVOICENO = Val(I)
-                EDIT = True
-                'AgencyInvoice_Load(sender, e)
-                SHOWDATA()
-                If GRIDINVOICE.RowCount = 0 Then GoTo NEXTLINE
-                cmdOK_Click(sender, e)
-NEXTLINE:
-                CLEAR()
-            Next
         Catch ex As Exception
             Throw ex
         End Try
