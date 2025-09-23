@@ -291,54 +291,34 @@ PRINT 1,1
 
             ElseIf ClientName = "SHEETAL" Then
 
-                oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>^XA
-^SZ2^JMA
-^MCY^PMN
-^PW799
-^MMT
-^MD20
-^PR2,2,2
-^JZY
-^LH0,0^LRN
-^XZ
-<xpml></page></xpml><xpml><page quantity='0' pitch='75.1 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>^XA
-^FT104,172
-^CI0
-^A0N,34,46^FDQuality^FS
-^FT240,172
-^A0N,34,46^FD:^FS
-^FT263,172
-^A0N,34,46^FD" & ITEMNAME & "^FS
-^FT104,228
-^A0N,34,46^FDDesign^FS
-^FT240,228
-^A0N,34,46^FD:^FS
-^FT264,228
-^A0N,34,46^FD" & DESIGNNO & "^FS
-^FT104,284
-^A0N,34,46^FDColor^FS
-^FT240,284
-^A0N,34,46^FD:^FS
-^FT264,284
-^A0N,34,46^FD" & SHADE & "^FS
-^FO104,423
-^BY2,2.5^B3N,N,88,N,N^FD" & BARCODE & "^FS
-^FT104,340
-^A0N,34,46^FDMtrs^FS
-^FT240,340
-^A0N,34,46^FD:^FS
-^FT264,340
-^A0N,34,46^FD" & Format(Val(MTRS), "0.00") & "^FS
-^FT104,396
-^A0N,34,46^FDRoll No^FS
-^FT240,395
-^A0N,34,46^FD:^FS
-^FT264,396
-^A0N,34,46^FD" & BARCODE & "^FS
-^PQ1,0,1,Y
-^XZ
-<xpml></page></xpml><xpml><end/></xpml>")
-                oWrite.WriteLine("PRINT 1,1")
+                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 658,457,""ROMAN.TTF"",180,1,12,""QUALITY""
+TEXT 511,457,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,457,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """
+TEXT 658,399,""ROMAN.TTF"",180,1,12,""DESIGN""
+TEXT 511,399,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,401,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 658,341,""ROMAN.TTF"",180,1,12,""COLOR""
+TEXT 511,341,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,341,""ROMAN.TTF"",180,1,12,""" & SHADE & """
+TEXT 658,283,""ROMAN.TTF"",180,1,12,""MTRS""
+TEXT 511,283,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,283,""ROMAN.TTF"",180,1,12,""" & Format(Val(MTRS),"0.00") & """
+TEXT 658,225,""ROMAN.TTF"",180,1,12,""ROLL NO""
+TEXT 511,225,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,225,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+BARCODE 658,173,""128M"",85,0,180,3,6,""" & BARCODE & """
+PRINT 1,1")
                 oWrite.Dispose()
 
             ElseIf ClientName = "MBB" Then
