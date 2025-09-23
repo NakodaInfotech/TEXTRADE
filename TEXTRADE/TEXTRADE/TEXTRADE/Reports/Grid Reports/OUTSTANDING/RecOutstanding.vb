@@ -2361,8 +2361,8 @@ line1:
 
             'If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
 
-            '    Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
-            '    ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
+            Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+            ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
             'End If
 
 
@@ -2383,147 +2383,144 @@ line1:
     End Sub
 
 
+    ''*********** BELOW CODE PROPER BUT TAKING TIME TO EXPORT **********
 
-    Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
-        ' 👉 Make sure your DataGridView name matches
-        Dim dgv As DataGridView = GRIDOUTSTANDING
+    'Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
+    '    ' 👉 Make sure your DataGridView name matches
+    '    Dim dgv As DataGridView = GRIDOUTSTANDING
 
-        If dgv Is Nothing OrElse dgv.Rows.Count = 0 Then
-            MessageBox.Show("No data to export.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
-        End If
+    '    If dgv Is Nothing OrElse dgv.Rows.Count = 0 Then
+    '        MessageBox.Show("No data to export.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    '        Exit Sub
+    '    End If
 
-        Dim xlApp As New Excel.Application()
-        Dim xlWorkBook As Excel.Workbook = xlApp.Workbooks.Add()
-        Dim xlWorkSheet As Excel.Worksheet = CType(xlWorkBook.Sheets(1), Excel.Worksheet)
+    '    Dim xlApp As New Excel.Application()
+    '    Dim xlWorkBook As Excel.Workbook = xlApp.Workbooks.Add()
+    '    Dim xlWorkSheet As Excel.Worksheet = CType(xlWorkBook.Sheets(1), Excel.Worksheet)
 
-        Try
-            xlApp.DisplayAlerts = False
+    '    Try
+    '        xlApp.DisplayAlerts = False
 
-            ' 👉 Safe client name for filename
-            Dim safeClientName As String = ClientName.Replace(" ", "_")
-            Dim folderPath As String = "C:\Reports"
+    '        ' 👉 Safe client name for filename
+    '        Dim safeClientName As String = ClientName.Replace(" ", "_")
+    '        Dim folderPath As String = "C:\Reports"
 
-            If Not Directory.Exists(folderPath) Then
-                Directory.CreateDirectory(folderPath)
-            End If
+    '        If Not Directory.Exists(folderPath) Then
+    '            Directory.CreateDirectory(folderPath)
+    '        End If
 
-            Dim fileName As String = $"Receivable_{safeClientName}_C{CmpId}_Y{YearId}_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
-            Dim filePath As String = Path.Combine(folderPath, fileName)
+    '        Dim fileName As String = $"Receivable_{safeClientName}_C{CmpId}_Y{YearId}_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+    '        Dim filePath As String = Path.Combine(folderPath, fileName)
 
-            ' 👉 Title
-            xlWorkSheet.Cells(1, 1) = "Receivable Outstanding Report - " & ClientName
-            xlWorkSheet.Range("A1").Font.Bold = True
-            xlWorkSheet.Range("A1").Font.Size = 16
+    '        ' 👉 Title
+    '        xlWorkSheet.Cells(1, 1) = "Receivable Outstanding Report - " & ClientName
+    '        xlWorkSheet.Range("A1").Font.Bold = True
+    '        xlWorkSheet.Range("A1").Font.Size = 16
 
-            ' 👉 Metadata
-            xlWorkSheet.Cells(2, 1) = "Company ID: " & CmpId & "    Year ID: " & YearId
-            xlWorkSheet.Cells(3, 1) = "Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")
-            xlWorkSheet.Range("A2:A3").Font.Size = 10
+    '        ' 👉 Metadata
+    '        xlWorkSheet.Cells(2, 1) = "Company ID: " & CmpId & "    Year ID: " & YearId
+    '        xlWorkSheet.Cells(3, 1) = "Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+    '        xlWorkSheet.Range("A2:A3").Font.Size = 10
 
-            Dim startRow As Integer = 5
-            Dim colIndex As Integer = 1
+    '        Dim startRow As Integer = 5
+    '        Dim colIndex As Integer = 1
 
-            ' 👉 Only visible columns
-            Dim visibleColumns As New List(Of DataGridViewColumn)
-            For Each col As DataGridViewColumn In dgv.Columns
-                If col.Visible Then
-                    visibleColumns.Add(col)
-                    xlWorkSheet.Cells(startRow, colIndex) = col.HeaderText
-                    With xlWorkSheet.Cells(startRow, colIndex)
-                        .Font.Bold = True
-                        .Interior.Color = RGB(220, 220, 220)
-                        .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
-                        .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
-                    End With
-                    colIndex += 1
-                End If
-            Next
+    '        ' 👉 Only visible columns
+    '        Dim visibleColumns As New List(Of DataGridViewColumn)
+    '        For Each col As DataGridViewColumn In dgv.Columns
+    '            If col.Visible Then
+    '                visibleColumns.Add(col)
+    '                xlWorkSheet.Cells(startRow, colIndex) = col.HeaderText
+    '                With xlWorkSheet.Cells(startRow, colIndex)
+    '                    .Font.Bold = True
+    '                    .Interior.Color = RGB(220, 220, 220)
+    '                    .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+    '                    .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+    '                End With
+    '                colIndex += 1
+    '            End If
+    '        Next
 
-            ' 👉 Add data rows
-            Dim currentRow As Integer = startRow + 1
-            For Each row As DataGridViewRow In dgv.Rows
-                If Not row.IsNewRow Then
-                    Dim isGrandTotalRow As Boolean = False
+    '        ' 👉 Add data rows
+    '        Dim currentRow As Integer = startRow + 1
+    '        For Each row As DataGridViewRow In dgv.Rows
+    '            If Not row.IsNewRow Then
+    '                Dim isGrandTotalRow As Boolean = False
 
-                    For Each cell As DataGridViewCell In row.Cells
-                        If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
-                            isGrandTotalRow = True
-                            Exit For
-                        End If
-                    Next
+    '                For Each cell As DataGridViewCell In row.Cells
+    '                    If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+    '                        isGrandTotalRow = True
+    '                        Exit For
+    '                    End If
+    '                Next
 
-                    colIndex = 1
-                    For Each col As DataGridViewColumn In visibleColumns
-                        Dim cell As DataGridViewCell = row.Cells(col.Index)
-                        Dim value As String = ""
+    '                colIndex = 1
+    '                For Each col As DataGridViewColumn In visibleColumns
+    '                    Dim cell As DataGridViewCell = row.Cells(col.Index)
+    '                    Dim value As String = ""
 
-                        If cell.Value IsNot Nothing Then
-                            If TypeOf cell.Value Is DateTime Then
-                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
-                            Else
-                                value = cell.Value.ToString()
-                            End If
-                        End If
+    '                    If cell.Value IsNot Nothing Then
+    '                        If TypeOf cell.Value Is DateTime Then
+    '                            value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+    '                        Else
+    '                            value = cell.Value.ToString()
+    '                        End If
+    '                    End If
 
-                        With xlWorkSheet.Cells(currentRow, colIndex)
-                            .Value = value
-                            .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
-                            .Font.Bold = isGrandTotalRow
+    '                    With xlWorkSheet.Cells(currentRow, colIndex)
+    '                        .Value = value
+    '                        .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+    '                        .Font.Bold = isGrandTotalRow
 
-                            If IsNumeric(value) Then
-                                .HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
-                            Else
-                                .HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
-                            End If
+    '                        If IsNumeric(value) Then
+    '                            .HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
+    '                        Else
+    '                            .HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
+    '                        End If
 
-                            ' 👉 Row background coloring
-                            If isGrandTotalRow Then
-                                .Interior.Color = RGB(250, 240, 230)
-                            ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
-                                .Interior.Color = RGB(255, 255, 0)
-                            ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
-                                .Interior.Color = RGB(200, 255, 200)
-                            End If
-                        End With
+    '                        ' 👉 Row background coloring
+    '                        If isGrandTotalRow Then
+    '                            .Interior.Color = RGB(250, 240, 230)
+    '                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+    '                            .Interior.Color = RGB(255, 255, 0)
+    '                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+    '                            .Interior.Color = RGB(200, 255, 200)
+    '                        End If
+    '                    End With
 
-                        colIndex += 1
-                    Next
-                    currentRow += 1
-                End If
-            Next
+    '                    colIndex += 1
+    '                Next
+    '                currentRow += 1
+    '            End If
+    '        Next
 
-            ' 👉 Auto fit all columns
-            xlWorkSheet.Columns.AutoFit()
+    '        ' 👉 Auto fit all columns
+    '        xlWorkSheet.Columns.AutoFit()
 
-            ' 👉 Save to disk
-            xlWorkBook.SaveAs(filePath)
-            MessageBox.Show("Excel exported to: " & filePath, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        ' 👉 Save to disk
+    '        xlWorkBook.SaveAs(filePath)
+    '        MessageBox.Show("Excel exported to: " & filePath, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        Catch ex As Exception
-            MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    Catch ex As Exception
+    '        MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        Finally
-            ' 👉 Cleanup
-            xlWorkBook.Close(False)
-            xlApp.Quit()
+    '    Finally
+    '        ' 👉 Cleanup
+    '        xlWorkBook.Close(False)
+    '        xlApp.Quit()
 
-            Marshal.ReleaseComObject(xlWorkSheet)
-            Marshal.ReleaseComObject(xlWorkBook)
-            Marshal.ReleaseComObject(xlApp)
+    '        Marshal.ReleaseComObject(xlWorkSheet)
+    '        Marshal.ReleaseComObject(xlWorkBook)
+    '        Marshal.ReleaseComObject(xlApp)
 
-            GC.Collect()
-            GC.WaitForPendingFinalizers()
-        End Try
-    End Sub
+    '        GC.Collect()
+    '        GC.WaitForPendingFinalizers()
+    '    End Try
+    'End Sub
+
+    ''*********** ABOVE CODE PROPER BUT TAKING TIME TO EXPORT **********
 
 
-
-    'Imports Excel = Microsoft.Office.Interop.Excel
-    'Imports System.Runtime.InteropServices
-
-    'Imports Excel = Microsoft.Office.Interop.Excel
-    'Imports System.Runtime.InteropServices
 
     'Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
     '    Dim dgv As DataGridView = GRIDOUTSTANDING
@@ -2538,111 +2535,240 @@ line1:
     '    Dim xlWorkSheet As Excel.Worksheet = CType(xlWorkBook.Sheets(1), Excel.Worksheet)
 
     '    Try
-    '        xlApp.Visible = True
+    '        xlApp.DisplayAlerts = False
 
-    '        ' -- Title and Metadata
+    '        ' 👉 Title
     '        xlWorkSheet.Cells(1, 1) = "Receivable Outstanding Report - " & ClientName
     '        xlWorkSheet.Range("A1").Font.Bold = True
     '        xlWorkSheet.Range("A1").Font.Size = 16
 
+    '        ' 👉 Metadata
     '        xlWorkSheet.Cells(2, 1) = "Company ID: " & CmpId & "    Year ID: " & YearId
     '        xlWorkSheet.Cells(3, 1) = "Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")
     '        xlWorkSheet.Range("A2:A3").Font.Size = 10
 
     '        Dim startRow As Integer = 5
+    '        Dim colIndex As Integer = 1
 
-    '        ' -- Collect visible columns
+    '        ' 👉 Only visible columns
     '        Dim visibleColumns As New List(Of DataGridViewColumn)
     '        For Each col As DataGridViewColumn In dgv.Columns
-    '            If col.Visible Then visibleColumns.Add(col)
-    '        Next
-
-    '        Dim colCount As Integer = visibleColumns.Count
-    '        Dim rowCount As Integer = dgv.Rows.Cast(Of DataGridViewRow).Count(Function(r) Not r.IsNewRow)
-
-    '        ' -- Prepare data array
-    '        Dim data(rowCount, colCount - 1) As Object
-
-    '        ' 👉 Insert headers
-    '        For c As Integer = 0 To colCount - 1
-    '            xlWorkSheet.Cells(startRow, c + 1) = visibleColumns(c).HeaderText
-    '            With xlWorkSheet.Cells(startRow, c + 1)
-    '                .Font.Bold = True
-    '                .Interior.Color = RGB(220, 220, 220)
-    '                .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
-    '                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
-    '            End With
-    '        Next
-
-    '        ' 👉 Fill array with data
-    '        Dim rIndex As Integer = 0
-    '        For Each row As DataGridViewRow In dgv.Rows
-    '            If Not row.IsNewRow Then
-    '                For c As Integer = 0 To colCount - 1
-    '                    Dim cell = row.Cells(visibleColumns(c).Index)
-    '                    If cell.Value IsNot Nothing Then
-    '                        If TypeOf cell.Value Is DateTime Then
-    '                            data(rIndex, c) = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
-    '                        Else
-    '                            data(rIndex, c) = cell.Value.ToString()
-    '                        End If
-    '                    Else
-    '                        data(rIndex, c) = ""
-    '                    End If
-    '                Next
-    '                rIndex += 1
+    '            If col.Visible Then
+    '                visibleColumns.Add(col)
+    '                xlWorkSheet.Cells(startRow, colIndex) = col.HeaderText
+    '                With xlWorkSheet.Cells(startRow, colIndex)
+    '                    .Font.Bold = True
+    '                    .Interior.Color = RGB(220, 220, 220)
+    '                    .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+    '                    .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+    '                End With
+    '                colIndex += 1
     '            End If
     '        Next
 
-    '        ' 👉 Write all data at once
-    '        Dim dataRange As Excel.Range = xlWorkSheet.Range(
-    '        xlWorkSheet.Cells(startRow + 1, 1),
-    '        xlWorkSheet.Cells(startRow + rowCount, colCount)
-    '    )
-    '        dataRange.Value = data
+    '        ' 👉 Add data rows
+    '        Dim currentRow As Integer = startRow + 1
+    '        For Each row As DataGridViewRow In dgv.Rows
+    '            If Not row.IsNewRow Then
+    '                Dim isGrandTotalRow As Boolean = False
 
-    '        ' 👉 Formatting after insert
-    '        For r As Integer = 0 To rowCount - 1
-    '            Dim excelRow As Integer = startRow + 1 + r
-    '            Dim isGrandTotal As Boolean = False
+    '                For Each cell As DataGridViewCell In row.Cells
+    '                    If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+    '                        isGrandTotalRow = True
+    '                        Exit For
+    '                    End If
+    '                Next
 
-    '            For c As Integer = 0 To colCount - 1
-    '                Dim cellVal = data(r, c)?.ToString()?.ToUpper()?.Trim()
-    '                If cellVal = "GRANDTOTAL" Then
-    '                    isGrandTotal = True
-    '                    Exit For
-    '                End If
-    '            Next
+    '                colIndex = 1
+    '                For Each col As DataGridViewColumn In visibleColumns
+    '                    Dim cell As DataGridViewCell = row.Cells(col.Index)
+    '                    Dim value As String = ""
 
-    '            For c As Integer = 0 To colCount - 1
-    '                Dim cell = xlWorkSheet.Cells(excelRow, c + 1)
-    '                cell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+    '                    If cell.Value IsNot Nothing Then
+    '                        If TypeOf cell.Value Is DateTime Then
+    '                            value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+    '                        Else
+    '                            value = cell.Value.ToString()
+    '                        End If
+    '                    End If
 
-    '                If IsNumeric(data(r, c)) Then
-    '                    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
-    '                Else
-    '                    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
-    '                End If
+    '                    With xlWorkSheet.Cells(currentRow, colIndex)
+    '                        .Value = value
+    '                        .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+    '                        .Font.Bold = isGrandTotalRow
 
-    '                If isGrandTotal Then
-    '                    cell.Font.Bold = True
-    '                    cell.Interior.Color = RGB(250, 240, 230)
-    '                End If
-    '            Next
+    '                        If IsNumeric(value) Then
+    '                            .HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
+    '                        Else
+    '                            .HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
+    '                        End If
+
+    '                        ' 👉 Row background coloring
+    '                        If isGrandTotalRow Then
+    '                            .Interior.Color = RGB(250, 240, 230)
+    '                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+    '                            .Interior.Color = RGB(255, 255, 0)
+    '                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+    '                            .Interior.Color = RGB(200, 255, 200)
+    '                        End If
+    '                    End With
+
+    '                    colIndex += 1
+    '                Next
+    '                currentRow += 1
+    '            End If
     '        Next
 
-    '        ' 👉 Auto-fit columns
+    '        ' 👉 Auto fit all columns
     '        xlWorkSheet.Columns.AutoFit()
 
-    '        MessageBox.Show("Excel export complete. You can now review and save it manually.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        ' 👉 Show Excel to user
+    '        xlApp.Visible = True
 
     '    Catch ex As Exception
     '        MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-    '    Finally
-    '        ' Don't close Excel here — user is working in it
+    '        ' Cleanup on failure
+    '        xlWorkBook.Close(False)
+    '        xlApp.Quit()
+
+    '        Marshal.ReleaseComObject(xlWorkSheet)
+    '        Marshal.ReleaseComObject(xlWorkBook)
+    '        Marshal.ReleaseComObject(xlApp)
+
     '    End Try
-    '   End Sub
+    'End Sub
+
+
+
+
+    Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
+        Dim dgv As DataGridView = GRIDOUTSTANDING
+
+        If dgv Is Nothing OrElse dgv.Rows.Count = 0 Then
+            MessageBox.Show("No data to export.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim xlApp As New Excel.Application()
+        Dim xlWorkBook As Excel.Workbook = xlApp.Workbooks.Add()
+        Dim xlWorkSheet As Excel.Worksheet = CType(xlWorkBook.Sheets(1), Excel.Worksheet)
+
+        Try
+            xlApp.DisplayAlerts = False
+
+            ' 👉 Title and Metadata
+            xlWorkSheet.Cells(1, 1) = "Receivable Outstanding Report - " & ClientName
+            xlWorkSheet.Range("A1").Font.Bold = True
+            xlWorkSheet.Range("A1").Font.Size = 16
+
+            xlWorkSheet.Cells(2, 1) = "Company ID: " & CmpId & "    Year ID: " & YearId
+            xlWorkSheet.Cells(3, 1) = "Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+            xlWorkSheet.Range("A2:A3").Font.Size = 10
+
+            Dim startRow As Integer = 5
+            Dim colIndex As Integer = 0
+
+            ' 👉 Get visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then
+                    visibleColumns.Add(col)
+                End If
+            Next
+
+            Dim rowCount As Integer = dgv.Rows.Cast(Of DataGridViewRow)().Count(Function(r) Not r.IsNewRow)
+            Dim colCount As Integer = visibleColumns.Count
+
+            ' 👉 Prepare data array
+            Dim data(rowCount, colCount - 1) As Object
+
+            ' 👉 Headers
+            For c = 0 To colCount - 1
+                xlWorkSheet.Cells(startRow, c + 1) = visibleColumns(c).HeaderText
+                With xlWorkSheet.Cells(startRow, c + 1)
+                    .Font.Bold = True
+                    .Interior.Color = RGB(220, 220, 220)
+                    .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+                    .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+                End With
+            Next
+
+            ' 👉 Fill array with data
+            Dim rIndex As Integer = 0
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    For c = 0 To colCount - 1
+                        Dim cellValue = row.Cells(visibleColumns(c).Index).Value
+                        If cellValue IsNot Nothing Then
+                            If TypeOf cellValue Is DateTime Then
+                                data(rIndex, c) = CType(cellValue, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                data(rIndex, c) = cellValue.ToString()
+                            End If
+                        Else
+                            data(rIndex, c) = ""
+                        End If
+                    Next
+                    rIndex += 1
+                End If
+            Next
+
+            ' 👉 Write entire data array in one shot
+            Dim dataStartCell = xlWorkSheet.Cells(startRow + 1, 1)
+            Dim dataEndCell = xlWorkSheet.Cells(startRow + rowCount, colCount)
+            Dim writeRange = xlWorkSheet.Range(dataStartCell, dataEndCell)
+            writeRange.Value = data
+            writeRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+            ' 👉 Apply formatting after data write
+            For r = 1 To rowCount
+                Dim isGrandTotal As Boolean = False
+                For c = 0 To colCount - 1
+                    Dim val = data(r - 1, c)
+                    If val IsNot Nothing AndAlso val.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                        isGrandTotal = True
+                        Exit For
+                    End If
+                Next
+
+                For c = 0 To colCount - 1
+                    Dim cell = xlWorkSheet.Cells(startRow + r, c + 1)
+
+                    If IsNumeric(data(r - 1, c)) Then
+                        cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
+                    Else
+                        cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
+                    End If
+
+                    If isGrandTotal Then
+                        cell.Font.Bold = True
+                        cell.Interior.Color = RGB(250, 240, 230)
+                    End If
+                Next
+            Next
+
+            ' 👉 Auto fit columns
+            xlWorkSheet.Columns.AutoFit()
+
+            ' 👉 Show Excel
+            xlApp.Visible = True
+
+        Catch ex As Exception
+            MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            ' Cleanup on error
+            xlWorkBook.Close(False)
+            xlApp.Quit()
+
+            Marshal.ReleaseComObject(xlWorkSheet)
+            Marshal.ReleaseComObject(xlWorkBook)
+            Marshal.ReleaseComObject(xlApp)
+
+        End Try
+    End Sub
+
+
 
 
 

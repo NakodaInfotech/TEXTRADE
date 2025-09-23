@@ -217,6 +217,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WARP Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
+                I += 1
                 ' Selvedge Grid data serialization
                 .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
                 I += 1
@@ -293,6 +300,13 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDPE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
+                I += 1
+                ' WEFT Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
                 I += 1
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
@@ -542,6 +556,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WARP Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
+                I += 1
                 ' Selvedge Grid data serialization
                 .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
                 I += 1
@@ -619,6 +640,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WEFT Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
+                I += 1
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
                 I += 1
@@ -652,7 +680,6 @@ Public Class ClsDesignCardMaster
                 ' Additional flags or reserved parameter
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
                 I += 1
-
                 .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
