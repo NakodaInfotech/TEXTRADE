@@ -3050,4 +3050,19 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBDISPATCHFROM_Validated(sender As Object, e As EventArgs) Handles CMBDISPATCHFROM.Validated
+        Try
+            If CMBDISPATCHFROM.Text.Trim <> "" Then
+                'GET CITY , 
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(CITYMASTER.city_name, '') AS FROMCITY ", "", "  LEDGERS LEFT OUTER JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " and LEDGERS.acc_cmpname = '" & CMBDISPATCHFROM.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    CMBFROMCITY.Text = DT.Rows(0).Item("FROMCITY")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
