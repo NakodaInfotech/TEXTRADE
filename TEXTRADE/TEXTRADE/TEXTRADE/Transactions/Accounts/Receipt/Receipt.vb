@@ -790,15 +790,15 @@ Public Class Receipt
                 End If
                 alparaval.Add(TEMPRECEIPTNO)
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
-                'MsgBox("Details Updated")
+                MsgBox("Details Updated")
                 EDIT = False
 
             End If
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
-            'Call toolnext_Click(sender, e)
-            'If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
+            Call toolnext_Click(sender, e)
+            If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
 
 
         Catch ex As Exception

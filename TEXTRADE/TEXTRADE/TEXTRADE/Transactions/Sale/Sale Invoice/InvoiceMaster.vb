@@ -1419,7 +1419,7 @@ Public Class InvoiceMaster
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
                 'done temp
-                'MessageBox.Show("Details Updated")
+                MessageBox.Show("Details Updated")
 
                 'WE NEED TO UPDATE LRNO IN PURCHASE
                 If ClientName = "SAKARIA" And txtlrno.Text.Trim <> "" And txtrefno.Text.Trim <> "" Then
@@ -1435,16 +1435,16 @@ Public Class InvoiceMaster
             End If
 
             'done temp
-            'If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
+            If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
 
 
             'done temp
-            'If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-            'If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
+            If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
+            If ClientName = "DAKSH" Then TXTINVOICENO.Focus() Else INVOICEDATE.Focus()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -1760,30 +1760,30 @@ Public Class InvoiceMaster
             End If
 
             'done temp
-            'If TXTGSTIN.Text.Trim.Length = 0 Then
-            '    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-            '        EP.SetError(TXTSTATECODE, "Enter GSTIN in Party Master")
-            '        bln = False
-            '    End If
-            'End If
+            If TXTGSTIN.Text.Trim.Length = 0 Then
+                If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    EP.SetError(TXTSTATECODE, "Enter GSTIN in Party Master")
+                    bln = False
+                End If
+            End If
 
-            'If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(LBLTOTALCGSTAMT.Text) > 0 Or Val(LBLTOTALSGSTAMT.Text.Trim) > 0) Then
-            '    EP.SetError(TXTSTATECODE, "Invaid Entry Done in CGST/SGST")
-            '    bln = False
-            'End If
+            If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(LBLTOTALCGSTAMT.Text) > 0 Or Val(LBLTOTALSGSTAMT.Text.Trim) > 0) Then
+                EP.SetError(TXTSTATECODE, "Invaid Entry Done in CGST/SGST")
+                bln = False
+            End If
 
-            'If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(LBLTOTALIGSTAMT.Text) > 0 Then
-            '    EP.SetError(TXTSTATECODE, "Invaid Entry Done in IGST")
-            '    bln = False
-            'End If
+            If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(LBLTOTALIGSTAMT.Text) > 0 Then
+                EP.SetError(TXTSTATECODE, "Invaid Entry Done in IGST")
+                bln = False
+            End If
         End If
 
         For Each row As DataGridViewRow In GRIDINVOICE.Rows
             'done temp
-            'If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
-            '    EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
-            '    bln = False
-            'End If
+            If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
+                EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
+                bln = False
+            End If
             If Val(row.Cells(GAMT.Index).Value) = 0 And ClientName <> "MOMAI" Then
                 EP.SetError(cmbname, "Amt Cannot be 0")
                 bln = False
@@ -2234,23 +2234,23 @@ CHECKNEXTLINE:
 
 
         'done temp
-        'If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
-        '    EP.SetError(cmbname, "Please Select Sale Order")
-        '    bln = False
-        'End If
+        If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
+            EP.SetError(cmbname, "Please Select Sale Order")
+            bln = False
+        End If
 
 
 
         'TO BLOCK EXCESS QTY
         'done temp
-        'If ClientName = "ABHEE" Then
-        '    For Each ROW As DataGridViewRow In GRIDORDER.Rows
-        '        If (ROW.Cells(OGDNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
-        '            EP.SetError(cmbname, "Excess Qty Not Allowed")
-        '            bln = False
-        '        End If
-        '    Next
-        'End If
+        If ClientName = "ABHEE" Then
+            For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                If (ROW.Cells(OGDNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
+                    EP.SetError(cmbname, "Excess Qty Not Allowed")
+                    bln = False
+                End If
+            Next
+        End If
         If ClientName = "MASHOK" Then
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
                 If (ROW.Cells(OGDNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value) Then

@@ -266,13 +266,13 @@ Public Class journal
                 alParaval.Add(tempamt)
                 alParaval.Add(temptds)
                 DT = objclsjvmaster.update()
-                'MsgBox("Details Updated")
+                MsgBox("Details Updated")
             End If
 
             'ACCOUNTS ENTRY TO BE DONE HERE COZ LOOP IS NOT POSSIBLE IN SP
             txtjournalno.Text = DT.Rows(0).Item(0)
             ACCOUNTSENTRY(DT.Rows(0).Item(0))
-            'clear()
+            clear()
             EDIT = False
             cmbtype.Focus()
 

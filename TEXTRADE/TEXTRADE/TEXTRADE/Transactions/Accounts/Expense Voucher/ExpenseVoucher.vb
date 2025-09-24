@@ -644,12 +644,12 @@ Public Class ExpenseVoucher
                 End If
                 alParaval.Add(TEMPEXPNO)
                 IntResult = objclsNP.UPDATE()
-                'MsgBox("Details Updated")
+                MsgBox("Details Updated")
                 EDIT = False
             End If
 
-            'Call toolnext_Click(sender, e)
-            'CMBNAME.Focus()
+            Call toolnext_Click(sender, e)
+            CMBNAME.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex

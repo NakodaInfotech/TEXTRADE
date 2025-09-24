@@ -844,14 +844,14 @@ Public Class PurchaseReturn
 
                 alParaval.Add(TEMPPRNO)
                 IntResult = objPurchaseReturn.UPDATE()
-                'MsgBox("Details Updated")
+                MsgBox("Details Updated")
                 EDIT = False
             End If
 
-            'PRINTREPORT(TEMPPRNO)
+            PRINTREPORT(TEMPPRNO)
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
 
-            'If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else clear()
+            If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else clear()
 
             PRDATE.Focus()
 

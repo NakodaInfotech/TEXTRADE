@@ -819,8 +819,8 @@ Public Class CREDITNOTE
                 End If
                 alParaval.Add(TEMPCNNO)
                 Dim INTRES As Integer = objclsCNmaster.UPDATE()
-                'MsgBox("Details Updated")
-                'PRINTREPORT(TEMPCNNO)
+                MsgBox("Details Updated")
+                PRINTREPORT(TEMPCNNO)
                 edit = False
             End If
 
@@ -828,12 +828,12 @@ Public Class CREDITNOTE
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-            'CNDATE.Focus()
+            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
+            CNDATE.Focus()
 
 
         Catch ex As Exception
