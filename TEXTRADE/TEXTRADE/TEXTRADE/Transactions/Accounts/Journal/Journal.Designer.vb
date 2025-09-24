@@ -403,6 +403,7 @@ Partial Class journal
         Me.CMDAUTOPOST.TabIndex = 895
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'CMDDELETE
         '

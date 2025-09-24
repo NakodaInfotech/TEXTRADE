@@ -44,6 +44,7 @@ Partial Class PaymentMaster
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaymentMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.TXTSEARCHAMT = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -176,7 +177,6 @@ Partial Class PaymentMaster
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -279,6 +279,21 @@ Partial Class PaymentMaster
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1304, 608)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(658, 540)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1001
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'TXTSEARCHAMT
         '
@@ -1803,20 +1818,6 @@ Partial Class PaymentMaster
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'CMDAUTOPOST
-        '
-        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
-        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
-        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDAUTOPOST.Location = New System.Drawing.Point(658, 540)
-        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
-        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
-        Me.CMDAUTOPOST.TabIndex = 1001
-        Me.CMDAUTOPOST.Text = "&Auto Post"
-        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
         '
         'PaymentMaster
         '

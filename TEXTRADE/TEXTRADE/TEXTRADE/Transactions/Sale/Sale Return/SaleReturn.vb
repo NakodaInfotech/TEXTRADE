@@ -637,10 +637,10 @@ Public Class SaleReturn
 
 
             'DONE TEMP
-            'If Val(TXTGRANDTOTAL.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-            '    EP.SetError(TXTGRANDTOTAL, "Total does not match Adjusted Amt")
-            '    bln = False
-            'End If
+            If Val(TXTGRANDTOTAL.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+                EP.SetError(TXTGRANDTOTAL, "Total does not match Adjusted Amt")
+                bln = False
+            End If
 
 
             'GET DEFAULT SALEREGISTER IF INVOICENO IS BLANK
@@ -670,10 +670,10 @@ Public Class SaleReturn
 
 
             'DONE TEMP
-            'If cmbGodown.Text.Trim.Length = 0 Then
-            '    EP.SetError(cmbGodown, " Please Select Godown")
-            '    bln = False
-            'End If
+            If cmbGodown.Text.Trim.Length = 0 Then
+                EP.SetError(cmbGodown, " Please Select Godown")
+                bln = False
+            End If
 
 
             If GRIDSALRET.RowCount = 0 Then
@@ -738,17 +738,17 @@ Public Class SaleReturn
 
             If Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
                 'DONE TEMP
-                'If TXTSTATECODE.Text.Trim.Length = 0 Then
-                '    EP.SetError(TXTSTATECODE, "Please enter the state code")
-                '    bln = False
-                'End If
+                If TXTSTATECODE.Text.Trim.Length = 0 Then
+                    EP.SetError(TXTSTATECODE, "Please enter the state code")
+                    bln = False
+                End If
 
-                'If TXTGSTIN.Text.Trim.Length = 0 Then
-                '    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
-                '        bln = False
-                '    End If
-                'End If
+                If TXTGSTIN.Text.Trim.Length = 0 Then
+                    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        EP.SetError(CMBNAME, "Enter GSTIN in Party Master")
+                        bln = False
+                    End If
+                End If
 
                 If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(TXTCGSTAMT.Text) > 0 Or Val(TXTSGSTAMT.Text.Trim) > 0) Then
                     EP.SetError(CMBNAME, "Invaid Entry Done in CGST/SGST")
@@ -763,16 +763,16 @@ Public Class SaleReturn
 
             For Each row As DataGridViewRow In GRIDSALRET.Rows
                 'DONE TEMP
-                'If ClientName <> "MOMAI" And ClientName <> "AXIS" Then
-                '    If row.Cells(GMTRS.Index).Value = 0 Then
-                '        EP.SetError(CMBNAME, "Mtrs Cannot be 0")
-                '        bln = False
-                '    End If
-                'End If
-                'If Val(row.Cells(GAMT.Index).Value) = 0 Then
-                '    EP.SetError(CMBNAME, "Amt Cannot be 0")
-                '    bln = False
-                'End If
+                If ClientName <> "MOMAI" And ClientName <> "AXIS" Then
+                    If row.Cells(GMTRS.Index).Value = 0 Then
+                        EP.SetError(CMBNAME, "Mtrs Cannot be 0")
+                        bln = False
+                    End If
+                End If
+                If Val(row.Cells(GAMT.Index).Value) = 0 Then
+                    EP.SetError(CMBNAME, "Amt Cannot be 0")
+                    bln = False
+                End If
 
                 If ALLOWMANUALCNDN = True Then
                     If TXTSALRETNO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
@@ -788,13 +788,13 @@ Public Class SaleReturn
             Next
 
             'DONE TEMP
-            'For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-            '    If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-            '        EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-            '        bln = False
-            '    End If
-            '    If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = "SR-" & Val(TXTSALRETNO.Text.Trim)
-            'Next
+            For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    bln = False
+                End If
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = "SR-" & Val(TXTSALRETNO.Text.Trim)
+            Next
 
 
             Return bln
@@ -1212,12 +1212,12 @@ Public Class SaleReturn
                 alParaval.Add(TEMPSALRETNO)
                 IntResult = OBJPURCH.UPDATE()
                 'DONE TEMP
-                'MsgBox("Details Updated")
-                'PRINTREPORT(TEMPSALRETNO)
+                MsgBox("Details Updated")
+                PRINTREPORT(TEMPSALRETNO)
             End If
 
             'DONE TEMP
-            'PRINTBARCODE()
+            PRINTBARCODE()
 
 
             EDIT = False
@@ -1233,11 +1233,11 @@ Public Class SaleReturn
             Next
 
             'DONE TEMP
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    CLEAR()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
+            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                CLEAR()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
 
             cmbGodown.Focus()
 
