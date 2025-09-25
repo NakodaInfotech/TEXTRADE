@@ -10748,4 +10748,14 @@ SKIPLINE:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub UploadExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadExcelToolStripMenuItem.Click
+        Try
+            Dim Objpinvoice As New UploadExcel
+            Objpinvoice.MdiParent = Me
+            Objpinvoice.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
