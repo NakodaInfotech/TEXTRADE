@@ -52,6 +52,7 @@ Partial Class DebitNote
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
@@ -231,7 +232,6 @@ Partial Class DebitNote
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -383,6 +383,21 @@ Partial Class DebitNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 556)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(894, 524)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1016
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'CHKINTCALC
         '
@@ -2559,20 +2574,6 @@ Partial Class DebitNote
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'CMDAUTOPOST
-        '
-        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
-        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
-        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDAUTOPOST.Location = New System.Drawing.Point(894, 524)
-        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
-        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
-        Me.CMDAUTOPOST.TabIndex = 1016
-        Me.CMDAUTOPOST.Text = "&Auto Post"
-        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
         '
         'DebitNote
         '

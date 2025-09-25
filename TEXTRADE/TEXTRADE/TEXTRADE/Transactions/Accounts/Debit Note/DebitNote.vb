@@ -794,19 +794,19 @@ Public Class DebitNote
                 End If
                 alParaval.Add(TEMPDNNO)
                 Dim INTRES As Integer = objclsDNmaster.UPDATE()
-                'MsgBox("Details Updated")
-                'PRINTREPORT(TEMPDNNO)
+                MsgBox("Details Updated")
+                PRINTREPORT(TEMPDNNO)
                 edit = False
             End If
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
-            'If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
-            '    clear()
-            'Else
-            '    Call toolnext_Click(sender, e)
-            'End If
-            'TXTBILLNO.Focus()
+            If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+                clear()
+            Else
+                Call toolnext_Click(sender, e)
+            End If
+            TXTBILLNO.Focus()
 
         Catch ex As Exception
             Throw ex

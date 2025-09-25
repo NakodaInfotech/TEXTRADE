@@ -654,7 +654,7 @@ Public Class DesignCardMaster
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
         TXTWARPSRNO.Text = 1
-        TXTWARPSYMBOL.Clear()
+        TXTWARPSYMBOL.Text = "A"
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -668,7 +668,7 @@ Public Class DesignCardMaster
         TXTWARPCOST.Clear()
         'SELVMATCHING TEXTBOXES
         TXTSELSRNO.Text = 1
-        TXTSELSYMBOL.Clear()
+        TXTSELSYMBOL.Text = "A"
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -684,7 +684,7 @@ Public Class DesignCardMaster
         TXTSELGPE.Clear()
         'WEFTMATCHING TEXTBOXES
         TXTWEFTSRNO.Text = 1
-        TXTWEFTSYMBOL.Clear()
+        TXTWEFTSYMBOL.Text = "A"
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1086,6 +1086,11 @@ LINE1:
                 Next
             End If
         End If
+        If String.IsNullOrEmpty(TXTWARPSYMBOL.Text) Then
+            TXTWARPSYMBOL.Text = "A"
+        Else
+            TXTWARPSYMBOL.Text = IncrementAlphabet(TXTWARPSYMBOL.Text)
+        End If
 
 
         GRIDWARPDESC.EndEdit() '
@@ -1110,7 +1115,7 @@ LINE1:
             Next
         Next
         GRIDWARP.ClearSelection()
-        TXTWARPSYMBOL.Focus()
+        CMBWARPQUALITY.Focus()
         clearwarp()
         TOTALWARP()
         COPYSYM()
@@ -1138,8 +1143,8 @@ LINE1:
 
     End Sub
     Sub clearwarp()
-        TXTWARPSRNO.Clear()
-        TXTWARPSYMBOL.Clear()
+        'TXTWARPSRNO.Clear()
+        'TXTWARPSYMBOL.Clear()
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -1210,7 +1215,11 @@ LINE1:
                 Next
             End If
         End If
-
+        If String.IsNullOrEmpty(TXTSELSYMBOL.Text) Then
+            TXTSELSYMBOL.Text = "A"
+        Else
+            TXTSELSYMBOL.Text = IncrementAlphabet(TXTSELSYMBOL.Text)
+        End If
 
         GRIDSELDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
@@ -1245,7 +1254,7 @@ LINE1:
         Else
             TXTSELSRNO.Text = 1
         End If
-        TXTSELSYMBOL.Focus()
+        CMBSELYARNQUALITY.Focus()
     End Sub
     Sub COPYSELSYM()
         CMBSELGSYM.Items.Clear()
@@ -1288,7 +1297,7 @@ LINE1:
     End Sub
     Sub CLEARSELVEDGE()
         TXTSELSRNO.Clear()
-        TXTSELSYMBOL.Clear()
+        'TXTSELSYMBOL.Clear()
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -1335,7 +1344,11 @@ LINE1:
             End If
         End If
 
-
+        If String.IsNullOrEmpty(TXTWEFTSYMBOL.Text) Then
+            TXTWEFTSYMBOL.Text = "A"
+        Else
+            TXTWEFTSYMBOL.Text = IncrementAlphabet(TXTWEFTSYMBOL.Text)
+        End If
         GRIDWEFTDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
         For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
@@ -1360,7 +1373,7 @@ LINE1:
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
         COPYWEFTSYM()
-        TXTWEFTSYMBOL.Focus()
+        CMBWEFTYARNQUALITY.Focus()
         If GRIDWEFT.RowCount > 0 Then
             TXTWEFTSRNO.Text = Val(GRIDWEFT.Rows(GRIDWEFT.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
@@ -1386,7 +1399,7 @@ LINE1:
     End Sub
     Sub CLEARWEFT()
         'TXTWEFTSRNO.Clear()
-        TXTWEFTSYMBOL.Clear()
+        'TXTWEFTSYMBOL.Clear()
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1422,46 +1435,9 @@ LINE1:
             TXTWEFTGRIDSRNO.Text = 1
         End If
     End Sub
-
-    Private Sub TXTWARPCOST_Validated(sender As Object, e As EventArgs) Handles TXTWARPCOST.Validated
-        Try
-            If CMBWARPQUALITY.Text.Trim <> "" And TXTWARPSYMBOL.Text.Trim <> "" Then
-                fillwarpgrid()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
         Try
             fillwarppatterngrid()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTSELCOST_Validated(sender As Object, e As EventArgs) Handles TXTSELCOST.Validated
-        Try
-            If CMBSELYARNQUALITY.Text.Trim <> "" And TXTSELSYMBOL.Text.Trim <> "" Then
-                fillselvedgegrid()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTCOST_Validated(sender As Object, e As EventArgs) Handles TXTWEFTCOST.Validated
-        Try
-            If CMBWEFTYARNQUALITY.Text.Trim <> "" And TXTWEFTSYMBOL.Text.Trim <> "" Then
-                FILLWEFTGRID()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1764,8 +1740,16 @@ LINE1:
                 Next
             End If
         End If
+        TXTFWT.Text = 0.000
         TXTFINISHWT.Text = 0.000
-        TXTFINISHWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
+        TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
+        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) + (1 + (Val(TXTSHRINKAGEPER.Text) / 100)), "0.000")
+        If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
+            Dim pcs As Double = Val(TXTNOOFPCS.Text)
+            Dim pcsl As Double = Val(TXTPCSL.Text)
+            Dim result As Double = pcs * pcsl
+            TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
+        End If
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
@@ -1994,7 +1978,7 @@ LINE1:
                 TXTSELRATE.Text = GRIDSELVEDGE.Item(SRATE.Index, TEMPSELROW).Value
                 TXTSELCOST.Text = GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value
                 GRIDSELDOUBLECLICK = True
-                TXTSELSYMBOL.Focus()
+                CMBSELYARNQUALITY.Focus()
             End If
         End If
     End Sub
@@ -2017,7 +2001,7 @@ LINE1:
                 TXTWEFTRATE.Text = GRIDWEFT.Item(FRATE.Index, TEMPWEFTROW).Value
                 TXTWEFTCOST.Text = GRIDWEFT.Item(FCOST.Index, TEMPWEFTROW).Value
                 GRIDWEFTDOUBLECLICK = True
-                TXTWEFTSYMBOL.Focus()
+                CMBWEFTYARNQUALITY.Focus()
             End If
         End If
     End Sub
@@ -2100,12 +2084,6 @@ LINE1:
     End Sub
     Private Sub GRIDSELVEDGE_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellDoubleClick
         EDITSELVEDGEROW()
-    End Sub
-
-    Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated, TXTRIGHTSEL.Validated, TXTRIGHTSELENDS.Validated
-        If TXTLEFTSEL.Text.Trim <> "" Then TXTRIGHTSEL.Text = TXTLEFTSEL.Text
-        If TXTLEFTSELENDS.Text.Trim <> "" Then TXTRIGHTSELENDS.Text = TXTLEFTSELENDS.Text
-        CALC()
     End Sub
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
@@ -2232,22 +2210,6 @@ LINE1:
                     End If
                 Next
             End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWEFTSYMBOL.Validated
-        Try
-            If TXTWEFTSYMBOL.Text = "" Then TXTWEFTGRIDPE.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTWEFTGRIDPE.Validated
-        Try
-            If TXTWEFTGRIDPE.Text = "" Then cmdok.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2765,52 +2727,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
-    Private Sub TXTSELSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTSELSYMBOL.Validated
-        Try
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-
-    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs)
-
-    End Sub
-
-    Private Sub TXTDMTRS_Validated(sender As Object, e As EventArgs)
-
-    End Sub
-
-    'Private Sub GRIDWARPPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = WPRM.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM.Index, WPR.Index)
-    '    ElseIf e.ColumnIndex = WPRM1.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM1.Index, WPR1.Index)
-    '    ElseIf e.ColumnIndex = WPRM2.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM2.Index, WPR2.Index)
-    '    End If
-    'End Sub
-
-    'Private Sub GRIDWEFTPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = FPRM.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM.Index, FPR.Index)
-    '    ElseIf e.ColumnIndex = FPRM1.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM1.Index, FPR1.Index)
-    '    ElseIf e.ColumnIndex = FPRM2.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM2.Index, FPR2.Index)
-    '    End If
-    'End Sub
-
     Private Sub GRIDWEFTPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFTPATTERN.CellValidating
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
@@ -2859,8 +2775,17 @@ LINE1:
     End Sub
 
     Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
-        GBSSHADEDETAILS.Visible = False
-        TXTSELBE.Focus()
+        Try
+            If CMBSELYARNQUALITY.Text.Trim <> "" And TXTSELSYMBOL.Text.Trim <> "" Then
+                fillselvedgegrid()
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            GBSSHADEDETAILS.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
@@ -3065,7 +2990,12 @@ LINE1:
             Return
         End If
         Dim valsInside As String() = core.Split("."c)
-        endsValue = valsInside.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
+        ' If any part is exactly "0", endsValue should be 0 and exit
+        If valsInside.Any(Function(x) x.Trim() = "0") Then
+            endsValue = 0
+        Else
+            endsValue = valsInside.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
+        End If
     End Sub
 
     Public Function CalculateTotalDents(dgv As DataGridView,
@@ -3125,7 +3055,7 @@ LINE1:
     End Sub
 
     Private Sub GRIDDRAWING_DefaultValuesNeeded(ByVal sender As Object, ByVal e As DataGridViewRowEventArgs) Handles GRIDDRAWING.DefaultValuesNeeded
-        e.Row.Cells("SDSRNO").Value = GRIDDRAWING.Rows.Count
+        e.Row.Cells("DSRNO").Value = GRIDDRAWING.Rows.Count
     End Sub
 
     Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDSELVEDGEPATTERN.DefaultValuesNeeded
@@ -3513,7 +3443,6 @@ line1:
             Throw ex
         End Try
     End Sub
-
     Private Sub GRIDWARPDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPDESC.KeyDown
         Try
             If e.KeyCode = Keys.Delete Then
@@ -3544,11 +3473,6 @@ line1:
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub CMDWARPCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Validated
-        'GBWARP.Visible = False
-        'TXTWARPBE.Focus()
     End Sub
     Sub FILLGRIDWARPDESC()
         Try
@@ -3648,7 +3572,7 @@ line1:
                     Next
                 End If
             End If
-            TXTSDNO.Text = GRIDWEFTDESC.RowCount + 1
+            TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
             cmbweftshade.Focus()
         Catch ex As Exception
             Throw ex
@@ -3721,11 +3645,90 @@ line1:
     End Sub
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
-        GBWARP.Visible = False
-        TXTWARPBE.Focus()
+        Try
+            If CMBWARPQUALITY.Text.Trim <> "" And TXTWARPSYMBOL.Text.Trim <> "" Then
+                fillwarpgrid()
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            GBWARP.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
-        GBWEFT.Visible = False
-        TXTWEFTBE.Focus()
+        Try
+            If CMBWEFTYARNQUALITY.Text.Trim <> "" And TXTWEFTSYMBOL.Text.Trim <> "" Then
+                FILLWEFTGRID()
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            GBWEFT.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Function IncrementAlphabet(input As String) As String
+        If String.IsNullOrEmpty(input) Then
+            Return "A"
+        End If
+
+        Dim chars As Char() = input.ToUpper().ToCharArray()
+        Dim i As Integer = chars.Length - 1
+
+        While i >= 0
+            If chars(i) = "Z"c Then
+                chars(i) = "A"c
+                i -= 1
+            Else
+                chars(i) = Chr(Asc(chars(i)) + 1)
+                Exit While
+            End If
+        End While
+
+        If i < 0 Then
+            ' If all characters were Z, add another A at the start
+            Return "A" & New String(chars)
+        Else
+            Return New String(chars)
+        End If
+    End Function
+
+    Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
+        Try
+            If TXTLEFTSELENDS.Text <> "" Then TXTRIGHTSELENDS.Text = Val(TXTLEFTSELENDS.Text.Trim)
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLEFTSEL_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSEL.Validated
+        Try
+            If TXTLEFTSEL.Text.Trim <> "" Then TXTRIGHTSEL.Text = TXTLEFTSEL.Text
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCALC_Click(sender As Object, e As EventArgs) Handles CMDCALC.Click
+        CALC()
+    End Sub
+
+    Private Sub TXTFWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTFWIDTH.Validated
+        Try
+            If TXTFWIDTH.Text <> "" Then TXTFWIDTHCM.Text = Format(Val(TXTFWIDTH.Text.Trim) * 2.54, "0.00")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated
+        Try
+            If TXTREEDSPACE.Text <> "" Then TXTREEDSPACECM.Text = Format(Val(TXTREEDSPACE.Text.Trim) * 2.54, "0.00")
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
