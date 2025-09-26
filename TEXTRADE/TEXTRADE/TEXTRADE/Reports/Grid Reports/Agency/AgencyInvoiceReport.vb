@@ -12,7 +12,10 @@ Public Class AgencyInvoiceReport
     Dim DTMAIL As New DataTable
     Dim DTWHATSAPP As New DataTable
     Private Sub AgencyInvoiceReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Try
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Sub fillgrid(ByVal TEMPCONDITION)
         Try
