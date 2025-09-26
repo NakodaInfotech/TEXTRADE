@@ -6636,6 +6636,12 @@
     <Compile Include="Utilities\Others\Reminder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\UploadExcel.Designer.vb">
+      <DependentUpon>UploadExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\UploadExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Stock Reco\StockRecoInDetails.Designer.vb">
       <DependentUpon>StockRecoInDetails.vb</DependentUpon>
     </Compile>
@@ -12387,6 +12393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\Reminder.resx">
       <DependentUpon>Reminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\UploadExcel.resx">
+      <DependentUpon>UploadExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Stock Reco\StockRecoInDetails.resx">
       <DependentUpon>StockRecoInDetails.vb</DependentUpon>
