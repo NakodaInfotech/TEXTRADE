@@ -1130,7 +1130,7 @@ NEXTLINE:
         txtQTY.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
-        ORDERDATE.Focus()
+        TXTNO.Focus()
     End Sub
 
     Private Sub cmdEXIT_Click(sender As Object, e As EventArgs) Handles cmdEXIT.Click
@@ -1177,7 +1177,7 @@ NEXTLINE:
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         CLEAR()
         EDIT = False
-        CMBBUYERS.Focus()
+        TXTNO.Focus()
     End Sub
 
     Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
