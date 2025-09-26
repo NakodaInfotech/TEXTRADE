@@ -1354,14 +1354,16 @@ Public Class AgencyInvoice
                 End If
                 alParaval.Add(TEMPINVOICENO)
                 IntResult = objclsPurord.UPDATE()
-                MessageBox.Show("Details Updated")
+                'done temp
+                'MessageBox.Show("Details Updated")
 
                 EDIT = False
             End If
 
 
-            Call toolnext_Click(sender, e)
-            INVOICEDATE.Focus()
+            'done temp
+            'Call toolnext_Click(sender, e)
+            'INVOICEDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1436,10 +1438,11 @@ Public Class AgencyInvoice
             bln = False
         End If
 
-        If Val(txtpartypono.Text.Trim) = 0 Then
-            EP.SetError(txtpartypono, "Enter Party Bill No")
-            bln = False
-        End If
+        'TEMP DONE
+        'If Val(txtpartypono.Text.Trim) = 0 Then
+        '    EP.SetError(txtpartypono, "Enter Party Bill No")
+        '    bln = False
+        'End If
 
         If cmbname.Text.Trim.Length = 0 Then
             EP.SetError(cmbname, " Please Fill Company Name ")
@@ -1491,14 +1494,15 @@ Public Class AgencyInvoice
         End If
 
         For Each row As DataGridViewRow In GRIDINVOICE.Rows
-            If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
-                EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
-                bln = False
-            End If
-            If Val(row.Cells(GAMT.Index).Value) = 0 And ClientName <> "MOMAI" Then
-                EP.SetError(cmbname, "Amt Cannot be 0")
-                bln = False
-            End If
+            'DONE TEMP
+            'If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
+            '    EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
+            '    bln = False
+            'End If
+            'If Val(row.Cells(GAMT.Index).Value) = 0 And ClientName <> "MOMAI" Then
+            '    EP.SetError(cmbname, "Amt Cannot be 0")
+            '    bln = False
+            'End If
             If row.Cells(GHSNCODE.Index).Value = "" And ClientName <> "CC" Then
                 EP.SetError(cmbname, "HSN Cannot be Blank")
                 bln = False

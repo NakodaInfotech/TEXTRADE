@@ -652,7 +652,6 @@ Partial Class AgencyInvoice
         Me.Button1.TabIndex = 895
         Me.Button1.Text = "&Auto Post"
         Me.Button1.UseVisualStyleBackColor = False
-        Me.Button1.Visible = False
         '
         'tstxtbillno
         '
