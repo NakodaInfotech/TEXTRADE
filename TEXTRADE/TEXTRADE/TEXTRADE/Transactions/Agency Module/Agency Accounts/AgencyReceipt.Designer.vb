@@ -312,6 +312,7 @@ Partial Class AgencyReceipt
         Me.Button1.TabIndex = 1000
         Me.Button1.Text = "&Auto Post"
         Me.Button1.UseVisualStyleBackColor = False
+        Me.Button1.Visible = False
         '
         'LBLCITY
         '
