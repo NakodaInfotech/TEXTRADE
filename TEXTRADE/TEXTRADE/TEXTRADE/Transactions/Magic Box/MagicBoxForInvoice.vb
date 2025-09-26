@@ -444,7 +444,7 @@ NEXTLINE:
         DT_CHGSDETAILS.Columns.Add("EAMT")
         DT_CHGSDETAILS.Columns.Add("ETAXID")
         DT_CHGSDETAILS.Columns.Add("EMAINSRNO")
-
+        getmax_SO_no()
 
     End Sub
 
@@ -819,14 +819,21 @@ LINE2:
         End Try
     End Sub
 
-    Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
-        Try
-            For Each row As DataGridViewRow In grid.Rows
-                row.Cells(0).Value = row.Index + 1
-            Next
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
+    'Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
+    '    Try
+    '        For Each row As DataGridViewRow In grid.Rows
+    '            row.Cells(0).Value = row.Index + 1
+    '        Next
+    '    Catch ex As Exception
+    '        If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+    '    End Try
+    'End Sub
+    Sub getmax_SO_no()
+        Dim DTTABLE As New DataTable
+        DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then
+            txtsrno.Text = DTTABLE.Rows(0).Item(0)
+        End If
     End Sub
 
     Private Sub TXTREMARKS_Validated(sender As Object, e As EventArgs) Handles TXTREMARKS.Validated
@@ -1103,7 +1110,7 @@ LINE2:
     Sub fillchgsgrid()
         If GRIDCHGSDOUBLECLICK = False Then
             GRIDCHGS.Rows.Add(Val(TXTCHGSSRNO.Text.Trim), CMBCHARGES.Text.Trim, Val(TXTCHGSPER.Text.Trim), Val(TXTCHGSAMT.Text.Trim), Val(TXTTAXID.Text.Trim), txtsrno.Text.Trim)
-            getsrno(GRIDCHGS)
+            getmax_SO_no()
         ElseIf GRIDCHGSDOUBLECLICK = True Then
             GRIDCHGS.Item(ESRNO.Index, TEMPCHGSROW).Value = Val(TXTCHGSSRNO.Text.Trim)
             GRIDCHGS.Item(ECHARGES.Index, TEMPCHGSROW).Value = CMBCHARGES.Text.Trim
@@ -1198,7 +1205,7 @@ LINE1:
                 End If
             Next
             GRIDMAGICBOX.Rows.RemoveAt(GRIDMAGICBOX.CurrentRow.Index)
-            getsrno(GRIDMAGICBOX)
+            getmax_SO_no()
             TOTAL()
         End If
     End Sub
@@ -1246,7 +1253,7 @@ line1:
                     Next
                     GRIDCHGS.Rows.RemoveAt(GRIDCHGS.CurrentRow.Index)
                     TOTAL()
-                    getsrno(GRIDCHGS)
+                    getmax_SO_no()
                     TXTCHGSSRNO.Text = GRIDCHGS.RowCount + 1
                     CMBCHARGES.Focus()
                 End If

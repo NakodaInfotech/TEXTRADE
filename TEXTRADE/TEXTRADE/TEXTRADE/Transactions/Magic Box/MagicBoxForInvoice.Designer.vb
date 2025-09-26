@@ -269,7 +269,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCUT.BackColor = System.Drawing.Color.White
         Me.TXTCUT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCUT.Location = New System.Drawing.Point(1958, 4)
+        Me.TXTCUT.Location = New System.Drawing.Point(1978, 4)
         Me.TXTCUT.Name = "TXTCUT"
         Me.TXTCUT.Size = New System.Drawing.Size(59, 23)
         Me.TXTCUT.TabIndex = 18
@@ -495,7 +495,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBCOMM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCOMM.FormattingEnabled = True
         Me.CMBCOMM.Items.AddRange(New Object() {"Mtrs", "Qty", "Kgs"})
-        Me.CMBCOMM.Location = New System.Drawing.Point(3042, 4)
+        Me.CMBCOMM.Location = New System.Drawing.Point(3062, 4)
         Me.CMBCOMM.Name = "CMBCOMM"
         Me.CMBCOMM.Size = New System.Drawing.Size(69, 23)
         Me.CMBCOMM.TabIndex = 34
@@ -506,7 +506,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBPER.FormattingEnabled = True
         Me.CMBPER.Items.AddRange(New Object() {"Mtrs", "Qty", "Kgs"})
-        Me.CMBPER.Location = New System.Drawing.Point(2142, 4)
+        Me.CMBPER.Location = New System.Drawing.Point(2162, 4)
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(49, 23)
         Me.CMBPER.TabIndex = 21
@@ -515,7 +515,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.TXTCOMMPER.BackColor = System.Drawing.Color.White
         Me.TXTCOMMPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMMPER.Location = New System.Drawing.Point(2972, 4)
+        Me.TXTCOMMPER.Location = New System.Drawing.Point(2992, 4)
         Me.TXTCOMMPER.Name = "TXTCOMMPER"
         Me.TXTCOMMPER.Size = New System.Drawing.Size(70, 23)
         Me.TXTCOMMPER.TabIndex = 33
@@ -526,7 +526,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTAMT.BackColor = System.Drawing.Color.Linen
         Me.TXTSGSTAMT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTSGSTAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSGSTAMT.Location = New System.Drawing.Point(2592, 4)
+        Me.TXTSGSTAMT.Location = New System.Drawing.Point(2612, 4)
         Me.TXTSGSTAMT.Name = "TXTSGSTAMT"
         Me.TXTSGSTAMT.ReadOnly = True
         Me.TXTSGSTAMT.Size = New System.Drawing.Size(69, 23)
@@ -539,7 +539,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTAMT.BackColor = System.Drawing.Color.Linen
         Me.TXTIGSTAMT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTIGSTAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTIGSTAMT.Location = New System.Drawing.Point(2722, 4)
+        Me.TXTIGSTAMT.Location = New System.Drawing.Point(2742, 4)
         Me.TXTIGSTAMT.Name = "TXTIGSTAMT"
         Me.TXTIGSTAMT.ReadOnly = True
         Me.TXTIGSTAMT.Size = New System.Drawing.Size(69, 23)
@@ -552,7 +552,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSGSTPER.BackColor = System.Drawing.Color.Linen
         Me.TXTSGSTPER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTSGSTPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSGSTPER.Location = New System.Drawing.Point(2531, 4)
+        Me.TXTSGSTPER.Location = New System.Drawing.Point(2551, 4)
         Me.TXTSGSTPER.Name = "TXTSGSTPER"
         Me.TXTSGSTPER.ReadOnly = True
         Me.TXTSGSTPER.Size = New System.Drawing.Size(61, 23)
@@ -565,7 +565,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTIGSTPER.BackColor = System.Drawing.Color.Linen
         Me.TXTIGSTPER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTIGSTPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTIGSTPER.Location = New System.Drawing.Point(2661, 4)
+        Me.TXTIGSTPER.Location = New System.Drawing.Point(2681, 4)
         Me.TXTIGSTPER.Name = "TXTIGSTPER"
         Me.TXTIGSTPER.ReadOnly = True
         Me.TXTIGSTPER.Size = New System.Drawing.Size(61, 23)
@@ -578,7 +578,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTPER.BackColor = System.Drawing.Color.Linen
         Me.TXTCGSTPER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCGSTPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCGSTPER.Location = New System.Drawing.Point(2402, 4)
+        Me.TXTCGSTPER.Location = New System.Drawing.Point(2422, 4)
         Me.TXTCGSTPER.Name = "TXTCGSTPER"
         Me.TXTCGSTPER.ReadOnly = True
         Me.TXTCGSTPER.Size = New System.Drawing.Size(60, 23)
@@ -591,7 +591,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCGSTAMT.BackColor = System.Drawing.Color.Linen
         Me.TXTCGSTAMT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCGSTAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCGSTAMT.Location = New System.Drawing.Point(2462, 4)
+        Me.TXTCGSTAMT.Location = New System.Drawing.Point(2482, 4)
         Me.TXTCGSTAMT.Name = "TXTCGSTAMT"
         Me.TXTCGSTAMT.ReadOnly = True
         Me.TXTCGSTAMT.Size = New System.Drawing.Size(69, 23)
@@ -604,7 +604,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTBALENO.BackColor = System.Drawing.Color.White
         Me.TXTBALENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTBALENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBALENO.Location = New System.Drawing.Point(1798, 4)
+        Me.TXTBALENO.Location = New System.Drawing.Point(1818, 4)
         Me.TXTBALENO.Name = "TXTBALENO"
         Me.TXTBALENO.Size = New System.Drawing.Size(99, 23)
         Me.TXTBALENO.TabIndex = 16
@@ -615,7 +615,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPCS.BackColor = System.Drawing.Color.White
         Me.TXTPCS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPCS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPCS.Location = New System.Drawing.Point(1897, 4)
+        Me.TXTPCS.Location = New System.Drawing.Point(1917, 4)
         Me.TXTPCS.Name = "TXTPCS"
         Me.TXTPCS.Size = New System.Drawing.Size(61, 23)
         Me.TXTPCS.TabIndex = 17
@@ -626,7 +626,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTMTRS.BackColor = System.Drawing.Color.White
         Me.TXTMTRS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTMTRS.Location = New System.Drawing.Point(2017, 4)
+        Me.TXTMTRS.Location = New System.Drawing.Point(2037, 4)
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(60, 23)
         Me.TXTMTRS.TabIndex = 19
@@ -637,7 +637,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTRATES.BackColor = System.Drawing.Color.White
         Me.TXTRATES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTRATES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATES.Location = New System.Drawing.Point(2077, 4)
+        Me.TXTRATES.Location = New System.Drawing.Point(2097, 4)
         Me.TXTRATES.Name = "TXTRATES"
         Me.TXTRATES.Size = New System.Drawing.Size(65, 23)
         Me.TXTRATES.TabIndex = 20
@@ -648,7 +648,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTAMT.BackColor = System.Drawing.Color.Linen
         Me.TXTAMT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTAMT.Location = New System.Drawing.Point(2191, 4)
+        Me.TXTAMT.Location = New System.Drawing.Point(2211, 4)
         Me.TXTAMT.Name = "TXTAMT"
         Me.TXTAMT.ReadOnly = True
         Me.TXTAMT.Size = New System.Drawing.Size(66, 23)
@@ -661,7 +661,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTCHRGS.BackColor = System.Drawing.Color.Linen
         Me.TXTCHRGS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCHRGS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHRGS.Location = New System.Drawing.Point(2257, 4)
+        Me.TXTCHRGS.Location = New System.Drawing.Point(2277, 4)
         Me.TXTCHRGS.Name = "TXTCHRGS"
         Me.TXTCHRGS.ReadOnly = True
         Me.TXTCHRGS.Size = New System.Drawing.Size(65, 23)
@@ -674,7 +674,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTSUBTOTAL.BackColor = System.Drawing.Color.Linen
         Me.TXTSUBTOTAL.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTSUBTOTAL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSUBTOTAL.Location = New System.Drawing.Point(2322, 4)
+        Me.TXTSUBTOTAL.Location = New System.Drawing.Point(2342, 4)
         Me.TXTSUBTOTAL.Name = "TXTSUBTOTAL"
         Me.TXTSUBTOTAL.ReadOnly = True
         Me.TXTSUBTOTAL.Size = New System.Drawing.Size(80, 23)
@@ -687,7 +687,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTLR.BackColor = System.Drawing.Color.White
         Me.TXTLR.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLR.Location = New System.Drawing.Point(1630, 4)
+        Me.TXTLR.Location = New System.Drawing.Point(1650, 4)
         Me.TXTLR.Name = "TXTLR"
         Me.TXTLR.Size = New System.Drawing.Size(79, 23)
         Me.TXTLR.TabIndex = 14
@@ -701,7 +701,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBTRANS.DropDownWidth = 400
         Me.CMBTRANS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBTRANS.FormattingEnabled = True
-        Me.CMBTRANS.Location = New System.Drawing.Point(1430, 4)
+        Me.CMBTRANS.Location = New System.Drawing.Point(1450, 4)
         Me.CMBTRANS.Name = "CMBTRANS"
         Me.CMBTRANS.Size = New System.Drawing.Size(200, 23)
         Me.CMBTRANS.TabIndex = 13
@@ -711,7 +711,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTDESC.BackColor = System.Drawing.Color.White
         Me.TXTDESC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTDESC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTDESC.Location = New System.Drawing.Point(1281, 4)
+        Me.TXTDESC.Location = New System.Drawing.Point(1301, 4)
         Me.TXTDESC.Name = "TXTDESC"
         Me.TXTDESC.Size = New System.Drawing.Size(149, 23)
         Me.TXTDESC.TabIndex = 12
@@ -722,7 +722,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTFOLD.BackColor = System.Drawing.Color.White
         Me.TXTFOLD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTFOLD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFOLD.Location = New System.Drawing.Point(1226, 4)
+        Me.TXTFOLD.Location = New System.Drawing.Point(1246, 4)
         Me.TXTFOLD.Name = "TXTFOLD"
         Me.TXTFOLD.Size = New System.Drawing.Size(55, 23)
         Me.TXTFOLD.TabIndex = 11
@@ -733,7 +733,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTQTY.BackColor = System.Drawing.Color.White
         Me.TXTQTY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTQTY.Location = New System.Drawing.Point(1170, 4)
+        Me.TXTQTY.Location = New System.Drawing.Point(1190, 4)
         Me.TXTQTY.Name = "TXTQTY"
         Me.TXTQTY.Size = New System.Drawing.Size(56, 23)
         Me.TXTQTY.TabIndex = 10
@@ -744,7 +744,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOTYPE.BackColor = System.Drawing.Color.Linen
         Me.TXTPOTYPE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPOTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPOTYPE.Location = New System.Drawing.Point(890, 4)
+        Me.TXTPOTYPE.Location = New System.Drawing.Point(910, 4)
         Me.TXTPOTYPE.Name = "TXTPOTYPE"
         Me.TXTPOTYPE.ReadOnly = True
         Me.TXTPOTYPE.Size = New System.Drawing.Size(80, 23)
@@ -756,7 +756,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.ENTRYDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ENTRYDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.ENTRYDATE.Location = New System.Drawing.Point(120, 4)
+        Me.ENTRYDATE.Location = New System.Drawing.Point(140, 4)
         Me.ENTRYDATE.Name = "ENTRYDATE"
         Me.ENTRYDATE.Size = New System.Drawing.Size(87, 23)
         Me.ENTRYDATE.TabIndex = 1
@@ -765,7 +765,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.BILLDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BILLDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.BILLDATE.Location = New System.Drawing.Point(33, 4)
+        Me.BILLDATE.Location = New System.Drawing.Point(53, 4)
         Me.BILLDATE.Name = "BILLDATE"
         Me.BILLDATE.Size = New System.Drawing.Size(87, 23)
         Me.BILLDATE.TabIndex = 0
@@ -774,7 +774,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.LRDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LRDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.LRDATE.Location = New System.Drawing.Point(1709, 4)
+        Me.LRDATE.Location = New System.Drawing.Point(1729, 4)
         Me.LRDATE.Name = "LRDATE"
         Me.LRDATE.Size = New System.Drawing.Size(89, 23)
         Me.LRDATE.TabIndex = 15
@@ -783,7 +783,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.TXTREMARKS.BackColor = System.Drawing.Color.White
         Me.TXTREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTREMARKS.Location = New System.Drawing.Point(3111, 4)
+        Me.TXTREMARKS.Location = New System.Drawing.Point(3131, 4)
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(201, 23)
         Me.TXTREMARKS.TabIndex = 35
@@ -796,7 +796,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBSELLERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBSELLERS.FormattingEnabled = True
         Me.CMBSELLERS.Items.AddRange(New Object() {""})
-        Me.CMBSELLERS.Location = New System.Drawing.Point(207, 4)
+        Me.CMBSELLERS.Location = New System.Drawing.Point(227, 4)
         Me.CMBSELLERS.Name = "CMBSELLERS"
         Me.CMBSELLERS.Size = New System.Drawing.Size(202, 23)
         Me.CMBSELLERS.TabIndex = 2
@@ -806,7 +806,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPOSRNO.BackColor = System.Drawing.Color.Linen
         Me.TXTPOSRNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPOSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPOSRNO.Location = New System.Drawing.Point(821, 4)
+        Me.TXTPOSRNO.Location = New System.Drawing.Point(841, 4)
         Me.TXTPOSRNO.Name = "TXTPOSRNO"
         Me.TXTPOSRNO.ReadOnly = True
         Me.TXTPOSRNO.Size = New System.Drawing.Size(69, 23)
@@ -819,7 +819,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPONO.BackColor = System.Drawing.Color.Linen
         Me.TXTPONO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPONO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPONO.Location = New System.Drawing.Point(750, 4)
+        Me.TXTPONO.Location = New System.Drawing.Point(770, 4)
         Me.TXTPONO.Name = "TXTPONO"
         Me.TXTPONO.ReadOnly = True
         Me.TXTPONO.Size = New System.Drawing.Size(71, 23)
@@ -831,7 +831,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.TXTROUNDOFF.BackColor = System.Drawing.Color.Linen
         Me.TXTROUNDOFF.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTROUNDOFF.Location = New System.Drawing.Point(2791, 4)
+        Me.TXTROUNDOFF.Location = New System.Drawing.Point(2811, 4)
         Me.TXTROUNDOFF.Name = "TXTROUNDOFF"
         Me.TXTROUNDOFF.ReadOnly = True
         Me.TXTROUNDOFF.Size = New System.Drawing.Size(81, 23)
@@ -843,7 +843,7 @@ Partial Class MagicBoxForInvoice
         '
         Me.TXTGRANDTOTAL.BackColor = System.Drawing.Color.Linen
         Me.TXTGRANDTOTAL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRANDTOTAL.Location = New System.Drawing.Point(2872, 4)
+        Me.TXTGRANDTOTAL.Location = New System.Drawing.Point(2892, 4)
         Me.TXTGRANDTOTAL.Name = "TXTGRANDTOTAL"
         Me.TXTGRANDTOTAL.ReadOnly = True
         Me.TXTGRANDTOTAL.Size = New System.Drawing.Size(100, 23)
@@ -904,7 +904,7 @@ Partial Class MagicBoxForInvoice
         Me.cmbitemname.DropDownWidth = 400
         Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbitemname.FormattingEnabled = True
-        Me.cmbitemname.Location = New System.Drawing.Point(970, 4)
+        Me.cmbitemname.Location = New System.Drawing.Point(990, 4)
         Me.cmbitemname.Name = "cmbitemname"
         Me.cmbitemname.Size = New System.Drawing.Size(200, 23)
         Me.cmbitemname.TabIndex = 9
@@ -917,7 +917,7 @@ Partial Class MagicBoxForInvoice
         Me.txtsrno.Location = New System.Drawing.Point(3, 4)
         Me.txtsrno.Name = "txtsrno"
         Me.txtsrno.ReadOnly = True
-        Me.txtsrno.Size = New System.Drawing.Size(30, 23)
+        Me.txtsrno.Size = New System.Drawing.Size(50, 23)
         Me.txtsrno.TabIndex = 0
         Me.txtsrno.TabStop = False
         '
@@ -926,7 +926,7 @@ Partial Class MagicBoxForInvoice
         Me.txtcrdays.BackColor = System.Drawing.Color.White
         Me.txtcrdays.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtcrdays.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcrdays.Location = New System.Drawing.Point(690, 4)
+        Me.txtcrdays.Location = New System.Drawing.Point(710, 4)
         Me.txtcrdays.Name = "txtcrdays"
         Me.txtcrdays.Size = New System.Drawing.Size(60, 23)
         Me.txtcrdays.TabIndex = 5
@@ -937,7 +937,7 @@ Partial Class MagicBoxForInvoice
         Me.TXTPARTYBILLNO.BackColor = System.Drawing.Color.White
         Me.TXTPARTYBILLNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPARTYBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(609, 4)
+        Me.TXTPARTYBILLNO.Location = New System.Drawing.Point(629, 4)
         Me.TXTPARTYBILLNO.Name = "TXTPARTYBILLNO"
         Me.TXTPARTYBILLNO.Size = New System.Drawing.Size(81, 23)
         Me.TXTPARTYBILLNO.TabIndex = 4
@@ -951,7 +951,7 @@ Partial Class MagicBoxForInvoice
         Me.CMBBUYERS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBBUYERS.FormattingEnabled = True
         Me.CMBBUYERS.Items.AddRange(New Object() {""})
-        Me.CMBBUYERS.Location = New System.Drawing.Point(409, 4)
+        Me.CMBBUYERS.Location = New System.Drawing.Point(429, 4)
         Me.CMBBUYERS.Name = "CMBBUYERS"
         Me.CMBBUYERS.Size = New System.Drawing.Size(200, 23)
         Me.CMBBUYERS.TabIndex = 3
@@ -1005,7 +1005,7 @@ Partial Class MagicBoxForInvoice
         Me.gsrno.ReadOnly = True
         Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gsrno.Width = 30
+        Me.gsrno.Width = 50
         '
         'GBILLDATE
         '
