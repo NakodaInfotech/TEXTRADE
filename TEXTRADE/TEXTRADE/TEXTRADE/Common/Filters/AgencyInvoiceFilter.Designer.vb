@@ -107,7 +107,7 @@ Partial Class AgencyInvoiceFilter
         Me.RDBDATEWISE = New System.Windows.Forms.RadioButton()
         Me.RBCUTWISE = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYDTLS = New System.Windows.Forms.RadioButton()
-        Me.RDBPARTY = New System.Windows.Forms.RadioButton()
+        Me.RDBREGENTRY = New System.Windows.Forms.RadioButton()
         Me.cmbacccode = New System.Windows.Forms.ComboBox()
         Me.txtadd = New System.Windows.Forms.TextBox()
         Me.TXTTEMP = New System.Windows.Forms.TextBox()
@@ -257,6 +257,7 @@ Partial Class AgencyInvoiceFilter
         Me.TXTOVERDUEDAYS.Size = New System.Drawing.Size(31, 23)
         Me.TXTOVERDUEDAYS.TabIndex = 762
         Me.TXTOVERDUEDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTOVERDUEDAYS.Visible = False
         '
         'CMBAGENT
         '
@@ -282,6 +283,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBCATEGORY.Name = "CMBCATEGORY"
         Me.CMBCATEGORY.Size = New System.Drawing.Size(85, 22)
         Me.CMBCATEGORY.TabIndex = 760
+        Me.CMBCATEGORY.Visible = False
         '
         'Label10
         '
@@ -332,6 +334,7 @@ Partial Class AgencyInvoiceFilter
         Me.cmbtrans.Name = "cmbtrans"
         Me.cmbtrans.Size = New System.Drawing.Size(230, 23)
         Me.cmbtrans.TabIndex = 2
+        Me.cmbtrans.Visible = False
         '
         'LBLTRANS
         '
@@ -343,6 +346,7 @@ Partial Class AgencyInvoiceFilter
         Me.LBLTRANS.Size = New System.Drawing.Size(60, 15)
         Me.LBLTRANS.TabIndex = 743
         Me.LBLTRANS.Text = "Transport"
+        Me.LBLTRANS.Visible = False
         '
         'Label2
         '
@@ -355,6 +359,7 @@ Partial Class AgencyInvoiceFilter
         Me.Label2.Size = New System.Drawing.Size(84, 14)
         Me.Label2.TabIndex = 746
         Me.Label2.Text = "Dispatched To"
+        Me.Label2.Visible = False
         '
         'CMBDISPATCHEDTO
         '
@@ -367,6 +372,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBDISPATCHEDTO.Name = "CMBDISPATCHEDTO"
         Me.CMBDISPATCHEDTO.Size = New System.Drawing.Size(230, 22)
         Me.CMBDISPATCHEDTO.TabIndex = 3
+        Me.CMBDISPATCHEDTO.Visible = False
         '
         'Label3
         '
@@ -379,6 +385,7 @@ Partial Class AgencyInvoiceFilter
         Me.Label3.Size = New System.Drawing.Size(50, 14)
         Me.Label3.TabIndex = 751
         Me.Label3.Text = "Qty Unit"
+        Me.Label3.Visible = False
         '
         'CMBCITYNAME
         '
@@ -391,6 +398,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBCITYNAME.Name = "CMBCITYNAME"
         Me.CMBCITYNAME.Size = New System.Drawing.Size(121, 22)
         Me.CMBCITYNAME.TabIndex = 4
+        Me.CMBCITYNAME.Visible = False
         '
         'CMBUNIT
         '
@@ -403,6 +411,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBUNIT.Name = "CMBUNIT"
         Me.CMBUNIT.Size = New System.Drawing.Size(52, 22)
         Me.CMBUNIT.TabIndex = 5
+        Me.CMBUNIT.Visible = False
         '
         'Label4
         '
@@ -415,6 +424,7 @@ Partial Class AgencyInvoiceFilter
         Me.Label4.Size = New System.Drawing.Size(61, 14)
         Me.Label4.TabIndex = 753
         Me.Label4.Text = "City Name"
+        Me.Label4.Visible = False
         '
         'GPORDERNO
         '
@@ -427,6 +437,7 @@ Partial Class AgencyInvoiceFilter
         Me.GPORDERNO.TabIndex = 759
         Me.GPORDERNO.TabStop = False
         Me.GPORDERNO.Text = "Order No"
+        Me.GPORDERNO.Visible = False
         '
         'CHKSELECTORDER
         '
@@ -506,6 +517,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBORDERTYPE.Name = "CMBORDERTYPE"
         Me.CMBORDERTYPE.Size = New System.Drawing.Size(82, 22)
         Me.CMBORDERTYPE.TabIndex = 756
+        Me.CMBORDERTYPE.Visible = False
         '
         'LBLTYPE
         '
@@ -519,6 +531,7 @@ Partial Class AgencyInvoiceFilter
         Me.LBLTYPE.TabIndex = 755
         Me.LBLTYPE.Text = "Type"
         Me.LBLTYPE.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTYPE.Visible = False
         '
         'CMBFORWARD
         '
@@ -532,6 +545,7 @@ Partial Class AgencyInvoiceFilter
         Me.CMBFORWARD.Name = "CMBFORWARD"
         Me.CMBFORWARD.Size = New System.Drawing.Size(88, 22)
         Me.CMBFORWARD.TabIndex = 712
+        Me.CMBFORWARD.Visible = False
         '
         'LBLFORWARD
         '
@@ -544,6 +558,7 @@ Partial Class AgencyInvoiceFilter
         Me.LBLFORWARD.TabIndex = 713
         Me.LBLFORWARD.Text = "Ready / Forward"
         Me.LBLFORWARD.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLFORWARD.Visible = False
         '
         'GPITEM
         '
@@ -640,6 +655,7 @@ Partial Class AgencyInvoiceFilter
         Me.GPSHADE.TabIndex = 12
         Me.GPSHADE.TabStop = False
         Me.GPSHADE.Text = "Shade"
+        Me.GPSHADE.Visible = False
         '
         'CHKSELECTCOLOR
         '
@@ -716,6 +732,7 @@ Partial Class AgencyInvoiceFilter
         Me.GPDESIGN.TabIndex = 11
         Me.GPDESIGN.TabStop = False
         Me.GPDESIGN.Text = "Design"
+        Me.GPDESIGN.Visible = False
         '
         'CHKSELECTDESIGN
         '
@@ -965,6 +982,7 @@ Partial Class AgencyInvoiceFilter
         Me.GroupBox2.Size = New System.Drawing.Size(316, 46)
         Me.GroupBox2.TabIndex = 7
         Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Visible = False
         '
         'RDBALL
         '
@@ -1034,7 +1052,7 @@ Partial Class AgencyInvoiceFilter
         Me.GroupBox3.Controls.Add(Me.RDBDATEWISE)
         Me.GroupBox3.Controls.Add(Me.RBCUTWISE)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYDTLS)
-        Me.GroupBox3.Controls.Add(Me.RDBPARTY)
+        Me.GroupBox3.Controls.Add(Me.RDBREGENTRY)
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(693, 14)
         Me.GroupBox3.Name = "GroupBox3"
@@ -1051,6 +1069,7 @@ Partial Class AgencyInvoiceFilter
         Me.RDBITEMGRIDREPORT.TabIndex = 10
         Me.RDBITEMGRIDREPORT.Text = "Item Wise(Grid Report)"
         Me.RDBITEMGRIDREPORT.UseVisualStyleBackColor = True
+        Me.RDBITEMGRIDREPORT.Visible = False
         '
         'RDBITEMSMALL
         '
@@ -1061,6 +1080,7 @@ Partial Class AgencyInvoiceFilter
         Me.RDBITEMSMALL.TabIndex = 9
         Me.RDBITEMSMALL.Text = "Item Wise (A4)"
         Me.RDBITEMSMALL.UseVisualStyleBackColor = True
+        Me.RDBITEMSMALL.Visible = False
         '
         'RBDISPPER
         '
@@ -1071,6 +1091,7 @@ Partial Class AgencyInvoiceFilter
         Me.RBDISPPER.TabIndex = 8
         Me.RBDISPPER.Text = "Party Disp %"
         Me.RBDISPPER.UseVisualStyleBackColor = True
+        Me.RBDISPPER.Visible = False
         '
         'RDBPARTYIMG
         '
@@ -1081,6 +1102,7 @@ Partial Class AgencyInvoiceFilter
         Me.RDBPARTYIMG.TabIndex = 7
         Me.RDBPARTYIMG.Text = "Party Wise (With Img)"
         Me.RDBPARTYIMG.UseVisualStyleBackColor = True
+        Me.RDBPARTYIMG.Visible = False
         '
         'RDBITEM
         '
@@ -1091,6 +1113,7 @@ Partial Class AgencyInvoiceFilter
         Me.RDBITEM.TabIndex = 6
         Me.RDBITEM.Text = "Item Wise"
         Me.RDBITEM.UseVisualStyleBackColor = True
+        Me.RDBITEM.Visible = False
         '
         'RBRACK
         '
@@ -1101,6 +1124,7 @@ Partial Class AgencyInvoiceFilter
         Me.RBRACK.TabIndex = 5
         Me.RBRACK.Text = "Party Wise With Rack"
         Me.RBRACK.UseVisualStyleBackColor = True
+        Me.RBRACK.Visible = False
         '
         'RBORDERSTOCK
         '
@@ -1111,16 +1135,18 @@ Partial Class AgencyInvoiceFilter
         Me.RBORDERSTOCK.TabIndex = 4
         Me.RBORDERSTOCK.Text = "Order Vs Stock"
         Me.RBORDERSTOCK.UseVisualStyleBackColor = True
+        Me.RBORDERSTOCK.Visible = False
         '
         'RDBDATEWISE
         '
         Me.RDBDATEWISE.AutoSize = True
-        Me.RDBDATEWISE.Location = New System.Drawing.Point(147, 13)
+        Me.RDBDATEWISE.Location = New System.Drawing.Point(171, 135)
         Me.RDBDATEWISE.Name = "RDBDATEWISE"
         Me.RDBDATEWISE.Size = New System.Drawing.Size(82, 18)
         Me.RDBDATEWISE.TabIndex = 3
         Me.RDBDATEWISE.Text = "Date Wise"
         Me.RDBDATEWISE.UseVisualStyleBackColor = True
+        Me.RDBDATEWISE.Visible = False
         '
         'RBCUTWISE
         '
@@ -1131,6 +1157,7 @@ Partial Class AgencyInvoiceFilter
         Me.RBCUTWISE.TabIndex = 2
         Me.RBCUTWISE.Text = "Cut Wise"
         Me.RBCUTWISE.UseVisualStyleBackColor = True
+        Me.RBCUTWISE.Visible = False
         '
         'RDBPARTYDTLS
         '
@@ -1141,18 +1168,19 @@ Partial Class AgencyInvoiceFilter
         Me.RDBPARTYDTLS.TabIndex = 1
         Me.RDBPARTYDTLS.Text = "Party Wise Details"
         Me.RDBPARTYDTLS.UseVisualStyleBackColor = True
+        Me.RDBPARTYDTLS.Visible = False
         '
-        'RDBPARTY
+        'RDBREGENTRY
         '
-        Me.RDBPARTY.AutoSize = True
-        Me.RDBPARTY.Checked = True
-        Me.RDBPARTY.Location = New System.Drawing.Point(14, 13)
-        Me.RDBPARTY.Name = "RDBPARTY"
-        Me.RDBPARTY.Size = New System.Drawing.Size(82, 18)
-        Me.RDBPARTY.TabIndex = 0
-        Me.RDBPARTY.TabStop = True
-        Me.RDBPARTY.Text = "Party Wise"
-        Me.RDBPARTY.UseVisualStyleBackColor = True
+        Me.RDBREGENTRY.AutoSize = True
+        Me.RDBREGENTRY.Checked = True
+        Me.RDBREGENTRY.Location = New System.Drawing.Point(14, 13)
+        Me.RDBREGENTRY.Name = "RDBREGENTRY"
+        Me.RDBREGENTRY.Size = New System.Drawing.Size(157, 18)
+        Me.RDBREGENTRY.TabIndex = 0
+        Me.RDBREGENTRY.TabStop = True
+        Me.RDBREGENTRY.Text = "Register Entry Date wise"
+        Me.RDBREGENTRY.UseVisualStyleBackColor = True
         '
         'cmbacccode
         '
@@ -1502,7 +1530,7 @@ Partial Class AgencyInvoiceFilter
     Friend WithEvents RDBDATEWISE As RadioButton
     Friend WithEvents RBCUTWISE As RadioButton
     Friend WithEvents RDBPARTYDTLS As RadioButton
-    Friend WithEvents RDBPARTY As RadioButton
+    Friend WithEvents RDBREGENTRY As RadioButton
     Friend WithEvents cmbacccode As ComboBox
     Friend WithEvents txtadd As TextBox
     Friend WithEvents TXTTEMP As TextBox
