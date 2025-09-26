@@ -77,7 +77,10 @@ Public Class MagicBox
 
                 End If
 
-                alParaval.Add(0)
+                ' WE HAVE COMMENTED THIS LINE BCOZ FOR TEMPORARY CLIENT WANT MANUAL NUMBER ALLOW
+                ''alParaval.Add(0)
+
+                alParaval.Add(NO)
                 alParaval.Add(ORDERDATE)
                 alParaval.Add(BUYERS)
                 alParaval.Add("") ' HASTE
@@ -1179,7 +1182,7 @@ NEXTLINE:
 
     Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
         Try
-            If TXTCUT.Text.Trim > 0 Then
+            If Val(TXTCUT.Text.Trim) > 0 Then
                 If txtQTY.Text.Trim > 0 Then
                     TXTMTRS.Text = Format(Val(TXTCUT.Text.Trim) * Val(txtQTY.Text.Trim), "0.00")
                 End If
