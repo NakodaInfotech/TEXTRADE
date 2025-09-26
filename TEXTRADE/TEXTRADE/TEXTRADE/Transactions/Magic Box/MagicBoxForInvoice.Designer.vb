@@ -1002,7 +1002,6 @@ Partial Class MagicBoxForInvoice
         '
         Me.gsrno.HeaderText = "Sr."
         Me.gsrno.Name = "gsrno"
-        Me.gsrno.ReadOnly = True
         Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gsrno.Width = 50

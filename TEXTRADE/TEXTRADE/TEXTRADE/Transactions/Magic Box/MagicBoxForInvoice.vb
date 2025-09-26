@@ -15,6 +15,13 @@ Public Class MagicBoxForInvoice
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         Try
             For Each row As Windows.Forms.DataGridViewRow In GRIDMAGICBOX.Rows
+                Dim SRNO As Integer
+                Dim DTTABLE As New DataTable
+                DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
+                If DTTABLE.Rows.Count > 0 Then
+                    SRNO = DTTABLE.Rows(0).Item(0)
+                End If
+                row.Cells(gsrno.Index).Value = Val(SRNO)
                 Dim alParaval As New ArrayList
                 Dim GRIDSRNO As String = ""
                 Dim PARTYBILLDATE As String = ""
@@ -61,7 +68,7 @@ Public Class MagicBoxForInvoice
                 Dim CTAXID As String = ""
                 If row.Cells(0).Value <> Nothing Then
 
-                    GRIDSRNO = row.Cells(gsrno.Index).Value.ToString
+                    GRIDSRNO = SRNO
                     'NO = row.Cells(GNO.Index).Value.ToString
                     PARTYBILLDATE = SafeDate(row.Cells(GBILLDATE.Index).Value)
                     ENTRYDATE = SafeDate(row.Cells(GDATE.Index).Value)
@@ -121,7 +128,7 @@ Public Class MagicBoxForInvoice
                 End If
 
                 alParaval.Add("TOTAL GST")
-                alParaval.Add(0)
+                alParaval.Add(GRIDSRNO)
                 alParaval.Add(SELLERS)
                 alParaval.Add(0)
                 alParaval.Add(PONO)
@@ -332,7 +339,7 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("") 'ORDERGDNMTRS)
                 alParaval.Add("") 'ORDERRATE)
                 alParaval.Add("") 'ORDERPARTYPONO)
-
+                alParaval.Add("") 'MANUALROUNDOFF
 
                 Dim objclsPurord As New ClsAgencyInvoiceMaster()
                 objclsPurord.alParaval = alParaval
@@ -397,7 +404,7 @@ NEXTLINE:
 
     Sub CLEAR()
         TXTGRANDTOTAL.Clear()
-        txtsrno.Text = 1
+        'txtsrno.Text = 1
         ENTRYDATE.Value = Now.Date
         BILLDATE.Value = Now.Date
         CMBBUYERS.Text = ""
@@ -434,7 +441,7 @@ NEXTLINE:
         TXTCHRGS.Clear()
         CMBCOMM.Text = ""
         GRIDMAGICBOX.RowCount = 0
-
+        GRIDDOUBLECLICK = False
         GRIDCHGS.RowCount = 0
 
         DT_CHGSDETAILS.Reset()
@@ -445,7 +452,7 @@ NEXTLINE:
         DT_CHGSDETAILS.Columns.Add("ETAXID")
         DT_CHGSDETAILS.Columns.Add("EMAINSRNO")
         getmax_SO_no()
-
+        getsrno(GRIDCHGS)
     End Sub
 
     Private Sub MagicBoxForInvoice_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -660,7 +667,7 @@ NEXTLINE:
         Next
 
         GRIDMAGICBOX.FirstDisplayedScrollingRowIndex = GRIDMAGICBOX.RowCount - 1
-        txtsrno.Text = txtsrno.Text.Trim + 1
+        'txtsrno.Text = txtsrno.Text.Trim + 1
         ' Clear all relevant input fields used in grid entry
         BILLDATE.Value = Date.Today
         ENTRYDATE.Value = Date.Today
@@ -698,7 +705,7 @@ NEXTLINE:
         CMBCOMM.Text = ""
         TXTREMARKS.Clear()
         TXTHSN.Clear()
-        'getmax_SO_no()
+        getsrno(GRIDMAGICBOX)
         ' Set focus to the first input control
         BILLDATE.Focus()
         GRIDCHGS.RowCount = 0
@@ -819,15 +826,15 @@ LINE2:
         End Try
     End Sub
 
-    'Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
-    '    Try
-    '        For Each row As DataGridViewRow In grid.Rows
-    '            row.Cells(0).Value = row.Index + 1
-    '        Next
-    '    Catch ex As Exception
-    '        If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-    '    End Try
-    'End Sub
+    Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
+        Try
+            For Each row As DataGridViewRow In grid.Rows
+                row.Cells(0).Value = row.Index + 1
+            Next
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
     Sub getmax_SO_no()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
@@ -1110,7 +1117,7 @@ LINE2:
     Sub fillchgsgrid()
         If GRIDCHGSDOUBLECLICK = False Then
             GRIDCHGS.Rows.Add(Val(TXTCHGSSRNO.Text.Trim), CMBCHARGES.Text.Trim, Val(TXTCHGSPER.Text.Trim), Val(TXTCHGSAMT.Text.Trim), Val(TXTTAXID.Text.Trim), txtsrno.Text.Trim)
-            getmax_SO_no()
+            getsrno(GRIDCHGS)
         ElseIf GRIDCHGSDOUBLECLICK = True Then
             GRIDCHGS.Item(ESRNO.Index, TEMPCHGSROW).Value = Val(TXTCHGSSRNO.Text.Trim)
             GRIDCHGS.Item(ECHARGES.Index, TEMPCHGSROW).Value = CMBCHARGES.Text.Trim
@@ -1253,7 +1260,7 @@ line1:
                     Next
                     GRIDCHGS.Rows.RemoveAt(GRIDCHGS.CurrentRow.Index)
                     TOTAL()
-                    getmax_SO_no()
+                    getsrno(GRIDCHGS)
                     TXTCHGSSRNO.Text = GRIDCHGS.RowCount + 1
                     CMBCHARGES.Focus()
                 End If
