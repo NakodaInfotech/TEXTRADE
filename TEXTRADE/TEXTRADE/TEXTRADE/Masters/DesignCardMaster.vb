@@ -433,13 +433,13 @@ Public Class DesignCardMaster
             Dim WEFTTRSym As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-                If row.Cells(FSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
+                If row.Cells(FPSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
-                        WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
+                        WEFTTRSrNo = Val(row.Cells(FPSRNO.Index).Value)
                         WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
-                        WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
+                        WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FPSRNO.Index).Value)
                         WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
@@ -654,7 +654,7 @@ Public Class DesignCardMaster
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
         TXTWARPSRNO.Text = 1
-        TXTWARPSYMBOL.Text = "A"
+        CMBGRIDSYM.Text = "A"
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -684,7 +684,7 @@ Public Class DesignCardMaster
         TXTSELGPE.Clear()
         'WEFTMATCHING TEXTBOXES
         TXTWEFTSRNO.Text = 1
-        TXTWEFTSYMBOL.Text = "A"
+        CMBWEFTGRIDSYMBOL.Text = "A"
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1055,11 +1055,11 @@ Public Class DesignCardMaster
     Sub fillwarpgrid()
 
         If GRIDDOUBLECLICK = False Then
-            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), TXTWARPSYMBOL.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBGRIDSYM.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
             getsrno(GRIDWARP)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDWARP.Item(WSRNO.Index, TEMPROW).Value = Val(TXTWARPSRNO.Text.Trim)
-            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = TXTWARPSYMBOL.Text.Trim
+            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = CMBGRIDSYM.Text.Trim
             GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value = CMBWARPQUALITY.Text.Trim
             GRIDWARP.Item(WDENIER.Index, TEMPROW).Value = TXTWARPDENIER.Text.Trim
             GRIDWARP.Item(WMILL.Index, TEMPROW).Value = CMBWARPMILLNAME.Text.Trim
@@ -1086,11 +1086,11 @@ LINE1:
                 Next
             End If
         End If
-        If String.IsNullOrEmpty(TXTWARPSYMBOL.Text) Then
-            TXTWARPSYMBOL.Text = "A"
-        Else
-            TXTWARPSYMBOL.Text = IncrementAlphabet(TXTWARPSYMBOL.Text)
-        End If
+        'If String.IsNullOrEmpty(CMBGRIDSYM.Text) Then
+        '    CMBGRIDSYM.Text = "A"
+        'Else
+        '    CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text)
+        'End If
 
 
         GRIDWARPDESC.EndEdit() '
@@ -1114,11 +1114,32 @@ LINE1:
                 End If
             Next
         Next
+        For i As Integer = GRIDWARP.Columns.Count - 1 To 0 Step -1
+            If GRIDWARP.Columns(i).Name.StartsWith("WARP") Then
+                GRIDWARP.Columns.RemoveAt(i)
+            End If
+        Next
+
+        For i As Integer = 0 To GRIDWARPDESC.Rows.Count - 1
+            If GRIDWARPDESC.Rows(i).IsNewRow Then Continue For
+            Dim colName As String = "WARP" & (i + 1)
+            If Not GRIDWARP.Columns.Contains(colName) Then
+                GRIDWARP.Columns.Add(colName, colName)
+            End If
+        Next
+
+        For shadeIndex As Integer = 0 To GRIDWARPDESC.Rows.Count - 1
+            If GRIDWARPDESC.Rows(shadeIndex).IsNewRow Then Continue For
+            Dim shadeValue As Object = GRIDWARPDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
+            GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells("WARP" & (shadeIndex + 1)).Value = shadeValue
+        Next
+
+
         GRIDWARP.ClearSelection()
-        CMBWARPQUALITY.Focus()
+        CMBGRIDSYM.Focus()
         clearwarp()
         TOTALWARP()
-        COPYSYM()
+
         If GRIDWARP.RowCount > 0 Then
             TXTWARPSRNO.Text = Val(GRIDWARP.Rows(GRIDWARP.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
@@ -1130,21 +1151,21 @@ LINE1:
         CMBGRIDSYM.Items.Clear()
 
         Dim symSet As New HashSet(Of String)
-        For Each row As DataGridViewRow In GRIDWARP.Rows
-            If Not IsDBNull(row.Cells(WSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(WSYM.Index).Value.ToString) Then
-                symSet.Add(row.Cells(WSYM.Index).Value.ToString)
-            End If
-        Next
-
+        If GRIDWARPPATTERN.RowCount > 0 Then
+            For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
+                Dim cellValue = row.Cells(WPSYM.Index).Value
+                If cellValue IsNot Nothing AndAlso Not IsDBNull(cellValue) AndAlso Not String.IsNullOrWhiteSpace(cellValue.ToString) Then
+                    symSet.Add(cellValue.ToString)
+                End If
+            Next
+        End If
         For Each symVal As String In symSet
             CMBGRIDSYM.Items.Add(symVal)
         Next
-
-
     End Sub
     Sub clearwarp()
         'TXTWARPSRNO.Clear()
-        'TXTWARPSYMBOL.Clear()
+        'CMBGRIDSYM.Clear()
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -1215,11 +1236,11 @@ LINE1:
                 Next
             End If
         End If
-        If String.IsNullOrEmpty(TXTSELSYMBOL.Text) Then
-            TXTSELSYMBOL.Text = "A"
-        Else
-            TXTSELSYMBOL.Text = IncrementAlphabet(TXTSELSYMBOL.Text)
-        End If
+        'If String.IsNullOrEmpty(TXTSELSYMBOL.Text) Then
+        '    TXTSELSYMBOL.Text = "A"
+        'Else
+        '    TXTSELSYMBOL.Text = IncrementAlphabet(TXTSELSYMBOL.Text)
+        'End If
 
         GRIDSELDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
@@ -1312,11 +1333,11 @@ LINE1:
     End Sub
     Sub FILLWEFTGRID()
         If GRIDWEFTDOUBLECLICK = False Then
-            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), TXTWEFTSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
+            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTGRIDSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
             getsrno(GRIDWEFT)
         ElseIf GRIDWEFTDOUBLECLICK = True Then
             GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = Val(TXTWEFTSRNO.Text.Trim)
-            GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value = TXTWEFTSYMBOL.Text.Trim
+            GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value = CMBWEFTGRIDSYMBOL.Text.Trim
             GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value = CMBWEFTYARNQUALITY.Text.Trim
             GRIDWEFT.Item(FDENIER.Index, TEMPWEFTROW).Value = TXTWEFTDEN.Text.Trim
             GRIDWEFT.Item(FMILL.Index, TEMPWEFTROW).Value = CMBWEFTMILLNAME.Text.Trim
@@ -1344,11 +1365,11 @@ LINE1:
             End If
         End If
 
-        If String.IsNullOrEmpty(TXTWEFTSYMBOL.Text) Then
-            TXTWEFTSYMBOL.Text = "A"
-        Else
-            TXTWEFTSYMBOL.Text = IncrementAlphabet(TXTWEFTSYMBOL.Text)
-        End If
+        'If String.IsNullOrEmpty(CMBWEFTGRIDSYMBOL.Text) Then
+        '    CMBWEFTGRIDSYMBOL.Text = "A"
+        'Else
+        '    CMBWEFTGRIDSYMBOL.Text = IncrementAlphabet(CMBWEFTGRIDSYMBOL.Text)
+        'End If
         GRIDWEFTDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
         For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
@@ -1370,10 +1391,36 @@ LINE1:
                 End If
             Next
         Next
+
+        ' Remove existing shade columns first (if any)
+        For i As Integer = GRIDWEFT.Columns.Count - 1 To 0 Step -1
+            If GRIDWEFT.Columns(i).Name.StartsWith("WEFT") Then
+                GRIDWEFT.Columns.RemoveAt(i)
+            End If
+        Next
+
+        ' Dynamically add columns as per count from GRIDWEFTDESC
+        For i As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
+            If GRIDWEFTDESC.Rows(i).IsNewRow Then Continue For
+            Dim colName As String = "WEFT" & (i + 1)
+            ' Add only if it doesn't exist yet
+            If Not GRIDWEFT.Columns.Contains(colName) Then
+                GRIDWEFT.Columns.Add(colName, colName)
+            End If
+        Next
+
+        ' Fill the shades in the grid
+        For shadeIndex As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
+            If GRIDWEFTDESC.Rows(shadeIndex).IsNewRow Then Continue For
+            Dim shadeValue As Object = GRIDWEFTDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
+            ' Display shade horizontally in the active (or selected) GRIDWEFT row
+            GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells("WEFT" & (shadeIndex + 1)).Value = shadeValue
+        Next
+
+
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
-        COPYWEFTSYM()
-        CMBWEFTYARNQUALITY.Focus()
+        CMBWEFTGRIDSYMBOL.Focus()
         If GRIDWEFT.RowCount > 0 Then
             TXTWEFTSRNO.Text = Val(GRIDWEFT.Rows(GRIDWEFT.RowCount - 1).Cells(0).Value) + 1
             ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
@@ -1385,21 +1432,21 @@ LINE1:
         CMBWEFTGRIDSYMBOL.Items.Clear()
 
         Dim symSet As New HashSet(Of String)
-        For Each row As DataGridViewRow In GRIDWEFT.Rows
-            If Not IsDBNull(row.Cells(FSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(FSYM.Index).Value.ToString) Then
-                symSet.Add(row.Cells(FSYM.Index).Value.ToString)
-            End If
-        Next
-
+        If GRIDWEFTPATTERN.RowCount > 0 Then
+            For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
+                Dim cellValue = row.Cells(FPSYM.Index).Value
+                If cellValue IsNot Nothing AndAlso Not IsDBNull(cellValue) AndAlso Not String.IsNullOrWhiteSpace(cellValue.ToString) Then
+                    symSet.Add(cellValue.ToString)
+                End If
+            Next
+        End If
         For Each symVal As String In symSet
             CMBWEFTGRIDSYMBOL.Items.Add(symVal)
         Next
-
-
     End Sub
     Sub CLEARWEFT()
         'TXTWEFTSRNO.Clear()
-        'TXTWEFTSYMBOL.Clear()
+        'CMBWEFTGRIDSYMBOL.Clear()
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1434,13 +1481,6 @@ LINE1:
         Else
             TXTWEFTGRIDSRNO.Text = 1
         End If
-    End Sub
-    Private Sub TXTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
-        Try
-            fillwarppatterngrid()
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
@@ -1636,7 +1676,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub CMBLOOM_Enter(sender As Object, e As EventArgs)
+    Private Sub CMBLOOM_Enter(sender As Object, e As EventArgs) Handles CMBLOOM.Enter
 
         Try
             If CMBLOOM.Text.Trim = "" Then FILLLOOM(CMBLOOM, EDIT)
@@ -1644,7 +1684,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs)
+    Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
         Try
             If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, e, Me)
         Catch ex As Exception
@@ -1931,7 +1971,7 @@ LINE1:
             If GRIDWARP.CurrentRow.Index >= 0 Then
                 TEMPROW = GRIDWARP.CurrentRow.Index
                 TXTWARPSRNO.Text = GRIDWARP.Item(WSRNO.Index, TEMPROW).Value
-                TXTWARPSYMBOL.Text = GRIDWARP.Item(WSYM.Index, TEMPROW).Value
+                CMBGRIDSYM.Text = GRIDWARP.Item(WSYM.Index, TEMPROW).Value
                 CMBWARPQUALITY.Text = GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value
                 TXTWARPDENIER.Text = GRIDWARP.Item(WDENIER.Index, TEMPROW).Value
                 CMBWARPMILLNAME.Text = GRIDWARP.Item(WMILL.Index, TEMPROW).Value
@@ -1944,7 +1984,7 @@ LINE1:
                 TXTWARPRATE.Text = GRIDWARP.Item(WRATE.Index, TEMPROW).Value
                 TXTWARPCOST.Text = GRIDWARP.Item(WCOST.Index, TEMPROW).Value
                 GRIDDOUBLECLICK = True
-                TXTWARPSYMBOL.Focus()
+                CMBGRIDSYM.Focus()
             End If
         End If
     End Sub
@@ -1988,7 +2028,7 @@ LINE1:
             If GRIDWEFT.CurrentRow.Index >= 0 Then
                 TEMPWEFTROW = GRIDWEFT.CurrentRow.Index
                 TXTWEFTSRNO.Text = GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value
-                TXTWEFTSYMBOL.Text = GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value
+                CMBWEFTGRIDSYMBOL.Text = GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value
                 CMBWEFTYARNQUALITY.Text = GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value
                 TXTWEFTDEN.Text = GRIDWEFT.Item(FDENIER.Index, TEMPWEFTROW).Value
                 CMBWEFTMILLNAME.Text = GRIDWEFT.Item(FMILL.Index, TEMPWEFTROW).Value
@@ -2039,14 +2079,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTWARPSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWARPSYMBOL.Validated
-        Try
-            If TXTWARPSYMBOL.Text = "" Then TXTGRIDPE.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub CMDPHOTOUPLOAD_Click(sender As Object, e As EventArgs) Handles CMDPHOTOUPLOAD.Click
         If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
             MsgBox("Insufficient Rights")
@@ -2087,16 +2119,16 @@ LINE1:
     End Sub
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
-        Try
-            If CMBGRIDSYM.Text <> "" And TXTGRIDPE.Text.Trim <> "" Then
-                fillwarppatterngrid()
-                GETWARPPE()
-            Else
-                MsgBox("Please Enter Symbol And P.E.")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    If CMBGRIDSYM.Text <> "" And TXTGRIDPE.Text.Trim <> "" Then
+        '        fillwarppatterngrid()
+        '        GETWARPPE()
+        '    Else
+        '        MsgBox("Please Enter Symbol And P.E.")
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
 
     End Sub
     Sub GETWARPPE()
@@ -2182,39 +2214,6 @@ LINE1:
         TOTALSELVEDGE()
 
     End Sub
-
-    Private Sub TXTWARPSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWARPSYMBOL.Validating
-        Try
-            If TXTWARPSYMBOL.Text <> "" And GRIDWARP.RowCount > 0 Then
-                For Each row As DataGridViewRow In GRIDWARP.Rows
-                    If TXTWARPSYMBOL.Text = row.Cells(WSYM.Index).Value AndAlso GRIDDOUBLECLICK = False Then
-                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
-                        e.Cancel = True
-                        TXTWARPSYMBOL.Focus()
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWEFTSYMBOL.Validating
-        Try
-            If TXTWEFTSYMBOL.Text <> "" And GRIDWEFT.RowCount > 0 Then
-                For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    If TXTWEFTSYMBOL.Text = row.Cells(FSYM.Index).Value AndAlso GRIDWEFTDOUBLECLICK = False Then
-                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
-                        e.Cancel = True
-                        TXTWEFTSYMBOL.Focus()
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTDRAWENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTDRAWENDS.KeyPress
         If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = Convert.ToChar(".") Or e.KeyChar = Convert.ToChar(Keys.Back)) Then
             e.Handled = True
@@ -2301,16 +2300,16 @@ LINE1:
     End Sub
 
     Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
-        Try
-            If CMBWEFTGRIDSYMBOL.Text <> "" And TXTWEFTGRIDPE.Text.Trim <> "" Then
-                FILLWEFTPATTERNGRID()
-                GETWEFTPE()
-            Else
-                MsgBox("Please Enter Symbol And P.E.")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    If CMBWEFTGRIDSYMBOL.Text <> "" And TXTWEFTGRIDPE.Text.Trim <> "" Then
+        '        FILLWEFTPATTERNGRID()
+        '        GETWEFTPE()
+        '    Else
+        '        MsgBox("Please Enter Symbol And P.E.")
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
 
@@ -2319,10 +2318,12 @@ LINE1:
             If CMBWARPQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER", "", "  YARNQUALITYMASTER  ", "  And YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER, ISNULL(MILLMASTER.MILL_NAME, '') As MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  And YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWARPDENIER.Text = DT2.Rows(0).Item("DENIER")
+                    CMBWARPMILLNAME.Text = DT2.Rows(0).Item("MILLNAME")
                 End If
+                CMBWARPMILLNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
@@ -2537,16 +2538,16 @@ LINE1:
     End Sub
 
     Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs) Handles CMBSELGSYM.Validated
-        Try
-            If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
-                FILLSELPATTERNGRID()
-                GETSELPE()
-            Else
-                MsgBox("Please Enter Symbol and P.E.")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
+        '        FILLSELPATTERNGRID()
+        '        GETSELPE()
+        '    Else
+        '        MsgBox("Please Enter Symbol and P.E.")
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub CMBSELYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBSELYARNQUALITY.Validated
@@ -2718,10 +2719,12 @@ LINE1:
             If CMBWEFTYARNQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER", "", "  YARNQUALITYMASTER  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER,ISNULL(MILLMASTER.MILL_NAME, 0) AS MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWEFTDEN.Text = DT2.Rows(0).Item("DENIER")
+                    CMBWEFTMILLNAME.Text = DT2.Rows(0).Item("MILLNAME")
                 End If
+                CMBWEFTMILLNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
@@ -2731,32 +2734,32 @@ LINE1:
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            ' Proceed only if the column being edited is "WPSYM"
-            If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
-                Dim inputValue As String = e.FormattedValue.ToString().Trim()
-                If inputValue <> "" Then
-                    ' Flag to track if match is found
-                    Dim matchFound As Boolean = False
+            '' Proceed only if the column being edited is "WPSYM"
+            'If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
 
-                    ' Loop through rows of main grid to check for matching "WSYM" value
-                    For Each row As DataGridViewRow In GRIDWEFT.Rows
-                        If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
-                            Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDWEFT.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
 
-                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-                                matchFound = True
-                                Exit For
-                            End If
-                        End If
-                    Next
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
 
-                    ' If no match found, show warning and cancel editing
-                    If Not matchFound Then
-                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        e.Cancel = True  ' Cancels the edit
-                    End If
-                End If
-            End If
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
 
             If e.ColumnIndex = FPR.Index OrElse e.ColumnIndex = FPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
@@ -2769,6 +2772,7 @@ LINE1:
                 End If
             End If
             Button2_Click(sender, e)
+            COPYWEFTSYM()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2792,32 +2796,32 @@ LINE1:
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            ' Proceed only if the column being edited is "WPSYM"
-            If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
-                Dim inputValue As String = e.FormattedValue.ToString().Trim()
-                If inputValue <> "" Then
-                    ' Flag to track if match is found
-                    Dim matchFound As Boolean = False
+            '' Proceed only if the column being edited is "WPSYM"
+            'If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
 
-                    ' Loop through rows of main grid to check for matching "WSYM" value
-                    For Each row As DataGridViewRow In GRIDWARP.Rows
-                        If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
-                            Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDWARP.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
 
-                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-                                matchFound = True
-                                Exit For
-                            End If
-                        End If
-                    Next
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
 
-                    ' If no match found, show warning and cancel editing
-                    If Not matchFound Then
-                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        e.Cancel = True  ' Cancels the edit
-                    End If
-                End If
-            End If
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
             If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2829,6 +2833,7 @@ LINE1:
                 End If
             End If
             Button1_Click(sender, e)
+            COPYSYM()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3646,7 +3651,7 @@ line1:
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
-            If CMBWARPQUALITY.Text.Trim <> "" And TXTWARPSYMBOL.Text.Trim <> "" Then
+            If CMBWARPQUALITY.Text.Trim <> "" And CMBGRIDSYM.Text.Trim <> "" Then
                 fillwarpgrid()
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
@@ -3658,7 +3663,7 @@ line1:
     End Sub
     Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
         Try
-            If CMBWEFTYARNQUALITY.Text.Trim <> "" And TXTWEFTSYMBOL.Text.Trim <> "" Then
+            If CMBWEFTYARNQUALITY.Text.Trim <> "" And CMBWEFTGRIDSYMBOL.Text.Trim <> "" Then
                 FILLWEFTGRID()
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")

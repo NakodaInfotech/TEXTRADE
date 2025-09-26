@@ -645,7 +645,7 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@FDSHADE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@FDMAINSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@F                                                                                                           DMAINSRNO", alParaval(I)))
                 I += 1
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
