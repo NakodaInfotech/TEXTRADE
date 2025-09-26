@@ -8014,7 +8014,9 @@
     <Compile Include="Transactions\Sale\Sale Invoice\InvoiceMaster.Designer.vb">
       <DependentUpon>InvoiceMaster.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Sale\Sale Invoice\InvoiceMaster.vb" />
+    <Compile Include="Transactions\Sale\Sale Invoice\InvoiceMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\SelectGdn.Designer.vb">
       <DependentUpon>SelectGdn.vb</DependentUpon>
     </Compile>
