@@ -10761,9 +10761,9 @@ SKIPLINE:
 
     Private Sub AgencyInvoiceReportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencyInvoiceReportsToolStripMenuItem.Click
         Try
-            Dim OBJAGNCYINVRPT As New AgencyInvoiceReport
-            OBJAGNCYINVRPT.MdiParent = Me
-            OBJAGNCYINVRPT.Show()
+            'Dim OBJAGNCYINVRPT As New AgencyInvoiceReport
+            'OBJAGNCYINVRPT.MdiParent = Me
+            'OBJAGNCYINVRPT.Show()
         Catch ex As Exception
             Throw ex
         End Try
