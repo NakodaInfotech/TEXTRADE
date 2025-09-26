@@ -22,6 +22,7 @@ Public Class SelectInvoice
         gridbilldetails.ForceInitialize()
         gridbill.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle
     End Sub
+
     Sub fillgrid(Optional ByVal where As String = "")
         Try
             Cursor.Current = Cursors.WaitCursor
