@@ -285,16 +285,15 @@ Public Class AgencyReceipt
             End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
-                'DONE TEMP
-                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    BLN = False
+                End If
 
-                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
+                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    BLN = False
+                End If
             Next
 
             If cmbseller.Text.Trim.Length = 0 Then
@@ -312,11 +311,10 @@ Public Class AgencyReceipt
                 BLN = False
             End If
 
-            'DONE TEMP
-            'If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
-            '    EP.SetError(txttotal, "Total does not match Specified Amt")
-            '    BLN = False
-            'End If
+            If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
+                EP.SetError(txttotal, "Total does not match Specified Amt")
+                BLN = False
+            End If
 
 
             If ACCDATE.Text = "__/__/____" Then
@@ -775,16 +773,14 @@ Public Class AgencyReceipt
                 End If
                 alparaval.Add(TEMPARECEIPTNO)
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
-                'DONE TEMP
-                'MsgBox("Details Updated")
+                MsgBox("Details Updated")
                 EDIT = False
 
             End If
 
-            'DONE TEMP
-            'Call toolnext_Click(sender, e)
-            'cmbseller.Focus()
-            'CLEAR()
+            Call toolnext_Click(sender, e)
+            cmbseller.Focus()
+            CLEAR()
             EDIT = False
 
         Catch ex As Exception
