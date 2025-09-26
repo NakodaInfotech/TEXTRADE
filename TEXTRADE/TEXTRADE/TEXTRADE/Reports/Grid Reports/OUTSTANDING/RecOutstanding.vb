@@ -90,6 +90,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -203,6 +204,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -262,6 +264,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -331,6 +334,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -546,6 +550,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
             End If
@@ -660,6 +665,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
 
@@ -715,6 +721,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -784,6 +791,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -900,6 +908,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1013,6 +1022,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1072,6 +1082,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1141,6 +1152,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1295,6 +1307,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1408,6 +1421,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1467,6 +1481,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1536,6 +1551,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1690,6 +1706,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1803,6 +1820,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1862,6 +1880,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1931,6 +1950,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -2659,7 +2679,10 @@ LINE1:
 
     Private Sub RecOutstanding_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then GDUEDATE.Visible = False
+            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                GDUEDATE.Visible = False
+                CHKHOLDINTCALC.Visible = True
+            End If
             GINTAMT.Visible = False
             GLRNO.Visible = False
             GCHARGES.Visible = False

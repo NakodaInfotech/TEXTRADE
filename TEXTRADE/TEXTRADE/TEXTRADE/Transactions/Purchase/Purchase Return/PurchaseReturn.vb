@@ -195,7 +195,7 @@ Public Class PurchaseReturn
             TXTCHQBAL.Text = 0.0
 
             TXTTCSPER.Text = 0
-            TXTTCSAMT.Text = 0
+            'TXTTCSAMT.Text = 0
 
             'FETCH TCSPERCENT WITH RESPECT TO DATE
             Dim OBJCMN As New ClsCommon
@@ -253,7 +253,7 @@ Public Class PurchaseReturn
             End If
 
             TXTTOTALWITHGST.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text.Trim) + Val(TXTSGSTAMT.Text.Trim) + Val(TXTIGSTAMT.Text.Trim), "0.00")
-            If CHKTCS.CheckState = CheckState.Checked Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
+            If CHKTCS.CheckState = CheckState.Checked And Val(TXTTCSPER.Text.Trim) > 0 Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
 
             If CHKMANUALROUND.Checked = False Then
                 txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text.Trim) + Val(TXTSGSTAMT.Text.Trim) + Val(TXTIGSTAMT.Text.Trim) + Val(TXTTCSAMT.Text.Trim), "0")

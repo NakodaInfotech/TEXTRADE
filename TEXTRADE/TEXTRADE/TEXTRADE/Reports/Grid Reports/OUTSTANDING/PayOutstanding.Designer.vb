@@ -142,6 +142,7 @@ Partial Class PayOutstanding
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.CHKHOLDINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GBFIND.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -158,6 +159,7 @@ Partial Class PayOutstanding
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKHOLDINTCALC)
         Me.BlendPanel1.Controls.Add(Me.TXTDAYS)
         Me.BlendPanel1.Controls.Add(Me.Label12)
         Me.BlendPanel1.Controls.Add(Me.TXTPERCENT)
@@ -203,7 +205,7 @@ Partial Class PayOutstanding
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1604, 672)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1444, 672)
         Me.BlendPanel1.TabIndex = 0
         '
         'TXTDAYS
@@ -770,7 +772,7 @@ Partial Class PayOutstanding
         Me.TBSUMMARY.Location = New System.Drawing.Point(4, 22)
         Me.TBSUMMARY.Name = "TBSUMMARY"
         Me.TBSUMMARY.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBSUMMARY.Size = New System.Drawing.Size(1572, 504)
+        Me.TBSUMMARY.Size = New System.Drawing.Size(1642, 504)
         Me.TBSUMMARY.TabIndex = 1
         Me.TBSUMMARY.Text = "Summary"
         Me.TBSUMMARY.UseVisualStyleBackColor = True
@@ -816,7 +818,7 @@ Partial Class PayOutstanding
         Me.GRIDSUMM.RowTemplate.Height = 20
         Me.GRIDSUMM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSUMM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDSUMM.Size = New System.Drawing.Size(1566, 498)
+        Me.GRIDSUMM.Size = New System.Drawing.Size(1636, 498)
         Me.GRIDSUMM.TabIndex = 686
         Me.GRIDSUMM.TabStop = False
         '
@@ -843,7 +845,7 @@ Partial Class PayOutstanding
         Me.TBADVANCES.Controls.Add(Me.GRIDADV)
         Me.TBADVANCES.Location = New System.Drawing.Point(4, 22)
         Me.TBADVANCES.Name = "TBADVANCES"
-        Me.TBADVANCES.Size = New System.Drawing.Size(1572, 504)
+        Me.TBADVANCES.Size = New System.Drawing.Size(1642, 504)
         Me.TBADVANCES.TabIndex = 2
         Me.TBADVANCES.Text = "Advances & On A/C"
         Me.TBADVANCES.UseVisualStyleBackColor = True
@@ -889,7 +891,7 @@ Partial Class PayOutstanding
         Me.GRIDADV.RowTemplate.Height = 20
         Me.GRIDADV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDADV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDADV.Size = New System.Drawing.Size(1572, 504)
+        Me.GRIDADV.Size = New System.Drawing.Size(1642, 504)
         Me.GRIDADV.TabIndex = 686
         Me.GRIDADV.TabStop = False
         '
@@ -936,7 +938,7 @@ Partial Class PayOutstanding
         Me.GPARTPAID.Controls.Add(Me.GRIDPART)
         Me.GPARTPAID.Location = New System.Drawing.Point(4, 22)
         Me.GPARTPAID.Name = "GPARTPAID"
-        Me.GPARTPAID.Size = New System.Drawing.Size(1572, 504)
+        Me.GPARTPAID.Size = New System.Drawing.Size(1642, 504)
         Me.GPARTPAID.TabIndex = 3
         Me.GPARTPAID.Text = "Part Paid"
         Me.GPARTPAID.UseVisualStyleBackColor = True
@@ -982,7 +984,7 @@ Partial Class PayOutstanding
         Me.GRIDPART.RowTemplate.Height = 20
         Me.GRIDPART.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDPART.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDPART.Size = New System.Drawing.Size(1572, 504)
+        Me.GRIDPART.Size = New System.Drawing.Size(1642, 504)
         Me.GRIDPART.TabIndex = 686
         Me.GRIDPART.TabStop = False
         '
@@ -1348,10 +1350,24 @@ Partial Class PayOutstanding
         Me.Label9.TabIndex = 673
         Me.Label9.Text = "Name"
         '
+        'CHKHOLDINTCALC
+        '
+        Me.CHKHOLDINTCALC.AutoSize = True
+        Me.CHKHOLDINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKHOLDINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKHOLDINTCALC.ForeColor = System.Drawing.Color.Black
+        Me.CHKHOLDINTCALC.Location = New System.Drawing.Point(472, 99)
+        Me.CHKHOLDINTCALC.Name = "CHKHOLDINTCALC"
+        Me.CHKHOLDINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKHOLDINTCALC.TabIndex = 763
+        Me.CHKHOLDINTCALC.Text = "Remove Hold"
+        Me.CHKHOLDINTCALC.UseVisualStyleBackColor = False
+        Me.CHKHOLDINTCALC.Visible = False
+        '
         'PayOutstanding
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1604, 672)
+        Me.ClientSize = New System.Drawing.Size(1444, 672)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -1468,4 +1484,5 @@ Partial Class PayOutstanding
     Friend WithEvents GBILL As DataGridViewTextBoxColumn
     Friend WithEvents GREGTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GINTAMT As DataGridViewTextBoxColumn
+    Friend WithEvents CHKHOLDINTCALC As CheckBox
 End Class
