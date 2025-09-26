@@ -15,7 +15,9 @@ Public Class YarnQualityMaster
     Sub clear()
         txtname.Clear()
         CMBCATEGORY.Text = ""
-
+        CMBMILLNAME.Text = ""
+        txtcount.Clear()
+        TXTSHADENO.Clear()
         txtremarks.Clear()
         txtname.Focus()
         CMBYARNQUALITY.Text = ""
@@ -168,6 +170,9 @@ Public Class YarnQualityMaster
                 OBJYARN.alParaval.Add(Userid)
                 OBJYARN.alParaval.Add(YearId)
 
+                OBJYARN.alParaval.Add(txtcount.Text.Trim)
+                OBJYARN.alParaval.Add(TXTSHADENO.Text.Trim)
+                OBJYARN.alParaval.Add(CMBMILLNAME.Text.Trim)
                 If EDIT = False Then
                     If USERADD = False Then
                         MsgBox("Insufficient Rights")
@@ -204,6 +209,7 @@ Public Class YarnQualityMaster
             fillYARNQUALITY(CMBYARNQUALITY, False)
             fillCATEGORY(CMBCATEGORY, False)
             FILLSTOREITEMNAME(CMBSTOREITEM)
+            FILLMILL(CMBMILLNAME, False)
             If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
         Catch ex As Exception
             Throw ex
@@ -291,6 +297,9 @@ Public Class YarnQualityMaster
                     CMBHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
                     TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
                     TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
+                    txtcount.Text = DT.Rows(0).Item("COUNT")
+                    TXTSHADENO.Text = DT.Rows(0).Item("SHADENO")
+                    CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
 
                     'CHARGES GRID
                     Dim OBJCMN As New ClsCommon
@@ -470,6 +479,9 @@ Public Class YarnQualityMaster
 
             If ClientName = "AADHAR" Then
                 GPSTORES.Visible = False
+                txtcount.Visible = True
+                LBLCOUNT.Visible = True
+                CMBCATEGORY.Visible = False
             End If
 
             If ClientName = "AADHAR" Then
@@ -581,4 +593,19 @@ Public Class YarnQualityMaster
         End Try
     End Sub
 
+    Private Sub CMBMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBMILLNAME.Validating
+        Try
+            If CMBMILLNAME.Text.Trim <> "" Then MILLVALIDATE(CMBMILLNAME, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBMILLNAME_Enter(sender As Object, e As EventArgs) Handles CMBMILLNAME.Enter
+        Try
+            If CMBMILLNAME.Text.Trim = "" Then FILLMILL(CMBMILLNAME, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
