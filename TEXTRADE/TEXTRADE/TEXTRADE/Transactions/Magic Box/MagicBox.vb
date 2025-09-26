@@ -889,6 +889,7 @@ NEXTLINE:
         TXTREMARKS.Clear()
         GRIDMAGICBOX.RowCount = 0
         getmax_SO_no()
+        GRIDDOUBLECLICK = False
     End Sub
 
     Private Sub MagicBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1205,6 +1206,23 @@ NEXTLINE:
             End If
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDMAGICBOX_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDMAGICBOX.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDMAGICBOX.RowCount > 0 Then
+                If GRIDDOUBLECLICK = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+
+                'end of block
+                GRIDMAGICBOX.Rows.RemoveAt(GRIDMAGICBOX.CurrentRow.Index)
+                getsrno(GRIDMAGICBOX)
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
