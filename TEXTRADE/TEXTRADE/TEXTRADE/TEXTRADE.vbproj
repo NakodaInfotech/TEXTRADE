@@ -515,6 +515,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.Designer.vb">
+      <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </Compile>
@@ -8680,6 +8686,9 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
+      <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
