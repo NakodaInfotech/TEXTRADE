@@ -980,6 +980,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator221 = New System.Windows.Forms.ToolStripSeparator()
         Me.RECODATA_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UploadExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPOADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1226,7 +1227,6 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.UploadExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6692,7 +6692,7 @@ Partial Class MDIMain
         '
         'UpdateEntriesToolStripMenuItem
         '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.LRStockToolStripMenuItem})
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP})
         Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
         Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
@@ -7018,7 +7018,7 @@ Partial Class MDIMain
         Me.LRStockToolStripMenuItem.Enabled = False
         Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
         Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.LRStockToolStripMenuItem.Text = "LR Stock"
+        Me.LRStockToolStripMenuItem.Text = "Upload LR Stock"
         '
         'ToolStripSeparator90
         '
@@ -7312,6 +7312,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
         Me.ToolStripSeparator20.Size = New System.Drawing.Size(187, 6)
+        '
+        'UploadExcelToolStripMenuItem
+        '
+        Me.UploadExcelToolStripMenuItem.Name = "UploadExcelToolStripMenuItem"
+        Me.UploadExcelToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.UploadExcelToolStripMenuItem.Text = "Upload Excel"
         '
         'YARNMODULE_MENU
         '
@@ -8961,12 +8967,6 @@ Partial Class MDIMain
         'Timer1
         '
         Me.Timer1.Interval = 10
-        '
-        'UploadExcelToolStripMenuItem
-        '
-        Me.UploadExcelToolStripMenuItem.Name = "UploadExcelToolStripMenuItem"
-        Me.UploadExcelToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.UploadExcelToolStripMenuItem.Text = "Upload Excel"
         '
         'MDIMain
         '
