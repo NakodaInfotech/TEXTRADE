@@ -31,6 +31,7 @@ Public Class SaleInvoiceDesign
 
 
 
+    'Dim RPTREGDATEWISEDTLS As New AgencyInvoiceRegDateWiseDetails
     Dim RPTPARTYDTLS As New InvoicePartyWiseDetails
     Dim RPTPARTYSUMM As New InvoicePartyWiseSummary
     Dim RPTPARTYPERCENT As New InvoicePartyWiseSummPercent
