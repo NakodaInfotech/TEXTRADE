@@ -669,9 +669,9 @@ NEXTLINE:
             Dim WIDTH As String = ""
             Dim WT As String = ""
             Dim CUT As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gcut.Index).Value)
-            Dim DESIGN As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESIGN.Index).Value
+            Dim DESIGN As String = ""
             Dim COLOR As String = ""
-            Dim PDESNO As String = ""
+            Dim PDESNO As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESIGN.Index).Value
             Dim PSHADE As String = ""
             Dim qty As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gQty.Index).Value)
             Dim qtyunit As String = GRIDMAGICBOX.Rows(ROWNO).Cells(gqtyunit.Index).Value
@@ -717,7 +717,7 @@ NEXTLINE:
 
             ALPARAVAL.Add("")
             ALPARAVAL.Add("")
-            ALPARAVAL.Add("PCS")
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gorderon.Index).Value)
 
             Dim OBJPO As New ClsPurchaseOrder()
             OBJPO.alParaval = ALPARAVAL
@@ -858,7 +858,7 @@ NEXTLINE:
 
             ALPARAVAL.Add("")
             ALPARAVAL.Add(1)    'VERIFIED
-            ALPARAVAL.Add("PCS")    'ORDERON
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gorderon.Index).Value)    'ORDERON
 
             Dim OBJSO As New ClsSaleOrder()
             OBJSO.alParaval = ALPARAVAL
@@ -871,7 +871,7 @@ NEXTLINE:
 
     Sub CLEAR()
         txtsrno.Text = 1
-        ORDERDATE.Value = Now.Date
+        ORDERDATE.Text = Now.Date
         CMBBUYERS.Text = ""
         CMBSELLERS.Text = ""
         TXTCRDAYS.Clear()
@@ -883,6 +883,7 @@ NEXTLINE:
         CMBDESIGN.Text = ""
         txtQTY.Clear()
         cmbqtyunit.Text = "Pcs"
+        CMBORDERON.Text = "PCS"
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATE.Clear()
@@ -1088,7 +1089,7 @@ NEXTLINE:
         GRIDMAGICBOX.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), ORDERDATE.Text.Trim, CMBBUYERS.Text.Trim, CMBSELLERS.Text.Trim, TXTCRDAYS.Text.Trim, TXTDISCOUNT.Text.Trim, TXTDELPERIOD.Text.Trim, duedate.Text.Trim, TXTORDERNO.Text.Trim, cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), TXTREMARKS.Text.Trim)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), ORDERDATE.Text.Trim, CMBBUYERS.Text.Trim, CMBSELLERS.Text.Trim, CMBORDERON.Text.Trim, TXTCRDAYS.Text.Trim, TXTDISCOUNT.Text.Trim, TXTDELPERIOD.Text.Trim, duedate.Text.Trim, TXTORDERNO.Text.Trim, cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), TXTREMARKS.Text.Trim)
             getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDMAGICBOX.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -1096,6 +1097,7 @@ NEXTLINE:
             GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value = ORDERDATE.Text.Trim
             GRIDMAGICBOX.Item(GBUYERS.Index, TEMPROW).Value = CMBBUYERS.Text.Trim
             GRIDMAGICBOX.Item(GSELLERS.Index, TEMPROW).Value = CMBSELLERS.Text.Trim
+            GRIDMAGICBOX.Item(gorderon.Index, TEMPROW).Value = CMBORDERON.Text.Trim
             GRIDMAGICBOX.Item(GCRDAYS.Index, TEMPROW).Value = TXTCRDAYS.Text.Trim
             GRIDMAGICBOX.Item(GDISCOUNT.Index, TEMPROW).Value = TXTDISCOUNT.Text.Trim
             GRIDMAGICBOX.Item(GDELPERIOD.Index, TEMPROW).Value = TXTDELPERIOD.Text.Trim
@@ -1122,6 +1124,7 @@ NEXTLINE:
         CMBDESIGN.Text = ""
         cmbitemname.Text = ""
         cmbqtyunit.Text = ""
+        CMBORDERON.Text = ""
         TXTCRDAYS.Clear()
         TXTCUT.Clear()
         TXTDELPERIOD.Clear()
@@ -1224,5 +1227,13 @@ NEXTLINE:
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTCRDAYS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTCRDAYS.KeyPress, TXTDISCOUNT.KeyPress, TXTORDERNO.KeyPress, TXTDELPERIOD.KeyPress, txtQTY.KeyPress
+        numkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTRATE.KeyPress
+        numdotkeypress(e, sender, Me)
     End Sub
 End Class
