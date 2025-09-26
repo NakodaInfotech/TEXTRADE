@@ -10,6 +10,7 @@ Imports DevExpress.XtraEditors
 Imports TEXTRADE.DevExpressTest.Docs.Demos
 Imports System.Security.Cryptography.X509Certificates
 Imports System.Security.Cryptography
+Imports DevExpress.CodeParser
 
 Public Class saledesign
 
@@ -203,11 +204,7 @@ Public Class saledesign
             End If
 
 
-
-
-
-
-
+            '''''************* START OF OG CODE
             Dim crParameterFieldDefinitions As ParameterFieldDefinitions
             Dim crParameterFieldDefinition As ParameterFieldDefinition
             Dim crParameterValues As New ParameterValues
@@ -627,6 +624,357 @@ SKIPINVOICE:
 
             CRPO.Zoom(100)
             CRPO.Refresh()
+            ''''''''''********* END OF OG CODE ******************
+
+
+
+
+
+
+
+
+            '************* start of RND Code *********************
+            '            Dim OBJ As New Object
+            '            If FRMSTRING = "PARTYWISEDTLS" Then OBJ = New InvoicePartyWiseDetails
+            '            If FRMSTRING = "PARTYWISESUMM" Then OBJ = New InvoicePartyWiseSummary
+
+            '            If FRMSTRING = "JOBBERWISEDTLS" Then OBJ = New InvoiceAgentWiseDetails
+            '            If FRMSTRING = "JOBBERWISESUMM" Then OBJ = New InvoiceAgentWiseSummary
+
+            '            If FRMSTRING = "ITEMWISEDTLS" Then OBJ = New InvoiceItemWiseDetails
+            '            If FRMSTRING = "ITEMWISESUMM" Then OBJ = New InvoiceItemWiseSummary
+            '            If FRMSTRING = "CATEGORYWISESUMM" Then OBJ = New InvoiceCategoryWiseSummary
+
+            '            If FRMSTRING = "QUALITYWISEDTLS" Then OBJ = New InvoiceQualityWiseDetails
+            '            If FRMSTRING = "QUALITYWISESUMM" Then OBJ = New InvoiceQualityWiseSummary
+
+            '            If FRMSTRING = "DESIGNWISEDTLS" Then OBJ = New InvoiceDesignWiseDetails
+            '            If FRMSTRING = "DESIGNWISESUMM" Then OBJ = New InvoiceDesignWiseSummary
+
+            '            If FRMSTRING = "SHADEWISEDTLS" Then OBJ = New InvoiceColorWiseDetails
+            '            If FRMSTRING = "SHADEWISESUMM" Then OBJ = New InvoiceColorWiseSummary
+
+            '            If FRMSTRING = "TRANSWISEDTLS" Then OBJ = New InvoiceTransWiseDetails
+            '            If FRMSTRING = "TRANSWISESUMM" Then OBJ = New InvoiceTransWiseSummary
+
+
+            '            If FRMSTRING = "EXPBUYER" Then
+            '                OBJ = New InvoiceReport_Export_Buyer
+            '                Me.Text = "Buyer Invoice"
+            '            End If
+            '            If FRMSTRING = "EXPCUSTOM" Then
+            '                OBJ = New InvoiceReport_Export_Custom
+            '                Me.Text = "Custom Invoice"
+            '            End If
+            '            If FRMSTRING = "EXPGST" Then
+            '                OBJ = New InvoiceReport_Export_GST
+            '                Me.Text = "GST Invoice"
+            '            End If
+
+            '            If FRMSTRING = "YARNDO" Then
+            '                OBJ = New InvoiceReport_YARNDO
+            '                Me.Text = "Yarn DO"
+            '            End If
+
+            '            If FRMSTRING = "PROFORMAINVOICE" Then OBJ = New ProformaInvoiceReport_TOTALLEFT
+
+
+            '            If FRMSTRING = "INVOICE" Then
+
+            '                'CODE DONE BY GULKIT
+            '                If INVOICETRANS = True Then
+            '                    If TRANSPORTCOPYA4 Then OBJ = New InvoiceReport_TOTALTRANSA4 Else OBJ = New InvoiceReport_TOTALTRANS
+            '                    GoTo SKIPINVOICE
+            '                End If
+
+
+            '                'CODE DONE BY GULKIT
+            '                If INVOICERETAIL = True Then
+            '                    OBJ = New InvoiceReport_Retail
+            '                    GoTo SKIPINVOICE
+            '                End If
+
+
+            '                If ClientName = "SKF" Then
+            '                    OBJ = New InvoiceReport_SKF
+            '                ElseIf ClientName = "AVIS" Then
+            '                    OBJ = New InvoiceReport_AVIS
+            '                ElseIf ClientName = "SAFFRON" Then
+            '                    OBJ = New InvoiceReport_SAFFRON
+            '                ElseIf ClientName = "PURPLE" Then
+            '                    OBJ = New InvoiceReport_PURPLE
+            '                ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
+            '                    OBJ = New InvoiceReport_CC
+            '                ElseIf ClientName = "SVS" Then
+            '                    OBJ = New InvoiceReport_SVS
+            '                ElseIf ClientName = "MANINATH" Then
+            '                    OBJ = New InvoiceReport_MANINATH
+            '                ElseIf ClientName = "MOMAI" Then
+            '                    OBJ = New InvoiceReport_MOMAI
+            '                ElseIf ClientName = "MAHAVIR" Then
+            '                    OBJ = New InvoiceReport_MAHAVIR
+            '                ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
+            '                    OBJ = New InvoiceReport_KOTHARI
+            '                ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
+            '                    OBJ = New InvoiceReport_BARKHASHUBHI
+            '                ElseIf ClientName = "DRDRAPES" Then
+            '                    OBJ = New InvoiceReport_DRDRAPES
+            '                ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
+            '                    OBJ = New InvoiceReport_SAKNVAHAN
+            '                ElseIf ClientName = "CHANDRA" Then
+            '                    OBJ = New InvoiceReport_CHANDRA
+            '                ElseIf ClientName = "DETLINE" Then
+            '                    OBJ = New InvoiceReport_DETLINE
+            '                ElseIf ClientName = "KDFAB" Then
+            '                    OBJ = New InvoiceReport_KDFAB
+            '                ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
+            '                    OBJ = New InvoiceReport_SBASOFTAS
+            '                ElseIf ClientName = "POONAM" Or ClientName = "KREEVE" Then
+            '                    OBJ = New InvoiceReport_POONAMKREEVE
+            '                ElseIf ClientName = "GELATO" Then
+            '                    If IGSTFORMAT = False Then OBJ = New InvoiceReport_GELATO Else OBJ = New InvoiceReport_GELATOIGST
+            '                ElseIf ClientName = "SANGHVI" Then
+            '                    OBJ = New InvoiceReport_SANGHVI
+            '                ElseIf ClientName = "SUPRIYA" Then
+            '                    OBJ = New InvoiceReport_SUPRIYA
+            '                ElseIf ClientName = "SIMPLEX" Then
+            '                    OBJ = New InvoiceReport_SIMPLEX
+            '                ElseIf ClientName = "SNCM" Then
+            '                    OBJ = New InvoiceReport_SNCM
+            '                ElseIf ClientName = "NAKODAINFOTECH" Then
+            '                    OBJ = New InvoiceReport_NI
+            '                ElseIf ClientName = "ABHEE" Then
+            '                    OBJ = New InvoiceReport_ABHEE
+            '                Else
+            '                    OBJ = New InvoiceReport_TOTALLEFT
+            '                End If
+
+            '            End If
+
+
+            '            Dim crParameterFieldDefinitions As ParameterFieldDefinitions
+            '            Dim crParameterFieldDefinition As ParameterFieldDefinition
+            '            Dim crParameterValues As New ParameterValues
+            '            Dim crParameterDiscreteValue As New ParameterDiscreteValue
+
+            '            '**************** SET SERVER ************************
+            '            Dim crtableLogonInfo As New TableLogOnInfo
+            '            Dim crConnecttionInfo As New ConnectionInfo
+            '            Dim crTables As Tables
+            '            Dim crTable As Table
+
+
+            '            With crConnecttionInfo
+            '                .ServerName = SERVERNAME
+            '                .DatabaseName = DatabaseName
+            '                .UserID = DBUSERNAME
+            '                .Password = Dbpassword
+            '                .IntegratedSecurity = Dbsecurity
+            '            End With
+
+
+            '            crTables = OBJ.Database.Tables
+
+
+            'SKIPINVOICE:
+
+            '            For Each crTable In crTables
+            '                crtableLogonInfo = crTable.LogOnInfo
+            '                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+            '                crTable.ApplyLogOnInfo(crtableLogonInfo)
+            '            Next
+
+
+            '            '************************ END *******************
+            '            getFromToDate()
+
+            '            If FRMSTRING <> "INVOICE" And FRMSTRING <> "EXPBUYER" And FRMSTRING <> "EXPCUSTOM" And FRMSTRING <> "EXPGST" And FRMSTRING <> "PROFORMAINVOICE" And FRMSTRING <> "YARNDO" Then
+            '                crParameterDiscreteValue.Value = CmpId
+            '                crParameterFieldDefinition = crParameterFieldDefinitions.Item("@CMPID")
+            '                crParameterValues = crParameterFieldDefinition.CurrentValues
+
+            '                crParameterValues.Clear()
+            '                crParameterValues.Add(crParameterDiscreteValue)
+            '                crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
+
+            '                crParameterDiscreteValue.Value = Locationid
+            '                crParameterFieldDefinition = crParameterFieldDefinitions.Item("@LOCATIONID")
+            '                crParameterValues = crParameterFieldDefinition.CurrentValues
+            '                crParameterValues.Add(crParameterDiscreteValue)
+            '                crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
+
+
+            '                crParameterDiscreteValue.Value = YearId
+            '                crParameterFieldDefinition = crParameterFieldDefinitions.Item("@YEARID")
+            '                crParameterValues = crParameterFieldDefinition.CurrentValues
+            '                crParameterValues.Add(crParameterDiscreteValue)
+            '                crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
+            '            End If
+
+            '            CRPO.SelectionFormula = strsearch
+            '            CRPO.ReportSource = OBJ
+
+
+            '            If FRMSTRING = "INVOICE" Then
+
+            '                'CODE DONE BY GULKIT
+            '                If INVOICETRANS = True Then
+            '                    If TRANSPORTCOPYA4 Then
+            '                        If ClientName = "VSTRADERS" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "VINAYAK" Or ClientName = "SUCCESS" Or ClientName = "SIDDHPOLYCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '                        OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                        OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                    Else
+            '                        CRPO.ReportSource = OBJ
+            '                    End If
+            '                    CRPO.Zoom(100)
+            '                    CRPO.Refresh()
+            '                    OBJ.CLOSE()
+            '                    OBJ.DISPOSE()
+            '                    Exit Sub
+            '                End If
+
+
+            '                'CODE DONE BY GULKIT
+            '                If INVOICERETAIL = True Then
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    CRPO.Zoom(100)
+            '                    CRPO.Refresh()
+            '                    OBJ.CLOSE()
+            '                    OBJ.DISPOSE()
+            '                    Exit Sub
+            '                End If
+
+            '                CRPO.Refresh()
+
+            '                If ClientName = "AVIS" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If PARTYCHANGEADD <> "" Then OBJ.DataDefinition.FormulaFields("PARTYCHANGEADD").Text = "'" & PARTYCHANGEADD & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                ElseIf ClientName = "CC" Or ClientName = "C3" Then
+            '                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '                ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
+            '                ElseIf ClientName = "DRDRAPES" Then
+            '                    OBJ.DataDefinition.FormulaFields("DIGITALSIGN").Text = 1
+            '                ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                ElseIf ClientName = "GELATO" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICETYPE").Text = "'" & INVOICECOPYNAME & "'"
+            '                ElseIf ClientName = "SUPRIYA" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                ElseIf ClientName = "SIMPLEX" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
+            '                    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
+            '                    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
+            '                    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+            '                ElseIf ClientName = "NAKODAINFOTECH" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                ElseIf ClientName = "SNCM" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                ElseIf ClientName = "ABHEE" Then
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
+            '                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
+            '                    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
+            '                    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
+            '                    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+
+            '                Else
+            '                    OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '                    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
+            '                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
+            '                    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
+            '                    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
+            '                    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
+            '                    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+            '                End If
+
+            '            ElseIf FRMSTRING = "PROFORMAINVOICE" Then
+            '                OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                If ClientName = "ALENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+
+            '            ElseIf FRMSTRING = "EXPBUYER" Then
+            '                OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '            ElseIf FRMSTRING = "EXPCUSTOM" Then
+            '                OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '            ElseIf FRMSTRING = "EXPGST" Then
+            '                OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+            '                If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+
+
+            '            ElseIf FRMSTRING = "YARNDO" Then
+            '                If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
+
+            '            ElseIf FRMSTRING = "PARTYWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "PARTYWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '                If INVOICESCREENTYPE = "LINE GST" Then OBJ.DataDefinition.FormulaFields("LINEGST").Text = 1 Else OBJ.DataDefinition.FormulaFields("LINEGST").Text = 0
+            '            ElseIf FRMSTRING = "JOBBERWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "JOBBERWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "ITEMWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "ITEMWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "CATEGORYWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "QUALITYWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "QUALITYWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "DESIGNWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "DESIGNWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "SHADEWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "SHADEWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "TRANSWISEDTLS" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            ElseIf FRMSTRING = "TRANSWISESUMM" Then
+            '                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            '            End If
+
+            '            CRPO.Zoom(100)
+            '            CRPO.Refresh()
+            '            OBJ.CLOSE()
+            '            OBJ.DISPOSE()
+            '*********** END OF RND CODE *******************
+
+
+
+
 
         Catch Exp As LoadSaveReportException
             MsgBox("Incorrect path for loading report.",
@@ -860,8 +1208,8 @@ SKIPINVOICE:
                     Dim documentProcessor As New PdfDocumentProcessor()
                     Dim fileHelper As New PdfFileHelper(documentProcessor, pdfViewer)
                     PATH = Application.StartupPath & "\" & PARTYNAME & "INVOICE_" & INVNO & ".pdf"
-                    documentProcessor.LoadDocument(path)
-                    pdfViewer.LoadDocument(path)
+                    documentProcessor.LoadDocument(PATH)
+                    pdfViewer.LoadDocument(PATH)
 
                     If Directory.Exists(Application.StartupPath & " \INVOICEPDF") = False Then Directory.CreateDirectory(Application.StartupPath & "\INVOICEPDF")
 
@@ -965,326 +1313,653 @@ SKIPINVOICE:
             Dim expo As New ExportOptions
             Dim oDfDopt As New DiskFileDestinationOptions
 
-            If FRMSTRING = "" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\SALEDETAILS.PDF"
-                '   expo = rpts.ExportOptions
+            'If FRMSTRING = "" Then
+            '    oDfDopt.DiskFileName = Application.StartupPath & "\SALEDETAILS.PDF"
+            '    '   expo = rpts.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    '   rpts.Export()
+            'ElseIf FRMSTRING = "INVOICE" Then
+
+
+            '    If INVOICETRANS = True Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        If TRANSPORTCOPYA4 Then
+            '            expo = RPTINVOICE_TOTALTRANSA4.ExportOptions
+            '            RPTINVOICE_TOTALTRANSA4.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINVOICE_TOTALTRANSA4.Export()
+            '            RPTINVOICE_TOTALTRANSA4.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '        Else
+            '            expo = RPTINVOICE_TOTALTRANS.ExportOptions
+            '            RPTINVOICE_TOTALTRANS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINVOICE_TOTALTRANS.Export()
+            '            RPTINVOICE_TOTALTRANS.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '        End If
+            '        Exit Sub
+            '    End If
+
+
+            '    If INVOICERETAIL = True Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_RETAIL.ExportOptions
+            '        If BLANKPAPER = True Then RPTINVOICE_RETAIL.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_RETAIL.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+            '        RPTINVOICE_RETAIL.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_RETAIL.Export()
+            '        RPTINVOICE_RETAIL.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '        Exit Sub
+            '    End If
+
+
+            '    If ClientName = "SAFFRON" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SAFFRON.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SAFFRON.Export()
+            '    ElseIf ClientName = "SAFFRONOFF" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SAFFRON.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SAFFRON.Export()
+            '    ElseIf ClientName = "MITESHBHAI" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_MITESHBHAI.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_MITESHBHAI.Export()
+            '        RPTINVOICE_SAFFRON.Export()
+            '    ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SBASOFTAS.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SBASOFTAS.Export()
+            '    ElseIf ClientName = "PURPLE" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_PURPLE.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_PURPLE.Export()
+            '    ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo = RPTINVOICE_CC.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_CC.Export()
+            '        RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '    ElseIf ClientName = "SVS" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SVS.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SVS.Export()
+            '    ElseIf ClientName = "AVIS" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_AVIS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo = RPTINVOICE_AVIS.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_AVIS.Export()
+            '        RPTINVOICE_AVIS.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    ElseIf ClientName = "SKF" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_SKF.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo = RPTINVOICE_SKF.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SKF.Export()
+            '        RPTINVOICE_SKF.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '    ElseIf ClientName = "MANINATH" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_MANINATH.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_MANINATH.Export()
+            '        'TEMPORARY
+            '        'ElseIf ClientName = "MANIBHADRA" Then
+            '        '    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        '    expo = RPTINVOICE_MANIBHADRA.ExportOptions
+            '        '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        '    expo.DestinationOptions = oDfDopt
+            '        '    RPTINVOICE_MANIBHADRA.Export()
+            '    ElseIf ClientName = "SANGHVI" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_SANGHVI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo = RPTINVOICE_SANGHVI.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SANGHVI.Export()
+            '        RPTINVOICE_SANGHVI.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    ElseIf ClientName = "KDFAB" Then
+
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_KDFAB.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        expo = RPTINVOICE_KDFAB.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_KDFAB.Export()
+            '        RPTINVOICE_KDFAB.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+
+            '    ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
+            '        RPTINVOICE_KOTHARI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_KOTHARI.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_KOTHARI.Export()
+            '        RPTINVOICE_KOTHARI.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '    ElseIf ClientName = "MAHAVIR" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_MAHAVIR.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_MAHAVIR.Export()
+            '    ElseIf ClientName = "JURON" Or ClientName = "MOHAN" Then
+            '        If INVOICESCREENTYPE = "LINE GST" Then
+            '            oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '            expo = RPTINVOICE_LINE.ExportOptions
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINVOICE_LINE.Export()
+            '        Else
+            '            oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '            expo = RPTINV_TOTAL.ExportOptions
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINV_TOTAL.Export()
+            '        End If
+            '    ElseIf ClientName = "MOMAI" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_MOMAI.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_MOMAI.Export()
+
+            '    ElseIf ClientName = "POONAM" Or ClientName = "KREEVE" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_POONAMKREEVE.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_POONAMKREEVE.Export()
+
+            '    ElseIf ClientName = "GELATO" Then
+            '        If IGSTFORMAT = False Then
+            '            oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '            RPTINVOICE_GELATO.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '            expo = RPTINVOICE_GELATO.ExportOptions
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINVOICE_GELATO.Export()
+            '            RPTINVOICE_GELATO.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '        Else
+            '            oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '            RPTINVOICE_GELATOIGST.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '            expo = RPTINVOICE_GELATOIGST.ExportOptions
+            '            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '            expo.DestinationOptions = oDfDopt
+            '            RPTINVOICE_GELATOIGST.Export()
+            '            RPTINVOICE_GELATOIGST.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '        End If
+
+            '    ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_BARKHASHUBHI.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_BARKHASHUBHI.Export()
+
+            '    ElseIf ClientName = "DRDRAPES" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("SENDMAIL").Text = 1
+            '        If PDFWITHDIGITALSIGN = True Then RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("DIGITALSIGN").Text = 1
+            '        expo = RPTINVOICE_DRDRAPES.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_DRDRAPES.Export()
+            '        RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("SENDMAIL").Text = 0
+            '        If PDFWITHDIGITALSIGN = True Then RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("DIGITALSIGN").Text = 0
+
+
+            '    ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        RPTINVOICE_SAKNVAHAN.DataDefinition.FormulaFields("SENDMAIL").Text = 1
+            '        expo = RPTINVOICE_SAKNVAHAN.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SAKNVAHAN.Export()
+            '        RPTINVOICE_SAKNVAHAN.DataDefinition.FormulaFields("SENDMAIL").Text = 0
+
+            '    ElseIf ClientName = "CHANDRA" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_CHANDRA.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_CHANDRA.Export()
+
+            '    ElseIf ClientName = "DETLINE" Then
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_DETLINE.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_DETLINE.Export()
+
+            '    ElseIf ClientName = "SUPRIYA" Then
+            '        RPTINVOICE_SUPRIYA.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SUPRIYA.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SUPRIYA.Export()
+            '        RPTINVOICE_SUPRIYA.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    ElseIf ClientName = "SNCM" Then
+            '        RPTINVOICE_SNCM.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_SNCM.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_SNCM.Export()
+            '        RPTINVOICE_SNCM.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    ElseIf ClientName = "NAKODAINFOTECH" Then
+            '        RPTINVOICE_NAKODAINFOTECH.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_NAKODAINFOTECH.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_NAKODAINFOTECH.Export()
+            '        RPTINVOICE_NAKODAINFOTECH.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '    ElseIf ClientName = "ABHEE" Then
+            '        RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_ABHEE.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_ABHEE.Export()
+            '        RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    Else
+            '        RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+            '        expo = RPTINVOICE_TOTALLEFT.ExportOptions
+            '        expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '        expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '        expo.DestinationOptions = oDfDopt
+            '        RPTINVOICE_TOTALLEFT.Export()
+            '        RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+            '    End If
+
+
+            '    'FOR DIGITAL SIGN ON PFD GENERATED
+            '    If PDFWITHDIGITALSIGN = True Then
+            '        For Each cert As X509Certificate2 In SelectCertificates()
+            '            lbCerts.Items.Add(New CertItem() With {.Name = cert.Subject, .Cert = cert})
+            '        Next cert
+            '        lbCerts.SelectedIndex = 0
+
+
+            '        Dim documentProcessor As New PdfDocumentProcessor()
+            '        Dim fileHelper As New PdfFileHelper(documentProcessor, pdfViewer)
+            '        Dim path As String = Application.StartupPath & "\INVOICE.PDF"
+            '        documentProcessor.LoadDocument(path)
+            '        pdfViewer.LoadDocument(path)
+
+            '        If Directory.Exists(Application.StartupPath & "\INVOICEPDF") = False Then Directory.CreateDirectory(Application.StartupPath & "\INVOICEPDF")
+
+            '        Dim fileName As String = Application.StartupPath & "\INVOICEPDF\INVOICE_" & Val(INVNO) & "-" & Val(AccFrom.Year) & ".pdf" 'fileHelper.SaveFileDialog() 'Application.StartupPath & "\INVOICE.pdf"
+            '        If (Not String.IsNullOrEmpty(fileName)) Then
+            '            documentProcessor.Document.Creator = "Nakoda Infotech"
+            '            documentProcessor.Document.Producer = "Nakoda Infotech"
+            '            Dim signature As New PdfSignature((CType(lbCerts.SelectedItem, CertItem)).Cert) With {.Location = "", .ContactInfo = "", .Reason = ""}
+            '            Try
+            '                documentProcessor.SaveDocument(fileName, New PdfSaveOptions() With {.Signature = signature})
+            '            Catch exception As CryptographicException
+            '                XtraMessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            '            End Try
+            '        End If
+            '        documentProcessor.Dispose()
+            '    End If
+
+
+
+
+            'ElseIf FRMSTRING = "PROFORMAINVOICE" Then
+            '    RPTPROFORMAINVOICE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            '    oDfDopt.DiskFileName = Application.StartupPath & "\PROFORMA.PDF"
+            '    expo = RPTPROFORMAINVOICE.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTPROFORMAINVOICE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            '    RPTPROFORMAINVOICE.Export()
+
+            'ElseIf FRMSTRING = "EXPBUYER" Then
+            '    expo = RPTINVOICE_BUYER.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTINVOICE_BUYER.Export()
+
+            'ElseIf FRMSTRING = "EXPCUSTOM" Then
+            '    expo = RPTINVOICE_CUSTOM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTINVOICE_CUSTOM.Export()
+
+            'ElseIf FRMSTRING = "EXPGST" Then
+            '    expo = RPTINVOICE_EXPGST.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTINVOICE_EXPGST.Export()
+
+            'ElseIf FRMSTRING = "YARNDO" Then
+            '    oDfDopt.DiskFileName = Application.StartupPath & "\YARNDO.PDF"
+            '    expo = RPTINVOICE_YARNDO.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTINVOICE_YARNDO.Export()
+
+            'Else
+            '    oDfDopt.DiskFileName = Application.StartupPath & "\SALESUMMARY.PDF"
+            '    '  expo = rptssum.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    'rptssum.Export()
+            'End If
+
+            'If FRMSTRING = "PARTYWISEDTLS" Then
+            '    expo = RPTPARTYDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTPARTYDTLS.Export()
+            'ElseIf FRMSTRING = "PARTYWISESUMM" Then
+            '    expo = RPTPARTYSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTPARTYSUMM.Export()
+            'ElseIf FRMSTRING = "JOBBERWISEDTLS" Then
+            '    expo = RPTAGENTDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTAGENTDTLS.Export()
+            'ElseIf FRMSTRING = "JOBBERWISESUMM" Then
+            '    expo = RPTAGENTSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTAGENTSUMM.Export()
+            'ElseIf FRMSTRING = "ITEMWISEDTLS" Then
+            '    expo = RPTITEMDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTITEMDTLS.Export()
+            'ElseIf FRMSTRING = "ITEMWISESUMM" Then
+            '    expo = RPTITEMSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTITEMSUMM.Export()
+            'ElseIf FRMSTRING = "CATEGORYWISESUMM" Then
+            '    expo = RPTCATEGORYSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTCATEGORYSUMM.Export()
+            'ElseIf FRMSTRING = "QUALITYWISEDTLS" Then
+            '    expo = RPTQUALITYDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTQUALITYDTLS.Export()
+            'ElseIf FRMSTRING = "QUALITYWISESUMM" Then
+            '    expo = RPTQUALITYSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTQUALITYSUMM.Export()
+            'ElseIf FRMSTRING = "DESIGNWISEDTLS" Then
+            '    expo = RPTDESIGNDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTDESIGNDTLS.Export()
+            'ElseIf FRMSTRING = "DESIGNWISESUMM" Then
+            '    expo = RPTDESIGNSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTDESIGNSUMM.Export()
+            'ElseIf FRMSTRING = "SHADEWISEDTLS" Then
+            '    expo = RPTSHADEDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTSHADEDTLS.Export()
+            'ElseIf FRMSTRING = "SHADEWISESUMM" Then
+            '    expo = RPTSHADESUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTSHADESUMM.Export()
+            'ElseIf FRMSTRING = "TRANSWISEDTLS" Then
+            '    expo = RPTTRANSDTLS.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTTRANSDTLS.Export()
+            'ElseIf FRMSTRING = "TRANSWISESUMM" Then
+            '    expo = RPTTRANSSUMM.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTTRANSSUMM.Export()
+            '    'ElseIf FRMSTRING = "MONTHLY" Then
+            '    '    expo = RPTMONTHLY.ExportOptions
+            '    '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    '    expo.DestinationOptions = oDfDopt
+            '    '    RPTMONTHLY.Export()
+            'End If
+            '************ END OF OG CODE ********************
+
+
+
+
+
+
+
+
+            Dim OBJ As New Object
+            If FRMSTRING = "PARTYWISEDTLS" Then OBJ = New InvoicePartyWiseDetails
+            If FRMSTRING = "PARTYWISESUMM" Then OBJ = New InvoicePartyWiseSummary
+
+            If FRMSTRING = "JOBBERWISEDTLS" Then OBJ = New InvoiceAgentWiseDetails
+            If FRMSTRING = "JOBBERWISESUMM" Then OBJ = New InvoiceAgentWiseSummary
+
+            If FRMSTRING = "ITEMWISEDTLS" Then OBJ = New InvoiceItemWiseDetails
+            If FRMSTRING = "ITEMWISESUMM" Then OBJ = New InvoiceItemWiseSummary
+            If FRMSTRING = "CATEGORYWISESUMM" Then OBJ = New InvoiceCategoryWiseSummary
+
+            If FRMSTRING = "QUALITYWISEDTLS" Then OBJ = New InvoiceQualityWiseDetails
+            If FRMSTRING = "QUALITYWISESUMM" Then OBJ = New InvoiceQualityWiseSummary
+
+            If FRMSTRING = "DESIGNWISEDTLS" Then OBJ = New InvoiceDesignWiseDetails
+            If FRMSTRING = "DESIGNWISESUMM" Then OBJ = New InvoiceDesignWiseSummary
+
+            If FRMSTRING = "SHADEWISEDTLS" Then OBJ = New InvoiceColorWiseDetails
+            If FRMSTRING = "SHADEWISESUMM" Then OBJ = New InvoiceColorWiseSummary
+
+            If FRMSTRING = "TRANSWISEDTLS" Then OBJ = New InvoiceTransWiseDetails
+            If FRMSTRING = "TRANSWISESUMM" Then OBJ = New InvoiceTransWiseSummary
+
+
+            If FRMSTRING = "EXPBUYER" Then
+                OBJ = New InvoiceReport_Export_Buyer
+                Me.Text = "Buyer Invoice"
+            End If
+            If FRMSTRING = "EXPCUSTOM" Then
+                OBJ = New InvoiceReport_Export_Custom
+                Me.Text = "Custom Invoice"
+            End If
+            If FRMSTRING = "EXPGST" Then
+                OBJ = New InvoiceReport_Export_GST
+                Me.Text = "GST Invoice"
+            End If
+
+            If FRMSTRING = "YARNDO" Then
+                OBJ = New InvoiceReport_YARNDO
+                Me.Text = "Yarn DO"
+            End If
+
+            If FRMSTRING = "PROFORMAINVOICE" Then OBJ = New ProformaInvoiceReport_TOTALLEFT
+
+
+            If FRMSTRING = "INVOICE" Then
+
+                'CODE DONE BY GULKIT
+                If INVOICETRANS = True Then
+                    If TRANSPORTCOPYA4 Then OBJ = New InvoiceReport_TOTALTRANSA4 Else OBJ = New InvoiceReport_TOTALTRANS
+                    GoTo SKIPINVOICE
+                End If
+
+
+                'CODE DONE BY GULKIT
+                If INVOICERETAIL = True Then
+                    OBJ = New InvoiceReport_Retail
+                    GoTo SKIPINVOICE
+                End If
+
+
+                If ClientName = "SKF" Then
+                    OBJ = New InvoiceReport_SKF
+                ElseIf ClientName = "AVIS" Then
+                    OBJ = New InvoiceReport_AVIS
+                ElseIf ClientName = "SAFFRON" Then
+                    OBJ = New InvoiceReport_SAFFRON
+                ElseIf ClientName = "PURPLE" Then
+                    OBJ = New InvoiceReport_PURPLE
+                ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
+                    OBJ = New InvoiceReport_CC
+                ElseIf ClientName = "SVS" Then
+                    OBJ = New InvoiceReport_SVS
+                ElseIf ClientName = "MANINATH" Then
+                    OBJ = New InvoiceReport_MANINATH
+                ElseIf ClientName = "MOMAI" Then
+                    OBJ = New InvoiceReport_MOMAI
+                ElseIf ClientName = "MAHAVIR" Then
+                    OBJ = New InvoiceReport_MAHAVIR
+                ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
+                    OBJ = New InvoiceReport_KOTHARI
+                ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
+                    OBJ = New InvoiceReport_BARKHASHUBHI
+                ElseIf ClientName = "DRDRAPES" Then
+                    OBJ = New InvoiceReport_DRDRAPES
+                ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
+                    OBJ = New InvoiceReport_SAKNVAHAN
+                ElseIf ClientName = "CHANDRA" Then
+                    OBJ = New InvoiceReport_CHANDRA
+                ElseIf ClientName = "DETLINE" Then
+                    OBJ = New InvoiceReport_DETLINE
+                ElseIf ClientName = "KDFAB" Then
+                    OBJ = New InvoiceReport_KDFAB
+                ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
+                    OBJ = New InvoiceReport_SBASOFTAS
+                ElseIf ClientName = "POONAM" Or ClientName = "KREEVE" Then
+                    OBJ = New InvoiceReport_POONAMKREEVE
+                ElseIf ClientName = "GELATO" Then
+                    If IGSTFORMAT = False Then OBJ = New InvoiceReport_GELATO Else OBJ = New InvoiceReport_GELATOIGST
+                ElseIf ClientName = "SANGHVI" Then
+                    OBJ = New InvoiceReport_SANGHVI
+                ElseIf ClientName = "SUPRIYA" Then
+                    OBJ = New InvoiceReport_SUPRIYA
+                ElseIf ClientName = "SIMPLEX" Then
+                    OBJ = New InvoiceReport_SIMPLEX
+                ElseIf ClientName = "SNCM" Then
+                    OBJ = New InvoiceReport_SNCM
+                ElseIf ClientName = "NAKODAINFOTECH" Then
+                    OBJ = New InvoiceReport_NI
+                ElseIf ClientName = "ABHEE" Then
+                    OBJ = New InvoiceReport_ABHEE
+                Else
+                    OBJ = New InvoiceReport_TOTALLEFT
+                End If
+
+            End If
+
+SKIPINVOICE:
+
+
+
+            If FRMSTRING = "INVOICE" Or FRMSTRING = "EXPBUYER" Or FRMSTRING = "EXPCUSTOM" Or FRMSTRING = "EXPGST" Then
+
+                oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
+                expo = OBJ.ExportOptions
+
+                If INVOICERETAIL = True Then
+                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                End If
+                If ClientName = "DRDRAPES" And PDFWITHDIGITALSIGN = True Then OBJ.DataDefinition.FormulaFields("DIGITALSIGN").Text = 1
+
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
-                '   rpts.Export()
-            ElseIf FRMSTRING = "INVOICE" Then
-
-
-                If INVOICETRANS = True Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    If TRANSPORTCOPYA4 Then
-                        expo = RPTINVOICE_TOTALTRANSA4.ExportOptions
-                        RPTINVOICE_TOTALTRANSA4.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINVOICE_TOTALTRANSA4.Export()
-                        RPTINVOICE_TOTALTRANSA4.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    Else
-                        expo = RPTINVOICE_TOTALTRANS.ExportOptions
-                        RPTINVOICE_TOTALTRANS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINVOICE_TOTALTRANS.Export()
-                        RPTINVOICE_TOTALTRANS.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    End If
-                    Exit Sub
-                End If
-
-
-                If INVOICERETAIL = True Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_RETAIL.ExportOptions
-                    If BLANKPAPER = True Then RPTINVOICE_RETAIL.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_RETAIL.DataDefinition.FormulaFields("WHITELABEL").Text = 0
-                    RPTINVOICE_RETAIL.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_RETAIL.Export()
-                    RPTINVOICE_RETAIL.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    Exit Sub
-                End If
-
-
-                If ClientName = "SAFFRON" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SAFFRON.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SAFFRON.Export()
-                ElseIf ClientName = "SAFFRONOFF" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SAFFRON.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SAFFRON.Export()
-                ElseIf ClientName = "MITESHBHAI" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_MITESHBHAI.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_MITESHBHAI.Export()
-                    RPTINVOICE_SAFFRON.Export()
-                ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SBASOFTAS.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SBASOFTAS.Export()
-                ElseIf ClientName = "PURPLE" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_PURPLE.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_PURPLE.Export()
-                ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = RPTINVOICE_CC.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_CC.Export()
-                    RPTINVOICE_CC.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                ElseIf ClientName = "SVS" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SVS.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SVS.Export()
-                ElseIf ClientName = "AVIS" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_AVIS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = RPTINVOICE_AVIS.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_AVIS.Export()
-                    RPTINVOICE_AVIS.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                ElseIf ClientName = "SKF" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_SKF.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = RPTINVOICE_SKF.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SKF.Export()
-                    RPTINVOICE_SKF.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                ElseIf ClientName = "MANINATH" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_MANINATH.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_MANINATH.Export()
-                    'TEMPORARY
-                    'ElseIf ClientName = "MANIBHADRA" Then
-                    '    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    '    expo = RPTINVOICE_MANIBHADRA.ExportOptions
-                    '    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    '    expo.DestinationOptions = oDfDopt
-                    '    RPTINVOICE_MANIBHADRA.Export()
-                ElseIf ClientName = "SANGHVI" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_SANGHVI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = RPTINVOICE_SANGHVI.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SANGHVI.Export()
-                    RPTINVOICE_SANGHVI.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                ElseIf ClientName = "KDFAB" Then
-
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_KDFAB.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = RPTINVOICE_KDFAB.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_KDFAB.Export()
-                    RPTINVOICE_KDFAB.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
-                ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
-                    RPTINVOICE_KOTHARI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_KOTHARI.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_KOTHARI.Export()
-                    RPTINVOICE_KOTHARI.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                ElseIf ClientName = "MAHAVIR" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_MAHAVIR.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_MAHAVIR.Export()
-                ElseIf ClientName = "JURON" Or ClientName = "MOHAN" Then
-                    If INVOICESCREENTYPE = "LINE GST" Then
-                        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                        expo = RPTINVOICE_LINE.ExportOptions
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINVOICE_LINE.Export()
-                    Else
-                        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                        expo = RPTINV_TOTAL.ExportOptions
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINV_TOTAL.Export()
-                    End If
-                ElseIf ClientName = "MOMAI" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_MOMAI.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_MOMAI.Export()
-
-                ElseIf ClientName = "POONAM" Or ClientName = "KREEVE" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_POONAMKREEVE.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_POONAMKREEVE.Export()
-
-                ElseIf ClientName = "GELATO" Then
-                    If IGSTFORMAT = False Then
-                        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                        RPTINVOICE_GELATO.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                        expo = RPTINVOICE_GELATO.ExportOptions
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINVOICE_GELATO.Export()
-                        RPTINVOICE_GELATO.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    Else
-                        oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                        RPTINVOICE_GELATOIGST.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                        expo = RPTINVOICE_GELATOIGST.ExportOptions
-                        expo.ExportDestinationType = ExportDestinationType.DiskFile
-                        expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                        expo.DestinationOptions = oDfDopt
-                        RPTINVOICE_GELATOIGST.Export()
-                        RPTINVOICE_GELATOIGST.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                    End If
-
-                ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_BARKHASHUBHI.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_BARKHASHUBHI.Export()
-
-                ElseIf ClientName = "DRDRAPES" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("SENDMAIL").Text = 1
-                    If PDFWITHDIGITALSIGN = True Then RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("DIGITALSIGN").Text = 1
-                    expo = RPTINVOICE_DRDRAPES.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_DRDRAPES.Export()
-                    RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("SENDMAIL").Text = 0
-                    If PDFWITHDIGITALSIGN = True Then RPTINVOICE_DRDRAPES.DataDefinition.FormulaFields("DIGITALSIGN").Text = 0
-
-
-                ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    RPTINVOICE_SAKNVAHAN.DataDefinition.FormulaFields("SENDMAIL").Text = 1
-                    expo = RPTINVOICE_SAKNVAHAN.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SAKNVAHAN.Export()
-                    RPTINVOICE_SAKNVAHAN.DataDefinition.FormulaFields("SENDMAIL").Text = 0
-
-                ElseIf ClientName = "CHANDRA" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_CHANDRA.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_CHANDRA.Export()
-
-                ElseIf ClientName = "DETLINE" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_DETLINE.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_DETLINE.Export()
-
-                ElseIf ClientName = "SUPRIYA" Then
-                    RPTINVOICE_SUPRIYA.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SUPRIYA.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SUPRIYA.Export()
-                    RPTINVOICE_SUPRIYA.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                ElseIf ClientName = "SNCM" Then
-                    RPTINVOICE_SNCM.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_SNCM.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_SNCM.Export()
-                    RPTINVOICE_SNCM.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                ElseIf ClientName = "NAKODAINFOTECH" Then
-                    RPTINVOICE_NAKODAINFOTECH.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_NAKODAINFOTECH.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_NAKODAINFOTECH.Export()
-                    RPTINVOICE_NAKODAINFOTECH.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                ElseIf ClientName = "ABHEE" Then
-                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_ABHEE.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_ABHEE.Export()
-                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                Else
-                    RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    oDfDopt.DiskFileName = Application.StartupPath & "\INVOICE.PDF"
-                    expo = RPTINVOICE_TOTALLEFT.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    RPTINVOICE_TOTALLEFT.Export()
-                    RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-
-                End If
+                OBJ.Export()
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+                If ClientName = "DRDRAPES" And PDFWITHDIGITALSIGN = True Then OBJ.DataDefinition.FormulaFields("DIGITALSIGN").Text = 0
 
 
                 'FOR DIGITAL SIGN ON PFD GENERATED
@@ -1318,158 +1993,76 @@ SKIPINVOICE:
                 End If
 
 
-
-
-            ElseIf FRMSTRING = "PROFORMAINVOICE" Then
-                RPTPROFORMAINVOICE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                oDfDopt.DiskFileName = Application.StartupPath & "\PROFORMA.PDF"
-                expo = RPTPROFORMAINVOICE.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTPROFORMAINVOICE.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                RPTPROFORMAINVOICE.Export()
-
-            ElseIf FRMSTRING = "EXPBUYER" Then
-                expo = RPTINVOICE_BUYER.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTINVOICE_BUYER.Export()
-
-            ElseIf FRMSTRING = "EXPCUSTOM" Then
-                expo = RPTINVOICE_CUSTOM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTINVOICE_CUSTOM.Export()
-
-            ElseIf FRMSTRING = "EXPGST" Then
-                expo = RPTINVOICE_EXPGST.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTINVOICE_EXPGST.Export()
-
-            ElseIf FRMSTRING = "YARNDO" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\YARNDO.PDF"
-                expo = RPTINVOICE_YARNDO.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTINVOICE_YARNDO.Export()
-
             Else
-                oDfDopt.DiskFileName = Application.StartupPath & "\SALESUMMARY.PDF"
-                '  expo = rptssum.ExportOptions
+                If FRMSTRING = "PROFORMA" Then
+                    oDfDopt.DiskFileName = Application.StartupPath & "\PROFORMA.PDF"
+                ElseIf FRMSTRING = "YARNDO" Then
+                    oDfDopt.DiskFileName = Application.StartupPath & "\YARNDO.PDF"
+                Else
+                    oDfDopt.DiskFileName = Application.StartupPath & "\SALEREPOORT.PDF"
+                End If
+
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                expo = OBJ.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
-                'rptssum.Export()
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+                OBJ.Export()
+
             End If
 
-            If FRMSTRING = "PARTYWISEDTLS" Then
-                expo = RPTPARTYDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTPARTYDTLS.Export()
-            ElseIf FRMSTRING = "PARTYWISESUMM" Then
-                expo = RPTPARTYSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTPARTYSUMM.Export()
-            ElseIf FRMSTRING = "JOBBERWISEDTLS" Then
-                expo = RPTAGENTDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTAGENTDTLS.Export()
-            ElseIf FRMSTRING = "JOBBERWISESUMM" Then
-                expo = RPTAGENTSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTAGENTSUMM.Export()
-            ElseIf FRMSTRING = "ITEMWISEDTLS" Then
-                expo = RPTITEMDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTITEMDTLS.Export()
-            ElseIf FRMSTRING = "ITEMWISESUMM" Then
-                expo = RPTITEMSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTITEMSUMM.Export()
-            ElseIf FRMSTRING = "CATEGORYWISESUMM" Then
-                expo = RPTCATEGORYSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTCATEGORYSUMM.Export()
-            ElseIf FRMSTRING = "QUALITYWISEDTLS" Then
-                expo = RPTQUALITYDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTQUALITYDTLS.Export()
-            ElseIf FRMSTRING = "QUALITYWISESUMM" Then
-                expo = RPTQUALITYSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTQUALITYSUMM.Export()
-            ElseIf FRMSTRING = "DESIGNWISEDTLS" Then
-                expo = RPTDESIGNDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTDESIGNDTLS.Export()
-            ElseIf FRMSTRING = "DESIGNWISESUMM" Then
-                expo = RPTDESIGNSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTDESIGNSUMM.Export()
-            ElseIf FRMSTRING = "SHADEWISEDTLS" Then
-                expo = RPTSHADEDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTSHADEDTLS.Export()
-            ElseIf FRMSTRING = "SHADEWISESUMM" Then
-                expo = RPTSHADESUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTSHADESUMM.Export()
-            ElseIf FRMSTRING = "TRANSWISEDTLS" Then
-                expo = RPTTRANSDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTTRANSDTLS.Export()
-            ElseIf FRMSTRING = "TRANSWISESUMM" Then
-                expo = RPTTRANSSUMM.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTTRANSSUMM.Export()
-                'ElseIf FRMSTRING = "MONTHLY" Then
-                '    expo = RPTMONTHLY.ExportOptions
-                '    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                '    expo.DestinationOptions = oDfDopt
-                '    RPTMONTHLY.Export()
-            End If
+            OBJ.CLOSE
+            OBJ.DISPOSE
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
 
-
+    Private Sub saledesign_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            RPTPROFORMAINVOICE.Dispose()
+            RPTINVOICE_BUYER.Dispose()
+            RPTINVOICE_CUSTOM.Dispose()
+            RPTINVOICE_EXPGST.Dispose()
+            RPTINVOICE_LINE.Dispose()
+            RPTINVOICE_SAFFRON.Dispose()
+            RPTINVOICE_PURPLE.Dispose()
+            RPTINV_TOTAL.Dispose()
+            RPTINVOICE_CC.Dispose()
+            RPTINVOICE_RETAIL.Dispose()
+            RPTINVOICE_SVS.Dispose()
+            RPTINVOICE_SHALIBHADRA.Dispose()
+            RPTINVOICE_SKF.Dispose()
+            RPTINVOICE_MANINATH.Dispose()
+            RPTINVOICE_SANGHVI.Dispose()
+            RPTINVOICE_KDFAB.Dispose()
+            RPTINVOICE_GELATO.Dispose()
+            RPTINVOICE_GELATOIGST.Dispose()
+            RPTINVOICE_KOTHARI.Dispose()
+            RPTINVOICE_MAHAVIR.Dispose()
+            RPTINVOICE_POONAMKREEVE.Dispose()
+            RPTINVOICE_POONAMKREEVEIGST.Dispose()
+            RPTINVOICE_BARKHASHUBHI.Dispose()
+            RPTINVOICE_DRDRAPES.Dispose()
+            RPTINVOICE_SAKNVAHAN.Dispose()
+            RPTINVOICE_CHANDRA.Dispose()
+            RPTINVOICE_DETLINE.Dispose()
+            RPTINVOICE_TOTALTRANS.Dispose()
+            RPTINVOICE_TOTALTRANSA4.Dispose()
+            RPTINVOICE_TOTALLEFT.Dispose()
+            RPTINVOICE_SBASOFTAS.Dispose()
+            RPTINVOICE_AVIS.Dispose()
+            RPTINVOICE_MOMAI.Dispose()
+            RPTINVOICE_SIMPLEX.Dispose()
+            RPTINVOICE_SNCM.Dispose()
+            RPTINVOICE_ABHEE.Dispose()
+            RPTINVOICE_SUPRIYA.Dispose()
+            RPTINVOICE_YARNDO.Dispose()
+            RPTINVOICE_NAKODAINFOTECH.Dispose()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
