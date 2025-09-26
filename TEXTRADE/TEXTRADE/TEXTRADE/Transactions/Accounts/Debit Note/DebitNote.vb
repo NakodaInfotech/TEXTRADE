@@ -3240,6 +3240,7 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
                             If DT1.Rows.Count > 0 Then
                                 CMBSACDESC.Text = DT1.Rows(0).Item("HSNDESC")
                                 TXTSACCODE.Text = DT1.Rows(0).Item("HSNCODE")
+                                Call CMBSACDESC_Validated(sender, e)
                             End If
 
                         End If

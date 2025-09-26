@@ -1164,7 +1164,7 @@ Public Class PurchaseReturn
         End Try
     End Sub
 
-    Sub fillcmb()
+    Sub FILLCMB()
         Try
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'")
             If CMBTRANS.Text.Trim = "" Then FILLNAME(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'")
