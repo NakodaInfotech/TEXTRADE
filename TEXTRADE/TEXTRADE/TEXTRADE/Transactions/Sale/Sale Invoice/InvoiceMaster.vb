@@ -2244,6 +2244,11 @@ CHECKNEXTLINE:
         'TO BLOCK EXCESS QTY
         'done temp
         If ClientName = "ABHEE" Then
+            If Val(GRIDINVOICE.Rows.Count) > 6 Then
+                EP.SetError(cmbname, "Maximum 6 LR Allowed in Single Invoice")
+                bln = False
+            End If
+
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
                 If (ROW.Cells(OGDNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
                     EP.SetError(cmbname, "Excess Qty Not Allowed")
