@@ -1080,7 +1080,6 @@ Public Class PurchaseMaster
                 End If
                 alParaval.Add(TEMPBILLNO)
                 IntResult = OBJINV.UPDATE()
-                'DONE TEMP
                 MessageBox.Show("Details Updated")
             End If
 
@@ -1118,7 +1117,6 @@ Public Class PurchaseMaster
 
 
             EDIT = False
-            'DONE TEMP
             If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
                 CLEAR()
             Else
@@ -1594,7 +1592,6 @@ CHECKNEXTLINE:
         End If
 
 
-        'DONE TEMP
         If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
             EP.SetError(cmbname, "Please Select Purchase Order")
             bln = False
@@ -1621,7 +1618,6 @@ CHECKNEXTLINE:
 
 
         If Convert.ToDateTime(DTPARTYBILLDATE.Text).Date >= "01/07/2017" Then
-            'DONE TEMP
             If TXTSTATECODE.Text.Trim.Length = 0 Then
                 EP.SetError(TXTSTATECODE, "Please enter the state code")
                 bln = False
@@ -1670,7 +1666,6 @@ CHECKNEXTLINE:
                     bln = False
                 End If
 
-                'DONE TEMP
                 If row.Cells(GHSNCODE.Index).Value = "" Then
                     EP.SetError(CMBSERVICETYPE, "HSN Cannot be Blank")
                     bln = False
