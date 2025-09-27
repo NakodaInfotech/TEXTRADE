@@ -2394,6 +2394,13 @@ line1:
                         ExportDataGridViewToPdf(GRIDOUTSTANDING, sfd.FileName)
                     End If
                 End Using
+
+            Else
+                If MsgBox(" It Will Take Time .... Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                    ExportDataGridViewToExcel(ClientName, CmpId, YearId)
+                    ' Exit Sub
+                End If
             End If
 
             '' Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
@@ -2401,11 +2408,7 @@ line1:
             ''End If
 
 
-            If MsgBox(" Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-                ExportDataGridViewToExcel(ClientName, CmpId, YearId)
-                ' Exit Sub
-            End If
+
 
             'Dim OBJPL As New PLDesign
             ''OBJPL.frmstring = "OUTSTANDING"
