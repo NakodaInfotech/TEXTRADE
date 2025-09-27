@@ -522,17 +522,20 @@ SKIPINVOICE:
                     CRPO.ReportSource = RPTINVOICE_SNCM
                     RPTINVOICE_SNCM.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                 ElseIf ClientName = "ABHEE" Then
+
+
                     CRPO.ReportSource = RPTINVOICE_ABHEE
+
+                    'FETCH SO DETAILS AND PASS IN PRINT FORMAT
+                    Dim OBJCMN As New ClsCommon
+                    Dim DTSO As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(SO_MTRS),0) AS SOQTY, ISNULL(SUM(SO_RECDMTRS),0) AS ISSQTY, ISNULL(SUM(BALANCE),0) AS BALQTY ", "", " INVOICEMASTER_SODETAILS INNER JOIN ALLSALEORDER_DESC ON INVOICE_FROMNO = ALLSALEORDER_DESC.SO_NO AND INVOICE_FROMSRNO = ALLSALEORDER_DESC.SO_GRIDSRNO AND INVOICE_FROMTYPE = ALLSALEORDER_DESC.TYPE INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND INVOICEMASTER_SODETAILS.INVOICE_NO = " & Val(INVNO) & " AND REGISTERMASTER.REGITER_NAME = '" & registername & "' AND INVOICEMASTER_SODETAILS.INVOICE_YEARID = " & YearId)
+                    If DTSO.Rows.Count > 0 Then
+                        RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SOQTY").Text = Val(DTSO.Rows(0).Item("SOQTY"))
+                        RPTINVOICE_ABHEE.DataDefinition.FormulaFields("ISSQTY").Text = Val(DTSO.Rows(0).Item("ISSQTY"))
+                        RPTINVOICE_ABHEE.DataDefinition.FormulaFields("BALQTY").Text = Val(DTSO.Rows(0).Item("BALQTY"))
+                    End If
                     RPTINVOICE_ABHEE.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    If BLANKPAPER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If SHOWSIGNONINVOICE = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
-                    RPTINVOICE_ABHEE.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
-                    If INVTOPHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("TOPHEADER").Text = 0
-                    If INVCENTREHEADER = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
-                    If INVSHOWSRNO = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
-                    If INVSHOWITEMDESIGN = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
 
                 Else
                     CRPO.ReportSource = RPTINVOICE_TOTALLEFT
