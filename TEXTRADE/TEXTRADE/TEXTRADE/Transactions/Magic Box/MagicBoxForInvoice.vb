@@ -806,7 +806,7 @@ NEXTLINE:
                 TXTDESC.Text = ""     ' or fill if available
                 TXTLR.Text = ""       ' or fill if available
                 TXTBALENO.Text = "" ' DTROW("BALENO").ToString()
-                TXTPCS.Text = DTROW("QTY").ToString()
+                TXTPCS.Text = DTROW("PERQTY").ToString()
                 'TXTCUT.Text = DTROW("CUT").ToString()
                 TXTMTRS.Text = Format(Val(DTROW("MTRS").ToString()), "0.00")
                 TXTRATES.Text = Format(Val(DTROW("RATE").ToString()), "0.00")
