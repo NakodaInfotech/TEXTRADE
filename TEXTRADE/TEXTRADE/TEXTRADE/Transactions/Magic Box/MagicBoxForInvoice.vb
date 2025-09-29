@@ -1837,8 +1837,7 @@ line1:
 
             'GET DETAILS FROM PURCHASE ORDER
             If Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) > 0 Then
-                Dim DTPO As DataTable = OBJCMN.SEARCH(" ROUND(ASO_QTY - ASO_RECDQTY,2) AS BALPCS, ROUND(ASO_MTRS - ASO_RECDMTRS,2) AS BALMTRS, ASO_RATE AS RATE ", "", " ALLAGENCYSALEORDER_DESC ", " AND ASO_NO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) & " AND ASO_GRIDSRNO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value & "' AND ASO_YEARID = " & YearId)
-                Dim TFROMTYPE As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value.ToString.Replace("AGENCY", "")
+                Dim DTPO As DataTable = OBJCMN.SEARCH(" ROUND(PO_QTY - PO_RECDQTY,2) AS BALPCS, ROUND(PO_MTRS - PO_RECDMTRS,2) AS BALMTRS, PO_RATE AS RATE ", "", " ALLPURCHASEORDER_DESC ", " AND PO_NO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) & " AND PO_GRIDSRNO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value.ToString.Replace("AGENCYSALE", "PURCHASE") & "' AND PO_YEARID = " & TEMPYEARID)
                 ALPARAVAL.Add("1")  'ORDERGRIDSRNO
                 ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value)    'ORDERITEMNAME
                 ALPARAVAL.Add("")   'ORDERDESIGN
@@ -1847,7 +1846,7 @@ line1:
                 ALPARAVAL.Add(Val(DTPO.Rows(0).Item("BALMTRS")))
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value))   'FROMNO
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value))   'ORDERFROMSRNO
-                ALPARAVAL.Add(TFROMTYPE)    'ORDERFROMTYPE
+                ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value.ToString.Replace("AGENCYSALE", "PURCHASE"))    'ORDERFROMTYPE
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPCS.Index).Value))    'GRNPCS
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value)) 'ORDERGRNMTRS
                 ALPARAVAL.Add(Val(DTPO.Rows(0).Item("RATE")))   'ORDERRATE

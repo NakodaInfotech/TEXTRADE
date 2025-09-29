@@ -4612,7 +4612,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles CMDSELECTPO.Click
+    Private Sub CMDSELECTPO_Click(sender As Object, e As EventArgs) Handles CMDSELECTPO.Click
         Try
 
             If cmbname.Text.Trim = "" Then
