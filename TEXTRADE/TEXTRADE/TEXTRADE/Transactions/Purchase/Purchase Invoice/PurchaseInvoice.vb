@@ -229,10 +229,7 @@ Public Class PurchaseMaster
         CMBCOSTCENTERNAME.Text = ""
         CHKINTCALC.Checked = False
     End Sub
-    Public Sub SaveInvoice()
-        ' just call the private button handler
-        cmdok_Click(Nothing, EventArgs.Empty)
-    End Sub
+
     Sub FILLUPLOAD()
 
         If GRIDUPLOADDOUBLECLICK = False Then
