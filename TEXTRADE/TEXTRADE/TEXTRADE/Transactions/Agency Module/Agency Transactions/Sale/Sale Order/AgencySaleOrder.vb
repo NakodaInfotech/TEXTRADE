@@ -1,7 +1,8 @@
 ﻿
-Imports BL
 Imports System.ComponentModel
 Imports System.IO
+Imports BL
+Imports DevExpress.Office.Services
 
 Public Class AgencySaleOrder
 
@@ -222,6 +223,7 @@ Public Class AgencySaleOrder
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBORDERON.Text.Trim)
 
             Dim objclsPurord As New ClsAgencySaleOrder()
             objclsPurord.alParaval = alParaval
@@ -879,6 +881,7 @@ line1:
             Else
                 txtsrno.Text = 1
             End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -1013,7 +1016,7 @@ line1:
                         cmbname.Enabled = False
                         If ClientName <> "MASHOK" Then CMBPACKING.Enabled = False
                     End If
-
+                    CMBORDERON.Text = dr("ORDERON")
                 Next
                 GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
             Else
@@ -1889,6 +1892,7 @@ line1:
 
     Private Sub AgencySaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
                 LBLCONSIGNEE.Text = "Mobile No."
@@ -2072,7 +2076,9 @@ line1:
                 CHKVERIFY.Visible = False
                 Label59.Visible = False
                 CMBSAMPLE.Visible = False
-
+                CMBORDERON.Text = "PCS"
+                CMBORDERON.Visible = True
+                LBLORDERON.Visible = True
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 CMBGRIDREMARKS.TabStop = False
