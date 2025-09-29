@@ -184,6 +184,7 @@ Public Class MagicBox
                 alParaval.Add("") 'CMBSAMPLE.Text.Trim)
                 alParaval.Add("") 'CMBFROMCITY.Text.Trim)
                 alParaval.Add(1)    'VERIFIED
+                alParaval.Add(row.Cells(gorderon.Index).Value)
 
                 Dim OBJSO As New ClsAgencySaleOrder()
                 OBJSO.alParaval = alParaval

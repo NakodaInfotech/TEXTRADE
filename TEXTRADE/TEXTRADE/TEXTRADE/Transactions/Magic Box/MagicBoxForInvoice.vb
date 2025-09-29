@@ -133,7 +133,7 @@ Public Class MagicBoxForInvoice
 
                 alParaval.Add("TOTAL GST")
                 alParaval.Add(SRNO)
-                alParaval.Add(row.Cells(GSELLERS.Index).Value)
+                alParaval.Add(row.Cells(GBUYERS.Index).Value)
                 alParaval.Add(0)
                 alParaval.Add(row.Cells(GNO.Index).Value)
                 alParaval.Add(Format(Convert.ToDateTime(row.Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy"))    'PODATE
@@ -149,7 +149,7 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("") 'CMBFORMNO.Text.Trim)
                 alParaval.Add(Val(row.Cells(GCRDAYS.Index).Value))
                 alParaval.Add(Format(Convert.ToDateTime(row.Cells(GBILLDATE.Index).Value).Date.AddDays(Val(row.Cells(GCRDAYS.Index).Value)).Date, "MM/dd/yyyy")) 'DueDate.Value.Date)
-                alParaval.Add(row.Cells(GBUYERS.Index).Value)
+                alParaval.Add(row.Cells(GSELLERS.Index).Value)
 
                 alParaval.Add(row.Cells(GTRANS.Index).Value)
                 alParaval.Add("") 'TXTVEHICLENO.Text.Trim)
@@ -356,7 +356,7 @@ Public Class MagicBoxForInvoice
 
 
                 Dim OBJCMN As New ClsCommon
-                Dim DTPO As DataTable = OBJCMN.SEARCH(" ROUND(ASO_QTY - ASO_RECDQTY,2) AS BALPCS, ROUND(ASO_MTRS - ASO_RECDMTRS,2) AS BALMTRS, ASO_RATE AS RATE ", "", " ALLAGENCYSALEORDER_DESC ", " AND ASO_NO = " & Val(row.Cells(GPONO.Index).Value) & " AND ASO_GRIDSRNO = " & Val(row.Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & row.Cells(GPOTYPE.Index).Value & "' AND ASO_YEARID = " & YearId)
+                Dim DTPO As DataTable = OBJCMN.SEARCH("  (CASE WHEN ASO_ORDERON = 'PCS' THEN ROUND(ASO_MTRS - ASO_RECDQTY, 2) ELSE ROUND(ASO_QTY - ASO_RECDQTY, 2) END) AS BALPCS, ROUND(ALLAGENCYSALEORDER_DESC.ASO_MTRS - ALLAGENCYSALEORDER_DESC.ASO_RECDMTRS, 2) AS BALMTRS, ALLAGENCYSALEORDER_DESC.ASO_RATE AS RATE  ", "", " ALLAGENCYSALEORDER_DESC INNER JOIN ALLAGENCYSALEORDER ON ALLAGENCYSALEORDER_DESC.ASO_NO = ALLAGENCYSALEORDER.ASO_no AND ALLAGENCYSALEORDER_DESC.TYPE = ALLAGENCYSALEORDER.TYPE AND ALLAGENCYSALEORDER_DESC.ASO_YEARID = ALLAGENCYSALEORDER.ASO_YEARID  ", " AND ALLAGENCYSALEORDER_DESC.ASO_NO = " & Val(row.Cells(GPONO.Index).Value) & " AND ALLAGENCYSALEORDER_DESC.ASO_GRIDSRNO = " & Val(row.Cells(GPOSRNO.Index).Value) & " AND ALLAGENCYSALEORDER_DESC.TYPE = '" & row.Cells(GPOTYPE.Index).Value & "' AND ALLAGENCYSALEORDER_DESC.ASO_YEARID = " & YearId)
 
                 alParaval.Add("1")  'ORDERGRIDSRNO
                 alParaval.Add(row.Cells(gitemname.Index).Value)    'ORDERITEMNAME
@@ -1258,13 +1258,13 @@ LINE2:
 
 LINE1:
             For I As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
-                If GRIDMAGICBOX.Rows(GRIDMAGICBOX.CurrentRow.Index).Cells(gsrno.Index).Value = Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) Then
+                If Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) = GRIDMAGICBOX.CurrentRow.Index + 1 Then
                     DT_CHGSDETAILS.Rows.RemoveAt(I)
                     GoTo LINE1
                 End If
             Next
             For I As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
-                If GRIDMAGICBOX.Rows(GRIDMAGICBOX.CurrentRow.Index).Cells(gsrno.Index).Value < Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) Then
+                If Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) > (GRIDMAGICBOX.CurrentRow.Index + 1) Then
                     DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO") = Val(DT_CHGSDETAILS.Rows(I).Item("EMAINSRNO")) - 1
                 End If
             Next
@@ -1675,7 +1675,7 @@ line1:
             ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))
 
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)
-            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))   'partybilldate
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy"))   'partybilldate
 
             ALPARAVAL.Add("")   'agent
             ALPARAVAL.Add("")   'challan no
@@ -1683,7 +1683,7 @@ line1:
             ALPARAVAL.Add("")   'refno
 
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GCRDAYS.Index).Value)
-            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date.AddDays(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCRDAYS.Index).Value)), "MM/dd/yyyy"))   'duedate
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GBILLDATE.Index).Value).Date.AddDays(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GCRDAYS.Index).Value)), "MM/dd/yyyy"))   'duedate
 
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GTRANS.Index).Value)
             ALPARAVAL.Add("")   'vehicleno
@@ -1837,7 +1837,7 @@ line1:
 
             'GET DETAILS FROM PURCHASE ORDER
             If Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) > 0 Then
-                Dim DTPO As DataTable = OBJCMN.SEARCH(" ROUND(PO_QTY - PO_RECDQTY,2) AS BALPCS, ROUND(PO_MTRS - PO_RECDMTRS,2) AS BALMTRS, PO_RATE AS RATE ", "", " ALLPURCHASEORDER_DESC ", " AND PO_NO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) & " AND PO_GRIDSRNO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value.ToString.Replace("AGENCYSALE", "PURCHASE") & "' AND PO_YEARID = " & TEMPYEARID)
+                Dim DTPO As DataTable = OBJCMN.SEARCH(" (CASE WHEN PO_ORDERON = 'PCS' THEN ROUND(PO_MTRS - PO_RECDQTY,2) ELSE ROUND(PO_QTY - PO_RECDQTY,2) END) AS BALPCS, ROUND(PO_MTRS - PO_RECDMTRS,2) AS BALMTRS, PO_RATE AS RATE, PO_ORDERON AS ORDERON ", "", " ALLPURCHASEORDER_DESC ", " AND PO_NO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPONO.Index).Value) & " AND PO_GRIDSRNO = " & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPOSRNO.Index).Value) & " AND TYPE = '" & GRIDMAGICBOX.Rows(ROWNO).Cells(GPOTYPE.Index).Value.ToString.Replace("AGENCYSALE", "PURCHASE") & "' AND PO_YEARID = " & TEMPYEARID)
                 ALPARAVAL.Add("1")  'ORDERGRIDSRNO
                 ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value)    'ORDERITEMNAME
                 ALPARAVAL.Add("")   'ORDERDESIGN
@@ -1850,7 +1850,7 @@ line1:
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GPCS.Index).Value))    'GRNPCS
                 ALPARAVAL.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value)) 'ORDERGRNMTRS
                 ALPARAVAL.Add(Val(DTPO.Rows(0).Item("RATE")))   'ORDERRATE
-                ALPARAVAL.Add("PCS")    'ORDERON
+                ALPARAVAL.Add(DTPO.Rows(0).Item("ORDERON"))    'ORDERON
 
             Else
                 ALPARAVAL.Add("")   'ORDERGRIDSRNO
