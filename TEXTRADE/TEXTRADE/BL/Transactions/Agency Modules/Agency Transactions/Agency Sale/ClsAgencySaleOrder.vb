@@ -224,7 +224,6 @@ Public Class ClsAgencySaleOrder
                     I = I + 1
                     .Add(New SqlClient.SqlParameter("@VERIFIED", alParaval(I)))
                     I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@ORDERON", alParaval(I)))
                 I = I + 1
 
