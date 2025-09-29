@@ -3,7 +3,8 @@
 Public Class SelectAgencySO
 
 
-    Public PARTYNAME As String = ""
+    Public BUYERNAME As String = ""
+    Public SELLERNAME As String = ""
     Public FRMSTRING As String = ""
     Public DT As New DataTable
 
@@ -28,9 +29,14 @@ Public Class SelectAgencySO
             Dim OPWHERE As String = ""
             Cursor.Current = Cursors.WaitCursor
 
-            If PARTYNAME <> "" Then
-                WHERE = WHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & PARTYNAME & "'"
-                OPWHERE = OPWHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & PARTYNAME & "'"
+            If BUYERNAME <> "" Then
+                WHERE = WHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & BUYERNAME & "'"
+                OPWHERE = OPWHERE & " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & BUYERNAME & "'"
+            End If
+
+            If SELLERNAME <> "" Then
+                WHERE = WHERE & " AND ISNULL(PACKINGLEDGERS.ACC_CMPNAME,'') = '" & SELLERNAME & "'"
+                OPWHERE = OPWHERE & " AND ISNULL(PACKINGLEDGERS.ACC_CMPNAME,'') = '" & SELLERNAME & "'"
             End If
 
 

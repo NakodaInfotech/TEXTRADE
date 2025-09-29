@@ -788,7 +788,8 @@ NEXTLINE:
             Dim OBJCMN As New ClsCommon
             Dim DTSO As New DataTable
             Dim OBJSELECTSO As New SelectAgencySO
-            OBJSELECTSO.PARTYNAME = CMBBUYERS.Text.Trim
+            OBJSELECTSO.BUYERNAME = CMBBUYERS.Text.Trim
+            OBJSELECTSO.SELLERNAME = CMBSELLERS.Text.Trim
             OBJSELECTSO.FRMSTRING = "MAGICBOX"
             OBJSELECTSO.ShowDialog()
             DTSO = OBJSELECTSO.DT
