@@ -10748,4 +10748,24 @@ SKIPLINE:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub UploadExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadExcelToolStripMenuItem.Click
+        Try
+            Dim Objpinvoice As New UploadExcel
+            Objpinvoice.MdiParent = Me
+            Objpinvoice.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AgencyInvoiceReportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencyInvoiceReportsToolStripMenuItem.Click
+        Try
+            'Dim OBJAGNCYINVRPT As New AgencyInvoiceReport
+            'OBJAGNCYINVRPT.MdiParent = Me
+            'OBJAGNCYINVRPT.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

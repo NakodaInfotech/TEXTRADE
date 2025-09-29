@@ -64,6 +64,12 @@ Public Class ClsYarnQualityMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@COUNT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHADENO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
+                I += 1
 
             End With
 
@@ -118,6 +124,12 @@ Public Class ClsYarnQualityMaster
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@COUNT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHADENO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPID", alParaval(I)))

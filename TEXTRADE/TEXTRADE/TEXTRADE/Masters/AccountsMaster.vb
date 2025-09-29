@@ -2393,7 +2393,13 @@ line1:
 
     Private Sub CMBBILLTO_Enter(sender As Object, e As EventArgs) Handles CMBBILLTO.Enter
         Try
-            If CMBBILLTO.Text.Trim = "" Then FILLNAME(CMBBILLTO, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            If CMBBILLTO.Text.Trim = "" Then
+                If ClientName = "AARYA" Then
+                    FILLNAME(CMBBILLTO, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS')")
+                Else
+                    FILLNAME(CMBBILLTO, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2401,7 +2407,13 @@ line1:
 
     Private Sub CMBBILLTO_Validating(sender As Object, e As CancelEventArgs) Handles CMBBILLTO.Validating
         Try
-            NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBBILLTO.Text.Trim = "" Then
+                If ClientName = "AARYA" Then
+                    NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry CREDITORS')", "Sundry debtors", "ACCOUNTS")
+                Else
+                    NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try

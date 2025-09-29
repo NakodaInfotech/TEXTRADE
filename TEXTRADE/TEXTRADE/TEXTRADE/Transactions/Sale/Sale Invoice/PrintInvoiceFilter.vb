@@ -53,6 +53,7 @@ Public Class PrintInvoiceFilter
                     OBJINVOICE.PARTYNAME = PARTYNAME
                     OBJINVOICE.AGENTNAME = AGENTNAME
                     OBJINVOICE.INVNO = INVOICENO
+                    OBJINVOICE.registername = REGISTERNAME
                     OBJINVOICE.Show()
                 End If
 
@@ -70,6 +71,7 @@ Public Class PrintInvoiceFilter
                     OBJINVOICE.PARTYNAME = PARTYNAME
                     OBJINVOICE.AGENTNAME = AGENTNAME
                     OBJINVOICE.INVNO = INVOICENO
+                    OBJINVOICE.registername = REGISTERNAME
                     OBJINVOICE.Show()
                 End If
 
@@ -86,6 +88,7 @@ Public Class PrintInvoiceFilter
                     OBJINVOICE.PARTYNAME = PARTYNAME
                     OBJINVOICE.AGENTNAME = AGENTNAME
                     OBJINVOICE.INVNO = INVOICENO
+                    OBJINVOICE.registername = REGISTERNAME
                     OBJINVOICE.Show()
                 End If
 
@@ -102,6 +105,7 @@ Public Class PrintInvoiceFilter
                     OBJINVOICE.PARTYNAME = PARTYNAME
                     OBJINVOICE.AGENTNAME = AGENTNAME
                     OBJINVOICE.INVNO = INVOICENO
+                    OBJINVOICE.registername = REGISTERNAME
                     OBJINVOICE.Show()
                 End If
 
@@ -118,6 +122,7 @@ Public Class PrintInvoiceFilter
                     OBJINVOICE.PARTYNAME = PARTYNAME
                     OBJINVOICE.AGENTNAME = AGENTNAME
                     OBJINVOICE.INVNO = INVOICENO
+                    OBJINVOICE.registername = REGISTERNAME
                     OBJINVOICE.Show()
                 End If
 
