@@ -5783,7 +5783,8 @@ NEXTLINE:
             Dim OBJCMN As New ClsCommon
             Dim DTSO As New DataTable
             Dim OBJSELECTSO As New SelectAgencySO
-            OBJSELECTSO.PARTYNAME = cmbname.Text.Trim
+            OBJSELECTSO.BUYERNAME = cmbname.Text.Trim
+            OBJSELECTSO.SELLERNAME = CMBSUPPLIERNAME.Text.Trim
             OBJSELECTSO.ShowDialog()
             DTSO = OBJSELECTSO.DT
 
