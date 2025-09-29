@@ -24,20 +24,38 @@ Partial Class AgencyInvoiceReport
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgencyInvoiceReport))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.cmdshow = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.dtto = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dtfrom = New System.Windows.Forms.DateTimePicker()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.chkdate = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBUYERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHIPPEDTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFOLD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GVPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDRCR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSPDISCAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHARGES = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,6 +65,7 @@ Partial Class AgencyInvoiceReport
         Me.GDISCOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCASHDISC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSHIPPEDTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREFERREDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRADINGACC = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,31 +83,12 @@ Partial Class AgencyInvoiceReport
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GFOLD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GVPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDRCR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.dtto = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dtfrom = New System.Windows.Forms.DateTimePicker()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.chkdate = New System.Windows.Forms.CheckBox()
-        Me.cmdshow = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -106,6 +106,90 @@ Partial Class AgencyInvoiceReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1440, 670)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'cmdshow
+        '
+        Me.cmdshow.BackColor = System.Drawing.Color.Transparent
+        Me.cmdshow.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdshow.FlatAppearance.BorderSize = 0
+        Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdshow.Location = New System.Drawing.Point(343, 44)
+        Me.cmdshow.Name = "cmdshow"
+        Me.cmdshow.Size = New System.Drawing.Size(88, 28)
+        Me.cmdshow.TabIndex = 253
+        Me.cmdshow.Text = "&Show Details"
+        Me.cmdshow.UseVisualStyleBackColor = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.dtto)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.dtfrom)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.chkdate)
+        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(22, 26)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
+        Me.GroupBox1.TabIndex = 252
+        Me.GroupBox1.TabStop = False
+        '
+        'dtto
+        '
+        Me.dtto.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.dtto.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtto.Location = New System.Drawing.Point(189, 20)
+        Me.dtto.Name = "dtto"
+        Me.dtto.Size = New System.Drawing.Size(83, 22)
+        Me.dtto.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(161, 24)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(25, 14)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "To :"
+        '
+        'dtfrom
+        '
+        Me.dtfrom.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.dtfrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtfrom.Location = New System.Drawing.Point(50, 20)
+        Me.dtfrom.Name = "dtfrom"
+        Me.dtfrom.Size = New System.Drawing.Size(83, 22)
+        Me.dtfrom.TabIndex = 1
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(9, 24)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(40, 14)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "From :"
+        '
+        'chkdate
+        '
+        Me.chkdate.AutoSize = True
+        Me.chkdate.BackColor = System.Drawing.Color.Transparent
+        Me.chkdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkdate.ForeColor = System.Drawing.Color.Black
+        Me.chkdate.Location = New System.Drawing.Point(6, 0)
+        Me.chkdate.Name = "chkdate"
+        Me.chkdate.Size = New System.Drawing.Size(52, 18)
+        Me.chkdate.TabIndex = 0
+        Me.chkdate.Text = "Date"
+        Me.chkdate.UseVisualStyleBackColor = False
         '
         'gridbilldetails
         '
@@ -137,8 +221,6 @@ Partial Class AgencyInvoiceReport
         '
         Me.GCHK.FieldName = "CHK"
         Me.GCHK.Name = "GCHK"
-        Me.GCHK.Visible = True
-        Me.GCHK.VisibleIndex = 0
         Me.GCHK.Width = 30
         '
         'gsrno
@@ -148,9 +230,24 @@ Partial Class AgencyInvoiceReport
         Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
-        Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 60
+        '
+        'GBILLNO
+        '
+        Me.GBILLNO.Caption = "Bill No"
+        Me.GBILLNO.FieldName = "BILLNO"
+        Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.Visible = True
+        Me.GBILLNO.VisibleIndex = 0
+        '
+        'GPO
+        '
+        Me.GPO.Caption = "PO No."
+        Me.GPO.FieldName = "PONO"
+        Me.GPO.Name = "GPO"
+        Me.GPO.OptionsColumn.AllowEdit = False
+        Me.GPO.Visible = True
+        Me.GPO.VisibleIndex = 8
         '
         'gdate
         '
@@ -161,7 +258,7 @@ Partial Class AgencyInvoiceReport
         Me.gdate.Name = "gdate"
         Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 3
+        Me.gdate.VisibleIndex = 1
         '
         'GBUYERNAME
         '
@@ -171,8 +268,16 @@ Partial Class AgencyInvoiceReport
         Me.GBUYERNAME.Name = "GBUYERNAME"
         Me.GBUYERNAME.OptionsColumn.AllowEdit = False
         Me.GBUYERNAME.Visible = True
-        Me.GBUYERNAME.VisibleIndex = 4
+        Me.GBUYERNAME.VisibleIndex = 2
         Me.GBUYERNAME.Width = 150
+        '
+        'GGD
+        '
+        Me.GGD.Caption = "GD"
+        Me.GGD.FieldName = "CRDAYS"
+        Me.GGD.Name = "GGD"
+        Me.GGD.Visible = True
+        Me.GGD.VisibleIndex = 3
         '
         'GSELLERNAME
         '
@@ -181,16 +286,8 @@ Partial Class AgencyInvoiceReport
         Me.GSELLERNAME.Name = "GSELLERNAME"
         Me.GSELLERNAME.OptionsColumn.AllowEdit = False
         Me.GSELLERNAME.Visible = True
-        Me.GSELLERNAME.VisibleIndex = 6
+        Me.GSELLERNAME.VisibleIndex = 4
         Me.GSELLERNAME.Width = 150
-        '
-        'GSHIPPEDTO
-        '
-        Me.GSHIPPEDTO.Caption = "Shipped To"
-        Me.GSHIPPEDTO.FieldName = "PACKING"
-        Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
-        Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
-        Me.GSHIPPEDTO.Width = 100
         '
         'GTRANSPORT
         '
@@ -199,7 +296,7 @@ Partial Class AgencyInvoiceReport
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 7
+        Me.GTRANSPORT.VisibleIndex = 5
         Me.GTRANSPORT.Width = 150
         '
         'GLRNO
@@ -209,16 +306,15 @@ Partial Class AgencyInvoiceReport
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 8
+        Me.GLRNO.VisibleIndex = 6
         '
-        'GPO
+        'GQUALITY
         '
-        Me.GPO.Caption = "PO No."
-        Me.GPO.FieldName = "PONO"
-        Me.GPO.Name = "GPO"
-        Me.GPO.OptionsColumn.AllowEdit = False
-        Me.GPO.Visible = True
-        Me.GPO.VisibleIndex = 10
+        Me.GQUALITY.Caption = "Quality"
+        Me.GQUALITY.FieldName = "QUALITY"
+        Me.GQUALITY.Name = "GQUALITY"
+        Me.GQUALITY.Visible = True
+        Me.GQUALITY.VisibleIndex = 7
         '
         'GPCS
         '
@@ -230,7 +326,7 @@ Partial Class AgencyInvoiceReport
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 11
+        Me.GPCS.VisibleIndex = 9
         Me.GPCS.Width = 85
         '
         'GMTRS
@@ -243,8 +339,40 @@ Partial Class AgencyInvoiceReport
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 16
+        Me.GMTRS.VisibleIndex = 14
         Me.GMTRS.Width = 85
+        '
+        'GFOLD
+        '
+        Me.GFOLD.Caption = "Fold"
+        Me.GFOLD.FieldName = "FOLD"
+        Me.GFOLD.Name = "GFOLD"
+        Me.GFOLD.Visible = True
+        Me.GFOLD.VisibleIndex = 11
+        '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 10
+        '
+        'GVPER
+        '
+        Me.GVPER.Caption = "V %"
+        Me.GVPER.FieldName = "VPER"
+        Me.GVPER.Name = "GVPER"
+        Me.GVPER.Visible = True
+        Me.GVPER.VisibleIndex = 12
+        '
+        'GBPER
+        '
+        Me.GBPER.Caption = "B %"
+        Me.GBPER.FieldName = "BPER"
+        Me.GBPER.Name = "GBPER"
+        Me.GBPER.Visible = True
+        Me.GBPER.VisibleIndex = 13
         '
         'GAMT
         '
@@ -256,7 +384,47 @@ Partial Class AgencyInvoiceReport
         Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 17
+        Me.GAMT.VisibleIndex = 15
+        '
+        'GPDATE
+        '
+        Me.GPDATE.Caption = "P. Date"
+        Me.GPDATE.FieldName = "PDATE"
+        Me.GPDATE.Name = "GPDATE"
+        Me.GPDATE.Visible = True
+        Me.GPDATE.VisibleIndex = 16
+        '
+        'GRNO
+        '
+        Me.GRNO.Caption = "R. No"
+        Me.GRNO.FieldName = "RNO"
+        Me.GRNO.Name = "GRNO"
+        Me.GRNO.Visible = True
+        Me.GRNO.VisibleIndex = 17
+        '
+        'GDRCR
+        '
+        Me.GDRCR.Caption = "Dr/Cr"
+        Me.GDRCR.FieldName = "DRCR"
+        Me.GDRCR.Name = "GDRCR"
+        Me.GDRCR.Visible = True
+        Me.GDRCR.VisibleIndex = 18
+        '
+        'GCOMNO
+        '
+        Me.GCOMNO.Caption = "Com No"
+        Me.GCOMNO.FieldName = "COMNO"
+        Me.GCOMNO.Name = "GCOMNO"
+        Me.GCOMNO.Visible = True
+        Me.GCOMNO.VisibleIndex = 19
+        '
+        'GCID
+        '
+        Me.GCID.Caption = "CID"
+        Me.GCID.FieldName = "CID"
+        Me.GCID.Name = "GCID"
+        Me.GCID.Visible = True
+        Me.GCID.VisibleIndex = 20
         '
         'GDISC
         '
@@ -335,6 +503,14 @@ Partial Class AgencyInvoiceReport
         Me.GCASHDISC.Name = "GCASHDISC"
         Me.GCASHDISC.OptionsColumn.AllowEdit = False
         Me.GCASHDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        '
+        'GSHIPPEDTO
+        '
+        Me.GSHIPPEDTO.Caption = "Shipped To"
+        Me.GSHIPPEDTO.FieldName = "PACKING"
+        Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
+        Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
+        Me.GSHIPPEDTO.Width = 100
         '
         'GCREATEDBY
         '
@@ -479,186 +655,6 @@ Partial Class AgencyInvoiceReport
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GBILLNO
-        '
-        Me.GBILLNO.Caption = "Bill No"
-        Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.Name = "GBILLNO"
-        Me.GBILLNO.Visible = True
-        Me.GBILLNO.VisibleIndex = 2
-        '
-        'GGD
-        '
-        Me.GGD.Caption = "GD"
-        Me.GGD.FieldName = "GD"
-        Me.GGD.Name = "GGD"
-        Me.GGD.Visible = True
-        Me.GGD.VisibleIndex = 5
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 9
-        '
-        'GFOLD
-        '
-        Me.GFOLD.Caption = "Fold"
-        Me.GFOLD.FieldName = "FOLD"
-        Me.GFOLD.Name = "GFOLD"
-        Me.GFOLD.Visible = True
-        Me.GFOLD.VisibleIndex = 13
-        '
-        'GRATE
-        '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 12
-        '
-        'GBPER
-        '
-        Me.GBPER.Caption = "B %"
-        Me.GBPER.FieldName = "BPER"
-        Me.GBPER.Name = "GBPER"
-        Me.GBPER.Visible = True
-        Me.GBPER.VisibleIndex = 15
-        '
-        'GVPER
-        '
-        Me.GVPER.Caption = "V %"
-        Me.GVPER.FieldName = "VPER"
-        Me.GVPER.Name = "GVPER"
-        Me.GVPER.Visible = True
-        Me.GVPER.VisibleIndex = 14
-        '
-        'GCID
-        '
-        Me.GCID.Caption = "CID"
-        Me.GCID.FieldName = "CID"
-        Me.GCID.Name = "GCID"
-        Me.GCID.Visible = True
-        Me.GCID.VisibleIndex = 22
-        '
-        'GCOMNO
-        '
-        Me.GCOMNO.Caption = "Com No"
-        Me.GCOMNO.FieldName = "COMNO"
-        Me.GCOMNO.Name = "GCOMNO"
-        Me.GCOMNO.Visible = True
-        Me.GCOMNO.VisibleIndex = 21
-        '
-        'GDRCR
-        '
-        Me.GDRCR.Caption = "Dr/Cr"
-        Me.GDRCR.FieldName = "DRCR"
-        Me.GDRCR.Name = "GDRCR"
-        Me.GDRCR.Visible = True
-        Me.GDRCR.VisibleIndex = 20
-        '
-        'GRNO
-        '
-        Me.GRNO.Caption = "R. No"
-        Me.GRNO.FieldName = "RNO"
-        Me.GRNO.Name = "GRNO"
-        Me.GRNO.Visible = True
-        Me.GRNO.VisibleIndex = 19
-        '
-        'GPDATE
-        '
-        Me.GPDATE.Caption = "P. Date"
-        Me.GPDATE.FieldName = "PDATE"
-        Me.GPDATE.Name = "GPDATE"
-        Me.GPDATE.Visible = True
-        Me.GPDATE.VisibleIndex = 18
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.dtto)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.dtfrom)
-        Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.chkdate)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(22, 26)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
-        Me.GroupBox1.TabIndex = 252
-        Me.GroupBox1.TabStop = False
-        '
-        'dtto
-        '
-        Me.dtto.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.dtto.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtto.Location = New System.Drawing.Point(189, 20)
-        Me.dtto.Name = "dtto"
-        Me.dtto.Size = New System.Drawing.Size(83, 22)
-        Me.dtto.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(161, 24)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(25, 14)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "To :"
-        '
-        'dtfrom
-        '
-        Me.dtfrom.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.dtfrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtfrom.Location = New System.Drawing.Point(50, 20)
-        Me.dtfrom.Name = "dtfrom"
-        Me.dtfrom.Size = New System.Drawing.Size(83, 22)
-        Me.dtfrom.TabIndex = 1
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(9, 24)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(40, 14)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "From :"
-        '
-        'chkdate
-        '
-        Me.chkdate.AutoSize = True
-        Me.chkdate.BackColor = System.Drawing.Color.Transparent
-        Me.chkdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkdate.ForeColor = System.Drawing.Color.Black
-        Me.chkdate.Location = New System.Drawing.Point(6, 0)
-        Me.chkdate.Name = "chkdate"
-        Me.chkdate.Size = New System.Drawing.Size(52, 18)
-        Me.chkdate.TabIndex = 0
-        Me.chkdate.Text = "Date"
-        Me.chkdate.UseVisualStyleBackColor = False
-        '
-        'cmdshow
-        '
-        Me.cmdshow.BackColor = System.Drawing.Color.Transparent
-        Me.cmdshow.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdshow.FlatAppearance.BorderSize = 0
-        Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdshow.Location = New System.Drawing.Point(343, 44)
-        Me.cmdshow.Name = "cmdshow"
-        Me.cmdshow.Size = New System.Drawing.Size(88, 28)
-        Me.cmdshow.TabIndex = 253
-        Me.cmdshow.Text = "&Show Details"
-        Me.cmdshow.UseVisualStyleBackColor = False
-        '
         'AgencyInvoiceReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -674,13 +670,13 @@ Partial Class AgencyInvoiceReport
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

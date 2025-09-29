@@ -1114,25 +1114,45 @@ LINE1:
                 End If
             Next
         Next
+        ' Remove ONLY dynamically generated shade columns before (if needed)
         For i As Integer = GRIDWARP.Columns.Count - 1 To 0 Step -1
             If GRIDWARP.Columns(i).Name.StartsWith("WARP") Then
                 GRIDWARP.Columns.RemoveAt(i)
             End If
         Next
 
-        For i As Integer = 0 To GRIDWARPDESC.Rows.Count - 1
-            If GRIDWARPDESC.Rows(i).IsNewRow Then Continue For
+        ' Dynamically add shade columns up to max count among all SYMs/descriptions
+        Dim maxShadeCount As Integer = 0
+        For Each symRow As DataGridViewRow In GRIDWARP.Rows
+            If symRow.IsNewRow Then Continue For
+            Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+            Dim descCount = GRIDWARPDESC.Rows.Cast(Of DataGridViewRow)().
+        Count(Function(descRow) Not descRow.IsNewRow AndAlso descRow.Cells(WSYM.Index).Value?.ToString() = symValue)
+            If descCount > maxShadeCount Then maxShadeCount = descCount
+        Next
+
+        For i As Integer = 0 To maxShadeCount - 1
             Dim colName As String = "WARP" & (i + 1)
             If Not GRIDWARP.Columns.Contains(colName) Then
                 GRIDWARP.Columns.Add(colName, colName)
             End If
         Next
 
-        For shadeIndex As Integer = 0 To GRIDWARPDESC.Rows.Count - 1
-            If GRIDWARPDESC.Rows(shadeIndex).IsNewRow Then Continue For
-            Dim shadeValue As Object = GRIDWARPDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
-            GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells("WARP" & (shadeIndex + 1)).Value = shadeValue
+        ' Now fill the shade columns per GRIDWARP row, matching shades by SYM/Key!
+        For Each symRow As DataGridViewRow In GRIDWARP.Rows
+            If symRow.IsNewRow Then Continue For
+            Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+            ' All descriptions for this SYM
+            Dim descShades = GRIDWARPDESC.Rows.Cast(Of DataGridViewRow)().
+        Where(Function(descRow) Not descRow.IsNewRow AndAlso descRow.Cells(WSYM.Index).Value?.ToString() = symValue).
+        Select(Function(descRow) descRow.Cells(WDSHADE.Index).Value?.ToString()).ToList()
+
+            For i As Integer = 0 To descShades.Count - 1
+                Dim shadeColName = "WARP" & (i + 1)
+                symRow.Cells(shadeColName).Value = descShades(i)
+            Next
         Next
+
 
 
         GRIDWARP.ClearSelection()
