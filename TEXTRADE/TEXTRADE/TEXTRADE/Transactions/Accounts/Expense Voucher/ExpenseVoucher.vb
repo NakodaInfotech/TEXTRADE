@@ -29,6 +29,31 @@ Public Class ExpenseVoucher
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+    Public Function SaveInvoice()
+        ' just call the private button handler
+        'cmdok_Click(Nothing, EventArgs.Empty)
+        Try
+            If Not errorvalid() Then
+                Return False ' Validation failed
+            End If
+
+            ' Call the original save logic
+            cmdok_Click(Nothing, EventArgs.Empty)
+
+            Return True ' Success
+        Catch ex As Exception
+            MessageBox.Show("Error saving invoice: " & ex.Message)
+            Return False
+        End Try
+    End Function
+    Public Property CanUserAdd As Boolean
+        Get
+            Return USERADD
+        End Get
+        Set(value As Boolean)
+            USERADD = value
+        End Set
+    End Property
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
