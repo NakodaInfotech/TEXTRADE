@@ -3817,11 +3817,12 @@ PRINT 1,1")
                 oWrite.WriteLine("1911C1000230252R" & BARCODE)
                 oWrite.WriteLine("Q0001")
                 oWrite.WriteLine("E")
-                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
 
-                oWrite.WriteLine("D11")
-                oWrite.WriteLine("Q0001")
-                oWrite.WriteLine("E")
+                'oWrite.WriteLine("D11")
+                'oWrite.WriteLine("Q0001")
+                'oWrite.WriteLine("E")
+
                 oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
 
                 oWrite.Dispose()
