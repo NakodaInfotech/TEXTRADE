@@ -29,17 +29,22 @@ Public Class ExpenseVoucher
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Public Function SaveInvoice()
+    Public Function SaveInvoice(Optional suppressMessages As Boolean = False) As Boolean
         ' just call the private button handler
         'cmdok_Click(Nothing, EventArgs.Empty)
         Try
             If Not errorvalid() Then
                 Return False ' Validation failed
             End If
+            CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
+            TOTAL()
+
 
             ' Call the original save logic
             cmdok_Click(Nothing, EventArgs.Empty)
-
+            If Not suppressMessages Then
+                MsgBox("Details Added")
+            End If
             Return True ' Success
         Catch ex As Exception
             MessageBox.Show("Error saving invoice: " & ex.Message)
@@ -1463,6 +1468,42 @@ LINE1:
 
                 'GET TDSAPPLICABLE
                 DT = OBJCMN.search("ISNULL(ACC_TDSPER,0) AS TDSPER ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    If Val(DT.Rows(0).Item("TDSPER")) > 0 Then CHKTDS.CheckState = CheckState.Checked
+                End If
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub RunCmbNameValidation()
+        ' All validation logic here
+        Try
+            Dim OBJCMN As New ClsCommon
+            If CMBNAME.Text.Trim <> "" Then
+                'GET REGISTER , AGENCT AND TRANS, OPEN ALL ACCOUNTS
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_RCM,0) AS RCM, ISNULL(GROUPMASTER.GROUP_NAME,'') AS GROUPNAME, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT ", "", "    LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.Acc_REGISTERID = REGISTER_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id  ", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TXTSTATECODE.Text = DT.Rows(0).Item("STATECODE")
+                    TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
+                    If EDIT = False Then CHKRCM.Checked = Convert.ToBoolean(DT.Rows(0).Item("RCM"))
+                    LBLGROUPNAME.Text = DT.Rows(0).Item("GROUPNAME")
+                    If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
+
+                    'If DT.Rows(0).Item("REGISTERNAME") <> CMBREGISTER.Text.Trim And DT.Rows(0).Item("REGISTERNAME") <> "" Then
+                    '    Dim TEMPMSG As Integer = MsgBox("Register is Different Change to Default?", MsgBoxStyle.YesNo)
+                    '    If TEMPMSG = vbYes Then
+                    '        CMBREGISTER.Text = DT.Rows(0).Item("REGISTERNAME")
+                    '        getmaxno()
+                    '    End If
+                    'End If
+                    'TOTAL()
+                End If
+
+                'GET TDSAPPLICABLE
+                DT = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If Val(DT.Rows(0).Item("TDSPER")) > 0 Then CHKTDS.CheckState = CheckState.Checked
                 End If
