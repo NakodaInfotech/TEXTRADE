@@ -132,7 +132,7 @@ Module Module1
     Public BLOCKOTHERTRANSFER As Boolean = False
     Public BLOCKACCDATATRANSFER As Boolean = False
     Public BLOCKSTOCKSTRANSFER As Boolean = False
-
+    Public BLOCKAGENCYDATATRANSFER As Boolean = False
 
 
     Public SHOWHIDDENCMP As Boolean = False     'USED FOR HIDING SPECIAL COMPANY WHERE CMPPASSWORD IS "Infosys@123"

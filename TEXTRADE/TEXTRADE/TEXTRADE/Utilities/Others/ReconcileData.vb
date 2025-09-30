@@ -55,9 +55,13 @@ Public Class ReconcileData
                 ElseIf CHKRECOPROGRAM.Checked = True Then
                     INTRES = OBJURECO.PROGRAMRECO()
 
+
+
                     'FOR AGENCY
                 ElseIf CHKRECOAGENCYINV.Checked = True Then
                     INTRES = OBJURECO.AGENCYINVRECO()
+
+
                 End If
                 MsgBox("Reco Done Successfully")
 

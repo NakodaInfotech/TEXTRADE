@@ -88,6 +88,7 @@ Partial Class AgencySaleOrderDetails
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +314,7 @@ Partial Class AgencySaleOrderDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO, Me.GORDERON})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsView.ColumnAutoWidth = False
@@ -374,7 +375,7 @@ Partial Class AgencySaleOrderDetails
         '
         Me.GNAME.Caption = "Buyer's Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -406,7 +407,7 @@ Partial Class AgencySaleOrderDetails
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BALES", "")})
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.VisibleIndex = 6
         Me.GITEMNAME.Width = 150
         '
         'GDESIGNNO
@@ -416,7 +417,7 @@ Partial Class AgencySaleOrderDetails
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 8
+        Me.GDESIGNNO.VisibleIndex = 7
         Me.GDESIGNNO.Width = 120
         '
         'GCOLOR
@@ -426,7 +427,7 @@ Partial Class AgencySaleOrderDetails
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 9
+        Me.GCOLOR.VisibleIndex = 8
         Me.GCOLOR.Width = 100
         '
         'GGRIDPONO
@@ -436,7 +437,7 @@ Partial Class AgencySaleOrderDetails
         Me.GGRIDPONO.Name = "GGRIDPONO"
         Me.GGRIDPONO.OptionsColumn.AllowEdit = False
         Me.GGRIDPONO.Visible = True
-        Me.GGRIDPONO.VisibleIndex = 10
+        Me.GGRIDPONO.VisibleIndex = 9
         Me.GGRIDPONO.Width = 120
         '
         'GDESC
@@ -446,7 +447,7 @@ Partial Class AgencySaleOrderDetails
         Me.GDESC.Name = "GDESC"
         Me.GDESC.OptionsColumn.AllowEdit = False
         Me.GDESC.Visible = True
-        Me.GDESC.VisibleIndex = 11
+        Me.GDESC.VisibleIndex = 10
         Me.GDESC.Width = 150
         '
         'GQUALITY
@@ -456,7 +457,7 @@ Partial Class AgencySaleOrderDetails
         Me.GQUALITY.Name = "GQUALITY"
         Me.GQUALITY.OptionsColumn.AllowEdit = False
         Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 12
+        Me.GQUALITY.VisibleIndex = 11
         Me.GQUALITY.Width = 100
         '
         'GPCS
@@ -469,7 +470,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 13
+        Me.GPCS.VisibleIndex = 12
         Me.GPCS.Width = 60
         '
         'GCUT
@@ -481,7 +482,7 @@ Partial Class AgencySaleOrderDetails
         Me.GCUT.Name = "GCUT"
         Me.GCUT.OptionsColumn.AllowEdit = False
         Me.GCUT.Visible = True
-        Me.GCUT.VisibleIndex = 14
+        Me.GCUT.VisibleIndex = 13
         Me.GCUT.Width = 50
         '
         'GMTRS
@@ -494,7 +495,7 @@ Partial Class AgencySaleOrderDetails
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 15
+        Me.GMTRS.VisibleIndex = 14
         Me.GMTRS.Width = 80
         '
         'GRATE
@@ -506,7 +507,7 @@ Partial Class AgencySaleOrderDetails
         Me.GRATE.Name = "GRATE"
         Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 16
+        Me.GRATE.VisibleIndex = 15
         '
         'GPER
         '
@@ -514,7 +515,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 31
+        Me.GPER.VisibleIndex = 30
         '
         'GBALPCS
         '
@@ -526,7 +527,7 @@ Partial Class AgencySaleOrderDetails
         Me.GBALPCS.OptionsColumn.AllowEdit = False
         Me.GBALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALPCS.Visible = True
-        Me.GBALPCS.VisibleIndex = 17
+        Me.GBALPCS.VisibleIndex = 16
         Me.GBALPCS.Width = 65
         '
         'GBALMTRS
@@ -539,7 +540,7 @@ Partial Class AgencySaleOrderDetails
         Me.GBALMTRS.OptionsColumn.AllowEdit = False
         Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 18
+        Me.GBALMTRS.VisibleIndex = 17
         Me.GBALMTRS.Width = 80
         '
         'GPARTYPONO
@@ -549,7 +550,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPARTYPONO.Name = "GPARTYPONO"
         Me.GPARTYPONO.OptionsColumn.AllowEdit = False
         Me.GPARTYPONO.Visible = True
-        Me.GPARTYPONO.VisibleIndex = 19
+        Me.GPARTYPONO.VisibleIndex = 18
         Me.GPARTYPONO.Width = 80
         '
         'GAMT
@@ -560,7 +561,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAMT.FieldName = "AMOUNT"
         Me.GAMT.Name = "GAMT"
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 20
+        Me.GAMT.VisibleIndex = 19
         '
         'GSALESMAN
         '
@@ -568,7 +569,7 @@ Partial Class AgencySaleOrderDetails
         Me.GSALESMAN.FieldName = "SALESMAN"
         Me.GSALESMAN.Name = "GSALESMAN"
         Me.GSALESMAN.Visible = True
-        Me.GSALESMAN.VisibleIndex = 21
+        Me.GSALESMAN.VisibleIndex = 20
         '
         'GDELDATE
         '
@@ -579,7 +580,7 @@ Partial Class AgencySaleOrderDetails
         Me.GDELDATE.Name = "GDELDATE"
         Me.GDELDATE.OptionsColumn.AllowEdit = False
         Me.GDELDATE.Visible = True
-        Me.GDELDATE.VisibleIndex = 22
+        Me.GDELDATE.VisibleIndex = 21
         Me.GDELDATE.Width = 80
         '
         'GREMARKS
@@ -589,7 +590,7 @@ Partial Class AgencySaleOrderDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 23
+        Me.GREMARKS.VisibleIndex = 22
         Me.GREMARKS.Width = 280
         '
         'GCLOSED
@@ -599,7 +600,7 @@ Partial Class AgencySaleOrderDetails
         Me.GCLOSED.Name = "GCLOSED"
         Me.GCLOSED.OptionsColumn.AllowEdit = False
         Me.GCLOSED.Visible = True
-        Me.GCLOSED.VisibleIndex = 24
+        Me.GCLOSED.VisibleIndex = 23
         Me.GCLOSED.Width = 50
         '
         'GFORWARD
@@ -609,7 +610,7 @@ Partial Class AgencySaleOrderDetails
         Me.GFORWARD.Name = "GFORWARD"
         Me.GFORWARD.OptionsColumn.AllowEdit = False
         Me.GFORWARD.Visible = True
-        Me.GFORWARD.VisibleIndex = 25
+        Me.GFORWARD.VisibleIndex = 24
         '
         'GCLOSEDDATE
         '
@@ -631,7 +632,7 @@ Partial Class AgencySaleOrderDetails
         Me.GUSERNAME.FieldName = "USERNAME"
         Me.GUSERNAME.Name = "GUSERNAME"
         Me.GUSERNAME.Visible = True
-        Me.GUSERNAME.VisibleIndex = 26
+        Me.GUSERNAME.VisibleIndex = 25
         Me.GUSERNAME.Width = 100
         '
         'GPARTYWHATSAAP
@@ -640,7 +641,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Visible = True
-        Me.GPARTYWHATSAAP.VisibleIndex = 27
+        Me.GPARTYWHATSAAP.VisibleIndex = 26
         '
         'GPARTYEMAIL
         '
@@ -648,7 +649,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
         Me.GPARTYEMAIL.Visible = True
-        Me.GPARTYEMAIL.VisibleIndex = 28
+        Me.GPARTYEMAIL.VisibleIndex = 27
         '
         'GAGENTWHATSAAP
         '
@@ -656,7 +657,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAGENTWHATSAAP.FieldName = "AGENTWHATSAAP"
         Me.GAGENTWHATSAAP.Name = "GAGENTWHATSAAP"
         Me.GAGENTWHATSAAP.Visible = True
-        Me.GAGENTWHATSAAP.VisibleIndex = 29
+        Me.GAGENTWHATSAAP.VisibleIndex = 28
         '
         'GAGENTEMAIL
         '
@@ -664,7 +665,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAGENTEMAIL.FieldName = "AGENTEMAIL"
         Me.GAGENTEMAIL.Name = "GAGENTEMAIL"
         Me.GAGENTEMAIL.Visible = True
-        Me.GAGENTEMAIL.VisibleIndex = 30
+        Me.GAGENTEMAIL.VisibleIndex = 29
         '
         'GPARENTDESIGNNO
         '
@@ -726,6 +727,14 @@ Partial Class AgencySaleOrderDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
+        '
+        'GORDERON
+        '
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 31
         '
         'AgencySaleOrderDetails
         '
@@ -813,4 +822,5 @@ Partial Class AgencySaleOrderDetails
     Private WithEvents imageList1 As ImageList
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
 End Class

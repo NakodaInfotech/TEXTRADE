@@ -5408,6 +5408,8 @@ LINE1:
                     GWT.Visible = True
                     LBLTOTALWT.Visible = True
                     CMDSELECTSTOCK.Visible = True
+
+                    CMDREMOVELR.Visible = True
                 End If
             Else
                 CMDSELECTGDN.Visible = True
@@ -9294,6 +9296,18 @@ LINE1:
                 If DT.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT.Rows(0).Item("LASTRATE")), "0.00")
             End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDREMOVELR_Click(sender As Object, e As EventArgs) Handles CMDREMOVELR.Click
+        Try
+            If MsgBox("Remove LR", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            For Each ROW As DataGridViewRow In GRIDINVOICE.Rows
+                ROW.Cells(GLRNO.Index).Value = ""
+                ROW.Cells(GTRANS.Index).Value = ""
+            Next
         Catch ex As Exception
             Throw ex
         End Try
