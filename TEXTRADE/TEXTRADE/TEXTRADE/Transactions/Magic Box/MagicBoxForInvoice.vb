@@ -948,6 +948,9 @@ LINE2:
             End If
             TXTGRANDTOTAL.Text = Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00")
 
+            'TDS CALC
+            If Val(TXTTDSPER.Text.Trim) > 0 And CHKTDS.Checked = True Then TXTTDSAMT.Text = Format(Val(TXTTDSPER.Text.Trim) * Val(TXTSUBTOTAL.Text.Trim), "0")
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2098,6 +2101,16 @@ line1:
                 End If
 
 LINE1:
+
+                'GET TDSAPPLICABLE
+                DT = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBSELLERS.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    If Val(DT.Rows(0).Item("TDSPER")) > 0 Then
+                        CHKTDS.CheckState = CheckState.Checked
+                        TXTTDSPER.Text = Val(DT.Rows(0).Item("TDSPER"))
+                    End If
+                End If
+
                 GETHSNCODE()
             End If
         Catch ex As Exception

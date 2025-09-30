@@ -175,6 +175,13 @@ Partial Class MagicBoxForInvoice
         Me.GHSN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMANUALGST = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GMANUALROUNDOFF = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TXTTDSPER = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.TXTTDSAMT = New System.Windows.Forms.TextBox()
+        Me.CHKTDS = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GBMTRS.SuspendLayout()
         CType(Me.GRIDCHGS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,6 +192,13 @@ Partial Class MagicBoxForInvoice
         '
         Me.BlendPanel1.AutoScroll = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKTDS)
+        Me.BlendPanel1.Controls.Add(Me.Label30)
+        Me.BlendPanel1.Controls.Add(Me.TXTTDSAMT)
+        Me.BlendPanel1.Controls.Add(Me.Label28)
+        Me.BlendPanel1.Controls.Add(Me.Label22)
+        Me.BlendPanel1.Controls.Add(Me.TXTTDSPER)
+        Me.BlendPanel1.Controls.Add(Me.ComboBox1)
         Me.BlendPanel1.Controls.Add(Me.CHKMANUAL)
         Me.BlendPanel1.Controls.Add(Me.CHKMANUALROUND)
         Me.BlendPanel1.Controls.Add(Me.Label37)
@@ -1779,6 +1793,89 @@ Partial Class MagicBoxForInvoice
         Me.GMANUALROUNDOFF.HeaderText = "Manual Round Off"
         Me.GMANUALROUNDOFF.Name = "GMANUALROUNDOFF"
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.BackColor = System.Drawing.Color.Linen
+        Me.ComboBox1.DropDownWidth = 400
+        Me.ComboBox1.Enabled = False
+        Me.ComboBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(1099, 182)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(173, 23)
+        Me.ComboBox1.TabIndex = 954
+        Me.ComboBox1.TabStop = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.BackColor = System.Drawing.Color.Transparent
+        Me.Label22.Location = New System.Drawing.Point(1057, 215)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(39, 14)
+        Me.Label22.TabIndex = 956
+        Me.Label22.Text = "TDS %"
+        '
+        'TXTTDSPER
+        '
+        Me.TXTTDSPER.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSPER.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTDSPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSPER.Location = New System.Drawing.Point(1099, 211)
+        Me.TXTTDSPER.Name = "TXTTDSPER"
+        Me.TXTTDSPER.ReadOnly = True
+        Me.TXTTDSPER.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTDSPER.TabIndex = 955
+        Me.TXTTDSPER.TabStop = False
+        Me.TXTTDSPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.BackColor = System.Drawing.Color.Transparent
+        Me.Label28.Location = New System.Drawing.Point(1036, 186)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(62, 14)
+        Me.Label28.TabIndex = 957
+        Me.Label28.Text = "TDS Name"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.BackColor = System.Drawing.Color.Transparent
+        Me.Label30.Location = New System.Drawing.Point(1173, 215)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(28, 14)
+        Me.Label30.TabIndex = 959
+        Me.Label30.Text = "Amt"
+        '
+        'TXTTDSAMT
+        '
+        Me.TXTTDSAMT.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSAMT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTDSAMT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSAMT.Location = New System.Drawing.Point(1204, 211)
+        Me.TXTTDSAMT.Name = "TXTTDSAMT"
+        Me.TXTTDSAMT.ReadOnly = True
+        Me.TXTTDSAMT.Size = New System.Drawing.Size(68, 23)
+        Me.TXTTDSAMT.TabIndex = 958
+        Me.TXTTDSAMT.TabStop = False
+        Me.TXTTDSAMT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CHKTDS
+        '
+        Me.CHKTDS.AutoSize = True
+        Me.CHKTDS.BackColor = System.Drawing.Color.Transparent
+        Me.CHKTDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKTDS.Location = New System.Drawing.Point(1195, 157)
+        Me.CHKTDS.Name = "CHKTDS"
+        Me.CHKTDS.Size = New System.Drawing.Size(87, 19)
+        Me.CHKTDS.TabIndex = 960
+        Me.CHKTDS.Text = "Deduct TDS"
+        Me.CHKTDS.UseVisualStyleBackColor = False
+        '
         'MagicBoxForInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1938,4 +2035,11 @@ Partial Class MagicBoxForInvoice
     Friend WithEvents GHSN As DataGridViewTextBoxColumn
     Friend WithEvents GMANUALGST As DataGridViewCheckBoxColumn
     Friend WithEvents GMANUALROUNDOFF As DataGridViewCheckBoxColumn
+    Friend WithEvents Label30 As Label
+    Friend WithEvents TXTTDSAMT As TextBox
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents TXTTDSPER As TextBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents CHKTDS As CheckBox
 End Class

@@ -555,9 +555,9 @@ Partial Class PaymentMaster
         Me.GPPAYMENT.Controls.Add(Me.GRIDBILL)
         Me.GPPAYMENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GPPAYMENT.ForeColor = System.Drawing.Color.Black
-        Me.GPPAYMENT.Location = New System.Drawing.Point(517, 66)
+        Me.GPPAYMENT.Location = New System.Drawing.Point(517, 68)
         Me.GPPAYMENT.Name = "GPPAYMENT"
-        Me.GPPAYMENT.Size = New System.Drawing.Size(784, 387)
+        Me.GPPAYMENT.Size = New System.Drawing.Size(784, 384)
         Me.GPPAYMENT.TabIndex = 388
         Me.GPPAYMENT.TabStop = False
         '
@@ -592,7 +592,7 @@ Partial Class PaymentMaster
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBILL.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDBILL.GridColor = System.Drawing.SystemColors.ControlText
-        Me.GRIDBILL.Location = New System.Drawing.Point(5, 17)
+        Me.GRIDBILL.Location = New System.Drawing.Point(5, 28)
         Me.GRIDBILL.Margin = New System.Windows.Forms.Padding(2)
         Me.GRIDBILL.MultiSelect = False
         Me.GRIDBILL.Name = "GRIDBILL"
@@ -600,7 +600,7 @@ Partial Class PaymentMaster
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
         Me.GRIDBILL.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDBILL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBILL.Size = New System.Drawing.Size(775, 365)
+        Me.GRIDBILL.Size = New System.Drawing.Size(775, 352)
         Me.GRIDBILL.TabIndex = 0
         Me.GRIDBILL.TabStop = False
         '
