@@ -23,19 +23,25 @@ Partial Class UploadExcel
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTFILENAME = New System.Windows.Forms.TextBox()
         Me.CMDSELECTFILE = New System.Windows.Forms.Button()
         Me.TXTB2BPATH = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cmdupload = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TXTFILENAME = New System.Windows.Forms.TextBox()
+        Me.CMDCLEAR = New System.Windows.Forms.Button()
+        Me.LBLTYPE = New System.Windows.Forms.Label()
+        Me.CMBTYPE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
+        Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
+        Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
         Me.BlendPanel1.Controls.Add(Me.TXTFILENAME)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTFILE)
         Me.BlendPanel1.Controls.Add(Me.TXTB2BPATH)
@@ -48,6 +54,17 @@ Partial Class UploadExcel
         Me.BlendPanel1.Size = New System.Drawing.Size(484, 276)
         Me.BlendPanel1.TabIndex = 2
         '
+        'TXTFILENAME
+        '
+        Me.TXTFILENAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFILENAME.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTFILENAME.Location = New System.Drawing.Point(3, 3)
+        Me.TXTFILENAME.Multiline = True
+        Me.TXTFILENAME.Name = "TXTFILENAME"
+        Me.TXTFILENAME.Size = New System.Drawing.Size(10, 22)
+        Me.TXTFILENAME.TabIndex = 573
+        Me.TXTFILENAME.Visible = False
+        '
         'CMDSELECTFILE
         '
         Me.CMDSELECTFILE.BackColor = System.Drawing.Color.Transparent
@@ -55,7 +72,7 @@ Partial Class UploadExcel
         Me.CMDSELECTFILE.FlatAppearance.BorderSize = 0
         Me.CMDSELECTFILE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTFILE.ForeColor = System.Drawing.Color.Black
-        Me.CMDSELECTFILE.Location = New System.Drawing.Point(86, 87)
+        Me.CMDSELECTFILE.Location = New System.Drawing.Point(45, 117)
         Me.CMDSELECTFILE.Name = "CMDSELECTFILE"
         Me.CMDSELECTFILE.Size = New System.Drawing.Size(80, 28)
         Me.CMDSELECTFILE.TabIndex = 577
@@ -67,7 +84,7 @@ Partial Class UploadExcel
         Me.TXTB2BPATH.BackColor = System.Drawing.Color.Linen
         Me.TXTB2BPATH.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTB2BPATH.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTB2BPATH.Location = New System.Drawing.Point(86, 42)
+        Me.TXTB2BPATH.Location = New System.Drawing.Point(86, 72)
         Me.TXTB2BPATH.Name = "TXTB2BPATH"
         Me.TXTB2BPATH.ReadOnly = True
         Me.TXTB2BPATH.Size = New System.Drawing.Size(280, 22)
@@ -80,7 +97,7 @@ Partial Class UploadExcel
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(48, 46)
+        Me.Label6.Location = New System.Drawing.Point(48, 76)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 15)
         Me.Label6.TabIndex = 576
@@ -92,7 +109,7 @@ Partial Class UploadExcel
         Me.cmdupload.FlatAppearance.BorderSize = 0
         Me.cmdupload.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdupload.ForeColor = System.Drawing.Color.Black
-        Me.cmdupload.Location = New System.Drawing.Point(187, 87)
+        Me.cmdupload.Location = New System.Drawing.Point(146, 117)
         Me.cmdupload.Name = "cmdupload"
         Me.cmdupload.Size = New System.Drawing.Size(80, 28)
         Me.cmdupload.TabIndex = 16
@@ -105,7 +122,7 @@ Partial Class UploadExcel
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(286, 87)
+        Me.cmdexit.Location = New System.Drawing.Point(345, 117)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 18
@@ -116,16 +133,45 @@ Partial Class UploadExcel
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'TXTFILENAME
+        'CMDCLEAR
         '
-        Me.TXTFILENAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFILENAME.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTFILENAME.Location = New System.Drawing.Point(3, 3)
-        Me.TXTFILENAME.Multiline = True
-        Me.TXTFILENAME.Name = "TXTFILENAME"
-        Me.TXTFILENAME.Size = New System.Drawing.Size(10, 22)
-        Me.TXTFILENAME.TabIndex = 573
-        Me.TXTFILENAME.Visible = False
+        Me.CMDCLEAR.BackColor = System.Drawing.Color.Transparent
+        Me.CMDCLEAR.FlatAppearance.BorderSize = 0
+        Me.CMDCLEAR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDCLEAR.ForeColor = System.Drawing.Color.Black
+        Me.CMDCLEAR.Location = New System.Drawing.Point(243, 117)
+        Me.CMDCLEAR.Name = "CMDCLEAR"
+        Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
+        Me.CMDCLEAR.TabIndex = 578
+        Me.CMDCLEAR.Text = "Clear"
+        Me.CMDCLEAR.UseVisualStyleBackColor = False
+        '
+        'LBLTYPE
+        '
+        Me.LBLTYPE.AutoSize = True
+        Me.LBLTYPE.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTYPE.ForeColor = System.Drawing.Color.Black
+        Me.LBLTYPE.Location = New System.Drawing.Point(279, 27)
+        Me.LBLTYPE.Name = "LBLTYPE"
+        Me.LBLTYPE.Size = New System.Drawing.Size(31, 14)
+        Me.LBLTYPE.TabIndex = 674
+        Me.LBLTYPE.Text = "Type"
+        '
+        'CMBTYPE
+        '
+        Me.CMBTYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTYPE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTYPE.BackColor = System.Drawing.Color.White
+        Me.CMBTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTYPE.FormattingEnabled = True
+        Me.CMBTYPE.Items.AddRange(New Object() {"", "NONPURHCASE", "INVOICE"})
+        Me.CMBTYPE.Location = New System.Drawing.Point(316, 23)
+        Me.CMBTYPE.MaxDropDownItems = 14
+        Me.CMBTYPE.Name = "CMBTYPE"
+        Me.CMBTYPE.Size = New System.Drawing.Size(156, 22)
+        Me.CMBTYPE.TabIndex = 673
         '
         'UploadExcel
         '
@@ -152,4 +198,7 @@ Partial Class UploadExcel
     Friend WithEvents CMDSELECTFILE As Button
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents TXTFILENAME As TextBox
+    Friend WithEvents CMDCLEAR As Button
+    Friend WithEvents LBLTYPE As Label
+    Friend WithEvents CMBTYPE As ComboBox
 End Class
