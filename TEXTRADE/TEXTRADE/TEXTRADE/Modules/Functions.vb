@@ -3701,10 +3701,65 @@ PRINT 1,1")
 
             ElseIf ClientName = "INDRAPUJAFABRICS" Then
 
-                oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>G0")
+                'oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>G0")
+                'oWrite.WriteLine("n")
+                'oWrite.WriteLine("M0739")
+                'oWrite.WriteLine("O0214")
+                'oWrite.WriteLine("V0")
+                'oWrite.WriteLine("t1")
+                'oWrite.WriteLine("Kf0070")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
+                'oWrite.WriteLine("D11")
+                'oWrite.WriteLine("ySPM")
+                'oWrite.WriteLine("A2")
+                'oWrite.WriteLine("1911C1802610007" & ITEMNAME)
+                'oWrite.WriteLine("1911C1802180007D.NO")
+                'oWrite.WriteLine("1911C1802180098:")
+                'oWrite.WriteLine("1911C1802180110" & DESIGNNO)
+                'oWrite.WriteLine("1911C1801850007SHADE")
+                'oWrite.WriteLine("1911C1801850098:")
+                'oWrite.WriteLine("1911C1801850110" & SHADE)
+                'oWrite.WriteLine("1911C1801520007LOTNO")
+                'oWrite.WriteLine("1911C1801520098:")
+                'oWrite.WriteLine("1911C1801520110" & LOTNO)
+                'oWrite.WriteLine("1911C1800870217WIDTH")
+                'oWrite.WriteLine("1911C1801520284:")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+
+                'oWrite.WriteLine("1911C1800870316" & TEMPWIDTH)
+                'oWrite.WriteLine("1911C1801520212MTRS")
+                'oWrite.WriteLine("1X1100001560211L071001")
+                'oWrite.WriteLine("1911C1800870308:")
+                'If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00"))
+                'oWrite.WriteLine("1e8405200290014B" & BARCODE)
+                'oWrite.WriteLine("1911A1000110132" & BARCODE)
+                'oWrite.WriteLine("1911C1801190007GRADE")
+                'oWrite.WriteLine("1911C1801190098:")
+                'oWrite.WriteLine("1911C1801190110FRESH")
+                'oWrite.WriteLine("1911C1800870007UNIT")
+                'oWrite.WriteLine("1911C1800870098:")
+                'oWrite.WriteLine("1911C1800870110" & UNIT)
+                'oWrite.WriteLine("1X1100002570004L362001")
+                'oWrite.WriteLine("Q0001")
+                'oWrite.WriteLine("E")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                'oWrite.Dispose()
+
+
+
+
+
+                oWrite.WriteLine(" <xpml><page quantity ='0' pitch='75.1 mm'></xpml>G0")
                 oWrite.WriteLine("n")
                 oWrite.WriteLine("M0739")
-                oWrite.WriteLine("O0214")
+                oWrite.WriteLine("O0214")
                 oWrite.WriteLine("V0")
                 oWrite.WriteLine("t1")
                 oWrite.WriteLine("Kf0070")
@@ -3712,45 +3767,65 @@ PRINT 1,1")
                 oWrite.WriteLine("D11")
                 oWrite.WriteLine("ySPM")
                 oWrite.WriteLine("A2")
-                oWrite.WriteLine("1911C1802610007" & ITEMNAME)
-                oWrite.WriteLine("1911C1802180007D.NO")
-                oWrite.WriteLine("1911C1802180098:")
-                oWrite.WriteLine("1911C1802180110" & DESIGNNO)
-                oWrite.WriteLine("1911C1801850007SHADE")
-                oWrite.WriteLine("1911C1801850098:")
-                oWrite.WriteLine("1911C1801850110" & SHADE)
-                oWrite.WriteLine("1911C1801520007LOTNO")
-                oWrite.WriteLine("1911C1801520098:")
-                oWrite.WriteLine("1911C1801520110" & LOTNO)
-                oWrite.WriteLine("1911C1800870217WIDTH")
-                oWrite.WriteLine("1911C1801520284:")
+                oWrite.WriteLine("1911C1802610008" & ITEMNAME)
+                oWrite.WriteLine("1911C1802180011D.NO")
+                oWrite.WriteLine("1911C1802180107:")
+                oWrite.WriteLine("1911C1802180119" & DESIGNNO)
+                oWrite.WriteLine("1911C1801840010SHADE")
+                oWrite.WriteLine("1911C1801840107:")
+                oWrite.WriteLine("1911C1801840119" & SHADE)
+                oWrite.WriteLine("1911C1801480011LOTNO")
+                oWrite.WriteLine("1911C1801480107:")
+                oWrite.WriteLine("1911C1801480119" & LOTNO)
+                oWrite.WriteLine("1911C1801840237WIDTH")
+                oWrite.WriteLine("1911C1801130106:")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
+                Dim TEMPHSN As String
+
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+
                 If DT.Rows.Count > 0 Then
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                    TEMPHSN = DT.Rows(0).Item("HSNCODE")
+
                 End If
 
-                oWrite.WriteLine("1911C1800870316" & TEMPWIDTH)
-                oWrite.WriteLine("1911C1801520212MTRS")
-                oWrite.WriteLine("1X1100001560211L071001")
-                oWrite.WriteLine("1911C1800870308:")
-                If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00"))
-                oWrite.WriteLine("1e8405200290014B" & BARCODE)
-                oWrite.WriteLine("1911A1000110132" & BARCODE)
-                oWrite.WriteLine("1911C1801190007GRADE")
-                oWrite.WriteLine("1911C1801190098:")
-                oWrite.WriteLine("1911C1801190110FRESH")
-                oWrite.WriteLine("1911C1800870007UNIT")
-                oWrite.WriteLine("1911C1800870098:")
-                oWrite.WriteLine("1911C1800870110" & UNIT)
+                oWrite.WriteLine("1911C1801840338" & TEMPWIDTH)
+                oWrite.WriteLine("1911C1801130011MTRS")
+                oWrite.WriteLine("1X1100001170010L071001")
+                oWrite.WriteLine("1911C1801840326:")
+                If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801130111911C180113011" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C180113011" & Format(Val(MTRS), "0.00"))
+
+                oWrite.WriteLine("1911C1800430011GRADE")
+                oWrite.WriteLine("1911C1800430107:")
+                oWrite.WriteLine("1911C1800430119FRESH")
+
+                oWrite.WriteLine("1911C1800780011UNIT")
+                oWrite.WriteLine("1911C1800780106:")
+                oWrite.WriteLine("1911C1800780119" & UNIT)
                 oWrite.WriteLine("1X1100002570004L362001")
+
+                oWrite.WriteLine("1911C1800090011HSN")
+                oWrite.WriteLine("1911C1800090107:")
+                oWrite.WriteLine("1X1100002570004L362001")
+                oWrite.WriteLine("1911C1800090119" & TEMPHSN)
+
+                oWrite.WriteLine("1W1DCC000004602362,LA," & BARCODE)
+                oWrite.WriteLine("1911C1000230252R" & BARCODE)
+                oWrite.WriteLine("Q0001")
+                oWrite.WriteLine("E")
+                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
+
+                oWrite.WriteLine("D11")
                 oWrite.WriteLine("Q0001")
                 oWrite.WriteLine("E")
                 oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+
                 oWrite.Dispose()
+
 
             ElseIf ClientName = "SBA" Then
 
@@ -8926,12 +9001,12 @@ line1:
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable
                 dt = objclscommon.search(" PARTYBANK_name ", "", " PARTYBANKMaster ", " and PARTYBANK_YEARID = " & YearId)
+                CMBBANK.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "PARTYBANK_name"
                     CMBBANK.DisplayMember = "PARTYBANK_name"
                     CMBBANK.Text = ""
                 End If
-                CMBBANK.DataSource = dt
                 CMBBANK.SelectedIndex = -1
                 CMBBANK.SelectAll()
             End If
