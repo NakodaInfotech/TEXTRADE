@@ -9454,7 +9454,7 @@ LINE1:
 
                 CMBAGENT.Text = DTSO.Rows(0).Item("AGENTNAME")
                 If DTSO.Rows(0).Item("TRANSNAME") <> "" Then cmbtrans.Text = DTSO.Rows(0).Item("TRANSNAME")
-                CMBTOCITY.Text = DTSO.Rows(0).Item("CITYNAME")
+                If DTSO.Rows(0).Item("CITYNAME") <> "" Then CMBTOCITY.Text = DTSO.Rows(0).Item("CITYNAME")
                 CMBPACKING.Text = DTSO.Rows(0).Item("DELIVERYAT")
                 txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
 

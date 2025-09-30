@@ -1,7 +1,8 @@
 ﻿
+Imports System.Windows.Forms
 Imports BL
 Imports DevExpress.XtraMap
-Imports System.Windows.Forms
+Imports DevExpress.XtraReports
 
 Public Class PaymentMaster
 
@@ -16,7 +17,7 @@ Public Class PaymentMaster
     Dim temprecodate As Date
     Dim CHQNO As String = ""
     Dim ALLOWMANUALPAYNO As Boolean = False
-
+    Private DT As DataTable
     'THIS VARIABLE IS USED TO FETCH PARTYNAME ON EDIT MODE
     'ON NAME VALIDATING IF TEMPNAME <> CMBNAME THEN CLEAR THE BELOW GRID, ELSE DO NOT CLEAR
     Dim TEMPPARTYNAME As String = ""
@@ -522,7 +523,7 @@ Public Class PaymentMaster
                     TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
                     LBLCITY.Text = DT.Rows(0).Item("CITY")
-
+                    CreateFilterTextBoxes()
                 End If
             End If
         Catch ex As Exception
@@ -1293,22 +1294,28 @@ Public Class PaymentMaster
     End Sub
 
     Sub fillgridPURCHASE()
-
         GRIDBILL.DataSource = Nothing
         TXTINVTOTAL.Clear()
-        'getting from INVOICEMASTER
-
         Dim objpayment As New ClsPaymentMaster
-        Dim DT As New DataTable
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
-
-            'Dim DTROW As DataRow
-            'For Each DTROW In DT.Rows
-            '    gridbill.Rows.Add(0, DTROW("BILLINITIALS"), Format(DTROW("BILLDATE"), "dd/MM/yyyy"), Val(DTROW("BALAMT")), Val(DTROW("BILLAMT")), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-            'Next
         End If
+        'GRIDBILL.DataSource = Nothing
+        'TXTINVTOTAL.Clear()
+        ''getting from INVOICEMASTER
+
+        'Dim objpayment As New ClsPaymentMaster
+        'Dim DT As New DataTable
+        'DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
+        'If DT.Rows.Count > 0 Then
+        '    SETGRIDINVOICE(DT)
+
+        '    'Dim DTROW As DataRow
+        '    'For Each DTROW In DT.Rows
+        '    '    gridbill.Rows.Add(0, DTROW("BILLINITIALS"), Format(DTROW("BILLDATE"), "dd/MM/yyyy"), Val(DTROW("BALAMT")), Val(DTROW("BILLAMT")), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
+        '    'Next
+        'End If
 
     End Sub
 
@@ -2594,6 +2601,100 @@ NEXTLINE:
             MsgBox("Error while filtering: " & ex.Message)
         End Try
 
+    End Sub
+
+#Region "AUTOSEARCHTEXTBOX"
+
+    Public filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Public Sub CreateFilterTextBoxes()
+
+        'REMOVE OLD TEXTBOXES AND THEN RECREATE
+        For i As Integer = GPPAYMENT.Controls.Count - 1 To 0 Step -1
+            If TypeOf GPPAYMENT.Controls(i) Is TextBox Then
+                GPPAYMENT.Controls.RemoveAt(i)
+            End If
+        Next
+
+
+
+        filterTextBoxes.Clear()
+
+        If GRIDBILL.Columns.Count = 0 Then Exit Sub
+
+        Dim xPos As Integer = GRIDBILL.RowHeadersVisible * GRIDBILL.RowHeadersWidth
+        For Each col As DataGridViewColumn In GRIDBILL.Columns
+            If col.Visible Then
+                Dim txt As New TextBox()
+                txt.Width = col.Width
+                txt.Left = GRIDBILL.GetCellDisplayRectangle(col.Index, -1, True).Left
+                txt.Top = 5 ' Or a header-compliant Y offset
+                txt.Tag = col.Index
+                txt.Name = "TXT" & col.Index
+                AddHandler txt.TextChanged, AddressOf FilterGrid
+                GPPAYMENT.Controls.Add(txt)
+                filterTextBoxes.Add(txt)
+            End If
+        Next
+    End Sub
+
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
+        Try
+            Dim filterClauses As New List(Of String)()
+            For Each txt As TextBox In filterTextBoxes
+                Dim colIndex As Integer = CInt(txt.Tag)
+                Dim colName As String = GRIDBILL.Columns(colIndex).DataPropertyName
+                Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+
+                If filterText <> "" Then
+                    ' Check data type
+                    Dim colType As Type = DT.Columns(colName).DataType
+                    If colType Is GetType(String) Then
+                        filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
+                    ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
+                        ' Numeric filter: try direct match
+                        Dim valDouble As Double
+                        If Double.TryParse(filterText, valDouble) Then
+                            filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
+                        End If
+                    ElseIf colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+                        End If
+                    ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            ' For exact date match
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+
+                            ' Or you can do range filtering, example hardcoded here (customize as needed)
+                            ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
+                        End If
+
+                    End If
+                End If
+            Next
+
+
+            Dim filterString As String = String.Join(" AND ", filterClauses)
+            DT.DefaultView.RowFilter = filterString
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+
+#End Region
+    Private Sub GRIDBILL_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDBILL.SortCompare
+        Try
+            If GRIDBILL.ColumnCount = 15 And e.Column.Index > 1 Then
+                e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class

@@ -294,7 +294,7 @@ Partial Class Receipt
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridbill.DefaultCellStyle = DataGridViewCellStyle6
         Me.gridbill.GridColor = System.Drawing.SystemColors.ControlText
-        Me.gridbill.Location = New System.Drawing.Point(7, 17)
+        Me.gridbill.Location = New System.Drawing.Point(7, 38)
         Me.gridbill.Margin = New System.Windows.Forms.Padding(2)
         Me.gridbill.MultiSelect = False
         Me.gridbill.Name = "gridbill"
@@ -302,7 +302,7 @@ Partial Class Receipt
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
         Me.gridbill.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.gridbill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.gridbill.Size = New System.Drawing.Size(782, 218)
+        Me.gridbill.Size = New System.Drawing.Size(782, 196)
         Me.gridbill.TabIndex = 0
         Me.gridbill.TabStop = False
         '
@@ -312,7 +312,7 @@ Partial Class Receipt
         Me.groupbill.Controls.Add(Me.gridbill)
         Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.groupbill.ForeColor = System.Drawing.Color.Black
-        Me.groupbill.Location = New System.Drawing.Point(528, 41)
+        Me.groupbill.Location = New System.Drawing.Point(528, 42)
         Me.groupbill.Name = "groupbill"
         Me.groupbill.Size = New System.Drawing.Size(794, 240)
         Me.groupbill.TabIndex = 6
