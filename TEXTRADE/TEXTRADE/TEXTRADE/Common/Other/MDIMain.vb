@@ -10768,4 +10768,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AgencySaleReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencySaleReportToolStripMenuItem.Click
+        Try
+            Dim OBJSO As New AgencyOrderGridReport
+            OBJSO.SOCLAUSE = ""
+            OBJSO.MdiParent = Me
+            OBJSO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

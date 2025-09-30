@@ -21,6 +21,7 @@ Public Class BlockDataTransfer
             If CHKOTHERMASTER.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             If CHKDATA.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             If CHKSTOCK.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            If CHKAGENCYDATA.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CmpId)
             alParaval.Add(YearId)
 
@@ -33,10 +34,10 @@ Public Class BlockDataTransfer
             Throw ex
         End Try
     End Sub
+
     Private Function errorvalid() As Boolean
         Dim bln As Boolean = True
-
-        If CHKDATA.CheckState = False And CHKLEDGER.CheckState = False And CHKOTHERMASTER.CheckState = False And CHKSTOCK.CheckState = False Then
+        If CHKDATA.CheckState = False And CHKLEDGER.CheckState = False And CHKOTHERMASTER.CheckState = False And CHKSTOCK.CheckState = False And CHKAGENCYDATA.CheckState = False Then
             EP.SetError(CMDUPDATE, "Select Any Of The Checkbox")
             bln = False
         End If
@@ -48,21 +49,20 @@ Public Class BlockDataTransfer
         CHKOTHERMASTER.CheckState = CheckState.Unchecked
         CHKDATA.CheckState = CheckState.Unchecked
         CHKSTOCK.CheckState = CheckState.Unchecked
-
+        CHKAGENCYDATA.CheckState = CheckState.Unchecked
     End Sub
 
     Private Sub BlockDataTransfer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim OBJCMN As New ClsCommon
-            Dim dt As DataTable = OBJCMN.SEARCH(" BLOCKDATA.BLOCK_LEDGER ,BLOCKDATA.BLOCK_OTHER, BLOCKDATA.BLOCK_DATA ,BLOCKDATA.BLOCK_STOCK ", "", " BLOCKDATA", "  AND BLOCKDATA.BLOCK_YEARID=" & YearId & "")
+            Dim dt As DataTable = OBJCMN.SEARCH(" BLOCKDATA.BLOCK_LEDGER AS BLOCKLEDGER ,BLOCKDATA.BLOCK_OTHER AS BLOCKOTHER, BLOCKDATA.BLOCK_DATA AS BLOCKDATA, BLOCKDATA.BLOCK_STOCK AS BLOCKSTOCK, BLOCKDATA.BLOCK_AGENCYDATA AS BLOCKAGENCYDATA", "", " BLOCKDATA", "  AND BLOCKDATA.BLOCK_YEARID=" & YearId & "")
             If dt.Rows.Count > 0 Then
-                CHKLEDGER.Checked = dt.Rows(0).Item(0)
-                CHKOTHERMASTER.Checked = dt.Rows(0).Item(1)
-                CHKDATA.Checked = dt.Rows(0).Item(2)
-                CHKSTOCK.Checked = dt.Rows(0).Item(3)
-
+                CHKLEDGER.Checked = dt.Rows(0).Item("BLOCKLEDGER")
+                CHKOTHERMASTER.Checked = dt.Rows(0).Item("BLOCKOTHER")
+                CHKDATA.Checked = dt.Rows(0).Item("BLOCKDATA")
+                CHKSTOCK.Checked = dt.Rows(0).Item("BLOCKSTOCK")
+                CHKAGENCYDATA.Checked = dt.Rows(0).Item("BLOCKAGENCYDATA")
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -85,6 +85,14 @@ Public Class BlockDataTransfer
             MsgBox("Blocked Data Deleted")
             CLEAR()
             EDIT = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub BlockDataTransfer_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "ABHEE" Then CHKAGENCYDATA.Visible = True
         Catch ex As Exception
             Throw ex
         End Try

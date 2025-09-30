@@ -80,7 +80,13 @@ Public Class MagicBox
                 ' WE HAVE COMMENTED THIS LINE BCOZ FOR TEMPORARY CLIENT WANT MANUAL NUMBER ALLOW
                 ''alParaval.Add(0)
 
-                alParaval.Add(NO)
+                Dim AORDNO As Integer = 0
+                Dim DTTABLE As DataTable = getmax(" isnull(max(ASO_no),0) + 1 ", " AGENCYSALEORDER ", " and ASO_yearid=" & YearId)
+                If DTTABLE.Rows.Count > 0 Then AORDNO = DTTABLE.Rows(0).Item(0)
+                row.Cells(GNO.Index).Value = Val(AORDNO)
+
+
+                alParaval.Add(AORDNO)
                 alParaval.Add(ORDERDATE)
                 alParaval.Add(BUYERS)
                 alParaval.Add("") ' HASTE

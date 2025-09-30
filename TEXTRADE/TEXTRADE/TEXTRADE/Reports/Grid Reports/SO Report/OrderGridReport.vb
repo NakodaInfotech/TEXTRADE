@@ -1,7 +1,6 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports DevExpress.CodeParser
 
 Public Class OrderGridReport
 

@@ -53,6 +53,7 @@ Public Class payment_advice
     Dim OBJCHQPAY_MAHESH As New ChqPayment_MAHESH
     Dim OBJCHQPAY_COSMOS As New ChqPayment_COSMOS
     Dim OBJCHQPAY_CITYUNION As New ChqPayment_CITYUNION
+    Dim OBJCHQPAY_HDFCKOTAKABHEE As New ChqPayment_HDFCKOTAK_ABHEE
 
     Dim OBJCHQPAYBACK As New ChqPaymentBackReport
 
@@ -105,7 +106,7 @@ Public Class payment_advice
                 ElseIf BANKFORCHQPRINT = "PNB" Then
                     crTables = OBJCHQPAY_PNB.Database.Tables
                 ElseIf BANKFORCHQPRINT = "HDFC" Then
-                    crTables = OBJCHQPAY_HDFC.Database.Tables
+                    If ClientName = "ABHEE" Then crTables = OBJCHQPAY_HDFCKOTAKABHEE.Database.Tables Else crTables = OBJCHQPAY_HDFC.Database.Tables
                 ElseIf BANKFORCHQPRINT = "CITIBANK" Then
                     crTables = OBJCHQPAY_CITIBANK.Database.Tables
                 ElseIf BANKFORCHQPRINT = "UNION" Then
@@ -185,8 +186,13 @@ Public Class payment_advice
                     CRPO.ReportSource = OBJCHQPAY_PNB
                     OBJCHQPAY_PNB.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "HDFC" Then
-                    CRPO.ReportSource = OBJCHQPAY_HDFC
-                    OBJCHQPAY_HDFC.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    If ClientName = "ABHEE" Then
+                        CRPO.ReportSource = OBJCHQPAY_HDFCKOTAKABHEE
+                        OBJCHQPAY_HDFCKOTAKABHEE.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    Else
+                        CRPO.ReportSource = OBJCHQPAY_HDFC
+                        OBJCHQPAY_HDFC.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    End If
                 ElseIf BANKFORCHQPRINT = "CITIBANK" Then
                     CRPO.ReportSource = OBJCHQPAY_CITIBANK
                     OBJCHQPAY_CITIBANK.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
@@ -306,7 +312,7 @@ Public Class payment_advice
             ElseIf BANKFORCHQPRINT = "PNB" Then
                 OBJ = New ChqPayment_PNB
             ElseIf BANKFORCHQPRINT = "HDFC" Then
-                OBJ = New ChqPayment_HDFC
+                If ClientName = "ABHEE" Then OBJ = New ChqPayment_HDFCKOTAK_ABHEE Else OBJ = New ChqPayment_HDFC
             ElseIf BANKFORCHQPRINT = "INDUS" Then
                 OBJ = New ChqPayment_INDUS
             ElseIf BANKFORCHQPRINT = "CITIBANK" Then

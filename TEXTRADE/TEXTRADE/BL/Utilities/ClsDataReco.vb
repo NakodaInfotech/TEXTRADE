@@ -232,7 +232,6 @@ Public Class ClsDataReco
         Return intResult
 
     End Function
-
 #End Region
 
 

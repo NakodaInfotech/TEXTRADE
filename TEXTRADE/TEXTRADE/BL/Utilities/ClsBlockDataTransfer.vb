@@ -35,6 +35,8 @@ Public Class ClsBlockDataTransfer
                 I += 1
                 .Add(New SqlClient.SqlParameter("@STOCK", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@AGENCYDATA", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
@@ -50,6 +52,7 @@ Public Class ClsBlockDataTransfer
         Return 0
 
     End Function
+
     Public Function DELETE() As Integer
         Dim intResult As Integer
         Try

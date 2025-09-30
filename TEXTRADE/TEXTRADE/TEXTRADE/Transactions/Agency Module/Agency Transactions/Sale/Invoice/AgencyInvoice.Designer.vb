@@ -1092,10 +1092,10 @@ Partial Class AgencyInvoice
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1114,10 +1114,10 @@ Partial Class AgencyInvoice
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -1267,7 +1267,7 @@ Partial Class AgencyInvoice
         Me.txtpartypono.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtpartypono.Location = New System.Drawing.Point(1013, 61)
         Me.txtpartypono.Name = "txtpartypono"
-        Me.txtpartypono.Size = New System.Drawing.Size(69, 22)
+        Me.txtpartypono.Size = New System.Drawing.Size(111, 22)
         Me.txtpartypono.TabIndex = 11
         '
         'Label32

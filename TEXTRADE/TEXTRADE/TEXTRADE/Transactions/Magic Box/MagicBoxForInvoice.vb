@@ -1,11 +1,6 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports DevExpress.Charts.Native
-Imports DevExpress.CodeParser
-Imports DevExpress.DashboardCommon.Viewer
-Imports DevExpress.PivotGrid.OLAP
-Imports DevExpress.XtraRichEdit.API.Native
 
 Public Class MagicBoxForInvoice
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -163,12 +158,9 @@ Public Class MagicBoxForInvoice
                 alParaval.Add(Format(Convert.ToDateTime(row.Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy")) 'GPDATE
 
                 alParaval.Add(0)    'BILLCHECKED
-                'If CHKBILLDISPUTE.Checked = True Then
-                alParaval.Add(0)
-                'If CHKMANUAL.Checked = True Then
-                alParaval.Add(0)
-                'If CHKEXPORTGST.Checked = True Then
-                alParaval.Add(0)
+                alParaval.Add(0) 'If CHKBILLDISPUTE.Checked = True Then
+                alParaval.Add(Convert.ToBoolean(row.Cells(GMANUALGST.Index).Value))    'CHKMANUAL GST
+                alParaval.Add(0) 'If CHKEXPORTGST.Checked = True Then
 
                 alParaval.Add(row.Cells(GREMARKS.Index).Value)
                 'If CHKBARCODE.Checked = True Then
@@ -390,7 +382,7 @@ Public Class MagicBoxForInvoice
 
 
 
-                alParaval.Add(0) 'MANUALROUNDOFF
+                alParaval.Add(Convert.ToBoolean(row.Cells(GMANUALROUNDOFF.Index).Value)) 'MANUALROUNDOFF
 
                 Dim objclsPurord As New ClsAgencyInvoiceMaster()
                 objclsPurord.alParaval = alParaval
@@ -467,7 +459,7 @@ NEXTLINE:
         cmbitemname.Text = ""
         CMBTRANS.Text = ""
         TXTQTY.Clear()
-        TXTFOLD.Clear()
+        TXTFOLD.Text = 100
         TXTDESC.Clear()
         TXTLR.Clear()
         LRDATE.Value = Now.Date
@@ -493,6 +485,9 @@ NEXTLINE:
         GRIDMAGICBOX.RowCount = 0
         GRIDDOUBLECLICK = False
         GRIDCHGS.RowCount = 0
+
+        CHKMANUAL.Checked = False
+        CHKMANUALROUND.Checked = False
 
         DT_CHGSDETAILS.Reset()
         DT_CHGSDETAILS.Columns.Add("ESRNO")
@@ -636,18 +631,19 @@ NEXTLINE:
         Dim currentMainSrNo As Integer = GRIDMAGICBOX.RowCount + 1
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Format(BILLDATE.Value.Date, "dd/MM/yyyy"), Format(ENTRYDATE.Value.Date, "dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, TXTPARTYBILLNO.Text.Trim, Val(txtcrdays.Text), TXTPONO.Text.Trim, TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTFOLD.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, CMBTRANS.Text.Trim, TXTLR.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), TXTPARTYBILLNO.Text.Trim, TXTLR.Text.Trim, TXTPONO.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), Format(ENTRYDATE.Value.Date, "dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, Val(txtcrdays.Text), TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTFOLD.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, CMBTRANS.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim, CHKMANUAL.CheckState, CHKMANUALROUND.CheckState)
 
             'getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDMAGICBOX.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
+            GRIDMAGICBOX.Item(GNO.Index, TEMPROW).Value = TXTPARTYBILLNO.Text.Trim
+            GRIDMAGICBOX.Item(GLRNO.Index, TEMPROW).Value = TXTLR.Text.Trim
+            GRIDMAGICBOX.Item(GPONO.Index, TEMPROW).Value = TXTPONO.Text.Trim
             GRIDMAGICBOX.Item(GBILLDATE.Index, TEMPROW).Value = BILLDATE.Value.Date
             GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value = ENTRYDATE.Value.Date
             GRIDMAGICBOX.Item(GSELLERS.Index, TEMPROW).Value = CMBSELLERS.Text.Trim
             GRIDMAGICBOX.Item(GBUYERS.Index, TEMPROW).Value = CMBBUYERS.Text.Trim
-            GRIDMAGICBOX.Item(GNO.Index, TEMPROW).Value = TXTPARTYBILLNO.Text.Trim
             GRIDMAGICBOX.Item(GCRDAYS.Index, TEMPROW).Value = Val(txtcrdays.Text.Trim)
-            GRIDMAGICBOX.Item(GPONO.Index, TEMPROW).Value = TXTPONO.Text.Trim
             GRIDMAGICBOX.Item(GPOSRNO.Index, TEMPROW).Value = TXTPOSRNO.Text.Trim
             GRIDMAGICBOX.Item(GPOTYPE.Index, TEMPROW).Value = TXTPOTYPE.Text.Trim
             GRIDMAGICBOX.Item(gitemname.Index, TEMPROW).Value = cmbitemname.Text.Trim
@@ -674,13 +670,14 @@ NEXTLINE:
             GRIDMAGICBOX.Item(GCOM.Index, TEMPROW).Value = CMBCOMM.Text.Trim
 
             GRIDMAGICBOX.Item(GTRANS.Index, TEMPROW).Value = CMBTRANS.Text.Trim
-            GRIDMAGICBOX.Item(GLRNO.Index, TEMPROW).Value = TXTLR.Text.Trim
             GRIDMAGICBOX.Item(GLRDATE.Index, TEMPROW).Value = LRDATE.Value.Date
             GRIDMAGICBOX.Item(GBALENO.Index, TEMPROW).Value = TXTBALENO.Text.Trim
 
             GRIDMAGICBOX.Item(GREMARKS.Index, TEMPROW).Value = TXTREMARKS.Text.Trim
             GRIDMAGICBOX.Item(GHSN.Index, TEMPROW).Value = TXTHSN.Text.Trim
 
+            GRIDMAGICBOX.Item(GMANUALGST.Index, TEMPROW).Value = CHKMANUAL.Checked
+            GRIDMAGICBOX.Item(GMANUALROUNDOFF.Index, TEMPROW).Value = CHKMANUALROUND.Checked
 
 
             currentMainSrNo = TEMPROW
@@ -737,7 +734,7 @@ NEXTLINE:
         TXTDESC.Clear()
         TXTPCS.Clear()
         TXTQTY.Clear()
-        TXTFOLD.Clear()
+        TXTFOLD.Text = 100
         TXTMTRS.Clear()
         TXTRATES.Clear()
         CMBPER.Text = ""
@@ -764,7 +761,9 @@ NEXTLINE:
         getsrno(GRIDMAGICBOX)
         BILLDATE.Focus()
         GRIDCHGS.RowCount = 0
-
+        GBMTRS.Visible = False
+        CHKMANUAL.Checked = False
+        CHKMANUALROUND.Checked = False
     End Sub
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
@@ -803,13 +802,13 @@ NEXTLINE:
                 TXTPOTYPE.Text = DTROW("TYPE").ToString()
                 cmbitemname.Text = DTROW("ITEMNAME").ToString()
                 'TXTQTY.Text = Val(DTROW("QTY").ToString())
-                TXTFOLD.Text = "0" ' or fill if available
+                'TXTFOLD.Text = "0" ' or fill if available
                 TXTDESC.Text = ""     ' or fill if available
                 TXTLR.Text = ""       ' or fill if available
                 TXTBALENO.Text = "" ' DTROW("BALENO").ToString()
                 TXTPCS.Text = DTROW("PERQTY").ToString()
                 'TXTCUT.Text = DTROW("CUT").ToString()
-                TXTMTRS.Text = Format(Val(DTROW("MTRS").ToString()), "0.00")
+                'TXTMTRS.Text = Format(Val(DTROW("MTRS").ToString()), "0.00")
                 TXTRATES.Text = Format(Val(DTROW("RATE").ToString()), "0.00")
                 CMBPER.Text = "Mtrs"
                 TXTAMT.Text = "0.00"
@@ -850,28 +849,9 @@ NEXTLINE:
                     'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
                     If SALEAUTODISCOUNT = True And EDIT = False Then
                         For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE2
-                        Next
-                        If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0, Val(txtsrno.Text.Trim))
-
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
                             If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE2
                         Next
                         If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0, Val(txtsrno.Text.Trim))
-
-
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE2
-                        Next
-                        If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0, Val(txtsrno.Text.Trim))
-
-                        'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
-                        If AUTOBROKERAGE = True Then
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE2
-                            Next
-                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0, Val(txtsrno.Text.Trim))
-                        End If
                     End If
 
 LINE2:
@@ -903,7 +883,7 @@ LINE2:
 
     Private Sub TXTREMARKS_Validated(sender As Object, e As EventArgs) Handles TXTREMARKS.Validated
         Try
-            If CMBBUYERS.Text.Trim <> "" And CMBSELLERS.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYBILLNO.Text.Trim <> "" And Val(TXTMTRS.Text.Trim) > 0 And Val(TXTRATES.Text.Trim) > 0 And CMBTRANS.Text.Trim <> "" And TXTLR.Text.Trim <> "" Then
+            If CMBBUYERS.Text.Trim <> "" And CMBSELLERS.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYBILLNO.Text.Trim <> "" And Val(TXTQTY.Text.Trim) > 0 And Val(TXTFOLD.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 And Val(TXTRATES.Text.Trim) > 0 And CMBTRANS.Text.Trim <> "" And TXTLR.Text.Trim <> "" Then
                 FILLGRID()
             Else
                 MsgBox("Please Enter Detail Properly.", MsgBoxStyle.Critical)
@@ -948,6 +928,8 @@ LINE2:
 
     Sub CALC()
         Try
+            If CHKMANUALROUND.CheckState = CheckState.Unchecked Then TXTROUNDOFF.Text = 0
+
             If ClientName = "ABHEE" AndAlso Val(TXTQTY.Text.Trim) > 0 And Val(TXTFOLD.Text.Trim) > 0 Then TXTMTRS.Text = Format(Val(TXTQTY.Text.Trim) * (Val(TXTFOLD.Text.Trim) / 100), "0.00")
             If CMBPER.Text = "Qty" Then
                 TXTAMT.Text = Format(Val(TXTQTY.Text) * Val(TXTRATES.Text), "0.00")
@@ -957,12 +939,18 @@ LINE2:
             If Val(TXTPCS.Text.Trim) > 0 And Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Val(TXTPCS.Text.Trim) * (TXTCUT.Text.Trim)
             TXTSUBTOTAL.Text = Format(Val(TXTAMT.Text) + Val(TXTCHRGS.Text), "0.00")
 
-            TXTCGSTAMT.Text = Format(Val(TXTCGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
-            TXTSGSTAMT.Text = Format(Val(TXTSGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
-            TXTIGSTAMT.Text = Format(Val(TXTIGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
+            If CHKMANUAL.CheckState = CheckState.Unchecked Then
+                TXTCGSTAMT.Text = Format(Val(TXTCGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
+                TXTSGSTAMT.Text = Format(Val(TXTSGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
+                TXTIGSTAMT.Text = Format(Val(TXTIGSTPER.Text) / 100 * Val(TXTSUBTOTAL.Text), "0.00")
+            End If
 
-            TXTGRANDTOTAL.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text) + Val(TXTSGSTAMT.Text) + Val(TXTIGSTAMT.Text), "0")
-            TXTROUNDOFF.Text = Format(Val(TXTGRANDTOTAL.Text) - (Val(TXTSUBTOTAL.Text.Trim) + Val(TXTCGSTAMT.Text) + Val(TXTSGSTAMT.Text) + Val(TXTIGSTAMT.Text)), "0.00")
+            If CHKMANUALROUND.Checked = False Then
+                TXTGRANDTOTAL.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text) + Val(TXTSGSTAMT.Text) + Val(TXTIGSTAMT.Text), "0")
+                TXTROUNDOFF.Text = Format(Val(TXTGRANDTOTAL.Text) - (Val(TXTSUBTOTAL.Text.Trim) + Val(TXTCGSTAMT.Text) + Val(TXTSGSTAMT.Text) + Val(TXTIGSTAMT.Text)), "0.00")
+            Else
+                TXTGRANDTOTAL.Text = Val(TXTSUBTOTAL.Text.Trim) + Val(TXTCGSTAMT.Text) + Val(TXTSGSTAMT.Text) + Val(TXTIGSTAMT.Text) + Val(TXTROUNDOFF.Text.Trim)
+            End If
             TXTGRANDTOTAL.Text = Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00")
 
         Catch ex As Exception
@@ -1062,7 +1050,7 @@ LINE2:
 
                 If GRIDDOUBLECLICK = False Then
                     'TEMPDTMTRS.Clear()
-                    GRIDCHGS.RowCount = 0
+                    'GRIDCHGS.RowCount = 0
                     GRIDDOUBLECLICK = False
                     'Dim i As Integer = 0
                     'While i < TEMPDTMTRS.Rows.Count
@@ -1328,8 +1316,33 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTFOLD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTFOLD.KeyPress, TXTQTY.KeyPress, TXTPCS.KeyPress, TXTCUT.KeyPress, TXTMTRS.KeyPress, TXTRATES.KeyPress, TXTAMT.KeyPress, TXTCHRGS.KeyPress, TXTCHGSPER.KeyPress, TXTCHGSAMT.KeyPress, TXTSUBTOTAL.KeyPress, TXTCGSTPER.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTPER.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTPER.KeyPress, TXTIGSTAMT.KeyPress, TXTROUNDOFF.KeyPress, TXTGRANDTOTAL.KeyPress, TXTCOMMPER.KeyPress
-        numdotkeypress(e, sender, Me)
+    Private Sub TXTFOLD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTFOLD.KeyPress, TXTQTY.KeyPress, TXTPCS.KeyPress, TXTCUT.KeyPress, TXTMTRS.KeyPress, TXTRATES.KeyPress, TXTAMT.KeyPress, TXTCHRGS.KeyPress, TXTCHGSPER.KeyPress, TXTCHGSAMT.KeyPress, TXTSUBTOTAL.KeyPress, TXTCGSTPER.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTPER.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTPER.KeyPress, TXTIGSTAMT.KeyPress, TXTROUNDOFF.KeyPress, TXTGRANDTOTAL.KeyPress, TXTCOMMPER.KeyPress, TXTCGSTAMT.KeyPress, TXTSGSTAMT.KeyPress, TXTIGSTAMT.KeyPress
+        AMOUNTNUMDOTKYEPRESS(e, sender, Me)
+    End Sub
+
+    Sub AMOUNTNUMDOTKYEPRESS(ByVal han As KeyPressEventArgs, ByVal sen As Control, ByVal frm As System.Windows.Forms.Form)
+        Try
+            Dim mypos As Integer
+
+            If AscW(han.KeyChar) >= 48 And AscW(han.KeyChar) <= 57 Or AscW(han.KeyChar) = 8 Or AscW(han.KeyChar) = 45 Then
+                han.KeyChar = han.KeyChar
+            ElseIf AscW(han.KeyChar) = 46 Or AscW(han.KeyChar) = 45 Then
+                mypos = InStr(1, sen.Text, ".")
+                If mypos = 0 Then
+                    han.KeyChar = han.KeyChar
+                Else
+                    han.KeyChar = ""
+                End If
+            Else
+                han.KeyChar = ""
+            End If
+
+            If AscW(han.KeyChar) = Keys.Escape Then
+                frm.Close()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Sub CREATELEDGER(NAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
@@ -1697,8 +1710,8 @@ line1:
             ALPARAVAL.Add("")   'dyeingname
             ALPARAVAL.Add(0)    'BILLCHECKED
             ALPARAVAL.Add(0)    'DISPUTE
-            ALPARAVAL.Add(0)    'MANUALGST  
-            ALPARAVAL.Add(0)    'MANUALROUNDOFF  
+            ALPARAVAL.Add(Convert.ToBoolean(GRIDMAGICBOX.Rows(ROWNO).Cells(GMANUALGST.Index).Value))    'MANUALGST  
+            ALPARAVAL.Add(Convert.ToBoolean(GRIDMAGICBOX.Rows(ROWNO).Cells(GMANUALROUNDOFF.Index).Value))    'MANUALROUNDOFF  
 
             ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GREMARKS.Index).Value) 'REMARKS
 
@@ -1954,8 +1967,54 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTQTY_Validated(sender As Object, e As EventArgs) Handles TXTQTY.Validated, TXTCUT.Validated, TXTFOLD.Validated, TXTPCS.Validated, TXTMTRS.Validated, TXTRATES.Validated, CMBPER.Validated
+    Private Sub TXTQTY_Validated(sender As Object, e As EventArgs) Handles TXTQTY.Validated, TXTCUT.Validated, TXTFOLD.Validated, TXTPCS.Validated, TXTMTRS.Validated, TXTRATES.Validated, CMBPER.Validated, TXTROUNDOFF.Validated, TXTCGSTAMT.Validated, TXTSGSTAMT.Validated, TXTIGSTAMT.Validated
         CALC()
+        TOTAL()
+    End Sub
+
+    Private Sub CHKMANUAL_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CHKMANUAL.CheckedChanged
+        Try
+            If CHKMANUAL.Checked = True Then
+                TXTCGSTAMT.ReadOnly = False
+                TXTCGSTAMT.TabStop = True
+                TXTCGSTAMT.BackColor = Color.LemonChiffon
+                TXTSGSTAMT.ReadOnly = False
+                TXTSGSTAMT.TabStop = True
+                TXTSGSTAMT.BackColor = Color.LemonChiffon
+                TXTIGSTAMT.ReadOnly = False
+                TXTIGSTAMT.TabStop = True
+                TXTIGSTAMT.BackColor = Color.LemonChiffon
+            Else
+                TXTCGSTAMT.ReadOnly = True
+                TXTCGSTAMT.TabStop = False
+                TXTCGSTAMT.BackColor = Color.Linen
+                TXTSGSTAMT.ReadOnly = True
+                TXTSGSTAMT.TabStop = False
+                TXTSGSTAMT.BackColor = Color.Linen
+                TXTIGSTAMT.ReadOnly = True
+                TXTIGSTAMT.TabStop = False
+                TXTIGSTAMT.BackColor = Color.Linen
+                TOTAL()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHKMANUALROUND_CheckedChanged(sender As Object, e As EventArgs) Handles CHKMANUALROUND.CheckedChanged
+        Try
+            If CHKMANUALROUND.Checked = True Then
+                TXTROUNDOFF.ReadOnly = False
+                TXTROUNDOFF.TabStop = True
+            Else
+                TXTROUNDOFF.ReadOnly = True
+                TXTROUNDOFF.TabStop = False
+                CALC()
+                TOTAL()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDMAGICBOX_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDMAGICBOX.CellDoubleClick
@@ -2030,9 +2089,52 @@ line1:
             If CMBSELLERS.Text.Trim <> "" Then
                 'GET SELLERSTATECODE
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CAST(STATEMASTER.STATE_REMARK AS VARCHAR(50)),'') AS STATECODE", "", " LEDGERS INNER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBSELLERS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then SELLERSTATECODE = DT.Rows(0).Item("STATECODE")
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBSELLERS.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.acc_YEARid = " & YearId)
+                SELLERSTATECODE = DT.Rows(0).Item("STATECODE")
+
+                If CMBTRANS.Text = "" Then CMBTRANS.Text = DT.Rows(0).Item("TRANSNAME")
+
+
+                'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
+                'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
+                'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
+                If SALEAUTODISCOUNT = True And EDIT = False Then
+
+                    For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                        If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE1
+                    Next
+                    If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+
+                End If
+
+LINE1:
+
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTPARTYBILLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTPARTYBILLNO.Validating
+        Try
+            If TXTPARTYBILLNO.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBSELLERS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & TXTPARTYBILLNO.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("BILLNO"))
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub BILLDATE_Validated(sender As Object, e As EventArgs) Handles BILLDATE.Validated
+        Try
+            ENTRYDATE.Value = BILLDATE.Value
+            LRDATE.Value = BILLDATE.Value
         Catch ex As Exception
             Throw ex
         End Try

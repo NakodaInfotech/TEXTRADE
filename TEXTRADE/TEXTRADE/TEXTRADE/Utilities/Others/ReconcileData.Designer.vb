@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ReconcileData
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ReconcileData
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.CHKRECOPURCHASE = New System.Windows.Forms.CheckBox()
         Me.CHKRECONONPURCHASE = New System.Windows.Forms.CheckBox()
@@ -30,11 +30,11 @@ Partial Class ReconcileData
         Me.CMDCLEAR = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKRECOAGENCYINV = New System.Windows.Forms.CheckBox()
         Me.CHKRECOISSUEPACK = New System.Windows.Forms.CheckBox()
         Me.CHKRECOPROGRAM = New System.Windows.Forms.CheckBox()
         Me.CHKRECOORDER = New System.Windows.Forms.CheckBox()
         Me.CHKRECOPENDINGDATA = New System.Windows.Forms.CheckBox()
-        Me.CHKRECOAGENCYINV = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -130,6 +130,18 @@ Partial Class ReconcileData
         Me.BlendPanel1.Size = New System.Drawing.Size(371, 352)
         Me.BlendPanel1.TabIndex = 0
         '
+        'CHKRECOAGENCYINV
+        '
+        Me.CHKRECOAGENCYINV.AutoSize = True
+        Me.CHKRECOAGENCYINV.BackColor = System.Drawing.Color.Transparent
+        Me.CHKRECOAGENCYINV.Location = New System.Drawing.Point(27, 239)
+        Me.CHKRECOAGENCYINV.Name = "CHKRECOAGENCYINV"
+        Me.CHKRECOAGENCYINV.Size = New System.Drawing.Size(133, 19)
+        Me.CHKRECOAGENCYINV.TabIndex = 11
+        Me.CHKRECOAGENCYINV.Text = "Agency Sale Invoice"
+        Me.CHKRECOAGENCYINV.UseVisualStyleBackColor = False
+        Me.CHKRECOAGENCYINV.Visible = False
+        '
         'CHKRECOISSUEPACK
         '
         Me.CHKRECOISSUEPACK.AutoSize = True
@@ -173,18 +185,6 @@ Partial Class ReconcileData
         Me.CHKRECOPENDINGDATA.TabIndex = 5
         Me.CHKRECOPENDINGDATA.Text = "Pending Data (GRN / Challan)"
         Me.CHKRECOPENDINGDATA.UseVisualStyleBackColor = False
-        '
-        'CHKRECOAGENCYINV
-        '
-        Me.CHKRECOAGENCYINV.AutoSize = True
-        Me.CHKRECOAGENCYINV.BackColor = System.Drawing.Color.Transparent
-        Me.CHKRECOAGENCYINV.Location = New System.Drawing.Point(27, 239)
-        Me.CHKRECOAGENCYINV.Name = "CHKRECOAGENCYINV"
-        Me.CHKRECOAGENCYINV.Size = New System.Drawing.Size(133, 19)
-        Me.CHKRECOAGENCYINV.TabIndex = 11
-        Me.CHKRECOAGENCYINV.Text = "Agency Sale Invoice"
-        Me.CHKRECOAGENCYINV.UseVisualStyleBackColor = False
-        Me.CHKRECOAGENCYINV.Visible = False
         '
         'ReconcileData
         '
