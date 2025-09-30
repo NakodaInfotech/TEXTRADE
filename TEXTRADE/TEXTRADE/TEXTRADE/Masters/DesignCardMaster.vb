@@ -654,7 +654,7 @@ Public Class DesignCardMaster
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
         TXTWARPSRNO.Text = 1
-        CMBGRIDSYM.Text = "A"
+        CMBGRIDSYM.Text = ""
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -668,7 +668,7 @@ Public Class DesignCardMaster
         TXTWARPCOST.Clear()
         'SELVMATCHING TEXTBOXES
         TXTSELSRNO.Text = 1
-        TXTSELSYMBOL.Text = "A"
+        TXTSELSYMBOL.Text = ""
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -684,7 +684,7 @@ Public Class DesignCardMaster
         TXTSELGPE.Clear()
         'WEFTMATCHING TEXTBOXES
         TXTWEFTSRNO.Text = 1
-        CMBWEFTGRIDSYMBOL.Text = "A"
+        CMBWEFTGRIDSYMBOL.Text = ""
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1094,65 +1094,32 @@ LINE1:
 
 
         GRIDWARPDESC.EndEdit() '
-        ' Remove all rows for the current entry before adding new ones
-        For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
-            Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
-            For i As Integer = DT_WARPDETAILS.Rows.Count - 1 To 0 Step -1
-                If DT_WARPDETAILS.Rows(i)("WDMAINSRNO") = currentMainSrNo Then
-                    DT_WARPDETAILS.Rows.RemoveAt(i)
-                End If
-            Next
 
-            ' Now add new rows for this entry as usual
-            For Each MTRSROW As DataGridViewRow In GRIDWARPDESC.Rows
-                If Not MTRSROW.IsNewRow Then
-                    Dim newRow As DataRow = DT_WARPDETAILS.NewRow()
-                    newRow("WDSRNO") = MTRSROW.Cells(WDSRNO.Index).Value
-                    newRow("WDSHADE") = MTRSROW.Cells(WDSHADE.Index).Value
-                    newRow("WDMAINSRNO") = currentMainSrNo
-                    DT_WARPDETAILS.Rows.Add(newRow)
-                End If
-            Next
-        Next
-        ' Remove ONLY dynamically generated shade columns before (if needed)
-        For i As Integer = GRIDWARP.Columns.Count - 1 To 0 Step -1
-            If GRIDWARP.Columns(i).Name.StartsWith("WARP") Then
-                GRIDWARP.Columns.RemoveAt(i)
+
+
+        For i As Integer = GRIDWEFT.Columns.Count - 1 To 0 Step -1
+            If GRIDWEFT.Columns(i).Name.StartsWith("WEFT") Then
+                GRIDWEFT.Columns.RemoveAt(i)
             End If
         Next
 
-        ' Dynamically add shade columns up to max count among all SYMs/descriptions
-        Dim maxShadeCount As Integer = 0
-        For Each symRow As DataGridViewRow In GRIDWARP.Rows
-            If symRow.IsNewRow Then Continue For
-            Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
-            Dim descCount = GRIDWARPDESC.Rows.Cast(Of DataGridViewRow)().
-        Count(Function(descRow) Not descRow.IsNewRow AndAlso descRow.Cells(WSYM.Index).Value?.ToString() = symValue)
-            If descCount > maxShadeCount Then maxShadeCount = descCount
-        Next
-
-        For i As Integer = 0 To maxShadeCount - 1
-            Dim colName As String = "WARP" & (i + 1)
-            If Not GRIDWARP.Columns.Contains(colName) Then
-                GRIDWARP.Columns.Add(colName, colName)
+        ' Dynamically add columns as per count from GRIDWEFTDESC
+        For i As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
+            If GRIDWEFTDESC.Rows(i).IsNewRow Then Continue For
+            Dim colName As String = "WEFT" & (i + 1)
+            ' Add only if it doesn't exist yet
+            If Not GRIDWEFT.Columns.Contains(colName) Then
+                GRIDWEFT.Columns.Add(colName, colName)
             End If
         Next
 
-        ' Now fill the shade columns per GRIDWARP row, matching shades by SYM/Key!
-        For Each symRow As DataGridViewRow In GRIDWARP.Rows
-            If symRow.IsNewRow Then Continue For
-            Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
-            ' All descriptions for this SYM
-            Dim descShades = GRIDWARPDESC.Rows.Cast(Of DataGridViewRow)().
-        Where(Function(descRow) Not descRow.IsNewRow AndAlso descRow.Cells(WSYM.Index).Value?.ToString() = symValue).
-        Select(Function(descRow) descRow.Cells(WDSHADE.Index).Value?.ToString()).ToList()
-
-            For i As Integer = 0 To descShades.Count - 1
-                Dim shadeColName = "WARP" & (i + 1)
-                symRow.Cells(shadeColName).Value = descShades(i)
-            Next
+        ' Fill the shades in the grid
+        For shadeIndex As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
+            If GRIDWEFTDESC.Rows(shadeIndex).IsNewRow Then Continue For
+            Dim shadeValue As Object = GRIDWEFTDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
+            ' Display shade horizontally in the active (or selected) GRIDWEFT row
+            GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells("WEFT" & (shadeIndex + 1)).Value = shadeValue
         Next
-
 
 
         GRIDWARP.ClearSelection()
@@ -1162,7 +1129,6 @@ LINE1:
 
         If GRIDWARP.RowCount > 0 Then
             TXTWARPSRNO.Text = Val(GRIDWARP.Rows(GRIDWARP.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
         Else
             TXTWARPSRNO.Text = 1
         End If
@@ -1373,7 +1339,7 @@ LINE1:
             TXTSELSRNO.Focus()
             GRIDWEFTDOUBLECLICK = False
 
-            'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            'WE WILL REMOVE THE DATA And REINSERT, THIS Is CODE For REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
             If EDIT = False Then
 LINE1:
                 For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
@@ -1385,13 +1351,8 @@ LINE1:
             End If
         End If
 
-        'If String.IsNullOrEmpty(CMBWEFTGRIDSYMBOL.Text) Then
-        '    CMBWEFTGRIDSYMBOL.Text = "A"
-        'Else
-        '    CMBWEFTGRIDSYMBOL.Text = IncrementAlphabet(CMBWEFTGRIDSYMBOL.Text)
-        'End If
-        GRIDWEFTDESC.EndEdit() '
-        ' Remove all rows for the current entry before adding new ones
+        GRIDWEFTDESC.EndEdit()
+
         For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
             Dim currentMainSrNo As Object = MTRSROW1.Cells(FDMAINSRNO.Index).Value
             For i As Integer = DT_WEFTDETAILS.Rows.Count - 1 To 0 Step -1
@@ -1447,6 +1408,8 @@ LINE1:
         Else
             TXTWEFTSRNO.Text = 1
         End If
+        GRIDWEFTDESC.RowCount = 0
+        TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
     End Sub
     Sub COPYWEFTSYM()
         CMBWEFTGRIDSYMBOL.Items.Clear()
@@ -2139,17 +2102,20 @@ LINE1:
     End Sub
 
     Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
-        'Try
-        '    If CMBGRIDSYM.Text <> "" And TXTGRIDPE.Text.Trim <> "" Then
-        '        fillwarppatterngrid()
-        '        GETWARPPE()
-        '    Else
-        '        MsgBox("Please Enter Symbol And P.E.")
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-
+        Try
+            If CMBGRIDSYM.Text <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWARP.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+                    If symValue = CMBGRIDSYM.Text.Trim Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        CMBGRIDSYM.Focus()
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Sub GETWARPPE()
         ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
@@ -2320,16 +2286,11 @@ LINE1:
     End Sub
 
     Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
-        'Try
-        '    If CMBWEFTGRIDSYMBOL.Text <> "" And TXTWEFTGRIDPE.Text.Trim <> "" Then
-        '        FILLWEFTPATTERNGRID()
-        '        GETWEFTPE()
-        '    Else
-        '        MsgBox("Please Enter Symbol And P.E.")
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 
@@ -2365,7 +2326,7 @@ LINE1:
                     End If
                 Next
                 For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value <Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
                         DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
                     End If
                 Next
@@ -3683,42 +3644,30 @@ line1:
     End Sub
     Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
         Try
-            If CMBWEFTYARNQUALITY.Text.Trim <> "" And CMBWEFTGRIDSYMBOL.Text.Trim <> "" Then
-                FILLWEFTGRID()
+            If CMBWEFTGRIDSYMBOL.Text <> "" And CMBWEFTYARNQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+                    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                    ElseIf symValue <> CMBWEFTGRIDSYMBOL.Text.Trim Then
+                        FILLWEFTGRID()
+                        GRIDWEFTDOUBLECLICK = True
+                    End If
+                Next
+
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            If GRIDWEFT.RowCount = 0 Then
+                FILLWEFTGRID()
             End If
             GBWEFT.Visible = False
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Function IncrementAlphabet(input As String) As String
-        If String.IsNullOrEmpty(input) Then
-            Return "A"
-        End If
-
-        Dim chars As Char() = input.ToUpper().ToCharArray()
-        Dim i As Integer = chars.Length - 1
-
-        While i >= 0
-            If chars(i) = "Z"c Then
-                chars(i) = "A"c
-                i -= 1
-            Else
-                chars(i) = Chr(Asc(chars(i)) + 1)
-                Exit While
-            End If
-        End While
-
-        If i < 0 Then
-            ' If all characters were Z, add another A at the start
-            Return "A" & New String(chars)
-        Else
-            Return New String(chars)
-        End If
-    End Function
-
     Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
         Try
             If TXTLEFTSELENDS.Text <> "" Then TXTRIGHTSELENDS.Text = Val(TXTLEFTSELENDS.Text.Trim)
