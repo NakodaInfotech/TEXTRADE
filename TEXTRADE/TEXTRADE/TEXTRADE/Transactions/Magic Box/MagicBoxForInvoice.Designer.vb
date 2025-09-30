@@ -1224,7 +1224,7 @@ Partial Class MagicBoxForInvoice
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
         Me.cmdclear.TabIndex = 26
-        Me.cmdclear.Text = "&Clear"
+        Me.cmdclear.Text = "Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
         'cmdEXIT

@@ -8,7 +8,7 @@ Public Class MagicBoxForInvoice
     Dim TEMPROW, TEMPCHGSROW As Integer
     Public EDIT As Boolean
     Dim DT_CHGSDETAILS As New DataTable
-    Dim BUYERSTATECODE, SELLERSTATECODE As Integer
+    Dim BUYERSTATECODE, SELLERSTATECODE As String
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         Try
@@ -826,7 +826,6 @@ NEXTLINE:
                 CMBCOMM.Text = ""
                 TXTREMARKS.Text = DTROW("REMARKS").ToString()
 
-                GETHSNCODE()
                 TXTPARTYBILLNO.Focus()
 
 
@@ -915,15 +914,11 @@ LINE2:
                 Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CAST(STATEMASTER.STATE_REMARK AS VARCHAR(50)),'') AS STATECODE", "", " LEDGERS INNER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID ", " AND LEDGERS.ACC_CMPNAME = '" & CMBBUYERS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then BUYERSTATECODE = DT.Rows(0).Item("STATECODE")
 
-                CMDSELECTPO.Focus()
+                GETHSNCODE()
             End If
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub CMDSELECTPO_Validated(sender As Object, e As EventArgs) Handles CMDSELECTPO.Validated
-        TXTPARTYBILLNO.Focus()
     End Sub
 
     Sub CALC()
@@ -1028,12 +1023,7 @@ LINE2:
 
     Private Sub cmbitemname_Validated(sender As Object, e As EventArgs) Handles cmbitemname.Validated
         Try
-            Dim OBJCMN As New ClsCommon
-            'Dim DT As DataTable = OBJCMN.search("  ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND ITEMMASTER.ITEM_NAME= '" & CMBITEM.Text.Trim & "' AND HSNMASTER.HSN_YEARID='" & YearId & "' ORDER BY HSNMASTER.HSN_ID DESC")
-            Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ENTRYDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & cmbitemname.Text.Trim & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
-            If DT.Rows.Count > 0 Then
-                TXTHSN.Text = DT.Rows(0).Item("HSNCODE").ToString()
-            End If
+            GETHSNCODE()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2108,7 +2098,7 @@ line1:
                 End If
 
 LINE1:
-
+                GETHSNCODE()
             End If
         Catch ex As Exception
             Throw ex

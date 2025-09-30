@@ -377,7 +377,7 @@ Public Class AgencyReceipt
 
     Private Sub CMBPARTYBANK_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBPARTYBANK.Enter
         Try
-            'If CMBPARTYBANK.Text.Trim = "" Then FILLBANK(CMBPARTYBANK)
+            If CMBPARTYBANK.Text.Trim = "" Then FILLBANK(CMBPARTYBANK)
         Catch ex As Exception
             Throw ex
         End Try
@@ -385,7 +385,7 @@ Public Class AgencyReceipt
 
     Private Sub CMBPARTYBANK_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBPARTYBANK.Validating
         Try
-            'If CMBPARTYBANK.Text.Trim <> "" Then PARTYBANKvalidate(CMBPARTYBANK, e, Me)
+            If CMBPARTYBANK.Text.Trim <> "" Then PARTYBANKvalidate(CMBPARTYBANK, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -405,9 +405,11 @@ Public Class AgencyReceipt
             fillledger(cmbseller, EDIT, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
             fillregister(cmbregister, " and register_type = 'RECEIPT'")
 
+
             'GET DEFAULT BANK IF BANK A/C AND OVERSEAS IS TRUE THEN FETCH THAT BANK
             Dim OBJCMN As New ClsCommonMaster
-            Dim DT As DataTable = OBJCMN.search(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.ACC_GROUPID = GROUPMASTER.GROUP_ID", " AND GROUP_SECONDARY = 'BANK A/C' AND ACC_YEARID = " & YearId)
+            Dim DT As New DataTable
+            'DT= OBJCMN.search(" TOP 1 ISNULL(LEDGERS.ACC_CMPNAME,'') AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.ACC_GROUPID = GROUPMASTER.GROUP_ID", " AND GROUP_SECONDARY = 'BANK A/C' AND ACC_YEARID = " & YearId)
             'If DT.Rows.Count > 0 Then cmbseller.Text = DT.Rows(0).Item("BANKNAME")
 
 

@@ -8926,12 +8926,12 @@ line1:
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable
                 dt = objclscommon.search(" PARTYBANK_name ", "", " PARTYBANKMaster ", " and PARTYBANK_YEARID = " & YearId)
+                CMBBANK.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "PARTYBANK_name"
                     CMBBANK.DisplayMember = "PARTYBANK_name"
                     CMBBANK.Text = ""
                 End If
-                CMBBANK.DataSource = dt
                 CMBBANK.SelectedIndex = -1
                 CMBBANK.SelectAll()
             End If
