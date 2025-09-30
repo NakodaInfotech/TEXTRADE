@@ -9,6 +9,16 @@ Public Class UploadExcel
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim frm As New ExpenseVoucher()
 
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
+        CLEAR()
+    End Sub
+    Sub CLEAR()
+        TXTFILENAME.Clear()
+    End Sub
 
     Private Sub CMDSELECFILE_Click(sender As Object, e As EventArgs) Handles CMDSELECTFILE.Click
         Try
@@ -34,6 +44,7 @@ Public Class UploadExcel
         Dim oBook As Excel.Workbook = Nothing
         Dim oSheet As Excel.Worksheet = Nothing
         Dim dt As New DataTable()
+        Dim OBJCMN As New ClsCommon
 
 
         Try
@@ -63,140 +74,228 @@ Public Class UploadExcel
                 MessageBox.Show("Excel file is empty.")
                 Exit Sub
             End If
-            ' 2. Open Purchase Invoice form
-            'Dim frm As New PurchaseMaster()
+            ' Check CMBTYPE to decide save destination
+            If CMBTYPE.Text.Trim = "NONPURCHASE" Then
+                ' Create dictionary: key = Party Bill No, value = List of rows
+                Dim invoices As New Dictionary(Of String, List(Of DataRow))()
 
-            '' 3. Fill header from first row
-            'Dim dr As DataRow = dt.Rows(0)
-            'frm.cmbname.Text = dr("name").ToString()
-            'frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString()
-            'frm.DTPARTYBILLDATE.Text = dr("bill date").ToString()
-            'frm.TXTREFNO.Text = dr("OTHER REF(REM)").ToString()
-            'frm.TXTSACCODE.Text = dr("SAC CODE").ToString()
+                For Each row As DataRow In dt.Rows
+                    Dim key As String = row("party bill no").ToString().Trim()
+                    If Not invoices.ContainsKey(key) Then
+                        invoices(key) = New List(Of DataRow)()
+                    End If
+                    invoices(key).Add(row)
+                Next
 
-            '' 4. Fill items into GRIDBILL
-            'frm.GRIDBILL.Rows.Clear()
-            'Dim sr As Integer = 1
-            'For Each row As DataRow In dt.Rows
-            '    If row("ITEM NAME").ToString().Trim() <> "" Then
-            '        frm.GRIDBILL.Rows.Add(
-            '            sr,
-            '            row("ITEM NAME").ToString(),
-            '            "", "", "", "", 0, 0, "",
-            '            "", "", Val(row("QTY")),
-            '            "PCS", 0, 0, 0,
-            '            Val(row("RATE")),
-            '            "Qty", Val(row("AMOUNT")),
-            '            0, 0, 0, 0, 0,
-            '            Val(row("TAXABLE A")),
-            '            0, 0, 0, 0, 0, 0,
-            '            Val(row("AMOUNT")),
-            '            0, 0, "N", False, 0, 0
-            '        )
-            '        sr += 1
-            '    End If
-            'Next
+                ' Process each invoice group
+                Dim successCount As Integer = 0
+                Dim errorCount As Integer = 0
+                For Each kvp In invoices
+                    Dim rows As List(Of DataRow) = kvp.Value
+                    Dim dr As DataRow = rows(0)   ' first row = header
 
-            '' 5. Save into database
-            'frm.SaveInvoice()
-            ' Create dictionary: key = Party Bill No, value = List of rows
-            Dim invoices As New Dictionary(Of String, List(Of DataRow))()
+                    Dim frm As New ExpenseVoucher()
+                    frm.CMBNAME.Text = dr("name").ToString()
+                    frm.RunCmbNameValidation()   ' 🔹 Ensures correct GST split
+                    If String.IsNullOrEmpty(frm.NPDATE.Text) Or frm.NPDATE.Text = "__/__/____" Then
+                        frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                    End If
+                    frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString()
+                    frm.PARTYBILLDATE.Text = dr("party bill date").ToString()
+                    'frm.PARTYBILLDATE.Text = Format(Convert.ToDateTime(dr("bill date")), "dd/MM/yyyy")
+                    frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString()
+                    'frm.TXTSACCODE.Text = dr("SAC CODE").ToString()
 
-            For Each row As DataRow In dt.Rows
-                Dim key As String = row("party bill no").ToString().Trim()
-                If Not invoices.ContainsKey(key) Then
-                    invoices(key) = New List(Of DataRow)()
-                End If
-                invoices(key).Add(row)
-            Next
-
-            ' Process each invoice group
-            Dim successCount As Integer = 0
-            Dim errorCount As Integer = 0
-            For Each kvp In invoices
-                Dim rows As List(Of DataRow) = kvp.Value
-                Dim dr As DataRow = rows(0)   ' first row = header
-
-                Dim frm As New ExpenseVoucher()
-                frm.CMBNAME.Text = dr("name").ToString()
-                If String.IsNullOrEmpty(frm.NPDATE.Text) Or frm.NPDATE.Text = "__/__/____" Then
-                    frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
-                End If
-                frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString()
-                frm.PARTYBILLDATE.Text = dr("party bill date").ToString()
-                'frm.PARTYBILLDATE.Text = Format(Convert.ToDateTime(dr("bill date")), "dd/MM/yyyy")
-                frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString()
-                'frm.TXTSACCODE.Text = dr("SAC CODE").ToString()
-
-                frm.GRIDEXPENSE.Rows.Clear()
-                Dim sr As Integer = 1
-                'For Each r As DataRow In rows
-                '    If r("ITEM NAME").ToString().Trim() <> "" Then
-                '        frm.GRIDEXPENSE.Rows.Add(sr,
-                '                  "WEAVING CHARGES",           ' Debit To (fixed)
-                '                  dr("SAC CODE").ToString(),
-                '                  r("ITEM NAME").ToString(),   ' NOTE
-                '                  Val(r("QTY")),               ' QTY 
-                '                  Val(r("RATE")),              ' RATE
-                '                  Val(r("AMOUNT")),            ' AMOUNT
-                '                  0,                           ' OTHERAMT
-                '                  0,                           ' TAXABLE AMT
-                '                  0,                           ' CGST %
-                '                  0,                           ' CGST AMT
-                '                  0,                           ' SGST %
-                '                  0,                           ' SGST AMT
-                '                  0,                           ' IGST %
-                '                  0,                           ' IGST 
-                '                  Val(r("AMOUNT"))           ' GRID TOTAL
-                '         )
-                '        sr += 1
-                '    End If
-                'Next
-                For Each r As DataRow In rows
-                    ' Loop through possible item sets (up to 4)
-                    For i As Integer = 0 To 4
-                        ' Support both "ITEM NAME 2" and "ITEMNAME 2"
-                        Dim itemColOptions = {$"ITEM NAME {i}", $"ITEMNAME {i}"}
-                        Dim qtyColOptions = {$"QTY {i}", $"QTY{i}"}
-                        Dim rateColOptions = {$"RATE {i}", $"RATE{i}"}
-                        Dim amountColOptions = {$"AMOUNT {i}", $"AMOUNT{i}"}
-
-                        ' Find the actual column names that exist
-                        Dim itemCol = itemColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
-                        Dim qtyCol = qtyColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
-                        Dim rateCol = rateColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
-                        Dim amountCol = amountColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
-
-                        If Not String.IsNullOrEmpty(itemCol) AndAlso r(itemCol).ToString().Trim() <> "" Then
+                    frm.GRIDEXPENSE.Rows.Clear()
+                    Dim sr As Integer = 1
+                    'For Each r As DataRow In rows
+                    '    If r("ITEM NAME").ToString().Trim() <> "" Then
+                    '        frm.GRIDEXPENSE.Rows.Add(sr,
+                    '                  "WEAVING CHARGES",           ' Debit To (fixed)
+                    '                  dr("SAC CODE").ToString(),
+                    '                  r("ITEM NAME").ToString(),   ' NOTE
+                    '                  Val(r("QTY")),               ' QTY 
+                    '                  Val(r("RATE")),              ' RATE
+                    '                  Val(r("AMOUNT")),            ' AMOUNT
+                    '                  0,                           ' OTHERAMT
+                    '                  0,                           ' TAXABLE AMT
+                    '                  0,                           ' CGST %
+                    '                  0,                           ' CGST AMT
+                    '                  0,                           ' SGST %
+                    '                  0,                           ' SGST AMT
+                    '                  0,                           ' IGST %
+                    '                  0,                           ' IGST 
+                    '                  Val(r("AMOUNT"))           ' GRID TOTAL
+                    '         )
+                    '        sr += 1
+                    '    End If
+                    'Next
+                    ' Before adding items in rows, fetch once:
+                    Dim otherAmt As Decimal = 0
+                    If dr.Table.Columns.Contains("OTHER AMT") AndAlso dr("OTHER AMT").ToString().Trim() <> "" Then
+                        otherAmt = Val(dr("OTHER AMT"))
+                    End If
+                    For Each r As DataRow In rows
+                        ' -----------------------
+                        ' Handle first ITEM NAME (main item)
+                        ' -----------------------
+                        If r.Table.Columns.Contains("ITEM NAME") AndAlso r("ITEM NAME").ToString().Trim() <> "" Then
                             frm.GRIDEXPENSE.Rows.Add(sr,
-            "WEAVING CHARGES",             ' Debit To
-            dr("SAC CODE").ToString(),     ' SAC CODE
-            r(itemCol).ToString(),         ' ITEM NAME / NOTE
-            Val(r(qtyCol)),                ' QTY
-            Val(r(rateCol)),               ' RATE
-            Val(r(amountCol)),             ' AMOUNT
+            "WEAVING CHARGES",
+            dr("SAC CODE").ToString(),
+            r("ITEM NAME").ToString(),
+            Val(r("QTY")),
+            Val(r("RATE")),
+            Val(r("AMOUNT")),
+            otherAmt,  ' --- set this for all
             0, 0, 0, 0, 0, 0, 0, 0,
-            Val(r(amountCol))              ' GRID TOTAL
+            Val(r("AMOUNT"))
         )
+
+                            Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
+
+                            ' Populate form fields for CALC()
+                            frm.TXTQTY.Text = Val(r("QTY")).ToString()
+                            frm.TXTRATE.Text = Val(r("RATE")).ToString()
+                            frm.TXTTAXABLEAMT.Text = Val(r("AMOUNT")).ToString()
+                            frm.CMBHSNCODE.Text = dr("SAC CODE").ToString()
+
+                            frm.GETHSNCODE()
+                            frm.CALC()
+
+                            ' Copy GST values back
+                            lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
+                            lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
+                            lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
+                            lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
+                            lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
+                            lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
+                            lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
+                            lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+
                             sr += 1
                         End If
+
+                        ' -----------------------
+                        ' Handle ITEM NAME 1, ITEMNAME 2, ITEM NAME 3
+                        ' -----------------------
+                        For i As Integer = 1 To 3
+                            Dim itemColOptions = {$"ITEM NAME {i}", $"ITEMNAME {i}", $"ITEMNAME{i}"}
+                            Dim qtyColOptions = {$"QTY {i}", $"QTY{i}"}
+                            Dim rateColOptions = {$"RATE {i}", $"RATE{i}"}
+                            Dim amountColOptions = {$"AMOUNT {i}", $"AMOUNT{i}"}
+
+                            Dim itemCol = itemColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
+                            Dim qtyCol = qtyColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
+                            Dim rateCol = rateColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
+                            Dim amountCol = amountColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
+
+                            If Not String.IsNullOrEmpty(itemCol) AndAlso r(itemCol).ToString().Trim() <> "" Then
+                                frm.GRIDEXPENSE.Rows.Add(sr,
+                "WEAVING CHARGES",
+                dr("SAC CODE").ToString(),
+                r(itemCol).ToString(),
+                Val(r(qtyCol)),
+                Val(r(rateCol)),
+                Val(r(amountCol)),
+                otherAmt,  ' --- set this for all
+                0, 0, 0, 0, 0, 0, 0, 0,
+                Val(r(amountCol))
+            )
+
+                                Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
+
+                                ' Populate form fields for CALC()
+                                frm.TXTQTY.Text = Val(r(qtyCol)).ToString()
+                                frm.TXTRATE.Text = Val(r(rateCol)).ToString()
+                                frm.TXTTAXABLEAMT.Text = Val(r(amountCol)).ToString()
+                                frm.CMBHSNCODE.Text = dr("SAC CODE").ToString()
+
+                                frm.GETHSNCODE()
+                                frm.CALC()
+
+                                ' Copy GST values back
+                                lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
+                                lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
+                                lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
+                                lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
+                                lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
+                                lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
+                                lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
+                                lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+
+                                sr += 1
+                            End If
+                        Next
                     Next
+                    ' 🔹 Refresh totals after all rows
+                    frm.TOTAL()
+                    ' Set Register Name
+                    frm.CMBREGISTER.Text = "NON-PURCHASE REGISTER" ' or get from Excel if dynamic
+                    frm.CanUserAdd = True
+                    frm.TXTNPNO.Text = getmaxno().ToString()
+                    ' Save invoice
+                    If frm.SaveInvoice(True) Then
+                        successCount += 1
+                    Else
+                        errorCount += 1
+                        MessageBox.Show("Error uploading voucher for Party Bill No: " & frm.TXTPARTYBILLNO.Text, "Upload Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 Next
-                ' Set Register Name
-                frm.CMBREGISTER.Text = "NON-PURCHASE REGISTER" ' or get from Excel if dynamic
-                frm.CanUserAdd = True
-                frm.TXTNPNO.Text = getmaxno().ToString()
-                ' Save invoice
-                If frm.SaveInvoice() Then
-                    successCount += 1
-                Else
-                    errorCount += 1
-                    MessageBox.Show("Error uploading voucher for Party Bill No: " & frm.TXTPARTYBILLNO.Text, "Upload Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
-            Next
 
-            MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf CMBTYPE.Text.Trim = "INVOICE" Then
+                ' New InvoiceMaster upload logic
+                Dim successCount As Integer = 0
+                Dim errorCount As Integer = 0
 
+                For Each row As DataRow In dt.Rows
+                    Dim invoiceNo As String = row("CHALLAN NO").ToString().Trim()
+                    Dim sono As String = row("SO NO").ToString().Trim()
+
+                    ' Check for duplicate invoice
+                    Dim dtCheck As DataTable = OBJCMN.SEARCH("INVOICE_NO", "INVOICEMASTER", "AND INVOICE_NO = '" & invoiceNo & "' AND INVOICE_YEARID = " & YearId)
+                    If dtCheck.Rows.Count > 0 Then
+                        MessageBox.Show("Duplicate Invoice No: " & invoiceNo, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        errorCount += 1
+                        Continue For
+                    End If
+
+                    ' Fetch SONO details
+                    Dim dtSONO As DataTable = OBJCMN.SEARCH("DELIVERYTO, AGENTNAME, CRDAYS, PARTYNAME, DISCOUNT", "SALEORDERMASTER", "AND SONO = '" & sono & "' AND SOYEARID = " & YearId)
+                    If dtSONO.Rows.Count = 0 Then
+                        MessageBox.Show("SONO " & sono & " not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        errorCount += 1
+                        Continue For
+                    End If
+
+                    Try
+                        Dim frmInv As New InvoiceMaster()
+                        frmInv.TXTINVOICENO.Text = invoiceNo
+                        frmInv.TXTSONO.Text = sono
+                        frmInv.CMBPACKING.Text = dtSONO.Rows(0)("DELIVERYTO").ToString()
+                        frmInv.CMBAGENT.Text = dtSONO.Rows(0)("AGENTNAME").ToString()
+                        frmInv.TXTCRDAYS.Text = dtSONO.Rows(0)("CRDAYS").ToString()
+                        frmInv.cmbname.Text = dtSONO.Rows(0)("PARTYNAME").ToString()
+                        frmInv.CMBCHARGES.Text = dtSONO.Rows(0)("DISCOUNT").ToString()
+                        ' Map other delivery/transport/LR/etc details from Excel columns if needed here
+
+                        ' Fill grid of frmInv using dt row if needed (customize as per grid requirements)
+
+                        'If frmInv.SaveInvoice() Then
+                        '    successCount += 1
+                        'Else
+                        '    errorCount += 1
+                        'End If
+                    Catch ex As Exception
+                        MessageBox.Show("Error saving invoice no: " & invoiceNo & vbCrLf & ex.Message)
+                        errorCount += 1
+                    End Try
+                Next
+                MessageBox.Show(successCount & " invoices saved successfully, " & errorCount & " errors.", "Invoice Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Select CMBTYPE as either NONPURCHASE or INVOICE.")
+            End If
         Catch ex As Exception
             ' MessageBox.Show("Error: " & ex.Message)
         Finally
@@ -237,4 +336,5 @@ Public Class UploadExcel
 
         Return nextNo
     End Function
+
 End Class
