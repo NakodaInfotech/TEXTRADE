@@ -30,7 +30,7 @@ Public Class InvoiceDetails
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub FILLGRID(ByVal TEMPCONDITION)
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")

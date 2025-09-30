@@ -1122,16 +1122,17 @@ SKIPINVOICE:
                     If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
                 ElseIf ClientName = "ABHEE" Then
                     OBJ = New InvoiceReport_ABHEE
-                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+
+                    'FETCH SO DETAILS AND PASS IN PRINT FORMAT
+                    Dim OBJCMN As New ClsCommon
+                    Dim DTSO As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(SO_MTRS),0) AS SOQTY, (CASE WHEN SO_ORDERON = 'PCS' THEN ISNULL(SUM(SO_RECDQTY),0) ELSE ISNULL(SUM(SO_RECDMTRS),0) END) AS ISSQTY, ISNULL(SUM(BALANCE),0) AS BALQTY ", "", " INVOICEMASTER_SODETAILS INNER JOIN ALLSALEORDER_DESC ON INVOICE_FROMNO = ALLSALEORDER_DESC.SO_NO AND INVOICE_FROMSRNO = ALLSALEORDER_DESC.SO_GRIDSRNO AND INVOICE_FROMTYPE = ALLSALEORDER_DESC.TYPE INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND INVOICEMASTER_SODETAILS.INVOICE_NO = " & Val(INVNO) & " AND REGISTERMASTER.REGISTER_NAME = '" & registername & "' AND INVOICEMASTER_SODETAILS.INVOICE_YEARID = " & YearId & " GROUP BY SO_ORDERON")
+                    If DTSO.Rows.Count > 0 Then
+                        OBJ.DataDefinition.FormulaFields("SOQTY").Text = Val(DTSO.Rows(0).Item("SOQTY"))
+                        OBJ.DataDefinition.FormulaFields("ISSQTY").Text = Val(DTSO.Rows(0).Item("ISSQTY"))
+                        OBJ.DataDefinition.FormulaFields("BALQTY").Text = Val(DTSO.Rows(0).Item("BALQTY"))
+                    End If
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                    OBJ.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
-                    OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
-                    If INVTOPHEADER = True Then OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("TOPHEADER").Text = 0
-                    If INVCENTREHEADER = True Then OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 1 Else OBJ.DataDefinition.FormulaFields("CENTREHEADER").Text = 0
-                    If INVSHOWSRNO = True Then OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWSRNO").Text = 0
-                    If INVSHOWITEMDESIGN = True Then OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 1 Else OBJ.DataDefinition.FormulaFields("SHOWITEMDESIGN").Text = 0
+                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 Else
                     OBJ = New InvoiceReport_TOTALLEFT
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
