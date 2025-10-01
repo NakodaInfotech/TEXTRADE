@@ -50,6 +50,7 @@ Partial Class AgencyCreditNote
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgencyCreditNote))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTSELLERSTATECODE = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
@@ -233,7 +234,6 @@ Partial Class AgencyCreditNote
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TXTSELLERSTATECODE = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -372,6 +372,21 @@ Partial Class AgencyCreditNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 556)
         Me.BlendPanel1.TabIndex = 612
+        '
+        'TXTSELLERSTATECODE
+        '
+        Me.TXTSELLERSTATECODE.BackColor = System.Drawing.Color.Linen
+        Me.TXTSELLERSTATECODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTSELLERSTATECODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTSELLERSTATECODE.Location = New System.Drawing.Point(270, 32)
+        Me.TXTSELLERSTATECODE.MaxLength = 10
+        Me.TXTSELLERSTATECODE.Name = "TXTSELLERSTATECODE"
+        Me.TXTSELLERSTATECODE.ReadOnly = True
+        Me.TXTSELLERSTATECODE.Size = New System.Drawing.Size(56, 23)
+        Me.TXTSELLERSTATECODE.TabIndex = 1015
+        Me.TXTSELLERSTATECODE.TabStop = False
+        Me.TXTSELLERSTATECODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTSELLERSTATECODE.Visible = False
         '
         'Button1
         '
@@ -1524,7 +1539,7 @@ Partial Class AgencyCreditNote
         Me.LBLPACKING.Name = "LBLPACKING"
         Me.LBLPACKING.Size = New System.Drawing.Size(78, 14)
         Me.LBLPACKING.TabIndex = 953
-        Me.LBLPACKING.Text = "Delivery To"
+        Me.LBLPACKING.Text = "Debit To"
         Me.LBLPACKING.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBPACKING
@@ -2589,21 +2604,6 @@ Partial Class AgencyCreditNote
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'TXTSELLERSTATECODE
-        '
-        Me.TXTSELLERSTATECODE.BackColor = System.Drawing.Color.Linen
-        Me.TXTSELLERSTATECODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTSELLERSTATECODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSELLERSTATECODE.Location = New System.Drawing.Point(270, 32)
-        Me.TXTSELLERSTATECODE.MaxLength = 10
-        Me.TXTSELLERSTATECODE.Name = "TXTSELLERSTATECODE"
-        Me.TXTSELLERSTATECODE.ReadOnly = True
-        Me.TXTSELLERSTATECODE.Size = New System.Drawing.Size(56, 23)
-        Me.TXTSELLERSTATECODE.TabIndex = 1015
-        Me.TXTSELLERSTATECODE.TabStop = False
-        Me.TXTSELLERSTATECODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTSELLERSTATECODE.Visible = False
         '
         'AgencyCreditNote
         '

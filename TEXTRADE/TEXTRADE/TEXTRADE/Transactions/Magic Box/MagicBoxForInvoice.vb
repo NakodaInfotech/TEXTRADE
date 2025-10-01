@@ -390,6 +390,13 @@ Public Class MagicBoxForInvoice
 
 
 
+                'WE WILL HAVE TO CREATE CREDIT NOTE IF TDS IS APPLICABLE IN AGENCY
+                If Convert.ToBoolean(row.Cells(GTDS.Index).Value) = True And Val(row.Cells(GTDSAMT.Index).Value) > 0 And row.Cells(GTDSNAME.Index).Value <> "" Then GENERATEAGENCYCN(Val(row.Index))
+
+
+
+
+
                 'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
                 'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE INVOICE IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
                 Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
@@ -416,6 +423,10 @@ Public Class MagicBoxForInvoice
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
                     GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
+
+                    'WE WILL HAVE TO CREATE JOURNAL IF TDS IS APPLICABLE IN LLP
+                    If Convert.ToBoolean(row.Cells(GTDS.Index).Value) = True And Val(row.Cells(GTDSAMT.Index).Value) > 0 And row.Cells(GTDSNAME.Index).Value <> "" Then GENERATETDSJOURNAL(Val(row.Index), TEMPCMPID, TEMPYEARID)
+
                 End If
                 '******************** END OF PO GENERATION CODE ***************************
 
@@ -428,21 +439,206 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Function SafeDate(cellValue As Object) As String
-        If IsDate(cellValue) Then
-            Return Format(CDate(cellValue), "MM/dd/yyyy")
-        Else
-            Return ""
-        End If
-    End Function
+    Sub GENERATEAGENCYCN(ROWNO As Integer)
+        Try
 
-    Private Function SafeDateString(val As String) As String
-        If IsDate(val) Then
-            Return Format(CDate(val), "MM/dd/yyyy")
-        Else
-            Return ""
-        End If
-    End Function
+            Dim alParaval As New ArrayList
+
+            alParaval.Add(0)    'CNNO
+            alParaval.Add("")   'TYPE
+            alParaval.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy")) 'CNDATE
+            alParaval.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy")) 'ACTUALINVDATE
+
+            alParaval.Add("")   'BILLNO
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)  'PARTYBILLNO
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GBUYERS.Index).Value)  'NAME
+            alParaval.Add("")   'AGENT
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GHSN.Index).Value) 'HSNCODE
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value) 'DEBITLEDGER
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSNAME.Index).Value)   'PACKING (add debit to)
+
+            alParaval.Add("")   'INVPRINTINITIALS
+            alParaval.Add(0)    'PCS
+            alParaval.Add(0)    'MTRS
+            alParaval.Add(0)    'ACTUALINVAMT
+            alParaval.Add(0)    'DISCPER
+
+
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value))
+            alParaval.Add(0)    'TOTALTAXAMT
+            alParaval.Add(0)    'OTHERCHGS
+            alParaval.Add(0)    'CHARGES
+
+            alParaval.Add(0)    'RCM
+            alParaval.Add(1)    'MANUALGST (KEEP IT TRUE), AS WE NEED 0 GSTAMT
+            alParaval.Add(0)    'MANUALROUNDOFF
+            alParaval.Add(1)    'NOGSTR1
+
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value))
+
+            alParaval.Add(0)    'CGSTPER
+            alParaval.Add(0)    'CGSTAMT
+            alParaval.Add(0)    'SGSTPER
+            alParaval.Add(0)    'SGSTAMT
+            alParaval.Add(0)    'IGSTPER
+            alParaval.Add(0)    'IGSTAMT
+
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'TOTALWITHGST
+            alParaval.Add(0)    'APPLYTCS
+            alParaval.Add(0)    'TCSPER
+            alParaval.Add(0)    'TCSAMT
+
+            alParaval.Add(0)    'ROUNDOFF
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'GTOTAL
+
+            alParaval.Add(0)    'RECAMT
+            alParaval.Add(0)    'EXTRAAMT
+            alParaval.Add(0)    'RETURN
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'BAL
+
+            alParaval.Add("")   'REMARKS
+            alParaval.Add("")   'BILLREMARKS
+            alParaval.Add("")   'INWORDS
+
+            alParaval.Add(CmpId)
+            alParaval.Add(Locationid)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+            alParaval.Add(0)
+
+            alParaval.Add("")   'CSRNO)
+            alParaval.Add("")   'CCHGS)
+            alParaval.Add("")   'CPER)
+            alParaval.Add("")   'CAMT)
+            alParaval.Add("")   'CTAXID)
+
+            alParaval.Add("1")  'GRIDSRNO
+            alParaval.Add("Against Bill")   'PAYTYPE
+            alParaval.Add("S-" & GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)   'BILLINITIALS
+            alParaval.Add("")   'NARR
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'ADJAMT
+            alParaval.Add(0)    'RECAMT
+            alParaval.Add(0)    'EXTRAAMT
+            alParaval.Add(0)    'RETURN
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'BALANCE
+
+            alParaval.Add("")   'IRN
+            alParaval.Add("")   'ACKNO
+            alParaval.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy")) 'ACKDATE
+            alParaval.Add(DBNull.Value) 'QRCODE
+            alParaval.Add("")   'SPREMARKS
+            alParaval.Add(0)    'CD
+            alParaval.Add("")   'COSTCENTRE
+
+            Dim objclsCNmaster As New ClsAgencyCreditNote()
+            objclsCNmaster.alParaval = alParaval
+            Dim DTTABLE As DataTable = objclsCNmaster.SAVE()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub GENERATETDSJOURNAL(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+
+            'save entry in journal
+            Dim alParaval As New ArrayList
+            alParaval.Add(0)
+            alParaval.Add("JOURNAL REGISTER")
+            alParaval.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value))
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value))
+            alParaval.Add("Against Bill No " & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value & "/" & GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value & " Bill Dt. " & Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "dd/MM/yyy"))   'FOR REMARKS
+            If GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value <> "" Then
+                alParaval.Add("Against Bill No " & GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value & " Bill Dt. " & Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "dd/MM/yyy"))
+            Else
+                alParaval.Add("Against Bill No " & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value & " Bill Dt. " & Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "dd/MM/yyy"))
+            End If
+            alParaval.Add(TEMPCMPID)
+            alParaval.Add(0)
+            alParaval.Add(Userid)
+            alParaval.Add(TEMPYEARID)
+            alParaval.Add(0)
+
+            Dim type As String = ""
+            Dim name As String = ""
+            Dim paytype As String = ""
+            Dim refno As String = ""
+            Dim debit As String = ""
+            Dim credit As String = ""
+            Dim gridsrno As String = ""
+
+            For I As Integer = 0 To 1
+                If type = "" Then
+                    type = "Dr"
+                    name = GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value
+                    paytype = "Against Bill"
+                    refno = "P-" & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value
+                    debit = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)
+                    credit = 0
+                    gridsrno = 1
+                Else
+                    type = type & "|" & "Cr"
+                    name = name & "|" & GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSNAME.Index).Value
+                    paytype = paytype & "|" & "On Account"
+                    refno = refno & "|" & "P-" & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value
+                    debit = debit & "|" & 0
+                    credit = credit & "|" & Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)
+                    gridsrno = gridsrno & "|" & 2
+                End If
+            Next
+
+            alParaval.Add(type)
+            alParaval.Add(name)
+            alParaval.Add(paytype)
+            alParaval.Add(refno)
+            alParaval.Add(debit)
+            alParaval.Add(credit)
+            alParaval.Add(gridsrno)
+            alParaval.Add("")   'SPECIAL REMARKS
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)   'PARTYBILLNO
+            alParaval.Add("")  'COSTCENTERNAME
+
+            Dim objclsjvmaster As New ClsJournalMaster()
+            objclsjvmaster.alParaval = alParaval
+            Dim DT As DataTable = objclsjvmaster.save()
+
+
+            'ACCOUNTS ENTRY TO BE DONE HERE COZ LOOP IS NOT POSSIBLE IN SP
+            Dim TEMPJVNO As Integer = DT.Rows(0).Item(0)
+
+
+
+            'ACCOUNTSENTRY
+            Dim OBJJV As New ClsJournalMaster
+            Dim INTRESULT As Integer
+            alParaval.Clear()
+
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSNAME.Index).Value)    'ADDING NAME TOID
+            alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value))    'ADDING NAME TOID
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GSELLERS.Index).Value)    'ADDING NAME TOID
+
+            alParaval.Add(Val(TEMPJVNO))            'JOURNAL NO
+            alParaval.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GDATE.Index).Value).Date, "MM/dd/yyyy"))            'JOURNAL DATE
+            alParaval.Add("")        'REMARKS
+            alParaval.Add("JOURNAL REGISTER")        'REGISTER
+            alParaval.Add(TEMPCMPID)
+            alParaval.Add(0)
+            alParaval.Add(Userid)
+            alParaval.Add(TEMPYEARID)
+            alParaval.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)   'partybillno
+            alParaval.Add("") 'COSTCENTERNAME
+
+            OBJJV.alParaval = alParaval
+            INTRESULT = OBJJV.ACCOUNTS()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Sub CLEAR()
         TXTGRANDTOTAL.Clear()
@@ -631,7 +827,7 @@ NEXTLINE:
         Dim currentMainSrNo As Integer = GRIDMAGICBOX.RowCount + 1
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), TXTPARTYBILLNO.Text.Trim, TXTLR.Text.Trim, TXTPONO.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), Format(ENTRYDATE.Value.Date, "dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, Val(txtcrdays.Text), TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTFOLD.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, CMBTRANS.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim, CHKMANUAL.CheckState, CHKMANUALROUND.CheckState)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), TXTPARTYBILLNO.Text.Trim, TXTLR.Text.Trim, TXTPONO.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), Format(ENTRYDATE.Value.Date, "dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, Val(txtcrdays.Text), TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTFOLD.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, CMBTRANS.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim, CHKMANUAL.CheckState, CHKMANUALROUND.CheckState, CHKTDS.CheckState, CMBTDS.Text.Trim, Val(TXTTDSPER.Text.Trim), Val(TXTTDSAMT.Text.Trim))
 
             'getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
@@ -678,6 +874,10 @@ NEXTLINE:
 
             GRIDMAGICBOX.Item(GMANUALGST.Index, TEMPROW).Value = CHKMANUAL.Checked
             GRIDMAGICBOX.Item(GMANUALROUNDOFF.Index, TEMPROW).Value = CHKMANUALROUND.Checked
+            GRIDMAGICBOX.Item(GTDS.Index, TEMPROW).Value = CHKTDS.Checked
+            GRIDMAGICBOX.Item(GTDSNAME.Index, TEMPROW).Value = CMBTDS.Text.Trim
+            GRIDMAGICBOX.Item(GTDSPER.Index, TEMPROW).Value = Format(Val(TXTTDSPER.Text.Trim), "0.00")
+            GRIDMAGICBOX.Item(GTDSAMT.Index, TEMPROW).Value = Format(Val(TXTTDSAMT.Text.Trim), "0.00")
 
 
             currentMainSrNo = TEMPROW
@@ -764,6 +964,10 @@ NEXTLINE:
         GBMTRS.Visible = False
         CHKMANUAL.Checked = False
         CHKMANUALROUND.Checked = False
+        CHKTDS.Checked = False
+        CMBTDS.Text = ""
+        TXTTDSPER.Clear()
+        TXTTDSAMT.Clear()
     End Sub
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
@@ -949,7 +1153,7 @@ LINE2:
             TXTGRANDTOTAL.Text = Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00")
 
             'TDS CALC
-            If Val(TXTTDSPER.Text.Trim) > 0 And CHKTDS.Checked = True Then TXTTDSAMT.Text = Format(Val(TXTTDSPER.Text.Trim) * Val(TXTSUBTOTAL.Text.Trim), "0")
+            If Val(TXTTDSPER.Text.Trim) > 0 And CHKTDS.Checked = True Then TXTTDSAMT.Text = Format((Val(TXTTDSPER.Text.Trim) * Val(TXTSUBTOTAL.Text.Trim) / 100), "0")
 
         Catch ex As Exception
             Throw ex
@@ -2064,6 +2268,12 @@ line1:
                 TXTREMARKS.Text = GRIDMAGICBOX.Item(GREMARKS.Index, TEMPROW).Value.ToString
                 TXTHSN.Text = GRIDMAGICBOX.Item(GHSN.Index, TEMPROW).Value.ToString
 
+                CHKMANUAL.Checked = Convert.ToBoolean(GRIDMAGICBOX.Item(GMANUALGST.Index, TEMPROW).Value)
+                CHKMANUALROUND.Checked = Convert.ToBoolean(GRIDMAGICBOX.Item(GMANUALROUNDOFF.Index, TEMPROW).Value)
+                CHKTDS.Checked = Convert.ToBoolean(GRIDMAGICBOX.Item(GTDS.Index, TEMPROW).Value)
+                CMBTDS.Text = GRIDMAGICBOX.Item(GTDSNAME.Index, TEMPROW).Value.ToString
+                TXTTDSPER.Text = Val(GRIDMAGICBOX.Item(GTDSPER.Index, TEMPROW).Value)
+                TXTTDSAMT.Text = Val(GRIDMAGICBOX.Item(GTDSAMT.Index, TEMPROW).Value)
 
 
                 txtsrno.Focus()
@@ -2103,11 +2313,13 @@ line1:
 LINE1:
 
                 'GET TDSAPPLICABLE
-                DT = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBSELLERS.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                DT = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER, ISNULL(LEDGERS.ACC_TDSDEDUCTEDAC,'') AS TDSDEDUCTEDAC ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBSELLERS.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If Val(DT.Rows(0).Item("TDSPER")) > 0 Then
                         CHKTDS.CheckState = CheckState.Checked
                         TXTTDSPER.Text = Val(DT.Rows(0).Item("TDSPER"))
+                        CMBTDS.Text = DT.Rows(0).Item("TDSDEDUCTEDAC")
+                        CALC()
                     End If
                 End If
 
