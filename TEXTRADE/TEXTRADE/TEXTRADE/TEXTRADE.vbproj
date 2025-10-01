@@ -438,6 +438,12 @@
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.Designer.vb">
+      <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.Designer.vb">
       <DependentUpon>DesignCardDesign.vb</DependentUpon>
     </Compile>
@@ -8658,6 +8664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.resx">
+      <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.resx">
       <DependentUpon>DesignCardDesign.vb</DependentUpon>

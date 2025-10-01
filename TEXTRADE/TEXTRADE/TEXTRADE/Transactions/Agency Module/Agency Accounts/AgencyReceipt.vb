@@ -1840,18 +1840,21 @@ LINE1:
     End Sub
 
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
-        'Try
-        '    If EDIT = True Then
-        '        Dim objrec As New receipt_advice
-        '        objrec.recno = Val(txtaccno.Text)
-        '        objrec.recname = cmbname.Text.Trim
-        '        objrec.REGNAME = cmbregister.Text.Trim
-        '        objrec.MdiParent = MDIMain
-        '        objrec.Show()
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Try
+            If EDIT = True Then
+                Dim objrec As New AgencyReceiptDesign
+                objrec.recno = Val(txtaccno.Text)
+                objrec.recname = cmbname.Text.Trim
+                objrec.REGNAME = cmbregister.Text.Trim
+                objrec.FRMSTRING = "AGENCYREC"
+                objrec.FORMULA = "{AGENCYRECEIPTMASTER.areceipt_no}=" & Val(txtaccno.Text.Trim) & " and {AGENCYRECEIPTMASTER.areceipt_YEARID}=" & YearId
+
+                objrec.MdiParent = MDIMain
+                objrec.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub txtchqno_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtchqno.Validating
