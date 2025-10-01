@@ -1373,30 +1373,30 @@ LINE1:
             Next
         Next
 
-        ' Remove existing shade columns first (if any)
-        For i As Integer = GRIDWEFT.Columns.Count - 1 To 0 Step -1
-            If GRIDWEFT.Columns(i).Name.StartsWith("WEFT") Then
-                GRIDWEFT.Columns.RemoveAt(i)
-            End If
+        Dim maxShadeCount As Integer = 0
+        For Each dr As DataRow In DT_WEFTDETAILS.Rows
+            Dim srno As Object = dr("FDMAINSRNO")
+            Dim shadeRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & srno & "'")
+            If shadeRows.Length > maxShadeCount Then maxShadeCount = shadeRows.Length
         Next
-
-        ' Dynamically add columns as per count from GRIDWEFTDESC
-        For i As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
-            If GRIDWEFTDESC.Rows(i).IsNewRow Then Continue For
-            Dim colName As String = "WEFT" & (i + 1)
-            ' Add only if it doesn't exist yet
+        For i As Integer = 1 To maxShadeCount
+            Dim colName As String = "WEFT" & i
             If Not GRIDWEFT.Columns.Contains(colName) Then
                 GRIDWEFT.Columns.Add(colName, colName)
             End If
         Next
 
-        ' Fill the shades in the grid
-        For shadeIndex As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
-            If GRIDWEFTDESC.Rows(shadeIndex).IsNewRow Then Continue For
-            Dim shadeValue As Object = GRIDWEFTDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
-            ' Display shade horizontally in the active (or selected) GRIDWEFT row
-            GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells("WEFT" & (shadeIndex + 1)).Value = shadeValue
+        For Each gridRow As DataGridViewRow In GRIDWEFT.Rows
+            If gridRow.IsNewRow Then Continue For
+            Dim fsrno As Object = gridRow.Cells("FSRNO").Value
+            Dim matchedRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & fsrno & "'")
+            For shadeIdx As Integer = 0 To matchedRows.Length - 1
+                Dim shadeValue As Object = matchedRows(shadeIdx)("FDSHADE")
+                gridRow.Cells("WEFT" & (shadeIdx + 1)).Value = shadeValue
+            Next
         Next
+
+
 
 
         GRIDWEFT.ClearSelection()
@@ -2287,7 +2287,7 @@ LINE1:
 
     Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
         Try
-
+            CMBWEFTYARNQUALITY.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3632,10 +3632,20 @@ line1:
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
-            If CMBWARPQUALITY.Text.Trim <> "" And CMBGRIDSYM.Text.Trim <> "" Then
-                fillwarpgrid()
+            If CMBGRIDSYM.Text <> "" And CMBWARPQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWARP.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                    End If
+                Next
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
+                fillwarpgrid()
             End If
             GBWARP.Visible = False
         Catch ex As Exception
@@ -3651,16 +3661,16 @@ line1:
                     If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
                         MessageBox.Show("Multiple Sym Not Allowed.")
                         Exit Sub
-                    ElseIf symValue <> CMBWEFTGRIDSYMBOL.Text.Trim Then
-                        FILLWEFTGRID()
-                        GRIDWEFTDOUBLECLICK = True
+                        'ElseIf symValue <> CMBWEFTGRIDSYMBOL.Text.Trim Then
+                        '    FILLWEFTGRID()
+                        '    'GRIDWEFTDOUBLECLICK = True
                     End If
                 Next
 
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
             End If
-            If GRIDWEFT.RowCount = 0 Then
+            If GRIDWEFT.RowCount >= 0 And CMBWEFTYARNQUALITY.Text <> "" And CMBWEFTGRIDSYMBOL.Text <> "" Then
                 FILLWEFTGRID()
             End If
             GBWEFT.Visible = False
