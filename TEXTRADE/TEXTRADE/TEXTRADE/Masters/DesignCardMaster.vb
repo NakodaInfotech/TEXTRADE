@@ -1086,41 +1086,51 @@ LINE1:
                 Next
             End If
         End If
-        'If String.IsNullOrEmpty(CMBGRIDSYM.Text) Then
-        '    CMBGRIDSYM.Text = "A"
-        'Else
-        '    CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text)
-        'End If
-
 
         GRIDWARPDESC.EndEdit() '
 
 
+        For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
+            For i As Integer = DT_WARPDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_WARPDETAILS.Rows(i)("WDMAINSRNO") = currentMainSrNo Then
+                    DT_WARPDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
 
-        For i As Integer = GRIDWEFT.Columns.Count - 1 To 0 Step -1
-            If GRIDWEFT.Columns(i).Name.StartsWith("WEFT") Then
-                GRIDWEFT.Columns.RemoveAt(i)
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDWARPDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_WARPDETAILS.NewRow()
+                    newRow("WDSRNO") = MTRSROW.Cells(WDSRNO.Index).Value
+                    newRow("WDSHADE") = MTRSROW.Cells(WDSHADE.Index).Value
+                    newRow("WDMAINSRNO") = currentMainSrNo
+                    DT_WARPDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
+        Dim maxShadeCount As Integer = 0
+        For Each dr As DataRow In DT_WARPDETAILS.Rows
+            Dim srno As Object = dr("WDMAINSRNO")
+            Dim shadeRows As DataRow() = DT_WARPDETAILS.Select("WDMAINSRNO = '" & srno & "'")
+            If shadeRows.Length > maxShadeCount Then maxShadeCount = shadeRows.Length
+        Next
+        For i As Integer = 1 To maxShadeCount
+            Dim colName As String = "WARP" & i
+            If Not GRIDWARP.Columns.Contains(colName) Then
+                GRIDWARP.Columns.Add(colName, colName)
             End If
         Next
 
-        ' Dynamically add columns as per count from GRIDWEFTDESC
-        For i As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
-            If GRIDWEFTDESC.Rows(i).IsNewRow Then Continue For
-            Dim colName As String = "WEFT" & (i + 1)
-            ' Add only if it doesn't exist yet
-            If Not GRIDWEFT.Columns.Contains(colName) Then
-                GRIDWEFT.Columns.Add(colName, colName)
-            End If
+        For Each gridRow As DataGridViewRow In GRIDWARP.Rows
+            If gridRow.IsNewRow Then Continue For
+            Dim fsrno As Object = gridRow.Cells("WSRNO").Value
+            Dim matchedRows As DataRow() = DT_WARPDETAILS.Select("WDMAINSRNO = '" & fsrno & "'")
+            For shadeIdx As Integer = 0 To matchedRows.Length - 1
+                Dim shadeValue As Object = matchedRows(shadeIdx)("WDSHADE")
+                gridRow.Cells("WARP" & (shadeIdx + 1)).Value = shadeValue
+            Next
         Next
-
-        ' Fill the shades in the grid
-        For shadeIndex As Integer = 0 To GRIDWEFTDESC.Rows.Count - 1
-            If GRIDWEFTDESC.Rows(shadeIndex).IsNewRow Then Continue For
-            Dim shadeValue As Object = GRIDWEFTDESC.Rows(shadeIndex).Cells(WDSHADE.Index).Value
-            ' Display shade horizontally in the active (or selected) GRIDWEFT row
-            GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells("WEFT" & (shadeIndex + 1)).Value = shadeValue
-        Next
-
 
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
@@ -1396,15 +1406,11 @@ LINE1:
             Next
         Next
 
-
-
-
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
         CMBWEFTGRIDSYMBOL.Focus()
         If GRIDWEFT.RowCount > 0 Then
             TXTWEFTSRNO.Text = Val(GRIDWEFT.Rows(GRIDWEFT.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
         Else
             TXTWEFTSRNO.Text = 1
         End If
@@ -2109,7 +2115,7 @@ LINE1:
                     Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
                     If symValue = CMBGRIDSYM.Text.Trim Then
                         MessageBox.Show("Multiple Sym Not Allowed.")
-                        CMBGRIDSYM.Focus()
+                        'CMBGRIDSYM.Focus()
                     End If
                 Next
             End If
@@ -2700,7 +2706,7 @@ LINE1:
             If CMBWEFTYARNQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER,ISNULL(MILLMASTER.MILL_NAME, 0) AS MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER,ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWEFTDEN.Text = DT2.Rows(0).Item("DENIER")
                     CMBWEFTMILLNAME.Text = DT2.Rows(0).Item("MILLNAME")
