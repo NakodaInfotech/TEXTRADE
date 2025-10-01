@@ -307,35 +307,16 @@ Public Class AgencyOrderGridReport
 
     Private Sub GRIDSO_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSO.CellDoubleClick
         Try
-            ' Ensure valid row index
             If e.RowIndex >= 0 Then
-                ' Get gsono from clicked row
-                Dim gsono As String = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
-
-                ' Call ShowReport with gsono
-                ShowReport(gsono)
+                Dim OBJSO As New AgencySaleOrder
+                OBJSO.MdiParent = MDIMain
+                OBJSO.TEMPSONO = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
+                OBJSO.EDIT = True
+                OBJSO.Show()
             End If
         Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
+            Throw ex
         End Try
     End Sub
-
-    Private Sub ShowReport(orderNo As Integer)
-        Try
-            Dim rpt As New SaleInvoiceDesign() ' or another CrystalReport
-            rpt.MdiParent = MDIMain
-
-            ' ✅ Set WHERECLAUSE
-            rpt.WHERECLAUSE = " {ALLAGENCYSALEORDER.SO_NO}=" & orderNo & " AND {ALLAGENCYSALEORDER.SO_yearid}=" & YearId
-
-
-            ' ✅ Set FRMSTRING based on type
-            rpt.FRMSTRING = "SOSTATUSDTLS"
-            rpt.Show()
-        Catch ex As Exception
-            MessageBox.Show("Error loading report: " & ex.Message)
-        End Try
-    End Sub
-
 
 End Class
