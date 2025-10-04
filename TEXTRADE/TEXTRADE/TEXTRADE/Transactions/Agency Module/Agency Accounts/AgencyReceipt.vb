@@ -1847,7 +1847,8 @@ LINE1:
                 objrec.recname = cmbname.Text.Trim
                 objrec.REGNAME = cmbregister.Text.Trim
                 objrec.FRMSTRING = "AGENCYREC"
-                objrec.FORMULA = "{AGENCYRECEIPTMASTER.areceipt_no}=" & Val(txtaccno.Text.Trim) & " and {AGENCYRECEIPTMASTER.areceipt_YEARID}=" & YearId
+                objrec.strsearch = "{AGENCYRECEIPTMASTER.Areceipt_no}=" & Val(txtaccno.Text) & " and {REGISTERMASTER.REGISTER_NAME} = '" & cmbregister.Text.Trim & "' and {AGENCYRECEIPTMASTER.Areceipt_yearid}=" & YearId
+                'objrec.FORMULA = "{AGENCYRECEIPTMASTER.areceipt_no}=" & Val(txtaccno.Text.Trim) & " and {AGENCYRECEIPTMASTER.ARE}=" & cmbregister.Text.Trim & " And {AGENCYRECEIPTMASTER.areceipt_YEARID} = " & YearId
 
                 objrec.MdiParent = MDIMain
                 objrec.Show()
