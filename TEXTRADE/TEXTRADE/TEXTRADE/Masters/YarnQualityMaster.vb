@@ -115,7 +115,10 @@ Public Class YarnQualityMaster
                 If Not errorvalid() Then
                     Exit Sub
                 End If
+                If ClientName = "AADHAR" Then
+                    txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
 
+                End If
                 Dim OBJYARN As New ClsYarnQualityMaster
                 OBJYARN.alParaval.Add(txtname.Text.Trim)
                 OBJYARN.alParaval.Add(CMBCATEGORY.Text.Trim)
