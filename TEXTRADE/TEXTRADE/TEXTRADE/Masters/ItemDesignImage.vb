@@ -226,7 +226,7 @@ Public Class ItemDesignImage
                 intResult = OBJIMAGE.UPDATE()
                 'MsgBox("Details Updated")
             End If
-
+            Button1_ClickAsync(sender, e)
             CLEAR()
             EDIT = False
             CMBITEMNAME.Focus()
@@ -530,9 +530,13 @@ NEXTLINE:
                             mimeType = "image/gif"
                         End If
                         fileContent.Headers.ContentType = New MediaTypeHeaderValue(mimeType)
-
-
-                        content.Add(fileContent, "file", IO.Path.GetFileName(filePath))
+                        If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNAME.Text.Trim <> "" Then
+                            TXTFILENAME.Text = CMBITEMNAME.Text.Split(" "c).[Select](Function(x) x.ToUpper.First()).ToArray()
+                            TXTFILENAME.Text = TXTFILENAME.Text & "_" & Val(TXTITEMNO.Text.Trim) & "_" & CMBDESIGNNAME.Text.Trim & ".jpg"
+                            TXTUPLOADPATH.Text = CATALOGPATH & "\" & TXTFILENAME.Text.Trim
+                        End If
+                        Dim newFileName As String = TXTUPLOADPATH.Text.Trim
+                        content.Add(fileContent, "file", newFileName)
 
                         Dim response = Await client.PostAsync(uploadUrl, content)
                         response.EnsureSuccessStatusCode()
