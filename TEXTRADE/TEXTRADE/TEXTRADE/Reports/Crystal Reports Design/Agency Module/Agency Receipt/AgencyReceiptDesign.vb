@@ -23,8 +23,7 @@ Public Class AgencyReceiptDesign
     Dim RPTAGENCYREC As New AgencyRecReport
 
     Private Sub AgencyReceiptDesign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim strsearch As String
-        strsearch = ""
+
         Try
             If DIRECTPRINT = True Then
                 PRINTDIRECTADVICE()
