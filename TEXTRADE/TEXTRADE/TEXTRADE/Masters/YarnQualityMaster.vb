@@ -482,10 +482,10 @@ Public Class YarnQualityMaster
                 txtcount.Visible = True
                 LBLCOUNT.Visible = True
                 CMBCATEGORY.Visible = False
-            End If
-
-            If ClientName = "AADHAR" Then
+                lblcategory.Visible = False
                 TXTDENIER.BackColor = Color.LemonChiffon
+                Label3.Visible = False
+                CMBHSNCODE.Visible = False
             End If
         Catch ex As Exception
             Throw ex
