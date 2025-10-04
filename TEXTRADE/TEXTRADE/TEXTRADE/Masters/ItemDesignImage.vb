@@ -1,6 +1,9 @@
-﻿Imports BL
+﻿Imports System.ComponentModel
 Imports System.IO
-Imports System.ComponentModel
+Imports System.Net.Http
+Imports System.Net.Http.Headers
+Imports System.Threading.Tasks
+Imports BL
 
 Public Class ItemDesignImage
 
@@ -482,6 +485,7 @@ NEXTLINE:
         End Try
     End Sub
 
+
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
             If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " And ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
@@ -501,6 +505,45 @@ NEXTLINE:
     Private Sub TXTSETMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTSETMTRS.KeyPress
         numdotkeypress(e, TXTSETMTRS, Me)
     End Sub
+    Private Async Function Button1_ClickAsync(sender As Object, e As EventArgs) As Task Handles Button1.Click
+        Dim filePath As String = TXTPHOTOIMAGEUPLOADPATH.Text.Trim()
+        Dim uploadUrl As String = "http://122.179.159.186/TEXTRADE/Upload.ashx"
 
+        If String.IsNullOrWhiteSpace(filePath) OrElse Not IO.File.Exists(filePath) Then
+            MessageBox.Show("Please select a valid file to upload.")
+            Return
+        End If
+
+        Try
+            Using client As New HttpClient()
+                Using content As New MultipartFormDataContent()
+                    Using fileStream = IO.File.OpenRead(filePath)
+                        Dim fileContent As New StreamContent(fileStream)
+                        ' Set the content type dynamically based on the file extension
+                        Dim extension As String = IO.Path.GetExtension(filePath).ToLowerInvariant()
+                        Dim mimeType As String = "application/octet-stream"
+                        If extension = ".jpg" Or extension = ".jpeg" Then
+                            mimeType = "image/jpeg"
+                        ElseIf extension = ".png" Then
+                            mimeType = "image/png"
+                        ElseIf extension = ".gif" Then
+                            mimeType = "image/gif"
+                        End If
+                        fileContent.Headers.ContentType = New MediaTypeHeaderValue(mimeType)
+
+
+                        content.Add(fileContent, "file", IO.Path.GetFileName(filePath))
+
+                        Dim response = Await client.PostAsync(uploadUrl, content)
+                        response.EnsureSuccessStatusCode()
+                        Dim result As String = Await response.Content.ReadAsStringAsync()
+                        MessageBox.Show("Upload Success: " & result)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class

@@ -13438,6 +13438,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Upload.ashx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.vbproj">
