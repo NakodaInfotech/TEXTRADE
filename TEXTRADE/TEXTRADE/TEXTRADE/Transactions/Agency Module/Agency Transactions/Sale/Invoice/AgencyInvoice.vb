@@ -5953,7 +5953,7 @@ LINE1:
                 Dim OBJREMARKS As New SelectRemarks
                 OBJREMARKS.FRMSTRING = "NARRATION"
                 OBJREMARKS.ShowDialog()
-                If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex
