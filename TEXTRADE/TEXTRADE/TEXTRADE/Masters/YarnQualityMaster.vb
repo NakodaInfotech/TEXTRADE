@@ -2,6 +2,7 @@
 
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.DataProcessing.InMemoryDataProcessor.GraphGenerator
 
 Public Class YarnQualityMaster
 
@@ -431,7 +432,16 @@ Public Class YarnQualityMaster
             GRIDCOMP.Item("GPER", TEMPROW).Value = Val(TXTPER.Text.Trim)
             GRIDDOUBLECLICK = False
         End If
+        'Dim OBJCMN As New ClsCommon
+        'Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(YARNQUALITYMASTER.YARN_REMARK,'') as REMARKS ", "", " YARNQUALITYMASTER ", " AND YARNQUALITYMASTER.YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId)
+        'If dttable1.Rows.Count > 0 Then
+        '    If txtremarks.Text = "" Then
+        '        txtremarks.Text = dttable1.Rows(0).Item("REMARKS")
+        '    ElseIf dttable1.Rows(0).Item("REMARKS") <> "" Then
+        '        txtremarks.Text = txtremarks.Text.Trim & "/" & dttable1.Rows(0).Item("REMARKS")
+        '    End If
 
+        'End If
         total()
         CMBYARNQUALITY.Text = ""
         TXTPER.Clear()

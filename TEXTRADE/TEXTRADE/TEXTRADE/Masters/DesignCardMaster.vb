@@ -2332,7 +2332,7 @@ LINE1:
                     End If
                 Next
                 For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value <Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
                         DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
                     End If
                 Next
