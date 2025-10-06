@@ -2332,7 +2332,7 @@ LINE1:
                     End If
                 Next
                 For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value <Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
                         DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
                     End If
                 Next
@@ -3718,6 +3718,20 @@ line1:
     Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated
         Try
             If TXTREEDSPACE.Text <> "" Then TXTREEDSPACECM.Text = Format(Val(TXTREEDSPACE.Text.Trim) * 2.54, "0.00")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub blendpercentcalc()
+        Try
+            For Each row As DataGridViewRow In GRIDWARP.Rows
+                Dim OBJCLS As New ClsCommon()
+                Dim DT2 As New DataTable
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER, ISNULL(MILLMASTER.MILL_NAME, '') As MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  And YARN_NAME ='" & row.Cells(WQUALITY.Index).Value.ToString & "'  AND YARN_YEARID = " & YearId)
+                If DT2.Rows.Count > 0 Then
+
+                End If
+            Next
         Catch ex As Exception
             Throw ex
         End Try
