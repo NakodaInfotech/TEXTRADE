@@ -1,23 +1,26 @@
-﻿Imports BL
-Imports System.Data.OleDb
-Imports System.Data
-Imports System.Linq
-Imports System.Data.DataSetExtensions
-Imports Microsoft.Office.Interop
+﻿
+Imports BL
 Imports System.Runtime.InteropServices
-Public Class UploadExcel
+
+Public Class UploadExcel_MASHOK
+
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim frm As New ExpenseVoucher()
 
-    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles CMDEXIT.Click
         Me.Close()
     End Sub
 
     Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
         CLEAR()
     End Sub
+
     Sub CLEAR()
         TXTFILENAME.Clear()
+    End Sub
+
+    Private Sub UploadExcelNonPurchase_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 
     Private Sub CMDSELECFILE_Click(sender As Object, e As EventArgs) Handles CMDSELECTFILE.Click
@@ -27,14 +30,15 @@ Public Class UploadExcel
 
             OpenFileDialog1.AddExtension = True
             TXTFILENAME.Text = OpenFileDialog1.SafeFileName
-            TXTB2BPATH.Text = OpenFileDialog1.FileName
+            TXTPATH.Text = OpenFileDialog1.FileName
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub cmdupload_Click(sender As Object, e As EventArgs) Handles cmdupload.Click
-        If TXTB2BPATH.Text.Trim = "" Then
+    Private Sub cmdupload_Click(sender As Object, e As EventArgs) Handles CMDUPLOAD.Click
+
+        If TXTPATH.Text.Trim = "" Then
             MessageBox.Show("Please select Excel file first.")
             Exit Sub
         End If
@@ -50,7 +54,7 @@ Public Class UploadExcel
         Try
             ' 1. Open Excel
             oExcel = New Excel.Application()
-            oBook = oExcel.Workbooks.Open(TXTB2BPATH.Text.Trim)
+            oBook = oExcel.Workbooks.Open(TXTPATH.Text.Trim)
             oSheet = CType(oBook.Sheets(1), Excel.Worksheet) ' Use Sheet1 or change as needed
 
             ' 2. Read Header Row
@@ -74,6 +78,7 @@ Public Class UploadExcel
                 MessageBox.Show("Excel file is empty.")
                 Exit Sub
             End If
+
             ' Check CMBTYPE to decide save destination
             If CMBTYPE.Text.Trim = "NONPURCHASE" Then
                 ' Create dictionary: key = Party Bill No, value = List of rows
@@ -108,28 +113,6 @@ Public Class UploadExcel
 
                     frm.GRIDEXPENSE.Rows.Clear()
                     Dim sr As Integer = 1
-                    'For Each r As DataRow In rows
-                    '    If r("ITEM NAME").ToString().Trim() <> "" Then
-                    '        frm.GRIDEXPENSE.Rows.Add(sr,
-                    '                  "WEAVING CHARGES",           ' Debit To (fixed)
-                    '                  dr("SAC CODE").ToString(),
-                    '                  r("ITEM NAME").ToString(),   ' NOTE
-                    '                  Val(r("QTY")),               ' QTY 
-                    '                  Val(r("RATE")),              ' RATE
-                    '                  Val(r("AMOUNT")),            ' AMOUNT
-                    '                  0,                           ' OTHERAMT
-                    '                  0,                           ' TAXABLE AMT
-                    '                  0,                           ' CGST %
-                    '                  0,                           ' CGST AMT
-                    '                  0,                           ' SGST %
-                    '                  0,                           ' SGST AMT
-                    '                  0,                           ' IGST %
-                    '                  0,                           ' IGST 
-                    '                  Val(r("AMOUNT"))           ' GRID TOTAL
-                    '         )
-                    '        sr += 1
-                    '    End If
-                    'Next
                     ' Before adding items in rows, fetch once:
                     Dim otherAmt As Decimal = 0
                     If dr.Table.Columns.Contains("OTHER AMT") AndAlso dr("OTHER AMT").ToString().Trim() <> "" Then
@@ -140,17 +123,7 @@ Public Class UploadExcel
                         ' Handle first ITEM NAME (main item)
                         ' -----------------------
                         If r.Table.Columns.Contains("ITEM NAME") AndAlso r("ITEM NAME").ToString().Trim() <> "" Then
-                            frm.GRIDEXPENSE.Rows.Add(sr,
-            "WEAVING CHARGES",
-            dr("SAC CODE").ToString(),
-            r("ITEM NAME").ToString(),
-            Val(r("QTY")),
-            Val(r("RATE")),
-            Val(r("AMOUNT")),
-            otherAmt,  ' --- set this for all
-            0, 0, 0, 0, 0, 0, 0, 0,
-            Val(r("AMOUNT"))
-        )
+                            frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES", dr("SAC CODE").ToString(), r("ITEM NAME").ToString(), Val(r("QTY")), Val(r("RATE")), Val(r("AMOUNT")), otherAmt, 0, 0, 0, 0, 0, 0, 0, 0, Val(r("AMOUNT")))
 
                             Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
 
@@ -191,17 +164,7 @@ Public Class UploadExcel
                             Dim amountCol = amountColOptions.FirstOrDefault(Function(c) r.Table.Columns.Contains(c))
 
                             If Not String.IsNullOrEmpty(itemCol) AndAlso r(itemCol).ToString().Trim() <> "" Then
-                                frm.GRIDEXPENSE.Rows.Add(sr,
-                "WEAVING CHARGES",
-                dr("SAC CODE").ToString(),
-                r(itemCol).ToString(),
-                Val(r(qtyCol)),
-                Val(r(rateCol)),
-                Val(r(amountCol)),
-                otherAmt,  ' --- set this for all
-                0, 0, 0, 0, 0, 0, 0, 0,
-                Val(r(amountCol))
-            )
+                                frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES", dr("SAC CODE").ToString(), r(itemCol).ToString(), Val(r(qtyCol)), Val(r(rateCol)), Val(r(amountCol)), 0, 0, 0, 0, 0, 0, 0, 0, 0, Val(r(amountCol)))
 
                                 Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
 
@@ -228,12 +191,13 @@ Public Class UploadExcel
                             End If
                         Next
                     Next
+
                     ' 🔹 Refresh totals after all rows
                     frm.TOTAL()
                     ' Set Register Name
                     frm.CMBREGISTER.Text = "NON-PURCHASE REGISTER" ' or get from Excel if dynamic
                     frm.CanUserAdd = True
-                    frm.TXTNPNO.Text = getmaxno().ToString()
+                    frm.TXTNPNO.Text = GETMAXNO().ToString()
                     ' Save invoice
                     If frm.SaveInvoice(True) Then
                         successCount += 1
@@ -244,7 +208,10 @@ Public Class UploadExcel
                 Next
 
                 MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
             ElseIf CMBTYPE.Text.Trim = "INVOICE" Then
+
                 ' New InvoiceMaster upload logic
                 Dim successCount As Integer = 0
                 Dim errorCount As Integer = 0
@@ -296,8 +263,9 @@ Public Class UploadExcel
             Else
                 MessageBox.Show("Select CMBTYPE as either NONPURCHASE or INVOICE.")
             End If
+
         Catch ex As Exception
-            ' MessageBox.Show("Error: " & ex.Message)
+            Throw ex
         Finally
             ' 5. Clean up COM objects
             If oBook IsNot Nothing Then oBook.Close(False)
@@ -315,7 +283,8 @@ Public Class UploadExcel
             GC.WaitForPendingFinalizers()
         End Try
     End Sub
-    Private Function getmaxno() As Integer
+
+    Private Function GETMAXNO() As Integer
         Dim DTTABLE As New DataTable
         Dim nextNo As Integer = 1
 
@@ -331,7 +300,7 @@ Public Class UploadExcel
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error getting max voucher no: " & ex.Message)
+            Throw ex
         End Try
 
         Return nextNo
