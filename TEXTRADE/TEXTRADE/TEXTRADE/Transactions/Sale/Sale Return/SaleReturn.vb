@@ -157,6 +157,9 @@ Public Class SaleReturn
             TXTTOTALWITHGST.Clear()
             TXTTCSPER.Clear()
             TXTTCSAMT.Clear()
+            TXTCOMPLAIN.Clear()
+            TXTCOMPLAINDATE.Clear()
+            TXTCOMPLAINBY.Clear()
 
             txtbillamt.Clear()
             TXTCHARGES.Clear()
@@ -1197,6 +1200,11 @@ Public Class SaleReturn
 
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
+            alParaval.Add(TXTCOMPLAIN.Text.Trim)
+            alParaval.Add(TXTCOMPLAINDATE.Text.Trim)
+            alParaval.Add(TXTCOMPLAINBY.Text.Trim)
+
+
 
 
             Dim OBJPURCH As New ClsSaleReturn()
@@ -1488,6 +1496,9 @@ NEXTLINE:
 
                         CMBFROMCITY.Text = dr("FROMCITY")
                         CMBTOCITY.Text = dr("TOCITY")
+                        TXTCOMPLAIN.Text = dr("COMPLAIN")
+                        TXTCOMPLAINDATE.Text = dr("COMPLAINDATE")
+                        TXTCOMPLAINBY.Text = dr("COMPLAINBY")
 
                     Next
 
@@ -4651,5 +4662,14 @@ NEXTLINE:
 
     Private Sub TXTAQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTAQTY.KeyPress, TXTAFOLDPER.KeyPress
         numdotkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAIN.KeyDown
+        If e.KeyCode = Keys.F1 Then
+            Dim OBJREMARKS As New SelectRemarks
+            OBJREMARKS.FRMSTRING = "NARRATION"
+            OBJREMARKS.ShowDialog()
+            If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+        End If
     End Sub
 End Class

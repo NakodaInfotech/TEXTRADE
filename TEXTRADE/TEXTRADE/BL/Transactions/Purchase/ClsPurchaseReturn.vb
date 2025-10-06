@@ -229,6 +229,12 @@ Public Class ClsPurchaseReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -457,7 +463,12 @@ Public Class ClsPurchaseReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@PRNO", alParaval(I)))
                 I = I + 1
 
