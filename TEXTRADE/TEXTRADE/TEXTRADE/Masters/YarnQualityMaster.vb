@@ -115,7 +115,10 @@ Public Class YarnQualityMaster
                 If Not errorvalid() Then
                     Exit Sub
                 End If
+                If ClientName = "AADHAR" Then
+                    txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
 
+                End If
                 Dim OBJYARN As New ClsYarnQualityMaster
                 OBJYARN.alParaval.Add(txtname.Text.Trim)
                 OBJYARN.alParaval.Add(CMBCATEGORY.Text.Trim)
@@ -482,10 +485,10 @@ Public Class YarnQualityMaster
                 txtcount.Visible = True
                 LBLCOUNT.Visible = True
                 CMBCATEGORY.Visible = False
-            End If
-
-            If ClientName = "AADHAR" Then
+                lblcategory.Visible = False
                 TXTDENIER.BackColor = Color.LemonChiffon
+                Label3.Visible = False
+                CMBHSNCODE.Visible = False
             End If
         Catch ex As Exception
             Throw ex

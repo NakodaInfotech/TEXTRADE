@@ -384,11 +384,12 @@ Public Class SaleOrder
             Else
                 CMBFORWARD.Text = ""
             End If
-            If ClientName = "ABHEE" Then
-                CMBORDERON.Text = "PCS"
+            If SALEORDERONMTRS = True Then
+                If ClientName = "ABHEE" Then CMBORDERON.Text = "PCS" Else CMBORDERON.Text = "MTRS"
             Else
-                CMBORDERON.Text = ""
+                CMBORDERON.Text = "PCS"
             End If
+
             CHKFETCHDESC.CheckState = CheckState.Unchecked
 
                 txtpono.Clear()
@@ -1952,11 +1953,6 @@ line1:
 
     Private Sub SaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
-            If SALEORDERONMTRS = True Then
-                If ClientName = "ABHEE" Then CMBORDERON.Text = "PCS" Else CMBORDERON.Text = "MTRS"
-            Else
-                CMBORDERON.Text = "PCS"
-            End If
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
@@ -2097,7 +2093,6 @@ line1:
 
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                CMBORDERON.Text = "PCS"
                 If ClientName = "MASHOK" Then
                     TXTCUT.Text = 110
                     cmbqtyunit.TabStop = False
@@ -2744,7 +2739,7 @@ LINESINGLE:
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
 
-                If (ClientName = "MNARESH" Or ClientName = "MSANCHITKUMAR" Or ClientName = "SNCM" Or ClientName = "MASHOK" Or ClientName = "ABHEE") Then
+                If (ClientName = "MNARESH" Or ClientName = "MSANCHITKUMAR" Or ClientName = "SNCM" Or ClientName = "MASHOK") Then
                     LBLRATE.Text = 0.00
                     'DT = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(SODATE.Text).Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " ORDER BY INVOICEMASTER.INVOICE_NO DESC")
                     DT = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(SODATE.Text).Date, "MM/dd/yyyy") & "'  ORDER BY INVOICEMASTER.INVOICE_DATE DESC")
@@ -2782,7 +2777,7 @@ LINESINGLE:
                     If DTRATE.Rows.Count > 0 AndAlso Val(TXTRATE.Text.Trim) = 0 Then TXTRATE.Text = Val(DTRATE.Rows(0).Item("RATE"))
                 End If
 
-                If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "RAJKRIPA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "AFW" Or ClientName = "SHEETAL") Then
+                If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "RAJKRIPA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "AFW" Or ClientName = "SHEETAL") Then
                     DT = OBJCMN.SEARCH("  ISNULL(item_reorder, 0) AS CUT, ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC],ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
                     If DT.Rows.Count > 0 Then
                         If ClientName <> "SIDDHGIRI" And ClientName <> "MASHOK" And ClientName <> "ABHEE" And ClientName <> "AFW" Then TXTCUT.Text = DT.Rows(0).Item("CUT")

@@ -223,7 +223,7 @@ Public Class ItemDesignImage
                 intResult = OBJIMAGE.UPDATE()
                 'MsgBox("Details Updated")
             End If
-
+            Button1_ClickAsync(sender, e)
             CLEAR()
             EDIT = False
             CMBITEMNAME.Focus()
@@ -279,8 +279,15 @@ Public Class ItemDesignImage
 
 
             'COPY IMAGE TO THE LOCATION
-            If TXTUPLOADPATH.Text.Trim <> "" And TXTFILENAME.Text.Trim <> "" And TXTPHOTOIMAGEUPLOADPATH.Text.Trim <> "" Then
-                If File.Exists(TXTUPLOADPATH.Text.Trim) = False Then File.Copy(TXTPHOTOIMAGEUPLOADPATH.Text.Trim, TXTUPLOADPATH.Text.Trim, True)
+            If DriveInfo.GetDrives().Any(Function(drive) drive.Name = CATALOGPATH & "\") Then
+                If TXTUPLOADPATH.Text.Trim <> "" And TXTFILENAME.Text.Trim <> "" And TXTPHOTOIMAGEUPLOADPATH.Text.Trim <> "" Then
+                    If File.Exists(TXTUPLOADPATH.Text.Trim) = False Then File.Copy(TXTPHOTOIMAGEUPLOADPATH.Text.Trim, TXTUPLOADPATH.Text.Trim, True)
+                End If
+            Else
+                TXTUPLOADPATH.Text = CATALOGIP & TXTFILENAME.Text.Trim
+                If TXTUPLOADPATH.Text.Trim <> "" And TXTFILENAME.Text.Trim <> "" And TXTPHOTOIMAGEUPLOADPATH.Text.Trim <> "" Then
+                    UPLOADIMAGE(TXTPHOTOIMAGEUPLOADPATH.Text.Trim, CATALOGIP)
+                End If
             End If
 
 
@@ -303,8 +310,38 @@ Public Class ItemDesignImage
             Throw ex
         End Try
 
+    End Function
 
+    Private Async Sub UPLOADIMAGE(FILEPATH, UPLOADPATH)
+        Await UploadFileAsync(FILEPATH, UPLOADPATH)
+    End Sub
 
+    Public Shared Async Function UploadFileAsync(filePath As String, uploadUrl As String) As Task
+        Try
+            Using client As New HttpClient()
+                Using content As New MultipartFormDataContent()
+                    ' Read the JPG into memory
+                    Dim fileContent As New ByteArrayContent(File.ReadAllBytes(filePath))
+                    fileContent.Headers.ContentType = New System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg")
+
+                    ' "file" here is the form field name expected by the server-side script
+                    content.Add(fileContent, "image", Path.GetFileName(filePath))
+
+                    ' Send the POST
+                    Dim response = Await client.PostAsync(uploadUrl, content)
+
+                    ' Check result
+                    If response.IsSuccessStatusCode Then
+                        Dim serverReply = Await response.Content.ReadAsStringAsync()
+                        Console.WriteLine("Upload successful! Server said: " & serverReply)
+                    Else
+                        Console.WriteLine("Upload failed: " & response.StatusCode)
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Upload failed: " & ex.Message)
+        End Try
     End Function
 
     Private Sub ItemDesignImage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -316,7 +353,7 @@ Public Class ItemDesignImage
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
-            FILLCMB
+            FILLCMB()
             CLEAR()
             If EDIT = True Then
 
@@ -405,7 +442,7 @@ NEXTLINE:
                 'CLEAR()
             Next
         Catch ex As Exception
-        Throw ex
+            Throw ex
         End Try
     End Sub
 
@@ -482,6 +519,7 @@ NEXTLINE:
         End Try
     End Sub
 
+
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
             If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " And ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
@@ -501,6 +539,49 @@ NEXTLINE:
     Private Sub TXTSETMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTSETMTRS.KeyPress
         numdotkeypress(e, TXTSETMTRS, Me)
     End Sub
+    Private Async Function Button1_ClickAsync(sender As Object, e As EventArgs) As Task Handles Button1.Click
+        Dim filePath As String = TXTPHOTOIMAGEUPLOADPATH.Text.Trim()
+        Dim uploadUrl As String = "http://122.179.159.186/TEXTRADE/Upload.ashx"
 
+        If String.IsNullOrWhiteSpace(filePath) OrElse Not IO.File.Exists(filePath) Then
+            MessageBox.Show("Please select a valid file to upload.")
+            Return
+        End If
+
+        Try
+            Using client As New HttpClient()
+                Using content As New MultipartFormDataContent()
+                    Using fileStream = IO.File.OpenRead(filePath)
+                        Dim fileContent As New StreamContent(fileStream)
+                        ' Set the content type dynamically based on the file extension
+                        Dim extension As String = IO.Path.GetExtension(filePath).ToLowerInvariant()
+                        Dim mimeType As String = "application/octet-stream"
+                        If extension = ".jpg" Or extension = ".jpeg" Then
+                            mimeType = "image/jpeg"
+                        ElseIf extension = ".png" Then
+                            mimeType = "image/png"
+                        ElseIf extension = ".gif" Then
+                            mimeType = "image/gif"
+                        End If
+                        fileContent.Headers.ContentType = New MediaTypeHeaderValue(mimeType)
+                        If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNAME.Text.Trim <> "" Then
+                            TXTFILENAME.Text = CMBITEMNAME.Text.Split(" "c).[Select](Function(x) x.ToUpper.First()).ToArray()
+                            TXTFILENAME.Text = TXTFILENAME.Text & "_" & Val(TXTITEMNO.Text.Trim) & "_" & CMBDESIGNNAME.Text.Trim & ".jpg"
+                            TXTUPLOADPATH.Text = CATALOGPATH & "\" & TXTFILENAME.Text.Trim
+                        End If
+                        Dim newFileName As String = TXTUPLOADPATH.Text.Trim
+                        content.Add(fileContent, "file", newFileName)
+
+                        Dim response = Await client.PostAsync(uploadUrl, content)
+                        response.EnsureSuccessStatusCode()
+                        Dim result As String = Await response.Content.ReadAsStringAsync()
+                        MessageBox.Show("Upload Success: " & result)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class

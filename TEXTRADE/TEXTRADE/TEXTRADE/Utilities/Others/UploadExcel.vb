@@ -262,7 +262,7 @@ Public Class UploadExcel
                     End If
 
                     ' Fetch SONO details
-                    Dim dtSONO As DataTable = OBJCMN.SEARCH("DELIVERYTO, AGENTNAME, CRDAYS, PARTYNAME, DISCOUNT", "SALEORDERMASTER", "AND SONO = '" & sono & "' AND SOYEARID = " & YearId)
+                    Dim dtSONO As DataTable = OBJCMN.SEARCH("DELIVERYTO, AGENTNAME, CRDAYS, PARTYNAME, DISCOUNT", "SALEORDER", "AND SONO = '" & sono & "' AND SOYEARID = " & YearId)
                     If dtSONO.Rows.Count = 0 Then
                         MessageBox.Show("SONO " & sono & " not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         errorCount += 1

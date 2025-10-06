@@ -119,6 +119,7 @@ Public Class ClsAgencyInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALTAXABLEAMT", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@TOTALCGSTPER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALCGSTAMT", alParaval(I)))

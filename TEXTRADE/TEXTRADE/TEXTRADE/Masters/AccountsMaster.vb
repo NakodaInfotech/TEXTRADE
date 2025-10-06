@@ -473,6 +473,8 @@ Public Class AccountsMaster
 
             'IF NEW COLUMNS ARE ADDED THEN ADD IN 
             '1) MDIMAIN --- UPLOAD ACCOUNTS SECTION
+            '2) MAGICBOXINVOICE
+            '3) INVOICEMASTER -- CREATEAGENCYINVOICE
 
 
             If CHKCOMMON.CheckState = CheckState.Unchecked Then
@@ -945,6 +947,9 @@ NEXTLINE:
         End If
 
 
+
+
+
         'IF GROUPNAME = CREDITORS OR DEBTORS THEN ONLY
         Dim OBJCMN As New ClsCommon
         Dim DT As DataTable = OBJCMN.SEARCH("GROUP_SECONDARY AS GROUPNAME", "", " GROUPMASTER", " AND GROUP_NAME ='" & cmbgroup.Text.Trim & "' AND GROUP_CMPID =  " & CmpId & " AND GROUP_LOCATIONID = " & Locationid & " AND GROUP_YEARID = " & YearId)
@@ -1127,6 +1132,20 @@ NEXTLINE:
 
         End If
 
+
+
+
+        If cmbcmpname.Text.Trim <> "" Then
+            pcase(cmbcmpname)
+            If CMBCODE.Text.Trim = "" Then CMBCODE.Text = cmbcmpname.Text.Trim
+            If (EDIT = False) Or (EDIT = True And LCase(cmbcmpname.Text) <> LCase(tempAccountsName)) Then
+                DT = OBJCMN.SEARCH("ACC_CMPNAME", "", " LEDGERS", " AND ACC_CMPNAME = '" & cmbcmpname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    Ep.SetError(cmbcmpname, "Name Already Exists")
+                    bln = False
+                End If
+            End If
+        End If
 
 
 

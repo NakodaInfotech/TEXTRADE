@@ -1643,10 +1643,7 @@ LINE1:
 
     Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
-            If EDIT = True Then
-                PRINTREPORT()
-                If ClientName = "SOFTAS" Then PRINTBARCODE()
-            End If
+            If EDIT = True Then PRINTREPORT()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -3774,6 +3771,19 @@ LINE1:
             If DT.Rows.Count > 0 Then
                 If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs) Handles CMDCLOSE.Click
+        Try
+            If EDIT = False Then Exit Sub
+            If MsgBox("Close Order?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE AGENCYSALEORDER_DESC SET ASO_CLOSED = 1, ASO_CLOSEDDATE = '" & Format(Now.Date, "MM/dd/yyyy") & "', ASO_CLOSEDREASON = 'SHORT CLOSE' WHERE ASO_NO = " & Val(TEMPSONO) & " AND ASO_YEARID = " & YearId, "", "")
+
         Catch ex As Exception
             Throw ex
         End Try

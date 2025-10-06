@@ -254,7 +254,6 @@ Public Class LedgerFilter
                 objreg.strsearch = objreg.strsearch & NAMECLAUSE
             End If
             objreg.NEWPAGE = CHKGROUPONNEWPG.CheckState
-            objreg.INDEX = CHKINDEX.CheckState
             objreg.SHOWNARRATION = CHKREMARKS.Checked
             If CHKADDRESS.Checked = True Then objreg.ADDRESS = 1 Else objreg.ADDRESS = 0
             If CHKPANNO.Checked = True Then objreg.PANNO = 1 Else objreg.PANNO = 0

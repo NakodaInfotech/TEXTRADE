@@ -1278,7 +1278,7 @@ Public Class InvoiceMaster
             alParaval.Add(ClientName)
             alParaval.Add(TXTIRNNO.Text.Trim)
             alParaval.Add(TXTACKNO.Text.Trim)
-            alParaval.Add(Format(ACKDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(Format(ACKDATE.Value, "MM/dd/yyyy HH:mm:ss"))
             If PBQRCODE.Image IsNot Nothing Then
                 Dim MS As New IO.MemoryStream
                 PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
@@ -1394,6 +1394,12 @@ Public Class InvoiceMaster
                     GENERATEEWB()
                     PRINTEWB()
                 End If
+
+                If ClientName = "ABHEE" Then
+                    GENERATEEINV()
+                    GENERATEAGENCYINVOICE()
+                End If
+
                 SMSCODE()
                 If ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "RMANILAL" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHASHWAT" Or ClientName = "SHAILESHTRADING" Then SENDDIRECTMAIL()
 
@@ -1435,7 +1441,7 @@ Public Class InvoiceMaster
             End If
 
             'done temp
-            If ClientName <> "SOFTAS" And ClientName <> "SNCM" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
+            If ClientName <> "SOFTAS" And ClientName <> "SNCM" And ClientName <> "ABHEE" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
 
 
             'done temp
@@ -1449,6 +1455,892 @@ Public Class InvoiceMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Sub GENERATEAGENCYINVOICE()
+        Try
+
+            'CREATE PURCHASE INVOICE IN ABHEE FABRICS LLP
+            'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+            Dim OBJCMN As New ClsCommon
+            Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
+            Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE' ORDER BY YEAR_STARTDATE DESC")
+            If TEMPDT.Rows.Count > 0 Then
+                TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+            Else
+                Exit Sub
+            End If
+
+            'CHECK WHETHER PARTY NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & TEMPYEARID)
+            If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(cmbname.Text.Trim, TEMPCMPID, TEMPYEARID)
+
+
+            'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+            TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & GRIDINVOICE.Rows(0).Cells(GITEMNAME.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
+            If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(GRIDINVOICE.Rows(0).Cells(GITEMNAME.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+            Dim alParaval As New ArrayList
+
+            alParaval.Add(CMBSCREENTYPE.Text.Trim)
+            alParaval.Add(0)    'INVNO
+
+            alParaval.Add(cmbname.Text.Trim)
+            alParaval.Add(TXTMULTISONO.Text.Trim)
+            alParaval.Add(txtpartypono.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(sodate.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTBALENOFROM.Text.Trim)
+            alParaval.Add(TXTBALENOTO.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy"))
+
+            alParaval.Add(CMBLOCALTRANSPORT.Text.Trim)
+            alParaval.Add(CMBHASTE.Text.Trim)
+            alParaval.Add(CMBAGENT.Text.Trim)
+            alParaval.Add(txtchallan.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(CHALLANDATE.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(txtrefno.Text.Trim)
+            alParaval.Add(CMBFORMNO.Text.Trim)
+            alParaval.Add(Val(TXTCRDAYS.Text.Trim))
+            alParaval.Add(duedate.Value.Date)
+            alParaval.Add("ABHEE FABRICS LLP [ SELLER ]")       'SELLERNAME
+
+            alParaval.Add(cmbtrans.Text.Trim)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
+            alParaval.Add(txtlrno.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(LRDATE.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(CMBFROMCITY.Text.Trim)
+            alParaval.Add(CMBTOCITY.Text.Trim)
+            alParaval.Add(CMBPACKING.Text.Trim)
+            alParaval.Add(TXTEWAYBILLNO.Text.Trim)
+            alParaval.Add(TXTGATEPASSNO.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(GPDATE.Text).Date, "MM/dd/yyyy"))
+
+            If CHKBILLCHECKED.Checked = True Then
+                alParaval.Add(1)
+            Else
+                alParaval.Add(0)
+            End If
+
+            If CHKBILLDISPUTE.Checked = True Then
+                alParaval.Add(1)
+            Else
+                alParaval.Add(0)
+            End If
+
+            If CHKMANUAL.Checked = True Then
+                alParaval.Add(1)
+            Else
+                alParaval.Add(0)
+            End If
+
+            If CHKEXPORTGST.Checked = True Then
+                alParaval.Add(1)
+            Else
+                alParaval.Add(0)
+            End If
+
+            alParaval.Add(txtremarks.Text.Trim)
+
+            If CHKBARCODE.Checked = True Then
+                alParaval.Add(1)
+            Else
+                alParaval.Add(0)
+            End If
+
+            alParaval.Add(Val(LBLTOTALBALES.Text.Trim))
+            alParaval.Add(Val(lbltotalpcs.Text.Trim))
+            alParaval.Add(Val(lbltotalmtrs.Text.Trim))
+            alParaval.Add(Val(LBLTOTALAMT.Text.Trim))
+            alParaval.Add(Val(LBLTOTALDISCAMT.Text.Trim))
+            alParaval.Add(Val(LBLTOTALSPDISCAMT.Text.Trim))
+            alParaval.Add(Val(LBLTOTALOTHERAMT.Text.Trim))
+            alParaval.Add(Val(LBLTOTALTAXABLEAMT.Text.Trim))
+
+            If CMBSCREENTYPE.Text = "TOTAL GST" Then
+                alParaval.Add(Val(TXTCGSTPER1.Text.Trim))
+                alParaval.Add(Val(TXTCGSTAMT1.Text.Trim))
+                alParaval.Add(Val(TXTSGSTPER1.Text.Trim))
+                alParaval.Add(Val(TXTSGSTAMT1.Text.Trim))
+                alParaval.Add(Val(TXTIGSTPER1.Text.Trim))
+                alParaval.Add(Val(TXTIGSTAMT1.Text.Trim))
+            Else
+                alParaval.Add(Val(TXTCGSTPER1.Text.Trim))
+                alParaval.Add(Val(LBLTOTALCGSTAMT.Text.Trim))
+                alParaval.Add(Val(TXTSGSTPER1.Text.Trim))
+                alParaval.Add(Val(LBLTOTALSGSTAMT.Text.Trim))
+                alParaval.Add(Val(TXTIGSTPER1.Text.Trim))
+                alParaval.Add(Val(LBLTOTALIGSTAMT.Text.Trim))
+            End If
+
+            alParaval.Add(Val(TXTTOTALWITHGST.Text.Trim))
+            If CHKTCS.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(Val(TXTTCSPER.Text.Trim))
+            alParaval.Add(Val(TXTTCSAMT.Text.Trim))
+
+
+            alParaval.Add(txtinwords.Text)
+
+            alParaval.Add(Val(txtbillamt.Text.Trim))
+            alParaval.Add(Val(TXTCHARGES.Text.Trim))
+            alParaval.Add(Val(TXTSUBTOTAL.Text.Trim))
+            alParaval.Add(Val(txtroundoff.Text.Trim))
+            alParaval.Add(Val(txtgrandtotal.Text.Trim))
+
+            alParaval.Add(Val(TXTAMTREC.Text.Trim))
+            alParaval.Add(Val(TXTEXTRAAMT.Text.Trim))
+            alParaval.Add(Val(TXTRETURN.Text.Trim))
+            alParaval.Add(Val(TXTBAL.Text.Trim))
+            alParaval.Add(Val(TXTSONO.Text.Trim))
+            alParaval.Add(CMBTERM.Text.Trim)
+
+
+            'EXPORT DETAILS
+            alParaval.Add(Val(TXTROE.Text.Trim))
+            alParaval.Add(CMBCIF.Text.Trim)
+            alParaval.Add(TXTEXPTERMS.Text.Trim)
+            alParaval.Add(TXTMARKNOS.Text.Trim)
+            alParaval.Add(TXTEXPINSURANCE.Text.Trim)
+            alParaval.Add(TXTVESSEL.Text.Trim)
+            alParaval.Add(TXTLOADINGPORT.Text.Trim)
+            alParaval.Add(TXTDISCHARGEPORT.Text.Trim)
+            alParaval.Add(TXTEXPHSN.Text.Trim)
+            alParaval.Add(CMBCURRENCY.Text.Trim)
+            alParaval.Add(Val(TXTGROSSWT.Text.Trim))
+            alParaval.Add(Val(TXTNETTWT.Text.Trim))
+            alParaval.Add(Val(TXTSQMTRS.Text.Trim))
+            alParaval.Add(Val(TXTTOTALUSDAMT.Text.Trim))
+            alParaval.Add(Val(TXTGSTINVRATE.Text.Trim))
+            alParaval.Add(Val(TXTCUSTOMINVRATE.Text.Trim))
+            alParaval.Add(Val(TXTEXPDIFF.Text.Trim))
+            alParaval.Add(TXTINWORDSUSD.Text.Trim)
+
+
+            alParaval.Add(TXTDOCKETNO.Text.Trim)
+            alParaval.Add(Format(DTDOCKETDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOURIER.Text.Trim)
+
+
+            alParaval.Add(TEMPCMPID)
+            alParaval.Add(0)
+            alParaval.Add(Userid)
+            alParaval.Add(TEMPYEARID)
+            alParaval.Add(0)
+
+            Dim gridsrno As String = ""
+            Dim ITEMNAME As String = ""
+            Dim HSNCODE As String = ""
+
+            Dim QUALITY As String = ""
+            Dim DESIGN As String = ""
+            Dim COLOR As String = ""
+            Dim QTY As String = ""
+            Dim FOLDPER As String = ""
+            Dim PRINTDESC As String = ""
+            Dim BALENO As String = ""
+            Dim PCS As String = ""
+            Dim CUT As String = ""
+
+            Dim MTRS As String = ""
+            Dim RATE As String = ""         'value of RATE
+            Dim PER As String = ""
+            Dim AMT As String = ""         'value of AMT
+            Dim GRIDLRNO As String = ""
+            Dim GRIDTRANSPORT As String = ""
+            Dim DISCPER As String = ""
+            Dim DISCAMT As String = ""
+            Dim SPDISCPER As String = ""
+            Dim SPDISCAMT As String = ""
+            Dim OTHERAMT As String = ""
+            Dim TAXABLEAMT As String = ""
+            Dim CGSTPER As String = ""
+            Dim CGSTAMT As String = ""
+            Dim SGSTPER As String = ""
+            Dim SGSTAMT As String = ""
+            Dim IGSTPER As String = ""
+            Dim IGSTAMT As String = ""
+            Dim GRIDTOTAL As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
+            Dim GRIDDONE As String = ""
+            Dim GRIDPARTYPONO As String = ""
+            Dim UNIT As String = ""
+            Dim GRIDSONO As String = ""
+            Dim GRIDSOSRNO As String = ""
+            Dim WT As String = ""
+            Dim GRIDPURPARTY As String = ""
+            Dim GRIDPURPARTYBILLNO As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDINVOICE.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If gridsrno = "" Then
+                        gridsrno = row.Cells(GSRNO.Index).Value.ToString
+                        ITEMNAME = row.Cells(GITEMNAME.Index).Value.ToString
+                        HSNCODE = row.Cells(GHSNCODE.Index).Value.ToString
+                        QUALITY = row.Cells(GQUALITY.Index).Value.ToString
+                        DESIGN = row.Cells(GDESIGN.Index).Value.ToString
+                        COLOR = row.Cells(GSHADE.Index).Value.ToString
+                        QTY = row.Cells(GQTY.Index).Value.ToString
+                        FOLDPER = row.Cells(GFOLDPER.Index).Value.ToString
+                        If row.Cells(GDESCRIPTION.Index).Value <> Nothing Then PRINTDESC = row.Cells(GDESCRIPTION.Index).Value.ToString Else PRINTDESC = ""
+                        If row.Cells(GBALENO.Index).Value <> Nothing Then BALENO = row.Cells(GBALENO.Index).Value.ToString
+                        PCS = Val(row.Cells(Gpcs.Index).Value.ToString)
+                        CUT = Val(row.Cells(GCUT.Index).Value)
+
+                        MTRS = Val(row.Cells(Gmtrs.Index).Value)
+                        RATE = Val(row.Cells(GRATE.Index).Value)
+                        PER = row.Cells(GPER.Index).Value.ToString
+                        AMT = Val(row.Cells(GAMT.Index).Value)
+                        GRIDLRNO = row.Cells(GLRNO.Index).Value.ToString
+
+                        'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+
+                        GRIDTRANSPORT = row.Cells(GTRANS.Index).Value.ToString
+                        DISCPER = Val(row.Cells(GDISCPER.Index).Value)
+                        DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
+                        SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
+                        SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
+                        OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
+                        TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
+                        CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
+                        CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
+                        SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
+                        SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
+                        IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
+                        IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
+                        GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
+                        GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
+                        UNIT = row.Cells(GUNIT.Index).Value
+                        GRIDSONO = Val(row.Cells(GSONO.Index).Value)
+                        GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
+                        WT = Val(row.Cells(GWT.Index).Value)
+                        GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
+                        GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
+
+
+                    Else
+
+                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
+                        ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value
+                        HSNCODE = HSNCODE & "|" & row.Cells(GHSNCODE.Index).Value.ToString
+
+                        QUALITY = QUALITY & "|" & row.Cells(GQUALITY.Index).Value.ToString
+                        DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
+                        COLOR = COLOR & "|" & row.Cells(GSHADE.Index).Value.ToString
+                        QTY = QTY & "|" & row.Cells(GQTY.Index).Value
+                        FOLDPER = FOLDPER & "|" & row.Cells(GFOLDPER.Index).Value
+                        If row.Cells(GDESCRIPTION.Index).Value <> Nothing Then PRINTDESC = PRINTDESC & "|" & row.Cells(GDESCRIPTION.Index).Value.ToString Else PRINTDESC = PRINTDESC & "|" & ""
+                        If row.Cells(GBALENO.Index).Value <> Nothing Then BALENO = BALENO & "|" & row.Cells(GBALENO.Index).Value.ToString
+                        PCS = PCS & "|" & Val(row.Cells(Gpcs.Index).Value)
+                        CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
+
+                        MTRS = MTRS & "|" & Val(row.Cells(Gmtrs.Index).Value)
+                        RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
+                        PER = PER & "|" & row.Cells(GPER.Index).Value
+                        AMT = AMT & "|" & Val(row.Cells(GAMT.Index).Value)
+                        GRIDLRNO = GRIDLRNO & "|" & row.Cells(GLRNO.Index).Value
+
+                        'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+                        GRIDTRANSPORT = GRIDTRANSPORT & "|" & row.Cells(GTRANS.Index).Value
+                        DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
+                        DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
+                        SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
+                        SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
+                        OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
+                        TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
+                        CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
+                        CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
+                        SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
+                        SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
+                        IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
+                        IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
+                        GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
+
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
+                        GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
+                        UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
+                        GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
+                        GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
+                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
+                        GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
+                        GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
+
+
+                    End If
+                End If
+            Next
+
+            alParaval.Add(gridsrno)
+            alParaval.Add(ITEMNAME)
+            alParaval.Add(HSNCODE)
+            alParaval.Add(QUALITY)
+            alParaval.Add(DESIGN)
+            alParaval.Add(COLOR)
+            alParaval.Add(QTY)
+            alParaval.Add(FOLDPER)
+            alParaval.Add(PRINTDESC)
+            alParaval.Add(BALENO)
+            alParaval.Add(PCS)
+            alParaval.Add(CUT)
+            alParaval.Add(MTRS)
+            alParaval.Add(RATE)
+            alParaval.Add(PER)
+            alParaval.Add(AMT)
+            alParaval.Add(GRIDLRNO)
+            alParaval.Add(GRIDTRANSPORT)
+            alParaval.Add(DISCPER)
+            alParaval.Add(DISCAMT)
+            alParaval.Add(SPDISCPER)
+            alParaval.Add(SPDISCAMT)
+            alParaval.Add(OTHERAMT)
+            alParaval.Add(TAXABLEAMT)
+            alParaval.Add(CGSTPER)
+            alParaval.Add(CGSTAMT)
+            alParaval.Add(SGSTPER)
+            alParaval.Add(SGSTAMT)
+            alParaval.Add(IGSTPER)
+            alParaval.Add(IGSTAMT)
+            alParaval.Add(GRIDTOTAL)
+
+            alParaval.Add(BARCODE)
+            alParaval.Add(FROMNO)
+            alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
+            alParaval.Add(GRIDDONE)
+            alParaval.Add(GRIDPARTYPONO)
+            alParaval.Add(UNIT)
+            alParaval.Add(GRIDSONO)
+            alParaval.Add(GRIDSOSRNO)
+          
+
+
+            Dim CSRNO As String = ""
+            Dim CCHGS As String = ""
+            Dim CPER As String = ""
+            Dim CAMT As String = ""
+            Dim CTAXID As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDCHGS.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If CSRNO = "" Then
+                        CSRNO = row.Cells(ESRNO.Index).Value.ToString
+                        CCHGS = row.Cells(ECHARGES.Index).Value.ToString
+                        CPER = row.Cells(EPER.Index).Value.ToString
+                        CAMT = Val(row.Cells(EAMT.Index).Value)
+                        CTAXID = Val(row.Cells(ETAXID.Index).Value)
+                    Else
+                        CSRNO = CSRNO & "|" & row.Cells(ESRNO.Index).Value.ToString
+                        CCHGS = CCHGS & "|" & row.Cells(ECHARGES.Index).Value.ToString
+                        CPER = CPER & "|" & row.Cells(EPER.Index).Value.ToString
+                        CAMT = CAMT & "|" & Val(row.Cells(EAMT.Index).Value)
+                        CTAXID = CTAXID & "|" & Val(row.Cells(ETAXID.Index).Value)
+
+                    End If
+                End If
+            Next
+
+            alParaval.Add(CSRNO)
+            alParaval.Add(CCHGS)
+            alParaval.Add(CPER)
+            alParaval.Add(CAMT)
+            alParaval.Add(CTAXID)
+
+            Dim griduploadsrno As String = ""
+            Dim imgpath As String = ""
+            Dim uploadremarks As String = ""
+            Dim name As String = ""
+            Dim NEWIMGPATH As String = ""
+            Dim FILENAME As String = ""
+
+            'Saving Upload Grid
+            For Each row As Windows.Forms.DataGridViewRow In gridupload.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If griduploadsrno = "" Then
+                        griduploadsrno = row.Cells(0).Value.ToString
+                        uploadremarks = row.Cells(1).Value.ToString
+                        name = row.Cells(2).Value.ToString
+                        imgpath = row.Cells(3).Value.ToString
+                        NEWIMGPATH = row.Cells(GNEWIMGPATH.Index).Value.ToString
+
+                    Else
+                        griduploadsrno = griduploadsrno & "|" & row.Cells(0).Value.ToString
+                        uploadremarks = uploadremarks & "|" & row.Cells(1).Value.ToString
+                        name = name & "|" & row.Cells(2).Value.ToString
+                        imgpath = imgpath & "|" & row.Cells(3).Value.ToString
+                        NEWIMGPATH = NEWIMGPATH & "|" & row.Cells(GNEWIMGPATH.Index).Value.ToString
+
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(griduploadsrno)
+            alParaval.Add(uploadremarks)
+            alParaval.Add(name)
+            alParaval.Add(imgpath)
+            alParaval.Add(NEWIMGPATH)
+            alParaval.Add(FILENAME)
+
+            alParaval.Add(ClientName)
+
+            alParaval.Add(TXTIRNNO.Text.Trim)
+            alParaval.Add(TXTACKNO.Text.Trim)
+            alParaval.Add(Format(ACKDATE.Value.Date, "MM/dd/yyyy"))
+            If PBQRCODE.Image IsNot Nothing Then
+                Dim MS As New IO.MemoryStream
+                PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                alParaval.Add(MS.ToArray)
+            Else
+                alParaval.Add(DBNull.Value)
+            End If
+            alParaval.Add(CMBDISPATCHFROM.Text.Trim)
+            alParaval.Add(TXTSPECIALREMARKS.Text.Trim)
+            If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            If CHKCHANGEADD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(txtDeliveryadd.Text.Trim)
+            alParaval.Add(CMBSALESMAN.Text.Trim)
+
+
+            alParaval.Add(CMBSERVICETYPE.Text.Trim)
+            alParaval.Add(TXTSACCODE.Text.Trim)
+            alParaval.Add(Val(TXTMATERIALVALUE.Text.Trim))
+            alParaval.Add(Val(TXTTOTALWITHMATVALUE.Text.Trim))
+            alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
+            alParaval.Add(CMBREFERREDBY.Text.Trim)
+            If CHKTRADINGACC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(0)    'COMM
+            alParaval.Add("")   'COMMTYPE
+
+
+
+
+            Dim ORDERGRIDSRNO As String = ""
+            Dim ORDERITEMNAME As String = ""
+            Dim ORDERDESIGN As String = ""
+            Dim ORDERCOLOR As String = ""
+            Dim ORDERPCS As String = ""
+            Dim ORDERMTRS As String = ""
+            Dim ORDERFROMNO As String = ""
+            Dim ORDERFROMSRNO As String = ""
+            Dim ORDERFROMTYPE As String = ""
+            Dim ORDERGDNPCS As String = ""
+            Dim ORDERGDNMTRS As String = ""
+            Dim ORDERRATE As String = ""
+            Dim ORDERPARTYPONO As String = ""
+            Dim ORDERON As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDORDER.Rows
+                If row.Cells(0).Value <> Nothing AndAlso (Val(row.Cells(OGDNQTY.Index).Value) > 0 Or Val(row.Cells(OGDNMTRS.Index).Value) > 0) Then
+
+                    If ORDERGRIDSRNO = "" Then
+                        ORDERGRIDSRNO = Val(row.Cells(OSRNO.Index).Value)
+                        ORDERITEMNAME = row.Cells(OITEMNAME.Index).Value.ToString
+                        ORDERDESIGN = row.Cells(ODESIGN.Index).Value.ToString
+                        ORDERCOLOR = row.Cells(OCOLOR.Index).Value.ToString
+                        ORDERPCS = Val(row.Cells(OPCS.Index).Value)
+                        ORDERMTRS = Val(row.Cells(OMTRS.Index).Value)
+                        ORDERFROMNO = Val(row.Cells(OFROMNO.Index).Value)
+                        ORDERFROMSRNO = Val(row.Cells(OFROMSRNO.Index).Value)
+                        ORDERFROMTYPE = row.Cells(OFROMTYPE.Index).Value.ToString
+                        ORDERGDNPCS = Val(row.Cells(OGDNQTY.Index).Value)
+                        ORDERGDNMTRS = Val(row.Cells(OGDNMTRS.Index).Value)
+                        ORDERRATE = Val(row.Cells(ORATE.Index).Value)
+                        ORDERPARTYPONO = row.Cells(OPARTYPONO.Index).Value
+                        ORDERON = row.Cells(OORDERON.Index).Value
+                    Else
+                        ORDERGRIDSRNO = ORDERGRIDSRNO & "|" & Val(row.Cells(OSRNO.Index).Value)
+                        ORDERITEMNAME = ORDERITEMNAME & "|" & row.Cells(OITEMNAME.Index).Value.ToString
+                        ORDERDESIGN = ORDERDESIGN & "|" & row.Cells(ODESIGN.Index).Value.ToString
+                        ORDERCOLOR = ORDERCOLOR & "|" & row.Cells(OCOLOR.Index).Value.ToString
+                        ORDERPCS = ORDERPCS & "|" & Val(row.Cells(OPCS.Index).Value)
+                        ORDERMTRS = ORDERMTRS & "|" & Val(row.Cells(OMTRS.Index).Value)
+                        ORDERFROMNO = ORDERFROMNO & "|" & Val(row.Cells(OFROMNO.Index).Value)
+                        ORDERFROMSRNO = ORDERFROMSRNO & "|" & Val(row.Cells(OFROMSRNO.Index).Value)
+                        ORDERFROMTYPE = ORDERFROMTYPE & "|" & row.Cells(OFROMTYPE.Index).Value.ToString
+                        ORDERGDNPCS = ORDERGDNPCS & "|" & Val(row.Cells(OGDNQTY.Index).Value)
+                        ORDERGDNMTRS = ORDERGDNMTRS & "|" & Val(row.Cells(OGDNMTRS.Index).Value)
+                        ORDERRATE = ORDERRATE & "|" & Val(row.Cells(ORATE.Index).Value)
+                        ORDERPARTYPONO = ORDERPARTYPONO & "|" & row.Cells(OPARTYPONO.Index).Value
+                        ORDERON = ORDERON & "|" & row.Cells(OORDERON.Index).Value
+                    End If
+                End If
+            Next
+
+            alParaval.Add(ORDERGRIDSRNO)
+            alParaval.Add(ORDERITEMNAME)
+            alParaval.Add(ORDERDESIGN)
+            alParaval.Add(ORDERCOLOR)
+            alParaval.Add(ORDERPCS)
+            alParaval.Add(ORDERMTRS)
+            alParaval.Add(ORDERFROMNO)
+            alParaval.Add(ORDERFROMSRNO)
+            alParaval.Add(ORDERFROMTYPE)
+            alParaval.Add(ORDERGDNPCS)
+            alParaval.Add(ORDERGDNMTRS)
+            alParaval.Add(ORDERRATE)
+            alParaval.Add(ORDERPARTYPONO)
+
+            If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
+
+            Dim objclsPurord As New ClsAgencyInvoiceMaster()
+            objclsPurord.alParaval = alParaval
+            Dim DT As DataTable = objclsPurord.SAVE()
+
+            'UPDATE THIS MAX NO IN INVOICEMASTER
+            Dim DTINV As DataTable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_REFNO = '" & Val(DT.Rows(0).Item(0)) & "' WHERE INVOICE_NO = " & Val(TXTINVOICENO.Text.Trim) & " AND INVOICE_YEARID =" & YearId, "", "")
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub CREATELEDGER(NAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+
+            'ADD IN ACCOUNTSMASTER
+            Dim ALPARAVAL As New ArrayList
+            Dim OBJSM As New ClsAccountsMaster
+            Dim OBJCMN As New ClsCommon
+            Dim DTLEDGER As DataTable = OBJCMN.SEARCH(" GROUPMASTER.group_name AS GROUPNAME, ISNULL(LEDGERS.ACC_INTPER, 0) AS INTPER, ISNULL(LEDGERS.Acc_add1,'') AS ADD1, ISNULL(LEDGERS.Acc_add2,'') AS ADD2, ISNULL(AREAMASTER.area_name, '') AS AREA, ISNULL(CITYMASTER.city_name, '') AS CITYNAME, ISNULL(LEDGERS.Acc_zipcode, '') AS PINCODE, ISNULL(STATEMASTER.state_name, '') AS STATE, ISNULL(COUNTRYMASTER.country_name, '') AS COUNTRY, ISNULL(LEDGERS.Acc_crdays, 0) AS CRDAYS, ISNULL(LEDGERS.Acc_crlimit, 0) AS CRLIMIT, ISNULL(LEDGERS.Acc_resino, '') AS RESINO, ISNULL(LEDGERS.Acc_altno, '') AS ALTNO, ISNULL(LEDGERS.Acc_phone, '') 
+                         AS PHONENO, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS WHATSAPPNO, ISNULL(LEDGERS.Acc_fax, '') AS FAX, ISNULL(LEDGERS.Acc_website, '') AS WEBSITE, 
+                         ISNULL(LEDGERS.Acc_email, '') AS EMAIL, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(LEDGERS.ACC_AGENTCOMM, 0) AS COMMISSION, 
+                         ISNULL(LEDGERS.ACC_DISC, 0) AS DISCOUNT, ISNULL(LEDGERS.ACC_CDPER, 0) AS CASHDISC, ISNULL(LEDGERS.ACC_KMS, 0) AS KMS, ISNULL(LEDGERS.Acc_panno, '') AS PANNO, ISNULL(LEDGERS.ACC_GSTIN, '') 
+                         AS GSTIN, ISNULL(LEDGERS.Acc_add, '') AS ADDRESS, ISNULL(LEDGERS.Acc_shippingadd, '') AS SHIPPINGADDRESS, ISNULL(LEDGERS.Acc_remarks, '') AS REMARKS, LEDGERS.Acc_code AS CODE, 
+                         ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN, ISNULL(DELIVERYCITYMASTER.city_name, '') AS DELIVERYAT, LEDGERS.Acc_TYPE AS TYPE, ISNULL(LEDGERS.ACC_DELIVERYPINCODE, '') 
+                         AS DELIVERYPINNO, ISNULL(LEDGERS.ACC_UPI, '') AS UPI, ISNULL(LEDGERS.ACC_MSMENO, '') AS MSME, ISNULL(LEDGERS.ACC_COMMISSION, 0) AS BROKERAGECOMM, ISNULL(LEDGERS.ACC_WARNING, '') 
+                         AS WARNINGTEXT, ISNULL(LEDGERS.ACC_GSTINVERIFIED, 0) AS GSTVERIFIED, ISNULL(LEDGERS.ACC_MSMETYPE, '') AS MSMETYPE, ISNULL(LEDGERS.ACC_EXMILLLESS, 0) AS EXMILLLESS, 
+                         ISNULL(LEDGERS.ACC_LOCKDAYS, 0) AS LOCKDAYS ", "", " LEDGERS INNER JOIN
+                         GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN
+						 SALESMANMASTER ON SALESMANMASTER.SALESMAN_ID = LEDGERS.ACC_SALESMANID LEFT OUTER JOIN
+                         CITYMASTER AS DELIVERYCITYMASTER ON LEDGERS.ACC_DELIVERYATID = DELIVERYCITYMASTER.city_id LEFT OUTER JOIN
+                         LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN
+						 LEDGERS AS TRANSLEDGERS ON TRANSLEDGERS.Acc_id = LEDGERS.ACC_TRANSID LEFT OUTER JOIN
+                         COUNTRYMASTER ON LEDGERS.Acc_countryid = COUNTRYMASTER.country_id LEFT OUTER JOIN
+                         STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN
+                         CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN 
+						 AREAMASTER ON AREAMASTER.area_id = LEDGERS.Acc_areaid ", " AND LEDGERS.ACC_CMPNAME = '" & NAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+
+
+
+            Dim DTTABLE As DataTable = OBJCMN.SEARCH("CITY_ID AS CITYID", "", "CITYMASTER ", "AND CITY_NAME = '" & DTLEDGER.Rows(0).Item("CITYNAME") & "' AND CITY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW CITYNAME
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecity(DTLEDGER.Rows(0).Item("CITYNAME"), TEMPCMPID, 0, Userid, TEMPYEARID, " and city_name = '" & DTLEDGER.Rows(0).Item("CITYNAME") & "' AND CITY_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("CITY_ID AS CITYID", "", "CITYMASTER ", "AND CITY_NAME = '" & DTLEDGER.Rows(0).Item("DELIVERYAT") & "' AND CITY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW CITYNAME
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecity(DTLEDGER.Rows(0).Item("DELIVERYAT"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and city_name = '" & DTLEDGER.Rows(0).Item("DELIVERYAT") & "' AND CITY_CMPID = " & TEMPCMPID & " AND CITY_LOCATIONID = " & Locationid & " AND CITY_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("AREA_ID AS AREAID", "", "AREAMASTER ", "AND AREA_NAME = '" & DTLEDGER.Rows(0).Item("AREA") & "' AND AREA_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW AREA
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savearea(DTLEDGER.Rows(0).Item("AREA"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and AREA_name = '" & DTLEDGER.Rows(0).Item("AREA") & "' AND AREA_CMPID = " & TEMPCMPID & " AND AREA_LOCATIONID = " & Locationid & " AND AREA_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("STATE_ID AS STATEID", "", "STATEMASTER ", "AND STATE_NAME = '" & DTLEDGER.Rows(0).Item("STATE") & "' AND STATE_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW STATE
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savestate(DTLEDGER.Rows(0).Item("STATE"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and STATE_name = '" & DTLEDGER.Rows(0).Item("STATE") & "' AND STATE_YEARID = " & TEMPYEARID)
+            End If
+
+
+            DTTABLE = OBJCMN.SEARCH("COUNTRY_ID AS COUNTRYID", "", "COUNTRYMASTER ", "AND COUNTRY_NAME = '" & DTLEDGER.Rows(0).Item("COUNTRY") & "' AND COUNTRY_YEARID = " & TEMPYEARID)
+            If DTTABLE.Rows.Count = 0 Then
+                'ADD NEW COUNTRY
+                Dim objyearmaster As New ClsYearMaster
+                objyearmaster.savecountry(DTLEDGER.Rows(0).Item("COUNTRY"), TEMPCMPID, Locationid, Userid, TEMPYEARID, " and COUNTRY_name = '" & DTLEDGER.Rows(0).Item("COUNTRY") & "' AND COUNTRY_YEARID = " & TEMPYEARID)
+            End If
+
+
+
+
+
+            ALPARAVAL.Add(NAME)
+            ALPARAVAL.Add("")   'NAME
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GROUPNAME"))
+            ALPARAVAL.Add(0)    'OPBAL
+            ALPARAVAL.Add("Cr.")
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("INTPER")))    'INTPER
+            ALPARAVAL.Add(0)    'PROFITPER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD1"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADD2"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("AREA"))   'AREA
+            ALPARAVAL.Add("")   'STD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("CITYNAME"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PINCODE"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("STATE"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("COUNTRY"))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRDAYS")))
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CRLIMIT")))    'CRLIMIT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("RESINO"))   'RESI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ALTNO"))   'ALT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PHONENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MOBILENO"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WHATSAPPNO"))   'WHATSAPPNO
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("FAX"))   'FAX
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WEBSITE"))   'WEBSITE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("EMAIL"))   'EMAIL
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TRANSPORT"))   'TRANS
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("BROKER"))   'AGENT
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("COMMISSION")))    'AGENTCOM
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("DISCOUNT")))    'DISC
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("CASHDISC")))    'CDPER
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("KMS")))    'KMS
+
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("PANNO"))   'PAN
+            ALPARAVAL.Add("")   'EXISE
+            ALPARAVAL.Add("")   'RANGE
+            ALPARAVAL.Add("")   'ADDLESS
+            ALPARAVAL.Add("")   'CST
+            ALPARAVAL.Add("")   'TIN
+            ALPARAVAL.Add("")   'ST
+            ALPARAVAL.Add("")   'VAT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTIN"))
+            ALPARAVAL.Add("")   'REGISTER
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("ADDRESS"))
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SHIPPINGADDRESS"))   'SHIPADD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("REMARKS"))   'REMARKS
+            ALPARAVAL.Add("")   'PARTYBANK
+            ALPARAVAL.Add("")   'ACCTYPE
+            ALPARAVAL.Add("")   'ACCNO
+            ALPARAVAL.Add("")   'IFSCCODE
+            ALPARAVAL.Add("")   'BRANCH
+            ALPARAVAL.Add("")   'BANKCITY
+            ALPARAVAL.Add("")   'GROUPOFCOMPANIES
+            ALPARAVAL.Add(0)    'BLOCKED
+            ALPARAVAL.Add(0)    'RCM
+            ALPARAVAL.Add(0)    'OVERSEAS
+            ALPARAVAL.Add(0)    'HOLDFORAPPROVAL
+            ALPARAVAL.Add(TEMPCMPID)
+            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(TEMPYEARID)
+            ALPARAVAL.Add(0)    'TRANSFER
+            ALPARAVAL.Add(NAME) 'CODE
+            ALPARAVAL.Add("")    'PRICELIST
+            ALPARAVAL.Add("")    'PACKINGTYPE
+            ALPARAVAL.Add("")    'TERM
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("SALESMAN"))    'SALESMAN
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYAT"))    'DELIVERYAT (SAME AS CITY WHILE UPLOADING)
+
+
+
+            'TDS
+            '*******************************
+            ALPARAVAL.Add(0)    'ISTDS
+            ALPARAVAL.Add("")   'DEDUCTEETYPER
+            ALPARAVAL.Add("")   'TDSFORM
+            ALPARAVAL.Add("")   'TDSCOMPANY
+            ALPARAVAL.Add(0)    'ISLOWER
+
+            ALPARAVAL.Add("")   'SECTION
+            ALPARAVAL.Add(Val(0))   'TDSRATE
+            ALPARAVAL.Add(0)    'TDSPER
+            ALPARAVAL.Add(0) 'SURCHARGE
+            ALPARAVAL.Add(0) 'LIMIT
+            '*******************************
+
+            ALPARAVAL.Add(0)    'TDSAC
+            ALPARAVAL.Add("NON SEZ")    'SEZTYPE
+            ALPARAVAL.Add("")   'NATUREOFPAY
+            If DTLEDGER.Rows(0).Item("TYPE") <> "" Then ALPARAVAL.Add(DTLEDGER.Rows(0).Item("TYPE")) Else ALPARAVAL.Add("ACCOUNTS")   'TYPE
+            ALPARAVAL.Add("")   'CALC
+            ALPARAVAL.Add(0)                        'POMNADTE
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("DELIVERYPINNO"))       'DELIVERYPINCODE (SAME AS PINCODE WHILE UPLOADING)
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("UPI"))   'UPI
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSME"))   'MSME
+            ALPARAVAL.Add(0)    'TCS
+            ALPARAVAL.Add("")   'TDSDEDUCTEDAC
+            ALPARAVAL.Add(0)    'TDSONGTOTAL
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("BROKERAGECOMM")))    'COMMISSION
+            ALPARAVAL.Add("")   'DISTRICT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("WARNINGTEXT"))   'WARNING TEXT
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("GSTVERIFIED"))   'GSTINVERIFIED
+            ALPARAVAL.Add(0)   'PARTYTDS
+            ALPARAVAL.Add(0)   'RD
+            ALPARAVAL.Add(DTLEDGER.Rows(0).Item("MSMETYPE"))   'MSME TYPE
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("EXMILLLESS")))   'EXMILL
+            ALPARAVAL.Add(0)   'BILLTOID
+            ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("LOCKDAYS")))   'LOCKDAYS
+
+            'CONTACT DETAILS
+            '*******************************
+            ALPARAVAL.Add("")   'FOR NAME
+            ALPARAVAL.Add(0)   'FOR DESIGNATION
+            ALPARAVAL.Add("")   'FOR MOBILE
+            ALPARAVAL.Add("")   'FOR EMAIL
+
+
+
+            OBJSM.alParaval = ALPARAVAL
+            Dim INTRES As Integer = OBJSM.SAVE()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub CREATEITEM(ITEMNAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+            Dim OBJCMN As New ClsCommon
+            Dim DTITEM As DataTable = OBJCMN.SEARCH(" ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+
+
+            ALPARAVAL.Add("Finished Goods")
+            ALPARAVAL.Add("")   'CATEGORY
+            ALPARAVAL.Add(UCase(ITEMNAME))       'DISPLAYNAME
+            ALPARAVAL.Add(UCase(ITEMNAME)) 'ITEMNAME
+
+            ALPARAVAL.Add("")   'DEPARTMENT
+            ALPARAVAL.Add(UCase(ITEMNAME))        'CODE
+            ALPARAVAL.Add(DTITEM.Rows(0).Item("UNIT"))   'UNIT
+            ALPARAVAL.Add("")   'FOLD
+            ALPARAVAL.Add(0)    'RATE
+            ALPARAVAL.Add(0)    'VALUATIONRATE   
+            ALPARAVAL.Add(0)    'TRANSRATE
+            ALPARAVAL.Add(0)    'CHCKINGRATE
+            ALPARAVAL.Add(0)    'PACKINGRATE
+            ALPARAVAL.Add(0)    'DESIGNRATE
+            ALPARAVAL.Add(0)    'REORDER
+            ALPARAVAL.Add(0)    'UPPER
+            ALPARAVAL.Add(0)    'LOWER
+
+            Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & DTITEM.Rows(0).Item("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+            If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTITEM.Rows(0).Item("HSNCODE")) Else ALPARAVAL.Add("") 'HSNCODEID
+
+            ALPARAVAL.Add(0)    'BLOCKED
+            ALPARAVAL.Add(0)    'HIDEINDESIGN
+
+            ALPARAVAL.Add("")    'WIDTH
+            ALPARAVAL.Add("")    'GREYWIDTH
+            ALPARAVAL.Add(0)    'SHRINKFROM
+            ALPARAVAL.Add(0)    'SHRINKTO
+            ALPARAVAL.Add("")   'SELVEDGE
+
+            ALPARAVAL.Add("")   'RATETYPE
+            ALPARAVAL.Add("")   'RATE
+
+            ALPARAVAL.Add("")   'YARNQUALITY
+            ALPARAVAL.Add("")   'PER
+
+
+            ALPARAVAL.Add("")   'GRIDSRNO
+            ALPARAVAL.Add("")   'PROCESS
+
+            ALPARAVAL.Add("")   'REMARKS
+            ALPARAVAL.Add("MERCHANT")
+
+            ALPARAVAL.Add(DBNull.Value) 'IMGPATH
+            ALPARAVAL.Add("")   'WARP
+            ALPARAVAL.Add("")   'WEFT
+
+            ALPARAVAL.Add(TEMPCMPID)
+            ALPARAVAL.Add(0)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(TEMPYEARID)
+            ALPARAVAL.Add(0)
+
+            ALPARAVAL.Add("")   'WARPSRNO
+            ALPARAVAL.Add("")   'WARPQUALITY
+            ALPARAVAL.Add("")   'WARPSHADE
+            ALPARAVAL.Add("")   'WARPENDS
+            ALPARAVAL.Add("")   'WARPWT
+            ALPARAVAL.Add("")   'WARPRATE
+            ALPARAVAL.Add("")   'WARPAMOUNT
+
+
+            ALPARAVAL.Add("")   'WEFTSRNO
+            ALPARAVAL.Add("")   'WEFTQUALITY
+            ALPARAVAL.Add("")   'WEFTSHADE
+            ALPARAVAL.Add("")   'WEFTPICK
+            ALPARAVAL.Add("")   'WEFTWT
+            ALPARAVAL.Add("")   'WEFTRATE
+            ALPARAVAL.Add("")   'WEFTAMOUNT
+
+            ALPARAVAL.Add(0)    'WARPTL
+            ALPARAVAL.Add(0)    'WEFTTL
+            ALPARAVAL.Add(0)    'REED
+            ALPARAVAL.Add(0)    'REEDSPACE
+            ALPARAVAL.Add(0)    'PICKS
+            ALPARAVAL.Add(0)    'TOTALWT
+            ALPARAVAL.Add(0)    'TOTALWARPWT
+            ALPARAVAL.Add(0)    'TOTALWEFTWT
+            ALPARAVAL.Add("")   'WEAVE
+            ALPARAVAL.Add("")   'GREYCATEGORY
+
+
+
+            ALPARAVAL.Add(0)    'ACTUALWT
+            ALPARAVAL.Add(0)    'ACTUALAMT
+            ALPARAVAL.Add(0)    'DHARAPER
+            ALPARAVAL.Add(0)    'DHARAAMT
+            ALPARAVAL.Add(0)    'WASTAGEPER
+            ALPARAVAL.Add(0)    'WASTAGEAMT
+            ALPARAVAL.Add(0)    'WEAVINGCHGS
+            ALPARAVAL.Add(0)    'WEAVINGAMT
+            ALPARAVAL.Add(0)    'GSTPER
+            ALPARAVAL.Add(0)    'GSTAMT
+            ALPARAVAL.Add(0)    'AMOUNT
+            ALPARAVAL.Add(0)    'TOTALGSTPER
+            ALPARAVAL.Add(0)    'TOTALAMT
+            ALPARAVAL.Add(0)    'WARPTOTALAMT
+            ALPARAVAL.Add(0)    'WEFTTOTALAMT
+
+            ALPARAVAL.Add("")   'COLORNO
+            ALPARAVAL.Add("")   'COLORSRNO
+            ALPARAVAL.Add(0)    'VALUELOSSPER
+            ALPARAVAL.Add("")    'COSTCENTERNAME
+            ALPARAVAL.Add(0)    'ITEM GSM
+            ALPARAVAL.Add(0)    'ITEM PERCENT
+            ALPARAVAL.Add(0)    'GARMENT
+
+            ALPARAVAL.Add(0)    'SHADESRNO
+            ALPARAVAL.Add(0)    'SHADECOLORID
+
+            ALPARAVAL.Add(0)    'SHADEITEMSRNO
+            ALPARAVAL.Add(0)    'SHADEITEMID
+            ALPARAVAL.Add(0)    'SHADEDESIGNID
+            ALPARAVAL.Add(0)    'SHADEITEMCOLORID
+            ALPARAVAL.Add(0)    'SHADEMTRS
+            ALPARAVAL.Add(0)    'SHADEsrno
+
+            Dim objclsItemMaster As New clsItemmaster
+            objclsItemMaster.alParaval = ALPARAVAL
+            Dim IntResult As Integer = objclsItemMaster.SAVE()
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -2255,7 +3147,7 @@ CHECKNEXTLINE:
             End If
 
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
-                If (ROW.Cells(OORDERON.Index).Value = "PCS" And Val(ROW.Cells(OGDNQTY.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value)) Or (ROW.Cells(OORDERON.Index).Value = "MTRS" And Val(ROW.Cells(OGDNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value)) Then
+                If (ROW.Cells(OORDERON.Index).Value = "PCS" And Val(ROW.Cells(OGDNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value)) Or (ROW.Cells(OORDERON.Index).Value = "MTRS" And Val(ROW.Cells(OGDNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value)) Then
                     EP.SetError(cmbname, "Excess Qty Not Allowed")
                     bln = False
                 End If
@@ -6670,7 +7562,7 @@ ERRORMESSAGE:
 
 
             'WE NEED TO UPDATE THIS IRNNO IN DATABASE ALSO
-            DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_IRNNO = '" & TXTIRNNO.Text.Trim & "', INVOICE_ACKNO = '" & TXTACKNO.Text.Trim & "', INVOICE_ACKDATE = '" & Format(ACKDATE.Value.Date, "MM/dd/yyyy") & "' FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTER_ID WHERE INVOICE_NO = " & Val(TXTINVOICENO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId, "", "")
+            DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_IRNNO = '" & TXTIRNNO.Text.Trim & "', INVOICE_ACKNO = '" & TXTACKNO.Text.Trim & "', INVOICE_ACKDATE = '" & Format(ACKDATE.Value, "MM/dd/yyyy HH:mm:ss") & "' FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTER_ID WHERE INVOICE_NO = " & Val(TXTINVOICENO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId, "", "")
 
             'ADD DATA IN EINVOICEENTRY
             DT = OBJCMN.Execute_Any_String("INSERT INTO EINVOICEENTRY VALUES (" & Val(TXTINVOICENO.Text.Trim) & ",'INVOICE','" & TOKEN & "','" & IRNNO & "','" & TEMPSTATUS & "', '', GETDATE(), " & CmpId & "," & Userid & "," & YearId & ")", "", "")
@@ -6718,32 +7610,33 @@ ERRORMESSAGE:
                 ' Instead of calling 3rd API, reuse the response from 2nd API stored in REQUESTEDTEXT
                 Dim res As New RestResponse() With {.Content = REQUESTEDTEXT}
 
-                    ' Deserialize and process QR code exactly as your 3rd API code does
-                    Dim respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
-                    Dim respPlGenIRNDec As New RespPlGenIRNDec()
-                    respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
+                ' Deserialize and process QR code exactly as your 3rd API code does
+                Dim respPl = JsonConvert.DeserializeObject(Of RespPl)(res.Content)
+                Dim respPlGenIRNDec As New RespPlGenIRNDec()
+                respPlGenIRNDec = JsonConvert.DeserializeObject(Of RespPlGenIRNDec)(respPl.Data)
 
-                    Dim qrImg As Byte() = Convert.FromBase64String(respPlGenIRNDec.QrCodeImage)
+                Dim qrImg As Byte() = Convert.FromBase64String(respPlGenIRNDec.QrCodeImage)
 
-                    Dim tc As TypeConverter = TypeDescriptor.GetConverter(GetType(Bitmap))
-                    Dim bitmap1 As Bitmap = CType(tc.ConvertFrom(qrImg), Bitmap)
+                Dim tc As TypeConverter = TypeDescriptor.GetConverter(GetType(Bitmap))
+                Dim bitmap1 As Bitmap = CType(tc.ConvertFrom(qrImg), Bitmap)
 
-                    Dim TEMPREG As DataTable = OBJCMN.Execute_Any_String("SELECT REGISTER_INITIALS AS INITIALS FROM REGISTERMASTER WHERE REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE ='SALE' AND REGISTER_YEARID = " & YearId, "", "")
+                Dim TEMPREG As DataTable = OBJCMN.Execute_Any_String("SELECT REGISTER_INITIALS AS INITIALS FROM REGISTERMASTER WHERE REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE ='SALE' AND REGISTER_YEARID = " & YearId, "", "")
 
-                    bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
-                    PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
-                    PBQRCODE.Refresh()
+                bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
+                PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
+                PBQRCODE.Refresh()
 
-                    If PBQRCODE.Image IsNot Nothing Then
-                        Dim OBJINVOICE As New ClsInvoiceMaster
-                        Dim MS As New IO.MemoryStream
-                        PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
-                        OBJINVOICE.alParaval.Add(TXTINVOICENO.Text.Trim)
-                        OBJINVOICE.alParaval.Add(cmbregister.Text.Trim)
-                        OBJINVOICE.alParaval.Add(MS.ToArray)
-                        OBJINVOICE.alParaval.Add(YearId)
-                        Dim INTRES As Integer = OBJINVOICE.SAVEQRCODE()
-                    End If
+                If PBQRCODE.Image IsNot Nothing Then
+                    Dim OBJINVOICE As New ClsInvoiceMaster
+                    Dim MS As New IO.MemoryStream
+                    bitmap1.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                    'PBQRCODE.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                    OBJINVOICE.alParaval.Add(TXTINVOICENO.Text.Trim)
+                    OBJINVOICE.alParaval.Add(cmbregister.Text.Trim)
+                    OBJINVOICE.alParaval.Add(MS.ToArray)
+                    OBJINVOICE.alParaval.Add(YearId)
+                    Dim INTRES As Integer = OBJINVOICE.SAVEQRCODE()
+                End If
 
 
                 DT = OBJCMN.Execute_Any_String("INSERT INTO EINVOICEENTRY VALUES (" & Val(TXTINVOICENO.Text.Trim) & ",'INVOICE','" & TOKEN & "','" & IRNNO & "','QRCODE SUCCESS', '', GETDATE(), " & CmpId & "," & Userid & "," & YearId & ")", "", "")
@@ -9259,7 +10152,7 @@ LINE1:
                     For Each ROW As DataGridViewRow In GRIDINVOICE.Rows
                         If Val(ROW.Cells(GFROMNO.Index).Value) = Val(DTROWPS("FROMNO")) Then GoTo LINE1
                     Next
-                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTROWPS("ITEMNAME"), DTROWPS("HSNCODE"), "", "", "", Val(DTROWPS("AQTY")), Val(DTROWPS("FOLDPER")), "", DTROWPS("BALENO"), Val(DTROWPS("QTY")), 0, Format(Val(DTROWPS("MTRS")), "0.00"), Format(Val(DTROWPS("RATE")), "0.00"), "Mtrs", 0, DTROWPS("LRNO"), DTROWPS("TRANSPORT"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Val(DTROWPS("FROMNO")), 0, DTROWPS("TYPE"), 0, "", DTROWPS("UNIT"), 0, 0, Val(DTROWPS("WT")), DTROWPS("PURNAME"), DTROWPS("PARTYBILLNO"))
+                    GRIDINVOICE.Rows.Add(GRIDINVOICE.RowCount + 1, DTROWPS("ITEMNAME"), DTROWPS("HSNCODE"), "", "", "", Val(DTROWPS("AQTY")), Val(DTROWPS("FOLDPER")), "", DTROWPS("BALENO"), Val(DTROWPS("QTY")), 0, Format(Val(DTROWPS("MTRS")), "0.00"), 0, "Mtrs", 0, DTROWPS("LRNO"), DTROWPS("TRANSPORT"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Val(DTROWPS("FROMNO")), 0, DTROWPS("TYPE"), 0, "", DTROWPS("UNIT"), 0, 0, Val(DTROWPS("WT")), DTROWPS("PURNAME"), DTROWPS("PARTYBILLNO"))
 LINE1:
                 Next
                 getsrno(GRIDINVOICE)

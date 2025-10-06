@@ -13,6 +13,7 @@ Public Class AgencyReceiptDesign
     Public PERIOD As String
     Public WHERECLAUSE As String = ""
     Public SHOWNARR As Integer = 0
+    Public strsearch As String
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -22,8 +23,7 @@ Public Class AgencyReceiptDesign
     Dim RPTAGENCYREC As New AgencyRecReport
 
     Private Sub AgencyReceiptDesign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim strsearch As String
-        strsearch = ""
+
         Try
             If DIRECTPRINT = True Then
                 PRINTDIRECTADVICE()
@@ -49,7 +49,7 @@ Public Class AgencyReceiptDesign
             'If FRMSTRING = "AGENCYREC" Then crTables = RPTAGENCYREC.Database.Tables
             If FRMSTRING = "AGENCYREC" Then
 
-                strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
+                'strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
                 crTables = RPTAGENCYREC.Database.Tables
                 'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 

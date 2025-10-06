@@ -54,7 +54,6 @@ Public Class registerdesign
     Public ADDRESS As Integer
     Public PANNO As Integer
     Public LETTERFORMAT As Integer
-    Public INDEX As Boolean
     Public strsearch As String
     Public FRMSTRING As String
     Public REG As String
@@ -657,7 +656,6 @@ Public Class registerdesign
                     CRPO.SelectionFormula = strsearch
                     CRPO.ReportSource = RPTLEDGERACTFORMAT
                     RPTLEDGERACTFORMAT.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
-                    RPTLEDGERACTFORMAT.Section4.SectionFormat.EnableSuppress = Not (INDEX)
 
                 ElseIf frmstring = "LedgerBookDetails" Then
 

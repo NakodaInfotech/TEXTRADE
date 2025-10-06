@@ -400,6 +400,7 @@ Partial Class MagicBox
         '
         Me.TXTCUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCUT.Location = New System.Drawing.Point(1002, 16)
+        Me.TXTCUT.MaxLength = 3
         Me.TXTCUT.Name = "TXTCUT"
         Me.TXTCUT.Size = New System.Drawing.Size(89, 23)
         Me.TXTCUT.TabIndex = 15
@@ -760,6 +761,7 @@ Partial Class MagicBox
         Me.TXTCRDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCRDAYS.Location = New System.Drawing.Point(402, 45)
+        Me.TXTCRDAYS.MaxLength = 3
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(89, 23)
         Me.TXTCRDAYS.TabIndex = 6

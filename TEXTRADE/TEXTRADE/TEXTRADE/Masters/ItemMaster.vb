@@ -44,6 +44,7 @@ Public Class ItemMaster
             '8) TXTPRNO_Validating IN MATERIALRECEIPT
             '9) CMDSELECTPO CLICK IN PURCHASEINVOICE
             '10) SAVE CLICK IN MAGICBOX
+            '11) INVOICEMASTER --- CREATEAGENCYINVOICE
 
 
             Ep.Clear()

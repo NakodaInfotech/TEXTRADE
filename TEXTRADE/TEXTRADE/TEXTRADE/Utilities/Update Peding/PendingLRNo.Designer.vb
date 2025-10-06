@@ -38,6 +38,7 @@ Partial Class PendingLRNo
         Me.GREGID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMBTRANSPORT = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,13 +57,15 @@ Partial Class PendingLRNo
         Me.GPARTYWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPRINTINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CMBTRANSPORT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -200,7 +203,7 @@ Partial Class PendingLRNo
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT})
+        Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.CMBTRANSPORT})
         Me.gridbilldetails.Size = New System.Drawing.Size(1205, 504)
         Me.gridbilldetails.TabIndex = 257
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
@@ -209,7 +212,7 @@ Partial Class PendingLRNo
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GINVOICENO, Me.GDATE, Me.GREGID, Me.GNAME, Me.GTRANSPORT, Me.GPCS, Me.GMTRS, Me.GLRNO, Me.GLRDATE, Me.GCHALLANNO, Me.GEWAYBILLNO, Me.GSHIPTO, Me.GMOBILENO, Me.GCITY, Me.GBALENOFROM, Me.GFROMCITY, Me.GGRANDTOTAL, Me.GTYPE, Me.GAGENTNAME, Me.GAGENTWHATSAPP, Me.GPARTYWHATSAPP, Me.GPRINTINITIALS, Me.GREGNAME, Me.GCHK})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GINVOICENO, Me.GDATE, Me.GREGID, Me.GNAME, Me.GTRANSPORT, Me.GPCS, Me.GMTRS, Me.GLRNO, Me.GLRDATE, Me.GCHALLANNO, Me.GEWAYBILLNO, Me.GSHIPTO, Me.GMOBILENO, Me.GCITY, Me.GBALENOFROM, Me.GFROMCITY, Me.GGRANDTOTAL, Me.GTYPE, Me.GAGENTNAME, Me.GAGENTWHATSAPP, Me.GPARTYWHATSAPP, Me.GPRINTINITIALS, Me.GREGNAME, Me.GCHK, Me.GGRIDSRNO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -264,12 +267,18 @@ Partial Class PendingLRNo
         'GTRANSPORT
         '
         Me.GTRANSPORT.Caption = "Transport Name"
+        Me.GTRANSPORT.ColumnEdit = Me.CMBTRANSPORT
         Me.GTRANSPORT.FieldName = "TRANSNAME"
         Me.GTRANSPORT.Name = "GTRANSPORT"
-        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
         Me.GTRANSPORT.VisibleIndex = 3
         Me.GTRANSPORT.Width = 220
+        '
+        'CMBTRANSPORT
+        '
+        Me.CMBTRANSPORT.AutoHeight = False
+        Me.CMBTRANSPORT.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CMBTRANSPORT.Name = "CMBTRANSPORT"
         '
         'GPCS
         '
@@ -436,13 +445,6 @@ Partial Class PendingLRNo
         Me.GREGNAME.Visible = True
         Me.GREGNAME.VisibleIndex = 20
         '
-        'PRINTDIALOG
-        '
-        Me.PRINTDIALOG.AllowSelection = True
-        Me.PRINTDIALOG.AllowSomePages = True
-        Me.PRINTDIALOG.ShowHelp = True
-        Me.PRINTDIALOG.UseEXDialog = True
-        '
         'GCHK
         '
         Me.GCHK.ColumnEdit = Me.CHKEDIT
@@ -457,6 +459,19 @@ Partial Class PendingLRNo
         Me.CHKEDIT.AutoHeight = False
         Me.CHKEDIT.Name = "CHKEDIT"
         Me.CHKEDIT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
+        '
+        'GGRIDSRNO
+        '
+        Me.GGRIDSRNO.Caption = "GRIDSRNO"
+        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
+        Me.GGRIDSRNO.Name = "GGRIDSRNO"
         '
         'PendingLRNo
         '
@@ -473,6 +488,7 @@ Partial Class PendingLRNo
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CMBTRANSPORT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -516,4 +532,6 @@ Partial Class PendingLRNo
     Friend WithEvents GPRINTINITIALS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents CMBTRANSPORT As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents GGRIDSRNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

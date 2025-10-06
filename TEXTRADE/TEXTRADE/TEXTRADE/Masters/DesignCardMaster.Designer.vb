@@ -327,6 +327,12 @@ Partial Class DesignCardMaster
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.TABCONTROLMAIN = New System.Windows.Forms.TabControl()
         Me.TBMAIN = New System.Windows.Forms.TabPage()
+        Me.TXTBEAMMTRS = New System.Windows.Forms.TextBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label84 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label48 = New System.Windows.Forms.Label()
         Me.TXTNOOFPCS = New System.Windows.Forms.TextBox()
         Me.TXTREEDSPACECM = New System.Windows.Forms.TextBox()
         Me.TXTFWIDTHCM = New System.Windows.Forms.TextBox()
@@ -476,12 +482,6 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Label48 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label84 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TXTBEAMMTRS = New System.Windows.Forms.TextBox()
-        Me.Label41 = New System.Windows.Forms.Label()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -1478,10 +1478,10 @@ Partial Class DesignCardMaster
         Me.TBWARP.Controls.Add(Me.TXTGRIDPE)
         Me.TBWARP.Controls.Add(Me.TXTWARPGSRNO)
         Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
-        Me.TBWARP.Location = New System.Drawing.Point(4, 24)
+        Me.TBWARP.Location = New System.Drawing.Point(4, 22)
         Me.TBWARP.Name = "TBWARP"
         Me.TBWARP.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWARP.Size = New System.Drawing.Size(1436, 239)
+        Me.TBWARP.Size = New System.Drawing.Size(1436, 241)
         Me.TBWARP.TabIndex = 0
         Me.TBWARP.Text = "2. Warp Pattern && Weft Pattern"
         '
@@ -3452,7 +3452,7 @@ Partial Class DesignCardMaster
         Me.TABCONTROLMAIN.Location = New System.Drawing.Point(12, 89)
         Me.TABCONTROLMAIN.Name = "TABCONTROLMAIN"
         Me.TABCONTROLMAIN.SelectedIndex = 0
-        Me.TABCONTROLMAIN.Size = New System.Drawing.Size(1330, 198)
+        Me.TABCONTROLMAIN.Size = New System.Drawing.Size(1361, 198)
         Me.TABCONTROLMAIN.TabIndex = 4
         '
         'TBMAIN
@@ -3562,14 +3562,78 @@ Partial Class DesignCardMaster
         Me.TBMAIN.Location = New System.Drawing.Point(4, 24)
         Me.TBMAIN.Name = "TBMAIN"
         Me.TBMAIN.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBMAIN.Size = New System.Drawing.Size(1322, 170)
+        Me.TBMAIN.Size = New System.Drawing.Size(1353, 170)
         Me.TBMAIN.TabIndex = 0
         Me.TBMAIN.Text = "1. Reed && Pick Details"
+        '
+        'TXTBEAMMTRS
+        '
+        Me.TXTBEAMMTRS.BackColor = System.Drawing.Color.Linen
+        Me.TXTBEAMMTRS.Location = New System.Drawing.Point(762, 129)
+        Me.TXTBEAMMTRS.Name = "TXTBEAMMTRS"
+        Me.TXTBEAMMTRS.ReadOnly = True
+        Me.TXTBEAMMTRS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTBEAMMTRS.TabIndex = 1036
+        Me.TXTBEAMMTRS.TabStop = False
+        Me.TXTBEAMMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.BackColor = System.Drawing.Color.Transparent
+        Me.Label41.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(698, 133)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(66, 15)
+        Me.Label41.TabIndex = 1037
+        Me.Label41.Text = "Beam Mtrs"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.Linen
+        Me.TextBox1.Location = New System.Drawing.Point(660, 42)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(46, 23)
+        Me.TextBox1.TabIndex = 1034
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label84
+        '
+        Me.Label84.AutoSize = True
+        Me.Label84.BackColor = System.Drawing.Color.Transparent
+        Me.Label84.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label84.Location = New System.Drawing.Point(551, 46)
+        Me.Label84.Name = "Label84"
+        Me.Label84.Size = New System.Drawing.Size(55, 15)
+        Me.Label84.TabIndex = 1035
+        Me.Label84.Text = "G. Width"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TextBox2.Location = New System.Drawing.Point(610, 42)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(47, 23)
+        Me.TextBox2.TabIndex = 1033
+        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.BackColor = System.Drawing.Color.Transparent
+        Me.Label48.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label48.Location = New System.Drawing.Point(258, 46)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(62, 15)
+        Me.Label48.TabIndex = 1032
+        Me.Label48.Text = "Sel t. Ends"
         '
         'TXTNOOFPCS
         '
         Me.TXTNOOFPCS.BackColor = System.Drawing.Color.White
-        Me.TXTNOOFPCS.Location = New System.Drawing.Point(502, 129)
+        Me.TXTNOOFPCS.Location = New System.Drawing.Point(610, 129)
         Me.TXTNOOFPCS.Name = "TXTNOOFPCS"
         Me.TXTNOOFPCS.Size = New System.Drawing.Size(32, 23)
         Me.TXTNOOFPCS.TabIndex = 9
@@ -3578,7 +3642,7 @@ Partial Class DesignCardMaster
         'TXTREEDSPACECM
         '
         Me.TXTREEDSPACECM.BackColor = System.Drawing.Color.Linen
-        Me.TXTREEDSPACECM.Location = New System.Drawing.Point(603, 13)
+        Me.TXTREEDSPACECM.Location = New System.Drawing.Point(660, 13)
         Me.TXTREEDSPACECM.Name = "TXTREEDSPACECM"
         Me.TXTREEDSPACECM.ReadOnly = True
         Me.TXTREEDSPACECM.Size = New System.Drawing.Size(46, 23)
@@ -3589,10 +3653,10 @@ Partial Class DesignCardMaster
         'TXTFWIDTHCM
         '
         Me.TXTFWIDTHCM.BackColor = System.Drawing.Color.Linen
-        Me.TXTFWIDTHCM.Location = New System.Drawing.Point(762, 40)
+        Me.TXTFWIDTHCM.Location = New System.Drawing.Point(805, 42)
         Me.TXTFWIDTHCM.Name = "TXTFWIDTHCM"
         Me.TXTFWIDTHCM.ReadOnly = True
-        Me.TXTFWIDTHCM.Size = New System.Drawing.Size(46, 23)
+        Me.TXTFWIDTHCM.Size = New System.Drawing.Size(38, 23)
         Me.TXTFWIDTHCM.TabIndex = 16
         Me.TXTFWIDTHCM.TabStop = False
         Me.TXTFWIDTHCM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -3624,17 +3688,17 @@ Partial Class DesignCardMaster
         'TXTLEFTSEL
         '
         Me.TXTLEFTSEL.BackColor = System.Drawing.Color.White
-        Me.TXTLEFTSEL.Location = New System.Drawing.Point(81, 42)
+        Me.TXTLEFTSEL.Location = New System.Drawing.Point(75, 42)
         Me.TXTLEFTSEL.MaxLength = 50
         Me.TXTLEFTSEL.Name = "TXTLEFTSEL"
-        Me.TXTLEFTSEL.Size = New System.Drawing.Size(35, 23)
+        Me.TXTLEFTSEL.Size = New System.Drawing.Size(46, 23)
         Me.TXTLEFTSEL.TabIndex = 12
         Me.TXTLEFTSEL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTLEFTSELENDS
         '
         Me.TXTLEFTSELENDS.BackColor = System.Drawing.Color.White
-        Me.TXTLEFTSELENDS.Location = New System.Drawing.Point(189, 43)
+        Me.TXTLEFTSELENDS.Location = New System.Drawing.Point(193, 42)
         Me.TXTLEFTSELENDS.MaxLength = 50
         Me.TXTLEFTSELENDS.Name = "TXTLEFTSELENDS"
         Me.TXTLEFTSELENDS.Size = New System.Drawing.Size(39, 23)
@@ -3644,7 +3708,7 @@ Partial Class DesignCardMaster
         'TXTTOTALSELENDS
         '
         Me.TXTTOTALSELENDS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELENDS.Location = New System.Drawing.Point(321, 43)
+        Me.TXTTOTALSELENDS.Location = New System.Drawing.Point(321, 42)
         Me.TXTTOTALSELENDS.Name = "TXTTOTALSELENDS"
         Me.TXTTOTALSELENDS.ReadOnly = True
         Me.TXTTOTALSELENDS.Size = New System.Drawing.Size(60, 23)
@@ -3655,7 +3719,7 @@ Partial Class DesignCardMaster
         'TextBox15
         '
         Me.TextBox15.BackColor = System.Drawing.Color.Linen
-        Me.TextBox15.Location = New System.Drawing.Point(297, 133)
+        Me.TextBox15.Location = New System.Drawing.Point(321, 129)
         Me.TextBox15.Name = "TextBox15"
         Me.TextBox15.ReadOnly = True
         Me.TextBox15.Size = New System.Drawing.Size(60, 23)
@@ -3668,7 +3732,7 @@ Partial Class DesignCardMaster
         Me.Label79.AutoSize = True
         Me.Label79.BackColor = System.Drawing.Color.Transparent
         Me.Label79.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label79.Location = New System.Drawing.Point(233, 136)
+        Me.Label79.Location = New System.Drawing.Point(258, 133)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(62, 15)
         Me.Label79.TabIndex = 1025
@@ -3677,7 +3741,7 @@ Partial Class DesignCardMaster
         'TXTRPM
         '
         Me.TXTRPM.BackColor = System.Drawing.Color.White
-        Me.TXTRPM.Location = New System.Drawing.Point(160, 133)
+        Me.TXTRPM.Location = New System.Drawing.Point(193, 129)
         Me.TXTRPM.Name = "TXTRPM"
         Me.TXTRPM.Size = New System.Drawing.Size(60, 23)
         Me.TXTRPM.TabIndex = 40
@@ -3688,7 +3752,7 @@ Partial Class DesignCardMaster
         Me.Label44.AutoSize = True
         Me.Label44.BackColor = System.Drawing.Color.Transparent
         Me.Label44.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(127, 137)
+        Me.Label44.Location = New System.Drawing.Point(161, 133)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(32, 15)
         Me.Label44.TabIndex = 1023
@@ -3697,9 +3761,9 @@ Partial Class DesignCardMaster
         'TXTEFFICIENCY
         '
         Me.TXTEFFICIENCY.BackColor = System.Drawing.Color.White
-        Me.TXTEFFICIENCY.Location = New System.Drawing.Point(61, 132)
+        Me.TXTEFFICIENCY.Location = New System.Drawing.Point(75, 129)
         Me.TXTEFFICIENCY.Name = "TXTEFFICIENCY"
-        Me.TXTEFFICIENCY.Size = New System.Drawing.Size(60, 23)
+        Me.TXTEFFICIENCY.Size = New System.Drawing.Size(46, 23)
         Me.TXTEFFICIENCY.TabIndex = 39
         '
         'Label43
@@ -3707,7 +3771,7 @@ Partial Class DesignCardMaster
         Me.Label43.AutoSize = True
         Me.Label43.BackColor = System.Drawing.Color.Transparent
         Me.Label43.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.Location = New System.Drawing.Point(4, 136)
+        Me.Label43.Location = New System.Drawing.Point(16, 133)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(59, 15)
         Me.Label43.TabIndex = 1021
@@ -3716,9 +3780,9 @@ Partial Class DesignCardMaster
         'TXTCOVERFACTOR
         '
         Me.TXTCOVERFACTOR.BackColor = System.Drawing.Color.White
-        Me.TXTCOVERFACTOR.Location = New System.Drawing.Point(102, 100)
+        Me.TXTCOVERFACTOR.Location = New System.Drawing.Point(75, 100)
         Me.TXTCOVERFACTOR.Name = "TXTCOVERFACTOR"
-        Me.TXTCOVERFACTOR.Size = New System.Drawing.Size(60, 23)
+        Me.TXTCOVERFACTOR.Size = New System.Drawing.Size(46, 23)
         Me.TXTCOVERFACTOR.TabIndex = 31
         '
         'Label42
@@ -3726,7 +3790,7 @@ Partial Class DesignCardMaster
         Me.Label42.AutoSize = True
         Me.Label42.BackColor = System.Drawing.Color.Transparent
         Me.Label42.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(24, 104)
+        Me.Label42.Location = New System.Drawing.Point(-1, 104)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(76, 15)
         Me.Label42.TabIndex = 1019
@@ -3735,10 +3799,10 @@ Partial Class DesignCardMaster
         'TextBox14
         '
         Me.TextBox14.BackColor = System.Drawing.Color.Linen
-        Me.TextBox14.Location = New System.Drawing.Point(1075, 100)
+        Me.TextBox14.Location = New System.Drawing.Point(1089, 100)
         Me.TextBox14.Name = "TextBox14"
         Me.TextBox14.ReadOnly = True
-        Me.TextBox14.Size = New System.Drawing.Size(101, 23)
+        Me.TextBox14.Size = New System.Drawing.Size(73, 23)
         Me.TextBox14.TabIndex = 37
         Me.TextBox14.TabStop = False
         Me.TextBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -3748,7 +3812,7 @@ Partial Class DesignCardMaster
         Me.Label78.AutoSize = True
         Me.Label78.BackColor = System.Drawing.Color.Transparent
         Me.Label78.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label78.Location = New System.Drawing.Point(987, 104)
+        Me.Label78.Location = New System.Drawing.Point(1003, 104)
         Me.Label78.Name = "Label78"
         Me.Label78.Size = New System.Drawing.Size(88, 15)
         Me.Label78.TabIndex = 1017
@@ -3757,7 +3821,7 @@ Partial Class DesignCardMaster
         'TextBox13
         '
         Me.TextBox13.BackColor = System.Drawing.Color.Linen
-        Me.TextBox13.Location = New System.Drawing.Point(913, 100)
+        Me.TextBox13.Location = New System.Drawing.Point(928, 100)
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.ReadOnly = True
         Me.TextBox13.Size = New System.Drawing.Size(51, 23)
@@ -3770,7 +3834,7 @@ Partial Class DesignCardMaster
         Me.Label77.AutoSize = True
         Me.Label77.BackColor = System.Drawing.Color.Transparent
         Me.Label77.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label77.Location = New System.Drawing.Point(822, 104)
+        Me.Label77.Location = New System.Drawing.Point(836, 104)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(92, 15)
         Me.Label77.TabIndex = 1015
@@ -3779,7 +3843,7 @@ Partial Class DesignCardMaster
         'TextBox12
         '
         Me.TextBox12.BackColor = System.Drawing.Color.Linen
-        Me.TextBox12.Location = New System.Drawing.Point(765, 100)
+        Me.TextBox12.Location = New System.Drawing.Point(762, 100)
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.ReadOnly = True
         Me.TextBox12.Size = New System.Drawing.Size(57, 23)
@@ -3792,7 +3856,7 @@ Partial Class DesignCardMaster
         Me.Label76.AutoSize = True
         Me.Label76.BackColor = System.Drawing.Color.Transparent
         Me.Label76.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label76.Location = New System.Drawing.Point(658, 104)
+        Me.Label76.Location = New System.Drawing.Point(655, 104)
         Me.Label76.Name = "Label76"
         Me.Label76.Size = New System.Drawing.Size(109, 15)
         Me.Label76.TabIndex = 1013
@@ -3801,7 +3865,7 @@ Partial Class DesignCardMaster
         'TextBox11
         '
         Me.TextBox11.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TextBox11.Location = New System.Drawing.Point(514, 100)
+        Me.TextBox11.Location = New System.Drawing.Point(610, 100)
         Me.TextBox11.MaxLength = 50
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.Size = New System.Drawing.Size(46, 23)
@@ -3813,7 +3877,7 @@ Partial Class DesignCardMaster
         Me.Label75.AutoSize = True
         Me.Label75.BackColor = System.Drawing.Color.Transparent
         Me.Label75.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label75.Location = New System.Drawing.Point(471, 104)
+        Me.Label75.Location = New System.Drawing.Point(570, 104)
         Me.Label75.Name = "Label75"
         Me.Label75.Size = New System.Drawing.Size(37, 15)
         Me.Label75.TabIndex = 1011
@@ -3822,7 +3886,7 @@ Partial Class DesignCardMaster
         'TXTSHRINKAGEPER
         '
         Me.TXTSHRINKAGEPER.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTSHRINKAGEPER.Location = New System.Drawing.Point(408, 100)
+        Me.TXTSHRINKAGEPER.Location = New System.Drawing.Point(486, 100)
         Me.TXTSHRINKAGEPER.MaxLength = 50
         Me.TXTSHRINKAGEPER.Name = "TXTSHRINKAGEPER"
         Me.TXTSHRINKAGEPER.Size = New System.Drawing.Size(60, 23)
@@ -3834,7 +3898,7 @@ Partial Class DesignCardMaster
         Me.Label74.AutoSize = True
         Me.Label74.BackColor = System.Drawing.Color.Transparent
         Me.Label74.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label74.Location = New System.Drawing.Point(335, 104)
+        Me.Label74.Location = New System.Drawing.Point(414, 104)
         Me.Label74.Name = "Label74"
         Me.Label74.Size = New System.Drawing.Size(73, 15)
         Me.Label74.TabIndex = 1009
@@ -3843,7 +3907,7 @@ Partial Class DesignCardMaster
         'TextBox9
         '
         Me.TextBox9.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TextBox9.Location = New System.Drawing.Point(271, 100)
+        Me.TextBox9.Location = New System.Drawing.Point(321, 100)
         Me.TextBox9.MaxLength = 50
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(60, 23)
@@ -3855,7 +3919,7 @@ Partial Class DesignCardMaster
         Me.Label73.AutoSize = True
         Me.Label73.BackColor = System.Drawing.Color.Transparent
         Me.Label73.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label73.Location = New System.Drawing.Point(202, 104)
+        Me.Label73.Location = New System.Drawing.Point(253, 104)
         Me.Label73.Name = "Label73"
         Me.Label73.Size = New System.Drawing.Size(67, 15)
         Me.Label73.TabIndex = 1007
@@ -3864,7 +3928,7 @@ Partial Class DesignCardMaster
         'TextBox8
         '
         Me.TextBox8.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TextBox8.Location = New System.Drawing.Point(102, 100)
+        Me.TextBox8.Location = New System.Drawing.Point(193, 100)
         Me.TextBox8.MaxLength = 50
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(60, 23)
@@ -3876,7 +3940,7 @@ Partial Class DesignCardMaster
         Me.Label72.AutoSize = True
         Me.Label72.BackColor = System.Drawing.Color.Transparent
         Me.Label72.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label72.Location = New System.Drawing.Point(32, 104)
+        Me.Label72.Location = New System.Drawing.Point(125, 104)
         Me.Label72.Name = "Label72"
         Me.Label72.Size = New System.Drawing.Size(68, 15)
         Me.Label72.TabIndex = 1005
@@ -3890,9 +3954,9 @@ Partial Class DesignCardMaster
         Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Items.AddRange(New Object() {"4", "6", "8", "12", "16", "20", "22", "24", "36"})
-        Me.ComboBox2.Location = New System.Drawing.Point(1075, 71)
+        Me.ComboBox2.Location = New System.Drawing.Point(1089, 71)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(101, 23)
+        Me.ComboBox2.Size = New System.Drawing.Size(73, 23)
         Me.ComboBox2.TabIndex = 29
         '
         'Label71
@@ -3900,7 +3964,7 @@ Partial Class DesignCardMaster
         Me.Label71.AutoSize = True
         Me.Label71.BackColor = System.Drawing.Color.Transparent
         Me.Label71.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label71.Location = New System.Drawing.Point(1014, 75)
+        Me.Label71.Location = New System.Drawing.Point(1034, 75)
         Me.Label71.Name = "Label71"
         Me.Label71.Size = New System.Drawing.Size(57, 15)
         Me.Label71.TabIndex = 1003
@@ -3912,9 +3976,9 @@ Partial Class DesignCardMaster
         Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.BackColor = System.Drawing.Color.White
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(934, 71)
+        Me.ComboBox1.Location = New System.Drawing.Point(928, 71)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(79, 23)
+        Me.ComboBox1.Size = New System.Drawing.Size(73, 23)
         Me.ComboBox1.TabIndex = 28
         '
         'Label70
@@ -3923,7 +3987,7 @@ Partial Class DesignCardMaster
         Me.Label70.BackColor = System.Drawing.Color.Transparent
         Me.Label70.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label70.ForeColor = System.Drawing.Color.Black
-        Me.Label70.Location = New System.Drawing.Point(853, 75)
+        Me.Label70.Location = New System.Drawing.Point(846, 75)
         Me.Label70.Name = "Label70"
         Me.Label70.Size = New System.Drawing.Size(82, 14)
         Me.Label70.TabIndex = 1001
@@ -3935,9 +3999,9 @@ Partial Class DesignCardMaster
         Me.CMBLOOM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBLOOM.BackColor = System.Drawing.Color.White
         Me.CMBLOOM.FormattingEnabled = True
-        Me.CMBLOOM.Location = New System.Drawing.Point(748, 71)
+        Me.CMBLOOM.Location = New System.Drawing.Point(762, 71)
         Me.CMBLOOM.Name = "CMBLOOM"
-        Me.CMBLOOM.Size = New System.Drawing.Size(95, 23)
+        Me.CMBLOOM.Size = New System.Drawing.Size(84, 23)
         Me.CMBLOOM.TabIndex = 27
         '
         'Label39
@@ -3946,7 +4010,7 @@ Partial Class DesignCardMaster
         Me.Label39.BackColor = System.Drawing.Color.Transparent
         Me.Label39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.Black
-        Me.Label39.Location = New System.Drawing.Point(712, 75)
+        Me.Label39.Location = New System.Drawing.Point(728, 75)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(36, 14)
         Me.Label39.TabIndex = 999
@@ -3955,7 +4019,7 @@ Partial Class DesignCardMaster
         'TextBox7
         '
         Me.TextBox7.BackColor = System.Drawing.Color.Linen
-        Me.TextBox7.Location = New System.Drawing.Point(609, 71)
+        Me.TextBox7.Location = New System.Drawing.Point(610, 71)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(98, 23)
@@ -3968,7 +4032,7 @@ Partial Class DesignCardMaster
         Me.Label69.AutoSize = True
         Me.Label69.BackColor = System.Drawing.Color.Transparent
         Me.Label69.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label69.Location = New System.Drawing.Point(559, 75)
+        Me.Label69.Location = New System.Drawing.Point(560, 75)
         Me.Label69.Name = "Label69"
         Me.Label69.Size = New System.Drawing.Size(50, 15)
         Me.Label69.TabIndex = 997
@@ -3977,7 +4041,7 @@ Partial Class DesignCardMaster
         'TextBox6
         '
         Me.TextBox6.BackColor = System.Drawing.Color.Linen
-        Me.TextBox6.Location = New System.Drawing.Point(1232, 42)
+        Me.TextBox6.Location = New System.Drawing.Point(1288, 42)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
         Me.TextBox6.Size = New System.Drawing.Size(60, 23)
@@ -3990,7 +4054,7 @@ Partial Class DesignCardMaster
         Me.Label68.AutoSize = True
         Me.Label68.BackColor = System.Drawing.Color.Transparent
         Me.Label68.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label68.Location = New System.Drawing.Point(1195, 46)
+        Me.Label68.Location = New System.Drawing.Point(1251, 46)
         Me.Label68.Name = "Label68"
         Me.Label68.Size = New System.Drawing.Size(31, 15)
         Me.Label68.TabIndex = 995
@@ -4012,7 +4076,7 @@ Partial Class DesignCardMaster
         Me.Label66.AutoSize = True
         Me.Label66.BackColor = System.Drawing.Color.Transparent
         Me.Label66.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label66.Location = New System.Drawing.Point(116, 45)
+        Me.Label66.Location = New System.Drawing.Point(119, 46)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(74, 15)
         Me.Label66.TabIndex = 990
@@ -4023,7 +4087,7 @@ Partial Class DesignCardMaster
         Me.Label64.AutoSize = True
         Me.Label64.BackColor = System.Drawing.Color.Transparent
         Me.Label64.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label64.Location = New System.Drawing.Point(444, 132)
+        Me.Label64.Location = New System.Drawing.Point(546, 133)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(61, 15)
         Me.Label64.TabIndex = 987
@@ -4032,7 +4096,7 @@ Partial Class DesignCardMaster
         'TXTPCSL
         '
         Me.TXTPCSL.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTPCSL.Location = New System.Drawing.Point(407, 132)
+        Me.TXTPCSL.Location = New System.Drawing.Point(486, 129)
         Me.TXTPCSL.Name = "TXTPCSL"
         Me.TXTPCSL.Size = New System.Drawing.Size(39, 23)
         Me.TXTPCSL.TabIndex = 8
@@ -4043,7 +4107,7 @@ Partial Class DesignCardMaster
         Me.Label63.AutoSize = True
         Me.Label63.BackColor = System.Drawing.Color.Transparent
         Me.Label63.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label63.Location = New System.Drawing.Point(365, 136)
+        Me.Label63.Location = New System.Drawing.Point(443, 133)
         Me.Label63.Name = "Label63"
         Me.Label63.Size = New System.Drawing.Size(44, 15)
         Me.Label63.TabIndex = 985
@@ -4052,7 +4116,7 @@ Partial Class DesignCardMaster
         'TXTFINISHWT
         '
         Me.TXTFINISHWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTFINISHWT.Location = New System.Drawing.Point(1031, 42)
+        Me.TXTFINISHWT.Location = New System.Drawing.Point(1089, 42)
         Me.TXTFINISHWT.Name = "TXTFINISHWT"
         Me.TXTFINISHWT.ReadOnly = True
         Me.TXTFINISHWT.Size = New System.Drawing.Size(51, 23)
@@ -4065,7 +4129,7 @@ Partial Class DesignCardMaster
         Me.Label62.AutoSize = True
         Me.Label62.BackColor = System.Drawing.Color.Transparent
         Me.Label62.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label62.Location = New System.Drawing.Point(942, 46)
+        Me.Label62.Location = New System.Drawing.Point(1001, 46)
         Me.Label62.Name = "Label62"
         Me.Label62.Size = New System.Drawing.Size(90, 15)
         Me.Label62.TabIndex = 983
@@ -4122,7 +4186,7 @@ Partial Class DesignCardMaster
         'TXTENDPERINCH
         '
         Me.TXTENDPERINCH.BackColor = System.Drawing.Color.Linen
-        Me.TXTENDPERINCH.Location = New System.Drawing.Point(271, 13)
+        Me.TXTENDPERINCH.Location = New System.Drawing.Point(321, 13)
         Me.TXTENDPERINCH.Name = "TXTENDPERINCH"
         Me.TXTENDPERINCH.ReadOnly = True
         Me.TXTENDPERINCH.Size = New System.Drawing.Size(44, 23)
@@ -4135,7 +4199,7 @@ Partial Class DesignCardMaster
         Me.Label59.AutoSize = True
         Me.Label59.BackColor = System.Drawing.Color.Transparent
         Me.Label59.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label59.Location = New System.Drawing.Point(234, 19)
+        Me.Label59.Location = New System.Drawing.Point(289, 17)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(31, 15)
         Me.Label59.TabIndex = 977
@@ -4144,7 +4208,7 @@ Partial Class DesignCardMaster
         'TXTTOTALENDS
         '
         Me.TXTTOTALENDS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALENDS.Location = New System.Drawing.Point(446, 42)
+        Me.TXTTOTALENDS.Location = New System.Drawing.Point(486, 42)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
         Me.TXTTOTALENDS.ReadOnly = True
         Me.TXTTOTALENDS.Size = New System.Drawing.Size(60, 23)
@@ -4157,7 +4221,7 @@ Partial Class DesignCardMaster
         Me.Label58.AutoSize = True
         Me.Label58.BackColor = System.Drawing.Color.Transparent
         Me.Label58.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label58.Location = New System.Drawing.Point(383, 46)
+        Me.Label58.Location = New System.Drawing.Point(424, 46)
         Me.Label58.Name = "Label58"
         Me.Label58.Size = New System.Drawing.Size(63, 15)
         Me.Label58.TabIndex = 975
@@ -4190,7 +4254,7 @@ Partial Class DesignCardMaster
         'TXTTHREADPERDENT
         '
         Me.TXTTHREADPERDENT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTTHREADPERDENT.Location = New System.Drawing.Point(168, 16)
+        Me.TXTTHREADPERDENT.Location = New System.Drawing.Point(193, 13)
         Me.TXTTHREADPERDENT.Name = "TXTTHREADPERDENT"
         Me.TXTTHREADPERDENT.Size = New System.Drawing.Size(60, 23)
         Me.TXTTHREADPERDENT.TabIndex = 11
@@ -4201,7 +4265,7 @@ Partial Class DesignCardMaster
         Me.Label53.AutoSize = True
         Me.Label53.BackColor = System.Drawing.Color.Transparent
         Me.Label53.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label53.Location = New System.Drawing.Point(127, 19)
+        Me.Label53.Location = New System.Drawing.Point(158, 17)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(35, 15)
         Me.Label53.TabIndex = 971
@@ -4210,10 +4274,10 @@ Partial Class DesignCardMaster
         'TXTREED
         '
         Me.TXTREED.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTREED.Location = New System.Drawing.Point(46, 15)
+        Me.TXTREED.Location = New System.Drawing.Point(75, 13)
         Me.TXTREED.MaxLength = 50
         Me.TXTREED.Name = "TXTREED"
-        Me.TXTREED.Size = New System.Drawing.Size(60, 23)
+        Me.TXTREED.Size = New System.Drawing.Size(46, 23)
         Me.TXTREED.TabIndex = 0
         Me.TXTREED.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4225,7 +4289,7 @@ Partial Class DesignCardMaster
         Me.CMBSHAFTS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSHAFTS.FormattingEnabled = True
         Me.CMBSHAFTS.Items.AddRange(New Object() {"2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24"})
-        Me.CMBSHAFTS.Location = New System.Drawing.Point(727, 11)
+        Me.CMBSHAFTS.Location = New System.Drawing.Point(762, 13)
         Me.CMBSHAFTS.Name = "CMBSHAFTS"
         Me.CMBSHAFTS.Size = New System.Drawing.Size(60, 23)
         Me.CMBSHAFTS.TabIndex = 38
@@ -4233,7 +4297,7 @@ Partial Class DesignCardMaster
         'TXTWARPTL
         '
         Me.TXTWARPTL.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWARPTL.Location = New System.Drawing.Point(1031, 12)
+        Me.TXTWARPTL.Location = New System.Drawing.Point(1089, 13)
         Me.TXTWARPTL.Name = "TXTWARPTL"
         Me.TXTWARPTL.Size = New System.Drawing.Size(50, 23)
         Me.TXTWARPTL.TabIndex = 6
@@ -4245,7 +4309,7 @@ Partial Class DesignCardMaster
         Me.LBLWARPTL.BackColor = System.Drawing.Color.Transparent
         Me.LBLWARPTL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLWARPTL.ForeColor = System.Drawing.Color.Black
-        Me.LBLWARPTL.Location = New System.Drawing.Point(980, 16)
+        Me.LBLWARPTL.Location = New System.Drawing.Point(1039, 17)
         Me.LBLWARPTL.Name = "LBLWARPTL"
         Me.LBLWARPTL.Size = New System.Drawing.Size(52, 15)
         Me.LBLWARPTL.TabIndex = 861
@@ -4256,7 +4320,7 @@ Partial Class DesignCardMaster
         Me.Label38.AutoSize = True
         Me.Label38.BackColor = System.Drawing.Color.Transparent
         Me.Label38.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.Location = New System.Drawing.Point(801, 46)
+        Me.Label38.Location = New System.Drawing.Point(867, 46)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(61, 15)
         Me.Label38.TabIndex = 969
@@ -4265,7 +4329,7 @@ Partial Class DesignCardMaster
         'TXTWEFTTL
         '
         Me.TXTWEFTTL.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTTL.Location = New System.Drawing.Point(1129, 11)
+        Me.TXTWEFTTL.Location = New System.Drawing.Point(1190, 13)
         Me.TXTWEFTTL.Name = "TXTWEFTTL"
         Me.TXTWEFTTL.Size = New System.Drawing.Size(60, 23)
         Me.TXTWEFTTL.TabIndex = 7
@@ -4274,10 +4338,10 @@ Partial Class DesignCardMaster
         'TXTFWT
         '
         Me.TXTFWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTFWT.Location = New System.Drawing.Point(846, 42)
+        Me.TXTFWT.Location = New System.Drawing.Point(928, 42)
         Me.TXTFWT.Name = "TXTFWT"
         Me.TXTFWT.ReadOnly = True
-        Me.TXTFWT.Size = New System.Drawing.Size(94, 23)
+        Me.TXTFWT.Size = New System.Drawing.Size(71, 23)
         Me.TXTFWT.TabIndex = 17
         Me.TXTFWT.TabStop = False
         Me.TXTFWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -4287,7 +4351,7 @@ Partial Class DesignCardMaster
         Me.LBLWEFTTL.AutoSize = True
         Me.LBLWEFTTL.BackColor = System.Drawing.Color.Transparent
         Me.LBLWEFTTL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLWEFTTL.Location = New System.Drawing.Point(1078, 15)
+        Me.LBLWEFTTL.Location = New System.Drawing.Point(1139, 17)
         Me.LBLWEFTTL.Name = "LBLWEFTTL"
         Me.LBLWEFTTL.Size = New System.Drawing.Size(47, 15)
         Me.LBLWEFTTL.TabIndex = 863
@@ -4298,7 +4362,7 @@ Partial Class DesignCardMaster
         Me.Label37.AutoSize = True
         Me.Label37.BackColor = System.Drawing.Color.Transparent
         Me.Label37.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(653, 44)
+        Me.Label37.Location = New System.Drawing.Point(710, 46)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(52, 15)
         Me.Label37.TabIndex = 967
@@ -4309,7 +4373,7 @@ Partial Class DesignCardMaster
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(13, 19)
+        Me.Label4.Location = New System.Drawing.Point(42, 17)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(33, 15)
         Me.Label4.TabIndex = 872
@@ -4318,16 +4382,16 @@ Partial Class DesignCardMaster
         'TXTFWIDTH
         '
         Me.TXTFWIDTH.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTFWIDTH.Location = New System.Drawing.Point(711, 40)
+        Me.TXTFWIDTH.Location = New System.Drawing.Point(762, 42)
         Me.TXTFWIDTH.Name = "TXTFWIDTH"
-        Me.TXTFWIDTH.Size = New System.Drawing.Size(47, 23)
+        Me.TXTFWIDTH.Size = New System.Drawing.Size(41, 23)
         Me.TXTFWIDTH.TabIndex = 15
         Me.TXTFWIDTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTREEDSPACE
         '
         Me.TXTREEDSPACE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTREEDSPACE.Location = New System.Drawing.Point(551, 13)
+        Me.TXTREEDSPACE.Location = New System.Drawing.Point(610, 13)
         Me.TXTREEDSPACE.Name = "TXTREEDSPACE"
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(48, 23)
         Me.TXTREEDSPACE.TabIndex = 3
@@ -4338,7 +4402,7 @@ Partial Class DesignCardMaster
         Me.Label35.AutoSize = True
         Me.Label35.BackColor = System.Drawing.Color.Transparent
         Me.Label35.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(133, 75)
+        Me.Label35.Location = New System.Drawing.Point(131, 75)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(62, 15)
         Me.Label35.TabIndex = 965
@@ -4349,7 +4413,7 @@ Partial Class DesignCardMaster
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(482, 17)
+        Me.Label5.Location = New System.Drawing.Point(546, 17)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 15)
         Me.Label5.TabIndex = 874
@@ -4358,7 +4422,7 @@ Partial Class DesignCardMaster
         'TXTFPPI
         '
         Me.TXTFPPI.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTFPPI.Location = New System.Drawing.Point(196, 71)
+        Me.TXTFPPI.Location = New System.Drawing.Point(193, 71)
         Me.TXTFPPI.Name = "TXTFPPI"
         Me.TXTFPPI.Size = New System.Drawing.Size(32, 23)
         Me.TXTFPPI.TabIndex = 22
@@ -4367,7 +4431,7 @@ Partial Class DesignCardMaster
         'TXTPICKS
         '
         Me.TXTPICKS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTPICKS.Location = New System.Drawing.Point(408, 15)
+        Me.TXTPICKS.Location = New System.Drawing.Point(486, 13)
         Me.TXTPICKS.Name = "TXTPICKS"
         Me.TXTPICKS.Size = New System.Drawing.Size(60, 23)
         Me.TXTPICKS.TabIndex = 2
@@ -4378,7 +4442,7 @@ Partial Class DesignCardMaster
         Me.Label36.AutoSize = True
         Me.Label36.BackColor = System.Drawing.Color.Transparent
         Me.Label36.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(41, 76)
+        Me.Label36.Location = New System.Drawing.Point(14, 75)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(61, 15)
         Me.Label36.TabIndex = 964
@@ -4389,7 +4453,7 @@ Partial Class DesignCardMaster
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(318, 19)
+        Me.Label6.Location = New System.Drawing.Point(395, 17)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(92, 15)
         Me.Label6.TabIndex = 876
@@ -4398,10 +4462,10 @@ Partial Class DesignCardMaster
         'TXTFEPI
         '
         Me.TXTFEPI.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTFEPI.Location = New System.Drawing.Point(102, 72)
+        Me.TXTFEPI.Location = New System.Drawing.Point(75, 71)
         Me.TXTFEPI.MaxLength = 50
         Me.TXTFEPI.Name = "TXTFEPI"
-        Me.TXTFEPI.Size = New System.Drawing.Size(28, 23)
+        Me.TXTFEPI.Size = New System.Drawing.Size(46, 23)
         Me.TXTFEPI.TabIndex = 21
         Me.TXTFEPI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4420,7 +4484,7 @@ Partial Class DesignCardMaster
         'TXTGSM
         '
         Me.TXTGSM.BackColor = System.Drawing.Color.Linen
-        Me.TXTGSM.Location = New System.Drawing.Point(1129, 42)
+        Me.TXTGSM.Location = New System.Drawing.Point(1190, 42)
         Me.TXTGSM.Name = "TXTGSM"
         Me.TXTGSM.ReadOnly = True
         Me.TXTGSM.Size = New System.Drawing.Size(60, 23)
@@ -4433,7 +4497,7 @@ Partial Class DesignCardMaster
         Me.Label34.AutoSize = True
         Me.Label34.BackColor = System.Drawing.Color.Transparent
         Me.Label34.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(1092, 46)
+        Me.Label34.Location = New System.Drawing.Point(1148, 46)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(32, 15)
         Me.Label34.TabIndex = 960
@@ -4502,7 +4566,7 @@ Partial Class DesignCardMaster
         'TXTTOTALDENTSMAIN
         '
         Me.TXTTOTALDENTSMAIN.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALDENTSMAIN.Location = New System.Drawing.Point(498, 71)
+        Me.TXTTOTALDENTSMAIN.Location = New System.Drawing.Point(486, 71)
         Me.TXTTOTALDENTSMAIN.Name = "TXTTOTALDENTSMAIN"
         Me.TXTTOTALDENTSMAIN.ReadOnly = True
         Me.TXTTOTALDENTSMAIN.Size = New System.Drawing.Size(60, 23)
@@ -4515,7 +4579,7 @@ Partial Class DesignCardMaster
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
         Me.Label18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(393, 75)
+        Me.Label18.Location = New System.Drawing.Point(381, 75)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(106, 15)
         Me.Label18.TabIndex = 925
@@ -4524,7 +4588,7 @@ Partial Class DesignCardMaster
         'TXTTOTALSELVEDGEDENTS
         '
         Me.TXTTOTALSELVEDGEDENTS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALSELVEDGEDENTS.Location = New System.Drawing.Point(329, 71)
+        Me.TXTTOTALSELVEDGEDENTS.Location = New System.Drawing.Point(321, 71)
         Me.TXTTOTALSELVEDGEDENTS.Name = "TXTTOTALSELVEDGEDENTS"
         Me.TXTTOTALSELVEDGEDENTS.ReadOnly = True
         Me.TXTTOTALSELVEDGEDENTS.Size = New System.Drawing.Size(60, 23)
@@ -4537,7 +4601,7 @@ Partial Class DesignCardMaster
         Me.Label19.AutoSize = True
         Me.Label19.BackColor = System.Drawing.Color.Transparent
         Me.Label19.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(232, 75)
+        Me.Label19.Location = New System.Drawing.Point(225, 75)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(95, 15)
         Me.Label19.TabIndex = 927
@@ -4573,9 +4637,9 @@ Partial Class DesignCardMaster
         Me.CMBWEAVE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBWEAVE.BackColor = System.Drawing.Color.White
         Me.CMBWEAVE.FormattingEnabled = True
-        Me.CMBWEAVE.Location = New System.Drawing.Point(845, 11)
+        Me.CMBWEAVE.Location = New System.Drawing.Point(928, 13)
         Me.CMBWEAVE.Name = "CMBWEAVE"
-        Me.CMBWEAVE.Size = New System.Drawing.Size(95, 23)
+        Me.CMBWEAVE.Size = New System.Drawing.Size(73, 23)
         Me.CMBWEAVE.TabIndex = 5
         '
         'Label32
@@ -4584,7 +4648,7 @@ Partial Class DesignCardMaster
         Me.Label32.BackColor = System.Drawing.Color.Transparent
         Me.Label32.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.ForeColor = System.Drawing.Color.Black
-        Me.Label32.Location = New System.Drawing.Point(801, 15)
+        Me.Label32.Location = New System.Drawing.Point(884, 17)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(44, 14)
         Me.Label32.TabIndex = 956
@@ -4595,7 +4659,7 @@ Partial Class DesignCardMaster
         Me.Label33.AutoSize = True
         Me.Label33.BackColor = System.Drawing.Color.Transparent
         Me.Label33.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(687, 15)
+        Me.Label33.Location = New System.Drawing.Point(723, 17)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(41, 15)
         Me.Label33.TabIndex = 958
@@ -4631,7 +4695,7 @@ Partial Class DesignCardMaster
         Me.TSELVEDGEMAIN.Location = New System.Drawing.Point(4, 22)
         Me.TSELVEDGEMAIN.Name = "TSELVEDGEMAIN"
         Me.TSELVEDGEMAIN.Padding = New System.Windows.Forms.Padding(3)
-        Me.TSELVEDGEMAIN.Size = New System.Drawing.Size(1440, 172)
+        Me.TSELVEDGEMAIN.Size = New System.Drawing.Size(1322, 172)
         Me.TSELVEDGEMAIN.TabIndex = 1
         Me.TSELVEDGEMAIN.Text = "2. Selvedge Details"
         '
@@ -4918,7 +4982,7 @@ Partial Class DesignCardMaster
         Me.TBPARTY.Location = New System.Drawing.Point(4, 22)
         Me.TBPARTY.Name = "TBPARTY"
         Me.TBPARTY.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBPARTY.Size = New System.Drawing.Size(1440, 172)
+        Me.TBPARTY.Size = New System.Drawing.Size(1322, 172)
         Me.TBPARTY.TabIndex = 2
         Me.TBPARTY.Text = "Party & Other Ledger "
         '
@@ -5120,10 +5184,10 @@ Partial Class DesignCardMaster
         Me.TBOTHER.Controls.Add(Me.CMBGREYDELAT)
         Me.TBOTHER.Controls.Add(Me.Label45)
         Me.TBOTHER.Controls.Add(Me.TXTLOOMPROD)
-        Me.TBOTHER.Location = New System.Drawing.Point(4, 24)
+        Me.TBOTHER.Location = New System.Drawing.Point(4, 22)
         Me.TBOTHER.Name = "TBOTHER"
         Me.TBOTHER.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBOTHER.Size = New System.Drawing.Size(1322, 170)
+        Me.TBOTHER.Size = New System.Drawing.Size(1322, 172)
         Me.TBOTHER.TabIndex = 3
         Me.TBOTHER.Text = "Other Details"
         '
@@ -5236,70 +5300,6 @@ Partial Class DesignCardMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'Label48
-        '
-        Me.Label48.AutoSize = True
-        Me.Label48.BackColor = System.Drawing.Color.Transparent
-        Me.Label48.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label48.Location = New System.Drawing.Point(253, 45)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(62, 15)
-        Me.Label48.TabIndex = 1032
-        Me.Label48.Text = "Sel t. Ends"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.Linen
-        Me.TextBox1.Location = New System.Drawing.Point(603, 43)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(46, 23)
-        Me.TextBox1.TabIndex = 1034
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label84
-        '
-        Me.Label84.AutoSize = True
-        Me.Label84.BackColor = System.Drawing.Color.Transparent
-        Me.Label84.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label84.Location = New System.Drawing.Point(494, 47)
-        Me.Label84.Name = "Label84"
-        Me.Label84.Size = New System.Drawing.Size(55, 15)
-        Me.Label84.TabIndex = 1035
-        Me.Label84.Text = "G. Width"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TextBox2.Location = New System.Drawing.Point(552, 43)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(47, 23)
-        Me.TextBox2.TabIndex = 1033
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTBEAMMTRS
-        '
-        Me.TXTBEAMMTRS.BackColor = System.Drawing.Color.Linen
-        Me.TXTBEAMMTRS.Location = New System.Drawing.Point(603, 129)
-        Me.TXTBEAMMTRS.Name = "TXTBEAMMTRS"
-        Me.TXTBEAMMTRS.ReadOnly = True
-        Me.TXTBEAMMTRS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTBEAMMTRS.TabIndex = 1036
-        Me.TXTBEAMMTRS.TabStop = False
-        Me.TXTBEAMMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.BackColor = System.Drawing.Color.Transparent
-        Me.Label41.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.Location = New System.Drawing.Point(533, 133)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(66, 15)
-        Me.Label41.TabIndex = 1037
-        Me.Label41.Text = "Beam Mtrs"
         '
         'DesignCardMaster
         '
