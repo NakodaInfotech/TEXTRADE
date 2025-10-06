@@ -595,6 +595,7 @@ Partial Class IssueToPacking
         Me.GRIDISSUE.Location = New System.Drawing.Point(3, 3)
         Me.GRIDISSUE.MultiSelect = False
         Me.GRIDISSUE.Name = "GRIDISSUE"
+        Me.GRIDISSUE.ReadOnly = True
         Me.GRIDISSUE.RowHeadersVisible = False
         Me.GRIDISSUE.RowHeadersWidth = 30
         Me.GRIDISSUE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -630,6 +631,7 @@ Partial Class IssueToPacking
         '
         Me.GBALENO.HeaderText = "Bale No"
         Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.ReadOnly = True
         Me.GBALENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GBALENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GBALENO.Width = 80
@@ -647,6 +649,7 @@ Partial Class IssueToPacking
         '
         Me.GLOTNO.HeaderText = "Lot No"
         Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.ReadOnly = True
         '
         'GQUALITY
         '
@@ -679,6 +682,7 @@ Partial Class IssueToPacking
         Me.GPCS.DefaultCellStyle = DataGridViewCellStyle3
         Me.GPCS.HeaderText = "Pcs"
         Me.GPCS.Name = "GPCS"
+        Me.GPCS.ReadOnly = True
         Me.GPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GPCS.Width = 50
@@ -698,6 +702,7 @@ Partial Class IssueToPacking
         Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle4
         Me.GMTRS.HeaderText = "Mtrs"
         Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
         Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GMTRS.Width = 70
@@ -746,12 +751,14 @@ Partial Class IssueToPacking
         '
         Me.GOUTPCS.HeaderText = "OUTPCS"
         Me.GOUTPCS.Name = "GOUTPCS"
+        Me.GOUTPCS.ReadOnly = True
         Me.GOUTPCS.Visible = False
         '
         'GOUTMTRS
         '
         Me.GOUTMTRS.HeaderText = "OUTMTRS"
         Me.GOUTMTRS.Name = "GOUTMTRS"
+        Me.GOUTMTRS.ReadOnly = True
         Me.GOUTMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GOUTMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.GOUTMTRS.Visible = False
@@ -760,6 +767,7 @@ Partial Class IssueToPacking
         '
         Me.GFROMNO.HeaderText = "FROMNO"
         Me.GFROMNO.Name = "GFROMNO"
+        Me.GFROMNO.ReadOnly = True
         Me.GFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GFROMNO.Visible = False
@@ -768,6 +776,7 @@ Partial Class IssueToPacking
         '
         Me.GFROMSRNO.HeaderText = "FROMSRNO"
         Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GFROMSRNO.ReadOnly = True
         Me.GFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.GFROMSRNO.Visible = False
@@ -776,6 +785,7 @@ Partial Class IssueToPacking
         '
         Me.GFROMTYPE.HeaderText = "FROMTYPE"
         Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.ReadOnly = True
         Me.GFROMTYPE.Visible = False
         '
         'GGREYMTRS

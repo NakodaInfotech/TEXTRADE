@@ -460,6 +460,12 @@ CHECKNEXTLINEMTRS:
             TOTAL()
 
             For Each ROW As DataGridViewRow In GRIDMATREC.Rows
+
+                'CHECK THE MAIN LOT ITEM HSN AND ITEM HSN, IF THEY DONT MATCH GIVE MESSAGE
+                If ClientName = "MAHAVIRPOLYCOT" Then
+
+                End If
+
                 If ROW.Cells(GRECDMTRS.Index).Value = 0 Then
                     EP.SetError(TXTRECDMTRS, "Recd Mtrs Cannot be 0")
                     bln = False

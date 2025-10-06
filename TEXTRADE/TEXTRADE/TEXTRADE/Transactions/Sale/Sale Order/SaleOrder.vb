@@ -3199,7 +3199,9 @@ NEXTLINE:
                     If ClientName = "MAHAVIRPOLYCOT" Then
                         txtQTY.Text = 1
                         TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
-                        If DT.Rows(0).Item("WIDTH") = "57/58 INCH" Then TXTCUT.Text = 16 Else TXTCUT.Text = 20
+                        If Val(TXTCUT.Text.Trim) = 0 Then
+                            If DT.Rows(0).Item("WIDTH") = "57/58 INCH" Then TXTCUT.Text = 16 Else TXTCUT.Text = 20
+                        End If
                     End If
 
                     Dim RATE As Double = Val(TXTRATE.Text.Trim)

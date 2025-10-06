@@ -3535,8 +3535,7 @@ Public Class MDIMain
 
     Private Sub PendingInvoiceToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PendingInvoiceToolStripMenuItem1.Click
         Try
-            Dim OBJGRN As New GRNUnchekedReport
-            OBJGRN.FRMSTRING = "PENDING"
+            Dim OBJGRN As New PendingChallanForInvoice
             OBJGRN.MdiParent = Me
             OBJGRN.Show()
         Catch ex As Exception
