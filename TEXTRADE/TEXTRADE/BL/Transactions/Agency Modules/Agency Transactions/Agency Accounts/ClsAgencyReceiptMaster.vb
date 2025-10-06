@@ -104,6 +104,12 @@ Public Class ClsAgencyReceiptMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CHEQUEDATE", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -221,6 +227,13 @@ Public Class ClsAgencyReceiptMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CHEQUEDATE", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@ARECNO", alParaval(I)))
                 I += 1
 

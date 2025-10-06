@@ -537,7 +537,7 @@ Public Class Receipt
                 End If
             End If
             gridpayment.ClearSelection()
-
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -571,7 +571,6 @@ Public Class Receipt
                     LBLCITY.Text = DT.Rows(0).Item("CITY")
 
                 End If
-                CreateFilterTextBoxes()
             End If
         Catch ex As Exception
             Throw ex

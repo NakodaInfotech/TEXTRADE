@@ -67,7 +67,10 @@ Public Class InvoiceMaster
 
         TXTDOCKETNO.Clear()
         DTDOCKETDATE.Value = Now.Date
+        DTCOMPLAINDATE.Value = Now.Date
         TXTCOURIER.Clear()
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
 
         If ALLOWMANUALINVNO = True Then
             TXTINVOICENO.ReadOnly = False
@@ -763,7 +766,9 @@ Public Class InvoiceMaster
                         Gpcs.ReadOnly = True
                         TXTPCS.ReadOnly = True
                     End If
-
+                    TXTCOMPLAINT.Text = dr("COMPLAINT")
+                    TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -1376,6 +1381,9 @@ Public Class InvoiceMaster
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -10620,6 +10628,19 @@ NEXTLINE:
                 txtroundoff.ReadOnly = True
                 txtroundoff.TabStop = False
                 TOTAL()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex

@@ -57,6 +57,13 @@ Partial Class AgencyReceipt
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TXTSPECIALREMARKS = New System.Windows.Forms.TextBox()
+        Me.Complaints = New System.Windows.Forms.TabPage()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.DTCOMPLAINDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.CMBPARTYBANK = New System.Windows.Forms.ComboBox()
         Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -175,6 +182,7 @@ Partial Class AgencyReceipt
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        Me.Complaints.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Gbdesc.SuspendLayout()
         CType(Me.GRIDDESC, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -296,7 +304,7 @@ Partial Class AgencyReceipt
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 25)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1334, 531)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1334, 573)
         Me.BlendPanel1.TabIndex = 918
         '
         'Button1
@@ -369,10 +377,11 @@ Partial Class AgencyReceipt
         '
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage5)
+        Me.TabControl2.Controls.Add(Me.Complaints)
         Me.TabControl2.Location = New System.Drawing.Point(22, 451)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(277, 77)
+        Me.TabControl2.Size = New System.Drawing.Size(277, 115)
         Me.TabControl2.TabIndex = 10
         '
         'TabPage4
@@ -381,7 +390,7 @@ Partial Class AgencyReceipt
         Me.TabPage4.Location = New System.Drawing.Point(4, 24)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(269, 49)
+        Me.TabPage4.Size = New System.Drawing.Size(269, 87)
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "1. Remarks"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -393,7 +402,7 @@ Partial Class AgencyReceipt
         Me.txtremarks.Location = New System.Drawing.Point(3, 3)
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
-        Me.txtremarks.Size = New System.Drawing.Size(263, 44)
+        Me.txtremarks.Size = New System.Drawing.Size(263, 78)
         Me.txtremarks.TabIndex = 0
         '
         'TabPage5
@@ -402,7 +411,7 @@ Partial Class AgencyReceipt
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(269, 51)
+        Me.TabPage5.Size = New System.Drawing.Size(269, 89)
         Me.TabPage5.TabIndex = 1
         Me.TabPage5.Text = "2. Special Remarks"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -414,8 +423,89 @@ Partial Class AgencyReceipt
         Me.TXTSPECIALREMARKS.Location = New System.Drawing.Point(3, 3)
         Me.TXTSPECIALREMARKS.Multiline = True
         Me.TXTSPECIALREMARKS.Name = "TXTSPECIALREMARKS"
-        Me.TXTSPECIALREMARKS.Size = New System.Drawing.Size(262, 44)
+        Me.TXTSPECIALREMARKS.Size = New System.Drawing.Size(262, 81)
         Me.TXTSPECIALREMARKS.TabIndex = 17
+        '
+        'Complaints
+        '
+        Me.Complaints.Controls.Add(Me.TXTCOMPLAINTBY)
+        Me.Complaints.Controls.Add(Me.Label61)
+        Me.Complaints.Controls.Add(Me.DTCOMPLAINDATE)
+        Me.Complaints.Controls.Add(Me.Label27)
+        Me.Complaints.Controls.Add(Me.TXTCOMPLAINT)
+        Me.Complaints.Controls.Add(Me.Label18)
+        Me.Complaints.Location = New System.Drawing.Point(4, 22)
+        Me.Complaints.Name = "Complaints"
+        Me.Complaints.Size = New System.Drawing.Size(269, 89)
+        Me.Complaints.TabIndex = 2
+        Me.Complaints.Text = "Complaints"
+        Me.Complaints.UseVisualStyleBackColor = True
+        '
+        'TXTCOMPLAINTBY
+        '
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(90, 34)
+        Me.TXTCOMPLAINTBY.MaxLength = 100
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
+        Me.TXTCOMPLAINTBY.TabIndex = 948
+        '
+        'Label61
+        '
+        Me.Label61.BackColor = System.Drawing.Color.Transparent
+        Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.ForeColor = System.Drawing.Color.Black
+        Me.Label61.Location = New System.Drawing.Point(1, 38)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(88, 14)
+        Me.Label61.TabIndex = 949
+        Me.Label61.Text = "Complaint By"
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'DTCOMPLAINDATE
+        '
+        Me.DTCOMPLAINDATE.CustomFormat = "dd/MM/yyyy"
+        Me.DTCOMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTCOMPLAINDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTCOMPLAINDATE.Location = New System.Drawing.Point(91, 61)
+        Me.DTCOMPLAINDATE.Name = "DTCOMPLAINDATE"
+        Me.DTCOMPLAINDATE.Size = New System.Drawing.Size(85, 23)
+        Me.DTCOMPLAINDATE.TabIndex = 946
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.BackColor = System.Drawing.Color.Transparent
+        Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(1, 65)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(92, 15)
+        Me.Label27.TabIndex = 947
+        Me.Label27.Text = "Complaint Date"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCOMPLAINT
+        '
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(89, 6)
+        Me.TXTCOMPLAINT.MaxLength = 100
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(172, 22)
+        Me.TXTCOMPLAINT.TabIndex = 944
+        '
+        'Label18
+        '
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Location = New System.Drawing.Point(0, 10)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(88, 14)
+        Me.Label18.TabIndex = 945
+        Me.Label18.Text = "Complaint"
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBPARTYBANK
         '
@@ -1176,7 +1266,7 @@ Partial Class AgencyReceipt
         DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridbill.DefaultCellStyle = DataGridViewCellStyle13
         Me.gridbill.GridColor = System.Drawing.SystemColors.ControlText
-        Me.gridbill.Location = New System.Drawing.Point(7, 17)
+        Me.gridbill.Location = New System.Drawing.Point(7, 32)
         Me.gridbill.Margin = New System.Windows.Forms.Padding(2)
         Me.gridbill.MultiSelect = False
         Me.gridbill.Name = "gridbill"
@@ -1184,7 +1274,7 @@ Partial Class AgencyReceipt
         DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
         Me.gridbill.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.gridbill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.gridbill.Size = New System.Drawing.Size(751, 218)
+        Me.gridbill.Size = New System.Drawing.Size(751, 201)
         Me.gridbill.TabIndex = 0
         Me.gridbill.TabStop = False
         '
@@ -1755,7 +1845,7 @@ Partial Class AgencyReceipt
         'AgencyReceipt
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1334, 556)
+        Me.ClientSize = New System.Drawing.Size(1334, 598)
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.TXTCOPY)
         Me.Controls.Add(Me.tstxtbillno)
@@ -1774,6 +1864,8 @@ Partial Class AgencyReceipt
         Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        Me.Complaints.ResumeLayout(False)
+        Me.Complaints.PerformLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Gbdesc.ResumeLayout(False)
         Me.Gbdesc.PerformLayout()
@@ -1924,4 +2016,11 @@ Partial Class AgencyReceipt
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents Button1 As Button
+    Friend WithEvents Complaints As TabPage
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
+    Friend WithEvents Label61 As Label
+    Friend WithEvents DTCOMPLAINDATE As DateTimePicker
+    Friend WithEvents Label27 As Label
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents Label18 As Label
 End Class

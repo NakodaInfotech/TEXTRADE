@@ -81,7 +81,9 @@ Public Class AgencyInvoice
             GPARTYPONO.Visible = True
             GRIDINVOICE.Width = 1330
         End If
-
+        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
 
         CMBSERVICETYPE.SelectedIndex = 0
         TXTSACCODE.Clear()
@@ -736,6 +738,9 @@ Public Class AgencyInvoice
                         TXTPCS.ReadOnly = True
                     End If
 
+                    TXTCOMPLAINT.Text = dr("COMPLAINT")
+                    TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -1329,7 +1334,9 @@ Public Class AgencyInvoice
 
 
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
-
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
 
             Dim objclsPurord As New ClsAgencyInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -5935,6 +5942,19 @@ NEXTLINE:
 LINE1:
 
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+            End If
         Catch ex As Exception
             Throw ex
         End Try

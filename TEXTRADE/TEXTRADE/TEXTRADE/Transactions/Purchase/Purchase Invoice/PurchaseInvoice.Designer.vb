@@ -376,6 +376,12 @@ Partial Class PurchaseMaster
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.DTCOMPLAINDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBTDS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBDN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3136,6 +3142,12 @@ Partial Class PurchaseMaster
         'TBADDDTLS
         '
         Me.TBADDDTLS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TBADDDTLS.Controls.Add(Me.TXTCOMPLAINTBY)
+        Me.TBADDDTLS.Controls.Add(Me.Label61)
+        Me.TBADDDTLS.Controls.Add(Me.DTCOMPLAINDATE)
+        Me.TBADDDTLS.Controls.Add(Me.Label43)
+        Me.TBADDDTLS.Controls.Add(Me.TXTCOMPLAINT)
+        Me.TBADDDTLS.Controls.Add(Me.Label44)
         Me.TBADDDTLS.Controls.Add(Me.LBLCOSTCENTER)
         Me.TBADDDTLS.Controls.Add(Me.TabControl2)
         Me.TBADDDTLS.Controls.Add(Me.CMBCOSTCENTERNAME)
@@ -3582,7 +3594,7 @@ Partial Class PurchaseMaster
         Me.CHKFORMBOX.BackColor = System.Drawing.Color.LemonChiffon
         Me.CHKFORMBOX.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKFORMBOX.FormattingEnabled = True
-        Me.CHKFORMBOX.Location = New System.Drawing.Point(957, 104)
+        Me.CHKFORMBOX.Location = New System.Drawing.Point(957, 64)
         Me.CHKFORMBOX.Name = "CHKFORMBOX"
         Me.CHKFORMBOX.Size = New System.Drawing.Size(107, 94)
         Me.CHKFORMBOX.TabIndex = 4
@@ -3594,7 +3606,7 @@ Partial Class PurchaseMaster
         Me.Label26.BackColor = System.Drawing.Color.Transparent
         Me.Label26.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(956, 85)
+        Me.Label26.Location = New System.Drawing.Point(956, 45)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(38, 15)
         Me.Label26.TabIndex = 828
@@ -4132,6 +4144,72 @@ Partial Class PurchaseMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'TXTCOMPLAINTBY
+        '
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(850, 192)
+        Me.TXTCOMPLAINTBY.MaxLength = 100
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
+        Me.TXTCOMPLAINTBY.TabIndex = 948
+        '
+        'Label61
+        '
+        Me.Label61.BackColor = System.Drawing.Color.Transparent
+        Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.ForeColor = System.Drawing.Color.Black
+        Me.Label61.Location = New System.Drawing.Point(761, 196)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(88, 14)
+        Me.Label61.TabIndex = 949
+        Me.Label61.Text = "Complaint By"
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'DTCOMPLAINDATE
+        '
+        Me.DTCOMPLAINDATE.CustomFormat = "dd/MM/yyyy"
+        Me.DTCOMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTCOMPLAINDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTCOMPLAINDATE.Location = New System.Drawing.Point(1052, 190)
+        Me.DTCOMPLAINDATE.Name = "DTCOMPLAINDATE"
+        Me.DTCOMPLAINDATE.Size = New System.Drawing.Size(85, 23)
+        Me.DTCOMPLAINDATE.TabIndex = 946
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.BackColor = System.Drawing.Color.Transparent
+        Me.Label43.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label43.Location = New System.Drawing.Point(962, 194)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(92, 15)
+        Me.Label43.TabIndex = 947
+        Me.Label43.Text = "Complaint Date"
+        Me.Label43.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCOMPLAINT
+        '
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(849, 164)
+        Me.TXTCOMPLAINT.MaxLength = 100
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 22)
+        Me.TXTCOMPLAINT.TabIndex = 944
+        '
+        'Label44
+        '
+        Me.Label44.BackColor = System.Drawing.Color.Transparent
+        Me.Label44.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label44.ForeColor = System.Drawing.Color.Black
+        Me.Label44.Location = New System.Drawing.Point(760, 168)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(88, 14)
+        Me.Label44.TabIndex = 945
+        Me.Label44.Text = "Complaint"
+        Me.Label44.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'PurchaseMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4479,4 +4557,10 @@ Partial Class PurchaseMaster
     Friend WithEvents ORATE As DataGridViewTextBoxColumn
     Friend WithEvents OORDERON As DataGridViewTextBoxColumn
     Friend WithEvents CHKINTCALC As CheckBox
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
+    Friend WithEvents Label61 As Label
+    Friend WithEvents DTCOMPLAINDATE As DateTimePicker
+    Friend WithEvents Label43 As Label
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents Label44 As Label
 End Class

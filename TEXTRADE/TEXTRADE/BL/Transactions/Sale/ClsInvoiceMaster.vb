@@ -424,6 +424,14 @@ Public Class ClsInvoiceMaster
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+
+
             End With
 
             DT = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -840,6 +848,12 @@ Public Class ClsInvoiceMaster
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))
                 I = I + 1
             End With
