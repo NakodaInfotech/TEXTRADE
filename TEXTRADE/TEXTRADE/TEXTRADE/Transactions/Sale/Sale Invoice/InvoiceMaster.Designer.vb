@@ -336,6 +336,12 @@ Partial Class InvoiceMaster
         Me.EAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ETAXID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.DTCOMPLAINDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.CMBSUPPLIERNAME = New System.Windows.Forms.ComboBox()
         Me.ACKDATE = New System.Windows.Forms.DateTimePicker()
         Me.Label56 = New System.Windows.Forms.Label()
@@ -1210,10 +1216,10 @@ Partial Class InvoiceMaster
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1232,10 +1238,10 @@ Partial Class InvoiceMaster
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -3787,6 +3793,12 @@ Partial Class InvoiceMaster
         'TabPage4
         '
         Me.TabPage4.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TabPage4.Controls.Add(Me.TXTCOMPLAINTBY)
+        Me.TabPage4.Controls.Add(Me.Label61)
+        Me.TabPage4.Controls.Add(Me.DTCOMPLAINDATE)
+        Me.TabPage4.Controls.Add(Me.Label27)
+        Me.TabPage4.Controls.Add(Me.TXTCOMPLAINT)
+        Me.TabPage4.Controls.Add(Me.Label23)
         Me.TabPage4.Controls.Add(Me.CMBSUPPLIERNAME)
         Me.TabPage4.Controls.Add(Me.ACKDATE)
         Me.TabPage4.Controls.Add(Me.Label56)
@@ -3838,6 +3850,72 @@ Partial Class InvoiceMaster
         Me.TabPage4.Size = New System.Drawing.Size(1247, 277)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "3. Additional Details"
+        '
+        'TXTCOMPLAINTBY
+        '
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(502, 252)
+        Me.TXTCOMPLAINTBY.MaxLength = 100
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
+        Me.TXTCOMPLAINTBY.TabIndex = 942
+        '
+        'Label61
+        '
+        Me.Label61.BackColor = System.Drawing.Color.Transparent
+        Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.ForeColor = System.Drawing.Color.Black
+        Me.Label61.Location = New System.Drawing.Point(413, 256)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(88, 14)
+        Me.Label61.TabIndex = 943
+        Me.Label61.Text = "Complaint By"
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'DTCOMPLAINDATE
+        '
+        Me.DTCOMPLAINDATE.CustomFormat = "dd/MM/yyyy"
+        Me.DTCOMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTCOMPLAINDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTCOMPLAINDATE.Location = New System.Drawing.Point(704, 250)
+        Me.DTCOMPLAINDATE.Name = "DTCOMPLAINDATE"
+        Me.DTCOMPLAINDATE.Size = New System.Drawing.Size(85, 23)
+        Me.DTCOMPLAINDATE.TabIndex = 940
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.BackColor = System.Drawing.Color.Transparent
+        Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(614, 254)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(92, 15)
+        Me.Label27.TabIndex = 941
+        Me.Label27.Text = "Complaint Date"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCOMPLAINT
+        '
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(501, 224)
+        Me.TXTCOMPLAINT.MaxLength = 100
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 22)
+        Me.TXTCOMPLAINT.TabIndex = 938
+        '
+        'Label23
+        '
+        Me.Label23.BackColor = System.Drawing.Color.Transparent
+        Me.Label23.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ForeColor = System.Drawing.Color.Black
+        Me.Label23.Location = New System.Drawing.Point(412, 228)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(88, 14)
+        Me.Label23.TabIndex = 939
+        Me.Label23.Text = "Complaint"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBSUPPLIERNAME
         '
@@ -4043,7 +4121,7 @@ Partial Class InvoiceMaster
         '
         Me.CHKCHANGEADD.AutoSize = True
         Me.CHKCHANGEADD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKCHANGEADD.Location = New System.Drawing.Point(407, 181)
+        Me.CHKCHANGEADD.Location = New System.Drawing.Point(407, 153)
         Me.CHKCHANGEADD.Name = "CHKCHANGEADD"
         Me.CHKCHANGEADD.Size = New System.Drawing.Size(90, 19)
         Me.CHKCHANGEADD.TabIndex = 901
@@ -4253,7 +4331,7 @@ Partial Class InvoiceMaster
         Me.txtDeliveryadd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDeliveryadd.Enabled = False
         Me.txtDeliveryadd.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDeliveryadd.Location = New System.Drawing.Point(501, 177)
+        Me.txtDeliveryadd.Location = New System.Drawing.Point(501, 149)
         Me.txtDeliveryadd.MaxLength = 200
         Me.txtDeliveryadd.Multiline = True
         Me.txtDeliveryadd.Name = "txtDeliveryadd"
@@ -5836,4 +5914,10 @@ Partial Class InvoiceMaster
     Friend WithEvents CHKMANUALROUND As CheckBox
     Friend WithEvents CHKINTCALC As CheckBox
     Friend WithEvents CMDREMOVELR As Button
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
+    Friend WithEvents Label61 As Label
+    Friend WithEvents DTCOMPLAINDATE As DateTimePicker
+    Friend WithEvents Label27 As Label
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents Label23 As Label
 End Class

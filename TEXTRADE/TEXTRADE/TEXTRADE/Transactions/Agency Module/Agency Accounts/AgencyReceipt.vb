@@ -16,6 +16,7 @@ Public Class AgencyReceipt
     Dim temprecodate As Date
     Dim CHQNO As String = ""
     Public Shared SELECTEDBILLNO As String
+    Private DT As DataTable
 
     'REQD FOR AUTO DATA POPULATION AS PER ELYSIUM'S REQUIREMENT
     Public TEMPAUTOENTRY As Boolean = False
@@ -106,6 +107,9 @@ Public Class AgencyReceipt
         RECODATE.Enabled = True
         'AS THEY WANT TO KEEP THE ACCOUNTNAME SAME
         'cmbseller.Text = ""
+        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
 
         txtchqamt.Clear()
         txtchqno.Clear()
@@ -493,6 +497,9 @@ Public Class AgencyReceipt
                             lbllocked.Visible = True
                             PBlock.Visible = True
                         End If
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
                     Next
 
                     Dim DT1 As DataTable = OBJCMN.search(" AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCGRIDREMARKS AS DESCNARR, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCAMT AS DESCAMT, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, ARECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  AGENCYRECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_CMPID = LEDGERS.Acc_cmpid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_REGISTERID = REGISTERMASTER.register_id AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_CMPID = REGISTERMASTER.register_cmpid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_no = " & TEMPARECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_cmpid = " & CmpId & ") AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_locationid = " & 0 & ") AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARid = " & YearId & ")")
@@ -521,7 +528,7 @@ Public Class AgencyReceipt
                 End If
             End If
             gridpayment.ClearSelection()
-
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -754,7 +761,9 @@ Public Class AgencyReceipt
             alparaval.Add(TXTSPECIALREMARKS.Text.Trim)
             alparaval.Add(Format(Convert.ToDateTime(CHQDATE.Text).Date, "MM/dd/yyyy"))
 
-
+            alparaval.Add(TXTCOMPLAINT.Text.Trim)
+            alparaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alparaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
             Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster
             OBJCLRECEIPT.alParaval = alparaval
 
@@ -2196,5 +2205,112 @@ NEXTLINE:
     Private Sub CHQDATE_GotFocus(sender As Object, e As EventArgs) Handles CHQDATE.GotFocus
         CHQDATE.SelectionStart = 0
     End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+#Region "AUTOSEARCHTEXTBOX"
+
+    Public filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Public Sub CreateFilterTextBoxes()
+
+        'REMOVE OLD TEXTBOXES AND THEN RECREATE
+        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf groupbill.Controls(i) Is TextBox Then
+                groupbill.Controls.RemoveAt(i)
+            End If
+        Next
+
+
+
+        filterTextBoxes.Clear()
+
+        If gridbill.Columns.Count = 0 Then Exit Sub
+
+        Dim xPos As Integer = gridbill.RowHeadersVisible * gridbill.RowHeadersWidth
+        For Each col As DataGridViewColumn In gridbill.Columns
+            If col.Visible Then
+                Dim txt As New TextBox()
+                txt.Width = col.Width
+                txt.Left = gridbill.GetCellDisplayRectangle(col.Index, -1, True).Left
+                txt.Top = 5 ' Or a header-compliant Y offset
+                txt.Tag = col.Index
+                txt.Name = "TXT" & col.Index
+                AddHandler txt.TextChanged, AddressOf FilterGrid
+                groupbill.Controls.Add(txt)
+                filterTextBoxes.Add(txt)
+            End If
+        Next
+    End Sub
+
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
+        Try
+            Dim filterClauses As New List(Of String)()
+            For Each txt As TextBox In filterTextBoxes
+                Dim colIndex As Integer = CInt(txt.Tag)
+                Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
+                Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+
+                If filterText <> "" Then
+                    ' Check data type
+                    Dim colType As Type = DT.Columns(colName).DataType
+                    If colType Is GetType(String) Then
+                        filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
+                    ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
+                        ' Numeric filter: try direct match
+                        Dim valDouble As Double
+                        If Double.TryParse(filterText, valDouble) Then
+                            filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
+                        End If
+                    ElseIf colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+                        End If
+                    ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            ' For exact date match
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+
+                            ' Or you can do range filtering, example hardcoded here (customize as needed)
+                            ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
+                        End If
+
+                    End If
+                End If
+            Next
+
+
+            Dim filterString As String = String.Join(" AND ", filterClauses)
+            DT.DefaultView.RowFilter = filterString
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub gridbill_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles gridbill.SortCompare
+        Try
+            If gridbill.ColumnCount = 15 And e.Column.Index > 1 Then
+                e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
 
 End Class

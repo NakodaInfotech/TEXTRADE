@@ -312,7 +312,7 @@ Partial Class Receipt
         Me.groupbill.Controls.Add(Me.gridbill)
         Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.groupbill.ForeColor = System.Drawing.Color.Black
-        Me.groupbill.Location = New System.Drawing.Point(528, 42)
+        Me.groupbill.Location = New System.Drawing.Point(528, 44)
         Me.groupbill.Name = "groupbill"
         Me.groupbill.Size = New System.Drawing.Size(794, 240)
         Me.groupbill.TabIndex = 6

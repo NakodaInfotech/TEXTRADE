@@ -208,7 +208,10 @@ Public Class PurchaseMaster
         TXTIGSTPER1.Clear()
         TXTIGSTAMT1.Clear()
         LBLACCEPTEDMTRS.Text = 0
+        DTCOMPLAINDATE.Value = Now.Date
 
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
         CHKMANUALTCS.Checked = False
         CHKTCS.Checked = False
         TXTTOTALWITHGST.Clear()
@@ -526,7 +529,9 @@ Public Class PurchaseMaster
                             PBlock.Visible = True
                         End If
                         CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -1050,6 +1055,10 @@ Public Class PurchaseMaster
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             alParaval.Add(CMBSHIPTO.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval
@@ -6054,6 +6063,18 @@ NEXTLINE:
             If CMBSHIPTO.Text.Trim = "" Then FILLNAME(CMBSHIPTO, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' or  GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
