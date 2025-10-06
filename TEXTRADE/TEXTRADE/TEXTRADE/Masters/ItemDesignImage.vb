@@ -1,6 +1,9 @@
-﻿Imports BL
+﻿Imports System.ComponentModel
 Imports System.IO
-Imports System.ComponentModel
+Imports System.Net.Http
+Imports System.Net.Http.Headers
+Imports System.Threading.Tasks
+Imports BL
 
 Public Class ItemDesignImage
 
