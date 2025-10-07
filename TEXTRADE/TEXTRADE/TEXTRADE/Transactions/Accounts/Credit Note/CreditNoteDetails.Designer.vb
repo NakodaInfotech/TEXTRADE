@@ -69,6 +69,7 @@ Partial Class CreditNoteDetails
         Me.GSPECIALREMARK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOSTCENTERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
@@ -85,7 +86,9 @@ Partial Class CreditNoteDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridCN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,7 +206,7 @@ Partial Class CreditNoteDetails
         Me.gridCN.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridCN.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridCN.Appearance.Row.Options.UseFont = True
-        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREGNAME})
+        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREGNAME, Me.GCOMPLAINT, Me.GCOMPLAINTDATE, Me.GCOMPLAINTBY})
         Me.gridCN.GridControl = Me.griddetails
         Me.gridCN.Images = Me.imageList1
         Me.gridCN.Name = "gridCN"
@@ -241,7 +244,7 @@ Partial Class CreditNoteDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -251,7 +254,7 @@ Partial Class CreditNoteDetails
         '
         Me.GBILLNO.Caption = "Bill No"
         Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.ImageIndex = 1
+        Me.GBILLNO.ImageOptions.ImageIndex = 1
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.Visible = True
         Me.GBILLNO.VisibleIndex = 4
@@ -456,7 +459,7 @@ Partial Class CreditNoteDetails
         Me.GNOGSTR1.FieldName = "NOGSTR1"
         Me.GNOGSTR1.Name = "GNOGSTR1"
         Me.GNOGSTR1.Visible = True
-        Me.GNOGSTR1.VisibleIndex = 36
+        Me.GNOGSTR1.VisibleIndex = 39
         '
         'GGROUPNAME
         '
@@ -549,6 +552,15 @@ Partial Class CreditNoteDetails
         Me.GCREATEDBY.Name = "GCREATEDBY"
         Me.GCREATEDBY.Visible = True
         Me.GCREATEDBY.VisibleIndex = 34
+        '
+        'GREGNAME
+        '
+        Me.GREGNAME.Caption = "Register"
+        Me.GREGNAME.FieldName = "REGNAME"
+        Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.Visible = True
+        Me.GREGNAME.VisibleIndex = 35
+        Me.GREGNAME.Width = 120
         '
         'CMDOK
         '
@@ -688,14 +700,31 @@ Partial Class CreditNoteDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GREGNAME
+        'GCOMPLAINT
         '
-        Me.GREGNAME.Caption = "Register"
-        Me.GREGNAME.FieldName = "REGNAME"
-        Me.GREGNAME.Name = "GREGNAME"
-        Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 35
-        Me.GREGNAME.Width = 120
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 36
+        Me.GCOMPLAINT.Width = 120
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 37
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 38
+        Me.GCOMPLAINTBY.Width = 120
         '
         'CreditNoteDetails
         '
@@ -779,4 +808,7 @@ Partial Class CreditNoteDetails
     Friend WithEvents GCOSTCENTERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATEDBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
 End Class
