@@ -2466,7 +2466,7 @@ NEXTLINE:
 
     Private Sub TXTCOPY_Validated(sender As Object, e As EventArgs) Handles TXTCOPY.Validated
         Try
-            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 Then
+            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 And ClientName <> "ABHEE" Then
 
                 If MsgBox("Wish to Copy Payment Voucher No " & Val(TXTCOPY.Text.Trim), MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 

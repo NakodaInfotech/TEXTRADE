@@ -211,8 +211,14 @@ Public Class UploadExcel_MASHOK
 
                 ' Normalize column existence helpers
                 Dim functionCols = Function(name As String) dt.Columns.Contains(name)
+                Dim failedRows As New List(Of String)
                 For Each dr As DataRow In dt.Rows
                     Try
+                        Dim partyName As String = dr("name").ToString().Trim()
+                        If Not PartyExists(partyName) Then
+                            failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & partyName & "')")
+                            Continue For
+                        End If
                         ' Skip empty lines (no item and no amount)
                         Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
                         Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
@@ -324,6 +330,10 @@ Public Class UploadExcel_MASHOK
                         errorCount += 1
                     End Try
                 Next
+                If failedRows.Count > 0 Then
+                    MessageBox.Show("The following rows were not saved because party name not found:" & vbCrLf & String.Join(vbCrLf, failedRows), "Party Name Not Present", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+
 
                 MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -423,5 +433,10 @@ Public Class UploadExcel_MASHOK
 
         Return nextNo
     End Function
-
+    ' Helper function: Checks if party name exists in LEDGERS for current year
+    Private Function PartyExists(partyName As String) As Boolean
+        Dim OBJCMN As New ClsCommon()
+        Dim dtParty As DataTable = OBJCMN.SEARCH("ACC_CMPNAME", "", "LEDGERS", "And ACC_CMPNAME = '" & partyName.Replace("'", "''") & "' AND ACC_YEARID = " & YearId)
+        Return dtParty.Rows.Count > 0
+    End Function
 End Class
