@@ -6181,7 +6181,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_F7657B3E70D241718F005FB185D94C85"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:D:\\TEXTRADE"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -6207,15 +6207,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TEXTRADE"
-        "ProductCode" = "8:{115D89D2-F003-47AF-954C-49B17E58C803}"
-        "PackageCode" = "8:{93637CB4-4EFC-4B1B-B83A-811E3C127AF9}"
-        "UpgradeCode" = "8:{20329A3C-7A6E-4DF2-A8A8-0B5A2E3EC010}"
+        "ProductCode" = "8:{A26458F7-E317-435E-8E60-07F257A1F158}"
+        "PackageCode" = "8:{0E0397B8-3F10-42AF-99DD-95D09AEECE0F}"
+        "UpgradeCode" = "8:{00930730-FF1D-4114-8543-BEB35E18A49C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:Nakoda Infotech"
         "ARPHELPTELEPHONE" = "8:02249724411"
         "ARPHELPLINK" = "8:www.nakodainfotech.com"
