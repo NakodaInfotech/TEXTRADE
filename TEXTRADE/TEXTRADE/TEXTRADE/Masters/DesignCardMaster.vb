@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Web.UI.WebControls
 Imports BL
 Imports DevExpress.Charts.Native
 Imports DevExpress.CodeParser
@@ -1750,7 +1751,7 @@ LINE1:
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
+                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -1765,7 +1766,7 @@ LINE1:
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text), "0.00")
+                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text)), "0.00")
                 Next
             End If
         End If
@@ -3705,6 +3706,9 @@ line1:
 
     Private Sub CMDCALC_Click(sender As Object, e As EventArgs) Handles CMDCALC.Click
         CALC()
+        'blendpercentcalc()
+        CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
+
     End Sub
 
     Private Sub TXTFWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTFWIDTH.Validated
@@ -3722,18 +3726,108 @@ line1:
             Throw ex
         End Try
     End Sub
-    Sub blendpercentcalc()
-        Try
-            For Each row As DataGridViewRow In GRIDWARP.Rows
-                Dim OBJCLS As New ClsCommon()
-                Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER, ISNULL(MILLMASTER.MILL_NAME, '') As MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  And YARN_NAME ='" & row.Cells(WQUALITY.Index).Value.ToString & "'  AND YARN_YEARID = " & YearId)
-                If DT2.Rows.Count > 0 Then
+    'Sub blendpercentcalc()
+    '    Try
+    '        ' Dictionary to collect fiber totals
+    '        Dim fiberTotals As New Dictionary(Of String, Double)
+    '        Dim totalWarpWeight As Double = 0
 
+    '        For Each row As DataGridViewRow In GRIDWARP.Rows
+    '            ' Get yarn name and weight from grid
+    '            Dim yarnName As String = row.Cells(WQUALITY.Index).Value.ToString()
+    '            Dim yarnWeight As Double = Convert.ToDouble(row.Cells(WWT.Index).Value)
+
+    '            ' Fetch blend composition from the database
+    '            Dim OBJCLS As New ClsCommon()
+    '            Dim DT2 As DataTable = OBJCLS.SEARCH(
+    '                "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, YARNQUALITYMASTER_1.YARN_NAME AS YARNCOMPOSITIONNAME",
+    '                "",
+    '                "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = YARNQUALITYMASTER.YARN_YEARID AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = YARNQUALITYMASTER.YARN_ID",
+    '                "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
+    '            )
+
+    '            ' For each fiber/percent in the blend composition
+    '            For Each compRow As DataRow In DT2.Rows
+    '                Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
+    '                Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
+
+    '                Dim fiberWeight As Double = yarnWeight * fiberPercent
+
+    '                If Not fiberTotals.ContainsKey(fiberName) Then
+    '                    fiberTotals(fiberName) = 0
+    '                End If
+    '                fiberTotals(fiberName) += fiberWeight
+    '            Next
+
+    '            totalWarpWeight += yarnWeight
+    '        Next
+
+    '        ' Calculate final blend percent for each fiber
+    '        For Each fiberName As String In fiberTotals.Keys
+    '            Dim blendPercent As Double = (fiberTotals(fiberName) / totalWarpWeight) * 100
+    '            ' Output or use blendPercent as needed
+    '            If TextBox7.Text = "" Then
+    '                TextBox7.Text = fiberName & ":" & blendPercent.ToString("0.00")
+    '            Else
+    '                TextBox7.Text = TextBox7.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0.00")
+    '            End If
+    '        Next
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    Sub CombineWarpWeftBlend(
+         gridWarp As DataGridView, warpQualityIdx As Integer, warpWeightIdx As Integer,
+         gridWeft As DataGridView, weftQualityIdx As Integer, weftWeightIdx As Integer)
+        Try
+            Dim fiberTotals As New Dictionary(Of String, Double)
+            Dim totalWeight As Double = 0
+            Dim processGrid = Sub(g As DataGridView, qualityIdx As Integer, weightIdx As Integer)
+                                  For Each row As DataGridViewRow In g.Rows
+                                      Dim yarnName As String = row.Cells(qualityIdx).Value.ToString()
+                                      Dim yarnWeight As Double = Convert.ToDouble(row.Cells(weightIdx).Value)
+
+                                      Dim OBJCLS As New ClsCommon()
+                                      Dim DT2 As DataTable = OBJCLS.SEARCH(
+                                          "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, YARNQUALITYMASTER_1.YARN_NAME AS YARNCOMPOSITIONNAME",
+                                          "",
+                                          "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = YARNQUALITYMASTER.YARN_YEARID AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = YARNQUALITYMASTER.YARN_ID",
+                                          "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
+                                      )
+
+                                      For Each compRow As DataRow In DT2.Rows
+                                          Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
+                                          Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
+                                          Dim fiberWeight As Double = yarnWeight * fiberPercent
+
+                                          If Not fiberTotals.ContainsKey(fiberName) Then
+                                              fiberTotals(fiberName) = 0
+                                          End If
+                                          fiberTotals(fiberName) += fiberWeight
+                                      Next
+                                      totalWeight += yarnWeight
+                                  Next
+                              End Sub
+            processGrid(gridWarp, warpQualityIdx, warpWeightIdx)
+            processGrid(gridWeft, weftQualityIdx, weftWeightIdx)
+
+            ' Output combined result
+            TXTBLENDPER.Text = ""
+            For Each fiberName In fiberTotals.Keys
+                Dim blendPercent As Double = (fiberTotals(fiberName) / totalWeight) * 100
+                If TXTBLENDPER.Text = "" Then
+                    TXTBLENDPER.Text = fiberName & ":" & blendPercent.ToString("0.00")
+                Else
+                    TXTBLENDPER.Text = TXTBLENDPER.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0.00")
                 End If
             Next
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
+
 End Class
