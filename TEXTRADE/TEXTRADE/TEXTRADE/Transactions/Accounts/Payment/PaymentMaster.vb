@@ -247,15 +247,12 @@ Public Class PaymentMaster
             End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
-                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    BLN = False
+                End If
 
-                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = payreginitial & "-" & Val(txtaccno.Text.Trim)
             Next
 
             If cmbregister.Text.Trim.Length = 0 Then
@@ -288,10 +285,10 @@ Public Class PaymentMaster
                 BLN = False
             End If
 
-            'If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
-            '    EP.SetError(txttotal, "Total does not match Amount")
-            '    BLN = False
-            'End If
+            If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
+                EP.SetError(txttotal, "Total does not match Amount")
+                BLN = False
+            End If
 
 
 
@@ -300,12 +297,12 @@ Public Class PaymentMaster
                 Dim DT As DataTable = OBJCMN1.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
-                        'If TXTCHQNO.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" And ClientName <> "NAKODAINFOTECH" Then
-                        '    If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
-                        '        EP.SetError(TXTCHQNO, "Enter Chq No.")
-                        '        BLN = False
-                        '    End If
-                        'End If
+                        If TXTCHQNO.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" And ClientName <> "NAKODAINFOTECH" Then
+                            If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
+                                EP.SetError(TXTCHQNO, "Enter Chq No.")
+                                BLN = False
+                            End If
+                        End If
                     ElseIf DT.Rows(0).Item(0) = "Cash In Hand" Then
                         TXTCHQNO.Clear()
                     End If
@@ -523,7 +520,6 @@ Public Class PaymentMaster
                     TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
                     LBLCITY.Text = DT.Rows(0).Item("CITY")
-                    CreateFilterTextBoxes()
                 End If
             End If
         Catch ex As Exception
@@ -833,7 +829,7 @@ Public Class PaymentMaster
                         cmbpaytype.Text = "Against Bill"
                         cmbbillno.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBILLINITIALS").Index).Value
                         cmbbillno.Enabled = True
-                        txtnarr.Clear()
+                        txtnarr.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("REFNO").Index).Value
                         lblbilltotal.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBALAMT").Index).Value
 
                         Dim A As System.ComponentModel.CancelEventArgs
@@ -1278,14 +1274,20 @@ Public Class PaymentMaster
             GRIDBILL.Columns(15).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             GRIDBILL.Columns(15).ReadOnly = True
 
+
+            GRIDBILL.Columns(16).Width = 200
+            GRIDBILL.Columns(16).Name = "COMPLAINT"
+            GRIDBILL.Columns(16).HeaderText = "Complaint"
+            GRIDBILL.Columns(16).ReadOnly = True
+
+
             For Each ROW As DataGridViewRow In GRIDBILL.Rows
                 If ClientName = "NVAHAN" AndAlso IsDBNull(ROW.Cells(12).Value) = False AndAlso Val(ROW.Cells(12).Value) = 0 Then ROW.DefaultCellStyle.BackColor = Color.Yellow
                 If Convert.ToBoolean(ROW.Cells(11).Value) = True Then ROW.DefaultCellStyle.BackColor = Color.LightGreen
+
+                'FOR COMPLAINT
+                If ROW.Cells(16).Value <> "" Then ROW.DefaultCellStyle.BackColor = Color.Linen
             Next
-
-
-
-
 
 
         Catch ex As Exception
@@ -1300,7 +1302,9 @@ Public Class PaymentMaster
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
+            CreateFilterTextBoxes()
         End If
+
         'GRIDBILL.DataSource = Nothing
         'TXTINVTOTAL.Clear()
         ''getting from INVOICEMASTER
@@ -2053,7 +2057,7 @@ LINE1:
     Private Sub txtchqno_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTCHQNO.Validating
         Try
             If ClientName <> "SUPEEMA" And ClientName <> "AVIS" Then
-                If TXTCHQNO.Text.Trim <> "" And TXTCHQNO.Text.Trim <> "RTGS" And TXTCHQNO.Text.Trim <> "NEFT" And TXTCHQNO.Text.Trim <> "IMPS" And TXTCHQNO.Text.Trim <> "ONLINE" And TXTCHQNO.Text.Trim <> "GPAY" Then
+                If TXTCHQNO.Text.Trim <> "" And TXTCHQNO.Text.Trim <> "RTGS" And TXTCHQNO.Text.Trim <> "NEFT" And TXTCHQNO.Text.Trim <> "IMPS" And TXTCHQNO.Text.Trim <> "ONLINE" And TXTCHQNO.Text.Trim <> "GPAY" And TXTCHQNO.Text.Trim <> "UPI" Then
                     'checking whether CHQNO IS ALREADY PAID WITH THE SAME BANK OR NOT....
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" PAYMENT_INITIALS", "", " PAYMENTMASTER INNER JOIN LEDGERS ON ACC_CMPID = PAYMENT_CMPID AND ACC_LOCATIONID = PAYMENT_LOCATIONID AND ACC_YEARID = PAYMENT_YEARID AND ACC_ID = PAYMENT_ACCID", " AND PAYMENT_CHQNO = '" & TXTCHQNO.Text.Trim & "' AND ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND PAYMENT_CMPID = " & CmpId & " AND PAYMENT_LOCATIONID = " & Locationid & " AND PAYMENT_YEARID = " & YearId)
@@ -2616,8 +2620,6 @@ NEXTLINE:
                 GPPAYMENT.Controls.RemoveAt(i)
             End If
         Next
-
-
 
         filterTextBoxes.Clear()
 

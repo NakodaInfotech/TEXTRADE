@@ -880,10 +880,10 @@ Public Class DebitNote
         End If
 
 
-        'If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-        '    EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
-        '    bln = False
-        'End If
+        If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+            EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
+            bln = False
+        End If
 
 
         'IF INVOICENO IS NOT BLANK THEN CHECK THAT FIGURES CANNOT BE GREATER THEN BALANCEAMT
@@ -913,10 +913,10 @@ Public Class DebitNote
 
 
         For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-            'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-            '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-            '    bln = False
-            'End If
+            If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                bln = False
+            End If
             If ClientName <> "MASHOK" Then
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = DNREGINITIAL & "-" & Val(TXTDNNO.Text.Trim)
             End If
