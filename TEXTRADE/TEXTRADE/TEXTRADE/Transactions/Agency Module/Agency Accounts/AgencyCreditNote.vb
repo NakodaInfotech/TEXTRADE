@@ -160,6 +160,9 @@ Public Class AgencyCreditNote
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
+            DTCOMPLAINDATE.Value = Now.Date
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTBY.Clear()
         Catch ex As Exception
             Throw ex
         End Try
@@ -788,7 +791,9 @@ Public Class AgencyCreditNote
             alParaval.Add(TXTSPECIALREMARKS.Text.Trim)
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
-
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
             Dim objclsCNmaster As New ClsAgencyCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable
@@ -1440,7 +1445,9 @@ LINE1:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -3291,4 +3298,16 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
         End Try
     End Sub
 
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

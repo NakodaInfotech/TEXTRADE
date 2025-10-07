@@ -262,6 +262,12 @@ Public Class ClsSaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -519,6 +525,12 @@ Public Class ClsSaleReturn
                 .Add(New SqlClient.SqlParameter("@FROMCITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
                 I = I + 1
 
 

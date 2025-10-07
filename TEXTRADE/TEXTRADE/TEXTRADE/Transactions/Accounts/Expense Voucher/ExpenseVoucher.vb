@@ -29,6 +29,7 @@ Public Class ExpenseVoucher
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Public Function SaveInvoice(Optional suppressMessages As Boolean = False) As Boolean
         ' just call the private button handler
         'cmdok_Click(Nothing, EventArgs.Empty)
@@ -51,6 +52,7 @@ Public Class ExpenseVoucher
             Return False
         End Try
     End Function
+
     Public Property CanUserAdd As Boolean
         Get
             Return USERADD

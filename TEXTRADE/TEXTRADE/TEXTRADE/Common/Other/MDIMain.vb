@@ -3535,8 +3535,7 @@ Public Class MDIMain
 
     Private Sub PendingInvoiceToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PendingInvoiceToolStripMenuItem1.Click
         Try
-            Dim OBJGRN As New GRNUnchekedReport
-            OBJGRN.FRMSTRING = "PENDING"
+            Dim OBJGRN As New PendingChallanForInvoice
             OBJGRN.MdiParent = Me
             OBJGRN.Show()
         Catch ex As Exception
@@ -5155,7 +5154,11 @@ SKIPLINE:
                 GRNGREY_MASTER.Text = "Grey Issue To Process"
             End If
 
-            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then MASHOK_REPORTS.Visible = True
+            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                MASHOK_REPORTS.Visible = True
+                UPLOADEXCELNP.Visible = True
+                UPLOADEXCELSALE.Visible = True
+            End If
             If ClientName = "ABHEE" Then
                 LRStockToolStripMenuItem.Enabled = True
             End If
@@ -10749,16 +10752,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub UploadExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadExcelToolStripMenuItem.Click
-        Try
-            Dim Objpinvoice As New UploadExcel
-            Objpinvoice.MdiParent = Me
-            Objpinvoice.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AgencyInvoiceReportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencyInvoiceReportsToolStripMenuItem.Click
         Try
             Dim OBJAGNCYINVRPT As New AgencyInvoiceReport
@@ -10775,6 +10768,28 @@ SKIPLINE:
             OBJSO.SOCLAUSE = ""
             OBJSO.MdiParent = Me
             OBJSO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UPLOADEXCELNP_Click(sender As Object, e As EventArgs) Handles UPLOADEXCELNP.Click
+        Try
+            Dim OBJUPLOAD As New UploadExcel_MASHOK
+            OBJUPLOAD.MdiParent = Me
+            OBJUPLOAD.CMBTYPE.Text = "NONPURCHASE"
+            OBJUPLOAD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UPLOADEXCELSALE_Click(sender As Object, e As EventArgs) Handles UPLOADEXCELSALE.Click
+        Try
+            Dim OBJUPLOAD As New UploadExcel_MASHOK
+            OBJUPLOAD.MdiParent = Me
+            OBJUPLOAD.CMBTYPE.Text = "INVOICE"
+            OBJUPLOAD.Show()
         Catch ex As Exception
             Throw ex
         End Try

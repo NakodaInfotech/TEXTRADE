@@ -65,11 +65,8 @@ Public Class AgencyInvoiceReport
             link.Margins.Right = 30
             link.Margins.Top = 30
             link.Margins.Bottom = 30
-
-            ' Handle event to reduce font size
             AddHandler link.CreateDetailArea, Sub(sender As Object, e As DevExpress.XtraPrinting.CreateAreaEventArgs)
-                                                  ' Reduce font size globally
-                                                  e.Graph.Font = New Font("Verdana", 2) ' Set font and size, adjust 6 as needed
+                                                  e.Graph.Font = New Font("Verdana", 2)
                                               End Sub
 
             link.CreateDocument()

@@ -184,6 +184,12 @@ Public Class ClsAgencyCreditNote
                 I += 1
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
+                I = I + 1
             End With
 
             DT = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -377,6 +383,12 @@ Public Class ClsAgencyCreditNote
                 .Add(New SqlClient.SqlParameter("@CD", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@COSTCENTERNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ACNNO", alParaval(I)))
                 I = I + 1

@@ -32,6 +32,7 @@ Partial Class GRNUnchekedReport
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLAN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,7 +43,6 @@ Partial Class GRNUnchekedReport
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +62,7 @@ Partial Class GRNUnchekedReport
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1004, 562)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1090, 661)
         Me.BlendPanel1.TabIndex = 6
         '
         'CMDSHOWDETAILS
@@ -70,11 +70,11 @@ Partial Class GRNUnchekedReport
         Me.CMDSHOWDETAILS.BackColor = System.Drawing.Color.Transparent
         Me.CMDSHOWDETAILS.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CMDSHOWDETAILS.FlatAppearance.BorderSize = 0
-        Me.CMDSHOWDETAILS.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSHOWDETAILS.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSHOWDETAILS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSHOWDETAILS.ForeColor = System.Drawing.Color.Black
         Me.CMDSHOWDETAILS.Location = New System.Drawing.Point(379, 29)
         Me.CMDSHOWDETAILS.Name = "CMDSHOWDETAILS"
-        Me.CMDSHOWDETAILS.Size = New System.Drawing.Size(80, 26)
+        Me.CMDSHOWDETAILS.Size = New System.Drawing.Size(94, 28)
         Me.CMDSHOWDETAILS.TabIndex = 656
         Me.CMDSHOWDETAILS.Text = "&Show Details"
         Me.CMDSHOWDETAILS.UseVisualStyleBackColor = False
@@ -117,11 +117,11 @@ Partial Class GRNUnchekedReport
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(15, 58)
+        Me.gridbilldetails.Location = New System.Drawing.Point(17, 58)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(975, 468)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1056, 557)
         Me.gridbilldetails.TabIndex = 652
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -139,6 +139,7 @@ Partial Class GRNUnchekedReport
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
+        Me.gridbill.OptionsView.ShowGroupPanel = False
         '
         'gsrno
         '
@@ -160,6 +161,14 @@ Partial Class GRNUnchekedReport
         Me.gdate.VisibleIndex = 1
         Me.gdate.Width = 80
         '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 2
+        '
         'GCHALLAN
         '
         Me.GCHALLAN.Caption = "Challan No"
@@ -173,7 +182,7 @@ Partial Class GRNUnchekedReport
         '
         Me.GNAME.Caption = "Supplier Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 4
@@ -226,11 +235,11 @@ Partial Class GRNUnchekedReport
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
         Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(465, 532)
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(505, 621)
         Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(75, 26)
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 651
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
@@ -240,7 +249,7 @@ Partial Class GRNUnchekedReport
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1004, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1090, 25)
         Me.ToolStrip1.TabIndex = 255
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -262,18 +271,10 @@ Partial Class GRNUnchekedReport
         Me.GGODOWN.VisibleIndex = 6
         Me.GGODOWN.Width = 80
         '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 2
-        '
         'GRNUnchekedReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1004, 562)
+        Me.ClientSize = New System.Drawing.Size(1090, 661)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
