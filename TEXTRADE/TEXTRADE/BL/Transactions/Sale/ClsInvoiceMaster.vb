@@ -428,7 +428,7 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
 
 
@@ -852,7 +852,7 @@ Public Class ClsInvoiceMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INVOICENO", alParaval(I)))
                 I = I + 1
