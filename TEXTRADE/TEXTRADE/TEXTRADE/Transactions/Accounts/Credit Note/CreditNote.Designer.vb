@@ -65,6 +65,7 @@ Partial Class CREDITNOTE
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TXTSPECIALREMARKS = New System.Windows.Forms.TextBox()
+        Me.Complaints = New System.Windows.Forms.TabPage()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.ACTUALINVDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -107,6 +108,11 @@ Partial Class CREDITNOTE
         Me.TXTCHGSAMT = New System.Windows.Forms.TextBox()
         Me.TXTCHGSPER = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.LBLCOMPLAINTBY = New System.Windows.Forms.Label()
+        Me.LBLCOMPLAINTDATE = New System.Windows.Forms.Label()
+        Me.LBLCOMPLAINT = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
         Me.ACKDATE = New System.Windows.Forms.DateTimePicker()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.TXTACKNO = New System.Windows.Forms.TextBox()
@@ -236,6 +242,7 @@ Partial Class CREDITNOTE
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.DTCOMPLAINTDATE = New System.Windows.Forms.DateTimePicker()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -391,7 +398,7 @@ Partial Class CREDITNOTE
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 25)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 556)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1363, 556)
         Me.BlendPanel1.TabIndex = 0
         '
         'CMDAUTOPOST
@@ -502,10 +509,11 @@ Partial Class CREDITNOTE
         '
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Controls.Add(Me.Complaints)
         Me.TabControl2.Location = New System.Drawing.Point(418, 139)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(229, 80)
+        Me.TabControl2.Size = New System.Drawing.Size(229, 106)
         Me.TabControl2.TabIndex = 16
         '
         'TabPage3
@@ -514,7 +522,7 @@ Partial Class CREDITNOTE
         Me.TabPage3.Location = New System.Drawing.Point(4, 24)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(221, 52)
+        Me.TabPage3.Size = New System.Drawing.Size(221, 78)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "1. Remarks"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -526,7 +534,7 @@ Partial Class CREDITNOTE
         Me.txtremarks.Location = New System.Drawing.Point(0, 0)
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
-        Me.txtremarks.Size = New System.Drawing.Size(221, 52)
+        Me.txtremarks.Size = New System.Drawing.Size(221, 78)
         Me.txtremarks.TabIndex = 16
         '
         'TabPage4
@@ -535,7 +543,7 @@ Partial Class CREDITNOTE
         Me.TabPage4.Location = New System.Drawing.Point(4, 24)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(221, 52)
+        Me.TabPage4.Size = New System.Drawing.Size(221, 78)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "2. Special Remarks"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -547,8 +555,18 @@ Partial Class CREDITNOTE
         Me.TXTSPECIALREMARKS.Location = New System.Drawing.Point(0, 0)
         Me.TXTSPECIALREMARKS.Multiline = True
         Me.TXTSPECIALREMARKS.Name = "TXTSPECIALREMARKS"
-        Me.TXTSPECIALREMARKS.Size = New System.Drawing.Size(221, 52)
+        Me.TXTSPECIALREMARKS.Size = New System.Drawing.Size(221, 79)
         Me.TXTSPECIALREMARKS.TabIndex = 17
+        '
+        'Complaints
+        '
+        Me.Complaints.Location = New System.Drawing.Point(4, 24)
+        Me.Complaints.Name = "Complaints"
+        Me.Complaints.Padding = New System.Windows.Forms.Padding(3)
+        Me.Complaints.Size = New System.Drawing.Size(221, 78)
+        Me.Complaints.TabIndex = 2
+        Me.Complaints.Text = "Complaints"
+        Me.Complaints.UseVisualStyleBackColor = True
         '
         'Label17
         '
@@ -1062,6 +1080,12 @@ Partial Class CREDITNOTE
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.DTCOMPLAINTDATE)
+        Me.TabPage1.Controls.Add(Me.LBLCOMPLAINTBY)
+        Me.TabPage1.Controls.Add(Me.LBLCOMPLAINTDATE)
+        Me.TabPage1.Controls.Add(Me.LBLCOMPLAINT)
+        Me.TabPage1.Controls.Add(Me.TXTCOMPLAINTBY)
+        Me.TabPage1.Controls.Add(Me.TXTCOMPLAINT)
         Me.TabPage1.Controls.Add(Me.ACKDATE)
         Me.TabPage1.Controls.Add(Me.Label56)
         Me.TabPage1.Controls.Add(Me.TXTACKNO)
@@ -1078,6 +1102,62 @@ Partial Class CREDITNOTE
         Me.TabPage1.Size = New System.Drawing.Size(559, 210)
         Me.TabPage1.TabIndex = 2
         Me.TabPage1.Text = "3. Additional Details"
+        '
+        'LBLCOMPLAINTBY
+        '
+        Me.LBLCOMPLAINTBY.AutoSize = True
+        Me.LBLCOMPLAINTBY.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOMPLAINTBY.Location = New System.Drawing.Point(7, 109)
+        Me.LBLCOMPLAINTBY.Name = "LBLCOMPLAINTBY"
+        Me.LBLCOMPLAINTBY.Size = New System.Drawing.Size(80, 15)
+        Me.LBLCOMPLAINTBY.TabIndex = 1024
+        Me.LBLCOMPLAINTBY.Text = "Complaint By"
+        Me.LBLCOMPLAINTBY.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLCOMPLAINTDATE
+        '
+        Me.LBLCOMPLAINTDATE.AutoSize = True
+        Me.LBLCOMPLAINTDATE.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOMPLAINTDATE.Location = New System.Drawing.Point(3, 80)
+        Me.LBLCOMPLAINTDATE.Name = "LBLCOMPLAINTDATE"
+        Me.LBLCOMPLAINTDATE.Size = New System.Drawing.Size(92, 15)
+        Me.LBLCOMPLAINTDATE.TabIndex = 1023
+        Me.LBLCOMPLAINTDATE.Text = "Complaint Date"
+        Me.LBLCOMPLAINTDATE.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLCOMPLAINT
+        '
+        Me.LBLCOMPLAINT.AutoSize = True
+        Me.LBLCOMPLAINT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOMPLAINT.Location = New System.Drawing.Point(14, 52)
+        Me.LBLCOMPLAINT.Name = "LBLCOMPLAINT"
+        Me.LBLCOMPLAINT.Size = New System.Drawing.Size(64, 15)
+        Me.LBLCOMPLAINT.TabIndex = 1022
+        Me.LBLCOMPLAINT.Text = "Complaint"
+        Me.LBLCOMPLAINT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCOMPLAINTBY
+        '
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(90, 106)
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(170, 23)
+        Me.TXTCOMPLAINTBY.TabIndex = 1021
+        Me.TXTCOMPLAINTBY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTCOMPLAINT
+        '
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(84, 48)
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(157, 23)
+        Me.TXTCOMPLAINT.TabIndex = 1019
+        Me.TXTCOMPLAINT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'ACKDATE
         '
@@ -1411,7 +1491,7 @@ Partial Class CREDITNOTE
         Me.TXTINVPRINTINITIALS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTINVPRINTINITIALS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTINVPRINTINITIALS.ForeColor = System.Drawing.Color.Black
-        Me.TXTINVPRINTINITIALS.Location = New System.Drawing.Point(553, 224)
+        Me.TXTINVPRINTINITIALS.Location = New System.Drawing.Point(543, 251)
         Me.TXTINVPRINTINITIALS.Name = "TXTINVPRINTINITIALS"
         Me.TXTINVPRINTINITIALS.Size = New System.Drawing.Size(90, 23)
         Me.TXTINVPRINTINITIALS.TabIndex = 984
@@ -1747,7 +1827,7 @@ Partial Class CREDITNOTE
         Me.TXTAMTREC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTAMTREC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTAMTREC.ForeColor = System.Drawing.Color.Black
-        Me.TXTAMTREC.Location = New System.Drawing.Point(488, 224)
+        Me.TXTAMTREC.Location = New System.Drawing.Point(478, 251)
         Me.TXTAMTREC.Name = "TXTAMTREC"
         Me.TXTAMTREC.ReadOnly = True
         Me.TXTAMTREC.Size = New System.Drawing.Size(59, 23)
@@ -2531,7 +2611,7 @@ Partial Class CREDITNOTE
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.TOOLWHATSAPP, Me.TOOLEINV, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1363, 25)
         Me.ToolStrip1.TabIndex = 611
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -2629,10 +2709,20 @@ Partial Class CREDITNOTE
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'DTCOMPLAINTDATE
+        '
+        Me.DTCOMPLAINTDATE.CustomFormat = "dd/MM/yyyy"
+        Me.DTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTCOMPLAINTDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTCOMPLAINTDATE.Location = New System.Drawing.Point(101, 76)
+        Me.DTCOMPLAINTDATE.Name = "DTCOMPLAINTDATE"
+        Me.DTCOMPLAINTDATE.Size = New System.Drawing.Size(85, 23)
+        Me.DTCOMPLAINTDATE.TabIndex = 1025
+        '
         'CREDITNOTE
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1363, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Controls.Add(Me.tstxtbillno)
         Me.Controls.Add(Me.ToolStrip1)
@@ -2860,4 +2950,11 @@ Partial Class CREDITNOTE
     Friend WithEvents GBILLINVNO As DataGridViewTextBoxColumn
     Friend WithEvents CHKINTCALC As CheckBox
     Friend WithEvents CMDAUTOPOST As Button
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
+    Friend WithEvents LBLCOMPLAINTDATE As Label
+    Friend WithEvents LBLCOMPLAINT As Label
+    Friend WithEvents LBLCOMPLAINTBY As Label
+    Friend WithEvents Complaints As TabPage
+    Friend WithEvents DTCOMPLAINTDATE As DateTimePicker
 End Class

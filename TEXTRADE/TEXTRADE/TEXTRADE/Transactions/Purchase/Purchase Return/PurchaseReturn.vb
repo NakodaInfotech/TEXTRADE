@@ -92,7 +92,9 @@ Public Class PurchaseReturn
         If ClientName = "SOFTAS" Then CMBQTYUNIT.Text = "PCS"
         TXTAMT.Clear()
         GRIDPURRET.RowCount = 0
-
+        TXTCOMPLAIN.Clear()
+        TXTCOMPLAINDATE.Clear()
+        TXTCOMPLAINBY.Clear()
         TXTCHGSSRNO.Text = 1
         CMBCHARGES.Text = ""
         TXTCHGSPER.Clear()
@@ -822,6 +824,9 @@ Public Class PurchaseReturn
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(TXTCOMPLAIN.Text.Trim)
+            alParaval.Add(TXTCOMPLAINDATE.Text.Trim)
+            alParaval.Add(TXTCOMPLAINBY.Text.Trim)
 
 
 
@@ -1074,7 +1079,9 @@ Public Class PurchaseReturn
                         TXTVEHICLENO.Text = dr("VEHICLENO")
                         CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
                         If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
-
+                        TXTCOMPLAIN.Text = dr("COMPLAIN")
+                        TXTCOMPLAINDATE.Text = dr("COMPLAINDATE")
+                        TXTCOMPLAINBY.Text = dr("COMPLAINBY")
                         'Item Grid
                         GRIDPURRET.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEM").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGNNO"), dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO").ToString, dr("PCS").ToString, dr("UNIT").ToString, dr("MTRS").ToString, dr("WT").ToString, dr("RATE").ToString, dr("PER").ToString, dr("AMT").ToString, dr("BARCODE"), dr("GRNNO"), dr("GRNSRNO"), dr("TYPE"), dr("DONE"))
 
@@ -3776,5 +3783,21 @@ NEXTLINE:
 
     Private Sub TXTAQTY_Validated(sender As Object, e As EventArgs) Handles TXTAQTY.Validated, TXTAFOLDPER.Validated
         CALC()
+    End Sub
+
+    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAIN.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAIN.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
