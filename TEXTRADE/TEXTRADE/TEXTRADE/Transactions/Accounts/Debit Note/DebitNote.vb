@@ -3271,7 +3271,7 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
             Dim OBJREMARKS As New SelectRemarks
             OBJREMARKS.FRMSTRING = "NARRATION"
             OBJREMARKS.ShowDialog()
-            If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+            If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAIN.Text = OBJREMARKS.TEMPNAME
         End If
     End Sub
 End Class
