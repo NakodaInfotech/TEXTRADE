@@ -67,7 +67,7 @@ Public Class InvoiceMaster
 
         TXTDOCKETNO.Clear()
         DTDOCKETDATE.Value = Now.Date
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
         TXTCOURIER.Clear()
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
@@ -768,7 +768,7 @@ Public Class InvoiceMaster
                     End If
                     TXTCOMPLAINT.Text = dr("COMPLAINT")
                     TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                    TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -1383,7 +1383,7 @@ Public Class InvoiceMaster
 
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval

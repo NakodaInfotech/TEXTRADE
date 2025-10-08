@@ -338,7 +338,6 @@ Partial Class InvoiceMaster
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.Label61 = New System.Windows.Forms.Label()
-        Me.DTCOMPLAINDATE = New System.Windows.Forms.DateTimePicker()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -473,6 +472,7 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
+        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -1216,10 +1216,10 @@ Partial Class InvoiceMaster
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1238,10 +1238,10 @@ Partial Class InvoiceMaster
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -3793,9 +3793,9 @@ Partial Class InvoiceMaster
         'TabPage4
         '
         Me.TabPage4.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TabPage4.Controls.Add(Me.TXTCOMPLAINTDATE)
         Me.TabPage4.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TabPage4.Controls.Add(Me.Label61)
-        Me.TabPage4.Controls.Add(Me.DTCOMPLAINDATE)
         Me.TabPage4.Controls.Add(Me.Label27)
         Me.TabPage4.Controls.Add(Me.TXTCOMPLAINT)
         Me.TabPage4.Controls.Add(Me.Label23)
@@ -3873,16 +3873,6 @@ Partial Class InvoiceMaster
         Me.Label61.TabIndex = 943
         Me.Label61.Text = "Complaint By"
         Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'DTCOMPLAINDATE
-        '
-        Me.DTCOMPLAINDATE.CustomFormat = "dd/MM/yyyy"
-        Me.DTCOMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DTCOMPLAINDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTCOMPLAINDATE.Location = New System.Drawing.Point(704, 232)
-        Me.DTCOMPLAINDATE.Name = "DTCOMPLAINDATE"
-        Me.DTCOMPLAINDATE.Size = New System.Drawing.Size(85, 23)
-        Me.DTCOMPLAINDATE.TabIndex = 940
         '
         'Label27
         '
@@ -5470,6 +5460,20 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'TXTCOMPLAINTDATE
+        '
+        Me.TXTCOMPLAINTDATE.AsciiOnly = True
+        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(707, 234)
+        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
+        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
+        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
+        Me.TXTCOMPLAINTDATE.TabIndex = 944
+        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
+        '
         'InvoiceMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5918,8 +5922,8 @@ Partial Class InvoiceMaster
     Friend WithEvents CMDREMOVELR As Button
     Friend WithEvents TXTCOMPLAINTBY As TextBox
     Friend WithEvents Label61 As Label
-    Friend WithEvents DTCOMPLAINDATE As DateTimePicker
     Friend WithEvents Label27 As Label
     Friend WithEvents TXTCOMPLAINT As TextBox
     Friend WithEvents Label23 As Label
+    Friend WithEvents TXTCOMPLAINTDATE As MaskedTextBox
 End Class

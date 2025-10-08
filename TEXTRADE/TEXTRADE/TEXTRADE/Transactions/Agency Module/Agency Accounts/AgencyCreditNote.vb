@@ -160,7 +160,7 @@ Public Class AgencyCreditNote
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
-            DTCOMPLAINDATE.Value = Now.Date
+            TXTCOMPLAINTDATE.Clear()
             TXTCOMPLAINT.Clear()
             TXTCOMPLAINTBY.Clear()
         Catch ex As Exception
@@ -793,7 +793,7 @@ Public Class AgencyCreditNote
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             Dim objclsCNmaster As New ClsAgencyCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable
@@ -1447,7 +1447,7 @@ LINE1:
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID

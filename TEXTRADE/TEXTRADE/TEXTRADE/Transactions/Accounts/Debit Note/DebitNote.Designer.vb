@@ -67,10 +67,10 @@ Partial Class DebitNote
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.TXTCOMPLAIN = New System.Windows.Forms.TextBox()
-        Me.COMPLAINDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
+        Me.COMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.TXTCOMPLAINBY = New System.Windows.Forms.TextBox()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.ACTUALINVDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -541,10 +541,10 @@ Partial Class DebitNote
         '
         Me.TabPage6.Controls.Add(Me.Label22)
         Me.TabPage6.Controls.Add(Me.Label26)
-        Me.TabPage6.Controls.Add(Me.TXTCOMPLAIN)
-        Me.TabPage6.Controls.Add(Me.COMPLAINDATE)
+        Me.TabPage6.Controls.Add(Me.TXTCOMPLAINT)
+        Me.TabPage6.Controls.Add(Me.COMPLAINTDATE)
         Me.TabPage6.Controls.Add(Me.Label21)
-        Me.TabPage6.Controls.Add(Me.TXTCOMPLAINBY)
+        Me.TabPage6.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
@@ -579,30 +579,30 @@ Partial Class DebitNote
         Me.Label26.Text = "Complain Date"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'TXTCOMPLAIN
+        'TXTCOMPLAINT
         '
-        Me.TXTCOMPLAIN.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAIN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOMPLAIN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAIN.ForeColor = System.Drawing.Color.Black
-        Me.TXTCOMPLAIN.Location = New System.Drawing.Point(76, 2)
-        Me.TXTCOMPLAIN.Name = "TXTCOMPLAIN"
-        Me.TXTCOMPLAIN.Size = New System.Drawing.Size(144, 23)
-        Me.TXTCOMPLAIN.TabIndex = 1012
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.ForeColor = System.Drawing.Color.Black
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(76, 2)
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(144, 23)
+        Me.TXTCOMPLAINT.TabIndex = 1012
         '
-        'COMPLAINDATE
+        'COMPLAINTDATE
         '
-        Me.COMPLAINDATE.AsciiOnly = True
-        Me.COMPLAINDATE.BackColor = System.Drawing.SystemColors.Window
-        Me.COMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.COMPLAINDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.COMPLAINDATE.Location = New System.Drawing.Point(87, 29)
-        Me.COMPLAINDATE.Mask = "00/00/0000"
-        Me.COMPLAINDATE.Name = "COMPLAINDATE"
-        Me.COMPLAINDATE.Size = New System.Drawing.Size(82, 23)
-        Me.COMPLAINDATE.TabIndex = 1016
-        Me.COMPLAINDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.COMPLAINDATE.ValidatingType = GetType(Date)
+        Me.COMPLAINTDATE.AsciiOnly = True
+        Me.COMPLAINTDATE.BackColor = System.Drawing.SystemColors.Window
+        Me.COMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.COMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.COMPLAINTDATE.Location = New System.Drawing.Point(87, 29)
+        Me.COMPLAINTDATE.Mask = "00/00/0000"
+        Me.COMPLAINTDATE.Name = "COMPLAINTDATE"
+        Me.COMPLAINTDATE.Size = New System.Drawing.Size(82, 23)
+        Me.COMPLAINTDATE.TabIndex = 1016
+        Me.COMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.COMPLAINTDATE.ValidatingType = GetType(Date)
         '
         'Label21
         '
@@ -617,16 +617,16 @@ Partial Class DebitNote
         Me.Label21.Text = "Complain"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'TXTCOMPLAINBY
+        'TXTCOMPLAINTBY
         '
-        Me.TXTCOMPLAINBY.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINBY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOMPLAINBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINBY.ForeColor = System.Drawing.Color.Black
-        Me.TXTCOMPLAINBY.Location = New System.Drawing.Point(77, 59)
-        Me.TXTCOMPLAINBY.Name = "TXTCOMPLAINBY"
-        Me.TXTCOMPLAINBY.Size = New System.Drawing.Size(143, 23)
-        Me.TXTCOMPLAINBY.TabIndex = 1014
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.ForeColor = System.Drawing.Color.Black
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(77, 59)
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(143, 23)
+        Me.TXTCOMPLAINTBY.TabIndex = 1014
         '
         'Label18
         '
@@ -2904,10 +2904,10 @@ Partial Class DebitNote
     Friend WithEvents CHKINTCALC As CheckBox
     Friend WithEvents CMDAUTOPOST As Button
     Friend WithEvents Label21 As Label
-    Friend WithEvents TXTCOMPLAIN As TextBox
-    Friend WithEvents TXTCOMPLAINBY As TextBox
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents Label26 As Label
-    Friend WithEvents COMPLAINDATE As MaskedTextBox
+    Friend WithEvents COMPLAINTDATE As MaskedTextBox
     Friend WithEvents TabPage6 As TabPage
 End Class

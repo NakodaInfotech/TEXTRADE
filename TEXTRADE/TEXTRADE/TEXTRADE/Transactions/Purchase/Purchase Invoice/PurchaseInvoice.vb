@@ -208,7 +208,7 @@ Public Class PurchaseMaster
         TXTIGSTPER1.Clear()
         TXTIGSTAMT1.Clear()
         LBLACCEPTEDMTRS.Text = 0
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
 
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
@@ -531,7 +531,7 @@ Public Class PurchaseMaster
                         CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -1058,7 +1058,7 @@ Public Class PurchaseMaster
 
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval

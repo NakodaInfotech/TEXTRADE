@@ -81,7 +81,7 @@ Public Class AgencyInvoice
             GPARTYPONO.Visible = True
             GRIDINVOICE.Width = 1330
         End If
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
 
@@ -740,7 +740,7 @@ Public Class AgencyInvoice
 
                     TXTCOMPLAINT.Text = dr("COMPLAINT")
                     TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                    TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -1336,7 +1336,7 @@ Public Class AgencyInvoice
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim objclsPurord As New ClsAgencyInvoiceMaster()
             objclsPurord.alParaval = alParaval
