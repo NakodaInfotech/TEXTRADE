@@ -1201,8 +1201,8 @@ Public Class SaleReturn
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
-            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
 
 
@@ -1497,8 +1497,8 @@ NEXTLINE:
                         CMBFROMCITY.Text = dr("FROMCITY")
                         CMBTOCITY.Text = dr("TOCITY")
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
-                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
 
                     Next
 
@@ -4664,12 +4664,32 @@ NEXTLINE:
         numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
-        If e.KeyCode = Keys.F1 Then
-            Dim OBJREMARKS As New SelectRemarks
-            OBJREMARKS.FRMSTRING = "NARRATION"
-            OBJREMARKS.ShowDialog()
-            If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
-        End If
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

@@ -160,7 +160,7 @@ Public Class CREDITNOTE
             GRIDADJDOUBLECLICK = False
             CHKINTCALC.Checked = False
             TXTCOMPLAINT.Clear()
-            DTCOMPLAINTDATE.Text = Now.Date
+            TXTCOMPLAINTDATE.Clear()
             TXTCOMPLAINTBY.Clear()
 
         Catch ex As Exception
@@ -792,9 +792,10 @@ Public Class CREDITNOTE
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINTDATE.Value.DATE, "MM/dd/yyyy")) 'DTCOMPLAINTDATE.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text)
 
             Dim objclsCNmaster As New ClsCreditNote()
             objclsCNmaster.alParaval = alParaval
@@ -1513,8 +1514,8 @@ LINE1:
                         End If
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
-                        DTCOMPLAINTDATE.VALUE = dr("COMPLAINTDATE")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -3375,6 +3376,22 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
                 OBJREMARKS.FRMSTRING = "NARRATION"
                 OBJREMARKS.ShowDialog()
                 If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
             End If
         Catch ex As Exception
             Throw ex

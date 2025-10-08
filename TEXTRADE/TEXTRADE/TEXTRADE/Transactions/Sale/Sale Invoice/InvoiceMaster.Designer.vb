@@ -336,6 +336,7 @@ Partial Class InvoiceMaster
         Me.EAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ETAXID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -472,7 +473,6 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
-        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
@@ -1216,10 +1216,10 @@ Partial Class InvoiceMaster
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1238,10 +1238,10 @@ Partial Class InvoiceMaster
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -3851,11 +3851,25 @@ Partial Class InvoiceMaster
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "3. Additional Details"
         '
+        'TXTCOMPLAINTDATE
+        '
+        Me.TXTCOMPLAINTDATE.AsciiOnly = True
+        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(706, 239)
+        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
+        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
+        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(82, 23)
+        Me.TXTCOMPLAINTDATE.TabIndex = 944
+        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
+        '
         'TXTCOMPLAINTBY
         '
         Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
         Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(502, 234)
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(501, 239)
         Me.TXTCOMPLAINTBY.MaxLength = 100
         Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
         Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
@@ -3867,7 +3881,7 @@ Partial Class InvoiceMaster
         Me.Label61.BackColor = System.Drawing.Color.Transparent
         Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(419, 238)
+        Me.Label61.Location = New System.Drawing.Point(418, 243)
         Me.Label61.Name = "Label61"
         Me.Label61.Size = New System.Drawing.Size(78, 14)
         Me.Label61.TabIndex = 943
@@ -3879,7 +3893,7 @@ Partial Class InvoiceMaster
         Me.Label27.AutoSize = True
         Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(622, 236)
+        Me.Label27.Location = New System.Drawing.Point(621, 241)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(79, 15)
         Me.Label27.TabIndex = 941
@@ -3889,11 +3903,11 @@ Partial Class InvoiceMaster
         'TXTCOMPLAINT
         '
         Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCOMPLAINT.Location = New System.Drawing.Point(501, 206)
         Me.TXTCOMPLAINT.MaxLength = 100
         Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
-        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 22)
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 27)
         Me.TXTCOMPLAINT.TabIndex = 938
         '
         'Label23
@@ -3902,7 +3916,7 @@ Partial Class InvoiceMaster
         Me.Label23.BackColor = System.Drawing.Color.Transparent
         Me.Label23.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.Black
-        Me.Label23.Location = New System.Drawing.Point(434, 210)
+        Me.Label23.Location = New System.Drawing.Point(434, 212)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(63, 14)
         Me.Label23.TabIndex = 939
@@ -5459,20 +5473,6 @@ Partial Class InvoiceMaster
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'TXTCOMPLAINTDATE
-        '
-        Me.TXTCOMPLAINTDATE.AsciiOnly = True
-        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(707, 234)
-        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
-        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
-        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
-        Me.TXTCOMPLAINTDATE.TabIndex = 944
-        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
         '
         'InvoiceMaster
         '

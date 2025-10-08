@@ -74,7 +74,7 @@ Partial Class AgencySaleReturn
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TXTSPECIALREMARKS = New System.Windows.Forms.TextBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -308,12 +308,10 @@ Partial Class AgencySaleReturn
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.CMBPACKING = New System.Windows.Forms.ComboBox()
-        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
         CType(Me.PBQRCODE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RBREMOVEADJ, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -483,9 +481,9 @@ Partial Class AgencySaleReturn
         Me.CMBTOCITY.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBTOCITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBTOCITY.FormattingEnabled = True
-        Me.CMBTOCITY.Location = New System.Drawing.Point(933, 56)
+        Me.CMBTOCITY.Location = New System.Drawing.Point(953, 55)
         Me.CMBTOCITY.Name = "CMBTOCITY"
-        Me.CMBTOCITY.Size = New System.Drawing.Size(98, 23)
+        Me.CMBTOCITY.Size = New System.Drawing.Size(86, 23)
         Me.CMBTOCITY.TabIndex = 19
         '
         'CMBFROMCITY
@@ -495,7 +493,7 @@ Partial Class AgencySaleReturn
         Me.CMBFROMCITY.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBFROMCITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBFROMCITY.FormattingEnabled = True
-        Me.CMBFROMCITY.Location = New System.Drawing.Point(776, 55)
+        Me.CMBFROMCITY.Location = New System.Drawing.Point(798, 55)
         Me.CMBFROMCITY.Name = "CMBFROMCITY"
         Me.CMBFROMCITY.Size = New System.Drawing.Size(102, 23)
         Me.CMBFROMCITY.TabIndex = 20
@@ -504,7 +502,7 @@ Partial Class AgencySaleReturn
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(884, 61)
+        Me.Label1.Location = New System.Drawing.Point(907, 59)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 15)
         Me.Label1.TabIndex = 1015
@@ -610,7 +608,7 @@ Partial Class AgencySaleReturn
         '
         Me.City.AutoSize = True
         Me.City.BackColor = System.Drawing.Color.Transparent
-        Me.City.Location = New System.Drawing.Point(718, 62)
+        Me.City.Location = New System.Drawing.Point(737, 59)
         Me.City.Name = "City"
         Me.City.Size = New System.Drawing.Size(59, 15)
         Me.City.TabIndex = 1004
@@ -620,7 +618,6 @@ Partial Class AgencySaleReturn
         '
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage5)
-        Me.TabControl2.Controls.Add(Me.TabPage2)
         Me.TabControl2.Location = New System.Drawing.Point(12, 397)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -644,17 +641,17 @@ Partial Class AgencySaleReturn
         Me.txtremarks.Location = New System.Drawing.Point(2, 2)
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
-        Me.txtremarks.Size = New System.Drawing.Size(225, 83)
+        Me.txtremarks.Size = New System.Drawing.Size(225, 100)
         Me.txtremarks.TabIndex = 0
         Me.txtremarks.TabStop = False
         '
         'TabPage5
         '
         Me.TabPage5.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 24)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(230, 104)
+        Me.TabPage5.Size = New System.Drawing.Size(230, 102)
         Me.TabPage5.TabIndex = 1
         Me.TabPage5.Text = "2. Special Remarks"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -669,26 +666,25 @@ Partial Class AgencySaleReturn
         Me.TXTSPECIALREMARKS.Size = New System.Drawing.Size(224, 82)
         Me.TXTSPECIALREMARKS.TabIndex = 17
         '
-        'TabPage2
+        'TXTCOMPLAINTDATE
         '
-        Me.TabPage2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TabPage2.Controls.Add(Me.TXTCOMPLAINTDATE)
-        Me.TabPage2.Controls.Add(Me.TXTCOMPLAINTBY)
-        Me.TabPage2.Controls.Add(Me.Label61)
-        Me.TabPage2.Controls.Add(Me.Label23)
-        Me.TabPage2.Controls.Add(Me.TXTCOMPLAINT)
-        Me.TabPage2.Controls.Add(Me.Label35)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(230, 102)
-        Me.TabPage2.TabIndex = 2
-        Me.TabPage2.Text = "Complaints"
+        Me.TXTCOMPLAINTDATE.AsciiOnly = True
+        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(948, 133)
+        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
+        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
+        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
+        Me.TXTCOMPLAINTDATE.TabIndex = 950
+        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
         '
         'TXTCOMPLAINTBY
         '
         Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
         Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(89, 35)
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(629, 133)
         Me.TXTCOMPLAINTBY.MaxLength = 100
         Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
         Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
@@ -699,7 +695,7 @@ Partial Class AgencySaleReturn
         Me.Label61.BackColor = System.Drawing.Color.Transparent
         Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(0, 39)
+        Me.Label61.Location = New System.Drawing.Point(540, 137)
         Me.Label61.Name = "Label61"
         Me.Label61.Size = New System.Drawing.Size(88, 14)
         Me.Label61.TabIndex = 949
@@ -711,7 +707,7 @@ Partial Class AgencySaleReturn
         Me.Label23.AutoSize = True
         Me.Label23.BackColor = System.Drawing.Color.Transparent
         Me.Label23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(-1, 66)
+        Me.Label23.Location = New System.Drawing.Point(854, 137)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(92, 15)
         Me.Label23.TabIndex = 947
@@ -722,10 +718,10 @@ Partial Class AgencySaleReturn
         '
         Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
         Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(89, 8)
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(629, 106)
         Me.TXTCOMPLAINT.MaxLength = 100
         Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
-        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(139, 22)
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(395, 22)
         Me.TXTCOMPLAINT.TabIndex = 944
         '
         'Label35
@@ -733,7 +729,7 @@ Partial Class AgencySaleReturn
         Me.Label35.BackColor = System.Drawing.Color.Transparent
         Me.Label35.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.Color.Black
-        Me.Label35.Location = New System.Drawing.Point(-1, 11)
+        Me.Label35.Location = New System.Drawing.Point(539, 110)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(88, 14)
         Me.Label35.TabIndex = 945
@@ -793,7 +789,7 @@ Partial Class AgencySaleReturn
         Me.TXTSRCHNO.BackColor = System.Drawing.Color.Linen
         Me.TXTSRCHNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTSRCHNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSRCHNO.Location = New System.Drawing.Point(953, 84)
+        Me.TXTSRCHNO.Location = New System.Drawing.Point(953, 83)
         Me.TXTSRCHNO.Name = "TXTSRCHNO"
         Me.TXTSRCHNO.ReadOnly = True
         Me.TXTSRCHNO.Size = New System.Drawing.Size(86, 23)
@@ -808,7 +804,7 @@ Partial Class AgencySaleReturn
         Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(873, 88)
+        Me.Label27.Location = New System.Drawing.Point(873, 87)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(78, 15)
         Me.Label27.TabIndex = 971
@@ -994,7 +990,7 @@ Partial Class AgencySaleReturn
         Me.Label22.AutoSize = True
         Me.Label22.BackColor = System.Drawing.Color.Transparent
         Me.Label22.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(722, 115)
+        Me.Label22.Location = New System.Drawing.Point(722, 116)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(74, 15)
         Me.Label22.TabIndex = 923
@@ -1017,7 +1013,7 @@ Partial Class AgencySaleReturn
         Me.TXTPARTYREFNO.BackColor = System.Drawing.Color.White
         Me.TXTPARTYREFNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTPARTYREFNO.ForeColor = System.Drawing.Color.Black
-        Me.TXTPARTYREFNO.Location = New System.Drawing.Point(798, 111)
+        Me.TXTPARTYREFNO.Location = New System.Drawing.Point(798, 112)
         Me.TXTPARTYREFNO.Name = "TXTPARTYREFNO"
         Me.TXTPARTYREFNO.Size = New System.Drawing.Size(165, 23)
         Me.TXTPARTYREFNO.TabIndex = 9
@@ -1112,7 +1108,7 @@ Partial Class AgencySaleReturn
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.Black
-        Me.Label13.Location = New System.Drawing.Point(725, 87)
+        Me.Label13.Location = New System.Drawing.Point(722, 87)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(74, 15)
         Me.Label13.TabIndex = 920
@@ -1486,7 +1482,7 @@ Partial Class AgencySaleReturn
         Me.TXTINVNO.BackColor = System.Drawing.Color.Linen
         Me.TXTINVNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTINVNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTINVNO.Location = New System.Drawing.Point(619, 56)
+        Me.TXTINVNO.Location = New System.Drawing.Point(619, 55)
         Me.TXTINVNO.Name = "TXTINVNO"
         Me.TXTINVNO.ReadOnly = True
         Me.TXTINVNO.Size = New System.Drawing.Size(86, 23)
@@ -2076,10 +2072,16 @@ Partial Class AgencySaleReturn
         'TBEXTRACHGS
         '
         Me.TBEXTRACHGS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBEXTRACHGS.Controls.Add(Me.TXTCOMPLAINTDATE)
         Me.TBEXTRACHGS.Controls.Add(Me.CHKCD)
+        Me.TBEXTRACHGS.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TBEXTRACHGS.Controls.Add(Me.ACKDATE)
+        Me.TBEXTRACHGS.Controls.Add(Me.Label61)
         Me.TBEXTRACHGS.Controls.Add(Me.Label56)
+        Me.TBEXTRACHGS.Controls.Add(Me.Label23)
         Me.TBEXTRACHGS.Controls.Add(Me.TXTACKNO)
+        Me.TBEXTRACHGS.Controls.Add(Me.TXTCOMPLAINT)
+        Me.TBEXTRACHGS.Controls.Add(Me.Label35)
         Me.TBEXTRACHGS.Controls.Add(Me.Label58)
         Me.TBEXTRACHGS.Controls.Add(Me.CMDGETQRCODE)
         Me.TBEXTRACHGS.Controls.Add(Me.CMDUPLOADIRN)
@@ -2166,7 +2168,7 @@ Partial Class AgencySaleReturn
         Me.CMDGETQRCODE.FlatAppearance.BorderSize = 0
         Me.CMDGETQRCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDGETQRCODE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDGETQRCODE.Location = New System.Drawing.Point(785, 162)
+        Me.CMDGETQRCODE.Location = New System.Drawing.Point(629, 73)
         Me.CMDGETQRCODE.Name = "CMDGETQRCODE"
         Me.CMDGETQRCODE.Size = New System.Drawing.Size(100, 27)
         Me.CMDGETQRCODE.TabIndex = 1010
@@ -2180,7 +2182,7 @@ Partial Class AgencySaleReturn
         Me.CMDUPLOADIRN.FlatAppearance.BorderSize = 0
         Me.CMDUPLOADIRN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDUPLOADIRN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDUPLOADIRN.Location = New System.Drawing.Point(785, 128)
+        Me.CMDUPLOADIRN.Location = New System.Drawing.Point(629, 40)
         Me.CMDUPLOADIRN.Name = "CMDUPLOADIRN"
         Me.CMDUPLOADIRN.Size = New System.Drawing.Size(100, 27)
         Me.CMDUPLOADIRN.TabIndex = 1009
@@ -2249,7 +2251,7 @@ Partial Class AgencySaleReturn
         'TXTCHGSPER
         '
         Me.TXTCHGSPER.BackColor = System.Drawing.Color.White
-        Me.TXTCHGSPER.Location = New System.Drawing.Point(276, 0)
+        Me.TXTCHGSPER.Location = New System.Drawing.Point(285, 4)
         Me.TXTCHGSPER.Name = "TXTCHGSPER"
         Me.TXTCHGSPER.Size = New System.Drawing.Size(80, 23)
         Me.TXTCHGSPER.TabIndex = 914
@@ -2284,7 +2286,7 @@ Partial Class AgencySaleReturn
         DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCHGS.DefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDCHGS.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDCHGS.Location = New System.Drawing.Point(-4, 22)
+        Me.GRIDCHGS.Location = New System.Drawing.Point(5, 26)
         Me.GRIDCHGS.MultiSelect = False
         Me.GRIDCHGS.Name = "GRIDCHGS"
         Me.GRIDCHGS.ReadOnly = True
@@ -2297,7 +2299,7 @@ Partial Class AgencySaleReturn
         Me.GRIDCHGS.RowTemplate.Height = 20
         Me.GRIDCHGS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCHGS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDCHGS.Size = New System.Drawing.Size(489, 247)
+        Me.GRIDCHGS.Size = New System.Drawing.Size(489, 190)
         Me.GRIDCHGS.TabIndex = 915
         Me.GRIDCHGS.TabStop = False
         '
@@ -2350,7 +2352,7 @@ Partial Class AgencySaleReturn
         'TXTCHGSAMT
         '
         Me.TXTCHGSAMT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTCHGSAMT.Location = New System.Drawing.Point(356, 0)
+        Me.TXTCHGSAMT.Location = New System.Drawing.Point(365, 4)
         Me.TXTCHGSAMT.Name = "TXTCHGSAMT"
         Me.TXTCHGSAMT.Size = New System.Drawing.Size(102, 23)
         Me.TXTCHGSAMT.TabIndex = 916
@@ -2359,7 +2361,7 @@ Partial Class AgencySaleReturn
         'TXTCHGSSRNO
         '
         Me.TXTCHGSSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTCHGSSRNO.Location = New System.Drawing.Point(-4, 0)
+        Me.TXTCHGSSRNO.Location = New System.Drawing.Point(5, 4)
         Me.TXTCHGSSRNO.Name = "TXTCHGSSRNO"
         Me.TXTCHGSSRNO.Size = New System.Drawing.Size(30, 23)
         Me.TXTCHGSSRNO.TabIndex = 912
@@ -2370,7 +2372,7 @@ Partial Class AgencySaleReturn
         Me.CMBCHARGES.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBCHARGES.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBCHARGES.FormattingEnabled = True
-        Me.CMBCHARGES.Location = New System.Drawing.Point(26, 0)
+        Me.CMBCHARGES.Location = New System.Drawing.Point(35, 4)
         Me.CMBCHARGES.Name = "CMBCHARGES"
         Me.CMBCHARGES.Size = New System.Drawing.Size(250, 23)
         Me.CMBCHARGES.TabIndex = 913
@@ -3320,7 +3322,7 @@ Partial Class AgencySaleReturn
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(11, 30)
+        Me.Label2.Location = New System.Drawing.Point(11, 27)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(181, 26)
         Me.Label2.TabIndex = 430
@@ -3468,20 +3470,6 @@ Partial Class AgencySaleReturn
         Me.CMBPACKING.Size = New System.Drawing.Size(241, 23)
         Me.CMBPACKING.TabIndex = 7
         '
-        'TXTCOMPLAINTDATE
-        '
-        Me.TXTCOMPLAINTDATE.AsciiOnly = True
-        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(89, 63)
-        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
-        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
-        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
-        Me.TXTCOMPLAINTDATE.TabIndex = 950
-        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
-        '
         'AgencySaleReturn
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3500,8 +3488,6 @@ Partial Class AgencySaleReturn
         Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         CType(Me.PBQRCODE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RBREMOVEADJ, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
@@ -3777,7 +3763,6 @@ Partial Class AgencySaleReturn
     Friend WithEvents CMBPACKING As ComboBox
     Friend WithEvents Button1 As Button
     Friend WithEvents TXTSELLERSTATECODE As TextBox
-    Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TXTCOMPLAINTBY As TextBox
     Friend WithEvents Label61 As Label
     Friend WithEvents Label23 As Label

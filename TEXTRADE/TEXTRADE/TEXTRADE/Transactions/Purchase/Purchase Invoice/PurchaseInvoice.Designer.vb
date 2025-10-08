@@ -297,7 +297,7 @@ Partial Class PurchaseMaster
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TXTSPLREMARKS = New System.Windows.Forms.TextBox()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
         Me.Label61 = New System.Windows.Forms.Label()
@@ -382,7 +382,6 @@ Partial Class PurchaseMaster
         Me.CMDSELECTPO = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBTDS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBDN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,7 +397,6 @@ Partial Class PurchaseMaster
         Me.TabControl2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TBSCANDOCS.SuspendLayout()
         CType(Me.gridupload, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3144,10 +3142,16 @@ Partial Class PurchaseMaster
         'TBADDDTLS
         '
         Me.TBADDDTLS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TBADDDTLS.Controls.Add(Me.TXTCOMPLAINTDATE)
         Me.TBADDDTLS.Controls.Add(Me.LBLCOSTCENTER)
+        Me.TBADDDTLS.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TBADDDTLS.Controls.Add(Me.TabControl2)
+        Me.TBADDDTLS.Controls.Add(Me.TXTCOMPLAINT)
         Me.TBADDDTLS.Controls.Add(Me.CMBCOSTCENTERNAME)
+        Me.TBADDDTLS.Controls.Add(Me.Label61)
         Me.TBADDDTLS.Controls.Add(Me.TXTPOGRIDSRNO)
+        Me.TBADDDTLS.Controls.Add(Me.Label44)
+        Me.TBADDDTLS.Controls.Add(Me.Label43)
         Me.TBADDDTLS.Controls.Add(Me.TXTNOOFBALES)
         Me.TBADDDTLS.Controls.Add(Me.Label35)
         Me.TBADDDTLS.Controls.Add(Me.CMBSCREENTYPE)
@@ -3199,8 +3203,7 @@ Partial Class PurchaseMaster
         '
         Me.TabControl2.Controls.Add(Me.TabPage1)
         Me.TabControl2.Controls.Add(Me.TabPage2)
-        Me.TabControl2.Controls.Add(Me.TabPage3)
-        Me.TabControl2.Location = New System.Drawing.Point(484, 132)
+        Me.TabControl2.Location = New System.Drawing.Point(408, 132)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(406, 94)
@@ -3220,19 +3223,19 @@ Partial Class PurchaseMaster
         'txtremarks
         '
         Me.txtremarks.ForeColor = System.Drawing.Color.DimGray
-        Me.txtremarks.Location = New System.Drawing.Point(6, 0)
+        Me.txtremarks.Location = New System.Drawing.Point(1, 1)
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
-        Me.txtremarks.Size = New System.Drawing.Size(391, 66)
+        Me.txtremarks.Size = New System.Drawing.Size(396, 66)
         Me.txtremarks.TabIndex = 0
         '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.TXTSPLREMARKS)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(398, 68)
+        Me.TabPage2.Size = New System.Drawing.Size(398, 67)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Spl Remarks"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -3246,61 +3249,62 @@ Partial Class PurchaseMaster
         Me.TXTSPLREMARKS.Size = New System.Drawing.Size(392, 62)
         Me.TXTSPLREMARKS.TabIndex = 928
         '
-        'TabPage3
+        'TXTCOMPLAINTDATE
         '
-        Me.TabPage3.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(227, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINTDATE)
-        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINTBY)
-        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINT)
-        Me.TabPage3.Controls.Add(Me.Label61)
-        Me.TabPage3.Controls.Add(Me.Label44)
-        Me.TabPage3.Controls.Add(Me.Label43)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 23)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(398, 67)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Complaints"
+        Me.TXTCOMPLAINTDATE.AsciiOnly = True
+        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(1169, 197)
+        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
+        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
+        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
+        Me.TXTCOMPLAINTDATE.TabIndex = 950
+        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
         '
         'TXTCOMPLAINTBY
         '
         Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(94, 31)
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(957, 197)
         Me.TXTCOMPLAINTBY.MaxLength = 100
         Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
-        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 22)
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 23)
         Me.TXTCOMPLAINTBY.TabIndex = 948
         '
         'TXTCOMPLAINT
         '
         Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(93, 3)
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(957, 164)
         Me.TXTCOMPLAINT.MaxLength = 100
         Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
-        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 22)
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 27)
         Me.TXTCOMPLAINT.TabIndex = 944
         '
         'Label61
         '
+        Me.Label61.AutoSize = True
         Me.Label61.BackColor = System.Drawing.Color.Transparent
         Me.Label61.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(5, 35)
+        Me.Label61.Location = New System.Drawing.Point(875, 201)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(88, 14)
+        Me.Label61.Size = New System.Drawing.Size(78, 14)
         Me.Label61.TabIndex = 949
         Me.Label61.Text = "Complaint By"
         Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label44
         '
+        Me.Label44.AutoSize = True
         Me.Label44.BackColor = System.Drawing.Color.Transparent
         Me.Label44.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label44.ForeColor = System.Drawing.Color.Black
-        Me.Label44.Location = New System.Drawing.Point(4, 7)
+        Me.Label44.Location = New System.Drawing.Point(891, 170)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(88, 14)
+        Me.Label44.Size = New System.Drawing.Size(63, 14)
         Me.Label44.TabIndex = 945
         Me.Label44.Text = "Complaint"
         Me.Label44.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -3310,11 +3314,11 @@ Partial Class PurchaseMaster
         Me.Label43.AutoSize = True
         Me.Label43.BackColor = System.Drawing.Color.Transparent
         Me.Label43.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.Location = New System.Drawing.Point(206, 33)
+        Me.Label43.Location = New System.Drawing.Point(1089, 201)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(92, 15)
+        Me.Label43.Size = New System.Drawing.Size(79, 15)
         Me.Label43.TabIndex = 947
-        Me.Label43.Text = "Complaint Date"
+        Me.Label43.Text = "Complaint Dt"
         Me.Label43.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBCOSTCENTERNAME
@@ -4212,20 +4216,6 @@ Partial Class PurchaseMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'TXTCOMPLAINTDATE
-        '
-        Me.TXTCOMPLAINTDATE.AsciiOnly = True
-        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(304, 31)
-        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
-        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
-        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(76, 23)
-        Me.TXTCOMPLAINTDATE.TabIndex = 950
-        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
-        '
         'PurchaseMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4258,8 +4248,6 @@ Partial Class PurchaseMaster
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.TBSCANDOCS.ResumeLayout(False)
@@ -4580,6 +4568,5 @@ Partial Class PurchaseMaster
     Friend WithEvents Label43 As Label
     Friend WithEvents TXTCOMPLAINT As TextBox
     Friend WithEvents Label44 As Label
-    Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TXTCOMPLAINTDATE As MaskedTextBox
 End Class

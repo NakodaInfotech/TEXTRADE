@@ -111,6 +111,9 @@ Partial Class InvoiceDetails
         Me.GREFERREDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRADINGACC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -316,12 +319,13 @@ Partial Class InvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
         Me.gridbill.OptionsView.ColumnAutoWidth = False
+        Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
@@ -337,7 +341,7 @@ Partial Class InvoiceDetails
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "SRNO"
-        Me.gsrno.ImageIndex = 1
+        Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
@@ -388,7 +392,7 @@ Partial Class InvoiceDetails
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
@@ -1059,6 +1063,33 @@ Partial Class InvoiceDetails
         Me.GMONTHNAME.VisibleIndex = 67
         Me.GMONTHNAME.Width = 100
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 68
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 69
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 70
+        '
         'CHKEDIT
         '
         Me.CHKEDIT.AutoHeight = False
@@ -1345,4 +1376,7 @@ Partial Class InvoiceDetails
     Friend WithEvents GTRADINGACC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

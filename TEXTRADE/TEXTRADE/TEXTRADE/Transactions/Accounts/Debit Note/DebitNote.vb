@@ -138,7 +138,7 @@ Public Class DebitNote
             TXTADJTOTAL.Clear()
             TXTINVTOTAL.Clear()
             TXTCOMPLAINT.Clear()
-            COMPLAINTDATE.Clear()
+            TXTCOMPLAINTDATE.Clear()
             TXTCOMPLAINTBY.Clear()
 
             GRIDPAYMENT.RowCount = 0
@@ -775,9 +775,10 @@ Public Class DebitNote
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
-            alParaval.Add(COMPLAINTDATE.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
 
             Dim objclsDNmaster As New ClsDebitNote()
@@ -1372,9 +1373,10 @@ Public Class DebitNote
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         If Convert.ToBoolean(dr("CD")) = False Then CHKCD.Checked = False Else CHKCD.Checked = True
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
+
                         TXTCOMPLAINT.Text = dt.Rows(0).Item("COMPLAINT")
-                        COMPLAINTDATE.Text = dt.Rows(0).Item("COMPLAINTDATE")
                         TXTCOMPLAINTBY.Text = dt.Rows(0).Item("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dt.Rows(0).Item("COMPLAINTDATE")
 
                         TXTBILLREMARKS.Text = dr("BILLREMARKS")
                         txtinwords.Text = Convert.ToString(dr("INWORDS"))
@@ -3266,12 +3268,32 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
         End Try
     End Sub
 
-    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
-        If e.KeyCode = Keys.F1 Then
-            Dim OBJREMARKS As New SelectRemarks
-            OBJREMARKS.FRMSTRING = "NARRATION"
-            OBJREMARKS.ShowDialog()
-            If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
-        End If
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
