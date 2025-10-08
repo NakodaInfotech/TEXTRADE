@@ -343,6 +343,43 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYLOOMMTR", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BLENDPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHMETHOD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITIES", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITYTYPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPWASTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WASTAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHRINKAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WPP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEAVECOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PRODUCTIONPERDAY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PCSL", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
+                I += 1
+
 
 
             End With
@@ -645,8 +682,9 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@FDSHADE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@F                                                                                                           DMAINSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@FDMAINSRNO", alParaval(I)))
                 I += 1
+
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
                 I += 1
@@ -681,6 +719,42 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYLOOMMTR", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BLENDPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHMETHOD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITIES", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITYTYPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPWASTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WASTAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHRINKAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WPP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEAVECOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PRODUCTIONPERDAY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PCSL", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
                 I += 1
