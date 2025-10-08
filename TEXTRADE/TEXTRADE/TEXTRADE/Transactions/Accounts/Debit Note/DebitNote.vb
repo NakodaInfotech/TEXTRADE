@@ -137,9 +137,9 @@ Public Class DebitNote
             TXTADJAMT.Clear()
             TXTADJTOTAL.Clear()
             TXTINVTOTAL.Clear()
-            TXTCOMPLAIN.Clear()
-            COMPLAINDATE.Clear()
-            TXTCOMPLAINBY.Clear()
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTDATE.Clear()
+            TXTCOMPLAINTBY.Clear()
 
             GRIDPAYMENT.RowCount = 0
             GRIDBILL.DataSource = Nothing
@@ -775,9 +775,10 @@ Public Class DebitNote
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
-            alParaval.Add(TXTCOMPLAIN.Text.Trim)
-            alParaval.Add(COMPLAINDATE.Text.Trim)
-            alParaval.Add(TXTCOMPLAINBY.Text.Trim)
+
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
 
             Dim objclsDNmaster As New ClsDebitNote()
@@ -880,10 +881,10 @@ Public Class DebitNote
         End If
 
 
-        'If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-        '    EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
-        '    bln = False
-        'End If
+        If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+            EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
+            bln = False
+        End If
 
 
         'IF INVOICENO IS NOT BLANK THEN CHECK THAT FIGURES CANNOT BE GREATER THEN BALANCEAMT
@@ -913,10 +914,10 @@ Public Class DebitNote
 
 
         For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-            'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-            '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-            '    bln = False
-            'End If
+            If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                bln = False
+            End If
             If ClientName <> "MASHOK" Then
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = DNREGINITIAL & "-" & Val(TXTDNNO.Text.Trim)
             End If
@@ -1372,9 +1373,10 @@ Public Class DebitNote
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         If Convert.ToBoolean(dr("CD")) = False Then CHKCD.Checked = False Else CHKCD.Checked = True
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
-                        TXTCOMPLAIN.Text = dt.Rows(0).Item("COMPLAIN")
-                        COMPLAINDATE.Text = dt.Rows(0).Item("COMPLAINDATE")
-                        TXTCOMPLAINBY.Text = dt.Rows(0).Item("COMPLAINBY")
+
+                        TXTCOMPLAINT.Text = dt.Rows(0).Item("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dt.Rows(0).Item("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dt.Rows(0).Item("COMPLAINTDATE")
 
                         TXTBILLREMARKS.Text = dr("BILLREMARKS")
                         txtinwords.Text = Convert.ToString(dr("INWORDS"))
@@ -3266,12 +3268,32 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
         End Try
     End Sub
 
-    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAIN.KeyDown
-        If e.KeyCode = Keys.F1 Then
-            Dim OBJREMARKS As New SelectRemarks
-            OBJREMARKS.FRMSTRING = "NARRATION"
-            OBJREMARKS.ShowDialog()
-            If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
-        End If
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

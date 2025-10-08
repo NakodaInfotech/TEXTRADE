@@ -114,7 +114,12 @@ Public Class ClsAgencyOpeningBills
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PARTYBILLNO", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
+                I = I + 1
 
             End With
 

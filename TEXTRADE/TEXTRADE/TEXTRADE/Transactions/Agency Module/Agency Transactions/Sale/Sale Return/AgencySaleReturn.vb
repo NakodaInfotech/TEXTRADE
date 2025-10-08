@@ -66,7 +66,7 @@ Public Class AgencySaleReturn
             TXTPARTYREFNO.Clear()
             TXTSRCHNO.Clear()
 
-            DTCOMPLAINDATE.Value = Now.Date
+            TXTCOMPLAINTDATE.Clear()
             TXTCOMPLAINT.Clear()
             TXTCOMPLAINTBY.Clear()
             txtsrno.Clear()
@@ -1153,9 +1153,11 @@ Public Class AgencySaleReturn
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
+
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+
             Dim OBJPURCH As New ClsAgencySaleReturn()
             OBJPURCH.alParaval = alParaval
 
@@ -1352,7 +1354,7 @@ Public Class AgencySaleReturn
                         CMBTOCITY.Text = Convert.ToString(dr("TOCITY"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
 

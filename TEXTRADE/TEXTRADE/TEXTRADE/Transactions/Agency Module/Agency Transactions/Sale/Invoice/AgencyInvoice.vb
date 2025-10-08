@@ -81,7 +81,7 @@ Public Class AgencyInvoice
             GPARTYPONO.Visible = True
             GRIDINVOICE.Width = 1330
         End If
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
 
@@ -740,7 +740,7 @@ Public Class AgencyInvoice
 
                     TXTCOMPLAINT.Text = dr("COMPLAINT")
                     TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                    TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -819,12 +819,19 @@ Public Class AgencyInvoice
     End Sub
 
     Private Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
-        If ISLOCKYEAR = True Then
-            MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
-            Exit Sub
-        End If
-
         Try
+
+            'WHILE ADDING COLUMN IN AGENCYINVOICE DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            '1) INVOICEMASTER -- GENERATEAGENCYINVOICE
+
+
+
+            If ISLOCKYEAR = True Then
+                MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+
             Cursor.Current = Cursors.WaitCursor
             Dim IntResult As Integer
 
@@ -1336,7 +1343,7 @@ Public Class AgencyInvoice
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim objclsPurord As New ClsAgencyInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -5954,6 +5961,22 @@ LINE1:
                 OBJREMARKS.FRMSTRING = "NARRATION"
                 OBJREMARKS.ShowDialog()
                 If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
             End If
         Catch ex As Exception
             Throw ex

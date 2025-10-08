@@ -208,7 +208,7 @@ Public Class PurchaseMaster
         TXTIGSTPER1.Clear()
         TXTIGSTAMT1.Clear()
         LBLACCEPTEDMTRS.Text = 0
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
 
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
@@ -531,7 +531,7 @@ Public Class PurchaseMaster
                         CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -610,7 +610,7 @@ Public Class PurchaseMaster
         'Dim IntResult As Integer
         Try
 
-            'WHILE ADDING COLUMN IN JOBOUT DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            'WHILE ADDING COLUMN IN PURCHASEMASTER DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
             '1) MAGOCBOXINVOICE -- GENERATEPI
 
 
@@ -1058,7 +1058,7 @@ Public Class PurchaseMaster
 
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval
@@ -6065,6 +6065,7 @@ NEXTLINE:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
     Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
@@ -6072,6 +6073,22 @@ NEXTLINE:
                 OBJREMARKS.FRMSTRING = "NARRATION"
                 OBJREMARKS.ShowDialog()
                 If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
             End If
         Catch ex As Exception
             Throw ex

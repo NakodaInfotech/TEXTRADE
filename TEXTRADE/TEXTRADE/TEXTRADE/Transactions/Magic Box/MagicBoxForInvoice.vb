@@ -530,6 +530,10 @@ NEXTLINE:
             alParaval.Add(0)    'CD
             alParaval.Add("")   'COSTCENTRE
 
+            alParaval.Add("")   'COMPLAINT
+            alParaval.Add("")   'COMPLAINTBY
+            alParaval.Add("")   'COMPLAINTDATE
+
             Dim objclsCNmaster As New ClsAgencyCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable = objclsCNmaster.SAVE()
@@ -2087,6 +2091,9 @@ line1:
             ALPARAVAL.Add("")   'SHIPTO
             ALPARAVAL.Add(0)    'HOLDFORINT
 
+            ALPARAVAL.Add("")   'COMPLAINT
+            ALPARAVAL.Add("")   'COMPLAINTBY
+            ALPARAVAL.Add("")   'COMPLAINTDATE
 
             Dim OBJPI As New ClsPurchaseMaster()
             OBJPI.alParaval = ALPARAVAL

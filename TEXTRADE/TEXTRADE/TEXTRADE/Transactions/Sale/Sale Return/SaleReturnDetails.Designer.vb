@@ -69,6 +69,9 @@ Partial Class SaleReturnDetails
         Me.GAGENTEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOSTCENTERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -222,7 +225,7 @@ Partial Class SaleReturnDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GAGENT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTAXABLEAMT, Me.CGSTAMT, Me.SGSTAMT, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GACTUALINVNO, Me.GACTUALINVDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GCOSTCENTERNAME, Me.GCREATEDBY})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GAGENT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTAXABLEAMT, Me.CGSTAMT, Me.SGSTAMT, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GACTUALINVNO, Me.GACTUALINVDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -265,7 +268,7 @@ Partial Class SaleReturnDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -580,6 +583,33 @@ Partial Class SaleReturnDetails
         Me.GCREATEDBY.Visible = True
         Me.GCREATEDBY.VisibleIndex = 32
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 33
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 34
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 35
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.ToolStripButton2, Me.TOOLMAIL, Me.PrintToolStripButton, Me.TOOLWHATSAPP, Me.ToolStripSeparator1, Me.TOOLGRIDDETAILS, Me.ToolStripSeparator2})
@@ -764,4 +794,7 @@ Partial Class SaleReturnDetails
     Friend WithEvents GCOSTCENTERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATEDBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

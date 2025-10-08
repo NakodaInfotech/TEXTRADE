@@ -274,15 +274,11 @@ Public Class Receipt
             End If
 
             For Each ROW As DataGridViewRow In gridpayment.Rows
-                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
-
-                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                '    BLN = False
-                'End If
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    BLN = False
+                End If
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = recreginitial & "-" & Val(txtaccno.Text.Trim)
             Next
 
             If cmbaccname.Text.Trim.Length = 0 Then
@@ -300,10 +296,10 @@ Public Class Receipt
                 BLN = False
             End If
 
-            'If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
-            '    EP.SetError(txttotal, "Total does not match Specified Amt")
-            '    BLN = False
-            'End If
+            If Val(txtchqamt.Text.Trim) <> Val(txttotal.Text.Trim) Then
+                EP.SetError(txttotal, "Total does not match Specified Amt")
+                BLN = False
+            End If
 
             Dim OBJCMN1 As New ClsCommon
             Dim DT As DataTable = OBJCMN1.search(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)

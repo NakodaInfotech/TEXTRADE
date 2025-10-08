@@ -83,6 +83,9 @@ Partial Class AgencyCreditNoteDetails
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridCN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,7 +194,7 @@ Partial Class AgencyCreditNoteDetails
         Me.gridCN.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridCN.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridCN.Appearance.Row.Options.UseFont = True
-        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY})
+        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridCN.GridControl = Me.griddetails
         Me.gridCN.Name = "gridCN"
         Me.gridCN.OptionsBehavior.AutoExpandAllGroups = True
@@ -443,7 +446,7 @@ Partial Class AgencyCreditNoteDetails
         Me.GNOGSTR1.FieldName = "NOGSTR1"
         Me.GNOGSTR1.Name = "GNOGSTR1"
         Me.GNOGSTR1.Visible = True
-        Me.GNOGSTR1.VisibleIndex = 35
+        Me.GNOGSTR1.VisibleIndex = 38
         '
         'GGROUPNAME
         '
@@ -659,6 +662,30 @@ Partial Class AgencyCreditNoteDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 35
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 36
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 37
+        '
         'AgencyCreditNoteDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -739,4 +766,7 @@ Partial Class AgencyCreditNoteDetails
     Private WithEvents imageList1 As ImageList
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

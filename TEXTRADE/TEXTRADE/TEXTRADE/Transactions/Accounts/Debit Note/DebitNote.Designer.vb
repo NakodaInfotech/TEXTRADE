@@ -65,12 +65,6 @@ Partial Class DebitNote
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TXTSPECIALREMARKS = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.TXTCOMPLAIN = New System.Windows.Forms.TextBox()
-        Me.COMPLAINDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.TXTCOMPLAINBY = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.ACTUALINVDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -113,10 +107,16 @@ Partial Class DebitNote
         Me.TXTCHGSAMT = New System.Windows.Forms.TextBox()
         Me.TXTCHGSPER = New System.Windows.Forms.TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.ACKDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINT = New System.Windows.Forms.TextBox()
+        Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTACKNO = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
         Me.Label58 = New System.Windows.Forms.Label()
+        Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.TXTFILENAME = New System.Windows.Forms.TextBox()
         Me.txtimgpath = New System.Windows.Forms.TextBox()
         Me.CMDGETQRCODE = New System.Windows.Forms.Button()
@@ -244,7 +244,6 @@ Partial Class DebitNote
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
-        Me.TabPage6.SuspendLayout()
         CType(Me.PBQRCODE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RBREMOVEADJ, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -539,94 +538,13 @@ Partial Class DebitNote
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.Label22)
-        Me.TabPage6.Controls.Add(Me.Label26)
-        Me.TabPage6.Controls.Add(Me.TXTCOMPLAIN)
-        Me.TabPage6.Controls.Add(Me.COMPLAINDATE)
-        Me.TabPage6.Controls.Add(Me.Label21)
-        Me.TabPage6.Controls.Add(Me.TXTCOMPLAINBY)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(221, 87)
+        Me.TabPage6.Size = New System.Drawing.Size(221, 88)
         Me.TabPage6.TabIndex = 2
         Me.TabPage6.Text = "Complain"
         Me.TabPage6.UseVisualStyleBackColor = True
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.BackColor = System.Drawing.Color.Transparent
-        Me.Label22.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.Black
-        Me.Label22.Location = New System.Drawing.Point(-1, 63)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(74, 14)
-        Me.Label22.TabIndex = 1015
-        Me.Label22.Text = "Complain By"
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.BackColor = System.Drawing.Color.Transparent
-        Me.Label26.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(-1, 33)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(88, 14)
-        Me.Label26.TabIndex = 1017
-        Me.Label26.Text = "Complain Date"
-        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'TXTCOMPLAIN
-        '
-        Me.TXTCOMPLAIN.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAIN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOMPLAIN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAIN.ForeColor = System.Drawing.Color.Black
-        Me.TXTCOMPLAIN.Location = New System.Drawing.Point(76, 2)
-        Me.TXTCOMPLAIN.Name = "TXTCOMPLAIN"
-        Me.TXTCOMPLAIN.Size = New System.Drawing.Size(144, 23)
-        Me.TXTCOMPLAIN.TabIndex = 1012
-        '
-        'COMPLAINDATE
-        '
-        Me.COMPLAINDATE.AsciiOnly = True
-        Me.COMPLAINDATE.BackColor = System.Drawing.SystemColors.Window
-        Me.COMPLAINDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.COMPLAINDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.COMPLAINDATE.Location = New System.Drawing.Point(87, 29)
-        Me.COMPLAINDATE.Mask = "00/00/0000"
-        Me.COMPLAINDATE.Name = "COMPLAINDATE"
-        Me.COMPLAINDATE.Size = New System.Drawing.Size(82, 23)
-        Me.COMPLAINDATE.TabIndex = 1016
-        Me.COMPLAINDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.COMPLAINDATE.ValidatingType = GetType(Date)
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.BackColor = System.Drawing.Color.Transparent
-        Me.Label21.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(12, 6)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(59, 14)
-        Me.Label21.TabIndex = 1013
-        Me.Label21.Text = "Complain"
-        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'TXTCOMPLAINBY
-        '
-        Me.TXTCOMPLAINBY.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINBY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOMPLAINBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINBY.ForeColor = System.Drawing.Color.Black
-        Me.TXTCOMPLAINBY.Location = New System.Drawing.Point(77, 59)
-        Me.TXTCOMPLAINBY.Name = "TXTCOMPLAINBY"
-        Me.TXTCOMPLAINBY.Size = New System.Drawing.Size(143, 23)
-        Me.TXTCOMPLAINBY.TabIndex = 1014
         '
         'Label18
         '
@@ -1140,22 +1058,41 @@ Partial Class DebitNote
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage3.Controls.Add(Me.Label22)
         Me.TabPage3.Controls.Add(Me.ACKDATE)
+        Me.TabPage3.Controls.Add(Me.Label26)
         Me.TabPage3.Controls.Add(Me.Label56)
+        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINT)
+        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINTDATE)
         Me.TabPage3.Controls.Add(Me.TXTACKNO)
+        Me.TabPage3.Controls.Add(Me.Label21)
         Me.TabPage3.Controls.Add(Me.Label58)
+        Me.TabPage3.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TabPage3.Controls.Add(Me.TXTFILENAME)
         Me.TabPage3.Controls.Add(Me.txtimgpath)
         Me.TabPage3.Controls.Add(Me.CMDGETQRCODE)
         Me.TabPage3.Controls.Add(Me.CMDUPLOADIRN)
         Me.TabPage3.Controls.Add(Me.Label53)
         Me.TabPage3.Controls.Add(Me.TXTIRNNO)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(540, 234)
+        Me.TabPage3.Size = New System.Drawing.Size(540, 233)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "3. Additional Details"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.BackColor = System.Drawing.Color.Transparent
+        Me.Label22.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.Black
+        Me.Label22.Location = New System.Drawing.Point(12, 137)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(78, 14)
+        Me.Label22.TabIndex = 1015
+        Me.Label22.Text = "Complaint By"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ACKDATE
         '
@@ -1166,6 +1103,19 @@ Partial Class DebitNote
         Me.ACKDATE.Name = "ACKDATE"
         Me.ACKDATE.Size = New System.Drawing.Size(85, 23)
         Me.ACKDATE.TabIndex = 1010
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.BackColor = System.Drawing.Color.Transparent
+        Me.Label26.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.ForeColor = System.Drawing.Color.Black
+        Me.Label26.Location = New System.Drawing.Point(263, 137)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(92, 14)
+        Me.Label26.TabIndex = 1017
+        Me.Label26.Text = "Complaint Date"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label56
         '
@@ -1179,6 +1129,31 @@ Partial Class DebitNote
         Me.Label56.Text = "Ack Date"
         Me.Label56.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'TXTCOMPLAINT
+        '
+        Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.ForeColor = System.Drawing.Color.Black
+        Me.TXTCOMPLAINT.Location = New System.Drawing.Point(90, 100)
+        Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(353, 27)
+        Me.TXTCOMPLAINT.TabIndex = 1012
+        '
+        'TXTCOMPLAINTDATE
+        '
+        Me.TXTCOMPLAINTDATE.AsciiOnly = True
+        Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.SystemColors.Window
+        Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(361, 133)
+        Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
+        Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
+        Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(82, 23)
+        Me.TXTCOMPLAINTDATE.TabIndex = 1016
+        Me.TXTCOMPLAINTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
+        '
         'TXTACKNO
         '
         Me.TXTACKNO.BackColor = System.Drawing.Color.White
@@ -1188,6 +1163,19 @@ Partial Class DebitNote
         Me.TXTACKNO.Size = New System.Drawing.Size(170, 23)
         Me.TXTACKNO.TabIndex = 1008
         Me.TXTACKNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.BackColor = System.Drawing.Color.Transparent
+        Me.Label21.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.Black
+        Me.Label21.Location = New System.Drawing.Point(26, 106)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(63, 14)
+        Me.Label21.TabIndex = 1013
+        Me.Label21.Text = "Complaint"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label58
         '
@@ -1201,6 +1189,17 @@ Partial Class DebitNote
         Me.Label58.TabIndex = 1009
         Me.Label58.Text = "Ack No"
         Me.Label58.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCOMPLAINTBY
+        '
+        Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
+        Me.TXTCOMPLAINTBY.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINTBY.ForeColor = System.Drawing.Color.Black
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(90, 133)
+        Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
+        Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(143, 23)
+        Me.TXTCOMPLAINTBY.TabIndex = 1014
         '
         'TXTFILENAME
         '
@@ -1231,9 +1230,9 @@ Partial Class DebitNote
         Me.CMDGETQRCODE.FlatAppearance.BorderSize = 0
         Me.CMDGETQRCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDGETQRCODE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDGETQRCODE.Location = New System.Drawing.Point(336, 129)
+        Me.CMDGETQRCODE.Location = New System.Drawing.Point(449, 45)
         Me.CMDGETQRCODE.Name = "CMDGETQRCODE"
-        Me.CMDGETQRCODE.Size = New System.Drawing.Size(100, 27)
+        Me.CMDGETQRCODE.Size = New System.Drawing.Size(84, 27)
         Me.CMDGETQRCODE.TabIndex = 1005
         Me.CMDGETQRCODE.Text = "&Get QRCode"
         Me.CMDGETQRCODE.UseVisualStyleBackColor = False
@@ -1245,9 +1244,9 @@ Partial Class DebitNote
         Me.CMDUPLOADIRN.FlatAppearance.BorderSize = 0
         Me.CMDUPLOADIRN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDUPLOADIRN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDUPLOADIRN.Location = New System.Drawing.Point(230, 129)
+        Me.CMDUPLOADIRN.Location = New System.Drawing.Point(449, 12)
         Me.CMDUPLOADIRN.Name = "CMDUPLOADIRN"
-        Me.CMDUPLOADIRN.Size = New System.Drawing.Size(100, 27)
+        Me.CMDUPLOADIRN.Size = New System.Drawing.Size(84, 27)
         Me.CMDUPLOADIRN.TabIndex = 1004
         Me.CMDUPLOADIRN.Text = "&Upload"
         Me.CMDUPLOADIRN.UseVisualStyleBackColor = False
@@ -2696,8 +2695,6 @@ Partial Class DebitNote
         Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        Me.TabPage6.ResumeLayout(False)
-        Me.TabPage6.PerformLayout()
         CType(Me.PBQRCODE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RBREMOVEADJ, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
@@ -2904,10 +2901,10 @@ Partial Class DebitNote
     Friend WithEvents CHKINTCALC As CheckBox
     Friend WithEvents CMDAUTOPOST As Button
     Friend WithEvents Label21 As Label
-    Friend WithEvents TXTCOMPLAIN As TextBox
-    Friend WithEvents TXTCOMPLAINBY As TextBox
+    Friend WithEvents TXTCOMPLAINT As TextBox
+    Friend WithEvents TXTCOMPLAINTBY As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents Label26 As Label
-    Friend WithEvents COMPLAINDATE As MaskedTextBox
+    Friend WithEvents TXTCOMPLAINTDATE As MaskedTextBox
     Friend WithEvents TabPage6 As TabPage
 End Class

@@ -160,7 +160,7 @@ Public Class AgencyCreditNote
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
-            DTCOMPLAINDATE.Value = Now.Date
+            TXTCOMPLAINTDATE.Clear()
             TXTCOMPLAINT.Clear()
             TXTCOMPLAINTBY.Clear()
         Catch ex As Exception
@@ -570,23 +570,17 @@ Public Class AgencyCreditNote
         End Try
     End Sub
 
-    'Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
-    '    Try
-    '        If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'CREDITNOTE'")
-    '        Dim clscommon As New ClsCommon
-    '        Dim dt As DataTable
-    '        dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'CREDITNOTE' and register_YEARid = " & YearId)
-    '        If dt.Rows.Count > 0 Then
-    '            cmbregister.Text = dt.Rows(0).Item(0).ToString
-    '        End If
-    '        getmaxno_CN()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
+
+
+            'WHENEVER WE MAKE CHANGES HERE DONE FORGET TO MAKE CHANGES IN THE FOLLOWING CODE ALSO
+            '*******************************************
+            '1. MAGICBOXFORINVOICE -- GENERATEAGENCYCN
+            '*******************************************
+
+
+
 
             If ISLOCKYEAR = True Then
                 MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
@@ -793,7 +787,7 @@ Public Class AgencyCreditNote
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             Dim objclsCNmaster As New ClsAgencyCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable
@@ -1447,7 +1441,7 @@ LINE1:
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                        DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID

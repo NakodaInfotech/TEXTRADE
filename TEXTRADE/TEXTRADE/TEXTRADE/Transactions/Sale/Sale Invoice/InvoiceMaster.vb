@@ -67,7 +67,7 @@ Public Class InvoiceMaster
 
         TXTDOCKETNO.Clear()
         DTDOCKETDATE.Value = Now.Date
-        DTCOMPLAINDATE.Value = Now.Date
+        TXTCOMPLAINTDATE.Clear()
         TXTCOURIER.Clear()
         TXTCOMPLAINT.Clear()
         TXTCOMPLAINTBY.Clear()
@@ -768,7 +768,7 @@ Public Class InvoiceMaster
                     End If
                     TXTCOMPLAINT.Text = dr("COMPLAINT")
                     TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
-                    DTCOMPLAINDATE.Value = dr("COMPLAINTDATE")
+                    TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -1383,7 +1383,7 @@ Public Class InvoiceMaster
 
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
-            alParaval.Add(Format(DTCOMPLAINDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -1404,8 +1404,8 @@ Public Class InvoiceMaster
                 End If
 
                 If ClientName = "ABHEE" Then
-                    GENERATEEINV()
                     GENERATEAGENCYINVOICE()
+                    GENERATEEINV()
                 End If
 
                 SMSCODE()
@@ -2006,6 +2006,10 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERGDNMTRS)
             alParaval.Add(ORDERRATE)
             alParaval.Add(ORDERPARTYPONO)
+
+            alParaval.Add("")   'COMPLAINT
+            alParaval.Add("")   'COMPLAINTBY
+            alParaval.Add("")   'COMPLAINTDATE
 
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
@@ -10647,4 +10651,19 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

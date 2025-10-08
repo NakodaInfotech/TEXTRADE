@@ -8,8 +8,8 @@ Public Class journal
     Dim GRIDDOUBLECLICK As Boolean
     Public EDIT As Boolean
     Dim temprefno As String
-    Dim jvregabbr, jvreginitial As String
-    Dim jvregid As Integer
+    Dim JVREGABBR, JVREGINITIALS As String
+    Dim JVREGID As Integer
     Dim TEMPROW As Integer
     Dim tempamt, temptds As Double
     Dim temprecodate As Date    'for recodate
@@ -46,7 +46,7 @@ Public Class journal
         cmbname.Text = ""
         txtremarks.Clear()
         jvregabbr = ""
-        jvreginitial = ""
+        JVREGINITIALS = ""
         GRIDDOUBLECLICK = False
         cmbtype.Text = ""
         cmbpaytype.Text = ""
@@ -509,17 +509,18 @@ Public Class journal
                 bln = False
             End If
 
-            'If row.Cells(GPAYTYPE.Index).Value = "Against Bill" And row.Cells(GREFNO.Index).Value = "" Then
-            '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-            '    bln = False
-            'End If
+            If row.Cells(GPAYTYPE.Index).Value = "Against Bill" And row.Cells(GREFNO.Index).Value = "" Then
+                EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                bln = False
+            End If
 
             If Val(row.Cells(GAMTPAIDREC.Index).Value) > 0 And UserName <> "Admin" Then
                 EP.SetError(cmbregister, "Journal Locked, Rec/Pay/JV Raised")
                 bln = False
             End If
 
-            If row.Cells(GPAYTYPE.Index).Value = "New Ref." Then row.Cells(GREFNO.Index).Value = "JV-" & Val(txtjournalno.Text.Trim)
+            If row.Cells(GPAYTYPE.Index).Value = "New Ref" Then row.Cells(GREFNO.Index).Value = JVREGINITIALS & "-" & Val(txtjournalno.Text.Trim)
+
         Next
 
         If Val(TXTTOTALDR.Text.Trim) <> Val(TXTTOTALCR.Text.Trim) Then
@@ -586,8 +587,8 @@ Public Class journal
                 dt = clscommon.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'JOURNAL' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & Locationid & " and register_YEARid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     jvregabbr = dt.Rows(0).Item(0).ToString
-                    jvreginitial = dt.Rows(0).Item(1).ToString
-                    jvregid = dt.Rows(0).Item(2)
+                    JVREGINITIALS = dt.Rows(0).Item(1).ToString
+                    JVREGID = dt.Rows(0).Item(2)
                     getmaxno_journalmaster()
                     cmbregister.Enabled = False
                 Else

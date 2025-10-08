@@ -52,7 +52,7 @@ Partial Class CategoryMaster
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(332, 217)
+        Me.BlendPanel1.Size = New System.Drawing.Size(656, 217)
         Me.BlendPanel1.TabIndex = 0
         '
         'CMDDELETE
@@ -105,7 +105,7 @@ Partial Class CategoryMaster
         Me.lblgroup.BackColor = System.Drawing.Color.Transparent
         Me.lblgroup.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblgroup.Location = New System.Drawing.Point(10, 22)
+        Me.lblgroup.Location = New System.Drawing.Point(13, 22)
         Me.lblgroup.Name = "lblgroup"
         Me.lblgroup.Size = New System.Drawing.Size(73, 22)
         Me.lblgroup.TabIndex = 143
@@ -116,10 +116,10 @@ Partial Class CategoryMaster
         '
         Me.txtname.BackColor = System.Drawing.Color.LemonChiffon
         Me.txtname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtname.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtname.Location = New System.Drawing.Point(91, 20)
         Me.txtname.Name = "txtname"
-        Me.txtname.Size = New System.Drawing.Size(199, 23)
+        Me.txtname.Size = New System.Drawing.Size(523, 27)
         Me.txtname.TabIndex = 0
         '
         'cmdedit
@@ -181,7 +181,7 @@ Partial Class CategoryMaster
         'CategoryMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(332, 217)
+        Me.ClientSize = New System.Drawing.Size(656, 217)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
