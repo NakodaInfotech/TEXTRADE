@@ -570,23 +570,17 @@ Public Class AgencyCreditNote
         End Try
     End Sub
 
-    'Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
-    '    Try
-    '        If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'CREDITNOTE'")
-    '        Dim clscommon As New ClsCommon
-    '        Dim dt As DataTable
-    '        dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'CREDITNOTE' and register_YEARid = " & YearId)
-    '        If dt.Rows.Count > 0 Then
-    '            cmbregister.Text = dt.Rows(0).Item(0).ToString
-    '        End If
-    '        getmaxno_CN()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
+
+
+            'WHENEVER WE MAKE CHANGES HERE DONE FORGET TO MAKE CHANGES IN THE FOLLOWING CODE ALSO
+            '*******************************************
+            '1. MAGICBOXFORINVOICE -- GENERATEAGENCYCN
+            '*******************************************
+
+
+
 
             If ISLOCKYEAR = True Then
                 MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)

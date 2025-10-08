@@ -1286,7 +1286,7 @@ Public Class PaymentMaster
                 If Convert.ToBoolean(ROW.Cells(11).Value) = True Then ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
                 'FOR COMPLAINT
-                If ROW.Cells(16).Value <> "" Then ROW.DefaultCellStyle.BackColor = Color.Linen
+                If ROW.Cells(16).Value <> "" Then ROW.DefaultCellStyle.BackColor = Color.Orange
             Next
 
 

@@ -3682,7 +3682,7 @@ Partial Class AgencyInvoice
         Me.TXTCOMPLAINTDATE.BackColor = System.Drawing.Color.White
         Me.TXTCOMPLAINTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCOMPLAINTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(693, 243)
+        Me.TXTCOMPLAINTDATE.Location = New System.Drawing.Point(693, 248)
         Me.TXTCOMPLAINTDATE.Mask = "00/00/0000"
         Me.TXTCOMPLAINTDATE.Name = "TXTCOMPLAINTDATE"
         Me.TXTCOMPLAINTDATE.Size = New System.Drawing.Size(82, 23)
@@ -3694,7 +3694,7 @@ Partial Class AgencyInvoice
         '
         Me.TXTCOMPLAINTBY.BackColor = System.Drawing.Color.White
         Me.TXTCOMPLAINTBY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(487, 243)
+        Me.TXTCOMPLAINTBY.Location = New System.Drawing.Point(487, 248)
         Me.TXTCOMPLAINTBY.MaxLength = 100
         Me.TXTCOMPLAINTBY.Name = "TXTCOMPLAINTBY"
         Me.TXTCOMPLAINTBY.Size = New System.Drawing.Size(113, 23)
@@ -3706,7 +3706,7 @@ Partial Class AgencyInvoice
         Me.Label63.BackColor = System.Drawing.Color.Transparent
         Me.Label63.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label63.ForeColor = System.Drawing.Color.Black
-        Me.Label63.Location = New System.Drawing.Point(405, 247)
+        Me.Label63.Location = New System.Drawing.Point(405, 252)
         Me.Label63.Name = "Label63"
         Me.Label63.Size = New System.Drawing.Size(78, 14)
         Me.Label63.TabIndex = 949
@@ -3718,7 +3718,7 @@ Partial Class AgencyInvoice
         Me.Label64.AutoSize = True
         Me.Label64.BackColor = System.Drawing.Color.Transparent
         Me.Label64.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label64.Location = New System.Drawing.Point(609, 247)
+        Me.Label64.Location = New System.Drawing.Point(609, 252)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(79, 15)
         Me.Label64.TabIndex = 947
@@ -3728,11 +3728,11 @@ Partial Class AgencyInvoice
         'TXTCOMPLAINT
         '
         Me.TXTCOMPLAINT.BackColor = System.Drawing.Color.White
-        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOMPLAINT.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCOMPLAINT.Location = New System.Drawing.Point(487, 215)
         Me.TXTCOMPLAINT.MaxLength = 100
         Me.TXTCOMPLAINT.Name = "TXTCOMPLAINT"
-        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 23)
+        Me.TXTCOMPLAINT.Size = New System.Drawing.Size(288, 27)
         Me.TXTCOMPLAINT.TabIndex = 944
         '
         'Label65
@@ -3741,7 +3741,7 @@ Partial Class AgencyInvoice
         Me.Label65.BackColor = System.Drawing.Color.Transparent
         Me.Label65.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.ForeColor = System.Drawing.Color.Black
-        Me.Label65.Location = New System.Drawing.Point(420, 219)
+        Me.Label65.Location = New System.Drawing.Point(420, 221)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(63, 14)
         Me.Label65.TabIndex = 945

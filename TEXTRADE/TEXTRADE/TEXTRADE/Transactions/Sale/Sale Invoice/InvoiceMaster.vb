@@ -2007,6 +2007,10 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERRATE)
             alParaval.Add(ORDERPARTYPONO)
 
+            alParaval.Add("")   'COMPLAINT
+            alParaval.Add("")   'COMPLAINTBY
+            alParaval.Add("")   'COMPLAINTDATE
+
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
 

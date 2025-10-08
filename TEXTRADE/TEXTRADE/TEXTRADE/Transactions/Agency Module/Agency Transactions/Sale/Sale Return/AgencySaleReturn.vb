@@ -1153,9 +1153,11 @@ Public Class AgencySaleReturn
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
+
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+
             Dim OBJPURCH As New ClsAgencySaleReturn()
             OBJPURCH.alParaval = alParaval
 
