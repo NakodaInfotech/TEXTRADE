@@ -1404,8 +1404,8 @@ Public Class InvoiceMaster
                 End If
 
                 If ClientName = "ABHEE" Then
-                    GENERATEEINV()
                     GENERATEAGENCYINVOICE()
+                    GENERATEEINV()
                 End If
 
                 SMSCODE()
@@ -10646,4 +10646,5 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
 End Class

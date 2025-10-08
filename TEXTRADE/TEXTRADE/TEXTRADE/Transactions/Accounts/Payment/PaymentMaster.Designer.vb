@@ -68,7 +68,6 @@ Partial Class PaymentMaster
         Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtbillno = New System.Windows.Forms.TextBox()
-        Me.GPPAYMENT = New System.Windows.Forms.GroupBox()
         Me.GRIDBILL = New System.Windows.Forms.DataGridView()
         Me.LBLSMS = New System.Windows.Forms.Label()
         Me.TXTMOBILENO = New System.Windows.Forms.TextBox()
@@ -177,13 +176,13 @@ Partial Class PaymentMaster
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.GPPAYMENT = New System.Windows.Forms.GroupBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GPPRINT.SuspendLayout()
-        Me.GPPAYMENT.SuspendLayout()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GPDESC.SuspendLayout()
@@ -194,6 +193,7 @@ Partial Class PaymentMaster
         CType(Me.gridpayment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GPPAYMENT.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -549,18 +549,6 @@ Partial Class PaymentMaster
         Me.txtbillno.TabIndex = 6
         Me.txtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'GPPAYMENT
-        '
-        Me.GPPAYMENT.BackColor = System.Drawing.Color.Transparent
-        Me.GPPAYMENT.Controls.Add(Me.GRIDBILL)
-        Me.GPPAYMENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GPPAYMENT.ForeColor = System.Drawing.Color.Black
-        Me.GPPAYMENT.Location = New System.Drawing.Point(517, 68)
-        Me.GPPAYMENT.Name = "GPPAYMENT"
-        Me.GPPAYMENT.Size = New System.Drawing.Size(784, 384)
-        Me.GPPAYMENT.TabIndex = 388
-        Me.GPPAYMENT.TabStop = False
-        '
         'GRIDBILL
         '
         Me.GRIDBILL.AllowUserToAddRows = False
@@ -592,7 +580,7 @@ Partial Class PaymentMaster
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBILL.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDBILL.GridColor = System.Drawing.SystemColors.ControlText
-        Me.GRIDBILL.Location = New System.Drawing.Point(5, 28)
+        Me.GRIDBILL.Location = New System.Drawing.Point(5, 32)
         Me.GRIDBILL.Margin = New System.Windows.Forms.Padding(2)
         Me.GRIDBILL.MultiSelect = False
         Me.GRIDBILL.Name = "GRIDBILL"
@@ -600,7 +588,7 @@ Partial Class PaymentMaster
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
         Me.GRIDBILL.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDBILL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBILL.Size = New System.Drawing.Size(775, 352)
+        Me.GRIDBILL.Size = New System.Drawing.Size(775, 354)
         Me.GRIDBILL.TabIndex = 0
         Me.GRIDBILL.TabStop = False
         '
@@ -1819,6 +1807,18 @@ Partial Class PaymentMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GPPAYMENT
+        '
+        Me.GPPAYMENT.BackColor = System.Drawing.Color.Transparent
+        Me.GPPAYMENT.Controls.Add(Me.GRIDBILL)
+        Me.GPPAYMENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GPPAYMENT.ForeColor = System.Drawing.Color.Black
+        Me.GPPAYMENT.Location = New System.Drawing.Point(517, 62)
+        Me.GPPAYMENT.Name = "GPPAYMENT"
+        Me.GPPAYMENT.Size = New System.Drawing.Size(784, 391)
+        Me.GPPAYMENT.TabIndex = 388
+        Me.GPPAYMENT.TabStop = False
+        '
         'PaymentMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1841,7 +1841,6 @@ Partial Class PaymentMaster
         Me.GroupBox1.PerformLayout()
         Me.GPPRINT.ResumeLayout(False)
         Me.GPPRINT.PerformLayout()
-        Me.GPPAYMENT.ResumeLayout(False)
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GPDESC.ResumeLayout(False)
@@ -1856,6 +1855,7 @@ Partial Class PaymentMaster
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GPPAYMENT.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1890,7 +1890,6 @@ Partial Class PaymentMaster
     Friend WithEvents lblsrno As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents txtbillno As System.Windows.Forms.TextBox
-    Friend WithEvents GPPAYMENT As System.Windows.Forms.GroupBox
     Friend WithEvents GRIDBILL As System.Windows.Forms.DataGridView
     Friend WithEvents chkchange As System.Windows.Forms.CheckBox
     Friend WithEvents chkselectall As System.Windows.Forms.CheckBox
@@ -1993,4 +1992,5 @@ Partial Class PaymentMaster
     Friend WithEvents TXTSEARCHAMT As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents CMDAUTOPOST As Button
+    Friend WithEvents GPPAYMENT As GroupBox
 End Class

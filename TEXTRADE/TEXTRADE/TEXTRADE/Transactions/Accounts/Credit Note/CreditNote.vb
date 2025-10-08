@@ -159,6 +159,9 @@ Public Class CREDITNOTE
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
             CHKINTCALC.Checked = False
+            TXTCOMPLAINT.Clear()
+            DTCOMPLAINTDATE.Text = Now.Date
+            TXTCOMPLAINTBY.Clear()
 
         Catch ex As Exception
             Throw ex
@@ -789,6 +792,9 @@ Public Class CREDITNOTE
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(Format(DTCOMPLAINTDATE.Value.DATE, "MM/dd/yyyy")) 'DTCOMPLAINTDATE.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
 
             Dim objclsCNmaster As New ClsCreditNote()
             objclsCNmaster.alParaval = alParaval
@@ -1506,7 +1512,9 @@ LINE1:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        DTCOMPLAINTDATE.VALUE = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
                     Next
 
                     'CHARGES GRID
@@ -3354,6 +3362,19 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
                         TXTADJAMT_Validating(sender, A)
                     End If
                 End With
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex

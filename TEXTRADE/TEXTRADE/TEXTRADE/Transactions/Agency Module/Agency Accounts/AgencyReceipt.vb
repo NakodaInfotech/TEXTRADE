@@ -528,7 +528,6 @@ Public Class AgencyReceipt
                 End If
             End If
             gridpayment.ClearSelection()
-            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -563,6 +562,7 @@ Public Class AgencyReceipt
 
                     End If
                 End If
+                CreateFilterTextBoxes()
             Else
                 MsgBox("Enter Seller Name", MsgBoxStyle.Critical, "TEXTRADE")
                 cmbseller.Focus()
@@ -2226,9 +2226,9 @@ NEXTLINE:
     Public Sub CreateFilterTextBoxes()
 
         'REMOVE OLD TEXTBOXES AND THEN RECREATE
-        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
-            If TypeOf groupbill.Controls(i) Is TextBox Then
-                groupbill.Controls.RemoveAt(i)
+        For i As Integer = gridbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf gridbill.Controls(i) Is TextBox Then
+                gridbill.Controls.RemoveAt(i)
             End If
         Next
 
@@ -2248,7 +2248,7 @@ NEXTLINE:
                 txt.Tag = col.Index
                 txt.Name = "TXT" & col.Index
                 AddHandler txt.TextChanged, AddressOf FilterGrid
-                groupbill.Controls.Add(txt)
+                gridbill.Controls.Add(txt)
                 filterTextBoxes.Add(txt)
             End If
         Next
@@ -2257,9 +2257,18 @@ NEXTLINE:
     Public Sub FilterGrid(sender As Object, e As EventArgs)
         Try
             Dim filterClauses As New List(Of String)()
+            'If DT Is Nothing Then
+            '    MsgBox("DT DataTable is not initialized.")
+            '    Exit Sub
+            'End If
+
             For Each txt As TextBox In filterTextBoxes
                 Dim colIndex As Integer = CInt(txt.Tag)
                 Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
+                If Not DT.Columns.Contains(colName) Then
+                    MsgBox("Column '" & colName & "' not found in DataTable.")
+                    Continue For
+                End If
                 Dim filterText As String = txt.Text.Trim().Replace("'", "''")
 
                 If filterText <> "" Then
