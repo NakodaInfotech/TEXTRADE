@@ -262,11 +262,11 @@ Public Class ClsSaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
                 I = I + 1
 
             End With
@@ -526,11 +526,11 @@ Public Class ClsSaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOCITY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAIN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINDATE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COMPLAINBY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
                 I = I + 1
 
 

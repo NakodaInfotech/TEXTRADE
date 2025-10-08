@@ -157,9 +157,9 @@ Public Class SaleReturn
             TXTTOTALWITHGST.Clear()
             TXTTCSPER.Clear()
             TXTTCSAMT.Clear()
-            TXTCOMPLAIN.Clear()
-            TXTCOMPLAINDATE.Clear()
-            TXTCOMPLAINBY.Clear()
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTDATE.Clear()
+            TXTCOMPLAINTBY.Clear()
 
             txtbillamt.Clear()
             TXTCHARGES.Clear()
@@ -1200,9 +1200,9 @@ Public Class SaleReturn
 
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(CMBTOCITY.Text.Trim)
-            alParaval.Add(TXTCOMPLAIN.Text.Trim)
-            alParaval.Add(TXTCOMPLAINDATE.Text.Trim)
-            alParaval.Add(TXTCOMPLAINBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
 
 
 
@@ -1496,9 +1496,9 @@ NEXTLINE:
 
                         CMBFROMCITY.Text = dr("FROMCITY")
                         CMBTOCITY.Text = dr("TOCITY")
-                        TXTCOMPLAIN.Text = dr("COMPLAIN")
-                        TXTCOMPLAINDATE.Text = dr("COMPLAINDATE")
-                        TXTCOMPLAINBY.Text = dr("COMPLAINBY")
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
 
                     Next
 
@@ -4664,12 +4664,12 @@ NEXTLINE:
         numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAIN.KeyDown
+    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
         If e.KeyCode = Keys.F1 Then
             Dim OBJREMARKS As New SelectRemarks
             OBJREMARKS.FRMSTRING = "NARRATION"
             OBJREMARKS.ShowDialog()
-            If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAIN.Text = OBJREMARKS.TEMPNAME
+            If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
         End If
     End Sub
 End Class
