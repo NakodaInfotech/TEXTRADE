@@ -1871,6 +1871,8 @@ LINE1:
         End If
         TXTFWT.Text = 0.000
         TXTFINISHWT.Text = 0.000
+        TXTGSM.Text = 0.00
+        TXTGLM.Text = 0.00
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
         If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) + (1 + (Val(TXTSHRINKAGEPER.Text) / 100)), "0.000")
         If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
@@ -1879,11 +1881,11 @@ LINE1:
             Dim result As Double = pcs * pcsl
             TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
         End If
-        If TXTFINISHWT.Text <> "" And TXTFWIDTH.Text <> "" Then
-            TXTGSM.Text = Format((Val(TXTFINISHWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10), "0.00")
+        If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
+            TXTGSM.Text = Format((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10), "0.00")
         End If
         If TXTGSM.Text <> "" Then
-            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFINISHWT.Text)) / (39.37 / 10), "0.00")
+            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
         End If
         GETSELPE()
         GETWARPPE()
