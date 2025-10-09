@@ -1198,7 +1198,7 @@ Public Class PaymentMaster
             GRIDBILL.Columns(1).ReadOnly = True
             GRIDBILL.Columns(1).Resizable = True
 
-            GRIDBILL.Columns(2).Width = 80
+            GRIDBILL.Columns(2).Width = 100
             GRIDBILL.Columns(2).Name = "REFNO"
             GRIDBILL.Columns(2).HeaderText = "Party Bill"
             GRIDBILL.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -1209,14 +1209,14 @@ Public Class PaymentMaster
             GRIDBILL.Columns(3).HeaderText = "Bill Date"
             GRIDBILL.Columns(3).ReadOnly = True
 
-            GRIDBILL.Columns(4).Width = 100
+            GRIDBILL.Columns(4).Width = 90
             GRIDBILL.Columns(4).Name = "INVBALAMT"
             GRIDBILL.Columns(4).HeaderText = "Bal. Amt"
             GRIDBILL.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             GRIDBILL.Columns(4).DefaultCellStyle.Format = "N2"
             GRIDBILL.Columns(3).ReadOnly = True
 
-            GRIDBILL.Columns(5).Width = 100
+            GRIDBILL.Columns(5).Width = 90
             GRIDBILL.Columns(5).Name = "INVBILLAMT"
             GRIDBILL.Columns(5).HeaderText = "Bill Amt"
             GRIDBILL.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -1278,46 +1278,24 @@ Public Class PaymentMaster
             GRIDBILL.Columns(16).ReadOnly = True
 
 
-            For Each ROW As DataGridViewRow In GRIDBILL.Rows
-                If ClientName = "NVAHAN" AndAlso IsDBNull(ROW.Cells(12).Value) = False AndAlso Val(ROW.Cells(12).Value) = 0 Then ROW.DefaultCellStyle.BackColor = Color.Yellow
-                If Convert.ToBoolean(ROW.Cells(11).Value) = True Then ROW.DefaultCellStyle.BackColor = Color.LightGreen
-
-                'FOR COMPLAINT
-                If ROW.Cells(16).Value <> "" Then ROW.DefaultCellStyle.BackColor = Color.Orange
-            Next
-
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Sub fillgridPURCHASE()
-        GRIDBILL.DataSource = Nothing
-        TXTINVTOTAL.Clear()
-        Dim objpayment As New ClsPaymentMaster
-        DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
-        If DT.Rows.Count > 0 Then
-            SETGRIDINVOICE(DT)
-            CreateFilterTextBoxes()
-        End If
-
-        'GRIDBILL.DataSource = Nothing
-        'TXTINVTOTAL.Clear()
-        ''getting from INVOICEMASTER
-
-        'Dim objpayment As New ClsPaymentMaster
-        'Dim DT As New DataTable
-        'DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
-        'If DT.Rows.Count > 0 Then
-        '    SETGRIDINVOICE(DT)
-
-        '    'Dim DTROW As DataRow
-        '    'For Each DTROW In DT.Rows
-        '    '    gridbill.Rows.Add(0, DTROW("BILLINITIALS"), Format(DTROW("BILLDATE"), "dd/MM/yyyy"), Val(DTROW("BALAMT")), Val(DTROW("BILLAMT")), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-        '    'Next
-        'End If
-
+    Sub FILLGRIDPURCHASE()
+        Try
+            GRIDBILL.DataSource = Nothing
+            TXTINVTOTAL.Clear()
+            Dim objpayment As New ClsPaymentMaster
+            DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
+            If DT.Rows.Count > 0 Then
+                SETGRIDINVOICE(DT)
+                CreateFilterTextBoxes()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub gridpayment_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridpayment.CellClick
@@ -1989,6 +1967,8 @@ LINE1:
                 objPAY.payno = Val(txtaccno.Text)
                 objPAY.payname = cmbname.Text.Trim
                 objPAY.REGNAME = cmbregister.Text.Trim
+                If ClientName = "VALIANT" Then objPAY.PRINTA5 = True
+                If ClientName = "ABHEE" And MsgBox("Print A5?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then objPAY.PRINTA5 = True
                 objPAY.MdiParent = MDIMain
                 objPAY.Show()
 
@@ -2640,6 +2620,7 @@ NEXTLINE:
 
     Public Sub FilterGrid(sender As Object, e As EventArgs)
         Try
+            If GRIDBILL.Columns.Count = 1 Then Exit Sub
             Dim filterClauses As New List(Of String)()
             For Each txt As TextBox In filterTextBoxes
                 Dim colIndex As Integer = CInt(txt.Tag)
@@ -2696,4 +2677,12 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub GRIDBILL_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GRIDBILL.CellFormatting
+        Try
+            If Convert.ToBoolean(GRIDBILL.Rows(e.RowIndex).Cells("DISPUTE").Value) = True Then GRIDBILL.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGreen
+            If GRIDBILL.Rows(e.RowIndex).Cells("COMPLAINT").Value <> "" Then GRIDBILL.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Orange
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
