@@ -1036,7 +1036,6 @@ NEXTLINE:
 
                 TXTPARTYBILLNO.Focus()
 
-
             End If
 
             'FETCH DISCOUNT WITH RESPECT TO SALE ORDER 
@@ -1174,7 +1173,7 @@ LINE2:
                 If DT.Rows.Count > 0 Then
 
 
-                    ' TXTHSNCODE.Clear()
+                    TXTHSN.Clear()
                     TXTCGSTPER.Clear()
                     TXTCGSTAMT.Clear()
                     TXTSGSTPER.Clear()
@@ -1191,7 +1190,7 @@ LINE2:
                         TXTSGSTPER.Text = 0
                         TXTIGSTPER.Text = Val(DT.Rows(0).Item("IGSTPER"))
                     End If
-
+                    TXTHSN.Text = DT.Rows(0).Item("HSNCODE")
                 End If
                 CALC()
             End If

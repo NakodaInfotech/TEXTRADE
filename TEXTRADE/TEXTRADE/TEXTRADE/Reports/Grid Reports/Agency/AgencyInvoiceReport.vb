@@ -27,7 +27,7 @@ Public Class AgencyInvoiceReport
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
         Try
-            'ExportGridToPdf()
+            ExportGridToPdf()
 
         Catch ex As Exception
             Throw ex
