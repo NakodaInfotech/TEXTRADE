@@ -21,110 +21,26 @@ Public Class MagicBoxForInvoice
 
                 Dim alParaval As New ArrayList
 
-                'Dim GRIDSRNO As String = ""
-                'Dim PARTYBILLDATE As String = ""
-                'Dim ENTRYDATE As String = ""
-                'Dim SELLERS As String = ""
-                'Dim BUYERS As String = ""
-                'Dim PARTYBILLNO As String = ""
-                'Dim CRDAYS As String = ""
-                'Dim PONO As String = ""
-                'Dim POSRNO As String = ""
-                'Dim POTYPE As String = ""
-                'Dim MERCHANT As String = ""
-                'Dim qty As String = ""
-                'Dim FOLD As String = ""
-                'Dim DESC As String = ""
-                'Dim TRANSPORT As String = ""
-                'Dim LRNO As String = ""
-                'Dim LRDATE As String = ""
-                'Dim BALENO As String = ""
-                'Dim PCS As String = ""
-                'Dim CUT As String = ""
-                'Dim MTRS As String = ""
-                'Dim RATE As String = ""
-                'Dim PER As String = ""
-                'Dim AMOUNT As String = ""
-                'Dim CHARGES As String = ""
-                'Dim SUBTOTAL As String = ""
-                'Dim CGSTPER As String = ""
-                'Dim CGSTAMT As String = ""
-                'Dim SGSTPER As String = ""
-                'Dim SGSTAMT As String = ""
-                'Dim IGSTPER As String = ""
-                'Dim IGSTAMT As String = ""
-                'Dim ROUNDOFF As String = ""
-                'Dim GRANDTOTAL As String = ""
-                'Dim COMMPER As String = ""
-                'Dim COMM As String = ""
-                'Dim REMARKS As String = ""
-                'Dim HSN As String = ""
-                'Dim CSRNO As String = ""
-                'Dim CCHGS As String = ""
-                'Dim CPER As String = ""
-                'Dim CAMT As String = ""
-                'Dim CTAXID As String = ""
-                'If row.Cells(0).Value <> Nothing Then
 
-                '    GRIDSRNO = SRNO
-                '    'NO = row.Cells(GNO.Index).Value.ToString
-                '    PARTYBILLDATE = Format(Convert.ToDateTime(row.Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy")
-                '    ENTRYDATE = Format(Convert.ToDateTime(row.Cells(GDATE.Index).Value).Date, "MM/dd/yyyy")
-                '    SELLERS = row.Cells(GSELLERS.Index).Value.ToString
-                '    BUYERS = row.Cells(GBUYERS.Index).Value.ToString
-                '    PARTYBILLNO = row.Cells(GNO.Index).Value.ToString
-                '    CRDAYS = row.Cells(GCRDAYS.Index).Value.ToString
-                '    PONO = row.Cells(GPONO.Index).Value.ToString
-                '    POSRNO = row.Cells(GPOSRNO.Index).Value.ToString
-                '    POTYPE = row.Cells(GPOTYPE.Index).Value.ToString
-                '    MERCHANT = row.Cells(gitemname.Index).Value.ToString
-                '    qty = row.Cells(gQty.Index).Value.ToString
-                '    FOLD = row.Cells(GFOLD.Index).Value.ToString
-                '    DESC = row.Cells(GDESC.Index).Value.ToString
-                '    TRANSPORT = row.Cells(GTRANS.Index).Value.ToString
-                '    LRNO = row.Cells(GLRNO.Index).Value.ToString
-                '    LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
-                '    BALENO = row.Cells(GBALENO.Index).Value.ToString
-                '    PCS = row.Cells(GPCS.Index).Value.ToString
-                '    CUT = row.Cells(GCUT.Index).Value.ToString
-                '    MTRS = row.Cells(GMTRS.Index).Value.ToString
-                '    RATE = row.Cells(GRATE.Index).Value.ToString
-                '    PER = row.Cells(GPER.Index).Value.ToString
-                '    AMOUNT = row.Cells(GAMT.Index).Value.ToString
-                '    CHARGES = row.Cells(GCHARGES.Index).Value.ToString
-                '    SUBTOTAL = row.Cells(GSUBTOTAL.Index).Value.ToString
-                '    CGSTPER = row.Cells(GCGST.Index).Value.ToString
-                '    CGSTAMT = row.Cells(GCGSTAMT.Index).Value.ToString
-                '    SGSTPER = row.Cells(GSGST.Index).Value.ToString
-                '    SGSTAMT = row.Cells(GSGSTAMT.Index).Value.ToString
-                '    IGSTPER = row.Cells(GIGST.Index).Value.ToString
-                '    IGSTAMT = row.Cells(GIGSTAMT.Index).Value.ToString
-                '    ROUNDOFF = row.Cells(GROUNDOFF.Index).Value.ToString
-                '    GRANDTOTAL = row.Cells(GGRANDTOTAL.Index).Value.ToString
-                '    COMMPER = row.Cells(GCOMPER.Index).Value.ToString
-                '    COMM = row.Cells(GCOM.Index).Value.ToString
-                '    REMARKS = row.Cells(GREMARKS.Index).Value.ToString
-                '    HSN = row.Cells(GHSN.Index).Value.ToString
+                'CHECKING BILLNO DUPLICATION 
+                Dim OBJCMN As New ClsCommon
+                If row.Cells(GNO.Index).Value <> "" And row.Cells(GSELLERS.Index).Value <> "" Then
+                    Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & row.Cells(GNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    If DTP.Rows.Count > 0 Then
+                        MsgBox("Party Bill " & row.Cells(GNO.Index).Value & " Already Exists in Entry No " & DTP.Rows(0).Item("BILLNO"))
+                        GoTo NEXTLINE
+                    End If
+                End If
 
-                '    For i As Integer = 0 To DT_CHGSDETAILS.Rows.Count - 1
-                '        If row.Index = Val(DT_CHGSDETAILS.Rows(i).Item("EMAINSRNO")) Then
-                '            If CSRNO = "" Then
-                '                CSRNO = Val(DT_CHGSDETAILS.Rows(i).Item("ESRNO"))
-                '                CCHGS = DT_CHGSDETAILS.Rows(i).Item("ECHARGES")
-                '                CPER = DT_CHGSDETAILS.Rows(i).Item("EPER")
-                '                CAMT = DT_CHGSDETAILS.Rows(i).Item("EAMT")
-                '                CTAXID = Val(DT_CHGSDETAILS.Rows(i).Item("ETAXID"))
-                '            Else
-                '                CSRNO = CSRNO & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("ESRNO"))
-                '                CCHGS = CCHGS & "|" & DT_CHGSDETAILS.Rows(i).Item("ECHARGES")
-                '                CPER = CPER & "|" & DT_CHGSDETAILS.Rows(i).Item("EPER")
-                '                CAMT = CAMT & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("EAMT"))
-                '                CTAXID = CTAXID & "|" & Val(DT_CHGSDETAILS.Rows(i).Item("ETAXID"))
-                '            End If
-                '        End If
-                '    Next
+                'CHECKING LRNO DUPLICATION 
+                If row.Cells(GLRNO.Index).Value <> "" And row.Cells(GTRANS.Index).Value <> "" Then
+                    Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & row.Cells(GLRNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    If DTP.Rows.Count > 0 Then
+                        MsgBox("LR No " & row.Cells(GLRNO.Index).Value & " Already Exists In Entry No " & DTP.Rows(0).Item("BILLNO"))
+                        GoTo NEXTLINE
+                    End If
+                End If
 
-                'End If
 
                 alParaval.Add("TOTAL GST")
                 alParaval.Add(SRNO)
@@ -347,7 +263,6 @@ Public Class MagicBoxForInvoice
                 alParaval.Add(Val(row.Cells(GCOM.Index).Value))
 
 
-                Dim OBJCMN As New ClsCommon
                 Dim DTPO As DataTable = OBJCMN.SEARCH("  (CASE WHEN ASO_ORDERON = 'PCS' THEN ROUND(ASO_MTRS - ASO_RECDQTY, 2) ELSE ROUND(ASO_QTY - ASO_RECDQTY, 2) END) AS BALPCS, (CASE WHEN ASO_ORDERON = 'PCS' THEN ROUND(ASO_MTRS - ASO_RECDQTY, 2) ELSE ROUND(ALLAGENCYSALEORDER_DESC.ASO_MTRS - ALLAGENCYSALEORDER_DESC.ASO_RECDMTRS, 2) END) AS BALMTRS, ALLAGENCYSALEORDER_DESC.ASO_RATE AS RATE  ", "", " ALLAGENCYSALEORDER_DESC INNER JOIN ALLAGENCYSALEORDER ON ALLAGENCYSALEORDER_DESC.ASO_NO = ALLAGENCYSALEORDER.ASO_no AND ALLAGENCYSALEORDER_DESC.TYPE = ALLAGENCYSALEORDER.TYPE AND ALLAGENCYSALEORDER_DESC.ASO_YEARID = ALLAGENCYSALEORDER.ASO_YEARID  ", " AND ALLAGENCYSALEORDER_DESC.ASO_NO = " & Val(row.Cells(GPONO.Index).Value) & " AND ALLAGENCYSALEORDER_DESC.ASO_GRIDSRNO = " & Val(row.Cells(GPOSRNO.Index).Value) & " AND ALLAGENCYSALEORDER_DESC.TYPE = '" & row.Cells(GPOTYPE.Index).Value & "' AND ALLAGENCYSALEORDER_DESC.ASO_YEARID = " & YearId)
 
                 alParaval.Add("1")  'ORDERGRIDSRNO
@@ -1009,6 +924,7 @@ NEXTLINE:
                 TXTPOSRNO.Text = DTROW("GRIDSRNO").ToString()
                 TXTPOTYPE.Text = DTROW("TYPE").ToString()
                 cmbitemname.Text = DTROW("ITEMNAME").ToString()
+                GETHSNCODE()
                 'TXTQTY.Text = Val(DTROW("QTY").ToString())
                 'TXTFOLD.Text = "0" ' or fill if available
                 TXTDESC.Text = ""     ' or fill if available
@@ -1035,7 +951,6 @@ NEXTLINE:
                 TXTREMARKS.Text = DTROW("REMARKS").ToString()
 
                 TXTPARTYBILLNO.Focus()
-
 
             End If
 
@@ -1174,7 +1089,7 @@ LINE2:
                 If DT.Rows.Count > 0 Then
 
 
-                    ' TXTHSNCODE.Clear()
+                    TXTHSN.Clear()
                     TXTCGSTPER.Clear()
                     TXTCGSTAMT.Clear()
                     TXTSGSTPER.Clear()
@@ -1191,7 +1106,7 @@ LINE2:
                         TXTSGSTPER.Text = 0
                         TXTIGSTPER.Text = Val(DT.Rows(0).Item("IGSTPER"))
                     End If
-
+                    TXTHSN.Text = DT.Rows(0).Item("HSNCODE")
                 End If
                 CALC()
             End If
@@ -2221,6 +2136,22 @@ line1:
         End Try
     End Sub
 
+    Private Sub TXTLR_Validating(sender As Object, e As CancelEventArgs) Handles TXTLR.Validating
+        Try
+            If TXTLR.Text.Trim <> "" And CMBTRANS.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBTRANS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & TXTLR.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("LR No Already Exists In Entry No " & DT.Rows(0).Item("BILLNO"))
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub GRIDMAGICBOX_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDMAGICBOX.CellDoubleClick
         If e.RowIndex >= 0 Then
             TEMPROW = e.RowIndex
@@ -2300,7 +2231,7 @@ line1:
                 'GET SELLERSTATECODE
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBSELLERS.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.acc_YEARid = " & YearId)
-                SELLERSTATECODE = DT.Rows(0).Item("STATECODE")
+                    SELLERSTATECODE = DT.Rows(0).Item("STATECODE")
 
                 If CMBTRANS.Text = "" Then CMBTRANS.Text = DT.Rows(0).Item("TRANSNAME")
 
@@ -2339,7 +2270,7 @@ LINE1:
 
     Private Sub TXTPARTYBILLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTPARTYBILLNO.Validating
         Try
-            If TXTPARTYBILLNO.Text.Trim <> "" Then
+            If TXTPARTYBILLNO.Text.Trim <> "" And CMBSELLERS.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBSELLERS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & TXTPARTYBILLNO.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
