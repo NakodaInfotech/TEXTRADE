@@ -1,8 +1,5 @@
 ﻿
-Imports System.Windows.Forms
 Imports BL
-Imports DevExpress.XtraMap
-Imports DevExpress.XtraReports
 
 Public Class PaymentMaster
 
@@ -500,7 +497,7 @@ Public Class PaymentMaster
         Try
             If cmbname.Text.Trim <> "" And EDIT = True Then
                 GRIDBILL.DataSource = Nothing
-                gridpayment.RowCount = 0
+                If ClientName <> "ABHEE" Then gridpayment.RowCount = 0
                 GPDESC.Enabled = False
                 gridpaydesc.RowCount = 0
                 GRIDDESC.RowCount = 0
