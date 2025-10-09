@@ -210,7 +210,7 @@ Public Class UploadExcel_MASHOK
                 Dim errorCount As Integer = 0
 
                 ' Normalize column existence helpers
-                Dim functionCols = Function(name As String) dt.Columns.Contains(name)
+                'Dim functionCols = Function(name As String) dt.Columns.Contains(name)
                 Dim failedRows As New List(Of String)
                 For Each dr As DataRow In dt.Rows
                     Try
@@ -220,9 +220,9 @@ Public Class UploadExcel_MASHOK
                             Continue For
                         End If
                         ' Skip empty lines (no item and no amount)
-                        Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
-                        Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
-                        If Not hasMainItem AndAlso Not hasAnyAmount Then Continue For
+                        'Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
+                        'Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
+                        'If Not hasMainItem AndAlso Not hasAnyAmount Then Continue For
 
                         Dim frm As New ExpenseVoucher()
 
@@ -246,80 +246,64 @@ Public Class UploadExcel_MASHOK
                         If String.IsNullOrEmpty(frm.NPDATE.Text) OrElse frm.NPDATE.Text = "__/__/____" Then
                             frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
                         End If
-
                         frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString().Trim()
-                        frm.txtremarks.Text = If(dt.Columns.Contains("OTHER REF (REMARKS)"), dr("OTHER REF (REMARKS)").ToString().Trim(), "")
+
+                        If dt.Columns.Contains("OTHER REF (REMARKS)") Then
+                            frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString().Trim()
+                        End If
+
 
                         ' Prepare grid
                         frm.GRIDEXPENSE.Rows.Clear()
                         Dim sr As Integer = 1
 
-                        ' Optional: OTHER AMT applied to main line if present
-                        Dim otherAmt As Decimal = 0D
-                        If dt.Columns.Contains("OTHER AMT") AndAlso dr("OTHER AMT").ToString().Trim() <> "" Then
-                            otherAmt = Val(dr("OTHER AMT"))
-                        End If
+                        Dim sacCode As String = dr("SAC CODE").ToString().Trim()
+                        Dim otherAmt As Decimal = If(dt.Columns.Contains("OTHER AMT"), Val(dr("OTHER AMT")), 0D)
 
-                        ' Helper to add one expense line using the form’s CALC/GETHSNCODE flow
-                        Dim addLine = Sub(itemName As String, qtyTxt As String, rateTxt As String, amtTxt As String)
-                                          If String.IsNullOrWhiteSpace(itemName) Then Exit Sub
-                                          ' Add base row
-                                          frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES",
-                                                       If(dt.Columns.Contains("SAC CODE"), dr("SAC CODE").ToString().Trim(), ""),
-                                                       itemName,
-                                                       Val(qtyTxt), Val(rateTxt), Val(amtTxt),
-                                                       otherAmt, 0, 0, 0, 0, 0, 0, 0, 0,
-                                                       Val(amtTxt))
-                                          Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
+                        ' ==== Loop through 1 to 4 item sets ====
+                        Dim itemSets = New List(Of Integer) From {0, 1, 2, 3}
+                        For Each i In itemSets
+                            Dim itemCol As String = If(i = 0, "ITEM NAME", $"ITEM NAME {i}")
+                            Dim qtyCol As String = If(i = 0, "QTY", $"QTY {i}")
+                            Dim rateCol As String = If(i = 0, "RATE", $"RATE {i}")
+                            Dim amtCol As String = If(i = 0, "AMOUNT", $"AMOUNT {i}")
 
-                                          ' Fill fields required for CALC
-                                          frm.TXTQTY.Text = Val(qtyTxt).ToString()
-                                          frm.TXTRATE.Text = Val(rateTxt).ToString()
-                                          frm.TXTTAXABLEAMT.Text = Val(amtTxt).ToString()
-                                          frm.CMBHSNCODE.Text = If(dt.Columns.Contains("SAC CODE"), dr("SAC CODE").ToString().Trim(), "")
-                                          frm.GETHSNCODE()
-                                          frm.CALC()
+                            If dt.Columns.Contains(itemCol) AndAlso Not String.IsNullOrWhiteSpace(dr(itemCol).ToString()) Then
+                                Dim itemName As String = dr(itemCol).ToString().Trim()
+                                Dim qty As Decimal = If(IsNumeric(dr(qtyCol)), Val(dr(qtyCol)), 0)
+                                Dim rate As Decimal = If(IsNumeric(dr(rateCol)), Val(dr(rateCol)), 0)
+                                Dim amt As Decimal = If(IsNumeric(dr(amtCol)), Val(dr(amtCol)), 0)
 
-                                          ' Copy GST results back to grid
-                                          lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
-                                          lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
-                                          lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
-                                          lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
-                                          lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
-                                          lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
-                                          lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
-                                          lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+                                ' Add row to expense grid
+                                frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES", sacCode, itemName, qty, rate, amt,
+                                         If(i = 0, otherAmt, 0), 0, 0, 0, 0, 0, 0, 0, 0, amt)
 
-                                          sr += 1
-                                      End Sub
+                                ' Select last added row to populate GST
+                                Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
 
-                        ' Main item (single row intent)
-                        addLine(If(dt.Columns.Contains("ITEM NAME"), dr("ITEM NAME").ToString().Trim(), ""),
-                    If(dt.Columns.Contains("QTY"), dr("QTY").ToString().Trim(), "0"),
-                    If(dt.Columns.Contains("RATE"), dr("RATE").ToString().Trim(), "0"),
-                    If(dt.Columns.Contains("AMOUNT"), dr("AMOUNT").ToString().Trim(), "0"))
+                                frm.TXTQTY.Text = qty.ToString()
+                                frm.TXTRATE.Text = rate.ToString()
+                                frm.TXTTAXABLEAMT.Text = amt.ToString()
+                                frm.CMBHSNCODE.Text = sacCode
 
-                        ' Optional additional items in same row: ITEM NAME 1..3
-                        For i As Integer = 1 To 3
-                            Dim itemCols = New String() {$"ITEM NAME {i}", $"ITEMNAME {i}", $"ITEMNAME{i}"}
-                            Dim qtyCols = New String() {$"QTY {i}", $"QTY{i}"}
-                            Dim rateCols = New String() {$"RATE {i}", $"RATE{i}"}
-                            Dim amtCols = New String() {$"AMOUNT {i}", $"AMOUNT{i}"}
+                                frm.GETHSNCODE()
+                                frm.CALC()
 
-                            Dim itemCol = itemCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                            If Not String.IsNullOrEmpty(itemCol) AndAlso dr(itemCol).ToString().Trim() <> "" Then
-                                Dim qtyCol = qtyCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                Dim rateCol = rateCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                Dim amtCol = amtCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                addLine(dr(itemCol).ToString().Trim(),
-                            If(qtyCol Is Nothing, "0", dr(qtyCol).ToString().Trim()),
-                            If(rateCol Is Nothing, "0", dr(rateCol).ToString().Trim()),
-                            If(amtCol Is Nothing, "0", dr(amtCol).ToString().Trim()))
+                                lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
+                                lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
+                                lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
+                                lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
+                                lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
+                                lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
+                                lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
+                                lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+
+                                sr += 1
                             End If
                         Next
 
-                        ' Totals and save
                         frm.TOTAL()
+
                         If frm.SaveInvoice(True) Then
                             successCount += 1
                         Else
@@ -328,6 +312,7 @@ Public Class UploadExcel_MASHOK
 
                     Catch ex As Exception
                         errorCount += 1
+                        ' Optional: Log error - MsgBox(ex.Message)
                     End Try
                 Next
                 If failedRows.Count > 0 Then
