@@ -1155,7 +1155,14 @@ LINE1:
                 Next
             End If
         End If
-
+        If String.IsNullOrWhiteSpace(CMBGRIDSYM.Text) Then
+            ' Set to the first item in the list (top alphabet)
+            If CMBGRIDSYM.Items.Count > 0 Then
+                CMBGRIDSYM.Text = CMBGRIDSYM.Items(0).ToString()
+            End If
+        Else
+            CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text, CMBGRIDSYM)
+        End If
         GRIDWARPDESC.EndEdit() '
 
 
@@ -1305,11 +1312,7 @@ LINE1:
                 Next
             End If
         End If
-        'If String.IsNullOrEmpty(TXTSELSYMBOL.Text) Then
-        '    TXTSELSYMBOL.Text = "A"
-        'Else
-        '    TXTSELSYMBOL.Text = IncrementAlphabet(TXTSELSYMBOL.Text)
-        'End If
+
 
         GRIDSELDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
@@ -1347,6 +1350,16 @@ LINE1:
         End If
         CMBSELYARNQUALITY.Focus()
     End Sub
+    Function IncrementAlphabet(currentSym As String, cmb As ComboBox) As String
+        Dim idx As Integer = cmb.Items.IndexOf(currentSym)
+        If idx <> -1 AndAlso idx + 1 < cmb.Items.Count Then
+            Return cmb.Items(idx + 1).ToString()
+        ElseIf idx = -1 AndAlso cmb.Items.Count > 0 Then
+            Return cmb.Items(0).ToString() ' fallback to first item
+        Else
+            Return currentSym ' if already last, return current
+        End If
+    End Function
     Sub POPULATESELGRID()
         Dim maxShadeCount As Integer = 0
         For Each dr As DataRow In DT_SELDETAILS.Rows
@@ -1457,7 +1470,14 @@ LINE1:
                 Next
             End If
         End If
-
+        If String.IsNullOrWhiteSpace(CMBWEFTGRIDSYMBOL.Text) Then
+            ' Set to the first item in the list (top alphabet)
+            If CMBWEFTGRIDSYMBOL.Items.Count > 0 Then
+                CMBWEFTGRIDSYMBOL.Text = CMBWEFTGRIDSYMBOL.Items(0).ToString()
+            End If
+        Else
+            CMBWEFTGRIDSYMBOL.Text = IncrementAlphabet(CMBWEFTGRIDSYMBOL.Text, CMBWEFTGRIDSYMBOL)
+        End If
         GRIDWEFTDESC.EndEdit()
 
         For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
@@ -2086,18 +2106,18 @@ LINE1:
             End If
         End If
     End Sub
-    Sub EDITWARPPATTERNROW()
-        If GRIDWARPPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDWARPPATTERN.CurrentRow.Index >= 0 Then
-                TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
-                TXTWARPGSRNO.Text = GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value
-                TXTGRIDPE.Text = GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value
-                CMBGRIDSYM.Text = GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value
-                GRIDWPDOUBLECLICK = True
-                TXTGRIDPE.Focus()
-            End If
-        End If
-    End Sub
+    'Sub EDITWARPPATTERNROW()
+    '    If GRIDWARPPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDWARPPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
+    '            TXTWARPGSRNO.Text = GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value
+    '            TXTGRIDPE.Text = GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value
+    '            CMBGRIDSYM.Text = GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value
+    '            GRIDWPDOUBLECLICK = True
+    '            TXTGRIDPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
     Sub EDITSELVEDGEROW()
         If GRIDSELVEDGE.CurrentRow IsNot Nothing Then
             If GRIDSELVEDGE.CurrentRow.Index >= 0 Then
@@ -2143,39 +2163,39 @@ LINE1:
             End If
         End If
     End Sub
-    Sub EDITWEFTPATTERNROW()
-        If GRIDWEFTPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDWEFTPATTERN.CurrentRow.Index >= 0 Then
-                TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
-                TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
-                TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
-                CMBWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
-                GRIDWEFTPDOUBLECLICK = True
-                TXTWEFTGRIDPE.Focus()
-            End If
-        End If
-    End Sub
-    Sub EDITSELVEDGEPATTERNROW()
-        If GRIDSELVEDGEPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDSELVEDGEPATTERN.CurrentRow.Index >= 0 Then
-                TEMPSELPROW = GRIDSELVEDGEPATTERN.CurrentRow.Index
-                TXTSELGSRNO.Text = GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value
-                TXTSELGPE.Text = GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value
-                CMBSELGSYM.Text = GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value.ToString
-                GRIDSELPDOUBLECLICK = True
-                TXTSELGPE.Focus()
-            End If
-        End If
-    End Sub
+    'Sub EDITWEFTPATTERNROW()
+    '    If GRIDWEFTPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDWEFTPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
+    '            TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
+    '            TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
+    '            CMBWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
+    '            GRIDWEFTPDOUBLECLICK = True
+    '            TXTWEFTGRIDPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
+    'Sub EDITSELVEDGEPATTERNROW()
+    '    If GRIDSELVEDGEPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDSELVEDGEPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPSELPROW = GRIDSELVEDGEPATTERN.CurrentRow.Index
+    '            TXTSELGSRNO.Text = GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value
+    '            TXTSELGPE.Text = GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value
+    '            CMBSELGSYM.Text = GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value.ToString
+    '            GRIDSELPDOUBLECLICK = True
+    '            TXTSELGPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
 
 
-    Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
-        Try
-            EDITWARPPATTERNROW()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
+    '    Try
+    '        EDITWARPPATTERNROW()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub CMDPHOTOUPLOAD_Click(sender As Object, e As EventArgs) Handles CMDPHOTOUPLOAD.Click
         If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
@@ -2209,9 +2229,9 @@ LINE1:
     Private Sub GRIDWEFT_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellDoubleClick
         EDITWEFTROW()
     End Sub
-    Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
-        EDITWARPPATTERNROW()
-    End Sub
+    'Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
+    '    EDITWARPPATTERNROW()
+    'End Sub
     Private Sub GRIDSELVEDGE_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellDoubleClick
         EDITSELVEDGEROW()
     End Sub
@@ -2381,9 +2401,9 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellDoubleClick
-        EDITSELVEDGEPATTERNROW()
-    End Sub
+    'Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    '    EDITSELVEDGEPATTERNROW()
+    'End Sub
 
     Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
         Try
@@ -2453,7 +2473,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELVEDGEPATTERN.KeyDown
+    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs)
         Try
             If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.RowCount > 0 Then
                 If GRIDSELDOUBLECLICK = True Then
@@ -2463,8 +2483,8 @@ LINE1:
                 GRIDSELVEDGEPATTERN.Rows.RemoveAt(GRIDSELVEDGEPATTERN.CurrentRow.Index)
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGEPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITSELVEDGEPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITSELVEDGEPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2528,11 +2548,10 @@ LINE1:
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
-            If MsgBox("Wish to Copy Warp Matching Grid?", MsgBoxStyle.YesNo) = vbYes Then
-                CopyGridEntries(GRIDWARP, GRIDWEFT)
-            ElseIf MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
+            If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
             End If
+            
             'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
             'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
             MsgBox("Copied Successfully")
@@ -2570,8 +2589,8 @@ LINE1:
                 GRIDWARPPATTERN.Rows.RemoveAt(GRIDWARPPATTERN.CurrentRow.Index)
                 TOTALWARP()
                 getsrno(GRIDWARPPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITWARPPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITWARPPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2621,15 +2640,15 @@ LINE1:
                 GRIDWEFTPATTERN.Rows.RemoveAt(GRIDWEFTPATTERN.CurrentRow.Index)
                 TOTALWEFT()
                 getsrno(GRIDWEFTPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITWEFTPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITWEFTPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs) Handles CMBSELGSYM.Validated
+    Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs)
         'Try
         '    If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
         '        FILLSELPATTERNGRID()
@@ -3172,7 +3191,7 @@ LINE1:
         e.Row.Cells("DSRNO").Value = GRIDDRAWING.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDSELVEDGEPATTERN.DefaultValuesNeeded
+    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs)
         e.Row.Cells("SPSRNO").Value = GRIDSELVEDGEPATTERN.Rows.Count
     End Sub
 
@@ -3185,7 +3204,7 @@ LINE1:
     End Sub
 
 
-    Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
+    Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs)
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
@@ -3633,6 +3652,15 @@ line1:
     Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
         If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC() Else CMDWARPCLOSE.Focus()
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Sub EDITGRIDWARPDESCROW()
 
         Try

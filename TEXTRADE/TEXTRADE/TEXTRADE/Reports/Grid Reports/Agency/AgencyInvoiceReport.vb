@@ -71,6 +71,7 @@ Public Class AgencyInvoiceReport
 
             link.CreateDocument()
             link.ExportToPdf(filePath)
+            System.Diagnostics.Process.Start(filePath)
 
             MessageBox.Show("PDF Exported Successfully: " & filePath)
         Catch ex As Exception
