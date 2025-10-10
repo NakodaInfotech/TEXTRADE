@@ -57,6 +57,13 @@ Public Class CategoryMaster
                             MsgBox("DEPARTMENT Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                             e.Cancel = True
                         End If
+                    ElseIf frmString = "PROJECT" Then
+                        uppercase(txtname)
+                        dt = objclscommon.search("PROJECT_name", "", "PROJECTMaster", " and PROJECT_name = '" & txtname.Text.Trim & "' and PROJECT_cmpid = " & CmpId & " and PROJECT_Locationid = " & Locationid & " and PROJECT_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            MsgBox("PROJECT Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
+                            e.Cancel = True
+                        End If
                     ElseIf frmString = "PACKINGTYPE" Then
                         dt = objclscommon.search("PACKINGTYPE_name", "", "PACKINGTypeMaster", " and PACKINGTYPE_name = '" & txtname.Text.Trim & "' and PACKINGTYPE_Yearid = " & YearId)
                         If dt.Rows.Count > 0 Then
@@ -275,6 +282,28 @@ Public Class CategoryMaster
 
             ElseIf frmString = "DISTRICT" Then
                 Dim OBJ As New ClsDistrictMaster
+                OBJ.alParaval = alParaval
+
+                If EDIT = False Then
+                    If USERADD = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    IntResult = OBJ.save()
+                    MsgBox("Details Added")
+                ElseIf EDIT = True Then
+                    If USEREDIT = False Then
+                        MsgBox("Insufficient Rights")
+                        Exit Sub
+                    End If
+                    alParaval.Add(TempID)
+                    IntResult = OBJ.Update()
+                    EDIT = False
+                    MsgBox("Details Updated")
+                End If
+
+            ElseIf frmString = "PROJECT" Then
+                Dim OBJ As New ClsProjectMaster
                 OBJ.alParaval = alParaval
 
                 If EDIT = False Then
@@ -699,6 +728,22 @@ Public Class CategoryMaster
                     Exit Sub
                 End If
                 If EDIT = True Then dttable = objCommon.search(" DISTRICT_name, DISTRICT_REMARKS", "", "DISTRICTMaster", " and DISTRICT_id = " & TempID & " and DISTRICT_cmpid = " & CmpId & " and DISTRICT_locationid = " & Locationid & " and DISTRICT_yearid = " & YearId)
+
+
+            ElseIf frmString = "PROJECT" Then
+                Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ITEM MASTER'")
+                USERADD = DTROW(0).Item(1)
+                USEREDIT = DTROW(0).Item(2)
+                USERVIEW = DTROW(0).Item(3)
+                USERDELETE = DTROW(0).Item(4)
+                Me.Text = "Project Master"
+                lblgroup.Text = "Project"
+                lbl.Text = "Enter Project" & vbNewLine & "(e.g.  GREEN,BLUE..., etc. )"
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                If EDIT = True Then dttable = objCommon.search(" PROJECT_name, PROJECT_REMARKS", "", "PROJECTMaster", " and PROJECT_id = " & TempID & " and PROJECT_cmpid = " & CmpId & " and PROJECT_locationid = " & Locationid & " and PROJECT_yearid = " & YearId)
 
             ElseIf frmString = "PACKINGTYPE" Then
                 Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ACCOUNTS MASTER'")

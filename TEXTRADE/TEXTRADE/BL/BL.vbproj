@@ -228,6 +228,7 @@
     <Compile Include="Masters\ClsInterGodownTransfer.vb" />
     <Compile Include="Masters\ClsLoomMaster.vb" />
     <Compile Include="Masters\ClsPartyWiseBaleRate.vb" />
+    <Compile Include="Masters\ClsProjectMaster.vb" />
     <Compile Include="Masters\ClsSampleTypeMaster.vb" />
     <Compile Include="Masters\ClsTransInsurance.vb" />
     <Compile Include="Masters\ClsVehicleMaster.vb" />
@@ -429,6 +430,7 @@
     <Compile Include="Utilities\ClsBankDetails.vb" />
     <Compile Include="Utilities\ClsBlockDataTransfer.vb" />
     <Compile Include="Utilities\ClsChangeReminderDays.vb" />
+    <Compile Include="Utilities\ClsClientDetails.vb" />
     <Compile Include="Utilities\ClsCoverNote.vb" />
     <Compile Include="Utilities\ClsDataReco.vb" />
     <Compile Include="Utilities\ClsDefaultUnit.vb" />
