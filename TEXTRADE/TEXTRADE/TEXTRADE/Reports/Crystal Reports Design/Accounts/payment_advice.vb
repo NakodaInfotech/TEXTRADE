@@ -27,6 +27,9 @@ Public Class payment_advice
 
     Dim OBJPAY As New Paymentreport
     Dim OBJPAY_A5 As New PaymentreportA5
+
+    Dim OBJPAY_ABHEE As New Paymentreport_ABHEE
+
     Dim OBJPAY_OLD As New Paymentreport_OLD
     Dim OBJPAY_SUPEEMA As New Paymentreport_SUPEEMA
 
@@ -53,6 +56,7 @@ Public Class payment_advice
     Dim OBJCHQPAY_MAHESH As New ChqPayment_MAHESH
     Dim OBJCHQPAY_COSMOS As New ChqPayment_COSMOS
     Dim OBJCHQPAY_CITYUNION As New ChqPayment_CITYUNION
+    Dim OBJCHQPAY_HDFCKOTAKABHEE As New ChqPayment_HDFCKOTAK_ABHEE
 
     Dim OBJCHQPAYBACK As New ChqPaymentBackReport
 
@@ -105,7 +109,7 @@ Public Class payment_advice
                 ElseIf BANKFORCHQPRINT = "PNB" Then
                     crTables = OBJCHQPAY_PNB.Database.Tables
                 ElseIf BANKFORCHQPRINT = "HDFC" Then
-                    crTables = OBJCHQPAY_HDFC.Database.Tables
+                    If ClientName = "ABHEE" Then crTables = OBJCHQPAY_HDFCKOTAKABHEE.Database.Tables Else crTables = OBJCHQPAY_HDFC.Database.Tables
                 ElseIf BANKFORCHQPRINT = "CITIBANK" Then
                     crTables = OBJCHQPAY_CITIBANK.Database.Tables
                 ElseIf BANKFORCHQPRINT = "UNION" Then
@@ -159,10 +163,11 @@ Public Class payment_advice
                     crTables = OBJPAY_SUPEEMA.Database.Tables
                 ElseIf ClientName = "VALIANT" Then
                     crTables = OBJPAY_A5.Database.Tables
+                ElseIf ClientName = "ABHEE" Then
+                    crTables = OBJPAY_ABHEE.Database.Tables
                 Else
                     crTables = OBJPAY.Database.Tables
                     If ClientName = "CHINTAN" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
                 End If
             End If
 
@@ -185,8 +190,13 @@ Public Class payment_advice
                     CRPO.ReportSource = OBJCHQPAY_PNB
                     OBJCHQPAY_PNB.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
                 ElseIf BANKFORCHQPRINT = "HDFC" Then
-                    CRPO.ReportSource = OBJCHQPAY_HDFC
-                    OBJCHQPAY_HDFC.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    If ClientName = "ABHEE" Then
+                        CRPO.ReportSource = OBJCHQPAY_HDFCKOTAKABHEE
+                        OBJCHQPAY_HDFCKOTAKABHEE.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    Else
+                        CRPO.ReportSource = OBJCHQPAY_HDFC
+                        OBJCHQPAY_HDFC.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
+                    End If
                 ElseIf BANKFORCHQPRINT = "CITIBANK" Then
                     CRPO.ReportSource = OBJCHQPAY_CITIBANK
                     OBJCHQPAY_CITIBANK.DataDefinition.FormulaFields("NEFTRTGSPARTY").Text = "'" & NEFTRTGSNORMAL & "'"
@@ -273,11 +283,19 @@ Public Class payment_advice
                     'ADD DATA IN TEMPPAYMENTDETAILS
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
-                    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT PAYMENTMASTER.PAYMENT_NO, PAYMENT_DATE, LEDGERS.Acc_cmpname, ACCLEDGERS.Acc_cmpname, PAYMENT_CHQNO, PAYMENTMASTER_DESC.PAYMENT_amt, PAYMENTMASTER.PAYMENT_cmpid, PAYMENTMASTER.PAYMENT_yearid  FROM PAYMENTMASTER_DESC INNER JOIN PAYMENTMASTER ON PAYMENTMASTER_DESC.PAYMENT_no =PAYMENTMASTER.PAYMENT_no AND PAYMENTMASTER_DESC.PAYMENT_registerid =PAYMENTMASTER.PAYMENT_registerid AND PAYMENTMASTER_DESC.PAYMENT_yearid =PAYMENTMASTER.PAYMENT_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_ledgerid = LEDGERS.ACC_ID INNER JOIN LEDGERS AS ACCLEDGERS ON PAYMENTMASTER.PAYMENT_accid = ACCLEDGERS.ACC_ID WHERE PAYMENTMASTER.PAYMENT_YEARID =" & YearId & " AND PAYMENT_BILLINITIALS In (Select PAYMENT_BILLINITIALS FROM PAYMENTMASTER_DESC INNER JOIN REGISTERMASTER ON PAYMENTMASTER_DESC.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID WHERE PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(payno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId & ")", "", "")
+                    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT PAYMENTMASTER.PAYMENT_NO, PAYMENT_DATE, LEDGERS.Acc_cmpname, ACCLEDGERS.Acc_cmpname, PAYMENT_CHQNO, PAYMENTMASTER_DESC.PAYMENT_amt, PAYMENTMASTER.PAYMENT_cmpid, PAYMENTMASTER.PAYMENT_yearid,'','', '' AS RECREMARKS  FROM PAYMENTMASTER_DESC INNER JOIN PAYMENTMASTER ON PAYMENTMASTER_DESC.PAYMENT_no =PAYMENTMASTER.PAYMENT_no AND PAYMENTMASTER_DESC.PAYMENT_registerid =PAYMENTMASTER.PAYMENT_registerid AND PAYMENTMASTER_DESC.PAYMENT_yearid =PAYMENTMASTER.PAYMENT_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_ledgerid = LEDGERS.ACC_ID INNER JOIN LEDGERS AS ACCLEDGERS ON PAYMENTMASTER.PAYMENT_accid = ACCLEDGERS.ACC_ID WHERE PAYMENTMASTER.PAYMENT_YEARID =" & YearId & " AND PAYMENT_BILLINITIALS In (Select PAYMENT_BILLINITIALS FROM PAYMENTMASTER_DESC INNER JOIN REGISTERMASTER ON PAYMENTMASTER_DESC.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID WHERE PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(payno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId & ")", "", "")
 
                     CRPO.ReportSource = OBJPAY_SUPEEMA
                 ElseIf ClientName = "VALIANT" Then
                     CRPO.ReportSource = OBJPAY_A5
+                ElseIf ClientName = "ABHEE" Then
+
+                    'ADD DATA IN TEMPPAYMENTDETAILS
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
+                    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT RECNO,  RECDATE, NAME, RECREMARKS, CHQNO, RECAMT, CMPID, YEARID, RECTYPE, RECINITIALS, RECREMARKS FROM PAYMENTMASTER INNER JOIN PAYMENTMASTER_DESC ON PAYMENTMASTER.PAYMENT_no= PAYMENTMASTER_DESC.PAYMENT_NO AND PAYMENTMASTER.PAYMENT_registerid= PAYMENTMASTER_DESC.PAYMENT_registerid AND PAYMENTMASTER.PAYMENT_yearid= PAYMENTMASTER_DESC.PAYMENT_YEARID INNER JOIN REGISTERMASTER ON PAYMENTMASTER.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID INNER JOIN OUTSTANDINGREPORT_DETAILS ON PAYMENTMASTER_DESC.PAYMENT_YEARID = OUTSTANDINGREPORT_DETAILS.YEARID AND PAYMENTMASTER.PAYMENT_LEDGERID = OUTSTANDINGREPORT_DETAILS.LEDGERID AND PAYMENTMASTER_DESC.PAYMENT_BILLINITIALS = OUTSTANDINGREPORT_DETAILS.BILLINITIALS AND OUTSTANDINGREPORT_DETAILS.RECINITIALS <> PAYMENTMASTER.PAYMENT_initials LEFT OUTER JOIN JOURNALMASTER ON  OUTSTANDINGREPORT_DETAILS.RECINITIALS = JOURNALMASTER.journal_initials AND JOURNALMASTER.journal_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND journal_ledgerid <> OUTSTANDINGREPORT_DETAILS.LEDGERID AND journal_credit = OUTSTANDINGREPORT_DETAILS.RECAMT LEFT OUTER JOIN LEDGERS AS JVLEDGERS ON JOURNALMASTER.journal_ledgerid = JVLEDGERS.ACC_ID WHERE (JVLEDGERS.Acc_cmpname IS NULL OR JVLEDGERS.ACC_TDSAC = 'FALSE' ) AND PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(payno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId, "", "")
+
+                    CRPO.ReportSource = OBJPAY_ABHEE
                 Else
                     CRPO.ReportSource = OBJPAY
                 End If
@@ -306,7 +324,7 @@ Public Class payment_advice
             ElseIf BANKFORCHQPRINT = "PNB" Then
                 OBJ = New ChqPayment_PNB
             ElseIf BANKFORCHQPRINT = "HDFC" Then
-                OBJ = New ChqPayment_HDFC
+                If ClientName = "ABHEE" Then OBJ = New ChqPayment_HDFCKOTAK_ABHEE Else OBJ = New ChqPayment_HDFC
             ElseIf BANKFORCHQPRINT = "INDUS" Then
                 OBJ = New ChqPayment_INDUS
             ElseIf BANKFORCHQPRINT = "CITIBANK" Then
@@ -400,11 +418,13 @@ Public Class payment_advice
             Dim OBJ As New Object
             If ClientName = "SUPEEMA" Then
                 OBJ = New Paymentreport_SUPEEMA
+            ElseIf ClientName = "VALIANT" Then
+                OBJ = New PaymentreportA5
+            ElseIf ClientName = "ABHEE" Then
+                OBJ = New Paymentreport_ABHEE
             Else
                 OBJ = New Paymentreport
                 If ClientName = "CHINTAN" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
-
             End If
 
             crTables = OBJ.Database.Tables
@@ -509,6 +529,12 @@ Public Class payment_advice
                 expo.DestinationOptions = oDfDopt
                 OBJPAY_A5.Export()
 
+            ElseIf ClientName = "ABHEE" Then
+                expo = OBJPAY_ABHEE.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                OBJPAY_ABHEE.Export()
             Else
                 expo = OBJPAY.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile

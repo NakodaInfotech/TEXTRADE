@@ -210,6 +210,7 @@ Public Class OpeningAgencySaleOrder
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBORDERON.Text.Trim)
             Dim objclsSALORD As New ClsOpeningAgencySaleOrder()
             objclsSALORD.alParaval = alParaval
 
@@ -891,6 +892,7 @@ line1:
                         txtadat.Text = dr("ADAT")
                         txtdays.Text = dr("DAYS")
                         txtint.Text = dr("INT")
+                        CMBORDERON.Text = dr("ORDERON")
 
                     Next
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
@@ -1728,6 +1730,7 @@ line1:
     Private Sub OpeningAgencySaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
             fillcmb()
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
                 LBLCONSIGNEE.Text = "Mobile No."
@@ -1797,6 +1800,32 @@ line1:
                 TXTCONSIGNEE.TabStop = False
                 TXTCONSIGNOR.TabStop = False
                 TXTMOBILENO.TabStop = False
+            End If
+            If ClientName = "ABHEE" Then
+                Label41.Visible = False
+                CMBRISK.Visible = False
+                Label43.Visible = False
+                CMBPACKINGTYPE.Visible = False
+
+                Label57.Visible = False
+                CMBCURRENCY.Visible = False
+                LBLCONSIGNEE.Visible = False
+                CMBFORWARD.Visible = False
+
+                CHKVERIFY.Visible = False
+                Label59.Visible = False
+                CMBSAMPLE.Visible = False
+                CMBORDERON.Text = "PCS"
+                CMBORDERON.Visible = True
+                LBLORDERON.Visible = True
+                CMBQUALITY.TabStop = False
+                CMBDESIGN.TabStop = False
+
+                cmbcolor.TabStop = False
+                TXTCUT.TabStop = False
+                txtgridremarks.TabStop = False
+
+
             End If
             If ClientName = "KCRAYON" Then lbltotalqty.Visible = True
 

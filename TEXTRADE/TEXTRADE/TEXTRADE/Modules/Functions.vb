@@ -18,7 +18,7 @@ Module Functions
             oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
 
             'IF CLIENT WANT TO PRINT ALL THE BARCODE THEN USE THE CODE BELOW
-            If ClientName = "TARUN" Then GoTo PRINTALL
+            If ClientName = "TARUN" Or ClientName = "SHEETAL" Then GoTo PRINTALL
 
             If (PIECETYPE <> "FRESH" And ClientName <> "KENCOT" And ClientName <> "KARAN" And ClientName <> "SPCORP") Or ((ClientName = "KARAN" Or ClientName = "SPCORP") And PIECETYPE <> "FRESH" And PIECETYPE <> "TP") Then
                 oWrite.Dispose()
@@ -108,7 +108,7 @@ TEXT 839,88,""0"",180,14,14,"":""
 TEXT 801,382,""0"",180,14,14,""" & TEMPHSNCODE & """
 TEXT 801,284,""0"",180,14,14,""" & TEMPWIDTH & """
 TEXT 801,186,""0"",180,14,14,""" & Format(Val(MTRS), "0.00") & GRIDDESC & """
-TEXT 801,88,""0"",180,14,14,"""  & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """
+TEXT 801,88,""0"",180,14,14,""" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """
 TEXT 801,578,""0"",180,14,14,""" & DESIGNNO & """
 TEXT 801,478,""0"",180,14,14,""" & SHADE & """
 TEXT 801,676,""0"",180,14,14,""" & ITEMNAME & """
@@ -118,33 +118,6 @@ PRINT 1,1
 <xpml></page></xpml><xpml><end/></xpml>")
                     oWrite.Dispose()
 
-
-                    'oWrite.WriteLine("TEXT 511,52,""ROMAN.TTF"",90,1,18,""ITEM NAME""")
-                    'oWrite.WriteLine("TEXT 511,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 511,503,""ROMAN.TTF"",90,1,18,""" & ITEMNAME & """")
-                    'oWrite.WriteLine("TEXT 418,52,""ROMAN.TTF"",90,1,18,""DESIGN NO""")
-                    'oWrite.WriteLine("TEXT 418,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 418,503,""ROMAN.TTF"",90,1,18,""" & DESIGNNO & """")
-                    'oWrite.WriteLine("TEXT 325,52,""ROMAN.TTF"",90,1,18,""SHADE""")
-                    'oWrite.WriteLine("TEXT 325,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 325,503,""ROMAN.TTF"",90,1,18,""" & SHADE & """")
-                    'oWrite.WriteLine("TEXT 232,52,""ROMAN.TTF"",90,1,18,""WIDTH""")
-                    'oWrite.WriteLine("TEXT 232,451,""ROMAN.TTF"",90,1,18,"":""")
-
-
-
-
-                    'oWrite.WriteLine("TEXT 232,503,""ROMAN.TTF"",90,1,18,""" & TEMPWIDTH & """")
-                    'oWrite.WriteLine("TEXT 137,52,""ROMAN.TTF"",90,1,18,""LTH. (MTRS)""")
-                    'oWrite.WriteLine("TEXT 137,451,""ROMAN.TTF"",90,1,18,"":""")
-                    'oWrite.WriteLine("TEXT 137,499,""ROMAN.TTF"",90,1,18,""" & Format(Val(MTRS), "0.00") & GRIDDESC & """")
-                    'oWrite.WriteLine("TEXT 90,1241,""ROMAN.TTF"",90,1,10,""MADE IN INDIA""")
-                    'oWrite.WriteLine("TEXT 723,1142,""ROMAN.TTF"",90,1,10,""SKU" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """")
-                    'oWrite.WriteLine("QRCODE 606,1185,L,10,A,90,M2,S7,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 201,1262,""ROMAN.TTF"",90,1,9,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 129,1589,""ROMAN.TTF"",0,10,10,""HSN CODE : " & TEMPHSNCODE & """")
-                    'oWrite.WriteLine("PRINT 1,1")
-                    'oWrite.Dispose()
                 Else
 
                     oWrite.WriteLine("<xpml><page quantity='0' pitch='75.0 mm'></xpml>SIZE 101.3 mm, 75 mm
@@ -187,37 +160,6 @@ TEXT 236,88,""0"",180,14,14,""PER PC""
 PRINT 1,1
 <xpml></page></xpml><xpml><end/></xpml>")
                     oWrite.Dispose()
-
-
-                    'oWrite.WriteLine("TEXT 518,52,""ROMAN.TTF"",90,1,22,""" & ITEMNAME & """")
-                    'oWrite.WriteLine("TEXT 371,52,""ROMAN.TTF"",90,1,22,""" & DESIGNNO & """")
-                    'oWrite.WriteLine("TEXT 371,536,""ROMAN.TTF"",90,1,22,""" & SHADE & """")
-                    'oWrite.WriteLine("TEXT 221,52,""ROMAN.TTF"",90,1,16,""WIDTH""")
-                    'oWrite.WriteLine("TEXT 221,287,""ROMAN.TTF"",90,1,16,"":""")
-
-
-
-                    'oWrite.WriteLine("TEXT 221,338,""ROMAN.TTF"",90,1,16,""" & TEMPWIDTH & """")
-                    'oWrite.WriteLine("TEXT 128,52,""ROMAN.TTF"",90,1,16,""QTY""")
-                    'oWrite.WriteLine("TEXT 128,287,""ROMAN.TTF"",90,1,16,"":""")
-                    'oWrite.WriteLine("TEXT 128,338,""ROMAN.TTF"",90,1,16,""" & Format(Val(CUT), "0.00") & """")
-                    'oWrite.WriteLine("TEXT 128,487,""ROMAN.TTF"",90,1,16,""X""")
-                    'oWrite.WriteLine("QRCODE 686,1185,Q,10,A,90,M2,S7,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 294,1226,""ROMAN.TTF"",90,1,12,""" & BARCODE & """") 'BARCODE
-                    'oWrite.WriteLine("TEXT 128,555,""ROMAN.TTF"",90,1,16,""" & Format(Val(QTY), "0") & " Pcs""")
-                    'oWrite.WriteLine("TEXT 221,892,""ROMAN.TTF"",90,1,16,""M.R.P.""")
-                    'oWrite.WriteLine("TEXT 221,1161,""ROMAN.TTF"",90,1,16,"":""")
-                    'oWrite.WriteLine("TEXT 221,1207,""ROMAN.TTF"",90,1,16,""" & TEMPMRP & "/- PER PC""")
-                    'oWrite.WriteLine("TEXT 128,892,""ROMAN.TTF"",90,1,16,""PKG ON""")
-                    'oWrite.WriteLine("TEXT 128,1161,""ROMAN.TTF"",90,1,16,"":""")
-
-
-
-                    'oWrite.WriteLine("TEXT 128,1207,""ROMAN.TTF"",90,1,16,""" & UCase(TEMPMONTH) & " " & TEMPYEAR & """")
-                    'oWrite.WriteLine("TEXT 740,1142,""ROMAN.TTF"",90,1,10,""SKU" & Now.Day & Now.Month & Now.Year & Now.Hour & Now.Minute & Now.Second & "24KT" & """")
-                    'oWrite.WriteLine("TEXT 198,1589,""ROMAN.TTF"",0,10,10,""HSN CODE : " & TEMPHSNCODE & """")
-                    'oWrite.WriteLine("PRINT 1,1")
-                    'oWrite.Dispose()
 
                 End If
 
@@ -347,6 +289,40 @@ PRINT 1,1
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+            ElseIf ClientName = "SHEETAL" Then
+
+                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 658,457,""ROMAN.TTF"",180,1,12,""QUALITY""
+TEXT 511,457,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,457,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """
+TEXT 658,399,""ROMAN.TTF"",180,1,12,""DESIGN""
+TEXT 511,399,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,401,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 658,341,""ROMAN.TTF"",180,1,12,""COLOR""
+TEXT 511,341,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,341,""ROMAN.TTF"",180,1,12,""" & SHADE & """
+TEXT 658,283,""ROMAN.TTF"",180,1,12,""MTRS""
+TEXT 511,283,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,283,""ROMAN.TTF"",180,1,12,""" & Format(Val(MTRS), "0.00") & """
+TEXT 658,225,""ROMAN.TTF"",180,1,12,""ROLL NO""
+TEXT 511,225,""ROMAN.TTF"",180,1,12,"":""
+TEXT 492,225,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+BARCODE 658,173,""128M"",85,0,180,3,6,""" & BARCODE & """
+TEXT 320,285,""ROMAN.TTF"",180,1,12,""RACK""
+TEXT 217,285,""ROMAN.TTF"",180,1,12,"":""
+TEXT 193,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
+PRINT 1,1")
+                oWrite.Dispose()
 
             ElseIf ClientName = "MBB" Then
 
@@ -3725,6 +3701,61 @@ PRINT 1,1
 
             ElseIf ClientName = "INDRAPUJAFABRICS" Then
 
+                'oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>G0")
+                'oWrite.WriteLine("n")
+                'oWrite.WriteLine("M0739")
+                'oWrite.WriteLine("O0214")
+                'oWrite.WriteLine("V0")
+                'oWrite.WriteLine("t1")
+                'oWrite.WriteLine("Kf0070")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
+                'oWrite.WriteLine("D11")
+                'oWrite.WriteLine("ySPM")
+                'oWrite.WriteLine("A2")
+                'oWrite.WriteLine("1911C1802610007" & ITEMNAME)
+                'oWrite.WriteLine("1911C1802180007D.NO")
+                'oWrite.WriteLine("1911C1802180098:")
+                'oWrite.WriteLine("1911C1802180110" & DESIGNNO)
+                'oWrite.WriteLine("1911C1801850007SHADE")
+                'oWrite.WriteLine("1911C1801850098:")
+                'oWrite.WriteLine("1911C1801850110" & SHADE)
+                'oWrite.WriteLine("1911C1801520007LOTNO")
+                'oWrite.WriteLine("1911C1801520098:")
+                'oWrite.WriteLine("1911C1801520110" & LOTNO)
+                'oWrite.WriteLine("1911C1800870217WIDTH")
+                'oWrite.WriteLine("1911C1801520284:")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+
+                'oWrite.WriteLine("1911C1800870316" & TEMPWIDTH)
+                'oWrite.WriteLine("1911C1801520212MTRS")
+                'oWrite.WriteLine("1X1100001560211L071001")
+                'oWrite.WriteLine("1911C1800870308:")
+                'If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00"))
+                'oWrite.WriteLine("1e8405200290014B" & BARCODE)
+                'oWrite.WriteLine("1911A1000110132" & BARCODE)
+                'oWrite.WriteLine("1911C1801190007GRADE")
+                'oWrite.WriteLine("1911C1801190098:")
+                'oWrite.WriteLine("1911C1801190110FRESH")
+                'oWrite.WriteLine("1911C1800870007UNIT")
+                'oWrite.WriteLine("1911C1800870098:")
+                'oWrite.WriteLine("1911C1800870110" & UNIT)
+                'oWrite.WriteLine("1X1100002570004L362001")
+                'oWrite.WriteLine("Q0001")
+                'oWrite.WriteLine("E")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                'oWrite.Dispose()
+
+
+
+
+
                 oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>G0")
                 oWrite.WriteLine("n")
                 oWrite.WriteLine("M0739")
@@ -3736,45 +3767,67 @@ PRINT 1,1
                 oWrite.WriteLine("D11")
                 oWrite.WriteLine("ySPM")
                 oWrite.WriteLine("A2")
-                oWrite.WriteLine("1911C1802610007" & ITEMNAME)
-                oWrite.WriteLine("1911C1802180007D.NO")
-                oWrite.WriteLine("1911C1802180098:")
-                oWrite.WriteLine("1911C1802180110" & DESIGNNO)
-                oWrite.WriteLine("1911C1801850007SHADE")
-                oWrite.WriteLine("1911C1801850098:")
-                oWrite.WriteLine("1911C1801850110" & SHADE)
-                oWrite.WriteLine("1911C1801520007LOTNO")
-                oWrite.WriteLine("1911C1801520098:")
-                oWrite.WriteLine("1911C1801520110" & LOTNO)
-                oWrite.WriteLine("1911C1800870217WIDTH")
-                oWrite.WriteLine("1911C1801520284:")
+                oWrite.WriteLine("1911C1802610008" & ITEMNAME)
+                oWrite.WriteLine("1911C1802180011D.NO")
+                oWrite.WriteLine("1911C1802180107:")
+                oWrite.WriteLine("1911C1802180121" & DESIGNNO)
+                oWrite.WriteLine("1911C1801840010SHADE")
+                oWrite.WriteLine("1911C1801840107:")
+                oWrite.WriteLine("1911C1801840121" & SHADE)
+                oWrite.WriteLine("1911C1801480011LOTNO")
+                oWrite.WriteLine("1911C1801480107:")
+                oWrite.WriteLine("1911C1801480121" & LOTNO)
+                oWrite.WriteLine("1911C1801840237WIDTH")
+                oWrite.WriteLine("1911C1801130106:")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
+                Dim TEMPHSN As String
+
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY, ISNULL(HSN_CODE,'') AS HSNCODE", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+
                 If DT.Rows.Count > 0 Then
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                    TEMPHSN = DT.Rows(0).Item("HSNCODE")
+
                 End If
 
-                oWrite.WriteLine("1911C1800870316" & TEMPWIDTH)
-                oWrite.WriteLine("1911C1801520212MTRS")
-                oWrite.WriteLine("1X1100001560211L071001")
-                oWrite.WriteLine("1911C1800870308:")
-                If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C1801520292" & Format(Val(MTRS), "0.00"))
-                oWrite.WriteLine("1e8405200290014B" & BARCODE)
-                oWrite.WriteLine("1911A1000110132" & BARCODE)
-                oWrite.WriteLine("1911C1801190007GRADE")
-                oWrite.WriteLine("1911C1801190098:")
-                oWrite.WriteLine("1911C1801190110FRESH")
-                oWrite.WriteLine("1911C1800870007UNIT")
-                oWrite.WriteLine("1911C1800870098:")
-                oWrite.WriteLine("1911C1800870110" & UNIT)
+                oWrite.WriteLine("1911C1801840338" & TEMPWIDTH)
+                oWrite.WriteLine("1911C1801130011MTRS")
+                oWrite.WriteLine("1X1100001170010L071001")
+                oWrite.WriteLine("1911C1801840326:")
+                If UCase(GRIDDESC.Trim) = "TP" Then oWrite.WriteLine("1911C1801130121" & Format(Val(MTRS), "0.00") & "*") Else oWrite.WriteLine("1911C1801130121" & Format(Val(MTRS), "0.00"))
+
+                oWrite.WriteLine("1911C1800430011GRADE")
+                oWrite.WriteLine("1911C1800430107:")
+                oWrite.WriteLine("1911C1800430121FRESH")
+
+                oWrite.WriteLine("1911C1800780011UNIT")
+                oWrite.WriteLine("1911C1800780106:")
+                oWrite.WriteLine("1911C1800780121" & UNIT)
                 oWrite.WriteLine("1X1100002570004L362001")
+
+                oWrite.WriteLine("1911C1800090011HSN")
+                oWrite.WriteLine("1911C1800090107:")
+                oWrite.WriteLine("1911C1800090119" & TEMPHSN)
+
+                oWrite.WriteLine("1W1DCC000004602362,LA," & BARCODE)
+                oWrite.WriteLine("1911C1000230252" & BARCODE)
                 oWrite.WriteLine("Q0001")
                 oWrite.WriteLine("E")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='75.1 mm'></xpml>L")
+
+                'oWrite.WriteLine("D11")
+                'oWrite.WriteLine("Q0001")
+
+
+                'oWrite.WriteLine("E")
+
                 oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+
                 oWrite.Dispose()
+
 
             ElseIf ClientName = "SBA" Then
 
@@ -8950,12 +9003,12 @@ line1:
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable
                 dt = objclscommon.search(" PARTYBANK_name ", "", " PARTYBANKMaster ", " and PARTYBANK_YEARID = " & YearId)
+                CMBBANK.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "PARTYBANK_name"
                     CMBBANK.DisplayMember = "PARTYBANK_name"
                     CMBBANK.Text = ""
                 End If
-                CMBBANK.DataSource = dt
                 CMBBANK.SelectedIndex = -1
                 CMBBANK.SelectAll()
             End If

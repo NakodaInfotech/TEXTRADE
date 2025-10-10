@@ -71,6 +71,7 @@ Partial Class SaleOrderDetails
         Me.GPARTYEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTWHATSAAP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARENTDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -87,7 +88,6 @@ Partial Class SaleOrderDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GPARENTDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,7 +294,7 @@ Partial Class SaleOrderDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -306,6 +306,7 @@ Partial Class SaleOrderDetails
         Me.GSHIPTO.Caption = "SHIPTO"
         Me.GSHIPTO.FieldName = "SHIPTO"
         Me.GSHIPTO.Name = "GSHIPTO"
+        Me.GSHIPTO.OptionsColumn.AllowEdit = False
         Me.GSHIPTO.Visible = True
         Me.GSHIPTO.VisibleIndex = 5
         '
@@ -434,6 +435,7 @@ Partial Class SaleOrderDetails
         Me.GPER.Caption = "Per"
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
+        Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.Visible = True
         Me.GPER.VisibleIndex = 31
         '
@@ -480,6 +482,7 @@ Partial Class SaleOrderDetails
         Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAMT.FieldName = "AMOUNT"
         Me.GAMT.Name = "GAMT"
+        Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Visible = True
         Me.GAMT.VisibleIndex = 20
         '
@@ -488,6 +491,7 @@ Partial Class SaleOrderDetails
         Me.GSALESMAN.Caption = "Sales Man"
         Me.GSALESMAN.FieldName = "SALESMAN"
         Me.GSALESMAN.Name = "GSALESMAN"
+        Me.GSALESMAN.OptionsColumn.AllowEdit = False
         Me.GSALESMAN.Visible = True
         Me.GSALESMAN.VisibleIndex = 21
         '
@@ -551,6 +555,7 @@ Partial Class SaleOrderDetails
         Me.GUSERNAME.Caption = "User Name"
         Me.GUSERNAME.FieldName = "USERNAME"
         Me.GUSERNAME.Name = "GUSERNAME"
+        Me.GUSERNAME.OptionsColumn.AllowEdit = False
         Me.GUSERNAME.Visible = True
         Me.GUSERNAME.VisibleIndex = 26
         Me.GUSERNAME.Width = 100
@@ -560,6 +565,7 @@ Partial Class SaleOrderDetails
         Me.GPARTYWHATSAAP.Caption = "Party Whatsaap No"
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
+        Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
         Me.GPARTYWHATSAAP.VisibleIndex = 27
         '
@@ -568,6 +574,7 @@ Partial Class SaleOrderDetails
         Me.GPARTYEMAIL.Caption = "Party Email ID "
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
+        Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
         Me.GPARTYEMAIL.VisibleIndex = 28
         '
@@ -576,6 +583,7 @@ Partial Class SaleOrderDetails
         Me.GAGENTWHATSAAP.Caption = "Agent Whatsaap No"
         Me.GAGENTWHATSAAP.FieldName = "AGENTWHATSAAP"
         Me.GAGENTWHATSAAP.Name = "GAGENTWHATSAAP"
+        Me.GAGENTWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GAGENTWHATSAAP.Visible = True
         Me.GAGENTWHATSAAP.VisibleIndex = 29
         '
@@ -584,8 +592,16 @@ Partial Class SaleOrderDetails
         Me.GAGENTEMAIL.Caption = "Agent Email"
         Me.GAGENTEMAIL.FieldName = "AGENTEMAIL"
         Me.GAGENTEMAIL.Name = "GAGENTEMAIL"
+        Me.GAGENTEMAIL.OptionsColumn.AllowEdit = False
         Me.GAGENTEMAIL.Visible = True
         Me.GAGENTEMAIL.VisibleIndex = 30
+        '
+        'GPARENTDESIGNNO
+        '
+        Me.GPARENTDESIGNNO.Caption = "P Design No"
+        Me.GPARENTDESIGNNO.FieldName = "PARENTDESIGNNO"
+        Me.GPARENTDESIGNNO.Name = "GPARENTDESIGNNO"
+        Me.GPARENTDESIGNNO.OptionsColumn.AllowEdit = False
         '
         'imageList1
         '
@@ -720,13 +736,6 @@ Partial Class SaleOrderDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'GPARENTDESIGNNO
-        '
-        Me.GPARENTDESIGNNO.Caption = "P Design No"
-        Me.GPARENTDESIGNNO.FieldName = "PARENTDESIGNNO"
-        Me.GPARENTDESIGNNO.Name = "GPARENTDESIGNNO"
-        Me.GPARENTDESIGNNO.OptionsColumn.AllowEdit = False
         '
         'SaleOrderDetails
         '

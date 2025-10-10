@@ -499,14 +499,15 @@ Public Class PurchaseReturnChallan
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
             If CMBPIECETYPE.Text.Trim = "" Then fillPIECETYPE(CMBPIECETYPE)
-            'If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
-            If ClientName = "AVIS" Then
-                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS'  AND ACC_TYPE = 'ACCOUNTS'")
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
+
+            If ClientName = "AMAN" Then
+                FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
+            ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" Then
+                FILLNAME(CMBNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
             Else
-                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
             End If
+
             fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
             fillQUALITY(CMBQUALITY, EDIT)
             FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
@@ -1139,8 +1140,15 @@ LINE1:
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'"
+                If ClientName = "AMAN" Then
+                    OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" Then
+                    OBJLEDGER.STRSEARCH = " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                Else
+                    OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                End If
                 OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPCODE <> "" Then CMBCODE.Text = OBJLEDGER.TEMPCODE
                 If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
             End If
         Catch ex As Exception
@@ -1156,7 +1164,15 @@ LINE1:
 
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then
+                If ClientName = "AMAN" Then
+                    NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS", CMBTRANSPORTNAME.Text)
+                ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" Then
+                    NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS", CMBTRANSPORTNAME.Text)
+                Else
+                    NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", CMBTRANSPORTNAME.Text)
+                End If
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1164,7 +1180,15 @@ LINE1:
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+            If CMBNAME.Text.Trim = "" Then
+                If ClientName = "AMAN" Then
+                    FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
+                ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" Then
+                    FILLNAME(CMBNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
+                Else
+                    FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+                End If
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1301,6 +1325,9 @@ LINE1:
                     MsgBox("Select Godown First", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
+
+                If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
+
 
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon

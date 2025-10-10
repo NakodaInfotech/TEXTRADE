@@ -72,7 +72,7 @@ Public Class InvoiceGridDetails
                          QUALITYMASTER ON INVOICEMASTER_DESC.INVOICE_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN
                          ITEMMASTER ON ITEMMASTER.item_id = INVOICEMASTER_DESC.INVOICE_ITEMID LEFT OUTER JOIN
                          LEDGERS AS TRANSLEDGER ON INVOICEMASTER.INVOICE_TRANSID = TRANSLEDGER.Acc_id LEFT OUTER JOIN
-                         LEDGERS AS AGENT ON INVOICEMASTER.INVOICE_AGENTID = AGENT.Acc_id ", "" & TEMPCONDITION)
+                         LEDGERS AS AGENT ON INVOICEMASTER.INVOICE_AGENTID = AGENT.Acc_id ", "" & TEMPCONDITION & " ORDER BY INVOICEMASTER.INVOICE_NO, INVOICEMASTER_DESC.INVOICE_SRNO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -142,7 +142,7 @@ Public Class InvoiceGridDetails
                     e.Cancel = True
                 End If
             Else
-                fillgrid("AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
+                fillgrid(" AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
             End If
         Catch ex As Exception
             Throw ex

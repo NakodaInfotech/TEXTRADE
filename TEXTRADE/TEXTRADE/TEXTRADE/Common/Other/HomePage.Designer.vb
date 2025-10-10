@@ -94,6 +94,8 @@ Partial Class HomePage
         Me.GRIDREC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRBALANCE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RBPURCHASE = New System.Windows.Forms.RadioButton()
+        Me.RBSALE = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GBPARTYPERFORMANCE.SuspendLayout()
         CType(Me.GRIDPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,13 +252,15 @@ Partial Class HomePage
         'GBMONTHLYSALE
         '
         Me.GBMONTHLYSALE.BackColor = System.Drawing.Color.Transparent
+        Me.GBMONTHLYSALE.Controls.Add(Me.RBPURCHASE)
+        Me.GBMONTHLYSALE.Controls.Add(Me.RBSALE)
         Me.GBMONTHLYSALE.Controls.Add(Me.GRIDMONTHLYSALEDETAILS)
         Me.GBMONTHLYSALE.Location = New System.Drawing.Point(14, 3)
         Me.GBMONTHLYSALE.Name = "GBMONTHLYSALE"
         Me.GBMONTHLYSALE.Size = New System.Drawing.Size(387, 342)
         Me.GBMONTHLYSALE.TabIndex = 20
         Me.GBMONTHLYSALE.TabStop = False
-        Me.GBMONTHLYSALE.Text = "Monthly Sale"
+        Me.GBMONTHLYSALE.Text = "Monthly Details"
         '
         'GRIDMONTHLYSALEDETAILS
         '
@@ -920,6 +924,28 @@ Partial Class HomePage
         Me.GRBALANCE.VisibleIndex = 1
         Me.GRBALANCE.Width = 70
         '
+        'RBPURCHASE
+        '
+        Me.RBPURCHASE.AutoSize = True
+        Me.RBPURCHASE.Location = New System.Drawing.Point(192, 2)
+        Me.RBPURCHASE.Name = "RBPURCHASE"
+        Me.RBPURCHASE.Size = New System.Drawing.Size(74, 18)
+        Me.RBPURCHASE.TabIndex = 9
+        Me.RBPURCHASE.Text = "Purchase"
+        Me.RBPURCHASE.UseVisualStyleBackColor = False
+        '
+        'RBSALE
+        '
+        Me.RBSALE.AutoSize = True
+        Me.RBSALE.Checked = True
+        Me.RBSALE.Location = New System.Drawing.Point(135, 2)
+        Me.RBSALE.Name = "RBSALE"
+        Me.RBSALE.Size = New System.Drawing.Size(49, 18)
+        Me.RBSALE.TabIndex = 8
+        Me.RBSALE.TabStop = True
+        Me.RBSALE.Text = "Sale"
+        Me.RBSALE.UseVisualStyleBackColor = True
+        '
         'HomePage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -939,6 +965,7 @@ Partial Class HomePage
         CType(Me.GRIDPERFORMANCEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDPERFORMANCE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBMONTHLYSALE.ResumeLayout(False)
+        Me.GBMONTHLYSALE.PerformLayout()
         CType(Me.GRIDMONTHLYSALEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDMONTHLYSALE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBOVERDUE.ResumeLayout(False)
@@ -1036,4 +1063,6 @@ Partial Class HomePage
     Friend WithEvents GPPPERCENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RBITEM As RadioButton
     Friend WithEvents RBPARTY As RadioButton
+    Friend WithEvents RBPURCHASE As RadioButton
+    Friend WithEvents RBSALE As RadioButton
 End Class

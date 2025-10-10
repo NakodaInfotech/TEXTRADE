@@ -2,6 +2,7 @@
 
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.DataProcessing.InMemoryDataProcessor.GraphGenerator
 
 Public Class YarnQualityMaster
 
@@ -15,7 +16,9 @@ Public Class YarnQualityMaster
     Sub clear()
         txtname.Clear()
         CMBCATEGORY.Text = ""
-
+        CMBMILLNAME.Text = ""
+        txtcount.Clear()
+        TXTSHADENO.Clear()
         txtremarks.Clear()
         txtname.Focus()
         CMBYARNQUALITY.Text = ""
@@ -58,7 +61,7 @@ Public Class YarnQualityMaster
             bln = False
         End If
 
-        If CMBHSNCODE.Text.Trim.Length = 0 Then
+        If ClientName <> "AADHAR" And CMBHSNCODE.Text.Trim.Length = 0 Then
             Ep.SetError(CMBHSNCODE, "Fill HSN Code")
             bln = False
         End If
@@ -113,7 +116,10 @@ Public Class YarnQualityMaster
                 If Not errorvalid() Then
                     Exit Sub
                 End If
+                If ClientName = "AADHAR" Then
+                    txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
 
+                End If
                 Dim OBJYARN As New ClsYarnQualityMaster
                 OBJYARN.alParaval.Add(txtname.Text.Trim)
                 OBJYARN.alParaval.Add(CMBCATEGORY.Text.Trim)
@@ -168,6 +174,9 @@ Public Class YarnQualityMaster
                 OBJYARN.alParaval.Add(Userid)
                 OBJYARN.alParaval.Add(YearId)
 
+                OBJYARN.alParaval.Add(txtcount.Text.Trim)
+                OBJYARN.alParaval.Add(TXTSHADENO.Text.Trim)
+                OBJYARN.alParaval.Add(CMBMILLNAME.Text.Trim)
                 If EDIT = False Then
                     If USERADD = False Then
                         MsgBox("Insufficient Rights")
@@ -204,6 +213,7 @@ Public Class YarnQualityMaster
             fillYARNQUALITY(CMBYARNQUALITY, False)
             fillCATEGORY(CMBCATEGORY, False)
             FILLSTOREITEMNAME(CMBSTOREITEM)
+            FILLMILL(CMBMILLNAME, False)
             If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
         Catch ex As Exception
             Throw ex
@@ -291,6 +301,9 @@ Public Class YarnQualityMaster
                     CMBHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
                     TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
                     TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
+                    txtcount.Text = DT.Rows(0).Item("COUNT")
+                    TXTSHADENO.Text = DT.Rows(0).Item("SHADENO")
+                    CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
 
                     'CHARGES GRID
                     Dim OBJCMN As New ClsCommon
@@ -419,7 +432,16 @@ Public Class YarnQualityMaster
             GRIDCOMP.Item("GPER", TEMPROW).Value = Val(TXTPER.Text.Trim)
             GRIDDOUBLECLICK = False
         End If
+        'Dim OBJCMN As New ClsCommon
+        'Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(YARNQUALITYMASTER.YARN_REMARK,'') as REMARKS ", "", " YARNQUALITYMASTER ", " AND YARNQUALITYMASTER.YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId)
+        'If dttable1.Rows.Count > 0 Then
+        '    If txtremarks.Text = "" Then
+        '        txtremarks.Text = dttable1.Rows(0).Item("REMARKS")
+        '    ElseIf dttable1.Rows(0).Item("REMARKS") <> "" Then
+        '        txtremarks.Text = txtremarks.Text.Trim & "/" & dttable1.Rows(0).Item("REMARKS")
+        '    End If
 
+        'End If
         total()
         CMBYARNQUALITY.Text = ""
         TXTPER.Clear()
@@ -470,10 +492,13 @@ Public Class YarnQualityMaster
 
             If ClientName = "AADHAR" Then
                 GPSTORES.Visible = False
-            End If
-
-            If ClientName = "AADHAR" Then
+                txtcount.Visible = True
+                LBLCOUNT.Visible = True
+                CMBCATEGORY.Visible = False
+                lblcategory.Visible = False
                 TXTDENIER.BackColor = Color.LemonChiffon
+                Label3.Visible = False
+                CMBHSNCODE.Visible = False
             End If
         Catch ex As Exception
             Throw ex
@@ -581,4 +606,19 @@ Public Class YarnQualityMaster
         End Try
     End Sub
 
+    Private Sub CMBMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBMILLNAME.Validating
+        Try
+            If CMBMILLNAME.Text.Trim <> "" Then MILLVALIDATE(CMBMILLNAME, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBMILLNAME_Enter(sender As Object, e As EventArgs) Handles CMBMILLNAME.Enter
+        Try
+            If CMBMILLNAME.Text.Trim = "" Then FILLMILL(CMBMILLNAME, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

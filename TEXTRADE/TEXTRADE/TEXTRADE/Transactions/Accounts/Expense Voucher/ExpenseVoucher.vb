@@ -18,6 +18,7 @@ Public Class ExpenseVoucher
     Dim PURregabbr, PURreginitial As String
     Public TEMPREGNAME As String
     Dim ALLOWMANUALNPNO As Boolean = False
+    Public IsBulkUpload As Boolean = False
 
     Public Sub New()
 
@@ -29,6 +30,38 @@ Public Class ExpenseVoucher
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
+    Public Function SaveInvoice(Optional showMessage As Boolean = True) As Boolean
+        ' just call the private button handler
+        'cmdok_Click(Nothing, EventArgs.Empty)
+        Try
+            If Not errorvalid() Then
+                Return False ' Validation failed
+            End If
+            CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
+            TOTAL()
+
+
+            ' Call the original save logic
+            cmdok_Click(Nothing, EventArgs.Empty)
+            If showMessage Then
+                MessageBox.Show("Details Added")
+            End If
+            Return True ' Success
+        Catch ex As Exception
+            MessageBox.Show("Error saving invoice: " & ex.Message)
+            Return False
+        End Try
+    End Function
+
+    Public Property CanUserAdd As Boolean
+        Get
+            Return USERADD
+        End Get
+        Set(value As Boolean)
+            USERADD = value
+        End Set
+    End Property
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -628,7 +661,9 @@ Public Class ExpenseVoucher
                     Exit Sub
                 End If
                 Dim DT As DataTable = objclsNP.SAVE()
-                MsgBox("Details Added")
+                If Not IsBulkUpload Then
+                    MsgBox("Details Added")
+                End If
 
                 If CHKTDS.CheckState = CheckState.Checked Then
                     Dim OBJTDS As New DeductTDS
@@ -648,8 +683,6 @@ Public Class ExpenseVoucher
                 EDIT = False
             End If
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             Call toolnext_Click(sender, e)
             CMBNAME.Focus()
 
@@ -738,23 +771,9 @@ Public Class ExpenseVoucher
             End If
 
             If Convert.ToDateTime(PARTYBILLDATE.Text).Date >= "01/07/2017" Then
-                If TXTSTATECODE.Text.Trim.Length = 0 Then
-                    EP.SetError(TXTSTATECODE, "Please enter the state code")
-                    bln = False
-                End If
-
-                'NOT MANDATE, DONE BY GULKIT
-                'If TXTGSTIN.Text.Trim.Length = 0 And CHKRCM.CheckState = CheckState.Unchecked Then
-                '    EP.SetError(CHKRCM, "Select Reverse Charge")
+                'If TXTSTATECODE.Text.Trim.Length = 0 Then
+                '    EP.SetError(TXTSTATECODE, "Please enter the state code")
                 '    bln = False
-                'End If
-
-
-                'If TXTGSTIN.Text.Trim.Length > 0 And CHKRCM.CheckState = CheckState.Checked Then
-                '    If MsgBox("Reverse Charge Not Applicable, Wish to Continue?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '        EP.SetError(CHKRCM, "Reverse Charge Not Applicable")
-                '        bln = False
-                '    End If
                 'End If
 
                 If ClientName <> "NVAHAN" And ClientName <> "NAKODAINFOTECH" Then
@@ -1464,6 +1483,42 @@ LINE1:
             Throw ex
         End Try
     End Sub
+    Public Sub RunCmbNameValidation()
+        ' All validation logic here
+        Try
+            Dim OBJCMN As New ClsCommon
+            If CMBNAME.Text.Trim <> "" Then
+                'GET REGISTER , AGENCT AND TRANS, OPEN ALL ACCOUNTS
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_RCM,0) AS RCM, ISNULL(GROUPMASTER.GROUP_NAME,'') AS GROUPNAME, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT ", "", "    LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.Acc_REGISTERID = REGISTER_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id  ", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TXTSTATECODE.Text = DT.Rows(0).Item("STATECODE")
+                    TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
+                    If EDIT = False Then CHKRCM.Checked = Convert.ToBoolean(DT.Rows(0).Item("RCM"))
+                    LBLGROUPNAME.Text = DT.Rows(0).Item("GROUPNAME")
+                    If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
+
+                    'If DT.Rows(0).Item("REGISTERNAME") <> CMBREGISTER.Text.Trim And DT.Rows(0).Item("REGISTERNAME") <> "" Then
+                    '    Dim TEMPMSG As Integer = MsgBox("Register is Different Change to Default?", MsgBoxStyle.YesNo)
+                    '    If TEMPMSG = vbYes Then
+                    '        CMBREGISTER.Text = DT.Rows(0).Item("REGISTERNAME")
+                    '        getmaxno()
+                    '    End If
+                    'End If
+                    'TOTAL()
+                End If
+
+                'GET TDSAPPLICABLE
+                DT = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    If Val(DT.Rows(0).Item("TDSPER")) > 0 Then CHKTDS.CheckState = CheckState.Checked
+                End If
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub CHKTCS_CheckedChanged(sender As Object, e As EventArgs) Handles CHKTCS.CheckedChanged
         TOTAL()
@@ -1835,6 +1890,27 @@ NEXTLINE:
 
     Private Sub NPDATE_GotFocus(sender As Object, e As EventArgs) Handles NPDATE.GotFocus
         NPDATE.SelectionStart = 0
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET INVOICENOS FROM PURCHASEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(NP_NO) AS BILLNO", "", " NONPURCHASE INNER JOIN REGISTERMASTER ON REGISTER_ID = NP_REGISTERID", " AND REGISTER_NAME = '" & CMBREGISTER.Text.Trim & "' AND NP_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
+                GRIDEXPENSE.RowCount = 0
+                TEMPEXPNO = Val(I)
+                TEMPREGNAME = CMBREGISTER.Text.Trim
+                EDIT = True
+                NonPurchase_Load(sender, e)
+                If GRIDEXPENSE.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub CMBCOSTCENTERNAME_Enter(sender As Object, e As EventArgs) Handles CMBCOSTCENTERNAME.Enter

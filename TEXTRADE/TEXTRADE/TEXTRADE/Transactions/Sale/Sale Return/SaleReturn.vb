@@ -69,6 +69,8 @@ Public Class SaleReturn
             CMBPACKING.Text = ""
 
             TXTCITY.Text = ""
+            If CMPCITYNAME <> "" Then CMBFROMCITY.Text = CMPCITYNAME Else CMBFROMCITY.Text = ""
+            CMBTOCITY.Text = ""
 
             CMBDEBITLEDGER.Text = ""
 
@@ -155,6 +157,9 @@ Public Class SaleReturn
             TXTTOTALWITHGST.Clear()
             TXTTCSPER.Clear()
             TXTTCSAMT.Clear()
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTDATE.Clear()
+            TXTCOMPLAINTBY.Clear()
 
             txtbillamt.Clear()
             TXTCHARGES.Clear()
@@ -636,6 +641,7 @@ Public Class SaleReturn
             End If
 
 
+            'DONE TEMP
             If Val(TXTGRANDTOTAL.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
                 EP.SetError(TXTGRANDTOTAL, "Total does not match Adjusted Amt")
                 bln = False
@@ -668,15 +674,12 @@ Public Class SaleReturn
             End If
 
 
+            'DONE TEMP
             If cmbGodown.Text.Trim.Length = 0 Then
                 EP.SetError(cmbGodown, " Please Select Godown")
                 bln = False
             End If
 
-            'If lbllocked.Visible = True Then
-            '    EP.SetError(lbllocked, "Item Used, Item Locked")
-            '    bln = False
-            'End If
 
             If GRIDSALRET.RowCount = 0 Then
                 EP.SetError(TabControl1, "Fill Item Details")
@@ -705,30 +708,6 @@ Public Class SaleReturn
                 End If
 
             End If
-
-            ''''by guklit sir 
-
-            'If Val(TXTCHALLANNO.Text.Trim) > 0 Then
-            '    If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLANNO.Text.Trim)) Then
-            '        'for search
-            '        Dim objclscommon As New ClsCommon()
-            '        Dim DT As DataTable = objclscommon.search(" SALRET_challanno, LEDGERS.ACC_cmpname", "", " SALERETURN inner join LEDGERS on LEDGERS.ACC_id = SALRET_ledgerid ", " and SALRET_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND SALRET_YEARID =" & YearId)
-            '        If DT.Rows.Count > 0 Then
-            '            EP.SetError(TXTCHALLANNO, "Challan No. Already Exists")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
-
-            'DONE BY GULKIT
-            'If Convert.ToDateTime(SALRETDATE.Text).Date >= "01/02/2018" And txtgrandtotal.Text > 50000 Then
-            '    If TXTEWAYBILLNO.Text.Trim.Length = 0 Then
-            '        If MsgBox("E-Way No. Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-            '            EP.SetError(TXTEWAYBILLNO, " Please Enter E-Way No..... ")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
 
 
             If SALRETDATE.Text = "__/__/____" Then
@@ -763,6 +742,7 @@ Public Class SaleReturn
 
 
             If Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
+                'DONE TEMP
                 If TXTSTATECODE.Text.Trim.Length = 0 Then
                     EP.SetError(TXTSTATECODE, "Please enter the state code")
                     bln = False
@@ -787,6 +767,7 @@ Public Class SaleReturn
             End If
 
             For Each row As DataGridViewRow In GRIDSALRET.Rows
+                'DONE TEMP
                 If ClientName <> "MOMAI" And ClientName <> "AXIS" Then
                     If row.Cells(GMTRS.Index).Value = 0 Then
                         EP.SetError(CMBNAME, "Mtrs Cannot be 0")
@@ -811,6 +792,7 @@ Public Class SaleReturn
 
             Next
 
+            'DONE TEMP
             For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
                 If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
                     EP.SetError(CMBNAME, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
@@ -1216,6 +1198,15 @@ Public Class SaleReturn
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
+            alParaval.Add(CMBFROMCITY.Text.Trim)
+            alParaval.Add(CMBTOCITY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+
+
+
+
             Dim OBJPURCH As New ClsSaleReturn()
             OBJPURCH.alParaval = alParaval
             If EDIT = False Then
@@ -1234,10 +1225,12 @@ Public Class SaleReturn
                 End If
                 alParaval.Add(TEMPSALRETNO)
                 IntResult = OBJPURCH.UPDATE()
+                'DONE TEMP
                 MsgBox("Details Updated")
                 PRINTREPORT(TEMPSALRETNO)
             End If
 
+            'DONE TEMP
             PRINTBARCODE()
 
 
@@ -1253,6 +1246,7 @@ Public Class SaleReturn
                 End If
             Next
 
+            'DONE TEMP
             If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
                 CLEAR()
             Else
@@ -1365,6 +1359,8 @@ NEXTLINE:
             TabControl1.SelectedIndex = 2
         ElseIf e.Alt = True And e.KeyCode = Keys.D4 Then
             TabControl1.SelectedIndex = 3
+        ElseIf e.Alt = True And e.KeyCode = Keys.D5 Then
+            TabControl1.SelectedIndex = 4
         ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
             Call OpenToolStripButton_Click(sender, e)
         ElseIf e.KeyCode = Keys.F5 Then
@@ -1498,6 +1494,12 @@ NEXTLINE:
                         TXTSPECIALREMARKS.Text = dr("SPECIALREMARKS")
                         If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
+                        CMBFROMCITY.Text = dr("FROMCITY")
+                        CMBTOCITY.Text = dr("TOCITY")
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
+
                     Next
 
 
@@ -1550,7 +1552,7 @@ NEXTLINE:
 
     End Sub
 
-    Sub fillcmb()
+    Sub FILLCMB()
         Try
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
@@ -1565,8 +1567,43 @@ NEXTLINE:
             If CMBCHARGES.Text.Trim = "" Then FILLNAME(CMBCHARGES, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='Indirect Income' OR GROUPMASTER.GROUP_SECONDARY ='Sales A/C' OR GROUPMASTER.GROUP_SECONDARY ='Indirect Expenses' or GROUPMASTER.GROUP_SECONDARY ='Direct Income' OR GROUPMASTER.GROUP_SECONDARY ='Direct Expenses' OR GROUPMASTER.GROUP_SECONDARY ='Duties & Taxes')")
             If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
             If CMBDEBITLEDGER.Text.Trim = "" Then FILLNAME(CMBDEBITLEDGER, EDIT, "")
+            If CMBTOCITY.Text.Trim = "" Then fillCITY(CMBTOCITY, False)
+            If CMBFROMCITY.Text.Trim = "" Then fillCITY(CMBFROMCITY, EDIT)
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBFROMCITY_Enter(sender As Object, e As EventArgs) Handles CMBFROMCITY.Enter
+        Try
+            If CMBFROMCITY.Text.Trim = "" Then fillCITY(CMBFROMCITY, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBFROMCITY_Validating(sender As Object, e As CancelEventArgs) Handles CMBFROMCITY.Validating
+        Try
+            If CMBFROMCITY.Text.Trim <> "" Then CITYVALIDATE(CMBFROMCITY, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTOCITY_Enter(sender As Object, e As EventArgs) Handles CMBTOCITY.Enter
+        Try
+            If CMBTOCITY.Text.Trim = "" Then fillCITY(CMBTOCITY, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTOCITY_Validating(sender As Object, e As CancelEventArgs) Handles CMBTOCITY.Validating
+        Try
+            If CMBTOCITY.Text.Trim <> "" Then CITYVALIDATE(CMBTOCITY, e, Me)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -2831,6 +2868,8 @@ LINE1:
                     TXTSTATECODE.Text = DT.Rows(0).Item("STATECODE")
                     TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
                     TXTCITY.Text = DT.Rows(0).Item("CITYNAME")
+                    If CMBTOCITY.Text.Trim = "" Then CMBTOCITY.Text = DT.Rows(0).Item("CITYNAME")
+
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
 
 
@@ -4623,5 +4662,34 @@ NEXTLINE:
 
     Private Sub TXTAQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTAQTY.KeyPress, TXTAFOLDPER.KeyPress
         numdotkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

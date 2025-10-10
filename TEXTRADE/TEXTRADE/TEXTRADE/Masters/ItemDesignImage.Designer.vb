@@ -24,10 +24,32 @@ Partial Class ItemDesignImage
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTPHOTOIMAGEUPLOADPATH = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TXTFILENAME = New System.Windows.Forms.TextBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TBUPLOAD = New System.Windows.Forms.TabPage()
+        Me.PBIMAGE1 = New System.Windows.Forms.PictureBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CMDPHOTOVIEW1 = New System.Windows.Forms.Button()
+        Me.CMDPHOTOUPLOAD1 = New System.Windows.Forms.Button()
+        Me.CMDPHOTOREMOVE1 = New System.Windows.Forms.Button()
+        Me.PBIMAGE2 = New System.Windows.Forms.PictureBox()
+        Me.CMDCOMPRESS = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CMDPHOTOVIEW2 = New System.Windows.Forms.Button()
+        Me.CMDPHOTOUPLOAD2 = New System.Windows.Forms.Button()
+        Me.CMDPHOTOREMOVE2 = New System.Windows.Forms.Button()
+        Me.TBPATH = New System.Windows.Forms.TabPage()
+        Me.TXTUPLOADPATH = New System.Windows.Forms.TextBox()
+        Me.PBIMAGEPATH = New System.Windows.Forms.PictureBox()
+        Me.CMDVIEWPATH = New System.Windows.Forms.Button()
+        Me.CMDUPLOADPATH = New System.Windows.Forms.Button()
+        Me.CMDREMOVEPATH = New System.Windows.Forms.Button()
+        Me.CMDDOWNLOAD = New System.Windows.Forms.Button()
         Me.CMDUPDATE = New System.Windows.Forms.Button()
         Me.TXTSETMTRS = New System.Windows.Forms.TextBox()
         Me.LBLSETMTRS = New System.Windows.Forms.Label()
-        Me.CMDCOMPRESS = New System.Windows.Forms.Button()
         Me.TXTITEMNO = New System.Windows.Forms.TextBox()
         Me.LBLSRNO = New System.Windows.Forms.Label()
         Me.TXTPHOTOIMGPATH2 = New System.Windows.Forms.TextBox()
@@ -36,42 +58,21 @@ Partial Class ItemDesignImage
         Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
-        Me.CMDPHOTOREMOVE2 = New System.Windows.Forms.Button()
-        Me.CMDPHOTOUPLOAD2 = New System.Windows.Forms.Button()
-        Me.CMDPHOTOVIEW2 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.PBIMAGE2 = New System.Windows.Forms.PictureBox()
-        Me.CMDPHOTOREMOVE1 = New System.Windows.Forms.Button()
-        Me.CMDPHOTOUPLOAD1 = New System.Windows.Forms.Button()
-        Me.CMDPHOTOVIEW1 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.PBIMAGE1 = New System.Windows.Forms.PictureBox()
         Me.CMBDESIGNNAME = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CMBITEMNAME = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CMDDOWNLOAD = New System.Windows.Forms.Button()
-        Me.TXTFILENAME = New System.Windows.Forms.TextBox()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TBUPLOAD = New System.Windows.Forms.TabPage()
-        Me.TBPATH = New System.Windows.Forms.TabPage()
-        Me.PBIMAGEPATH = New System.Windows.Forms.PictureBox()
-        Me.CMDVIEWPATH = New System.Windows.Forms.Button()
-        Me.CMDUPLOADPATH = New System.Windows.Forms.Button()
-        Me.CMDREMOVEPATH = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TXTPHOTOIMAGEUPLOADPATH = New System.Windows.Forms.TextBox()
-        Me.TXTUPLOADPATH = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
-        CType(Me.PBIMAGE2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TBUPLOAD.SuspendLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBIMAGE2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBPATH.SuspendLayout()
         CType(Me.PBIMAGEPATH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -102,6 +103,280 @@ Partial Class ItemDesignImage
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(622, 435)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'TXTPHOTOIMAGEUPLOADPATH
+        '
+        Me.TXTPHOTOIMAGEUPLOADPATH.BackColor = System.Drawing.Color.White
+        Me.TXTPHOTOIMAGEUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPHOTOIMAGEUPLOADPATH.ForeColor = System.Drawing.Color.Black
+        Me.TXTPHOTOIMAGEUPLOADPATH.Location = New System.Drawing.Point(577, 50)
+        Me.TXTPHOTOIMAGEUPLOADPATH.Name = "TXTPHOTOIMAGEUPLOADPATH"
+        Me.TXTPHOTOIMAGEUPLOADPATH.Size = New System.Drawing.Size(22, 23)
+        Me.TXTPHOTOIMAGEUPLOADPATH.TabIndex = 640
+        Me.TXTPHOTOIMAGEUPLOADPATH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTPHOTOIMAGEUPLOADPATH.Visible = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label6.Location = New System.Drawing.Point(39, 83)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(61, 15)
+        Me.Label6.TabIndex = 639
+        Me.Label6.Text = "File Name"
+        '
+        'TXTFILENAME
+        '
+        Me.TXTFILENAME.BackColor = System.Drawing.Color.Linen
+        Me.TXTFILENAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFILENAME.ForeColor = System.Drawing.Color.Black
+        Me.TXTFILENAME.Location = New System.Drawing.Point(104, 79)
+        Me.TXTFILENAME.MaxLength = 100
+        Me.TXTFILENAME.Name = "TXTFILENAME"
+        Me.TXTFILENAME.ReadOnly = True
+        Me.TXTFILENAME.Size = New System.Drawing.Size(294, 23)
+        Me.TXTFILENAME.TabIndex = 638
+        Me.TXTFILENAME.TabStop = False
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TBUPLOAD)
+        Me.TabControl1.Controls.Add(Me.TBPATH)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 125)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(607, 225)
+        Me.TabControl1.TabIndex = 639
+        '
+        'TBUPLOAD
+        '
+        Me.TBUPLOAD.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBUPLOAD.Controls.Add(Me.PBIMAGE1)
+        Me.TBUPLOAD.Controls.Add(Me.Label2)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOVIEW1)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOUPLOAD1)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOREMOVE1)
+        Me.TBUPLOAD.Controls.Add(Me.PBIMAGE2)
+        Me.TBUPLOAD.Controls.Add(Me.CMDCOMPRESS)
+        Me.TBUPLOAD.Controls.Add(Me.Label4)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOVIEW2)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOUPLOAD2)
+        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOREMOVE2)
+        Me.TBUPLOAD.Location = New System.Drawing.Point(4, 24)
+        Me.TBUPLOAD.Name = "TBUPLOAD"
+        Me.TBUPLOAD.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBUPLOAD.Size = New System.Drawing.Size(599, 197)
+        Me.TBUPLOAD.TabIndex = 0
+        Me.TBUPLOAD.Text = "1. Upload Images"
+        '
+        'PBIMAGE1
+        '
+        Me.PBIMAGE1.BackColor = System.Drawing.Color.White
+        Me.PBIMAGE1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBIMAGE1.ErrorImage = Nothing
+        Me.PBIMAGE1.InitialImage = Nothing
+        Me.PBIMAGE1.Location = New System.Drawing.Point(6, 6)
+        Me.PBIMAGE1.Name = "PBIMAGE1"
+        Me.PBIMAGE1.Size = New System.Drawing.Size(142, 145)
+        Me.PBIMAGE1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBIMAGE1.TabIndex = 478
+        Me.PBIMAGE1.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label2.Location = New System.Drawing.Point(154, 6)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(47, 15)
+        Me.Label2.TabIndex = 479
+        Me.Label2.Text = "Image1"
+        '
+        'CMDPHOTOVIEW1
+        '
+        Me.CMDPHOTOVIEW1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOVIEW1.Location = New System.Drawing.Point(157, 123)
+        Me.CMDPHOTOVIEW1.Name = "CMDPHOTOVIEW1"
+        Me.CMDPHOTOVIEW1.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOVIEW1.TabIndex = 5
+        Me.CMDPHOTOVIEW1.Text = "View"
+        Me.CMDPHOTOVIEW1.UseVisualStyleBackColor = True
+        '
+        'CMDPHOTOUPLOAD1
+        '
+        Me.CMDPHOTOUPLOAD1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOUPLOAD1.Location = New System.Drawing.Point(157, 55)
+        Me.CMDPHOTOUPLOAD1.Name = "CMDPHOTOUPLOAD1"
+        Me.CMDPHOTOUPLOAD1.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOUPLOAD1.TabIndex = 3
+        Me.CMDPHOTOUPLOAD1.Text = "Upload"
+        Me.CMDPHOTOUPLOAD1.UseVisualStyleBackColor = True
+        '
+        'CMDPHOTOREMOVE1
+        '
+        Me.CMDPHOTOREMOVE1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOREMOVE1.Location = New System.Drawing.Point(157, 89)
+        Me.CMDPHOTOREMOVE1.Name = "CMDPHOTOREMOVE1"
+        Me.CMDPHOTOREMOVE1.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOREMOVE1.TabIndex = 4
+        Me.CMDPHOTOREMOVE1.Text = "Remove"
+        Me.CMDPHOTOREMOVE1.UseVisualStyleBackColor = True
+        '
+        'PBIMAGE2
+        '
+        Me.PBIMAGE2.BackColor = System.Drawing.Color.White
+        Me.PBIMAGE2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBIMAGE2.ErrorImage = Nothing
+        Me.PBIMAGE2.InitialImage = Nothing
+        Me.PBIMAGE2.Location = New System.Drawing.Point(243, 6)
+        Me.PBIMAGE2.Name = "PBIMAGE2"
+        Me.PBIMAGE2.Size = New System.Drawing.Size(142, 145)
+        Me.PBIMAGE2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBIMAGE2.TabIndex = 483
+        Me.PBIMAGE2.TabStop = False
+        '
+        'CMDCOMPRESS
+        '
+        Me.CMDCOMPRESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDCOMPRESS.Location = New System.Drawing.Point(243, 157)
+        Me.CMDCOMPRESS.Name = "CMDCOMPRESS"
+        Me.CMDCOMPRESS.Size = New System.Drawing.Size(80, 28)
+        Me.CMDCOMPRESS.TabIndex = 633
+        Me.CMDCOMPRESS.Text = "&Compress"
+        Me.CMDCOMPRESS.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label4.Location = New System.Drawing.Point(391, 6)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(47, 15)
+        Me.Label4.TabIndex = 484
+        Me.Label4.Text = "Image2"
+        '
+        'CMDPHOTOVIEW2
+        '
+        Me.CMDPHOTOVIEW2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOVIEW2.Location = New System.Drawing.Point(394, 123)
+        Me.CMDPHOTOVIEW2.Name = "CMDPHOTOVIEW2"
+        Me.CMDPHOTOVIEW2.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOVIEW2.TabIndex = 8
+        Me.CMDPHOTOVIEW2.Text = "View"
+        Me.CMDPHOTOVIEW2.UseVisualStyleBackColor = True
+        '
+        'CMDPHOTOUPLOAD2
+        '
+        Me.CMDPHOTOUPLOAD2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOUPLOAD2.Location = New System.Drawing.Point(394, 55)
+        Me.CMDPHOTOUPLOAD2.Name = "CMDPHOTOUPLOAD2"
+        Me.CMDPHOTOUPLOAD2.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOUPLOAD2.TabIndex = 6
+        Me.CMDPHOTOUPLOAD2.Text = "Upload"
+        Me.CMDPHOTOUPLOAD2.UseVisualStyleBackColor = True
+        '
+        'CMDPHOTOREMOVE2
+        '
+        Me.CMDPHOTOREMOVE2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPHOTOREMOVE2.Location = New System.Drawing.Point(394, 89)
+        Me.CMDPHOTOREMOVE2.Name = "CMDPHOTOREMOVE2"
+        Me.CMDPHOTOREMOVE2.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPHOTOREMOVE2.TabIndex = 7
+        Me.CMDPHOTOREMOVE2.Text = "Remove"
+        Me.CMDPHOTOREMOVE2.UseVisualStyleBackColor = True
+        '
+        'TBPATH
+        '
+        Me.TBPATH.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBPATH.Controls.Add(Me.Button1)
+        Me.TBPATH.Controls.Add(Me.TXTUPLOADPATH)
+        Me.TBPATH.Controls.Add(Me.PBIMAGEPATH)
+        Me.TBPATH.Controls.Add(Me.CMDVIEWPATH)
+        Me.TBPATH.Controls.Add(Me.CMDUPLOADPATH)
+        Me.TBPATH.Controls.Add(Me.CMDREMOVEPATH)
+        Me.TBPATH.Location = New System.Drawing.Point(4, 24)
+        Me.TBPATH.Name = "TBPATH"
+        Me.TBPATH.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBPATH.Size = New System.Drawing.Size(599, 197)
+        Me.TBPATH.TabIndex = 1
+        Me.TBPATH.Text = "2. Upload Path"
+        '
+        'TXTUPLOADPATH
+        '
+        Me.TXTUPLOADPATH.BackColor = System.Drawing.Color.Linen
+        Me.TXTUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTUPLOADPATH.ForeColor = System.Drawing.Color.Black
+        Me.TXTUPLOADPATH.Location = New System.Drawing.Point(289, 19)
+        Me.TXTUPLOADPATH.MaxLength = 100
+        Me.TXTUPLOADPATH.Name = "TXTUPLOADPATH"
+        Me.TXTUPLOADPATH.ReadOnly = True
+        Me.TXTUPLOADPATH.Size = New System.Drawing.Size(294, 23)
+        Me.TXTUPLOADPATH.TabIndex = 641
+        Me.TXTUPLOADPATH.TabStop = False
+        '
+        'PBIMAGEPATH
+        '
+        Me.PBIMAGEPATH.BackColor = System.Drawing.Color.White
+        Me.PBIMAGEPATH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBIMAGEPATH.ErrorImage = Nothing
+        Me.PBIMAGEPATH.InitialImage = Nothing
+        Me.PBIMAGEPATH.Location = New System.Drawing.Point(7, 6)
+        Me.PBIMAGEPATH.Name = "PBIMAGEPATH"
+        Me.PBIMAGEPATH.Size = New System.Drawing.Size(142, 145)
+        Me.PBIMAGEPATH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBIMAGEPATH.TabIndex = 483
+        Me.PBIMAGEPATH.TabStop = False
+        '
+        'CMDVIEWPATH
+        '
+        Me.CMDVIEWPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDVIEWPATH.Location = New System.Drawing.Point(158, 123)
+        Me.CMDVIEWPATH.Name = "CMDVIEWPATH"
+        Me.CMDVIEWPATH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDVIEWPATH.TabIndex = 482
+        Me.CMDVIEWPATH.Text = "View"
+        Me.CMDVIEWPATH.UseVisualStyleBackColor = True
+        '
+        'CMDUPLOADPATH
+        '
+        Me.CMDUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDUPLOADPATH.Location = New System.Drawing.Point(158, 55)
+        Me.CMDUPLOADPATH.Name = "CMDUPLOADPATH"
+        Me.CMDUPLOADPATH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDUPLOADPATH.TabIndex = 480
+        Me.CMDUPLOADPATH.Text = "Upload"
+        Me.CMDUPLOADPATH.UseVisualStyleBackColor = True
+        '
+        'CMDREMOVEPATH
+        '
+        Me.CMDREMOVEPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREMOVEPATH.Location = New System.Drawing.Point(158, 89)
+        Me.CMDREMOVEPATH.Name = "CMDREMOVEPATH"
+        Me.CMDREMOVEPATH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREMOVEPATH.TabIndex = 481
+        Me.CMDREMOVEPATH.Text = "Remove"
+        Me.CMDREMOVEPATH.UseVisualStyleBackColor = True
+        '
+        'CMDDOWNLOAD
+        '
+        Me.CMDDOWNLOAD.BackColor = System.Drawing.Color.Transparent
+        Me.CMDDOWNLOAD.FlatAppearance.BorderSize = 0
+        Me.CMDDOWNLOAD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDDOWNLOAD.ForeColor = System.Drawing.Color.Black
+        Me.CMDDOWNLOAD.Location = New System.Drawing.Point(542, 390)
+        Me.CMDDOWNLOAD.Name = "CMDDOWNLOAD"
+        Me.CMDDOWNLOAD.Size = New System.Drawing.Size(87, 28)
+        Me.CMDDOWNLOAD.TabIndex = 637
+        Me.CMDDOWNLOAD.Text = "DOWNLOAD"
+        Me.CMDDOWNLOAD.UseVisualStyleBackColor = False
+        Me.CMDDOWNLOAD.Visible = False
         '
         'CMDUPDATE
         '
@@ -137,16 +412,6 @@ Partial Class ItemDesignImage
         Me.LBLSETMTRS.Size = New System.Drawing.Size(51, 14)
         Me.LBLSETMTRS.TabIndex = 635
         Me.LBLSETMTRS.Text = "Set Mtrs"
-        '
-        'CMDCOMPRESS
-        '
-        Me.CMDCOMPRESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDCOMPRESS.Location = New System.Drawing.Point(243, 157)
-        Me.CMDCOMPRESS.Name = "CMDCOMPRESS"
-        Me.CMDCOMPRESS.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCOMPRESS.TabIndex = 633
-        Me.CMDCOMPRESS.Text = "&Compress"
-        Me.CMDCOMPRESS.UseVisualStyleBackColor = True
         '
         'TXTITEMNO
         '
@@ -251,116 +516,6 @@ Partial Class ItemDesignImage
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = False
         '
-        'CMDPHOTOREMOVE2
-        '
-        Me.CMDPHOTOREMOVE2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOREMOVE2.Location = New System.Drawing.Point(394, 89)
-        Me.CMDPHOTOREMOVE2.Name = "CMDPHOTOREMOVE2"
-        Me.CMDPHOTOREMOVE2.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOREMOVE2.TabIndex = 7
-        Me.CMDPHOTOREMOVE2.Text = "Remove"
-        Me.CMDPHOTOREMOVE2.UseVisualStyleBackColor = True
-        '
-        'CMDPHOTOUPLOAD2
-        '
-        Me.CMDPHOTOUPLOAD2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOUPLOAD2.Location = New System.Drawing.Point(394, 55)
-        Me.CMDPHOTOUPLOAD2.Name = "CMDPHOTOUPLOAD2"
-        Me.CMDPHOTOUPLOAD2.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOUPLOAD2.TabIndex = 6
-        Me.CMDPHOTOUPLOAD2.Text = "Upload"
-        Me.CMDPHOTOUPLOAD2.UseVisualStyleBackColor = True
-        '
-        'CMDPHOTOVIEW2
-        '
-        Me.CMDPHOTOVIEW2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOVIEW2.Location = New System.Drawing.Point(394, 123)
-        Me.CMDPHOTOVIEW2.Name = "CMDPHOTOVIEW2"
-        Me.CMDPHOTOVIEW2.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOVIEW2.TabIndex = 8
-        Me.CMDPHOTOVIEW2.Text = "View"
-        Me.CMDPHOTOVIEW2.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(391, 6)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(47, 15)
-        Me.Label4.TabIndex = 484
-        Me.Label4.Text = "Image2"
-        '
-        'PBIMAGE2
-        '
-        Me.PBIMAGE2.BackColor = System.Drawing.Color.White
-        Me.PBIMAGE2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBIMAGE2.ErrorImage = Nothing
-        Me.PBIMAGE2.InitialImage = Nothing
-        Me.PBIMAGE2.Location = New System.Drawing.Point(243, 6)
-        Me.PBIMAGE2.Name = "PBIMAGE2"
-        Me.PBIMAGE2.Size = New System.Drawing.Size(142, 145)
-        Me.PBIMAGE2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PBIMAGE2.TabIndex = 483
-        Me.PBIMAGE2.TabStop = False
-        '
-        'CMDPHOTOREMOVE1
-        '
-        Me.CMDPHOTOREMOVE1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOREMOVE1.Location = New System.Drawing.Point(157, 89)
-        Me.CMDPHOTOREMOVE1.Name = "CMDPHOTOREMOVE1"
-        Me.CMDPHOTOREMOVE1.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOREMOVE1.TabIndex = 4
-        Me.CMDPHOTOREMOVE1.Text = "Remove"
-        Me.CMDPHOTOREMOVE1.UseVisualStyleBackColor = True
-        '
-        'CMDPHOTOUPLOAD1
-        '
-        Me.CMDPHOTOUPLOAD1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOUPLOAD1.Location = New System.Drawing.Point(157, 55)
-        Me.CMDPHOTOUPLOAD1.Name = "CMDPHOTOUPLOAD1"
-        Me.CMDPHOTOUPLOAD1.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOUPLOAD1.TabIndex = 3
-        Me.CMDPHOTOUPLOAD1.Text = "Upload"
-        Me.CMDPHOTOUPLOAD1.UseVisualStyleBackColor = True
-        '
-        'CMDPHOTOVIEW1
-        '
-        Me.CMDPHOTOVIEW1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDPHOTOVIEW1.Location = New System.Drawing.Point(157, 123)
-        Me.CMDPHOTOVIEW1.Name = "CMDPHOTOVIEW1"
-        Me.CMDPHOTOVIEW1.Size = New System.Drawing.Size(80, 28)
-        Me.CMDPHOTOVIEW1.TabIndex = 5
-        Me.CMDPHOTOVIEW1.Text = "View"
-        Me.CMDPHOTOVIEW1.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label2.Location = New System.Drawing.Point(154, 6)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 15)
-        Me.Label2.TabIndex = 479
-        Me.Label2.Text = "Image1"
-        '
-        'PBIMAGE1
-        '
-        Me.PBIMAGE1.BackColor = System.Drawing.Color.White
-        Me.PBIMAGE1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBIMAGE1.ErrorImage = Nothing
-        Me.PBIMAGE1.InitialImage = Nothing
-        Me.PBIMAGE1.Location = New System.Drawing.Point(6, 6)
-        Me.PBIMAGE1.Name = "PBIMAGE1"
-        Me.PBIMAGE1.Size = New System.Drawing.Size(142, 145)
-        Me.PBIMAGE1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PBIMAGE1.TabIndex = 478
-        Me.PBIMAGE1.TabStop = False
-        '
         'CMBDESIGNNAME
         '
         Me.CMBDESIGNNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -419,158 +574,15 @@ Partial Class ItemDesignImage
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'CMDDOWNLOAD
+        'Button1
         '
-        Me.CMDDOWNLOAD.BackColor = System.Drawing.Color.Transparent
-        Me.CMDDOWNLOAD.FlatAppearance.BorderSize = 0
-        Me.CMDDOWNLOAD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDDOWNLOAD.ForeColor = System.Drawing.Color.Black
-        Me.CMDDOWNLOAD.Location = New System.Drawing.Point(542, 390)
-        Me.CMDDOWNLOAD.Name = "CMDDOWNLOAD"
-        Me.CMDDOWNLOAD.Size = New System.Drawing.Size(87, 28)
-        Me.CMDDOWNLOAD.TabIndex = 637
-        Me.CMDDOWNLOAD.Text = "DOWNLOAD"
-        Me.CMDDOWNLOAD.UseVisualStyleBackColor = False
-        Me.CMDDOWNLOAD.Visible = False
-        '
-        'TXTFILENAME
-        '
-        Me.TXTFILENAME.BackColor = System.Drawing.Color.Linen
-        Me.TXTFILENAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFILENAME.ForeColor = System.Drawing.Color.Black
-        Me.TXTFILENAME.Location = New System.Drawing.Point(104, 79)
-        Me.TXTFILENAME.MaxLength = 100
-        Me.TXTFILENAME.Name = "TXTFILENAME"
-        Me.TXTFILENAME.ReadOnly = True
-        Me.TXTFILENAME.Size = New System.Drawing.Size(294, 23)
-        Me.TXTFILENAME.TabIndex = 638
-        Me.TXTFILENAME.TabStop = False
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TBUPLOAD)
-        Me.TabControl1.Controls.Add(Me.TBPATH)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 125)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(607, 225)
-        Me.TabControl1.TabIndex = 639
-        '
-        'TBUPLOAD
-        '
-        Me.TBUPLOAD.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBUPLOAD.Controls.Add(Me.PBIMAGE1)
-        Me.TBUPLOAD.Controls.Add(Me.Label2)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOVIEW1)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOUPLOAD1)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOREMOVE1)
-        Me.TBUPLOAD.Controls.Add(Me.PBIMAGE2)
-        Me.TBUPLOAD.Controls.Add(Me.CMDCOMPRESS)
-        Me.TBUPLOAD.Controls.Add(Me.Label4)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOVIEW2)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOUPLOAD2)
-        Me.TBUPLOAD.Controls.Add(Me.CMDPHOTOREMOVE2)
-        Me.TBUPLOAD.Location = New System.Drawing.Point(4, 24)
-        Me.TBUPLOAD.Name = "TBUPLOAD"
-        Me.TBUPLOAD.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBUPLOAD.Size = New System.Drawing.Size(599, 197)
-        Me.TBUPLOAD.TabIndex = 0
-        Me.TBUPLOAD.Text = "1. Upload Images"
-        '
-        'TBPATH
-        '
-        Me.TBPATH.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBPATH.Controls.Add(Me.TXTUPLOADPATH)
-        Me.TBPATH.Controls.Add(Me.PBIMAGEPATH)
-        Me.TBPATH.Controls.Add(Me.CMDVIEWPATH)
-        Me.TBPATH.Controls.Add(Me.CMDUPLOADPATH)
-        Me.TBPATH.Controls.Add(Me.CMDREMOVEPATH)
-        Me.TBPATH.Location = New System.Drawing.Point(4, 24)
-        Me.TBPATH.Name = "TBPATH"
-        Me.TBPATH.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBPATH.Size = New System.Drawing.Size(599, 197)
-        Me.TBPATH.TabIndex = 1
-        Me.TBPATH.Text = "2. Upload Path"
-        '
-        'PBIMAGEPATH
-        '
-        Me.PBIMAGEPATH.BackColor = System.Drawing.Color.White
-        Me.PBIMAGEPATH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBIMAGEPATH.ErrorImage = Nothing
-        Me.PBIMAGEPATH.InitialImage = Nothing
-        Me.PBIMAGEPATH.Location = New System.Drawing.Point(7, 6)
-        Me.PBIMAGEPATH.Name = "PBIMAGEPATH"
-        Me.PBIMAGEPATH.Size = New System.Drawing.Size(142, 145)
-        Me.PBIMAGEPATH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PBIMAGEPATH.TabIndex = 483
-        Me.PBIMAGEPATH.TabStop = False
-        '
-        'CMDVIEWPATH
-        '
-        Me.CMDVIEWPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDVIEWPATH.Location = New System.Drawing.Point(158, 123)
-        Me.CMDVIEWPATH.Name = "CMDVIEWPATH"
-        Me.CMDVIEWPATH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDVIEWPATH.TabIndex = 482
-        Me.CMDVIEWPATH.Text = "View"
-        Me.CMDVIEWPATH.UseVisualStyleBackColor = True
-        '
-        'CMDUPLOADPATH
-        '
-        Me.CMDUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDUPLOADPATH.Location = New System.Drawing.Point(158, 55)
-        Me.CMDUPLOADPATH.Name = "CMDUPLOADPATH"
-        Me.CMDUPLOADPATH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDUPLOADPATH.TabIndex = 480
-        Me.CMDUPLOADPATH.Text = "Upload"
-        Me.CMDUPLOADPATH.UseVisualStyleBackColor = True
-        '
-        'CMDREMOVEPATH
-        '
-        Me.CMDREMOVEPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREMOVEPATH.Location = New System.Drawing.Point(158, 89)
-        Me.CMDREMOVEPATH.Name = "CMDREMOVEPATH"
-        Me.CMDREMOVEPATH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREMOVEPATH.TabIndex = 481
-        Me.CMDREMOVEPATH.Text = "Remove"
-        Me.CMDREMOVEPATH.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(39, 83)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(61, 15)
-        Me.Label6.TabIndex = 639
-        Me.Label6.Text = "File Name"
-        '
-        'TXTPHOTOIMAGEUPLOADPATH
-        '
-        Me.TXTPHOTOIMAGEUPLOADPATH.BackColor = System.Drawing.Color.White
-        Me.TXTPHOTOIMAGEUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPHOTOIMAGEUPLOADPATH.ForeColor = System.Drawing.Color.Black
-        Me.TXTPHOTOIMAGEUPLOADPATH.Location = New System.Drawing.Point(577, 50)
-        Me.TXTPHOTOIMAGEUPLOADPATH.Name = "TXTPHOTOIMAGEUPLOADPATH"
-        Me.TXTPHOTOIMAGEUPLOADPATH.Size = New System.Drawing.Size(22, 23)
-        Me.TXTPHOTOIMAGEUPLOADPATH.TabIndex = 640
-        Me.TXTPHOTOIMAGEUPLOADPATH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTPHOTOIMAGEUPLOADPATH.Visible = False
-        '
-        'TXTUPLOADPATH
-        '
-        Me.TXTUPLOADPATH.BackColor = System.Drawing.Color.Linen
-        Me.TXTUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTUPLOADPATH.ForeColor = System.Drawing.Color.Black
-        Me.TXTUPLOADPATH.Location = New System.Drawing.Point(289, 19)
-        Me.TXTUPLOADPATH.MaxLength = 100
-        Me.TXTUPLOADPATH.Name = "TXTUPLOADPATH"
-        Me.TXTUPLOADPATH.ReadOnly = True
-        Me.TXTUPLOADPATH.Size = New System.Drawing.Size(294, 23)
-        Me.TXTUPLOADPATH.TabIndex = 641
-        Me.TXTUPLOADPATH.TabStop = False
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(259, 84)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(80, 28)
+        Me.Button1.TabIndex = 642
+        Me.Button1.Text = "Upload"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'ItemDesignImage
         '
@@ -585,15 +597,15 @@ Partial Class ItemDesignImage
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
-        CType(Me.PBIMAGE2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TBUPLOAD.ResumeLayout(False)
         Me.TBUPLOAD.PerformLayout()
+        CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBIMAGE2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBPATH.ResumeLayout(False)
         Me.TBPATH.PerformLayout()
         CType(Me.PBIMAGEPATH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -639,4 +651,5 @@ Partial Class ItemDesignImage
     Friend WithEvents CMDREMOVEPATH As Button
     Friend WithEvents TXTPHOTOIMAGEUPLOADPATH As TextBox
     Friend WithEvents TXTUPLOADPATH As TextBox
+    Friend WithEvents Button1 As Button
 End Class

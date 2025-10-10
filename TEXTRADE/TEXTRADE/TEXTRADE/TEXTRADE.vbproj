@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Import Include="DevExpress.XtraPrinting" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="Microsoft.VisualBasic.PowerPacks" />
     <Import Include="System" />
@@ -311,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Common\Filters\AgencyInvoiceFilter.Designer.vb">
+      <DependentUpon>AgencyInvoiceFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Filters\AgencyInvoiceFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\AgencyOutstandingfilter.Designer.vb">
       <DependentUpon>AgencyOutstandingfilter.vb</DependentUpon>
     </Compile>
@@ -431,11 +438,23 @@
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.Designer.vb">
+      <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.Designer.vb">
       <DependentUpon>DesignCardDesign.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Invoice Reports\AgencyInvoiceRegDateWiseDetails.vb">
+      <DependentUpon>AgencyInvoiceRegDateWiseDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.vb">
       <DependentUpon>AgencyOutstandingReport_BuyerDetails.rpt</DependentUpon>
@@ -445,6 +464,18 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerDetails.vb">
       <DependentUpon>AgencyOutstandingReport_SellerDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Receipt Reports\AgencyRecReport.vb">
+      <DependentUpon>AgencyRecReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Receipt Reports\AgencyRecReport_ABHEE.vb">
+      <DependentUpon>AgencyRecReport_ABHEE.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -463,6 +494,12 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_SHEETAL.vb">
+      <DependentUpon>GDNReport_SHEETAL.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -491,11 +528,35 @@
       <DependentUpon>GridSaleAnalysisPrintReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Payment\ChqPayment_HDFCKOTAK_ABHEE.vb">
+      <DependentUpon>ChqPayment_HDFCKOTAK_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Payment\Paymentreport_ABHEE.vb">
+      <DependentUpon>Paymentreport_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.Designer.vb">
+      <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyOrderGridReport.Designer.vb">
+      <DependentUpon>AgencyOrderGridReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyOrderGridReport.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
@@ -1019,12 +1080,6 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AKASHDEEP.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GDNReport_AKASHDEEP.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_BALAJI.vb">
       <DependentUpon>GDNReport_BALAJI.rpt</DependentUpon>
@@ -6318,12 +6373,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_BRILLANTO.vb">
-      <DependentUpon>GDNReport_BRILLANTO.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\Grid Reports\Interest Calculator\InterestCalc_BillWise.Designer.vb">
       <DependentUpon>InterestCalc_BillWise.vb</DependentUpon>
     </Compile>
@@ -6646,6 +6695,12 @@
       <DependentUpon>Reminder.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Others\Reminder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Others\UploadExcel_MASHOK.Designer.vb">
+      <DependentUpon>UploadExcel_MASHOK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\UploadExcel_MASHOK.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Stock Reco\StockRecoInDetails.Designer.vb">
@@ -8565,6 +8620,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Common\Filters\AgencyInvoiceFilter.resx">
+      <DependentUpon>AgencyInvoiceFilter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\AgencyOutstandingfilter.resx">
       <DependentUpon>AgencyOutstandingfilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -8625,8 +8683,15 @@
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.resx">
+      <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.resx">
       <DependentUpon>DesignCardDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Invoice Reports\AgencyInvoiceRegDateWiseDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyInvoiceRegDateWiseDetails.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -8636,6 +8701,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_SellerDetails.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Receipt Reports\AgencyRecReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyRecReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Receipt Reports\AgencyRecReport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyRecReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardRep.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DesignCardRep.vb</LastGenOutput>
@@ -8643,6 +8716,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_AARYA.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_SHEETAL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_SHEETAL.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GRN\GREYTransportReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -8660,9 +8737,23 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GridSaleAnalysisPrintReport.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Payment\ChqPayment_HDFCKOTAK_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ChqPayment_HDFCKOTAK_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Payment\Paymentreport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Paymentreport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
+      <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyOrderGridReport.resx">
+      <DependentUpon>AgencyOrderGridReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
@@ -8976,10 +9067,6 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Gate Pass\GatePassReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GatePassReport.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AKASHDEEP.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GDNReport_AKASHDEEP.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_BALAJI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -12241,10 +12328,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>YarnIssueKnittingReport.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_BRILLANTO.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GDNReport_BRILLANTO.vb</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Interest Calculator\InterestCalc_BillWise.resx">
       <DependentUpon>InterestCalc_BillWise.vb</DependentUpon>
     </EmbeddedResource>
@@ -12406,6 +12489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\Reminder.resx">
       <DependentUpon>Reminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\UploadExcel_MASHOK.resx">
+      <DependentUpon>UploadExcel_MASHOK.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Stock Reco\StockRecoInDetails.resx">
       <DependentUpon>StockRecoInDetails.vb</DependentUpon>
@@ -13381,6 +13467,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Upload.ashx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.vbproj">

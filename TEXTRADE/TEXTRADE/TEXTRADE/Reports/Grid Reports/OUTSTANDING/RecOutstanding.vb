@@ -1,9 +1,10 @@
 ﻿
+Imports System.Drawing
 Imports System.IO
+Imports System.Runtime.InteropServices
 Imports BL
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
-Imports System.Drawing
 
 Public Class RecOutstanding
 
@@ -89,6 +90,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -202,6 +204,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -261,6 +264,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -330,6 +334,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -545,6 +550,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
             End If
@@ -659,6 +665,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
 
@@ -714,6 +721,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -783,6 +791,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -899,6 +908,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1012,6 +1022,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1071,6 +1082,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1140,6 +1152,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1294,6 +1307,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1407,6 +1421,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1466,6 +1481,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1535,6 +1551,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1689,6 +1706,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
 
             If chkdate.CheckState = CheckState.Checked Then
                 WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
@@ -1802,6 +1820,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1861,6 +1880,7 @@ Public Class RecOutstanding
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             'If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -1930,6 +1950,7 @@ Public Class RecOutstanding
             If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
             If CMBREGISTER.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND REGTYPE = '" & CMBREGISTER.Text.Trim & "'"
             If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
             If chkdate.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
 
             If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
@@ -2325,32 +2346,217 @@ line1:
         End Try
     End Sub
 
+    'Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
+    '    Try
+    '        If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
+    '        Dim PRINT As Boolean = True
+    '        Dim WHATSAPP As Boolean = True
+
+    '        If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+    '        TEMPOUTSTANDING()
+
+
+    '        If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+    '            Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+    '            OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
+    '            Exit Sub
+    '        End If
+
+    '        Dim OBJPL As New PLDesign
+    '        OBJPL.frmstring = "OUTSTANDING"
+    '        OBJPL.MdiParent = MDIMain
+    '        OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
+    '        OBJPL.Show()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
             If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
             Dim PRINT As Boolean = True
             Dim WHATSAPP As Boolean = True
 
-            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            'Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+            'If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            '    ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
+            'End If
 
-            TEMPOUTSTANDING()
+            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                Using sfd As New SaveFileDialog()
+                    sfd.Filter = "PDF files (*.pdf)|*.pdf"
+                    sfd.Title = "Save PDF File"
+                    sfd.FileName = "Outstanding_" & CMBNAME.Text.Trim() & ".pdf"
 
+                    If sfd.ShowDialog() = DialogResult.OK Then
+                        ExportDataGridViewToPdf(GRIDOUTSTANDING, sfd.FileName)
+                    End If
+                End Using
 
-            If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-                OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
-                Exit Sub
+            Else
+                If MsgBox(" It Will Take Time .... Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                    ExportDataGridViewToExcel(ClientName, CmpId, YearId)
+                    ' Exit Sub
+                End If
             End If
 
-            Dim OBJPL As New PLDesign
-            OBJPL.frmstring = "OUTSTANDING"
-            OBJPL.MdiParent = MDIMain
-            OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-            OBJPL.Show()
+            '' Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+            'ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
+            ''End If
+
+
+
+
+            'Dim OBJPL As New PLDesign
+            ''OBJPL.frmstring = "OUTSTANDING"
+            ''OBJPL.MdiParent = MDIMain
+            ''OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
+            'OBJPL.Show()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
+    Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
+        Dim dgv As DataGridView = GRIDOUTSTANDING
+
+        If dgv Is Nothing OrElse dgv.Rows.Count = 0 Then
+            MessageBox.Show("No data to export.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim xlApp As New Excel.Application()
+        Dim xlWorkBook As Excel.Workbook = xlApp.Workbooks.Add()
+        Dim xlWorkSheet As Excel.Worksheet = CType(xlWorkBook.Sheets(1), Excel.Worksheet)
+
+        Try
+            xlApp.DisplayAlerts = False
+
+            ' 👉 Title and Metadata
+            xlWorkSheet.Cells(1, 1) = "Receivable Outstanding Report - " & ClientName
+            xlWorkSheet.Range("A1").Font.Bold = True
+            xlWorkSheet.Range("A1").Font.Size = 16
+
+            xlWorkSheet.Cells(2, 1) = "Company ID: " & CmpId & "    Year ID: " & YearId
+            xlWorkSheet.Cells(3, 1) = "Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+            xlWorkSheet.Range("A2:A3").Font.Size = 10
+
+            Dim startRow As Integer = 5
+            Dim colIndex As Integer = 0
+
+            ' 👉 Get visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then
+                    visibleColumns.Add(col)
+                End If
+            Next
+
+            Dim rowCount As Integer = dgv.Rows.Cast(Of DataGridViewRow)().Count(Function(r) Not r.IsNewRow)
+            Dim colCount As Integer = visibleColumns.Count
+
+            ' 👉 Prepare data array
+            Dim data(rowCount - 1, colCount - 1) As Object
+            Dim rowColors(rowCount - 1) As Color
+            Dim isGrandTotalRow(rowCount - 1) As Boolean
+
+            ' 👉 Fill data + colors
+            Dim rIndex As Integer = 0
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    Dim grandTotal As Boolean = False
+
+                    For c = 0 To colCount - 1
+                        Dim cellValue = row.Cells(visibleColumns(c).Index).Value
+                        If cellValue IsNot Nothing Then
+                            If TypeOf cellValue Is DateTime Then
+                                data(rIndex, c) = CType(cellValue, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                data(rIndex, c) = cellValue.ToString()
+                                If cellValue.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                                    grandTotal = True
+                                End If
+                            End If
+                        Else
+                            data(rIndex, c) = ""
+                        End If
+                    Next
+
+                    rowColors(rIndex) = row.DefaultCellStyle.BackColor
+                    isGrandTotalRow(rIndex) = grandTotal
+                    rIndex += 1
+                End If
+            Next
+
+            ' 👉 Headers
+            For c = 0 To colCount - 1
+                xlWorkSheet.Cells(startRow, c + 1) = visibleColumns(c).HeaderText
+                With xlWorkSheet.Cells(startRow, c + 1)
+                    .Font.Bold = True
+                    .Interior.Color = RGB(220, 220, 220)
+                    .Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+                    .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+                End With
+            Next
+
+            ' 👉 Write all data at once
+            Dim dataStartCell = xlWorkSheet.Cells(startRow + 1, 1)
+            Dim dataEndCell = xlWorkSheet.Cells(startRow + rowCount, colCount)
+            Dim writeRange = xlWorkSheet.Range(dataStartCell, dataEndCell)
+            writeRange.Value = data
+            writeRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+            ' 👉 Apply formatting row-by-row
+            For r = 0 To rowCount - 1
+                For c = 0 To colCount - 1
+                    Dim cell = xlWorkSheet.Cells(startRow + 1 + r, c + 1)
+                    Dim val = data(r, c)
+
+                    If IsNumeric(val) Then
+                        cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
+                    Else
+                        cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft
+                    End If
+
+                    If isGrandTotalRow(r) Then
+                        cell.Font.Bold = True
+                        cell.Interior.Color = RGB(250, 240, 230) ' Light beige for total
+                    ElseIf rowColors(r) = Color.Yellow Then
+                        cell.Interior.Color = RGB(255, 255, 0)
+                    ElseIf rowColors(r) = Color.LightGreen Then
+                        cell.Interior.Color = RGB(200, 255, 200)
+                    End If
+                Next
+            Next
+
+            ' 👉 Auto-fit
+            xlWorkSheet.Columns.AutoFit()
+
+            ' 👉 Show Excel
+            xlApp.Visible = True
+
+        Catch ex As Exception
+            MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            ' Cleanup
+            xlWorkBook.Close(False)
+            xlApp.Quit()
+
+            Marshal.ReleaseComObject(xlWorkSheet)
+            Marshal.ReleaseComObject(xlWorkBook)
+            Marshal.ReleaseComObject(xlApp)
+        End Try
+    End Sub
+
+
+
+
+
+
 
     Sub TEMPOUTSTANDING()
         Try
@@ -2476,7 +2682,10 @@ LINE1:
 
     Private Sub RecOutstanding_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then GDUEDATE.Visible = False
+            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                GDUEDATE.Visible = False
+                CHKHOLDINTCALC.Visible = True
+            End If
             GINTAMT.Visible = False
             GLRNO.Visible = False
             GCHARGES.Visible = False
@@ -2511,17 +2720,7 @@ LINE1:
             Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
 
             ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
-            ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
-
-            '' Prepare PLDesign object (seems related to internal processing or display)
-            'Dim OBJPL As New PLDesign
-            'OBJPL.frmstring = "OUTSTANDING"
-            'OBJPL.MdiParent = MDIMain
-            'OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-            'OBJPL.DIRECTPRINT = True
-            'OBJPL.PARTYNAME = CMBNAME.Text.Trim
-            'OBJPL.Show()
-            'OBJPL.Close()
+            ExportDataGridViewToPdfForWP(GRIDOUTSTANDING, filePath)
 
             ' Prepare WhatsApp sending form
             Dim OBJWHATSAPP As New SendWhatsapp
@@ -2547,129 +2746,11 @@ LINE1:
 
 
 
-    'Public Sub ExportDataGridViewToPdf(dgv As DataGridView, filePath As String)
-    '    Dim doc As New Document(PageSize.A4.Rotate(), 20, 20, 20, 20) ' Landscape mode
 
-    '    Try
-    '        PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
-    '        doc.Open()
+    '****** THIS FUCTION WE ARE CREATED COZ SYSTEM WILL SAVE THIS PDF IN DEBUG FOLDER BY DEFAULT IN THIS CODE SYSTEM NOT ASKING FOR USER TO SAVE WHERE HE WANT ITS SAVING BY DEFAULT IN DEBUG AND SENDING WHATSAPP FROM DEBUG ****** 
+    ' DONT DELETE THIS FUCTION         ------- DONE BY CHANDRISH
 
-    '        ' Load Verdana font
-    '        Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
-    '        Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
-    '        Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
-    '        Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
-
-    '        ' Add title and timestamp
-    '        doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
-    '        doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
-    '        doc.Add(New Paragraph(" "))
-
-    '        ' Get visible columns
-    '        Dim visibleColumns As New List(Of DataGridViewColumn)
-    '        For Each col As DataGridViewColumn In dgv.Columns
-    '            If col.Visible Then visibleColumns.Add(col)
-    '        Next
-
-    '        ' Initialize PDF table
-    '        Dim table As New PdfPTable(visibleColumns.Count)
-    '        table.WidthPercentage = 100
-    '        table.HeaderRows = 1 ' Repeat on each page
-
-    '        ' --- Fix: Adjust dynamic width percentages to avoid overflow ---
-    '        Dim columnWidths(visibleColumns.Count - 1) As Single
-    '        Dim baseWidth As Single = 100.0F / visibleColumns.Count
-    '        For i As Integer = 0 To visibleColumns.Count - 1
-    '            columnWidths(i) = baseWidth
-    '        Next
-    '        table.SetWidths(columnWidths)
-
-    '        ' Add table headers
-    '        For Each col As DataGridViewColumn In visibleColumns
-    '            Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
-    '            .BackgroundColor = BaseColor.LIGHT_GRAY,
-    '            .HorizontalAlignment = Element.ALIGN_CENTER,
-    '            .VerticalAlignment = Element.ALIGN_MIDDLE,
-    '            .Padding = 5,
-    '            .NoWrap = False
-    '        }
-    '            table.AddCell(headerCell)
-    '        Next
-
-    '        ' Add data rows
-    '        For Each row As DataGridViewRow In dgv.Rows
-    '            If Not row.IsNewRow Then
-    '                Dim isGrandTotalRow As Boolean = False
-
-    '                ' Detect total row
-    '                For Each cell As DataGridViewCell In row.Cells
-    '                    If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
-    '                        isGrandTotalRow = True
-    '                        Exit For
-    '                    End If
-    '                Next
-
-    '                For Each col As DataGridViewColumn In visibleColumns
-    '                    Dim cell As DataGridViewCell = row.Cells(col.Index)
-    '                    Dim value As String = ""
-
-    '                    If cell.Value IsNot Nothing Then
-    '                        If TypeOf cell.Value Is DateTime Then
-    '                            value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
-    '                        Else
-    '                            value = cell.Value.ToString()
-    '                        End If
-    '                    End If
-
-    '                    Dim pdfCell As PdfPCell
-    '                    Dim cellFont As iTextSharp.text.Font = If(isGrandTotalRow, verdana10Bold, verdana10)
-
-    '                    pdfCell = New PdfPCell(New Phrase(value, cellFont)) With {
-    '                    .VerticalAlignment = Element.ALIGN_MIDDLE,
-    '                    .Padding = 4
-    '                }
-
-    '                    ' Conditional row color
-    '                    If isGrandTotalRow Then
-    '                        pdfCell.BackgroundColor = New BaseColor(250, 240, 230)
-    '                    ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
-    '                        pdfCell.BackgroundColor = BaseColor.YELLOW
-    '                    ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
-    '                        pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
-    '                    End If
-
-    '                    ' ✅ Allow wrapping for selected columns
-    '                    Dim colName As String = col.HeaderText.Trim().ToUpper()
-    '                    Select Case colName
-    '                        Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
-    '                            pdfCell.NoWrap = False
-    '                        Case Else
-    '                            pdfCell.NoWrap = True
-    '                    End Select
-
-    '                    ' Alignment
-    '                    If IsNumeric(value) Then
-    '                        pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
-    '                    Else
-    '                        pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
-    '                    End If
-
-    '                    table.AddCell(pdfCell)
-    '                Next
-    '            End If
-    '        Next
-
-    '        ' Add the completed table to the document
-    '        doc.Add(table)
-
-    '    Catch ex As Exception
-    '        MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    Finally
-    '        doc.Close()
-    '    End Try
-    'End Sub
-
-    Public Sub ExportDataGridViewToPdf(dgv As DataGridView, filePath As String)
+    Public Sub ExportDataGridViewToPdfForWP(dgv As DataGridView, filePath As String)
         ' 👉 Changed to A3 for bigger page size
         Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
 
@@ -2803,6 +2884,154 @@ LINE1:
             doc.Close()
         End Try
     End Sub
+
+
+    '********************************************************* END ***************************************************************
+
+
+
+
+    '****** THIS FUCTION WE ARE CREATED COZ USER WANT TO SAVE PDF WHERE HE WANTS  ****** 
+    Public Sub ExportDataGridViewToPdf(dgv As DataGridView, FileName As String)
+        ' 👉 Use the file name passed to the function
+        Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
+
+        Try
+            PdfWriter.GetInstance(doc, New FileStream(FileName, FileMode.Create))
+            doc.Open()
+
+            ' 👉 Fonts
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+            ' 👉 Title and Date
+            doc.Add(New Paragraph("Receivable Outstanding Report", verdana16Bold))
+            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+            doc.Add(New Paragraph(" "))
+
+            ' 👉 Visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then visibleColumns.Add(col)
+            Next
+
+            Dim table As New PdfPTable(visibleColumns.Count)
+            table.WidthPercentage = 100
+            table.HeaderRows = 1
+
+            ' 👉 Column widths
+            Dim columnWidths(visibleColumns.Count - 1) As Single
+            Dim totalWeight As Single = 0.0F
+
+            For i As Integer = 0 To visibleColumns.Count - 1
+                Dim header As String = visibleColumns(i).HeaderText.Trim().ToUpper()
+                Select Case header
+                    Case "NAME"
+                        columnWidths(i) = 2.5F
+                    Case "BILL AMT"
+                        columnWidths(i) = 2.0F
+                    Case "RECD AMT", "BALANCE", "RUNNING BAL"
+                        columnWidths(i) = 1.5F
+                    Case Else
+                        columnWidths(i) = 1.0F
+                End Select
+                totalWeight += columnWidths(i)
+            Next
+
+            ' 👉 Normalize column widths
+            For i As Integer = 0 To columnWidths.Length - 1
+                columnWidths(i) = columnWidths(i) / totalWeight * 100.0F
+            Next
+            table.SetWidths(columnWidths)
+
+            ' 👉 Headers
+            For Each col As DataGridViewColumn In visibleColumns
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+                .BackgroundColor = BaseColor.LIGHT_GRAY,
+                .HorizontalAlignment = Element.ALIGN_CENTER,
+                .VerticalAlignment = Element.ALIGN_MIDDLE,
+                .Padding = 5,
+                .NoWrap = False
+            }
+                table.AddCell(headerCell)
+            Next
+
+            ' 👉 Data Rows
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    Dim isGrandTotalRow As Boolean = False
+
+                    For Each cell As DataGridViewCell In row.Cells
+                        If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                            isGrandTotalRow = True
+                            Exit For
+                        End If
+                    Next
+
+                    For Each col As DataGridViewColumn In visibleColumns
+                        Dim cell As DataGridViewCell = row.Cells(col.Index)
+                        Dim value As String = ""
+
+                        If cell.Value IsNot Nothing Then
+                            If TypeOf cell.Value Is DateTime Then
+                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                value = cell.Value.ToString()
+                            End If
+                        End If
+
+                        Dim pdfCell As New PdfPCell(New Phrase(value, If(isGrandTotalRow, verdana10Bold, verdana10))) With {
+                        .VerticalAlignment = Element.ALIGN_MIDDLE,
+                        .Padding = 4
+                    }
+
+                        ' 👉 Row color logic
+                        If isGrandTotalRow Then
+                            pdfCell.BackgroundColor = New BaseColor(250, 240, 230)
+                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+                            pdfCell.BackgroundColor = BaseColor.YELLOW
+                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                            pdfCell.BackgroundColor = New BaseColor(200, 255, 200)
+                        End If
+
+                        ' 👉 Wrapping logic
+                        Dim colName As String = col.HeaderText.Trim().ToUpper()
+                        Select Case colName
+                            Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
+                                pdfCell.NoWrap = False
+                            Case Else
+                                pdfCell.NoWrap = True
+                        End Select
+
+                        ' 👉 Alignment
+                        If IsNumeric(value) Then
+                            pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                        Else
+                            pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+                        End If
+
+                        table.AddCell(pdfCell)
+                    Next
+                End If
+            Next
+
+            ' 👉 Add table to document
+            doc.Add(table)
+
+            ' ✅ Success Message
+            MessageBox.Show("PDF saved to: " & FileName, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            doc.Close()
+        End Try
+    End Sub
+
+
+
 
 
 

@@ -208,7 +208,10 @@ Public Class PurchaseMaster
         TXTIGSTPER1.Clear()
         TXTIGSTAMT1.Clear()
         LBLACCEPTEDMTRS.Text = 0
+        TXTCOMPLAINTDATE.Clear()
 
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
         CHKMANUALTCS.Checked = False
         CHKTCS.Checked = False
         TXTTOTALWITHGST.Clear()
@@ -526,7 +529,9 @@ Public Class PurchaseMaster
                             PBlock.Visible = True
                         End If
                         CMBSHIPTO.Text = Convert.ToString(dr("SHIPTO"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -605,7 +610,7 @@ Public Class PurchaseMaster
         'Dim IntResult As Integer
         Try
 
-            'WHILE ADDING COLUMN IN JOBOUT DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            'WHILE ADDING COLUMN IN PURCHASEMASTER DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
             '1) MAGOCBOXINVOICE -- GENERATEPI
 
 
@@ -1050,6 +1055,10 @@ Public Class PurchaseMaster
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             alParaval.Add(CMBSHIPTO.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval
@@ -1589,7 +1598,6 @@ CHECKNEXTLINE:
         End If
 
 
-
         If (ClientName = "MASHOK" Or ClientName = "ABHEE") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
             EP.SetError(cmbname, "Please Select Purchase Order")
             bln = False
@@ -1671,21 +1679,7 @@ CHECKNEXTLINE:
             Next
         End If
 
-
-        'CHECK WHETHER PURCHASER HAS CROSSED 50LAKHS OR NOT
         Dim DT As New DataTable
-        'If CHKTDS.CheckState = CheckState.Unchecked Then
-        '    Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-        '    DT = OBJCMN.Execute_Any_String("Select ISNULL(SUM(BILL_GRANDTOTAL),0) As GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS On BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " And LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
-        '    If DT.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
-        '    If TEMPTDSTOTAL > 5000000 Then
-        '        If MsgBox("Amount Exceeds 5000000, and TDS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-        '            EP.SetError(cmbname, "Apply TDS")
-        '            bln = False
-        '        End If
-        '    End If
-        'End If
-
 
 
         If UserName <> "Admin" Then
@@ -4165,7 +4159,7 @@ LINE1:
                     Exit Sub
                 Else
                     If EDIT = False Then DUEDATE.Value = DTPARTYBILLDATE.Text
-                    If ClientName = "MOHATUL" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MANSI" Then
+                    If ClientName = "MOHATUL" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MANSI" Or ClientName = "MAHAVIRPOLYCOT" Then
                         BILLDATE.Text = DTPARTYBILLDATE.Text
                         lrdate.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
                         CHALLANDATE.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
@@ -4624,7 +4618,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles CMDSELECTPO.Click
+    Private Sub CMDSELECTPO_Click(sender As Object, e As EventArgs) Handles CMDSELECTPO.Click
         Try
 
             If cmbname.Text.Trim = "" Then
@@ -6029,7 +6023,7 @@ NEXTLINE:
 
     Private Sub CMBSHIPTO_Validated(sender As Object, e As EventArgs) Handles CMBSHIPTO.Validated
         Try
-            If cmbname.Text.Trim <> "" Then
+            If CMBSHIPTO.Text.Trim <> "" Then
                 'GET REGISTER , AGENCT AND TRANS
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_1.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_1.Acc_locationid AND LEDGERS.Acc_yearid = LEDGERS_1.Acc_yearid LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_2.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_2.Acc_locationid AND LEDGERS.Acc_yearid = LEDGERS_2.Acc_yearid LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID", " and LEDGERS.acc_cmpname = '" & CMBSHIPTO.Text.Trim & "' and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS') and LEDGERS.acc_YEARid = " & YearId)
@@ -6069,6 +6063,35 @@ NEXTLINE:
             If CMBSHIPTO.Text.Trim = "" Then FILLNAME(CMBSHIPTO, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' or  GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

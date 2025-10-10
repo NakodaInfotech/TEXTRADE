@@ -24,6 +24,7 @@ Partial Class BlockDataTransfer
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.CHKSTOCK = New System.Windows.Forms.CheckBox()
         Me.CHKOTHERMASTER = New System.Windows.Forms.CheckBox()
         Me.CMDUPDATE = New System.Windows.Forms.Button()
@@ -31,7 +32,7 @@ Partial Class BlockDataTransfer
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CHKLEDGER = New System.Windows.Forms.CheckBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CMDDELETE = New System.Windows.Forms.Button()
+        Me.CHKAGENCYDATA = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,6 +40,7 @@ Partial Class BlockDataTransfer
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKAGENCYDATA)
         Me.BlendPanel1.Controls.Add(Me.CMDDELETE)
         Me.BlendPanel1.Controls.Add(Me.CHKSTOCK)
         Me.BlendPanel1.Controls.Add(Me.CHKOTHERMASTER)
@@ -53,13 +55,24 @@ Partial Class BlockDataTransfer
         Me.BlendPanel1.Size = New System.Drawing.Size(288, 222)
         Me.BlendPanel1.TabIndex = 18
         '
+        'CMDDELETE
+        '
+        Me.CMDDELETE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDDELETE.ForeColor = System.Drawing.Color.Black
+        Me.CMDDELETE.Location = New System.Drawing.Point(102, 182)
+        Me.CMDDELETE.Name = "CMDDELETE"
+        Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
+        Me.CMDDELETE.TabIndex = 185
+        Me.CMDDELETE.Text = "&Delete"
+        Me.CMDDELETE.UseVisualStyleBackColor = True
+        '
         'CHKSTOCK
         '
         Me.CHKSTOCK.AutoSize = True
         Me.CHKSTOCK.BackColor = System.Drawing.Color.Transparent
         Me.CHKSTOCK.Checked = True
         Me.CHKSTOCK.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKSTOCK.Location = New System.Drawing.Point(30, 100)
+        Me.CHKSTOCK.Location = New System.Drawing.Point(30, 91)
         Me.CHKSTOCK.Name = "CHKSTOCK"
         Me.CHKSTOCK.Size = New System.Drawing.Size(136, 19)
         Me.CHKSTOCK.TabIndex = 3
@@ -72,7 +85,7 @@ Partial Class BlockDataTransfer
         Me.CHKOTHERMASTER.BackColor = System.Drawing.Color.Transparent
         Me.CHKOTHERMASTER.Checked = True
         Me.CHKOTHERMASTER.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKOTHERMASTER.Location = New System.Drawing.Point(30, 50)
+        Me.CHKOTHERMASTER.Location = New System.Drawing.Point(30, 41)
         Me.CHKOTHERMASTER.Name = "CHKOTHERMASTER"
         Me.CHKOTHERMASTER.Size = New System.Drawing.Size(180, 19)
         Me.CHKOTHERMASTER.TabIndex = 2
@@ -96,7 +109,7 @@ Partial Class BlockDataTransfer
         Me.CHKDATA.BackColor = System.Drawing.Color.Transparent
         Me.CHKDATA.Checked = True
         Me.CHKDATA.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKDATA.Location = New System.Drawing.Point(30, 75)
+        Me.CHKDATA.Location = New System.Drawing.Point(30, 66)
         Me.CHKDATA.Name = "CHKDATA"
         Me.CHKDATA.Size = New System.Drawing.Size(133, 19)
         Me.CHKDATA.TabIndex = 1
@@ -120,7 +133,7 @@ Partial Class BlockDataTransfer
         Me.CHKLEDGER.BackColor = System.Drawing.Color.Transparent
         Me.CHKLEDGER.Checked = True
         Me.CHKLEDGER.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKLEDGER.Location = New System.Drawing.Point(30, 25)
+        Me.CHKLEDGER.Location = New System.Drawing.Point(30, 16)
         Me.CHKLEDGER.Name = "CHKLEDGER"
         Me.CHKLEDGER.Size = New System.Drawing.Size(142, 19)
         Me.CHKLEDGER.TabIndex = 0
@@ -133,16 +146,19 @@ Partial Class BlockDataTransfer
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'CMDDELETE
+        'CHKAGENCYDATA
         '
-        Me.CMDDELETE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDDELETE.ForeColor = System.Drawing.Color.Black
-        Me.CMDDELETE.Location = New System.Drawing.Point(102, 182)
-        Me.CMDDELETE.Name = "CMDDELETE"
-        Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDDELETE.TabIndex = 185
-        Me.CMDDELETE.Text = "&Delete"
-        Me.CMDDELETE.UseVisualStyleBackColor = True
+        Me.CHKAGENCYDATA.AutoSize = True
+        Me.CHKAGENCYDATA.BackColor = System.Drawing.Color.Transparent
+        Me.CHKAGENCYDATA.Checked = True
+        Me.CHKAGENCYDATA.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKAGENCYDATA.Location = New System.Drawing.Point(30, 116)
+        Me.CHKAGENCYDATA.Name = "CHKAGENCYDATA"
+        Me.CHKAGENCYDATA.Size = New System.Drawing.Size(145, 19)
+        Me.CHKAGENCYDATA.TabIndex = 186
+        Me.CHKAGENCYDATA.Text = "Block Agency Transfer"
+        Me.CHKAGENCYDATA.UseVisualStyleBackColor = False
+        Me.CHKAGENCYDATA.Visible = False
         '
         'BlockDataTransfer
         '
@@ -171,4 +187,5 @@ Partial Class BlockDataTransfer
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents CMDDELETE As Button
+    Friend WithEvents CHKAGENCYDATA As CheckBox
 End Class

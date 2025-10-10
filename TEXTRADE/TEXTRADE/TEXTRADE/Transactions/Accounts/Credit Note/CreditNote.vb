@@ -159,6 +159,9 @@ Public Class CREDITNOTE
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
             CHKINTCALC.Checked = False
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTDATE.Clear()
+            TXTCOMPLAINTBY.Clear()
 
         Catch ex As Exception
             Throw ex
@@ -790,6 +793,10 @@ Public Class CREDITNOTE
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text)
+
             Dim objclsCNmaster As New ClsCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable
@@ -827,10 +834,6 @@ Public Class CREDITNOTE
 
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
-
-
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
 
             If ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
                 CLEAR()
@@ -920,10 +923,10 @@ Public Class CREDITNOTE
             End If
 
 
-            If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
-                EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
-                bln = False
-            End If
+            'If Val(txtgrandtotal.Text.Trim) <> Val(TXTADJTOTAL.Text.Trim) And GRIDPAYMENT.RowCount > 0 Then
+            '    EP.SetError(txtgrandtotal, "Total does not match Adjusted Amt")
+            '    bln = False
+            'End If
 
 
             If Convert.ToDateTime(CNDATE.Text).Date >= "01/07/2017" Then
@@ -962,12 +965,7 @@ Public Class CREDITNOTE
 
 
             For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
-                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    bln = False
-                End If
-
-                'If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
+                'If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
                 '    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                 '    bln = False
                 'End If
@@ -1009,10 +1007,10 @@ Public Class CREDITNOTE
                 bln = False
             End If
 
-            If TXTPARTYBILLNO.Text.Trim.Length = 0 Then
-                EP.SetError(TXTPARTYBILLNO, "Enter Party Bill No")
-                bln = False
-            End If
+            'If TXTPARTYBILLNO.Text.Trim.Length = 0 Then
+            '    EP.SetError(TXTPARTYBILLNO, "Enter Party Bill No")
+            '    bln = False
+            'End If
 
             If TXTPARTYBILLNO.Text.Trim <> "" Then
                 If (edit = False) Or (edit = True And TEMPPARTYBILLNO <> TXTPARTYBILLNO.Text.Trim) Then
@@ -1515,7 +1513,9 @@ LINE1:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -3215,6 +3215,27 @@ ERRORMESSAGE:
         End Try
     End Sub
 
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET MAX RECEIPTNO 
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(CN_NO) As CNNO", "", " CREDITNOTEMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = CN_REGISTERID", " And REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND CN_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("CNNO"))
+                GRIDPAYMENT.RowCount = 0
+                TEMPCNNO = Val(I)
+                TEMPREGNAME = cmbregister.Text.Trim
+                edit = True
+                CREDITNOTE_Load(sender, e)
+                If GRIDPAYMENT.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub ACTUALINVDATE_Validating(sender As Object, e As CancelEventArgs) Handles ACTUALINVDATE.Validating
         Try
             If ACTUALINVDATE.Text.Trim <> "__/__/____" Then
@@ -3334,6 +3355,7 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
                             If DT1.Rows.Count > 0 Then
                                 CMBSACDESC.Text = DT1.Rows(0).Item("HSNDESC")
                                 TXTSACCODE.Text = DT1.Rows(0).Item("HSNCODE")
+                                Call CMBHSNITEMDESC_Validated(sender, e)
                             End If
 
                         End If
@@ -3341,6 +3363,35 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
                         TXTADJAMT_Validating(sender, A)
                     End If
                 End With
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
             End If
         Catch ex As Exception
             Throw ex

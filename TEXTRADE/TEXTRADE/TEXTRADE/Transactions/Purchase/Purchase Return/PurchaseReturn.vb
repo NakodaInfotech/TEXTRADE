@@ -92,7 +92,9 @@ Public Class PurchaseReturn
         If ClientName = "SOFTAS" Then CMBQTYUNIT.Text = "PCS"
         TXTAMT.Clear()
         GRIDPURRET.RowCount = 0
-
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTDATE.Clear()
+        TXTCOMPLAINTBY.Clear()
         TXTCHGSSRNO.Text = 1
         CMBCHARGES.Text = ""
         TXTCHGSPER.Clear()
@@ -195,7 +197,7 @@ Public Class PurchaseReturn
             TXTCHQBAL.Text = 0.0
 
             TXTTCSPER.Text = 0
-            TXTTCSAMT.Text = 0
+            'TXTTCSAMT.Text = 0
 
             'FETCH TCSPERCENT WITH RESPECT TO DATE
             Dim OBJCMN As New ClsCommon
@@ -253,7 +255,7 @@ Public Class PurchaseReturn
             End If
 
             TXTTOTALWITHGST.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text.Trim) + Val(TXTSGSTAMT.Text.Trim) + Val(TXTIGSTAMT.Text.Trim), "0.00")
-            If CHKTCS.CheckState = CheckState.Checked Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
+            If CHKTCS.CheckState = CheckState.Checked And Val(TXTTCSPER.Text.Trim) > 0 Then TXTTCSAMT.Text = Format((Val(TXTTOTALWITHGST.Text.Trim) * Val(TXTTCSPER.Text.Trim)) / 100, "0")
 
             If CHKMANUALROUND.Checked = False Then
                 txtgrandtotal.Text = Format(Val(TXTSUBTOTAL.Text) + Val(TXTCGSTAMT.Text.Trim) + Val(TXTSGSTAMT.Text.Trim) + Val(TXTIGSTAMT.Text.Trim) + Val(TXTTCSAMT.Text.Trim), "0")
@@ -822,6 +824,9 @@ Public Class PurchaseReturn
             alParaval.Add(CMBFROMCITY.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
             If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
 
 
@@ -851,8 +856,6 @@ Public Class PurchaseReturn
             PRINTREPORT(TEMPPRNO)
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else clear()
 
             PRDATE.Focus()
@@ -1077,6 +1080,10 @@ Public Class PurchaseReturn
                         CMBFROMCITY.Text = Convert.ToString(dr("FROMCITY"))
                         If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
+
                         'Item Grid
                         GRIDPURRET.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEM").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGNNO"), dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO").ToString, dr("PCS").ToString, dr("UNIT").ToString, dr("MTRS").ToString, dr("WT").ToString, dr("RATE").ToString, dr("PER").ToString, dr("AMT").ToString, dr("BARCODE"), dr("GRNNO"), dr("GRNSRNO"), dr("TYPE"), dr("DONE"))
 
@@ -1166,7 +1173,7 @@ Public Class PurchaseReturn
         End Try
     End Sub
 
-    Sub fillcmb()
+    Sub FILLCMB()
         Try
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'")
             If CMBTRANS.Text.Trim = "" Then FILLNAME(CMBTRANS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'")
@@ -3170,6 +3177,26 @@ LINE1:
         ACTUALINVDATE.SelectionStart = 0
     End Sub
 
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET INVOICENOS FROM INVOICEMASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(PR_NO) As PURRETNO", "", " PURCHASERETURN ", " AND PR_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("PURRETNO"))
+                GRIDPURRET.RowCount = 0
+                TEMPPRNO = Val(I)
+                EDIT = True
+                PurchaseReturn_Load(sender, e)
+                If GRIDPURRET.RowCount = 0 Then GoTo NEXTLINE
+                cmdok_Click(sender, e)
+NEXTLINE:
+                clear()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TOOLEWB_Click(sender As Object, e As EventArgs) Handles TOOLEWB.Click
         Try
             If EDIT = False Then Exit Sub
@@ -3758,5 +3785,37 @@ LINE1:
 
     Private Sub TXTAQTY_Validated(sender As Object, e As EventArgs) Handles TXTAQTY.Validated, TXTAFOLDPER.Validated
         CALC()
+    End Sub
+
+    Private Sub TXTCOMPLAIN_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

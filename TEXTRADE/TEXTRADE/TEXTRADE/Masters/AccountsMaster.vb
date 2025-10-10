@@ -473,6 +473,8 @@ Public Class AccountsMaster
 
             'IF NEW COLUMNS ARE ADDED THEN ADD IN 
             '1) MDIMAIN --- UPLOAD ACCOUNTS SECTION
+            '2) MAGICBOXINVOICE
+            '3) INVOICEMASTER -- CREATEAGENCYINVOICE
 
 
             If CHKCOMMON.CheckState = CheckState.Unchecked Then
@@ -945,6 +947,9 @@ NEXTLINE:
         End If
 
 
+
+
+
         'IF GROUPNAME = CREDITORS OR DEBTORS THEN ONLY
         Dim OBJCMN As New ClsCommon
         Dim DT As DataTable = OBJCMN.SEARCH("GROUP_SECONDARY AS GROUPNAME", "", " GROUPMASTER", " AND GROUP_NAME ='" & cmbgroup.Text.Trim & "' AND GROUP_CMPID =  " & CmpId & " AND GROUP_LOCATIONID = " & Locationid & " AND GROUP_YEARID = " & YearId)
@@ -1127,6 +1132,20 @@ NEXTLINE:
 
         End If
 
+
+
+
+        If cmbcmpname.Text.Trim <> "" Then
+            pcase(cmbcmpname)
+            If CMBCODE.Text.Trim = "" Then CMBCODE.Text = cmbcmpname.Text.Trim
+            If (EDIT = False) Or (EDIT = True And LCase(cmbcmpname.Text) <> LCase(tempAccountsName)) Then
+                DT = OBJCMN.SEARCH("ACC_CMPNAME", "", " LEDGERS", " AND ACC_CMPNAME = '" & cmbcmpname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    Ep.SetError(cmbcmpname, "Name Already Exists")
+                    bln = False
+                End If
+            End If
+        End If
 
 
 
@@ -2169,7 +2188,7 @@ line1:
             End If
 
 
-            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "VINTAGEINDIA" Then CHKCOMMON.CheckState = CheckState.Unchecked
+            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "VINTAGEINDIA" Or ClientName = "CC" Then CHKCOMMON.CheckState = CheckState.Unchecked
             If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then LBLSALESMAN.Text = "Handler"
             If ClientName = "VINTAGEINDIA" Then CHKHOLD.CheckState = CheckState.Checked
         Catch ex As Exception
@@ -2393,7 +2412,13 @@ line1:
 
     Private Sub CMBBILLTO_Enter(sender As Object, e As EventArgs) Handles CMBBILLTO.Enter
         Try
-            If CMBBILLTO.Text.Trim = "" Then FILLNAME(CMBBILLTO, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            If CMBBILLTO.Text.Trim = "" Then
+                If ClientName = "AARYA" Then
+                    FILLNAME(CMBBILLTO, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS')")
+                Else
+                    FILLNAME(CMBBILLTO, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2401,7 +2426,13 @@ line1:
 
     Private Sub CMBBILLTO_Validating(sender As Object, e As CancelEventArgs) Handles CMBBILLTO.Validating
         Try
-            NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBBILLTO.Text.Trim = "" Then
+                If ClientName = "AARYA" Then
+                    NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry CREDITORS')", "Sundry debtors", "ACCOUNTS")
+                Else
+                    NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -25,6 +25,7 @@ Public Class AgencyInvoice
     Public DIRECTINVOICE As Boolean = False
     Public DIRECTPARTYNAME As String = ""
     Public TEMPPURNO As Integer, TEMPPURREGNAME As String, TEMPPARTYNAME As String, TEMPPRINTINITIALS As String
+    Dim TEMPPARTYBILLNO As String = ""
 
     Public Sub New()
 
@@ -80,7 +81,9 @@ Public Class AgencyInvoice
             GPARTYPONO.Visible = True
             GRIDINVOICE.Width = 1330
         End If
-
+        TXTCOMPLAINTDATE.Clear()
+        TXTCOMPLAINT.Clear()
+        TXTCOMPLAINTBY.Clear()
 
         CMBSERVICETYPE.SelectedIndex = 0
         TXTSACCODE.Clear()
@@ -587,11 +590,9 @@ Public Class AgencyInvoice
                     TXTINWORDSUSD.Text = dr("INWORDSUSD")
 
 
-
-
-
                     TXTMULTISONO.Text = Convert.ToString(dr("PONO"))
                     txtpartypono.Text = Convert.ToString(dr("PARTYPONO"))
+                    TEMPPARTYBILLNO = dr("PARTYPONO")
                     sodate.Text = Format(Convert.ToDateTime(dr("PODATE")), "dd/MM/yyyy")
                     TXTBALENOFROM.Text = Val(dr("BALENOFROM"))
                     TXTBALENOTO.Text = Val(dr("BALENOTO"))
@@ -737,6 +738,9 @@ Public Class AgencyInvoice
                         TXTPCS.ReadOnly = True
                     End If
 
+                    TXTCOMPLAINT.Text = dr("COMPLAINT")
+                    TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                    TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                 Next
                 GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
 
@@ -815,12 +819,19 @@ Public Class AgencyInvoice
     End Sub
 
     Private Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
-        If ISLOCKYEAR = True Then
-            MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
-            Exit Sub
-        End If
-
         Try
+
+            'WHILE ADDING COLUMN IN AGENCYINVOICE DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
+            '1) INVOICEMASTER -- GENERATEAGENCYINVOICE
+
+
+
+            If ISLOCKYEAR = True Then
+                MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+
             Cursor.Current = Cursors.WaitCursor
             Dim IntResult As Integer
 
@@ -1330,7 +1341,9 @@ Public Class AgencyInvoice
 
 
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
-
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
 
             Dim objclsPurord As New ClsAgencyInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -1356,7 +1369,6 @@ Public Class AgencyInvoice
                 IntResult = objclsPurord.UPDATE()
                 MessageBox.Show("Details Updated")
 
-                'SMSCODE()
                 EDIT = False
             End If
 
@@ -1437,7 +1449,7 @@ Public Class AgencyInvoice
             bln = False
         End If
 
-        If Val(txtpartypono.Text.Trim) = 0 Then
+        If txtpartypono.Text.Trim = "" Then
             EP.SetError(txtpartypono, "Enter Party Bill No")
             bln = False
         End If
@@ -1512,25 +1524,6 @@ Public Class AgencyInvoice
         End If
 
 
-        'SET CREDIT LIMIT
-        'IF EDIT IS TRUE THEN WE NEED TO SUBTRACT THAT GRANDTOTAL FROM THEN TRIALBALANCE AMONT
-        'Dim OLDBAL As Double = 0
-        'If EDIT = True Then
-        '    Dim DTOLD As DataTable = OBJCMN.SEARCH("AINVOICE_GRANDTOTAL AS OLDGTOTAL ", "", "AGENCYINVOICEMASTER ", " AND AINVOICE_NO = " & TEMPINVOICENO & " And AINVOICE_YEARID = " & YearId)
-        '    If DTOLD.Rows.Count > 0 Then OLDBAL = Val(DTOLD.Rows(0).Item("OLDGTOTAL"))
-        'End If
-
-
-        ''TAKE CREDIT LIMIT FROM ALL THE COMPANIES
-
-        'DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) As BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE On ACC_CMPNAME = NAME And ACC_YEARID = YEARID", " And ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & YearId)
-        'If DT.Rows.Count > 0 AndAlso Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
-        '    If Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) + Val(txtgrandtotal.Text.Trim), "0.00") > Val(DT.Rows(0).Item("CRLIMIT")) Then
-        '        EP.SetError(cmbname, "Amount Greater then Credit Limit, Only " & Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) - Val(DT.Rows(0).Item("CRLIMIT")), "0.00") & " allowed")
-        '        bln = False
-        '    End If
-        'End If
-
 
         If UserName <> "Admin" Then
             If lbllocked.Visible = True Then
@@ -1553,20 +1546,6 @@ Public Class AgencyInvoice
                 bln = False
             End If
         End If
-
-        'CHECK WHETHER SALES LEDGER HAS CROSSED 50LAKHS OR NOT
-        'Dim DTB As New DataTable
-        'If CHKTCS.CheckState = CheckState.Unchecked And CHKPARTYTDS.CheckState = CheckState.Unchecked Then
-        '    Dim TEMPTCSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
-        '    DT = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(AINVOICE_GRANDTOTAL),0) AS GTOTAL FROM INVOICEMASTER INNER JOIN LEDGERS ON AINVOICE_LEDGERID = LEDGERS.ACC_ID WHERE AINVOICE_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
-        '    If DT.Rows.Count > 0 Then TEMPTCSTOTAL += Val(DT.Rows(0).Item("GTOTAL"))
-        '    If TEMPTCSTOTAL > 5000000 Then
-        '        If MsgBox("Amount Exceeds 5000000, and TCS is not Applied, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-        '            EP.SetError(cmbname, "Apply TCS")
-        '            bln = False
-        '        End If
-        '    End If
-        'End If
 
 
 
@@ -3139,66 +3118,6 @@ SKIPLINE:
                         GCUT.HeaderText = "Cut"
                         GCUT.ReadOnly = True
                     End If
-
-
-                    'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
-                    'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
-                    'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
-                    If SALEAUTODISCOUNT = True And CMBSCREENTYPE.Text <> "LINE GST" And EDIT = False Then
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE1
-                        Next
-                        If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0)
-
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "EXMILL LESS" Then GoTo LINE1
-                        Next
-                        If Val(DT.Rows(0).Item("EXMILLLESS")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "EXMILL LESS", Val(DT.Rows(0).Item("EXMILLLESS")) * -1, 0, 0)
-
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE1
-                        Next
-                        If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
-
-
-                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                            If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE1
-                        Next
-                        If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0)
-
-
-                        If ClientName = "AVIS" Then
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "SPECIAL DISCOUNT" Then GoTo LINE1
-                            Next
-                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "SPECIAL DISCOUNT", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
-                        End If
-
-
-                        'If ClientName = "SBA" Or ClientName = "SOFTAS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MOOLTEX" Or ClientName = "SUPRIYA" Or ClientName = "SANGHVI" Or ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "SONU" Then
-                        'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
-                        If AUTOBROKERAGE = True Then
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE1
-                            Next
-                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
-                        End If
-
-
-
-                        'GET TRAVEL INSURANCE
-                        Dim DTINSURANCE As DataTable = OBJCMN.SEARCH("ISNULL(TI_PERCENT,0) AS INSURANCE", "", "TRANSPORTINSURANCE", " AND TI_DATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND TI_YEARID = " & YearId & " ORDER BY TI_DATE DESC ")
-                        If DTINSURANCE.Rows.Count > 0 Then
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "INSURANCE CHARGES" Then GoTo LINE1
-                            Next
-                            If Val(DTINSURANCE.Rows(0).Item("INSURANCE")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "INSURANCE CHARGES", Val(DTINSURANCE.Rows(0).Item("INSURANCE")), 0, 0)
-                        End If
-
-
-                    End If
-
-LINE1:
 
 
                     If ClientName = "KOTHARI" Then cmbname.Enabled = False
@@ -5375,27 +5294,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDAUTOPOST_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDAUTOPOST.Click
-        Try
-            'GET INVOICENOS FROM INVOICEMASTER
-            Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("MAX(AINVOICE_NO) As INVOICENO", "", " INVOICEMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = AINVOICE_REGISTERID", "  AND AINVOICE_YEARID = " & YearId)
-            For I As Integer = 3001 To Val(DT.Rows(0).Item("INVOICENO"))
-                GRIDINVOICE.RowCount = 0
-                TEMPINVOICENO = Val(I)
-                EDIT = True
-                'AgencyInvoice_Load(sender, e)
-                SHOWDATA()
-                If GRIDINVOICE.RowCount = 0 Then GoTo NEXTLINE
-                cmdOK_Click(sender, e)
-NEXTLINE:
-                CLEAR()
-            Next
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTCUT_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCUT.Validated
         Try
             CALC()
@@ -5735,6 +5633,24 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub txtpartypono_Validating(sender As Object, e As CancelEventArgs) Handles txtpartypono.Validating
+        Try
+            If txtpartypono.Text.Trim <> "" Then
+                If (EDIT = False) Or (EDIT = True And TEMPPARTYBILLNO <> txtpartypono.Text.Trim) Then
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_PARTYPONO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBSUPPLIERNAME.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & txtpartypono.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("BILLNO"))
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBSALESMAN_Enter(sender As Object, e As EventArgs) Handles CMBSALESMAN.Enter
         Try
             If CMBSALESMAN.Text.Trim = "" Then FILLSALESMAN(CMBSALESMAN)
@@ -5838,7 +5754,8 @@ NEXTLINE:
             Dim OBJCMN As New ClsCommon
             Dim DTSO As New DataTable
             Dim OBJSELECTSO As New SelectAgencySO
-            OBJSELECTSO.PARTYNAME = cmbname.Text.Trim
+            OBJSELECTSO.BUYERNAME = cmbname.Text.Trim
+            OBJSELECTSO.SELLERNAME = CMBSUPPLIERNAME.Text.Trim
             OBJSELECTSO.ShowDialog()
             DTSO = OBJSELECTSO.DT
 
@@ -6014,6 +5931,53 @@ NEXTLINE:
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBSUPPLIERNAME.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.acc_YEARid = " & YearId)
             TXTSELLERSTATECODE.Text = DT.Rows(0).Item("STATECODE")
+
+            If cmbtrans.Text = "" Then cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+
+            'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
+            'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
+            'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
+            If SALEAUTODISCOUNT = True And EDIT = False Then
+
+                For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                    If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE1
+                Next
+                If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+
+            End If
+
+LINE1:
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOMPLAINTDATE_Validating(sender As Object, e As CancelEventArgs) Handles TXTCOMPLAINTDATE.Validating
+        Try
+            If TXTCOMPLAINTDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(TXTCOMPLAINTDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try

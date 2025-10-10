@@ -108,6 +108,7 @@ Partial Class Receipt
         Me.Label23 = New System.Windows.Forms.Label()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.CHQDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
@@ -293,7 +294,7 @@ Partial Class Receipt
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridbill.DefaultCellStyle = DataGridViewCellStyle6
         Me.gridbill.GridColor = System.Drawing.SystemColors.ControlText
-        Me.gridbill.Location = New System.Drawing.Point(7, 17)
+        Me.gridbill.Location = New System.Drawing.Point(7, 38)
         Me.gridbill.Margin = New System.Windows.Forms.Padding(2)
         Me.gridbill.MultiSelect = False
         Me.gridbill.Name = "gridbill"
@@ -301,7 +302,7 @@ Partial Class Receipt
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
         Me.gridbill.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.gridbill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.gridbill.Size = New System.Drawing.Size(782, 218)
+        Me.gridbill.Size = New System.Drawing.Size(782, 196)
         Me.gridbill.TabIndex = 0
         Me.gridbill.TabStop = False
         '
@@ -311,7 +312,7 @@ Partial Class Receipt
         Me.groupbill.Controls.Add(Me.gridbill)
         Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.groupbill.ForeColor = System.Drawing.Color.Black
-        Me.groupbill.Location = New System.Drawing.Point(528, 41)
+        Me.groupbill.Location = New System.Drawing.Point(528, 44)
         Me.groupbill.Name = "groupbill"
         Me.groupbill.Size = New System.Drawing.Size(794, 240)
         Me.groupbill.TabIndex = 6
@@ -915,6 +916,7 @@ Partial Class Receipt
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.Lavender, System.Drawing.Color.Lavender)
+        Me.BlendPanel1.Controls.Add(Me.CMDAUTOPOST)
         Me.BlendPanel1.Controls.Add(Me.groupbill)
         Me.BlendPanel1.Controls.Add(Me.CHQDATE)
         Me.BlendPanel1.Controls.Add(Me.Label16)
@@ -990,6 +992,21 @@ Partial Class Receipt
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 531)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(669, 474)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1000
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'CHQDATE
         '
@@ -2042,4 +2059,5 @@ Partial Class Receipt
     Friend WithEvents TXTCOPY As TextBox
     Friend WithEvents LBLCITY As Label
     Friend WithEvents LBLPRINT As Label
+    Friend WithEvents CMDAUTOPOST As Button
 End Class

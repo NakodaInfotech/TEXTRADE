@@ -2938,6 +2938,7 @@ LINE1:
                 End If
 
                 TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+                If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
 
 
                 'GET DATA FROM BARCODE
@@ -3045,6 +3046,21 @@ LINE1:
     Private Sub CMBDISPATCHFROM_Enter(sender As Object, e As EventArgs) Handles CMBDISPATCHFROM.Enter
         Try
             If CMBDISPATCHFROM.Text.Trim = "" Then FILLNAME(CMBDISPATCHFROM, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDISPATCHFROM_Validated(sender As Object, e As EventArgs) Handles CMBDISPATCHFROM.Validated
+        Try
+            If CMBDISPATCHFROM.Text.Trim <> "" Then
+                'GET CITY , 
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(CITYMASTER.city_name, '') AS FROMCITY ", "", "  LEDGERS LEFT OUTER JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " and LEDGERS.acc_cmpname = '" & CMBDISPATCHFROM.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    CMBFROMCITY.Text = DT.Rows(0).Item("FROMCITY")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try

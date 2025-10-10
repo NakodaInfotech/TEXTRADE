@@ -56,7 +56,7 @@ Public Class MagicBox
                     ORDERNO = row.Cells(GORDERNO.Index).Value.ToString
                     MERCHANT = row.Cells(gitemname.Index).Value.ToString
                     QUALITY = "" 'row.Cells(GQUALITY.Index).Value.ToString
-                    DESIGN = row.Cells(GDESIGN.Index).Value.ToString
+                    DESIGN = row.Cells(GDESCRIPTION.Index).Value.ToString
                     gridremarks = "" ' row.Cells(gdesc.Index).Value.ToString
                     COLOR = "" 'row.Cells(gcolor.Index).Value.ToString
                     PARTYPONO = "" ' row.Cells(GORDERNO.Index).Value.ToString
@@ -77,7 +77,16 @@ Public Class MagicBox
 
                 End If
 
-                alParaval.Add(0)
+                ' WE HAVE COMMENTED THIS LINE BCOZ FOR TEMPORARY CLIENT WANT MANUAL NUMBER ALLOW
+                ''alParaval.Add(0)
+
+                Dim AORDNO As Integer = 0
+                Dim DTTABLE As DataTable = getmax(" isnull(max(ASO_no),0) + 1 ", " AGENCYSALEORDER ", " and ASO_yearid=" & YearId)
+                If DTTABLE.Rows.Count > 0 Then AORDNO = DTTABLE.Rows(0).Item(0)
+                row.Cells(GNO.Index).Value = Val(AORDNO)
+
+
+                alParaval.Add(AORDNO)
                 alParaval.Add(ORDERDATE)
                 alParaval.Add(BUYERS)
                 alParaval.Add("") ' HASTE
@@ -181,6 +190,7 @@ Public Class MagicBox
                 alParaval.Add("") 'CMBSAMPLE.Text.Trim)
                 alParaval.Add("") 'CMBFROMCITY.Text.Trim)
                 alParaval.Add(1)    'VERIFIED
+                alParaval.Add(row.Cells(gorderon.Index).Value)
 
                 Dim OBJSO As New ClsAgencySaleOrder()
                 OBJSO.alParaval = alParaval
@@ -666,9 +676,9 @@ NEXTLINE:
             Dim WIDTH As String = ""
             Dim WT As String = ""
             Dim CUT As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gcut.Index).Value)
-            Dim DESIGN As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESIGN.Index).Value
+            Dim DESIGN As String = ""
             Dim COLOR As String = ""
-            Dim PDESNO As String = ""
+            Dim PDESNO As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESCRIPTION.Index).Value
             Dim PSHADE As String = ""
             Dim qty As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gQty.Index).Value)
             Dim qtyunit As String = GRIDMAGICBOX.Rows(ROWNO).Cells(gqtyunit.Index).Value
@@ -714,7 +724,7 @@ NEXTLINE:
 
             ALPARAVAL.Add("")
             ALPARAVAL.Add("")
-            ALPARAVAL.Add("PCS")
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gorderon.Index).Value)
 
             Dim OBJPO As New ClsPurchaseOrder()
             OBJPO.alParaval = ALPARAVAL
@@ -814,7 +824,7 @@ NEXTLINE:
             Dim GRIDSRNO As String = "1"
             Dim MERCHANT As String = GRIDMAGICBOX.Rows(ROWNO).Cells(gitemname.Index).Value
             Dim QUALITY As String = ""
-            Dim DESIGN As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESIGN.Index).Value
+            Dim DESIGN As String = GRIDMAGICBOX.Rows(ROWNO).Cells(GDESCRIPTION.Index).Value
             Dim gridremarks As String = ""
             Dim COLOR As String = ""
             Dim PARTYPONO As String = ""
@@ -855,7 +865,7 @@ NEXTLINE:
 
             ALPARAVAL.Add("")
             ALPARAVAL.Add(1)    'VERIFIED
-            ALPARAVAL.Add("PCS")    'ORDERON
+            ALPARAVAL.Add(GRIDMAGICBOX.Rows(ROWNO).Cells(gorderon.Index).Value)    'ORDERON
 
             Dim OBJSO As New ClsSaleOrder()
             OBJSO.alParaval = ALPARAVAL
@@ -868,7 +878,7 @@ NEXTLINE:
 
     Sub CLEAR()
         txtsrno.Text = 1
-        ORDERDATE.Value = Now.Date
+        ORDERDATE.Text = Now.Date
         CMBBUYERS.Text = ""
         CMBSELLERS.Text = ""
         TXTCRDAYS.Clear()
@@ -877,15 +887,17 @@ NEXTLINE:
         duedate.Value = Now.Date
         TXTORDERNO.Clear()
         cmbitemname.Text = ""
-        CMBDESIGN.Text = ""
+        TXTDESCRIPTION.Text = ""
         txtQTY.Clear()
         cmbqtyunit.Text = "Pcs"
+        CMBORDERON.Text = "PCS"
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
         GRIDMAGICBOX.RowCount = 0
         getmax_SO_no()
+        GRIDDOUBLECLICK = False
     End Sub
 
     Private Sub MagicBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -904,6 +916,7 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
     Sub getmax_SO_no()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(ASO_no),0) + 1 ", "AGENCYSALEORDER", " AND ASO_cmpid=" & CmpId & " and ASO_locationid=" & Locationid & " and ASO_yearid=" & YearId)
@@ -1022,37 +1035,6 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
-        Try
-            If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, cmbitemname.Text.Trim)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBDESIGN_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBDESIGN.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJD As New SelectDesign
-                OBJD.ShowDialog()
-                If OBJD.TEMPNAME <> "" Then CMBDESIGN.Text = OBJD.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
-        Try
-            If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me, cmbitemname.Text.Trim)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-
     Private Sub cmbqtyunit_Validating(sender As Object, e As CancelEventArgs) Handles cmbqtyunit.Validating
         Try
             If cmbqtyunit.Text.Trim <> "" Then unitvalidate(cmbqtyunit, e, Me)
@@ -1068,23 +1050,23 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
     Sub FILLCMB()
         Try
             fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
-            FILLDESIGN(CMBDESIGN, cmbitemname.Text.Trim)
             fillunit(cmbqtyunit)
             If CMBSELLERS.Text.Trim = "" Then FILLNAME(CMBSELLERS, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
             If CMBBUYERS.Text.Trim = "" Then FILLNAME(CMBBUYERS, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Sub fillgrid()
         GRIDMAGICBOX.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), ORDERDATE.Text.Trim, CMBBUYERS.Text.Trim, CMBSELLERS.Text.Trim, TXTCRDAYS.Text.Trim, TXTDISCOUNT.Text.Trim, TXTDELPERIOD.Text.Trim, duedate.Text.Trim, TXTORDERNO.Text.Trim, cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), TXTREMARKS.Text.Trim)
+            GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), ORDERDATE.Text.Trim, CMBBUYERS.Text.Trim, CMBSELLERS.Text.Trim, CMBORDERON.Text.Trim, TXTCRDAYS.Text.Trim, TXTDISCOUNT.Text.Trim, TXTDELPERIOD.Text.Trim, duedate.Text.Trim, TXTORDERNO.Text.Trim, cmbitemname.Text.Trim, TXTDESCRIPTION.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), TXTREMARKS.Text.Trim)
             getsrno(GRIDMAGICBOX)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDMAGICBOX.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -1092,13 +1074,14 @@ NEXTLINE:
             GRIDMAGICBOX.Item(GDATE.Index, TEMPROW).Value = ORDERDATE.Text.Trim
             GRIDMAGICBOX.Item(GBUYERS.Index, TEMPROW).Value = CMBBUYERS.Text.Trim
             GRIDMAGICBOX.Item(GSELLERS.Index, TEMPROW).Value = CMBSELLERS.Text.Trim
+            GRIDMAGICBOX.Item(gorderon.Index, TEMPROW).Value = CMBORDERON.Text.Trim
             GRIDMAGICBOX.Item(GCRDAYS.Index, TEMPROW).Value = TXTCRDAYS.Text.Trim
             GRIDMAGICBOX.Item(GDISCOUNT.Index, TEMPROW).Value = TXTDISCOUNT.Text.Trim
             GRIDMAGICBOX.Item(GDELPERIOD.Index, TEMPROW).Value = TXTDELPERIOD.Text.Trim
             GRIDMAGICBOX.Item(GDUEDATE.Index, TEMPROW).Value = duedate.Text.Trim
             GRIDMAGICBOX.Item(GORDERNO.Index, TEMPROW).Value = TXTORDERNO.Text.Trim
             GRIDMAGICBOX.Item(gitemname.Index, TEMPROW).Value = cmbitemname.Text.Trim
-            GRIDMAGICBOX.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
+            GRIDMAGICBOX.Item(GDESCRIPTION.Index, TEMPROW).Value = TXTDESCRIPTION.Text.Trim
             GRIDMAGICBOX.Item(gQty.Index, TEMPROW).Value = Format(Val(txtQTY.Text.Trim), "0.00")
             GRIDMAGICBOX.Item(gqtyunit.Index, TEMPROW).Value = cmbqtyunit.Text.Trim
             GRIDMAGICBOX.Item(gcut.Index, TEMPROW).Value = Format(Val(TXTCUT.Text.Trim), "0.00")
@@ -1115,9 +1098,10 @@ NEXTLINE:
         'CLEAR()
         CMBBUYERS.Text = ""
         CMBSELLERS.Text = ""
-        CMBDESIGN.Text = ""
+        TXTDESCRIPTION.Clear()
         cmbitemname.Text = ""
         cmbqtyunit.Text = ""
+        CMBORDERON.Text = ""
         TXTCRDAYS.Clear()
         TXTCUT.Clear()
         TXTDELPERIOD.Clear()
@@ -1127,19 +1111,12 @@ NEXTLINE:
         txtQTY.Clear()
         TXTRATE.Clear()
         TXTREMARKS.Clear()
-        ORDERDATE.Focus()
+        TXTNO.Focus()
     End Sub
 
     Private Sub cmdEXIT_Click(sender As Object, e As EventArgs) Handles cmdEXIT.Click
         Me.Close()
     End Sub
-    'Sub getmax_no()
-    '    Dim DTTABLE As New DataTable
-    '    DTTABLE = getmax("  isnull(max(ASO_no),0) + 1 ", "AGENCYSALEORDER", " AND ASO_cmpid=" & CmpId & " and ASO_locationid=" & Locationid & " and ASO_yearid=" & YearId)
-    '    If DTTABLE.Rows.Count > 0 Then
-    '        TXTNO.Text = DTTABLE.Rows(0).Item(0)
-    '    End If
-    'End Sub
 
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -1153,18 +1130,10 @@ NEXTLINE:
 
     Private Sub TXTREMARKS_Validated(sender As Object, e As EventArgs) Handles TXTREMARKS.Validated
         Try
-            If CMBBUYERS.Text <> "" And CMBSELLERS.Text <> "" And cmbitemname.Text <> "" And cmbqtyunit.Text <> "" Then
-                If TXTMTRS.Text.Trim <> "" Then
-                    fillgrid()
-                Else
-                    MsgBox("Please Enter Detail Properly.", MsgBoxStyle.Critical)
-
-                End If
-
-
+            If CMBBUYERS.Text <> "" And CMBSELLERS.Text <> "" And cmbitemname.Text <> "" And cmbqtyunit.Text <> "" And Val(TXTMTRS.Text.Trim) > 0 Then
+                fillgrid()
             Else
                 MsgBox("Please Enter Details Properly.", MsgBoxStyle.Critical)
-
             End If
         Catch ex As Exception
             Throw ex
@@ -1174,18 +1143,12 @@ NEXTLINE:
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         CLEAR()
         EDIT = False
-        CMBBUYERS.Focus()
+        TXTNO.Focus()
     End Sub
 
     Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
         Try
-            If TXTCUT.Text.Trim > 0 Then
-                If txtQTY.Text.Trim > 0 Then
-                    TXTMTRS.Text = Format(Val(TXTCUT.Text.Trim) * Val(txtQTY.Text.Trim), "0.00")
-                End If
-            Else
-                TXTMTRS.Clear()
-            End If
+            If Val(TXTCUT.Text.Trim) > 0 And Val(txtQTY.Text.Trim) > 0 Then TXTMTRS.Text = Format(Val(TXTCUT.Text.Trim) * Val(txtQTY.Text.Trim), "0.00")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1200,6 +1163,39 @@ NEXTLINE:
             ElseIf e.KeyCode = Keys.Enter Then
                 SendKeys.Send("{Tab}")
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDMAGICBOX_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDMAGICBOX.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDMAGICBOX.RowCount > 0 Then
+                If GRIDDOUBLECLICK = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+
+                'end of block
+                GRIDMAGICBOX.Rows.RemoveAt(GRIDMAGICBOX.CurrentRow.Index)
+                getsrno(GRIDMAGICBOX)
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCRDAYS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTCRDAYS.KeyPress, TXTDISCOUNT.KeyPress, TXTORDERNO.KeyPress, TXTDELPERIOD.KeyPress, txtQTY.KeyPress
+        numkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTRATE.KeyPress
+        numdotkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub CMBORDERON_Validated(sender As Object, e As EventArgs) Handles CMBORDERON.Validated
+        Try
+            cmbqtyunit.Text = CMBORDERON.Text
         Catch ex As Exception
             Throw ex
         End Try

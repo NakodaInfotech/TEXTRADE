@@ -1,7 +1,8 @@
 ﻿
-Imports BL
 Imports System.ComponentModel
 Imports System.IO
+Imports BL
+Imports DevExpress.Office.Services
 
 Public Class AgencySaleOrder
 
@@ -222,6 +223,7 @@ Public Class AgencySaleOrder
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBORDERON.Text.Trim)
 
             Dim objclsPurord As New ClsAgencySaleOrder()
             objclsPurord.alParaval = alParaval
@@ -879,6 +881,7 @@ line1:
             Else
                 txtsrno.Text = 1
             End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -1013,7 +1016,7 @@ line1:
                         cmbname.Enabled = False
                         If ClientName <> "MASHOK" Then CMBPACKING.Enabled = False
                     End If
-
+                    CMBORDERON.Text = dr("ORDERON")
                 Next
                 GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
             Else
@@ -1640,10 +1643,7 @@ LINE1:
 
     Private Sub ToolStripButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
-            If EDIT = True Then
-                PRINTREPORT()
-                If ClientName = "SOFTAS" Then PRINTBARCODE()
-            End If
+            If EDIT = True Then PRINTREPORT()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1889,6 +1889,7 @@ line1:
 
     Private Sub AgencySaleOrder_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                 LBLCONSIGNOR.Text = "To"
                 LBLCONSIGNEE.Text = "Mobile No."
@@ -2072,7 +2073,9 @@ line1:
                 CHKVERIFY.Visible = False
                 Label59.Visible = False
                 CMBSAMPLE.Visible = False
-
+                CMBORDERON.Text = "PCS"
+                CMBORDERON.Visible = True
+                LBLORDERON.Visible = True
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 CMBGRIDREMARKS.TabStop = False
@@ -3773,6 +3776,19 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDCLOSE_Click(sender As Object, e As EventArgs) Handles CMDCLOSE.Click
+        Try
+            If EDIT = False Then Exit Sub
+            If MsgBox("Close Order?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE AGENCYSALEORDER_DESC SET ASO_CLOSED = 1, ASO_CLOSEDDATE = '" & Format(Now.Date, "MM/dd/yyyy") & "', ASO_CLOSEDREASON = 'SHORT CLOSE' WHERE ASO_NO = " & Val(TEMPSONO) & " AND ASO_YEARID = " & YearId, "", "")
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub txtQTY_GotFocus(sender As Object, e As EventArgs) Handles txtQTY.GotFocus
         txtQTY.SelectAll()
     End Sub
@@ -3783,5 +3799,13 @@ LINE1:
 
     Private Sub TXTCUT_GotFocus(sender As Object, e As EventArgs) Handles TXTCUT.GotFocus
         TXTCUT.SelectAll()
+    End Sub
+
+    Private Sub CMBORDERON_Validated(sender As Object, e As EventArgs) Handles CMBORDERON.Validated
+        Try
+            cmbqtyunit.Text = CMBORDERON.Text
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

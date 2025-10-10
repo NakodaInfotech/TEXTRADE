@@ -278,6 +278,12 @@ Public Class YearTransfer
                 Me.Text = "Stock Transfer"
                 GBTRANSFERDATA.Visible = False
                 If BLOCKSTOCKSTRANSFER = True Then CMDOK.Enabled = False
+
+            ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
+                Me.Text = "Agency Data Transfer"
+                CHKLEDGER.Visible = False
+                CHKOTHERMASTER.Visible = False
+                If BLOCKAGENCYDATATRANSFER = True Then CMDOK.Enabled = False
             End If
 
             If BLOCKMASTERTRANSFER = True Then

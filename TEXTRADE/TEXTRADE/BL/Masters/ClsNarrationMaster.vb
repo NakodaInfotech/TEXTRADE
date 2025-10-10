@@ -26,17 +26,18 @@ Public Class ClsNarrationMaster
             'save NARRATIONMaster
             Dim strCommand As String = "SP_MASTER_NARRATIONMASTER_SAVE"
             Dim alParameter As New ArrayList
-            With alParameter
+            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 50)
+            narrationParam.Value = alParaval(0)
+            alParameter.Add(narrationParam)
 
-                .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@remarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
+            alParameter.Add(New SqlClient.SqlParameter("@remarks", alParaval(1)))
 
-            End With
+            alParameter.Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
+            alParameter.Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
+            alParameter.Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
+            alParameter.Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
+            alParameter.Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
+
 
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
 
@@ -55,18 +56,20 @@ Public Class ClsNarrationMaster
             'save NARRATIONMaster
             Dim strCommand As String = "SP_MASTER_NARRATIONMASTER_UPDATE"
             Dim alParameter As New ArrayList
-            With alParameter
+            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 50)
+            narrationParam.Value = alParaval(0)
+            alParameter.Add(narrationParam)
 
-                .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@remarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
-                .Add(New SqlClient.SqlParameter("@NARRATIONID", alParaval(7)))
+            alParameter.Add(New SqlClient.SqlParameter("@remarks", alParaval(1)))
 
-            End With
+            alParameter.Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
+            alParameter.Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
+            alParameter.Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
+            alParameter.Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
+            alParameter.Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
+
+            alParameter.Add(New SqlClient.SqlParameter("@NARRATIONID", alParaval(7)))
+
 
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
 

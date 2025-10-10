@@ -185,6 +185,13 @@ Public Class ClsCreditNote
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
+                I += 1
+
             End With
 
             DT = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -381,9 +388,16 @@ Public Class ClsCreditNote
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@HOLDINTCALC", alParaval(I)))
                 I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@COMPLAINT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTBY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@CNNO", alParaval(I)))
                 I = I + 1
-
             End With
             Dim INTRES As Integer = objDBOperation.executeNonQuery(strCommand, alParameter)
 

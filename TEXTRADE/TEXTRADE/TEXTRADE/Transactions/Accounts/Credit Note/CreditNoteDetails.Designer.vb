@@ -69,6 +69,10 @@ Partial Class CreditNoteDetails
         Me.GSPECIALREMARK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOSTCENTERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
@@ -85,7 +89,6 @@ Partial Class CreditNoteDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridCN, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,7 +206,7 @@ Partial Class CreditNoteDetails
         Me.gridCN.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridCN.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridCN.Appearance.Row.Options.UseFont = True
-        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREGNAME})
+        Me.gridCN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GBILLNO, Me.GAGENT, Me.GGSTIN, Me.GSTATENAME, Me.GSTATECODE, Me.GPARTYREFNO, Me.GHSNITEMDESC, Me.GHSNCODE, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GRCM, Me.GBILLAMT, Me.GCHGS, Me.GSUBTOTAL, Me.GCGSTAMT, Me.GSGSTAMT, Me.GTOTALIGSTAMT, Me.GROUNDOFF, Me.GAMT, Me.GREMARKS, Me.GNOGSTR1, Me.GGROUPNAME, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREGNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridCN.GridControl = Me.griddetails
         Me.gridCN.Images = Me.imageList1
         Me.gridCN.Name = "gridCN"
@@ -223,6 +226,7 @@ Partial Class CreditNoteDetails
         Me.GSRNO.Caption = "Sr. No"
         Me.GSRNO.FieldName = "SRNO"
         Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.Visible = True
         Me.GSRNO.VisibleIndex = 1
         Me.GSRNO.Width = 80
@@ -234,6 +238,7 @@ Partial Class CreditNoteDetails
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GDATE.FieldName = "DATE"
         Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 2
         '
@@ -241,8 +246,9 @@ Partial Class CreditNoteDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 250
@@ -251,8 +257,9 @@ Partial Class CreditNoteDetails
         '
         Me.GBILLNO.Caption = "Bill No"
         Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.ImageIndex = 1
+        Me.GBILLNO.ImageOptions.ImageIndex = 1
         Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.OptionsColumn.AllowEdit = False
         Me.GBILLNO.Visible = True
         Me.GBILLNO.VisibleIndex = 4
         Me.GBILLNO.Width = 150
@@ -262,6 +269,7 @@ Partial Class CreditNoteDetails
         Me.GAGENT.Caption = "Agent"
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
+        Me.GAGENT.OptionsColumn.AllowEdit = False
         Me.GAGENT.Visible = True
         Me.GAGENT.VisibleIndex = 9
         Me.GAGENT.Width = 120
@@ -271,6 +279,7 @@ Partial Class CreditNoteDetails
         Me.GGSTIN.Caption = "GSTIN"
         Me.GGSTIN.FieldName = "GSTIN"
         Me.GGSTIN.Name = "GGSTIN"
+        Me.GGSTIN.OptionsColumn.AllowEdit = False
         Me.GGSTIN.Visible = True
         Me.GGSTIN.VisibleIndex = 5
         Me.GGSTIN.Width = 100
@@ -280,6 +289,7 @@ Partial Class CreditNoteDetails
         Me.GSTATENAME.Caption = "State"
         Me.GSTATENAME.FieldName = "STATENAME"
         Me.GSTATENAME.Name = "GSTATENAME"
+        Me.GSTATENAME.OptionsColumn.AllowEdit = False
         Me.GSTATENAME.Visible = True
         Me.GSTATENAME.VisibleIndex = 6
         '
@@ -288,6 +298,7 @@ Partial Class CreditNoteDetails
         Me.GSTATECODE.Caption = "Code"
         Me.GSTATECODE.FieldName = "STATECODE"
         Me.GSTATECODE.Name = "GSTATECODE"
+        Me.GSTATECODE.OptionsColumn.AllowEdit = False
         Me.GSTATECODE.Visible = True
         Me.GSTATECODE.VisibleIndex = 7
         Me.GSTATECODE.Width = 40
@@ -297,6 +308,7 @@ Partial Class CreditNoteDetails
         Me.GPARTYREFNO.Caption = "Party Ref. No."
         Me.GPARTYREFNO.FieldName = "PARTYREFNO"
         Me.GPARTYREFNO.Name = "GPARTYREFNO"
+        Me.GPARTYREFNO.OptionsColumn.AllowEdit = False
         Me.GPARTYREFNO.Visible = True
         Me.GPARTYREFNO.VisibleIndex = 8
         '
@@ -305,6 +317,7 @@ Partial Class CreditNoteDetails
         Me.GHSNITEMDESC.Caption = "Service Desc."
         Me.GHSNITEMDESC.FieldName = "HSNITEMDESC"
         Me.GHSNITEMDESC.Name = "GHSNITEMDESC"
+        Me.GHSNITEMDESC.OptionsColumn.AllowEdit = False
         Me.GHSNITEMDESC.Visible = True
         Me.GHSNITEMDESC.VisibleIndex = 10
         Me.GHSNITEMDESC.Width = 80
@@ -314,6 +327,7 @@ Partial Class CreditNoteDetails
         Me.GHSNCODE.Caption = "SAC Code"
         Me.GHSNCODE.FieldName = "HSNCODE"
         Me.GHSNCODE.Name = "GHSNCODE"
+        Me.GHSNCODE.OptionsColumn.AllowEdit = False
         Me.GHSNCODE.Visible = True
         Me.GHSNCODE.VisibleIndex = 11
         Me.GHSNCODE.Width = 60
@@ -323,6 +337,7 @@ Partial Class CreditNoteDetails
         Me.GDEBITNAME.Caption = "Debit Name"
         Me.GDEBITNAME.FieldName = "DEBITNAME"
         Me.GDEBITNAME.Name = "GDEBITNAME"
+        Me.GDEBITNAME.OptionsColumn.AllowEdit = False
         Me.GDEBITNAME.Visible = True
         Me.GDEBITNAME.VisibleIndex = 12
         Me.GDEBITNAME.Width = 150
@@ -332,6 +347,7 @@ Partial Class CreditNoteDetails
         Me.GDELIVERYAT.Caption = "Delivery At"
         Me.GDELIVERYAT.FieldName = "DELIVERYAT"
         Me.GDELIVERYAT.Name = "GDELIVERYAT"
+        Me.GDELIVERYAT.OptionsColumn.AllowEdit = False
         Me.GDELIVERYAT.Visible = True
         Me.GDELIVERYAT.VisibleIndex = 13
         Me.GDELIVERYAT.Width = 150
@@ -341,6 +357,7 @@ Partial Class CreditNoteDetails
         Me.GRCM.Caption = "RCM"
         Me.GRCM.FieldName = "RCM"
         Me.GRCM.Name = "GRCM"
+        Me.GRCM.OptionsColumn.AllowEdit = False
         Me.GRCM.Visible = True
         Me.GRCM.VisibleIndex = 14
         Me.GRCM.Width = 40
@@ -352,6 +369,7 @@ Partial Class CreditNoteDetails
         Me.GBILLAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBILLAMT.FieldName = "BILLAMT"
         Me.GBILLAMT.Name = "GBILLAMT"
+        Me.GBILLAMT.OptionsColumn.AllowEdit = False
         Me.GBILLAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBILLAMT.Visible = True
         Me.GBILLAMT.VisibleIndex = 15
@@ -364,6 +382,7 @@ Partial Class CreditNoteDetails
         Me.GCHGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCHGS.FieldName = "CHGS"
         Me.GCHGS.Name = "GCHGS"
+        Me.GCHGS.OptionsColumn.AllowEdit = False
         Me.GCHGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCHGS.Visible = True
         Me.GCHGS.VisibleIndex = 16
@@ -376,6 +395,7 @@ Partial Class CreditNoteDetails
         Me.GSUBTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GSUBTOTAL.FieldName = "SUBTOTAL"
         Me.GSUBTOTAL.Name = "GSUBTOTAL"
+        Me.GSUBTOTAL.OptionsColumn.AllowEdit = False
         Me.GSUBTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSUBTOTAL.Visible = True
         Me.GSUBTOTAL.VisibleIndex = 17
@@ -388,6 +408,7 @@ Partial Class CreditNoteDetails
         Me.GCGSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCGSTAMT.FieldName = "TOTALCGSTAMT"
         Me.GCGSTAMT.Name = "GCGSTAMT"
+        Me.GCGSTAMT.OptionsColumn.AllowEdit = False
         Me.GCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCGSTAMT.Visible = True
         Me.GCGSTAMT.VisibleIndex = 18
@@ -400,6 +421,7 @@ Partial Class CreditNoteDetails
         Me.GSGSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GSGSTAMT.FieldName = "TOTALSGSTAMT"
         Me.GSGSTAMT.Name = "GSGSTAMT"
+        Me.GSGSTAMT.OptionsColumn.AllowEdit = False
         Me.GSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSGSTAMT.Visible = True
         Me.GSGSTAMT.VisibleIndex = 19
@@ -412,6 +434,7 @@ Partial Class CreditNoteDetails
         Me.GTOTALIGSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALIGSTAMT.FieldName = "TOTALIGSTAMT"
         Me.GTOTALIGSTAMT.Name = "GTOTALIGSTAMT"
+        Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALIGSTAMT.Visible = True
         Me.GTOTALIGSTAMT.VisibleIndex = 20
@@ -424,6 +447,7 @@ Partial Class CreditNoteDetails
         Me.GROUNDOFF.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GROUNDOFF.FieldName = "ROUNDOFF"
         Me.GROUNDOFF.Name = "GROUNDOFF"
+        Me.GROUNDOFF.OptionsColumn.AllowEdit = False
         Me.GROUNDOFF.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GROUNDOFF.Visible = True
         Me.GROUNDOFF.VisibleIndex = 21
@@ -436,6 +460,7 @@ Partial Class CreditNoteDetails
         Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAMT.FieldName = "AMT"
         Me.GAMT.Name = "GAMT"
+        Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMT.Visible = True
         Me.GAMT.VisibleIndex = 22
@@ -446,6 +471,7 @@ Partial Class CreditNoteDetails
         Me.GREMARKS.Caption = "Remarks"
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
         Me.GREMARKS.VisibleIndex = 23
         Me.GREMARKS.Width = 275
@@ -455,14 +481,16 @@ Partial Class CreditNoteDetails
         Me.GNOGSTR1.Caption = "No Gstr1"
         Me.GNOGSTR1.FieldName = "NOGSTR1"
         Me.GNOGSTR1.Name = "GNOGSTR1"
+        Me.GNOGSTR1.OptionsColumn.AllowEdit = False
         Me.GNOGSTR1.Visible = True
-        Me.GNOGSTR1.VisibleIndex = 36
+        Me.GNOGSTR1.VisibleIndex = 39
         '
         'GGROUPNAME
         '
         Me.GGROUPNAME.Caption = "Graoup Name"
         Me.GGROUPNAME.FieldName = "GROUPNAME"
         Me.GGROUPNAME.Name = "GGROUPNAME"
+        Me.GGROUPNAME.OptionsColumn.AllowEdit = False
         Me.GGROUPNAME.Visible = True
         Me.GGROUPNAME.VisibleIndex = 24
         Me.GGROUPNAME.Width = 100
@@ -472,6 +500,7 @@ Partial Class CreditNoteDetails
         Me.GIRNNO.Caption = "IRN No"
         Me.GIRNNO.FieldName = "IRNNO"
         Me.GIRNNO.Name = "GIRNNO"
+        Me.GIRNNO.OptionsColumn.AllowEdit = False
         Me.GIRNNO.Visible = True
         Me.GIRNNO.VisibleIndex = 25
         Me.GIRNNO.Width = 120
@@ -481,6 +510,7 @@ Partial Class CreditNoteDetails
         Me.GACKNO.Caption = "ACK No"
         Me.GACKNO.FieldName = "CNACKNO"
         Me.GACKNO.Name = "GACKNO"
+        Me.GACKNO.OptionsColumn.AllowEdit = False
         Me.GACKNO.Visible = True
         Me.GACKNO.VisibleIndex = 26
         '
@@ -491,6 +521,7 @@ Partial Class CreditNoteDetails
         Me.GACKDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GACKDATE.FieldName = "CNACKDATE"
         Me.GACKDATE.Name = "GACKDATE"
+        Me.GACKDATE.OptionsColumn.AllowEdit = False
         Me.GACKDATE.Visible = True
         Me.GACKDATE.VisibleIndex = 27
         '
@@ -499,6 +530,7 @@ Partial Class CreditNoteDetails
         Me.GPARTYWHATSAAP.Caption = "Party Whatsaap No"
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
+        Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
         Me.GPARTYWHATSAAP.VisibleIndex = 28
         '
@@ -507,6 +539,7 @@ Partial Class CreditNoteDetails
         Me.GPARTYEMAIL.Caption = "Party Email ID "
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
+        Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
         Me.GPARTYEMAIL.VisibleIndex = 29
         '
@@ -515,6 +548,7 @@ Partial Class CreditNoteDetails
         Me.GAGENTWHATSAAP.Caption = "Agent Whatsaap No"
         Me.GAGENTWHATSAAP.FieldName = "AGENTWHATSAAP"
         Me.GAGENTWHATSAAP.Name = "GAGENTWHATSAAP"
+        Me.GAGENTWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GAGENTWHATSAAP.Visible = True
         Me.GAGENTWHATSAAP.VisibleIndex = 30
         '
@@ -523,6 +557,7 @@ Partial Class CreditNoteDetails
         Me.GAGENTEMAIL.Caption = "Agent Email ID"
         Me.GAGENTEMAIL.FieldName = "AGENTEMAIL"
         Me.GAGENTEMAIL.Name = "GAGENTEMAIL"
+        Me.GAGENTEMAIL.OptionsColumn.AllowEdit = False
         Me.GAGENTEMAIL.Visible = True
         Me.GAGENTEMAIL.VisibleIndex = 31
         '
@@ -531,6 +566,7 @@ Partial Class CreditNoteDetails
         Me.GSPECIALREMARK.Caption = "Special Remark"
         Me.GSPECIALREMARK.FieldName = "SPECIALREMARK"
         Me.GSPECIALREMARK.Name = "GSPECIALREMARK"
+        Me.GSPECIALREMARK.OptionsColumn.AllowEdit = False
         Me.GSPECIALREMARK.Visible = True
         Me.GSPECIALREMARK.VisibleIndex = 32
         '
@@ -539,6 +575,7 @@ Partial Class CreditNoteDetails
         Me.GCOSTCENTERNAME.Caption = "Cost Center Name"
         Me.GCOSTCENTERNAME.FieldName = "COSTCENTERNAME"
         Me.GCOSTCENTERNAME.Name = "GCOSTCENTERNAME"
+        Me.GCOSTCENTERNAME.OptionsColumn.AllowEdit = False
         Me.GCOSTCENTERNAME.Visible = True
         Me.GCOSTCENTERNAME.VisibleIndex = 33
         '
@@ -547,8 +584,48 @@ Partial Class CreditNoteDetails
         Me.GCREATEDBY.Caption = "Created by"
         Me.GCREATEDBY.FieldName = "CREATEDBY"
         Me.GCREATEDBY.Name = "GCREATEDBY"
+        Me.GCREATEDBY.OptionsColumn.AllowEdit = False
         Me.GCREATEDBY.Visible = True
         Me.GCREATEDBY.VisibleIndex = 34
+        '
+        'GREGNAME
+        '
+        Me.GREGNAME.Caption = "Register"
+        Me.GREGNAME.FieldName = "REGNAME"
+        Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.OptionsColumn.AllowEdit = False
+        Me.GREGNAME.Visible = True
+        Me.GREGNAME.VisibleIndex = 35
+        Me.GREGNAME.Width = 120
+        '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 36
+        Me.GCOMPLAINT.Width = 120
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 38
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 37
+        Me.GCOMPLAINTBY.Width = 120
         '
         'CMDOK
         '
@@ -688,15 +765,6 @@ Partial Class CreditNoteDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GREGNAME
-        '
-        Me.GREGNAME.Caption = "Register"
-        Me.GREGNAME.FieldName = "REGNAME"
-        Me.GREGNAME.Name = "GREGNAME"
-        Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 35
-        Me.GREGNAME.Width = 120
-        '
         'CreditNoteDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -779,4 +847,7 @@ Partial Class CreditNoteDetails
     Friend WithEvents GCOSTCENTERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATEDBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
 End Class

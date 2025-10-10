@@ -217,6 +217,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WARP Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
+                I += 1
                 ' Selvedge Grid data serialization
                 .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
                 I += 1
@@ -251,6 +258,15 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+
+                ' selvedge Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@SDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDMAINSRNO", alParaval(I)))
+                I += 1
+
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
                 I += 1
@@ -285,6 +301,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WEFT Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@FDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FDMAINSRNO", alParaval(I)))
+                I += 1
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
                 I += 1
@@ -318,6 +341,46 @@ Public Class ClsDesignCardMaster
                 ' Additional flags or reserved parameter
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYLOOMMTR", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BLENDPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHMETHOD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITIES", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITYTYPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPWASTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WASTAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHRINKAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WPP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEAVECOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PRODUCTIONPERDAY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PCSL", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
+                I += 1
+
+
 
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -530,6 +593,13 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WARP Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@WDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WDMAINSRNO", alParaval(I)))
+                I += 1
                 ' Selvedge Grid data serialization
                 .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
                 I += 1
@@ -564,6 +634,15 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SELVEDGEPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+
+                ' selvedge Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@SDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SDMAINSRNO", alParaval(I)))
+                I += 1
+
                 ' Weft Grid data serialization
                 .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
                 I += 1
@@ -598,6 +677,14 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTPATTERNGRIDSYM", alParaval(I)))
                 I += 1
+                ' WEFT Grid shade data serializations
+                .Add(New SqlClient.SqlParameter("@FDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FDSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FDMAINSRNO", alParaval(I)))
+                I += 1
+
                 'DRAWING FIELD
                 .Add(New SqlClient.SqlParameter("@DRAWINGSRNO", alParaval(I)))
                 I += 1
@@ -631,6 +718,44 @@ Public Class ClsDesignCardMaster
                 ' Additional flags or reserved parameter
                 .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALFINISHWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHWIDTHCM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYLOOMMTR", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BLENDPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHMETHOD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITIES", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@QUALITYTYPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WARPWASTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WASTAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHRINKAGEPERCENTAGE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WPP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEAVECOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@FINISHFABRICCOST", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PRODUCTIONPERDAY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PCSL", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
                 I += 1
 
@@ -650,14 +775,13 @@ Public Class ClsDesignCardMaster
             Dim strCommand As String = "SP_DESIGN_CARD_MASTER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@DesignNo", alParaval(0))) ' Or correct index
-                .Add(New SqlClient.SqlParameter("@ItemName", alParaval(0))) ' Or correct index
+                .Add(New SqlClient.SqlParameter("@CARDNO", alParaval(0))) ' Or correct index
                 .Add(New SqlClient.SqlParameter("@CmpId", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-            Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
+            'Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
             'Return DT
         Catch ex As Exception
             Throw ex

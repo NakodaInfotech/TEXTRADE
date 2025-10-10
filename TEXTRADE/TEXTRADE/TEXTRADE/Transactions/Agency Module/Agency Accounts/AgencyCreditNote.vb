@@ -160,6 +160,9 @@ Public Class AgencyCreditNote
             CMBCOSTCENTERNAME.Text = ""
             GRIDCHGSDOUBLECLICK = False
             GRIDADJDOUBLECLICK = False
+            TXTCOMPLAINTDATE.Clear()
+            TXTCOMPLAINT.Clear()
+            TXTCOMPLAINTBY.Clear()
         Catch ex As Exception
             Throw ex
         End Try
@@ -567,23 +570,17 @@ Public Class AgencyCreditNote
         End Try
     End Sub
 
-    'Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
-    '    Try
-    '        If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'CREDITNOTE'")
-    '        Dim clscommon As New ClsCommon
-    '        Dim dt As DataTable
-    '        dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'CREDITNOTE' and register_YEARid = " & YearId)
-    '        If dt.Rows.Count > 0 Then
-    '            cmbregister.Text = dt.Rows(0).Item(0).ToString
-    '        End If
-    '        getmaxno_CN()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
+
+
+            'WHENEVER WE MAKE CHANGES HERE DONE FORGET TO MAKE CHANGES IN THE FOLLOWING CODE ALSO
+            '*******************************************
+            '1. MAGICBOXFORINVOICE -- GENERATEAGENCYCN
+            '*******************************************
+
+
+
 
             If ISLOCKYEAR = True Then
                 MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
@@ -788,7 +785,9 @@ Public Class AgencyCreditNote
             alParaval.Add(TXTSPECIALREMARKS.Text.Trim)
             If CHKCD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(CMBCOSTCENTERNAME.Text.Trim)
-
+            alParaval.Add(TXTCOMPLAINT.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
+            alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             Dim objclsCNmaster As New ClsAgencyCreditNote()
             objclsCNmaster.alParaval = alParaval
             Dim DTTABLE As DataTable
@@ -1050,45 +1049,14 @@ Public Class AgencyCreditNote
         End Try
     End Sub
 
-    'Private Sub cmbregister_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
-    '    Try
-    '        If cmbregister.Text.Trim.Length > 0 And edit = False Then
-    '            'clear()
-    '            cmbregister.Text = UCase(cmbregister.Text)
-    '            Dim clscommon As New ClsCommon
-    '            Dim dt As DataTable
-    '            dt = clscommon.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'CREDITNOTE' and register_YEARid = " & YearId)
-    '            If dt.Rows.Count > 0 Then
-    '                CNREGABBR = dt.Rows(0).Item(0).ToString
-    '                CNREGINITIAL = dt.Rows(0).Item(1).ToString
-    '                CNREGID = dt.Rows(0).Item(2)
-    '                getmaxno_CN()
-    '                cmbregister.Enabled = False
-    '            Else
-    '                MsgBox("Register Not Present, Add New from Master Module")
-    '                e.Cancel = True
-    '            End If
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Sub FILLCMB()
         Try
-            ' fillregister(cmbregister, " and register_type = 'CREDITNOTE' ")
-            If ClientName = "AVIS" Then
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' or GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS') AND GROUP_NAME <> 'HASTE DEBTORS'  AND ACC_TYPE = 'ACCOUNTS'")
-            Else
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
-                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
-            End If
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
             If CMBDEBITLEDGER.Text.Trim = "" Then FILLNAME(CMBDEBITLEDGER, edit, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, "")
             If CMBCHARGES.Text.Trim = "" Then FILLNAME(CMBCHARGES, edit, " AND (GROUPMASTER.GROUP_SECONDARY ='Indirect Income' OR GROUPMASTER.GROUP_SECONDARY ='Indirect Expenses' or GROUPMASTER.GROUP_SECONDARY ='Direct Income' OR GROUPMASTER.GROUP_SECONDARY ='Direct Expenses' OR GROUPMASTER.GROUP_SECONDARY ='Duties & Taxes' OR GROUPMASTER.GROUP_SECONDARY = 'Purchase A/C' or GROUPMASTER.GROUP_SECONDARY = 'Sales A/C')")
             If CMBSACDESC.Text.Trim = "" Then FILLHSNITEMDESC(CMBSACDESC)
             If CMBAGENT.Text.Trim = "" Then FILLNAME(CMBAGENT, edit, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -1096,11 +1064,7 @@ Public Class AgencyCreditNote
 
     Private Sub CMBPACKING_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBPACKING.Enter
         Try
-            If ClientName = "AVIS" Then
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
-            Else
-                If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
-            End If
+            If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, edit, "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1108,7 +1072,7 @@ Public Class AgencyCreditNote
 
     Private Sub CMBPACKING_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBPACKING.Validating
         Try
-            If CMBPACKING.Text.Trim <> "" Then NAMEVALIDATE(CMBPACKING, CMBCODE, e, Me, TXTADD, " AND  (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry Creditors", "ACCOUNTS")
+            If CMBPACKING.Text.Trim <> "" Then NAMEVALIDATE(CMBPACKING, CMBCODE, e, Me, TXTADD, "", "", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1475,7 +1439,9 @@ LINE1:
                             PBQRCODE.Image = Nothing
                         End If
                         TXTSPECIALREMARKS.Text = Convert.ToString(dr("SPECIALREMARKS"))
-
+                        TXTCOMPLAINT.Text = dr("COMPLAINT")
+                        TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
+                        TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
                     'CHARGES GRID
@@ -3326,4 +3292,16 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
         End Try
     End Sub
 
+    Private Sub TXTCOMPLAINT_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTCOMPLAINT.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then TXTCOMPLAINT.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -2,11 +2,13 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Web.UI.WebControls
 Imports BL
 Imports DevExpress.Charts.Native
 Imports DevExpress.CodeParser
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.UIAutomation
+Imports DevExpress.XtraGauges.Core.Model
 Imports DevExpress.XtraGrid.Drawing
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraPivotGrid.Design
@@ -14,15 +16,19 @@ Imports DevExpress.XtraRichEdit.Commands
 Imports DevExpress.XtraRichEdit.Model
 Public Class DesignCardMaster
     Public EDIT As Boolean              'Used for edit
-    Public tempdesignno As String           'Used for edit name
+    Public tempdesignno As Integer           'Used for edit name
     Public tempid As Integer            'Used for edit id
-    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK As Boolean
-    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW As Integer
+    Dim GRIDDOUBLECLICK, GRIDWPDOUBLECLICK, GRIDSELDOUBLECLICK, GRIDSELPDOUBLECLICK, GRIDWEFTDOUBLECLICK, GRIDWEFTPDOUBLECLICK, GRIDDRAWDOUBLECLICK, GRIDSELDESCDOUBLECLICK, GRIDWARPDESCDOUBLECLICK, GRIDWEFTDESCDOUBLECLICK As Boolean
+    Dim TEMPROW, TEMPPROW, TEMPWPROW, TEMPSELROW, TEMPSELPROW, TEMPWEFTROW, TEMPWEFTPROW, TEMPDRAWROW, TEMPSELDESCROW, TEMPWARPDESCROW, TEMPWEFTDESCROW As Integer
     Dim GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public FRMSTRING As String
     Dim TEMPMSG As Integer
+    Dim DT_SELDETAILS As New DataTable
+    Dim DT_WARPDETAILS As New DataTable
+    Dim DT_WEFTDETAILS As New DataTable
+
 
 
 
@@ -130,7 +136,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTTOTALWEFTGRIDPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
             'DRAWING TOTAL  
             alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
-            alParaval.Add(Val(TXTTOTALDRAWENDS.Text.Trim))
+            alParaval.Add(Val(TXTTOTALDRAWDENTS.Text.Trim))
 
             '*************************************************************************
             'GRID WARP
@@ -206,11 +212,11 @@ Public Class DesignCardMaster
                 If row.Cells(2).Value <> "" Then
                     If WARPGRIDSRNO = "" Then
                         WARPGRIDSRNO = Val(row.Cells(WPSRNO.Index).Value)
-                        WARPGRIDPE = Val(row.Cells(WPENDS.Index).Value)
+                        WARPGRIDPE = row.Cells(WPENDS.Index).Value.ToString
                         WARPGRIDSYM = row.Cells(WPSYM.Index).Value.ToString
                     Else
                         WARPGRIDSRNO = WARPGRIDSRNO & "|" & Val(row.Cells(WPSRNO.Index).Value)
-                        WARPGRIDPE = WARPGRIDPE & "|" & Val(row.Cells(WPENDS.Index).Value)
+                        WARPGRIDPE = WARPGRIDPE & "|" & row.Cells(WPENDS.Index).Value.ToString
                         WARPGRIDSYM = WARPGRIDSYM & "|" & row.Cells(WPSYM.Index).Value.ToString
                     End If
                 End If
@@ -220,6 +226,29 @@ Public Class DesignCardMaster
             alParaval.Add(WARPGRIDSRNO)
             alParaval.Add(WARPGRIDPE)
             alParaval.Add(WARPGRIDSYM)
+
+            Dim WDSRNO As String = ""
+            Dim WDMTRS As String = ""
+            Dim WDMAINSRNO As String = ""
+
+            For i As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                If DT_WARPDETAILS.Rows(i).Item(0) <> Nothing Then
+                    If WDSRNO = "" Then
+                        WDSRNO = Val(DT_WARPDETAILS.Rows(i).Item("WDSRNO"))
+                        WDMTRS = DT_WARPDETAILS.Rows(i).Item("WDSHADE")
+                        WDMAINSRNO = Val(DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
+                    Else
+                        WDSRNO = WDSRNO & "|" & Val(DT_WARPDETAILS.Rows(i).Item("WDSRNO"))
+                        WDMTRS = WDMTRS & "|" & DT_WARPDETAILS.Rows(i).Item("WDSHADE")
+                        WDMAINSRNO = WDMAINSRNO & "|" & Val(DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(WDSRNO)
+            alParaval.Add(WDMTRS)
+            alParaval.Add(WDMAINSRNO)
             '*************************************************************************
             'GRID SLEVAGE
             Dim ALOSrNo As String = ""
@@ -297,11 +326,11 @@ Public Class DesignCardMaster
                 If row.Cells(SPSYM.Index).Value IsNot Nothing Then
                     If ALOTRSrNo = "" Then
                         ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
-                        ALOTRPE = Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRPE = row.Cells(SPENDS.Index).Value.ToString
                         ALOTRSym = row.Cells(SPSYM.Index).Value.ToString
                     Else
                         ALOTRSrNo = ALOTRSrNo & "|" & Val(row.Cells(SPSRNO.Index).Value)
-                        ALOTRPE = ALOTRPE & "|" & Val(row.Cells(SPENDS.Index).Value)
+                        ALOTRPE = ALOTRPE & "|" & row.Cells(SPENDS.Index).Value.ToString
                         ALOTRSym = ALOTRSym & "|" & row.Cells(SPSYM.Index).Value.ToString
                     End If
                 End If
@@ -309,6 +338,31 @@ Public Class DesignCardMaster
             alParaval.Add(ALOTRSrNo)
             alParaval.Add(ALOTRPE)
             alParaval.Add(ALOTRSym)
+
+
+
+            Dim SDSRNO As String = ""
+            Dim SDMTRS As String = ""
+            Dim SDMAINSRNO As String = ""
+
+            For i As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                If DT_SELDETAILS.Rows(i).Item(0) <> Nothing Then
+                    If SDSRNO = "" Then
+                        SDSRNO = Val(DT_SELDETAILS.Rows(i).Item("SDSRNO"))
+                        SDMTRS = DT_SELDETAILS.Rows(i).Item("SDSHADE")
+                        SDMAINSRNO = Val(DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
+                    Else
+                        SDSRNO = SDSRNO & "|" & Val(DT_SELDETAILS.Rows(i).Item("SDSRNO"))
+                        SDMTRS = SDMTRS & "|" & DT_SELDETAILS.Rows(i).Item("SDSHADE")
+                        SDMAINSRNO = SDMAINSRNO & "|" & Val(DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(SDSRNO)
+            alParaval.Add(SDMTRS)
+            alParaval.Add(SDMAINSRNO)
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -380,14 +434,14 @@ Public Class DesignCardMaster
             Dim WEFTTRSym As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-                If row.Cells(FSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
+                If row.Cells(FPSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
                     If WEFTTRSrNo = "" Then
-                        WEFTTRSrNo = Val(row.Cells(FSRNO.Index).Value)
-                        WEFTTRPE = Val(row.Cells(FPENDS.Index).Value)
+                        WEFTTRSrNo = Val(row.Cells(FPSRNO.Index).Value)
+                        WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
                     Else
-                        WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FSRNO.Index).Value)
-                        WEFTTRPE = WEFTTRPE & "|" & Val(row.Cells(FPENDS.Index).Value)
+                        WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FPSRNO.Index).Value)
+                        WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPENDS.Index).Value.ToString
                         WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
                     End If
                 End If
@@ -396,6 +450,30 @@ Public Class DesignCardMaster
             alParaval.Add(WEFTTRSrNo)
             alParaval.Add(WEFTTRPE)
             alParaval.Add(WEFTTRSym)
+
+
+            Dim FDSRNO As String = ""
+            Dim FDMTRS As String = ""
+            Dim FDMAINSRNO As String = ""
+
+            For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                If DT_WEFTDETAILS.Rows(i).Item(0) <> Nothing Then
+                    If FDSRNO = "" Then
+                        FDSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
+                        FDMTRS = DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
+                        FDMAINSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                    Else
+                        FDSRNO = FDSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
+                        FDMTRS = FDMTRS & "|" & DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
+                        FDMAINSRNO = FDMAINSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(FDSRNO)
+            alParaval.Add(FDMTRS)
+            alParaval.Add(FDMAINSRNO)
 
             '*************************************************************************
             'GRID DRAWING
@@ -448,6 +526,26 @@ Public Class DesignCardMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTFINISHWT.Text.Trim)
+            alParaval.Add(TXTGWIDTH.Text.Trim)
+            alParaval.Add(TXTGWIDTHCM.Text.Trim)
+            alParaval.Add(TXTFWIDTHCM.Text.Trim)
+            alParaval.Add(TXTGLM.Text.Trim)
+            alParaval.Add(TXTBLENDPER.Text.Trim)
+            alParaval.Add(CMBFINISHMETHOD.Text.Trim)
+            alParaval.Add(CMBQUALITIES.Text.Trim)
+            alParaval.Add(CMBQUALITYTYPE.Text.Trim)
+            alParaval.Add(TXTWARPWASTAGE.Text.Trim)
+            alParaval.Add(TXTWASTAGEPER.Text.Trim)
+            alParaval.Add(TXTSHRINKAGEPER.Text.Trim)
+            alParaval.Add(TXTWPP.Text.Trim)
+            alParaval.Add(TXTWEAVECOST.Text.Trim)
+            alParaval.Add(TXTGFABCOST.Text.Trim)
+            alParaval.Add(TXTFFABCOST.Text.Trim)
+            alParaval.Add(TXTPRODDAY.Text.Trim)
+            alParaval.Add(TXTPCSL.Text.Trim)
+            alParaval.Add(Val(TXTREEDSPACECM.Text.Trim))
+
 
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
@@ -495,6 +593,7 @@ Public Class DesignCardMaster
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
+        TXTREEDSPACECM.Clear()
         TXTPICKS.Clear()
         TXTMAINRS.Clear()
         TXTTHREADPERDENT.Clear()
@@ -512,6 +611,20 @@ Public Class DesignCardMaster
         CMBWEAVE.Text = ""
         CMBSHAFTS.Text = ""
         TXTTOTALWT.Clear()
+        TXTGWIDTH.Clear()
+        TXTGWIDTHCM.Clear()
+        TXTFWIDTHCM.Clear()
+        TXTSHRINKAGEPER.Clear()
+        TXTWARPWASTAGE.Clear()
+        TXTWASTAGEPER.Clear()
+        TXTWPP.Clear()
+        TXTPRODDAY.Clear()
+        TXTPCSL.Clear()
+        TXTWEAVECOST.Clear()
+        TXTGFABCOST.Clear()
+        TXTFFABCOST.Clear()
+        TXTCOPYCARDNO.Enabled = True
+        TXTGLM.Clear()
         'SLEAVEDGE
         TXTLEFTSEL.Clear()
         TXTRIGHTSEL.Clear()
@@ -538,6 +651,10 @@ Public Class DesignCardMaster
         TXTRPM.Clear()                ' RPM
         CMBGREYDELAT.Text = ""          ' Grey Delivery At (ComboBox)
         GREYDELDATE.Text = Now.Date
+        TXTORDERNO.Clear()
+        ORDERDATE.Text = Now.Date
+        CMBGREY.Text = ""
+        TXTBLENDPER.Clear()
         'TOTAL
         TXTTOTALWARPPE.Clear()       ' P.E. (Possible: Ends per repeat)
         TXTTOTALWARPBE.Clear()       ' B.E. (Possible: Ends for Border)
@@ -568,11 +685,12 @@ Public Class DesignCardMaster
         'drawing total
         TXTTOTALDRAWDENTS.Clear()
         TXTTOTALDRAWENDS.Clear()
+        TXTFINISHWT.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         CMBGRIDSYM.Text = ""
-        TXTWARPSRNO.Clear()
-        TXTWARPSYMBOL.Clear()
+        TXTWARPSRNO.Text = 1
+        CMBGRIDSYM.Text = ""
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -585,8 +703,8 @@ Public Class DesignCardMaster
         TXTWARPRATE.Clear()
         TXTWARPCOST.Clear()
         'SELVMATCHING TEXTBOXES
-        TXTSELSRNO.Clear()
-        TXTSELSYMBOL.Clear()
+        TXTSELSRNO.Text = 1
+        TXTSELSYMBOL.Text = ""
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -601,8 +719,8 @@ Public Class DesignCardMaster
         TXTSELGSRNO.Clear()
         TXTSELGPE.Clear()
         'WEFTMATCHING TEXTBOXES
-        TXTWEFTSRNO.Clear()
-        TXTWEFTSYMBOL.Clear()
+        TXTWEFTSRNO.Text = 1
+        CMBWEFTGRIDSYMBOL.Text = ""
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -614,6 +732,11 @@ Public Class DesignCardMaster
         TXTWEFTCONS.Clear()
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
+        txttotaldentsrepeat.Clear()
+        TXTTOTALENDS.Clear()
+        TXTENDPERINCH.Clear()
+        TXTTOTALMAINENDS.Clear()
+        txtxvalue.Clear()
         'DRAWING TEXTBOXES
         TXTDRAWSRNO.Clear()
         TXTDRAWENDS.Clear()
@@ -624,14 +747,32 @@ Public Class DesignCardMaster
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
 
-        GRIDSELVEDGEPATTERN.Rows.Clear()
+        GRIDSELVEDGEPATTERN.RowCount = 1
         'GRID WEFT
         GRIDWEFT.RowCount = 0
         'GRID WEFT PATTERN
         GRIDWEFTPATTERN.RowCount = 1
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
+        'DT TABLE FOR SELVEDGE 
+        DT_SELDETAILS.Reset()
+        DT_SELDETAILS.Columns.Add("SDSRNO")
+        DT_SELDETAILS.Columns.Add("SDSHADE")
+        DT_SELDETAILS.Columns.Add("SDMAINSRNO")
+        'DT TABLE FOR WARP
+        DT_WARPDETAILS.Reset()
+        DT_WARPDETAILS.Columns.Add("WDSRNO")
+        DT_WARPDETAILS.Columns.Add("WDSHADE")
+        DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
+        'DT TABLE FOR WEFT
+        DT_WEFTDETAILS.Reset()
+        DT_WEFTDETAILS.Columns.Add("FDSRNO")
+        DT_WEFTDETAILS.Columns.Add("FDSHADE")
+        DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
 
+        Ep.Clear()
+        GBSELVIEW.Visible = False
+        TXTCOPYCARDNO.Clear()
     End Sub
     Private Function errorvalid() As Boolean
 
@@ -670,177 +811,9 @@ Public Class DesignCardMaster
             clear()
 
             If EDIT = True Then
-                If USEREDIT = False And USERVIEW = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
-                Dim OBJCMN As New ClsCommon
-                Dim objclsGRN As New ClsDesignCardMaster()
-                Dim dttable As New DataTable
-
-                dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
-
-                If dttable.Rows.Count > 0 Then
-
-                    For Each dr As DataRow In dttable.Rows
-
-                        txtcardno.Text = tempdesignno
-                        txtcardno.ReadOnly = True
-
-                        DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
-                        CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
-                        CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
-                        '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
-                        TXTREED.Text = dr("REED").ToString
-                        TXTREEDSPACE.Text = dr("REEDSPACE").ToString
-                        TXTPICKS.Text = dr("PICKS").ToString
-                        TXTMAINRS.Text = dr("MAINRS").ToString
-                        TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
-                        TXTFEPI.Text = dr("FEPI").ToString
-                        TXTFWIDTH.Text = dr("FWIDTH").ToString
-                        TXTFPPI.Text = dr("FPPI").ToString
-                        TXTFWT.Text = dr("FWT").ToString
-                        TXTDENTS.Text = dr("DENTS").ToString
-                        TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
-                        TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
-                        TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
-
-                        TXTWARPTL.Text = dr("WARPTTL").ToString
-                        TXTWEFTTL.Text = dr("WEFTTTL").ToString
-                        TXTGSM.Text = dr("GSM").ToString
-                        CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
-                        CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
-                        TXTTOTALWT.Text = Val(dr("TOTALWT"))
-                        ' Selvedge fields
-                        TXTLEFTSEL.Text = dr("LEFTSELVEDGE").ToString
-                        TXTRIGHTSEL.Text = dr("RIGHTSELVEDGE").ToString
-                        TXTLEFTSELENDS.Text = dr("LEFTSELVEDGEEND").ToString
-                        TXTRIGHTSELENDS.Text = dr("RIGHTSELVEDGEEND").ToString
-                        TXTLEFTSELDENTS.Text = dr("LEFTSELVEDGEDENTS").ToString
-                        TXTRIGHTSELDENTS.Text = dr("RIGHTSELVEDGEDENTS").ToString
-                        TXTLEFTSELTOTALENDS.Text = dr("LEFTSELVEDGETOTALEND").ToString
-                        TXTRIGHTSELTOTALENDS.Text = dr("RIGHTSELVEDGETOTALEND").ToString
-                        TXTTOTALSELENDS.Text = dr("TOTALSELVEDGEENDS").ToString
-                        ' Reference and names
-                        TXTREFNO.Text = dr("REFNO").ToString
-                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
-                        CMBAGENTNAME.Text = Convert.ToString(dr("AGENTNAME").ToString)
-                        CMBDELAT.Text = Convert.ToString(dr("DELIVERYAT").ToString)
-                        CMBGREY.Text = Convert.ToString(dr("GREY").ToString)
-                        TXTORDERNO.Text = dr("ORDERNO").ToString
-                        DELDATE.Text = Format(Convert.ToDateTime(dr("DELDATE")).Date, "dd/MM/yyyy")
-                        ORDERDATE.Text = Format(Convert.ToDateTime(dr("ORDERDATE")).Date, "dd/MM/yyyy")
-                        ' Other details
-                        TXTMTRS.Text = Val(dr("MTRS"))
-                        TXTNOOFPCS.Text = Val(dr("NOOFPCS"))
-                        CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
-                        TXTBEAMMTRS.Text = dr("BEAMMTRS").ToString
-                        TXTCOVERFACTOR.Text = dr("COVERFACTOR").ToString
-                        TXTEFFICIENCY.Text = dr("EFFICIENCY").ToString
-                        TXTLOOMPROD.Text = dr("LOOMPROD").ToString
-                        TXTRPM.Text = dr("RPM").ToString
-                        CMBGREYDELAT.Text = Convert.ToString(dr("GREYDELIVERYAT").ToString)
-                        GREYDELDATE.Text = Format(Convert.ToDateTime(dr("GREYDELDATE")).Date, "dd/MM/yyyy")
-                        ' Total Warp
-
-                        TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
-                        TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
-                        TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
-                        TXTTOTALWARPWT.Text = Val(dr("TOTALWARPWT"))
-                        TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
-                        TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
-                        TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
-                        TXTTOTALWARPGRIDPE.Text = Val(dr("TOTALWARPGRIDPE"))
-                        ' Total Selvedge
-
-                        TXTTOTALSELPE.Text = Val(dr("TOTALSELVEDGEPE"))
-                        TXTTOTALSELBE.Text = Val(dr("TOTALSELVEDGEBE"))
-                        TXTTOTALSELTE.Text = Val(dr("TOTALSELVEDGETE"))
-                        TXTTOTALSELWT.Text = Val(dr("TOTALSELVEDGEWT"))
-                        TXTTOTALSELCONS.Text = Val(dr("TOTALSELVEDGECONS"))
-                        TXTSELTOTALRATE.Text = Val(dr("TOTALSELVEDGERATE"))
-                        TXTSELTOTALCOST.Text = Val(dr("TOTALSELVEDGECOST"))
-                        TXTTOTALSELGPE.Text = Val(dr("TOTALSELVEDGEGRIDPE"))
-                        ' Total Weft
-
-                        TXTTOTALWEFTPE.Text = Val(dr("TOTALWEFTPE"))
-                        TXTTOTALWEFTBE.Text = Val(dr("TOTALWEFTBE"))
-                        TXTTOTALWEFTTE.Text = Val(dr("TOTALWEFTTE"))
-                        TXTTOTALWEFTWT.Text = Val(dr("TOTALWEFTWT"))
-                        TXTTOTALWEFTCONS.Text = Val(dr("TOTALWEFTCONS"))
-                        TXTTOTALWEFTRATE.Text = Val(dr("TOTALWEFTRATE"))
-                        TXTTOTALWEFTCOST.Text = Val(dr("TOTALWEFTCOST"))
-                        TXTTOTALWEFTGRIDPE.Text = Val(dr("TOTALWEFTGRIDPE"))
-                        ' Total DRAWING 
-
-                        TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
-                        TXTTOTALDRAWDENTS.Text = Val(dr("TOTALDRAWDENTS"))
-                        TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
-
-
-
-
-
-                    Next
-                    'cmbtype.Enabled = False
-
-                    'TOTAL()
-                    Validate()
-                Else
-                    EDIT = False
-                    clear()
-                End If
-                'warp gridmatching data serializations
-                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSRNO, 0) AS WARPGRIDSRNO, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPPE, 0) AS WARPPE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPBE, 0) AS WARPBE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPTE, 0) AS WARPTE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPWT, 0) AS WARPWT, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCONS, 0) AS WARPCONS, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPRATE, 0) AS WARPRATE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCOST, 0) AS WARPCOST ", "", " DESIGNCARD_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = DESIGNCARD_WARPMATCHING.DESIGN_WARPMILLID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = DESIGNCARD_WARPMATCHING.DESIGN_WARPCOLORID  ", " AND  DESIGNCARD_WARPMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
-                If dttable1.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable1.Rows
-                        GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.00"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
-                    Next
-                End If
-                ' Warp Gridpattern data serializations
-                Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, 0) AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
-                If dttable2.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable2.Rows
-                        GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), Format(DTR("WARPPATTERNGRIDPE"), "0.00"), DTR("WARPPATTERNGRIDSYM").ToString)
-                    Next
-                End If
-                ' Selvedge Grid data serialization
-                Dim dttable3 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESRNO, 0) AS SELVEDGEGRIDSRNO, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESYM, '') AS SELVEDGEGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS SELVEDGEYARNQUALITY, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDENIER, 0) AS SELVEDGEDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS SELVEDGEMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SELVEDGESHADE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEPE, 0) AS SELVEDGEPE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEBE, 0) AS SELVEDGEBE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDTE, 0) AS SELVEDGETE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEWT, 0) AS SELVEDGEWT, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECONS, 0) AS SELVEDGECONS, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGERATE, 0) AS SELVEDGERATE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOST, 0) AS SELVEDGECOST ", "", " DESIGNCARD_SELVEDGEMATCHING LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEYARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOLORID = COLORMASTER.COLOR_id   ", " AND  DESIGNCARD_SELVEDGEMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEGRIDSRNO")
-                If dttable3.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable3.Rows
-                        GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.00"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
-                    Next
-                End If
-                ' Selvedge Gridpattern data serializations
-                Dim dttable4 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS SELVEDGEPATTERNGRIDSRNO, ISNULL(DESIGN_SELVEDGEPE, 0) AS SELVEDGEPATTERNGRIDPE, ISNULL(DESIGN_SELVEDGESYM, '') AS SELVEDGEPATTERNGRIDSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEPATTERNGRIDSRNO")
-                If dttable4.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable4.Rows
-                        GRIDSELVEDGEPATTERN.Rows.Add(DTR("SELVEDGEPATTERNGRIDSRNO"), Format(DTR("SELVEDGEPATTERNGRIDPE"), "0.00"), DTR("SELVEDGEPATTERNGRIDSYM").ToString)
-                    Next
-                End If
-                ' Weft Grid data serialization
-                Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTPE, 0) AS WEFTPE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTBE, 0) AS WEFTBE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTTE, 0) AS WEFTTE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTWT, 0) AS WEFTWT, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCONS, 0) AS WEFTCONS, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTRATE, 0) AS WEFTRATE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOST, 0) AS WEFTCOST", "", " DESIGNCARD_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  DESIGNCARD_WEFTMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
-                If dttable5.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable5.Rows
-                        GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.00"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
-                    Next
-                End If
-                ' Weft GridPattern data serialization
-                Dim dttable6 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WEFTPATTERNGRIDSRNO, ISNULL(DESIGN_WEFTPE, 0) AS WEFTPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WEFTPATTERNGRIDSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WEFTPATTERNGRIDSRNO")
-                If dttable6.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable6.Rows
-                        GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), Format(DTR("WEFTPATTERNGRIDPE"), "0.00"), DTR("WEFTPATTERNGRIDSYM").ToString)
-                    Next
-                End If
-                'DRAWING FIELD
-                Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
-                If dttable7.Rows.Count > 0 Then
-                    For Each DTR As DataRow In dttable7.Rows
-                        GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
-
-                    Next
-                End If
+                SHOWDATA()
             End If
+
             'If GRIDSELVEDGE.RowCount > 0 Then
             '    txtcardno.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
             'Else
@@ -850,6 +823,240 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
+    Sub SHOWDATA(Optional ByVal CARDNO As Integer = -1)
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Dim OBJCMN As New ClsCommon
+            Dim objclsGRN As New ClsDesignCardMaster()
+            Dim dttable As New DataTable
+            If CARDNO > 0 Then tempdesignno = If(CARDNO = -1, -1, CARDNO)
+            dttable = objclsGRN.SelectDesignCard(tempdesignno, YearId)
+
+            If dttable.Rows.Count > 0 Then
+
+                For Each dr As DataRow In dttable.Rows
+
+                    txtcardno.Text = tempdesignno
+                    txtcardno.ReadOnly = True
+
+                    DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
+                    CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
+                    CMBDESIGNNO.Text = Convert.ToString(dr("DESIGNNO").ToString)
+                    '  CMBWEAVER.Text = Convert.ToString(dr("WEAVER").ToString)
+                    TXTREED.Text = dr("REED").ToString
+                    TXTREEDSPACE.Text = dr("REEDSPACE").ToString
+                    TXTPICKS.Text = dr("PICKS").ToString
+                    TXTMAINRS.Text = dr("MAINRS").ToString
+                    TXTTHREADPERDENT.Text = dr("THREADPERDENT").ToString
+                    TXTFEPI.Text = dr("FEPI").ToString
+                    TXTFWIDTH.Text = dr("FWIDTH").ToString
+                    TXTFPPI.Text = dr("FPPI").ToString
+                    TXTFWT.Text = dr("FWT").ToString
+                    TXTDENTS.Text = dr("DENTS").ToString
+                    TXTTOTALDENTSMAIN.Text = Val(dr("TOTALDENTSMAIN"))
+                    TXTTOTALSELVEDGEDENTS.Text = Val(dr("TOTALSELVEDGEDENTS"))
+                    TXTTOTALDENTS.Text = Val(dr("TOTALDENTS"))
+
+                    TXTWARPTL.Text = dr("WARPTTL").ToString
+                    TXTWEFTTL.Text = dr("WEFTTTL").ToString
+                    TXTGSM.Text = dr("GSM").ToString
+                    CMBWEAVE.Text = Convert.ToString(dr("WEAVE").ToString)
+                    CMBSHAFTS.Text = Convert.ToString(dr("SHAFTS").ToString)
+                    TXTTOTALWT.Text = Val(dr("TOTALWT"))
+                    ' Selvedge fields
+                    TXTLEFTSEL.Text = dr("LEFTSELVEDGE").ToString
+                    TXTRIGHTSEL.Text = dr("RIGHTSELVEDGE").ToString
+                    TXTLEFTSELENDS.Text = dr("LEFTSELVEDGEEND").ToString
+                    TXTRIGHTSELENDS.Text = dr("RIGHTSELVEDGEEND").ToString
+                    TXTLEFTSELDENTS.Text = dr("LEFTSELVEDGEDENTS").ToString
+                    TXTRIGHTSELDENTS.Text = dr("RIGHTSELVEDGEDENTS").ToString
+                    TXTLEFTSELTOTALENDS.Text = dr("LEFTSELVEDGETOTALEND").ToString
+                    TXTRIGHTSELTOTALENDS.Text = dr("RIGHTSELVEDGETOTALEND").ToString
+                    TXTTOTALSELENDS.Text = dr("TOTALSELVEDGEENDS").ToString
+                    ' Reference and names
+                    TXTREFNO.Text = dr("REFNO").ToString
+                    CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
+                    CMBAGENTNAME.Text = Convert.ToString(dr("AGENTNAME").ToString)
+                    CMBDELAT.Text = Convert.ToString(dr("DELIVERYAT").ToString)
+                    CMBGREY.Text = Convert.ToString(dr("GREY").ToString)
+                    TXTORDERNO.Text = dr("ORDERNO").ToString
+                    DELDATE.Text = Format(Convert.ToDateTime(dr("DELDATE")).Date, "dd/MM/yyyy")
+                    ORDERDATE.Text = Format(Convert.ToDateTime(dr("ORDERDATE")).Date, "dd/MM/yyyy")
+                    ' Other details
+                    TXTMTRS.Text = Val(dr("MTRS"))
+                    TXTNOOFPCS.Text = Val(dr("NOOFPCS"))
+                    CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
+                    TXTBEAMMTRS.Text = dr("BEAMMTRS").ToString
+                    TXTCOVERFACTOR.Text = dr("COVERFACTOR").ToString
+                    TXTEFFICIENCY.Text = dr("EFFICIENCY").ToString
+                    TXTLOOMPROD.Text = dr("LOOMPROD").ToString
+                    TXTRPM.Text = dr("RPM").ToString
+                    CMBGREYDELAT.Text = Convert.ToString(dr("GREYDELIVERYAT").ToString)
+                    GREYDELDATE.Text = Format(Convert.ToDateTime(dr("GREYDELDATE")).Date, "dd/MM/yyyy")
+                    ' Total Warp
+
+                    'TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
+                    'TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
+                    'TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
+                    'TXTTOTALWARPWT.Text = Val(dr("TOTALWARPWT"))
+                    'TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
+                    'TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
+                    'TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
+                    'TXTTOTALWARPGRIDPE.Text = Val(dr("TOTALWARPGRIDPE"))
+                    '' Total Selvedge
+
+                    'TXTTOTALSELPE.Text = Val(dr("TOTALSELVEDGEPE"))
+                    'TXTTOTALSELBE.Text = Val(dr("TOTALSELVEDGEBE"))
+                    'TXTTOTALSELTE.Text = Val(dr("TOTALSELVEDGETE"))
+                    'TXTTOTALSELWT.Text = Val(dr("TOTALSELVEDGEWT"))
+                    'TXTTOTALSELCONS.Text = Val(dr("TOTALSELVEDGECONS"))
+                    'TXTSELTOTALRATE.Text = Val(dr("TOTALSELVEDGERATE"))
+                    'TXTSELTOTALCOST.Text = Val(dr("TOTALSELVEDGECOST"))
+                    'TXTTOTALSELGPE.Text = Val(dr("TOTALSELVEDGEGRIDPE"))
+                    '' Total Weft
+
+                    'TXTTOTALWEFTPE.Text = Val(dr("TOTALWEFTPE"))
+                    'TXTTOTALWEFTBE.Text = Val(dr("TOTALWEFTBE"))
+                    'TXTTOTALWEFTTE.Text = Val(dr("TOTALWEFTTE"))
+                    'TXTTOTALWEFTWT.Text = Val(dr("TOTALWEFTWT"))
+                    'TXTTOTALWEFTCONS.Text = Val(dr("TOTALWEFTCONS"))
+                    'TXTTOTALWEFTRATE.Text = Val(dr("TOTALWEFTRATE"))
+                    'TXTTOTALWEFTCOST.Text = Val(dr("TOTALWEFTCOST"))
+                    'TXTTOTALWEFTGRIDPE.Text = Val(dr("TOTALWEFTGRIDPE"))
+                    '' Total DRAWING 
+
+                    'TXTTOTALDRAWENDS.Text = Val(dr("TOTALDRAWENDS"))
+                    'TXTTOTALDRAWDENTS.Text = Val(dr("TOTALDRAWDENTS"))
+
+
+
+
+                    TXTFINISHWT.Text = Val(dr("TOTALFINISHWT"))
+                    TXTGWIDTH.Text = Val(dr("GREYWIDTH"))
+                    TXTGWIDTHCM.Text = Val(dr("GREYWIDTHCM"))
+                    TXTFWIDTHCM.Text = Val(dr("FINISHWIDTHCM"))
+                    TXTWARPWASTAGE.Text = Val(dr("WARPWASTAGE"))
+                    TXTWASTAGEPER.Text = Val(dr("WASTAGEPER"))
+                    TXTSHRINKAGEPER.Text = Val(dr("SHRINKAGEPER"))
+                    TXTWPP.Text = Val(dr("WPP"))
+                    TXTWEAVECOST.Text = Val(dr("WEAVECOST"))
+                    TXTGFABCOST.Text = Val(dr("GREYFABCOST"))
+                    TXTFFABCOST.Text = Val(dr("FINISHFABCOST"))
+                    TXTPRODDAY.Text = Val(dr("PRODDAY"))
+                    TXTPCSL.Text = Val(dr("PCSL"))
+                    TXTREEDSPACECM.Text = Val(dr("REEDSPACECM"))
+                    CMBFINISHMETHOD.Text = Convert.ToString(dr("FINISHMETHOD").ToString)
+                    CMBQUALITIES.Text = Convert.ToString(dr("QUALITY").ToString)
+                    CMBQUALITYTYPE.Text = Convert.ToString(dr("QUALITYTYPE").ToString)
+                    TXTBLENDPER.Text = dr("BLENDPER")
+                    TXTGLM.Text = dr("GREYLOOMMTR")
+
+                Next
+                'cmbtype.Enabled = False
+
+                'TOTAL()
+
+                'warp gridmatching data serializations
+                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSRNO, 0) AS WARPGRIDSRNO, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPPE, 0) AS WARPPE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPBE, 0) AS WARPBE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPTE, 0) AS WARPTE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPWT, 0) AS WARPWT, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCONS, 0) AS WARPCONS, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPRATE, 0) AS WARPRATE, ISNULL(DESIGNCARD_WARPMATCHING.DESIGN_WARPCOST, 0) AS WARPCOST ", "", " DESIGNCARD_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = DESIGNCARD_WARPMATCHING.DESIGN_WARPMILLID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPMATCHING.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = DESIGNCARD_WARPMATCHING.DESIGN_WARPCOLORID  ", " AND  DESIGNCARD_WARPMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
+                If dttable1.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable1.Rows
+                        GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.00"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
+                    Next
+                End If
+                ' Warp Gridpattern data serializations
+                Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, '') AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
+                If dttable2.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable2.Rows
+                        GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), DTR("WARPPATTERNGRIDPE"), DTR("WARPPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+                'WARP grid shade data serializations
+                Dim dttableWARPshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_WDSRNO, 0) AS WDSRNO, ISNULL(COLORMASTER.COLOR_name,'') AS WDSHADE, ISNULL(DESIGN_WDMAINSRNO, 0) AS WDMAINSRNO", "", " DESIGNCARD_WARPSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPSHADE.DESIGN_WDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid  ", " AND  DESIGNCARD_WARPSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = " & YearId & " ORDER BY WDSRNO")
+                If dttableWARPshade.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttableWARPshade.Rows
+                        DT_WARPDETAILS.Rows.Add(DTR("WDSRNO"), DTR("WDSHADE"), DTR("WDMAINSRNO"))
+                    Next
+                    POPULATEGRID()
+                End If
+
+                ' Selvedge Grid data serialization
+                Dim dttable3 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESRNO, 0) AS SELVEDGEGRIDSRNO, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESYM, '') AS SELVEDGEGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS SELVEDGEYARNQUALITY, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDENIER, 0) AS SELVEDGEDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS SELVEDGEMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SELVEDGESHADE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEPE, 0) AS SELVEDGEPE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEBE, 0) AS SELVEDGEBE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDTE, 0) AS SELVEDGETE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEWT, 0) AS SELVEDGEWT, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECONS, 0) AS SELVEDGECONS, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGERATE, 0) AS SELVEDGERATE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOST, 0) AS SELVEDGECOST ", "", " DESIGNCARD_SELVEDGEMATCHING LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEYARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOLORID = COLORMASTER.COLOR_id   ", " AND  DESIGNCARD_SELVEDGEMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEGRIDSRNO")
+                If dttable3.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable3.Rows
+                        GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.00"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
+                    Next
+                End If
+                ' Selvedge Gridpattern data serializations
+                Dim dttable4 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS SELVEDGEPATTERNGRIDSRNO, ISNULL(DESIGN_SELVEDGEPE, '') AS SELVEDGEPATTERNGRIDPE, ISNULL(DESIGN_SELVEDGESYM, '') AS SELVEDGEPATTERNGRIDSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEPATTERNGRIDSRNO")
+                If dttable4.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable4.Rows
+                        GRIDSELVEDGEPATTERN.Rows.Add(DTR("SELVEDGEPATTERNGRIDSRNO"), DTR("SELVEDGEPATTERNGRIDPE"), DTR("SELVEDGEPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+
+                'selvedge grid shade data serializations
+
+                Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO, ISNULL(DESIGN_sdSHADE, '') AS SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE  ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
+                If dttableshade.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttableshade.Rows
+                        DT_SELDETAILS.Rows.Add(Val(DTR("SDSRNO")), DTR("SDSHADE").ToString, Val(DTR("SDMAINSRNO")))
+                    Next
+                    POPULATESELGRID()
+                End If
+
+                ' Weft Grid data serialization
+                Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTPE, 0) AS WEFTPE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTBE, 0) AS WEFTBE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTTE, 0) AS WEFTTE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTWT, 0) AS WEFTWT, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCONS, 0) AS WEFTCONS, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTRATE, 0) AS WEFTRATE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOST, 0) AS WEFTCOST", "", " DESIGNCARD_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  DESIGNCARD_WEFTMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
+                If dttable5.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable5.Rows
+                        GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.00"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
+                    Next
+                End If
+                ' Weft GridPattern data serialization
+                Dim dttable6 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WEFTPATTERNGRIDSRNO, ISNULL(DESIGN_WEFTPE, '') AS WEFTPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WEFTPATTERNGRIDSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WEFTPATTERNGRIDSRNO")
+                If dttable6.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable6.Rows
+                        GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), DTR("WEFTPATTERNGRIDPE"), DTR("WEFTPATTERNGRIDSYM").ToString)
+                    Next
+                End If
+                'WEFT grid shade data serializations
+
+                Dim dttableWEFTshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_FDSRNO, 0) AS FDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS FDSHADE, ISNULL(DESIGN_FDMAINSRNO, 0) AS FDMAINSRNO", "", " DESIGNCARD_WEFTSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTSHADE.DESIGN_FDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WEFTSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_WEFTSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTSHADE.DESIGN_YEARID = " & YearId & " ORDER BY FDSRNO")
+                If dttableWEFTshade.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttableWEFTshade.Rows
+                        DT_WEFTDETAILS.Rows.Add(Val(DTR("FDSRNO")), DTR("FDSHADE").ToString, Val(DTR("FDMAINSRNO")))
+                    Next
+                    POPULATEWEFTGRID()
+                End If
+                'DRAWING FIELD
+                Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
+                If dttable7.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable7.Rows
+                        GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
+
+                    Next
+                End If
+                TOTAL()
+                CALC()
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub TOTAL()
+        TOTALSELVEDGE()
+        TOTALSELVEDGEPATTERN()
+        GETSELPE()
+        GETWARPPE()
+        GETWEFTPE()
+        cmdbtn1_Click(Nothing, Nothing)
+        Button2_Click(Nothing, Nothing)
+        Button1_Click(Nothing, Nothing)
+    End Sub
+
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -867,6 +1074,10 @@ Public Class DesignCardMaster
                 e.SuppressKeyPress = True
             ElseIf e.KeyCode = Keys.Enter Then
                 SendKeys.Send("{Tab}")
+            ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
+                Toolprevious_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
+                toolnext_Click(sender, e)
             End If
         Catch ex As Exception
             Throw ex
@@ -913,11 +1124,11 @@ Public Class DesignCardMaster
     Sub fillwarpgrid()
 
         If GRIDDOUBLECLICK = False Then
-            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), TXTWARPSYMBOL.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBGRIDSYM.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Val(TXTWARPWT.Text.Trim), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
             getsrno(GRIDWARP)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDWARP.Item(WSRNO.Index, TEMPROW).Value = Val(TXTWARPSRNO.Text.Trim)
-            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = TXTWARPSYMBOL.Text.Trim
+            GRIDWARP.Item(WSYM.Index, TEMPROW).Value = CMBGRIDSYM.Text.Trim
             GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value = CMBWARPQUALITY.Text.Trim
             GRIDWARP.Item(WDENIER.Index, TEMPROW).Value = TXTWARPDENIER.Text.Trim
             GRIDWARP.Item(WMILL.Index, TEMPROW).Value = CMBWARPMILLNAME.Text.Trim
@@ -932,38 +1143,105 @@ Public Class DesignCardMaster
             TEMPROW = GRIDWARP.CurrentRow.Index
             TXTWARPSRNO.Focus()
             GRIDDOUBLECLICK = False
+
+            'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            If EDIT = False Then
+LINE1:
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+            End If
         End If
+        If String.IsNullOrWhiteSpace(CMBGRIDSYM.Text) Then
+            ' Set to the first item in the list (top alphabet)
+            If CMBGRIDSYM.Items.Count > 0 Then
+                CMBGRIDSYM.Text = CMBGRIDSYM.Items(0).ToString()
+            End If
+        Else
+            CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text, CMBGRIDSYM)
+        End If
+        GRIDWARPDESC.EndEdit() '
+
+
+        For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
+            For i As Integer = DT_WARPDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_WARPDETAILS.Rows(i)("WDMAINSRNO") = currentMainSrNo Then
+                    DT_WARPDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
+
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDWARPDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_WARPDETAILS.NewRow()
+                    newRow("WDSRNO") = MTRSROW.Cells(WDSRNO.Index).Value
+                    newRow("WDSHADE") = MTRSROW.Cells(WDSHADE.Index).Value
+                    newRow("WDMAINSRNO") = currentMainSrNo
+                    DT_WARPDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
+        POPULATEGRID()
         GRIDWARP.ClearSelection()
-        TXTWARPSYMBOL.Focus()
+        CMBGRIDSYM.Focus()
         clearwarp()
         TOTALWARP()
-        COPYSYM()
+
         If GRIDWARP.RowCount > 0 Then
             TXTWARPSRNO.Text = Val(GRIDWARP.Rows(GRIDWARP.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
         Else
             TXTWARPSRNO.Text = 1
         End If
     End Sub
+    Sub POPULATEGRID()
+        Dim maxShadeCount As Integer = 0
+        For Each dr As DataRow In DT_WARPDETAILS.Rows
+            Dim srno As Object = dr("WDMAINSRNO")
+            Dim shadeRows As DataRow() = DT_WARPDETAILS.Select("WDMAINSRNO = '" & srno & "'")
+            If shadeRows.Length > maxShadeCount Then maxShadeCount = shadeRows.Length
+        Next
+        For i As Integer = 1 To maxShadeCount
+            Dim colName As String = "WARP" & i
+            If Not GRIDWARP.Columns.Contains(colName) Then
+                GRIDWARP.Columns.Add(colName, colName)
+            End If
+        Next
+
+        For Each gridRow As DataGridViewRow In GRIDWARP.Rows
+            If gridRow.IsNewRow Then Continue For
+            Dim fsrno As Object = gridRow.Cells("WSRNO").Value
+            Dim matchedRows As DataRow() = DT_WARPDETAILS.Select("WDMAINSRNO = '" & fsrno & "'")
+            For shadeIdx As Integer = 0 To matchedRows.Length - 1
+                Dim shadeValue As Object = matchedRows(shadeIdx)("WDSHADE")
+                gridRow.Cells("WARP" & (shadeIdx + 1)).Value = shadeValue
+            Next
+        Next
+    End Sub
+
+
     Sub COPYSYM()
         CMBGRIDSYM.Items.Clear()
 
         Dim symSet As New HashSet(Of String)
-        For Each row As DataGridViewRow In GRIDWARP.Rows
-            If Not IsDBNull(row.Cells(WSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(WSYM.Index).Value.ToString) Then
-                symSet.Add(row.Cells(WSYM.Index).Value.ToString)
-            End If
-        Next
-
+        If GRIDWARPPATTERN.RowCount > 0 Then
+            For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
+                Dim cellValue = row.Cells(WPSYM.Index).Value
+                If cellValue IsNot Nothing AndAlso Not IsDBNull(cellValue) AndAlso Not String.IsNullOrWhiteSpace(cellValue.ToString) Then
+                    symSet.Add(cellValue.ToString)
+                End If
+            Next
+        End If
         For Each symVal As String In symSet
             CMBGRIDSYM.Items.Add(symVal)
         Next
-
-
     End Sub
     Sub clearwarp()
-        TXTWARPSRNO.Clear()
-        TXTWARPSYMBOL.Clear()
+        'TXTWARPSRNO.Clear()
+        'CMBGRIDSYM.Clear()
         CMBWARPQUALITY.Text = ""
         TXTWARPDENIER.Clear()
         CMBWARPMILLNAME.Text = ""
@@ -1023,7 +1301,43 @@ Public Class DesignCardMaster
             GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value = Val(TXTSELCOST.Text.Trim)
             TEMPSELROW = GRIDSELVEDGE.CurrentRow.Index
             GRIDSELDOUBLECLICK = False
+            'WE WILL REMOVE THE DATA AND REINSERT, THIS IS CODE FOR REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            If EDIT = False Then
+LINE1:
+                For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                        DT_SELDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+            End If
         End If
+
+
+        GRIDSELDESC.EndEdit() '
+        ' Remove all rows for the current entry before adding new ones
+        For Each MTRSROW1 As DataGridViewRow In GRIDSELDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(SDMAINSRNO.Index).Value
+            For i As Integer = DT_SELDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_SELDETAILS.Rows(i)("SDMAINSRNO") = currentMainSrNo Then
+                    DT_SELDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
+
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDSELDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_SELDETAILS.NewRow()
+                    newRow("SDSRNO") = MTRSROW.Cells(SDSRNO.Index).Value
+                    newRow("SDSHADE") = MTRSROW.Cells(SDSHADE.Index).Value
+                    newRow("SDMAINSRNO") = currentMainSrNo
+                    DT_SELDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
+        POPULATESELGRID()
+
+
         GRIDSELVEDGE.ClearSelection()
         CLEARSELVEDGE()
         COPYSELSYM()
@@ -1034,7 +1348,40 @@ Public Class DesignCardMaster
         Else
             TXTSELSRNO.Text = 1
         End If
-        TXTSELSYMBOL.Focus()
+        CMBSELYARNQUALITY.Focus()
+    End Sub
+    Function IncrementAlphabet(currentSym As String, cmb As ComboBox) As String
+        Dim idx As Integer = cmb.Items.IndexOf(currentSym)
+        If idx <> -1 AndAlso idx + 1 < cmb.Items.Count Then
+            Return cmb.Items(idx + 1).ToString()
+        ElseIf idx = -1 AndAlso cmb.Items.Count > 0 Then
+            Return cmb.Items(0).ToString() ' fallback to first item
+        Else
+            Return currentSym ' if already last, return current
+        End If
+    End Function
+    Sub POPULATESELGRID()
+        Dim maxShadeCount As Integer = 0
+        For Each dr As DataRow In DT_SELDETAILS.Rows
+            Dim srno As Object = dr("SDMAINSRNO")
+            Dim shadeRows As DataRow() = DT_SELDETAILS.Select("SDMAINSRNO = '" & srno & "'")
+            If shadeRows.Length > maxShadeCount Then maxShadeCount = shadeRows.Length
+        Next
+        For i As Integer = 1 To maxShadeCount
+            Dim colName As String = "SEL" & i
+            If Not GRIDSELVEDGE.Columns.Contains(colName) Then
+                GRIDSELVEDGE.Columns.Add(colName, colName)
+            End If
+        Next
+        For Each gridRow As DataGridViewRow In GRIDSELVEDGE.Rows
+            If gridRow.IsNewRow Then Continue For
+            Dim fsrno As Object = gridRow.Cells("SSRNO").Value
+            Dim matchedRows As DataRow() = DT_SELDETAILS.Select("SDMAINSRNO = '" & fsrno & "'")
+            For shadeIdx As Integer = 0 To matchedRows.Length - 1
+                Dim shadeValue As Object = matchedRows(shadeIdx)("SDSHADE")
+                gridRow.Cells("SEL" & (shadeIdx + 1)).Value = shadeValue
+            Next
+        Next
     End Sub
     Sub COPYSELSYM()
         CMBSELGSYM.Items.Clear()
@@ -1077,7 +1424,7 @@ Public Class DesignCardMaster
     End Sub
     Sub CLEARSELVEDGE()
         TXTSELSRNO.Clear()
-        TXTSELSYMBOL.Clear()
+        'TXTSELSYMBOL.Clear()
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -1092,11 +1439,11 @@ Public Class DesignCardMaster
     End Sub
     Sub FILLWEFTGRID()
         If GRIDWEFTDOUBLECLICK = False Then
-            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), TXTWEFTSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
+            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTGRIDSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
             getsrno(GRIDWEFT)
         ElseIf GRIDWEFTDOUBLECLICK = True Then
             GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = Val(TXTWEFTSRNO.Text.Trim)
-            GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value = TXTWEFTSYMBOL.Text.Trim
+            GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value = CMBWEFTGRIDSYMBOL.Text.Trim
             GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value = CMBWEFTYARNQUALITY.Text.Trim
             GRIDWEFT.Item(FDENIER.Index, TEMPWEFTROW).Value = TXTWEFTDEN.Text.Trim
             GRIDWEFT.Item(FMILL.Index, TEMPWEFTROW).Value = CMBWEFTMILLNAME.Text.Trim
@@ -1111,37 +1458,104 @@ Public Class DesignCardMaster
             TEMPWEFTROW = GRIDWEFT.CurrentRow.Index
             TXTSELSRNO.Focus()
             GRIDWEFTDOUBLECLICK = False
+
+            'WE WILL REMOVE THE DATA And REINSERT, THIS Is CODE For REMOAL, FOR INSERTING WE HAVE ENTERED CODE BELOW
+            If EDIT = False Then
+LINE1:
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+            End If
         End If
+        If String.IsNullOrWhiteSpace(CMBWEFTGRIDSYMBOL.Text) Then
+            ' Set to the first item in the list (top alphabet)
+            If CMBWEFTGRIDSYMBOL.Items.Count > 0 Then
+                CMBWEFTGRIDSYMBOL.Text = CMBWEFTGRIDSYMBOL.Items(0).ToString()
+            End If
+        Else
+            CMBWEFTGRIDSYMBOL.Text = IncrementAlphabet(CMBWEFTGRIDSYMBOL.Text, CMBWEFTGRIDSYMBOL)
+        End If
+        GRIDWEFTDESC.EndEdit()
+
+        For Each MTRSROW1 As DataGridViewRow In GRIDWEFTDESC.Rows
+            Dim currentMainSrNo As Object = MTRSROW1.Cells(FDMAINSRNO.Index).Value
+            For i As Integer = DT_WEFTDETAILS.Rows.Count - 1 To 0 Step -1
+                If DT_WEFTDETAILS.Rows(i)("FDMAINSRNO") = currentMainSrNo Then
+                    DT_WEFTDETAILS.Rows.RemoveAt(i)
+                End If
+            Next
+
+            ' Now add new rows for this entry as usual
+            For Each MTRSROW As DataGridViewRow In GRIDWEFTDESC.Rows
+                If Not MTRSROW.IsNewRow Then
+                    Dim newRow As DataRow = DT_WEFTDETAILS.NewRow()
+                    newRow("FDSRNO") = MTRSROW.Cells(FDSRNO.Index).Value
+                    newRow("FDSHADE") = MTRSROW.Cells(FDSHADE.Index).Value
+                    newRow("FDMAINSRNO") = currentMainSrNo
+                    DT_WEFTDETAILS.Rows.Add(newRow)
+                End If
+            Next
+        Next
+
+        POPULATEWEFTGRID()
+
         GRIDWEFT.ClearSelection()
         CLEARWEFT()
-        COPYWEFTSYM()
-        TXTWEFTSYMBOL.Focus()
+        CMBWEFTGRIDSYMBOL.Focus()
         If GRIDWEFT.RowCount > 0 Then
             TXTWEFTSRNO.Text = Val(GRIDWEFT.Rows(GRIDWEFT.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
         Else
             TXTWEFTSRNO.Text = 1
         End If
+        GRIDWEFTDESC.RowCount = 0
+        TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+    End Sub
+    Sub POPULATEWEFTGRID()
+        Dim maxShadeCount As Integer = 0
+        For Each dr As DataRow In DT_WEFTDETAILS.Rows
+            Dim srno As Object = dr("FDMAINSRNO")
+            Dim shadeRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & srno & "'")
+            If shadeRows.Length > maxShadeCount Then maxShadeCount = shadeRows.Length
+        Next
+        For i As Integer = 1 To maxShadeCount
+            Dim colName As String = "WEFT" & i
+            If Not GRIDWEFT.Columns.Contains(colName) Then
+                GRIDWEFT.Columns.Add(colName, colName)
+            End If
+        Next
+
+        For Each gridRow As DataGridViewRow In GRIDWEFT.Rows
+            If gridRow.IsNewRow Then Continue For
+            Dim fsrno As Object = gridRow.Cells("FSRNO").Value
+            Dim matchedRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & fsrno & "'")
+            For shadeIdx As Integer = 0 To matchedRows.Length - 1
+                Dim shadeValue As Object = matchedRows(shadeIdx)("FDSHADE")
+                gridRow.Cells("WEFT" & (shadeIdx + 1)).Value = shadeValue
+            Next
+        Next
     End Sub
     Sub COPYWEFTSYM()
         CMBWEFTGRIDSYMBOL.Items.Clear()
 
         Dim symSet As New HashSet(Of String)
-        For Each row As DataGridViewRow In GRIDWEFT.Rows
-            If Not IsDBNull(row.Cells(FSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(FSYM.Index).Value.ToString) Then
-                symSet.Add(row.Cells(FSYM.Index).Value.ToString)
-            End If
-        Next
-
+        If GRIDWEFTPATTERN.RowCount > 0 Then
+            For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
+                Dim cellValue = row.Cells(FPSYM.Index).Value
+                If cellValue IsNot Nothing AndAlso Not IsDBNull(cellValue) AndAlso Not String.IsNullOrWhiteSpace(cellValue.ToString) Then
+                    symSet.Add(cellValue.ToString)
+                End If
+            Next
+        End If
         For Each symVal As String In symSet
             CMBWEFTGRIDSYMBOL.Items.Add(symVal)
         Next
-
-
     End Sub
     Sub CLEARWEFT()
         'TXTWEFTSRNO.Clear()
-        TXTWEFTSYMBOL.Clear()
+        'CMBWEFTGRIDSYMBOL.Clear()
         CMBWEFTYARNQUALITY.Text = ""
         TXTWEFTDEN.Clear()
         CMBWEFTMILLNAME.Text = ""
@@ -1176,50 +1590,6 @@ Public Class DesignCardMaster
         Else
             TXTWEFTGRIDSRNO.Text = 1
         End If
-    End Sub
-
-    Private Sub TXTWARPCOST_Validated(sender As Object, e As EventArgs) Handles TXTWARPCOST.Validated
-        Try
-            If CMBWARPQUALITY.Text.Trim <> "" And TXTWARPSYMBOL.Text.Trim <> "" Then
-                fillwarpgrid()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTGRIDSYMBOL_Validated(sender As Object, e As EventArgs)
-        Try
-            fillwarppatterngrid()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTSELCOST_Validated(sender As Object, e As EventArgs) Handles TXTSELCOST.Validated
-        Try
-            If CMBSELYARNQUALITY.Text.Trim <> "" And TXTSELSYMBOL.Text.Trim <> "" Then
-                fillselvedgegrid()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTCOST_Validated(sender As Object, e As EventArgs) Handles TXTWEFTCOST.Validated
-        Try
-            If CMBWEFTYARNQUALITY.Text.Trim <> "" And TXTWEFTSYMBOL.Text.Trim <> "" Then
-                FILLWEFTGRID()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
@@ -1455,25 +1825,25 @@ Public Class DesignCardMaster
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
 
-        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text)
-        If TXTREED.Text <> "" Then TXTDENTS.Text = Val(TXTREED.Text) / 2
-        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Val(TXTDENTS.Text) * Val(TXTMAINRS.Text)
-        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text)
-        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text)
-        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text)
-        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text)
-        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text)
-        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text)
-        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text)
-        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text)
+        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
+        If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
+        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
+        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
+        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
+        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
+        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
         If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
             Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             Dim result As Double = totalDents * totalDrawEnds
             TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
         End If
-        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text)
-        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text)
+        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0.00")
+        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
@@ -1500,7 +1870,7 @@ Public Class DesignCardMaster
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
+                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -1515,13 +1885,32 @@ Public Class DesignCardMaster
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text), "0.00")
+                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text)), "0.00")
                 Next
             End If
+        End If
+        TXTFWT.Text = 0.000
+        TXTFINISHWT.Text = 0.000
+        TXTGSM.Text = 0.00
+        TXTGLM.Text = 0.00
+        TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
+        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) + (1 + (Val(TXTSHRINKAGEPER.Text) / 100)), "0.000")
+        If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
+            Dim pcs As Double = Val(TXTNOOFPCS.Text)
+            Dim pcsl As Double = Val(TXTPCSL.Text)
+            Dim result As Double = pcs * pcsl
+            TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
+        End If
+        If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
+            TXTGSM.Text = Format((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10), "0.00")
+        End If
+        If TXTGSM.Text <> "" Then
+            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
         End If
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
+        CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
     End Sub
     Sub TOTALWARP()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1566,6 +1955,8 @@ Public Class DesignCardMaster
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWARPPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
@@ -1618,15 +2009,19 @@ Public Class DesignCardMaster
         TXTSELTOTALCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALSELVEDGEPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDSELVEDGEPATTERN, "SPENDS", "SPREPEAT", "SPREPEAT1", "SPREPEAT2", "SPTR", "SPTR1", "SPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If row.Cells(SPENDS.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(SPENDS.Index).Value)
+            If row.Cells(SPTR2.Index).Value IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(SPTR2.Index).Value)
             End If
         Next
         TXTTOTALSELGPE.Text = Format(PE, "0.00")
-        If GRIDSELVEDGE.RowCount > 0 Then GETSELPE()
+        ' Call GETSELPE() only if the grid exists and has data rows
+        If GRIDSELVEDGE IsNot Nothing AndAlso GRIDSELVEDGE.RowCount > 0 Then
+            GETSELPE()
+        End If
     End Sub
     Sub TOTALWEFT()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
@@ -1670,6 +2065,7 @@ Public Class DesignCardMaster
         TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
     End Sub
     Sub TOTALWEFTPATTERN()
+        CalculateTotalsForGridPATTERN(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
@@ -1693,7 +2089,7 @@ Public Class DesignCardMaster
             If GRIDWARP.CurrentRow.Index >= 0 Then
                 TEMPROW = GRIDWARP.CurrentRow.Index
                 TXTWARPSRNO.Text = GRIDWARP.Item(WSRNO.Index, TEMPROW).Value
-                TXTWARPSYMBOL.Text = GRIDWARP.Item(WSYM.Index, TEMPROW).Value
+                CMBGRIDSYM.Text = GRIDWARP.Item(WSYM.Index, TEMPROW).Value
                 CMBWARPQUALITY.Text = GRIDWARP.Item(WQUALITY.Index, TEMPROW).Value
                 TXTWARPDENIER.Text = GRIDWARP.Item(WDENIER.Index, TEMPROW).Value
                 CMBWARPMILLNAME.Text = GRIDWARP.Item(WMILL.Index, TEMPROW).Value
@@ -1706,22 +2102,22 @@ Public Class DesignCardMaster
                 TXTWARPRATE.Text = GRIDWARP.Item(WRATE.Index, TEMPROW).Value
                 TXTWARPCOST.Text = GRIDWARP.Item(WCOST.Index, TEMPROW).Value
                 GRIDDOUBLECLICK = True
-                TXTWARPSYMBOL.Focus()
+                CMBGRIDSYM.Focus()
             End If
         End If
     End Sub
-    Sub EDITWARPPATTERNROW()
-        If GRIDWARPPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDWARPPATTERN.CurrentRow.Index >= 0 Then
-                TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
-                TXTWARPGSRNO.Text = GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value
-                TXTGRIDPE.Text = GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value
-                CMBGRIDSYM.Text = GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value
-                GRIDWPDOUBLECLICK = True
-                TXTGRIDPE.Focus()
-            End If
-        End If
-    End Sub
+    'Sub EDITWARPPATTERNROW()
+    '    If GRIDWARPPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDWARPPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
+    '            TXTWARPGSRNO.Text = GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value
+    '            TXTGRIDPE.Text = GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value
+    '            CMBGRIDSYM.Text = GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value
+    '            GRIDWPDOUBLECLICK = True
+    '            TXTGRIDPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
     Sub EDITSELVEDGEROW()
         If GRIDSELVEDGE.CurrentRow IsNot Nothing Then
             If GRIDSELVEDGE.CurrentRow.Index >= 0 Then
@@ -1740,7 +2136,7 @@ Public Class DesignCardMaster
                 TXTSELRATE.Text = GRIDSELVEDGE.Item(SRATE.Index, TEMPSELROW).Value
                 TXTSELCOST.Text = GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value
                 GRIDSELDOUBLECLICK = True
-                TXTSELSYMBOL.Focus()
+                CMBSELYARNQUALITY.Focus()
             End If
         End If
     End Sub
@@ -1750,7 +2146,7 @@ Public Class DesignCardMaster
             If GRIDWEFT.CurrentRow.Index >= 0 Then
                 TEMPWEFTROW = GRIDWEFT.CurrentRow.Index
                 TXTWEFTSRNO.Text = GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value
-                TXTWEFTSYMBOL.Text = GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value
+                CMBWEFTGRIDSYMBOL.Text = GRIDWEFT.Item(FSYM.Index, TEMPWEFTROW).Value
                 CMBWEFTYARNQUALITY.Text = GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value
                 TXTWEFTDEN.Text = GRIDWEFT.Item(FDENIER.Index, TEMPWEFTROW).Value
                 CMBWEFTMILLNAME.Text = GRIDWEFT.Item(FMILL.Index, TEMPWEFTROW).Value
@@ -1763,51 +2159,43 @@ Public Class DesignCardMaster
                 TXTWEFTRATE.Text = GRIDWEFT.Item(FRATE.Index, TEMPWEFTROW).Value
                 TXTWEFTCOST.Text = GRIDWEFT.Item(FCOST.Index, TEMPWEFTROW).Value
                 GRIDWEFTDOUBLECLICK = True
-                TXTWEFTSYMBOL.Focus()
+                CMBWEFTYARNQUALITY.Focus()
             End If
         End If
     End Sub
-    Sub EDITWEFTPATTERNROW()
-        If GRIDWEFTPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDWEFTPATTERN.CurrentRow.Index >= 0 Then
-                TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
-                TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
-                TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
-                CMBWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
-                GRIDWEFTPDOUBLECLICK = True
-                TXTWEFTGRIDPE.Focus()
-            End If
-        End If
-    End Sub
-    Sub EDITSELVEDGEPATTERNROW()
-        If GRIDSELVEDGEPATTERN.CurrentRow IsNot Nothing Then
-            If GRIDSELVEDGEPATTERN.CurrentRow.Index >= 0 Then
-                TEMPSELPROW = GRIDSELVEDGEPATTERN.CurrentRow.Index
-                TXTSELGSRNO.Text = GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value
-                TXTSELGPE.Text = GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value
-                CMBSELGSYM.Text = GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value.ToString
-                GRIDSELPDOUBLECLICK = True
-                TXTSELGPE.Focus()
-            End If
-        End If
-    End Sub
+    'Sub EDITWEFTPATTERNROW()
+    '    If GRIDWEFTPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDWEFTPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPWEFTPROW = GRIDWEFTPATTERN.CurrentRow.Index
+    '            TXTWEFTGRIDSRNO.Text = GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value
+    '            TXTWEFTGRIDPE.Text = GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value
+    '            CMBWEFTGRIDSYMBOL.Text = GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value
+    '            GRIDWEFTPDOUBLECLICK = True
+    '            TXTWEFTGRIDPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
+    'Sub EDITSELVEDGEPATTERNROW()
+    '    If GRIDSELVEDGEPATTERN.CurrentRow IsNot Nothing Then
+    '        If GRIDSELVEDGEPATTERN.CurrentRow.Index >= 0 Then
+    '            TEMPSELPROW = GRIDSELVEDGEPATTERN.CurrentRow.Index
+    '            TXTSELGSRNO.Text = GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value
+    '            TXTSELGPE.Text = GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value
+    '            CMBSELGSYM.Text = GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value.ToString
+    '            GRIDSELPDOUBLECLICK = True
+    '            TXTSELGPE.Focus()
+    '        End If
+    '    End If
+    'End Sub
 
 
-    Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
-        Try
-            EDITWARPPATTERNROW()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWARPSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWARPSYMBOL.Validated
-        Try
-            If TXTWARPSYMBOL.Text = "" Then TXTGRIDPE.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub GRIDWARPPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellDoubleClick
+    '    Try
+    '        EDITWARPPATTERNROW()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub CMDPHOTOUPLOAD_Click(sender As Object, e As EventArgs) Handles CMDPHOTOUPLOAD.Click
         If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
@@ -1841,31 +2229,11 @@ Public Class DesignCardMaster
     Private Sub GRIDWEFT_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellDoubleClick
         EDITWEFTROW()
     End Sub
-    Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
-        EDITWARPPATTERNROW()
-    End Sub
+    'Private Sub GRIDWEFTPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellDoubleClick
+    '    EDITWARPPATTERNROW()
+    'End Sub
     Private Sub GRIDSELVEDGE_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellDoubleClick
         EDITSELVEDGEROW()
-    End Sub
-
-    Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated, TXTRIGHTSEL.Validated, TXTLEFTSEL.Validated, TXTLEFTSELENDS.Validated, TXTRIGHTSELENDS.Validated
-        If TXTLEFTSEL.Text.Trim <> "" Then TXTRIGHTSEL.Text = TXTLEFTSEL.Text
-        If TXTLEFTSELENDS.Text.Trim <> "" Then TXTRIGHTSELENDS.Text = TXTLEFTSELENDS.Text
-        CALC()
-    End Sub
-
-    Private Sub CMBGRIDSYM_Validated(sender As Object, e As EventArgs) Handles CMBGRIDSYM.Validated
-        Try
-            If CMBGRIDSYM.Text <> "" And TXTGRIDPE.Text.Trim <> "" Then
-                fillwarppatterngrid()
-                GETWARPPE()
-            Else
-                MsgBox("Please Enter Symbol and P.E.")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-
     End Sub
     Sub GETWARPPE()
         ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
@@ -1950,176 +2318,11 @@ Public Class DesignCardMaster
         TOTALSELVEDGE()
 
     End Sub
-
-    Private Sub TXTWARPSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWARPSYMBOL.Validating
-        Try
-            If TXTWARPSYMBOL.Text <> "" And GRIDWARP.RowCount > 0 Then
-                For Each row As DataGridViewRow In GRIDWARP.Rows
-                    If TXTWARPSYMBOL.Text = row.Cells(WSYM.Index).Value Then
-                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
-                        e.Cancel = True
-                        TXTWARPSYMBOL.Focus()
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTSYMBOL_Validating(sender As Object, e As CancelEventArgs) Handles TXTWEFTSYMBOL.Validating
-        Try
-            If TXTWEFTSYMBOL.Text <> "" And GRIDWEFT.RowCount > 0 Then
-                For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    If TXTWEFTSYMBOL.Text = row.Cells(FSYM.Index).Value Then
-                        MsgBox("Symbol Already Exists", MsgBoxStyle.Critical)
-                        e.Cancel = True
-                        TXTWEFTSYMBOL.Focus()
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTWEFTSYMBOL.Validated
-        Try
-            If TXTWEFTSYMBOL.Text = "" Then TXTWEFTGRIDPE.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTWEFTGRIDPE_Validated(sender As Object, e As EventArgs) Handles TXTWEFTGRIDPE.Validated
-        Try
-            If TXTWEFTGRIDPE.Text = "" Then cmdok.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTDRAWENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTDRAWENDS.KeyPress
         If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = Convert.ToChar(".") Or e.KeyChar = Convert.ToChar(Keys.Back)) Then
             e.Handled = True
         End If
     End Sub
-    ' Collect repeat blocks with start/end and repeat counts
-    'Private Function CollectRepeatBlockRows(grid As DataGridView, repeatMarkCol As Integer, repeatCol As Integer) As List(Of Tuple(Of Integer, Integer, Integer))
-    '    Dim repeatBlocks As New List(Of Tuple(Of Integer, Integer, Integer)) ' (start, end, repeatCount)
-    '    Dim startRow As Integer = -1
-    '    For Each row As DataGridViewRow In grid.Rows
-    '        If row.IsNewRow Then Continue For
-    '        Dim mark = CStr(row.Cells(repeatMarkCol).Value)
-    '        If Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("Start") Then
-    '            startRow = row.Index
-    '        ElseIf Not String.IsNullOrEmpty(mark) AndAlso mark.Contains("End") AndAlso startRow >= 0 Then
-    '            Dim repeatVal = row.Cells(repeatCol).Value
-    '            Dim repeatCount As Integer = 1
-    '            If repeatVal IsNot Nothing AndAlso Integer.TryParse(CStr(repeatVal), repeatCount) AndAlso repeatCount >= 1 Then
-    '                ' Use parsed repeatCount or default to 1
-    '            End If
-    '            repeatBlocks.Add(Tuple.Create(startRow, row.Index, repeatCount))
-    '            startRow = -1
-    '        End If
-    '    Next
-    '    Return repeatBlocks
-    'End Function
-
-    'Public Sub TOTALDRAWDENTS(grid As DataGridView)
-
-    '    Dim totalEnds As Integer = 0
-    '    Dim totalDents As Integer = 0
-
-    '    ' Define repeat column pairs (column name for Repeat Mark, Repeats)
-    '    Dim repeatColumnPairs As New List(Of Tuple(Of String, String)) From {
-    '    Tuple.Create("DREPEATMARK2", "DREPEATS2"),
-    '    Tuple.Create("DREPEATMARK1", "DREPEATS1"),
-    '    Tuple.Create("DREPEATMARK", "DREPEAT")
-    '}
-
-    '    Dim colIndexes As New List(Of Tuple(Of Integer, Integer))()
-    '    For Each pair In repeatColumnPairs
-    '        Dim markIndex = GetColIndex(grid, pair.Item1)
-    '        Dim repeatsIndex = GetColIndex(grid, pair.Item2)
-    '        colIndexes.Add(Tuple.Create(markIndex, repeatsIndex))
-    '    Next
-
-    '    Dim endsColIndex As Integer = GetColIndex(grid, "DENDS")
-    '    If endsColIndex = -1 Then
-    '        TXTTOTALDRAWENDS.Text = "0"
-    '        TXTTOTALDRAWDENTS.Text = "0"
-    '        Return
-    '    End If
-
-    '    ' Handles all repeat columns one by one: outer loop for each level
-    '    Dim usedRows As New HashSet(Of Integer)()
-    '    For colLevel = 0 To colIndexes.Count - 1
-    '        Dim markCol = colIndexes(colLevel).Item1
-    '        Dim repeatsCol = colIndexes(colLevel).Item2
-    '        If markCol = -1 Or repeatsCol = -1 Then Continue For
-
-    '        ' Stack to track start of each block
-    '        Dim blockStack As New Stack(Of Integer)()
-
-    '        For i = 0 To grid.Rows.Count - 1
-    '            Dim row = grid.Rows(i)
-    '            If row.IsNewRow Or usedRows.Contains(i) Then Continue For
-
-    '            Dim cellVal = Convert.ToString(row.Cells(markCol).Value)?.Trim()?.ToLower()
-    '            If Not String.IsNullOrEmpty(cellVal) Then
-    '                If cellVal.StartsWith("start") Then
-    '                    blockStack.Push(i)
-    '                ElseIf cellVal.StartsWith("end") AndAlso blockStack.Count > 0 Then
-    '                    Dim startRow = blockStack.Pop()
-    '                    ' Calculate block's ends and dents
-    '                    Dim blockEnds As Integer = 0
-    '                    Dim blockDents As Integer = 0
-    '                    For j = startRow To i
-    '                        If grid.Rows(j).IsNewRow Then Continue For
-    '                        Dim endsVal = Convert.ToString(grid.Rows(j).Cells(endsColIndex).Value)
-    '                        If Not String.IsNullOrWhiteSpace(endsVal) Then
-    '                            blockEnds += endsVal.Split("."c).Length
-    '                        End If
-    '                        blockDents += 1
-    '                        usedRows.Add(j) ' Mark these rows as processed
-    '                    Next
-
-    '                    Dim repeatCount As Integer = 1
-    '                    Dim repeatVal = grid.Rows(i).Cells(repeatsCol).Value
-    '                    If repeatVal IsNot Nothing AndAlso Integer.TryParse(repeatVal.ToString(), repeatCount) AndAlso repeatCount > 0 Then
-    '                        ' valid
-    '                    Else
-    '                        repeatCount = 1
-    '                    End If
-
-    '                    totalEnds += blockEnds * repeatCount
-    '                    totalDents += blockDents * repeatCount
-    '                End If
-    '            End If
-    '        Next
-    '    Next
-
-    '    ' Any remaining rows not counted (not inside any repeat block)
-    '    For i = 0 To grid.Rows.Count - 1
-    '        Dim row = grid.Rows(i)
-    '        If row.IsNewRow Or usedRows.Contains(i) Then Continue For
-    '        Dim endsVal = Convert.ToString(row.Cells(endsColIndex).Value)
-    '        If Not String.IsNullOrWhiteSpace(endsVal) Then
-    '            totalEnds += endsVal.Split("."c).Length
-    '        End If
-    '        totalDents += 1
-    '    Next
-
-    '    TXTTOTALDRAWENDS.Text = totalEnds.ToString()
-    '    TXTTOTALDRAWDENTS.Text = totalDents.ToString()
-    'End Sub
-    'Private Function GetColIndex(grid As DataGridView, colName As String) As Integer
-    '    For Each col As DataGridViewColumn In grid.Columns
-    '        If col.Name = colName Then Return col.Index
-    '    Next
-    '    Return -1
-    'End Function
 
     Sub FILLDRAWGRID()
         If TXTDRAWENDS.Text.Trim = "" Then
@@ -2152,114 +2355,59 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
-
-    'Private Sub GRIDDRAWING_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDDRAWING.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = DREPEATMARK.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK.Index, DREPEAT.Index)
-    '    ElseIf e.ColumnIndex = DREPEATMARK1.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK1.Index, DREPEATS1.Index)
-    '    ElseIf e.ColumnIndex = DREPEATMARK2.Index Then
-    '        HandleRepeatMarkToggle(GRIDDRAWING, e.RowIndex, DREPEATMARK2.Index, DREPEATS2.Index)
-    '    End If
-    'End Sub
-    'Private Sub HandleRepeatMarkToggle(grid As DataGridView, rowIndex As Integer, repeatMarkColIndex As Integer, repeatsColIndex As Integer)
-    '    Try
-    '        Dim row = (grid).Rows(rowIndex)
-
-    '        ' Collect existing block numbers for this repeat mark column
-    '        Dim existingBlocks As New HashSet(Of Integer)
-    '        For Each r As DataGridViewRow In grid.Rows
-    '            If Not r.IsNewRow Then
-    '                Dim val As String = Convert.ToString(r.Cells(repeatMarkColIndex).Value)
-    '                If Not String.IsNullOrEmpty(val) Then
-    '                    Dim parts = val.Split(" "c)
-    '                    If parts.Length = 2 AndAlso (parts(0).ToLower().StartsWith("start") Or parts(0).ToLower().StartsWith("end")) Then
-    '                        Dim blockNum As Integer
-    '                        If Integer.TryParse(parts(1), blockNum) Then existingBlocks.Add(blockNum)
-    '                    End If
-    '                End If
-    '            End If
-    '        Next
-
-    '        ' Determine next block number
-    '        Dim nextBlockNum As Integer = 1
-    '        While existingBlocks.Contains(nextBlockNum)
-    '            nextBlockNum += 1
-    '        End While
-
-    '        ' Find unmatched Start blocks in this column
-    '        Dim unmatchedStartBlockNum As Integer = -1
-    '        For i = 0 To grid.Rows.Count - 1
-    '            Dim currRow = grid.Rows(i)
-    '            If Not currRow.IsNewRow Then
-    '                Dim val As String = Convert.ToString(currRow.Cells(repeatMarkColIndex).Value)
-    '                If val IsNot Nothing AndAlso val.ToLower().StartsWith("start") Then
-    '                    Dim parts = val.Split(" "c)
-    '                    Dim startNum As Integer
-    '                    If parts.Length = 2 AndAlso Integer.TryParse(parts(1), startNum) Then
-    '                        Dim hasEnd As Boolean = False
-    '                        For j = i + 1 To grid.Rows.Count - 1
-    '                            Dim endVal As String = Convert.ToString(grid.Rows(j).Cells(repeatMarkColIndex).Value)
-    '                            If endVal IsNot Nothing AndAlso endVal.ToLower() = $"end {startNum}" Then
-    '                                hasEnd = True
-    '                                Exit For
-    '                            End If
-    '                        Next
-    '                        If Not hasEnd Then
-    '                            unmatchedStartBlockNum = startNum
-    '                        End If
-    '                    End If
-    '                End If
-    '            End If
-    '        Next
-
-    '        If unmatchedStartBlockNum <> -1 Then
-    '            ' Mark End for last unmatched Start
-    '            row.Cells(repeatMarkColIndex).Value = $"End {unmatchedStartBlockNum}"
-    '            grid.CurrentCell = row.Cells(repeatsColIndex)
-    '            grid.BeginEdit(True)
-    '        Else
-    '            ' Mark new Start block
-    '            row.Cells(repeatMarkColIndex).Value = $"Start {nextBlockNum}"
-    '        End If
-
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error: " & ex.Message)
-    '    End Try
-    'End Sub
-
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
+            ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
+            Dim maxShaft As Integer = 0
+            If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
+                ' maxShaft will hold the correct integer value
+            Else
+                MessageBox.Show("Please select a valid shaft number.", "Error")
+                Exit Sub
+            End If ' or use Integer.Parse(txtShafts.Text)
+
+            ' Check if editing the "Ends" column by column name or index
+            If GRIDDRAWING.Columns(e.ColumnIndex).Name = "DENDS" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    Dim nums = inputValue.Split("."c)
+                    For Each n In nums
+                        Dim value As Integer
+                        If Integer.TryParse(n.Trim(), value) Then
+                            If value > maxShaft Then
+                                MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                e.Cancel = True
+                                Return
+                            End If
+                        End If
+                    Next
+                End If
+            End If
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
                     Dim repeatCount As Integer
                     If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
-                        MessageBox.Show("Please enter a positive integer for repeats.")
+                        MessageBox.Show("Please enter a positive Integer For repeats.")
                         e.Cancel = True
                     End If
                 End If
             End If
             cmdbtn1_Click(sender, e)
             ' TOTALDRAWDENTS(GRIDDRAWING)
+            CALC()
+            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellDoubleClick
-        EDITSELVEDGEPATTERNROW()
-    End Sub
+    'Private Sub GRIDSELVEDGEPATTERN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    '    EDITSELVEDGEPATTERNROW()
+    'End Sub
 
     Private Sub CMBWEFTGRIDSYMBOL_Validated(sender As Object, e As EventArgs) Handles CMBWEFTGRIDSYMBOL.Validated
         Try
-            If CMBWEFTGRIDSYMBOL.Text <> "" And TXTWEFTGRIDPE.Text.Trim <> "" Then
-                FILLWEFTPATTERNGRID()
-                GETWEFTPE()
-            Else
-                MsgBox("Please Enter Symbol and P.E.")
-            End If
+            CMBWEFTYARNQUALITY.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2268,13 +2416,26 @@ Public Class DesignCardMaster
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
         Try
+            If CMBGRIDSYM.Text <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWARP.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        CMBGRIDSYM.Focus()
+                    End If
+                Next
+            End If
+
             If CMBWARPQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER", "", "  YARNQUALITYMASTER  ", "  and YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER, ISNULL(MILLMASTER.MILL_NAME, '') As MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  And YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWARPDENIER.Text = DT2.Rows(0).Item("DENIER")
+                    CMBWARPMILLNAME.Text = DT2.Rows(0).Item("MILLNAME")
                 End If
+                CMBWARPMILLNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
@@ -2288,18 +2449,31 @@ Public Class DesignCardMaster
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
+LINE1:
+                For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                        DT_SELDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value < Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) Then
+                        DT_SELDETAILS.Rows(I).Item("SDMAINSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) - 1
+                    End If
+                Next
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
-                TOTALselvedge()
+                TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
             End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELVEDGEPATTERN.KeyDown
+    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs)
         Try
             If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.RowCount > 0 Then
                 If GRIDSELDOUBLECLICK = True Then
@@ -2309,8 +2483,8 @@ Public Class DesignCardMaster
                 GRIDSELVEDGEPATTERN.Rows.RemoveAt(GRIDSELVEDGEPATTERN.CurrentRow.Index)
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGEPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITSELVEDGEPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITSELVEDGEPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2331,8 +2505,7 @@ Public Class DesignCardMaster
                     deletedSym = GRIDWARP.CurrentRow.Cells("WSYM").Value.ToString().Trim()
                 End If
 
-                ' Remove row from main grid
-                GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
+
 
                 ' Remove matching SYM rows from small grid GRIDWARPPATTERN
                 For i As Integer = GRIDWARPPATTERN.Rows.Count - 1 To 0 Step -1
@@ -2344,6 +2517,20 @@ Public Class DesignCardMaster
                     End If
                 Next
 
+LINE1:
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                    If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value < Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) Then
+                        DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO") = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) - 1
+                    End If
+                Next
+                ' Remove row from main grid
+                GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
                 ' Refresh totals and serial numbers
                 TOTALWARP()
                 TOTALWARPPATTERN()
@@ -2352,6 +2539,7 @@ Public Class DesignCardMaster
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWARPROW()
             End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2360,11 +2548,10 @@ Public Class DesignCardMaster
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
-            If MsgBox("Wish to Copy Warp Matching Grid?", MsgBoxStyle.YesNo) = vbYes Then
-                CopyGridEntries(GRIDWARP, GRIDWEFT)
-            ElseIf MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
+            If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
             End If
+            
             'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
             'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
             MsgBox("Copied Successfully")
@@ -2402,8 +2589,8 @@ Public Class DesignCardMaster
                 GRIDWARPPATTERN.Rows.RemoveAt(GRIDWARPPATTERN.CurrentRow.Index)
                 TOTALWARP()
                 getsrno(GRIDWARPPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITWARPPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITWARPPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2417,7 +2604,22 @@ Public Class DesignCardMaster
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
+
+LINE1:
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value < Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                        DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) - 1
+                    End If
+                Next
+
                 GRIDWEFT.Rows.RemoveAt(GRIDWEFT.CurrentRow.Index)
+
                 TOTALWEFT()
                 getsrno(GRIDWEFT)
             ElseIf e.KeyCode = Keys.F5 Then
@@ -2438,25 +2640,25 @@ Public Class DesignCardMaster
                 GRIDWEFTPATTERN.Rows.RemoveAt(GRIDWEFTPATTERN.CurrentRow.Index)
                 TOTALWEFT()
                 getsrno(GRIDWEFTPATTERN)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITWEFTPATTERNROW()
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITWEFTPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs) Handles CMBSELGSYM.Validated
-        Try
-            If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
-                FILLSELPATTERNGRID()
-                GETSELPE()
-            Else
-                MsgBox("Please Enter Symbol and P.E.")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+    Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs)
+        'Try
+        '    If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
+        '        FILLSELPATTERNGRID()
+        '        GETSELPE()
+        '    Else
+        '        MsgBox("Please Enter Symbol and P.E.")
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub CMBSELYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBSELYARNQUALITY.Validated
@@ -2488,7 +2690,8 @@ LINE1:
             tempdesignno = Val(txtcardno.Text) - 1
             If tempdesignno > 0 Then
                 EDIT = True
-                DesignCardMaster_Load(sender, e)
+                'DesignCardMaster_Load(sender, e)
+                SHOWDATA()
             Else
                 clear()
                 EDIT = False
@@ -2519,7 +2722,8 @@ LINE1:
             clear()
             If Val(txtcardno.Text) - 1 >= tempdesignno Then
                 EDIT = True
-                DesignCardMaster_Load(sender, e)
+                'DesignCardMaster_Load(sender, e)
+                SHOWDATA()
             Else
                 clear()
                 EDIT = False
@@ -2549,24 +2753,15 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Sub PRINTREPORT(ByVal GRNNO As Integer)
-        'Try
-        '    If MsgBox("Wish to Print GRN...?", MsgBoxStyle.YesNo) = vbYes Then
-        '        Dim OBJGDN As New GRNDesign
-        '        OBJGDN.MdiParent = MDIMain
-        '        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VINIT" Then
-        '            If cmbtype.Text.Trim = "FANCY MATERIAL" Then OBJGDN.FRMSTRING = "FINISHGRN" Else OBJGDN.FRMSTRING = "GRN"
-        '        Else
-        '            OBJGDN.FRMSTRING = "GRN"
-        '        End If
-        '        OBJGDN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(GRNNO) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
-        '        If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_OUTPCS} = 0"
-        '        OBJGDN.Show()
-        '    End If
+    Sub PRINTREPORT(ByVal CARDNO As Integer)
 
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        If MsgBox("Wish to Print Design Card ?", MsgBoxStyle.YesNo) = vbYes Then
+            Dim OBJCARD As New DesignCardDesign
+            OBJCARD.MdiParent = MDIMain
+            OBJCARD.FRMSTRING = "DESIGNCARD"
+            OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
+            OBJCARD.Show()
+        End If
     End Sub
 
     Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
@@ -2609,11 +2804,10 @@ LINE1:
                     Exit Sub
                 End If
 
-                TEMPMSG = MsgBox("Delete GRN?", MsgBoxStyle.YesNo)
+                TEMPMSG = MsgBox("Delete Design Card ?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbYes Then
                     Dim alParaval As New ArrayList
                     alParaval.Add(txtcardno.Text.Trim)
-                    alParaval.Add(CMBITEMNAME.Text.Trim)
                     alParaval.Add(CmpId)
                     alParaval.Add(Locationid)
                     alParaval.Add(YearId)
@@ -2621,7 +2815,7 @@ LINE1:
                     Dim Clsgrn As New ClsDesignCardMaster()
                     Clsgrn.alParaval = alParaval
                     IntResult = Clsgrn.Delete()
-                    MsgBox("GRN Deleted")
+                    MsgBox("Design Card Deleted")
                     clear()
                     EDIT = False
                 End If
@@ -2635,53 +2829,66 @@ LINE1:
 
     Private Sub CMBWEFTYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Validated
         Try
+            If CMBWEFTGRIDSYMBOL.Text <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+                    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        CMBWEFTGRIDSYMBOL.Focus()
+                    End If
+                Next
+            End If
+
             If CMBWEFTYARNQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
-                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER", "", "  YARNQUALITYMASTER  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
+                DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) AS DENIER,ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  and YARN_NAME ='" & CMBWEFTYARNQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
                 If DT2.Rows.Count > 0 Then
                     TXTWEFTDEN.Text = DT2.Rows(0).Item("DENIER")
+                    CMBWEFTMILLNAME.Text = DT2.Rows(0).Item("MILLNAME")
                 End If
+                CMBWEFTMILLNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
-    Private Sub TXTSELSYMBOL_Validated(sender As Object, e As EventArgs) Handles TXTSELSYMBOL.Validated
-        Try
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    'Private Sub GRIDWARPPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = WPRM.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM.Index, WPR.Index)
-    '    ElseIf e.ColumnIndex = WPRM1.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM1.Index, WPR1.Index)
-    '    ElseIf e.ColumnIndex = WPRM2.Index Then
-    '        HandleRepeatMarkToggle(GRIDWARPPATTERN, e.RowIndex, WPRM2.Index, WPR2.Index)
-    '    End If
-    'End Sub
-
-    'Private Sub GRIDWEFTPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellClick
-    '    If e.RowIndex < 0 Then Exit Sub
-
-    '    If e.ColumnIndex = FPRM.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM.Index, FPR.Index)
-    '    ElseIf e.ColumnIndex = FPRM1.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM1.Index, FPR1.Index)
-    '    ElseIf e.ColumnIndex = FPRM2.Index Then
-    '        HandleRepeatMarkToggle(GRIDWEFTPATTERN, e.RowIndex, FPRM2.Index, FPR2.Index)
-    '    End If
-    'End Sub
-
     Private Sub GRIDWEFTPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFTPATTERN.CellValidating
         Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            '' Proceed only if the column being edited is "WPSYM"
+            'If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
+
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDWEFT.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
+
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
+
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
+            If e.ColumnIndex = FPSYM.Index Then
+                If e.FormattedValue IsNot Nothing Then
+                    GRIDWEFTPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
+                End If
+            End If
             If e.ColumnIndex = FPR.Index OrElse e.ColumnIndex = FPR1.Index Then ' For both repeats columns if needed
                 Dim value = Convert.ToString(e.FormattedValue)
                 If value IsNot Nothing AndAlso value.Trim() <> "" Then
@@ -2693,32 +2900,61 @@ LINE1:
                 End If
             End If
             Button2_Click(sender, e)
+            COPYWEFTSYM()
+            CALC()
+            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
+        Try
+            If CMBSELYARNQUALITY.Text.Trim <> "" And TXTSELSYMBOL.Text.Trim <> "" Then
+                fillselvedgegrid()
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            GBSSHADEDETAILS.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            ' Check if the "SYM" column is being edited
-            If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
-                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '' Proceed only if the column being edited is "WPSYM"
+            'If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
 
-                ' Search for a matching value in the SYM column of the big grid
-                Dim matchFound As Boolean = False
-                For Each row As DataGridViewRow In GRIDWARP.Rows
-                    If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing AndAlso
-                inputValue = row.Cells("WSYM").Value.ToString().Trim() Then
-                        matchFound = True
-                        Exit For
-                    End If
-                Next
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDWARP.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
 
-                If Not matchFound Then
-                    MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    e.Cancel = True ' Block the edit!
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
+
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
+            If e.ColumnIndex = WPSYM.Index Then
+                If e.FormattedValue IsNot Nothing Then
+                    GRIDWARPPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
                 End If
             End If
             If e.ColumnIndex = WPR.Index OrElse e.ColumnIndex = WPR1.Index Then ' For both repeats columns if needed
@@ -2732,6 +2968,9 @@ LINE1:
                 End If
             End If
             Button1_Click(sender, e)
+            COPYSYM()
+            CALC()
+            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2871,6 +3110,7 @@ LINE1:
         Dim splitVals As String() = joinedValues.Split("."c)
         Return splitVals.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
     End Function
+
     Private Sub ExtractEndsAndRepeatation(input As String, ByRef endsValue As Integer, ByRef repeatationValue As Integer)
         endsValue = 1
         repeatationValue = 1
@@ -2892,7 +3132,12 @@ LINE1:
             Return
         End If
         Dim valsInside As String() = core.Split("."c)
-        endsValue = valsInside.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
+        ' If any part is exactly "0", endsValue should be 0 and exit
+        If valsInside.Any(Function(x) x.Trim() = "0") Then
+            endsValue = 0
+        Else
+            endsValue = valsInside.Count(Function(x) Not String.IsNullOrWhiteSpace(x))
+        End If
     End Sub
 
     Public Function CalculateTotalDents(dgv As DataGridView,
@@ -2941,12 +3186,12 @@ LINE1:
         Next
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+        'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
         TOTALWARPPATTERN()
         TOTALWARP()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+        'CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         TOTALWEFTPATTERN()
         TOTALWEFT()
     End Sub
@@ -2955,7 +3200,7 @@ LINE1:
         e.Row.Cells("DSRNO").Value = GRIDDRAWING.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDSELVEDGEPATTERN.DefaultValuesNeeded
+    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs)
         e.Row.Cells("SPSRNO").Value = GRIDSELVEDGEPATTERN.Rows.Count
     End Sub
 
@@ -2967,8 +3212,831 @@ LINE1:
         e.Row.Cells("FPSRNO").Value = GRIDWEFTPATTERN.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellClick
-        GRIDSELVEDGEPATTERN.RowCount = 1
+    Public Sub CalculateTotalsForGridPATTERN(dgv As DataGridView,
+                                    endsCol As String, repeatsCol As String,
+                                    repeats1Col As String, repeats2Col As String,
+                                    totalRepeatCol As String, totalRepeat1Col As String, totalRepeat2Col As String)
+        'For Each row As DataGridViewRow In dgv.Rows
+        '    If row.IsNewRow Then Continue For
+
+        '    Dim ends As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(endsCol).Value)), 1, Convert.ToInt32(row.Cells(endsCol).Value))
+        '    Dim repeats As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), 1, Convert.ToInt32(row.Cells(repeatsCol).Value))
+        '    Dim repeats1 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+        '    Dim repeats2 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+
+        '    Dim totalRepeat As Integer = ends * repeats
+        '    Dim totalRepeat1 As Integer = totalRepeat * repeats1
+        '    Dim totalRepeat2 As Integer = totalRepeat1 * repeats2
+
+        '    row.Cells(totalRepeatCol).Value = totalRepeat
+        '    row.Cells(totalRepeat1Col).Value = totalRepeat1
+        '    row.Cells(totalRepeat2Col).Value = totalRepeat2
+        'Next
+
+        ' --- Group State Variables ---
+        Dim inGroupParen As Boolean = False, groupStartParen As Integer = -1, repeatValueParen As Integer = 1
+        Dim inGroupSquare As Boolean = False, groupStartSquare As Integer = -1, repeatValueSquare As Integer = 1
+        Dim inGroupCurly As Boolean = False, groupStartCurly As Integer = -1, repeatValueCurly As Integer = 1
+        Dim totalEndsInGroupParen As Integer = 0
+        ' --- Main Pass: Assign Repeats Based on Group Patterns ---
+        For i As Integer = 0 To dgv.Rows.Count - 1
+            If dgv.Rows(i).IsNewRow Then Continue For
+            Dim endsVal As String = Convert.ToString(dgv.Rows(i).Cells(endsCol).Value)
+
+            ' ( ) brackets for repeatsCol
+            If endsVal.Contains("(") Then inGroupParen = True : groupStartParen = i
+            If inGroupParen And endsVal.Contains(")") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\)(\d+)")
+                repeatValueParen = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartParen To i
+                    dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+                Next
+                inGroupParen = False : groupStartParen = -1
+            ElseIf Not inGroupParen Then
+                dgv.Rows(i).Cells(repeatsCol).Value = 1
+            End If
+
+            ' [ ] brackets for repeats1Col
+            If endsVal.Contains("[") Then inGroupSquare = True : groupStartSquare = i
+            If inGroupSquare And endsVal.Contains("]") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\](\d+)")
+                repeatValueSquare = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartSquare To i
+                    dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+                Next
+                inGroupSquare = False : groupStartSquare = -1
+            ElseIf Not inGroupSquare Then
+                dgv.Rows(i).Cells(repeats1Col).Value = 1
+            End If
+
+            ' { } brackets for repeats2Col
+            If endsVal.Contains("{") Then inGroupCurly = True : groupStartCurly = i
+            If inGroupCurly And endsVal.Contains("}") Then
+                totalEndsInGroupParen = ExtractValuesInsideBrackets(groupStartParen, dgv, endsCol)
+                Dim match = System.Text.RegularExpressions.Regex.Match(endsVal, "\}(\d+)")
+                repeatValueCurly = If(match.Success, Convert.ToInt32(match.Groups(1).Value), 1)
+                For j As Integer = groupStartCurly To i
+                    dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+                Next
+                inGroupCurly = False : groupStartCurly = -1
+            ElseIf Not inGroupCurly Then
+                dgv.Rows(i).Cells(repeats2Col).Value = 1
+            End If
+        Next
+
+        ' --- Handle any unclosed groups ---
+        If inGroupParen And groupStartParen <> -1 Then
+            For j As Integer = groupStartParen To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeatsCol).Value = repeatValueParen
+            Next
+        End If
+        If inGroupSquare And groupStartSquare <> -1 Then
+            For j As Integer = groupStartSquare To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats1Col).Value = repeatValueSquare
+            Next
+        End If
+        If inGroupCurly And groupStartCurly <> -1 Then
+            For j As Integer = groupStartCurly To dgv.Rows.Count - 1
+                If dgv.Rows(j).IsNewRow Then Continue For
+                dgv.Rows(j).Cells(repeats2Col).Value = repeatValueCurly
+            Next
+        End If
+
+        ' --- Final Calculation: Totals using assigned repeats ---
+        For Each row As DataGridViewRow In dgv.Rows
+            If row.IsNewRow Then Continue For
+            Dim endsStr As String = Convert.ToString(row.Cells(endsCol).Value)
+            Dim ends As Integer = 1, repeatsFromEnds As Integer = 1
+            ExtractEndsAndRepeatationPATTERN(endsStr, ends, repeatsFromEnds)
+            Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).Value))
+            Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
+            Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+            Dim totalRepeat = ends * repeats
+            Dim totalRepeat1 = totalRepeat * repeats1
+            Dim totalRepeat2 = totalRepeat1 * repeats2
+            row.Cells(totalRepeatCol).Value = totalRepeat
+            row.Cells(totalRepeat1Col).Value = totalRepeat1
+            row.Cells(totalRepeat2Col).Value = totalRepeat2
+        Next
+
+    End Sub
+    Private Sub ExtractEndsAndRepeatationPATTERN(input As String, ByRef endsValue As Integer, ByRef repeatationValue As Integer)
+        endsValue = 1
+        repeatationValue = 1
+        If String.IsNullOrWhiteSpace(input) Then
+            endsValue = 0
+            repeatationValue = 1
+            Return
+        End If
+        ' Extract repeatation: number after closing bracket, e.g. )5 or ]5 or }5
+        Dim repeatMatch As Match = Regex.Match(input, "[)\]\}]\s*(\d+)")
+        If repeatMatch.Success Then
+            Integer.TryParse(repeatMatch.Groups(1).Value, repeatationValue)
+        End If
+        ' Extract count of dot-separated numbers BEFORE the closing bracket
+        Dim beforeCloseBracket As String = input.Split({")", "]", "}"}, StringSplitOptions.None)(0)
+        Dim core As String = beforeCloseBracket.Replace("(", "").Replace("[", "").Replace("{", "")
+        If String.IsNullOrWhiteSpace(core) Then
+            endsValue = 0
+            Return
+        End If
+        Dim valsInside As String() = core.Split("."c)
+        endsValue = valsInside.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).
+                    Select(Function(x)
+                               Dim v As Integer = 0
+                               Integer.TryParse(x, v)
+                               Return v
+                           End Function).Sum()
+
     End Sub
 
+    Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
+        GBSSHADEDETAILS.Visible = True
+
+
+        If GRIDSELDOUBLECLICK = False Then
+            'TEMPDTMTRS.Clear()
+            GRIDSELDESC.RowCount = 0
+            GRIDSELDESCDOUBLECLICK = False
+            'Dim i As Integer = 0
+            'While i < TEMPDTMTRS.Rows.Count
+            '    If TEMPDTMTRS.Rows(i).Item("SDMAINSRNO") = Val(txtsrno.Text.Trim) Then
+            '        TEMPDTMTRS.Rows.RemoveAt(i)
+            '        'GRIDMTRS.Rows.RemoveAt(GRIDMTRS.CurrentRow.Index)
+            '    Else
+            '        i += 1 ' Only increment if no row is removed
+            '    End If
+            'End While
+        Else
+            If GRIDSELVEDGE.Rows.Count > 0 Then
+                GRIDSELDESC.RowCount = 0
+                GRIDSELDESCDOUBLECLICK = False
+                For i As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                    If DT_SELDETAILS.Rows(i).Item("SDMAINSRNO") = Val(GRIDSELVEDGE.CurrentRow.Cells(SSRNO.Index).Value) Then
+                        GRIDSELDESC.Rows.Add(DT_SELDETAILS.Rows(i).Item("SDSRNO"), DT_SELDETAILS.Rows(i).Item("SDSHADE"), DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
+                    End If
+                Next
+            End If
+        End If
+        TXTSDNO.Text = GRIDSELDESC.RowCount + 1
+        CMBSELSHADE.Focus()
+    End Sub
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
+        Try
+            numkeypress(e, sender, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
+        'GBSSHADEDETAILS.Visible = False
+        'TXTSELBE.Focus()
+    End Sub
+
+    Private Sub GRIDSELDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELDESC.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDSELDESC.RowCount > 0 Then
+                    Dim row As Integer = GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value
+                    For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                        If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) And GRIDSELDESC.Rows(GRIDSELDESC.CurrentRow.Index).Cells(SDSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDSRNO")) Then
+                            If del = False Then
+                                DT_SELDETAILS.Rows.RemoveAt(I)
+                                GRIDSELDESC.Rows.RemoveAt(GRIDSELDESC.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                        If GRIDSELVEDGE.Rows(GRIDSELVEDGE.CurrentRow.Index).Cells(SSRNO.Index).Value = Val(DT_SELDETAILS.Rows(I).Item("SDMAINSRNO")) And del = True And row < Val(DT_SELDETAILS.Rows(I).Item(SSRNO.Index)) Then
+                            DT_SELDETAILS.Rows(I).Item("SDSRNO") = Val(DT_SELDETAILS.Rows(I).Item("SDSRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDSELDESC)
+                    TXTSDNO.Text = GRIDSELDESC.RowCount + 1
+                    'CMBSELSHADE.Focus()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDSELDESC()
+        Try
+            If GRIDSELDESCDOUBLECLICK = False Then
+                GRIDSELDESC.Rows.Add(Val(TXTSDNO.Text.Trim), CMBSELSHADE.Text.Trim, Val(TXTSELSRNO.Text.Trim))
+                getsrno(GRIDSELDESC)
+            ElseIf GRIDSELDESCDOUBLECLICK = True Then
+                GRIDSELDESC.Item(DSRNO.Index, TEMPSELDESCROW).Value = Val(TXTSDNO.Text.Trim)
+                GRIDSELDESC.Item(SDSHADE.Index, TEMPSELDESCROW).Value = CMBSELSHADE.Text.Trim
+                GRIDSELDESC.Item(SDMAINSRNO.Index, TEMPSELDESCROW).Value = Val(TXTSELSRNO.Text.Trim)
+                GRIDSELDESCDOUBLECLICK = False
+            End If
+            TXTSDMAINSRNO.Clear()
+            CMBSELSHADE.Text = ""
+            CMBSELSHADE.Focus()
+            TXTSDNO.Text = GRIDSELDESC.RowCount + 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELSHADE_Validated(sender As Object, e As EventArgs) Handles CMBSELSHADE.Validated
+        If CMBSELSHADE.Text <> "" Then FILLGRIDSELDESC() Else CMDCLOSESEL.Focus()
+    End Sub
+    Sub EDITGRIDSELDESCROW()
+
+        Try
+            If GRIDSELDESC.CurrentRow IsNot Nothing Then
+                TEMPSELDESCROW = GRIDSELDESC.CurrentRow.Index
+                TXTSDNO.Text = GRIDSELDESC.Item(SDSRNO.Index, TEMPSELDESCROW).Value.ToString()
+                CMBSELSHADE.Text = GRIDSELDESC.Item(SDSHADE.Index, TEMPSELDESCROW).Value.ToString()
+                TXTSDMAINSRNO.Text = GRIDSELDESC.Item(SDMAINSRNO.Index, TEMPSELDESCROW).Value.ToString()
+                GRIDSELDESCDOUBLECLICK = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDSELDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELDESC.CellDoubleClick
+        Try
+            EDITGRIDSELDESCROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub GRIDTEMPVIEW(mainGrid As DataGridView,
+    DataTable As DataTable,
+    mainSrnoColName As String,
+    dataSrnoColName As String,
+    dataShadeColName As String,
+    dataMainSrnoColName As String,
+    Optional rowNo As Integer = -1
+)
+        Try
+            GBSELVIEW.Visible = True
+            If mainGrid.Rows.Count > 0 Then
+                If rowNo = -1 Then rowNo = mainGrid.CurrentRow.Index
+                GRIDSELVIEWS.Rows.Clear()
+
+                Dim mainSrnoValue As Integer = Val(mainGrid.Rows(rowNo).Cells(mainSrnoColName).Value)
+                For i As Integer = 0 To DataTable.Rows.Count - 1
+                    If Val(DataTable.Rows(i).Item(dataMainSrnoColName)) = mainSrnoValue Then
+                        GRIDSELVIEWS.Rows.Add(
+                        DataTable.Rows(i).Item(dataSrnoColName),
+                        DataTable.Rows(i).Item(dataShadeColName),
+                        DataTable.Rows(i).Item(dataMainSrnoColName)
+                    )
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GRIDSELVEDGE_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.RowEnter
+        'Try
+        '    If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+
+    End Sub
+
+
+    Private Sub CMBWARPMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWARPMILLNAME.Validated
+        Try
+            GBWARP.Visible = True
+
+
+            If GRIDDOUBLECLICK = False Then
+                'TEMPDTMTRS.Clear()
+                GRIDWARPDESC.RowCount = 0
+                GRIDWARPDESCDOUBLECLICK = False
+
+            Else
+                If GRIDWARP.Rows.Count > 0 Then
+                    GRIDWARPDESC.RowCount = 0
+                    GRIDWARPDESCDOUBLECLICK = False
+                    For i As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO") = Val(GRIDWARP.CurrentRow.Cells(WSRNO.Index).Value) Then
+                            GRIDWARPDESC.Rows.Add(DT_WARPDETAILS.Rows(i).Item("WDSRNO"), DT_WARPDETAILS.Rows(i).Item("WDSHADE"), DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
+                        End If
+                    Next
+                End If
+            End If
+            TXTSDNO.Text = GRIDWARPDESC.RowCount + 1
+            CMBWARPSHADE.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GRIDWARPDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPDESC.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDWARPDESC.RowCount > 0 And GRIDWARP.RowCount > 0 Then
+                    Dim row As Integer = GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value
+                    For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) And GRIDWARPDESC.Rows(GRIDWARPDESC.CurrentRow.Index).Cells(WDSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDSRNO")) Then
+                            If del = False Then
+                                DT_WARPDETAILS.Rows.RemoveAt(I)
+                                GRIDWARPDESC.Rows.RemoveAt(GRIDWARPDESC.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
+                        If GRIDWARP.Rows(GRIDWARP.CurrentRow.Index).Cells(WSRNO.Index).Value = Val(DT_WARPDETAILS.Rows(I).Item("WDMAINSRNO")) And del = True And row < Val(DT_WARPDETAILS.Rows(I).Item(WSRNO.Index)) Then
+                            DT_WARPDETAILS.Rows(I).Item("WDSRNO") = Val(DT_WARPDETAILS.Rows(I).Item("WDSRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDWARPDESC)
+                    TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
+                    'CMBWARPSHADE.Focus()
+                Else
+                    GRIDWARPDESC.Rows.RemoveAt(GRIDWARPDESC.CurrentRow.Index)
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDWARPDESC()
+        Try
+            If GRIDWARPDESCDOUBLECLICK = False Then
+                GRIDWARPDESC.Rows.Add(Val(TXTWDSRNO.Text.Trim), CMBWARPSHADE.Text.Trim, Val(TXTWARPSRNO.Text.Trim))
+                getsrno(GRIDWARPDESC)
+            ElseIf GRIDWARPDESCDOUBLECLICK = True Then
+                GRIDWARPDESC.Item(WDSRNO.Index, TEMPWARPDESCROW).Value = Val(TXTWDSRNO.Text.Trim)
+                GRIDWARPDESC.Item(WDSHADE.Index, TEMPWARPDESCROW).Value = CMBWARPSHADE.Text.Trim
+                GRIDWARPDESC.Item(WDMAINSRNO.Index, TEMPWARPDESCROW).Value = Val(TXTWARPSRNO.Text.Trim)
+                GRIDWARPDESCDOUBLECLICK = False
+            End If
+            TXTWDMAINSRNO.Clear()
+            CMBWARPSHADE.Text = ""
+            CMBWARPSHADE.Focus()
+            TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLGRIDWEFTDESC()
+        Try
+            If GRIDWEFTDESCDOUBLECLICK = False Then
+                GRIDWEFTDESC.Rows.Add(Val(TXTFDSRNO.Text.Trim), cmbweftshade.Text.Trim, Val(TXTWEFTSRNO.Text.Trim))
+                getsrno(GRIDWEFTDESC)
+            ElseIf GRIDWEFTDESCDOUBLECLICK = True Then
+                GRIDWEFTDESC.Item(FDSRNO.Index, TEMPWEFTDESCROW).Value = Val(TXTFDSRNO.Text.Trim)
+                GRIDWEFTDESC.Item(FDSHADE.Index, TEMPWEFTDESCROW).Value = cmbweftshade.Text.Trim
+                GRIDWEFTDESC.Item(FDMAINSRNO.Index, TEMPWEFTDESCROW).Value = Val(TXTWEFTSRNO.Text.Trim)
+                GRIDWEFTDESCDOUBLECLICK = False
+            End If
+            TXTFDMAINSRNO.Clear()
+            cmbweftshade.Text = ""
+            cmbweftshade.Focus()
+            TXTWDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
+        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC() Else CMDWARPCLOSE.Focus()
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub EDITGRIDWARPDESCROW()
+
+        Try
+            If GRIDWARPDESC.CurrentRow IsNot Nothing Then
+                TEMPWARPDESCROW = GRIDWARPDESC.CurrentRow.Index
+                TXTWDSRNO.Text = GRIDWARPDESC.Item(WDSRNO.Index, TEMPWARPDESCROW).Value.ToString()
+                CMBWARPSHADE.Text = GRIDWARPDESC.Item(WDSHADE.Index, TEMPWARPDESCROW).Value.ToString()
+                TXTWDMAINSRNO.Text = GRIDWARPDESC.Item(WDMAINSRNO.Index, TEMPWARPDESCROW).Value.ToString()
+                GRIDWARPDESCDOUBLECLICK = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARPDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPDESC.CellDoubleClick
+        Try
+            EDITGRIDWARPDESCROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GRIDSELVEDGE_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellClick
+        Try
+            'If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARP_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARP.CellClick
+        Try
+            If GRIDWARP.RowCount > 0 Then GRIDTEMPVIEW(GRIDWARP, DT_WARPDETAILS, "WSRNO", "WDSRNO", "WDSHADE", "WDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBWEFTMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Validated
+        Try
+            GBWEFT.Visible = True
+            If GRIDWEFTDOUBLECLICK = False Then
+                'TEMPDTMTRS.Clear()
+                GRIDWEFTDESC.RowCount = 0
+                GRIDWEFTDESCDOUBLECLICK = False
+            Else
+                If GRIDWEFT.Rows.Count > 0 Then
+                    GRIDWEFTDESC.RowCount = 0
+                    GRIDWEFTDESCDOUBLECLICK = False
+                    For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO") = Val(GRIDWEFT.CurrentRow.Cells(FSRNO.Index).Value) Then
+                            GRIDWEFTDESC.Rows.Add(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"), DT_WEFTDETAILS.Rows(i).Item("FDSHADE"), DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
+                        End If
+                    Next
+                End If
+            End If
+            TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+            cmbweftshade.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFTDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWEFTDESC.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDWEFTDESC.RowCount > 0 And GRIDWEFT.RowCount > 0 Then
+                    Dim row As Integer = GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) And GRIDWEFTDESC.Rows(GRIDWEFTDESC.CurrentRow.Index).Cells(FDSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDSRNO")) Then
+                            If del = False Then
+                                DT_WEFTDETAILS.Rows.RemoveAt(I)
+                                GRIDWEFTDESC.Rows.RemoveAt(GRIDWEFTDESC.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) And del = True And row < Val(DT_WEFTDETAILS.Rows(I).Item(FSRNO.Index)) Then
+                            DT_WEFTDETAILS.Rows(I).Item("FDSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDSRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDWEFTDESC)
+                    TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+                    'CMBWARPSHADE.Focus()
+                Else
+                    GRIDWEFTDESC.Rows.RemoveAt(GRIDWEFTDESC.CurrentRow.Index)
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbweftshade_Validated(sender As Object, e As EventArgs) Handles cmbweftshade.Validated
+        If cmbweftshade.Text <> "" Then FILLGRIDWEFTDESC() Else CMDWEFTCLOSE.Focus()
+    End Sub
+    Sub EDITGRIDWEFTDESCROW()
+        Try
+            If GRIDWEFTDESC.CurrentRow IsNot Nothing Then
+                TEMPWEFTDESCROW = GRIDWEFTDESC.CurrentRow.Index
+                TXTFDSRNO.Text = GRIDWEFTDESC.Item(FDSRNO.Index, TEMPWEFTDESCROW).Value.ToString()
+                cmbweftshade.Text = GRIDWEFTDESC.Item(FDSHADE.Index, TEMPWEFTDESCROW).Value.ToString()
+                TXTFDMAINSRNO.Text = GRIDWEFTDESC.Item(FDMAINSRNO.Index, TEMPWEFTDESCROW).Value.ToString()
+                GRIDWEFTDESCDOUBLECLICK = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFTDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTDESC.CellDoubleClick
+        Try
+            EDITGRIDWEFTDESCROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFT_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellClick
+        Try
+            'If GRIDWEFT.RowCount > 0 Then GRIDTEMPVIEW(GRIDWEFT, DT_WEFTDETAILS, "FSRNO", "FDSRNO", "FDSHADE", "FDMAINSRNO")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
+        Try
+            If CMBGRIDSYM.Text <> "" And CMBWARPQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWARP.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                    End If
+                Next
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
+                fillwarpgrid()
+            End If
+            GBWARP.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
+        Try
+            If CMBWEFTGRIDSYMBOL.Text <> "" And CMBWEFTYARNQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+                    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                        'ElseIf symValue <> CMBWEFTGRIDSYMBOL.Text.Trim Then
+                        '    FILLWEFTGRID()
+                        '    'GRIDWEFTDOUBLECLICK = True
+                    End If
+                Next
+
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            If GRIDWEFT.RowCount >= 0 And CMBWEFTYARNQUALITY.Text <> "" And CMBWEFTGRIDSYMBOL.Text <> "" Then
+                FILLWEFTGRID()
+            End If
+            GBWEFT.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
+        Try
+            If TXTLEFTSELENDS.Text <> "" Then TXTRIGHTSELENDS.Text = Val(TXTLEFTSELENDS.Text.Trim)
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLEFTSEL_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSEL.Validated, TXTSHRINKAGEPER.Validated, TXTFWIDTH.Validated, TXTNOOFPCS.Validated, TXTREEDSPACE.Validated
+        Try
+            If TXTLEFTSEL.Text.Trim <> "" Then TXTRIGHTSEL.Text = TXTLEFTSEL.Text
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDCALC_Click(sender As Object, e As EventArgs) Handles CMDCALC.Click
+        CALC()
+        'blendpercentcalc()
+        'CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
+
+    End Sub
+
+    Private Sub TXTFWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTFWIDTH.Validated
+        Try
+            If TXTFWIDTH.Text <> "" Then TXTFWIDTHCM.Text = Format(Val(TXTFWIDTH.Text.Trim) * 2.54, "0.00")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTREEDSPACE_Validated(sender As Object, e As EventArgs) Handles TXTREEDSPACE.Validated
+        Try
+            If TXTREEDSPACE.Text <> "" Then TXTREEDSPACECM.Text = Format(Val(TXTREEDSPACE.Text.Trim) * 2.54, "0.00")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    'Sub blendpercentcalc()
+    '    Try
+    '        ' Dictionary to collect fiber totals
+    '        Dim fiberTotals As New Dictionary(Of String, Double)
+    '        Dim totalWarpWeight As Double = 0
+
+    '        For Each row As DataGridViewRow In GRIDWARP.Rows
+    '            ' Get yarn name and weight from grid
+    '            Dim yarnName As String = row.Cells(WQUALITY.Index).Value.ToString()
+    '            Dim yarnWeight As Double = Convert.ToDouble(row.Cells(WWT.Index).Value)
+
+    '            ' Fetch blend composition from the database
+    '            Dim OBJCLS As New ClsCommon()
+    '            Dim DT2 As DataTable = OBJCLS.SEARCH(
+    '                "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, YARNQUALITYMASTER_1.YARN_NAME AS YARNCOMPOSITIONNAME",
+    '                "",
+    '                "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = YARNQUALITYMASTER.YARN_YEARID AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = YARNQUALITYMASTER.YARN_ID",
+    '                "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
+    '            )
+
+    '            ' For each fiber/percent in the blend composition
+    '            For Each compRow As DataRow In DT2.Rows
+    '                Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
+    '                Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
+
+    '                Dim fiberWeight As Double = yarnWeight * fiberPercent
+
+    '                If Not fiberTotals.ContainsKey(fiberName) Then
+    '                    fiberTotals(fiberName) = 0
+    '                End If
+    '                fiberTotals(fiberName) += fiberWeight
+    '            Next
+
+    '            totalWarpWeight += yarnWeight
+    '        Next
+
+    '        ' Calculate final blend percent for each fiber
+    '        For Each fiberName As String In fiberTotals.Keys
+    '            Dim blendPercent As Double = (fiberTotals(fiberName) / totalWarpWeight) * 100
+    '            ' Output or use blendPercent as needed
+    '            If TextBox7.Text = "" Then
+    '                TextBox7.Text = fiberName & ":" & blendPercent.ToString("0.00")
+    '            Else
+    '                TextBox7.Text = TextBox7.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0.00")
+    '            End If
+    '        Next
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    Sub CombineWarpWeftBlend(gridWarp As DataGridView, warpQualityIdx As Integer, warpWeightIdx As Integer, gridWeft As DataGridView, weftQualityIdx As Integer, weftWeightIdx As Integer)
+        Try
+            Dim fiberTotals As New Dictionary(Of String, Double)
+            Dim totalWeight As Double = 0
+            Dim processGrid = Sub(g As DataGridView, qualityIdx As Integer, weightIdx As Integer)
+                                  For Each row As DataGridViewRow In g.Rows
+                                      Dim yarnName As String = row.Cells(qualityIdx).Value.ToString()
+                                      Dim yarnWeight As Double = Convert.ToDouble(row.Cells(weightIdx).Value)
+
+                                      Dim OBJCLS As New ClsCommon()
+                                      Dim DT2 As DataTable = OBJCLS.SEARCH(
+                                          "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, YARNQUALITYMASTER_1.YARN_NAME AS YARNCOMPOSITIONNAME",
+                                          "",
+                                          "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = YARNQUALITYMASTER.YARN_YEARID AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = YARNQUALITYMASTER.YARN_ID",
+                                          "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
+                                      )
+
+                                      For Each compRow As DataRow In DT2.Rows
+                                          Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
+                                          Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
+                                          Dim fiberWeight As Double = yarnWeight * fiberPercent
+
+                                          If Not fiberTotals.ContainsKey(fiberName) Then
+                                              fiberTotals(fiberName) = 0
+                                          End If
+                                          fiberTotals(fiberName) += fiberWeight
+                                      Next
+                                      totalWeight += yarnWeight
+                                  Next
+                              End Sub
+            processGrid(gridWarp, warpQualityIdx, warpWeightIdx)
+            processGrid(gridWeft, weftQualityIdx, weftWeightIdx)
+
+            ' Output combined result
+            TXTBLENDPER.Text = ""
+            For Each fiberName In fiberTotals.Keys
+                Dim blendPercent As Double = (fiberTotals(fiberName) / totalWeight) * 100
+                If TXTBLENDPER.Text = "" Then
+                    TXTBLENDPER.Text = fiberName & ":" & blendPercent.ToString("0")
+                Else
+                    TXTBLENDPER.Text = TXTBLENDPER.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0")
+                End If
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCOPYCARDNO_Validated(sender As Object, e As EventArgs) Handles TXTCOPYCARDNO.Validated
+        Try
+            SHOWDATA(TXTCOPYCARDNO.Text.Trim)
+            getmax_SO_no()
+            TXTCOPYCARDNO.Enabled = False
+            COPYSYM()
+            COPYWEFTSYM()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDDRAWING_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDDRAWING.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDDRAWING.RowCount > 0 Then
+
+                GRIDDRAWING.Rows.RemoveAt(GRIDDRAWING.CurrentRow.Index)
+                TOTALWARP()
+                getsrno(GRIDDRAWING)
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFT_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFT.CellValidating
+        Try
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARP_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARP.CellValidating
+        Try
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
+        Try
+
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            ' Proceed only if the column being edited is "WPSYM"
+            If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    ' Flag to track if match is found
+                    Dim matchFound As Boolean = False
+
+                    ' Loop through rows of main grid to check for matching "WSYM" value
+                    For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+                        If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
+                            Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
+
+                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+                                matchFound = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' If no match found, show warning and cancel editing
+                    If Not matchFound Then
+                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True  ' Cancels the edit
+                    End If
+                End If
+            End If
+            If e.ColumnIndex = SPSYM.Index Then
+                If e.FormattedValue IsNot Nothing Then
+                    GRIDSELVEDGEPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
+                End If
+            End If
+            'If e.ColumnIndex = SPR.Index OrElse e.ColumnIndex = SPR1.Index Then ' For both repeats columns if needed
+            '    Dim value = Convert.ToString(e.FormattedValue)
+            '    If value IsNot Nothing AndAlso value.Trim() <> "" Then
+            '        Dim repeatCount As Integer
+            '        If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+            '            MessageBox.Show("Please enter a positive integer for repeats.")
+            '            e.Cancel = True
+            '        End If
+            '    End If
+            'End If
+            TOTALSELVEDGEPATTERN()
+
+
+            Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -62,7 +62,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection9() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection11() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(1)
         End Get
@@ -70,7 +70,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection8() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection16() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection21() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -94,7 +94,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(5)
         End Get
@@ -102,7 +102,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection11() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection22() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(6)
         End Get
@@ -110,7 +110,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection13() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(7)
         End Get
@@ -118,7 +118,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection12() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property DetailSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(8)
         End Get
@@ -126,7 +126,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection18() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property DetailSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(9)
         End Get
@@ -134,7 +134,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection17() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(10)
         End Get
@@ -142,7 +142,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(11)
         End Get
@@ -150,7 +150,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection19() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(12)
         End Get
@@ -158,7 +158,7 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection7() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(13)
         End Get
@@ -166,233 +166,9 @@ Public Class InvoiceReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection6() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(14)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(15)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(16)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection23() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(17)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection22() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(18)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection27() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(19)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection28() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(20)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(21)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(22)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(23)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(24)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(25)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(26)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property DetailSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(27)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property DetailSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(28)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property DetailSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(29)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(30)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(31)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(32)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(33)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(34)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(35)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection6() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(36)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(37)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection7() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(38)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(39)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(40)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(41)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(42)
         End Get
     End Property
 End Class

@@ -56,6 +56,7 @@ Partial Class ExpenseVoucher
         Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ExpenseVoucher))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TXTSELFINVNO = New System.Windows.Forms.TextBox()
         Me.CHKBILLDISPUTE = New System.Windows.Forms.CheckBox()
@@ -127,6 +128,14 @@ Partial Class ExpenseVoucher
         Me.GTOTALSAMPLE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBSTORE = New System.Windows.Forms.TabPage()
         Me.GRIDSTORE = New System.Windows.Forms.DataGridView()
+        Me.SSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SINWARDNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SINWARDDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SSTOREITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTCOPY = New System.Windows.Forms.TextBox()
         Me.TXTTDSAMT = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -215,14 +224,6 @@ Partial Class ExpenseVoucher
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LBLGROUPNAME = New System.Windows.Forms.Label()
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
-        Me.SSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SINWARDNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SINWARDDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SSTOREITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -249,6 +250,7 @@ Partial Class ExpenseVoucher
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDAUTOPOST)
         Me.BlendPanel1.Controls.Add(Me.Label11)
         Me.BlendPanel1.Controls.Add(Me.TXTSELFINVNO)
         Me.BlendPanel1.Controls.Add(Me.CHKBILLDISPUTE)
@@ -336,6 +338,21 @@ Partial Class ExpenseVoucher
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1300, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(620, 449)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(89, 28)
+        Me.CMDAUTOPOST.TabIndex = 1006
+        Me.CMDAUTOPOST.Text = "&Auto Post"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        Me.CMDAUTOPOST.Visible = False
         '
         'Label11
         '
@@ -1223,10 +1240,10 @@ Partial Class ExpenseVoucher
         '
         Me.TBSTORE.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TBSTORE.Controls.Add(Me.GRIDSTORE)
-        Me.TBSTORE.Location = New System.Drawing.Point(4, 24)
+        Me.TBSTORE.Location = New System.Drawing.Point(4, 22)
         Me.TBSTORE.Name = "TBSTORE"
         Me.TBSTORE.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBSTORE.Size = New System.Drawing.Size(1277, 185)
+        Me.TBSTORE.Size = New System.Drawing.Size(1277, 187)
         Me.TBSTORE.TabIndex = 3
         Me.TBSTORE.Text = "4. Store Details"
         '
@@ -1276,6 +1293,75 @@ Partial Class ExpenseVoucher
         Me.GRIDSTORE.Size = New System.Drawing.Size(673, 179)
         Me.GRIDSTORE.TabIndex = 3
         Me.GRIDSTORE.TabStop = False
+        '
+        'SSRNO
+        '
+        Me.SSRNO.HeaderText = "Sr."
+        Me.SSRNO.Name = "SSRNO"
+        Me.SSRNO.ReadOnly = True
+        Me.SSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SSRNO.Width = 30
+        '
+        'SINWARDNO
+        '
+        Me.SINWARDNO.HeaderText = "Inward No"
+        Me.SINWARDNO.Name = "SINWARDNO"
+        Me.SINWARDNO.ReadOnly = True
+        Me.SINWARDNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SINWARDNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'SINWARDDATE
+        '
+        Me.SINWARDDATE.HeaderText = "Date"
+        Me.SINWARDDATE.Name = "SINWARDDATE"
+        Me.SINWARDDATE.ReadOnly = True
+        Me.SINWARDDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SINWARDDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SINWARDDATE.Width = 80
+        '
+        'SSTOREITEMNAME
+        '
+        Me.SSTOREITEMNAME.HeaderText = "Store Item Name"
+        Me.SSTOREITEMNAME.Name = "SSTOREITEMNAME"
+        Me.SSTOREITEMNAME.ReadOnly = True
+        Me.SSTOREITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSTOREITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SSTOREITEMNAME.Width = 250
+        '
+        'SQTY
+        '
+        Me.SQTY.HeaderText = "Qty"
+        Me.SQTY.Name = "SQTY"
+        Me.SQTY.ReadOnly = True
+        Me.SQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'SRATE
+        '
+        Me.SRATE.HeaderText = "Rate"
+        Me.SRATE.Name = "SRATE"
+        Me.SRATE.ReadOnly = True
+        Me.SRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'SFROMNO
+        '
+        Me.SFROMNO.HeaderText = "FROMNO"
+        Me.SFROMNO.Name = "SFROMNO"
+        Me.SFROMNO.ReadOnly = True
+        Me.SFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SFROMNO.Visible = False
+        '
+        'SFROMSRNO
+        '
+        Me.SFROMSRNO.HeaderText = "FROMSRNO"
+        Me.SFROMSRNO.Name = "SFROMSRNO"
+        Me.SFROMSRNO.ReadOnly = True
+        Me.SFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SFROMSRNO.Visible = False
         '
         'TXTCOPY
         '
@@ -2293,75 +2379,6 @@ Partial Class ExpenseVoucher
         '
         Me.OpenFileDialog2.FileName = "OpenFileDialog2"
         '
-        'SSRNO
-        '
-        Me.SSRNO.HeaderText = "Sr."
-        Me.SSRNO.Name = "SSRNO"
-        Me.SSRNO.ReadOnly = True
-        Me.SSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SSRNO.Width = 30
-        '
-        'SINWARDNO
-        '
-        Me.SINWARDNO.HeaderText = "Inward No"
-        Me.SINWARDNO.Name = "SINWARDNO"
-        Me.SINWARDNO.ReadOnly = True
-        Me.SINWARDNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SINWARDNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'SINWARDDATE
-        '
-        Me.SINWARDDATE.HeaderText = "Date"
-        Me.SINWARDDATE.Name = "SINWARDDATE"
-        Me.SINWARDDATE.ReadOnly = True
-        Me.SINWARDDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SINWARDDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SINWARDDATE.Width = 80
-        '
-        'SSTOREITEMNAME
-        '
-        Me.SSTOREITEMNAME.HeaderText = "Store Item Name"
-        Me.SSTOREITEMNAME.Name = "SSTOREITEMNAME"
-        Me.SSTOREITEMNAME.ReadOnly = True
-        Me.SSTOREITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSTOREITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SSTOREITEMNAME.Width = 250
-        '
-        'SQTY
-        '
-        Me.SQTY.HeaderText = "Qty"
-        Me.SQTY.Name = "SQTY"
-        Me.SQTY.ReadOnly = True
-        Me.SQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'SRATE
-        '
-        Me.SRATE.HeaderText = "Rate"
-        Me.SRATE.Name = "SRATE"
-        Me.SRATE.ReadOnly = True
-        Me.SRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'SFROMNO
-        '
-        Me.SFROMNO.HeaderText = "FROMNO"
-        Me.SFROMNO.Name = "SFROMNO"
-        Me.SFROMNO.ReadOnly = True
-        Me.SFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SFROMNO.Visible = False
-        '
-        'SFROMSRNO
-        '
-        Me.SFROMSRNO.HeaderText = "FROMSRNO"
-        Me.SFROMSRNO.Name = "SFROMSRNO"
-        Me.SFROMSRNO.ReadOnly = True
-        Me.SFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SFROMSRNO.Visible = False
-        '
         'ExpenseVoucher
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2572,4 +2589,5 @@ Partial Class ExpenseVoucher
     Friend WithEvents SRATE As DataGridViewTextBoxColumn
     Friend WithEvents SFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents SFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents CMDAUTOPOST As Button
 End Class

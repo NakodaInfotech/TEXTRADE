@@ -331,7 +331,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "DEVEN" Then
-                    If Now.Date > DateTime.Parse("15.10.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -549,7 +549,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "MBB" Then
-                    If Now.Date > DateTime.Parse("15.10.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -847,7 +847,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "SIMPLEX" Then
-                    If Now.Date > DateTime.Parse("15.10.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -962,7 +962,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "TARUN" Then
-                    If Now.Date > DateTime.Parse("15.10.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -1041,7 +1041,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "YUMILONE" Then
-                    If Now.Date > DateTime.Parse("15.10.2025 00:00") Then
+                    If Now.Date > DateTime.Parse("15.10.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -1049,7 +1049,7 @@ line1:
                     GoTo LINE1
                 End If
 
-                If DT.Rows(0).Item("VERSION") <> "1.0.096" Then
+                If DT.Rows(0).Item("VERSION") <> "1.0.098" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)
 LINE1:
                     MsgBox(" VERSION EXPIRED PLEASE CONTACT NAKODA INFOTECH ON 02249724411", MsgBoxStyle.Critical)

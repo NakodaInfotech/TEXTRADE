@@ -22,7 +22,7 @@ Public Class Receipt
     Public TEMPNAME As String
     Public TEMPBILLNO As String
     Dim ALLOWMANUALRECNO As Boolean = False
-
+    Private DT As DataTable
 
 
     'FOR ADDING NEW CHKCOL IN GRIDBILL
@@ -254,12 +254,10 @@ Public Class Receipt
                 BLN = False
             End If
 
+            Dim OBJCMN As New ClsCommon
             If ALLOWMANUALRECNO = True Then
                 If txtaccno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                    Dim OBJCMN As New ClsCommon
-
-                    Dim dttable As DataTable = OBJCMN.search(" ISNULL(RECEIPTMASTER.RECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN RECEIPTMASTER ON REGISTERMASTER.register_id = RECEIPTMASTER.RECEIPT_registerid AND REGISTERMASTER.register_cmpid = RECEIPTMASTER.RECEIPT_cmpid AND REGISTERMASTER.register_locationid = RECEIPTMASTER.RECEIPT_locationid AND REGISTERMASTER.register_yearid = RECEIPTMASTER.RECEIPT_yearid ", "  AND RECEIPTMASTER.RECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPTMASTER.RECEIPT_cmpid = " & CmpId & " AND RECEIPTMASTER.RECEIPT_locationid = " & Locationid & " AND RECEIPTMASTER.RECEIPT_yearid = " & YearId)
-
+                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(RECEIPTMASTER.RECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN RECEIPTMASTER ON REGISTERMASTER.register_id = RECEIPTMASTER.RECEIPT_registerid AND REGISTERMASTER.register_cmpid = RECEIPTMASTER.RECEIPT_cmpid AND REGISTERMASTER.register_locationid = RECEIPTMASTER.RECEIPT_locationid AND REGISTERMASTER.register_yearid = RECEIPTMASTER.RECEIPT_yearid ", "  AND RECEIPTMASTER.RECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPTMASTER.RECEIPT_cmpid = " & CmpId & " AND RECEIPTMASTER.RECEIPT_locationid = " & Locationid & " AND RECEIPTMASTER.RECEIPT_yearid = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(txtaccno, "Receipt No Already Exist")
                         BLN = False
@@ -277,12 +275,19 @@ Public Class Receipt
                 If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
                     EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     BLN = False
+
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                    'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
+                    'AND DUPLLICATE ENTRIES GETS PASSED
+                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "PAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND PAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND PAYMENTBILLDETAILS.YEARID = " & YearId)
+                    If DTBILL.Rows.Count > 0 AndAlso Val(ROW.Cells(gamt.Index).Value) > Val(DTBILL.Rows(0).Item("BALAMT")) Then
+                        EP.SetError(cmbname, "Adjusted amt is GReater then Balance Amt")
+                        BLN = False
+                        ROW.DefaultCellStyle.BackColor = Color.Orange
+                    End If
                 End If
 
-                If ROW.Cells(gpaytype.Index).Value = "New Ref" And ROW.Cells(gdesc.Index).Value = "" Then
-                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
-                    BLN = False
-                End If
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = recreginitial & "-" & Val(txtaccno.Text.Trim)
             Next
 
             If cmbaccname.Text.Trim.Length = 0 Then
@@ -305,8 +310,7 @@ Public Class Receipt
                 BLN = False
             End If
 
-            Dim OBJCMN1 As New ClsCommon
-            Dim DT As DataTable = OBJCMN1.search(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
                     'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
@@ -314,7 +318,7 @@ Public Class Receipt
                     '    EP.SetError(txtchqno, "Enter Chq No.")
                     '    BLN = False
                     'End If
-                    If txtchqno.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" Then
+                    If txtchqno.Text.Trim.Length = 0 And ClientName <> "MANSI" And ClientName <> "VALIANT" And ClientName <> "ABHEE" Then
                         If MsgBox("Chq No. is Blank, Proceed?", MsgBoxStyle.YesNo) = vbNo Then
                             EP.SetError(txtchqno, "Enter Chq No.")
                             BLN = False
@@ -537,7 +541,7 @@ Public Class Receipt
                 End If
             End If
             gridpayment.ClearSelection()
-
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -783,16 +787,6 @@ Public Class Receipt
                 MessageBox.Show("Details Added")
                 txtaccno.Text = Val(DTTABLE.Rows(0).Item(0))
                 TEMPAUTOENTRY = False
-                'Dim TEMPMSG As Integer = MsgBox("Print Receipt Voucher?", MsgBoxStyle.YesNo)
-                'If TEMPMSG = vbYes Then
-                '    Dim objREC As New receipt_advice
-                '    objREC.recno = Val(DTTABLE.Rows(0).Item(0))
-                '    objREC.recname = cmbname.Text.Trim
-                '    objREC.REGNAME = cmbregister.Text.Trim
-                '    objREC.MdiParent = MDIMain
-                '    objREC.Show()
-                'End If
-
             Else
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -802,22 +796,11 @@ Public Class Receipt
                 Dim IntResult As Integer = OBJCLRECEIPT.UPDATE()
                 MsgBox("Details Updated")
                 EDIT = False
-                'Dim TEMPMSG As Integer = MsgBox("Print Receipt Voucher?", MsgBoxStyle.YesNo)
-                'If TEMPMSG = vbYes Then
-                '    Dim objREC As New receipt_advice
-                '    objREC.recno = Val(TEMPRECEIPTNO)
-                '    objREC.recname = cmbname.Text.Trim
-                '    objREC.REGNAME = cmbregister.Text.Trim
-                '    objREC.MdiParent = MDIMain
-                '    objREC.Show()
-                'End If
 
             End If
 
             If ClientName = "SAKARIA" Then SENDDIRECTMAIL()
 
-            'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
-            'clear()
             Call toolnext_Click(sender, e)
             If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "SUPRIYA" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
 
@@ -1329,7 +1312,6 @@ Public Class Receipt
         If ACCDATE.Text = "__/__/____" Then ACCDATE.Text = Now.Date
 
         Dim objpayment As New ClsReceiptMaster
-        Dim DT As New DataTable
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
@@ -2363,6 +2345,27 @@ LINE1:
         numkeypress(e, sender, Me)
     End Sub
 
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            'GET MAX RECEIPTNO 
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(RECEIPT_NO) As RECNO", "", " RECEIPTMASTER INNER JOIN REGISTERMASTER On REGISTER_ID = RECEIPT_REGISTERID", " And REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPT_YEARID = " & YearId)
+            For I As Integer = 1 To Val(DT.Rows(0).Item("RECNO"))
+                gridpayment.RowCount = 0
+                TEMPRECEIPTNO = Val(I)
+                TEMPREGNAME = cmbregister.Text.Trim
+                EDIT = True
+                Receipt_Load(sender, e)
+                If gridpayment.RowCount = 0 Then GoTo NEXTLINE
+                cmdsave_Click(sender, e)
+NEXTLINE:
+                CLEAR()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub gridbill_KeyDown(sender As Object, e As KeyEventArgs) Handles gridbill.KeyDown
         If gridbill.RowCount = 0 Then Exit Sub
         Dim ARGS As New DataGridViewCellEventArgs(gridbill.CurrentCell.ColumnIndex, gridbill.CurrentRow.Index)
@@ -2392,7 +2395,7 @@ LINE1:
 
     Private Sub TXTCOPY_Validated(sender As Object, e As EventArgs) Handles TXTCOPY.Validated
         Try
-            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 Then
+            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 And ClientName <> "ABHEE" Then
 
                 If MsgBox("Wish to Copy Payment Voucher No " & Val(TXTCOPY.Text.Trim), MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
@@ -2437,7 +2440,7 @@ LINE1:
                     Next
 
                     Dim OBJCMN As New ClsCommon
-                    Dim DT1 As DataTable = OBJCMN.search(" RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDREMARKS AS DESCNARR, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCAMT AS DESCAMT, RECEIPTMASTER_GRIDDESC.RECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, RECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  RECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON RECEIPTMASTER_GRIDDESC.RECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = LEDGERS.Acc_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON RECEIPTMASTER_GRIDDESC.RECEIPT_REGISTERID = REGISTERMASTER.register_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = REGISTERMASTER.register_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (RECEIPTMASTER_GRIDDESC.receipt_no = " & TEMPRECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (RECEIPTMASTER_GRIDDESC.RECEIPT_cmpid = " & CmpId & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_locationid = " & Locationid & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_YEARid = " & YearId & ")")
+                    Dim DT1 As DataTable = OBJCMN.SEARCH(" RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDREMARKS AS DESCNARR, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCAMT AS DESCAMT, RECEIPTMASTER_GRIDDESC.RECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, RECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  RECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON RECEIPTMASTER_GRIDDESC.RECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = LEDGERS.Acc_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON RECEIPTMASTER_GRIDDESC.RECEIPT_REGISTERID = REGISTERMASTER.register_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = REGISTERMASTER.register_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (RECEIPTMASTER_GRIDDESC.receipt_no = " & TEMPRECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (RECEIPTMASTER_GRIDDESC.RECEIPT_cmpid = " & CmpId & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_locationid = " & Locationid & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_YEARid = " & YearId & ")")
                     For Each DR1 As DataRow In DT1.Rows
                         GRIDDESC.Rows.Add(DR1("DESCGRIDSRNO").ToString, DR1("DESCLEDGERNAME").ToString, DR1("DESCNARR").ToString, Format(DR1("DESCAMT"), "0.00"), DR1("PAYGRIDSRNO"), DR1("PAYBILLINITIALS").ToString)
                         gridpayment.Rows(DR1("PAYGRIDSRNO") - 1).DefaultCellStyle.BackColor = Drawing.Color.Yellow
@@ -2457,7 +2460,7 @@ LINE1:
                     gridpayment.ClearSelection()
                 Else
                     EDIT = False
-                    clear()
+                    CLEAR()
                 End If
             End If
         Catch ex As Exception
@@ -2481,6 +2484,99 @@ LINE1:
             Throw ex
         End Try
     End Sub
+#Region "AUTOSEARCHTEXTBOX"
 
+    Public filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Public Sub CreateFilterTextBoxes()
+
+        'REMOVE OLD TEXTBOXES AND THEN RECREATE
+        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf groupbill.Controls(i) Is TextBox Then
+                groupbill.Controls.RemoveAt(i)
+            End If
+        Next
+
+
+
+        filterTextBoxes.Clear()
+
+        If gridbill.Columns.Count = 0 Then Exit Sub
+
+        Dim xPos As Integer = gridbill.RowHeadersVisible * gridbill.RowHeadersWidth
+        For Each col As DataGridViewColumn In gridbill.Columns
+            If col.Visible Then
+                Dim txt As New TextBox()
+                txt.Width = col.Width
+                txt.Left = gridbill.GetCellDisplayRectangle(col.Index, -1, True).Left
+                txt.Top = 5 ' Or a header-compliant Y offset
+                txt.Tag = col.Index
+                txt.Name = "TXT" & col.Index
+                AddHandler txt.TextChanged, AddressOf FilterGrid
+                groupbill.Controls.Add(txt)
+                filterTextBoxes.Add(txt)
+            End If
+        Next
+    End Sub
+
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
+        Try
+            Dim filterClauses As New List(Of String)()
+            For Each txt As TextBox In filterTextBoxes
+                Dim colIndex As Integer = CInt(txt.Tag)
+                Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
+                Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+
+                If filterText <> "" Then
+                    ' Check data type
+                    Dim colType As Type = DT.Columns(colName).DataType
+                    If colType Is GetType(String) Then
+                        filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
+                    ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
+                        ' Numeric filter: try direct match
+                        Dim valDouble As Double
+                        If Double.TryParse(filterText, valDouble) Then
+                            filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
+                        End If
+                    ElseIf colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+                        End If
+                    ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            ' For exact date match
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+
+                            ' Or you can do range filtering, example hardcoded here (customize as needed)
+                            ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
+                        End If
+
+                    End If
+                End If
+            Next
+
+
+            Dim filterString As String = String.Join(" AND ", filterClauses)
+            DT.DefaultView.RowFilter = filterString
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub gridbill_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles gridbill.SortCompare
+        Try
+            If gridbill.ColumnCount = 15 And e.Column.Index > 1 Then
+                e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
 
 End Class

@@ -22,6 +22,7 @@ Partial Class SelectAgencySO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SelectAgencySO))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -51,6 +52,7 @@ Partial Class SelectAgencySO
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GPERQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +63,7 @@ Partial Class SelectAgencySO
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Blend = CType(resources.GetObject("BlendPanel1.Blend"), VbPowerPack.BlendFill)
         Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
@@ -101,7 +103,7 @@ Partial Class SelectAgencySO
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GGRIDSRNO, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GTYPE, Me.GPONO, Me.GREFNO, Me.GRATE, Me.GAGENTNAME, Me.GTRANSNAME, Me.GCITY, Me.GGRIDPARTYPONO, Me.GREMARKS, Me.GGRIDDESC})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GGRIDSRNO, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GTYPE, Me.GPONO, Me.GREFNO, Me.GRATE, Me.GAGENTNAME, Me.GTRANSNAME, Me.GCITY, Me.GGRIDPARTYPONO, Me.GREMARKS, Me.GGRIDDESC, Me.GPERQTY})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -361,6 +363,14 @@ Partial Class SelectAgencySO
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GPERQTY
+        '
+        Me.GPERQTY.Caption = "PERQTY"
+        Me.GPERQTY.DisplayFormat.FormatString = "0.00"
+        Me.GPERQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPERQTY.FieldName = "PERQTY"
+        Me.GPERQTY.Name = "GPERQTY"
+        '
         'SelectAgencySO
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -412,4 +422,5 @@ Partial Class SelectAgencySO
     Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdok As Button
+    Friend WithEvents GPERQTY As DevExpress.XtraGrid.Columns.GridColumn
 End Class

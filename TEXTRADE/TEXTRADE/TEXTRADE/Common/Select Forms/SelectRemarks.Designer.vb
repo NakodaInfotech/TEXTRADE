@@ -127,7 +127,7 @@ Partial Class SelectRemarks
         Me.rbpart.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbpart.Location = New System.Drawing.Point(173, 30)
         Me.rbpart.Name = "rbpart"
-        Me.rbpart.Size = New System.Drawing.Size(106, 18)
+        Me.rbpart.Size = New System.Drawing.Size(113, 18)
         Me.rbpart.TabIndex = 5
         Me.rbpart.TabStop = True
         Me.rbpart.Text = "Any Part of Field"
@@ -140,7 +140,7 @@ Partial Class SelectRemarks
         Me.rbstart.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbstart.Location = New System.Drawing.Point(173, 8)
         Me.rbstart.Name = "rbstart"
-        Me.rbstart.Size = New System.Drawing.Size(78, 18)
+        Me.rbstart.Size = New System.Drawing.Size(80, 18)
         Me.rbstart.TabIndex = 4
         Me.rbstart.Text = "From Start"
         Me.rbstart.UseVisualStyleBackColor = False
@@ -220,7 +220,7 @@ Partial Class SelectRemarks
         Me.GRIDREMARKS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
@@ -249,7 +249,7 @@ Partial Class SelectRemarks
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(18, 11)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(125, 23)
+        Me.Label8.Size = New System.Drawing.Size(126, 23)
         Me.Label8.TabIndex = 210
         Me.Label8.Text = "Select Remarks"
         '

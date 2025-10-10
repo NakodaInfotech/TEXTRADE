@@ -129,6 +129,9 @@ Partial Class OpeningBills
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GINTCALC = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.GCOMPLAINT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCOMPLAINTBY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCOMPLAINTDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDOPENING, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -424,7 +427,7 @@ Partial Class OpeningBills
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDOPENING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDOPENING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GREGISTER, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GGRIDREMARKS, Me.GINTCALC})
+        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GREGISTER, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GGRIDREMARKS, Me.GINTCALC, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1110,6 +1113,33 @@ Partial Class OpeningBills
         Me.GINTCALC.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GINTCALC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.HeaderText = "Complaint"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.ReadOnly = True
+        Me.GCOMPLAINT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCOMPLAINT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCOMPLAINT.Visible = False
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.HeaderText = "Complaint By"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.ReadOnly = True
+        Me.GCOMPLAINTBY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCOMPLAINTBY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCOMPLAINTBY.Visible = False
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.HeaderText = "Complaint Dt"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.ReadOnly = True
+        Me.GCOMPLAINTDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCOMPLAINTDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCOMPLAINTDATE.Visible = False
+        '
         'OpeningBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1220,4 +1250,7 @@ Partial Class OpeningBills
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GINTCALC As DataGridViewCheckBoxColumn
+    Friend WithEvents GCOMPLAINT As DataGridViewTextBoxColumn
+    Friend WithEvents GCOMPLAINTBY As DataGridViewTextBoxColumn
+    Friend WithEvents GCOMPLAINTDATE As DataGridViewTextBoxColumn
 End Class

@@ -131,6 +131,9 @@ Partial Class AgencyInvoiceDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -406,7 +409,7 @@ Partial Class AgencyInvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME, Me.GCOMM, Me.GCOMMTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME, Me.GCOMM, Me.GCOMMTYPE, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -451,8 +454,6 @@ Partial Class AgencyInvoiceDetails
         Me.GREFNO.FieldName = "REFNO"
         Me.GREFNO.Name = "GREFNO"
         Me.GREFNO.OptionsColumn.AllowEdit = False
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 3
         '
         'GCHALLANNO
         '
@@ -460,8 +461,6 @@ Partial Class AgencyInvoiceDetails
         Me.GCHALLANNO.FieldName = "CHALLANNO"
         Me.GCHALLANNO.Name = "GCHALLANNO"
         Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 4
         '
         'GCHALLANDATE
         '
@@ -471,8 +470,6 @@ Partial Class AgencyInvoiceDetails
         Me.GCHALLANDATE.FieldName = "CHALLANDATE"
         Me.GCHALLANDATE.Name = "GCHALLANDATE"
         Me.GCHALLANDATE.OptionsColumn.AllowEdit = False
-        Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 5
         '
         'gname
         '
@@ -482,7 +479,7 @@ Partial Class AgencyInvoiceDetails
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
-        Me.gname.VisibleIndex = 6
+        Me.gname.VisibleIndex = 3
         Me.gname.Width = 230
         '
         'GGSTIN
@@ -491,8 +488,6 @@ Partial Class AgencyInvoiceDetails
         Me.GGSTIN.FieldName = "GSTIN"
         Me.GGSTIN.Name = "GGSTIN"
         Me.GGSTIN.OptionsColumn.AllowEdit = False
-        Me.GGSTIN.Visible = True
-        Me.GGSTIN.VisibleIndex = 9
         Me.GGSTIN.Width = 100
         '
         'GCITY
@@ -501,8 +496,6 @@ Partial Class AgencyInvoiceDetails
         Me.GCITY.FieldName = "CITY"
         Me.GCITY.Name = "GCITY"
         Me.GCITY.OptionsColumn.AllowEdit = False
-        Me.GCITY.Visible = True
-        Me.GCITY.VisibleIndex = 10
         Me.GCITY.Width = 100
         '
         'GSTATENAME
@@ -511,8 +504,6 @@ Partial Class AgencyInvoiceDetails
         Me.GSTATENAME.FieldName = "STATENAME"
         Me.GSTATENAME.Name = "GSTATENAME"
         Me.GSTATENAME.OptionsColumn.AllowEdit = False
-        Me.GSTATENAME.Visible = True
-        Me.GSTATENAME.VisibleIndex = 11
         '
         'GSTATECODE
         '
@@ -520,8 +511,6 @@ Partial Class AgencyInvoiceDetails
         Me.GSTATECODE.FieldName = "STATECODE"
         Me.GSTATECODE.Name = "GSTATECODE"
         Me.GSTATECODE.OptionsColumn.AllowEdit = False
-        Me.GSTATECODE.Visible = True
-        Me.GSTATECODE.VisibleIndex = 12
         Me.GSTATECODE.Width = 40
         '
         'GADD
@@ -530,8 +519,6 @@ Partial Class AgencyInvoiceDetails
         Me.GADD.FieldName = "ADDRESS"
         Me.GADD.Name = "GADD"
         Me.GADD.OptionsColumn.AllowEdit = False
-        Me.GADD.Visible = True
-        Me.GADD.VisibleIndex = 13
         Me.GADD.Width = 150
         '
         'GAGENT
@@ -540,8 +527,6 @@ Partial Class AgencyInvoiceDetails
         Me.GAGENT.FieldName = "AGENTNAME"
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.OptionsColumn.AllowEdit = False
-        Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 14
         Me.GAGENT.Width = 150
         '
         'GSHIPPEDTO
@@ -550,8 +535,6 @@ Partial Class AgencyInvoiceDetails
         Me.GSHIPPEDTO.FieldName = "PACKING"
         Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
         Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
-        Me.GSHIPPEDTO.Visible = True
-        Me.GSHIPPEDTO.VisibleIndex = 15
         Me.GSHIPPEDTO.Width = 100
         '
         'GEWAYBILLNO
@@ -560,8 +543,6 @@ Partial Class AgencyInvoiceDetails
         Me.GEWAYBILLNO.FieldName = "EWAYBILLNO"
         Me.GEWAYBILLNO.Name = "GEWAYBILLNO"
         Me.GEWAYBILLNO.OptionsColumn.AllowEdit = False
-        Me.GEWAYBILLNO.Visible = True
-        Me.GEWAYBILLNO.VisibleIndex = 16
         '
         'GTRANSPORT
         '
@@ -570,7 +551,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 17
+        Me.GTRANSPORT.VisibleIndex = 6
         Me.GTRANSPORT.Width = 150
         '
         'GLRNO
@@ -580,7 +561,7 @@ Partial Class AgencyInvoiceDetails
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 18
+        Me.GLRNO.VisibleIndex = 7
         '
         'GLRDATE
         '
@@ -591,7 +572,7 @@ Partial Class AgencyInvoiceDetails
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.OptionsColumn.AllowEdit = False
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 19
+        Me.GLRDATE.VisibleIndex = 8
         '
         'GSO
         '
@@ -600,7 +581,7 @@ Partial Class AgencyInvoiceDetails
         Me.GSO.Name = "GSO"
         Me.GSO.OptionsColumn.AllowEdit = False
         Me.GSO.Visible = True
-        Me.GSO.VisibleIndex = 20
+        Me.GSO.VisibleIndex = 9
         '
         'GBALES
         '
@@ -610,8 +591,6 @@ Partial Class AgencyInvoiceDetails
         Me.GBALES.FieldName = "NOOFBALES"
         Me.GBALES.Name = "GBALES"
         Me.GBALES.OptionsColumn.AllowEdit = False
-        Me.GBALES.Visible = True
-        Me.GBALES.VisibleIndex = 21
         '
         'GPCS
         '
@@ -623,7 +602,7 @@ Partial Class AgencyInvoiceDetails
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 22
+        Me.GPCS.VisibleIndex = 10
         Me.GPCS.Width = 85
         '
         'GMTRS
@@ -636,7 +615,7 @@ Partial Class AgencyInvoiceDetails
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 23
+        Me.GMTRS.VisibleIndex = 11
         Me.GMTRS.Width = 85
         '
         'GTOTALAMT
@@ -649,7 +628,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTOTALAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALAMT.Visible = True
-        Me.GTOTALAMT.VisibleIndex = 24
+        Me.GTOTALAMT.VisibleIndex = 12
         '
         'GDISC
         '
@@ -657,8 +636,6 @@ Partial Class AgencyInvoiceDetails
         Me.GDISC.FieldName = "TOTALDISC"
         Me.GDISC.Name = "GDISC"
         Me.GDISC.OptionsColumn.AllowEdit = False
-        Me.GDISC.Visible = True
-        Me.GDISC.VisibleIndex = 26
         Me.GDISC.Width = 80
         '
         'GSPDISCAMT
@@ -667,8 +644,6 @@ Partial Class AgencyInvoiceDetails
         Me.GSPDISCAMT.FieldName = "TOTALSPDISCAMT"
         Me.GSPDISCAMT.Name = "GSPDISCAMT"
         Me.GSPDISCAMT.OptionsColumn.AllowEdit = False
-        Me.GSPDISCAMT.Visible = True
-        Me.GSPDISCAMT.VisibleIndex = 25
         '
         'GCHARGES
         '
@@ -677,7 +652,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCHARGES.Name = "GCHARGES"
         Me.GCHARGES.OptionsColumn.AllowEdit = False
         Me.GCHARGES.Visible = True
-        Me.GCHARGES.VisibleIndex = 27
+        Me.GCHARGES.VisibleIndex = 13
         '
         'GTOTALTAXABLEAMT
         '
@@ -689,7 +664,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTOTALTAXABLEAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALTAXABLEAMT.Visible = True
-        Me.GTOTALTAXABLEAMT.VisibleIndex = 28
+        Me.GTOTALTAXABLEAMT.VisibleIndex = 14
         '
         'GTOTALCGSTAMT
         '
@@ -701,7 +676,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTOTALCGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCGSTAMT.Visible = True
-        Me.GTOTALCGSTAMT.VisibleIndex = 29
+        Me.GTOTALCGSTAMT.VisibleIndex = 15
         '
         'GTOTALSGSTAMT
         '
@@ -713,7 +688,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTOTALSGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALSGSTAMT.Visible = True
-        Me.GTOTALSGSTAMT.VisibleIndex = 30
+        Me.GTOTALSGSTAMT.VisibleIndex = 16
         '
         'GTOTALIGSTAMT
         '
@@ -723,7 +698,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALIGSTAMT.Visible = True
-        Me.GTOTALIGSTAMT.VisibleIndex = 31
+        Me.GTOTALIGSTAMT.VisibleIndex = 17
         '
         'GTOTALWITHGST
         '
@@ -741,8 +716,6 @@ Partial Class AgencyInvoiceDetails
         Me.GAPPLYTCS.FieldName = "APPLYTCS"
         Me.GAPPLYTCS.Name = "GAPPLYTCS"
         Me.GAPPLYTCS.OptionsColumn.AllowEdit = False
-        Me.GAPPLYTCS.Visible = True
-        Me.GAPPLYTCS.VisibleIndex = 32
         '
         'GTCSPER
         '
@@ -752,8 +725,6 @@ Partial Class AgencyInvoiceDetails
         Me.GTCSPER.FieldName = "TCSPER"
         Me.GTCSPER.Name = "GTCSPER"
         Me.GTCSPER.OptionsColumn.AllowEdit = False
-        Me.GTCSPER.Visible = True
-        Me.GTCSPER.VisibleIndex = 33
         '
         'GTCSAMT
         '
@@ -764,8 +735,6 @@ Partial Class AgencyInvoiceDetails
         Me.GTCSAMT.Name = "GTCSAMT"
         Me.GTCSAMT.OptionsColumn.AllowEdit = False
         Me.GTCSAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTCSAMT.Visible = True
-        Me.GTCSAMT.VisibleIndex = 34
         '
         'GGRANDTOTAL
         '
@@ -777,7 +746,7 @@ Partial Class AgencyInvoiceDetails
         Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
         Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 35
+        Me.GGRANDTOTAL.VisibleIndex = 18
         Me.GGRANDTOTAL.Width = 85
         '
         'GRECDAMT
@@ -790,7 +759,7 @@ Partial Class AgencyInvoiceDetails
         Me.GRECDAMT.OptionsColumn.AllowEdit = False
         Me.GRECDAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDAMT.Visible = True
-        Me.GRECDAMT.VisibleIndex = 36
+        Me.GRECDAMT.VisibleIndex = 19
         '
         'GRETURNAMT
         '
@@ -802,7 +771,7 @@ Partial Class AgencyInvoiceDetails
         Me.GRETURNAMT.OptionsColumn.AllowEdit = False
         Me.GRETURNAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRETURNAMT.Visible = True
-        Me.GRETURNAMT.VisibleIndex = 37
+        Me.GRETURNAMT.VisibleIndex = 20
         '
         'GBALANCE
         '
@@ -814,7 +783,7 @@ Partial Class AgencyInvoiceDetails
         Me.GBALANCE.OptionsColumn.AllowEdit = False
         Me.GBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALANCE.Visible = True
-        Me.GBALANCE.VisibleIndex = 38
+        Me.GBALANCE.VisibleIndex = 21
         '
         'GREMARKS
         '
@@ -823,7 +792,7 @@ Partial Class AgencyInvoiceDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 39
+        Me.GREMARKS.VisibleIndex = 22
         Me.GREMARKS.Width = 150
         '
         'GDISPUTED
@@ -833,7 +802,7 @@ Partial Class AgencyInvoiceDetails
         Me.GDISPUTED.Name = "GDISPUTED"
         Me.GDISPUTED.OptionsColumn.AllowEdit = False
         Me.GDISPUTED.Visible = True
-        Me.GDISPUTED.VisibleIndex = 40
+        Me.GDISPUTED.VisibleIndex = 23
         '
         'GBILLCHECKED
         '
@@ -842,7 +811,7 @@ Partial Class AgencyInvoiceDetails
         Me.GBILLCHECKED.Name = "GBILLCHECKED"
         Me.GBILLCHECKED.OptionsColumn.AllowEdit = False
         Me.GBILLCHECKED.Visible = True
-        Me.GBILLCHECKED.VisibleIndex = 41
+        Me.GBILLCHECKED.VisibleIndex = 24
         '
         'GSUPPLIERNAME
         '
@@ -851,7 +820,7 @@ Partial Class AgencyInvoiceDetails
         Me.GSUPPLIERNAME.Name = "GSUPPLIERNAME"
         Me.GSUPPLIERNAME.OptionsColumn.AllowEdit = False
         Me.GSUPPLIERNAME.Visible = True
-        Me.GSUPPLIERNAME.VisibleIndex = 7
+        Me.GSUPPLIERNAME.VisibleIndex = 4
         Me.GSUPPLIERNAME.Width = 230
         '
         'GRECDDATE
@@ -869,8 +838,6 @@ Partial Class AgencyInvoiceDetails
         Me.GIRNNO.FieldName = "IRNNO"
         Me.GIRNNO.Name = "GIRNNO"
         Me.GIRNNO.OptionsColumn.AllowEdit = False
-        Me.GIRNNO.Visible = True
-        Me.GIRNNO.VisibleIndex = 42
         Me.GIRNNO.Width = 120
         '
         'GACKNO
@@ -879,8 +846,6 @@ Partial Class AgencyInvoiceDetails
         Me.GACKNO.FieldName = "ACKNO"
         Me.GACKNO.Name = "GACKNO"
         Me.GACKNO.OptionsColumn.AllowEdit = False
-        Me.GACKNO.Visible = True
-        Me.GACKNO.VisibleIndex = 45
         '
         'GACKDATE
         '
@@ -890,8 +855,6 @@ Partial Class AgencyInvoiceDetails
         Me.GACKDATE.FieldName = "ACKDATE"
         Me.GACKDATE.Name = "GACKDATE"
         Me.GACKDATE.OptionsColumn.AllowEdit = False
-        Me.GACKDATE.Visible = True
-        Me.GACKDATE.VisibleIndex = 46
         '
         'GDOCKETNO
         '
@@ -899,8 +862,6 @@ Partial Class AgencyInvoiceDetails
         Me.GDOCKETNO.FieldName = "DOCKETNO"
         Me.GDOCKETNO.Name = "GDOCKETNO"
         Me.GDOCKETNO.OptionsColumn.AllowEdit = False
-        Me.GDOCKETNO.Visible = True
-        Me.GDOCKETNO.VisibleIndex = 43
         '
         'GDOCKETDATE
         '
@@ -908,8 +869,6 @@ Partial Class AgencyInvoiceDetails
         Me.GDOCKETDATE.FieldName = "DOCKETDATE"
         Me.GDOCKETDATE.Name = "GDOCKETDATE"
         Me.GDOCKETDATE.OptionsColumn.AllowEdit = False
-        Me.GDOCKETDATE.Visible = True
-        Me.GDOCKETDATE.VisibleIndex = 44
         '
         'GCOURIER
         '
@@ -917,8 +876,6 @@ Partial Class AgencyInvoiceDetails
         Me.GCOURIER.FieldName = "COURIER"
         Me.GCOURIER.Name = "GCOURIER"
         Me.GCOURIER.OptionsColumn.AllowEdit = False
-        Me.GCOURIER.Visible = True
-        Me.GCOURIER.VisibleIndex = 47
         '
         'GCHGSDTLS
         '
@@ -927,7 +884,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCHGSDTLS.Name = "GCHGSDTLS"
         Me.GCHGSDTLS.OptionsColumn.AllowEdit = False
         Me.GCHGSDTLS.Visible = True
-        Me.GCHGSDTLS.VisibleIndex = 48
+        Me.GCHGSDTLS.VisibleIndex = 25
         Me.GCHGSDTLS.Width = 200
         '
         'GFROMCITY
@@ -936,8 +893,6 @@ Partial Class AgencyInvoiceDetails
         Me.GFROMCITY.FieldName = "FROMCITY"
         Me.GFROMCITY.Name = "GFROMCITY"
         Me.GFROMCITY.OptionsColumn.AllowEdit = False
-        Me.GFROMCITY.Visible = True
-        Me.GFROMCITY.VisibleIndex = 49
         '
         'GTOCITY
         '
@@ -945,8 +900,6 @@ Partial Class AgencyInvoiceDetails
         Me.GTOCITY.FieldName = "TOCITY"
         Me.GTOCITY.Name = "GTOCITY"
         Me.GTOCITY.OptionsColumn.AllowEdit = False
-        Me.GTOCITY.Visible = True
-        Me.GTOCITY.VisibleIndex = 50
         '
         'GUSERNAME
         '
@@ -955,7 +908,7 @@ Partial Class AgencyInvoiceDetails
         Me.GUSERNAME.Name = "GUSERNAME"
         Me.GUSERNAME.OptionsColumn.AllowEdit = False
         Me.GUSERNAME.Visible = True
-        Me.GUSERNAME.VisibleIndex = 51
+        Me.GUSERNAME.VisibleIndex = 26
         '
         'GCREATEDDATE
         '
@@ -966,7 +919,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCREATEDDATE.Name = "GCREATEDDATE"
         Me.GCREATEDDATE.OptionsColumn.AllowEdit = False
         Me.GCREATEDDATE.Visible = True
-        Me.GCREATEDDATE.VisibleIndex = 52
+        Me.GCREATEDDATE.VisibleIndex = 27
         '
         'GPONO
         '
@@ -975,7 +928,7 @@ Partial Class AgencyInvoiceDetails
         Me.GPONO.Name = "GPONO"
         Me.GPONO.OptionsColumn.AllowEdit = False
         Me.GPONO.Visible = True
-        Me.GPONO.VisibleIndex = 8
+        Me.GPONO.VisibleIndex = 5
         '
         'GPARTYMAIL
         '
@@ -984,7 +937,7 @@ Partial Class AgencyInvoiceDetails
         Me.GPARTYMAIL.Name = "GPARTYMAIL"
         Me.GPARTYMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYMAIL.Visible = True
-        Me.GPARTYMAIL.VisibleIndex = 53
+        Me.GPARTYMAIL.VisibleIndex = 28
         '
         'GPARTYWHATSAPP
         '
@@ -993,7 +946,7 @@ Partial Class AgencyInvoiceDetails
         Me.GPARTYWHATSAPP.Name = "GPARTYWHATSAPP"
         Me.GPARTYWHATSAPP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAPP.Visible = True
-        Me.GPARTYWHATSAPP.VisibleIndex = 54
+        Me.GPARTYWHATSAPP.VisibleIndex = 29
         '
         'GAGENTMAIL
         '
@@ -1001,8 +954,6 @@ Partial Class AgencyInvoiceDetails
         Me.GAGENTMAIL.FieldName = "AGENTMAIL"
         Me.GAGENTMAIL.Name = "GAGENTMAIL"
         Me.GAGENTMAIL.OptionsColumn.AllowEdit = False
-        Me.GAGENTMAIL.Visible = True
-        Me.GAGENTMAIL.VisibleIndex = 55
         '
         'GAGENTWHATSAPP
         '
@@ -1010,8 +961,6 @@ Partial Class AgencyInvoiceDetails
         Me.GAGENTWHATSAPP.FieldName = "AGENTWHATSAPP"
         Me.GAGENTWHATSAPP.Name = "GAGENTWHATSAPP"
         Me.GAGENTWHATSAPP.OptionsColumn.AllowEdit = False
-        Me.GAGENTWHATSAPP.Visible = True
-        Me.GAGENTWHATSAPP.VisibleIndex = 56
         '
         'GPRINTINITIALS
         '
@@ -1036,7 +985,7 @@ Partial Class AgencyInvoiceDetails
         Me.GBROKERAGEPER.Name = "GBROKERAGEPER"
         Me.GBROKERAGEPER.OptionsColumn.AllowEdit = False
         Me.GBROKERAGEPER.Visible = True
-        Me.GBROKERAGEPER.VisibleIndex = 57
+        Me.GBROKERAGEPER.VisibleIndex = 30
         '
         'GBROKERAGE
         '
@@ -1048,7 +997,7 @@ Partial Class AgencyInvoiceDetails
         Me.GBROKERAGE.OptionsColumn.AllowEdit = False
         Me.GBROKERAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBROKERAGE.Visible = True
-        Me.GBROKERAGE.VisibleIndex = 58
+        Me.GBROKERAGE.VisibleIndex = 31
         '
         'GDISCPER
         '
@@ -1059,7 +1008,7 @@ Partial Class AgencyInvoiceDetails
         Me.GDISCPER.Name = "GDISCPER"
         Me.GDISCPER.OptionsColumn.AllowEdit = False
         Me.GDISCPER.Visible = True
-        Me.GDISCPER.VisibleIndex = 59
+        Me.GDISCPER.VisibleIndex = 32
         '
         'GDISCOUNT
         '
@@ -1071,7 +1020,7 @@ Partial Class AgencyInvoiceDetails
         Me.GDISCOUNT.OptionsColumn.AllowEdit = False
         Me.GDISCOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDISCOUNT.Visible = True
-        Me.GDISCOUNT.VisibleIndex = 60
+        Me.GDISCOUNT.VisibleIndex = 33
         '
         'GCDPER
         '
@@ -1082,7 +1031,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCDPER.Name = "GCDPER"
         Me.GCDPER.OptionsColumn.AllowEdit = False
         Me.GCDPER.Visible = True
-        Me.GCDPER.VisibleIndex = 61
+        Me.GCDPER.VisibleIndex = 34
         '
         'GCASHDISC
         '
@@ -1094,7 +1043,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCASHDISC.OptionsColumn.AllowEdit = False
         Me.GCASHDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCASHDISC.Visible = True
-        Me.GCASHDISC.VisibleIndex = 62
+        Me.GCASHDISC.VisibleIndex = 35
         '
         'GSPECIALREMARKS
         '
@@ -1103,7 +1052,7 @@ Partial Class AgencyInvoiceDetails
         Me.GSPECIALREMARKS.Name = "GSPECIALREMARKS"
         Me.GSPECIALREMARKS.OptionsColumn.AllowEdit = False
         Me.GSPECIALREMARKS.Visible = True
-        Me.GSPECIALREMARKS.VisibleIndex = 63
+        Me.GSPECIALREMARKS.VisibleIndex = 36
         '
         'GCOSTCENTERNAME
         '
@@ -1112,7 +1061,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOSTCENTERNAME.Name = "GCOSTCENTERNAME"
         Me.GCOSTCENTERNAME.OptionsColumn.AllowEdit = False
         Me.GCOSTCENTERNAME.Visible = True
-        Me.GCOSTCENTERNAME.VisibleIndex = 64
+        Me.GCOSTCENTERNAME.VisibleIndex = 37
         '
         'GCREATEDBY
         '
@@ -1121,7 +1070,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCREATEDBY.Name = "GCREATEDBY"
         Me.GCREATEDBY.OptionsColumn.AllowEdit = False
         Me.GCREATEDBY.Visible = True
-        Me.GCREATEDBY.VisibleIndex = 65
+        Me.GCREATEDBY.VisibleIndex = 38
         '
         'GREFERREDBY
         '
@@ -1130,7 +1079,7 @@ Partial Class AgencyInvoiceDetails
         Me.GREFERREDBY.Name = "GREFERREDBY"
         Me.GREFERREDBY.OptionsColumn.AllowEdit = False
         Me.GREFERREDBY.Visible = True
-        Me.GREFERREDBY.VisibleIndex = 66
+        Me.GREFERREDBY.VisibleIndex = 39
         '
         'GTRADINGACC
         '
@@ -1139,7 +1088,7 @@ Partial Class AgencyInvoiceDetails
         Me.GTRADINGACC.Name = "GTRADINGACC"
         Me.GTRADINGACC.OptionsColumn.AllowEdit = False
         Me.GTRADINGACC.Visible = True
-        Me.GTRADINGACC.VisibleIndex = 67
+        Me.GTRADINGACC.VisibleIndex = 40
         '
         'GMONTHNAME
         '
@@ -1148,7 +1097,7 @@ Partial Class AgencyInvoiceDetails
         Me.GMONTHNAME.Name = "GMONTHNAME"
         Me.GMONTHNAME.OptionsColumn.AllowEdit = False
         Me.GMONTHNAME.Visible = True
-        Me.GMONTHNAME.VisibleIndex = 68
+        Me.GMONTHNAME.VisibleIndex = 41
         Me.GMONTHNAME.Width = 100
         '
         'GCOMM
@@ -1158,7 +1107,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMM.Name = "GCOMM"
         Me.GCOMM.OptionsColumn.AllowEdit = False
         Me.GCOMM.Visible = True
-        Me.GCOMM.VisibleIndex = 69
+        Me.GCOMM.VisibleIndex = 42
         '
         'GCOMMTYPE
         '
@@ -1167,7 +1116,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMMTYPE.Name = "GCOMMTYPE"
         Me.GCOMMTYPE.OptionsColumn.AllowEdit = False
         Me.GCOMMTYPE.Visible = True
-        Me.GCOMMTYPE.VisibleIndex = 70
+        Me.GCOMMTYPE.VisibleIndex = 43
         '
         'CHKEDIT
         '
@@ -1221,6 +1170,33 @@ Partial Class AgencyInvoiceDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
+        '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 44
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 45
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 46
         '
         'AgencyInvoiceDetails
         '
@@ -1352,4 +1328,7 @@ Partial Class AgencyInvoiceDetails
     Friend WithEvents GCOMM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMMTYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TOOLREFRESH As ToolStripButton
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -118,6 +118,7 @@ Partial Class OutstandingFilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.CHKCOMPLAINT = New System.Windows.Forms.CheckBox()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +143,7 @@ Partial Class OutstandingFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.CHKCOMPLAINT)
         Me.BlendPanel2.Controls.Add(Me.CMDMAIL)
         Me.BlendPanel2.Controls.Add(Me.CHKMSME)
         Me.BlendPanel2.Controls.Add(Me.LSTCMP)
@@ -189,7 +191,7 @@ Partial Class OutstandingFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1084, 583)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1084, 649)
         Me.BlendPanel2.TabIndex = 0
         '
         'CMDMAIL
@@ -199,7 +201,7 @@ Partial Class OutstandingFilter
         Me.CMDMAIL.FlatAppearance.BorderSize = 0
         Me.CMDMAIL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDMAIL.ForeColor = System.Drawing.Color.Black
-        Me.CMDMAIL.Location = New System.Drawing.Point(636, 543)
+        Me.CMDMAIL.Location = New System.Drawing.Point(636, 609)
         Me.CMDMAIL.Name = "CMDMAIL"
         Me.CMDMAIL.Size = New System.Drawing.Size(80, 28)
         Me.CMDMAIL.TabIndex = 724
@@ -236,7 +238,7 @@ Partial Class OutstandingFilter
         Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
         Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(459, 543)
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(459, 609)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
         Me.CMDWHATSAPP.TabIndex = 723
@@ -540,7 +542,7 @@ Partial Class OutstandingFilter
         Me.GroupBox4.Controls.Add(Me.gridbilldetails)
         Me.GroupBox4.Controls.Add(Me.GroupBox5)
         Me.GroupBox4.Controls.Add(Me.GroupBox6)
-        Me.GroupBox4.Location = New System.Drawing.Point(31, 219)
+        Me.GroupBox4.Location = New System.Drawing.Point(31, 285)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(736, 324)
         Me.GroupBox4.TabIndex = 11
@@ -1196,7 +1198,7 @@ Partial Class OutstandingFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.Black
-        Me.cmdshow.Location = New System.Drawing.Point(368, 543)
+        Me.cmdshow.Location = New System.Drawing.Point(368, 609)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(85, 28)
         Me.cmdshow.TabIndex = 15
@@ -1210,7 +1212,7 @@ Partial Class OutstandingFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(545, 543)
+        Me.cmdexit.Location = New System.Drawing.Point(545, 609)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(85, 28)
         Me.cmdexit.TabIndex = 16
@@ -1224,10 +1226,23 @@ Partial Class OutstandingFilter
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'CHKCOMPLAINT
+        '
+        Me.CHKCOMPLAINT.AutoSize = True
+        Me.CHKCOMPLAINT.BackColor = System.Drawing.Color.Transparent
+        Me.CHKCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKCOMPLAINT.ForeColor = System.Drawing.Color.Black
+        Me.CHKCOMPLAINT.Location = New System.Drawing.Point(349, 228)
+        Me.CHKCOMPLAINT.Name = "CHKCOMPLAINT"
+        Me.CHKCOMPLAINT.Size = New System.Drawing.Size(114, 18)
+        Me.CHKCOMPLAINT.TabIndex = 725
+        Me.CHKCOMPLAINT.Text = "Show Complaint"
+        Me.CHKCOMPLAINT.UseVisualStyleBackColor = False
+        '
         'OutstandingFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1084, 583)
+        Me.ClientSize = New System.Drawing.Size(1084, 649)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -1354,4 +1369,5 @@ Partial Class OutstandingFilter
     Friend WithEvents GAGENTWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENTEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYEMAIL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKCOMPLAINT As CheckBox
 End Class

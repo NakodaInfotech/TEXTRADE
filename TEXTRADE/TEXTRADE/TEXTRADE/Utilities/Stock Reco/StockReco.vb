@@ -1738,6 +1738,7 @@ LINE1:
                 End If
 
                 TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+                If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
 
                 'GET DATA FROM BARCODE
                 DT = OBJCMN.search("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
