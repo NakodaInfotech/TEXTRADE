@@ -274,6 +274,8 @@ Public Class PaymentDetails
             If INVOICEMAIL = False And WHATSAPP = False Then
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
+
+
             For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
                 Dim OBJPAY As New payment_advice
                 OBJPAY.MdiParent = MDIMain
@@ -283,7 +285,6 @@ Public Class PaymentDetails
                 OBJPAY.DIRECTWHATSAPP = WHATSAPP
                 OBJPAY.REGNAME = cmbregister.Text.Trim
                 OBJPAY.PRINTSETTING = PRINTDIALOG
-                'OBJPAY.LEDGERSNAME = "NAME"
                 OBJPAY.payno = Val(I)
                 OBJPAY.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJPAY.Show()
@@ -344,8 +345,8 @@ Public Class PaymentDetails
             If INVOICEMAIL = False And WHATSAPP = False Then
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
-            'Dim SELECTEDROWS As Int32() = gridpayment.GetSelectedRows()
-            'For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
+
+
             For I As Integer = 0 To Val(gridpayment.RowCount - 1)
 
                 Dim ROW As DataRow = gridpayment.GetDataRow(I)

@@ -1994,5 +1994,13 @@ LINE1:
         GRIDMTRS1.RowCount = 0
         GRIDVIEW(e.RowIndex)
     End Sub
+
+    Private Sub CMBORDERON_Validated(sender As Object, e As EventArgs) Handles CMBORDERON.Validated
+        Try
+            cmbqtyunit.Text = CMBORDERON.Text
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

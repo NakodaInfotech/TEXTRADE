@@ -3800,4 +3800,12 @@ LINE1:
     Private Sub TXTCUT_GotFocus(sender As Object, e As EventArgs) Handles TXTCUT.GotFocus
         TXTCUT.SelectAll()
     End Sub
+
+    Private Sub CMBORDERON_Validated(sender As Object, e As EventArgs) Handles CMBORDERON.Validated
+        Try
+            cmbqtyunit.Text = CMBORDERON.Text
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
