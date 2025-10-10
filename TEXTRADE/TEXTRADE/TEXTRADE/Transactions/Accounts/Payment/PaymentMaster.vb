@@ -1,5 +1,6 @@
 ﻿
 Imports BL
+Imports DevExpress.XtraReports.Design
 
 Public Class PaymentMaster
 
@@ -230,12 +231,10 @@ Public Class PaymentMaster
                 BLN = False
             End If
 
+            Dim OBJCMN As New ClsCommon
             If ALLOWMANUALPAYNO = True Then
                 If txtaccno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                    Dim OBJCMN As New ClsCommon
-
                     Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(PAYMENTMASTER.PAYMENT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN PAYMENTMASTER ON REGISTERMASTER.register_id = PAYMENTMASTER.PAYMENT_registerid AND REGISTERMASTER.register_cmpid = PAYMENTMASTER.PAYMENT_cmpid AND REGISTERMASTER.register_locationid = PAYMENTMASTER.PAYMENT_locationid AND REGISTERMASTER.register_yearid = PAYMENTMASTER.PAYMENT_yearid ", "  AND PAYMENTMASTER.PAYMENT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND PAYMENTMASTER.PAYMENT_cmpid = " & CmpId & " AND PAYMENTMASTER.PAYMENT_locationid = " & Locationid & " AND PAYMENTMASTER.PAYMENT_yearid = " & YearId)
-
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(txtaccno, "Payment No Already Exist")
                         BLN = False
@@ -247,6 +246,16 @@ Public Class PaymentMaster
                 If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
                     EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     BLN = False
+
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                    'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
+                    'AND DUPLLICATE ENTRIES GETS PASSED
+                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "PAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND PAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND PAYMENTBILLDETAILS.YEARID = " & YearId)
+                    If DTBILL.Rows.Count > 0 AndAlso Val(ROW.Cells(gamt.Index).Value) > Val(DTBILL.Rows(0).Item("BALAMT")) Then
+                        EP.SetError(cmbname, "Adjusted amt is GReater then Balance Amt")
+                        BLN = False
+                        ROW.DefaultCellStyle.BackColor = Color.Orange
+                    End If
                 End If
 
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = payreginitial & "-" & Val(txtaccno.Text.Trim)
@@ -1967,8 +1976,6 @@ LINE1:
                 objPAY.payno = Val(txtaccno.Text)
                 objPAY.payname = cmbname.Text.Trim
                 objPAY.REGNAME = cmbregister.Text.Trim
-                If ClientName = "VALIANT" Then objPAY.PRINTA5 = True
-                If ClientName = "ABHEE" And MsgBox("Print A5?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then objPAY.PRINTA5 = True
                 objPAY.MdiParent = MDIMain
                 objPAY.Show()
 

@@ -1192,4 +1192,12 @@ NEXTLINE:
     Private Sub TXTMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTRATE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
+
+    Private Sub CMBORDERON_Validated(sender As Object, e As EventArgs) Handles CMBORDERON.Validated
+        Try
+            cmbqtyunit.Text = CMBORDERON.Text
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

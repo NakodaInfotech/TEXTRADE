@@ -254,12 +254,10 @@ Public Class Receipt
                 BLN = False
             End If
 
+            Dim OBJCMN As New ClsCommon
             If ALLOWMANUALRECNO = True Then
                 If txtaccno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                    Dim OBJCMN As New ClsCommon
-
-                    Dim dttable As DataTable = OBJCMN.search(" ISNULL(RECEIPTMASTER.RECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN RECEIPTMASTER ON REGISTERMASTER.register_id = RECEIPTMASTER.RECEIPT_registerid AND REGISTERMASTER.register_cmpid = RECEIPTMASTER.RECEIPT_cmpid AND REGISTERMASTER.register_locationid = RECEIPTMASTER.RECEIPT_locationid AND REGISTERMASTER.register_yearid = RECEIPTMASTER.RECEIPT_yearid ", "  AND RECEIPTMASTER.RECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPTMASTER.RECEIPT_cmpid = " & CmpId & " AND RECEIPTMASTER.RECEIPT_locationid = " & Locationid & " AND RECEIPTMASTER.RECEIPT_yearid = " & YearId)
-
+                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(RECEIPTMASTER.RECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN RECEIPTMASTER ON REGISTERMASTER.register_id = RECEIPTMASTER.RECEIPT_registerid AND REGISTERMASTER.register_cmpid = RECEIPTMASTER.RECEIPT_cmpid AND REGISTERMASTER.register_locationid = RECEIPTMASTER.RECEIPT_locationid AND REGISTERMASTER.register_yearid = RECEIPTMASTER.RECEIPT_yearid ", "  AND RECEIPTMASTER.RECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPTMASTER.RECEIPT_cmpid = " & CmpId & " AND RECEIPTMASTER.RECEIPT_locationid = " & Locationid & " AND RECEIPTMASTER.RECEIPT_yearid = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(txtaccno, "Receipt No Already Exist")
                         BLN = False
@@ -277,7 +275,18 @@ Public Class Receipt
                 If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
                     EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     BLN = False
+
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                    'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
+                    'AND DUPLLICATE ENTRIES GETS PASSED
+                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "PAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND PAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND PAYMENTBILLDETAILS.YEARID = " & YearId)
+                    If DTBILL.Rows.Count > 0 AndAlso Val(ROW.Cells(gamt.Index).Value) > Val(DTBILL.Rows(0).Item("BALAMT")) Then
+                        EP.SetError(cmbname, "Adjusted amt is GReater then Balance Amt")
+                        BLN = False
+                        ROW.DefaultCellStyle.BackColor = Color.Orange
+                    End If
                 End If
+
                 If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = recreginitial & "-" & Val(txtaccno.Text.Trim)
             Next
 
@@ -301,8 +310,7 @@ Public Class Receipt
                 BLN = False
             End If
 
-            Dim OBJCMN1 As New ClsCommon
-            Dim DT As DataTable = OBJCMN1.search(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" GROUP_SECONDARY", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID AND ACC_CMPID = GROUP_CMPID AND ACC_LOCATIONID = GROUP_LOCATIONID AND ACC_YEARID = GROUP_YEARID", " AND LEDGERS.ACC_CMPNAME = '" & cmbaccname.Text.Trim & "' AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 If DT.Rows(0).Item(0) = "Bank A/C" Or DT.Rows(0).Item(0) = "Bank OD A/C" Then
                     'DONT MANDATE CHQ NO AS THERE ARE RTGS ENTRIES AS WELL
@@ -2387,7 +2395,7 @@ NEXTLINE:
 
     Private Sub TXTCOPY_Validated(sender As Object, e As EventArgs) Handles TXTCOPY.Validated
         Try
-            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 Then
+            If EDIT = False And Val(TXTCOPY.Text.Trim) > 0 And ClientName <> "ABHEE" Then
 
                 If MsgBox("Wish to Copy Payment Voucher No " & Val(TXTCOPY.Text.Trim), MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
@@ -2432,7 +2440,7 @@ NEXTLINE:
                     Next
 
                     Dim OBJCMN As New ClsCommon
-                    Dim DT1 As DataTable = OBJCMN.search(" RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDREMARKS AS DESCNARR, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCAMT AS DESCAMT, RECEIPTMASTER_GRIDDESC.RECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, RECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  RECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON RECEIPTMASTER_GRIDDESC.RECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = LEDGERS.Acc_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON RECEIPTMASTER_GRIDDESC.RECEIPT_REGISTERID = REGISTERMASTER.register_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = REGISTERMASTER.register_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (RECEIPTMASTER_GRIDDESC.receipt_no = " & TEMPRECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (RECEIPTMASTER_GRIDDESC.RECEIPT_cmpid = " & CmpId & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_locationid = " & Locationid & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_YEARid = " & YearId & ")")
+                    Dim DT1 As DataTable = OBJCMN.SEARCH(" RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCGRIDREMARKS AS DESCNARR, RECEIPTMASTER_GRIDDESC.RECEIPT_DESCAMT AS DESCAMT, RECEIPTMASTER_GRIDDESC.RECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, RECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  RECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON RECEIPTMASTER_GRIDDESC.RECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = LEDGERS.Acc_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON RECEIPTMASTER_GRIDDESC.RECEIPT_REGISTERID = REGISTERMASTER.register_id AND RECEIPTMASTER_GRIDDESC.RECEIPT_CMPID = REGISTERMASTER.register_cmpid AND RECEIPTMASTER_GRIDDESC.RECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND RECEIPTMASTER_GRIDDESC.RECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (RECEIPTMASTER_GRIDDESC.receipt_no = " & TEMPRECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (RECEIPTMASTER_GRIDDESC.RECEIPT_cmpid = " & CmpId & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_locationid = " & Locationid & ") AND (RECEIPTMASTER_GRIDDESC.RECEIPT_YEARid = " & YearId & ")")
                     For Each DR1 As DataRow In DT1.Rows
                         GRIDDESC.Rows.Add(DR1("DESCGRIDSRNO").ToString, DR1("DESCLEDGERNAME").ToString, DR1("DESCNARR").ToString, Format(DR1("DESCAMT"), "0.00"), DR1("PAYGRIDSRNO"), DR1("PAYBILLINITIALS").ToString)
                         gridpayment.Rows(DR1("PAYGRIDSRNO") - 1).DefaultCellStyle.BackColor = Drawing.Color.Yellow
@@ -2452,7 +2460,7 @@ NEXTLINE:
                     gridpayment.ClearSelection()
                 Else
                     EDIT = False
-                    clear()
+                    CLEAR()
                 End If
             End If
         Catch ex As Exception
