@@ -29,8 +29,8 @@ Public Class AgencyOrderGridReport
             If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
 
             Dim DTSELLER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
-            GRIDBUYERDETAILS.DataSource = DTSELLER
-            If DTSELLER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
+            GRIDSELLERDETAILS.DataSource = DTSELLER
+            If DTSELLER.Rows.Count > 0 Then GRIDSELLER.FocusedRowHandle = GRIDSELLER.RowCount - 1
 
 
             Dim DTITEM As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, ITEMMASTER.ITEM_NAME AS ITEMNAME, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", " ", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.ITEM_CATEGORYID = CATEGORYMASTER.CATEGORY_ID", " AND ITEMMASTER.ITEM_YEARID = '" & YearId & "' ORDER BY ITEMMASTER.ITEM_NAME")
@@ -128,6 +128,23 @@ Public Class AgencyOrderGridReport
             If ITEMCLAUSE <> "" Then
                 ITEMCLAUSE = ITEMCLAUSE & ")"
                 SOCLAUSE = SOCLAUSE & ITEMCLAUSE
+            End If
+
+            'FOR ORDERNO
+            GRIDBILLORDER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDBILLORDER.RowCount - 1
+                Dim dtrow As DataRow = GRIDBILLORDER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If ORDERCLAUSE = "" Then
+                        ORDERCLAUSE = " AND (ALLAGENCYSALEORDER.ASO_NO = '" & dtrow("ORDERNO") & "'"
+                    Else
+                        ORDERCLAUSE = ORDERCLAUSE & " OR ALLAGENCYSALEORDER.ASO_NO = '" & dtrow("ORDERNO") & "'"
+                    End If
+                End If
+            Next
+            If ORDERCLAUSE <> "" Then
+                ORDERCLAUSE = ORDERCLAUSE & ")"
+                SOCLAUSE = SOCLAUSE & ORDERCLAUSE
             End If
 
 
