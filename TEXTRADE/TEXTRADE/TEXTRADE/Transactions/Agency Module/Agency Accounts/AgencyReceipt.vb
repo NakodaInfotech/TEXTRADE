@@ -1273,11 +1273,6 @@ Public Class AgencyReceipt
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId, cmbseller.Text.Trim)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
-
-            'Dim DTROW As DataRow
-            'For Each DTROW In DT.Rows
-            '    gridbill.Rows.Add(0, DTROW("BILLINITIALS"), Format(DTROW("BILLDATE"), "dd/MM/yyyy"), Val(DTROW("BALAMT")), Val(DTROW("BILLAMT")), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-            'Next
         End If
 
     End Sub

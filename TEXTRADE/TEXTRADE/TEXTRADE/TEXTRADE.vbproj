@@ -528,6 +528,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Payment\Paymentreport_ABHEE.vb">
+      <DependentUpon>Paymentreport_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8718,6 +8724,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Payment\ChqPayment_HDFCKOTAK_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ChqPayment_HDFCKOTAK_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Payment\Paymentreport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Paymentreport_ABHEE.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

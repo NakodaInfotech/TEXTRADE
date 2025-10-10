@@ -469,6 +469,7 @@ Partial Class MagicBox
         Me.TXTDESCRIPTION.Name = "TXTDESCRIPTION"
         Me.TXTDESCRIPTION.Size = New System.Drawing.Size(200, 23)
         Me.TXTDESCRIPTION.TabIndex = 12
+        Me.TXTDESCRIPTION.TabStop = False
         '
         'Label11
         '
@@ -514,6 +515,7 @@ Partial Class MagicBox
         Me.cmbqtyunit.Name = "cmbqtyunit"
         Me.cmbqtyunit.Size = New System.Drawing.Size(89, 23)
         Me.cmbqtyunit.TabIndex = 14
+        Me.cmbqtyunit.TabStop = False
         '
         'Label13
         '
