@@ -18,6 +18,7 @@ Public Class ExpenseVoucher
     Dim PURregabbr, PURreginitial As String
     Public TEMPREGNAME As String
     Dim ALLOWMANUALNPNO As Boolean = False
+    Public IsBulkUpload As Boolean = False
 
     Public Sub New()
 
@@ -30,7 +31,7 @@ Public Class ExpenseVoucher
 
     End Sub
 
-    Public Function SaveInvoice(Optional suppressMessages As Boolean = False) As Boolean
+    Public Function SaveInvoice(Optional showMessage As Boolean = True) As Boolean
         ' just call the private button handler
         'cmdok_Click(Nothing, EventArgs.Empty)
         Try
@@ -43,8 +44,8 @@ Public Class ExpenseVoucher
 
             ' Call the original save logic
             cmdok_Click(Nothing, EventArgs.Empty)
-            If Not suppressMessages Then
-                MsgBox("Details Added")
+            If showMessage Then
+                MessageBox.Show("Details Added")
             End If
             Return True ' Success
         Catch ex As Exception
@@ -660,7 +661,9 @@ Public Class ExpenseVoucher
                     Exit Sub
                 End If
                 Dim DT As DataTable = objclsNP.SAVE()
-                MsgBox("Details Added")
+                If Not IsBulkUpload Then
+                    MsgBox("Details Added")
+                End If
 
                 If CHKTDS.CheckState = CheckState.Checked Then
                     Dim OBJTDS As New DeductTDS
