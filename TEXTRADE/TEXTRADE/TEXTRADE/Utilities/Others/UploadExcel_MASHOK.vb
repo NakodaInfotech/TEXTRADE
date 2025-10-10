@@ -210,21 +210,42 @@ Public Class UploadExcel_MASHOK
                 Dim errorCount As Integer = 0
 
                 ' Normalize column existence helpers
-                Dim functionCols = Function(name As String) dt.Columns.Contains(name)
+                'Dim functionCols = Function(name As String) dt.Columns.Contains(name)
                 Dim failedRows As New List(Of String)
+                Dim processedPartyBillNos As New HashSet(Of String)() ' Track processed party bill numbers
+                Dim duplicateBillNos As New List(Of String)()
                 For Each dr As DataRow In dt.Rows
+                    Dim partyBillNo As String = dr("party bill no").ToString().Trim()
+
+                    '' Check if party bill no is already in the set of processed numbers
+                    'If processedPartyBillNos.Contains(partyBillNo) Then
+                    '    Continue For ' Skip this row if it's already processed
+                    'End If
+
+                    '' Add the current party bill number to the set of processed numbers
+                    'processedPartyBillNos.Add(partyBillNo)
                     Try
                         Dim partyName As String = dr("name").ToString().Trim()
                         If Not PartyExists(partyName) Then
                             failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & partyName & "')")
+                            'Increment error count
+                            errorCount += 1
                             Continue For
                         End If
+                        If IsPartyBillNoAlreadySavedInDB(partyBillNo) Then
+                            duplicateBillNos.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " - Party Bill No: " & partyBillNo & " (already in DB)")
+                            ' Increment error count
+                            errorCount += 1
+                            Continue For
+                        End If
+
                         ' Skip empty lines (no item and no amount)
-                        Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
-                        Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
-                        If Not hasMainItem AndAlso Not hasAnyAmount Then Continue For
+                        'Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
+                        'Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
+                        'If Not hasMainItem AndAlso Not hasAnyAmount Then Continue For
 
                         Dim frm As New ExpenseVoucher()
+                        frm.IsBulkUpload = True
 
                         ' Basic header fields
                         frm.CMBREGISTER.Text = "NON-PURCHASE REGISTER"
@@ -246,81 +267,91 @@ Public Class UploadExcel_MASHOK
                         If String.IsNullOrEmpty(frm.NPDATE.Text) OrElse frm.NPDATE.Text = "__/__/____" Then
                             frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
                         End If
-
                         frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString().Trim()
-                        frm.txtremarks.Text = If(dt.Columns.Contains("OTHER REF (REMARKS)"), dr("OTHER REF (REMARKS)").ToString().Trim(), "")
+
+                        If dt.Columns.Contains("OTHER REF (REMARKS)") Then
+                            frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString().Trim()
+                        End If
+                        frm.CHKMANUAL.Checked = True
+
+
 
                         ' Prepare grid
                         frm.GRIDEXPENSE.Rows.Clear()
                         Dim sr As Integer = 1
 
-                        ' Optional: OTHER AMT applied to main line if present
-                        Dim otherAmt As Decimal = 0D
-                        If dt.Columns.Contains("OTHER AMT") AndAlso dr("OTHER AMT").ToString().Trim() <> "" Then
-                            otherAmt = Val(dr("OTHER AMT"))
-                        End If
+                        Dim sacCode As String = dr("SAC CODE").ToString().Trim()
+                        Dim otherAmt As Decimal = If(dt.Columns.Contains("OTHER AMT"), Val(dr("OTHER AMT")), 0D)
 
-                        ' Helper to add one expense line using the form’s CALC/GETHSNCODE flow
-                        Dim addLine = Sub(itemName As String, qtyTxt As String, rateTxt As String, amtTxt As String)
-                                          If String.IsNullOrWhiteSpace(itemName) Then Exit Sub
-                                          ' Add base row
-                                          frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES",
-                                                       If(dt.Columns.Contains("SAC CODE"), dr("SAC CODE").ToString().Trim(), ""),
-                                                       itemName,
-                                                       Val(qtyTxt), Val(rateTxt), Val(amtTxt),
-                                                       otherAmt, 0, 0, 0, 0, 0, 0, 0, 0,
-                                                       Val(amtTxt))
-                                          Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
+                        ' ==== Loop through 1 to 4 item sets ====
+                        Dim itemSets = New List(Of Integer) From {0, 1, 2, 3}
+                        For Each i In itemSets
+                            Dim itemCol As String = If(i = 0, "ITEM NAME", $"ITEM NAME {i}")
+                            Dim qtyCol As String = If(i = 0, "QTY", $"QTY {i}")
+                            Dim rateCol As String = If(i = 0, "RATE", $"RATE {i}")
+                            Dim amtCol As String = If(i = 0, "AMOUNT", $"AMOUNT {i}")
 
-                                          ' Fill fields required for CALC
-                                          frm.TXTQTY.Text = Val(qtyTxt).ToString()
-                                          frm.TXTRATE.Text = Val(rateTxt).ToString()
-                                          frm.TXTTAXABLEAMT.Text = Val(amtTxt).ToString()
-                                          frm.CMBHSNCODE.Text = If(dt.Columns.Contains("SAC CODE"), dr("SAC CODE").ToString().Trim(), "")
-                                          frm.GETHSNCODE()
-                                          frm.CALC()
+                            'If dt.Columns.Contains(itemCol) AndAlso Not String.IsNullOrWhiteSpace(dr(itemCol).ToString()) Then
+                            'Dim itemName As String = dr(itemCol).ToString().Trim()
+                            'Dim qty As Decimal = If(IsNumeric(dr(qtyCol)), Val(dr(qtyCol)), 0)
+                            'Dim rate As Decimal = If(IsNumeric(dr(rateCol)), Val(dr(rateCol)), 0)
+                            'Dim amt As Decimal = If(IsNumeric(dr(amtCol)), Val(dr(amtCol)), 0)
+                            '' Add row to expense grid
+                            'frm.GRIDEXPENSE.Rows.Add(sr, "WEAVING CHARGES", sacCode, itemName, qty, rate, amt,
+                            '             If(i = 0, otherAmt, 0), 0, 0, 0, 0, 0, 0, 0, 0, amt)
+                            If Not dt.Columns.Contains(itemCol) Then Continue For
+                            Dim itemName As String = dr(itemCol).ToString().Trim()
+                            If String.IsNullOrWhiteSpace(itemName) Then Continue For
+                            Dim qty As Decimal = If(dt.Columns.Contains(qtyCol), Val(dr(qtyCol)), 0)
+                            Dim rate As Decimal = If(dt.Columns.Contains(rateCol), Val(dr(rateCol)), 0)
+                            Dim amt As Decimal = If(dt.Columns.Contains(amtCol), Val(dr(amtCol)), 0)
 
-                                          ' Copy GST results back to grid
-                                          lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
-                                          lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
-                                          lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
-                                          lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
-                                          lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
-                                          lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
-                                          lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
-                                          lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+                            Dim gridRowIndex As Integer = frm.GRIDEXPENSE.Rows.Add()
+                            Dim gridRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(gridRowIndex)
+                            gridRow.Cells("srno").Value = sr
+                            gridRow.Cells("GDRNAME").Value = "WEAVING CHARGES"
+                            gridRow.Cells("GHSNCODE").Value = sacCode
+                            gridRow.Cells("GNOTE").Value = itemName
+                            gridRow.Cells("GQTY").Value = qty
+                            gridRow.Cells("GRATE").Value = rate
+                            gridRow.Cells("gAMT").Value = amt
+                            gridRow.Cells("GOTHERAMT").Value = If(i = 0, otherAmt, 0)
+                            ' Select last added row to populate GST
+                            'Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
 
-                                          sr += 1
-                                      End Sub
+                            frm.TXTQTY.Text = qty.ToString()
+                            frm.TXTRATE.Text = rate.ToString()
+                            frm.TXTTAXABLEAMT.Text = amt.ToString()
+                            frm.CMBHSNCODE.Text = sacCode
 
-                        ' Main item (single row intent)
-                        addLine(If(dt.Columns.Contains("ITEM NAME"), dr("ITEM NAME").ToString().Trim(), ""),
-                    If(dt.Columns.Contains("QTY"), dr("QTY").ToString().Trim(), "0"),
-                    If(dt.Columns.Contains("RATE"), dr("RATE").ToString().Trim(), "0"),
-                    If(dt.Columns.Contains("AMOUNT"), dr("AMOUNT").ToString().Trim(), "0"))
+                            frm.GETHSNCODE()
+                            'frm.CALC()
+                            'lastRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
+                            '    lastRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
+                            '    lastRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
+                            '    lastRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
+                            '    lastRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
+                            '    lastRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
+                            '    lastRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
+                            '    lastRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+                            ' Add to grid
 
-                        ' Optional additional items in same row: ITEM NAME 1..3
-                        For i As Integer = 1 To 3
-                            Dim itemCols = New String() {$"ITEM NAME {i}", $"ITEMNAME {i}", $"ITEMNAME{i}"}
-                            Dim qtyCols = New String() {$"QTY {i}", $"QTY{i}"}
-                            Dim rateCols = New String() {$"RATE {i}", $"RATE{i}"}
-                            Dim amtCols = New String() {$"AMOUNT {i}", $"AMOUNT{i}"}
 
-                            Dim itemCol = itemCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                            If Not String.IsNullOrEmpty(itemCol) AndAlso dr(itemCol).ToString().Trim() <> "" Then
-                                Dim qtyCol = qtyCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                Dim rateCol = rateCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                Dim amtCol = amtCols.FirstOrDefault(Function(c) dt.Columns.Contains(c))
-                                addLine(dr(itemCol).ToString().Trim(),
-                            If(qtyCol Is Nothing, "0", dr(qtyCol).ToString().Trim()),
-                            If(rateCol Is Nothing, "0", dr(rateCol).ToString().Trim()),
-                            If(amtCol Is Nothing, "0", dr(amtCol).ToString().Trim()))
-                            End If
+                            gridRow.Cells("GCGSTPER").Value = frm.TXTCGSTPER.Text
+                            gridRow.Cells("GCGSTAMT").Value = frm.TXTCGSTAMT.Text
+                            gridRow.Cells("GSGSTPER").Value = frm.TXTSGSTPER.Text
+                            gridRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
+                            gridRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
+                            gridRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
+                            gridRow.Cells("GTAXABLEAMT").Value = frm.TXTTAXABLEAMT.Text
+                            gridRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+                            sr += 1
+                            'End If
                         Next
 
-                        ' Totals and save
                         frm.TOTAL()
-                        If frm.SaveInvoice(True) Then
+
+                        If frm.SaveInvoice(False) Then
                             successCount += 1
                         Else
                             errorCount += 1
@@ -328,12 +359,17 @@ Public Class UploadExcel_MASHOK
 
                     Catch ex As Exception
                         errorCount += 1
+                        ' Optional: Log error - MsgBox(ex.Message)
                     End Try
                 Next
                 If failedRows.Count > 0 Then
                     MessageBox.Show("The following rows were not saved because party name not found:" & vbCrLf & String.Join(vbCrLf, failedRows), "Party Name Not Present", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
-
+                If duplicateBillNos.Count > 0 Then
+                    MessageBox.Show("The following Excel rows were skipped because their Party Bill No already exists in the system:" &
+                    vbCrLf & vbCrLf & String.Join(vbCrLf, duplicateBillNos),
+                    "Duplicate Entries Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
 
                 MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -357,7 +393,7 @@ Public Class UploadExcel_MASHOK
                     End If
 
                     ' Fetch SONO details
-                    Dim dtSONO As DataTable = OBJCMN.SEARCH("DELIVERYTO, AGENTNAME, CRDAYS, PARTYNAME, DISCOUNT", "SALEORDER", "AND SONO = '" & sono & "' AND SOYEARID = " & YearId)
+                    Dim dtSONO As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DELIVERYTO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SALEORDER_DESC.SO_GRIDREMARKS, '') AS [DESC], ISNULL(SALEORDER_DESC.SO_QTY,  0) AS PCS, ISNULL(SALEORDER_DESC.SO_CUT, 0) AS CUT, ISNULL(SALEORDER_DESC.SO_RATE, 0) AS RATE, ISNULL(SALEORDER_DESC.SO_PER, '') AS PER, ISNULL(SALEORDER_DESC.SO_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, ISNULL(SALEORDER.SO_CD, 0) AS DISCOUNT, ISNULL(SALEORDER.SO_DAYS, 0) AS CRDAYS", "SALEORDER INNER JOIN SALEORDER_DESC ON SALEORDER.so_no = SALEORDER_DESC.SO_NO AND SALEORDER.SO_YEARID = SALEORDER_DESC.SO_YEARID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON SALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN                          COLORMASTER ON SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON SALEORDER.SO_transid = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON SALEORDER.SO_PACKINGID = PACKINGLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON SALEORDER.so_ledgerid = LEDGERS.Acc_id ", "AND SO_NO = '" & sono & "' AND SO_YEARID = " & YearId)
                     If dtSONO.Rows.Count = 0 Then
                         MessageBox.Show("SONO " & sono & " not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         errorCount += 1
@@ -438,5 +474,10 @@ Public Class UploadExcel_MASHOK
         Dim OBJCMN As New ClsCommon()
         Dim dtParty As DataTable = OBJCMN.SEARCH("ACC_CMPNAME", "", "LEDGERS", "And ACC_CMPNAME = '" & partyName.Replace("'", "''") & "' AND ACC_YEARID = " & YearId)
         Return dtParty.Rows.Count > 0
+    End Function
+    Private Function IsPartyBillNoAlreadySavedInDB(partyBillNo As String) As Boolean
+        Dim OBJCMN As New ClsCommon()
+        Dim dtExist As DataTable = OBJCMN.SEARCH("NP_REFNO", "", "NONPURCHASE", "AND NP_REFNO = " & partyBillNo.Replace("'", "''") & " AND NP_YEARID = " & YearId)
+        Return dtExist.Rows.Count > 0
     End Function
 End Class
