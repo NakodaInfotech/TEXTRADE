@@ -72,27 +72,27 @@ Public Class SampleBarcode
     Private Sub cmbMERCHANT_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMERCHANT.Validating
         Try
             If CMBMERCHANT.Text.Trim <> "" Then
-                itemvalidate(CMBMERCHANT, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+                'itemvalidate(CMBMERCHANT, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
 
-                'THIS CODE IS FOR SAVING ALL ITEMS AND DESIGNS ONCE IN THE SAMPLE ENTRY
-                Dim OBJCMN As New ClsCommon
+                ''THIS CODE IS FOR SAVING ALL ITEMS AND DESIGNS ONCE IN THE SAMPLE ENTRY
+                'Dim OBJCMN As New ClsCommon
 
-                'THIS CODE Is TO FETCH DATA FROM BARCODE STOCK
-                Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ITEMNAME ", "", " BARCODESTOCK ", "  AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND YEARID =" & YearId & " ORDER BY ITEMNAME")
-                For Each DTROW As DataRow In DT.Rows
-                    Dim DTDESIGN As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGNNO ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND YEARID = " & YearId & " ORDER BY DESIGNNO")
-                    For Each DRDESIGN As DataRow In DTDESIGN.Rows
-                        Dim DTCOLOR As DataTable = OBJCMN.SEARCH(" DISTINCT COLOR ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND DESIGNNO = '" & DRDESIGN("DESIGNNO") & "' AND YEARID = " & YearId & " ORDER BY COLOR")
-                        For Each DRCOLOR As DataRow In DTCOLOR.Rows
-                            CMBMERCHANT.Text = DTROW("ITEMNAME")
-                            CMBDESIGNNO.Text = DRDESIGN("DESIGNNO")
-                            CMBCOLOR.Text = DRCOLOR("COLOR")
+                ''THIS CODE Is TO FETCH DATA FROM BARCODE STOCK
+                'Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ITEMNAME ", "", " BARCODESTOCK ", "  AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND YEARID =" & YearId & " ORDER BY ITEMNAME")
+                'For Each DTROW As DataRow In DT.Rows
+                '    Dim DTDESIGN As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGNNO ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND YEARID = " & YearId & " ORDER BY DESIGNNO")
+                '    For Each DRDESIGN As DataRow In DTDESIGN.Rows
+                '        Dim DTCOLOR As DataTable = OBJCMN.SEARCH(" DISTINCT COLOR ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND DESIGNNO = '" & DRDESIGN("DESIGNNO") & "' AND YEARID = " & YearId & " ORDER BY COLOR")
+                '        For Each DRCOLOR As DataRow In DTCOLOR.Rows
+                '            CMBMERCHANT.Text = DTROW("ITEMNAME")
+                '            CMBDESIGNNO.Text = DRDESIGN("DESIGNNO")
+                '            CMBCOLOR.Text = DRCOLOR("COLOR")
 
-                            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", "  SAMPLEBARCODE LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "'  AND isnull(COLOR_NAME, '') = '" & CMBCOLOR.Text.Trim & "' AND SB_YEARID = " & YearId)
-                            If DTCHECK.Rows.Count = 0 Then Call TXTREMARKS_Validating(sender, e)
-                        Next
-                    Next
-                Next
+                '            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", "  SAMPLEBARCODE LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "'  AND isnull(COLOR_NAME, '') = '" & CMBCOLOR.Text.Trim & "' AND SB_YEARID = " & YearId)
+                '            If DTCHECK.Rows.Count = 0 Then Call TXTREMARKS_Validating(sender, e)
+                '        Next
+                '    Next
+                'Next
 
 
                 'THIS IS TO FETCH DATA FROM DESIGNMASER_COLOR
