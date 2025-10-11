@@ -16,7 +16,7 @@ Public Class UploadExcel_MASHOK
     End Sub
 
     Sub CLEAR()
-        TXTFILENAME.Clear()
+        TXTPATH.Clear()
     End Sub
 
     Private Sub UploadExcelNonPurchase_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -214,6 +214,7 @@ Public Class UploadExcel_MASHOK
                 Dim failedRows As New List(Of String)
                 Dim processedPartyBillNos As New HashSet(Of String)() ' Track processed party bill numbers
                 Dim duplicateBillNos As New List(Of String)()
+                Dim missingHSNRows As New List(Of String) ' To store missing HSN rows
                 For Each dr As DataRow In dt.Rows
                     Dim partyBillNo As String = dr("party bill no").ToString().Trim()
 
@@ -233,12 +234,18 @@ Public Class UploadExcel_MASHOK
                             Continue For
                         End If
                         If IsPartyBillNoAlreadySavedInDB(partyBillNo) Then
-                            duplicateBillNos.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " - Party Bill No: " & partyBillNo & " (already in DB)")
+                            duplicateBillNos.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " - Party Bill No: " & partyBillNo & " (Already in Database)")
                             ' Increment error count
                             errorCount += 1
                             Continue For
                         End If
-
+                        Dim sacCode As String = dr("SAC CODE").ToString().Trim()
+                        If Not HSNExists(sacCode) Then
+                            ' Add to missing list: Excel row number (start at 2 for first data row)
+                            missingHSNRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2).ToString() & " (HSN: '" & sacCode & "')")
+                            errorCount += 1 ' Increment error count as in your logic
+                            Continue For ' Skip this entry, do not save
+                        End If
                         ' Skip empty lines (no item and no amount)
                         'Dim hasMainItem As Boolean = functionCols("ITEM NAME") AndAlso dr("ITEM NAME").ToString().Trim() <> ""
                         'Dim hasAnyAmount As Boolean = functionCols("AMOUNT") AndAlso dr("AMOUNT").ToString().Trim() <> ""
@@ -280,7 +287,7 @@ Public Class UploadExcel_MASHOK
                         frm.GRIDEXPENSE.Rows.Clear()
                         Dim sr As Integer = 1
 
-                        Dim sacCode As String = dr("SAC CODE").ToString().Trim()
+                        'Dim sacCode As String = dr("SAC CODE").ToString().Trim()
                         Dim otherAmt As Decimal = If(dt.Columns.Contains("OTHER AMT"), Val(dr("OTHER AMT")), 0D)
 
                         ' ==== Loop through 1 to 4 item sets ====
@@ -369,6 +376,10 @@ Public Class UploadExcel_MASHOK
                     MessageBox.Show("The following Excel rows were skipped because their Party Bill No already exists in the system:" &
                     vbCrLf & vbCrLf & String.Join(vbCrLf, duplicateBillNos),
                     "Duplicate Entries Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+                If missingHSNRows.Count > 0 Then
+                    MessageBox.Show("The following Excel rows were not saved because their HSN/SAC code was not found in the database:" &
+                     vbCrLf & String.Join(vbCrLf, missingHSNRows), "Missing HSN/SAC Codes", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
 
                 MessageBox.Show(successCount & " vouchers uploaded successfully. " & errorCount & " failed.", "Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -479,5 +490,10 @@ Public Class UploadExcel_MASHOK
         Dim OBJCMN As New ClsCommon()
         Dim dtExist As DataTable = OBJCMN.SEARCH("NP_REFNO", "", "NONPURCHASE", "AND NP_REFNO = " & partyBillNo.Replace("'", "''") & " AND NP_YEARID = " & YearId)
         Return dtExist.Rows.Count > 0
+    End Function
+    Private Function HSNExists(hsnCode As String) As Boolean
+        Dim OBJCMN As New ClsCommon()
+        Dim dtHSN As DataTable = OBJCMN.SEARCH("HSN_CODE", "", "HSNMASTER", "AND HSN_CODE = '" & hsnCode.Replace("'", "''") & "' AND HSN_YEARID = " & YearId)
+        Return dtHSN.Rows.Count > 0
     End Function
 End Class
