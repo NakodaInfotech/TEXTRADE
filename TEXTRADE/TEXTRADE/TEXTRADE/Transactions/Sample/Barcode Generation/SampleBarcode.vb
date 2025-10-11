@@ -88,7 +88,7 @@ Public Class SampleBarcode
                             CMBDESIGNNO.Text = DRDESIGN("DESIGNNO")
                             CMBCOLOR.Text = DRCOLOR("COLOR")
 
-                            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", " SAMPLEBARCODE LEFT OUTER JOIN ITEMMASTER ON SB_ITEMID = ITEM_ID LEFT OUTER JOIN DESIGNMASTER ON SB_DESIGNID = DESIGN_ID", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "' AND SB_YEARID = " & YearId)
+                            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", "  SAMPLEBARCODE LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "'  AND isnull(COLOR_NAME, '') = '" & CMBCOLOR.Text.Trim & "' AND SB_YEARID = " & YearId)
                             If DTCHECK.Rows.Count = 0 Then Call TXTREMARKS_Validating(sender, e)
                         Next
                     Next
