@@ -99,21 +99,21 @@ Public Class SampleBarcode
 
 
                 'THIS CODE FOR AFTER CREATION OF MULTIPLE SHADE BARCODE YOU WANT MAINE BARCODE Like INCLUDE  ITEM DESIGN PARAMETER 
-                Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ITEMNAME ", "", " BARCODESTOCK ", "  AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND YEARID =" & YearId & " ORDER BY ITEMNAME")
-                For Each DTROW As DataRow In DT.Rows
-                    Dim DTDESIGN As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGNNO ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND YEARID = " & YearId & " ORDER BY DESIGNNO")
-                    For Each DRDESIGN As DataRow In DTDESIGN.Rows
-                        Dim DTCOLOR As DataTable = OBJCMN.SEARCH(" DISTINCT  '' AS COLOR  ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND DESIGNNO = '" & DRDESIGN("DESIGNNO") & "' AND YEARID = " & YearId & " ORDER BY COLOR")
-                        For Each DRCOLOR As DataRow In DTCOLOR.Rows
-                            CMBMERCHANT.Text = DTROW("ITEMNAME")
-                            CMBDESIGNNO.Text = DRDESIGN("DESIGNNO")
-                            '    CMBCOLOR.Text = DRCOLOR("COLOR")
+                'Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ITEMNAME ", "", " BARCODESTOCK ", "  AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND YEARID =" & YearId & " ORDER BY ITEMNAME")
+                'For Each DTROW As DataRow In DT.Rows
+                '    Dim DTDESIGN As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGNNO ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND YEARID = " & YearId & " ORDER BY DESIGNNO")
+                '    For Each DRDESIGN As DataRow In DTDESIGN.Rows
+                '        Dim DTCOLOR As DataTable = OBJCMN.SEARCH(" DISTINCT  '' AS COLOR  ", "", " BARCODESTOCK ", " AND UNIT IN('Meters','Lump','Lump TP','Roll','Roll TP','TP') AND ITEMNAME = '" & DTROW("ITEMNAME") & "' AND DESIGNNO = '" & DRDESIGN("DESIGNNO") & "' AND YEARID = " & YearId & " ORDER BY COLOR")
+                '        For Each DRCOLOR As DataRow In DTCOLOR.Rows
+                '            CMBMERCHANT.Text = DTROW("ITEMNAME")
+                '            CMBDESIGNNO.Text = DRDESIGN("DESIGNNO")
+                '            '    CMBCOLOR.Text = DRCOLOR("COLOR")
 
-                            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", "  SAMPLEBARCODE LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "'  AND isnull(COLOR_NAME, '') = '" & CMBCOLOR.Text.Trim & "' AND SB_YEARID = " & YearId)
-                            If DTCHECK.Rows.Count = 0 Then Call TXTREMARKS_Validating(sender, e)
-                        Next
-                    Next
-                Next
+                '            Dim DTCHECK As DataTable = OBJCMN.SEARCH(" SB_BARCODE AS BARCODE ", "", "  SAMPLEBARCODE LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id", " AND ITEMMASTER.ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND isnull(DESIGN_NO, '') = '" & CMBDESIGNNO.Text.Trim & "'  AND isnull(COLOR_NAME, '') = '" & CMBCOLOR.Text.Trim & "' AND SB_YEARID = " & YearId)
+                '            If DTCHECK.Rows.Count = 0 Then Call TXTREMARKS_Validating(sender, e)
+                '        Next
+                '    Next
+                'Next
 
 
                 'THIS IS TO FETCH DATA FROM DESIGNMASER_COLOR
