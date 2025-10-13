@@ -1,5 +1,9 @@
-﻿
+﻿Imports System.Drawing
+Imports System.IO
+Imports System.Runtime.InteropServices
 Imports BL
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class AgencyOrderGridReport
 
@@ -167,7 +171,7 @@ Public Class AgencyOrderGridReport
                     If GRIDSO.RowCount > 0 Then
                         GRIDSO.Rows.Add("", "", "", "", "", "TOTAL", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
                         GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-                        GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                        GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Calibri", 10, FontStyle.Bold)
                         GRIDSO.Rows.Add("", "", "", "", "", "", "", "", "", "", "")
 
                         TOTALPCS = 0
@@ -175,7 +179,7 @@ Public Class AgencyOrderGridReport
                         TOTALBALPCS = 0
                     End If
                     GRIDSO.Rows.Add(DTROW("ITEMNAME"), "", "", "", "", "", "", "", "", "", "")
-                    GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                    GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Calibri", 10, FontStyle.Bold)
                 End If
                 GRIDSO.Rows.Add("", Val(DTROW("SONO")), Format(DTROW("SODATE"), "dd/MM/yyyy"), DTROW("BUYERNAME"), DTROW("SELLERNAME"), DTROW("NOTE"), Val(DTROW("PCS")), Val(DTROW("OUTPCS")), Val(DTROW("BALPCS")), Format(Val(DTROW("RATE")), "0.00"), Val(DTROW("DAYS")))
                 TOTALPCS += Val(DTROW("PCS"))
@@ -190,12 +194,12 @@ Public Class AgencyOrderGridReport
             If GRIDSO.RowCount > 0 Then
                 GRIDSO.Rows.Add("", "", "", "", "", "TOTAL", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
                 GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Calibri", 10, FontStyle.Bold)
 
 
                 GRIDSO.Rows.Add("", "", "", "", "", "GRAND TOTAL", Val(GTOTALPCS), Val(GTOTALDELPCS), Val(GTOTALBALPCS), "", "")
                 GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.DarkGreen
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Calibri", 10, FontStyle.Bold)
             End If
 
         Catch ex As Exception
@@ -335,5 +339,324 @@ Public Class AgencyOrderGridReport
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            ' Prepare data for grid
+            ' TEMPOUTSTANDING()
+
+            ' Generate the PDF from DataGridView
+            Dim filePath As String = Application.StartupPath & "\Agency Order Grid" & CMBBUYER.Text.Trim & ".pdf"
+
+            ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
+            ExportDataGridViewToPdfForWP(GRIDSO, filePath)
+
+            ' Prepare WhatsApp sending form
+            Dim OBJWHATSAPP As New SendWhatsapp
+            OBJWHATSAPP.PARTYNAME = CMBBUYER.Text.Trim
+            OBJWHATSAPP.PATH.Add(filePath)
+            OBJWHATSAPP.FILENAME.Add("Agency Order Grid" & CMBBUYER.Text.Trim & ".pdf")
+            OBJWHATSAPP.ShowDialog()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
+    'Public Sub ExportDataGridViewToPdfForWP(dgv As DataGridView, filePath As String)
+    '    ' 👉 Changed to A3 for bigger page size
+    '    Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
+
+    '    Try
+    '        PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
+    '        doc.Open()
+
+    '        ' Load Verdana font
+    '        Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+    '        Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+    '        Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+    '        Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+    '        ' Title & Date
+    '        doc.Add(New Paragraph(" Agency Order Report", verdana16Bold))
+    '        doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+    '        doc.Add(New Paragraph(" "))
+
+    '        ' Collect visible columns
+    '        Dim visibleColumns As New List(Of DataGridViewColumn)
+    '        For Each col As DataGridViewColumn In dgv.Columns
+    '            If col.Visible Then visibleColumns.Add(col)
+    '        Next
+
+    '        Dim table As New PdfPTable(visibleColumns.Count)
+    '        table.WidthPercentage = 100 ' Use full page width
+    '        table.HeaderRows = 1
+
+    '        ' Set custom widths: 40% more for selected columns
+    '        Dim baseWidth As Single = 0.8F
+    '        Dim wideWidth As Single = baseWidth * 1.4F ' 40% more
+    '        Dim widths(visibleColumns.Count - 1) As Single
+
+    '        For i As Integer = 0 To visibleColumns.Count - 1
+    '            Select Case visibleColumns(i).HeaderText.Trim().ToUpper()
+    '                Case "ITEM NAME", "BUYER NAME", "SELLER NAME"
+    '                    widths(i) = wideWidth
+    '                Case Else
+    '                    widths(i) = baseWidth
+    '            End Select
+    '        Next
+
+    '        table.SetWidths(widths)
+
+    '        ' Add header cells
+    '        For Each col As DataGridViewColumn In visibleColumns
+    '            Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+    '            .BackgroundColor = BaseColor.LIGHT_GRAY,
+    '            .HorizontalAlignment = Element.ALIGN_CENTER,
+    '            .VerticalAlignment = Element.ALIGN_MIDDLE,
+    '            .Padding = 5,
+    '            .NoWrap = False
+    '        }
+    '            table.AddCell(headerCell)
+    '        Next
+
+    '        ' Data rows
+    '        For Each row As DataGridViewRow In dgv.Rows
+    '            If Not row.IsNewRow Then
+    '                Dim isTotalRow As Boolean = False
+
+    '                ' Check if row contains "TOTAL" or "GRAND TOTAL"
+    '                For Each cell As DataGridViewCell In row.Cells
+    '                    If cell.Value IsNot Nothing Then
+    '                        Dim cellText As String = cell.Value.ToString().Trim().ToUpper()
+    '                        If cellText = "TOTAL" OrElse cellText = "GRAND TOTAL" Then
+    '                            isTotalRow = True
+    '                            Exit For
+    '                        End If
+    '                    End If
+    '                Next
+
+    '                For Each col As DataGridViewColumn In visibleColumns
+    '                    Dim cell As DataGridViewCell = row.Cells(col.Index)
+    '                    Dim value As String = ""
+
+    '                    If cell.Value IsNot Nothing Then
+    '                        If TypeOf cell.Value Is DateTime Then
+    '                            value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+    '                        Else
+    '                            value = cell.Value.ToString()
+    '                        End If
+    '                    End If
+
+    '                    Dim pdfCell As New PdfPCell(New Phrase(value, If(isTotalRow, verdana10Bold, verdana10))) With {
+    '                    .VerticalAlignment = Element.ALIGN_MIDDLE,
+    '                    .Padding = 4
+    '                }
+
+    '                    ' Color logic
+    '                    If isTotalRow Then
+    '                        pdfCell.BackgroundColor = New BaseColor(250, 240, 230) ' Light beige
+    '                    ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+    '                        pdfCell.BackgroundColor = BaseColor.YELLOW
+    '                    ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+    '                        pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+    '                    End If
+
+    '                    ' Alignment
+    '                    If IsNumeric(value) Then
+    '                        pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+    '                    Else
+    '                        pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+    '                    End If
+
+    '                    table.AddCell(pdfCell)
+    '                Next
+    '            End If
+    '        Next
+
+    '        doc.Add(table)
+
+    '    Catch ex As Exception
+    '        MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    Finally
+    '        doc.Close()
+    '    End Try
+    'End Sub
+
+
+    Public Sub ExportDataGridViewToPdfForWP(dgv As DataGridView, filePath As String)
+        ' 👉 Changed to A3 for bigger page size
+        Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
+
+        Try
+            PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
+            doc.Open()
+
+            ' Load Verdana font
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+            ' Title & Date
+            doc.Add(New Paragraph(" Agency Order Report", verdana16Bold))
+            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+            doc.Add(New Paragraph(" "))
+
+            ' Collect visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then visibleColumns.Add(col)
+            Next
+
+            ' Add one more column for "Remarks"
+            Dim totalColumnsCount As Integer = visibleColumns.Count + 1
+
+            Dim table As New PdfPTable(totalColumnsCount)
+            table.WidthPercentage = 100 ' Use full page width
+            table.HeaderRows = 1
+
+            ' Set custom widths: 40% more for selected columns, add smaller width for Remarks
+            Dim baseWidth As Single = 0.75F
+            Dim wideWidth As Single = baseWidth * 1.4F ' 40% more
+            Dim remarksWidth As Single = baseWidth * 1.2F ' slightly wider than base
+
+            Dim widths(totalColumnsCount - 1) As Single
+
+            For i As Integer = 0 To visibleColumns.Count - 1
+                Select Case visibleColumns(i).HeaderText.Trim().ToUpper()
+                    Case "ITEM NAME", "BUYER NAME", "SELLER NAME"
+                        widths(i) = wideWidth
+                    Case Else
+                        widths(i) = baseWidth
+                End Select
+            Next
+
+            ' Last column "Remarks"
+            widths(totalColumnsCount - 1) = remarksWidth
+
+            table.SetWidths(widths)
+
+            ' Add header cells for existing columns
+            For Each col As DataGridViewColumn In visibleColumns
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+                .BackgroundColor = BaseColor.LIGHT_GRAY,
+                .HorizontalAlignment = Element.ALIGN_CENTER,
+                .VerticalAlignment = Element.ALIGN_MIDDLE,
+                .Padding = 5,
+                .NoWrap = False
+            }
+                table.AddCell(headerCell)
+            Next
+
+            ' Add header cell for new Remarks column
+            Dim remarksHeaderCell As New PdfPCell(New Phrase("Remarks", verdana10Bold)) With {
+            .BackgroundColor = BaseColor.LIGHT_GRAY,
+            .HorizontalAlignment = Element.ALIGN_CENTER,
+            .VerticalAlignment = Element.ALIGN_MIDDLE,
+            .Padding = 5,
+            .NoWrap = False
+        }
+            table.AddCell(remarksHeaderCell)
+
+            ' Data rows
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    Dim isTotalRow As Boolean = False
+
+                    ' Check if row contains "TOTAL" or "GRAND TOTAL"
+                    For Each cell As DataGridViewCell In row.Cells
+                        If cell.Value IsNot Nothing Then
+                            Dim cellText As String = cell.Value.ToString().Trim().ToUpper()
+                            If cellText = "TOTAL" OrElse cellText = "GRAND TOTAL" Then
+                                isTotalRow = True
+                                Exit For
+                            End If
+                        End If
+                    Next
+
+                    ' Add existing columns data
+                    For Each col As DataGridViewColumn In visibleColumns
+                        Dim cell As DataGridViewCell = row.Cells(col.Index)
+                        Dim value As String = ""
+
+                        If cell.Value IsNot Nothing Then
+                            If TypeOf cell.Value Is DateTime Then
+                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                value = cell.Value.ToString()
+                            End If
+                        End If
+
+                        Dim pdfCell As New PdfPCell(New Phrase(value, If(isTotalRow, verdana10Bold, verdana10))) With {
+                        .VerticalAlignment = Element.ALIGN_MIDDLE,
+                        .Padding = 4
+                    }
+
+                        ' Color logic
+                        If isTotalRow Then
+                            pdfCell.BackgroundColor = New BaseColor(250, 240, 230) ' Light beige
+                        ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+                            pdfCell.BackgroundColor = BaseColor.YELLOW
+                        ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                            pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                        End If
+
+                        ' Alignment
+                        If IsNumeric(value) Then
+                            pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT
+                        Else
+                            pdfCell.HorizontalAlignment = Element.ALIGN_LEFT
+                        End If
+
+                        table.AddCell(pdfCell)
+                    Next
+
+                    ' Add Remarks cell (empty or customize here)
+                    Dim remarksText As String = "" ' You can set any remark per row here if you want
+
+                    Dim remarksCell As New PdfPCell(New Phrase(remarksText, If(isTotalRow, verdana10Bold, verdana10))) With {
+                    .VerticalAlignment = Element.ALIGN_MIDDLE,
+                    .Padding = 4
+                }
+                    ' Same color logic for remarks
+                    If isTotalRow Then
+                        remarksCell.BackgroundColor = New BaseColor(250, 240, 230)
+                    ElseIf row.DefaultCellStyle.BackColor = Color.Yellow Then
+                        remarksCell.BackgroundColor = BaseColor.YELLOW
+                    ElseIf row.DefaultCellStyle.BackColor = Color.LightGreen Then
+                        remarksCell.BackgroundColor = BaseColor.LIGHT_GRAY
+                    End If
+
+                    remarksCell.HorizontalAlignment = Element.ALIGN_LEFT
+                    table.AddCell(remarksCell)
+                End If
+            Next
+
+            doc.Add(table)
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            doc.Close()
+        End Try
+    End Sub
+
+
+
+
+
 
 End Class

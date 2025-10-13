@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class AgencyRecReport_ABHEE
+Public Class AgencySOStatusDetailsReport
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class AgencyRecReport_ABHEE
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "AgencyRecReport_ABHEE.rpt"
+            Return "AgencySOStatusDetailsReport.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class AgencyRecReport_ABHEE
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.AgencyRecReport_ABHEE.rpt"
+            Return "TEXTRADE.AgencySOStatusDetailsReport.rpt"
         End Get
         Set
             'Do nothing
@@ -70,7 +70,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -94,7 +94,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(5)
         End Get
@@ -102,7 +102,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(6)
         End Get
@@ -110,7 +110,7 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(7)
         End Get
@@ -118,15 +118,31 @@ Public Class AgencyRecReport_ABHEE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_PAYMENTDETAILS_Pm_PAYMENT_REPORTYEARID() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
-            Return Me.DataDefinition.ParameterFields(0)
+            Return Me.ReportDefinition.Sections(8)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
+        Get
+            Return Me.ReportDefinition.Sections(9)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
+        Get
+            Return Me.ReportDefinition.Sections(10)
         End Get
     End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedAgencyRecReport_ABHEE
+Public Class CachedAgencySOStatusDetailsReport
     Inherits Component
     Implements ICachedReport
     
@@ -168,7 +184,7 @@ Public Class CachedAgencyRecReport_ABHEE
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As AgencyRecReport_ABHEE = New AgencyRecReport_ABHEE()
+        Dim rpt As AgencySOStatusDetailsReport = New AgencySOStatusDetailsReport()
         rpt.Site = Me.Site
         Return rpt
     End Function

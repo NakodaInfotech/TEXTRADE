@@ -2,8 +2,6 @@
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
-Imports DevExpress.XtraScheduler
-Imports DevExpress.XtraTabbedMdi
 
 Public Class MDIMain
     Public Sub New()
@@ -5161,6 +5159,7 @@ SKIPLINE:
             End If
             If ClientName = "ABHEE" Then
                 LRStockToolStripMenuItem.Enabled = True
+                MAGICBOX_MENU.Visible = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
             If ClientName = "NAKODAINFOTECH" Then AutoWhatsappToolStripMenuItem.Visible = True
@@ -10469,7 +10468,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub MagicBoxOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxOrderToolStripMenuItem.Click
+    Private Sub MAGICBOXORDER_MENU_Click(sender As Object, e As EventArgs) Handles MAGICBOXORDER_MENU.Click
         Try
             Dim OBJMB As New MagicBox
             OBJMB.MdiParent = Me
@@ -10549,17 +10548,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    'Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
-    '    'Try
-    '    '    Dim DASH As New DashB
-    '    '    DASH.MdiParent = Me
-    '    '    DASH.Show()
-    '    'Catch ex As Exception
-    '    '    Throw ex
-    '    'End Try
-    'End Sub
-
-    Private Sub MagicBoxRecPayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxRecPayToolStripMenuItem.Click
+    Private Sub MAGICBOXRECPAY_MENU_Click(sender As Object, e As EventArgs) Handles MAGICBOXRECPAY_MENU.Click
         Try
             Dim OBJPUR As New MagicBoxForRecPay
             OBJPUR.MdiParent = Me
@@ -10589,7 +10578,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub MagicBoxInvoiceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MagicBoxInvoiceToolStripMenuItem.Click
+    Private Sub MAGICBOXINVOICE_MENU_Click(sender As Object, e As EventArgs) Handles MAGICBOXINVOICE_MENU.Click
         Try
             Dim OBJMB As New MagicBoxForInvoice
             OBJMB.MdiParent = Me

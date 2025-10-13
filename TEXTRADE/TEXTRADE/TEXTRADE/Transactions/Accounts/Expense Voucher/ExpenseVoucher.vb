@@ -35,9 +35,9 @@ Public Class ExpenseVoucher
         ' just call the private button handler
         'cmdok_Click(Nothing, EventArgs.Empty)
         Try
-            If Not errorvalid() Then
-                Return False ' Validation failed
-            End If
+            'If Not errorvalid() Then
+            '    Return False ' Validation failed
+            'End If
             CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
             TOTAL()
 

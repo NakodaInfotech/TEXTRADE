@@ -424,4 +424,30 @@ Public Class DeductTDS
             Throw ex
         End Try
     End Sub
+    Public Sub AutoDeductTDS(ByVal billNo As Integer, ByVal registerName As String)
+        Try
+            ' 1️⃣ Assign incoming parameters
+            Me.BILLNO = billNo
+            Me.REGISTER = registerName
+
+            ' 2️⃣ Load data exactly as done in DeductTDS_Shown()
+            DeductTDS_Shown(Nothing, EventArgs.Empty)
+
+            ' 3️⃣ Auto calculate TDS %
+            TXTTDSPER_Validated(Nothing, EventArgs.Empty)
+
+            ' 4️⃣ Skip if nothing to deduct
+            If Val(TXTTDSAMT.Text) = 0 AndAlso Val(TXTTDSROUNDOFF.Text) = 0 Then Exit Sub
+
+            ' 5️⃣ Validate data
+            If Not errorvalid() Then Exit Sub
+
+            ' 6️⃣ Auto-run the same logic as clicking OK
+            cmdok_Click(Nothing, EventArgs.Empty)
+
+        Catch ex As Exception
+            ' Silent failure log
+            Debug.Print("AutoDeductTDS failed: " & ex.Message)
+        End Try
+    End Sub
 End Class
