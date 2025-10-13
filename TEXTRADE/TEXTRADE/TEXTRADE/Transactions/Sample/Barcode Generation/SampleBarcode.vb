@@ -1476,24 +1476,38 @@ PRINT 1,1")
 
                             Dim ROW As DataRow = gridbill.GetDataRow(i - 1)
 
-                            'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                            Dim TEMPREMARKS As String = ""
-                            Dim TEMPITEMNAME As String = ""
-                            Dim TEMPWIDTH As String = ""
-                            Dim TEMPCATEGORY As String = ""
-                            Dim OBJCMN As New ClsCommon
-                            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then
-                                TEMPREMARKS = DT.Rows(0).Item("REMARKS")
-                                TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
-                                TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                                TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
-                            End If
+                            ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                            'Dim TEMPREMARKS As String = ""
+                            'Dim TEMPITEMNAME As String = ""
+                            'Dim TEMPWIDTH As String = ""
+                            'Dim TEMPCATEGORY As String = ""
+                            'Dim OBJCMN As New ClsCommon
+                            'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                            'If DT.Rows.Count > 0 Then
+                            '    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                            '    TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
+                            '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                            '    TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                            'End If
 
 
                             For J As Integer = 1 To Val(TXTCOPIES.Text.Trim)
 
                                 If CHKPRINTSELECTED.CheckState = CheckState.Checked And Convert.ToBoolean(ROW("CHK")) = False Then GoTo NEXTLINE
+                                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                                'it is shifted here because it was taking more time to print barcode in mahavir poly cot 
+                                Dim TEMPREMARKS As String = ""
+                                Dim TEMPITEMNAME As String = ""
+                                Dim TEMPWIDTH As String = ""
+                                Dim TEMPCATEGORY As String = ""
+                                Dim OBJCMN As New ClsCommon
+                                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                If DT.Rows.Count > 0 Then
+                                    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                                    TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
+                                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                                    TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                                End If
                                 If Convert.ToBoolean(ROW("ITEMBLOCKED")) = True Or Convert.ToBoolean(ROW("DESIGNBLOCKED")) = True Or Convert.ToBoolean(ROW("COLORBLOCKED")) = True Then GoTo NEXTLINE
 
                                 Dim dirresults As String = ""
