@@ -294,7 +294,9 @@ Public Class MagicBoxForInvoice
                 'alParaval.Add("") 'ORDERRATE)
                 'alParaval.Add("") 'ORDERPARTYPONO)
 
-
+                alParaval.Add("")   'COMPLAINT
+                alParaval.Add("")   'COMPLAINTBY
+                alParaval.Add("")   'COMPLAINTDATE
 
 
                 alParaval.Add(Convert.ToBoolean(row.Cells(GMANUALROUNDOFF.Index).Value)) 'MANUALROUNDOFF

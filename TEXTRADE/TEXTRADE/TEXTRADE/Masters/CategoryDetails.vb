@@ -47,6 +47,8 @@ Public Class CategoryDetails
                 Me.Text = "Bank Name Master"
             ElseIf frmstring = "PROCESS" Then
                 Me.Text = "Process Master"
+            ElseIf FRMSTRING = "PROJECT" Then
+                Me.Text = "Project Master"
             ElseIf frmstring = "QUALITY" Then
                 Me.Text = "Quality Master"
             ElseIf frmstring = "GODOWN" Then
@@ -92,6 +94,8 @@ Public Class CategoryDetails
             dttable = objClsCommon.search(" PARTYBANK_name AS NAME, PARTYBANK_id AS ID", "", "PARTYBANKmaster", " and PARTYBANK_Yearid = " & YearId & " ORDER BY PARTYBANK_NAME")
         ElseIf frmstring = "PROCESS" Then
             dttable = objClsCommon.search(" PROCESS_name AS NAME, PROCESS_id AS ID", "", "PROCESSmaster", " and PROCESS_Yearid = " & YearId & " ORDER BY PROCESS_NAME")
+        ElseIf frmstring = "PROJECT" Then
+            dttable = objClsCommon.search(" PROJECT_name AS NAME, PROJECT_id AS ID", "", "PROJECTmaster", " and PROJECT_Yearid = " & YearId & " ORDER BY PROJECT_NAME")
         ElseIf frmstring = "GODOWN" Then
             dttable = objClsCommon.search(" GODOWN_name AS NAME, GODOWN_id AS ID", "", "GODOWNmaster", " and GODOWN_Yearid = " & YearId & " ORDER BY GODOWN_NAME")
         ElseIf frmstring = "QUALITY" Then
