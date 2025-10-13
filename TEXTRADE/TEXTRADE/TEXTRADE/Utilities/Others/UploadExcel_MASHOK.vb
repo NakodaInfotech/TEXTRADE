@@ -398,6 +398,7 @@ Public Class UploadExcel_MASHOK
 
                         frm.TOTAL()
                         Debug.Print("Passed duplicate check, now doing save")
+                        frm.IsBulkUploadtds = True
                         If frm.SaveInvoice(False) Then
                             successCount += 1
                             If frm.CHKTDS.CheckState = CheckState.Checked Then
