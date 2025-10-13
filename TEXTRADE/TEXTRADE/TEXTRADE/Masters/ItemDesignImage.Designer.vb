@@ -41,6 +41,7 @@ Partial Class ItemDesignImage
         Me.CMDPHOTOUPLOAD2 = New System.Windows.Forms.Button()
         Me.CMDPHOTOREMOVE2 = New System.Windows.Forms.Button()
         Me.TBPATH = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TXTUPLOADPATH = New System.Windows.Forms.TextBox()
         Me.PBIMAGEPATH = New System.Windows.Forms.PictureBox()
         Me.CMDVIEWPATH = New System.Windows.Forms.Button()
@@ -64,7 +65,6 @@ Partial Class ItemDesignImage
         Me.Label3 = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBUPLOAD.SuspendLayout()
@@ -307,6 +307,17 @@ Partial Class ItemDesignImage
         Me.TBPATH.Size = New System.Drawing.Size(599, 197)
         Me.TBPATH.TabIndex = 1
         Me.TBPATH.Text = "2. Upload Path"
+        '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(259, 84)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(138, 28)
+        Me.Button1.TabIndex = 642
+        Me.Button1.Text = "Upload remotely"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'TXTUPLOADPATH
         '
@@ -573,16 +584,6 @@ Partial Class ItemDesignImage
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(259, 84)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(80, 28)
-        Me.Button1.TabIndex = 642
-        Me.Button1.Text = "Upload"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'ItemDesignImage
         '

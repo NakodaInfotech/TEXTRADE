@@ -180,7 +180,7 @@ Public Class AutoWhatsapp
                 TXTTYPE1.Text = GRIDAUTOWA.Rows(0).Cells(1).Value.ToString()
                 TXTTYPE2.Text = GRIDAUTOWA.Rows(0).Cells(1).Value.ToString()
             End If
-            Dim dt1table As DataTable = OBJCMN.SEARCH(" AUTOWHATSAPP_DESC.AUTOWA_TYPE AS TYPE, ISNULL(AUTOWHATSAPP_DESC.AUTOWA_CHK, 0) AS CHK, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(CITYMASTER.city_name, '') AS CITY", "", " LEDGERS LEFT OUTER JOIN AUTOWHATSAPP_DESC  ON AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid LEFT OUTER JOIN CITYMASTER  ON AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid ", "  AND ledgers.acc_yearid = " & YearId)
+            Dim dt1table As DataTable = OBJCMN.SEARCH("ISNULL(AUTOWHATSAPP_DESC.AUTOWA_CHK, 0) AS CHK, ISNULL(AUTOWHATSAPP_DESC.AUTOWA_TYPE,'') AS TYPE,  ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(CITYMASTER.city_name, '') AS CITY", "", " LEDGERS LEFT OUTER JOIN AUTOWHATSAPP_DESC  ON AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid LEFT OUTER JOIN CITYMASTER  ON AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid ", " and ledgers.acc_type='ACCOUNTS' AND ledgers.acc_yearid = " & YearId)
             If dt1table.Rows.Count > 0 Then
                 gridbilldetails.DataSource = dt1table
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -240,16 +240,16 @@ Public Class AutoWhatsapp
                 Dim TEMPMSG As Integer = MsgBox("Wish To Delete?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbNo Then Exit Sub
 
-                'DELETE FROM TRANSPORT INSURANCE
-                Dim OBJSM As New ClsTransInsurance
-                Dim ALPARAVAL As New ArrayList
-                ALPARAVAL.Add(GRIDAUTOWA.Rows(GRIDAUTOWA.CurrentRow.Index).Cells(GSRNO.Index).Value)
-                ALPARAVAL.Add(CmpId)
-                ALPARAVAL.Add(Locationid)
-                ALPARAVAL.Add(YearId)
+                ''DELETE FROM TRANSPORT INSURANCE
+                'Dim OBJSM As New ClsAUTOWHATSAPP
+                'Dim ALPARAVAL As New ArrayList
+                'ALPARAVAL.Add(GRIDAUTOWA.Rows(GRIDAUTOWA.CurrentRow.Index).Cells(GSRNO.Index).Value)
+                'ALPARAVAL.Add(CmpId)
+                'ALPARAVAL.Add(Locationid)
+                'ALPARAVAL.Add(YearId)
 
-                OBJSM.alParaval = ALPARAVAL
-                Dim INTRES As Integer = OBJSM.DELETE()
+                'OBJSM.alParaval = ALPARAVAL
+                'Dim INTRES As Integer = OBJSM.DELETE()
 
                 GRIDAUTOWA.Rows.RemoveAt(GRIDAUTOWA.CurrentRow.Index)
                 getsrno(GRIDAUTOWA)
@@ -447,7 +447,7 @@ Public Class AutoWhatsapp
     Sub FILLCMB()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DTUNIT As DataTable = OBJCMN.SEARCH("CASE When ISNULL(LEDGERS.Acc_cmpname,'') = '' THEN  CAST (0 AS BIT) ELSE  CAST (0 AS BIT) END AS CHK, LEDGERS.Acc_cmpname AS NAME , ISNULL(CITYMASTER.city_name,'') AS CITY ", " ", " LEDGERS LEFT OUTER JOIN  CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " AND  Acc_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_YEARID = '" & YearId & "' ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTUNIT As DataTable = OBJCMN.SEARCH("CASE When ISNULL(LEDGERS.Acc_cmpname,'') = '' THEN  CAST (0 AS BIT) ELSE  CAST (0 AS BIT) END AS CHK, LEDGERS.Acc_cmpname AS NAME , ISNULL(CITYMASTER.city_name,'') AS CITY ", " ", " LEDGERS LEFT OUTER JOIN  CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " AND  Acc_TYPE = 'ACCOUNTS' AND LEDGERS.Acc_cmpid =  '" & CmpId & "' ORDER BY LEDGERS.Acc_cmpname")
             gridbilldetails.DataSource = DTUNIT
             If DTUNIT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -472,7 +472,7 @@ Public Class AutoWhatsapp
     End Sub
 
     Private Sub GRIDAUTOWA_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDAUTOWA.RowEnter
-        GRIDVIEW(e.RowIndex)
+
     End Sub
     Sub GRIDVIEW(Optional ROWNO As Integer = -1)
         Try
@@ -480,7 +480,7 @@ Public Class AutoWhatsapp
                 If ROWNO = -1 Then ROWNO = GRIDAUTOWA.CurrentRow.Index
 
                 Dim objclsCMST As New ClsCommonMaster
-                Dim dt As DataTable = objclsCMST.search("DISTINCT  CASE  WHEN A.AUTOWA_AGENTCHK = 1 THEN 1         ELSE 0     END AS AGENTCHK,    L.Acc_cmpname AS AGENTNAME,    C.city_name AS AGENTCITY", "", " LEDGERS AS L LEFT JOIN CITYMASTER AS C ON L.Acc_cityid = C.city_id AND L.Acc_cmpid = C.city_cmpid LEFT JOIN AUTOWHATSAPP_AGENTDESC AS A ON     A.AUTOWA_AGENTID = L.Acc_id AND A.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'    AND A.AUTOWA_CMPID = " & CmpId & "", " AND L.Acc_YEARID =" & YearId)
+                Dim dt As DataTable = objclsCMST.search("DISTINCT  CASE  WHEN A.AUTOWA_AGENTCHK = 1 THEN 1         ELSE 0     END AS AGENTCHK,    L.Acc_cmpname AS AGENTNAME,    C.city_name AS AGENTCITY", "", " LEDGERS AS L LEFT JOIN CITYMASTER AS C ON L.Acc_cityid = C.city_id AND L.Acc_cmpid = C.city_cmpid LEFT JOIN AUTOWHATSAPP_AGENTDESC AS A ON     A.AUTOWA_AGENTID = L.Acc_id AND A.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'    AND A.AUTOWA_CMPID = " & CmpId & "", " ")
                 GridControl1.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     GridView1.FocusedRowHandle = GridView1.RowCount - 1
@@ -501,5 +501,13 @@ Public Class AutoWhatsapp
         End Try
 
 
+    End Sub
+
+    Private Sub GRIDAUTOWA_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDAUTOWA.CellClick
+        Try
+            GRIDVIEW(e.RowIndex)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
