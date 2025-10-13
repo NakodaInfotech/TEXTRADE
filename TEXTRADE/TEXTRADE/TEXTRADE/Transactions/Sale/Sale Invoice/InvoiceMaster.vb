@@ -2001,7 +2001,7 @@ Public Class InvoiceMaster
             alParaval.Add(ORDERMTRS)
             alParaval.Add(ORDERFROMNO)
             alParaval.Add(ORDERFROMSRNO)
-            alParaval.Add(ORDERFROMTYPE)
+            alParaval.Add(ORDERFROMTYPE.ToString.Replace("SALEORDER", "AGENCYSALEORDER"))
             alParaval.Add(ORDERGDNPCS)
             alParaval.Add(ORDERGDNMTRS)
             alParaval.Add(ORDERRATE)
