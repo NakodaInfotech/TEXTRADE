@@ -1174,11 +1174,6 @@ Partial Class MDIMain
         Me.MASHOK_MONTHLYPURANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_AGEING_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator302 = New System.Windows.Forms.ToolStripSeparator()
-        Me.MagicBoxToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MagicBoxOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MagicBoxRecPayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MagicBoxInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator319 = New System.Windows.Forms.ToolStripSeparator()
         Me.CUSTOMREPORTS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomLayoutsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpeningBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1230,6 +1225,11 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.MAGICBOX_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MAGICBOXORDER_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MAGICBOXRECPAY_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MAGICBOXINVOICE_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator327 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1238,7 +1238,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.MASHOK_REPORTS, Me.CUSTOMREPORTS_MENU})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -8054,7 +8054,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -8149,7 +8149,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -8233,13 +8233,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
         Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDING_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDING_MENU
@@ -8268,7 +8268,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
         '
         'OTHERREPORT_MAIN
         '
@@ -8282,7 +8282,7 @@ Partial Class MDIMain
         '
         Me.TCSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSCHALLAN_MASTER, Me.ToolStripSeparator239})
         Me.TCSReportsToolStripMenuItem.Name = "TCSReportsToolStripMenuItem"
-        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TCSReportsToolStripMenuItem.Text = "TCS Reports"
         '
         'TCSCHALLAN_MASTER
@@ -8299,13 +8299,13 @@ Partial Class MDIMain
         'ToolStripSeparator237
         '
         Me.ToolStripSeparator237.Name = "ToolStripSeparator237"
-        Me.ToolStripSeparator237.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator237.Size = New System.Drawing.Size(177, 6)
         '
         'TDSReportsToolStripMenuItem
         '
         Me.TDSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TDSToolStripMenuItem, Me.TDSCHALLAN_MASTER, Me.TDSDeductedNotDedictedReportToolStripMenuItem, Me.ToolStripSeparator238})
         Me.TDSReportsToolStripMenuItem.Name = "TDSReportsToolStripMenuItem"
-        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TDSReportsToolStripMenuItem.Text = "TDS Reports"
         '
         'TDSToolStripMenuItem
@@ -8334,13 +8334,13 @@ Partial Class MDIMain
         'ToolStripSeparator44
         '
         Me.ToolStripSeparator44.Name = "ToolStripSeparator44"
-        Me.ToolStripSeparator44.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator44.Size = New System.Drawing.Size(177, 6)
         '
         'InterestCalculatorToolStripMenuItem
         '
         Me.InterestCalculatorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InterestToolStripMenuItem, Me.IntrestCalculatorSummaryToolStripMenuItem, Me.ToolStripSeparator60, Me.InterestCalculatorBillWiseToolStripMenuItem, Me.ToolStripSeparator187})
         Me.InterestCalculatorToolStripMenuItem.Name = "InterestCalculatorToolStripMenuItem"
-        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.InterestCalculatorToolStripMenuItem.Text = "Interest Calculator"
         '
         'InterestToolStripMenuItem
@@ -8374,25 +8374,25 @@ Partial Class MDIMain
         'ToolStripSeparator62
         '
         Me.ToolStripSeparator62.Name = "ToolStripSeparator62"
-        Me.ToolStripSeparator62.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator62.Size = New System.Drawing.Size(177, 6)
         '
         'REMINDERREPORT_MASTER
         '
         Me.REMINDERREPORT_MASTER.Name = "REMINDERREPORT_MASTER"
-        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.REMINDERREPORT_MASTER.Text = "Reminder Report"
         '
         'ToolStripSeparator246
         '
         Me.ToolStripSeparator246.Name = "ToolStripSeparator246"
-        Me.ToolStripSeparator246.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator246.Size = New System.Drawing.Size(177, 6)
         '
         'LOGS_MASTER
         '
         Me.LOGS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATELOGS_MASTER, Me.DELETELOGS_MASTER, Me.ToolStripSeparator247})
         Me.LOGS_MASTER.Enabled = False
         Me.LOGS_MASTER.Name = "LOGS_MASTER"
-        Me.LOGS_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.LOGS_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.LOGS_MASTER.Text = "Logs"
         '
         'UPDATELOGS_MASTER
@@ -8415,19 +8415,19 @@ Partial Class MDIMain
         'ToolStripSeparator54
         '
         Me.ToolStripSeparator54.Name = "ToolStripSeparator54"
-        Me.ToolStripSeparator54.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator54.Size = New System.Drawing.Size(177, 6)
         '
         'COSTREPORT_MASTER
         '
         Me.COSTREPORT_MASTER.Name = "COSTREPORT_MASTER"
-        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.COSTREPORT_MASTER.Text = "Cost Report"
         Me.COSTREPORT_MASTER.Visible = False
         '
         'TOOLCOSTREPORT
         '
         Me.TOOLCOSTREPORT.Name = "TOOLCOSTREPORT"
-        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(172, 6)
+        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(177, 6)
         Me.TOOLCOSTREPORT.Visible = False
         '
         'HelpMenu
@@ -8503,7 +8503,7 @@ Partial Class MDIMain
         '
         'MASHOK_REPORTS
         '
-        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_MONTHLYSALEANALYSIS_MENU, Me.MASHOK_MONTHLYPURANALYSIS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302, Me.MagicBoxToolStripMenuItem, Me.ToolStripSeparator319})
+        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_MONTHLYSALEANALYSIS_MENU, Me.MASHOK_MONTHLYPURANALYSIS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302})
         Me.MASHOK_REPORTS.Name = "MASHOK_REPORTS"
         Me.MASHOK_REPORTS.Size = New System.Drawing.Size(84, 20)
         Me.MASHOK_REPORTS.Text = "MIS Reports"
@@ -8565,36 +8565,6 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator302.Name = "ToolStripSeparator302"
         Me.ToolStripSeparator302.Size = New System.Drawing.Size(200, 6)
-        '
-        'MagicBoxToolStripMenuItem
-        '
-        Me.MagicBoxToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MagicBoxOrderToolStripMenuItem, Me.MagicBoxRecPayToolStripMenuItem, Me.MagicBoxInvoiceToolStripMenuItem})
-        Me.MagicBoxToolStripMenuItem.Name = "MagicBoxToolStripMenuItem"
-        Me.MagicBoxToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.MagicBoxToolStripMenuItem.Text = "Magic Box"
-        '
-        'MagicBoxOrderToolStripMenuItem
-        '
-        Me.MagicBoxOrderToolStripMenuItem.Name = "MagicBoxOrderToolStripMenuItem"
-        Me.MagicBoxOrderToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.MagicBoxOrderToolStripMenuItem.Text = "Magic Box Order"
-        '
-        'MagicBoxRecPayToolStripMenuItem
-        '
-        Me.MagicBoxRecPayToolStripMenuItem.Name = "MagicBoxRecPayToolStripMenuItem"
-        Me.MagicBoxRecPayToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.MagicBoxRecPayToolStripMenuItem.Text = "Magic Box Rec/Pay"
-        '
-        'MagicBoxInvoiceToolStripMenuItem
-        '
-        Me.MagicBoxInvoiceToolStripMenuItem.Name = "MagicBoxInvoiceToolStripMenuItem"
-        Me.MagicBoxInvoiceToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.MagicBoxInvoiceToolStripMenuItem.Text = "Magic Box Invoice"
-        '
-        'ToolStripSeparator319
-        '
-        Me.ToolStripSeparator319.Name = "ToolStripSeparator319"
-        Me.ToolStripSeparator319.Size = New System.Drawing.Size(200, 6)
         '
         'CUSTOMREPORTS_MENU
         '
@@ -8990,6 +8960,37 @@ Partial Class MDIMain
         'Timer1
         '
         Me.Timer1.Interval = 10
+        '
+        'MAGICBOX_MENU
+        '
+        Me.MAGICBOX_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MAGICBOXORDER_MENU, Me.MAGICBOXINVOICE_MENU, Me.MAGICBOXRECPAY_MENU, Me.ToolStripSeparator327})
+        Me.MAGICBOX_MENU.Name = "MAGICBOX_MENU"
+        Me.MAGICBOX_MENU.Size = New System.Drawing.Size(73, 20)
+        Me.MAGICBOX_MENU.Text = "Magic Box"
+        Me.MAGICBOX_MENU.Visible = False
+        '
+        'MAGICBOXORDER_MENU
+        '
+        Me.MAGICBOXORDER_MENU.Name = "MAGICBOXORDER_MENU"
+        Me.MAGICBOXORDER_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXORDER_MENU.Text = "Magic Box Order"
+        '
+        'MAGICBOXRECPAY_MENU
+        '
+        Me.MAGICBOXRECPAY_MENU.Name = "MAGICBOXRECPAY_MENU"
+        Me.MAGICBOXRECPAY_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXRECPAY_MENU.Text = "Magic Box Rec/Pay"
+        '
+        'MAGICBOXINVOICE_MENU
+        '
+        Me.MAGICBOXINVOICE_MENU.Name = "MAGICBOXINVOICE_MENU"
+        Me.MAGICBOXINVOICE_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXINVOICE_MENU.Text = "Magic Box Invoice"
+        '
+        'ToolStripSeparator327
+        '
+        Me.ToolStripSeparator327.Name = "ToolStripSeparator327"
+        Me.ToolStripSeparator327.Size = New System.Drawing.Size(177, 6)
         '
         'MDIMain
         '
@@ -10176,10 +10177,7 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator309 As ToolStripSeparator
     Friend WithEvents LRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PartyWiseBaleRate As ToolStripMenuItem
-    Friend WithEvents MagicBoxToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MagicBoxOrderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MASHOK_MONTHLYSALEANALYSIS_MENU As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator319 As ToolStripSeparator
     Friend WithEvents MONTHLYSALEANALYSIS_REPORT As ToolStripMenuItem
     Friend WithEvents PartyWiseBaleRateReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RegisterProductWiseToolStripMenuItem As ToolStripMenuItem
@@ -10187,8 +10185,6 @@ Partial Class MDIMain
     Friend WithEvents CUSTOMREPORTS_MENU As ToolStripMenuItem
     Friend WithEvents CustomLayoutsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MASHOK_MONTHLYPURANALYSIS_MENU As ToolStripMenuItem
-    Friend WithEvents MagicBoxRecPayToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MagicBoxInvoiceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TransfersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DATATRANSFER_MASTER As ToolStripMenuItem
     Friend WithEvents STOCKTRANSFER_MASTER As ToolStripMenuItem
@@ -10224,4 +10220,9 @@ Partial Class MDIMain
     Friend WithEvents AgencySaleReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UPLOADEXCELNP As ToolStripMenuItem
     Friend WithEvents UPLOADEXCELSALE As ToolStripMenuItem
+    Friend WithEvents MAGICBOX_MENU As ToolStripMenuItem
+    Friend WithEvents MAGICBOXORDER_MENU As ToolStripMenuItem
+    Friend WithEvents MAGICBOXRECPAY_MENU As ToolStripMenuItem
+    Friend WithEvents MAGICBOXINVOICE_MENU As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator327 As ToolStripSeparator
 End Class
