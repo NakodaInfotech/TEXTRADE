@@ -1,6 +1,7 @@
 ﻿
-Imports BL
 Imports System.Runtime.InteropServices
+Imports BL
+Imports DevExpress.Xpo.Logger
 
 Public Class UploadExcel_MASHOK
 
@@ -82,13 +83,19 @@ Public Class UploadExcel_MASHOK
                 For i As Integer = 1 To dt.Columns.Count
                     row(i - 1) = Convert.ToString(oSheet.Cells(rowIndex, i).Value)
                 Next
+                If CMBTYPE.Text.Trim = "NONPURCHASE" Then
 
-                ' Check if the 'name' field is blank during reading
-                If String.IsNullOrWhiteSpace(row("name").ToString()) Then
-                    MessageBox.Show("Party name cannot be blank at Row " & rowIndex, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    'Exit Sub ' Exit the method if name is blank
+                    ' Check if the 'name' field is blank during reading
+                    If String.IsNullOrWhiteSpace(row("name").ToString()) Then
+                        MessageBox.Show("Party name cannot be blank at Row " & rowIndex, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        'Exit Sub ' Exit the method if name is blank
+                    End If
+                Else
+                    If String.IsNullOrWhiteSpace(row("CHALLAN NO").ToString()) Then
+                        MessageBox.Show("Challan No cannot be blank at Row " & rowIndex, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        'Exit Sub ' Exit the method if name is blank
+                    End If
                 End If
-
                 dt.Rows.Add(row)
                 rowIndex += 1
             End While
@@ -98,19 +105,34 @@ Public Class UploadExcel_MASHOK
                 Debug.Print("Exiting because dt empty")
                 Exit Sub
             End If
+            If CMBTYPE.Text.Trim = "NONPURCHASE" Then
+                ' Validate that "name" field is not blank
+                Dim blankedfailedRows As New List(Of String)()
+                For Each dr As DataRow In dt.Rows
+                    If String.IsNullOrWhiteSpace(dr("name").ToString()) Then
+                        blankedfailedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & dr("name").ToString() & "') - Party name cannot be blank.")
+                    End If
+                Next
 
-            ' Validate that "name" field is not blank
-            Dim blankedfailedRows As New List(Of String)()
-            For Each dr As DataRow In dt.Rows
-                If String.IsNullOrWhiteSpace(dr("name").ToString()) Then
-                    blankedfailedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & dr("name").ToString() & "') - Party name cannot be blank.")
+                ' If there are any invalid rows, show the validation message
+                If blankedfailedRows.Count > 0 Then
+                    MessageBox.Show("The following rows were skipped because the party name is blank:" & vbCrLf & String.Join(vbCrLf, blankedfailedRows), "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    'Exit Sub
                 End If
-            Next
+            Else
+                ' Validate that "Challan No" field is not blank
+                Dim blankedfailedRows As New List(Of String)()
+                For Each dr As DataRow In dt.Rows
+                    If String.IsNullOrWhiteSpace(dr("CHALLAN NO").ToString()) Then
+                        blankedfailedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & dr("CHALLAN NO").ToString() & "') - Challan No cannot be blank.")
+                    End If
+                Next
 
-            ' If there are any invalid rows, show the validation message
-            If blankedfailedRows.Count > 0 Then
-                MessageBox.Show("The following rows were skipped because the party name is blank:" & vbCrLf & String.Join(vbCrLf, blankedfailedRows), "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                'Exit Sub
+                ' If there are any invalid rows, show the validation message
+                If blankedfailedRows.Count > 0 Then
+                    MessageBox.Show("The following rows were skipped because the party name is blank:" & vbCrLf & String.Join(vbCrLf, blankedfailedRows), "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    'Exit Sub
+                End If
             End If
             ' Check CMBTYPE to decide save destination
             If CMBTYPE.Text.Trim = "NONPURCHASE" Then
@@ -362,7 +384,7 @@ Public Class UploadExcel_MASHOK
                             gridRow.Cells("gAMT").Value = amt
                             gridRow.Cells("GOTHERAMT").Value = If(i = 0, otherAmt, 0)
                             gridRow.Cells("GTAXABLEAMT").Value = taxableamt
-                            gridRow.Cells("GGRIDTOTAL").Value = taxableamt
+                            gridRow.Cells("GGRIDTOTAL").Value = grandtotal
 
                             ' Select last added row to populate GST
                             'Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
@@ -391,7 +413,7 @@ Public Class UploadExcel_MASHOK
                             gridRow.Cells("GSGSTAMT").Value = frm.TXTSGSTAMT.Text
                             gridRow.Cells("GIGSTPER").Value = frm.TXTIGSTPER.Text
                             gridRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
-                            gridRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
+                            'gridRow.Cells("GGRIDTOTAL").Value = frm.TXTGRIDTOTAL.Text
                             sr += 1
                             'End If
                         Next
@@ -444,9 +466,14 @@ Public Class UploadExcel_MASHOK
                 For Each row As DataRow In dt.Rows
                     Dim invoiceNo As String = row("CHALLAN NO").ToString().Trim()
                     Dim sono As String = row("SO NO").ToString().Trim()
+                    Dim transport As String = row("SO NO").ToString().Trim()
+                    Dim lrNo As String = row("LR NO").ToString().Trim()
+                    Dim BALEFROM As String = row("BALE NO FROM").ToString().Trim()
+                    Dim BALETO As String = row("BALE NO TO").ToString().Trim()
+
 
                     ' Check for duplicate invoice
-                    Dim dtCheck As DataTable = OBJCMN.SEARCH("INVOICE_NO", "INVOICEMASTER", "AND INVOICE_NO = '" & invoiceNo & "' AND INVOICE_YEARID = " & YearId)
+                    Dim dtCheck As DataTable = OBJCMN.SEARCH("INVOICE_NO", "", "INVOICEMASTER", "AND INVOICE_NO = '" & invoiceNo & "' AND INVOICE_YEARID = " & YearId)
                     If dtCheck.Rows.Count > 0 Then
                         MessageBox.Show("Duplicate Invoice No: " & invoiceNo, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         errorCount += 1
@@ -454,7 +481,7 @@ Public Class UploadExcel_MASHOK
                     End If
 
                     ' Fetch SONO details
-                    Dim dtSONO As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DELIVERYTO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SALEORDER_DESC.SO_GRIDREMARKS, '') AS [DESC], ISNULL(SALEORDER_DESC.SO_QTY,  0) AS PCS, ISNULL(SALEORDER_DESC.SO_CUT, 0) AS CUT, ISNULL(SALEORDER_DESC.SO_RATE, 0) AS RATE, ISNULL(SALEORDER_DESC.SO_PER, '') AS PER, ISNULL(SALEORDER_DESC.SO_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, ISNULL(SALEORDER.SO_CD, 0) AS DISCOUNT, ISNULL(SALEORDER.SO_DAYS, 0) AS CRDAYS", "SALEORDER INNER JOIN SALEORDER_DESC ON SALEORDER.so_no = SALEORDER_DESC.SO_NO AND SALEORDER.SO_YEARID = SALEORDER_DESC.SO_YEARID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON SALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN                          COLORMASTER ON SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON SALEORDER.SO_transid = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON SALEORDER.SO_PACKINGID = PACKINGLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON SALEORDER.so_ledgerid = LEDGERS.Acc_id ", "AND SO_NO = '" & sono & "' AND SO_YEARID = " & YearId)
+                    Dim dtSONO As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DELIVERYTO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SALEORDER_DESC.SO_GRIDREMARKS, '') AS [DESC], ISNULL(SALEORDER_DESC.SO_QTY,  0) AS PCS, ISNULL(SALEORDER_DESC.SO_CUT, 0) AS CUT, ISNULL(SALEORDER_DESC.SO_RATE, 0) AS RATE, ISNULL(SALEORDER_DESC.SO_PER, '') AS PER, ISNULL(SALEORDER_DESC.SO_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, ISNULL(SALEORDER.SO_CD, 0) AS DISCOUNT, ISNULL(SALEORDER.SO_DAYS, 0) AS CRDAYS, ISNULL(SALEORDER_DESC.SO_MTRS, 0) AS MTRS, ISNULL(SALEORDER_DESC.SO_RATE, 0) AS RATE", "", "SALEORDER INNER JOIN SALEORDER_DESC ON SALEORDER.so_no = SALEORDER_DESC.SO_NO AND SALEORDER.SO_YEARID = SALEORDER_DESC.SO_YEARID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON SALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN                          COLORMASTER ON SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON SALEORDER.SO_transid = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON SALEORDER.SO_PACKINGID = PACKINGLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON SALEORDER.so_ledgerid = LEDGERS.Acc_id ", "AND SALEORDER.SO_NO = '" & sono & "' AND SALEORDER.SO_YEARID = " & YearId)
                     If dtSONO.Rows.Count = 0 Then
                         MessageBox.Show("SONO " & sono & " not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         errorCount += 1
@@ -463,13 +490,81 @@ Public Class UploadExcel_MASHOK
 
                     Try
                         Dim frmInv As New InvoiceMaster()
+                        'frmInv.TXTINVOICENO.Text = invoiceNo
+                        'frmInv.TXTSONO.Text = sono
+                        'frmInv.CMBPACKING.Text = dtSONO.Rows(0)("DELIVERYTO").ToString()
+                        'frmInv.CMBAGENT.Text = dtSONO.Rows(0)("AGENTNAME").ToString()
+                        'frmInv.TXTCRDAYS.Text = dtSONO.Rows(0)("CRDAYS").ToString()
+                        'frmInv.cmbname.Text = dtSONO.Rows(0)("PARTYNAME").ToString()
+                        'frmInv.CMBCHARGES.Text = dtSONO.Rows(0)("DISCOUNT").ToString()
+
+                        frmInv.cmbregister.Text = "SALES REGISTER"
+                        frmInv.CHKMANUAL.Checked = True
+                        frmInv.CanUserAdd = True
                         frmInv.TXTINVOICENO.Text = invoiceNo
                         frmInv.TXTSONO.Text = sono
-                        frmInv.CMBPACKING.Text = dtSONO.Rows(0)("DELIVERYTO").ToString()
-                        frmInv.CMBAGENT.Text = dtSONO.Rows(0)("AGENTNAME").ToString()
-                        frmInv.TXTCRDAYS.Text = dtSONO.Rows(0)("CRDAYS").ToString()
+                        If String.IsNullOrEmpty(frmInv.INVOICEDATE.Text) OrElse frmInv.INVOICEDATE.Text = "__/__/____" Then
+                            frmInv.INVOICEDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                        End If
                         frmInv.cmbname.Text = dtSONO.Rows(0)("PARTYNAME").ToString()
-                        frmInv.CMBCHARGES.Text = dtSONO.Rows(0)("DISCOUNT").ToString()
+                        frmInv.CMBPACKING.Text = dtSONO.Rows(0)("DELIVERYTO").ToString()
+                        frmInv.CMBAGENT.Text = dtSONO.Rows(0)("AGENT").ToString()
+                        frmInv.TXTCRDAYS.Text = dtSONO.Rows(0)("CRDAYS").ToString()
+                        'grid
+                        frmInv.TXTCHGSPER.Text = dtSONO.Rows(0)("DISCOUNT").ToString()
+                        frmInv.cmbtrans.Text = Transport
+                        frmInv.txtlrno.Text = lrNo
+                        If String.IsNullOrEmpty(frmInv.LRDATE.Text) OrElse frmInv.LRDATE.Text = "__/__/____" Then
+                            frmInv.LRDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                        End If
+                        frmInv.TXTBALENOFROM.Text = baleFrom
+                        frmInv.TXTBALENOTO.Text = BALETO
+
+
+                        frmInv.GRIDINVOICE.Rows.Clear()
+                        Dim sr As Integer = 1
+                        For Each r As DataRow In dtSONO.Rows
+                            Dim idx As Integer = frmInv.GRIDINVOICE.Rows.Add()
+                            Dim g As DataGridViewRow = frmInv.GRIDINVOICE.Rows(idx)
+                            g.Cells("GSRNO").Value = sr
+                            g.Cells("GITEMNAME").Value = r("ITEMNAME").ToString()
+                            Dim itemName As String = r("ITEMNAME").ToString().Trim()
+                            Dim dtHSN As DataTable = OBJCMN.SEARCH("HSNMASTER.HSN_CODE", "", "HSNMASTER INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.ITEM_YEARID", "AND ITEMMASTER.ITEM_NAME = '" & itemName.Replace("'", "''") & "' AND HSNMASTER.HSN_YEARID = " & YearId)
+                            If dtHSN.Rows.Count > 0 Then
+                                g.Cells("GHSNCODE").Value = dtHSN.Rows(0)("HSN_CODE").ToString()
+                            End If
+                            'frmInv.GETHSNCODE()
+                            'g.Cells("GHSNCODE").Value = r("HSNCODE").ToString()
+                            g.Cells("GQUALITY").Value = r("QUALITY").ToString()
+                            g.Cells("GDESIGN").Value = r("DESIGNNO").ToString()
+                            g.Cells("GSHADE").Value = r("COLOR").ToString()
+                            g.Cells("GPCS").Value = Val(r("PCS"))
+                            g.Cells("GCUT").Value = Val(r("CUT"))
+                            g.Cells("GMTRS").Value = Val(r("MTRS"))
+                            g.Cells("GRATE").Value = Val(r("RATE"))
+                            g.Cells("GPER").Value = r("PER").ToString()
+                            g.Cells("GAMT").Value = Val(r("AMOUNT"))
+                            sr += 1
+                        Next
+                        frmInv.GRIDCHGS.Rows.Clear()
+                        Dim src As Integer = 1
+                        For Each s As DataRow In dtSONO.Rows
+                            Dim idx As Integer = frmInv.GRIDCHGS.Rows.Add()
+                            Dim g As DataGridViewRow = frmInv.GRIDCHGS.Rows(idx)
+                            g.Cells("ESRNO").Value = src
+                            g.Cells("ECHARGES").Value = "CASH DISCOUNT"
+                            g.Cells("EPER").Value = s("DISCOUNT")
+                            'g.Cells("EMT").Value = Val(s("AMT"))
+                            sr += 1
+                        Next
+                        ' ==== 5️⃣ Calculate and Save ====
+                        frmInv.CALC()
+                        If frmInv.SaveInvoice(False) Then
+                            successCount += 1
+                            Debug.Print("Invoice " & invoiceNo & " created from SO " & sono)
+                        Else
+                            errorCount += 1
+                        End If
                         ' Map other delivery/transport/LR/etc details from Excel columns if needed here
 
                         ' Fill grid of frmInv using dt row if needed (customize as per grid requirements)

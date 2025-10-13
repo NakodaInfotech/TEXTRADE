@@ -10666,4 +10666,34 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+    Public Property CanUserAdd As Boolean
+        Get
+            Return USERADD
+        End Get
+        Set(value As Boolean)
+            USERADD = value
+        End Set
+    End Property
+    Public Function SaveInvoice(Optional showMessage As Boolean = True) As Boolean
+        ' just call the private button handler
+        'cmdok_Click(Nothing, EventArgs.Empty)
+        Try
+            'If Not errorvalid() Then
+            '    Return False ' Validation failed
+            'End If
+            'CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
+            TOTAL()
+
+
+            ' Call the original save logic
+            cmdOK_Click(Nothing, EventArgs.Empty)
+            If showMessage Then
+                MessageBox.Show("Details Added")
+            End If
+            Return True ' Success
+        Catch ex As Exception
+            MessageBox.Show("Error saving invoice: " & ex.Message)
+            Return False
+        End Try
+    End Function
 End Class
