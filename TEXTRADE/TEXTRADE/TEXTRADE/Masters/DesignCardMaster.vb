@@ -2551,10 +2551,10 @@ LINE1:
             If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
             End If
-            
+
             'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
             'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
-            MsgBox("Copied Successfully")
+            'MsgBox("Copied Successfully")
         Catch ex As Exception
             Throw ex
         End Try
@@ -3618,7 +3618,9 @@ line1:
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
-
+            If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
+                CopyGridEntries(GRIDWARP, GRIDWEFT)
+            End If
         Catch ex As Exception
             Throw ex
         End Try

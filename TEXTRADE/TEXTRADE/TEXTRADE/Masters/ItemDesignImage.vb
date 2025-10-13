@@ -226,7 +226,7 @@ Public Class ItemDesignImage
                 intResult = OBJIMAGE.UPDATE()
                 'MsgBox("Details Updated")
             End If
-            Button1_ClickAsync(sender, e)
+            If ClientName = "AVIS" Then Button1_ClickAsync(sender, e)
             CLEAR()
             EDIT = False
             CMBITEMNAME.Focus()
@@ -544,7 +544,7 @@ NEXTLINE:
     End Sub
     Private Async Function Button1_ClickAsync(sender As Object, e As EventArgs) As Task Handles Button1.Click
         Dim filePath As String = TXTPHOTOIMAGEUPLOADPATH.Text.Trim()
-        Dim uploadUrl As String = "http://122.179.159.186/TEXTRADE/Upload.ashx"
+        Dim uploadUrl As String = "http://103.79.10.168/TEXTRADE/Upload.ashx"
 
         If String.IsNullOrWhiteSpace(filePath) OrElse Not IO.File.Exists(filePath) Then
             MessageBox.Show("Please select a valid file to upload.")
