@@ -74,6 +74,9 @@ Partial Class SendWhatsapp
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.TXTSALESMANNO = New System.Windows.Forms.TextBox()
+        Me.CMBSALESMAN = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -87,6 +90,9 @@ Partial Class SendWhatsapp
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTSALESMANNO)
+        Me.BlendPanel1.Controls.Add(Me.CMBSALESMAN)
+        Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Controls.Add(Me.Label8)
         Me.BlendPanel1.Controls.Add(Me.TXTAUTOCC)
@@ -189,7 +195,7 @@ Partial Class SendWhatsapp
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -361,7 +367,7 @@ Partial Class SendWhatsapp
         '
         Me.GITEMNAME.Caption = "Item Name"
         Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.ImageIndex = 0
+        Me.GITEMNAME.ImageOptions.ImageIndex = 0
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
@@ -406,7 +412,7 @@ Partial Class SendWhatsapp
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(35, 268)
+        Me.Label8.Location = New System.Drawing.Point(35, 297)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(49, 15)
         Me.Label8.TabIndex = 18
@@ -415,7 +421,7 @@ Partial Class SendWhatsapp
         '
         'TXTAUTOCC
         '
-        Me.TXTAUTOCC.Location = New System.Drawing.Point(89, 265)
+        Me.TXTAUTOCC.Location = New System.Drawing.Point(89, 294)
         Me.TXTAUTOCC.MaxLength = 10
         Me.TXTAUTOCC.Name = "TXTAUTOCC"
         Me.TXTAUTOCC.Size = New System.Drawing.Size(176, 23)
@@ -473,7 +479,7 @@ Partial Class SendWhatsapp
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(29, 164)
+        Me.Label6.Location = New System.Drawing.Point(29, 193)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(55, 15)
         Me.Label6.TabIndex = 12
@@ -524,7 +530,7 @@ Partial Class SendWhatsapp
         '
         Me.TXTMESSAGE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTMESSAGE.ForeColor = System.Drawing.Color.DimGray
-        Me.TXTMESSAGE.Location = New System.Drawing.Point(89, 161)
+        Me.TXTMESSAGE.Location = New System.Drawing.Point(89, 190)
         Me.TXTMESSAGE.Multiline = True
         Me.TXTMESSAGE.Name = "TXTMESSAGE"
         Me.TXTMESSAGE.Size = New System.Drawing.Size(423, 98)
@@ -637,7 +643,7 @@ Partial Class SendWhatsapp
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 46)
+        Me.Label2.Location = New System.Drawing.Point(15, 46)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 15)
         Me.Label2.TabIndex = 0
@@ -649,7 +655,7 @@ Partial Class SendWhatsapp
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 76)
+        Me.Label3.Location = New System.Drawing.Point(14, 76)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 15)
         Me.Label3.TabIndex = 0
@@ -661,7 +667,7 @@ Partial Class SendWhatsapp
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 106)
+        Me.Label4.Location = New System.Drawing.Point(14, 106)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(72, 15)
         Me.Label4.TabIndex = 0
@@ -673,12 +679,44 @@ Partial Class SendWhatsapp
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(12, 136)
+        Me.Label5.Location = New System.Drawing.Point(14, 136)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(72, 15)
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Other Name"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTSALESMANNO
+        '
+        Me.TXTSALESMANNO.Location = New System.Drawing.Point(336, 161)
+        Me.TXTSALESMANNO.MaxLength = 100
+        Me.TXTSALESMANNO.Name = "TXTSALESMANNO"
+        Me.TXTSALESMANNO.Size = New System.Drawing.Size(176, 23)
+        Me.TXTSALESMANNO.TabIndex = 663
+        '
+        'CMBSALESMAN
+        '
+        Me.CMBSALESMAN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSALESMAN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSALESMAN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSALESMAN.FormattingEnabled = True
+        Me.CMBSALESMAN.Location = New System.Drawing.Point(89, 161)
+        Me.CMBSALESMAN.MaxDropDownItems = 14
+        Me.CMBSALESMAN.Name = "CMBSALESMAN"
+        Me.CMBSALESMAN.Size = New System.Drawing.Size(241, 23)
+        Me.CMBSALESMAN.TabIndex = 662
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(22, 165)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(64, 15)
+        Me.Label9.TabIndex = 661
+        Me.Label9.Text = "Sales Man"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'SendWhatsapp
         '
@@ -757,4 +795,7 @@ Partial Class SendWhatsapp
     Friend WithEvents GFILENAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RBUPLOAD As RadioButton
     Friend WithEvents RBPATH As RadioButton
+    Friend WithEvents TXTSALESMANNO As TextBox
+    Friend WithEvents CMBSALESMAN As ComboBox
+    Friend WithEvents Label9 As Label
 End Class

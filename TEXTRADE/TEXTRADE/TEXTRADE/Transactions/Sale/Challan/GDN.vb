@@ -2472,6 +2472,7 @@ NEXTLINE:
                 TXTDESCRIPTION.Visible = True
                 TXTDESCRIPTION.TextAlign = HorizontalAlignment.Left
                 TXTDESCRIPTION.Left = CMBQUALITY.Left
+                If UserName <> "Admin" Then GRATE.ReadOnly = True
             End If
         Catch ex As Exception
             Throw ex

@@ -6857,14 +6857,13 @@ line1:
         End Try
     End Sub
 
-    Sub SALESMANVALIDATE(ByRef CMBSALESMAN As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+    Sub SALESMANVALIDATE(ByRef CMBSALESMAN As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form, Optional ByRef WHATSAPPNO As String = "")
         Try
             Cursor.Current = Cursors.WaitCursor
             If CMBSALESMAN.Text.Trim <> "" Then
                 uppercase(CMBSALESMAN)
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable
-                dt = objclscommon.search(" SALESMAN_NAME ", "", " SALESMANMASTER ", " AND SALESMAN_NAME = '" & CMBSALESMAN.Text.Trim & "' AND SALESMAN_YEARid = " & YearId)
+                Dim dt As DataTable = objclscommon.search(" SALESMAN_NAME, SALESMAN_MOBILENO AS WHATSAPPNO ", "", " SALESMANMASTER ", " AND SALESMAN_NAME = '" & CMBSALESMAN.Text.Trim & "' AND SALESMAN_YEARid = " & YearId)
                 If dt.Rows.Count = 0 Then
                     Dim a As String = CMBSALESMAN.Text.Trim
                     Dim tempmsg As Integer = MsgBox("Salesman not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
@@ -6873,7 +6872,7 @@ line1:
                         Dim OBJSALES As New SalesmanMaster
                         OBJSALES.TEMPNAME = CMBSALESMAN.Text.Trim()
                         OBJSALES.ShowDialog()
-                        dt = objclscommon.search(" SALESMAN_NAME ", "", " SALESMANMASTER ", " AND SALESMAN_NAME = '" & CMBSALESMAN.Text.Trim & "' AND SALESMAN_YEARid = " & YearId)
+                        dt = objclscommon.search(" SALESMAN_NAME, SALESMAN_MOBILENO AS WHATSAPPNO ", "", " SALESMANMASTER ", " AND SALESMAN_NAME = '" & CMBSALESMAN.Text.Trim & "' AND SALESMAN_YEARid = " & YearId)
                         If dt.Rows.Count > 0 Then
                             Dim dt1 As New DataTable
                             dt1 = CMBSALESMAN.DataSource
@@ -6890,6 +6889,8 @@ line1:
                         e.Cancel = True
                         Exit Sub
                     End If
+                Else
+                    If WHATSAPPNO = "" Then WHATSAPPNO = dt.Rows(0).Item("WHATSAPPNO")
                 End If
             End If
         Catch ex As Exception

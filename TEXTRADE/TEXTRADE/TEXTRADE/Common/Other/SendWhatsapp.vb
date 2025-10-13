@@ -13,6 +13,7 @@ Public Class SendWhatsapp
     Public OTHERNAME1 As String = ""
     Public OTHERNAME2 As String = ""
     Public OTHERNAME3 As String = ""
+    Public SALESMAN As String = ""
     Public PATH As New ArrayList
     Public FILENAME As New ArrayList
     Dim RESPONSE As String = ""
@@ -46,12 +47,14 @@ Public Class SendWhatsapp
             FILLNAME(CMBOTHERNAME1, False, "")
             FILLNAME(CMBOTHERNAME2, False, "")
             FILLNAME(CMBOTHERNAME3, False, "")
+            FILLSALESMAN(CMBSALESMAN)
 
             CMBNAME.Text = PARTYNAME
             CMBAGENTNAME.Text = AGENTNAME
             CMBOTHERNAME1.Text = OTHERNAME1
             CMBOTHERNAME2.Text = OTHERNAME2
             CMBOTHERNAME3.Text = OTHERNAME3
+            CMBSALESMAN.Text = SALESMAN
 
             'GETSALESMAN NO FOR KOTHARI
             If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
@@ -67,6 +70,7 @@ Public Class SendWhatsapp
             If OTHERNAME1 <> "" Then CMBOTHERNAME1_Validating(CMBOTHERNAME1, EN)
             If OTHERNAME2 <> "" Then CMBOTHERNAME2_Validating(CMBOTHERNAME2, EN)
             If OTHERNAME3 <> "" Then CMBOTHERNAME3_Validating(CMBOTHERNAME3, EN)
+            If SALESMAN <> "" Then CMBSALESMAN_Validating(SALESMAN, EN)
 
         Catch ex As Exception
             Throw ex
@@ -155,6 +159,14 @@ Public Class SendWhatsapp
         End Try
     End Sub
 
+    Private Sub CMBSALESMAN_Validating(sender As Object, e As CancelEventArgs) Handles CMBSALESMAN.Validating
+        Try
+            If CMBSALESMAN.Text.Trim <> "" Then SALESMANVALIDATE(CMBSALESMAN, e, Me, TXTSALESMANNO.Text)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Function CheckAddress(IMAGEURL As String) As Boolean
         Try
             Dim URL As String = (IMAGEURL)
@@ -166,7 +178,6 @@ Public Class SendWhatsapp
         Return True
     End Function
 
-
     Public Async Sub CMDSEND_Click(sender As Object, e As EventArgs) Handles CMDSEND.Click
         Try
 
@@ -176,87 +187,6 @@ Public Class SendWhatsapp
                 MsgBox("Mobile Not connected, Please Check Connection", MsgBoxStyle.Critical)
                 Exit Sub
             End If
-
-
-
-
-
-            'TESTING CODE
-
-            ''WEB CLIENT IS NEEDED TO DO THE DOWNLOAD
-            'Dim MyWebClient As New System.Net.WebClient
-
-            ''BYTE ARRAY HOLDS THE DATA
-            'Dim ImageInBytes() As Byte = MyWebClient.DownloadData("http://122.179.159.186:8142/TEXTRADE/IMAGES/1.JPEG")
-
-            ''CREATE A BITMAP FROM A STREAM (STREAM IS CREATED FROM THE DOWNLOADED BYTES)
-            'Dim MyImage As New Bitmap(New IO.MemoryStream(ImageInBytes))
-
-            ''SAVE THE IMAGE TO WHATEVER FILE NAME YOU WANT
-            ''PATH(1) = Application.StartupPath & "\IMAGES\1.JPEG"
-            'MyImage.Save(Application.StartupPath & "\IMAGES\1.JPEG")
-
-
-            'Dim mainUrl As String = "http://122.179.159.186:8142/TEXTRADE/IMAGES/"
-            'Dim doc As HtmlDocument
-            'doc = New HtmlDocument()
-            'Dim sourceString As String = New System.Net.WebClient().DownloadString(mainUrl)
-            'doc.LoadHtml(sourceString)
-            'For Each link As HtmlNode In doc.DocumentNode.SelectNodes("//img")
-            '    Dim linkAddress = GetAbsoluteUrl(link.Attributes("src").Value, mainUrl)
-            '    Dim MyWebClient As New System.Net.WebClient
-            '    Dim ImageInBytes() As Byte = MyWebClient.DownloadData(linkAddress)
-            '    Dim MyImage As New Bitmap(New IO.MemoryStream(ImageInBytes))
-            '    MyImage.Save(Application.StartupPath & "\IMAGES\" & linkAddress)
-            '    RESPONSE = Await SENDWHATSAPPATTACHMENT("919987603607", linkAddress, "1.JPEG")
-            '    ERRORMESSAGE(TXTPARTYNO.Text)
-            '    Console.WriteLine("Image: {0}", linkAddress)
-            'Next
-
-
-            'FOR SENDING IMAGES
-            '            If FRMSTRING = "DIRECTWHATSAPP" Then
-            '                GRIDDESIGN.ClearColumnsFilter()
-            '                For i As Integer = 0 To GRIDDESIGN.RowCount - 1
-            '                    Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
-            '                    If Convert.ToBoolean(dtrow("CHK")) = True Then
-            '                        Dim OBJCMN As New ClsCommon
-            '                        'Dim DTIMG As DataTable = OBJCMN.SEARCH("CATALOG_PHOTO AS PHOTO", "", " CATALOGMASTER ", " AND CATALOG_NO = " & dtrow("CATALOGNO") & " AND CATALOG_YEARID = " & YearId)
-            '                        Dim DTIMG As DataTable = OBJCMN.SEARCH("ITEMDESIGN_FILENAME AS FILENAME", "", " ITEMDESIGNIMAGE ", " AND ISNULL(ITEMDESIGN_FILENAME,'')<>'' AND ITEMDESIGN_NO = " & dtrow("CATALOGNO") & " AND ITEMDESIGN_YEARID = " & YearId)
-            '                        For Each DR As DataRow In DTIMG.Rows
-            '                            'Dim MyWebClient As New System.Net.WebClient
-            '                            'Dim ImageInBytes() As Byte = MyWebClient.DownloadData("http://122.179.159.186:8142/TEXTRADE/IMAGES/" & DR("FILENAME") & ".jpg")
-            '                            'Dim MyImage As New Bitmap(New IO.MemoryStream(ImageInBytes))
-            '                            'MyImage.Save(Application.StartupPath & "\IMAGES\" & DR("FILENAME") & ".jpg")
-
-            '                            Dim TEMPPATH As String = CATALOGPATH & "\" & DR("FILENAME")
-            '                            Dim TEMPFILENAME As String = DR("FILENAME")
-
-            '                            'CHECK WHETHER FILE IS PRESENT IN LOCATION OR NOT IF NOT THE SKIP
-            '                            If File.Exists(TEMPPATH) = False Then GoTo SKIPLINE
-
-            '                            RESPONSE = Await SENDWHATSAPPATTACHMENT("919987603607", TEMPPATH, TEMPFILENAME)
-            '                            ERRORMESSAGE(TXTPARTYNO.Text)
-
-
-            '                            'Dim _MemoryStream As New System.IO.MemoryStream()
-            '                            'Dim _BinaryFormatter As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter()
-            '                            '_BinaryFormatter.Serialize(_MemoryStream, DR("PHOTO"))
-            '                            '_MemoryStream.ToArray()
-            '                            'File.WriteAllBytes(Application.StartupPath & “\" & dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”, DirectCast(DR("PHOTO"), Byte()))
-            '                            'PATH.Add(Application.StartupPath & “\" & dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”)
-            '                            'FILENAME.Add(dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”)
-            'SKIPLINE:
-            '                        Next
-            '                    End If
-            '                Next
-            '            End If
-
-
-
-
-            'CODE ENDS
-
 
 
             'FOR SENDING IMAGES
@@ -317,10 +247,6 @@ NEXTLINE:
 
 
             For I As Integer = 0 To PATH.Count - 1
-                'If TXTPARTYNO.Text.Trim <> "" Then
-                '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTPARTYNO.Text.Trim, PATH(I), FILENAME(I))
-                '    ERRORMESSAGE(TXTPARTYNO.Text)
-                'End If
                 strArray = Split(TXTPARTYNO.Text.Trim, ";")
 
                 For J As Integer = 0 To strArray.Count - 1
@@ -329,10 +255,7 @@ NEXTLINE:
                         ERRORMESSAGE(TXTPARTYNO.Text)
                     End If
                 Next
-                'If TXTAGENTNO.Text.Trim <> "" Then
-                '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTAGENTNO.Text.Trim, PATH(I), FILENAME(I))
-                '    ERRORMESSAGE(TXTAGENTNO.Text)
-                'End If
+
                 strArray = Split(TXTAGENTNO.Text.Trim, ";")
                 For K As Integer = 0 To strArray.Count - 1
                     If TXTAGENTNO.Text.Trim <> "" Then
@@ -340,40 +263,36 @@ NEXTLINE:
                         ERRORMESSAGE(TXTAGENTNO.Text)
                     End If
                 Next
-                'If TXTOTHERNO1.Text.Trim <> "" Then
-                '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTOTHERNO1.Text.Trim, PATH(I), FILENAME(I))
-                '    ERRORMESSAGE(TXTOTHERNO1.Text)
-                'End If
-                strArray = Split(TXTOTHERNO1.Text.Trim, ";")
 
+                strArray = Split(TXTOTHERNO1.Text.Trim, ";")
                 For L As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO1.Text.Trim <> "" Then
                         RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(L), PATH(I), FILENAME(I))
                         ERRORMESSAGE(TXTOTHERNO1.Text)
                     End If
                 Next
-                'If TXTOTHERNO2.Text.Trim <> "" Then
-                '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTOTHERNO2.Text.Trim, PATH(I), FILENAME(I))
-                '    ERRORMESSAGE(TXTOTHERNO2.Text)
-                'End If
-                strArray = Split(TXTOTHERNO2.Text.Trim, ";")
 
+                strArray = Split(TXTOTHERNO2.Text.Trim, ";")
                 For M As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO2.Text.Trim <> "" Then
                         RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I))
                         ERRORMESSAGE(TXTOTHERNO2.Text)
                     End If
                 Next
-                'If TXTOTHERNO3.Text.Trim <> "" Then
-                '    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTOTHERNO3.Text.Trim, PATH(I), FILENAME(I))
-                '    ERRORMESSAGE(TXTOTHERNO3.Text)
-                'End If
-                strArray = Split(TXTOTHERNO3.Text.Trim, ";")
 
+                strArray = Split(TXTOTHERNO3.Text.Trim, ";")
                 For N As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO3.Text.Trim <> "" Then
                         RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I))
                         ERRORMESSAGE(TXTOTHERNO3.Text)
+                    End If
+                Next
+
+                strArray = Split(TXTSALESMANNO.Text.Trim, ";")
+                For N As Integer = 0 To strArray.Count - 1
+                    If TXTSALESMANNO.Text.Trim <> "" Then
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I))
+                        ERRORMESSAGE(TXTSALESMANNO.Text)
                     End If
                 Next
 
@@ -397,8 +316,6 @@ NEXTLINE:
                                     ERRORMESSAGE(dtrow("WHATSAPP"))
                                 End If
                             Next
-                            'RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & dtrow("WHATSAPP"), PATH(I), FILENAME(I))
-                            'ERRORMESSAGE(dtrow("WHATSAPP"))
                         End If
                     Next
                 End If
@@ -435,6 +352,12 @@ NEXTLINE:
                 End If
                 If TXTOTHERNO3.Text.Trim <> "" Then
                     strArray = Split(TXTOTHERNO3.Text.Trim, ";")
+                    For N As Integer = 0 To strArray.Count - 1
+                        Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
+                    Next
+                End If
+                If TXTSALESMANNO.Text.Trim <> "" Then
+                    strArray = Split(TXTSALESMANNO.Text.Trim, ";")
                     For N As Integer = 0 To strArray.Count - 1
                         Await SENDWHATSAPPMESSAGE("91" & strArray(N), TXTMESSAGE.Text.Trim)
                     Next
@@ -520,4 +443,6 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+
 End Class

@@ -24,6 +24,8 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -65,8 +67,6 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemMaster))
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
         Me.GRPITEMDETAILS = New System.Windows.Forms.GroupBox()
@@ -77,6 +77,12 @@ Partial Class ItemMaster
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
         Me.TXTITEMSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDITEM = New System.Windows.Forms.DataGridView()
+        Me.GITEMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GITEMSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBGRIDITEMNAME = New System.Windows.Forms.ComboBox()
         Me.CMBGRIDSHADE = New System.Windows.Forms.ComboBox()
         Me.Label32 = New System.Windows.Forms.Label()
@@ -298,12 +304,6 @@ Partial Class ItemMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.GITEMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GITEMSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.GRPITEMDETAILS.SuspendLayout()
         CType(Me.GRIDITEM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -591,6 +591,64 @@ Partial Class ItemMaster
         Me.GRIDITEM.Size = New System.Drawing.Size(535, 123)
         Me.GRIDITEM.TabIndex = 5
         Me.GRIDITEM.TabStop = False
+        '
+        'GITEMSRNO
+        '
+        Me.GITEMSRNO.HeaderText = "Sr."
+        Me.GITEMSRNO.Name = "GITEMSRNO"
+        Me.GITEMSRNO.ReadOnly = True
+        Me.GITEMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMSRNO.Width = 30
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.HeaderText = "Item Name"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.ReadOnly = True
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 200
+        '
+        'GDESIGN
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDESIGN.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GDESIGN.HeaderText = "Design"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESIGN.Width = 70
+        '
+        'GITEMSHADE
+        '
+        Me.GITEMSHADE.HeaderText = "Shade"
+        Me.GITEMSHADE.Name = "GITEMSHADE"
+        Me.GITEMSHADE.ReadOnly = True
+        Me.GITEMSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMSHADE.Width = 150
+        '
+        'GMTRS
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GMTRS.HeaderText = "Mtrs"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
+        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMTRS.Width = 60
+        '
+        'GSHADENO
+        '
+        Me.GSHADENO.HeaderText = "Shade Sr No"
+        Me.GSHADENO.Name = "GSHADENO"
+        Me.GSHADENO.ReadOnly = True
+        Me.GSHADENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADENO.Visible = False
         '
         'CMBGRIDITEMNAME
         '
@@ -3166,7 +3224,7 @@ Partial Class ItemMaster
         Me.LBLREORDER.Name = "LBLREORDER"
         Me.LBLREORDER.Size = New System.Drawing.Size(74, 14)
         Me.LBLREORDER.TabIndex = 332
-        Me.LBLREORDER.Text = "Re-Order"
+        Me.LBLREORDER.Text = "Cut"
         Me.LBLREORDER.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmbcategory
@@ -3232,64 +3290,6 @@ Partial Class ItemMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'GITEMSRNO
-        '
-        Me.GITEMSRNO.HeaderText = "Sr."
-        Me.GITEMSRNO.Name = "GITEMSRNO"
-        Me.GITEMSRNO.ReadOnly = True
-        Me.GITEMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMSRNO.Width = 30
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.HeaderText = "Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMNAME.Width = 200
-        '
-        'GDESIGN
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDESIGN.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GDESIGN.HeaderText = "Design"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 70
-        '
-        'GITEMSHADE
-        '
-        Me.GITEMSHADE.HeaderText = "Shade"
-        Me.GITEMSHADE.Name = "GITEMSHADE"
-        Me.GITEMSHADE.ReadOnly = True
-        Me.GITEMSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMSHADE.Width = 150
-        '
-        'GMTRS
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GMTRS.HeaderText = "Mtrs"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.ReadOnly = True
-        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMTRS.Width = 60
-        '
-        'GSHADENO
-        '
-        Me.GSHADENO.HeaderText = "Shade Sr No"
-        Me.GSHADENO.Name = "GSHADENO"
-        Me.GSHADENO.ReadOnly = True
-        Me.GSHADENO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADENO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADENO.Visible = False
         '
         'ItemMaster
         '
