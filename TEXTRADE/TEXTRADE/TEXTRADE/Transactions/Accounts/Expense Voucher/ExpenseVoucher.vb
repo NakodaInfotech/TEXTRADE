@@ -19,6 +19,9 @@ Public Class ExpenseVoucher
     Public TEMPREGNAME As String
     Dim ALLOWMANUALNPNO As Boolean = False
     Public IsBulkUpload As Boolean = False
+    Public IsBulkUploadtds As Boolean = False
+
+
 
     Public Sub New()
 
@@ -35,9 +38,9 @@ Public Class ExpenseVoucher
         ' just call the private button handler
         'cmdok_Click(Nothing, EventArgs.Empty)
         Try
-            If Not errorvalid() Then
-                Return False ' Validation failed
-            End If
+            'If Not errorvalid() Then
+            '    Return False ' Validation failed
+            'End If
             CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
             TOTAL()
 
@@ -382,10 +385,11 @@ Public Class ExpenseVoucher
 
             Cursor.Current = Cursors.WaitCursor
             EP.Clear()
-            If Not errorvalid() Then
-                Exit Sub
+            If Not IsBulkUpload Then
+                If Not errorvalid() Then
+                    Exit Sub
+                End If
             End If
-
             If Not VALIDATEREFNO() Then
                 EP.SetError(TXTPARTYBILLNO, "Party Ref. Already Exists")
                 Exit Sub
@@ -661,18 +665,24 @@ Public Class ExpenseVoucher
                     Exit Sub
                 End If
                 Dim DT As DataTable = objclsNP.SAVE()
-                If Not IsBulkUpload Then
+                If Not IsBulkUploadtds Then
                     MsgBox("Details Added")
                 End If
 
                 If CHKTDS.CheckState = CheckState.Checked Then
-                    Dim OBJTDS As New DeductTDS
-                    OBJTDS.BILLNO = DT.Rows(0).Item(0)
-                    OBJTDS.REGISTER = CMBREGISTER.Text.Trim
-                    OBJTDS.ShowDialog()
+                    If Not IsBulkUploadtds Then
+                        Dim OBJTDS As New DeductTDS
+                        OBJTDS.BILLNO = DT.Rows(0).Item(0)
+                        OBJTDS.REGISTER = CMBREGISTER.Text.Trim
+                        OBJTDS.ShowDialog()
+                    Else
+                        ' bulk upload - auto mode
+                        Dim OBJTDS As New DeductTDS
+                        OBJTDS.AutoDeductTDS(DT.Rows(0).Item(0), CMBREGISTER.Text.Trim)
+                    End If
                 End If
 
-            ElseIf EDIT = True Then
+                ElseIf EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub

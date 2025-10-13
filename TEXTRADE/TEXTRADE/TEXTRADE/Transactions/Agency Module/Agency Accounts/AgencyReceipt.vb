@@ -264,11 +264,9 @@ Public Class AgencyReceipt
                 EP.SetError(cmbregister, "Select Register Name")
                 BLN = False
             End If
-
+            Dim OBJCMN As New ClsCommon
             If ALLOWMANUALRECNO = True Then
                 If txtaccno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                    Dim OBJCMN As New ClsCommon
-
                     Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(AGENCYRECEIPTMASTER.ARECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN AGENCYRECEIPTMASTER ON REGISTERMASTER.register_id = AGENCYRECEIPTMASTER.ARECEIPT_registerid AND REGISTERMASTER.register_cmpid = AGENCYRECEIPTMASTER.ARECEIPT_cmpid AND REGISTERMASTER.register_locationid = AGENCYRECEIPTMASTER.ARECEIPT_locationid AND REGISTERMASTER.register_yearid = AGENCYRECEIPTMASTER.ARECEIPT_yearid ", "  AND AGENCYRECEIPTMASTER.ARECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND AGENCYRECEIPTMASTER.ARECEIPT_cmpid = " & CmpId & " AND AGENCYRECEIPTMASTER.ARECEIPT_locationid = " & 0 & " AND AGENCYRECEIPTMASTER.ARECEIPT_yearid = " & YearId)
 
                     If dttable.Rows.Count > 0 Then
@@ -277,7 +275,24 @@ Public Class AgencyReceipt
                     End If
                 End If
             End If
+            For Each ROW As DataGridViewRow In gridpayment.Rows
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" And ROW.Cells(gbillno.Index).Value = "" Then
+                    EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
+                    BLN = False
 
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                    'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
+                    'AND DUPLLICATE ENTRIES GETS PASSED
+                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "AGENCYPAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND AGENCYPAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND AGENCYPAYMENTBILLDETAILS.YEARID = " & YearId)
+                    If DTBILL.Rows.Count > 0 AndAlso Val(ROW.Cells(gamt.Index).Value) > Val(DTBILL.Rows(0).Item("BALAMT")) Then
+                        EP.SetError(cmbname, "Adjusted amt is GReater then Balance Amt")
+                        BLN = False
+                        ROW.DefaultCellStyle.BackColor = Color.Orange
+                    End If
+                End If
+
+                If ROW.Cells(gpaytype.Index).Value = "New Ref" Then ROW.Cells(gdesc.Index).Value = "REC" & "-" & Val(txtaccno.Text.Trim)
+            Next
 
             If cmbname.Text.Trim.Length = 0 Then
                 EP.SetError(cmbname, "Select Name")
@@ -1542,7 +1557,7 @@ LINE1:
                 'IF BILL IS NOT PRESENT IN GRID THEN ADD THE BILL IN GRID
                 Dim OBJCMN As New ClsCommon
                 'CHECKING IN INVOICE
-                Dim DT As DataTable = OBJCMN.SEARCH("INVOICEMASTER.invoice_initials AS BILLINITIALS, INVOICEMASTER.invoice_date AS BILLDATE, INVOICEMASTER.INVOICE_BALANCE AS BALAMT, INVOICEMASTER.INVOICE_GRANDTOTAL AS BILLAMT, 'INVOICE' AS BILLTYPE, INVOICEMASTER.INVOICE_NO AS BILLNO, REGISTERMASTER.REGISTER_NAME AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " INVOICEMASTER LEFT OUTER JOIN LEDGERS ON INVOICEMASTER.invoice_yearid = LEDGERS.Acc_yearid AND INVOICEMASTER.invoice_locationid = LEDGERS.Acc_locationid AND INVOICEMASTER.invoice_cmpid = LEDGERS.Acc_cmpid AND INVOICEMASTER.invoice_ledgerid = LEDGERS.Acc_id INNER JOIN REGISTERMASTER ON register_id  = INVOICEMASTER.INVOICE_REGISTERID AND register_cmpid = INVOICE_CMPID AND register_locationid = INVOICE_LOCATIONID AND register_yearid = INVOICE_YEARID ", " AND ( INVOICEMASTER.INVOICE_INITIALS = '" & txtbillno.Text.Trim & "') AND INVOICE_BALANCE > 0  AND (INVOICEMASTER.invoice_cmpid = " & CmpId & ") AND (INVOICEMASTER.invoice_locationid = " & 0 & ") AND (INVOICEMASTER.invoice_yearid = " & YearId & ")")
+                Dim DT As DataTable = OBJCMN.SEARCH("AGENCYINVOICEMASTER.AINVOICE_initials AS BILLINITIALS, AGENCYINVOICEMASTER.AINVOICE_date AS BILLDATE, AGENCYINVOICEMASTER.AINVOICE_BALANCE AS BALAMT, AGENCYINVOICEMASTER.AINVOICE_GRANDTOTAL AS BILLAMT, 'INVOICE' AS BILLTYPE, AGENCYINVOICEMASTER.AINVOICE_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME ", "", " AGENCYINVOICEMASTER LEFT OUTER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_yearid = LEDGERS.Acc_yearid AND AGENCYINVOICEMASTER.AINVOICE_locationid = LEDGERS.Acc_locationid AND AGENCYINVOICEMASTER.AINVOICE_cmpid = LEDGERS.Acc_cmpid AND AGENCYINVOICEMASTER.AINVOICE_ledgerid = LEDGERS.Acc_id  ", " AND ( AGENCYINVOICEMASTER.AINVOICE_INITIALS = '" & txtbillno.Text.Trim & "') AND AINVOICE_BALANCE > 0  AND (AGENCYINVOICEMASTER.Ainvoice_cmpid = " & CmpId & ") AND (AGENCYINVOICEMASTER.Ainvoice_locationid = " & 0 & ") AND (AGENCYINVOICEMASTER.Ainvoice_yearid = " & YearId & ")")
                 If DT.Rows.Count > 0 Then
 
                     If cmbname.Text.Trim = "" Then
@@ -1568,7 +1583,7 @@ LINE1:
 
 
                 'CHECKING IN OPENINGBILL
-                DT = OBJCMN.SEARCH("BILL_INITIALS AS BILLINITIALS, BILL_DATE AS BILLDATE, BILL_BALANCE AS BALAMT, BILL_AMT AS BILLAMT, 'OPENING' AS BILLTYPE, BILL_NO AS BILLNO,  REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " OPENINGBILL INNER JOIN REGISTERMASTER ON BILL_REGISTERID = REGISTERMASTER.register_id AND BILL_CMPID = REGISTERMASTER.register_cmpid AND BILL_LOCATIONID = REGISTERMASTER.register_locationid AND BILL_YEARID = REGISTERMASTER.register_yearid INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.Acc_id AND BILL_CMPID = LEDGERS.Acc_cmpid AND BILL_LOCATIONID = LEDGERS.Acc_locationid AND BILL_YEARID = LEDGERS.Acc_yearid ", " AND ( BILL_INITIALS = '" & txtbillno.Text.Trim & "') AND BILL_BALANCE > 0  AND (BILL_cmpid = " & CmpId & ") AND (BILL_locationid = " & 0 & ") AND (BILL_yearid = " & YearId & ")")
+                DT = OBJCMN.SEARCH("ABILL_INITIALS AS BILLINITIALS, ABILL_DATE AS BILLDATE, ABILL_BALANCE AS BALAMT, ABILL_AMT AS BILLAMT, 'AGENCYOPENING' AS BILLTYPE, ABILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME", "", " AGENCYOPENINGBILL INNER JOIN LEDGERS ON ABILL_LEDGERID = LEDGERS.Acc_id AND ABILL_CMPID = LEDGERS.Acc_cmpid AND ABILL_LOCATIONID = LEDGERS.Acc_locationid AND ABILL_YEARID = LEDGERS.Acc_yearid  ", " AND ( ABILL_INITIALS = '" & txtbillno.Text.Trim & "') AND ABILL_BALANCE > 0  AND (ABILL_cmpid = " & CmpId & ") AND (ABILL_locationid = " & 0 & ") AND (ABILL_yearid = " & YearId & ")")
                 If DT.Rows.Count > 0 Then
 
                     If cmbname.Text.Trim = "" Then

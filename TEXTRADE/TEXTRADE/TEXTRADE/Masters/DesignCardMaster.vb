@@ -754,6 +754,11 @@ Public Class DesignCardMaster
         GRIDWEFTPATTERN.RowCount = 1
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
+        'GRID PEG PLAN
+        GRIDPEGPLAN.RowCount = 20
+        getsrno(GRIDPEGPLAN)
+        'GRIDPEG PLAN
+        GRIDPEG.RowCount = 1
         'DT TABLE FOR SELVEDGE 
         DT_SELDETAILS.Reset()
         DT_SELDETAILS.Columns.Add("SDSRNO")
@@ -809,6 +814,31 @@ Public Class DesignCardMaster
             Cursor.Current = Cursors.WaitCursor
             fillcmb()
             clear()
+
+
+            GRIDPEGPLAN.ColumnCount = 25                 ' 24 picks + 1 for vertical SrNo
+            GRIDPEGPLAN.RowCount = 20                    ' Number of rows/levers/shafts
+
+            GRIDPEGPLAN.CellBorderStyle = DataGridViewCellBorderStyle.Single
+            GRIDPEGPLAN.GridColor = Color.Green
+
+            ' Set column widths and headers
+            GRIDPEGPLAN.Columns(0).HeaderText = "SrNo"   ' First column for vertical SrNo
+            GRIDPEGPLAN.Columns(0).Width = 35            ' Slightly wider for numbers
+
+            For col As Integer = 1 To 24                 ' Columns 1 to 24 for picks
+                GRIDPEGPLAN.Columns(col).HeaderText = col.ToString()   ' Horizontal SrNo as pick numbers
+                GRIDPEGPLAN.Columns(col).Width = 28
+            Next
+
+            GRIDPEGPLAN.RowTemplate.Height = 25
+
+            ' Set SrNo (row numbers) in first column
+            For row As Integer = 0 To GRIDPEGPLAN.RowCount - 1
+                GRIDPEGPLAN.Rows(row).Cells(0).Value = (row + 1).ToString()  ' 1, 2, ..., 20
+            Next
+
+
 
             If EDIT = True Then
                 SHOWDATA()
@@ -2393,7 +2423,7 @@ LINE1:
                     End If
                 End If
             End If
-            cmdbtn1_Click(sender, e)
+            cmdbtn1_Click(sender, e, GRIDDRAWING)
             ' TOTALDRAWDENTS(GRIDDRAWING)
             CALC()
             TOTAL()
@@ -2551,10 +2581,10 @@ LINE1:
             If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
             End If
-            
+
             'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
             'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
-            MsgBox("Copied Successfully")
+            'MsgBox("Copied Successfully")
         Catch ex As Exception
             Throw ex
         End Try
@@ -3165,25 +3195,49 @@ LINE1:
         End Try
     End Function
 
-    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs) Handles cmdbtn1.Click
-        CalculateTotalsForGrid(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALREPEAT", "DTOTALREPEAT1", "DTOTALREPEAT2")
+    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs, Optional GDV As DataGridView = Nothing) Handles cmdbtn1.Click
+        If GDV Is GRIDDRAWING Then
+            CalculateTotalsForGrid(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALREPEAT", "DTOTALREPEAT1", "DTOTALREPEAT2")
 
-        Dim totalDentsCount As Integer = CalculateTotalDents(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALDENTREPEAT", "DTOTALDENTREPEAT1", "DTOTALDENTREPEAT2")
-        TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
+            Dim totalDentsCount As Integer = CalculateTotalDents(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALDENTREPEAT", "DTOTALDENTREPEAT1", "DTOTALDENTREPEAT2")
+            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
 
-        ' Reset TextBoxes before summing to avoid accumulation
-        TXTTOTALDRAWENDS.Text = "0"
-        TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
+            ' Reset TextBoxes before summing to avoid accumulation
+            TXTTOTALDRAWENDS.Text = "0"
+            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
 
-        For Each row As DataGridViewRow In GRIDDRAWING.Rows
-            If row.IsNewRow Then Continue For
+            For Each row As DataGridViewRow In GRIDDRAWING.Rows
+                If row.IsNewRow Then Continue For
 
-            Dim totalRepeat2Val = If(IsDBNull(row.Cells("DTOTALREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALREPEAT2").Value))
-            TXTTOTALDRAWENDS.Text = (Convert.ToDecimal(TXTTOTALDRAWENDS.Text) + totalRepeat2Val).ToString()
+                Dim totalRepeat2Val = If(IsDBNull(row.Cells("DTOTALREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALREPEAT2").Value))
+                TXTTOTALDRAWENDS.Text = (Convert.ToDecimal(TXTTOTALDRAWENDS.Text) + totalRepeat2Val).ToString()
 
-            Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("DTOTALDENTREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALDENTREPEAT2").Value))
-            TXTTOTALDRAWDENTS.Text = (Convert.ToDecimal(TXTTOTALDRAWDENTS.Text) + totalDentRepeat2Val).ToString()
-        Next
+                Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("DTOTALDENTREPEAT2").Value), 0, Convert.ToDecimal(row.Cells("DTOTALDENTREPEAT2").Value))
+                TXTTOTALDRAWDENTS.Text = (Convert.ToDecimal(TXTTOTALDRAWDENTS.Text) + totalDentRepeat2Val).ToString()
+            Next
+        ElseIf GDV Is GRIDPEG Then
+            CalculateTotalsForGrid(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTR", "PPTR1", "PPTR2")
+
+            Dim totalDentsCount As Integer = CalculateTotalDents(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTDR", "PPTDR1", "PPTDR2")
+            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
+
+            ' Reset TextBoxes before summing to avoid accumulation
+            TXTTOTALPEG.Text = "0"
+            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
+
+            For Each row As DataGridViewRow In GRIDPEG.Rows
+                If row.IsNewRow Then Continue For
+
+                'Dim totalRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
+                'TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalRepeat2Val).ToString()
+
+                Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
+                TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalDentRepeat2Val).ToString()
+            Next
+
+
+        End If
+
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
@@ -3618,7 +3672,9 @@ line1:
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
-
+            If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
+                CopyGridEntries(GRIDWARP, GRIDWEFT)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3637,6 +3693,10 @@ line1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+
     End Sub
 
     Private Sub GRIDWARPDESC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPDESC.CellDoubleClick
@@ -4036,6 +4096,71 @@ line1:
 
 
             Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDPEG_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDPEG.CellValidating
+        Try
+            ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
+            Dim maxShaft As Integer = 0
+            If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
+                ' maxShaft will hold the correct integer value
+            Else
+                MessageBox.Show("Please select a valid shaft number.", "Error")
+                Exit Sub
+            End If ' or use Integer.Parse(txtShafts.Text)
+
+            ' Check if editing the "Ends" column by column name or index
+            If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
+                Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                If inputValue <> "" Then
+                    Dim nums = inputValue.Split("."c)
+                    For Each n In nums
+                        Dim value As Integer
+                        If Integer.TryParse(n.Trim(), value) Then
+                            If value > maxShaft Then
+                                MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                e.Cancel = True
+                                Return
+                            End If
+                        End If
+                    Next
+                End If
+            End If
+            If e.ColumnIndex = PPR.Index OrElse e.ColumnIndex = PPR1.Index Then ' For both repeats columns if needed
+                Dim value = Convert.ToString(e.FormattedValue)
+                If value IsNot Nothing AndAlso value.Trim() <> "" Then
+                    Dim repeatCount As Integer
+                    If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+                        MessageBox.Show("Please enter a positive Integer For repeats.")
+                        e.Cancel = True
+                    End If
+                End If
+            End If
+            cmdbtn1_Click(sender, e, GRIDPEG)
+            ' TOTALDRAWDENTS(GRIDPEG)
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDPEG_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDPEG.DefaultValuesNeeded
+        e.Row.Cells("PPSRNO").Value = GRIDPEG.Rows.Count
+    End Sub
+
+    Private Sub GRIDPEG_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDPEG.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDPEG.RowCount > 0 Then
+
+                GRIDPEG.Rows.RemoveAt(GRIDPEG.CurrentRow.Index)
+                TOTALWARP()
+                getsrno(GRIDPEG)
+
+            End If
+        Catch ex As Exception
             Throw ex
         End Try
     End Sub
