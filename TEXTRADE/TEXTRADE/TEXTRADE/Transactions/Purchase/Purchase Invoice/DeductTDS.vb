@@ -426,28 +426,51 @@ Public Class DeductTDS
     End Sub
     Public Sub AutoDeductTDS(ByVal billNo As Integer, ByVal registerName As String)
         Try
-            ' 1️⃣ Assign incoming parameters
-            Me.BILLNO = billNo
-            Me.REGISTER = registerName
+            ' 1️⃣ Load TDS data silently
+            LoadTDSData(billNo, registerName)
 
-            ' 2️⃣ Load data exactly as done in DeductTDS_Shown()
-            DeductTDS_Shown(Nothing, EventArgs.Empty)
-
-            ' 3️⃣ Auto calculate TDS %
-            TXTTDSPER_Validated(Nothing, EventArgs.Empty)
-
-            ' 4️⃣ Skip if nothing to deduct
+            ' 2️⃣ Calculate and post if valid
             If Val(TXTTDSAMT.Text) = 0 AndAlso Val(TXTTDSROUNDOFF.Text) = 0 Then Exit Sub
-
-            ' 5️⃣ Validate data
             If Not errorvalid() Then Exit Sub
 
-            ' 6️⃣ Auto-run the same logic as clicking OK
+            ' 3️⃣ Save journal entry (same as OK click)
             cmdok_Click(Nothing, EventArgs.Empty)
 
         Catch ex As Exception
-            ' Silent failure log
             Debug.Print("AutoDeductTDS failed: " & ex.Message)
+        End Try
+    End Sub
+    Private Sub LoadTDSData(ByVal billNo As Integer, ByVal registerName As String)
+        Try
+            ' duplicate of the logic inside DeductTDS_Shown
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" * ", "", "(SELECT NONPURCHASE.NP_INITIALS AS BILLINITIALS, NONPURCHASE.NP_DATE AS BILLDATE, NONPURCHASE.NP_REFNO AS PARTYBILLNO, NONPURCHASE.NP_PARTYBILLDATE AS PARTYBILLDATE, LEDGERS.Acc_cmpname AS NAME, NONPURCHASE.NP_GRANDTOTAL AS TOTAL, NONPURCHASE.NP_TOTALTAXABLEAMT AS TAXABLEAMT, ISNULL(LEDGERS.ACC_TDSDEDUCTEDAC,'') AS TDSDEDUCTEDAC FROM NONPURCHASE INNER JOIN REGISTERMASTER ON NONPURCHASE.NP_REGISTERID = REGISTERMASTER.register_id INNER JOIN LEDGERS ON NONPURCHASE.NP_LEDGERID = LEDGERS.Acc_id WHERE NP_NO = " & billNo & " AND REGISTER_NAME = '" & registerName & "' AND NP_YEARID = " & YearId & ") AS T")
+
+            If DT.Rows.Count = 0 Then Exit Sub
+
+            DEDUCTONCR = False
+            TXTREGISTER.Text = registerName
+            TXTBILLNO.Text = billNo
+            TXTINITIALS.Text = DT.Rows(0).Item("BILLINITIALS").ToString()
+            BILLDATE.Value = Format(DT.Rows(0).Item("BILLDATE"), "dd/MM/yyyy")
+            TXTPARTYBILLNO.Text = DT.Rows(0).Item("PARTYBILLNO").ToString()
+            PARTYBILLDATE.Text = DT.Rows(0).Item("PARTYBILLDATE").ToString()
+            TXTNAME.Text = DT.Rows(0).Item("NAME").ToString()
+            CMBTDS.Text = DT.Rows(0).Item("TDSDEDUCTEDAC").ToString()
+            TXTTAXABLEAMT.Text = Val(DT.Rows(0).Item("TAXABLEAMT"))
+            TXTGTOTAL.Text = Val(DT.Rows(0).Item("TOTAL"))
+
+            ' Calculate TDS %
+            Dim DT2 As DataTable = OBJCMN.SEARCH(" ISNULL(ACCOUNTSMASTER_TDS.ACC_TDSPER,0) AS TDSPER, ISNULL(ACCOUNTSMASTER_TDS.ACC_TDSRATE,0) AS TDSRATE, ISNULL(ACCOUNTSMASTER_TDS.ACC_LIMIT,0) AS LIMIT ", "", " ACCOUNTSMASTER INNER JOIN ACCOUNTSMASTER_TDS ON ACCOUNTSMASTER.Acc_id = ACCOUNTSMASTER_TDS.ACC_ID ", " AND ACC_CMPNAME = '" & TXTNAME.Text.Trim & "' AND ACCOUNTSMASTER.ACC_YEARID  = " & YearId)
+            If DT2.Rows.Count > 0 Then
+                TXTTDSPER.Text = Val(DT2.Rows(0).Item("TDSPER"))
+            End If
+
+            ' Trigger TDS amount calculation
+            TXTTDSPER_Validated(Nothing, EventArgs.Empty)
+
+        Catch ex As Exception
+            Debug.Print("LoadTDSData error: " & ex.Message)
         End Try
     End Sub
 End Class

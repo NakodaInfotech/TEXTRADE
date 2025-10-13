@@ -19,6 +19,9 @@ Public Class ExpenseVoucher
     Public TEMPREGNAME As String
     Dim ALLOWMANUALNPNO As Boolean = False
     Public IsBulkUpload As Boolean = False
+    Public IsBulkUploadtds As Boolean = False
+
+
 
     Public Sub New()
 
@@ -661,18 +664,24 @@ Public Class ExpenseVoucher
                     Exit Sub
                 End If
                 Dim DT As DataTable = objclsNP.SAVE()
-                If Not IsBulkUpload Then
+                If Not IsBulkUploadtds Then
                     MsgBox("Details Added")
                 End If
 
                 If CHKTDS.CheckState = CheckState.Checked Then
-                    Dim OBJTDS As New DeductTDS
-                    OBJTDS.BILLNO = DT.Rows(0).Item(0)
-                    OBJTDS.REGISTER = CMBREGISTER.Text.Trim
-                    OBJTDS.ShowDialog()
+                    If Not IsBulkUploadtds Then
+                        Dim OBJTDS As New DeductTDS
+                        OBJTDS.BILLNO = DT.Rows(0).Item(0)
+                        OBJTDS.REGISTER = CMBREGISTER.Text.Trim
+                        OBJTDS.ShowDialog()
+                    Else
+                        ' bulk upload - auto mode
+                        Dim OBJTDS As New DeductTDS
+                        OBJTDS.AutoDeductTDS(DT.Rows(0).Item(0), CMBREGISTER.Text.Trim)
+                    End If
                 End If
 
-            ElseIf EDIT = True Then
+                ElseIf EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
