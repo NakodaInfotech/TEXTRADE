@@ -323,7 +323,7 @@ Public Class DesignCardMaster
             Dim ALOTRPE As String = ""
             Dim ALOTRSym As String = ""
             For Each row As Windows.Forms.DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-                If row.Cells(SPSYM.Index).Value IsNot Nothing Then
+                If row.Cells(2).Value <> "" Then
                     If ALOTRSrNo = "" Then
                         ALOTRSrNo = Val(row.Cells(SPSRNO.Index).Value)
                         ALOTRPE = row.Cells(SPENDS.Index).Value.ToString
@@ -434,7 +434,7 @@ Public Class DesignCardMaster
             Dim WEFTTRSym As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-                If row.Cells(FPSRNO.Index).Value IsNot Nothing AndAlso row.Cells(FPSYM.Index).Value IsNot Nothing Then
+                If row.Cells(2).Value <> "" Then
                     If WEFTTRSrNo = "" Then
                         WEFTTRSrNo = Val(row.Cells(FPSRNO.Index).Value)
                         WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
@@ -545,6 +545,49 @@ Public Class DesignCardMaster
             alParaval.Add(TXTPRODDAY.Text.Trim)
             alParaval.Add(TXTPCSL.Text.Trim)
             alParaval.Add(Val(TXTREEDSPACECM.Text.Trim))
+
+
+            '*************************************************************************
+            'GRID PEGING
+            Dim PEGSrNo As String = ""
+            Dim PEGEnds As String = ""
+            Dim PEGREPEATMARK As String = ""
+            Dim PEGREPEATS As String = ""
+            Dim PEGREPEATMARK1 As String = ""
+            Dim PEGREPEATS1 As String = ""
+            Dim PEGREPEATMARK2 As String = ""
+            Dim PEGREPEATS2 As String = ""
+            For Each row As Windows.Forms.DataGridViewRow In GRIDPEG.Rows
+                If row.Cells(PPSRNO.Index).Value IsNot Nothing AndAlso row.Cells(PPENDS.Index).Value IsNot Nothing Then
+                    If PEGSrNo = "" Then
+                        PEGSrNo = Val(row.Cells(PPSRNO.Index).Value)
+                        PEGEnds = row.Cells(PPENDS.Index).Value.ToString()
+                        PEGREPEATMARK = row.Cells(PPRM.Index).Value
+                        PEGREPEATS = Val(row.Cells(PPR.Index).Value)
+                        PEGREPEATMARK1 = row.Cells(PPRM1.Index).Value
+                        PEGREPEATS1 = Val(row.Cells(PPR1.Index).Value)
+                        PEGREPEATMARK2 = row.Cells(PPRM2.Index).Value
+                        PEGREPEATS2 = Val(row.Cells(PPR2.Index).Value)
+                    Else
+                        PEGSrNo = PEGSrNo & "|" & Val(row.Cells(PPSRNO.Index).Value)
+                        PEGEnds = PEGEnds & "|" & row.Cells(PPENDS.Index).Value.ToString()
+                        PEGREPEATMARK = PEGREPEATMARK & "|" & row.Cells(PPRM.Index).Value
+                        PEGREPEATS = PEGREPEATS & "|" & Val(row.Cells(PPR.Index).Value)
+                        PEGREPEATMARK1 = PEGREPEATMARK1 & "|" & row.Cells(PPRM1.Index).Value
+                        PEGREPEATS1 = PEGREPEATS1 & "|" & Val(row.Cells(PPR1.Index).Value)
+                        PEGREPEATMARK2 = PEGREPEATMARK2 & "|" & row.Cells(PPRM2.Index).Value
+                        PEGREPEATS2 = PEGREPEATS2 & "|" & Val(row.Cells(PPR2.Index).Value)
+                    End If
+                End If
+            Next
+            alParaval.Add(PEGSrNo)
+            alParaval.Add(PEGEnds)
+            alParaval.Add(PEGREPEATMARK)
+            alParaval.Add(PEGREPEATS)
+            alParaval.Add(PEGREPEATMARK1)
+            alParaval.Add(PEGREPEATS1)
+            alParaval.Add(PEGREPEATMARK2)
+            alParaval.Add(PEGREPEATS2)
 
 
             Dim objDESIGN As New ClsDesignCardMaster
@@ -754,11 +797,10 @@ Public Class DesignCardMaster
         GRIDWEFTPATTERN.RowCount = 1
         'GRID DRAWING
         GRIDDRAWING.RowCount = 1
-        'GRID PEG PLAN
-        GRIDPEGPLAN.RowCount = 20
-        getsrno(GRIDPEGPLAN)
         'GRIDPEG PLAN
         GRIDPEG.RowCount = 1
+        'GRID PEGPLAN 
+        GRIDPEGPLAN.RowCount = 0
         'DT TABLE FOR SELVEDGE 
         DT_SELDETAILS.Reset()
         DT_SELDETAILS.Columns.Add("SDSRNO")
@@ -814,31 +856,7 @@ Public Class DesignCardMaster
             Cursor.Current = Cursors.WaitCursor
             fillcmb()
             clear()
-
-
-            GRIDPEGPLAN.ColumnCount = 25                 ' 24 picks + 1 for vertical SrNo
-            GRIDPEGPLAN.RowCount = 20                    ' Number of rows/levers/shafts
-
-            GRIDPEGPLAN.CellBorderStyle = DataGridViewCellBorderStyle.Single
-            GRIDPEGPLAN.GridColor = Color.Green
-
-            ' Set column widths and headers
-            GRIDPEGPLAN.Columns(0).HeaderText = "SrNo"   ' First column for vertical SrNo
-            GRIDPEGPLAN.Columns(0).Width = 35            ' Slightly wider for numbers
-
-            For col As Integer = 1 To 24                 ' Columns 1 to 24 for picks
-                GRIDPEGPLAN.Columns(col).HeaderText = col.ToString()   ' Horizontal SrNo as pick numbers
-                GRIDPEGPLAN.Columns(col).Width = 28
-            Next
-
-            GRIDPEGPLAN.RowTemplate.Height = 25
-
-            ' Set SrNo (row numbers) in first column
-            For row As Integer = 0 To GRIDPEGPLAN.RowCount - 1
-                GRIDPEGPLAN.Rows(row).Cells(0).Value = (row + 1).ToString()  ' 1, 2, ..., 20
-            Next
-
-
+            FILLPEGPLAN()
 
             If EDIT = True Then
                 SHOWDATA()
@@ -1068,9 +1086,19 @@ Public Class DesignCardMaster
 
                     Next
                 End If
+                'PEGPLAN FIELD
+                Dim dttable8 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_PPSRNO, 0) AS PPSRNO, ISNULL(DESIGN_PPENDS, 0) AS PPENDS, ISNULL(DESIGN_PPREPEATMARK, '') AS PPREPEATMARK, ISNULL(DESIGN_PPREPEAT, 0) AS PPREPEAT, ISNULL(DESIGN_PPREPEATMARK1, '') AS PPGRIDREPEATMARK1, ISNULL(DESIGN_PPREPEAT1, 0) AS PPREPEAT1, ISNULL(DESIGN_PPREPEATMARK2, '') AS PPREPEATMARK2, ISNULL(DESIGN_PPREPEAT2, 0) AS PPREPEAT2 ", "", " DESIGNCARD_PEGPLAN  ", " AND  DESIGNCARD_PEGPLAN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_PEGPLAN.DESIGN_YEARID = " & YearId & " ORDER BY PPSRNO")
+                If dttable8.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable8.Rows
+                        GRIDPEG.Rows.Add(DTR("PPSRNO"), DTR("PPENDS").ToString, DTR("PPREPEATMARK").ToString, DTR("PPREPEAT"), DTR("PPGRIDREPEATMARK1").ToString, DTR("PPREPEAT1"), DTR("PPREPEATMARK2").ToString, DTR("PPREPEAT2"))
+
+                    Next
+                End If
+
                 TOTAL()
                 CALC()
-
+                FILLPEGPLAN()
+                pegplan()
             End If
         Catch ex As Exception
             Throw ex
@@ -2503,24 +2531,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs)
-        Try
-            If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.RowCount > 0 Then
-                If GRIDSELDOUBLECLICK = True Then
-                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
-                    Exit Sub
-                End If
-                GRIDSELVEDGEPATTERN.Rows.RemoveAt(GRIDSELVEDGEPATTERN.CurrentRow.Index)
-                TOTALSELVEDGE()
-                getsrno(GRIDSELVEDGEPATTERN)
-                'ElseIf e.KeyCode = Keys.F5 Then
-                '    EDITSELVEDGEPATTERNROW()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub GRIDWARP_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARP.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDWARP.RowCount > 0 Then
@@ -2997,8 +3007,7 @@ LINE1:
                     End If
                 End If
             End If
-            Button1_Click(sender, e)
-            COPYSYM()
+            COPYSELSYM()
             CALC()
             TOTAL()
         Catch ex As Exception
@@ -3254,7 +3263,7 @@ LINE1:
         e.Row.Cells("DSRNO").Value = GRIDDRAWING.Rows.Count
     End Sub
 
-    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs)
+    Private Sub GRIDSELVEDGEPATTERN_DefaultValuesNeeded(sender As Object, e As DataGridViewRowEventArgs) Handles GRIDSELVEDGEPATTERN.DefaultValuesNeeded
         e.Row.Cells("SPSRNO").Value = GRIDSELVEDGEPATTERN.Rows.Count
     End Sub
 
@@ -3806,6 +3815,12 @@ line1:
         End Try
     End Sub
 
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        'PrintPegPlan()
+
+        ShowPrintPreview()
+    End Sub
+
     Private Sub GRIDWEFT_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellClick
         Try
             'If GRIDWEFT.RowCount > 0 Then GRIDTEMPVIEW(GRIDWEFT, DT_WEFTDETAILS, "FSRNO", "FDSRNO", "FDSHADE", "FDMAINSRNO")
@@ -3884,7 +3899,6 @@ line1:
         CALC()
         'blendpercentcalc()
         'CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
-
     End Sub
 
     Private Sub TXTFWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTFWIDTH.Validated
@@ -4048,6 +4062,57 @@ line1:
 
     Private Sub GRIDSELVEDGEPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDSELVEDGEPATTERN.CellValidating
         Try
+            Dim dgv As DataGridView = CType(sender, DataGridView)
+
+            '' Proceed only if the column being edited is "WPSYM"
+            'If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
+
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDWARP.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
+
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
+
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
+            If e.ColumnIndex = WPSYM.Index Then
+                If e.FormattedValue IsNot Nothing Then
+                    GRIDSELVEDGEPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
+                End If
+            End If
+            If e.ColumnIndex = SPREPEAT.Index OrElse e.ColumnIndex = SPREPEAT1.Index Then ' For both repeats columns if needed
+                Dim value = Convert.ToString(e.FormattedValue)
+                If value IsNot Nothing AndAlso value.Trim() <> "" Then
+                    Dim repeatCount As Integer
+                    If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+                        MessageBox.Show("Please enter a positive integer for repeats.")
+                        e.Cancel = True
+                    End If
+                End If
+            End If
+            Button1_Click(sender, e)
+            COPYSYM()
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Try
 
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
@@ -4095,53 +4160,67 @@ line1:
             TOTALSELVEDGEPATTERN()
 
 
-            Catch ex As Exception
+        Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
     Private Sub GRIDPEG_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDPEG.CellValidating
         Try
-            ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
-            Dim maxShaft As Integer = 0
-            If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
-                ' maxShaft will hold the correct integer value
-            Else
-                MessageBox.Show("Please select a valid shaft number.", "Error")
-                Exit Sub
-            End If ' or use Integer.Parse(txtShafts.Text)
+            If GRIDPEG.RowCount > 1 Then
+                ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
+                Dim maxShaft As Integer = 0
+                If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
+                    ' maxShaft will hold the correct integer value
+                Else
+                    MessageBox.Show("Please select a valid shaft number.", "Error")
+                    Exit Sub
+                End If ' or use Integer.Parse(txtShafts.Text)
 
-            ' Check if editing the "Ends" column by column name or index
-            If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
-                Dim inputValue As String = e.FormattedValue.ToString().Trim()
-                If inputValue <> "" Then
-                    Dim nums = inputValue.Split("."c)
-                    For Each n In nums
-                        Dim value As Integer
-                        If Integer.TryParse(n.Trim(), value) Then
-                            If value > maxShaft Then
-                                MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                e.Cancel = True
-                                Return
+                ' Check if editing the "Ends" column by column name or index
+                If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
+                    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+                    If inputValue <> "" Then
+                        Dim nums = inputValue.Split("."c)
+                        For Each n In nums
+                            Dim value As Integer
+                            If Integer.TryParse(n.Trim(), value) Then
+                                If value > maxShaft Then
+                                    MessageBox.Show($"The largest number allowed is {maxShaft}.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    e.Cancel = True
+                                    Return
+                                End If
                             End If
-                        End If
-                    Next
-                End If
-            End If
-            If e.ColumnIndex = PPR.Index OrElse e.ColumnIndex = PPR1.Index Then ' For both repeats columns if needed
-                Dim value = Convert.ToString(e.FormattedValue)
-                If value IsNot Nothing AndAlso value.Trim() <> "" Then
-                    Dim repeatCount As Integer
-                    If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
-                        MessageBox.Show("Please enter a positive Integer For repeats.")
-                        e.Cancel = True
+                        Next
                     End If
                 End If
+                If e.ColumnIndex = PPR.Index OrElse e.ColumnIndex = PPR1.Index Then ' For both repeats columns if needed
+                    Dim value = Convert.ToString(e.FormattedValue)
+                    If value IsNot Nothing AndAlso value.Trim() <> "" Then
+                        Dim repeatCount As Integer
+                        If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
+                            MessageBox.Show("Please enter a positive Integer For repeats.")
+                            e.Cancel = True
+                        End If
+                    End If
+                End If
+                cmdbtn1_Click(sender, e, GRIDPEG)
+                ' TOTALDRAWDENTS(GRIDPEG)
+                CALC()
+                TOTAL()
+                If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
+                    Dim inputValue As String = Convert.ToString(e.FormattedValue).Trim()
+                    If inputValue <> "" Then
+                        ' If GRIDPEGPLAN row count is LESS than GRIDPEG row count, add a row!
+                        If GRIDPEGPLAN.RowCount < GRIDPEG.Rows.Count Then
+                            GRIDPEGPLAN.Rows.Add()
+                            ' Set SrNo for the new vertical row:
+                            GRIDPEGPLAN.Rows(GRIDPEGPLAN.RowCount - 1).Cells(0).Value = GRIDPEGPLAN.RowCount.ToString()
+                        End If
+                    End If
+                End If
+                pegplan()
             End If
-            cmdbtn1_Click(sender, e, GRIDPEG)
-            ' TOTALDRAWDENTS(GRIDPEG)
-            CALC()
-            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
@@ -4158,7 +4237,132 @@ line1:
                 GRIDPEG.Rows.RemoveAt(GRIDPEG.CurrentRow.Index)
                 TOTALWARP()
                 getsrno(GRIDPEG)
+                GRIDPEGPLAN.RowCount = 0
+                FILLPEGPLAN()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub pegplan()
+        Try
+            For srRow As Integer = 0 To GRIDPEG.Rows.Count - 1
+                Dim pickStr As String = ""
+                If Not IsDBNull(GRIDPEG.Rows(srRow).Cells("PPENDS").Value) AndAlso GRIDPEG.Rows(srRow).Cells("PPENDS").Value IsNot Nothing Then
+                    pickStr = GRIDPEG.Rows(srRow).Cells("PPENDS").Value.ToString().Trim()
+                End If
 
+                If Not String.IsNullOrWhiteSpace(pickStr) Then
+                    Dim picks() As String = pickStr.Split("."c)
+                    For Each pickVal As String In picks
+                        Dim pickNum As Integer
+                        If Integer.TryParse(pickVal, pickNum) Then
+                            ' Only mark if column is 1..24 (columns 1-24 in grid when 0 is SrNo)
+                            If srRow >= 0 And srRow < GRIDPEGPLAN.RowCount AndAlso pickNum > 0 And pickNum < GRIDPEGPLAN.ColumnCount Then
+                                GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Green
+                            End If
+                        End If
+                    Next
+                End If
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLPEGPLAN()
+        Try
+            ' Always 25 columns (1 SrNo + 24 picks)
+            GRIDPEGPLAN.ColumnCount = 25
+
+            ' Determine how many non-blank entries you actually want to show as rows
+            Dim desiredRows As Integer = GRIDPEG.Rows.Cast(Of DataGridViewRow)().Count(Function(r) Not r.IsNewRow AndAlso Not String.IsNullOrWhiteSpace(Convert.ToString(r.Cells("PPENDS").Value)))
+
+            ' Set the exact number of rows
+            GRIDPEGPLAN.RowCount = desiredRows
+
+            ' Column headers and widths
+            GRIDPEGPLAN.Columns(0).HeaderText = "Sr"
+            GRIDPEGPLAN.Columns(0).Width = 35
+            For col As Integer = 1 To 24
+                GRIDPEGPLAN.Columns(col).HeaderText = col.ToString()
+                GRIDPEGPLAN.Columns(col).Width = 28
+            Next
+
+            GRIDPEGPLAN.RowTemplate.Height = 30
+
+            ' Set SrNo (vertical numbers) in the first column
+            For row As Integer = 0 To GRIDPEGPLAN.RowCount - 1
+                GRIDPEGPLAN.Rows(row).Cells(0).Value = (row + 1).ToString()
+            Next
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private WithEvents printDocument1 As New Printing.PrintDocument()
+    Private printPreviewDialog1 As New PrintPreviewDialog()
+    Private Sub ShowPrintPreview()
+        AddHandler printDocument1.PrintPage, AddressOf Me.printDocument1_PrintPage
+        printPreviewDialog1.Document = printDocument1
+        printPreviewDialog1.Width = 900
+        printPreviewDialog1.Height = 700
+        printPreviewDialog1.ShowDialog()
+    End Sub
+
+    Private Sub printDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs)
+        ' draw your grid here as before
+        Dim grid As DataGridView = GRIDPEGPLAN
+
+        Dim startX As Integer = 50
+        Dim startY As Integer = 50
+        Dim cellSize As Integer = 30
+        Dim font As New Font("Arial", 8)
+
+        ' Draw column headers
+        For col As Integer = 1 To grid.ColumnCount - 1
+            e.Graphics.DrawString(grid.Columns(col).HeaderText, font, Brushes.Black, startX + col * cellSize, startY - 20)
+        Next
+
+        ' Draw row headers (SrNo)
+        For row As Integer = 0 To grid.RowCount - 1
+            e.Graphics.DrawString(grid.Rows(row).Cells(0).Value.ToString(), font, Brushes.Black, startX - 30, startY + row * cellSize)
+        Next
+
+        ' Draw cells
+        For row As Integer = 0 To grid.RowCount - 1
+            For col As Integer = 1 To grid.ColumnCount - 1   ' Skip SrNo if you want
+                Dim rect As New Rectangle(startX + col * cellSize, startY + row * cellSize, cellSize, cellSize)
+                e.Graphics.DrawRectangle(Pens.Black, rect)
+                Dim val As String = Convert.ToString(grid.Rows(row).Cells(col).Value)
+                If Not String.IsNullOrWhiteSpace(val) Then
+                    e.Graphics.DrawString(val, font, Brushes.Black, rect)
+                End If
+                ' Optional: Fill colored rectangle if cell is ON
+                If grid.Rows(row).Cells(col).Style.BackColor = Color.Green Then
+                    Using brush As New SolidBrush(Color.Black)
+                        e.Graphics.FillRectangle(brush, rect)
+                    End Using
+                End If
+            Next
+        Next
+        e.HasMorePages = False
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELVEDGEPATTERN.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.RowCount > 0 Then
+                If GRIDWPDOUBLECLICK = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+                If GRIDSELVEDGEPATTERN.RowCount > 1 Then GRIDSELVEDGEPATTERN.Rows.RemoveAt(GRIDSELVEDGEPATTERN.CurrentRow.Index)
+                TOTALSELVEDGE()
+                getsrno(GRIDSELVEDGEPATTERN)
+                'ElseIf e.KeyCode = Keys.F5 Then
+                '    EDITWARPPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex

@@ -380,7 +380,23 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
                 I += 1
 
-
+                'PEGPLAN FIELD
+                .Add(New SqlClient.SqlParameter("@PPSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK2", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
+                I += 1
 
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -756,6 +772,25 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REEDSPACECM", alParaval(I)))
                 I += 1
+
+                'PP FIELD
+                .Add(New SqlClient.SqlParameter("@PPSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT1", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEATMARK2", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
                 I += 1
 

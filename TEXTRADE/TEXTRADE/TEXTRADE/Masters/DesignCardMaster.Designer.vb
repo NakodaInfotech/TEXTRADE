@@ -90,6 +90,7 @@ Partial Class DesignCardMaster
         Dim DataGridViewCellStyle64 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle65 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.TXTCOPYCARDNO = New System.Windows.Forms.TextBox()
         Me.CMDCALC = New System.Windows.Forms.Button()
         Me.Label61 = New System.Windows.Forms.Label()
@@ -358,7 +359,6 @@ Partial Class DesignCardMaster
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.TABCONTROLMAIN = New System.Windows.Forms.TabControl()
         Me.TBMAIN = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TXTBEAMMTRS = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.TXTGWIDTHCM = New System.Windows.Forms.TextBox()
@@ -551,6 +551,7 @@ Partial Class DesignCardMaster
         'BLENDPANEL1
         '
         Me.BLENDPANEL1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BLENDPANEL1.Controls.Add(Me.Button5)
         Me.BLENDPANEL1.Controls.Add(Me.TXTCOPYCARDNO)
         Me.BLENDPANEL1.Controls.Add(Me.CMDCALC)
         Me.BLENDPANEL1.Controls.Add(Me.Label61)
@@ -572,8 +573,22 @@ Partial Class DesignCardMaster
         Me.BLENDPANEL1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BLENDPANEL1.Location = New System.Drawing.Point(0, 0)
         Me.BLENDPANEL1.Name = "BLENDPANEL1"
-        Me.BLENDPANEL1.Size = New System.Drawing.Size(1417, 581)
+        Me.BLENDPANEL1.Size = New System.Drawing.Size(1417, 610)
         Me.BLENDPANEL1.TabIndex = 0
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Transparent
+        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.ForeColor = System.Drawing.Color.Black
+        Me.Button5.Location = New System.Drawing.Point(786, 563)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(80, 28)
+        Me.Button5.TabIndex = 994
+        Me.Button5.Text = "&Print"
+        Me.Button5.UseVisualStyleBackColor = False
         '
         'TXTCOPYCARDNO
         '
@@ -1341,10 +1356,10 @@ Partial Class DesignCardMaster
         Me.TBWARP.Controls.Add(Me.TXTGRIDPE)
         Me.TBWARP.Controls.Add(Me.TXTWARPGSRNO)
         Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
-        Me.TBWARP.Location = New System.Drawing.Point(4, 22)
+        Me.TBWARP.Location = New System.Drawing.Point(4, 24)
         Me.TBWARP.Name = "TBWARP"
         Me.TBWARP.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWARP.Size = New System.Drawing.Size(1436, 241)
+        Me.TBWARP.Size = New System.Drawing.Size(1436, 239)
         Me.TBWARP.TabIndex = 0
         Me.TBWARP.Text = "2. Warp Pattern && Weft Pattern"
         '
@@ -3587,8 +3602,8 @@ Partial Class DesignCardMaster
         Me.GRIDPEGPLAN.AllowUserToDeleteRows = False
         Me.GRIDPEGPLAN.AllowUserToResizeColumns = False
         Me.GRIDPEGPLAN.AllowUserToResizeRows = False
-        DataGridViewCellStyle62.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle62.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle62.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.Window
         Me.GRIDPEGPLAN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle62
         Me.GRIDPEGPLAN.BackgroundColor = System.Drawing.Color.White
         Me.GRIDPEGPLAN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -3624,8 +3639,8 @@ Partial Class DesignCardMaster
         Me.GRIDPEGPLAN.RowTemplate.Height = 20
         Me.GRIDPEGPLAN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDPEGPLAN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.GRIDPEGPLAN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDPEGPLAN.Size = New System.Drawing.Size(570, 224)
+        Me.GRIDPEGPLAN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.GRIDPEGPLAN.Size = New System.Drawing.Size(752, 224)
         Me.GRIDPEGPLAN.TabIndex = 916
         Me.GRIDPEGPLAN.TabStop = False
         '
@@ -3763,7 +3778,6 @@ Partial Class DesignCardMaster
         'TBMAIN
         '
         Me.TBMAIN.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBMAIN.Controls.Add(Me.GroupBox1)
         Me.TBMAIN.Controls.Add(Me.TXTBEAMMTRS)
         Me.TBMAIN.Controls.Add(Me.Label41)
         Me.TBMAIN.Controls.Add(Me.TXTGWIDTHCM)
@@ -3871,15 +3885,6 @@ Partial Class DesignCardMaster
         Me.TBMAIN.Size = New System.Drawing.Size(1353, 170)
         Me.TBMAIN.TabIndex = 0
         Me.TBMAIN.Text = "1. Reed && Pick Details"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Location = New System.Drawing.Point(530, 147)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 100)
-        Me.GroupBox1.TabIndex = 1038
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
         '
         'TXTBEAMMTRS
         '
@@ -5619,7 +5624,7 @@ Partial Class DesignCardMaster
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1417, 581)
+        Me.ClientSize = New System.Drawing.Size(1417, 610)
         Me.Controls.Add(Me.BLENDPANEL1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -6084,7 +6089,6 @@ Partial Class DesignCardMaster
     Friend WithEvents Button4 As Button
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TXTTOTALPEG As TextBox
-    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GRIDPEGPLAN As DataGridView
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GRIDPEG As DataGridView
@@ -6102,4 +6106,5 @@ Partial Class DesignCardMaster
     Friend WithEvents PPR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTDR2 As DataGridViewTextBoxColumn
+    Friend WithEvents Button5 As Button
 End Class
