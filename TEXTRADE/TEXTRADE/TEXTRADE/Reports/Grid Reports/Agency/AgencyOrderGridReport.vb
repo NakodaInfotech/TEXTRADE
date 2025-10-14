@@ -353,7 +353,7 @@ Public Class AgencyOrderGridReport
             ' TEMPOUTSTANDING()
 
             ' Generate the PDF from DataGridView
-            Dim filePath As String = Application.StartupPath & "\Agency Order Grid" & CMBBUYER.Text.Trim & ".pdf"
+            Dim filePath As String = Application.StartupPath & "\Agency Order Grid.pdf"
 
             ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
             ExportDataGridViewToPdfForWP(GRIDSO, filePath)
@@ -373,21 +373,21 @@ Public Class AgencyOrderGridReport
 
     Public Sub ExportDataGridViewToPdfForWP(dgv As DataGridView, filePath As String)
         ' 👉 Changed to A3 for bigger page size
-        Dim doc As New Document(PageSize.A3.Rotate(), 20, 20, 20, 20)
+        Dim doc As New Document(PageSize.A4.Rotate(), 20, 20, 20, 20)
 
         Try
             PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
             doc.Open()
 
             ' Load Verdana font
-            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
-            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
-            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
-            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana8 As New iTextSharp.text.Font(verdanaBaseFont, 7)
+            Dim verdana8Bold As New iTextSharp.text.Font(verdanaBaseFont, 7, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 12, iTextSharp.text.Font.BOLD)
 
             ' Title & Date
             doc.Add(New Paragraph(" Agency Order Report", verdana16Bold))
-            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+            doc.Add(New Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana8))
             doc.Add(New Paragraph(" "))
 
             ' Collect visible columns
@@ -403,46 +403,48 @@ Public Class AgencyOrderGridReport
             table.WidthPercentage = 100 ' Use full page width
             table.HeaderRows = 1
 
-            ' Set custom widths: 40% more for selected columns, add smaller width for Remarks
-            Dim baseWidth As Single = 0.75F
-            Dim wideWidth As Single = baseWidth * 1.4F ' 40% more
-            Dim remarksWidth As Single = baseWidth * 1.2F ' slightly wider than base
+            ' Use reasonable widths with truncation as fallback
+            Dim baseWidth As Single = 8.0F
+            Dim wideWidth As Single = 20.0F
+            Dim ItemWidth As Single = 15.0F
+            Dim remarksWidth As Single = 12.0F
 
             Dim widths(totalColumnsCount - 1) As Single
 
             For i As Integer = 0 To visibleColumns.Count - 1
                 Select Case visibleColumns(i).HeaderText.Trim().ToUpper()
-                    Case "ITEM NAME", "BUYER NAME", "SELLER NAME"
+                    Case "ITEM NAME"
+                        widths(i) = ItemWidth
+                    Case "BUYER NAME", "SELLER NAME"
                         widths(i) = wideWidth
                     Case Else
                         widths(i) = baseWidth
                 End Select
             Next
 
-            ' Last column "Remarks"
             widths(totalColumnsCount - 1) = remarksWidth
 
             table.SetWidths(widths)
 
             ' Add header cells for existing columns
             For Each col As DataGridViewColumn In visibleColumns
-                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana10Bold)) With {
+                Dim headerCell As New PdfPCell(New Phrase(col.HeaderText, verdana8Bold)) With {
                 .BackgroundColor = BaseColor.LIGHT_GRAY,
                 .HorizontalAlignment = Element.ALIGN_CENTER,
                 .VerticalAlignment = Element.ALIGN_MIDDLE,
                 .Padding = 5,
-                .NoWrap = False
+                .NoWrap = True
             }
                 table.AddCell(headerCell)
             Next
 
             ' Add header cell for new Remarks column
-            Dim remarksHeaderCell As New PdfPCell(New Phrase("Remarks", verdana10Bold)) With {
+            Dim remarksHeaderCell As New PdfPCell(New Phrase("Remarks", verdana8Bold)) With {
             .BackgroundColor = BaseColor.LIGHT_GRAY,
             .HorizontalAlignment = Element.ALIGN_CENTER,
             .VerticalAlignment = Element.ALIGN_MIDDLE,
             .Padding = 5,
-            .NoWrap = False
+            .NoWrap = True
         }
             table.AddCell(remarksHeaderCell)
 
@@ -472,13 +474,24 @@ Public Class AgencyOrderGridReport
                                 value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
                             Else
                                 value = cell.Value.ToString()
+                                If value.Length > 28 Then
+                                    value = value.Substring(0, 25) + "..."
+                                End If
                             End If
                         End If
 
-                        Dim pdfCell As New PdfPCell(New Phrase(value, If(isTotalRow, verdana10Bold, verdana10))) With {
+                        Dim pdfCell As New PdfPCell(New Phrase(value, If(isTotalRow, verdana8Bold, verdana8))) With {
                         .VerticalAlignment = Element.ALIGN_MIDDLE,
                         .Padding = 4
                     }
+
+                        ' Prevent text wrapping for BUYER NAME and SELLER NAME columns
+                        If col.HeaderText.Trim().ToUpper() = "BUYER NAME" OrElse col.HeaderText.Trim().ToUpper() = "SELLER NAME" Then
+                            pdfCell.NoWrap = True ' This prevents text wrapping
+                            ' Optional: truncate only very long text
+
+                        End If
+
 
                         ' Color logic
                         If isTotalRow Then
@@ -502,7 +515,7 @@ Public Class AgencyOrderGridReport
                     ' Add Remarks cell (empty or customize here)
                     Dim remarksText As String = "" ' You can set any remark per row here if you want
 
-                    Dim remarksCell As New PdfPCell(New Phrase(remarksText, If(isTotalRow, verdana10Bold, verdana10))) With {
+                    Dim remarksCell As New PdfPCell(New Phrase(remarksText, If(isTotalRow, verdana8Bold, verdana8))) With {
                     .VerticalAlignment = Element.ALIGN_MIDDLE,
                     .Padding = 4
                 }
@@ -620,6 +633,18 @@ Public Class AgencyOrderGridReport
             If RDBCLOSED.Checked = True Then OBJSO.FORMULA = OBJSO.FORMULA & " AND {ALLAGENCYSALEORDER_DESC.ASO_CLOSED}=TRUE "
 
             OBJSO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
+        Try
+            ' Generate the PDF from DataGridView
+            Dim filePath As String = Application.StartupPath & "\Agency Order Grid.pdf"
+            ExportDataGridViewToPdfForWP(GRIDSO, filePath)
+            'OPEN THE PDF
+            Process.Start(filePath)
         Catch ex As Exception
             Throw ex
         End Try

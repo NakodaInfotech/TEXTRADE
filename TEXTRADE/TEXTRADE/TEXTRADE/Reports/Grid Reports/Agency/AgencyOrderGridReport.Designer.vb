@@ -22,16 +22,18 @@ Partial Class AgencyOrderGridReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDPRINT = New System.Windows.Forms.Button()
+        Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.tbitem = New System.Windows.Forms.TabPage()
@@ -48,6 +50,9 @@ Partial Class AgencyOrderGridReport
         Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CMDSHOW = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GRIDSELLERDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDSELLER = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -98,18 +103,14 @@ Partial Class AgencyOrderGridReport
         Me.RDBPENDING = New System.Windows.Forms.RadioButton()
         Me.RDBCOMPLETE = New System.Windows.Forms.RadioButton()
         Me.RDBCLOSED = New System.Windows.Forms.RadioButton()
-        Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.CMDSHOW = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.GRIDSELLERDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDSELLER, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,13 +129,12 @@ Partial Class AgencyOrderGridReport
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.Button1)
+        Me.BlendPanel1.Controls.Add(Me.CMDPRINT)
         Me.BlendPanel1.Controls.Add(Me.CMDEXPORT)
         Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.TabControl2)
@@ -151,6 +151,34 @@ Partial Class AgencyOrderGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1333, 692)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDPRINT
+        '
+        Me.CMDPRINT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDPRINT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDPRINT.FlatAppearance.BorderSize = 0
+        Me.CMDPRINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPRINT.ForeColor = System.Drawing.Color.Black
+        Me.CMDPRINT.Location = New System.Drawing.Point(1154, 46)
+        Me.CMDPRINT.Name = "CMDPRINT"
+        Me.CMDPRINT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPRINT.TabIndex = 767
+        Me.CMDPRINT.Text = "&Print"
+        Me.CMDPRINT.UseVisualStyleBackColor = False
+        '
+        'CMDEXPORT
+        '
+        Me.CMDEXPORT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDEXPORT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDEXPORT.FlatAppearance.BorderSize = 0
+        Me.CMDEXPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDEXPORT.ForeColor = System.Drawing.Color.Black
+        Me.CMDEXPORT.Location = New System.Drawing.Point(1068, 46)
+        Me.CMDEXPORT.Name = "CMDEXPORT"
+        Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXPORT.TabIndex = 6
+        Me.CMDEXPORT.Text = "&Export"
+        Me.CMDEXPORT.UseVisualStyleBackColor = False
         '
         'CMDWHATSAPP
         '
@@ -196,9 +224,9 @@ Partial Class AgencyOrderGridReport
         Me.GRIDSO.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSO.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDSO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDSO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDSO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDSO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GITEMNAME, Me.GSONO, Me.GSODATE, Me.GBUYERNAME, Me.GSELLERNAME, Me.GNOTE, Me.GPCS, Me.GOUTPCS, Me.GBALPCS, Me.GRATE, Me.GDAYS})
         Me.GRIDSO.GridColor = System.Drawing.SystemColors.Control
@@ -208,8 +236,8 @@ Partial Class AgencyOrderGridReport
         Me.GRIDSO.RowHeadersVisible = False
         Me.GRIDSO.RowHeadersWidth = 30
         Me.GRIDSO.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.GRIDSO.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.GRIDSO.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDSO.RowTemplate.Height = 20
         Me.GRIDSO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -218,9 +246,9 @@ Partial Class AgencyOrderGridReport
         '
         'GITEMNAME
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle2
         Me.GITEMNAME.HeaderText = "Item Name"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.ReadOnly = True
@@ -230,8 +258,8 @@ Partial Class AgencyOrderGridReport
         '
         'GSONO
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle3
         Me.GSONO.HeaderText = "SO No"
         Me.GSONO.Name = "GSONO"
         Me.GSONO.ReadOnly = True
@@ -277,9 +305,9 @@ Partial Class AgencyOrderGridReport
         '
         'GPCS
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle13.NullValue = Nothing
-        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle4
         Me.GPCS.HeaderText = "Pcs"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.ReadOnly = True
@@ -289,8 +317,8 @@ Partial Class AgencyOrderGridReport
         '
         'GOUTPCS
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle5
         Me.GOUTPCS.HeaderText = "Del Pcs"
         Me.GOUTPCS.Name = "GOUTPCS"
         Me.GOUTPCS.ReadOnly = True
@@ -300,8 +328,8 @@ Partial Class AgencyOrderGridReport
         '
         'GBALPCS
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle6
         Me.GBALPCS.HeaderText = "Bal Pcs"
         Me.GBALPCS.Name = "GBALPCS"
         Me.GBALPCS.ReadOnly = True
@@ -311,8 +339,8 @@ Partial Class AgencyOrderGridReport
         '
         'GRATE
         '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.ReadOnly = True
@@ -322,8 +350,8 @@ Partial Class AgencyOrderGridReport
         '
         'GDAYS
         '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle8
         Me.GDAYS.HeaderText = "Cr Days"
         Me.GDAYS.Name = "GDAYS"
         Me.GDAYS.ReadOnly = True
@@ -340,12 +368,50 @@ Partial Class AgencyOrderGridReport
         Me.TabPage1.Controls.Add(Me.GPORDERNO)
         Me.TabPage1.Controls.Add(Me.GPITEM)
         Me.TabPage1.Controls.Add(Me.GPPARTYNAME)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1310, 584)
+        Me.TabPage1.Size = New System.Drawing.Size(1310, 586)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Filters"
+        '
+        'CMDSHOW
+        '
+        Me.CMDSHOW.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSHOW.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSHOW.FlatAppearance.BorderSize = 0
+        Me.CMDSHOW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSHOW.ForeColor = System.Drawing.Color.Black
+        Me.CMDSHOW.Location = New System.Drawing.Point(277, 530)
+        Me.CMDSHOW.Name = "CMDSHOW"
+        Me.CMDSHOW.Size = New System.Drawing.Size(84, 28)
+        Me.CMDSHOW.TabIndex = 7
+        Me.CMDSHOW.Text = "&Show Report"
+        Me.CMDSHOW.UseVisualStyleBackColor = False
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox4.Controls.Add(Me.RadioButton2)
+        Me.GroupBox4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(52, 509)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(196, 69)
+        Me.GroupBox4.TabIndex = 4
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Reports"
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Checked = True
+        Me.RadioButton2.Location = New System.Drawing.Point(40, 21)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(129, 18)
+        Me.RadioButton2.TabIndex = 0
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Order Wise Details"
+        Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -892,20 +958,6 @@ Partial Class AgencyOrderGridReport
         Me.RDBCLOSED.Text = "Closed"
         Me.RDBCLOSED.UseVisualStyleBackColor = True
         '
-        'CMDEXPORT
-        '
-        Me.CMDEXPORT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDEXPORT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDEXPORT.FlatAppearance.BorderSize = 0
-        Me.CMDEXPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDEXPORT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXPORT.Location = New System.Drawing.Point(1068, 46)
-        Me.CMDEXPORT.Name = "CMDEXPORT"
-        Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXPORT.TabIndex = 6
-        Me.CMDEXPORT.Text = "&Export"
-        Me.CMDEXPORT.UseVisualStyleBackColor = False
-        '
         'CMDREFRESH
         '
         Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
@@ -934,58 +986,6 @@ Partial Class AgencyOrderGridReport
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'GroupBox4
-        '
-        Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox4.Controls.Add(Me.RadioButton2)
-        Me.GroupBox4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(52, 509)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(196, 69)
-        Me.GroupBox4.TabIndex = 4
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Reports"
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Checked = True
-        Me.RadioButton2.Location = New System.Drawing.Point(40, 21)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(129, 18)
-        Me.RadioButton2.TabIndex = 0
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Order Wise Details"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'CMDSHOW
-        '
-        Me.CMDSHOW.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSHOW.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSHOW.FlatAppearance.BorderSize = 0
-        Me.CMDSHOW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSHOW.ForeColor = System.Drawing.Color.Black
-        Me.CMDSHOW.Location = New System.Drawing.Point(277, 530)
-        Me.CMDSHOW.Name = "CMDSHOW"
-        Me.CMDSHOW.Size = New System.Drawing.Size(84, 28)
-        Me.CMDSHOW.TabIndex = 7
-        Me.CMDSHOW.Text = "&Show Report"
-        Me.CMDSHOW.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(1154, 46)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(80, 28)
-        Me.Button1.TabIndex = 767
-        Me.Button1.Text = "&Print"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'AgencyOrderGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1003,6 +1003,8 @@ Partial Class AgencyOrderGridReport
         Me.tbitem.ResumeLayout(False)
         CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.GRIDSELLERDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1027,8 +1029,6 @@ Partial Class AgencyOrderGridReport
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1106,5 +1106,5 @@ Partial Class AgencyOrderGridReport
     Friend WithEvents CMDSHOW As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents Button1 As Button
+    Friend WithEvents CMDPRINT As Button
 End Class
