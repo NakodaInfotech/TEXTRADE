@@ -4,19 +4,16 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Windows.Forms
 Imports System.IO
 
-Public Class AgencySaleOrderDesign
-
+Public Class AgencyDesign
 
     Public FORMULA As String
-
-    Dim RPTSO As New SOReport
-
 
     Dim tempattachment As String
     Dim ConInfo As New CrystalDecisions.Shared.TableLogOnInfo
     Dim expo As New ExportOptions
     Dim oDfDopt As New DiskFileDestinationOptions
     Public vendorname As String
+
     'NEWLY ADDED
 
     Public FRMSTRING As String
@@ -39,6 +36,8 @@ Public Class AgencySaleOrderDesign
     Public PRINTSETTING As Object = Nothing
     Public NOOFCOPIES As Integer = 1
 
+    Dim OBJ As New Object
+
     Private Sub SaleOrderDesign_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Windows.Forms.Keys.Escape Then
             Me.Close()
@@ -50,12 +49,12 @@ Public Class AgencySaleOrderDesign
     Private Sub SaleOrderDesign_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
 
-            If DIRECTPRINT = True Then
-                PRINTDIRECTADVICE()
-                Exit Sub
+            Dim OBJ As New Object
+            If FRMSTRING = "SOREPORT" Then
+                OBJ = New SOReport
+            ElseIf FRMSTRING = "ORDERDETAILS" Then
+                OBJ = New AgencySOStatusDetailsReport
             End If
-
-            Cursor.Current = Cursors.WaitCursor
 
 
             '**************** SET SERVER ************************
@@ -73,9 +72,7 @@ Public Class AgencySaleOrderDesign
                 .IntegratedSecurity = Dbsecurity
             End With
 
-            If FRMSTRING = "SOREPORT" Then
-                crTables = RPTSO.Database.Tables
-            End If
+            crTables = OBJ.Database.Tables
 
             For Each crTable In crTables
                 crtableLogonInfo = crTable.LogOnInfo
@@ -83,18 +80,28 @@ Public Class AgencySaleOrderDesign
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-            crpo.SelectionFormula = FORMULA
+            OBJ.RecordSelectionFormula = FORMULA
+            crpo.ReportSource = OBJ
 
-            If FRMSTRING = "SOREPORT" Then
-                RPTSO.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                crpo.ReportSource = RPTSO
-                    If WITHPHOTO = True Then RPTSO.DataDefinition.FormulaFields("WITHPHOTO").Text = 1
-                    RPTSO.DataDefinition.FormulaFields("RATERACK").Text = "'" & RATERACK & "'"
-                End If
 
-            '************************ END *******************
-            crpo.Zoom(100)
-            crpo.Refresh()
+            'If DIRECTPRINT = True Then
+            '    PRINTDIRECTADVICE()
+            '    OBJ.CLOSE()
+            '    OBJ.DISPOSE()
+            '    Exit Sub
+            'End If
+
+            'If FRMSTRING = "SOREPORT" Then
+            '    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            '    If WITHPHOTO = True Then OBJ.DataDefinition.FormulaFields("WITHPHOTO").Text = 1
+            '    OBJ.DataDefinition.FormulaFields("RATERACK").Text = "'" & RATERACK & "'"
+            'End If
+            'crpo.Zoom(100)
+            crpo.RefreshReport()
+
+            'OBJ.CLOSE()
+            'OBJ.DISPOSE()
+
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -158,17 +165,13 @@ Public Class AgencySaleOrderDesign
             Dim expo As New ExportOptions
             Dim oDfDopt As New DiskFileDestinationOptions
 
-            If FRMSTRING = "SOREPORT" Then
-                expo = RPTSO.ExportOptions
-                RPTSO.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTSO.Export()
-                RPTSO.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-            End If
-
-
+            expo = OBJ.ExportOptions
+            OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            expo.DestinationOptions = oDfDopt
+            OBJ.Export()
+            OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
@@ -177,43 +180,6 @@ Public Class AgencySaleOrderDesign
 
     Sub PRINTDIRECTADVICE()
         Try
-            Dim crParameterFieldDefinitions As ParameterFieldDefinitions
-            Dim crParameterFieldDefinition As ParameterFieldDefinition
-            Dim crParameterValues As New ParameterValues
-            Dim crParameterDiscreteValue As New ParameterDiscreteValue
-
-            '**************** SET SERVER ************************
-            Dim crtableLogonInfo As New TableLogOnInfo
-            Dim crConnecttionInfo As New ConnectionInfo
-            Dim crTables As Tables
-            Dim crTable As Table
-
-
-            With crConnecttionInfo
-                .ServerName = SERVERNAME
-                .DatabaseName = DatabaseName
-                .UserID = DBUSERNAME
-                .Password = Dbpassword
-                .IntegratedSecurity = Dbsecurity
-            End With
-
-
-            Dim OBJ As New Object
-
-            If FRMSTRING = "SOREPORT" Then
-                OBJ = New SOReport
-            End If
-
-            crTables = OBJ.Database.Tables
-
-            For Each crTable In crTables
-                crtableLogonInfo = crTable.LogOnInfo
-                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-                crTable.ApplyLogOnInfo(crtableLogonInfo)
-            Next
-
-            OBJ.RecordSelectionFormula = FORMULA
-
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
                 OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
@@ -225,9 +191,7 @@ Public Class AgencySaleOrderDesign
 
                 If FRMSTRING = "SOREPORT" Then
                     TEMPATTACHMENT = PARTYNAME & "_SOREPORT"
-
                 End If
-
 
                 oDfDopt.DiskFileName = Application.StartupPath & "\" & TEMPATTACHMENT & "_" & SONO & ".pdf"
 

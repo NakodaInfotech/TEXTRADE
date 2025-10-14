@@ -32,6 +32,7 @@ Partial Class AgencyOrderGridReport
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.tbitem = New System.Windows.Forms.TabPage()
         Me.GRIDSO = New System.Windows.Forms.DataGridView()
@@ -100,7 +101,10 @@ Partial Class AgencyOrderGridReport
         Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.CMDSHOW = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -124,11 +128,14 @@ Partial Class AgencyOrderGridReport
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Button1)
+        Me.BlendPanel1.Controls.Add(Me.CMDEXPORT)
         Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.TabControl2)
         Me.BlendPanel1.Controls.Add(Me.GroupBox1)
@@ -137,7 +144,6 @@ Partial Class AgencyOrderGridReport
         Me.BlendPanel1.Controls.Add(Me.CMBSELLER)
         Me.BlendPanel1.Controls.Add(Me.Label10)
         Me.BlendPanel1.Controls.Add(Me.GroupBox2)
-        Me.BlendPanel1.Controls.Add(Me.CMDEXPORT)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -145,6 +151,20 @@ Partial Class AgencyOrderGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1333, 692)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDWHATSAPP
+        '
+        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(982, 46)
+        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
+        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
+        Me.CMDWHATSAPP.TabIndex = 22
+        Me.CMDWHATSAPP.Text = "&Whatsapp"
+        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
         '
         'TabControl2
         '
@@ -314,14 +334,16 @@ Partial Class AgencyOrderGridReport
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.CMDSHOW)
+        Me.TabPage1.Controls.Add(Me.GroupBox4)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.GPORDERNO)
         Me.TabPage1.Controls.Add(Me.GPITEM)
         Me.TabPage1.Controls.Add(Me.GPPARTYNAME)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1310, 586)
+        Me.TabPage1.Size = New System.Drawing.Size(1310, 584)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Filters"
         '
@@ -332,7 +354,7 @@ Partial Class AgencyOrderGridReport
         Me.GroupBox3.Controls.Add(Me.CheckBox1)
         Me.GroupBox3.Location = New System.Drawing.Point(232, 15)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(393, 498)
+        Me.GroupBox3.Size = New System.Drawing.Size(393, 475)
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Seller Name"
@@ -437,7 +459,7 @@ Partial Class AgencyOrderGridReport
         Me.GPORDERNO.Controls.Add(Me.GRIDBILLDETAILSORDER)
         Me.GPORDERNO.Location = New System.Drawing.Point(1030, 21)
         Me.GPORDERNO.Name = "GPORDERNO"
-        Me.GPORDERNO.Size = New System.Drawing.Size(221, 492)
+        Me.GPORDERNO.Size = New System.Drawing.Size(221, 469)
         Me.GPORDERNO.TabIndex = 2
         Me.GPORDERNO.TabStop = False
         Me.GPORDERNO.Text = "Order No"
@@ -513,7 +535,7 @@ Partial Class AgencyOrderGridReport
         Me.GPITEM.Controls.Add(Me.GRIDBILLDETAILSITEM)
         Me.GPITEM.Location = New System.Drawing.Point(10, 15)
         Me.GPITEM.Name = "GPITEM"
-        Me.GPITEM.Size = New System.Drawing.Size(216, 511)
+        Me.GPITEM.Size = New System.Drawing.Size(216, 475)
         Me.GPITEM.TabIndex = 0
         Me.GPITEM.TabStop = False
         Me.GPITEM.Text = "Item Name"
@@ -597,7 +619,7 @@ Partial Class AgencyOrderGridReport
         Me.GPPARTYNAME.Controls.Add(Me.CHKSELECTALL)
         Me.GPPARTYNAME.Location = New System.Drawing.Point(631, 15)
         Me.GPPARTYNAME.Name = "GPPARTYNAME"
-        Me.GPPARTYNAME.Size = New System.Drawing.Size(393, 498)
+        Me.GPPARTYNAME.Size = New System.Drawing.Size(393, 475)
         Me.GPPARTYNAME.TabIndex = 1
         Me.GPPARTYNAME.TabStop = False
         Me.GPPARTYNAME.Text = "Buyer Name"
@@ -877,7 +899,7 @@ Partial Class AgencyOrderGridReport
         Me.CMDEXPORT.FlatAppearance.BorderSize = 0
         Me.CMDEXPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXPORT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXPORT.Location = New System.Drawing.Point(948, 25)
+        Me.CMDEXPORT.Location = New System.Drawing.Point(1068, 46)
         Me.CMDEXPORT.Name = "CMDEXPORT"
         Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXPORT.TabIndex = 6
@@ -891,7 +913,7 @@ Partial Class AgencyOrderGridReport
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(1034, 25)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(1034, 12)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 4
@@ -905,26 +927,64 @@ Partial Class AgencyOrderGridReport
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(1120, 25)
+        Me.cmdexit.Location = New System.Drawing.Point(1120, 12)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 5
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'CMDWHATSAPP
+        'GroupBox4
         '
-        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
-        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
-        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(1206, 25)
-        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
-        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
-        Me.CMDWHATSAPP.TabIndex = 22
-        Me.CMDWHATSAPP.Text = "&Whatsapp"
-        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
+        Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox4.Controls.Add(Me.RadioButton2)
+        Me.GroupBox4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(52, 509)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(196, 69)
+        Me.GroupBox4.TabIndex = 4
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Reports"
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Checked = True
+        Me.RadioButton2.Location = New System.Drawing.Point(40, 21)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(129, 18)
+        Me.RadioButton2.TabIndex = 0
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Order Wise Details"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'CMDSHOW
+        '
+        Me.CMDSHOW.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSHOW.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSHOW.FlatAppearance.BorderSize = 0
+        Me.CMDSHOW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSHOW.ForeColor = System.Drawing.Color.Black
+        Me.CMDSHOW.Location = New System.Drawing.Point(277, 530)
+        Me.CMDSHOW.Name = "CMDSHOW"
+        Me.CMDSHOW.Size = New System.Drawing.Size(84, 28)
+        Me.CMDSHOW.TabIndex = 7
+        Me.CMDSHOW.Text = "&Show Report"
+        Me.CMDSHOW.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Black
+        Me.Button1.Location = New System.Drawing.Point(1154, 46)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(80, 28)
+        Me.Button1.TabIndex = 767
+        Me.Button1.Text = "&Print"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'AgencyOrderGridReport
         '
@@ -967,6 +1027,8 @@ Partial Class AgencyOrderGridReport
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1041,4 +1103,8 @@ Partial Class AgencyOrderGridReport
     Friend WithEvents GRATE As DataGridViewTextBoxColumn
     Friend WithEvents GDAYS As DataGridViewTextBoxColumn
     Friend WithEvents CMDWHATSAPP As Button
+    Friend WithEvents CMDSHOW As Button
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents Button1 As Button
 End Class

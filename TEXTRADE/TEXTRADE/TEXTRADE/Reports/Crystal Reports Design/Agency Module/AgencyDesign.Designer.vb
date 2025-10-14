@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class AgencySaleOrderDesign
+Partial Class AgencyDesign
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -77,10 +77,10 @@ Partial Class AgencySaleOrderDesign
         Me.crpo.EnableDrillDown = False
         Me.crpo.Location = New System.Drawing.Point(0, 25)
         Me.crpo.Name = "crpo"
-        Me.crpo.SelectionFormula = ""
+        'Me.crpo.SelectionFormula = ""
         Me.crpo.Size = New System.Drawing.Size(284, 237)
         Me.crpo.TabIndex = 211
-        Me.crpo.ViewTimeSelectionFormula = ""
+        'Me.crpo.ViewTimeSelectionFormula = ""
         '
         'AgencySaleOrderDesign
         '
