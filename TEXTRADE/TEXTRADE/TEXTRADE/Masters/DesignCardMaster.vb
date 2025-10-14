@@ -4252,20 +4252,26 @@ line1:
                     pickStr = GRIDPEG.Rows(srRow).Cells("PPENDS").Value.ToString().Trim()
                 End If
 
+                ' **Extract bracketed values count (or customize as needed)**
+                Dim bracketedCount As Integer = ExtractValuesInsideBrackets(srRow, GRIDPEG, "PPENDS")
+
                 If Not String.IsNullOrWhiteSpace(pickStr) Then
                     Dim picks() As String = pickStr.Split("."c)
                     For Each pickVal As String In picks
                         Dim pickNum As Integer
                         If Integer.TryParse(pickVal, pickNum) Then
-                            ' Only mark if column is 1..24 (columns 1-24 in grid when 0 is SrNo)
+                            ' Optionally, use bracketedCount in your coloring logic
                             If srRow >= 0 And srRow < GRIDPEGPLAN.RowCount AndAlso pickNum > 0 And pickNum < GRIDPEGPLAN.ColumnCount Then
                                 GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Green
+                                ' Example: Color differently if part of bracket-extracted values
+                                'If bracketedCount > 0 Then
+                                '    GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Blue
+                                'End If
                             End If
                         End If
                     Next
                 End If
             Next
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -4368,4 +4374,19 @@ line1:
             Throw ex
         End Try
     End Sub
+    Private Function ExtractNumbersInsideBrackets(cellValue As String) As List(Of Integer)
+        Dim numbers As New List(Of Integer)()
+        Dim pattern As String = "\((.*?)\)|\[(.*?)\]|\{(.*?)\}"
+        For Each match As Match In Regex.Matches(cellValue, pattern)
+            Dim groupVal As String = match.Groups(1).Value
+            If groupVal = "" Then groupVal = match.Groups(2).Value
+            If groupVal = "" Then groupVal = match.Groups(3).Value
+            For Each num As String In groupVal.Split("."c)
+                Dim n As Integer
+                If Integer.TryParse(num.Trim(), n) Then numbers.Add(n)
+            Next
+        Next
+        Return numbers
+    End Function
+
 End Class
