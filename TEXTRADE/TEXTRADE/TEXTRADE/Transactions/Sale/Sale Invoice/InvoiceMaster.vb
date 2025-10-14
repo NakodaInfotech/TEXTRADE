@@ -290,8 +290,10 @@ Public Class InvoiceMaster
         CMBSALESMAN.Text = ""
 
         'IT WAS DONE FOR EINVOICE LOCKING
-        GRATE.ReadOnly = False
-        TXTRATE.ReadOnly = False
+        If (ClientName <> "SHEETAL") Then
+            GRATE.ReadOnly = False
+            TXTRATE.ReadOnly = False
+        End If
         CMBCHARGES.Enabled = True
         TXTCHGSPER.ReadOnly = False
         TXTCHARGES.ReadOnly = False
@@ -4341,7 +4343,7 @@ LINE2:
                             If ClientName = "PURPLE" Or ClientName = "GELATO" Or ClientName = "MAHAVIR" Or ClientName = "MOMAI" Then PER = "Pcs"
 
                             'getting per/RATE from itemmaster
-                            If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "AXIS" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "DEVEN" Or ClientName = "KREEVE" Or ClientName = "NAYRA" Or ClientName = "MVIKASKUMAR" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KDFAB" Or ClientName = "KUNAL" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "CHINTAN" Or ClientName = "MAFATLAL" Or ClientName = "SUPEEMA" Then
+                            If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "AXIS" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "DEVEN" Or ClientName = "KREEVE" Or ClientName = "NAYRA" Or ClientName = "MVIKASKUMAR" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KDFAB" Or ClientName = "KUNAL" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "CHINTAN" Or ClientName = "MAFATLAL" Or ClientName = "SUPEEMA" Or ClientName = "SHEETAL" Then
                                 Dim DTPER As DataTable = OBJCMN.SEARCH("ISNULL(UNIT_ABBR,'Mtrs') AS PER, ISNULL(ITEM_REORDER,0) AS CUT, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE, ISNULL(ITEMMASTER.ITEM_HIDEINDESIGN,0) AS NETTRATEKDFAB, ISNULL(ITEMMASTER.ITEM_REMARKS,'') AS REMARKS ", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON item_unitid = UNIT_ID ", " AND ITEMMASTER.ITEM_NAME = '" & dr("ITEM") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                                 If DTPER.Rows.Count > 0 Then
                                     If LCase(DTPER.Rows(0).Item("PER")) = "pcs" Then PER = "Pcs"
@@ -4349,7 +4351,7 @@ LINE2:
                                     If (ClientName = "DEVEN" Or ClientName = "NAYRA") And DTPER.Rows(0).Item("PER") = "Kgs" Then PER = "Kgs"
                                     If ClientName = "SMS" And Val(DTPER.Rows(0).Item("CUT")) > 0 Then CUT = Val(DTPER.Rows(0).Item("CUT"))
                                     If ClientName = "KDFAB" And DTPER.Rows(0).Item("NETTRATEKDFAB") = True Then DISCPER = 0
-                                    If ClientName = "KREEVE" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KUNAL" Or ClientName = "CHINTAN" Then INVRATE = Val(DTPER.Rows(0).Item("RATE"))
+                                    If ClientName = "KREEVE" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KUNAL" Or ClientName = "CHINTAN" Or ClientName = "SHEETAL" Then INVRATE = Val(DTPER.Rows(0).Item("RATE"))
                                     If ClientName = "KUNAL" Then dr("PRINTDESC") = DTPER.Rows(0).Item("REMARKS")
                                 End If
                             End If
@@ -6152,7 +6154,7 @@ LINE1:
                 If DT.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT.Rows(0).Item("LASTRATE")), "0.00")
             End If
 
-            If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MVIKASKUMAR" Or ClientName = "MINALFAB" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "CHINTAN" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "SUPEEMA") And CMBITEM.Text.Trim <> "" And EDIT = False Then
+            If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MVIKASKUMAR" Or ClientName = "MINALFAB" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "CHINTAN" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "SUPEEMA" Or ClientName = "SHEETAL") And CMBITEM.Text.Trim <> "" And EDIT = False Then
                 Dim OBJCMN1 As New ClsCommon
                 Dim DT1 As DataTable = OBJCMN1.SEARCH("  ISNULL(item_reorder, 0) AS CUT, ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC],ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(ITEMMASTER.ITEM_REMARKS,'') AS ITEMREMARKS", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & CMBITEM.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
                 If DT1.Rows.Count > 0 Then
@@ -6412,7 +6414,7 @@ LINE1:
             End If
 
 
-            If ClientName = "DRDRAPES" And UserName <> "Admin" Then
+            If (ClientName = "DRDRAPES" Or ClientName = "SHEETAL") And UserName <> "Admin" Then
                 GRATE.ReadOnly = True
                 TXTRATE.ReadOnly = True
             End If
@@ -10666,4 +10668,34 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+    Public Property CanUserAdd As Boolean
+        Get
+            Return USERADD
+        End Get
+        Set(value As Boolean)
+            USERADD = value
+        End Set
+    End Property
+    Public Function SaveInvoice(Optional showMessage As Boolean = True) As Boolean
+        ' just call the private button handler
+        'cmdok_Click(Nothing, EventArgs.Empty)
+        Try
+            'If Not errorvalid() Then
+            '    Return False ' Validation failed
+            'End If
+            'CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
+            TOTAL()
+
+
+            ' Call the original save logic
+            cmdOK_Click(Nothing, EventArgs.Empty)
+            If showMessage Then
+                MessageBox.Show("Details Added")
+            End If
+            Return True ' Success
+        Catch ex As Exception
+            MessageBox.Show("Error saving invoice: " & ex.Message)
+            Return False
+        End Try
+    End Function
 End Class

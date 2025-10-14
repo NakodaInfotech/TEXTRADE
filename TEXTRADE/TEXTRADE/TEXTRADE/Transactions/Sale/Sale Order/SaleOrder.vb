@@ -1216,7 +1216,7 @@ line1:
             'GET BALANCE BALES AND GETSTOCK
             If e.RowIndex >= 0 Then
                 GETPENDINGBALES(e.RowIndex)
-                If ClientName <> "AVIS" Then
+                If ClientName <> "AVIS" And ClientName <> "SHEETAL" Then
                     GETSTOCK(GRIDSO.CurrentRow.Cells(gitemname.Index).Value, GRIDSO.CurrentRow.Cells(GDESIGN.Index).Value, GRIDSO.CurrentRow.Cells(gcolor.Index).Value)
                 End If
             End If
@@ -2137,6 +2137,10 @@ line1:
                 LBLTRANS2.Text = "Jetpur"
             End If
 
+            If ClientName = "SHEETAL" And UserName <> "Admin" Then
+                TXTRATE.ReadOnly = True
+                GRATE.ReadOnly = True
+            End If
 
         Catch ex As Exception
             Throw ex
@@ -3196,9 +3200,10 @@ NEXTLINE:
                 DT = OBJCMN.SEARCH(" SAMPLEBARCODE.SB_NO AS SBNO, SAMPLEBARCODE.SB_GRIDSRNO AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_NAME,'') AS QUALITY, ISNULL(DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SAMPLEBARCODE.SB_REMARKS, '') AS REMARKS, SAMPLEBARCODE.SB_BARCODE AS BARCODE, ISNULL(ITEMMASTER.ITEM_WIDTH,'') AS WIDTH, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN QUALITYMASTER ON SAMPLEBARCODE.SB_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND SB_BARCODE = '" & TXTBARCODE.Text.Trim & "' AND SB_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
+                    TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
+
                     If ClientName = "MAHAVIRPOLYCOT" Then
                         txtQTY.Text = 1
-                        TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
                         If Val(TXTCUT.Text.Trim) = 0 Then
                             If DT.Rows(0).Item("WIDTH") = "57/58 INCH" Then TXTCUT.Text = 16 Else TXTCUT.Text = 20
                         End If

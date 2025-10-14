@@ -385,10 +385,11 @@ Public Class ExpenseVoucher
 
             Cursor.Current = Cursors.WaitCursor
             EP.Clear()
-            If Not errorvalid() Then
-                Exit Sub
+            If Not IsBulkUpload Then
+                If Not errorvalid() Then
+                    Exit Sub
+                End If
             End If
-
             If Not VALIDATEREFNO() Then
                 EP.SetError(TXTPARTYBILLNO, "Party Ref. Already Exists")
                 Exit Sub
