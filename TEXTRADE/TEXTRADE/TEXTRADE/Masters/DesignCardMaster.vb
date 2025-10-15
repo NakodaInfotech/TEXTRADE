@@ -4252,26 +4252,30 @@ line1:
                     pickStr = GRIDPEG.Rows(srRow).Cells("PPENDS").Value.ToString().Trim()
                 End If
 
-                ' **Extract bracketed values count (or customize as needed)**
-                Dim bracketedCount As Integer = ExtractValuesInsideBrackets(srRow, GRIDPEG, "PPENDS")
-
                 If Not String.IsNullOrWhiteSpace(pickStr) Then
+                    ' Find the index of any closing brackets and truncate the string before them
+                    Dim closingBracketIndex As Integer = pickStr.IndexOfAny(New Char() {")"c, "}"c, "]"c})
+                    If closingBracketIndex >= 0 Then
+                        pickStr = pickStr.Substring(0, closingBracketIndex)
+                    End If
+
+                    ' Remove any opening brackets and whitespace after truncating
+                    pickStr = pickStr.Replace("(", "").Replace("{", "").Replace("[", "").Trim()
+
+                    ' Split the values by the period "."
                     Dim picks() As String = pickStr.Split("."c)
+
                     For Each pickVal As String In picks
                         Dim pickNum As Integer
                         If Integer.TryParse(pickVal, pickNum) Then
-                            ' Optionally, use bracketedCount in your coloring logic
                             If srRow >= 0 And srRow < GRIDPEGPLAN.RowCount AndAlso pickNum > 0 And pickNum < GRIDPEGPLAN.ColumnCount Then
                                 GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Green
-                                ' Example: Color differently if part of bracket-extracted values
-                                'If bracketedCount > 0 Then
-                                '    GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Blue
-                                'End If
                             End If
                         End If
                     Next
                 End If
             Next
+
         Catch ex As Exception
             Throw ex
         End Try

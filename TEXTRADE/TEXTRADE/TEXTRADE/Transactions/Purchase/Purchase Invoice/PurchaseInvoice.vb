@@ -1740,6 +1740,7 @@ CHECKNEXTLINE:
             If CHKMANUALTCS.Checked = False Then TXTTCSAMT.Text = 0
 
             'FETCH TCSPERCENT WITH RESPECT TO DATE
+            Dim dt1 As DataTable
             Dim OBJCMN As New ClsCommon
             If DTPARTYBILLDATE.Text <> "__/__/____" Then
                 Dim DTTCS As DataTable = OBJCMN.SEARCH("TOP 1 ISNULL(TCSPER,0) AS TCSPER", "", "TCSPERCENT", " AND TCSDATE <= '" & Format(Convert.ToDateTime(DTPARTYBILLDATE.Text).Date, "MM/dd/yyyy") & "' ORDER BY TCSDATE DESC")
@@ -1790,6 +1791,46 @@ CHECKNEXTLINE:
                         row.Cells(GCGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) / 100), "0.00")
                         row.Cells(GSGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) / 100), "0.00")
                         row.Cells(GIGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) / 100), "0.00")
+                        If ClientName = "CC" Then
+                            'CHANGE GST% WITH RESPECT TO RATE (TAXABLEAMT / QTY)
+                            'dt = OBJCMN.search("ISNULL(HSN_CGST,0) AS CGST, ISNULL(HSN_SGST,0) AS SGST, ISNULL(HSN_IGST,0) AS IGST, ISNULL(HSN_RATE1,0) AS RATE, ISNULL(HSN_CGST1,0) AS CGST1, ISNULL(HSN_SGST1,0) AS SGST1, ISNULL(HSN_IGST1,0) AS IGST1", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID", " AND ITEMMASTER.ITEM_NAME = '" & row.Cells(GITEMNAME.Index).Value & "' AND HSN_YEARID = " & YearId)
+                            dt1 = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGST, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(BILLDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                            If dt1.Rows.Count > 0 Then
+                                'IF WE HAVE NOT MENTIONED RATE SECTION IN HSNCODE THEN APPLY NORMAL GST RATES AND NOT GST1 RATES, OR ELSE IF EXPORT IS CHECKED THEN ALSO GOTO NORATE SECTION
+                                If Val(dt1.Rows(0).Item("RATE")) = 0 Then GoTo NORATE
+
+                                'THIS CODE WAS REMOVED AS PER CLIENTS REQUIREMENT
+                                'If Val(dt.Rows(0).Item("RATE")) <= Format((Val(row.Cells(GAMT.Index).EditedFormattedValue) + Val(row.Cells(GOTHERAMT.Index).EditedFormattedValue)) / Val(row.Cells(Gpcs.Index).EditedFormattedValue), "0.00") Then
+
+                                'IN NEW CHANGES CLIENT NEEDS RATE-DISCOUNT-SPECIALDISCOUT, AND THEN WHETEVER THE RATES COMES, WE HAVE TO CALC GSTRATE IN THAT RATE
+                                'If Val(dt.Rows(0).Item("RATE")) <= Format(Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00") Then
+                                Dim CALCON As Double = 0.0
+                                If ClientName = "GELATO" Then
+                                    CALCON = Format((Val(row.Cells(GAMT.Index).EditedFormattedValue) - Val(row.Cells(GDISCAMT.Index).EditedFormattedValue) - Val(row.Cells(GSPDISCAMT.Index).EditedFormattedValue)) / Val(row.Cells(gQty.Index).EditedFormattedValue), "0.00")
+                                Else
+                                    CALCON = Format(Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00")
+                                End If
+
+                                If Val(dt1.Rows(0).Item("RATE")) <= CALCON Then
+                                    If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(dt1.Rows(0).Item("CGST1"))
+                                    If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(dt1.Rows(0).Item("SGST1"))
+                                    If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(dt1.Rows(0).Item("IGST1"))
+                                Else
+NORATE:
+
+                                    'If CHKEXPORTGST.Checked = True Then
+                                    '    If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(dt.Rows(0).Item("EXPCGST"))
+                                    '    If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(dt.Rows(0).Item("EXPSGST"))
+                                    '    If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(dt.Rows(0).Item("EXPIGST"))
+                                    'Else
+                                    If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(dt1.Rows(0).Item("CGST"))
+                                    If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(dt1.Rows(0).Item("SGST"))
+                                    If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(dt1.Rows(0).Item("IGST"))
+                                    'End If
+
+                                End If
+                            End If
+                        End If
                     End If
                     row.Cells(GGRIDTOTAL.Index).Value = Format(Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) + Val(row.Cells(GCGSTAMT.Index).EditedFormattedValue) + Val(row.Cells(GSGSTAMT.Index).EditedFormattedValue) + Val(row.Cells(GIGSTAMT.Index).EditedFormattedValue), "0.00")
 
