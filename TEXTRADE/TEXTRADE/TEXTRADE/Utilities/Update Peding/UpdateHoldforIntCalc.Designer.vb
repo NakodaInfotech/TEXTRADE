@@ -24,23 +24,24 @@ Partial Class UpdateHoldforIntCalc
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateHoldforIntCalc))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.RBPENDING = New System.Windows.Forms.RadioButton()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.RBENTERED = New System.Windows.Forms.RadioButton()
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.RBPENDING = New System.Windows.Forms.RadioButton()
-        Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +59,15 @@ Partial Class UpdateHoldforIntCalc
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Name = "BlendPanel1"
+        '
+        'RBPENDING
+        '
+        resources.ApplyResources(Me.RBPENDING, "RBPENDING")
+        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
+        Me.RBPENDING.Checked = True
+        Me.RBPENDING.Name = "RBPENDING"
+        Me.RBPENDING.TabStop = True
+        Me.RBPENDING.UseVisualStyleBackColor = False
         '
         'CMDREFRESH
         '
@@ -108,7 +118,7 @@ Partial Class UpdateHoldforIntCalc
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYTYPE, Me.GENTRYNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYTYPE, Me.GENTRYNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GREGNAME})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -123,6 +133,12 @@ Partial Class UpdateHoldforIntCalc
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
+        '
+        'GENTRYTYPE
+        '
+        resources.ApplyResources(Me.GENTRYTYPE, "GENTRYTYPE")
+        Me.GENTRYTYPE.FieldName = "ENTRYTYPE"
+        Me.GENTRYTYPE.Name = "GENTRYTYPE"
         '
         'GENTRYNO
         '
@@ -147,36 +163,8 @@ Partial Class UpdateHoldforIntCalc
         'GDELIVERYAT
         '
         resources.ApplyResources(Me.GDELIVERYAT, "GDELIVERYAT")
-        Me.GDELIVERYAT.FieldName = "PACKING"
+        Me.GDELIVERYAT.FieldName = "DELIVERYAT"
         Me.GDELIVERYAT.Name = "GDELIVERYAT"
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
-        resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
-        Me.ToolStrip1.Name = "ToolStrip1"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        resources.ApplyResources(Me.PrintToolStripButton, "PrintToolStripButton")
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        '
-        'RBPENDING
-        '
-        resources.ApplyResources(Me.RBPENDING, "RBPENDING")
-        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
-        Me.RBPENDING.Checked = True
-        Me.RBPENDING.Name = "RBPENDING"
-        Me.RBPENDING.TabStop = True
-        Me.RBPENDING.UseVisualStyleBackColor = False
-        '
-        'GENTRYTYPE
-        '
-        resources.ApplyResources(Me.GENTRYTYPE, "GENTRYTYPE")
-        Me.GENTRYTYPE.FieldName = "ENTRYTYPE"
-        Me.GENTRYTYPE.Name = "GENTRYTYPE"
         '
         'GTOTALPCS
         '
@@ -201,6 +189,25 @@ Partial Class UpdateHoldforIntCalc
         Me.GGRANDTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
+        resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
+        Me.ToolStrip1.Name = "ToolStrip1"
+        '
+        'PrintToolStripButton
+        '
+        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        resources.ApplyResources(Me.PrintToolStripButton, "PrintToolStripButton")
+        Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        '
+        'GREGNAME
+        '
+        resources.ApplyResources(Me.GREGNAME, "GREGNAME")
+        Me.GREGNAME.FieldName = "REGNAME"
+        Me.GREGNAME.Name = "GREGNAME"
         '
         'UpdateHoldforIntCalc
         '
@@ -239,4 +246,5 @@ Partial Class UpdateHoldforIntCalc
     Friend WithEvents GTOTALPCS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

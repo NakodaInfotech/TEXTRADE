@@ -373,6 +373,18 @@
   <data name="GGRANDTOTAL.Width" type="System.Int32, mscorlib">
     <value>100</value>
   </data>
+  <data name="GREGNAME.Caption" xml:space="preserve">
+    <value>Reg Name</value>
+  </data>
+  <data name="GREGNAME.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GREGNAME.VisibleIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="GREGNAME.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
   <data name="gridbilldetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>1203, 488</value>
   </data>
@@ -475,6 +487,12 @@
   <data name="&gt;&gt;gridbill.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;GENTRYTYPE.Name" xml:space="preserve">
+    <value>GENTRYTYPE</value>
+  </data>
+  <data name="&gt;&gt;GENTRYTYPE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;GENTRYNO.Name" xml:space="preserve">
     <value>GENTRYNO</value>
   </data>
@@ -499,18 +517,6 @@
   <data name="&gt;&gt;GDELIVERYAT.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
-    <value>PrintToolStripButton</value>
-  </data>
-  <data name="&gt;&gt;PrintToolStripButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GENTRYTYPE.Name" xml:space="preserve">
-    <value>GENTRYTYPE</value>
-  </data>
-  <data name="&gt;&gt;GENTRYTYPE.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="&gt;&gt;GTOTALPCS.Name" xml:space="preserve">
     <value>GTOTALPCS</value>
   </data>
@@ -527,6 +533,18 @@
     <value>GGRANDTOTAL</value>
   </data>
   <data name="&gt;&gt;GGRANDTOTAL.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
+    <value>PrintToolStripButton</value>
+  </data>
+  <data name="&gt;&gt;PrintToolStripButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GREGNAME.Name" xml:space="preserve">
+    <value>GREGNAME</value>
+  </data>
+  <data name="&gt;&gt;GREGNAME.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
