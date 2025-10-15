@@ -390,11 +390,12 @@ Public Class ExpenseVoucher
                     Exit Sub
                 End If
             End If
-            If Not VALIDATEREFNO() Then
-                EP.SetError(TXTPARTYBILLNO, "Party Ref. Already Exists")
-                Exit Sub
+            If Not IsBulkUpload Then
+                If Not VALIDATEREFNO() Then
+                    EP.SetError(TXTPARTYBILLNO, "Party Ref. Already Exists")
+                    Exit Sub
+                End If
             End If
-
             Dim alParaval As New ArrayList
             If TXTNPNO.ReadOnly = False Then
                 alParaval.Add(Val(TXTNPNO.Text.Trim))
