@@ -452,7 +452,9 @@ Public Class MDIMain
                     WEAVEEDIT.Enabled = True
                 End If
             End If
-
+            If ClientName = "NAKODAINFOTECH" Then
+                AutoWhatsappToolStripMenuItem.Visible = True
+            End If
 
         Catch ex As Exception
             Throw ex
