@@ -10837,4 +10837,10 @@ LINE1:
             Throw ex
         End Try
     End Sub
+    Public Sub RunLoad()
+        Try
+            INVOICEMASTER_Load(Nothing, EventArgs.Empty)
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

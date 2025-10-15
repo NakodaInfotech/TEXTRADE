@@ -512,7 +512,8 @@ Public Class UploadExcel_MASHOK
 
                     Try
                         Dim frmInv As New InvoiceMaster()
-                        frmInv.GRIDCHGS.Rows.Clear()
+                        frmInv.RunLoad()
+                        'frmInv.GRIDCHGS.Rows.Clear()
                         frmInv.IsBulkUpload = True
                         'frmInv.TXTINVOICENO.Text = invoiceNo
                         'frmInv.TXTSONO.Text = sono
@@ -523,7 +524,7 @@ Public Class UploadExcel_MASHOK
                         'frmInv.CMBCHARGES.Text = dtSONO.Rows(0)("DISCOUNT").ToString()
 
                         frmInv.cmbregister.Text = "GREY SALE"
-                        frmInv.CHKMANUAL.Checked = True
+                        frmInv.CHKMANUAL.Checked = False
                         frmInv.CanUserAdd = True
                         frmInv.TXTINVOICENO.Text = invoiceNo
                         frmInv.TXTSONO.Text = sono
@@ -541,7 +542,7 @@ Public Class UploadExcel_MASHOK
                             frmInv.DTDOCKETDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
                         End If
                         frmInv.cmbname.Text = dtSONO.Rows(0)("PARTYNAME").ToString()
-                        frm.RunCmbNameValidation()
+                        frmInv.RunCmbNameValidation(frmInv.cmbname, EventArgs.Empty)
                         frmInv.CMBPACKING.Text = dtSONO.Rows(0)("DELIVERYTO").ToString()
                         frmInv.CMBAGENT.Text = dtSONO.Rows(0)("AGENT").ToString()
                         frmInv.TXTCRDAYS.Text = dtSONO.Rows(0)("CRDAYS").ToString()
@@ -579,9 +580,9 @@ Public Class UploadExcel_MASHOK
                             g.Cells("GFOLDPER").Value = 0
                             g.Cells("GDESCRIPTION").Value = r("GRIDDESC").ToString()
                             g.Cells("GBALENO").Value = ""
-                            g.Cells("GPCS").Value = Val(r("PCS"))
+                            g.Cells("GPCS").Value = TOTALPCS
                             g.Cells("GCUT").Value = Val(r("CUT"))
-                            g.Cells("GMTRS").Value = Val(r("MTRS"))
+                            g.Cells("GMTRS").Value = TOTALMTRS
                             g.Cells("GRATE").Value = Val(r("RATE"))
                             g.Cells("GPER").Value = r("PER").ToString()
                             g.Cells("GAMT").Value = Val(r("AMOUNT"))
@@ -652,7 +653,7 @@ Public Class UploadExcel_MASHOK
                             Dim g As DataGridViewRow = frmInv.GRIDCHGS.Rows(idx)
                             g.Cells("ESRNO").Value = src
                             g.Cells("ECHARGES").Value = "CASH DISCOUNT"
-                            g.Cells("EPER").Value = s("DISCOUNT")
+                            g.Cells("EPER").Value = -Math.Abs(Val(s("DISCOUNT")))
                             'g.Cells("EMT").Value = Val(s("AMT"))
                             src += 1
                         Next
@@ -680,8 +681,10 @@ Public Class UploadExcel_MASHOK
                         '    End If
                         'End If
                         ' ==== 5️⃣ Calculate and Save ====
+                        frmInv.RunCmbNameValidation(frmInv.cmbname, EventArgs.Empty)
+                        frmInv.GETHSNCODE()
                         frmInv.CALC()
-                        'frmInv.TOTAL()
+                        frmInv.TOTAL()
                         If frmInv.SaveInvoice(False) Then
                             successCount += 1
                             Debug.Print("Invoice " & invoiceNo & " created from SO " & sono)
