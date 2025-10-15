@@ -26,6 +26,8 @@ Public Class InvoiceMaster
     Public DIRECTINVOICE As Boolean = False
     Public DIRECTPARTYNAME As String = ""
     Public TEMPPURNO As Integer, TEMPPURREGNAME As String, TEMPPARTYNAME As String
+    Public IsBulkUpload As Boolean = False
+
 
     Public Sub New()
 
@@ -1398,37 +1400,39 @@ Public Class InvoiceMaster
 
                 Dim DT As DataTable = objclsPurord.SAVE()
                 TXTINVOICENO.Text = DT.Rows(0).Item(0)
-                MessageBox.Show("Details Added")
+                If Not IsBulkUpload Then
+                    MessageBox.Show("Details Added")
+                End If
                 DIRECTINVOICE = False
-                If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "RMANILAL" Then
-                    GENERATEEWB()
-                    PRINTEWB()
-                End If
+                    If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "RMANILAL" Then
+                        GENERATEEWB()
+                        PRINTEWB()
+                    End If
 
-                If ClientName = "ABHEE" Then
-                    GENERATEAGENCYINVOICE()
-                    GENERATEEINV()
-                End If
+                    If ClientName = "ABHEE" Then
+                        GENERATEAGENCYINVOICE()
+                        GENERATEEINV()
+                    End If
 
-                SMSCODE()
-                If ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "RMANILAL" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHASHWAT" Or ClientName = "SHAILESHTRADING" Then SENDDIRECTMAIL()
-
-
-                'IF ADVANCE IS RECD FROM CLIENT THEN OPEN RECEIPT FORM AUTO
-                'USER WILL SAVE IT MANUALLY
-                If EDIT = False And (ClientName = "CC" Or ClientName = "C3") And Val(TXTSOADVANCE.Text.Trim) > 0 Then
-                    Dim OBJREC As New Receipt
-                    OBJREC.TEMPAUTOENTRY = True
-                    OBJREC.TEMPAMT = Val(TXTSOADVANCE.Text.Trim)
-                    OBJREC.TEMPBILLNO = "S-" & Val(TXTINVOICENO.Text.Trim)
-                    OBJREC.TEMPNAME = cmbname.Text.Trim
-                    OBJREC.MdiParent = MDIMain
-                    OBJREC.Show()
-                End If
+                    SMSCODE()
+                    If ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "RMANILAL" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHASHWAT" Or ClientName = "SHAILESHTRADING" Then SENDDIRECTMAIL()
 
 
-            Else
-                If USEREDIT = False Then
+                    'IF ADVANCE IS RECD FROM CLIENT THEN OPEN RECEIPT FORM AUTO
+                    'USER WILL SAVE IT MANUALLY
+                    If EDIT = False And (ClientName = "CC" Or ClientName = "C3") And Val(TXTSOADVANCE.Text.Trim) > 0 Then
+                        Dim OBJREC As New Receipt
+                        OBJREC.TEMPAUTOENTRY = True
+                        OBJREC.TEMPAMT = Val(TXTSOADVANCE.Text.Trim)
+                        OBJREC.TEMPBILLNO = "S-" & Val(TXTINVOICENO.Text.Trim)
+                        OBJREC.TEMPNAME = cmbname.Text.Trim
+                        OBJREC.MdiParent = MDIMain
+                        OBJREC.Show()
+                    End If
+
+
+                Else
+                    If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
@@ -1451,11 +1455,12 @@ Public Class InvoiceMaster
             End If
 
             'done temp
-            If ClientName <> "SOFTAS" And ClientName <> "SNCM" And ClientName <> "ABHEE" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
-
+            If Not IsBulkUpload Then
+                If ClientName <> "SOFTAS" And ClientName <> "SNCM" And ClientName <> "ABHEE" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
+            End If
 
             'done temp
-            If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Then
+            If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Or IsBulkUpload = True Then
                 CLEAR()
             Else
                 Call toolnext_Click(sender, e)
@@ -2658,33 +2663,35 @@ Public Class InvoiceMaster
                 End If
             End If
         End If
-
-        If Convert.ToDateTime(INVOICEDATE.Text).Date >= "01/07/2017" Then
-            If CHKOVERSEAS.Checked = False And TXTSTATECODE.Text.Trim.Length = 0 Then
-                EP.SetError(TXTSTATECODE, "Please enter the state code")
-                bln = False
-            End If
-
-            'done temp
-            If TXTGSTIN.Text.Trim.Length = 0 Then
-                If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                    EP.SetError(TXTSTATECODE, "Enter GSTIN in Party Master")
+        If Not IsBulkUpload Then
+            If Convert.ToDateTime(INVOICEDATE.Text).Date >= "01/07/2017" Then
+                If CHKOVERSEAS.Checked = False And TXTSTATECODE.Text.Trim.Length = 0 Then
+                    EP.SetError(TXTSTATECODE, "Please enter the state code")
                     bln = False
                 End If
             End If
 
+            'done temp
+            If Not IsBulkUpload Then
+                If TXTGSTIN.Text.Trim.Length = 0 Then
+                    If MsgBox("GSTIN Not Entered, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        EP.SetError(TXTSTATECODE, "Enter GSTIN in Party Master")
+                        bln = False
+                    End If
+                End If
+            End If
             If CMPSTATECODE <> TXTSTATECODE.Text.Trim And (Val(LBLTOTALCGSTAMT.Text) > 0 Or Val(LBLTOTALSGSTAMT.Text.Trim) > 0) Then
-                EP.SetError(TXTSTATECODE, "Invaid Entry Done in CGST/SGST")
-                bln = False
+                    EP.SetError(TXTSTATECODE, "Invaid Entry Done in CGST/SGST")
+                    bln = False
+                End If
+
+                If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(LBLTOTALIGSTAMT.Text) > 0 Then
+                    EP.SetError(TXTSTATECODE, "Invaid Entry Done in IGST")
+                    bln = False
+                End If
             End If
 
-            If CMPSTATECODE = TXTSTATECODE.Text.Trim And Val(LBLTOTALIGSTAMT.Text) > 0 Then
-                EP.SetError(TXTSTATECODE, "Invaid Entry Done in IGST")
-                bln = False
-            End If
-        End If
-
-        For Each row As DataGridViewRow In GRIDINVOICE.Rows
+            For Each row As DataGridViewRow In GRIDINVOICE.Rows
             'done temp
             If Val(row.Cells(Gmtrs.Index).Value) = 0 And Val(row.Cells(Gpcs.Index).Value) = 0 And ClientName <> "MANSI" Then
                 EP.SetError(cmbname, "Mtrs & Pcs Cannot be 0")
@@ -10698,4 +10705,142 @@ NEXTLINE:
             Return False
         End Try
     End Function
+    Public Sub RunCmbNameValidation(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbname.Validated
+        Try
+            If cmbname.Text.Trim <> "" Then
+                'GET REGISTER , AGENCT AND TRANS
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & cmbname.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+
+                    If cmbtrans.Text.Trim = "" Then cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                    If CMBTOCITY.Text.Trim = "" Then CMBTOCITY.Text = DT.Rows(0).Item("CITYNAME")
+                    If CMBSALESMAN.Text.Trim = "" Then CMBSALESMAN.Text = DT.Rows(0).Item("SALESMAN")
+
+                    If ClientName = "SBA" Then
+                        CMBAGENT.Text = DT.Rows(0).Item("AGENTNAME")
+                    Else
+                        If CMBAGENT.Text.Trim = "" Then CMBAGENT.Text = DT.Rows(0).Item("AGENTNAME")
+                    End If
+                    TXTSTATECODE.Text = DT.Rows(0).Item("STATECODE")
+                    TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
+                    If CMBSCREENTYPE.Text = "LINE GST" Then
+                        TXTDISCPER.Text = Val(DT.Rows(0).Item("DISCPER"))
+                        TXTSPDISCPER.Text = Val(DT.Rows(0).Item("CDPER"))
+                    End If
+
+                    If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
+
+                    If (ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW") Then TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                    CHKOVERSEAS.Checked = Convert.ToBoolean(DT.Rows(0).Item("OVERSEAS"))
+                    CHKTCS.Checked = Convert.ToBoolean(DT.Rows(0).Item("TCS"))
+                    CHKPARTYTDS.Checked = Convert.ToBoolean(DT.Rows(0).Item("PARTYTDS"))
+
+                    If CHKOVERSEAS.Checked = True And ClientName = "AVIS" Then
+                        GCUT.HeaderText = "USD"
+                        GCUT.ReadOnly = False
+                    Else
+                        GCUT.HeaderText = "Cut"
+                        GCUT.ReadOnly = True
+                    End If
+
+
+                    'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
+                    'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
+                    'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
+                    If SALEAUTODISCOUNT = True And CMBSCREENTYPE.Text <> "LINE GST" And EDIT = False Then
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE1
+                        Next
+                        If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0)
+
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "EXMILL LESS" Then GoTo LINE1
+                        Next
+                        If Val(DT.Rows(0).Item("EXMILLLESS")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "EXMILL LESS", Val(DT.Rows(0).Item("EXMILLLESS")) * -1, 0, 0)
+
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE1
+                        Next
+                        If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+
+
+                        For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                            If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE1
+                        Next
+                        If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0)
+
+
+                        If ClientName = "AVIS" Then
+                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                If DTROW.Cells(ECHARGES.Index).Value = "SPECIAL DISCOUNT" Then GoTo LINE1
+                            Next
+                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "SPECIAL DISCOUNT", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
+                        End If
+
+
+                        'If ClientName = "SBA" Or ClientName = "SOFTAS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MOOLTEX" Or ClientName = "SUPRIYA" Or ClientName = "SANGHVI" Or ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "SONU" Then
+                        'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
+                        If AUTOBROKERAGE = True Then
+                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE1
+                            Next
+                            If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
+                        End If
+
+
+
+                        'GET TRAVEL INSURANCE
+                        Dim DTINSURANCE As DataTable = OBJCMN.SEARCH("ISNULL(TI_PERCENT,0) AS INSURANCE", "", "TRANSPORTINSURANCE", " AND TI_DATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND TI_YEARID = " & YearId & " ORDER BY TI_DATE DESC ")
+                        If DTINSURANCE.Rows.Count > 0 Then
+                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                If DTROW.Cells(ECHARGES.Index).Value = "INSURANCE CHARGES" Then GoTo LINE1
+                            Next
+                            If Val(DTINSURANCE.Rows(0).Item("INSURANCE")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "INSURANCE CHARGES", Val(DTINSURANCE.Rows(0).Item("INSURANCE")), 0, 0)
+                        End If
+
+
+                    End If
+
+LINE1:
+
+
+                    If ClientName = "KOTHARI" Then cmbname.Enabled = False
+
+                    If CMBPACKING.Text.Trim = "" Then CMBPACKING.Text = cmbname.Text.Trim
+
+                    If ClientName <> "NVAHAN" And ClientName <> "SAKARIA" Then
+                        If Val(TXTCRDAYS.Text.Trim) = 0 Then
+                            If Val(DT.Rows(0).Item("CRDAYS")) > 0 Then TXTCRDAYS.Text = Val(DT.Rows(0).Item("CRDAYS"))
+                            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then TXTCRDAYS.Text = 30
+                            If Val(TXTCRDAYS.Text) > 0 And INVOICEDATE.Text <> "__/__/____" Then Call TXTCRDAYS_Validated(sender, e)
+                        End If
+                    End If
+
+                    'GET PARTYTOTALINVOICE AMT
+                    Dim DTINV As DataTable = OBJCMN.SEARCH("ISNULL(SUM(INVOICEMASTER.INVOICE_GRANDTOTAL),0) AS GRANDTOTAL", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICEMASTER.INVOICE_LEDGERID = LEDGERS.ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
+                    If DTINV.Rows.Count > 0 Then TXTTOTALPARTYINVAMT.Text = Format(Val(DTINV.Rows(0).Item("GRANDTOTAL")), "0.00")
+
+
+                    If (ClientName = "NVAHAN" Or ClientName = "SAKARIA") And EDIT = False Then CMBTERM.Text = DT.Rows(0).Item("TERM")
+
+                    If DT.Rows(0).Item("REGISTERNAME") <> cmbregister.Text.Trim And DT.Rows(0).Item("REGISTERNAME") <> "" Then
+                        Dim TEMPMSG As Integer = MsgBox("Register is Different Change to Default?", MsgBoxStyle.YesNo)
+                        If TEMPMSG = vbYes Then
+                            cmbregister.Text = DT.Rows(0).Item("REGISTERNAME")
+                            getmax_BILL_no()
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub RunLoad()
+        Try
+            INVOICEMASTER_Load(Nothing, EventArgs.Empty)
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
