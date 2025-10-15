@@ -424,6 +424,7 @@ Public Class DeductTDS
             Throw ex
         End Try
     End Sub
+
     Public Sub AutoDeductTDS(ByVal billNo As Integer, ByVal registerName As String)
         Try
             ' 1️⃣ Load TDS data silently
@@ -440,6 +441,7 @@ Public Class DeductTDS
             Debug.Print("AutoDeductTDS failed: " & ex.Message)
         End Try
     End Sub
+
     Private Sub LoadTDSData(ByVal billNo As Integer, ByVal registerName As String)
         Try
             ' duplicate of the logic inside DeductTDS_Shown
@@ -448,7 +450,7 @@ Public Class DeductTDS
 
             If DT.Rows.Count = 0 Then Exit Sub
 
-            DEDUCTONCR = False
+            DEDUCTONCR = True
             TXTREGISTER.Text = registerName
             TXTBILLNO.Text = billNo
             TXTINITIALS.Text = DT.Rows(0).Item("BILLINITIALS").ToString()
@@ -456,6 +458,7 @@ Public Class DeductTDS
             TXTPARTYBILLNO.Text = DT.Rows(0).Item("PARTYBILLNO").ToString()
             PARTYBILLDATE.Text = DT.Rows(0).Item("PARTYBILLDATE").ToString()
             TXTNAME.Text = DT.Rows(0).Item("NAME").ToString()
+            cmbregister.Text = "JOURNAL REGISTER"
             CMBTDS.Text = DT.Rows(0).Item("TDSDEDUCTEDAC").ToString()
             TXTTAXABLEAMT.Text = Val(DT.Rows(0).Item("TAXABLEAMT"))
             TXTGTOTAL.Text = Val(DT.Rows(0).Item("TOTAL"))

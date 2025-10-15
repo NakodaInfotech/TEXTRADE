@@ -21,8 +21,6 @@ Public Class ExpenseVoucher
     Public IsBulkUpload As Boolean = False
     Public IsBulkUploadtds As Boolean = False
 
-
-
     Public Sub New()
 
         ' This call is required by the designer.
@@ -1399,7 +1397,7 @@ LINE1:
     Sub CALC()
         Try
             TXTGRIDTOTAL.Text = 0.0
-            If Val(TXTRATE.Text.Trim) > 0 And Val(TXTQTY.Text.Trim) > 0 Then TXTAMT.Text = Format(Val(TXTQTY.Text) * Val(TXTRATE.Text), "0.00")
+            If Val(TXTRATE.Text.Trim) > 0 And Val(TXTQTY.Text.Trim) > 0 And ClientName <> "MASHOK" Then TXTAMT.Text = Format(Val(TXTQTY.Text) * Val(TXTRATE.Text), "0.00")
 
             If CHKRCM.CheckState = CheckState.Checked Then TXTTAXABLEAMT.Text = Format((Val(TXTAMT.Text.Trim) + Val(TXTOTHERAMT.Text.Trim)), "0") Else TXTTAXABLEAMT.Text = Format((Val(TXTAMT.Text.Trim) + Val(TXTOTHERAMT.Text.Trim)), "0.00")
 
@@ -1494,6 +1492,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Public Sub RunCmbNameValidation()
         ' All validation logic here
         Try
@@ -1506,16 +1505,6 @@ LINE1:
                     TXTGSTIN.Text = DT.Rows(0).Item("GSTIN")
                     If EDIT = False Then CHKRCM.Checked = Convert.ToBoolean(DT.Rows(0).Item("RCM"))
                     LBLGROUPNAME.Text = DT.Rows(0).Item("GROUPNAME")
-                    If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
-
-                    'If DT.Rows(0).Item("REGISTERNAME") <> CMBREGISTER.Text.Trim And DT.Rows(0).Item("REGISTERNAME") <> "" Then
-                    '    Dim TEMPMSG As Integer = MsgBox("Register is Different Change to Default?", MsgBoxStyle.YesNo)
-                    '    If TEMPMSG = vbYes Then
-                    '        CMBREGISTER.Text = DT.Rows(0).Item("REGISTERNAME")
-                    '        getmaxno()
-                    '    End If
-                    'End If
-                    'TOTAL()
                 End If
 
                 'GET TDSAPPLICABLE
@@ -1523,9 +1512,7 @@ LINE1:
                 If DT.Rows.Count > 0 Then
                     If Val(DT.Rows(0).Item("TDSPER")) > 0 Then CHKTDS.CheckState = CheckState.Checked
                 End If
-
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
