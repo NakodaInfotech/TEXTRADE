@@ -137,16 +137,13 @@
     <value>38, 28</value>
   </data>
   <data name="RBPENDING.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 19</value>
+    <value>40, 19</value>
   </data>
   <data name="RBPENDING.TabIndex" type="System.Int32, mscorlib">
     <value>256</value>
   </data>
   <data name="RBPENDING.Text" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="RBPENDING.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+    <value>All</value>
   </data>
   <data name="&gt;&gt;RBPENDING.Name" xml:space="preserve">
     <value>RBPENDING</value>
@@ -167,7 +164,7 @@
     <value>NoControl</value>
   </data>
   <data name="CMDREFRESH.Location" type="System.Drawing.Point, System.Drawing">
-    <value>577, 547</value>
+    <value>602, 547</value>
   </data>
   <data name="CMDREFRESH.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 28</value>
@@ -200,16 +197,13 @@
     <value>110, 28</value>
   </data>
   <data name="RBENTERED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 19</value>
+    <value>51, 19</value>
   </data>
   <data name="RBENTERED.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="RBENTERED.Text" xml:space="preserve">
-    <value>Entered</value>
-  </data>
-  <data name="RBENTERED.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+    <value>Hold</value>
   </data>
   <data name="&gt;&gt;RBENTERED.Name" xml:space="preserve">
     <value>RBENTERED</value>
@@ -230,7 +224,7 @@
     <value>NoControl</value>
   </data>
   <data name="CMDSAVE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>491, 547</value>
+    <value>516, 547</value>
   </data>
   <data name="CMDSAVE.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 28</value>
@@ -260,7 +254,7 @@
     <value>NoControl</value>
   </data>
   <data name="cmdexit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>663, 547</value>
+    <value>688, 547</value>
   </data>
   <data name="cmdexit.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 28</value>
@@ -287,19 +281,7 @@
     <value>Arial, 9pt</value>
   </data>
   <data name="gridbilldetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 53</value>
-  </data>
-  <data name="GENTRYTYPE.Caption" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="GENTRYTYPE.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="GENTRYTYPE.VisibleIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="GENTRYTYPE.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+    <value>14, 53</value>
   </data>
   <data name="GENTRYNO.Caption" xml:space="preserve">
     <value>Entry No</value>
@@ -308,7 +290,7 @@
     <value>True</value>
   </data>
   <data name="GENTRYNO.VisibleIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="GDATE.Caption" xml:space="preserve">
     <value>Date</value>
@@ -317,7 +299,34 @@
     <value>True</value>
   </data>
   <data name="GDATE.VisibleIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="GNEWDATE.Caption" xml:space="preserve">
+    <value>New Date</value>
+  </data>
+  <data name="GNEWDATE.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GNEWDATE.VisibleIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="GCRDAYS.Caption" xml:space="preserve">
+    <value>Cr Days</value>
+  </data>
+  <data name="GCRDAYS.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GCRDAYS.VisibleIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="GDUEDATE.Caption" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="GDUEDATE.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GDUEDATE.VisibleIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="GNAME.Caption" xml:space="preserve">
     <value>Name</value>
@@ -326,22 +335,10 @@
     <value>True</value>
   </data>
   <data name="GNAME.VisibleIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="GNAME.Width" type="System.Int32, mscorlib">
     <value>300</value>
-  </data>
-  <data name="GDELIVERYAT.Caption" xml:space="preserve">
-    <value>Ship To</value>
-  </data>
-  <data name="GDELIVERYAT.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="GDELIVERYAT.VisibleIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="GDELIVERYAT.Width" type="System.Int32, mscorlib">
-    <value>285</value>
   </data>
   <data name="GTOTALPCS.Caption" xml:space="preserve">
     <value>Total Pcs</value>
@@ -350,7 +347,7 @@
     <value>True</value>
   </data>
   <data name="GTOTALPCS.VisibleIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="GTOTALMTRS.Caption" xml:space="preserve">
     <value>Total Mtrs</value>
@@ -359,7 +356,7 @@
     <value>True</value>
   </data>
   <data name="GTOTALMTRS.VisibleIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="GGRANDTOTAL.Caption" xml:space="preserve">
     <value>Grand Total</value>
@@ -368,10 +365,22 @@
     <value>True</value>
   </data>
   <data name="GGRANDTOTAL.VisibleIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="GGRANDTOTAL.Width" type="System.Int32, mscorlib">
     <value>100</value>
+  </data>
+  <data name="GENTRYTYPE.Caption" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="GENTRYTYPE.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GENTRYTYPE.VisibleIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="GENTRYTYPE.Width" type="System.Int32, mscorlib">
+    <value>120</value>
   </data>
   <data name="GREGNAME.Caption" xml:space="preserve">
     <value>Reg Name</value>
@@ -380,13 +389,13 @@
     <value>True</value>
   </data>
   <data name="GREGNAME.VisibleIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="GREGNAME.Width" type="System.Int32, mscorlib">
     <value>120</value>
   </data>
   <data name="gridbilldetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1203, 488</value>
+    <value>1261, 488</value>
   </data>
   <data name="gridbilldetails.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -419,7 +428,7 @@
     <value>0, 0</value>
   </data>
   <data name="ToolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1234, 25</value>
+    <value>1284, 25</value>
   </data>
   <data name="ToolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>255</value>
@@ -446,7 +455,7 @@
     <value>0, 0</value>
   </data>
   <data name="BlendPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1234, 581</value>
+    <value>1284, 581</value>
   </data>
   <data name="BlendPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -467,7 +476,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1234, 581</value>
+    <value>1284, 581</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
@@ -487,12 +496,6 @@
   <data name="&gt;&gt;gridbill.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;GENTRYTYPE.Name" xml:space="preserve">
-    <value>GENTRYTYPE</value>
-  </data>
-  <data name="&gt;&gt;GENTRYTYPE.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="&gt;&gt;GENTRYNO.Name" xml:space="preserve">
     <value>GENTRYNO</value>
   </data>
@@ -505,16 +508,28 @@
   <data name="&gt;&gt;GDATE.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;GNEWDATE.Name" xml:space="preserve">
+    <value>GNEWDATE</value>
+  </data>
+  <data name="&gt;&gt;GNEWDATE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GCRDAYS.Name" xml:space="preserve">
+    <value>GCRDAYS</value>
+  </data>
+  <data name="&gt;&gt;GCRDAYS.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;GDUEDATE.Name" xml:space="preserve">
+    <value>GDUEDATE</value>
+  </data>
+  <data name="&gt;&gt;GDUEDATE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;GNAME.Name" xml:space="preserve">
     <value>GNAME</value>
   </data>
   <data name="&gt;&gt;GNAME.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="&gt;&gt;GDELIVERYAT.Name" xml:space="preserve">
-    <value>GDELIVERYAT</value>
-  </data>
-  <data name="&gt;&gt;GDELIVERYAT.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;GTOTALPCS.Name" xml:space="preserve">
@@ -535,17 +550,23 @@
   <data name="&gt;&gt;GGRANDTOTAL.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
-    <value>PrintToolStripButton</value>
+  <data name="&gt;&gt;GENTRYTYPE.Name" xml:space="preserve">
+    <value>GENTRYTYPE</value>
   </data>
-  <data name="&gt;&gt;PrintToolStripButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;GENTRYTYPE.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;GREGNAME.Name" xml:space="preserve">
     <value>GREGNAME</value>
   </data>
   <data name="&gt;&gt;GREGNAME.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;PrintToolStripButton.Name" xml:space="preserve">
+    <value>PrintToolStripButton</value>
+  </data>
+  <data name="&gt;&gt;PrintToolStripButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UpdateHoldforIntCalc</value>

@@ -31,17 +31,19 @@ Partial Class UpdateHoldforIntCalc
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNEWDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDUEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,12 +120,11 @@ Partial Class UpdateHoldforIntCalc
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYTYPE, Me.GENTRYNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GREGNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GNEWDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GENTRYTYPE, Me.GREGNAME})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridbill.OptionsBehavior.Editable = False
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 40
         Me.gridbill.OptionsSelection.MultiSelect = True
         Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
@@ -134,17 +135,12 @@ Partial Class UpdateHoldforIntCalc
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
         '
-        'GENTRYTYPE
-        '
-        resources.ApplyResources(Me.GENTRYTYPE, "GENTRYTYPE")
-        Me.GENTRYTYPE.FieldName = "ENTRYTYPE"
-        Me.GENTRYTYPE.Name = "GENTRYTYPE"
-        '
         'GENTRYNO
         '
         resources.ApplyResources(Me.GENTRYNO, "GENTRYNO")
         Me.GENTRYNO.FieldName = "ENTRYNO"
         Me.GENTRYNO.Name = "GENTRYNO"
+        Me.GENTRYNO.OptionsColumn.AllowEdit = False
         '
         'GDATE
         '
@@ -153,18 +149,40 @@ Partial Class UpdateHoldforIntCalc
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GDATE.FieldName = "DATE"
         Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        '
+        'GNEWDATE
+        '
+        resources.ApplyResources(Me.GNEWDATE, "GNEWDATE")
+        Me.GNEWDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GNEWDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GNEWDATE.FieldName = "NEWDATE"
+        Me.GNEWDATE.Name = "GNEWDATE"
+        '
+        'GCRDAYS
+        '
+        resources.ApplyResources(Me.GCRDAYS, "GCRDAYS")
+        Me.GCRDAYS.DisplayFormat.FormatString = "0"
+        Me.GCRDAYS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCRDAYS.FieldName = "CRDAYS"
+        Me.GCRDAYS.Name = "GCRDAYS"
+        Me.GCRDAYS.OptionsColumn.AllowEdit = False
+        '
+        'GDUEDATE
+        '
+        resources.ApplyResources(Me.GDUEDATE, "GDUEDATE")
+        Me.GDUEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDUEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDUEDATE.FieldName = "DUEDATE"
+        Me.GDUEDATE.Name = "GDUEDATE"
+        Me.GDUEDATE.OptionsColumn.AllowEdit = False
         '
         'GNAME
         '
         resources.ApplyResources(Me.GNAME, "GNAME")
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
-        '
-        'GDELIVERYAT
-        '
-        resources.ApplyResources(Me.GDELIVERYAT, "GDELIVERYAT")
-        Me.GDELIVERYAT.FieldName = "DELIVERYAT"
-        Me.GDELIVERYAT.Name = "GDELIVERYAT"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         '
         'GTOTALPCS
         '
@@ -173,6 +191,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GTOTALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALPCS.FieldName = "TOTALPCS"
         Me.GTOTALPCS.Name = "GTOTALPCS"
+        Me.GTOTALPCS.OptionsColumn.AllowEdit = False
         '
         'GTOTALMTRS
         '
@@ -181,6 +200,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
         '
         'GGRANDTOTAL
         '
@@ -189,6 +209,21 @@ Partial Class UpdateHoldforIntCalc
         Me.GGRANDTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
+        Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
+        '
+        'GENTRYTYPE
+        '
+        resources.ApplyResources(Me.GENTRYTYPE, "GENTRYTYPE")
+        Me.GENTRYTYPE.FieldName = "ENTRYTYPE"
+        Me.GENTRYTYPE.Name = "GENTRYTYPE"
+        Me.GENTRYTYPE.OptionsColumn.AllowEdit = False
+        '
+        'GREGNAME
+        '
+        resources.ApplyResources(Me.GREGNAME, "GREGNAME")
+        Me.GREGNAME.FieldName = "REGNAME"
+        Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.OptionsColumn.AllowEdit = False
         '
         'ToolStrip1
         '
@@ -202,12 +237,6 @@ Partial Class UpdateHoldforIntCalc
         Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
         resources.ApplyResources(Me.PrintToolStripButton, "PrintToolStripButton")
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        '
-        'GREGNAME
-        '
-        resources.ApplyResources(Me.GREGNAME, "GREGNAME")
-        Me.GREGNAME.FieldName = "REGNAME"
-        Me.GREGNAME.Name = "GREGNAME"
         '
         'UpdateHoldforIntCalc
         '
@@ -238,7 +267,6 @@ Partial Class UpdateHoldforIntCalc
     Friend WithEvents GENTRYNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDELIVERYAT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents RBPENDING As RadioButton
@@ -247,4 +275,7 @@ Partial Class UpdateHoldforIntCalc
     Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNEWDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDUEDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
