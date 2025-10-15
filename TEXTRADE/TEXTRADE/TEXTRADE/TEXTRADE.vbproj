@@ -438,10 +438,10 @@
     <Compile Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.Designer.vb">
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\AgencyReceiptDesign.Designer.vb">
       <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.vb">
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\AgencyReceiptDesign.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.Designer.vb">
@@ -763,10 +763,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\PdfOpenFileHelper.vb" />
-    <Compile Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.Designer.vb">
-      <DependentUpon>AgencySaleOrderDesign.vb</DependentUpon>
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\AgencyDesign.Designer.vb">
+      <DependentUpon>AgencyDesign.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.vb">
+    <Compile Include="Reports\Crystal Reports Design\Agency Module\AgencyDesign.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports Design\Catalog\CatalogDesign.Designer.vb">
@@ -8689,7 +8689,7 @@
     <EmbeddedResource Include="Reports\Crystal Reports Design\Accounts\AgencyOutstandingDesign.resx">
       <DependentUpon>AgencyOutstandingDesign.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\Agency Receipt\AgencyReceiptDesign.resx">
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\AgencyReceiptDesign.resx">
       <DependentUpon>AgencyReceiptDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Design Card\DesignCardDesign.resx">
@@ -8864,8 +8864,8 @@
     <EmbeddedResource Include="Masters\VehicleMasterDetails.resx">
       <DependentUpon>VehicleMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\Sale Order\AgencySaleOrderDesign.resx">
-      <DependentUpon>AgencySaleOrderDesign.vb</DependentUpon>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Agency Module\AgencyDesign.resx">
+      <DependentUpon>AgencyDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Catalog\CatalogDesign.resx">
       <DependentUpon>CatalogDesign.vb</DependentUpon>
