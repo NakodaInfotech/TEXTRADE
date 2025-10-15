@@ -6775,6 +6775,12 @@
     <Compile Include="Utilities\Update Peding\UpdateBillDispute.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateHoldforIntCalc.Designer.vb">
+      <DependentUpon>UpdateHoldforIntCalc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateHoldforIntCalc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Update Peding\UpdateItemRates.Designer.vb">
       <DependentUpon>UpdateItemRates.vb</DependentUpon>
     </Compile>
@@ -12535,6 +12541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateBillDispute.resx">
       <DependentUpon>UpdateBillDispute.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\UpdateHoldforIntCalc.resx">
+      <DependentUpon>UpdateHoldforIntCalc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateItemRates.resx">
       <DependentUpon>UpdateItemRates.vb</DependentUpon>
