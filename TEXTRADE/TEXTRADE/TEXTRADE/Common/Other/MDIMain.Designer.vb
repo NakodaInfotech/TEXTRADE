@@ -861,127 +861,6 @@ Partial Class MDIMain
         Me.CFORMAPPLICATION = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator128 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator206 = New System.Windows.Forms.ToolStripSeparator()
-        Me.Utilitiesmenu = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChangeCompany = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BackupCompany = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator28 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ChangeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.USERTRANSFER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BLOCKDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BLOCKUSER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BLOCKDATASTOCKTRANSFER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator281 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator29 = New System.Windows.Forms.ToolStripSeparator()
-        Me.MERGEDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MERGELEDGER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MergeParameterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator193 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UNUSEDLEDGERS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator195 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdateEntriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UploadLotNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateQualityWtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateLRNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPDATEBROKERMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateStockOnHandDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator242 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdateReminderDaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateDefaultStockUnitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LOCKPENDINGLOTFORPROGRAM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LOCKPENDINGJO_MENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SHRINKAGE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator214 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UnHoldChallansToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.REPLACELOTNO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPDATEPENDINGENTRIES_MENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ADDPENDINGENTRY = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EDITPENDINGENTRY = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator258 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdateItemRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RENUMBERING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PURCHASEINV_RENUM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NONPURCHASEINV_RENUM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.JOURNAL_RENUM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RECEIPT_RENUM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PAYMENT_RENUM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator260 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AUTODESIGNCREATION_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GODOWNCHANGE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator251 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AUTODISCOUNT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator153 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UPDATEPROGRAMDETAILS = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateCardIssueDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateCardRecdDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateDyeingInProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateProgramGiveDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateStatusOfProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductionCuttingRecDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FinishCuttingRecDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator213 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdateApprovedProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LOTPROGRAMTAG_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LOTPROGRAMTAGADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LOTPROGRAMTAGEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator292 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
-        Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
-        Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LedgersForAutoMailersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SENDSMS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SENDWHATSAPP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator196 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CHANGEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EXPORTLABEL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator84 = New System.Windows.Forms.ToolStripSeparator()
-        Me.DefaultRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DefaultTypeRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReminderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutoWhatsappToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator158 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TransfersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DATATRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STOCKTRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AGENCYDATATRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator321 = New System.Windows.Forms.ToolStripSeparator()
-        Me.STOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STOCKADJUSTMENTADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STOCKADJUSTMENTEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator132 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator109 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UploadEntriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADEXCELNP = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADEXCELSALE = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADACCOUNTMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADITEMMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADDESIGNMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADSTOCKMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADYARNSTOCK = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADOPENINGBILLMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UploadGodnameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator184 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TERMSANDCONDITIONS = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADBANKDETAILS = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADSIGN = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator194 = New System.Windows.Forms.ToolStripSeparator()
-        Me.STOCKTAKING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STOCKTAKINGADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STOCKTAKINGEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator220 = New System.Windows.Forms.ToolStripSeparator()
-        Me.UNCHECKEDSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator221 = New System.Windows.Forms.ToolStripSeparator()
-        Me.RECODATA_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPOADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1140,7 +1019,129 @@ Partial Class MDIMain
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_MONTHLYPURANALYSIS_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MASHOK_AGEING_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HOLDFORINTCALCMENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator302 = New System.Windows.Forms.ToolStripSeparator()
+        Me.Utilitiesmenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeCompany = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BackupCompany = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator28 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ChangeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.USERTRANSFER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BLOCKDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BLOCKUSER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BLOCKDATASTOCKTRANSFER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator281 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator29 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MERGEDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MERGELEDGER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MergeParameterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator193 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UNUSEDLEDGERS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator195 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateEntriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UploadLotNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateQualityWtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateLRNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPDATEBROKERMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateStockOnHandDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator242 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateReminderDaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateDefaultStockUnitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOCKPENDINGLOTFORPROGRAM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOCKPENDINGJO_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SHRINKAGE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator214 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UnHoldChallansToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPLACELOTNO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPDATEPENDINGENTRIES_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ADDPENDINGENTRY = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EDITPENDINGENTRY = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator258 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateItemRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RENUMBERING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PURCHASEINV_RENUM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NONPURCHASEINV_RENUM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.JOURNAL_RENUM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RECEIPT_RENUM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PAYMENT_RENUM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator260 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AUTODESIGNCREATION_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GODOWNCHANGE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator251 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AUTODISCOUNT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator153 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UPDATEPROGRAMDETAILS = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateCardIssueDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateCardRecdDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateDyeingInProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateProgramGiveDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateStatusOfProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductionCuttingRecDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FinishCuttingRecDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator213 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateApprovedProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOTPROGRAMTAG_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOTPROGRAMTAGADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LOTPROGRAMTAGEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator292 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LedgersForAutoMailersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SENDSMS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SENDWHATSAPP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator196 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CHANGEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EXPORTLABEL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator84 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DefaultRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DefaultTypeRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReminderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoWhatsappToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator158 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TransfersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DATATRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STOCKTRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AGENCYDATATRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator321 = New System.Windows.Forms.ToolStripSeparator()
+        Me.STOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STOCKADJUSTMENTADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STOCKADJUSTMENTEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator132 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator109 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UploadEntriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADEXCELNP = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADEXCELSALE = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADACCOUNTMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADITEMMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADDESIGNMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADSTOCKMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADYARNSTOCK = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADOPENINGBILLMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UploadGodnameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator184 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TERMSANDCONDITIONS = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADBANKDETAILS = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADSIGN = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator194 = New System.Windows.Forms.ToolStripSeparator()
+        Me.STOCKTAKING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STOCKTAKINGADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STOCKTAKINGEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator220 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UNCHECKEDSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator221 = New System.Windows.Forms.ToolStripSeparator()
+        Me.RECODATA_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator()
         Me.OTHERREPORT_MAIN = New System.Windows.Forms.ToolStripMenuItem()
         Me.TCSReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TCSCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1238,7 +1239,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.Utilitiesmenu, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -6590,746 +6591,6 @@ Partial Class MDIMain
         Me.ToolStripSeparator206.Name = "ToolStripSeparator206"
         Me.ToolStripSeparator206.Size = New System.Drawing.Size(192, 6)
         '
-        'Utilitiesmenu
-        '
-        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AutoWhatsappToolStripMenuItem, Me.ToolStripSeparator158, Me.TransfersToolStripMenuItem, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20})
-        Me.Utilitiesmenu.Name = "Utilitiesmenu"
-        Me.Utilitiesmenu.Size = New System.Drawing.Size(62, 20)
-        Me.Utilitiesmenu.Text = "&Utilities"
-        '
-        'ChangeCompany
-        '
-        Me.ChangeCompany.Name = "ChangeCompany"
-        Me.ChangeCompany.Size = New System.Drawing.Size(190, 22)
-        Me.ChangeCompany.Text = "Change &Company"
-        '
-        'BackupCompany
-        '
-        Me.BackupCompany.Name = "BackupCompany"
-        Me.BackupCompany.Size = New System.Drawing.Size(190, 22)
-        Me.BackupCompany.Text = "&Backup Company"
-        '
-        'ToolStripSeparator28
-        '
-        Me.ToolStripSeparator28.Name = "ToolStripSeparator28"
-        Me.ToolStripSeparator28.Size = New System.Drawing.Size(187, 6)
-        '
-        'ChangeUserToolStripMenuItem
-        '
-        Me.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem"
-        Me.ChangeUserToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.ChangeUserToolStripMenuItem.Text = "Change &User"
-        '
-        'USERTRANSFER
-        '
-        Me.USERTRANSFER.Enabled = False
-        Me.USERTRANSFER.Name = "USERTRANSFER"
-        Me.USERTRANSFER.Size = New System.Drawing.Size(190, 22)
-        Me.USERTRANSFER.Text = "User Transfer"
-        '
-        'BLOCKDETAILS_MASTER
-        '
-        Me.BLOCKDETAILS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BLOCKUSER, Me.BLOCKDATASTOCKTRANSFER, Me.ToolStripSeparator281})
-        Me.BLOCKDETAILS_MASTER.Enabled = False
-        Me.BLOCKDETAILS_MASTER.Name = "BLOCKDETAILS_MASTER"
-        Me.BLOCKDETAILS_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.BLOCKDETAILS_MASTER.Text = "Block Details"
-        '
-        'BLOCKUSER
-        '
-        Me.BLOCKUSER.Name = "BLOCKUSER"
-        Me.BLOCKUSER.Size = New System.Drawing.Size(218, 22)
-        Me.BLOCKUSER.Text = "Block User"
-        '
-        'BLOCKDATASTOCKTRANSFER
-        '
-        Me.BLOCKDATASTOCKTRANSFER.Name = "BLOCKDATASTOCKTRANSFER"
-        Me.BLOCKDATASTOCKTRANSFER.Size = New System.Drawing.Size(218, 22)
-        Me.BLOCKDATASTOCKTRANSFER.Text = "Block Data / Stock Transfer"
-        '
-        'ToolStripSeparator281
-        '
-        Me.ToolStripSeparator281.Name = "ToolStripSeparator281"
-        Me.ToolStripSeparator281.Size = New System.Drawing.Size(215, 6)
-        '
-        'ToolStripSeparator29
-        '
-        Me.ToolStripSeparator29.Name = "ToolStripSeparator29"
-        Me.ToolStripSeparator29.Size = New System.Drawing.Size(187, 6)
-        '
-        'MERGEDETAILS_MASTER
-        '
-        Me.MERGEDETAILS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MERGELEDGER, Me.MergeParameterToolStripMenuItem, Me.ToolStripSeparator193, Me.UNUSEDLEDGERS_MASTER, Me.ToolStripSeparator195})
-        Me.MERGEDETAILS_MASTER.Enabled = False
-        Me.MERGEDETAILS_MASTER.Name = "MERGEDETAILS_MASTER"
-        Me.MERGEDETAILS_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.MERGEDETAILS_MASTER.Text = "Merge Details"
-        '
-        'MERGELEDGER
-        '
-        Me.MERGELEDGER.Name = "MERGELEDGER"
-        Me.MERGELEDGER.Size = New System.Drawing.Size(167, 22)
-        Me.MERGELEDGER.Text = "Merge Ledger"
-        '
-        'MergeParameterToolStripMenuItem
-        '
-        Me.MergeParameterToolStripMenuItem.Name = "MergeParameterToolStripMenuItem"
-        Me.MergeParameterToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.MergeParameterToolStripMenuItem.Text = "Merge Parameter"
-        '
-        'ToolStripSeparator193
-        '
-        Me.ToolStripSeparator193.Name = "ToolStripSeparator193"
-        Me.ToolStripSeparator193.Size = New System.Drawing.Size(164, 6)
-        '
-        'UNUSEDLEDGERS_MASTER
-        '
-        Me.UNUSEDLEDGERS_MASTER.Name = "UNUSEDLEDGERS_MASTER"
-        Me.UNUSEDLEDGERS_MASTER.Size = New System.Drawing.Size(167, 22)
-        Me.UNUSEDLEDGERS_MASTER.Text = "Un-Used Ledgers"
-        '
-        'ToolStripSeparator195
-        '
-        Me.ToolStripSeparator195.Name = "ToolStripSeparator195"
-        Me.ToolStripSeparator195.Size = New System.Drawing.Size(164, 6)
-        '
-        'UpdateEntriesToolStripMenuItem
-        '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP})
-        Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
-        Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
-        '
-        'UploadLotNoToolStripMenuItem
-        '
-        Me.UploadLotNoToolStripMenuItem.Name = "UploadLotNoToolStripMenuItem"
-        Me.UploadLotNoToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UploadLotNoToolStripMenuItem.Text = "Update Lot No"
-        '
-        'UpdateQualityWtToolStripMenuItem
-        '
-        Me.UpdateQualityWtToolStripMenuItem.Name = "UpdateQualityWtToolStripMenuItem"
-        Me.UpdateQualityWtToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateQualityWtToolStripMenuItem.Text = "Update Quality Wt"
-        '
-        'UpdateLRNoToolStripMenuItem
-        '
-        Me.UpdateLRNoToolStripMenuItem.Name = "UpdateLRNoToolStripMenuItem"
-        Me.UpdateLRNoToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateLRNoToolStripMenuItem.Text = "Update LR No"
-        '
-        'UPDATEBROKERMENU
-        '
-        Me.UPDATEBROKERMENU.Name = "UPDATEBROKERMENU"
-        Me.UPDATEBROKERMENU.Size = New System.Drawing.Size(253, 22)
-        Me.UPDATEBROKERMENU.Text = "Update Broker"
-        '
-        'UpdateStockOnHandDetailsToolStripMenuItem
-        '
-        Me.UpdateStockOnHandDetailsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem1, Me.EditExistingEntryToolStripMenuItem1, Me.ToolStripSeparator242})
-        Me.UpdateStockOnHandDetailsToolStripMenuItem.Name = "UpdateStockOnHandDetailsToolStripMenuItem"
-        Me.UpdateStockOnHandDetailsToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateStockOnHandDetailsToolStripMenuItem.Text = "Update Rack && Shelf"
-        '
-        'AddNewEntryToolStripMenuItem1
-        '
-        Me.AddNewEntryToolStripMenuItem1.Name = "AddNewEntryToolStripMenuItem1"
-        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
-        Me.AddNewEntryToolStripMenuItem1.Text = "&Add New Entry"
-        '
-        'EditExistingEntryToolStripMenuItem1
-        '
-        Me.EditExistingEntryToolStripMenuItem1.Name = "EditExistingEntryToolStripMenuItem1"
-        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
-        Me.EditExistingEntryToolStripMenuItem1.Text = "&Edit Existing Entry"
-        '
-        'ToolStripSeparator242
-        '
-        Me.ToolStripSeparator242.Name = "ToolStripSeparator242"
-        Me.ToolStripSeparator242.Size = New System.Drawing.Size(165, 6)
-        '
-        'UpdateReminderDaysToolStripMenuItem
-        '
-        Me.UpdateReminderDaysToolStripMenuItem.Name = "UpdateReminderDaysToolStripMenuItem"
-        Me.UpdateReminderDaysToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateReminderDaysToolStripMenuItem.Text = "Update Reminder Days"
-        Me.UpdateReminderDaysToolStripMenuItem.Visible = False
-        '
-        'UpdateDefaultStockUnitToolStripMenuItem
-        '
-        Me.UpdateDefaultStockUnitToolStripMenuItem.Name = "UpdateDefaultStockUnitToolStripMenuItem"
-        Me.UpdateDefaultStockUnitToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateDefaultStockUnitToolStripMenuItem.Text = "Update Default Stock Unit"
-        '
-        'LOCKPENDINGLOTFORPROGRAM
-        '
-        Me.LOCKPENDINGLOTFORPROGRAM.Name = "LOCKPENDINGLOTFORPROGRAM"
-        Me.LOCKPENDINGLOTFORPROGRAM.Size = New System.Drawing.Size(253, 22)
-        Me.LOCKPENDINGLOTFORPROGRAM.Text = "Lock/Unlock Lot for Program"
-        '
-        'LOCKPENDINGJO_MENU
-        '
-        Me.LOCKPENDINGJO_MENU.Name = "LOCKPENDINGJO_MENU"
-        Me.LOCKPENDINGJO_MENU.Size = New System.Drawing.Size(253, 22)
-        Me.LOCKPENDINGJO_MENU.Text = "Lock/Unlock Job Out for Emb"
-        '
-        'SHRINKAGE_MASTER
-        '
-        Me.SHRINKAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem, Me.ToolStripSeparator214})
-        Me.SHRINKAGE_MASTER.Enabled = False
-        Me.SHRINKAGE_MASTER.Name = "SHRINKAGE_MASTER"
-        Me.SHRINKAGE_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.SHRINKAGE_MASTER.Text = "Shrinkage Entry"
-        '
-        'AddNewEntryToolStripMenuItem
-        '
-        Me.AddNewEntryToolStripMenuItem.Name = "AddNewEntryToolStripMenuItem"
-        Me.AddNewEntryToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
-        Me.AddNewEntryToolStripMenuItem.Text = "&Add New Entry"
-        '
-        'EditExistingEntryToolStripMenuItem
-        '
-        Me.EditExistingEntryToolStripMenuItem.Name = "EditExistingEntryToolStripMenuItem"
-        Me.EditExistingEntryToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
-        Me.EditExistingEntryToolStripMenuItem.Text = "&Edit Existing Entry"
-        '
-        'ToolStripSeparator214
-        '
-        Me.ToolStripSeparator214.Name = "ToolStripSeparator214"
-        Me.ToolStripSeparator214.Size = New System.Drawing.Size(165, 6)
-        '
-        'UnHoldChallansToolStripMenuItem
-        '
-        Me.UnHoldChallansToolStripMenuItem.Name = "UnHoldChallansToolStripMenuItem"
-        Me.UnHoldChallansToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UnHoldChallansToolStripMenuItem.Text = "Un Hold Challans"
-        '
-        'REPLACELOTNO_MASTER
-        '
-        Me.REPLACELOTNO_MASTER.Enabled = False
-        Me.REPLACELOTNO_MASTER.Name = "REPLACELOTNO_MASTER"
-        Me.REPLACELOTNO_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.REPLACELOTNO_MASTER.Text = "Replace Lot No in Dyeing Receipt"
-        '
-        'UPDATEPENDINGENTRIES_MENU
-        '
-        Me.UPDATEPENDINGENTRIES_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDPENDINGENTRY, Me.EDITPENDINGENTRY, Me.ToolStripSeparator258})
-        Me.UPDATEPENDINGENTRIES_MENU.Enabled = False
-        Me.UPDATEPENDINGENTRIES_MENU.Name = "UPDATEPENDINGENTRIES_MENU"
-        Me.UPDATEPENDINGENTRIES_MENU.Size = New System.Drawing.Size(253, 22)
-        Me.UPDATEPENDINGENTRIES_MENU.Text = "Update Pending Entry"
-        '
-        'ADDPENDINGENTRY
-        '
-        Me.ADDPENDINGENTRY.Name = "ADDPENDINGENTRY"
-        Me.ADDPENDINGENTRY.Size = New System.Drawing.Size(168, 22)
-        Me.ADDPENDINGENTRY.Text = "Add New Entry"
-        '
-        'EDITPENDINGENTRY
-        '
-        Me.EDITPENDINGENTRY.Name = "EDITPENDINGENTRY"
-        Me.EDITPENDINGENTRY.Size = New System.Drawing.Size(168, 22)
-        Me.EDITPENDINGENTRY.Text = "Edit Existing Entry"
-        '
-        'ToolStripSeparator258
-        '
-        Me.ToolStripSeparator258.Name = "ToolStripSeparator258"
-        Me.ToolStripSeparator258.Size = New System.Drawing.Size(165, 6)
-        '
-        'UpdateItemRateToolStripMenuItem
-        '
-        Me.UpdateItemRateToolStripMenuItem.Name = "UpdateItemRateToolStripMenuItem"
-        Me.UpdateItemRateToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateItemRateToolStripMenuItem.Text = "Update Item Rate"
-        '
-        'RENUMBERING_MASTER
-        '
-        Me.RENUMBERING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PURCHASEINV_RENUM, Me.NONPURCHASEINV_RENUM, Me.JOURNAL_RENUM, Me.RECEIPT_RENUM, Me.PAYMENT_RENUM, Me.ToolStripSeparator260})
-        Me.RENUMBERING_MASTER.Enabled = False
-        Me.RENUMBERING_MASTER.Name = "RENUMBERING_MASTER"
-        Me.RENUMBERING_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.RENUMBERING_MASTER.Text = "Re-Numbering"
-        '
-        'PURCHASEINV_RENUM
-        '
-        Me.PURCHASEINV_RENUM.Name = "PURCHASEINV_RENUM"
-        Me.PURCHASEINV_RENUM.Size = New System.Drawing.Size(275, 22)
-        Me.PURCHASEINV_RENUM.Text = "Purchase Invoice Re-Numbering"
-        '
-        'NONPURCHASEINV_RENUM
-        '
-        Me.NONPURCHASEINV_RENUM.Name = "NONPURCHASEINV_RENUM"
-        Me.NONPURCHASEINV_RENUM.Size = New System.Drawing.Size(275, 22)
-        Me.NONPURCHASEINV_RENUM.Text = "Non Purchase Voucher Re-Numbering"
-        '
-        'JOURNAL_RENUM
-        '
-        Me.JOURNAL_RENUM.Name = "JOURNAL_RENUM"
-        Me.JOURNAL_RENUM.Size = New System.Drawing.Size(275, 22)
-        Me.JOURNAL_RENUM.Text = "Journal Re-Numbering"
-        '
-        'RECEIPT_RENUM
-        '
-        Me.RECEIPT_RENUM.Name = "RECEIPT_RENUM"
-        Me.RECEIPT_RENUM.Size = New System.Drawing.Size(275, 22)
-        Me.RECEIPT_RENUM.Text = "Receipt Re-Numbering"
-        '
-        'PAYMENT_RENUM
-        '
-        Me.PAYMENT_RENUM.Name = "PAYMENT_RENUM"
-        Me.PAYMENT_RENUM.Size = New System.Drawing.Size(275, 22)
-        Me.PAYMENT_RENUM.Text = "Payment Re-Numbering"
-        '
-        'ToolStripSeparator260
-        '
-        Me.ToolStripSeparator260.Name = "ToolStripSeparator260"
-        Me.ToolStripSeparator260.Size = New System.Drawing.Size(272, 6)
-        '
-        'AUTODESIGNCREATION_MASTER
-        '
-        Me.AUTODESIGNCREATION_MASTER.Enabled = False
-        Me.AUTODESIGNCREATION_MASTER.Name = "AUTODESIGNCREATION_MASTER"
-        Me.AUTODESIGNCREATION_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.AUTODESIGNCREATION_MASTER.Text = "Auto Design Creation"
-        Me.AUTODESIGNCREATION_MASTER.Visible = False
-        '
-        'GODOWNCHANGE_MASTER
-        '
-        Me.GODOWNCHANGE_MASTER.Name = "GODOWNCHANGE_MASTER"
-        Me.GODOWNCHANGE_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.GODOWNCHANGE_MASTER.Text = "Godown Change"
-        Me.GODOWNCHANGE_MASTER.Visible = False
-        '
-        'UpdateBillToolStripMenuItem
-        '
-        Me.UpdateBillToolStripMenuItem.Name = "UpdateBillToolStripMenuItem"
-        Me.UpdateBillToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdateBillToolStripMenuItem.Text = "Update Bill Dispute"
-        '
-        'LRStockToolStripMenuItem
-        '
-        Me.LRStockToolStripMenuItem.Enabled = False
-        Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
-        Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.LRStockToolStripMenuItem.Text = "Upload LR Stock"
-        '
-        'ToolStripSeparator251
-        '
-        Me.ToolStripSeparator251.Name = "ToolStripSeparator251"
-        Me.ToolStripSeparator251.Size = New System.Drawing.Size(250, 6)
-        '
-        'AUTODISCOUNT_MASTER
-        '
-        Me.AUTODISCOUNT_MASTER.Name = "AUTODISCOUNT_MASTER"
-        Me.AUTODISCOUNT_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.AUTODISCOUNT_MASTER.Text = "Auto Discount"
-        '
-        'ToolStripSeparator153
-        '
-        Me.ToolStripSeparator153.Name = "ToolStripSeparator153"
-        Me.ToolStripSeparator153.Size = New System.Drawing.Size(250, 6)
-        '
-        'UPDATEPROGRAMDETAILS
-        '
-        Me.UPDATEPROGRAMDETAILS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateCardIssueDateToolStripMenuItem, Me.UpdateCardRecdDateToolStripMenuItem, Me.UpdateDyeingInProgramToolStripMenuItem, Me.UpdateProgramGiveDateToolStripMenuItem, Me.UpdateStatusOfProgramToolStripMenuItem, Me.ProductionCuttingRecDateToolStripMenuItem, Me.FinishCuttingRecDateToolStripMenuItem, Me.ToolStripSeparator213, Me.UpdateApprovedProgramToolStripMenuItem, Me.LOTPROGRAMTAG_MASTER, Me.ToolStripSeparator291})
-        Me.UPDATEPROGRAMDETAILS.Name = "UPDATEPROGRAMDETAILS"
-        Me.UPDATEPROGRAMDETAILS.Size = New System.Drawing.Size(253, 22)
-        Me.UPDATEPROGRAMDETAILS.Text = "Update Program Details"
-        '
-        'UpdateCardIssueDateToolStripMenuItem
-        '
-        Me.UpdateCardIssueDateToolStripMenuItem.Name = "UpdateCardIssueDateToolStripMenuItem"
-        Me.UpdateCardIssueDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateCardIssueDateToolStripMenuItem.Text = "Update Card Issue Date"
-        '
-        'UpdateCardRecdDateToolStripMenuItem
-        '
-        Me.UpdateCardRecdDateToolStripMenuItem.Name = "UpdateCardRecdDateToolStripMenuItem"
-        Me.UpdateCardRecdDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateCardRecdDateToolStripMenuItem.Text = "Update Card Recd Date"
-        '
-        'UpdateDyeingInProgramToolStripMenuItem
-        '
-        Me.UpdateDyeingInProgramToolStripMenuItem.Name = "UpdateDyeingInProgramToolStripMenuItem"
-        Me.UpdateDyeingInProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateDyeingInProgramToolStripMenuItem.Text = "Update Dyeing in Program"
-        '
-        'UpdateProgramGiveDateToolStripMenuItem
-        '
-        Me.UpdateProgramGiveDateToolStripMenuItem.Name = "UpdateProgramGiveDateToolStripMenuItem"
-        Me.UpdateProgramGiveDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateProgramGiveDateToolStripMenuItem.Text = "Update Program Give Date"
-        '
-        'UpdateStatusOfProgramToolStripMenuItem
-        '
-        Me.UpdateStatusOfProgramToolStripMenuItem.Name = "UpdateStatusOfProgramToolStripMenuItem"
-        Me.UpdateStatusOfProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateStatusOfProgramToolStripMenuItem.Text = "Update Status of Program"
-        '
-        'ProductionCuttingRecDateToolStripMenuItem
-        '
-        Me.ProductionCuttingRecDateToolStripMenuItem.Name = "ProductionCuttingRecDateToolStripMenuItem"
-        Me.ProductionCuttingRecDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.ProductionCuttingRecDateToolStripMenuItem.Text = "Production Cutting Rec Date"
-        '
-        'FinishCuttingRecDateToolStripMenuItem
-        '
-        Me.FinishCuttingRecDateToolStripMenuItem.Name = "FinishCuttingRecDateToolStripMenuItem"
-        Me.FinishCuttingRecDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.FinishCuttingRecDateToolStripMenuItem.Text = "Finish Cutting Rec Date"
-        '
-        'ToolStripSeparator213
-        '
-        Me.ToolStripSeparator213.Name = "ToolStripSeparator213"
-        Me.ToolStripSeparator213.Size = New System.Drawing.Size(218, 6)
-        '
-        'UpdateApprovedProgramToolStripMenuItem
-        '
-        Me.UpdateApprovedProgramToolStripMenuItem.Name = "UpdateApprovedProgramToolStripMenuItem"
-        Me.UpdateApprovedProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.UpdateApprovedProgramToolStripMenuItem.Text = "Update Approved Program"
-        '
-        'LOTPROGRAMTAG_MASTER
-        '
-        Me.LOTPROGRAMTAG_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LOTPROGRAMTAGADD, Me.LOTPROGRAMTAGEDIT, Me.ToolStripSeparator292})
-        Me.LOTPROGRAMTAG_MASTER.Name = "LOTPROGRAMTAG_MASTER"
-        Me.LOTPROGRAMTAG_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.LOTPROGRAMTAG_MASTER.Text = "Lot && Program Tagging"
-        '
-        'LOTPROGRAMTAGADD
-        '
-        Me.LOTPROGRAMTAGADD.Name = "LOTPROGRAMTAGADD"
-        Me.LOTPROGRAMTAGADD.Size = New System.Drawing.Size(183, 22)
-        Me.LOTPROGRAMTAGADD.Text = "Add New Tagging"
-        '
-        'LOTPROGRAMTAGEDIT
-        '
-        Me.LOTPROGRAMTAGEDIT.Name = "LOTPROGRAMTAGEDIT"
-        Me.LOTPROGRAMTAGEDIT.Size = New System.Drawing.Size(183, 22)
-        Me.LOTPROGRAMTAGEDIT.Text = "Edit Existing Tagging"
-        '
-        'ToolStripSeparator292
-        '
-        Me.ToolStripSeparator292.Name = "ToolStripSeparator292"
-        Me.ToolStripSeparator292.Size = New System.Drawing.Size(180, 6)
-        '
-        'ToolStripSeparator291
-        '
-        Me.ToolStripSeparator291.Name = "ToolStripSeparator291"
-        Me.ToolStripSeparator291.Size = New System.Drawing.Size(218, 6)
-        '
-        'PROGRAMTOOLSTRIP
-        '
-        Me.PROGRAMTOOLSTRIP.Name = "PROGRAMTOOLSTRIP"
-        Me.PROGRAMTOOLSTRIP.Size = New System.Drawing.Size(250, 6)
-        '
-        'ToolStripSeparator90
-        '
-        Me.ToolStripSeparator90.Name = "ToolStripSeparator90"
-        Me.ToolStripSeparator90.Size = New System.Drawing.Size(187, 6)
-        '
-        'SendMailToolStripMenuItem
-        '
-        Me.SendMailToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SendMailToolStripMenuItem1, Me.LedgersForAutoMailersToolStripMenuItem})
-        Me.SendMailToolStripMenuItem.Name = "SendMailToolStripMenuItem"
-        Me.SendMailToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.SendMailToolStripMenuItem.Text = "Send &Mail"
-        '
-        'SendMailToolStripMenuItem1
-        '
-        Me.SendMailToolStripMenuItem1.Name = "SendMailToolStripMenuItem1"
-        Me.SendMailToolStripMenuItem1.Size = New System.Drawing.Size(206, 22)
-        Me.SendMailToolStripMenuItem1.Text = "Send &Mail"
-        '
-        'LedgersForAutoMailersToolStripMenuItem
-        '
-        Me.LedgersForAutoMailersToolStripMenuItem.Name = "LedgersForAutoMailersToolStripMenuItem"
-        Me.LedgersForAutoMailersToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.LedgersForAutoMailersToolStripMenuItem.Text = "Ledgers For AutoMailers"
-        '
-        'SENDSMS_MASTER
-        '
-        Me.SENDSMS_MASTER.Name = "SENDSMS_MASTER"
-        Me.SENDSMS_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.SENDSMS_MASTER.Text = "Send &SMS"
-        '
-        'SENDWHATSAPP_MASTER
-        '
-        Me.SENDWHATSAPP_MASTER.Name = "SENDWHATSAPP_MASTER"
-        Me.SENDWHATSAPP_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.SENDWHATSAPP_MASTER.Text = "Send &Whatsapp"
-        '
-        'ToolStripSeparator196
-        '
-        Me.ToolStripSeparator196.Name = "ToolStripSeparator196"
-        Me.ToolStripSeparator196.Size = New System.Drawing.Size(187, 6)
-        '
-        'ReprintBarcodeToolStripMenuItem
-        '
-        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
-        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
-        '
-        'CHANGEBARCODE_MASTER
-        '
-        Me.CHANGEBARCODE_MASTER.Enabled = False
-        Me.CHANGEBARCODE_MASTER.Name = "CHANGEBARCODE_MASTER"
-        Me.CHANGEBARCODE_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.CHANGEBARCODE_MASTER.Text = "Change Barcode"
-        '
-        'EXPORTLABEL_MASTER
-        '
-        Me.EXPORTLABEL_MASTER.Name = "EXPORTLABEL_MASTER"
-        Me.EXPORTLABEL_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.EXPORTLABEL_MASTER.Text = "Export Label"
-        Me.EXPORTLABEL_MASTER.Visible = False
-        '
-        'ToolStripSeparator84
-        '
-        Me.ToolStripSeparator84.Name = "ToolStripSeparator84"
-        Me.ToolStripSeparator84.Size = New System.Drawing.Size(187, 6)
-        '
-        'DefaultRegisterToolStripMenuItem
-        '
-        Me.DefaultRegisterToolStripMenuItem.Name = "DefaultRegisterToolStripMenuItem"
-        Me.DefaultRegisterToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.DefaultRegisterToolStripMenuItem.Text = "D&efault Register"
-        '
-        'DefaultTypeRegisterToolStripMenuItem
-        '
-        Me.DefaultTypeRegisterToolStripMenuItem.Name = "DefaultTypeRegisterToolStripMenuItem"
-        Me.DefaultTypeRegisterToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.DefaultTypeRegisterToolStripMenuItem.Text = "Default Type Register"
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(190, 22)
-        Me.ToolStripMenuItem2.Text = "Default Bank"
-        '
-        'ReminderToolStripMenuItem
-        '
-        Me.ReminderToolStripMenuItem.Name = "ReminderToolStripMenuItem"
-        Me.ReminderToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.ReminderToolStripMenuItem.Text = "Reminder"
-        '
-        'AutoWhatsappToolStripMenuItem
-        '
-        Me.AutoWhatsappToolStripMenuItem.Name = "AutoWhatsappToolStripMenuItem"
-        Me.AutoWhatsappToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.AutoWhatsappToolStripMenuItem.Text = "Auto Whatsapp"
-        Me.AutoWhatsappToolStripMenuItem.Visible = False
-        '
-        'ToolStripSeparator158
-        '
-        Me.ToolStripSeparator158.Name = "ToolStripSeparator158"
-        Me.ToolStripSeparator158.Size = New System.Drawing.Size(187, 6)
-        '
-        'TransfersToolStripMenuItem
-        '
-        Me.TransfersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DATATRANSFER_MASTER, Me.STOCKTRANSFER_MASTER, Me.AGENCYDATATRANSFER_MASTER, Me.ToolStripSeparator321})
-        Me.TransfersToolStripMenuItem.Name = "TransfersToolStripMenuItem"
-        Me.TransfersToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.TransfersToolStripMenuItem.Text = "Transfers"
-        '
-        'DATATRANSFER_MASTER
-        '
-        Me.DATATRANSFER_MASTER.Enabled = False
-        Me.DATATRANSFER_MASTER.Name = "DATATRANSFER_MASTER"
-        Me.DATATRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
-        Me.DATATRANSFER_MASTER.Text = "Data Transfer"
-        '
-        'STOCKTRANSFER_MASTER
-        '
-        Me.STOCKTRANSFER_MASTER.Enabled = False
-        Me.STOCKTRANSFER_MASTER.Name = "STOCKTRANSFER_MASTER"
-        Me.STOCKTRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
-        Me.STOCKTRANSFER_MASTER.Text = "Stock Transfer"
-        '
-        'AGENCYDATATRANSFER_MASTER
-        '
-        Me.AGENCYDATATRANSFER_MASTER.Enabled = False
-        Me.AGENCYDATATRANSFER_MASTER.Name = "AGENCYDATATRANSFER_MASTER"
-        Me.AGENCYDATATRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
-        Me.AGENCYDATATRANSFER_MASTER.Text = "Agency Data Transfer"
-        '
-        'ToolStripSeparator321
-        '
-        Me.ToolStripSeparator321.Name = "ToolStripSeparator321"
-        Me.ToolStripSeparator321.Size = New System.Drawing.Size(184, 6)
-        '
-        'STOCKADJUSTMENT_MASTER
-        '
-        Me.STOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOCKADJUSTMENTADD, Me.STOCKADJUSTMENTEDIT, Me.ToolStripSeparator132})
-        Me.STOCKADJUSTMENT_MASTER.Enabled = False
-        Me.STOCKADJUSTMENT_MASTER.Name = "STOCKADJUSTMENT_MASTER"
-        Me.STOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.STOCKADJUSTMENT_MASTER.Text = "Stock Adjustment"
-        '
-        'STOCKADJUSTMENTADD
-        '
-        Me.STOCKADJUSTMENTADD.Name = "STOCKADJUSTMENTADD"
-        Me.STOCKADJUSTMENTADD.Size = New System.Drawing.Size(204, 22)
-        Me.STOCKADJUSTMENTADD.Text = "Add New Adjustment"
-        '
-        'STOCKADJUSTMENTEDIT
-        '
-        Me.STOCKADJUSTMENTEDIT.Name = "STOCKADJUSTMENTEDIT"
-        Me.STOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(204, 22)
-        Me.STOCKADJUSTMENTEDIT.Text = "Edit Existing Adjustment"
-        '
-        'ToolStripSeparator132
-        '
-        Me.ToolStripSeparator132.Name = "ToolStripSeparator132"
-        Me.ToolStripSeparator132.Size = New System.Drawing.Size(201, 6)
-        '
-        'ToolStripSeparator109
-        '
-        Me.ToolStripSeparator109.Name = "ToolStripSeparator109"
-        Me.ToolStripSeparator109.Size = New System.Drawing.Size(187, 6)
-        '
-        'UploadEntriesToolStripMenuItem
-        '
-        Me.UploadEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADEXCELNP, Me.UPLOADEXCELSALE, Me.UPLOADACCOUNTMENU, Me.UPLOADITEMMENU, Me.UPLOADDESIGNMENU, Me.UPLOADSTOCKMENU, Me.UPLOADYARNSTOCK, Me.UPLOADOPENINGBILLMENU, Me.UploadGodnameToolStripMenuItem, Me.ToolStripSeparator184, Me.TERMSANDCONDITIONS, Me.UPLOADBANKDETAILS, Me.UPLOADSIGN, Me.ToolStripSeparator194})
-        Me.UploadEntriesToolStripMenuItem.Name = "UploadEntriesToolStripMenuItem"
-        Me.UploadEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.UploadEntriesToolStripMenuItem.Text = "Upload Entries"
-        '
-        'UPLOADEXCELNP
-        '
-        Me.UPLOADEXCELNP.Name = "UPLOADEXCELNP"
-        Me.UPLOADEXCELNP.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADEXCELNP.Text = "Upload Excel for Non Purchase"
-        Me.UPLOADEXCELNP.Visible = False
-        '
-        'UPLOADEXCELSALE
-        '
-        Me.UPLOADEXCELSALE.Name = "UPLOADEXCELSALE"
-        Me.UPLOADEXCELSALE.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADEXCELSALE.Text = "Upload Excel For Sale Invoice"
-        Me.UPLOADEXCELSALE.Visible = False
-        '
-        'UPLOADACCOUNTMENU
-        '
-        Me.UPLOADACCOUNTMENU.Name = "UPLOADACCOUNTMENU"
-        Me.UPLOADACCOUNTMENU.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADACCOUNTMENU.Text = "Upload Account"
-        '
-        'UPLOADITEMMENU
-        '
-        Me.UPLOADITEMMENU.Name = "UPLOADITEMMENU"
-        Me.UPLOADITEMMENU.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADITEMMENU.Text = "Upload Item"
-        '
-        'UPLOADDESIGNMENU
-        '
-        Me.UPLOADDESIGNMENU.Name = "UPLOADDESIGNMENU"
-        Me.UPLOADDESIGNMENU.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADDESIGNMENU.Text = "Upload Design"
-        '
-        'UPLOADSTOCKMENU
-        '
-        Me.UPLOADSTOCKMENU.Name = "UPLOADSTOCKMENU"
-        Me.UPLOADSTOCKMENU.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADSTOCKMENU.Text = "Upload Stock"
-        '
-        'UPLOADYARNSTOCK
-        '
-        Me.UPLOADYARNSTOCK.Name = "UPLOADYARNSTOCK"
-        Me.UPLOADYARNSTOCK.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADYARNSTOCK.Text = "Upload Yarn Stock"
-        '
-        'UPLOADOPENINGBILLMENU
-        '
-        Me.UPLOADOPENINGBILLMENU.Name = "UPLOADOPENINGBILLMENU"
-        Me.UPLOADOPENINGBILLMENU.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADOPENINGBILLMENU.Text = "Upload Opening Bills"
-        '
-        'UploadGodnameToolStripMenuItem
-        '
-        Me.UploadGodnameToolStripMenuItem.Name = "UploadGodnameToolStripMenuItem"
-        Me.UploadGodnameToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.UploadGodnameToolStripMenuItem.Text = "Upload God Name"
-        '
-        'ToolStripSeparator184
-        '
-        Me.ToolStripSeparator184.Name = "ToolStripSeparator184"
-        Me.ToolStripSeparator184.Size = New System.Drawing.Size(236, 6)
-        '
-        'TERMSANDCONDITIONS
-        '
-        Me.TERMSANDCONDITIONS.Name = "TERMSANDCONDITIONS"
-        Me.TERMSANDCONDITIONS.Size = New System.Drawing.Size(239, 22)
-        Me.TERMSANDCONDITIONS.Text = "Upload Terms And Conditions"
-        Me.TERMSANDCONDITIONS.TextAlign = System.Drawing.ContentAlignment.TopLeft
-        '
-        'UPLOADBANKDETAILS
-        '
-        Me.UPLOADBANKDETAILS.Name = "UPLOADBANKDETAILS"
-        Me.UPLOADBANKDETAILS.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADBANKDETAILS.Text = "Upload Company Bank Details"
-        '
-        'UPLOADSIGN
-        '
-        Me.UPLOADSIGN.Name = "UPLOADSIGN"
-        Me.UPLOADSIGN.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADSIGN.Text = "Upload Sign"
-        '
-        'ToolStripSeparator194
-        '
-        Me.ToolStripSeparator194.Name = "ToolStripSeparator194"
-        Me.ToolStripSeparator194.Size = New System.Drawing.Size(236, 6)
-        '
-        'STOCKTAKING_MASTER
-        '
-        Me.STOCKTAKING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOCKTAKINGADD, Me.STOCKTAKINGEDIT, Me.ToolStripSeparator220, Me.UNCHECKEDSTOCK_MASTER, Me.ToolStripSeparator221})
-        Me.STOCKTAKING_MASTER.Enabled = False
-        Me.STOCKTAKING_MASTER.Name = "STOCKTAKING_MASTER"
-        Me.STOCKTAKING_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.STOCKTAKING_MASTER.Text = "Stock Taking"
-        '
-        'STOCKTAKINGADD
-        '
-        Me.STOCKTAKINGADD.Enabled = False
-        Me.STOCKTAKINGADD.Name = "STOCKTAKINGADD"
-        Me.STOCKTAKINGADD.Size = New System.Drawing.Size(168, 22)
-        Me.STOCKTAKINGADD.Text = "&Add New Entry"
-        '
-        'STOCKTAKINGEDIT
-        '
-        Me.STOCKTAKINGEDIT.Enabled = False
-        Me.STOCKTAKINGEDIT.Name = "STOCKTAKINGEDIT"
-        Me.STOCKTAKINGEDIT.Size = New System.Drawing.Size(168, 22)
-        Me.STOCKTAKINGEDIT.Text = "&Edit Existing Entry"
-        '
-        'ToolStripSeparator220
-        '
-        Me.ToolStripSeparator220.Name = "ToolStripSeparator220"
-        Me.ToolStripSeparator220.Size = New System.Drawing.Size(165, 6)
-        '
-        'UNCHECKEDSTOCK_MASTER
-        '
-        Me.UNCHECKEDSTOCK_MASTER.Name = "UNCHECKEDSTOCK_MASTER"
-        Me.UNCHECKEDSTOCK_MASTER.Size = New System.Drawing.Size(168, 22)
-        Me.UNCHECKEDSTOCK_MASTER.Text = "Unchecked Stock"
-        '
-        'ToolStripSeparator221
-        '
-        Me.ToolStripSeparator221.Name = "ToolStripSeparator221"
-        Me.ToolStripSeparator221.Size = New System.Drawing.Size(165, 6)
-        '
-        'RECODATA_MASTER
-        '
-        Me.RECODATA_MASTER.Enabled = False
-        Me.RECODATA_MASTER.Name = "RECODATA_MASTER"
-        Me.RECODATA_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.RECODATA_MASTER.Text = "Reconcile Data"
-        '
-        'ToolStripSeparator20
-        '
-        Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
-        Me.ToolStripSeparator20.Size = New System.Drawing.Size(187, 6)
-        '
         'YARNMODULE_MENU
         '
         Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNSO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.YARNDYEINGPROGRAM_MASTER, Me.PRODUCTIONFLOOR_MASTER, Me.YARNCHALLAN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.GreyReceived_MENU, Me.GREYRECDTOOLSTRIP})
@@ -8303,7 +7564,7 @@ Partial Class MDIMain
         '
         'MASHOK_REPORTS
         '
-        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_MONTHLYSALEANALYSIS_MENU, Me.MASHOK_MONTHLYPURANALYSIS_MENU, Me.MASHOK_AGEING_MENU, Me.ToolStripSeparator302})
+        Me.MASHOK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MASHOK_SOFILTER_MENU, Me.MASHOK_POFILTER_MENU, Me.ToolStripSeparator305, Me.MASHOK_RECOUT_MENU, Me.MASHOK_PAYOUT_MENU, Me.ToolStripSeparator306, Me.MASHOK_MONTHLYSALEANALYSIS_MENU, Me.MASHOK_MONTHLYPURANALYSIS_MENU, Me.MASHOK_AGEING_MENU, Me.HOLDFORINTCALCMENU, Me.ToolStripSeparator302})
         Me.MASHOK_REPORTS.Name = "MASHOK_REPORTS"
         Me.MASHOK_REPORTS.Size = New System.Drawing.Size(84, 20)
         Me.MASHOK_REPORTS.Text = "MIS Reports"
@@ -8312,59 +7573,805 @@ Partial Class MDIMain
         'MASHOK_SOFILTER_MENU
         '
         Me.MASHOK_SOFILTER_MENU.Name = "MASHOK_SOFILTER_MENU"
-        Me.MASHOK_SOFILTER_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_SOFILTER_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_SOFILTER_MENU.Text = "Pending Sale Order"
         '
         'MASHOK_POFILTER_MENU
         '
         Me.MASHOK_POFILTER_MENU.Name = "MASHOK_POFILTER_MENU"
-        Me.MASHOK_POFILTER_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_POFILTER_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_POFILTER_MENU.Text = "Pending Purchase Order"
         '
         'ToolStripSeparator305
         '
         Me.ToolStripSeparator305.Name = "ToolStripSeparator305"
-        Me.ToolStripSeparator305.Size = New System.Drawing.Size(200, 6)
+        Me.ToolStripSeparator305.Size = New System.Drawing.Size(210, 6)
         '
         'MASHOK_RECOUT_MENU
         '
         Me.MASHOK_RECOUT_MENU.Name = "MASHOK_RECOUT_MENU"
-        Me.MASHOK_RECOUT_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_RECOUT_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_RECOUT_MENU.Text = "Rec Outstanding"
         '
         'MASHOK_PAYOUT_MENU
         '
         Me.MASHOK_PAYOUT_MENU.Name = "MASHOK_PAYOUT_MENU"
-        Me.MASHOK_PAYOUT_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_PAYOUT_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_PAYOUT_MENU.Text = "Pay Outstanding"
         '
         'ToolStripSeparator306
         '
         Me.ToolStripSeparator306.Name = "ToolStripSeparator306"
-        Me.ToolStripSeparator306.Size = New System.Drawing.Size(200, 6)
+        Me.ToolStripSeparator306.Size = New System.Drawing.Size(210, 6)
         '
         'MASHOK_MONTHLYSALEANALYSIS_MENU
         '
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Name = "MASHOK_MONTHLYSALEANALYSIS_MENU"
-        Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_MONTHLYSALEANALYSIS_MENU.Text = "Monthly Sale Analysis"
         '
         'MASHOK_MONTHLYPURANALYSIS_MENU
         '
         Me.MASHOK_MONTHLYPURANALYSIS_MENU.Name = "MASHOK_MONTHLYPURANALYSIS_MENU"
-        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_MONTHLYPURANALYSIS_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_MONTHLYPURANALYSIS_MENU.Text = "Monthly Pur Analysis"
         '
         'MASHOK_AGEING_MENU
         '
         Me.MASHOK_AGEING_MENU.Name = "MASHOK_AGEING_MENU"
-        Me.MASHOK_AGEING_MENU.Size = New System.Drawing.Size(203, 22)
+        Me.MASHOK_AGEING_MENU.Size = New System.Drawing.Size(213, 22)
         Me.MASHOK_AGEING_MENU.Text = "Ageing Report"
+        '
+        'HOLDFORINTCALCMENU
+        '
+        Me.HOLDFORINTCALCMENU.Name = "HOLDFORINTCALCMENU"
+        Me.HOLDFORINTCALCMENU.Size = New System.Drawing.Size(213, 22)
+        Me.HOLDFORINTCALCMENU.Text = "Hold - Unhold For Int Calc"
         '
         'ToolStripSeparator302
         '
         Me.ToolStripSeparator302.Name = "ToolStripSeparator302"
-        Me.ToolStripSeparator302.Size = New System.Drawing.Size(200, 6)
+        Me.ToolStripSeparator302.Size = New System.Drawing.Size(210, 6)
+        '
+        'Utilitiesmenu
+        '
+        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AutoWhatsappToolStripMenuItem, Me.ToolStripSeparator158, Me.TransfersToolStripMenuItem, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20})
+        Me.Utilitiesmenu.Name = "Utilitiesmenu"
+        Me.Utilitiesmenu.Size = New System.Drawing.Size(62, 20)
+        Me.Utilitiesmenu.Text = "&Utilities"
+        '
+        'ChangeCompany
+        '
+        Me.ChangeCompany.Name = "ChangeCompany"
+        Me.ChangeCompany.Size = New System.Drawing.Size(190, 22)
+        Me.ChangeCompany.Text = "Change &Company"
+        '
+        'BackupCompany
+        '
+        Me.BackupCompany.Name = "BackupCompany"
+        Me.BackupCompany.Size = New System.Drawing.Size(190, 22)
+        Me.BackupCompany.Text = "&Backup Company"
+        '
+        'ToolStripSeparator28
+        '
+        Me.ToolStripSeparator28.Name = "ToolStripSeparator28"
+        Me.ToolStripSeparator28.Size = New System.Drawing.Size(187, 6)
+        '
+        'ChangeUserToolStripMenuItem
+        '
+        Me.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem"
+        Me.ChangeUserToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ChangeUserToolStripMenuItem.Text = "Change &User"
+        '
+        'USERTRANSFER
+        '
+        Me.USERTRANSFER.Enabled = False
+        Me.USERTRANSFER.Name = "USERTRANSFER"
+        Me.USERTRANSFER.Size = New System.Drawing.Size(190, 22)
+        Me.USERTRANSFER.Text = "User Transfer"
+        '
+        'BLOCKDETAILS_MASTER
+        '
+        Me.BLOCKDETAILS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BLOCKUSER, Me.BLOCKDATASTOCKTRANSFER, Me.ToolStripSeparator281})
+        Me.BLOCKDETAILS_MASTER.Enabled = False
+        Me.BLOCKDETAILS_MASTER.Name = "BLOCKDETAILS_MASTER"
+        Me.BLOCKDETAILS_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.BLOCKDETAILS_MASTER.Text = "Block Details"
+        '
+        'BLOCKUSER
+        '
+        Me.BLOCKUSER.Name = "BLOCKUSER"
+        Me.BLOCKUSER.Size = New System.Drawing.Size(218, 22)
+        Me.BLOCKUSER.Text = "Block User"
+        '
+        'BLOCKDATASTOCKTRANSFER
+        '
+        Me.BLOCKDATASTOCKTRANSFER.Name = "BLOCKDATASTOCKTRANSFER"
+        Me.BLOCKDATASTOCKTRANSFER.Size = New System.Drawing.Size(218, 22)
+        Me.BLOCKDATASTOCKTRANSFER.Text = "Block Data / Stock Transfer"
+        '
+        'ToolStripSeparator281
+        '
+        Me.ToolStripSeparator281.Name = "ToolStripSeparator281"
+        Me.ToolStripSeparator281.Size = New System.Drawing.Size(215, 6)
+        '
+        'ToolStripSeparator29
+        '
+        Me.ToolStripSeparator29.Name = "ToolStripSeparator29"
+        Me.ToolStripSeparator29.Size = New System.Drawing.Size(187, 6)
+        '
+        'MERGEDETAILS_MASTER
+        '
+        Me.MERGEDETAILS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MERGELEDGER, Me.MergeParameterToolStripMenuItem, Me.ToolStripSeparator193, Me.UNUSEDLEDGERS_MASTER, Me.ToolStripSeparator195})
+        Me.MERGEDETAILS_MASTER.Enabled = False
+        Me.MERGEDETAILS_MASTER.Name = "MERGEDETAILS_MASTER"
+        Me.MERGEDETAILS_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.MERGEDETAILS_MASTER.Text = "Merge Details"
+        '
+        'MERGELEDGER
+        '
+        Me.MERGELEDGER.Name = "MERGELEDGER"
+        Me.MERGELEDGER.Size = New System.Drawing.Size(167, 22)
+        Me.MERGELEDGER.Text = "Merge Ledger"
+        '
+        'MergeParameterToolStripMenuItem
+        '
+        Me.MergeParameterToolStripMenuItem.Name = "MergeParameterToolStripMenuItem"
+        Me.MergeParameterToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.MergeParameterToolStripMenuItem.Text = "Merge Parameter"
+        '
+        'ToolStripSeparator193
+        '
+        Me.ToolStripSeparator193.Name = "ToolStripSeparator193"
+        Me.ToolStripSeparator193.Size = New System.Drawing.Size(164, 6)
+        '
+        'UNUSEDLEDGERS_MASTER
+        '
+        Me.UNUSEDLEDGERS_MASTER.Name = "UNUSEDLEDGERS_MASTER"
+        Me.UNUSEDLEDGERS_MASTER.Size = New System.Drawing.Size(167, 22)
+        Me.UNUSEDLEDGERS_MASTER.Text = "Un-Used Ledgers"
+        '
+        'ToolStripSeparator195
+        '
+        Me.ToolStripSeparator195.Name = "ToolStripSeparator195"
+        Me.ToolStripSeparator195.Size = New System.Drawing.Size(164, 6)
+        '
+        'UpdateEntriesToolStripMenuItem
+        '
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP})
+        Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
+        Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
+        '
+        'UploadLotNoToolStripMenuItem
+        '
+        Me.UploadLotNoToolStripMenuItem.Name = "UploadLotNoToolStripMenuItem"
+        Me.UploadLotNoToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UploadLotNoToolStripMenuItem.Text = "Update Lot No"
+        '
+        'UpdateQualityWtToolStripMenuItem
+        '
+        Me.UpdateQualityWtToolStripMenuItem.Name = "UpdateQualityWtToolStripMenuItem"
+        Me.UpdateQualityWtToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateQualityWtToolStripMenuItem.Text = "Update Quality Wt"
+        '
+        'UpdateLRNoToolStripMenuItem
+        '
+        Me.UpdateLRNoToolStripMenuItem.Name = "UpdateLRNoToolStripMenuItem"
+        Me.UpdateLRNoToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateLRNoToolStripMenuItem.Text = "Update LR No"
+        '
+        'UPDATEBROKERMENU
+        '
+        Me.UPDATEBROKERMENU.Name = "UPDATEBROKERMENU"
+        Me.UPDATEBROKERMENU.Size = New System.Drawing.Size(253, 22)
+        Me.UPDATEBROKERMENU.Text = "Update Broker"
+        '
+        'UpdateStockOnHandDetailsToolStripMenuItem
+        '
+        Me.UpdateStockOnHandDetailsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem1, Me.EditExistingEntryToolStripMenuItem1, Me.ToolStripSeparator242})
+        Me.UpdateStockOnHandDetailsToolStripMenuItem.Name = "UpdateStockOnHandDetailsToolStripMenuItem"
+        Me.UpdateStockOnHandDetailsToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateStockOnHandDetailsToolStripMenuItem.Text = "Update Rack && Shelf"
+        '
+        'AddNewEntryToolStripMenuItem1
+        '
+        Me.AddNewEntryToolStripMenuItem1.Name = "AddNewEntryToolStripMenuItem1"
+        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewEntryToolStripMenuItem1.Text = "&Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem1
+        '
+        Me.EditExistingEntryToolStripMenuItem1.Name = "EditExistingEntryToolStripMenuItem1"
+        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem1.Text = "&Edit Existing Entry"
+        '
+        'ToolStripSeparator242
+        '
+        Me.ToolStripSeparator242.Name = "ToolStripSeparator242"
+        Me.ToolStripSeparator242.Size = New System.Drawing.Size(165, 6)
+        '
+        'UpdateReminderDaysToolStripMenuItem
+        '
+        Me.UpdateReminderDaysToolStripMenuItem.Name = "UpdateReminderDaysToolStripMenuItem"
+        Me.UpdateReminderDaysToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateReminderDaysToolStripMenuItem.Text = "Update Reminder Days"
+        Me.UpdateReminderDaysToolStripMenuItem.Visible = False
+        '
+        'UpdateDefaultStockUnitToolStripMenuItem
+        '
+        Me.UpdateDefaultStockUnitToolStripMenuItem.Name = "UpdateDefaultStockUnitToolStripMenuItem"
+        Me.UpdateDefaultStockUnitToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateDefaultStockUnitToolStripMenuItem.Text = "Update Default Stock Unit"
+        '
+        'LOCKPENDINGLOTFORPROGRAM
+        '
+        Me.LOCKPENDINGLOTFORPROGRAM.Name = "LOCKPENDINGLOTFORPROGRAM"
+        Me.LOCKPENDINGLOTFORPROGRAM.Size = New System.Drawing.Size(253, 22)
+        Me.LOCKPENDINGLOTFORPROGRAM.Text = "Lock/Unlock Lot for Program"
+        '
+        'LOCKPENDINGJO_MENU
+        '
+        Me.LOCKPENDINGJO_MENU.Name = "LOCKPENDINGJO_MENU"
+        Me.LOCKPENDINGJO_MENU.Size = New System.Drawing.Size(253, 22)
+        Me.LOCKPENDINGJO_MENU.Text = "Lock/Unlock Job Out for Emb"
+        '
+        'SHRINKAGE_MASTER
+        '
+        Me.SHRINKAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem, Me.ToolStripSeparator214})
+        Me.SHRINKAGE_MASTER.Enabled = False
+        Me.SHRINKAGE_MASTER.Name = "SHRINKAGE_MASTER"
+        Me.SHRINKAGE_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.SHRINKAGE_MASTER.Text = "Shrinkage Entry"
+        '
+        'AddNewEntryToolStripMenuItem
+        '
+        Me.AddNewEntryToolStripMenuItem.Name = "AddNewEntryToolStripMenuItem"
+        Me.AddNewEntryToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewEntryToolStripMenuItem.Text = "&Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem
+        '
+        Me.EditExistingEntryToolStripMenuItem.Name = "EditExistingEntryToolStripMenuItem"
+        Me.EditExistingEntryToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem.Text = "&Edit Existing Entry"
+        '
+        'ToolStripSeparator214
+        '
+        Me.ToolStripSeparator214.Name = "ToolStripSeparator214"
+        Me.ToolStripSeparator214.Size = New System.Drawing.Size(165, 6)
+        '
+        'UnHoldChallansToolStripMenuItem
+        '
+        Me.UnHoldChallansToolStripMenuItem.Name = "UnHoldChallansToolStripMenuItem"
+        Me.UnHoldChallansToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UnHoldChallansToolStripMenuItem.Text = "Un Hold Challans"
+        '
+        'REPLACELOTNO_MASTER
+        '
+        Me.REPLACELOTNO_MASTER.Enabled = False
+        Me.REPLACELOTNO_MASTER.Name = "REPLACELOTNO_MASTER"
+        Me.REPLACELOTNO_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.REPLACELOTNO_MASTER.Text = "Replace Lot No in Dyeing Receipt"
+        '
+        'UPDATEPENDINGENTRIES_MENU
+        '
+        Me.UPDATEPENDINGENTRIES_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDPENDINGENTRY, Me.EDITPENDINGENTRY, Me.ToolStripSeparator258})
+        Me.UPDATEPENDINGENTRIES_MENU.Enabled = False
+        Me.UPDATEPENDINGENTRIES_MENU.Name = "UPDATEPENDINGENTRIES_MENU"
+        Me.UPDATEPENDINGENTRIES_MENU.Size = New System.Drawing.Size(253, 22)
+        Me.UPDATEPENDINGENTRIES_MENU.Text = "Update Pending Entry"
+        '
+        'ADDPENDINGENTRY
+        '
+        Me.ADDPENDINGENTRY.Name = "ADDPENDINGENTRY"
+        Me.ADDPENDINGENTRY.Size = New System.Drawing.Size(168, 22)
+        Me.ADDPENDINGENTRY.Text = "Add New Entry"
+        '
+        'EDITPENDINGENTRY
+        '
+        Me.EDITPENDINGENTRY.Name = "EDITPENDINGENTRY"
+        Me.EDITPENDINGENTRY.Size = New System.Drawing.Size(168, 22)
+        Me.EDITPENDINGENTRY.Text = "Edit Existing Entry"
+        '
+        'ToolStripSeparator258
+        '
+        Me.ToolStripSeparator258.Name = "ToolStripSeparator258"
+        Me.ToolStripSeparator258.Size = New System.Drawing.Size(165, 6)
+        '
+        'UpdateItemRateToolStripMenuItem
+        '
+        Me.UpdateItemRateToolStripMenuItem.Name = "UpdateItemRateToolStripMenuItem"
+        Me.UpdateItemRateToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateItemRateToolStripMenuItem.Text = "Update Item Rate"
+        '
+        'RENUMBERING_MASTER
+        '
+        Me.RENUMBERING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PURCHASEINV_RENUM, Me.NONPURCHASEINV_RENUM, Me.JOURNAL_RENUM, Me.RECEIPT_RENUM, Me.PAYMENT_RENUM, Me.ToolStripSeparator260})
+        Me.RENUMBERING_MASTER.Enabled = False
+        Me.RENUMBERING_MASTER.Name = "RENUMBERING_MASTER"
+        Me.RENUMBERING_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.RENUMBERING_MASTER.Text = "Re-Numbering"
+        '
+        'PURCHASEINV_RENUM
+        '
+        Me.PURCHASEINV_RENUM.Name = "PURCHASEINV_RENUM"
+        Me.PURCHASEINV_RENUM.Size = New System.Drawing.Size(275, 22)
+        Me.PURCHASEINV_RENUM.Text = "Purchase Invoice Re-Numbering"
+        '
+        'NONPURCHASEINV_RENUM
+        '
+        Me.NONPURCHASEINV_RENUM.Name = "NONPURCHASEINV_RENUM"
+        Me.NONPURCHASEINV_RENUM.Size = New System.Drawing.Size(275, 22)
+        Me.NONPURCHASEINV_RENUM.Text = "Non Purchase Voucher Re-Numbering"
+        '
+        'JOURNAL_RENUM
+        '
+        Me.JOURNAL_RENUM.Name = "JOURNAL_RENUM"
+        Me.JOURNAL_RENUM.Size = New System.Drawing.Size(275, 22)
+        Me.JOURNAL_RENUM.Text = "Journal Re-Numbering"
+        '
+        'RECEIPT_RENUM
+        '
+        Me.RECEIPT_RENUM.Name = "RECEIPT_RENUM"
+        Me.RECEIPT_RENUM.Size = New System.Drawing.Size(275, 22)
+        Me.RECEIPT_RENUM.Text = "Receipt Re-Numbering"
+        '
+        'PAYMENT_RENUM
+        '
+        Me.PAYMENT_RENUM.Name = "PAYMENT_RENUM"
+        Me.PAYMENT_RENUM.Size = New System.Drawing.Size(275, 22)
+        Me.PAYMENT_RENUM.Text = "Payment Re-Numbering"
+        '
+        'ToolStripSeparator260
+        '
+        Me.ToolStripSeparator260.Name = "ToolStripSeparator260"
+        Me.ToolStripSeparator260.Size = New System.Drawing.Size(272, 6)
+        '
+        'AUTODESIGNCREATION_MASTER
+        '
+        Me.AUTODESIGNCREATION_MASTER.Enabled = False
+        Me.AUTODESIGNCREATION_MASTER.Name = "AUTODESIGNCREATION_MASTER"
+        Me.AUTODESIGNCREATION_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.AUTODESIGNCREATION_MASTER.Text = "Auto Design Creation"
+        Me.AUTODESIGNCREATION_MASTER.Visible = False
+        '
+        'GODOWNCHANGE_MASTER
+        '
+        Me.GODOWNCHANGE_MASTER.Name = "GODOWNCHANGE_MASTER"
+        Me.GODOWNCHANGE_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.GODOWNCHANGE_MASTER.Text = "Godown Change"
+        Me.GODOWNCHANGE_MASTER.Visible = False
+        '
+        'UpdateBillToolStripMenuItem
+        '
+        Me.UpdateBillToolStripMenuItem.Name = "UpdateBillToolStripMenuItem"
+        Me.UpdateBillToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.UpdateBillToolStripMenuItem.Text = "Update Bill Dispute"
+        '
+        'LRStockToolStripMenuItem
+        '
+        Me.LRStockToolStripMenuItem.Enabled = False
+        Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
+        Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
+        Me.LRStockToolStripMenuItem.Text = "Upload LR Stock"
+        '
+        'ToolStripSeparator251
+        '
+        Me.ToolStripSeparator251.Name = "ToolStripSeparator251"
+        Me.ToolStripSeparator251.Size = New System.Drawing.Size(250, 6)
+        '
+        'AUTODISCOUNT_MASTER
+        '
+        Me.AUTODISCOUNT_MASTER.Name = "AUTODISCOUNT_MASTER"
+        Me.AUTODISCOUNT_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.AUTODISCOUNT_MASTER.Text = "Auto Discount"
+        '
+        'ToolStripSeparator153
+        '
+        Me.ToolStripSeparator153.Name = "ToolStripSeparator153"
+        Me.ToolStripSeparator153.Size = New System.Drawing.Size(250, 6)
+        '
+        'UPDATEPROGRAMDETAILS
+        '
+        Me.UPDATEPROGRAMDETAILS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateCardIssueDateToolStripMenuItem, Me.UpdateCardRecdDateToolStripMenuItem, Me.UpdateDyeingInProgramToolStripMenuItem, Me.UpdateProgramGiveDateToolStripMenuItem, Me.UpdateStatusOfProgramToolStripMenuItem, Me.ProductionCuttingRecDateToolStripMenuItem, Me.FinishCuttingRecDateToolStripMenuItem, Me.ToolStripSeparator213, Me.UpdateApprovedProgramToolStripMenuItem, Me.LOTPROGRAMTAG_MASTER, Me.ToolStripSeparator291})
+        Me.UPDATEPROGRAMDETAILS.Name = "UPDATEPROGRAMDETAILS"
+        Me.UPDATEPROGRAMDETAILS.Size = New System.Drawing.Size(253, 22)
+        Me.UPDATEPROGRAMDETAILS.Text = "Update Program Details"
+        '
+        'UpdateCardIssueDateToolStripMenuItem
+        '
+        Me.UpdateCardIssueDateToolStripMenuItem.Name = "UpdateCardIssueDateToolStripMenuItem"
+        Me.UpdateCardIssueDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateCardIssueDateToolStripMenuItem.Text = "Update Card Issue Date"
+        '
+        'UpdateCardRecdDateToolStripMenuItem
+        '
+        Me.UpdateCardRecdDateToolStripMenuItem.Name = "UpdateCardRecdDateToolStripMenuItem"
+        Me.UpdateCardRecdDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateCardRecdDateToolStripMenuItem.Text = "Update Card Recd Date"
+        '
+        'UpdateDyeingInProgramToolStripMenuItem
+        '
+        Me.UpdateDyeingInProgramToolStripMenuItem.Name = "UpdateDyeingInProgramToolStripMenuItem"
+        Me.UpdateDyeingInProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateDyeingInProgramToolStripMenuItem.Text = "Update Dyeing in Program"
+        '
+        'UpdateProgramGiveDateToolStripMenuItem
+        '
+        Me.UpdateProgramGiveDateToolStripMenuItem.Name = "UpdateProgramGiveDateToolStripMenuItem"
+        Me.UpdateProgramGiveDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateProgramGiveDateToolStripMenuItem.Text = "Update Program Give Date"
+        '
+        'UpdateStatusOfProgramToolStripMenuItem
+        '
+        Me.UpdateStatusOfProgramToolStripMenuItem.Name = "UpdateStatusOfProgramToolStripMenuItem"
+        Me.UpdateStatusOfProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateStatusOfProgramToolStripMenuItem.Text = "Update Status of Program"
+        '
+        'ProductionCuttingRecDateToolStripMenuItem
+        '
+        Me.ProductionCuttingRecDateToolStripMenuItem.Name = "ProductionCuttingRecDateToolStripMenuItem"
+        Me.ProductionCuttingRecDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ProductionCuttingRecDateToolStripMenuItem.Text = "Production Cutting Rec Date"
+        '
+        'FinishCuttingRecDateToolStripMenuItem
+        '
+        Me.FinishCuttingRecDateToolStripMenuItem.Name = "FinishCuttingRecDateToolStripMenuItem"
+        Me.FinishCuttingRecDateToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.FinishCuttingRecDateToolStripMenuItem.Text = "Finish Cutting Rec Date"
+        '
+        'ToolStripSeparator213
+        '
+        Me.ToolStripSeparator213.Name = "ToolStripSeparator213"
+        Me.ToolStripSeparator213.Size = New System.Drawing.Size(218, 6)
+        '
+        'UpdateApprovedProgramToolStripMenuItem
+        '
+        Me.UpdateApprovedProgramToolStripMenuItem.Name = "UpdateApprovedProgramToolStripMenuItem"
+        Me.UpdateApprovedProgramToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateApprovedProgramToolStripMenuItem.Text = "Update Approved Program"
+        '
+        'LOTPROGRAMTAG_MASTER
+        '
+        Me.LOTPROGRAMTAG_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LOTPROGRAMTAGADD, Me.LOTPROGRAMTAGEDIT, Me.ToolStripSeparator292})
+        Me.LOTPROGRAMTAG_MASTER.Name = "LOTPROGRAMTAG_MASTER"
+        Me.LOTPROGRAMTAG_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.LOTPROGRAMTAG_MASTER.Text = "Lot && Program Tagging"
+        '
+        'LOTPROGRAMTAGADD
+        '
+        Me.LOTPROGRAMTAGADD.Name = "LOTPROGRAMTAGADD"
+        Me.LOTPROGRAMTAGADD.Size = New System.Drawing.Size(183, 22)
+        Me.LOTPROGRAMTAGADD.Text = "Add New Tagging"
+        '
+        'LOTPROGRAMTAGEDIT
+        '
+        Me.LOTPROGRAMTAGEDIT.Name = "LOTPROGRAMTAGEDIT"
+        Me.LOTPROGRAMTAGEDIT.Size = New System.Drawing.Size(183, 22)
+        Me.LOTPROGRAMTAGEDIT.Text = "Edit Existing Tagging"
+        '
+        'ToolStripSeparator292
+        '
+        Me.ToolStripSeparator292.Name = "ToolStripSeparator292"
+        Me.ToolStripSeparator292.Size = New System.Drawing.Size(180, 6)
+        '
+        'ToolStripSeparator291
+        '
+        Me.ToolStripSeparator291.Name = "ToolStripSeparator291"
+        Me.ToolStripSeparator291.Size = New System.Drawing.Size(218, 6)
+        '
+        'PROGRAMTOOLSTRIP
+        '
+        Me.PROGRAMTOOLSTRIP.Name = "PROGRAMTOOLSTRIP"
+        Me.PROGRAMTOOLSTRIP.Size = New System.Drawing.Size(250, 6)
+        '
+        'ToolStripSeparator90
+        '
+        Me.ToolStripSeparator90.Name = "ToolStripSeparator90"
+        Me.ToolStripSeparator90.Size = New System.Drawing.Size(187, 6)
+        '
+        'SendMailToolStripMenuItem
+        '
+        Me.SendMailToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SendMailToolStripMenuItem1, Me.LedgersForAutoMailersToolStripMenuItem})
+        Me.SendMailToolStripMenuItem.Name = "SendMailToolStripMenuItem"
+        Me.SendMailToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.SendMailToolStripMenuItem.Text = "Send &Mail"
+        '
+        'SendMailToolStripMenuItem1
+        '
+        Me.SendMailToolStripMenuItem1.Name = "SendMailToolStripMenuItem1"
+        Me.SendMailToolStripMenuItem1.Size = New System.Drawing.Size(206, 22)
+        Me.SendMailToolStripMenuItem1.Text = "Send &Mail"
+        '
+        'LedgersForAutoMailersToolStripMenuItem
+        '
+        Me.LedgersForAutoMailersToolStripMenuItem.Name = "LedgersForAutoMailersToolStripMenuItem"
+        Me.LedgersForAutoMailersToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.LedgersForAutoMailersToolStripMenuItem.Text = "Ledgers For AutoMailers"
+        '
+        'SENDSMS_MASTER
+        '
+        Me.SENDSMS_MASTER.Name = "SENDSMS_MASTER"
+        Me.SENDSMS_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.SENDSMS_MASTER.Text = "Send &SMS"
+        '
+        'SENDWHATSAPP_MASTER
+        '
+        Me.SENDWHATSAPP_MASTER.Name = "SENDWHATSAPP_MASTER"
+        Me.SENDWHATSAPP_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.SENDWHATSAPP_MASTER.Text = "Send &Whatsapp"
+        '
+        'ToolStripSeparator196
+        '
+        Me.ToolStripSeparator196.Name = "ToolStripSeparator196"
+        Me.ToolStripSeparator196.Size = New System.Drawing.Size(187, 6)
+        '
+        'ReprintBarcodeToolStripMenuItem
+        '
+        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
+        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
+        '
+        'CHANGEBARCODE_MASTER
+        '
+        Me.CHANGEBARCODE_MASTER.Enabled = False
+        Me.CHANGEBARCODE_MASTER.Name = "CHANGEBARCODE_MASTER"
+        Me.CHANGEBARCODE_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.CHANGEBARCODE_MASTER.Text = "Change Barcode"
+        '
+        'EXPORTLABEL_MASTER
+        '
+        Me.EXPORTLABEL_MASTER.Name = "EXPORTLABEL_MASTER"
+        Me.EXPORTLABEL_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.EXPORTLABEL_MASTER.Text = "Export Label"
+        Me.EXPORTLABEL_MASTER.Visible = False
+        '
+        'ToolStripSeparator84
+        '
+        Me.ToolStripSeparator84.Name = "ToolStripSeparator84"
+        Me.ToolStripSeparator84.Size = New System.Drawing.Size(187, 6)
+        '
+        'DefaultRegisterToolStripMenuItem
+        '
+        Me.DefaultRegisterToolStripMenuItem.Name = "DefaultRegisterToolStripMenuItem"
+        Me.DefaultRegisterToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.DefaultRegisterToolStripMenuItem.Text = "D&efault Register"
+        '
+        'DefaultTypeRegisterToolStripMenuItem
+        '
+        Me.DefaultTypeRegisterToolStripMenuItem.Name = "DefaultTypeRegisterToolStripMenuItem"
+        Me.DefaultTypeRegisterToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.DefaultTypeRegisterToolStripMenuItem.Text = "Default Type Register"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(190, 22)
+        Me.ToolStripMenuItem2.Text = "Default Bank"
+        '
+        'ReminderToolStripMenuItem
+        '
+        Me.ReminderToolStripMenuItem.Name = "ReminderToolStripMenuItem"
+        Me.ReminderToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ReminderToolStripMenuItem.Text = "Reminder"
+        '
+        'AutoWhatsappToolStripMenuItem
+        '
+        Me.AutoWhatsappToolStripMenuItem.Name = "AutoWhatsappToolStripMenuItem"
+        Me.AutoWhatsappToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.AutoWhatsappToolStripMenuItem.Text = "Auto Whatsapp"
+        Me.AutoWhatsappToolStripMenuItem.Visible = False
+        '
+        'ToolStripSeparator158
+        '
+        Me.ToolStripSeparator158.Name = "ToolStripSeparator158"
+        Me.ToolStripSeparator158.Size = New System.Drawing.Size(187, 6)
+        '
+        'TransfersToolStripMenuItem
+        '
+        Me.TransfersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DATATRANSFER_MASTER, Me.STOCKTRANSFER_MASTER, Me.AGENCYDATATRANSFER_MASTER, Me.ToolStripSeparator321})
+        Me.TransfersToolStripMenuItem.Name = "TransfersToolStripMenuItem"
+        Me.TransfersToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.TransfersToolStripMenuItem.Text = "Transfers"
+        '
+        'DATATRANSFER_MASTER
+        '
+        Me.DATATRANSFER_MASTER.Enabled = False
+        Me.DATATRANSFER_MASTER.Name = "DATATRANSFER_MASTER"
+        Me.DATATRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
+        Me.DATATRANSFER_MASTER.Text = "Data Transfer"
+        '
+        'STOCKTRANSFER_MASTER
+        '
+        Me.STOCKTRANSFER_MASTER.Enabled = False
+        Me.STOCKTRANSFER_MASTER.Name = "STOCKTRANSFER_MASTER"
+        Me.STOCKTRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
+        Me.STOCKTRANSFER_MASTER.Text = "Stock Transfer"
+        '
+        'AGENCYDATATRANSFER_MASTER
+        '
+        Me.AGENCYDATATRANSFER_MASTER.Enabled = False
+        Me.AGENCYDATATRANSFER_MASTER.Name = "AGENCYDATATRANSFER_MASTER"
+        Me.AGENCYDATATRANSFER_MASTER.Size = New System.Drawing.Size(187, 22)
+        Me.AGENCYDATATRANSFER_MASTER.Text = "Agency Data Transfer"
+        '
+        'ToolStripSeparator321
+        '
+        Me.ToolStripSeparator321.Name = "ToolStripSeparator321"
+        Me.ToolStripSeparator321.Size = New System.Drawing.Size(184, 6)
+        '
+        'STOCKADJUSTMENT_MASTER
+        '
+        Me.STOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOCKADJUSTMENTADD, Me.STOCKADJUSTMENTEDIT, Me.ToolStripSeparator132})
+        Me.STOCKADJUSTMENT_MASTER.Enabled = False
+        Me.STOCKADJUSTMENT_MASTER.Name = "STOCKADJUSTMENT_MASTER"
+        Me.STOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.STOCKADJUSTMENT_MASTER.Text = "Stock Adjustment"
+        '
+        'STOCKADJUSTMENTADD
+        '
+        Me.STOCKADJUSTMENTADD.Name = "STOCKADJUSTMENTADD"
+        Me.STOCKADJUSTMENTADD.Size = New System.Drawing.Size(204, 22)
+        Me.STOCKADJUSTMENTADD.Text = "Add New Adjustment"
+        '
+        'STOCKADJUSTMENTEDIT
+        '
+        Me.STOCKADJUSTMENTEDIT.Name = "STOCKADJUSTMENTEDIT"
+        Me.STOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(204, 22)
+        Me.STOCKADJUSTMENTEDIT.Text = "Edit Existing Adjustment"
+        '
+        'ToolStripSeparator132
+        '
+        Me.ToolStripSeparator132.Name = "ToolStripSeparator132"
+        Me.ToolStripSeparator132.Size = New System.Drawing.Size(201, 6)
+        '
+        'ToolStripSeparator109
+        '
+        Me.ToolStripSeparator109.Name = "ToolStripSeparator109"
+        Me.ToolStripSeparator109.Size = New System.Drawing.Size(187, 6)
+        '
+        'UploadEntriesToolStripMenuItem
+        '
+        Me.UploadEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADEXCELSALE, Me.UPLOADEXCELNP, Me.UPLOADACCOUNTMENU, Me.UPLOADITEMMENU, Me.UPLOADDESIGNMENU, Me.UPLOADSTOCKMENU, Me.UPLOADYARNSTOCK, Me.UPLOADOPENINGBILLMENU, Me.UploadGodnameToolStripMenuItem, Me.ToolStripSeparator184, Me.TERMSANDCONDITIONS, Me.UPLOADBANKDETAILS, Me.UPLOADSIGN, Me.ToolStripSeparator194})
+        Me.UploadEntriesToolStripMenuItem.Name = "UploadEntriesToolStripMenuItem"
+        Me.UploadEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.UploadEntriesToolStripMenuItem.Text = "Upload Entries"
+        '
+        'UPLOADEXCELNP
+        '
+        Me.UPLOADEXCELNP.Name = "UPLOADEXCELNP"
+        Me.UPLOADEXCELNP.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADEXCELNP.Text = "Upload Excel for Non Purchase"
+        Me.UPLOADEXCELNP.Visible = False
+        '
+        'UPLOADEXCELSALE
+        '
+        Me.UPLOADEXCELSALE.Name = "UPLOADEXCELSALE"
+        Me.UPLOADEXCELSALE.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADEXCELSALE.Text = "Upload Excel For Sale Invoice"
+        Me.UPLOADEXCELSALE.Visible = False
+        '
+        'UPLOADACCOUNTMENU
+        '
+        Me.UPLOADACCOUNTMENU.Name = "UPLOADACCOUNTMENU"
+        Me.UPLOADACCOUNTMENU.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADACCOUNTMENU.Text = "Upload Account"
+        '
+        'UPLOADITEMMENU
+        '
+        Me.UPLOADITEMMENU.Name = "UPLOADITEMMENU"
+        Me.UPLOADITEMMENU.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADITEMMENU.Text = "Upload Item"
+        '
+        'UPLOADDESIGNMENU
+        '
+        Me.UPLOADDESIGNMENU.Name = "UPLOADDESIGNMENU"
+        Me.UPLOADDESIGNMENU.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADDESIGNMENU.Text = "Upload Design"
+        '
+        'UPLOADSTOCKMENU
+        '
+        Me.UPLOADSTOCKMENU.Name = "UPLOADSTOCKMENU"
+        Me.UPLOADSTOCKMENU.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADSTOCKMENU.Text = "Upload Stock"
+        '
+        'UPLOADYARNSTOCK
+        '
+        Me.UPLOADYARNSTOCK.Name = "UPLOADYARNSTOCK"
+        Me.UPLOADYARNSTOCK.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADYARNSTOCK.Text = "Upload Yarn Stock"
+        '
+        'UPLOADOPENINGBILLMENU
+        '
+        Me.UPLOADOPENINGBILLMENU.Name = "UPLOADOPENINGBILLMENU"
+        Me.UPLOADOPENINGBILLMENU.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADOPENINGBILLMENU.Text = "Upload Opening Bills"
+        '
+        'UploadGodnameToolStripMenuItem
+        '
+        Me.UploadGodnameToolStripMenuItem.Name = "UploadGodnameToolStripMenuItem"
+        Me.UploadGodnameToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.UploadGodnameToolStripMenuItem.Text = "Upload God Name"
+        '
+        'ToolStripSeparator184
+        '
+        Me.ToolStripSeparator184.Name = "ToolStripSeparator184"
+        Me.ToolStripSeparator184.Size = New System.Drawing.Size(236, 6)
+        '
+        'TERMSANDCONDITIONS
+        '
+        Me.TERMSANDCONDITIONS.Name = "TERMSANDCONDITIONS"
+        Me.TERMSANDCONDITIONS.Size = New System.Drawing.Size(239, 22)
+        Me.TERMSANDCONDITIONS.Text = "Upload Terms And Conditions"
+        Me.TERMSANDCONDITIONS.TextAlign = System.Drawing.ContentAlignment.TopLeft
+        '
+        'UPLOADBANKDETAILS
+        '
+        Me.UPLOADBANKDETAILS.Name = "UPLOADBANKDETAILS"
+        Me.UPLOADBANKDETAILS.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADBANKDETAILS.Text = "Upload Company Bank Details"
+        '
+        'UPLOADSIGN
+        '
+        Me.UPLOADSIGN.Name = "UPLOADSIGN"
+        Me.UPLOADSIGN.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADSIGN.Text = "Upload Sign"
+        '
+        'ToolStripSeparator194
+        '
+        Me.ToolStripSeparator194.Name = "ToolStripSeparator194"
+        Me.ToolStripSeparator194.Size = New System.Drawing.Size(236, 6)
+        '
+        'STOCKTAKING_MASTER
+        '
+        Me.STOCKTAKING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOCKTAKINGADD, Me.STOCKTAKINGEDIT, Me.ToolStripSeparator220, Me.UNCHECKEDSTOCK_MASTER, Me.ToolStripSeparator221})
+        Me.STOCKTAKING_MASTER.Enabled = False
+        Me.STOCKTAKING_MASTER.Name = "STOCKTAKING_MASTER"
+        Me.STOCKTAKING_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.STOCKTAKING_MASTER.Text = "Stock Taking"
+        '
+        'STOCKTAKINGADD
+        '
+        Me.STOCKTAKINGADD.Enabled = False
+        Me.STOCKTAKINGADD.Name = "STOCKTAKINGADD"
+        Me.STOCKTAKINGADD.Size = New System.Drawing.Size(168, 22)
+        Me.STOCKTAKINGADD.Text = "&Add New Entry"
+        '
+        'STOCKTAKINGEDIT
+        '
+        Me.STOCKTAKINGEDIT.Enabled = False
+        Me.STOCKTAKINGEDIT.Name = "STOCKTAKINGEDIT"
+        Me.STOCKTAKINGEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.STOCKTAKINGEDIT.Text = "&Edit Existing Entry"
+        '
+        'ToolStripSeparator220
+        '
+        Me.ToolStripSeparator220.Name = "ToolStripSeparator220"
+        Me.ToolStripSeparator220.Size = New System.Drawing.Size(165, 6)
+        '
+        'UNCHECKEDSTOCK_MASTER
+        '
+        Me.UNCHECKEDSTOCK_MASTER.Name = "UNCHECKEDSTOCK_MASTER"
+        Me.UNCHECKEDSTOCK_MASTER.Size = New System.Drawing.Size(168, 22)
+        Me.UNCHECKEDSTOCK_MASTER.Text = "Unchecked Stock"
+        '
+        'ToolStripSeparator221
+        '
+        Me.ToolStripSeparator221.Name = "ToolStripSeparator221"
+        Me.ToolStripSeparator221.Size = New System.Drawing.Size(165, 6)
+        '
+        'RECODATA_MASTER
+        '
+        Me.RECODATA_MASTER.Enabled = False
+        Me.RECODATA_MASTER.Name = "RECODATA_MASTER"
+        Me.RECODATA_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.RECODATA_MASTER.Text = "Reconcile Data"
+        '
+        'ToolStripSeparator20
+        '
+        Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
+        Me.ToolStripSeparator20.Size = New System.Drawing.Size(187, 6)
         '
         'OTHERREPORT_MAIN
         '
@@ -10225,4 +10232,5 @@ Partial Class MDIMain
     Friend WithEvents MAGICBOXRECPAY_MENU As ToolStripMenuItem
     Friend WithEvents MAGICBOXINVOICE_MENU As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator327 As ToolStripSeparator
+    Friend WithEvents HOLDFORINTCALCMENU As ToolStripMenuItem
 End Class

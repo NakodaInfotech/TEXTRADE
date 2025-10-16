@@ -33,12 +33,16 @@ Partial Class UploadExcel_MASHOK
         Me.CMDUPLOAD = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.cmbregister = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.cmbregister)
+        Me.BlendPanel1.Controls.Add(Me.Label5)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
         Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
@@ -51,8 +55,8 @@ Partial Class UploadExcel_MASHOK
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(378, 143)
-        Me.BlendPanel1.TabIndex = 2
+        Me.BlendPanel1.Size = New System.Drawing.Size(378, 180)
+        Me.BlendPanel1.TabIndex = 0
         '
         'LBLTYPE
         '
@@ -60,7 +64,7 @@ Partial Class UploadExcel_MASHOK
         Me.LBLTYPE.BackColor = System.Drawing.Color.Transparent
         Me.LBLTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTYPE.ForeColor = System.Drawing.Color.Black
-        Me.LBLTYPE.Location = New System.Drawing.Point(18, 16)
+        Me.LBLTYPE.Location = New System.Drawing.Point(34, 16)
         Me.LBLTYPE.Name = "LBLTYPE"
         Me.LBLTYPE.Size = New System.Drawing.Size(31, 15)
         Me.LBLTYPE.TabIndex = 674
@@ -76,11 +80,11 @@ Partial Class UploadExcel_MASHOK
         Me.CMBTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBTYPE.FormattingEnabled = True
         Me.CMBTYPE.Items.AddRange(New Object() {"NONPURCHASE", "INVOICE"})
-        Me.CMBTYPE.Location = New System.Drawing.Point(51, 12)
+        Me.CMBTYPE.Location = New System.Drawing.Point(67, 12)
         Me.CMBTYPE.MaxDropDownItems = 14
         Me.CMBTYPE.Name = "CMBTYPE"
         Me.CMBTYPE.Size = New System.Drawing.Size(156, 23)
-        Me.CMBTYPE.TabIndex = 673
+        Me.CMBTYPE.TabIndex = 0
         Me.CMBTYPE.TabStop = False
         '
         'CMDCLEAR
@@ -89,10 +93,10 @@ Partial Class UploadExcel_MASHOK
         Me.CMDCLEAR.FlatAppearance.BorderSize = 0
         Me.CMDCLEAR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDCLEAR.ForeColor = System.Drawing.Color.Black
-        Me.CMDCLEAR.Location = New System.Drawing.Point(192, 85)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(192, 125)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 578
+        Me.CMDCLEAR.TabIndex = 4
         Me.CMDCLEAR.Text = "Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = False
         '
@@ -114,10 +118,10 @@ Partial Class UploadExcel_MASHOK
         Me.CMDSELECTFILE.FlatAppearance.BorderSize = 0
         Me.CMDSELECTFILE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTFILE.ForeColor = System.Drawing.Color.Black
-        Me.CMDSELECTFILE.Location = New System.Drawing.Point(20, 85)
+        Me.CMDSELECTFILE.Location = New System.Drawing.Point(20, 125)
         Me.CMDSELECTFILE.Name = "CMDSELECTFILE"
         Me.CMDSELECTFILE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSELECTFILE.TabIndex = 577
+        Me.CMDSELECTFILE.TabIndex = 2
         Me.CMDSELECTFILE.Text = "Select File"
         Me.CMDSELECTFILE.UseVisualStyleBackColor = False
         '
@@ -126,7 +130,7 @@ Partial Class UploadExcel_MASHOK
         Me.TXTPATH.BackColor = System.Drawing.Color.Linen
         Me.TXTPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTPATH.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTPATH.Location = New System.Drawing.Point(51, 40)
+        Me.TXTPATH.Location = New System.Drawing.Point(67, 70)
         Me.TXTPATH.Name = "TXTPATH"
         Me.TXTPATH.ReadOnly = True
         Me.TXTPATH.Size = New System.Drawing.Size(280, 23)
@@ -139,7 +143,7 @@ Partial Class UploadExcel_MASHOK
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(17, 44)
+        Me.Label6.Location = New System.Drawing.Point(33, 74)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 15)
         Me.Label6.TabIndex = 576
@@ -151,10 +155,10 @@ Partial Class UploadExcel_MASHOK
         Me.CMDUPLOAD.FlatAppearance.BorderSize = 0
         Me.CMDUPLOAD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDUPLOAD.ForeColor = System.Drawing.Color.Black
-        Me.CMDUPLOAD.Location = New System.Drawing.Point(106, 85)
+        Me.CMDUPLOAD.Location = New System.Drawing.Point(106, 125)
         Me.CMDUPLOAD.Name = "CMDUPLOAD"
         Me.CMDUPLOAD.Size = New System.Drawing.Size(80, 28)
-        Me.CMDUPLOAD.TabIndex = 16
+        Me.CMDUPLOAD.TabIndex = 3
         Me.CMDUPLOAD.Text = "Upload"
         Me.CMDUPLOAD.UseVisualStyleBackColor = False
         '
@@ -164,10 +168,10 @@ Partial Class UploadExcel_MASHOK
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(278, 85)
+        Me.CMDEXIT.Location = New System.Drawing.Point(278, 125)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXIT.TabIndex = 18
+        Me.CMDEXIT.TabIndex = 5
         Me.CMDEXIT.Text = "Exit"
         Me.CMDEXIT.UseVisualStyleBackColor = False
         '
@@ -175,10 +179,34 @@ Partial Class UploadExcel_MASHOK
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'cmbregister
+        '
+        Me.cmbregister.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbregister.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbregister.BackColor = System.Drawing.Color.LemonChiffon
+        Me.cmbregister.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbregister.FormattingEnabled = True
+        Me.cmbregister.Items.AddRange(New Object() {""})
+        Me.cmbregister.Location = New System.Drawing.Point(67, 41)
+        Me.cmbregister.Name = "cmbregister"
+        Me.cmbregister.Size = New System.Drawing.Size(280, 23)
+        Me.cmbregister.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(13, 45)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(51, 15)
+        Me.Label5.TabIndex = 715
+        Me.Label5.Text = "Register"
+        '
         'UploadExcel_MASHOK
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(378, 143)
+        Me.ClientSize = New System.Drawing.Size(378, 180)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -203,4 +231,6 @@ Partial Class UploadExcel_MASHOK
     Friend WithEvents CMDCLEAR As Button
     Friend WithEvents LBLTYPE As Label
     Friend WithEvents CMBTYPE As ComboBox
+    Friend WithEvents cmbregister As ComboBox
+    Friend WithEvents Label5 As Label
 End Class
