@@ -1506,7 +1506,7 @@ Public Class InvoiceMaster
 
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(TXTMULTISONO.Text.Trim)
-            alParaval.Add(txtpartypono.Text.Trim)
+            alParaval.Add(TXTINVOICENO.Text.Trim)
             alParaval.Add(Format(Convert.ToDateTime(sodate.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(TXTBALENOFROM.Text.Trim)
             alParaval.Add(TXTBALENOTO.Text.Trim)

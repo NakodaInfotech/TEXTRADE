@@ -10793,4 +10793,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AGENCYOUTSTANDINGGRID_MENU_Click(sender As Object, e As EventArgs) Handles AGENCYOUTSTANDINGGRID_MENU.Click
+        Try
+            Dim OBJOUT As New AgencyOutstandingGridReport
+            OBJOUT.MdiParent = Me
+            OBJOUT.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
