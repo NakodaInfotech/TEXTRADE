@@ -5,7 +5,6 @@ Imports BL
 Public Class UploadExcel_MASHOK
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
-    Dim frm As New ExpenseVoucher()
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -153,20 +152,19 @@ Public Class UploadExcel_MASHOK
 
                 Dim successCount As Integer = 0
                 Dim errorCount As Integer = 0
-
-                ' Normalize column existence helpers
-                'Dim functionCols = Function(name As String) dt.Columns.Contains(name)
                 Dim failedRows As New List(Of String)
                 Dim processedPartyBillNos As New HashSet(Of String)() ' Track processed party bill numbers
                 Dim duplicateBillNos As New List(Of String)()
                 Dim missingHSNRows As New List(Of String) ' To store missing HSN rows
+
                 For Each dr As DataRow In dt.Rows
-                    Debug.Print("Processing Excel row index in dt: " & dt.Rows.IndexOf(dr))
-                    Dim partyBillNo As String = dr("party bill no").ToString().Trim()
-                    Debug.Print("PartyBillNo = '" & partyBillNo & "'")
+
+                    Dim PARTYNAME As String = dr("name").ToString().Trim()
+                    Dim PARTYBILLNO As String = dr("party bill no").ToString().Trim()
+                    Dim BILLDATE As String = dr("party bill date").ToString().Trim()
+                    Dim SACCODE As String = dr("SAC CODE").ToString().Trim()
 
                     Try
-                        Dim partyName As String = dr("name").ToString().Trim()
                         If Not PartyExists(partyName) Then
                             failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & partyName & "')")
                             'Increment error count
@@ -174,7 +172,6 @@ Public Class UploadExcel_MASHOK
                             Continue For
                         End If
 
-                        Dim sacCode As String = dr("SAC CODE").ToString().Trim()
                         If Not HSNExists(sacCode) Then
                             ' Add to missing list: Excel row number (start at 2 for first data row)
                             missingHSNRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2).ToString() & " (HSN: '" & sacCode & "')")
@@ -184,32 +181,29 @@ Public Class UploadExcel_MASHOK
 
                         Dim frm As New ExpenseVoucher()
                         frm.IsBulkUpload = True
-
-                        ' Basic header fields
-                        frm.CMBREGISTER.Text = "NON-PURCHASE REGISTER"
                         frm.CanUserAdd = True
 
-                        ' Generate next NP no (if applicable in this form)
+                        frm.CMBREGISTER.Text = cmbregister.Text.Trim
                         frm.TXTNPNO.Text = GETMAXNO().ToString()
-
+                        If String.IsNullOrWhiteSpace(BILLDATE) Then
+                            frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                            frm.PARTYBILLDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                        Else
+                            frm.NPDATE.Text = BILLDATE
+                            frm.PARTYBILLDATE.Text = BILLDATE
+                        End If
                         frm.CMBNAME.Text = dr("name").ToString().Trim()
                         frm.RunCmbNameValidation()   ' sets GST split context etc.
 
-                        ' Dates: party bill and voucher date
-                        Dim billDate As String = dr("party bill date").ToString().Trim()
-                        If String.IsNullOrWhiteSpace(billDate) Then
-                            frm.PARTYBILLDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
-                        Else
-                            frm.PARTYBILLDATE.Text = billDate
-                        End If
-                        If String.IsNullOrEmpty(frm.NPDATE.Text) OrElse frm.NPDATE.Text = "__/__/____" Then
-                            frm.NPDATE.Text = DateTime.Now.ToString("dd/MM/yyyy")
-                        End If
                         frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString().Trim()
-
-                        If dt.Columns.Contains("OTHER REF (REMARKS)") Then
-                            frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString().Trim()
+                        If Not IsPartyBillNoAlreadySavedInDB(frm.TXTPARTYBILLNO.Text.Trim, PARTYNAME) Then
+                            failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & PARTYBILLNO & "')")
+                            'Increment error count
+                            errorCount += 1
+                            Continue For
                         End If
+
+                        If dt.Columns.Contains("OTHER REF (REMARKS)") Then frm.txtremarks.Text = dr("OTHER REF (REMARKS)").ToString().Trim()
                         frm.CHKMANUAL.Checked = True
 
 
@@ -218,7 +212,6 @@ Public Class UploadExcel_MASHOK
                         frm.GRIDEXPENSE.Rows.Clear()
                         Dim sr As Integer = 1
 
-                        'Dim sacCode As String = dr("SAC CODE").ToString().Trim()
                         Dim otherAmt As Decimal = If(dt.Columns.Contains("OTHER AMT"), Val(dr("OTHER AMT")), 0D)
                         Dim taxableamt As Decimal = If(dt.Columns.Contains("Taxable AMT"), Val(dr("Taxable AMT")), 0D)
                         Dim grandtotal As Decimal = If(dt.Columns.Contains("GRAND TOTAL"), Val(dr("GRAND TOTAL")), 0D)
@@ -606,10 +599,10 @@ NEXTLINE:
         Return dtParty.Rows.Count > 0
     End Function
 
-    Private Function IsPartyBillNoAlreadySavedInDB(partyBillNo As String) As Boolean
+    Private Function IsPartyBillNoAlreadySavedInDB(partyBillNo As String, PARTYNAME As String) As Boolean
         Dim OBJCMN As New ClsCommon()
-        Dim dtExist As DataTable = OBJCMN.SEARCH("NP_REFNO", "", "NONPURCHASE", "AND NP_REFNO = '" & partyBillNo.Replace("'", "''") & "' AND NP_YEARID = " & YearId)
-        Return dtExist.Rows.Count > 0
+        Dim dtExist As DataTable = OBJCMN.SEARCH("NP_REFNO", "", "NONPURCHASE INNER JOIN LEDGERS ON NP_LEDGERID = LEDGERS.ACC_ID", " AND NP_REFNO = '" & partyBillNo.Replace("'", "''") & "' AND LEDGERS.ACC_CMPNAME = '" & PARTYNAME & "' AND NP_YEARID = " & YearId)
+        Return Not dtExist.Rows.Count > 0
     End Function
 
     Private Function HSNExists(hsnCode As String) As Boolean

@@ -853,7 +853,6 @@ Public Class InvoiceMaster
     End Sub
 
     Private Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
-
         If ISLOCKYEAR = True Then
             MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
             Exit Sub
@@ -10684,10 +10683,16 @@ NEXTLINE:
             USERADD = value
         End Set
     End Property
-
     Public Function SaveInvoice(Optional showMessage As Boolean = True) As Boolean
+        ' just call the private button handler
+        'cmdok_Click(Nothing, EventArgs.Empty)
         Try
+            'If Not errorvalid() Then
+            '    Return False ' Validation failed
+            'End If
+            'CMBHSNCODE_Validated(Nothing, EventArgs.Empty)
             TOTAL()
+
 
             ' Call the original save logic
             cmdOK_Click(Nothing, EventArgs.Empty)
@@ -10700,7 +10705,6 @@ NEXTLINE:
             Return False
         End Try
     End Function
-
     Public Sub RunCmbNameValidation(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbname.Validated
         Try
             If cmbname.Text.Trim <> "" Then
@@ -10837,14 +10841,6 @@ LINE1:
         Try
             INVOICEMASTER_Load(Nothing, EventArgs.Empty)
         Catch ex As Exception
-        End Try
-    End Sub
-
-    Private Sub duedate_Validated(sender As Object, e As EventArgs) Handles duedate.Validated
-        Try
-            If ClientName = "MASHOK" Then TXTCRDAYS.Text = DateDiff(DateInterval.Day, Convert.ToDateTime(INVOICEDATE.Text).Date, duedate.Value.Date)
-        Catch ex As Exception
-            Throw ex
         End Try
     End Sub
 End Class

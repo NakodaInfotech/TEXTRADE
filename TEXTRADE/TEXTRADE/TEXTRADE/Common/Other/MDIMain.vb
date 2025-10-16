@@ -452,7 +452,9 @@ Public Class MDIMain
                     WEAVEEDIT.Enabled = True
                 End If
             End If
-
+            If ClientName = "NAKODAINFOTECH" Then
+                AutoWhatsappToolStripMenuItem.Visible = True
+            End If
 
         Catch ex As Exception
             Throw ex
@@ -10779,16 +10781,6 @@ SKIPLINE:
             OBJUPLOAD.MdiParent = Me
             OBJUPLOAD.CMBTYPE.Text = "INVOICE"
             OBJUPLOAD.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub HOLDFORINTCALCMENU_Click(sender As Object, e As EventArgs) Handles HOLDFORINTCALCMENU.Click
-        Try
-            Dim OBJHOLD As New UpdateHoldforIntCalc
-            OBJHOLD.MdiParent = Me
-            OBJHOLD.Show()
         Catch ex As Exception
             Throw ex
         End Try
