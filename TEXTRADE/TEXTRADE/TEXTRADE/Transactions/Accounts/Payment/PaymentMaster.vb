@@ -29,6 +29,7 @@ Public Class PaymentMaster
         Try
 
             If ClientName = "SUPEEMA" Then Exit Sub
+            If ClientName = "SUPEEMA" Then Exit Sub
             Dim USERACCOUNTSADD, USERACCOUNTSEDIT, USERACCOUNTSVIEW, USERACCOUNTSDELETE As Boolean
             Dim DTACCOUNTSROW() As DataRow
             DTACCOUNTSROW = USERRIGHTS.Select("FormName = 'ACCOUNT REPORTS'")
@@ -467,7 +468,7 @@ Public Class PaymentMaster
                         End If
                         If Convert.ToBoolean(dr("SMSSEND")) = True Then LBLSMS.Visible = True
 
-                        gridpayment.Rows.Add(0, dr("GRIDSRNO"), dr("PAYTYPE").ToString, dr("BILLINITIALS").ToString, dr("NARR").ToString, Format(dr("AMT"), "0.00"), Format(Val(dr("AMTREC")), "0.00"), Format(dr("EXTRAAMT"), "0.00"), Format(dr("RETURN"), "0.00"), Format(dr("BALANCE"), "0.00"))
+                        gridpayment.Rows.Add(0, dr("GRIDSRNO"), dr("PAYTYPE").ToString, dr("BILLINITIALS").ToString, dr("NARR").ToString, Format(dr("AMT"), "0.00"), Format(Val(dr("AMTREC")), "0.00"), Format(dr("EXTRAAMT"), "0.00"), Format(dr("RETURN"), "0.00"), Format(dr("BALANCE"), "0.00"), Val(dr("CRDAYS")), Val(dr("DAYS")), Format(Convert.ToDateTime(dr("DUEDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(dr("BILLDATE")).Date, "dd/MM/yyyy"))
                         If Val(dr("AMTREC")) > 0 Or Val(dr("EXTRAAMT")) > 0 Or Val(dr("RETURN")) > 0 Then
                             gridpayment.Rows(gridpayment.RowCount - 1).DefaultCellStyle.BackColor = Color.Linen
                             lbllocked.Visible = True
@@ -2260,6 +2261,12 @@ LINE1:
             TXTINVTOTAL.Left = cmdexit.Left
             TXTINVTOTAL.Top = GPDESC.Top + 15
         End If
+        If ClientName = "ABHEE" Then
+            gridpayment.Columns(GCRDAYS.Index).Visible = True
+            gridpayment.Columns(GDUEDATE.Index).Visible = True
+            gridpayment.Columns(GDAYS.Index).Visible = True
+
+        End If
     End Sub
 
     Private Sub txtremarks_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtremarks.KeyDown
@@ -2688,6 +2695,22 @@ NEXTLINE:
         Try
             If Convert.ToBoolean(GRIDBILL.Rows(e.RowIndex).Cells("DISPUTE").Value) = True Then GRIDBILL.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGreen
             If GRIDBILL.Rows(e.RowIndex).Cells("COMPLAINT").Value <> "" Then GRIDBILL.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Orange
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ACCDATE_Validated(sender As Object, e As EventArgs) Handles ACCDATE.Validated
+        Try
+            For Each ROW As DataGridViewRow In gridpayment.Rows
+                If ROW.Cells(GBILLDATE.Index).Value IsNot Nothing AndAlso ROW.Cells(GBILLDATE.Index).Value.ToString() <> "" Then
+                    Dim accDate1 As Date = Convert.ToDateTime(ACCDATE.Text)
+                    Dim billDate As Date = Convert.ToDateTime(ROW.Cells(GBILLDATE.Index).Value)
+                    Dim daysDiff As Integer = DateDiff(DateInterval.Day, billDate.Date, accDate1.Date)
+
+                    ROW.Cells(GDAYS.Index).Value = daysDiff
+                End If
+            Next
         Catch ex As Exception
             Throw ex
         End Try
