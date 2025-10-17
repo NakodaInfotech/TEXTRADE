@@ -81,12 +81,129 @@ Public Class AgencyOutstandingGridReport
 #Region "BUYERWISE"
 
     Sub FILLGRID()
+
+        '******************* ORIGINAL CODE ********************
+        'Try
+        '    GRIDOUTSTANDING.RowCount = 0
+        '    GCMPNAME.Visible = False
+
+        '    Dim TEMPNAME As String = ""
+        '    Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+        '    Dim WHERECLAUSE As String = " "
+
+
+        '    If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
+        '    If CMBSELLERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND SELLERNAME = '" & CMBSELLERNAME.Text.Trim & "'"
+        '    If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+        '    If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+        '    If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+        '    If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+        '    If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+        '    If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
+
+        '    If chkdate.CheckState = CheckState.Checked Then
+        '        WHERECLAUSE = WHERECLAUSE & " AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+        '    End If
+        '    Mydate = dtto.Value.Date
+
+        '    If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+        '    If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+        '    If TXTOVERDUEDAYS.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  = '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+
+        '    'GET ALL YEARID FROM SELECTED COMPANY WITH SAME STARTYEAR
+        '    Dim OBJCMN As New ClsCommon
+        '    Dim DT As New DataTable
+        '    Dim CMPCLAUSE As String = ""
+        '    Dim CHECKED_CMP As CheckedListBox.CheckedItemCollection = LSTCMP.CheckedItems
+        '    For Each item As Object In CHECKED_CMP
+        '        If CMPCLAUSE = "" Then
+        '            CMPCLAUSE = "'" & item.ToString() & "'"
+        '        Else
+        '            CMPCLAUSE = CMPCLAUSE & ",'" & item.ToString() & "'"
+        '            GCMPNAME.Visible = True
+        '        End If
+        '    Next item
+
+
+
+        '    DT = OBJCMN.SEARCH("cmp_id AS CMPID ,year_id AS YEARID", "", " CMPMASTER inner join YEARMASTER ON YEAR_CMPID = CMP_ID", " AND YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "' AND CMP_NAME IN (" & CMPCLAUSE & ")")
+        '    CMPCLAUSE = ""
+        '    For Each DTROW As DataRow In DT.Rows
+        '        If CMPCLAUSE = "" Then CMPCLAUSE = DTROW("YEARID") Else CMPCLAUSE = CMPCLAUSE & "," & DTROW("YEARID")
+        '    Next
+        '    WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
+
+
+        '    Dim DAYS As Integer = 0
+        '    Dim TOTALDAYS As Integer = 0
+        '    Dim RUNNINGBAL As Double = 0.0
+        '    Dim BILLINTEREST As Double = 0.0
+        '    Dim SRNO As Integer = 0
+
+        '    'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
+        '    DT = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE, BILL", "", "")
+        '    If DT.Rows.Count > 0 Then
+        '        TEMPNAME = ""
+        '        GTOTAL = 0
+        '        RECDTOTAL = 0
+        '        BALANCE = 0
+        '        GRANDTOTAL = 0
+        '        RECDGRANDTOTAL = 0
+        '        BALANCEGRANDTOTAL = 0
+        '        DAYS = 0
+        '        TOTALDAYS = 0
+        '        RUNNINGBAL = 0.0
+        '        SRNO = 0
+        '        BILLINTEREST = 0
+        '        PARTYINTTOTAL = 0
+        '        GINTTOTAL = 0
+
+        '        For Each ROW As DataRow In DT.Rows
+        '            If TEMPNAME <> ROW("NAME") Then
+        '                TEMPNAME = ROW("NAME")
+        '                If GRIDOUTSTANDING.RowCount > 0 Then ADDPARTYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+        '                GTOTAL = 0
+        '                RECDTOTAL = 0
+        '                BALANCE = 0
+        '                RUNNINGBAL = 0.0
+        '                SRNO = 0
+        '                PARTYINTTOTAL = 0
+        '                ADDNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"), ROW("CITY"))
+        '            End If
+
+        '            DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
+        '            TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
+        '            If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
+
+        '            SRNO += 1
+        '            RUNNINGBAL += Val(ROW("BALANCE"))
+        '            GRIDOUTSTANDING.Rows.Add(ROW("SELLERNAME"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST), ROW("HOLDINTCALC"), ROW("COMPLAINT"), ROW("COMPLAINTBY"), ROW("COMPLAINTDATE"))
+        '            GTOTAL += Val(ROW("GRANDTOTAL"))
+        '            RECDTOTAL += Val(ROW("RECDAMT"))
+        '            BALANCE += Val(ROW("BALANCE"))
+        '            PARTYINTTOTAL += Val(BILLINTEREST)
+
+        '            GRANDTOTAL += Val(ROW("GRANDTOTAL"))
+        '            RECDGRANDTOTAL += Val(ROW("RECDAMT"))
+        '            BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
+        '            GINTTOTAL += Val(BILLINTEREST)
+        '        Next
+        '        'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
+        '        If GRIDOUTSTANDING.RowCount > 0 Then ADDPARTYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
+        '        If GRIDOUTSTANDING.RowCount > 0 Then ADDGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL)
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+        '******************* END OF ORIGINAL CODE ********************
+
         Try
             GRIDOUTSTANDING.RowCount = 0
             GCMPNAME.Visible = False
 
             Dim TEMPNAME As String = ""
-            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+            Dim TEMPSELLERNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL, SGTOTAL, SRECDTOTAL, SBALANCE, SGRANDTOTAL, SRECDGRANDTOTAL, SBALANCEGRANDTOTAL, SGINTTOTAL, SPARTYINTTOTAL As Decimal
             Dim WHERECLAUSE As String = " "
 
 
@@ -139,12 +256,16 @@ Public Class AgencyOutstandingGridReport
             Dim SRNO As Integer = 0
 
             'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
-            DT = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE, BILL", "", "")
+            DT = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
             If DT.Rows.Count > 0 Then
                 TEMPNAME = ""
+                TEMPSELLERNAME = ""
                 GTOTAL = 0
                 RECDTOTAL = 0
                 BALANCE = 0
+                SGTOTAL = 0
+                SRECDTOTAL = 0
+                SBALANCE = 0
                 GRANDTOTAL = 0
                 RECDGRANDTOTAL = 0
                 BALANCEGRANDTOTAL = 0
@@ -169,6 +290,18 @@ Public Class AgencyOutstandingGridReport
                         ADDNAMEROW(ROW("NAME"), ROW("MOBILENO"), ROW("PHONENO"), ROW("CITY"))
                     End If
 
+                    If TEMPSELLERNAME <> ROW("SELLERNAME") Then
+                        TEMPSELLERNAME = ROW("SELLERNAME")
+                        If GRIDOUTSTANDING.RowCount > 1 Then ADDPARTYTOTALROW(SGTOTAL, SRECDTOTAL, SBALANCE, SPARTYINTTOTAL)
+                        SGTOTAL = 0
+                        SRECDTOTAL = 0
+                        SBALANCE = 0
+                        SPARTYINTTOTAL = 0
+                        RUNNINGBAL = 0.0
+                        SRNO = 0
+                    End If
+
+
                     DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
                     TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
                     If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
@@ -181,11 +314,17 @@ Public Class AgencyOutstandingGridReport
                     BALANCE += Val(ROW("BALANCE"))
                     PARTYINTTOTAL += Val(BILLINTEREST)
 
+                    SGTOTAL += Val(ROW("GRANDTOTAL"))
+                    SRECDTOTAL += Val(ROW("RECDAMT"))
+                    SBALANCE += Val(ROW("BALANCE"))
+                    SPARTYINTTOTAL += Val(BILLINTEREST)
+
                     GRANDTOTAL += Val(ROW("GRANDTOTAL"))
                     RECDGRANDTOTAL += Val(ROW("RECDAMT"))
                     BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
                     GINTTOTAL += Val(BILLINTEREST)
                 Next
+
                 'FOR LAST RECORD WE NNEED TO ADD TOTAL ALSO
                 If GRIDOUTSTANDING.RowCount > 0 Then ADDPARTYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
                 If GRIDOUTSTANDING.RowCount > 0 Then ADDGRANDTOTALROW(GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL)
@@ -409,7 +548,7 @@ Public Class AgencyOutstandingGridReport
     Sub ADDNAMEROW(ByVal NAME, ByVal MOBILENO, ByVal PHONENO, ByVal CITYNAME)
         Try
             'PRINT NAME 
-            GRIDOUTSTANDING.Rows.Add(NAME, CITYNAME, "CONTACT", "", MOBILENO, PHONENO)
+            GRIDOUTSTANDING.Rows.Add(NAME, CITYNAME, "CONTACT", MOBILENO, PHONENO)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle.Font = New Drawing.Font("Verdana", 8, FontStyle.Bold)
         Catch ex As Exception
@@ -443,7 +582,7 @@ Public Class AgencyOutstandingGridReport
             Dim STYLE As New DataGridViewCellStyle
             STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Yellow
-            GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
+            GRIDOUTSTANDING.Rows.Add("SUBTOTAL", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", PARTYINTTOTAL)
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
             GRIDOUTSTANDING.Rows.Add()
         Catch ex As Exception
@@ -511,7 +650,7 @@ Public Class AgencyOutstandingGridReport
             Dim STYLE As New DataGridViewCellStyle
             STYLE.Font = New Drawing.Font(GRIDOUTSTANDING.Font, FontStyle.Bold)
             STYLE.BackColor = Color.Orange
-            GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
+            GRIDOUTSTANDING.Rows.Add("GRANDTOTAL", "", "", "", "", "", "", "", Format(Val(GTOTAL), "0.00"), "", Format(Val(RECDTOTAL), "0.00"), Format(Val(BALANCE), "0.00"), "", "", "", "", "", "", "", "", "", "", Val(INTTOTAL))
             GRIDOUTSTANDING.Rows(GRIDOUTSTANDING.RowCount - 1).DefaultCellStyle = STYLE
             GRIDOUTSTANDING.Rows.Add()
         Catch ex As Exception
@@ -542,7 +681,8 @@ Public Class AgencyOutstandingGridReport
             GRIDOUTSTANDING.RowCount = 0
             GCMPNAME.Visible = False
             Dim TEMPNAME As String = ""
-            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL As Decimal
+            Dim TEMPBUYERNAME As String = ""
+            Dim GTOTAL, RECDTOTAL, BALANCE, GRANDTOTAL, RECDGRANDTOTAL, BALANCEGRANDTOTAL, GINTTOTAL, PARTYINTTOTAL, SGTOTAL, SRECDTOTAL, SBALANCE, SGRANDTOTAL, SRECDGRANDTOTAL, SBALANCEGRANDTOTAL, SGINTTOTAL, SPARTYINTTOTAL As Decimal
             Dim WHERECLAUSE As String = " "
 
 
@@ -598,9 +738,13 @@ Public Class AgencyOutstandingGridReport
             DT = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY SELLERNAME, NAME, DATE, TYPE, BILL", "", "")
             If DT.Rows.Count > 0 Then
                 TEMPNAME = ""
+                TEMPBUYERNAME = ""
                 GTOTAL = 0
                 RECDTOTAL = 0
                 BALANCE = 0
+                SGTOTAL = 0
+                SRECDTOTAL = 0
+                SBALANCE = 0
                 GRANDTOTAL = 0
                 RECDGRANDTOTAL = 0
                 BALANCEGRANDTOTAL = 0
@@ -625,6 +769,17 @@ Public Class AgencyOutstandingGridReport
                         ADDSELLERNAMENAMEROW(ROW("SELLERNAME"))
                     End If
 
+                    If TEMPBUYERNAME <> ROW("NAME") Then
+                        TEMPBUYERNAME = ROW("NAME")
+                        If GRIDOUTSTANDING.RowCount > 1 Then ADDPARTYTOTALROW(SGTOTAL, SRECDTOTAL, SBALANCE, SPARTYINTTOTAL)
+                        SGTOTAL = 0
+                        SRECDTOTAL = 0
+                        SBALANCE = 0
+                        SPARTYINTTOTAL = 0
+                        RUNNINGBAL = 0.0
+                        SRNO = 0
+                    End If
+
                     DAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date)
                     TOTALDAYS = DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DATE")).Date, Mydate.Date)
                     If Val(TXTPERCENT.Text.Trim) > 0 And Val(TXTDAYS.Text.Trim) > 0 Then BILLINTEREST = Format((Val(TXTPERCENT.Text.Trim) / Val(TXTDAYS.Text.Trim) / 100) * Val(DAYS) * Val(ROW("BALANCE")), "0")
@@ -637,6 +792,11 @@ Public Class AgencyOutstandingGridReport
                     RECDTOTAL += Val(ROW("RECDAMT"))
                     BALANCE += Val(ROW("BALANCE"))
                     PARTYINTTOTAL += Val(BILLINTEREST)
+
+                    SGTOTAL += Val(ROW("GRANDTOTAL"))
+                    SRECDTOTAL += Val(ROW("RECDAMT"))
+                    SBALANCE += Val(ROW("BALANCE"))
+                    SPARTYINTTOTAL += Val(BILLINTEREST)
 
                     GRANDTOTAL += Val(ROW("GRANDTOTAL"))
                     RECDGRANDTOTAL += Val(ROW("RECDAMT"))
@@ -2333,33 +2493,6 @@ line1:
         End Try
     End Sub
 
-    'Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
-    '    Try
-    '        If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
-    '        Dim PRINT As Boolean = True
-    '        Dim WHATSAPP As Boolean = True
-
-    '        If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-
-    '        TEMPOUTSTANDING()
-
-
-    '        If MsgBox("Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-    '            Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-    '            OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
-    '            Exit Sub
-    '        End If
-
-    '        Dim OBJPL As New PLDesign
-    '        OBJPL.frmstring = "OUTSTANDING"
-    '        OBJPL.MdiParent = MDIMain
-    '        OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-    '        OBJPL.Show()
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
             If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
@@ -2390,23 +2523,10 @@ line1:
                 End If
             End If
 
-            '' Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
-            'ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
-            ''End If
-
-
-
-
-            'Dim OBJPL As New PLDesign
-            ''OBJPL.frmstring = "OUTSTANDING"
-            ''OBJPL.MdiParent = MDIMain
-            ''OBJPL.strsearch = "{TEMPOUTSTANDING.YEARID} = " & YearId
-            'OBJPL.Show()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
 
     Public Sub ExportDataGridViewToExcel(ClientName As String, CmpId As Integer, YearId As Integer)
         Dim dgv As DataGridView = GRIDOUTSTANDING
@@ -2539,12 +2659,6 @@ line1:
         End Try
     End Sub
 
-
-
-
-
-
-
     Sub TEMPOUTSTANDING()
         Try
             Dim OBJCMN As New ClsCommon
@@ -2674,7 +2788,7 @@ LINE1:
                 CHKHOLDINTCALC.Visible = True
             End If
             GINTAMT.Visible = False
-            GLRNO.Visible = False
+
             GCHARGES.Visible = False
         Catch ex As Exception
             Throw ex
@@ -2730,8 +2844,6 @@ LINE1:
         End Try
 
     End Sub
-
-
 
 
     '****** THIS FUCTION WE ARE CREATED COZ SYSTEM WILL SAVE THIS PDF IN DEBUG FOLDER BY DEFAULT IN THIS CODE SYSTEM NOT ASKING FOR USER TO SAVE WHERE HE WANT ITS SAVING BY DEFAULT IN DEBUG AND SENDING WHATSAPP FROM DEBUG ****** 
