@@ -999,6 +999,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator320 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator311 = New System.Windows.Forms.ToolStripSeparator()
         Me.AgencyOpeningBillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AGENCYOUTSTANDINGGRID_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYOUTSTANDING_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencyInvoiceReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1120,8 +1121,8 @@ Partial Class MDIMain
         Me.ToolStripSeparator132 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator109 = New System.Windows.Forms.ToolStripSeparator()
         Me.UploadEntriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPLOADEXCELNP = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPLOADEXCELSALE = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADEXCELNP = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPLOADACCOUNTMENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPLOADITEMMENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPLOADDESIGNMENU = New System.Windows.Forms.ToolStripMenuItem()
@@ -7315,7 +7316,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -7410,7 +7411,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -7494,42 +7495,48 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
-        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDING_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
+        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AGENCYOUTSTANDING_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
+        '
+        'AGENCYOUTSTANDINGGRID_MENU
+        '
+        Me.AGENCYOUTSTANDINGGRID_MENU.Name = "AGENCYOUTSTANDINGGRID_MENU"
+        Me.AGENCYOUTSTANDINGGRID_MENU.Size = New System.Drawing.Size(246, 22)
+        Me.AGENCYOUTSTANDINGGRID_MENU.Text = "Agency Outstanding Grid Report"
         '
         'AGENCYOUTSTANDING_MENU
         '
         Me.AGENCYOUTSTANDING_MENU.Name = "AGENCYOUTSTANDING_MENU"
-        Me.AGENCYOUTSTANDING_MENU.Size = New System.Drawing.Size(226, 22)
+        Me.AGENCYOUTSTANDING_MENU.Size = New System.Drawing.Size(246, 22)
         Me.AGENCYOUTSTANDING_MENU.Text = "Agency Outstanding Reports"
         '
         'AgencyInvoiceReportsToolStripMenuItem
         '
         Me.AgencyInvoiceReportsToolStripMenuItem.Name = "AgencyInvoiceReportsToolStripMenuItem"
-        Me.AgencyInvoiceReportsToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
+        Me.AgencyInvoiceReportsToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.AgencyInvoiceReportsToolStripMenuItem.Text = "Agency Invoice Reports"
         '
         'AgencySaleReportToolStripMenuItem
         '
         Me.AgencySaleReportToolStripMenuItem.Name = "AgencySaleReportToolStripMenuItem"
-        Me.AgencySaleReportToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
+        Me.AgencySaleReportToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.AgencySaleReportToolStripMenuItem.Text = "Agency Pending Sale Report"
         '
         'ToolStripSeparator322
         '
         Me.ToolStripSeparator322.Name = "ToolStripSeparator322"
-        Me.ToolStripSeparator322.Size = New System.Drawing.Size(223, 6)
+        Me.ToolStripSeparator322.Size = New System.Drawing.Size(243, 6)
         '
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
         '
         'MAGICBOX_MENU
         '
@@ -8238,19 +8245,19 @@ Partial Class MDIMain
         Me.UploadEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UploadEntriesToolStripMenuItem.Text = "Upload Entries"
         '
-        'UPLOADEXCELNP
-        '
-        Me.UPLOADEXCELNP.Name = "UPLOADEXCELNP"
-        Me.UPLOADEXCELNP.Size = New System.Drawing.Size(239, 22)
-        Me.UPLOADEXCELNP.Text = "Upload Excel for Non Purchase"
-        Me.UPLOADEXCELNP.Visible = False
-        '
         'UPLOADEXCELSALE
         '
         Me.UPLOADEXCELSALE.Name = "UPLOADEXCELSALE"
         Me.UPLOADEXCELSALE.Size = New System.Drawing.Size(239, 22)
         Me.UPLOADEXCELSALE.Text = "Upload Excel For Sale Invoice"
         Me.UPLOADEXCELSALE.Visible = False
+        '
+        'UPLOADEXCELNP
+        '
+        Me.UPLOADEXCELNP.Name = "UPLOADEXCELNP"
+        Me.UPLOADEXCELNP.Size = New System.Drawing.Size(239, 22)
+        Me.UPLOADEXCELNP.Text = "Upload Excel for Non Purchase"
+        Me.UPLOADEXCELNP.Visible = False
         '
         'UPLOADACCOUNTMENU
         '
@@ -10233,4 +10240,5 @@ Partial Class MDIMain
     Friend WithEvents MAGICBOXINVOICE_MENU As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator327 As ToolStripSeparator
     Friend WithEvents HOLDFORINTCALCMENU As ToolStripMenuItem
+    Friend WithEvents AGENCYOUTSTANDINGGRID_MENU As ToolStripMenuItem
 End Class

@@ -5016,6 +5016,14 @@ PRINT 1,1")
                 OBJSALE.TEMPREGNAME = REGTYPE
                 OBJSALE.Show()
 
+            ElseIf TYPE = "AGENCYINVOICE" Then
+
+                Dim OBJSALE As New AgencyInvoice
+                OBJSALE.MdiParent = MDIMain
+                OBJSALE.EDIT = EDIT
+                OBJSALE.TEMPINVOICENO = BILLNO
+                OBJSALE.Show()
+
             ElseIf TYPE = "MATREC" Then
 
                 Dim OBJMATREC As New MaterialReceipt
@@ -5082,6 +5090,14 @@ PRINT 1,1")
                 OBJREC.TEMPREGNAME = REGTYPE
                 OBJREC.Show()
 
+            ElseIf TYPE = "AGENCYRECEIPT" Then
+
+                Dim OBJREC As New AgencyReceipt
+                OBJREC.MdiParent = MDIMain
+                OBJREC.EDIT = EDIT
+                OBJREC.TEMPARECEIPTNO = BILLNO
+                OBJREC.Show()
+
             ElseIf TYPE = "JOURNAL" Then
 
                 Dim OBJJV As New journal
@@ -5107,6 +5123,14 @@ PRINT 1,1")
                 OBJCN.edit = EDIT
                 OBJCN.TEMPCNNO = BILLNO
                 OBJCN.TEMPREGNAME = REGTYPE
+                OBJCN.Show()
+
+            ElseIf TYPE = "AGENCYCREDITNOTE" Then
+
+                Dim OBJCN As New AgencyCreditNote
+                OBJCN.MdiParent = MDIMain
+                OBJCN.edit = EDIT
+                OBJCN.TEMPCNNO = BILLNO
                 OBJCN.Show()
 
             ElseIf TYPE = "CONTRA" Then
@@ -5136,6 +5160,14 @@ PRINT 1,1")
                 OBJSALERET.TEMPSALRETNO = BILLNO
                 OBJSALERET.Show()
 
+            ElseIf TYPE = "AGENCYSALERETURN" Then
+
+                Dim OBJSALERET As New AgencySaleReturn
+                OBJSALERET.MdiParent = MDIMain
+                OBJSALERET.EDIT = EDIT
+                OBJSALERET.TEMPSALRETNO = BILLNO
+                OBJSALERET.Show()
+
             ElseIf TYPE = "PUR RETURN" Or TYPE = "PURCHASERETURN" Then
 
                 Dim OBJPURRET As New PurchaseReturn
@@ -5151,6 +5183,7 @@ PRINT 1,1")
                 OBJSTOCKADJ.EDIT = EDIT
                 OBJSTOCKADJ.TEMPRECONO = BILLNO
                 OBJSTOCKADJ.Show()
+
             End If
         Catch ex As Exception
             Throw ex
