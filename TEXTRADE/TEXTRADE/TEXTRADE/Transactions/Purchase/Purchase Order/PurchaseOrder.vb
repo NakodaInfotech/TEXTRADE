@@ -1600,7 +1600,12 @@ LINE1:
             If LCase(DT.Rows(0).Item("UNIT")) = "pcs" Then cmbqtyunit.Text = "Pcs"
             If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" And DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
         End If
-
+        If ClientName = "SIDDHGIRI" And cmbitemname.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            DT = OBJCMN.SEARCH("  ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC], ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
+            If DT.Rows.Count > 0 Then
+                txtrate.Text = DT.Rows(0).Item("RATE")
+            End If
+        End If
         If ClientName = "MAHAVIRPOLYCOT" Then
             CMBDESIGN.Text = ""
             cmbcolor.Text = ""

@@ -999,6 +999,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator320 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator311 = New System.Windows.Forms.ToolStripSeparator()
         Me.AgencyOpeningBillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AGENCYOUTSTANDINGGRID_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYOUTSTANDING_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencyInvoiceReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1231,7 +1232,6 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.AGENCYOUTSTANDINGGRID_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7504,6 +7504,12 @@ Partial Class MDIMain
         Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
+        'AGENCYOUTSTANDINGGRID_MENU
+        '
+        Me.AGENCYOUTSTANDINGGRID_MENU.Name = "AGENCYOUTSTANDINGGRID_MENU"
+        Me.AGENCYOUTSTANDINGGRID_MENU.Size = New System.Drawing.Size(246, 22)
+        Me.AGENCYOUTSTANDINGGRID_MENU.Text = "Agency Outstanding Grid Report"
+        '
         'AGENCYOUTSTANDING_MENU
         '
         Me.AGENCYOUTSTANDING_MENU.Name = "AGENCYOUTSTANDING_MENU"
@@ -8999,12 +9005,6 @@ Partial Class MDIMain
         'Timer1
         '
         Me.Timer1.Interval = 10
-        '
-        'AGENCYOUTSTANDINGGRID_MENU
-        '
-        Me.AGENCYOUTSTANDINGGRID_MENU.Name = "AGENCYOUTSTANDINGGRID_MENU"
-        Me.AGENCYOUTSTANDINGGRID_MENU.Size = New System.Drawing.Size(246, 22)
-        Me.AGENCYOUTSTANDINGGRID_MENU.Text = "Agency Outstanding Grid Report"
         '
         'MDIMain
         '
