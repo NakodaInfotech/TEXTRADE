@@ -312,6 +312,7 @@ Public Class AgencyInvoice
         CMBCOMMTPYE.Text = ""
 
         CHKMANUALROUND.CheckState = CheckState.Unchecked
+        CHKINTCALC.Checked = False
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -728,6 +729,7 @@ Public Class AgencyInvoice
                     End If
                     CMBDISPATCHFROM.Text = dr("DISPATCHFROM")
 
+                    If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
 
                     If ClientName = "YASHVI" And txtchallan.Text.Trim <> "" Then
                         Gmtrs.ReadOnly = True
@@ -1344,7 +1346,7 @@ Public Class AgencyInvoice
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
-
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             Dim objclsPurord As New ClsAgencyInvoiceMaster()
             objclsPurord.alParaval = alParaval
 
