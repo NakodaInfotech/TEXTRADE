@@ -44,6 +44,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +121,7 @@ Partial Class UpdateHoldforIntCalc
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GNEWDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GENTRYTYPE, Me.GREGNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GNEWDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GNAME, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GENTRYTYPE, Me.GREGNAME})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -141,6 +142,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GENTRYNO.FieldName = "ENTRYNO"
         Me.GENTRYNO.Name = "GENTRYNO"
         Me.GENTRYNO.OptionsColumn.AllowEdit = False
+        Me.GENTRYNO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("GENTRYNO.Summary"), DevExpress.Data.SummaryItemType))})
         '
         'GDATE
         '
@@ -192,6 +194,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GTOTALPCS.FieldName = "TOTALPCS"
         Me.GTOTALPCS.Name = "GTOTALPCS"
         Me.GTOTALPCS.OptionsColumn.AllowEdit = False
+        Me.GTOTALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("GTOTALPCS.Summary"), DevExpress.Data.SummaryItemType))})
         '
         'GTOTALMTRS
         '
@@ -201,6 +204,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("GTOTALMTRS.Summary"), DevExpress.Data.SummaryItemType))})
         '
         'GGRANDTOTAL
         '
@@ -210,6 +214,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
+        Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(CType(resources.GetObject("GGRANDTOTAL.Summary"), DevExpress.Data.SummaryItemType))})
         '
         'GENTRYTYPE
         '
@@ -237,6 +242,12 @@ Partial Class UpdateHoldforIntCalc
         Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
         resources.ApplyResources(Me.PrintToolStripButton, "PrintToolStripButton")
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        '
+        'GITEMNAME
+        '
+        resources.ApplyResources(Me.GITEMNAME, "GITEMNAME")
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
         '
         'UpdateHoldforIntCalc
         '
@@ -278,4 +289,5 @@ Partial Class UpdateHoldforIntCalc
     Friend WithEvents GNEWDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDUEDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

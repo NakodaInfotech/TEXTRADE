@@ -286,6 +286,10 @@
   <data name="GENTRYNO.Caption" xml:space="preserve">
     <value>Entry No</value>
   </data>
+  <assembly alias="DevExpress.Data.v25.1" name="DevExpress.Data.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="GENTRYNO.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v25.1">
+    <value>Count</value>
+  </data>
   <data name="GENTRYNO.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -340,32 +344,53 @@
   <data name="GNAME.Width" type="System.Int32, mscorlib">
     <value>300</value>
   </data>
+  <data name="GITEMNAME.Caption" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="GITEMNAME.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GITEMNAME.VisibleIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="GITEMNAME.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
   <data name="GTOTALPCS.Caption" xml:space="preserve">
     <value>Total Pcs</value>
+  </data>
+  <data name="GTOTALPCS.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v25.1">
+    <value>Sum</value>
   </data>
   <data name="GTOTALPCS.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="GTOTALPCS.VisibleIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="GTOTALMTRS.Caption" xml:space="preserve">
     <value>Total Mtrs</value>
+  </data>
+  <data name="GTOTALMTRS.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v25.1">
+    <value>Sum</value>
   </data>
   <data name="GTOTALMTRS.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="GTOTALMTRS.VisibleIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="GGRANDTOTAL.Caption" xml:space="preserve">
     <value>Grand Total</value>
+  </data>
+  <data name="GGRANDTOTAL.Summary" type="DevExpress.Data.SummaryItemType, DevExpress.Data.v25.1">
+    <value>Sum</value>
   </data>
   <data name="GGRANDTOTAL.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="GGRANDTOTAL.VisibleIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="GGRANDTOTAL.Width" type="System.Int32, mscorlib">
     <value>100</value>
@@ -377,7 +402,7 @@
     <value>True</value>
   </data>
   <data name="GENTRYTYPE.VisibleIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="GENTRYTYPE.Width" type="System.Int32, mscorlib">
     <value>120</value>
@@ -389,7 +414,7 @@
     <value>True</value>
   </data>
   <data name="GREGNAME.VisibleIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="GREGNAME.Width" type="System.Int32, mscorlib">
     <value>120</value>
@@ -567,6 +592,12 @@
   </data>
   <data name="&gt;&gt;PrintToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GITEMNAME.Name" xml:space="preserve">
+    <value>GITEMNAME</value>
+  </data>
+  <data name="&gt;&gt;GITEMNAME.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v25.1, Version=25.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UpdateHoldforIntCalc</value>
