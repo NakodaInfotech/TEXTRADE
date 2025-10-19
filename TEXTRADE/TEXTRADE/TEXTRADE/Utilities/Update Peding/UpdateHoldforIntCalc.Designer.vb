@@ -37,6 +37,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDUEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,7 +45,6 @@ Partial Class UpdateHoldforIntCalc
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +186,12 @@ Partial Class UpdateHoldforIntCalc
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         '
+        'GITEMNAME
+        '
+        resources.ApplyResources(Me.GITEMNAME, "GITEMNAME")
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        '
         'GTOTALPCS
         '
         resources.ApplyResources(Me.GTOTALPCS, "GTOTALPCS")
@@ -242,12 +248,6 @@ Partial Class UpdateHoldforIntCalc
         Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
         resources.ApplyResources(Me.PrintToolStripButton, "PrintToolStripButton")
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        '
-        'GITEMNAME
-        '
-        resources.ApplyResources(Me.GITEMNAME, "GITEMNAME")
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
         '
         'UpdateHoldforIntCalc
         '
