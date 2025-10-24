@@ -41,8 +41,8 @@ Partial Class PaymentMaster
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaymentMaster))
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PaymentMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.TXTSEARCHAMT = New System.Windows.Forms.TextBox()
@@ -123,6 +123,20 @@ Partial Class PaymentMaster
         Me.cmbpaytype = New System.Windows.Forms.ComboBox()
         Me.txtamt = New System.Windows.Forms.TextBox()
         Me.gridpayment = New System.Windows.Forms.DataGridView()
+        Me.GCHK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.gridsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gpaytype = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gbillno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gdesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gamt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAMTREC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gEXTRAAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRETURN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gBALANCE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCRDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDUEDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBILLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtsrno = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -167,20 +181,9 @@ Partial Class PaymentMaster
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GCHK = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.gridsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gpaytype = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gbillno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gdesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gamt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAMTREC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gEXTRAAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRETURN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gBALANCE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCRDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDUEDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBILLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TXTCRDAYS = New System.Windows.Forms.TextBox()
+        Me.TXTDAYS = New System.Windows.Forms.TextBox()
+        Me.dtinvduedate = New System.Windows.Forms.DateTimePicker()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -1188,6 +1191,9 @@ Partial Class PaymentMaster
         'grouppayment
         '
         Me.grouppayment.BackColor = System.Drawing.Color.Transparent
+        Me.grouppayment.Controls.Add(Me.dtinvduedate)
+        Me.grouppayment.Controls.Add(Me.TXTDAYS)
+        Me.grouppayment.Controls.Add(Me.TXTCRDAYS)
         Me.grouppayment.Controls.Add(Me.txtnarr)
         Me.grouppayment.Controls.Add(Me.cmbbillno)
         Me.grouppayment.Controls.Add(Me.cmbpaytype)
@@ -1291,6 +1297,108 @@ Partial Class PaymentMaster
         Me.gridpayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.gridpayment.Size = New System.Drawing.Size(492, 162)
         Me.gridpayment.TabIndex = 5
+        '
+        'GCHK
+        '
+        Me.GCHK.HeaderText = ""
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.ReadOnly = True
+        Me.GCHK.Visible = False
+        Me.GCHK.Width = 40
+        '
+        'gridsrno
+        '
+        Me.gridsrno.HeaderText = "Sr."
+        Me.gridsrno.Name = "gridsrno"
+        Me.gridsrno.ReadOnly = True
+        Me.gridsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gridsrno.Width = 40
+        '
+        'gpaytype
+        '
+        Me.gpaytype.HeaderText = "Pay Type"
+        Me.gpaytype.Name = "gpaytype"
+        Me.gpaytype.ReadOnly = True
+        Me.gpaytype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gpaytype.Width = 80
+        '
+        'gbillno
+        '
+        Me.gbillno.HeaderText = "Bill No"
+        Me.gbillno.Name = "gbillno"
+        Me.gbillno.ReadOnly = True
+        Me.gbillno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gbillno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gbillno.Width = 70
+        '
+        'gdesc
+        '
+        Me.gdesc.HeaderText = "Descritpion"
+        Me.gdesc.Name = "gdesc"
+        Me.gdesc.ReadOnly = True
+        Me.gdesc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'gamt
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.gamt.DefaultCellStyle = DataGridViewCellStyle17
+        Me.gamt.HeaderText = "Amount"
+        Me.gamt.Name = "gamt"
+        Me.gamt.ReadOnly = True
+        Me.gamt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gamt.Width = 80
+        '
+        'GAMTREC
+        '
+        Me.GAMTREC.HeaderText = "Amt Recd"
+        Me.GAMTREC.Name = "GAMTREC"
+        Me.GAMTREC.Visible = False
+        '
+        'gEXTRAAMT
+        '
+        Me.gEXTRAAMT.HeaderText = "Extra Amt"
+        Me.gEXTRAAMT.Name = "gEXTRAAMT"
+        Me.gEXTRAAMT.Visible = False
+        '
+        'GRETURN
+        '
+        Me.GRETURN.HeaderText = "Return"
+        Me.GRETURN.Name = "GRETURN"
+        Me.GRETURN.Visible = False
+        '
+        'gBALANCE
+        '
+        Me.gBALANCE.HeaderText = "Balance"
+        Me.gBALANCE.Name = "gBALANCE"
+        Me.gBALANCE.Visible = False
+        '
+        'GCRDAYS
+        '
+        Me.GCRDAYS.HeaderText = "CR"
+        Me.GCRDAYS.Name = "GCRDAYS"
+        Me.GCRDAYS.Visible = False
+        Me.GCRDAYS.Width = 40
+        '
+        'GDAYS
+        '
+        Me.GDAYS.HeaderText = "Days"
+        Me.GDAYS.Name = "GDAYS"
+        Me.GDAYS.Visible = False
+        Me.GDAYS.Width = 40
+        '
+        'GDUEDATE
+        '
+        Me.GDUEDATE.HeaderText = "DueDate"
+        Me.GDUEDATE.Name = "GDUEDATE"
+        Me.GDUEDATE.Visible = False
+        Me.GDUEDATE.Width = 80
+        '
+        'GBILLDATE
+        '
+        Me.GBILLDATE.HeaderText = "BILLDATE"
+        Me.GBILLDATE.Name = "GBILLDATE"
+        Me.GBILLDATE.Visible = False
+        Me.GBILLDATE.Width = 80
         '
         'txtsrno
         '
@@ -1748,107 +1856,40 @@ Partial Class PaymentMaster
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GCHK
+        'TXTCRDAYS
         '
-        Me.GCHK.HeaderText = ""
-        Me.GCHK.Name = "GCHK"
-        Me.GCHK.ReadOnly = True
-        Me.GCHK.Visible = False
-        Me.GCHK.Width = 40
+        Me.TXTCRDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCRDAYS.ForeColor = System.Drawing.Color.Black
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(380, 15)
+        Me.TXTCRDAYS.Name = "TXTCRDAYS"
+        Me.TXTCRDAYS.Size = New System.Drawing.Size(24, 22)
+        Me.TXTCRDAYS.TabIndex = 6
+        Me.TXTCRDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTCRDAYS.Visible = False
         '
-        'gridsrno
+        'TXTDAYS
         '
-        Me.gridsrno.HeaderText = "Sr."
-        Me.gridsrno.Name = "gridsrno"
-        Me.gridsrno.ReadOnly = True
-        Me.gridsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gridsrno.Width = 40
+        Me.TXTDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTDAYS.ForeColor = System.Drawing.Color.Black
+        Me.TXTDAYS.Location = New System.Drawing.Point(387, 15)
+        Me.TXTDAYS.Name = "TXTDAYS"
+        Me.TXTDAYS.Size = New System.Drawing.Size(24, 22)
+        Me.TXTDAYS.TabIndex = 7
+        Me.TXTDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTDAYS.Visible = False
         '
-        'gpaytype
+        'dtinvduedate
         '
-        Me.gpaytype.HeaderText = "Pay Type"
-        Me.gpaytype.Name = "gpaytype"
-        Me.gpaytype.ReadOnly = True
-        Me.gpaytype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gpaytype.Width = 80
-        '
-        'gbillno
-        '
-        Me.gbillno.HeaderText = "Bill No"
-        Me.gbillno.Name = "gbillno"
-        Me.gbillno.ReadOnly = True
-        Me.gbillno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gbillno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gbillno.Width = 70
-        '
-        'gdesc
-        '
-        Me.gdesc.HeaderText = "Descritpion"
-        Me.gdesc.Name = "gdesc"
-        Me.gdesc.ReadOnly = True
-        Me.gdesc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'gamt
-        '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.gamt.DefaultCellStyle = DataGridViewCellStyle17
-        Me.gamt.HeaderText = "Amount"
-        Me.gamt.Name = "gamt"
-        Me.gamt.ReadOnly = True
-        Me.gamt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gamt.Width = 80
-        '
-        'GAMTREC
-        '
-        Me.GAMTREC.HeaderText = "Amt Recd"
-        Me.GAMTREC.Name = "GAMTREC"
-        Me.GAMTREC.Visible = False
-        '
-        'gEXTRAAMT
-        '
-        Me.gEXTRAAMT.HeaderText = "Extra Amt"
-        Me.gEXTRAAMT.Name = "gEXTRAAMT"
-        Me.gEXTRAAMT.Visible = False
-        '
-        'GRETURN
-        '
-        Me.GRETURN.HeaderText = "Return"
-        Me.GRETURN.Name = "GRETURN"
-        Me.GRETURN.Visible = False
-        '
-        'gBALANCE
-        '
-        Me.gBALANCE.HeaderText = "Balance"
-        Me.gBALANCE.Name = "gBALANCE"
-        Me.gBALANCE.Visible = False
-        '
-        'GCRDAYS
-        '
-        Me.GCRDAYS.HeaderText = "CR"
-        Me.GCRDAYS.Name = "GCRDAYS"
-        Me.GCRDAYS.Visible = False
-        Me.GCRDAYS.Width = 40
-        '
-        'GDAYS
-        '
-        Me.GDAYS.HeaderText = "Days"
-        Me.GDAYS.Name = "GDAYS"
-        Me.GDAYS.Visible = False
-        Me.GDAYS.Width = 40
-        '
-        'GDUEDATE
-        '
-        Me.GDUEDATE.HeaderText = "DueDate"
-        Me.GDUEDATE.Name = "GDUEDATE"
-        Me.GDUEDATE.Visible = False
-        Me.GDUEDATE.Width = 80
-        '
-        'GBILLDATE
-        '
-        Me.GBILLDATE.HeaderText = "BILLDATE"
-        Me.GBILLDATE.Name = "GBILLDATE"
-        Me.GBILLDATE.Visible = False
-        Me.GBILLDATE.Width = 80
+        Me.dtinvduedate.CustomFormat = "dd/MM/yyyy"
+        Me.dtinvduedate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtinvduedate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtinvduedate.Location = New System.Drawing.Point(410, 15)
+        Me.dtinvduedate.Name = "dtinvduedate"
+        Me.dtinvduedate.Size = New System.Drawing.Size(79, 22)
+        Me.dtinvduedate.TabIndex = 1002
+        Me.dtinvduedate.Visible = False
         '
         'PaymentMaster
         '
@@ -2028,4 +2069,7 @@ Partial Class PaymentMaster
     Friend WithEvents GDAYS As DataGridViewTextBoxColumn
     Friend WithEvents GDUEDATE As DataGridViewTextBoxColumn
     Friend WithEvents GBILLDATE As DataGridViewTextBoxColumn
+    Friend WithEvents TXTDAYS As TextBox
+    Friend WithEvents TXTCRDAYS As TextBox
+    Friend WithEvents dtinvduedate As DateTimePicker
 End Class
