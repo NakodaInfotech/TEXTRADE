@@ -2496,51 +2496,24 @@ line1:
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
 
+            If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
+            Dim OBJDAY As New AgencyDesign
+            OBJDAY.MdiParent = MDIMain
+            OBJDAY.FORMULA = " {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
+            If CMBBUYERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+
+
             If RBOUTSTANDINGDAYS.Checked = True Then
-                Dim OBJDAY As New AgencyDesign
-                OBJDAY.MdiParent = MDIMain
                 OBJDAY.FRMSTRING = "AGENCYOUTDAY"
-                OBJDAY.FORMULA = CMBBUYERNAME.Text.Trim
-                ' OBJDAY.FORMULA = CMBBUYERNAME.Text.Trim
+
+            ElseIf RBOUTSTANDINGGRID.Checked = True Then
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJDAY.FRMSTRING = "AGENCYOUTGRIDBUYER" Else OBJDAY.FRMSTRING = "AGENCYOUTGRIDSELLER"
 
 
-                ' FILLGRID()
-                ' FILLSUMMGRID()
-                ' FILLADVGRID()
-                ' FILLPARTGRID()
-                OBJDAY.Show()
-
-            Else
-
-                If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
-                Dim PRINT As Boolean = True
-                Dim WHATSAPP As Boolean = True
-
-                'Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
-                'If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                '    ExportDataGridViewToPdf(GRIDOUTSTANDING, filePath)
-                'End If
-
-                If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    Using sfd As New SaveFileDialog()
-                        sfd.Filter = "PDF files (*.pdf)|*.pdf"
-                        sfd.Title = "Save PDF File"
-                        sfd.FileName = "Outstanding_" & CMBBUYERNAME.Text.Trim() & ".pdf"
-
-                        If sfd.ShowDialog() = DialogResult.OK Then
-                            ExportDataGridViewToPdf(GRIDOUTSTANDING, sfd.FileName)
-                        End If
-                    End Using
-
-                Else
-                    If MsgBox(" It Will Take Time .... Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                        ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-                        ExportDataGridViewToExcel(ClientName, CmpId, YearId)
-                        ' Exit Sub
-                    End If
-                End If
             End If
 
+            OBJDAY.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3169,4 +3142,33 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDEXCEL_Click(sender As Object, e As EventArgs) Handles CMDEXCEL.Click
+        Try
+
+            Dim PRINT As Boolean = True
+            Dim WHATSAPP As Boolean = True
+
+
+            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                Using sfd As New SaveFileDialog()
+                    sfd.Filter = "PDF files (*.pdf)|*.pdf"
+                    sfd.Title = "Save PDF File"
+                    sfd.FileName = "Outstanding_" & CMBBUYERNAME.Text.Trim() & ".pdf"
+
+                    If sfd.ShowDialog() = DialogResult.OK Then
+                        ExportDataGridViewToPdf(GRIDOUTSTANDING, sfd.FileName)
+                    End If
+                End Using
+
+            Else
+                If MsgBox(" It Will Take Time .... Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                    ExportDataGridViewToExcel(ClientName, CmpId, YearId)
+                    ' Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
