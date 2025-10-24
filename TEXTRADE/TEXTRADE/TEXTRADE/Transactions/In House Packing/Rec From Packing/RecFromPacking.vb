@@ -1900,7 +1900,17 @@ LINE1:
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         If EDIT = True Then
             PRINTREPORT()
-            PRINTBARCODE()
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DTLOT As DataTable = OBJCMN.SEARCH("*", "", " RECPACKING ", " AND  RECPACKING.REC_BARCODEPRINTED=1 AND REC_NO= " & TXTRECNO.Text.Trim & " AND REC_YEARID = " & YearId)
+                If DTLOT.Rows.Count > 0 Then
+                    MsgBox("You Have Already Printed a Barcode?")
+                Else
+                    PRINTBARCODE()
+                End If
+            Else
+                PRINTBARCODE()
+            End If
         End If
     End Sub
 
@@ -1908,7 +1918,7 @@ LINE1:
         Try
             'THEY CAN WRITE THE NAME MANUALLY FOR PRINTING BARCODE PURPOSE
             If ClientName <> "SHREENAKODA" And cmbname.Text.Trim <> "" Then
-                If ClientName = "KARAN" Or ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SAKARIA" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS") Else namevalidate(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+                If ClientName = "KARAN" Or ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SAKARIA" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS") Else namevalidate(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
