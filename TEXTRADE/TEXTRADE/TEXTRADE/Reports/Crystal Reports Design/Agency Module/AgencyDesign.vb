@@ -9,20 +9,16 @@ Public Class AgencyDesign
 
     Public FORMULA As String
 
-    Dim tempattachment As String
     Dim ConInfo As New CrystalDecisions.Shared.TableLogOnInfo
     Dim expo As New ExportOptions
     Dim oDfDopt As New DiskFileDestinationOptions
-    Public vendorname As String
+
 
     'NEWLY ADDED
-
     Public FRMSTRING As String
-    Public FROMDATE As String
-    Public TODATE As String
+    Public TODATE As Date
     Public OPENINGDATE As String
-    Public selfor_ss As String
-    Public PERIOD As String
+    Public PERIOD As String = ""
     Public PARTYNAME As String
     Public AGENTNAME As String
     Public SHIPTONAME As String
@@ -55,18 +51,33 @@ Public Class AgencyDesign
                 OBJ = New SOReport
             ElseIf FRMSTRING = "ORDERDETAILS" Then
                 OBJ = New AgencySOStatusDetailsReport
+
             ElseIf FRMSTRING = "AGENCYOUTDAY" Then
                 OBJ = New AgencyOutstandingReport_Days
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDetailsNew
-                OBJ.DataDefinition.FormulaFields("SHOWLR").Text = OUTSTANDINGWITHLR
+                If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDSELLER" Then
                 OBJ = New AgencyOutstandingReport_SellerDetailsNew
-                OBJ.DataDefinition.FormulaFields("SHOWLR").Text = OUTSTANDINGWITHLR
+                If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
+
+            ElseIf FRMSTRING = "AGENCYOUTSHORTBUYER" Then
+                OBJ = New AgencyOutstandingReport_BuyerShort
+                If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
+
+            ElseIf FRMSTRING = "AGENCYOUTSHORTSELLER" Then
+                OBJ = New AgencyOutstandingReport_BuyerShort
+                If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
+
             End If
 
+            If PERIOD <> "" Then OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
             '**************** SET SERVER ************************
             Dim crtableLogonInfo As New TableLogOnInfo
@@ -208,34 +219,34 @@ Public Class AgencyDesign
     End Sub
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
-        Try
-            If ALLOWWHATSAPP = False Then Exit Sub
-            Transfer()
+        'Try
+        '    If ALLOWWHATSAPP = False Then Exit Sub
+        '    Transfer()
 
-            If FRMSTRING = "" Then
-                tempattachment = PARTYNAME & "_SOREPORT"
-            ElseIf FRMSTRING = "SOREPORT" Or FRMSTRING = "SOCAD" Then
-                tempattachment = PARTYNAME & "_SOREPORT"
-            ElseIf FRMSTRING = "SCHEDULEREPORT" Then
-                tempattachment = "SCHEDULEREPORT"
-            ElseIf FRMSTRING = "SAMPLENOTE" Then
-                tempattachment = "SAMPLENOTE"
-            ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
-                tempattachment = "SAMPLEPRICELIST"
-            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
-                tempattachment = "AGENCYOUTSTANDING"
-            End If
+        '    If FRMSTRING = "" Then
+        '        tempattachment = PARTYNAME & "_SOREPORT"
+        '    ElseIf FRMSTRING = "SOREPORT" Or FRMSTRING = "SOCAD" Then
+        '        tempattachment = PARTYNAME & "_SOREPORT"
+        '    ElseIf FRMSTRING = "SCHEDULEREPORT" Then
+        '        tempattachment = "SCHEDULEREPORT"
+        '    ElseIf FRMSTRING = "SAMPLENOTE" Then
+        '        tempattachment = "SAMPLENOTE"
+        '    ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
+        '        tempattachment = "SAMPLEPRICELIST"
+        '    ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+        '        tempattachment = "AGENCYOUTSTANDING"
+        '    End If
 
-            Dim OBJWHATSAPP As New SendWhatsapp
-            OBJWHATSAPP.PARTYNAME = PARTYNAME
-            If ClientName <> "MAHAVIRPOLYCOT" Then OBJWHATSAPP.AGENTNAME = AGENTNAME
-            If PARTYNAME <> SHIPTONAME Then OBJWHATSAPP.OTHERNAME1 = SHIPTONAME
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & tempattachment & ".PDF")
-            OBJWHATSAPP.FILENAME.Add(tempattachment & ".pdf")
-            OBJWHATSAPP.ShowDialog()
-        Catch ex As Exception
-            Throw ex
-        End Try
+        '    Dim OBJWHATSAPP As New SendWhatsapp
+        '    OBJWHATSAPP.PARTYNAME = PARTYNAME
+        '    If ClientName <> "MAHAVIRPOLYCOT" Then OBJWHATSAPP.AGENTNAME = AGENTNAME
+        '    If PARTYNAME <> SHIPTONAME Then OBJWHATSAPP.OTHERNAME1 = SHIPTONAME
+        '    OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & tempattachment & ".PDF")
+        '    OBJWHATSAPP.FILENAME.Add(tempattachment & ".pdf")
+        '    OBJWHATSAPP.ShowDialog()
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub AgencyDesign_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

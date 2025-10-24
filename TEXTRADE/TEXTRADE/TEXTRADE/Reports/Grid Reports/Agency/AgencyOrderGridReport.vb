@@ -7,6 +7,10 @@ Imports iTextSharp.text.pdf
 Public Class AgencyOrderGridReport
 
     Public SOCLAUSE As String
+    Dim fromD
+    Dim toD
+    Dim a1, a2, a3, a4 As String
+    Dim a11, a12, a13, a14 As String
 
     Public Sub New()
         InitializeComponent()
@@ -542,6 +546,18 @@ Public Class AgencyOrderGridReport
         End Try
     End Sub
 
+    Sub getFromToDate()
+        a1 = DatePart(DateInterval.Day, dtfrom.Value)
+        a2 = DatePart(DateInterval.Month, dtfrom.Value)
+        a3 = DatePart(DateInterval.Year, dtfrom.Value)
+        fromD = "(" & a3 & "," & a2 & "," & a1 & ")"
+
+        a11 = DatePart(DateInterval.Day, dtto.Value)
+        a12 = DatePart(DateInterval.Month, dtto.Value)
+        a13 = DatePart(DateInterval.Year, dtto.Value)
+        toD = "(" & a13 & "," & a12 & "," & a11 & ")"
+    End Sub
+
     Private Sub CMDSHOW_Click(sender As Object, e As EventArgs) Handles CMDSHOW.Click
         Try
 
@@ -554,7 +570,10 @@ Public Class AgencyOrderGridReport
             OBJSO.MdiParent = MDIMain
             OBJSO.FRMSTRING = "ORDERDETAILS"
             OBJSO.FORMULA = "{ALLAGENCYSALEORDER.ASO_YEARID} = " & YearId
-
+            If chkdate.Checked = True Then
+                getFromToDate()
+                OBJSO.FORMULA = OBJSO.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
+            End If
 
             'FOR BUYERNAME
             GRIDBUYER.ClearColumnsFilter()
