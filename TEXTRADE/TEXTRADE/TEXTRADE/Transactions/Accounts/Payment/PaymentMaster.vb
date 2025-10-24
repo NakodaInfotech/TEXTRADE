@@ -1562,7 +1562,7 @@ LINE1:
 
     Private Sub cmbaccname_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbaccname.Validated
 
-        If EDIT = False And ClientName <> "VALIANT" Then
+        If EDIT = False And ClientName <> "VALIANT" And ClientName <> "ABHEE" Then
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
 
@@ -2263,7 +2263,7 @@ LINE1:
 
     Private Sub PaymentMaster_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         If ClientName = "SVS" Then Me.Close()
-        If ClientName = "MAHAVIR" Or ClientName = "RAJKRIPA" Then ALLOWMANUALPAYNO = True
+        If ClientName = "MAHAVIR" Or ClientName = "RAJKRIPA" Or ClientName = "ABHEE" Then ALLOWMANUALPAYNO = True
         If ClientName = "PARAS" Then LBLCITY.Visible = False
 
         If ClientName = "MAHAVIR" Then

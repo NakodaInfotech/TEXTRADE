@@ -182,6 +182,7 @@ Partial Class AgencyOutstandingGridReport
         Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -209,6 +210,7 @@ Partial Class AgencyOutstandingGridReport
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDEXCEL)
         Me.BlendPanel1.Controls.Add(Me.GroupBox4)
         Me.BlendPanel1.Controls.Add(Me.CheckBox2)
         Me.BlendPanel1.Controls.Add(Me.CHKHOLDINTCALC)
@@ -1752,6 +1754,20 @@ Partial Class AgencyOutstandingGridReport
         Me.Label6.TabIndex = 684
         Me.Label6.Text = "Over Due Days"
         '
+        'CMDEXCEL
+        '
+        Me.CMDEXCEL.BackColor = System.Drawing.Color.Transparent
+        Me.CMDEXCEL.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDEXCEL.FlatAppearance.BorderSize = 0
+        Me.CMDEXCEL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDEXCEL.ForeColor = System.Drawing.Color.Black
+        Me.CMDEXCEL.Location = New System.Drawing.Point(975, 77)
+        Me.CMDEXCEL.Name = "CMDEXCEL"
+        Me.CMDEXCEL.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXCEL.TabIndex = 765
+        Me.CMDEXCEL.Text = "&Excel"
+        Me.CMDEXCEL.UseVisualStyleBackColor = False
+        '
         'AgencyOutstandingGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1921,4 +1937,5 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents RBOUTSTANDINGDAYS As RadioButton
     Friend WithEvents RBOUTSTANDINGGRID As RadioButton
     Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CMDEXCEL As Button
 End Class

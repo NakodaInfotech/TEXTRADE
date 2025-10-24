@@ -3,6 +3,7 @@ Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Windows.Forms
 Imports System.IO
+Imports DevExpress.CodeParser
 
 Public Class AgencyDesign
 
@@ -49,11 +50,16 @@ Public Class AgencyDesign
     Private Sub SaleOrderDesign_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
 
-            Dim OBJ As New Object
             If FRMSTRING = "SOREPORT" Then
                 OBJ = New SOReport
             ElseIf FRMSTRING = "ORDERDETAILS" Then
                 OBJ = New AgencySOStatusDetailsReport
+            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                OBJ = New AgencyOutstandingReport_Days
+            ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
+                OBJ = New AgencyOutstandingReport_BuyerDetailsNew
+            ElseIf FRMSTRING = "AGENCYOUTGRIDSELLER" Then
+                OBJ = New AgencyOutstandingReport_BuyerDetailsNew
             End If
 
 
@@ -82,26 +88,7 @@ Public Class AgencyDesign
 
             OBJ.RecordSelectionFormula = FORMULA
             crpo.ReportSource = OBJ
-
-
-            'If DIRECTPRINT = True Then
-            '    PRINTDIRECTADVICE()
-            '    OBJ.CLOSE()
-            '    OBJ.DISPOSE()
-            '    Exit Sub
-            'End If
-
-            'If FRMSTRING = "SOREPORT" Then
-            '    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-            '    If WITHPHOTO = True Then OBJ.DataDefinition.FormulaFields("WITHPHOTO").Text = 1
-            '    OBJ.DataDefinition.FormulaFields("RATERACK").Text = "'" & RATERACK & "'"
-            'End If
-            'crpo.Zoom(100)
             crpo.RefreshReport()
-
-            'OBJ.CLOSE()
-            'OBJ.DISPOSE()
-
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -140,6 +127,9 @@ Public Class AgencyDesign
         If FRMSTRING = "SOREPORT" Then
             tempattachment = PARTYNAME & "_SOREPORT"
             objmail.subject = "Sale Order"
+        ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+            tempattachment = PARTYNAME & "_AGENCYOUTSTANDING"
+            objmail.subject = "Agency Outstanding"
         End If
 
         Try
@@ -191,6 +181,8 @@ Public Class AgencyDesign
 
                 If FRMSTRING = "SOREPORT" Then
                     TEMPATTACHMENT = PARTYNAME & "_SOREPORT"
+                ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                    TEMPATTACHMENT = PARTYNAME & "_AGENCYOUTSTANDING"
                 End If
 
                 oDfDopt.DiskFileName = Application.StartupPath & "\" & TEMPATTACHMENT & "_" & SONO & ".pdf"
@@ -225,6 +217,8 @@ Public Class AgencyDesign
                 tempattachment = "SAMPLENOTE"
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 tempattachment = "SAMPLEPRICELIST"
+            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                tempattachment = "AGENCYOUTSTANDING"
             End If
 
             Dim OBJWHATSAPP As New SendWhatsapp
@@ -234,6 +228,15 @@ Public Class AgencyDesign
             OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & tempattachment & ".PDF")
             OBJWHATSAPP.FILENAME.Add(tempattachment & ".pdf")
             OBJWHATSAPP.ShowDialog()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AgencyDesign_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            OBJ.CLOSE()
+            OBJ.DISPOSE()
         Catch ex As Exception
             Throw ex
         End Try

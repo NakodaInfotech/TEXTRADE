@@ -200,6 +200,7 @@ Public Class AgencySaleReturn
             TXTNOOFBALES.Clear()
             CMBCOSTCENTERNAME.Text = ""
             TXTSELLERSTATECODE.Clear()
+            CHKINTCALC.Checked = False
 
         Catch ex As Exception
             Throw ex
@@ -1157,6 +1158,7 @@ Public Class AgencySaleReturn
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+            If CHKINTCALC.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim OBJPURCH As New ClsAgencySaleReturn()
             OBJPURCH.alParaval = alParaval
@@ -1355,6 +1357,7 @@ Public Class AgencySaleReturn
                         TXTCOMPLAINT.Text = dr("COMPLAINT")
                         TXTCOMPLAINTBY.Text = dr("COMPLAINTBY")
                         TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
                     Next
 
 
@@ -2945,6 +2948,7 @@ LINE1:
 
 
             End If
+            If ClientName = "ABHEE" Or ClientName = "MASHOK" Then CHKINTCALC.Visible = True
         Catch ex As Exception
             Throw ex
         End Try

@@ -465,6 +465,7 @@ Partial Class AgencyInvoice
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.CachedStickerLabelReport1 = New TEXTRADE.CachedStickerLabelReport()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -497,6 +498,7 @@ Partial Class AgencyInvoice
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKINTCALC)
         Me.BlendPanel1.Controls.Add(Me.CHKMANUALROUND)
         Me.BlendPanel1.Controls.Add(Me.Button1)
         Me.BlendPanel1.Controls.Add(Me.tstxtbillno)
@@ -5394,6 +5396,18 @@ Partial Class AgencyInvoice
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(353, 481)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 952
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
+        '
         'AgencyInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5840,4 +5854,5 @@ Partial Class AgencyInvoice
     Friend WithEvents TXTCOMPLAINT As TextBox
     Friend WithEvents Label65 As Label
     Friend WithEvents TXTCOMPLAINTDATE As MaskedTextBox
+    Friend WithEvents CHKINTCALC As CheckBox
 End Class
