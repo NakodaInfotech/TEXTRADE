@@ -3816,7 +3816,6 @@ line1:
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        'PrintPegPlan()
 
         ShowPrintPreview()
     End Sub
@@ -4246,6 +4245,7 @@ line1:
     End Sub
     Sub pegplan()
         Try
+            ' Create a dictionary to store the repetition counts for each row
             For srRow As Integer = 0 To GRIDPEG.Rows.Count - 1
                 Dim pickStr As String = ""
                 If Not IsDBNull(GRIDPEG.Rows(srRow).Cells("PPENDS").Value) AndAlso GRIDPEG.Rows(srRow).Cells("PPENDS").Value IsNot Nothing Then
@@ -4265,14 +4265,31 @@ line1:
                     ' Split the values by the period "."
                     Dim picks() As String = pickStr.Split("."c)
 
+                    ' Dictionary to count repetitions
+                    Dim repetitionCount As New Dictionary(Of Integer, Integer)()
+
                     For Each pickVal As String In picks
                         Dim pickNum As Integer
                         If Integer.TryParse(pickVal, pickNum) Then
                             If srRow >= 0 And srRow < GRIDPEGPLAN.RowCount AndAlso pickNum > 0 And pickNum < GRIDPEGPLAN.ColumnCount Then
+                                ' Set the background color to green
                                 GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Style.BackColor = Color.Green
+
+                                ' Set the column number as the cell's value
+                                GRIDPEGPLAN.Rows(srRow).Cells(pickNum).Value = pickNum.ToString()
+
+                                ' Count repetitions of the same pickNum
+                                If repetitionCount.ContainsKey(pickNum) Then
+                                    repetitionCount(pickNum) += 1
+                                Else
+                                    repetitionCount.Add(pickNum, 1)
+                                End If
                             End If
                         End If
                     Next
+
+                    ' Store the repetition counts in a new property or variable (or print during printing)
+                    GRIDPEGPLAN.Rows(srRow).Tag = repetitionCount ' Store the repetition count dictionary in the Tag property of the row
                 End If
             Next
 
@@ -4329,7 +4346,7 @@ line1:
         Dim startX As Integer = 50
         Dim startY As Integer = 50
         Dim cellSize As Integer = 30
-        Dim font As New Font("Arial", 8)
+        Dim font As New Font("Arial", 10)
 
         ' Draw column headers
         For col As Integer = 1 To grid.ColumnCount - 1
@@ -4343,21 +4360,63 @@ line1:
 
         ' Draw cells
         For row As Integer = 0 To grid.RowCount - 1
+            Dim repetitionCount As New Dictionary(Of String, Integer)()
             For col As Integer = 1 To grid.ColumnCount - 1   ' Skip SrNo if you want
                 Dim rect As New Rectangle(startX + col * cellSize, startY + row * cellSize, cellSize, cellSize)
+
+                ' Draw the cell border
                 e.Graphics.DrawRectangle(Pens.Black, rect)
+
+                ' Get the value from the cell
                 Dim val As String = Convert.ToString(grid.Rows(row).Cells(col).Value)
+
+                ' Draw the column number (or value) in each cell
                 If Not String.IsNullOrWhiteSpace(val) Then
                     e.Graphics.DrawString(val, font, Brushes.Black, rect)
+                Else
+                    '' Display column number if the cell is empty
+                    'Dim columnNumber As String = "Col " & col.ToString()
+                    'e.Graphics.DrawString(columnNumber, font, Brushes.Black, rect)
                 End If
-                ' Optional: Fill colored rectangle if cell is ON
+
+                ' Optional: Fill colored rectangle if the cell is marked as "green"
                 If grid.Rows(row).Cells(col).Style.BackColor = Color.Green Then
-                    Using brush As New SolidBrush(Color.Black)
+                    ' Use a light green fill color for the "green" cells (lighter shade)
+                    Using brush As New SolidBrush(Color.Green) ' Light Green fill
                         e.Graphics.FillRectangle(brush, rect)
                     End Using
+                    ' Display column number if the cell is empty
+                    Dim columnNumber As String = col.ToString()
+                    e.Graphics.DrawString(columnNumber, font, Brushes.Black, rect)
+                End If
+                ' Count repetitions of each number in the row
+                If Not String.IsNullOrWhiteSpace(val) Then
+                    If repetitionCount.ContainsKey(val) Then
+                        repetitionCount(val) += 1
+                    Else
+                        repetitionCount.Add(val, 1)
+                    End If
                 End If
             Next
+
+            ' Now print the repetition count on the right side of the row
+            Dim rightSideX As Integer = startX + (grid.ColumnCount * cellSize) + 5 ' Adjust X position for the repetition count
+            Dim repetitionStr As String = String.Empty
+
+            ' Loop through the repetition counts and display them
+            For Each pair As KeyValuePair(Of String, Integer) In repetitionCount
+                If pair.Value > 1 Then ' Only print counts for repeated numbers
+                    repetitionStr &= "]" & pair.Value.ToString() & " " ' Concatenate the repetition counts
+                End If
+            Next
+
+            ' Draw the repetition count text next to the row
+            If Not String.IsNullOrEmpty(repetitionStr) Then
+                e.Graphics.DrawString(repetitionStr.Trim(), font, Brushes.Black, rightSideX, startY + (row * cellSize))
+            End If
         Next
+
+
         e.HasMorePages = False
     End Sub
 
@@ -4378,19 +4437,4 @@ line1:
             Throw ex
         End Try
     End Sub
-    Private Function ExtractNumbersInsideBrackets(cellValue As String) As List(Of Integer)
-        Dim numbers As New List(Of Integer)()
-        Dim pattern As String = "\((.*?)\)|\[(.*?)\]|\{(.*?)\}"
-        For Each match As Match In Regex.Matches(cellValue, pattern)
-            Dim groupVal As String = match.Groups(1).Value
-            If groupVal = "" Then groupVal = match.Groups(2).Value
-            If groupVal = "" Then groupVal = match.Groups(3).Value
-            For Each num As String In groupVal.Split("."c)
-                Dim n As Integer
-                If Integer.TryParse(num.Trim(), n) Then numbers.Add(n)
-            Next
-        Next
-        Return numbers
-    End Function
-
 End Class
