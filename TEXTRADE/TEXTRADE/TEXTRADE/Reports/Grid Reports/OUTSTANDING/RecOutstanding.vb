@@ -3045,7 +3045,7 @@ LINE1:
 
     Private Sub GRIDOUTSTANDING_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GRIDOUTSTANDING.CellFormatting
         Try
-            If Convert.ToBoolean(GRIDOUTSTANDING.Rows(e.RowIndex).Cells(GHOLDINTCALC.Index).Value) = True Then GRIDOUTSTANDING.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Linen
+            If Convert.ToBoolean(GRIDOUTSTANDING.Rows(e.RowIndex).Cells(GHOLDINTCALC.Index).Value) = True Then GRIDOUTSTANDING.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.FromArgb(235, 211, 211)
         Catch ex As Exception
             Throw ex
         End Try

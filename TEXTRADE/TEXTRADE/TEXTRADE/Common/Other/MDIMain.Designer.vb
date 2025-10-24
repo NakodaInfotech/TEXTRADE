@@ -7316,7 +7316,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -7411,7 +7411,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -7495,13 +7495,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
         Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AGENCYOUTSTANDING_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDINGGRID_MENU
@@ -7536,7 +7536,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
         '
         'MAGICBOX_MENU
         '
@@ -7549,25 +7549,25 @@ Partial Class MDIMain
         'MAGICBOXORDER_MENU
         '
         Me.MAGICBOXORDER_MENU.Name = "MAGICBOXORDER_MENU"
-        Me.MAGICBOXORDER_MENU.Size = New System.Drawing.Size(173, 22)
+        Me.MAGICBOXORDER_MENU.Size = New System.Drawing.Size(180, 22)
         Me.MAGICBOXORDER_MENU.Text = "Magic Box Order"
         '
         'MAGICBOXINVOICE_MENU
         '
         Me.MAGICBOXINVOICE_MENU.Name = "MAGICBOXINVOICE_MENU"
-        Me.MAGICBOXINVOICE_MENU.Size = New System.Drawing.Size(173, 22)
+        Me.MAGICBOXINVOICE_MENU.Size = New System.Drawing.Size(180, 22)
         Me.MAGICBOXINVOICE_MENU.Text = "Magic Box Invoice"
         '
         'MAGICBOXRECPAY_MENU
         '
         Me.MAGICBOXRECPAY_MENU.Name = "MAGICBOXRECPAY_MENU"
-        Me.MAGICBOXRECPAY_MENU.Size = New System.Drawing.Size(173, 22)
+        Me.MAGICBOXRECPAY_MENU.Size = New System.Drawing.Size(180, 22)
         Me.MAGICBOXRECPAY_MENU.Text = "Magic Box Rec/Pay"
         '
         'ToolStripSeparator327
         '
         Me.ToolStripSeparator327.Name = "ToolStripSeparator327"
-        Me.ToolStripSeparator327.Size = New System.Drawing.Size(170, 6)
+        Me.ToolStripSeparator327.Size = New System.Drawing.Size(177, 6)
         '
         'MASHOK_REPORTS
         '
