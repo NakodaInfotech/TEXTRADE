@@ -1257,12 +1257,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5CB6B34D561B498D03AB5224C8F718BA"
-        "OwnerKey" = "8:_DC4F6E81DC2E4F77B5AF8907C29D414F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5D3848AA219D8271E6AB4523AF39B133"
         "OwnerKey" = "8:_DC4F6E81DC2E4F77B5AF8907C29D414F"
         "MsmSig" = "8:_UNDEFINED"
@@ -3064,19 +3058,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_697B16CD57F8CB787E04CB741B222070"
+        "OwnerKey" = "8:_1F2B3966F0F00D4109CA7D864ECE75E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DC4F6E81DC2E4F77B5AF8907C29D414F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5CB6B34D561B498D03AB5224C8F718BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3143,12 +3131,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1A57FEA9772DFB65506D1AC49676402F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1F2B3966F0F00D4109CA7D864ECE75E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3517,6 +3499,12 @@
         "OwnerKey" = "8:_1F3722D4648C824E1D103B223DC9669C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_697B16CD57F8CB787E04CB741B222070"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -3614,7 +3602,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.5    "
+                "FrameworkVersion" = "8:v4.5     "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -4490,37 +4478,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CB6B34D561B498D03AB5224C8F718BA"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304"
-                "ScatterAssemblies"
-                {
-                    "_5CB6B34D561B498D03AB5224C8F718BA"
-                    {
-                    "Name" = "8:FlashControlV71.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:FlashControlV71.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F7657B3E70D241718F005FB185D94C85"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5D3848AA219D8271E6AB4523AF39B133"
             {
             "AssemblyRegister" = "3:1"
@@ -4982,7 +4939,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -6023,15 +5980,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TEXTRADE"
-        "ProductCode" = "8:{A26458F7-E317-435E-8E60-07F257A1F158}"
-        "PackageCode" = "8:{0E0397B8-3F10-42AF-99DD-95D09AEECE0F}"
+        "ProductCode" = "8:{7B5C58F7-CC05-4DF8-8FE3-446085AA648E}"
+        "PackageCode" = "8:{D1328194-2B11-48C1-B7F5-F6A714BE3A05}"
         "UpgradeCode" = "8:{00930730-FF1D-4114-8543-BEB35E18A49C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.4"
+        "ProductVersion" = "8:1.0.5"
         "Manufacturer" = "8:Nakoda Infotech"
         "ARPHELPTELEPHONE" = "8:02249724411"
         "ARPHELPLINK" = "8:www.nakodainfotech.com"
