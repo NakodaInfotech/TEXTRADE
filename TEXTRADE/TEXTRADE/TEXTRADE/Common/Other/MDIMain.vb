@@ -10611,7 +10611,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AGENCYOUTSTANDING_MENU_Click(sender As Object, e As EventArgs) Handles AGENCYOUTSTANDING_MENU.Click
+    Private Sub AGENCYOUTSTANDING_MENU_Click(sender As Object, e As EventArgs) 
         Try
             Dim OBJMB As New AgencyOutstandingfilter
             OBJMB.MdiParent = Me
