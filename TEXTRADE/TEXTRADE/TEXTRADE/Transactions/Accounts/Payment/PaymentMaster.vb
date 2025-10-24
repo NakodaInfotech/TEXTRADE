@@ -838,7 +838,9 @@ Public Class PaymentMaster
                         cmbbillno.Enabled = True
                         txtnarr.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("REFNO").Index).Value
                         lblbilltotal.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBALAMT").Index).Value
-
+                        TXTCRDAYS.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("CRDAYS").Index).Value
+                        TXTDAYS.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("DAY1").Index).Value
+                        dtinvduedate.Value = Convert.ToDateTime(GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("DUEDATE").Index).Value).Date
                         Dim A As System.ComponentModel.CancelEventArgs
                         txtamt_Validating(sender, A)
 
@@ -1067,9 +1069,13 @@ Public Class PaymentMaster
                 txtamt.Text = Val(lblbilltotal.Text)
             End If
             'End If
+            Dim dtinvduedate1 As Date
+
+            ' Assign a value (e.g. from a DateTimePicker, or calculated value)
+            dtinvduedate1 = dtinvduedate.Value
             If GRIDDOUBLECLICK = False Then
 
-                gridpayment.Rows.Add(0, txtsrno.Text.Trim, cmbpaytype.Text.Trim, cmbbillno.Text.Trim, txtnarr.Text.Trim, Val(txtamt.Text.Trim), 0, 0, 0, Val(txtamt.Text.Trim))
+                gridpayment.Rows.Add(0, txtsrno.Text.Trim, cmbpaytype.Text.Trim, cmbbillno.Text.Trim, txtnarr.Text.Trim, Val(txtamt.Text.Trim), 0, 0, 0, Val(txtamt.Text.Trim), TXTCRDAYS.Text.Trim, TXTDAYS.Text.Trim, dtinvduedate1.ToString("dd/MM/yyyy"))
                 getpaysrno(gridpayment)
             Else
                 gridpayment.Item(1, TEMPROW).Value = txtsrno.Text.Trim
@@ -1287,6 +1293,14 @@ Public Class PaymentMaster
             GRIDBILL.Columns(16).HeaderText = "Complaint"
             GRIDBILL.Columns(16).ReadOnly = True
 
+            GRIDBILL.Columns(17).Visible = False
+            GRIDBILL.Columns(17).Name = "CRDAYS"
+
+            GRIDBILL.Columns(18).Visible = False
+            GRIDBILL.Columns(18).Name = "DUEDATE"
+
+            GRIDBILL.Columns(19).Visible = False
+            GRIDBILL.Columns(19).Name = "DAY1"
 
         Catch ex As Exception
             Throw ex
