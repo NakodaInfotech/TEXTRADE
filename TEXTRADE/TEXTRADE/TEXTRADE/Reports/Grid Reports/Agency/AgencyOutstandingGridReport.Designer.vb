@@ -58,11 +58,12 @@ Partial Class AgencyOutstandingGridReport
         Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.RBOUTSTANDINGSHORT = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGDAYS = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGGRID = New System.Windows.Forms.RadioButton()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CHKWITHLR = New System.Windows.Forms.CheckBox()
         Me.CHKHOLDINTCALC = New System.Windows.Forms.CheckBox()
         Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.CMDFIND = New System.Windows.Forms.Button()
@@ -182,7 +183,6 @@ Partial Class AgencyOutstandingGridReport
         Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -212,7 +212,7 @@ Partial Class AgencyOutstandingGridReport
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.CMDEXCEL)
         Me.BlendPanel1.Controls.Add(Me.GroupBox4)
-        Me.BlendPanel1.Controls.Add(Me.CheckBox2)
+        Me.BlendPanel1.Controls.Add(Me.CHKWITHLR)
         Me.BlendPanel1.Controls.Add(Me.CHKHOLDINTCALC)
         Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.CMDFIND)
@@ -241,6 +241,20 @@ Partial Class AgencyOutstandingGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1444, 672)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'CMDEXCEL
+        '
+        Me.CMDEXCEL.BackColor = System.Drawing.Color.Transparent
+        Me.CMDEXCEL.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDEXCEL.FlatAppearance.BorderSize = 0
+        Me.CMDEXCEL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDEXCEL.ForeColor = System.Drawing.Color.Black
+        Me.CMDEXCEL.Location = New System.Drawing.Point(975, 77)
+        Me.CMDEXCEL.Name = "CMDEXCEL"
+        Me.CMDEXCEL.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXCEL.TabIndex = 765
+        Me.CMDEXCEL.Text = "&Excel"
+        Me.CMDEXCEL.UseVisualStyleBackColor = False
         '
         'GroupBox4
         '
@@ -288,18 +302,18 @@ Partial Class AgencyOutstandingGridReport
         Me.RBOUTSTANDINGGRID.Text = "Outstanding Report (Grid)"
         Me.RBOUTSTANDINGGRID.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'CHKWITHLR
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.BackColor = System.Drawing.Color.Transparent
-        Me.CheckBox2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox2.ForeColor = System.Drawing.Color.Black
-        Me.CheckBox2.Location = New System.Drawing.Point(988, 22)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(68, 19)
-        Me.CheckBox2.TabIndex = 764
-        Me.CheckBox2.Text = "With LR"
-        Me.CheckBox2.UseVisualStyleBackColor = False
+        Me.CHKWITHLR.AutoSize = True
+        Me.CHKWITHLR.BackColor = System.Drawing.Color.Transparent
+        Me.CHKWITHLR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKWITHLR.ForeColor = System.Drawing.Color.Black
+        Me.CHKWITHLR.Location = New System.Drawing.Point(988, 22)
+        Me.CHKWITHLR.Name = "CHKWITHLR"
+        Me.CHKWITHLR.Size = New System.Drawing.Size(68, 19)
+        Me.CHKWITHLR.TabIndex = 764
+        Me.CHKWITHLR.Text = "With LR"
+        Me.CHKWITHLR.UseVisualStyleBackColor = False
         '
         'CHKHOLDINTCALC
         '
@@ -1754,20 +1768,6 @@ Partial Class AgencyOutstandingGridReport
         Me.Label6.TabIndex = 684
         Me.Label6.Text = "Over Due Days"
         '
-        'CMDEXCEL
-        '
-        Me.CMDEXCEL.BackColor = System.Drawing.Color.Transparent
-        Me.CMDEXCEL.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDEXCEL.FlatAppearance.BorderSize = 0
-        Me.CMDEXCEL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDEXCEL.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXCEL.Location = New System.Drawing.Point(975, 77)
-        Me.CMDEXCEL.Name = "CMDEXCEL"
-        Me.CMDEXCEL.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXCEL.TabIndex = 765
-        Me.CMDEXCEL.Text = "&Excel"
-        Me.CMDEXCEL.UseVisualStyleBackColor = False
-        '
         'AgencyOutstandingGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1936,6 +1936,6 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents RBOUTSTANDINGSHORT As RadioButton
     Friend WithEvents RBOUTSTANDINGDAYS As RadioButton
     Friend WithEvents RBOUTSTANDINGGRID As RadioButton
-    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CHKWITHLR As CheckBox
     Friend WithEvents CMDEXCEL As Button
 End Class
