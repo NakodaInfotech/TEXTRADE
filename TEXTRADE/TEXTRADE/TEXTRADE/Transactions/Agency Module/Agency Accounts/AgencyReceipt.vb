@@ -180,7 +180,7 @@ Public Class AgencyReceipt
         LBLSMS.Visible = False
         TXTSPECIALREMARKS.Clear()
 
-
+        CHKINTCALC.Checked = False
 
     End Sub
 
@@ -474,6 +474,8 @@ Public Class AgencyReceipt
 
                         If dr("CHECKPDC") = 0 Then CHKPDC.Checked = False Else CHKPDC.Checked = True
 
+                        If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
+
                         If dr("RECODATE") = "" Then
                             CHKRECO.CheckState = CheckState.Unchecked
 
@@ -528,7 +530,7 @@ Public Class AgencyReceipt
                     TXTOURREMARKS.Text = Convert.ToString(DT.Rows(0).Item("OURREMARKS"))
                     TXTSPECIALREMARKS.Text = Convert.ToString(DT.Rows(0).Item("SPECIALREMARKS"))
 
-
+                    
 
                     'filling gridINVOICE
                     fillgridINVOICE()
@@ -779,6 +781,7 @@ Public Class AgencyReceipt
             alparaval.Add(TXTCOMPLAINT.Text.Trim)
             alparaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alparaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+            If CHKINTCALC.Checked = True Then alparaval.Add(1) Else alparaval.Add(0)
             Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster
             OBJCLRECEIPT.alParaval = alparaval
 
