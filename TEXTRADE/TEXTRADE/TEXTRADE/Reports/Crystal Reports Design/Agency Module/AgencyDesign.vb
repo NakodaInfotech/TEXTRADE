@@ -3,6 +3,7 @@ Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Windows.Forms
 Imports System.IO
+Imports DevExpress.CodeParser
 
 Public Class AgencyDesign
 
@@ -54,6 +55,8 @@ Public Class AgencyDesign
                 OBJ = New SOReport
             ElseIf FRMSTRING = "ORDERDETAILS" Then
                 OBJ = New AgencySOStatusDetailsReport
+            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                OBJ = New AgencyOutstandingReport_Days
             End If
 
 
@@ -140,6 +143,9 @@ Public Class AgencyDesign
         If FRMSTRING = "SOREPORT" Then
             tempattachment = PARTYNAME & "_SOREPORT"
             objmail.subject = "Sale Order"
+        ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+            tempattachment = PARTYNAME & "_AGENCYOUTSTANDING"
+            objmail.subject = "Agency Outstanding"
         End If
 
         Try
@@ -191,6 +197,8 @@ Public Class AgencyDesign
 
                 If FRMSTRING = "SOREPORT" Then
                     TEMPATTACHMENT = PARTYNAME & "_SOREPORT"
+                ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                    TEMPATTACHMENT = PARTYNAME & "_AGENCYOUTSTANDING"
                 End If
 
                 oDfDopt.DiskFileName = Application.StartupPath & "\" & TEMPATTACHMENT & "_" & SONO & ".pdf"
@@ -225,6 +233,8 @@ Public Class AgencyDesign
                 tempattachment = "SAMPLENOTE"
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 tempattachment = "SAMPLEPRICELIST"
+            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
+                tempattachment = "AGENCYOUTSTANDING"
             End If
 
             Dim OBJWHATSAPP As New SendWhatsapp
