@@ -30,6 +30,7 @@ Public Class AgencyDesign
     Public RATERACK As String = "RATE"
     Public WITHPHOTO As Boolean = False
     Public PARTYSOREPORT As Boolean = False
+    Public OUTSTANDINGWITHLR As Boolean = False
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -56,10 +57,14 @@ Public Class AgencyDesign
                 OBJ = New AgencySOStatusDetailsReport
             ElseIf FRMSTRING = "AGENCYOUTDAY" Then
                 OBJ = New AgencyOutstandingReport_Days
+
             ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDetailsNew
+                OBJ.DataDefinition.FormulaFields("SHOWLR").Text = OUTSTANDINGWITHLR
+
             ElseIf FRMSTRING = "AGENCYOUTGRIDSELLER" Then
-                OBJ = New AgencyOutstandingReport_BuyerDetailsNew
+                OBJ = New AgencyOutstandingReport_SellerDetailsNew
+                OBJ.DataDefinition.FormulaFields("SHOWLR").Text = OUTSTANDINGWITHLR
             End If
 
 
