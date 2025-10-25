@@ -25,7 +25,8 @@ Public Class AgencyReceiptDesign
 
 
     Private Sub AgencyReceiptDesign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim strsearch As String
+        strsearch = ""
         Try
             If DIRECTPRINT = True Then
                 PRINTDIRECTADVICE()
@@ -52,7 +53,8 @@ Public Class AgencyReceiptDesign
             If FRMSTRING = "AGENCYREC" Then
 
                 'strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
-                crTables = RPTAGENCYREC.Database.Tables
+                'crTables = RPTAGENCYREC.Database.Tables
+                crTables = OBJPAY_ABHEE.Database.Tables
                 'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
             End If
@@ -66,6 +68,8 @@ Public Class AgencyReceiptDesign
 
             If FRMSTRING = "AGENCYREC" Then
                 If ClientName = "ABHEE" Then
+                    strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.areceipt_no}= " & recno & " AND {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {LEDGERS.Acc_cmpname} = '" & recname & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+                    crpo.SelectionFormula = strsearch
                     'ADD DATA IN TEMPPAYMENTDETAILS
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
@@ -191,7 +195,9 @@ Public Class AgencyReceiptDesign
             crpo.SelectionFormula = strsearch
             Dim OBJ As New Object
 
-            OBJ = New AgencyRecReport
+            'OBJ = New AgencyRecReport
+            OBJ = New AgencyRecReport_ABHEE
+
             'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
             crTables = OBJ.Database.Tables
