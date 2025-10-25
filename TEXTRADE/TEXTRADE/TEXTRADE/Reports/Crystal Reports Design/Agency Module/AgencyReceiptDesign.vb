@@ -22,6 +22,7 @@ Public Class AgencyReceiptDesign
     Public NOOFCOPIES As Integer = 1
     Dim RPTAGENCYREC As New AgencyRecReport
     Dim OBJPAY_ABHEE As New AgencyRecReport_ABHEE
+    Dim OBJ As New Object
 
 
     Private Sub AgencyReceiptDesign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -50,40 +51,37 @@ Public Class AgencyReceiptDesign
             End With
 
             'If FRMSTRING = "AGENCYREC" Then crTables = RPTAGENCYREC.Database.Tables
-            If FRMSTRING = "AGENCYREC" Then
+            'If FRMSTRING = "AGENCYREC" Then
 
-                'strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
-                'crTables = RPTAGENCYREC.Database.Tables
-                crTables = OBJPAY_ABHEE.Database.Tables
-                'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            'strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
+            'crTables = RPTAGENCYREC.Database.Tables
+            OBJ = New AgencyRecReport_ABHEE
+            crTables = OBJ.Database.Tables
+            'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
-            End If
+            'End If
             For Each crTable In crTables
                 crtableLogonInfo = crTable.LogOnInfo
                 crtableLogonInfo.ConnectionInfo = crConnecttionInfo
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
+            OBJ.RecordSelectionFormula = FORMULA
+            crpo.ReportSource = OBJ
+            crpo.RefreshReport()
 
-            crpo.SelectionFormula = strsearch
+            If ClientName = "ABHEE" Then
+                crpo.SelectionFormula = FORMULA
+                'ADD DATA IN TEMPPAYMENTDETAILS
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPAGENCYPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
+                DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPAGENCYPAYMENTDETAILS SELECT RECNO,  RECDATE, NAME, RECREMARKS, CHQNO, RECAMT, CMPID, YEARID, RECTYPE, RECINITIALS, RECREMARKS FROM AGENCYRECEIPTMASTER INNER JOIN AGENCYRECEIPTMASTER_DESC ON AGENCYRECEIPTMASTER.Areceipt_no= AGENCYRECEIPTMASTER_DESC.Areceipt_no AND AGENCYRECEIPTMASTER.Areceipt_registerid= AGENCYRECEIPTMASTER_DESC.Areceipt_registerid AND AGENCYRECEIPTMASTER.Areceipt_yearid= AGENCYRECEIPTMASTER_DESC.Areceipt_yearid INNER JOIN REGISTERMASTER ON AGENCYRECEIPTMASTER.Areceipt_registerid = REGISTERMASTER.REGISTER_ID INNER JOIN OUTSTANDINGREPORT_DETAILS ON AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND AGENCYRECEIPTMASTER.Areceipt_ledgerid = OUTSTANDINGREPORT_DETAILS.LEDGERID AND AGENCYRECEIPTMASTER_DESC.Areceipt_BILLINITIALS = OUTSTANDINGREPORT_DETAILS.BILLINITIALS AND OUTSTANDINGREPORT_DETAILS.RECINITIALS <> AGENCYRECEIPTMASTER.Areceipt_initials LEFT OUTER JOIN JOURNALMASTER ON  OUTSTANDINGREPORT_DETAILS.RECINITIALS = JOURNALMASTER.journal_initials AND JOURNALMASTER.journal_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND journal_ledgerid <> OUTSTANDINGREPORT_DETAILS.LEDGERID AND journal_credit = OUTSTANDINGREPORT_DETAILS.RECAMT LEFT OUTER JOIN LEDGERS AS JVLEDGERS ON JOURNALMASTER.journal_ledgerid = JVLEDGERS.ACC_ID WHERE (JVLEDGERS.Acc_cmpname IS NULL OR JVLEDGERS.ACC_TDSAC = 'FALSE' ) AND AGENCYRECEIPTMASTER_DESC.Areceipt_no = " & Val(recno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = " & YearId, "", "")
 
-            If FRMSTRING = "AGENCYREC" Then
-                If ClientName = "ABHEE" Then
-                    strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.areceipt_no}= " & recno & " AND {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {LEDGERS.Acc_cmpname} = '" & recname & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
-                    crpo.SelectionFormula = strsearch
-                    'ADD DATA IN TEMPPAYMENTDETAILS
-                    Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
-                    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT RECNO,  RECDATE, NAME, RECREMARKS, CHQNO, RECAMT, CMPID, YEARID, RECTYPE, RECINITIALS, RECREMARKS FROM PAYMENTMASTER INNER JOIN PAYMENTMASTER_DESC ON PAYMENTMASTER.PAYMENT_no= PAYMENTMASTER_DESC.PAYMENT_NO AND PAYMENTMASTER.PAYMENT_registerid= PAYMENTMASTER_DESC.PAYMENT_registerid AND PAYMENTMASTER.PAYMENT_yearid= PAYMENTMASTER_DESC.PAYMENT_YEARID INNER JOIN REGISTERMASTER ON PAYMENTMASTER.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID INNER JOIN OUTSTANDINGREPORT_DETAILS ON PAYMENTMASTER_DESC.PAYMENT_YEARID = OUTSTANDINGREPORT_DETAILS.YEARID AND PAYMENTMASTER.PAYMENT_LEDGERID = OUTSTANDINGREPORT_DETAILS.LEDGERID AND PAYMENTMASTER_DESC.PAYMENT_BILLINITIALS = OUTSTANDINGREPORT_DETAILS.BILLINITIALS AND OUTSTANDINGREPORT_DETAILS.RECINITIALS <> PAYMENTMASTER.PAYMENT_initials LEFT OUTER JOIN JOURNALMASTER ON  OUTSTANDINGREPORT_DETAILS.RECINITIALS = JOURNALMASTER.journal_initials AND JOURNALMASTER.journal_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND journal_ledgerid <> OUTSTANDINGREPORT_DETAILS.LEDGERID AND journal_credit = OUTSTANDINGREPORT_DETAILS.RECAMT LEFT OUTER JOIN LEDGERS AS JVLEDGERS ON JOURNALMASTER.journal_ledgerid = JVLEDGERS.ACC_ID WHERE (JVLEDGERS.Acc_cmpname IS NULL OR JVLEDGERS.ACC_TDSAC = 'FALSE' ) AND PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(recno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId, "", "")
+                'crpo.ReportSource = OBJPAY_ABHEE
 
-                    crpo.ReportSource = OBJPAY_ABHEE
-                Else
-                    crpo.ReportSource = RPTAGENCYREC
-
-                End If
             End If
 
-            crpo.Zoom(100)
-            crpo.Refresh()
+            'crpo.Zoom(100)
+            'crpo.Refresh()
 
         Catch Exp As LoadSaveReportException
             MsgBox("Incorrect path for loading report.",
@@ -144,14 +142,20 @@ Public Class AgencyReceiptDesign
             Dim oDfDopt As New DiskFileDestinationOptions
             oDfDopt.DiskFileName = Application.StartupPath & "\AGENCYRECEIPTREPORT.pdf"
 
-            If FRMSTRING = "AGENCYREC" Then
-                expo = RPTAGENCYREC.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTAGENCYREC.Export()
-            End If
-
+            'If FRMSTRING = "AGENCYREC" Then
+            '    expo = RPTAGENCYREC.ExportOptions
+            '    expo.ExportDestinationType = ExportDestinationType.DiskFile
+            '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            '    expo.DestinationOptions = oDfDopt
+            '    RPTAGENCYREC.Export()
+            'End If
+            expo = OBJ.ExportOptions
+            OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            expo.ExportDestinationType = ExportDestinationType.DiskFile
+            expo.ExportFormatType = ExportFormatType.PortableDocFormat
+            expo.DestinationOptions = oDfDopt
+            OBJ.Export()
+            OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
@@ -191,8 +195,8 @@ Public Class AgencyReceiptDesign
                 .IntegratedSecurity = Dbsecurity
             End With
 
-            strsearch = " {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {AGENCYreceiptmaster.Areceipt_YEARid} = " & YearId
-            crpo.SelectionFormula = strsearch
+            'strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.areceipt_no}= " & recno & " AND {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {LEDGERS.Acc_cmpname} = '" & recname & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+            crpo.SelectionFormula = FORMULA
             Dim OBJ As New Object
 
             'OBJ = New AgencyRecReport
@@ -208,7 +212,7 @@ Public Class AgencyReceiptDesign
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-            OBJ.RecordSelectionFormula = strsearch
+            OBJ.RecordSelectionFormula = FORMULA
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
