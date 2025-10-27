@@ -44,6 +44,7 @@ Partial Class AgencyOpeningBills
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.CMBDELIVERYAT = New System.Windows.Forms.ComboBox()
         Me.TXTGRANDTOTAL = New System.Windows.Forms.TextBox()
         Me.TXTIGSTAMT = New System.Windows.Forms.TextBox()
@@ -129,6 +130,7 @@ Partial Class AgencyOpeningBills
         Me.GCOMPLAINT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOMPLAINTBY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOMPLAINTDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINTCALC = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDOPENING, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +169,7 @@ Partial Class AgencyOpeningBills
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.CHKINTCALC)
         Me.Panel1.Controls.Add(Me.CMBDELIVERYAT)
         Me.Panel1.Controls.Add(Me.TXTGRANDTOTAL)
         Me.Panel1.Controls.Add(Me.TXTIGSTAMT)
@@ -196,6 +199,18 @@ Partial Class AgencyOpeningBills
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1208, 452)
         Me.Panel1.TabIndex = 1
+        '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(2466, 3)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 1019
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'CMBDELIVERYAT
         '
@@ -399,7 +414,7 @@ Partial Class AgencyOpeningBills
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDOPENING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDOPENING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GPARTYBILLNO, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
+        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GPARTYBILLNO, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE, Me.GINTCALC})
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -423,7 +438,7 @@ Partial Class AgencyOpeningBills
         Me.GRIDOPENING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDOPENING.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDOPENING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDOPENING.Size = New System.Drawing.Size(2507, 407)
+        Me.GRIDOPENING.Size = New System.Drawing.Size(2564, 407)
         Me.GRIDOPENING.TabIndex = 11
         Me.GRIDOPENING.TabStop = False
         '
@@ -1114,6 +1129,12 @@ Partial Class AgencyOpeningBills
         Me.GCOMPLAINTDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCOMPLAINTDATE.Visible = False
         '
+        'GINTCALC
+        '
+        Me.GINTCALC.HeaderText = "Hold Int Calc"
+        Me.GINTCALC.Name = "GINTCALC"
+        Me.GINTCALC.ReadOnly = True
+        '
         'AgencyOpeningBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1187,6 +1208,7 @@ Partial Class AgencyOpeningBills
     Friend WithEvents lbl As Label
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents CMBCODE As ComboBox
+    Friend WithEvents CHKINTCALC As CheckBox
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GBILLTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GBILLNO As DataGridViewTextBoxColumn
@@ -1224,4 +1246,5 @@ Partial Class AgencyOpeningBills
     Friend WithEvents GCOMPLAINT As DataGridViewTextBoxColumn
     Friend WithEvents GCOMPLAINTBY As DataGridViewTextBoxColumn
     Friend WithEvents GCOMPLAINTDATE As DataGridViewTextBoxColumn
+    Friend WithEvents GINTCALC As DataGridViewCheckBoxColumn
 End Class

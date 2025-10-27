@@ -11,6 +11,10 @@ Public Class AgencyOutstandingGridReport
 
     Dim FILLDONE As Boolean = True
     Public PARTYNAME As String = ""
+    Dim fromD
+    Dim toD
+    Dim a1, a2, a3, a4 As String
+    Dim a11, a12, a13, a14 As String
 
     Public Sub New()
 
@@ -2493,15 +2497,36 @@ line1:
         End Try
     End Sub
 
+    Sub getFromToDate()
+        a1 = DatePart(DateInterval.Day, dtfrom.Value)
+        a2 = DatePart(DateInterval.Month, dtfrom.Value)
+        a3 = DatePart(DateInterval.Year, dtfrom.Value)
+        fromD = "(" & a3 & "," & a2 & "," & a1 & ")"
+
+        a11 = DatePart(DateInterval.Day, dtto.Value)
+        a12 = DatePart(DateInterval.Month, dtto.Value)
+        a13 = DatePart(DateInterval.Year, dtto.Value)
+        toD = "(" & a13 & "," & a12 & "," & a11 & ")"
+    End Sub
+
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
 
             If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
             Dim OBJDAY As New AgencyDesign
             OBJDAY.MdiParent = MDIMain
-            OBJDAY.FORMULA = " {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
+            OBJDAY.FORMULA = " {AGENCYOUTSTANDINGREC.BALANCE} <> 0 AND {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
             If CMBBUYERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBSELLERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+            If chkdate.Checked = True Then
+                getFromToDate()
+                OBJDAY.FORMULA = OBJDAY.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
+                OBJDAY.PERIOD = Format(dtfrom.Value, "dd/MM/yyyy") & " - " & Format(dtto.Value, "dd/MM/yyyy")
+                OBJDAY.TODATE = dtto.Value.Date
+            Else
+                OBJDAY.PERIOD = Format(AccFrom.Date, "dd/MM/yyyy") & " - " & Format(AccTo.Date, "dd/MM/yyyy")
+                OBJDAY.TODATE = Now.Date
+            End If
 
 
             If RBOUTSTANDINGDAYS.Checked = True Then
@@ -2509,10 +2534,13 @@ line1:
 
             ElseIf RBOUTSTANDINGGRID.Checked = True Then
                 If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJDAY.FRMSTRING = "AGENCYOUTGRIDBUYER" Else OBJDAY.FRMSTRING = "AGENCYOUTGRIDSELLER"
-                OBJDAY.OUTSTANDINGWITHLR = CHKWITHLR.Checked
+
+            ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJDAY.FRMSTRING = "AGENCYOUTSHORTBUYER" Else OBJDAY.FRMSTRING = "AGENCYOUTSHORTSELLER"
 
             End If
 
+            OBJDAY.OUTSTANDINGWITHLR = CHKWITHLR.Checked
             OBJDAY.Show()
         Catch ex As Exception
             Throw ex
