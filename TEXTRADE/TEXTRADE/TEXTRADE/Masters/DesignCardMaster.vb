@@ -2604,6 +2604,14 @@ LINE1:
         ' Clear existing rows in target if needed
         targetGrid.Rows.Clear()
 
+        ' Ensure the target grid has the same number of columns as the source
+        If targetGrid.Columns.Count < sourceGrid.Columns.Count Then
+            ' Add missing columns to target grid
+            For i As Integer = targetGrid.Columns.Count To sourceGrid.Columns.Count - 1
+                targetGrid.Columns.Add(sourceGrid.Columns(i).Name, sourceGrid.Columns(i).HeaderText)
+            Next
+        End If
+
         ' Loop through each non-new row in source
         For Each srcRow As DataGridViewRow In sourceGrid.Rows
             If Not srcRow.IsNewRow Then
@@ -2613,7 +2621,9 @@ LINE1:
 
                 ' Copy cell values from source to target
                 For i As Integer = 0 To sourceGrid.Columns.Count - 1
-                    targetRow.Cells(i).Value = srcRow.Cells(i).Value
+                    If targetRow.Cells.Count > i Then
+                        targetRow.Cells(i).Value = srcRow.Cells(i).Value
+                    End If
                 Next
             End If
         Next
