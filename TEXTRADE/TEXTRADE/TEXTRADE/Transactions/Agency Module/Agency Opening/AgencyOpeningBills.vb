@@ -616,6 +616,9 @@ Public Class AgencyOpeningBills
                 Else
                     GRIDOPENING.Item(GINTCALC.Index, TEMPROW).Value = 0
                 End If
+                GRIDOPENING.Item(GCOMPLAINT.Index, TEMPROW).Value = ""
+                GRIDOPENING.Item(GCOMPLAINTBY.Index, TEMPROW).Value = ""
+                GRIDOPENING.Item(GCOMPLAINTDATE.Index, TEMPROW).Value = ""
                 GRIDDOUBLECLICK = False
             End If
             total()
