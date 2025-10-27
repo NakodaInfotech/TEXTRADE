@@ -394,10 +394,10 @@ Public Class AgencyOpeningBills
             Dim RATE As String = ""
             Dim LRNO As String = ""
             Dim PARTYBILLNO As String = ""
+            Dim HOLDINTCALC As String = ""
             Dim COMPLAINT As String = ""
             Dim COMPLAINTBY As String = ""
             Dim COMPLAINTDATE As String = ""
-            Dim HOLDINTCALC As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDOPENING.Rows
                 If row.Cells(GSRNO.Index).Value <> Nothing Then
@@ -438,10 +438,10 @@ Public Class AgencyOpeningBills
                         RATE = row.Cells(GRATE.Index).Value
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         PARTYBILLNO = row.Cells(GPARTYBILLNO.Index).Value.ToString
+                        HOLDINTCALC = row.Cells(GINTCALC.Index).Value
                         COMPLAINT = row.Cells(GCOMPLAINT.Index).Value
                         COMPLAINTBY = row.Cells(GCOMPLAINTBY.Index).Value
                         COMPLAINTDATE = row.Cells(GCOMPLAINTDATE.Index).Value
-                        HOLDINTCALC = row.Cells(GINTCALC.Index).Value
 
                     Else
 
@@ -480,10 +480,10 @@ Public Class AgencyOpeningBills
                         RATE = RATE & "|" & row.Cells(GRATE.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
                         PARTYBILLNO = PARTYBILLNO & "|" & row.Cells(GPARTYBILLNO.Index).Value.ToString
+                        HOLDINTCALC = HOLDINTCALC & "|" & row.Cells(GINTCALC.Index).Value
                         COMPLAINT = COMPLAINT & "|" & row.Cells(GCOMPLAINT.Index).Value
                         COMPLAINTBY = COMPLAINTBY & "|" & row.Cells(GCOMPLAINTBY.Index).Value
                         COMPLAINTDATE = COMPLAINTDATE & "|" & row.Cells(GCOMPLAINTDATE.Index).Value
-                        HOLDINTCALC = HOLDINTCALC & "|" & row.Cells(GINTCALC.Index).Value
 
                     End If
                 End If
@@ -525,10 +525,10 @@ Public Class AgencyOpeningBills
             alparaval.Add(RATE)
             alparaval.Add(LRNO)
             alparaval.Add(PARTYBILLNO)
+            alparaval.Add(HOLDINTCALC)
             alparaval.Add(COMPLAINT)
             alparaval.Add(COMPLAINTBY)
             alparaval.Add(COMPLAINTDATE)
-            alparaval.Add(HOLDINTCALC)
 
             Dim OBJOPENING As New ClsAgencyOpeningBills
             OBJOPENING.alParaval = alparaval
@@ -571,9 +571,9 @@ Public Class AgencyOpeningBills
 
             If GRIDDOUBLECLICK = False Then
                 If CHKDISPUTE.Checked = True Then
-                    GRIDOPENING.Rows.Add(TXTSRNO.Text.Trim, CMBTYPE.Text.Trim, TXTBILLNO.Text.Trim, TXTYEAR.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), TXTCRDAYS.Text.Trim, Format(DUEDATE.Value.Date, "dd/MM/yyyy"), CMBAGENT.Text.Trim, TXTREMARKS.Text.Trim, 1, CMBDELIVERYAT.Text.Trim, Val(TXTPCS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTTOTALAMT.Text.Trim), Val(TXTCHARGES.Text.Trim), Val(TXTTAXABLEAMT.Text.Trim), Val(TXTCGSTPER.Text.Trim), Val(TXTCGSTAMT.Text.Trim), Val(TXTSGSTPER.Text.Trim), Val(TXTSGSTAMT.Text.Trim), Val(TXTIGSTPER.Text.Trim), Val(TXTIGSTAMT.Text.Trim), Val(TXTGRANDTOTAL.Text.Trim), Val(TXTAMT.Text.Trim), 0, 0, 0, 0, "", 0, "", 0, "", "", "", "", "", CHKINTCALC.Checked)
+                    GRIDOPENING.Rows.Add(TXTSRNO.Text.Trim, CMBTYPE.Text.Trim, TXTBILLNO.Text.Trim, TXTYEAR.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), TXTCRDAYS.Text.Trim, Format(DUEDATE.Value.Date, "dd/MM/yyyy"), CMBAGENT.Text.Trim, TXTREMARKS.Text.Trim, 1, CMBDELIVERYAT.Text.Trim, Val(TXTPCS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTTOTALAMT.Text.Trim), Val(TXTCHARGES.Text.Trim), Val(TXTTAXABLEAMT.Text.Trim), Val(TXTCGSTPER.Text.Trim), Val(TXTCGSTAMT.Text.Trim), Val(TXTSGSTPER.Text.Trim), Val(TXTSGSTAMT.Text.Trim), Val(TXTIGSTPER.Text.Trim), Val(TXTIGSTAMT.Text.Trim), Val(TXTGRANDTOTAL.Text.Trim), Val(TXTAMT.Text.Trim), 0, 0, 0, 0, "", 0, "", 0, "", "", CHKINTCALC.Checked, "", "", "")
                 Else
-                    GRIDOPENING.Rows.Add(TXTSRNO.Text.Trim, CMBTYPE.Text.Trim, TXTBILLNO.Text.Trim, TXTYEAR.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), TXTCRDAYS.Text.Trim, Format(DUEDATE.Value.Date, "dd/MM/yyyy"), CMBAGENT.Text.Trim, TXTREMARKS.Text.Trim, 0, CMBDELIVERYAT.Text.Trim, Val(TXTPCS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTTOTALAMT.Text.Trim), Val(TXTCHARGES.Text.Trim), Val(TXTTAXABLEAMT.Text.Trim), Val(TXTCGSTPER.Text.Trim), Val(TXTCGSTAMT.Text.Trim), Val(TXTSGSTPER.Text.Trim), Val(TXTSGSTAMT.Text.Trim), Val(TXTIGSTPER.Text.Trim), Val(TXTIGSTAMT.Text.Trim), Val(TXTGRANDTOTAL.Text.Trim), Val(TXTAMT.Text.Trim), 0, 0, 0, 0, "", 0, "", 0, "", "", "", "", "", CHKINTCALC.Checked)
+                    GRIDOPENING.Rows.Add(TXTSRNO.Text.Trim, CMBTYPE.Text.Trim, TXTBILLNO.Text.Trim, TXTYEAR.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), TXTCRDAYS.Text.Trim, Format(DUEDATE.Value.Date, "dd/MM/yyyy"), CMBAGENT.Text.Trim, TXTREMARKS.Text.Trim, 0, CMBDELIVERYAT.Text.Trim, Val(TXTPCS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTTOTALAMT.Text.Trim), Val(TXTCHARGES.Text.Trim), Val(TXTTAXABLEAMT.Text.Trim), Val(TXTCGSTPER.Text.Trim), Val(TXTCGSTAMT.Text.Trim), Val(TXTSGSTPER.Text.Trim), Val(TXTSGSTAMT.Text.Trim), Val(TXTIGSTPER.Text.Trim), Val(TXTIGSTAMT.Text.Trim), Val(TXTGRANDTOTAL.Text.Trim), Val(TXTAMT.Text.Trim), 0, 0, 0, 0, "", 0, "", 0, "", "",CHKINTCALC.Checked, "", "", "")
                 End If
                 getsrno(GRIDOPENING)
             Else
