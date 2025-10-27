@@ -532,7 +532,7 @@ Public Class DesignCardMaster
             alParaval.Add(TXTFWIDTHCM.Text.Trim)
             alParaval.Add(TXTGLM.Text.Trim)
             alParaval.Add(TXTBLENDPER.Text.Trim)
-            alParaval.Add(CMBFINISHMETHOD.Text.Trim)
+            alParaval.Add(txtfinishmethod.Text.Trim)
             alParaval.Add(CMBQUALITIES.Text.Trim)
             alParaval.Add(CMBQUALITYTYPE.Text.Trim)
             alParaval.Add(TXTWARPWASTAGE.Text.Trim)
@@ -996,7 +996,7 @@ Public Class DesignCardMaster
                     TXTPRODDAY.Text = Val(dr("PRODDAY"))
                     TXTPCSL.Text = Val(dr("PCSL"))
                     TXTREEDSPACECM.Text = Val(dr("REEDSPACECM"))
-                    CMBFINISHMETHOD.Text = Convert.ToString(dr("FINISHMETHOD").ToString)
+                    txtfinishmethod.Text = Convert.ToString(dr("FINISHMETHOD").ToString)
                     CMBQUALITIES.Text = Convert.ToString(dr("QUALITY").ToString)
                     CMBQUALITYTYPE.Text = Convert.ToString(dr("QUALITYTYPE").ToString)
                     TXTBLENDPER.Text = dr("BLENDPER")
@@ -3007,7 +3007,7 @@ LINE1:
                     End If
                 End If
             End If
-            COPYSELSYM()
+            COPYSYM()
             CALC()
             TOTAL()
         Catch ex As Exception
@@ -4105,7 +4105,7 @@ line1:
                 End If
             End If
             Button1_Click(sender, e)
-            COPYSYM()
+            COPYSELSYM()
             CALC()
             TOTAL()
         Catch ex As Exception
