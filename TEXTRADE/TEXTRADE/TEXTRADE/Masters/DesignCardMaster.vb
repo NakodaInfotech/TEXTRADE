@@ -1099,6 +1099,7 @@ Public Class DesignCardMaster
                 CALC()
                 FILLPEGPLAN()
                 pegplan()
+                'GRIDDRAWING_CellValidating(Nothing, Nothing)
             End If
         Catch ex As Exception
             Throw ex
@@ -4289,7 +4290,10 @@ line1:
                     Next
 
                     ' Store the repetition counts in a new property or variable (or print during printing)
-                    GRIDPEGPLAN.Rows(srRow).Tag = repetitionCount ' Store the repetition count dictionary in the Tag property of the row
+                    If srRow >= 0 AndAlso srRow < GRIDPEGPLAN.RowCount Then
+                        GRIDPEGPLAN.Rows(srRow).Tag = repetitionCount
+                    End If
+                    ' Store the repetition count dictionary in the Tag property of the row
                 End If
             Next
 
