@@ -1929,7 +1929,7 @@ LINE1:
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format((Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
+                        row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -1944,7 +1944,7 @@ LINE1:
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text)), "0.00")
+                    row.Cells(FENDS.Index).Value = Format(((Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
                 Next
             End If
         End If
@@ -1953,7 +1953,7 @@ LINE1:
         TXTGSM.Text = 0.00
         TXTGLM.Text = 0.00
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
-        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) + (1 + (Val(TXTSHRINKAGEPER.Text) / 100)), "0.000")
+        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
         If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
             Dim pcs As Double = Val(TXTNOOFPCS.Text)
             Dim pcsl As Double = Val(TXTPCSL.Text)
@@ -1961,7 +1961,7 @@ LINE1:
             TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
         End If
         If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
-            TXTGSM.Text = Format((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10), "0.00")
+            TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0.00")
         End If
         If TXTGSM.Text <> "" Then
             TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
