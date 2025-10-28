@@ -1676,7 +1676,7 @@ LINE1:
 
     Private Sub CMBDESIGNNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGNNO.Validating
         Try
-            If CMBDESIGNNO.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGNNO, e, Me, CMBITEMNAME.Text.Trim)
+            If CMBDESIGNNO.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGNNO, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1929,7 +1929,7 @@ LINE1:
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
+                        row.Cells(FWT.Index).Value = Format((Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -2475,16 +2475,16 @@ LINE1:
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
         Try
-            If CMBGRIDSYM.Text <> "" Then
-                For Each symRow As DataGridViewRow In GRIDWARP.Rows
-                    If symRow.IsNewRow Then Continue For
-                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
-                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
-                        MessageBox.Show("Multiple Sym Not Allowed.")
-                        CMBGRIDSYM.Focus()
-                    End If
-                Next
-            End If
+            'If CMBGRIDSYM.Text <> "" Then
+            '    For Each symRow As DataGridViewRow In GRIDWARP.Rows
+            '        If symRow.IsNewRow Then Continue For
+            '        Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+            '        If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+            '            MessageBox.Show("Multiple Sym Not Allowed.")
+            '            CMBGRIDSYM.Focus()
+            '        End If
+            '    Next
+            'End If
 
             If CMBWARPQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
@@ -2880,16 +2880,16 @@ LINE1:
 
     Private Sub CMBWEFTYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Validated
         Try
-            If CMBWEFTGRIDSYMBOL.Text <> "" Then
-                For Each symRow As DataGridViewRow In GRIDWEFT.Rows
-                    If symRow.IsNewRow Then Continue For
-                    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
-                    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
-                        MessageBox.Show("Multiple Sym Not Allowed.")
-                        CMBWEFTGRIDSYMBOL.Focus()
-                    End If
-                Next
-            End If
+            'If CMBWEFTGRIDSYMBOL.Text <> "" Then
+            '    For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+            '        If symRow.IsNewRow Then Continue For
+            '        Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+            '        If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+            '            MessageBox.Show("Multiple Sym Not Allowed.")
+            '            CMBWEFTGRIDSYMBOL.Focus()
+            '        End If
+            '    Next
+            'End If
 
             If CMBWEFTYARNQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
