@@ -122,7 +122,8 @@ Public Class ClsRecFromPacking
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MANUALRATE", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@CONTRACTOR", alParaval(I)))
+                I = I + 1
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -238,6 +239,9 @@ Public Class ClsRecFromPacking
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@MANUALRATE", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@CONTRACTOR", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@RECNO", alParaval(I)))
