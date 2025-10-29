@@ -462,7 +462,7 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew1.vb">
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AgencyOutstandingReport_BuyerDetailsNew.rpt</DependentUpon>
@@ -483,12 +483,6 @@
       <DependentUpon>AgencyOutstandingReport_BuyerShort.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AgencyOutstandingReport_BuyerDetailsNew.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_Days.vb">
@@ -8761,6 +8755,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencySOStatusDetailsReport.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgencyOutstandingReport_BuyerDetailsNew.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerShort.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_SellerShort.vb</LastGenOutput>
@@ -8768,10 +8766,6 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerShort.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AgencyOutstandingReport_BuyerShort.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>AgencyOutstandingReport_BuyerDetailsNew1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_Days.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

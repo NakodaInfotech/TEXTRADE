@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AgencyOutstandingGridReport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,43 +20,43 @@ Partial Class AgencyOutstandingGridReport
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle211 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle212 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle226 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle227 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle213 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle214 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle215 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle216 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle217 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle218 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle219 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle220 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle221 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle222 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle223 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle224 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle225 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle228 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle229 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle231 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle232 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle230 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle233 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle234 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle236 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle237 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle235 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle238 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle239 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle244 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle245 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle240 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle241 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle242 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle243 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -183,6 +183,7 @@ Partial Class AgencyOutstandingGridReport
         Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.CHKSHOWINDEX = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -210,6 +211,7 @@ Partial Class AgencyOutstandingGridReport
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKSHOWINDEX)
         Me.BlendPanel1.Controls.Add(Me.CMDEXCEL)
         Me.BlendPanel1.Controls.Add(Me.GroupBox4)
         Me.BlendPanel1.Controls.Add(Me.CHKWITHLR)
@@ -218,6 +220,7 @@ Partial Class AgencyOutstandingGridReport
         Me.BlendPanel1.Controls.Add(Me.CMDFIND)
         Me.BlendPanel1.Controls.Add(Me.GroupBox2)
         Me.BlendPanel1.Controls.Add(Me.GBFIND)
+        Me.BlendPanel1.Controls.Add(Me.CHKDUE)
         Me.BlendPanel1.Controls.Add(Me.CMDPRINT)
         Me.BlendPanel1.Controls.Add(Me.CMBREPORTTYPE)
         Me.BlendPanel1.Controls.Add(Me.Label10)
@@ -249,7 +252,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDEXCEL.FlatAppearance.BorderSize = 0
         Me.CMDEXCEL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXCEL.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXCEL.Location = New System.Drawing.Point(975, 77)
+        Me.CMDEXCEL.Location = New System.Drawing.Point(1043, 77)
         Me.CMDEXCEL.Name = "CMDEXCEL"
         Me.CMDEXCEL.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXCEL.TabIndex = 765
@@ -265,7 +268,7 @@ Partial Class AgencyOutstandingGridReport
         Me.GroupBox4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(592, 8)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(196, 94)
+        Me.GroupBox4.Size = New System.Drawing.Size(213, 94)
         Me.GroupBox4.TabIndex = 6
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Reports"
@@ -308,7 +311,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CHKWITHLR.BackColor = System.Drawing.Color.Transparent
         Me.CHKWITHLR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKWITHLR.ForeColor = System.Drawing.Color.Black
-        Me.CHKWITHLR.Location = New System.Drawing.Point(988, 22)
+        Me.CHKWITHLR.Location = New System.Drawing.Point(1159, 28)
         Me.CHKWITHLR.Name = "CHKWITHLR"
         Me.CHKWITHLR.Size = New System.Drawing.Size(68, 19)
         Me.CHKWITHLR.TabIndex = 764
@@ -321,7 +324,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CHKHOLDINTCALC.BackColor = System.Drawing.Color.Transparent
         Me.CHKHOLDINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKHOLDINTCALC.ForeColor = System.Drawing.Color.Black
-        Me.CHKHOLDINTCALC.Location = New System.Drawing.Point(988, 44)
+        Me.CHKHOLDINTCALC.Location = New System.Drawing.Point(1159, 53)
         Me.CHKHOLDINTCALC.Name = "CHKHOLDINTCALC"
         Me.CHKHOLDINTCALC.Size = New System.Drawing.Size(97, 19)
         Me.CHKHOLDINTCALC.TabIndex = 762
@@ -336,7 +339,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
         Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(889, 44)
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(957, 44)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
         Me.CMDWHATSAPP.TabIndex = 21
@@ -350,7 +353,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDFIND.FlatAppearance.BorderSize = 0
         Me.CMDFIND.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDFIND.ForeColor = System.Drawing.Color.Black
-        Me.CMDFIND.Location = New System.Drawing.Point(889, 77)
+        Me.CMDFIND.Location = New System.Drawing.Point(957, 77)
         Me.CMDFIND.Name = "CMDFIND"
         Me.CMDFIND.Size = New System.Drawing.Size(80, 28)
         Me.CMDFIND.TabIndex = 22
@@ -449,7 +452,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDPRINT.FlatAppearance.BorderSize = 0
         Me.CMDPRINT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDPRINT.ForeColor = System.Drawing.Color.Black
-        Me.CMDPRINT.Location = New System.Drawing.Point(803, 77)
+        Me.CMDPRINT.Location = New System.Drawing.Point(871, 77)
         Me.CMDPRINT.Name = "CMDPRINT"
         Me.CMDPRINT.Size = New System.Drawing.Size(80, 28)
         Me.CMDPRINT.TabIndex = 20
@@ -489,7 +492,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDCLEAR.FlatAppearance.BorderSize = 0
         Me.CMDCLEAR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDCLEAR.ForeColor = System.Drawing.Color.Black
-        Me.CMDCLEAR.Location = New System.Drawing.Point(803, 44)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(871, 44)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
         Me.CMDCLEAR.TabIndex = 19
@@ -538,7 +541,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDSEARCH.FlatAppearance.BorderSize = 0
         Me.CMDSEARCH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSEARCH.ForeColor = System.Drawing.Color.Black
-        Me.CMDSEARCH.Location = New System.Drawing.Point(803, 13)
+        Me.CMDSEARCH.Location = New System.Drawing.Point(871, 10)
         Me.CMDSEARCH.Name = "CMDSEARCH"
         Me.CMDSEARCH.Size = New System.Drawing.Size(80, 28)
         Me.CMDSEARCH.TabIndex = 18
@@ -686,27 +689,27 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDOUTSTANDING.AllowUserToDeleteRows = False
         Me.GRIDOUTSTANDING.AllowUserToResizeColumns = False
         Me.GRIDOUTSTANDING.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDOUTSTANDING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle211.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDOUTSTANDING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle211
         Me.GRIDOUTSTANDING.BackgroundColor = System.Drawing.Color.White
         Me.GRIDOUTSTANDING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDOUTSTANDING.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDOUTSTANDING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle212.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle212.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle212.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle212.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle212.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDOUTSTANDING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle212
         Me.GRIDOUTSTANDING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDOUTSTANDING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GNAME, Me.GINVNO, Me.GDATE, Me.GDUEDATE, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GBILLAMT, Me.GLRNO, Me.GRECDAMT, Me.GBALANCE, Me.GRUNNING, Me.GSRNO, Me.GDAYS, Me.GOVERDUEDAYS, Me.GTOTALDAYS, Me.GCHARGES, Me.GCMPNAME, Me.GTYPE, Me.GBILL, Me.GREGTYPE, Me.GINTAMT, Me.GHOLDINTCALC, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDOUTSTANDING.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle226.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle226.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle226.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle226.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle226.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle226.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle226.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDOUTSTANDING.DefaultCellStyle = DataGridViewCellStyle226
         Me.GRIDOUTSTANDING.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRIDOUTSTANDING.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDOUTSTANDING.Location = New System.Drawing.Point(3, 3)
@@ -715,9 +718,9 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDOUTSTANDING.ReadOnly = True
         Me.GRIDOUTSTANDING.RowHeadersVisible = False
         Me.GRIDOUTSTANDING.RowHeadersWidth = 30
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDOUTSTANDING.RowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle227.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle227.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDOUTSTANDING.RowsDefaultCellStyle = DataGridViewCellStyle227
         Me.GRIDOUTSTANDING.RowTemplate.Height = 20
         Me.GRIDOUTSTANDING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDOUTSTANDING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
@@ -772,8 +775,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GPCS
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle213.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle213
         Me.GPCS.HeaderText = "Pcs/Bags"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.ReadOnly = True
@@ -783,8 +786,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GMTRS
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle214.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle214
         Me.GMTRS.HeaderText = "Mtrs/Kgs"
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.ReadOnly = True
@@ -794,8 +797,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GRATE
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle215.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle215
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.ReadOnly = True
@@ -805,8 +808,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GBILLAMT
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBILLAMT.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle216.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBILLAMT.DefaultCellStyle = DataGridViewCellStyle216
         Me.GBILLAMT.HeaderText = "Bill Amt"
         Me.GBILLAMT.Name = "GBILLAMT"
         Me.GBILLAMT.ReadOnly = True
@@ -824,8 +827,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GRECDAMT
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRECDAMT.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle217.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRECDAMT.DefaultCellStyle = DataGridViewCellStyle217
         Me.GRECDAMT.HeaderText = "Recd Amt"
         Me.GRECDAMT.Name = "GRECDAMT"
         Me.GRECDAMT.ReadOnly = True
@@ -835,8 +838,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GBALANCE
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBALANCE.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle218.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBALANCE.DefaultCellStyle = DataGridViewCellStyle218
         Me.GBALANCE.HeaderText = "Balance"
         Me.GBALANCE.Name = "GBALANCE"
         Me.GBALANCE.ReadOnly = True
@@ -846,8 +849,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GRUNNING
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRUNNING.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle219.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRUNNING.DefaultCellStyle = DataGridViewCellStyle219
         Me.GRUNNING.HeaderText = "Running Bal"
         Me.GRUNNING.Name = "GRUNNING"
         Me.GRUNNING.ReadOnly = True
@@ -857,8 +860,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GSRNO
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle220.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle220
         Me.GSRNO.HeaderText = "Sr No"
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.ReadOnly = True
@@ -868,8 +871,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GDAYS
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle221.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle221
         Me.GDAYS.HeaderText = "CrDays"
         Me.GDAYS.Name = "GDAYS"
         Me.GDAYS.ReadOnly = True
@@ -879,8 +882,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GOVERDUEDAYS
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOVERDUEDAYS.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle222.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GOVERDUEDAYS.DefaultCellStyle = DataGridViewCellStyle222
         Me.GOVERDUEDAYS.HeaderText = "Over Due"
         Me.GOVERDUEDAYS.Name = "GOVERDUEDAYS"
         Me.GOVERDUEDAYS.ReadOnly = True
@@ -890,8 +893,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GTOTALDAYS
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALDAYS.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle223.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALDAYS.DefaultCellStyle = DataGridViewCellStyle223
         Me.GTOTALDAYS.HeaderText = "Total Days"
         Me.GTOTALDAYS.Name = "GTOTALDAYS"
         Me.GTOTALDAYS.ReadOnly = True
@@ -901,8 +904,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GCHARGES
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCHARGES.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle224.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCHARGES.DefaultCellStyle = DataGridViewCellStyle224
         Me.GCHARGES.HeaderText = "Charges"
         Me.GCHARGES.Name = "GCHARGES"
         Me.GCHARGES.ReadOnly = True
@@ -943,8 +946,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'GINTAMT
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GINTAMT.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle225.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GINTAMT.DefaultCellStyle = DataGridViewCellStyle225
         Me.GINTAMT.HeaderText = "Int Amt"
         Me.GINTAMT.Name = "GINTAMT"
         Me.GINTAMT.ReadOnly = True
@@ -1003,27 +1006,27 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDSUMM.AllowUserToOrderColumns = True
         Me.GRIDSUMM.AllowUserToResizeColumns = False
         Me.GRIDSUMM.AllowUserToResizeRows = False
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSUMM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle228.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSUMM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle228
         Me.GRIDSUMM.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSUMM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSUMM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle19.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSUMM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle229.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle229.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle229.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle229.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle229.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSUMM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle229
         Me.GRIDSUMM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDSUMM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SNAME, Me.SBALANCE})
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSUMM.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle231.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle231.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle231.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle231.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle231.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle231.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle231.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSUMM.DefaultCellStyle = DataGridViewCellStyle231
         Me.GRIDSUMM.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRIDSUMM.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDSUMM.Location = New System.Drawing.Point(3, 3)
@@ -1032,9 +1035,9 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDSUMM.ReadOnly = True
         Me.GRIDSUMM.RowHeadersVisible = False
         Me.GRIDSUMM.RowHeadersWidth = 30
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSUMM.RowsDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle232.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle232.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSUMM.RowsDefaultCellStyle = DataGridViewCellStyle232
         Me.GRIDSUMM.RowTemplate.Height = 20
         Me.GRIDSUMM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSUMM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
@@ -1052,10 +1055,10 @@ Partial Class AgencyOutstandingGridReport
         '
         'SBALANCE
         '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle20.Format = "N2"
-        DataGridViewCellStyle20.NullValue = Nothing
-        Me.SBALANCE.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle230.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle230.Format = "N2"
+        DataGridViewCellStyle230.NullValue = Nothing
+        Me.SBALANCE.DefaultCellStyle = DataGridViewCellStyle230
         Me.SBALANCE.HeaderText = "Balance"
         Me.SBALANCE.Name = "SBALANCE"
         Me.SBALANCE.ReadOnly = True
@@ -1078,27 +1081,27 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDADV.AllowUserToDeleteRows = False
         Me.GRIDADV.AllowUserToResizeColumns = False
         Me.GRIDADV.AllowUserToResizeRows = False
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDADV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle233.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDADV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle233
         Me.GRIDADV.BackgroundColor = System.Drawing.Color.White
         Me.GRIDADV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDADV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDADV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle234.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle234.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle234.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle234.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle234.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDADV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle234
         Me.GRIDADV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDADV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ANAME, Me.ARECNO, Me.ADATE, Me.ARECDAMT})
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDADV.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle236.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle236.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle236.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle236.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle236.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle236.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle236.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDADV.DefaultCellStyle = DataGridViewCellStyle236
         Me.GRIDADV.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRIDADV.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDADV.Location = New System.Drawing.Point(0, 0)
@@ -1107,9 +1110,9 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDADV.ReadOnly = True
         Me.GRIDADV.RowHeadersVisible = False
         Me.GRIDADV.RowHeadersWidth = 30
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDADV.RowsDefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle237.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle237.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDADV.RowsDefaultCellStyle = DataGridViewCellStyle237
         Me.GRIDADV.RowTemplate.Height = 20
         Me.GRIDADV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDADV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
@@ -1146,8 +1149,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'ARECDAMT
         '
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.ARECDAMT.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle235.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ARECDAMT.DefaultCellStyle = DataGridViewCellStyle235
         Me.ARECDAMT.HeaderText = "Recd Amt"
         Me.ARECDAMT.Name = "ARECDAMT"
         Me.ARECDAMT.ReadOnly = True
@@ -1171,27 +1174,27 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDPART.AllowUserToDeleteRows = False
         Me.GRIDPART.AllowUserToResizeColumns = False
         Me.GRIDPART.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDPART.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle238.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDPART.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle238
         Me.GRIDPART.BackgroundColor = System.Drawing.Color.White
         Me.GRIDPART.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDPART.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDPART.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle239.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle239.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle239.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle239.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle239.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDPART.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle239
         Me.GRIDPART.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDPART.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PNAME, Me.PINVNO, Me.PDATE, Me.PDUEDATE, Me.PBILLAMT, Me.PLRNO, Me.PITEMNAME, Me.PRECDAMT, Me.PBALANCE, Me.PDAYS})
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDPART.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle244.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle244.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle244.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle244.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle244.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle244.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle244.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDPART.DefaultCellStyle = DataGridViewCellStyle244
         Me.GRIDPART.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRIDPART.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDPART.Location = New System.Drawing.Point(0, 0)
@@ -1200,9 +1203,9 @@ Partial Class AgencyOutstandingGridReport
         Me.GRIDPART.ReadOnly = True
         Me.GRIDPART.RowHeadersVisible = False
         Me.GRIDPART.RowHeadersWidth = 30
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDPART.RowsDefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle245.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle245.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDPART.RowsDefaultCellStyle = DataGridViewCellStyle245
         Me.GRIDPART.RowTemplate.Height = 20
         Me.GRIDPART.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDPART.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
@@ -1247,8 +1250,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'PBILLAMT
         '
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.PBILLAMT.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle240.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.PBILLAMT.DefaultCellStyle = DataGridViewCellStyle240
         Me.PBILLAMT.HeaderText = "Bill Amt"
         Me.PBILLAMT.Name = "PBILLAMT"
         Me.PBILLAMT.ReadOnly = True
@@ -1274,8 +1277,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'PRECDAMT
         '
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.PRECDAMT.DefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle241.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.PRECDAMT.DefaultCellStyle = DataGridViewCellStyle241
         Me.PRECDAMT.HeaderText = "Recd Amt"
         Me.PRECDAMT.Name = "PRECDAMT"
         Me.PRECDAMT.ReadOnly = True
@@ -1284,8 +1287,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'PBALANCE
         '
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.PBALANCE.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle242.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.PBALANCE.DefaultCellStyle = DataGridViewCellStyle242
         Me.PBALANCE.HeaderText = "Balance"
         Me.PBALANCE.Name = "PBALANCE"
         Me.PBALANCE.ReadOnly = True
@@ -1294,8 +1297,8 @@ Partial Class AgencyOutstandingGridReport
         '
         'PDAYS
         '
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.PDAYS.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle243.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.PDAYS.DefaultCellStyle = DataGridViewCellStyle243
         Me.PDAYS.HeaderText = "Days"
         Me.PDAYS.Name = "PDAYS"
         Me.PDAYS.ReadOnly = True
@@ -1315,7 +1318,6 @@ Partial Class AgencyOutstandingGridReport
         Me.TabPage1.Controls.Add(Me.CMBSTATE)
         Me.TabPage1.Controls.Add(Me.CHKLASTYEAR)
         Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Controls.Add(Me.CHKDUE)
         Me.TabPage1.Controls.Add(Me.CMBGROUP)
         Me.TabPage1.Controls.Add(Me.CMBGROUPOFCOMPANY)
         Me.TabPage1.Controls.Add(Me.Label2)
@@ -1635,7 +1637,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CHKDUE.BackColor = System.Drawing.Color.Transparent
         Me.CHKDUE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKDUE.ForeColor = System.Drawing.Color.Black
-        Me.CHKDUE.Location = New System.Drawing.Point(1079, 170)
+        Me.CHKDUE.Location = New System.Drawing.Point(1067, 28)
         Me.CHKDUE.Name = "CHKDUE"
         Me.CHKDUE.Size = New System.Drawing.Size(76, 19)
         Me.CHKDUE.TabIndex = 13
@@ -1767,6 +1769,19 @@ Partial Class AgencyOutstandingGridReport
         Me.Label6.Size = New System.Drawing.Size(87, 15)
         Me.Label6.TabIndex = 684
         Me.Label6.Text = "Over Due Days"
+        '
+        'CHKSHOWINDEX
+        '
+        Me.CHKSHOWINDEX.AutoSize = True
+        Me.CHKSHOWINDEX.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSHOWINDEX.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSHOWINDEX.ForeColor = System.Drawing.Color.Black
+        Me.CHKSHOWINDEX.Location = New System.Drawing.Point(1159, 78)
+        Me.CHKSHOWINDEX.Name = "CHKSHOWINDEX"
+        Me.CHKSHOWINDEX.Size = New System.Drawing.Size(88, 19)
+        Me.CHKSHOWINDEX.TabIndex = 766
+        Me.CHKSHOWINDEX.Text = "Show Index"
+        Me.CHKSHOWINDEX.UseVisualStyleBackColor = False
         '
         'AgencyOutstandingGridReport
         '
@@ -1938,4 +1953,5 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents RBOUTSTANDINGGRID As RadioButton
     Friend WithEvents CHKWITHLR As CheckBox
     Friend WithEvents CMDEXCEL As Button
+    Friend WithEvents CHKSHOWINDEX As CheckBox
 End Class
