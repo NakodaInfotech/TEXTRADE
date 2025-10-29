@@ -126,7 +126,7 @@ Public Class RecFromPacking
         TXTAMTRS.Clear()
         CMBARACK.Text = ""
         CMBASHELF.Text = ""
-
+        CMBCONTRACTOR.Text = ""
 
         If ALLOWMANUALRECNO = True Then
             TXTRECNO.ReadOnly = False
@@ -258,6 +258,11 @@ Public Class RecFromPacking
                 bln = False
             End If
 
+            If (ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "VSTRADERS" Or ClientName = "YUMILONE" Or ClientName = "REVAANT") And CMBCONTRACTOR.Text.Trim = "" Then
+                EP.SetError(CMBCONTRACTOR, "Select Contractor")
+                bln = False
+            End If
+
             If ClientName <> "AVIS" Or (ClientName = "AVIS" And UserName <> "Admin") Then
                 If lbllocked.Visible = True Then
                     EP.SetError(lbllocked, "Item Used, Item Locked")
@@ -309,6 +314,7 @@ Public Class RecFromPacking
                 If DT.Rows.Count > 0 Then
                     If MsgBox("Barcode Already Used In Entry No " & Val(DT.Rows(0).Item("SRNO")) & ", Wish To Proceed?", MsgBoxStyle.YesNo) = vbNo Then
                         EP.SetError(CMBBARCODE, "Barcode Already Used In Entry No " & Val(DT.Rows(0).Item("SRNO")))
+                        EP.SetError(CMBCONTRACTOR, "Barcode Already Used")
                         bln = False
                     End If
                 End If
@@ -567,6 +573,7 @@ Public Class RecFromPacking
             Else
                 alParaval.Add(0)
             End If
+            alParaval.Add(CMBCONTRACTOR.Text.Trim)
 
             Dim OBJJobIn As New ClsRecFromPacking()
             OBJJobIn.alParaval = alParaval
@@ -891,6 +898,7 @@ NEXTLINE:
                         RECDATE.Text = Format(Convert.ToDateTime(dr("RECDATE")).Date, "dd/MM/yyyy")
                         cmbname.Text = Convert.ToString(dr("NAME"))
                         cmbGodown.Text = dr("GODOWN")
+                        CMBCONTRACTOR.Text = dr("CONTRACTOR")
                         TXTLOTNO.Text = dr("LOTNO")
                         TXTREFNO.Text = dr("REFNO")
                         CMBBARCODE.Text = dr("OUTBARCODE")
@@ -977,7 +985,7 @@ NEXTLINE:
         Try
             FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'")
             fillGODOWN(cmbGodown, EDIT)
-
+            If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
             If HIDEALLISSUE = True Then
                 fillPIECETYPE(CMBPIECETYPE)
                 fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
@@ -2436,5 +2444,20 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub cmbcontractor_Enter(sender As Object, e As EventArgs) Handles CMBCONTRACTOR.Enter
+        Try
+            If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbcontractor_Validating(sender As Object, e As CancelEventArgs) Handles CMBCONTRACTOR.Validating
+        Try
+            If CMBCONTRACTOR.Text.Trim <> "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 End Class

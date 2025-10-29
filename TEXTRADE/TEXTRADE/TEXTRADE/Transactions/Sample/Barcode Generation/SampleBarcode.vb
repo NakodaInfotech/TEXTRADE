@@ -407,20 +407,25 @@ Public Class SampleBarcode
 <xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
 D11
 H22
-A2
-4W1D44000001201762,LA," & TXTBARCODE.Text.Trim & "
 ySPM
-1911C1200560007" & CMBDESIGNNO.Text.Trim & "  
+A2
+1911C1200560007" & CMBDESIGNNO.Text.Trim & " 
 1911C0800790007" & CMBMERCHANT.Text.Trim & "
 1911C1200340007" & TEMPWIDTH & "
 1X1100000960000L187001
 1X1100000060000L187001
 1X1100000060000L001090
 1X1100000070185L001090
+1W1D44000001201352,LA," & TXTBARCODE.Text.Trim & "
 Q0001
 E
 <xpml></page></xpml><xpml><end/></xpml>")
                             oWrite.Dispose()
+
+
+
+
+
 
 
                         ElseIf ClientName = "GELATO" Then
@@ -1571,9 +1576,8 @@ PRINT 1,1")
 <xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
 D11
 H22
-A2
-4W1D66000001201792,LA," & ROW("BARCODE") & "
 ySPM
+A2
 1911C1200560007" & ROW("DESIGNNO") & "
 1911C0800790007" & ROW("ITEMNAME") & "
 1911C1200340007" & TEMPWIDTH & "
@@ -1581,10 +1585,15 @@ ySPM
 1X1100000060000L187001
 1X1100000060000L001090
 1X1100000070185L001090
+1W1D44000001201352,LA," & ROW("BARCODE") & "
 Q0001
 E
 <xpml></page></xpml><xpml><end/></xpml>")
                                     oWrite.Dispose()
+
+
+
+
 
                                 ElseIf ClientName = "GELATO" Then
 

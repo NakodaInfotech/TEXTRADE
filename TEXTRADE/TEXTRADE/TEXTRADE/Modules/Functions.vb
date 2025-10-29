@@ -7951,35 +7951,31 @@ line1:
                 uppercase(CMBWEAVE)
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable
-                dt = objclscommon.search("WEAVE_id", "", "WEAVEMASTER", " and WEAVE_NAME = '" & CMBWEAVE.Text.Trim & "' and WEAVE_cmpid = " & CmpId & "and WEAVE_YEARid = " & YearId)
+                dt = objclscommon.search("weave_id", "", "weaveMaster", " and weave_NAME = '" & CMBWEAVE.Text.Trim & "' and weave_cmpid = " & CmpId & " and weave_LOCATIONid = " & Locationid & " and weave_YEARid = " & YearId)
                 If dt.Rows.Count = 0 Then
-                    Dim a As String = CMBWEAVE.Text.Trim
-                    Dim tempmsg As Integer = MsgBox("WEAVE  not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+                    Dim tempmsg As Integer = MsgBox("weave not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
                     If tempmsg = vbYes Then
-                        CMBWEAVE.Text = a
-                        Dim OBJYARN As New CategoryMaster
-                        OBJYARN.TempName = CMBWEAVE.Text.Trim()
-                        OBJYARN.ShowDialog()
-                        dt = objclscommon.search("WEAVE_name", "", " WEAVEMASTER ", " and  WEAVE_name = '" & CMBWEAVE.Text.Trim & "' and WEAVE_Yearid = " & YearId)
-                        If dt.Rows.Count > 0 Then
-                            Dim dt1 As New DataTable
-                            dt1 = CMBWEAVE.DataSource
-                            If CMBWEAVE.DataSource <> Nothing Then
-line1:
-                                If dt1.Rows.Count > 0 Then
-                                    dt1.Rows.Add(CMBWEAVE.Text.Trim)
-                                    CMBWEAVE.Text = a
-                                End If
-                            End If
-                        End If
-                        e.Cancel = True
+                        Dim alParaval As New ArrayList
+
+                        alParaval.Add(CMBWEAVE.Text.Trim)
+                        alParaval.Add("")
+                        alParaval.Add(CmpId)
+                        alParaval.Add(Locationid)
+                        alParaval.Add(Userid)
+                        alParaval.Add(YearId)
+                        alParaval.Add(0)
+
+                        Dim objclsweave As New ClsWeaveMaster
+                        objclsweave.alParaval = alParaval
+                        Dim IntResult As Integer = objclsweave.save()
                     Else
+                        CMBWEAVE.Focus()
+                        CMBWEAVE.SelectAll()
                         e.Cancel = True
                     End If
                 End If
             End If
         Catch ex As Exception
-            GoTo line1
             Throw ex
         Finally
             Cursor.Current = Cursors.Default
@@ -7992,35 +7988,31 @@ line1:
                 uppercase(CMBLOOM)
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable
-                dt = objclscommon.search("LOOM_id", "", "LOOMMASTER", " and LOOM_NAME = '" & CMBLOOM.Text.Trim & "' and LOOM_cmpid = " & CmpId & "and LOOM_YEARid = " & YearId)
+                dt = objclscommon.search("loom_id", "", "loomMaster", " and loom_NAME = '" & CMBLOOM.Text.Trim & "' and loom_cmpid = " & CmpId & " and loom_LOCATIONid = " & Locationid & " and loom_YEARid = " & YearId)
                 If dt.Rows.Count = 0 Then
-                    Dim a As String = CMBLOOM.Text.Trim
-                    Dim tempmsg As Integer = MsgBox("LOOM  not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+                    Dim tempmsg As Integer = MsgBox("loom not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
                     If tempmsg = vbYes Then
-                        CMBLOOM.Text = a
-                        Dim OBJYARN As New CategoryMaster
-                        OBJYARN.tempname = CMBLOOM.Text.Trim()
-                        OBJYARN.ShowDialog()
-                        dt = objclscommon.search("LOOM_name", "", " LOOMMASTER ", " and  LOOM_name = '" & CMBLOOM.Text.Trim & "' and LOOM_Yearid = " & YearId)
-                        If dt.Rows.Count > 0 Then
-                            Dim dt1 As New DataTable
-                            dt1 = CMBLOOM.DataSource
-                            If CMBLOOM.DataSource <> Nothing Then
-line1:
-                                If dt1.Rows.Count > 0 Then
-                                    dt1.Rows.Add(CMBLOOM.Text.Trim)
-                                    CMBLOOM.Text = a
-                                End If
-                            End If
-                        End If
-                        e.Cancel = True
+                        Dim alParaval As New ArrayList
+
+                        alParaval.Add(CMBLOOM.Text.Trim)
+                        alParaval.Add("")
+                        alParaval.Add(CmpId)
+                        alParaval.Add(Locationid)
+                        alParaval.Add(Userid)
+                        alParaval.Add(YearId)
+                        alParaval.Add(0)
+
+                        Dim objclsloom As New ClsLoomMaster
+                        objclsloom.alParaval = alParaval
+                        Dim IntResult As Integer = objclsloom.save()
                     Else
+                        CMBLOOM.Focus()
+                        CMBLOOM.SelectAll()
                         e.Cancel = True
                     End If
                 End If
             End If
         Catch ex As Exception
-            GoTo line1
             Throw ex
         Finally
             Cursor.Current = Cursors.Default

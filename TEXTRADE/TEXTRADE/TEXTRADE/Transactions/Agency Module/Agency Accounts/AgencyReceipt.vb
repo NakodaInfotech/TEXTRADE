@@ -1868,8 +1868,10 @@ LINE1:
                 objrec.recno = Val(txtaccno.Text)
                 objrec.recname = cmbname.Text.Trim
                 objrec.REGNAME = cmbregister.Text.Trim
-                objrec.FRMSTRING = "AGENCYREC"
-                objrec.strsearch = "{AGENCYRECEIPTMASTER.Areceipt_no}=" & Val(txtaccno.Text) & " and {REGISTERMASTER.REGISTER_NAME} = '" & cmbregister.Text.Trim & "' and {AGENCYRECEIPTMASTER.Areceipt_yearid}=" & YearId
+                objrec.FORMULA = "{AGENCYRECEIPT_REPORT.areceipt_no}= '" & txtaccno.Text.Trim & "' AND {AGENCYRECEIPT_REPORT.REGNAME}= '" & cmbregister.Text.Trim & "' and {LEDGERS.Acc_cmpname} = '" & cmbname.Text.Trim & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & "  and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+
+                'objrec.FRMSTRING = "AGENCYREC"
+                'objrec.strsearch = "{AGENCYRECEIPTMASTER.Areceipt_no}=" & Val(txtaccno.Text) & " and {REGISTERMASTER.REGISTER_NAME} = '" & cmbregister.Text.Trim & "' and {AGENCYRECEIPTMASTER.Areceipt_yearid}=" & YearId
                 'objrec.FORMULA = "{AGENCYRECEIPTMASTER.areceipt_no}=" & Val(txtaccno.Text.Trim) & " and {AGENCYRECEIPTMASTER.ARE}=" & cmbregister.Text.Trim & " And {AGENCYRECEIPTMASTER.areceipt_YEARID} = " & YearId
 
                 objrec.MdiParent = MDIMain

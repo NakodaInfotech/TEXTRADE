@@ -532,7 +532,7 @@ Public Class DesignCardMaster
             alParaval.Add(TXTFWIDTHCM.Text.Trim)
             alParaval.Add(TXTGLM.Text.Trim)
             alParaval.Add(TXTBLENDPER.Text.Trim)
-            alParaval.Add(CMBFINISHMETHOD.Text.Trim)
+            alParaval.Add(txtfinishmethod.Text.Trim)
             alParaval.Add(CMBQUALITIES.Text.Trim)
             alParaval.Add(CMBQUALITYTYPE.Text.Trim)
             alParaval.Add(TXTWARPWASTAGE.Text.Trim)
@@ -996,7 +996,7 @@ Public Class DesignCardMaster
                     TXTPRODDAY.Text = Val(dr("PRODDAY"))
                     TXTPCSL.Text = Val(dr("PCSL"))
                     TXTREEDSPACECM.Text = Val(dr("REEDSPACECM"))
-                    CMBFINISHMETHOD.Text = Convert.ToString(dr("FINISHMETHOD").ToString)
+                    txtfinishmethod.Text = Convert.ToString(dr("FINISHMETHOD").ToString)
                     CMBQUALITIES.Text = Convert.ToString(dr("QUALITY").ToString)
                     CMBQUALITYTYPE.Text = Convert.ToString(dr("QUALITYTYPE").ToString)
                     TXTBLENDPER.Text = dr("BLENDPER")
@@ -1099,6 +1099,7 @@ Public Class DesignCardMaster
                 CALC()
                 FILLPEGPLAN()
                 pegplan()
+                'GRIDDRAWING_CellValidating(Nothing, Nothing)
             End If
         Catch ex As Exception
             Throw ex
@@ -1675,7 +1676,7 @@ LINE1:
 
     Private Sub CMBDESIGNNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGNNO.Validating
         Try
-            If CMBDESIGNNO.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGNNO, e, Me, CMBITEMNAME.Text.Trim)
+            If CMBDESIGNNO.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGNNO, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1928,7 +1929,7 @@ LINE1:
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(row.Cells(FPE.Index).Value)) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text) / 9000000, "0.000")
+                        row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
                     End If
                 Next
             End If
@@ -1943,7 +1944,7 @@ LINE1:
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format(Val(TXTREEDSPACE.Text) * (Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text)), "0.00")
+                    row.Cells(FENDS.Index).Value = Format(((Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
                 Next
             End If
         End If
@@ -1952,7 +1953,7 @@ LINE1:
         TXTGSM.Text = 0.00
         TXTGLM.Text = 0.00
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
-        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) + (1 + (Val(TXTSHRINKAGEPER.Text) / 100)), "0.000")
+        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
         If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
             Dim pcs As Double = Val(TXTNOOFPCS.Text)
             Dim pcsl As Double = Val(TXTPCSL.Text)
@@ -1960,7 +1961,7 @@ LINE1:
             TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
         End If
         If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
-            TXTGSM.Text = Format((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10), "0.00")
+            TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0.00")
         End If
         If TXTGSM.Text <> "" Then
             TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
@@ -2474,16 +2475,16 @@ LINE1:
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
         Try
-            If CMBGRIDSYM.Text <> "" Then
-                For Each symRow As DataGridViewRow In GRIDWARP.Rows
-                    If symRow.IsNewRow Then Continue For
-                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
-                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
-                        MessageBox.Show("Multiple Sym Not Allowed.")
-                        CMBGRIDSYM.Focus()
-                    End If
-                Next
-            End If
+            'If CMBGRIDSYM.Text <> "" Then
+            '    For Each symRow As DataGridViewRow In GRIDWARP.Rows
+            '        If symRow.IsNewRow Then Continue For
+            '        Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+            '        If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+            '            MessageBox.Show("Multiple Sym Not Allowed.")
+            '            CMBGRIDSYM.Focus()
+            '        End If
+            '    Next
+            'End If
 
             If CMBWARPQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
@@ -2603,6 +2604,14 @@ LINE1:
         ' Clear existing rows in target if needed
         targetGrid.Rows.Clear()
 
+        ' Ensure the target grid has the same number of columns as the source
+        If targetGrid.Columns.Count < sourceGrid.Columns.Count Then
+            ' Add missing columns to target grid
+            For i As Integer = targetGrid.Columns.Count To sourceGrid.Columns.Count - 1
+                targetGrid.Columns.Add(sourceGrid.Columns(i).Name, sourceGrid.Columns(i).HeaderText)
+            Next
+        End If
+
         ' Loop through each non-new row in source
         For Each srcRow As DataGridViewRow In sourceGrid.Rows
             If Not srcRow.IsNewRow Then
@@ -2612,7 +2621,9 @@ LINE1:
 
                 ' Copy cell values from source to target
                 For i As Integer = 0 To sourceGrid.Columns.Count - 1
-                    targetRow.Cells(i).Value = srcRow.Cells(i).Value
+                    If targetRow.Cells.Count > i Then
+                        targetRow.Cells(i).Value = srcRow.Cells(i).Value
+                    End If
                 Next
             End If
         Next
@@ -2869,16 +2880,16 @@ LINE1:
 
     Private Sub CMBWEFTYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWEFTYARNQUALITY.Validated
         Try
-            If CMBWEFTGRIDSYMBOL.Text <> "" Then
-                For Each symRow As DataGridViewRow In GRIDWEFT.Rows
-                    If symRow.IsNewRow Then Continue For
-                    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
-                    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
-                        MessageBox.Show("Multiple Sym Not Allowed.")
-                        CMBWEFTGRIDSYMBOL.Focus()
-                    End If
-                Next
-            End If
+            'If CMBWEFTGRIDSYMBOL.Text <> "" Then
+            '    For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+            '        If symRow.IsNewRow Then Continue For
+            '        Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+            '        If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+            '            MessageBox.Show("Multiple Sym Not Allowed.")
+            '            CMBWEFTGRIDSYMBOL.Focus()
+            '        End If
+            '    Next
+            'End If
 
             If CMBWEFTYARNQUALITY.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
@@ -3007,7 +3018,7 @@ LINE1:
                     End If
                 End If
             End If
-            COPYSELSYM()
+            COPYSYM()
             CALC()
             TOTAL()
         Catch ex As Exception
@@ -4105,7 +4116,7 @@ line1:
                 End If
             End If
             Button1_Click(sender, e)
-            COPYSYM()
+            COPYSELSYM()
             CALC()
             TOTAL()
         Catch ex As Exception
@@ -4289,7 +4300,10 @@ line1:
                     Next
 
                     ' Store the repetition counts in a new property or variable (or print during printing)
-                    GRIDPEGPLAN.Rows(srRow).Tag = repetitionCount ' Store the repetition count dictionary in the Tag property of the row
+                    If srRow >= 0 AndAlso srRow < GRIDPEGPLAN.RowCount Then
+                        GRIDPEGPLAN.Rows(srRow).Tag = repetitionCount
+                    End If
+                    ' Store the repetition count dictionary in the Tag property of the row
                 End If
             Next
 

@@ -137,8 +137,10 @@ Public Class RecFromPackingDetails
                 If MsgBox("Wish to Print Rec Report from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
                     PRINTREPORT()
                 End If
-                If MsgBox("Wish to Print Barcode from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
-                    PRINTBARCODE()
+                If ClientName <> "MAHAVIRPOLYCOT" Then
+                    If MsgBox("Wish to Print Barcode from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
+                        PRINTBARCODE()
+                    End If
                 End If
             Else
                 If MsgBox("Wish to Print Selected Rec Report?", MsgBoxStyle.YesNo) = vbYes Then
@@ -311,6 +313,12 @@ Public Class RecFromPackingDetails
             If ClientName = "SOFTAS" Then
                 CHKPRINTSERIES.Visible = True
                 If CmpName = "SIDDHIM COTFAB LLP" Then CHKPRINTSERIES.CheckState = True
+            End If
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                LBLFROM.Visible = False
+                LBLTO.Visible = False
+                TXTFROM.Visible = False
+                TXTTO.Visible = False
             End If
         Catch ex As Exception
             Throw ex
