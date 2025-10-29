@@ -27,6 +27,7 @@ Public Class AgencyDesign
     Public WITHPHOTO As Boolean = False
     Public PARTYSOREPORT As Boolean = False
     Public OUTSTANDINGWITHLR As Boolean = False
+    Public SHOWINDEX As Boolean = False
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -58,21 +59,25 @@ Public Class AgencyDesign
             ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDetailsNew
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDSELLER" Then
                 OBJ = New AgencyOutstandingReport_SellerDetailsNew
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
 
             ElseIf FRMSTRING = "AGENCYOUTSHORTBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerShort
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
 
             ElseIf FRMSTRING = "AGENCYOUTSHORTSELLER" Then
                 OBJ = New AgencyOutstandingReport_BuyerShort
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
+                If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
 
             End If
