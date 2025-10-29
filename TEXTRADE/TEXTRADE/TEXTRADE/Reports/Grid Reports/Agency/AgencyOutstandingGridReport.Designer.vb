@@ -154,7 +154,7 @@ Partial Class AgencyOutstandingGridReport
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CHKSELLER = New System.Windows.Forms.CheckBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GPPARTYNAME = New System.Windows.Forms.GroupBox()
         Me.GRIDBUYERDETAILS = New DevExpress.XtraGrid.GridControl()
@@ -165,7 +165,7 @@ Partial Class AgencyOutstandingGridReport
         Me.GCITYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSTATENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAREA = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
+        Me.CHKBUYER = New System.Windows.Forms.CheckBox()
         Me.TXTPERCENT = New System.Windows.Forms.TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.CMBSTATE = New System.Windows.Forms.ComboBox()
@@ -1351,7 +1351,7 @@ Partial Class AgencyOutstandingGridReport
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox3.Controls.Add(Me.GRIDSELLERDETAILS)
-        Me.GroupBox3.Controls.Add(Me.CheckBox1)
+        Me.GroupBox3.Controls.Add(Me.CHKSELLER)
         Me.GroupBox3.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(393, 475)
@@ -1439,18 +1439,18 @@ Partial Class AgencyOutstandingGridReport
         Me.GridColumn7.VisibleIndex = 4
         Me.GridColumn7.Width = 100
         '
-        'CheckBox1
+        'CHKSELLER
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
-        Me.CheckBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox1.ForeColor = System.Drawing.Color.Black
-        Me.CheckBox1.Location = New System.Drawing.Point(18, 22)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(77, 18)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Select All"
-        Me.CheckBox1.UseVisualStyleBackColor = False
+        Me.CHKSELLER.AutoSize = True
+        Me.CHKSELLER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELLER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELLER.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELLER.Location = New System.Drawing.Point(18, 22)
+        Me.CHKSELLER.Name = "CHKSELLER"
+        Me.CHKSELLER.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELLER.TabIndex = 0
+        Me.CHKSELLER.Text = "Select All"
+        Me.CHKSELLER.UseVisualStyleBackColor = False
         '
         'Label12
         '
@@ -1468,7 +1468,7 @@ Partial Class AgencyOutstandingGridReport
         '
         Me.GPPARTYNAME.BackColor = System.Drawing.Color.Transparent
         Me.GPPARTYNAME.Controls.Add(Me.GRIDBUYERDETAILS)
-        Me.GPPARTYNAME.Controls.Add(Me.CHKSELECTALL)
+        Me.GPPARTYNAME.Controls.Add(Me.CHKBUYER)
         Me.GPPARTYNAME.Location = New System.Drawing.Point(405, 6)
         Me.GPPARTYNAME.Name = "GPPARTYNAME"
         Me.GPPARTYNAME.Size = New System.Drawing.Size(393, 475)
@@ -1556,18 +1556,18 @@ Partial Class AgencyOutstandingGridReport
         Me.GAREA.VisibleIndex = 4
         Me.GAREA.Width = 100
         '
-        'CHKSELECTALL
+        'CHKBUYER
         '
-        Me.CHKSELECTALL.AutoSize = True
-        Me.CHKSELECTALL.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSELECTALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
-        Me.CHKSELECTALL.Location = New System.Drawing.Point(18, 22)
-        Me.CHKSELECTALL.Name = "CHKSELECTALL"
-        Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
-        Me.CHKSELECTALL.TabIndex = 0
-        Me.CHKSELECTALL.Text = "Select All"
-        Me.CHKSELECTALL.UseVisualStyleBackColor = False
+        Me.CHKBUYER.AutoSize = True
+        Me.CHKBUYER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKBUYER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKBUYER.ForeColor = System.Drawing.Color.Black
+        Me.CHKBUYER.Location = New System.Drawing.Point(18, 22)
+        Me.CHKBUYER.Name = "CHKBUYER"
+        Me.CHKBUYER.Size = New System.Drawing.Size(77, 18)
+        Me.CHKBUYER.TabIndex = 0
+        Me.CHKBUYER.Text = "Select All"
+        Me.CHKBUYER.UseVisualStyleBackColor = False
         '
         'TXTPERCENT
         '
@@ -1921,7 +1921,7 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CHKSELLER As CheckBox
     Friend WithEvents GPPARTYNAME As GroupBox
     Private WithEvents GRIDBUYERDETAILS As DevExpress.XtraGrid.GridControl
     Private WithEvents GRIDBUYER As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1931,7 +1931,7 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents GCITYNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSTATENAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAREA As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CHKSELECTALL As CheckBox
+    Friend WithEvents CHKBUYER As CheckBox
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents RBOUTSTANDINGSHORT As RadioButton
     Friend WithEvents RBOUTSTANDINGDAYS As RadioButton

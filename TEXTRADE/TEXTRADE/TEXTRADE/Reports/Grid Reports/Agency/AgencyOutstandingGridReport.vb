@@ -3199,4 +3199,32 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CHKSELLER_CheckedChanged(sender As Object, e As EventArgs) Handles CHKSELLER.CheckedChanged
+        Try
+            If GRIDSELLERDETAILS.Visible = True Then
+                For i As Integer = 0 To GRIDSELLER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                    dtrow("CHK") = CHKSELLER.Checked
+                Next
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHKBUYER_CheckedChanged(sender As Object, e As EventArgs) Handles CHKBUYER.CheckedChanged
+        Try
+            If GRIDBUYERDETAILS.Visible = True Then
+                For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                    dtrow("CHK") = CHKBUYER.Checked
+                Next
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

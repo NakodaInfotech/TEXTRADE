@@ -1868,7 +1868,7 @@ LINE1:
                 objrec.recno = Val(txtaccno.Text)
                 objrec.recname = cmbname.Text.Trim
                 objrec.REGNAME = cmbregister.Text.Trim
-                objrec.FORMULA = "{AGENCYRECEIPT_REPORT.areceipt_no}= '" & txtaccno.Text.Trim & "' AND {AGENCYRECEIPT_REPORT.REGNAME}= '" & cmbregister.Text.Trim & "' and {LEDGERS.Acc_cmpname} = '" & cmbname.Text.Trim & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & "  and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+                objrec.FORMULA = "{AGENCYRECEIPT_REPORT.RECEIPTNO}= '" & 19 & "' AND {AGENCYRECEIPT_REPORT.REGNAME}= 'RECEIPT'  and {AGENCYRECEIPT_REPORT.CMPID} = " & 2 & "  and {AGENCYRECEIPT_REPORT.YEARID} = " & 15
 
                 'objrec.FRMSTRING = "AGENCYREC"
                 'objrec.strsearch = "{AGENCYRECEIPTMASTER.Areceipt_no}=" & Val(txtaccno.Text) & " and {REGISTERMASTER.REGISTER_NAME} = '" & cmbregister.Text.Trim & "' and {AGENCYRECEIPTMASTER.Areceipt_yearid}=" & YearId
