@@ -2513,35 +2513,69 @@ line1:
         Try
 
             If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
-            Dim OBJDAY As New AgencyDesign
-            OBJDAY.MdiParent = MDIMain
-            OBJDAY.FORMULA = " {AGENCYOUTSTANDINGREC.BALANCE} <> 0 AND {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
-            If CMBBUYERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then OBJDAY.FORMULA = OBJDAY.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+            Dim OBJOUT As New AgencyDesign
+            OBJOUT.MdiParent = MDIMain
+            OBJOUT.FORMULA = " {AGENCYOUTSTANDINGREC.BALANCE} <> 0 AND {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
+            If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {@OD} > 0 "
+
+
+            Dim BUYERCLAUSE As String = ""
+            Dim SELLERCLAUSE As String = ""
+
+            GRIDBUYER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If BUYERCLAUSE = "" Then BUYERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'" Else BUYERCLAUSE = BUYERCLAUSE & " OR {AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'"
+                End If
+            Next
+            If BUYERCLAUSE <> "" Then
+                BUYERCLAUSE = BUYERCLAUSE & ")"
+                OBJOUT.FORMULA = OBJOUT.FORMULA & BUYERCLAUSE
+            End If
+
+
+            GRIDSELLER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDSELLER.RowCount - 1
+                Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'"
+                End If
+            Next
+            If SELLERCLAUSE <> "" Then
+                SELLERCLAUSE = SELLERCLAUSE & ")"
+                OBJOUT.FORMULA = OBJOUT.FORMULA & SELLERCLAUSE
+            End If
+
+
+
             If chkdate.Checked = True Then
                 getFromToDate()
-                OBJDAY.FORMULA = OBJDAY.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
-                OBJDAY.PERIOD = Format(dtfrom.Value, "dd/MM/yyyy") & " - " & Format(dtto.Value, "dd/MM/yyyy")
-                OBJDAY.TODATE = dtto.Value.Date
+                OBJOUT.FORMULA = OBJOUT.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
+                OBJOUT.PERIOD = Format(dtfrom.Value, "dd/MM/yyyy") & " - " & Format(dtto.Value, "dd/MM/yyyy")
+                OBJOUT.TODATE = dtto.Value.Date
             Else
-                OBJDAY.PERIOD = Format(AccFrom.Date, "dd/MM/yyyy") & " - " & Format(AccTo.Date, "dd/MM/yyyy")
-                OBJDAY.TODATE = Now.Date
+                OBJOUT.PERIOD = Format(AccFrom.Date, "dd/MM/yyyy") & " - " & Format(AccTo.Date, "dd/MM/yyyy")
+                OBJOUT.TODATE = Now.Date
             End If
 
 
             If RBOUTSTANDINGDAYS.Checked = True Then
-                OBJDAY.FRMSTRING = "AGENCYOUTDAY"
+                OBJOUT.FRMSTRING = "AGENCYOUTDAY"
 
             ElseIf RBOUTSTANDINGGRID.Checked = True Then
-                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJDAY.FRMSTRING = "AGENCYOUTGRIDBUYER" Else OBJDAY.FRMSTRING = "AGENCYOUTGRIDSELLER"
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJOUT.FRMSTRING = "AGENCYOUTGRIDBUYER" Else OBJOUT.FRMSTRING = "AGENCYOUTGRIDSELLER"
 
             ElseIf RBOUTSTANDINGSHORT.Checked = True Then
-                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJDAY.FRMSTRING = "AGENCYOUTSHORTBUYER" Else OBJDAY.FRMSTRING = "AGENCYOUTSHORTSELLER"
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJOUT.FRMSTRING = "AGENCYOUTSHORTBUYER" Else OBJOUT.FRMSTRING = "AGENCYOUTSHORTSELLER"
 
             End If
 
-            OBJDAY.OUTSTANDINGWITHLR = CHKWITHLR.Checked
-            OBJDAY.Show()
+            OBJOUT.OUTSTANDINGWITHLR = CHKWITHLR.Checked
+            OBJOUT.SHOWINDEX = CHKSHOWINDEX.Checked
+            OBJOUT.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3195,6 +3229,34 @@ LINE1:
                     ' Exit Sub
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHKSELLER_CheckedChanged(sender As Object, e As EventArgs) Handles CHKSELLER.CheckedChanged
+        Try
+            If GRIDSELLERDETAILS.Visible = True Then
+                For i As Integer = 0 To GRIDSELLER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                    dtrow("CHK") = CHKSELLER.Checked
+                Next
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHKBUYER_CheckedChanged(sender As Object, e As EventArgs) Handles CHKBUYER.CheckedChanged
+        Try
+            If GRIDBUYERDETAILS.Visible = True Then
+                For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                    dtrow("CHK") = CHKBUYER.Checked
+                Next
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

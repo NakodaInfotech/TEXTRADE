@@ -3484,7 +3484,7 @@ NORATE:
             Dim cellValue As String
             For i = 0 To GRIDINVOICE.Rows.Count - 1
                 If Not GRIDINVOICE.Rows(i).IsNewRow Then
-                    cellValue = GRIDINVOICE(GBALENO.Index, i).EditedFormattedValue.ToString()
+                    If ClientName = "ABHEE" Then cellValue = GRIDINVOICE(GLRNO.Index, i).EditedFormattedValue.ToString() Else cellValue = GRIDINVOICE(GBALENO.Index, i).EditedFormattedValue.ToString()
                     If cellValue <> "" Then
                         If Not dic.ContainsKey(cellValue) Then
                             dic.Add(cellValue, 1)

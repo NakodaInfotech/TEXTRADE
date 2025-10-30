@@ -45,8 +45,8 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("TOTAL GST")
                 alParaval.Add(SRNO)
                 alParaval.Add(row.Cells(GBUYERS.Index).Value)
-                alParaval.Add(0)
-                alParaval.Add(row.Cells(GNO.Index).Value)
+                alParaval.Add(row.Cells(GPONO.Index).Value)    'PONO
+                alParaval.Add(row.Cells(GNO.Index).Value)       'PARTYPONO
                 alParaval.Add(Format(Convert.ToDateTime(row.Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy"))    'PODATE
                 alParaval.Add("") 'TXTBALENOFROM.Text.Trim)
                 alParaval.Add("") 'TXTBALENOTO.Text.Trim)
@@ -82,7 +82,7 @@ Public Class MagicBoxForInvoice
                 'If CHKBARCODE.Checked = True Then
                 alParaval.Add(0)
 
-                alParaval.Add(0) 'Val(LBLTOTALBALES.Text.Trim))
+                alParaval.Add(1) 'BY DEFAULT WE NEED 1 COUNT (THIS IS NO OF LR'S)
                 alParaval.Add(Val(row.Cells(GPCS.Index).Value)) 'Val(lbltotalpcs.Text.Trim))
                 alParaval.Add(Val(row.Cells(GMTRS.Index).Value)) 'Val(lbltotalmtrs.Text.Trim))
                 alParaval.Add(Val(row.Cells(GAMT.Index).Value)) 'Val(LBLTOTALAMT.Text.Trim))

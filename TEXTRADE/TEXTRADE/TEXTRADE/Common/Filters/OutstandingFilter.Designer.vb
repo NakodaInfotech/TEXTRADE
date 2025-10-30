@@ -24,6 +24,7 @@ Partial Class OutstandingFilter
     Private Sub InitializeComponent()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CHKCOMPLAINT = New System.Windows.Forms.CheckBox()
         Me.CMDMAIL = New System.Windows.Forms.Button()
         Me.CHKMSME = New System.Windows.Forms.CheckBox()
         Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
@@ -118,7 +119,6 @@ Partial Class OutstandingFilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CHKCOMPLAINT = New System.Windows.Forms.CheckBox()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,8 +191,21 @@ Partial Class OutstandingFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1084, 649)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1084, 611)
         Me.BlendPanel2.TabIndex = 0
+        '
+        'CHKCOMPLAINT
+        '
+        Me.CHKCOMPLAINT.AutoSize = True
+        Me.CHKCOMPLAINT.BackColor = System.Drawing.Color.Transparent
+        Me.CHKCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKCOMPLAINT.ForeColor = System.Drawing.Color.Black
+        Me.CHKCOMPLAINT.Location = New System.Drawing.Point(349, 228)
+        Me.CHKCOMPLAINT.Name = "CHKCOMPLAINT"
+        Me.CHKCOMPLAINT.Size = New System.Drawing.Size(114, 18)
+        Me.CHKCOMPLAINT.TabIndex = 725
+        Me.CHKCOMPLAINT.Text = "Show Complaint"
+        Me.CHKCOMPLAINT.UseVisualStyleBackColor = False
         '
         'CMDMAIL
         '
@@ -201,7 +214,7 @@ Partial Class OutstandingFilter
         Me.CMDMAIL.FlatAppearance.BorderSize = 0
         Me.CMDMAIL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDMAIL.ForeColor = System.Drawing.Color.Black
-        Me.CMDMAIL.Location = New System.Drawing.Point(636, 609)
+        Me.CMDMAIL.Location = New System.Drawing.Point(636, 576)
         Me.CMDMAIL.Name = "CMDMAIL"
         Me.CMDMAIL.Size = New System.Drawing.Size(80, 28)
         Me.CMDMAIL.TabIndex = 724
@@ -238,7 +251,7 @@ Partial Class OutstandingFilter
         Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
         Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(459, 609)
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(459, 576)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
         Me.CMDWHATSAPP.TabIndex = 723
@@ -251,7 +264,7 @@ Partial Class OutstandingFilter
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(599, 198)
+        Me.Label12.Location = New System.Drawing.Point(599, 206)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(148, 14)
         Me.Label12.TabIndex = 720
@@ -259,7 +272,7 @@ Partial Class OutstandingFilter
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(748, 194)
+        Me.TextBox1.Location = New System.Drawing.Point(748, 202)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(31, 23)
         Me.TextBox1.TabIndex = 719
@@ -283,7 +296,7 @@ Partial Class OutstandingFilter
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(74, 154)
+        Me.Label11.Location = New System.Drawing.Point(68, 154)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(65, 14)
         Me.Label11.TabIndex = 718
@@ -307,7 +320,7 @@ Partial Class OutstandingFilter
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(86, 125)
+        Me.Label10.Location = New System.Drawing.Point(81, 125)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(52, 14)
         Me.Label10.TabIndex = 715
@@ -529,7 +542,7 @@ Partial Class OutstandingFilter
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(62, 69)
+        Me.Label5.Location = New System.Drawing.Point(56, 69)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(77, 14)
         Me.Label5.TabIndex = 669
@@ -542,7 +555,7 @@ Partial Class OutstandingFilter
         Me.GroupBox4.Controls.Add(Me.gridbilldetails)
         Me.GroupBox4.Controls.Add(Me.GroupBox5)
         Me.GroupBox4.Controls.Add(Me.GroupBox6)
-        Me.GroupBox4.Location = New System.Drawing.Point(31, 285)
+        Me.GroupBox4.Location = New System.Drawing.Point(31, 246)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(736, 324)
         Me.GroupBox4.TabIndex = 11
@@ -858,7 +871,7 @@ Partial Class OutstandingFilter
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(97, 97)
+        Me.Label2.Location = New System.Drawing.Point(93, 97)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(40, 14)
         Me.Label2.TabIndex = 663
@@ -944,7 +957,7 @@ Partial Class OutstandingFilter
         Me.GroupBox3.Controls.Add(Me.RBINT)
         Me.GroupBox3.Controls.Add(Me.RBALL)
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(460, 21)
+        Me.GroupBox3.Location = New System.Drawing.Point(460, 12)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(425, 171)
         Me.GroupBox3.TabIndex = 10
@@ -1185,7 +1198,7 @@ Partial Class OutstandingFilter
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(97, 41)
+        Me.Label9.Location = New System.Drawing.Point(94, 41)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(39, 14)
         Me.Label9.TabIndex = 419
@@ -1198,7 +1211,7 @@ Partial Class OutstandingFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.Black
-        Me.cmdshow.Location = New System.Drawing.Point(368, 609)
+        Me.cmdshow.Location = New System.Drawing.Point(368, 576)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(85, 28)
         Me.cmdshow.TabIndex = 15
@@ -1212,7 +1225,7 @@ Partial Class OutstandingFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(545, 609)
+        Me.cmdexit.Location = New System.Drawing.Point(545, 576)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(85, 28)
         Me.cmdexit.TabIndex = 16
@@ -1226,23 +1239,10 @@ Partial Class OutstandingFilter
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CHKCOMPLAINT
-        '
-        Me.CHKCOMPLAINT.AutoSize = True
-        Me.CHKCOMPLAINT.BackColor = System.Drawing.Color.Transparent
-        Me.CHKCOMPLAINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKCOMPLAINT.ForeColor = System.Drawing.Color.Black
-        Me.CHKCOMPLAINT.Location = New System.Drawing.Point(349, 228)
-        Me.CHKCOMPLAINT.Name = "CHKCOMPLAINT"
-        Me.CHKCOMPLAINT.Size = New System.Drawing.Size(114, 18)
-        Me.CHKCOMPLAINT.TabIndex = 725
-        Me.CHKCOMPLAINT.Text = "Show Complaint"
-        Me.CHKCOMPLAINT.UseVisualStyleBackColor = False
-        '
         'OutstandingFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1084, 649)
+        Me.ClientSize = New System.Drawing.Size(1084, 611)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
