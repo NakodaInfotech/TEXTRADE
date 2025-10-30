@@ -857,7 +857,7 @@ Public Class InvoiceMaster
             MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
             Exit Sub
         End If
-
+        ' IF COLUMN ADDED 
         Try
             Cursor.Current = Cursors.WaitCursor
             Dim IntResult As Integer
@@ -2017,6 +2017,7 @@ Public Class InvoiceMaster
             alParaval.Add("")   'COMPLAINT
             alParaval.Add("")   'COMPLAINTBY
             alParaval.Add("")   'COMPLAINTDATE
+            alParaval.Add(0)
 
             If CHKMANUALROUND.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
