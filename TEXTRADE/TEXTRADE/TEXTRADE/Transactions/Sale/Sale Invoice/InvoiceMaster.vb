@@ -3045,6 +3045,7 @@ CHECKNEXTLINE:
                     TEMPORDERMATCH = False
                 Next
             End If
+            TOTAL()
         End If
 
 
