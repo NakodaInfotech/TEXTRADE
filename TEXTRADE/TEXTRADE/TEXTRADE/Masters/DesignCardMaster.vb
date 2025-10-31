@@ -731,7 +731,6 @@ Public Class DesignCardMaster
         TXTFINISHWT.Clear()
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
-        CMBGRIDSYM.Text = ""
         TXTWARPSRNO.Text = 1
         CMBGRIDSYM.Text = ""
         CMBWARPQUALITY.Text = ""
@@ -747,7 +746,7 @@ Public Class DesignCardMaster
         TXTWARPCOST.Clear()
         'SELVMATCHING TEXTBOXES
         TXTSELSRNO.Text = 1
-        TXTSELSYMBOL.Text = ""
+        CMBSELGSYM.Text = ""
         CMBSELYARNQUALITY.Text = ""
         TXTSELDEN.Clear()
         CMBSELMILLNAME.Text = ""
@@ -1280,8 +1279,6 @@ LINE1:
             Next
         Next
     End Sub
-
-
     Sub COPYSYM()
         CMBGRIDSYM.Items.Clear()
 
@@ -1341,12 +1338,12 @@ LINE1:
     End Sub
     Sub fillselvedgegrid()
         If GRIDSELDOUBLECLICK = False Then
-            GRIDSELVEDGE.Rows.Add(Val(TXTSELSRNO.Text.Trim), TXTSELSYMBOL.Text.Trim, CMBSELYARNQUALITY.Text.Trim, TXTSELDEN.Text.Trim, CMBSELMILLNAME.Text.Trim, CMBSELSHADE.Text.Trim, Val(TXTSELPE.Text.Trim), Val(TXTSELBE.Text.Trim), Val(TXTSELTE.Text.Trim), Val(TXTSELWT.Text.Trim), Val(TXTSELCONS.Text.Trim), Val(TXTSELRATE.Text.Trim), Val(TXTSELCOST.Text.Trim))
+            GRIDSELVEDGE.Rows.Add(Val(TXTSELSRNO.Text.Trim), CMBSELGSYM.Text.Trim, CMBSELYARNQUALITY.Text.Trim, TXTSELDEN.Text.Trim, CMBSELMILLNAME.Text.Trim, CMBSELSHADE.Text.Trim, Val(TXTSELPE.Text.Trim), Val(TXTSELBE.Text.Trim), Val(TXTSELTE.Text.Trim), Val(TXTSELWT.Text.Trim), Val(TXTSELCONS.Text.Trim), Val(TXTSELRATE.Text.Trim), Val(TXTSELCOST.Text.Trim))
 
             getsrno(GRIDSELVEDGE)
         ElseIf GRIDSELDOUBLECLICK = True Then
             GRIDSELVEDGE.Item(SSRNO.Index, TEMPSELROW).Value = Val(TXTSELSRNO.Text.Trim)
-            GRIDSELVEDGE.Item(SSYM.Index, TEMPSELROW).Value = TXTSELSYMBOL.Text.Trim
+            GRIDSELVEDGE.Item(SSYM.Index, TEMPSELROW).Value = CMBSELGSYM.Text.Trim
             GRIDSELVEDGE.Item(SQUALITY.Index, TEMPSELROW).Value = CMBSELYARNQUALITY.Text.Trim
             GRIDSELVEDGE.Item(SDENIER.Index, TEMPSELROW).Value = TXTSELDEN.Text.Trim
             GRIDSELVEDGE.Item(SMILL.Index, TEMPSELROW).Value = CMBSELMILLNAME.Text.Trim
@@ -1371,7 +1368,14 @@ LINE1:
                 Next
             End If
         End If
-
+        If String.IsNullOrWhiteSpace(CMBSELGSYM.Text) Then
+            ' Set to the first item in the list (top alphabet)
+            If CMBSELGSYM.Items.Count > 0 Then
+                CMBSELGSYM.Text = CMBSELGSYM.Items(0).ToString()
+            End If
+        Else
+            CMBSELGSYM.Text = IncrementAlphabet(CMBSELGSYM.Text, CMBSELGSYM)
+        End If
 
         GRIDSELDESC.EndEdit() '
         ' Remove all rows for the current entry before adding new ones
@@ -1395,9 +1399,8 @@ LINE1:
             Next
         Next
         POPULATESELGRID()
-
-
         GRIDSELVEDGE.ClearSelection()
+
         CLEARSELVEDGE()
         COPYSELSYM()
         TOTALSELVEDGE()
@@ -2182,7 +2185,7 @@ LINE1:
             If GRIDSELVEDGE.CurrentRow.Index >= 0 Then
                 TEMPSELROW = GRIDSELVEDGE.CurrentRow.Index
                 TXTSELSRNO.Text = GRIDSELVEDGE.Item(SSRNO.Index, TEMPSELROW).Value
-                TXTSELSYMBOL.Text = GRIDSELVEDGE.Item(SSYM.Index, TEMPSELROW).Value
+                CMBSELGSYM.Text = GRIDSELVEDGE.Item(SSYM.Index, TEMPSELROW).Value
                 CMBSELYARNQUALITY.Text = GRIDSELVEDGE.Item(SQUALITY.Index, TEMPSELROW).Value
                 TXTSELDEN.Text = GRIDSELVEDGE.Item(SDENIER.Index, TEMPSELROW).Value
                 CMBSELMILLNAME.Text = GRIDSELVEDGE.Item(SMILL.Index, TEMPSELROW).Value
@@ -2195,7 +2198,7 @@ LINE1:
                 TXTSELRATE.Text = GRIDSELVEDGE.Item(SRATE.Index, TEMPSELROW).Value
                 TXTSELCOST.Text = GRIDSELVEDGE.Item(SCOST.Index, TEMPSELROW).Value
                 GRIDSELDOUBLECLICK = True
-                CMBSELYARNQUALITY.Focus()
+                CMBSELGSYM.Focus()
             End If
         End If
     End Sub
@@ -2504,7 +2507,7 @@ LINE1:
     Private Sub GRIDSELVEDGE_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELVEDGE.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDSELVEDGE.RowCount > 0 Then
-                If GRIDDOUBLECLICK = True Then
+                If GRIDSELDOUBLECLICK = True Then
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
@@ -2961,7 +2964,7 @@ LINE1:
 
     Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
         Try
-            If CMBSELYARNQUALITY.Text.Trim <> "" And TXTSELSYMBOL.Text.Trim <> "" Then
+            If CMBSELYARNQUALITY.Text.Trim <> "" And CMBSELGSYM.Text.Trim <> "" Then
                 fillselvedgegrid()
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
@@ -2970,7 +2973,26 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
-
+        Try
+            If CMBSELGSYM.Text <> "" And CMBSELYARNQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDSELVEDGE.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(SSYM.Index).Value?.ToString()
+                    If symValue = CMBSELGSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                    End If
+                Next
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
+            If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
+                fillwarpgrid()
+            End If
+            GBWARP.Visible = False
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDWARPPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARPPATTERN.CellValidating
