@@ -2452,7 +2452,7 @@ line1:
     Private Sub CMBBROKERNAME_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBBUYERNAME.SelectedValueChanged, CMBSELLERNAME.SelectedValueChanged, CMBGROUP.SelectedValueChanged, CMBCITY.SelectedValueChanged, CMBSTATE.SelectedValueChanged, CMBGROUPOFCOMPANY.SelectedValueChanged, CMBITEMNAME.SelectedValueChanged
         Try
             If FILLDONE = False Then Exit Sub
-            CMDSEARCH_Click(sender, e)
+            'CMDSEARCH_Click(sender, e)
         Catch ex As Exception
             Throw ex
         End Try
@@ -2515,9 +2515,12 @@ line1:
             If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
             Dim OBJOUT As New AgencyDesign
             OBJOUT.MdiParent = MDIMain
+            OBJOUT.OUTSTANDINGREPORTS = True
             OBJOUT.FORMULA = " {AGENCYOUTSTANDINGREC.BALANCE} <> 0 AND {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
             If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+
+            If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
             If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {@OD} > 0 "
 
 
@@ -2570,6 +2573,9 @@ line1:
 
             ElseIf RBOUTSTANDINGSHORT.Checked = True Then
                 If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJOUT.FRMSTRING = "AGENCYOUTSHORTBUYER" Else OBJOUT.FRMSTRING = "AGENCYOUTSHORTSELLER"
+
+            ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then OBJOUT.FRMSTRING = "AGENCYOUTDUEBUYER" Else OBJOUT.FRMSTRING = "AGENCYOUTDUESELLER"
 
             End If
 

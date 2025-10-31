@@ -11,7 +11,6 @@ Public Class AgencyOpeningBills
     Public EDIT As Boolean
     Public TEMPREGNAME As String
     Public TEMPNAME As String
-    Public FRMSTRING As String
 
     Dim regabbr, reginitial As String
     Dim regid As Integer
@@ -58,14 +57,9 @@ Public Class AgencyOpeningBills
         TXTGRANDTOTAL.Clear()
         TXTAMT.Clear()
 
-        If FRMSTRING = "AGENCYOPENINGBILLS" Then
-            lbl.Text = "Agency Opening Bill"
-            Me.Text = "Agency Opening Bill"
-        Else
-            CMBTYPE.Enabled = True
-            lbl.Text = "Agency Opening Bill (Interest)"
-            Me.Text = "Agency Opening Bill (Interest)"
-        End If
+        lbl.Text = "Agency Opening Bill"
+        Me.Text = "Agency Opening Bill"
+
 
 
         regabbr = ""
@@ -195,16 +189,14 @@ Public Class AgencyOpeningBills
             End If
 
 
-            If FRMSTRING = "AGENCYOPENINGBILLS" Then
-                'CHECK WHETHER OPENINGTOTAL MATCHES WITH THE OPENING BAL IN LEDGERS
-                Dim OBJCMN As New ClsCommon
+            'CHECK WHETHER OPENINGTOTAL MATCHES WITH THE OPENING BAL IN LEDGERS
+            Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH(" ACC_OPBAL, ACC_DRCR", "", " LEDGERS", " AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId & " AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
                     If Val(DT.Rows(0).Item(0)) <> Val(LBLTOTAL.Text.Trim) Then
                         MsgBox("Total Does not match in Ledgers", MsgBoxStyle.Critical)
                     End If
                 End If
-            End If
             Return BLN
         Catch ex As Exception
             Throw ex
@@ -738,9 +730,7 @@ Public Class AgencyOpeningBills
 
                     OBJOP.alParaval = ALPARAVAL
 
-                    If FRMSTRING = "AGENCYOPENINGBILLS" Then
-                        Dim INTRES As Integer = OBJOP.DELETE
-                    End If
+                    Dim INTRES As Integer = OBJOP.DELETE
 
                     GRIDOPENING.Rows.RemoveAt(GRIDOPENING.CurrentRow.Index)
                     total()
@@ -860,9 +850,7 @@ Public Class AgencyOpeningBills
 
                         OBJOP.alParaval = ALPARAVAL
 
-                        If FRMSTRING = "AGENCYOPENINGBILLS" Then
-                            Dim INTRES As Integer = OBJOP.DELETE
-                        End If
+                        Dim INTRES As Integer = OBJOP.DELETE
                     Next
                     clear()
                     total()

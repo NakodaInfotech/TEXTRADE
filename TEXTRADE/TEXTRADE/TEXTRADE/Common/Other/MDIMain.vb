@@ -10318,16 +10318,16 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem3_Click_1(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem3.Click
-        Try
-            Dim OBJOP As New AgencyOpeningBills
-            OBJOP.FRMSTRING = "AGENCYOPENINGBILLS"
-            OBJOP.MdiParent = Me
-            OBJOP.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub AddNewEntryToolStripMenuItem3_Click_1(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem3.Click
+    '    Try
+    '        Dim OBJOP As New AgencyOpeningBills
+    '        OBJOP.FRMSTRING = "AGENCYOPENINGBILLS"
+    '        OBJOP.MdiParent = Me
+    '        OBJOP.Show()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub EditExistingEntryToolStripMenuItem4_Click_1(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem4.Click
         Try

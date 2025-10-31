@@ -6,8 +6,8 @@ Imports System.IO
 
 Public Class AgencyOutstandingDesign
 
-    Dim RPTOUTSTANDINGBUYER As New AgencyOutstandingReport_BuyerDetails
-    Dim RPTOUTSTANDINGSELLER As New AgencyOutstandingReport_BuyerDetails
+    Dim RPTOUTSTANDINGBUYER As New AgencyOutstandingReport_BuyerDetailsNew
+    Dim RPTOUTSTANDINGSELLER As New AgencyOutstandingReport_SellerDetailsNew
 
     'NEWLY ADDED
     Public REPORTNAME As String
@@ -253,7 +253,7 @@ Public Class AgencyOutstandingDesign
 
             Dim OBJ As New Object
             If FRMSTRING = "BUYEROUTSTANDINGRECDTLS" Then
-                OBJ = New AgencyOutstandingReport_BuyerDetails
+                OBJ = New AgencyOutstandingReport_BuyerDetailsNew
                 OBJ.DataDefinition.FormulaFields("CALDAYS").Text = "'" & DAYS & "'"
                 OBJ.DataDefinition.FormulaFields("TODATE").Text = "#" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "#"
                 OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS

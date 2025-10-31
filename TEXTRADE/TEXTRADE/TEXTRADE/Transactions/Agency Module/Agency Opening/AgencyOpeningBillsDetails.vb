@@ -89,7 +89,6 @@ Public Class AgencyOpeningBillsDetails
             If (editval = False) Or (editval = True And GRIDUSERNAME.RowCount > 0) Then
                 Dim OBJOP As New AgencyOpeningBills
                 OBJOP.MdiParent = MDIMain
-                OBJOP.FRMSTRING = FRMSTRING
                 OBJOP.TEMPNAME = name
                 OBJOP.Show()
             End If
