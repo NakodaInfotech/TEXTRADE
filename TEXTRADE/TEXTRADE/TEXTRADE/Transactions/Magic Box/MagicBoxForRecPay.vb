@@ -298,6 +298,10 @@ Public Class MagicBoxForRecPay
                     alparaval.Add("") 'TXTSPECIALREMARKS.Text.Trim
                     alparaval.Add(Format(Convert.ToDateTime(ROW.Cells(GCHQDATE.Index).Value).Date, "MM/dd/yyyy"))
 
+                    alparaval.Add("")   'COMPLAINT
+                    alparaval.Add("")   'COMPLAINTBY
+                    alparaval.Add("")   'COMPLAINTDATE
+                    alparaval.Add(0)    'HOLDINTCALC
                     ' Initialize the receipt object
                     Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
                     OBJCLRECEIPT.alParaval = alparaval
