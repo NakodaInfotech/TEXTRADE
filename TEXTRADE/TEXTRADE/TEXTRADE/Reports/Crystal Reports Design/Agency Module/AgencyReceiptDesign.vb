@@ -20,6 +20,8 @@ Public Class AgencyReceiptDesign
     Public DIRECTWHATSAPP As Boolean = False
     Public PRINTSETTING As Object = Nothing
     Public NOOFCOPIES As Integer = 1
+
+
     Dim RPTAGENCYREC As New AgencyRecReport
     Dim RPT As New AgencyRecReport_ABHEE
     Dim OBJ As New Object
@@ -50,44 +52,31 @@ Public Class AgencyReceiptDesign
                 .IntegratedSecurity = Dbsecurity
             End With
 
-            'If FRMSTRING = "AGENCYREC" Then crTables = RPTAGENCYREC.Database.Tables
-            'If FRMSTRING = "AGENCYREC" Then
 
-            'strsearch = strsearch & "  {agencyreceiptmaster.areceipt_no}= " & recno & " and {AGENCYRECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {agencyreceiptmaster.areceipt_cmpid} = " & CmpId & " and {agencyreceiptmaster.areceipt_LOCATIONid} = " & Locationid & " and {agencyreceiptmaster.areceipt_YEARid} = " & YearId
-            'crTables = RPTAGENCYREC.Database.Tables
-            'OBJ = New AgencyRecReport_ABHEE
-            crTables = RPT.Database.Tables
-            'If ClientName = "CHINTAN" Then RPTAGENCYREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            If ClientName = "ABHEE" Then
+                crTables = RPT.Database.Tables
+            End If
 
-            'End If
 
-            'For Each crTable In crTables
-            '    crtableLogonInfo = crTable.LogOnInfo
-            '    crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-            '    crTable.ApplyLogOnInfo(crtableLogonInfo)
-            'Next
             For Each crTable In crTables
                 crtableLogonInfo = crTable.LogOnInfo
                 crtableLogonInfo.ConnectionInfo = crConnecttionInfo
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
-            FORMULA = "{AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & " and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId & " and {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "'"
-            'RPT.RecordSelectionFormula = FORMULA
-            RPT.RecordSelectionFormula = FORMULA
-            'crpo.SelectionFormula = FORMULA
-            crpo.ReportSource = RPT
-            crpo.RefreshReport()
 
-            'If ClientName = "ABHEE" Then
-            '    'crpo.SelectionFormula = FORMULA
-            '    'ADD DATA IN TEMPPAYMENTDETAILS
-            '    Dim OBJCMN As New ClsCommon
-            '    Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPAGENCYPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
-            '    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPAGENCYPAYMENTDETAILS SELECT RECNO,  RECDATE, NAME, RECREMARKS, CHQNO, RECAMT, CMPID, YEARID, RECTYPE, RECINITIALS, RECREMARKS FROM AGENCYRECEIPTMASTER INNER JOIN AGENCYRECEIPTMASTER_DESC ON AGENCYRECEIPTMASTER.Areceipt_no= AGENCYRECEIPTMASTER_DESC.Areceipt_no AND AGENCYRECEIPTMASTER.Areceipt_registerid= AGENCYRECEIPTMASTER_DESC.Areceipt_registerid AND AGENCYRECEIPTMASTER.Areceipt_yearid= AGENCYRECEIPTMASTER_DESC.Areceipt_yearid INNER JOIN REGISTERMASTER ON AGENCYRECEIPTMASTER.Areceipt_registerid = REGISTERMASTER.REGISTER_ID INNER JOIN OUTSTANDINGREPORT_DETAILS ON AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND AGENCYRECEIPTMASTER.Areceipt_ledgerid = OUTSTANDINGREPORT_DETAILS.LEDGERID AND AGENCYRECEIPTMASTER_DESC.Areceipt_BILLINITIALS = OUTSTANDINGREPORT_DETAILS.BILLINITIALS AND OUTSTANDINGREPORT_DETAILS.RECINITIALS <> AGENCYRECEIPTMASTER.Areceipt_initials LEFT OUTER JOIN JOURNALMASTER ON  OUTSTANDINGREPORT_DETAILS.RECINITIALS = JOURNALMASTER.journal_initials AND JOURNALMASTER.journal_yearid = OUTSTANDINGREPORT_DETAILS.YEARID AND journal_ledgerid <> OUTSTANDINGREPORT_DETAILS.LEDGERID AND journal_credit = OUTSTANDINGREPORT_DETAILS.RECAMT LEFT OUTER JOIN LEDGERS AS JVLEDGERS ON JOURNALMASTER.journal_ledgerid = JVLEDGERS.ACC_ID WHERE (JVLEDGERS.Acc_cmpname IS NULL OR JVLEDGERS.ACC_TDSAC = 'FALSE' ) AND AGENCYRECEIPTMASTER_DESC.Areceipt_no = " & Val(recno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = " & YearId, "", "")
 
-            '    'crpo.ReportSource = OBJPAY_ABHEE
 
-            'End If
+            strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & " AND {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "' and {LEDGERS.Acc_cmpname} = '" & recname & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+            crpo.SelectionFormula = strsearch
+
+            If ClientName = "ABHEE" Then
+                'ADD DATA IN TEMPAGENCYPAYMENTDETAILS
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPAGENCYPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
+                DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPAGENCYPAYMENTDETAILS SELECT RECNO,  RECDATE, NAME, RECREMARKS, CHQNO, RECAMT, CMPID, YEARID, RECTYPE, RECINITIALS, RECREMARKS FROM AGENCYRECEIPTMASTER INNER JOIN AGENCYRECEIPTMASTER_DESC ON AGENCYRECEIPTMASTER.Areceipt_no= AGENCYRECEIPTMASTER_DESC.Areceipt_no AND AGENCYRECEIPTMASTER.Areceipt_registerid= AGENCYRECEIPTMASTER_DESC.Areceipt_registerid AND AGENCYRECEIPTMASTER.Areceipt_yearid= AGENCYRECEIPTMASTER_DESC.Areceipt_yearid INNER JOIN REGISTERMASTER ON AGENCYRECEIPTMASTER.Areceipt_registerid = REGISTERMASTER.REGISTER_ID INNER JOIN AGENCYOUTSTANDINGREPORT_DETAILS ON AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = AGENCYOUTSTANDINGREPORT_DETAILS.YEARID AND AGENCYRECEIPTMASTER.Areceipt_ledgerid = AGENCYOUTSTANDINGREPORT_DETAILS.LEDGERID AND AGENCYRECEIPTMASTER_DESC.Areceipt_BILLINITIALS = AGENCYOUTSTANDINGREPORT_DETAILS.BILLINITIALS AND AGENCYOUTSTANDINGREPORT_DETAILS.RECINITIALS <> AGENCYRECEIPTMASTER.Areceipt_initials WHERE AGENCYRECEIPTMASTER_DESC.Areceipt_no = " & Val(recno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And AGENCYRECEIPTMASTER_DESC.Areceipt_yearid = " & YearId, "", "")
+                crpo.ReportSource = RPT
+            End If
+
 
             crpo.Zoom(100)
             crpo.Refresh()
