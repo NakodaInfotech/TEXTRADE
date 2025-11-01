@@ -1,9 +1,8 @@
-﻿Imports BL
+﻿
+Imports BL
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
-Imports System.Windows.Forms
 Imports System.IO
-Imports DevExpress.CodeParser
 
 Public Class AgencyDesign
 
@@ -54,8 +53,11 @@ Public Class AgencyDesign
             ElseIf FRMSTRING = "ORDERDETAILS" Then
                 OBJ = New AgencySOStatusDetailsReport
 
-            ElseIf FRMSTRING = "AGENCYOUTDAY" Then
-                OBJ = New AgencyOutstandingReport_Days
+            ElseIf FRMSTRING = "AGENCYOUTDAYSBUYER" Then
+                OBJ = New AgencyOutstandingReport_BuyerDays
+
+            ElseIf FRMSTRING = "AGENCYOUTDAYSSELLER" Then
+                OBJ = New AgencyOutstandingReport_SellerDays
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDetailsNew
@@ -81,7 +83,7 @@ Public Class AgencyDesign
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
                 If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
-                If FRMSTRING <> "AGENCYOUTDUEBUYER" And FRMSTRING <> "AGENCYOUTDUESELLER" And FRMSTRING <> "AGENCYOUTDAY" Then OBJ.SUBREPORTS("SELLERSUMMARY").RecordSelectionFormula = FORMULA
+                If FRMSTRING <> "AGENCYOUTDUEBUYER" And FRMSTRING <> "AGENCYOUTDUESELLER" And FRMSTRING <> "AGENCYOUTDAYSBUYER" And FRMSTRING <> "AGENCYOUTDAYSSELLER" Then OBJ.SUBREPORTS("SELLERSUMMARY").RecordSelectionFormula = FORMULA
             End If
 
 
