@@ -3602,7 +3602,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.5     "
+                "FrameworkVersion" = "8:v4.5      "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -5980,15 +5980,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TEXTRADE"
-        "ProductCode" = "8:{7B5C58F7-CC05-4DF8-8FE3-446085AA648E}"
-        "PackageCode" = "8:{D1328194-2B11-48C1-B7F5-F6A714BE3A05}"
+        "ProductCode" = "8:{6604AC89-335A-4FB1-B259-02E5B624D09B}"
+        "PackageCode" = "8:{AC3D1017-3A4F-4511-9D19-7CADE1324DD6}"
         "UpgradeCode" = "8:{00930730-FF1D-4114-8543-BEB35E18A49C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:Nakoda Infotech"
         "ARPHELPTELEPHONE" = "8:02249724411"
         "ARPHELPLINK" = "8:www.nakodainfotech.com"
