@@ -2252,10 +2252,10 @@ Public Class AgencyOutstandingGridReport
 
 
 
-            FILLGRID()
-            FILLSUMMGRID()
-            FILLADVGRID()
-            FILLPARTGRID()
+            'FILLGRID()
+            'FILLSUMMGRID()
+            'FILLADVGRID()
+            'FILLPARTGRID()
             GRIDSUMM.Columns(SBALANCE.Index).CellTemplate.ValueType = GetType(Decimal)
 
         Catch ex As Exception
@@ -2512,7 +2512,7 @@ line1:
     Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
         Try
 
-            If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
+            'If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
             Dim OBJOUT As New AgencyDesign
             OBJOUT.MdiParent = MDIMain
             OBJOUT.OUTSTANDINGREPORTS = True

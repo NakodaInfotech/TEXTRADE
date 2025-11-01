@@ -81,7 +81,7 @@ Public Class AgencyDesign
                 If OUTSTANDINGWITHLR = True Then OBJ.DataDefinition.FormulaFields("SHOWLR").Text = 1
                 If SHOWINDEX = True Then OBJ.DataDefinition.FormulaFields("SHOWINDEX").Text = 1
                 OBJ.DataDefinition.FormulaFields("TILLDATE").Text = "'" & Format(TODATE.Date, "yyyy-MM-dd") & "'"
-                If FRMSTRING <> "AGENCYOUTDUEBUYER" And FRMSTRING <> "AGENCYOUTDUESELLER" Then OBJ.SUBREPORTS("SELLERSUMMARY").RecordSelectionFormula = FORMULA
+                If FRMSTRING <> "AGENCYOUTDUEBUYER" And FRMSTRING <> "AGENCYOUTDUESELLER" And FRMSTRING <> "AGENCYOUTDAY" Then OBJ.SUBREPORTS("SELLERSUMMARY").RecordSelectionFormula = FORMULA
             End If
 
 
