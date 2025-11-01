@@ -6272,7 +6272,7 @@ LINE1:
                 CHKBILLDISPUTE.Enabled = False
             End If
 
-            If ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "PARTOBA" Then CHKBLANKPAPER.CheckState = CheckState.Checked
+            If ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "PARTOBA" Or ClientName = "INDRAPUJAFABRICS" Then CHKBLANKPAPER.CheckState = CheckState.Checked
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
                 CMDSELECTGDN.Visible = False
