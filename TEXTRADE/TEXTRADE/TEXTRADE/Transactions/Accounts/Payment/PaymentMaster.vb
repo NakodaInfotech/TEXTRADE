@@ -50,7 +50,7 @@ Public Class PaymentMaster
             'SALE BALANCE
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable
-            If ClientName = "DILIP" Then
+            If ClientName = "DILIP" Or ClientName = "BARKHA" Then
                 DT = OBJCMN.SEARCH("(CASE WHEN DR > 0 THEN 'Dr'  ELSE 'Cr' END) AS SALEBAL, isnull(ACC_CRLIMIT,0) AS CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE ", "", "  TRIALBALANCE INNER JOIN LEDGERS ON TRIALBALANCE.LEDGERID = LEDGERS.Acc_ID ", " AND NAME = '" & cmbaccname.Text.Trim & "' AND TRIALBALANCE.YEARID = " & YearId)
 
             Else

@@ -595,6 +595,16 @@ CHECKNEXTLINE:
                 bln = False
             End If
 
+            For Each ROW1 As DataGridViewRow In gridgrn.Rows
+                If ClientName = "SOFTAS" And FRMSTRING = "GRN FANCY" Then
+                    Dim colorValue As Object = ROW1.Cells(gcolor.Index).Value
+
+                    If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
+                        EP.SetError(cmbcolor, "Shade cannot be blank")
+                        bln = False
+                    End If
+                End If
+            Next
 
             If FRMSTRING = "GRNJOB" Then
                 If RECDATE.Text = "__/__/____" Then
@@ -1048,7 +1058,7 @@ CHECKNEXTLINE:
 SKIPLINE:
             If FRMSTRING = "GRN FANCY" Then
                 If ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "VINTAGEINDIA" And ClientName <> "BIGAPPLE" And ClientName <> "AARYA" Then PRINTBARCODE()
-                If ClientName <> "AMAN" And ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "BIGAPPLE" Then PRINTREPORT(Val(txtgrnno.Text.Trim))
+                If ClientName <> "AMAN" And ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "BIGAPPLE" And ClientName <> "SOFTAS" Then PRINTREPORT(Val(txtgrnno.Text.Trim))
 
                 'DIRECTLY ISSUE TO JOBOUT
                 If EDIT = False And (ClientName = "KRFABRICS") Then
@@ -3288,6 +3298,7 @@ LINE1:
 
     Sub PRINTREPORT(ByVal GRNNO As Integer)
         Try
+
             If MsgBox("Wish to Print GRN...?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJGDN As New GRNDesign
                 OBJGDN.MdiParent = MDIMain
@@ -3300,7 +3311,6 @@ LINE1:
                 If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_OUTPCS} = 0"
                 OBJGDN.Show()
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
