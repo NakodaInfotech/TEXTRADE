@@ -320,7 +320,7 @@ Public Class RecFromPacking
                 End If
             End If
 
-            If ClientName = "MNARESH" And UserName <> "Admin" Then
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then
                 Dim TEMPDATE As DateTime = RECDATE.Text
                 If TEMPDATE <> DateTime.Today Then
                     EP.SetError(RECDATE, "You cannot Modify And Create previous Date Entry. ")
