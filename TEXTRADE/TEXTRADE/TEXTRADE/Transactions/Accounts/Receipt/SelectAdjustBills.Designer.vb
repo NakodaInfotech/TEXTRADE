@@ -23,6 +23,10 @@ Partial Class SelectAdjustBills
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBTDSDEDUCTEDAC = New System.Windows.Forms.ComboBox()
+        Me.Label64 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtremaining = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTBILLAMT = New System.Windows.Forms.TextBox()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
@@ -37,14 +41,14 @@ Partial Class SelectAdjustBills
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GADJUSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISPUTE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.txtremaining = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridrec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +58,9 @@ Partial Class SelectAdjustBills
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTADD)
+        Me.BlendPanel1.Controls.Add(Me.CMBTDSDEDUCTEDAC)
+        Me.BlendPanel1.Controls.Add(Me.Label64)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.txtremaining)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -66,8 +73,57 @@ Partial Class SelectAdjustBills
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(846, 593)
+        Me.BlendPanel1.Size = New System.Drawing.Size(926, 593)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'CMBTDSDEDUCTEDAC
+        '
+        Me.CMBTDSDEDUCTEDAC.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTDSDEDUCTEDAC.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTDSDEDUCTEDAC.BackColor = System.Drawing.Color.White
+        Me.CMBTDSDEDUCTEDAC.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTDSDEDUCTEDAC.FormattingEnabled = True
+        Me.CMBTDSDEDUCTEDAC.Items.AddRange(New Object() {""})
+        Me.CMBTDSDEDUCTEDAC.Location = New System.Drawing.Point(419, 4)
+        Me.CMBTDSDEDUCTEDAC.Name = "CMBTDSDEDUCTEDAC"
+        Me.CMBTDSDEDUCTEDAC.Size = New System.Drawing.Size(148, 22)
+        Me.CMBTDSDEDUCTEDAC.TabIndex = 862
+        '
+        'Label64
+        '
+        Me.Label64.AutoSize = True
+        Me.Label64.BackColor = System.Drawing.Color.Transparent
+        Me.Label64.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label64.Location = New System.Drawing.Point(366, 7)
+        Me.Label64.Name = "Label64"
+        Me.Label64.Size = New System.Drawing.Size(47, 14)
+        Me.Label64.TabIndex = 863
+        Me.Label64.Text = "TDS A/c"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(617, 549)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(89, 15)
+        Me.Label3.TabIndex = 637
+        Me.Label3.Text = "Remaining Amt"
+        '
+        'txtremaining
+        '
+        Me.txtremaining.BackColor = System.Drawing.Color.Linen
+        Me.txtremaining.Enabled = False
+        Me.txtremaining.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtremaining.Location = New System.Drawing.Point(712, 546)
+        Me.txtremaining.Name = "txtremaining"
+        Me.txtremaining.ReadOnly = True
+        Me.txtremaining.Size = New System.Drawing.Size(89, 23)
+        Me.txtremaining.TabIndex = 636
+        Me.txtremaining.TabStop = False
+        Me.txtremaining.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
         '
@@ -114,7 +170,7 @@ Partial Class SelectAdjustBills
         Me.griddetails.MainView = Me.gridrec
         Me.griddetails.Name = "griddetails"
         Me.griddetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.griddetails.Size = New System.Drawing.Size(812, 509)
+        Me.griddetails.Size = New System.Drawing.Size(892, 509)
         Me.griddetails.TabIndex = 210
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridrec})
         '
@@ -122,7 +178,7 @@ Partial Class SelectAdjustBills
         '
         Me.gridrec.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridrec.Appearance.Row.Options.UseFont = True
-        Me.gridrec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.GBILLNO, Me.GDATE, Me.GREFNO, Me.GNAME, Me.gtotal, Me.GBALAMT, Me.GADJUSTAMT, Me.GTYPE, Me.GDISPUTE})
+        Me.gridrec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.GBILLNO, Me.GDATE, Me.GREFNO, Me.GNAME, Me.gtotal, Me.GBALAMT, Me.GTDS, Me.GADJUSTAMT, Me.GTYPE, Me.GDISPUTE})
         Me.gridrec.GridControl = Me.griddetails
         Me.gridrec.Name = "gridrec"
         Me.gridrec.OptionsCustomization.AllowColumnMoving = False
@@ -225,6 +281,17 @@ Partial Class SelectAdjustBills
         Me.GBALAMT.VisibleIndex = 6
         Me.GBALAMT.Width = 120
         '
+        'GTDS
+        '
+        Me.GTDS.Caption = "T.D.S."
+        Me.GTDS.DisplayFormat.FormatString = "0.00"
+        Me.GTDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTDS.FieldName = "TDS"
+        Me.GTDS.Name = "GTDS"
+        Me.GTDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TDS", "0.00")})
+        Me.GTDS.Visible = True
+        Me.GTDS.VisibleIndex = 7
+        '
         'GADJUSTAMT
         '
         Me.GADJUSTAMT.Caption = "Adjust Amt"
@@ -234,7 +301,7 @@ Partial Class SelectAdjustBills
         Me.GADJUSTAMT.Name = "GADJUSTAMT"
         Me.GADJUSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GADJUSTAMT.Visible = True
-        Me.GADJUSTAMT.VisibleIndex = 7
+        Me.GADJUSTAMT.VisibleIndex = 8
         Me.GADJUSTAMT.Width = 120
         '
         'GTYPE
@@ -292,36 +359,21 @@ Partial Class SelectAdjustBills
         Me.cmdok.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'txtremaining
+        'TXTADD
         '
-        Me.txtremaining.BackColor = System.Drawing.Color.Linen
-        Me.txtremaining.Enabled = False
-        Me.txtremaining.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtremaining.Location = New System.Drawing.Point(712, 546)
-        Me.txtremaining.Name = "txtremaining"
-        Me.txtremaining.ReadOnly = True
-        Me.txtremaining.Size = New System.Drawing.Size(89, 23)
-        Me.txtremaining.TabIndex = 636
-        Me.txtremaining.TabStop = False
-        Me.txtremaining.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(617, 549)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(89, 15)
-        Me.Label3.TabIndex = 637
-        Me.Label3.Text = "Remaining Amt"
+        Me.TXTADD.BackColor = System.Drawing.SystemColors.Window
+        Me.TXTADD.ForeColor = System.Drawing.Color.Black
+        Me.TXTADD.Location = New System.Drawing.Point(775, 7)
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.Size = New System.Drawing.Size(26, 20)
+        Me.TXTADD.TabIndex = 864
+        Me.TXTADD.Visible = False
         '
         'SelectAdjustBills
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(846, 593)
+        Me.ClientSize = New System.Drawing.Size(926, 593)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Name = "SelectAdjustBills"
         Me.Text = "SelectAdjustBills"
@@ -357,4 +409,8 @@ Partial Class SelectAdjustBills
     Friend WithEvents GADJUSTAMT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents txtremaining As TextBox
+    Friend WithEvents GTDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMBTDSDEDUCTEDAC As ComboBox
+    Friend WithEvents Label64 As Label
+    Friend WithEvents TXTADD As TextBox
 End Class

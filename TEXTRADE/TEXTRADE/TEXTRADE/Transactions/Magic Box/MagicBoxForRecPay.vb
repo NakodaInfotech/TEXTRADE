@@ -1285,7 +1285,8 @@ LINE1:
                     End If
                 Next
                 txtremamount.Text = OBJSELECTBILL.RemAmount
-
+                TXTTDSACC.Text = OBJSELECTBILL.TDSAC
+                TXTTDSAMT.Text = Format(OBJSELECTBILL.TDSAMT, "0.00")
                 TXTBILLNO.Text = SELECTEDBILLNO
                 TXTADJAMOUNT.Text = SELECTEDAMOUNT
                 If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
