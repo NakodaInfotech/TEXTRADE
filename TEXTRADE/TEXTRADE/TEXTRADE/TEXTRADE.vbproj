@@ -466,11 +466,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AgencyOutstandingReport_BuyerDays.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerDetailsNew.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AgencyOutstandingReport_BuyerDetailsNew.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerShort.vb">
       <DependentUpon>AgencyOutstandingReport_SellerShort.rpt</DependentUpon>
@@ -506,6 +508,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AgencyOutstandingReport_SellerDays.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Receipt Reports\AgencyRecReport.vb">
       <DependentUpon>AgencyRecReport.rpt</DependentUpon>

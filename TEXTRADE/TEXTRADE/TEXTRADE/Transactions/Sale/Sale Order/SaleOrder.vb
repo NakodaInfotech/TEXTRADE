@@ -392,7 +392,7 @@ Public Class SaleOrder
 
             CHKFETCHDESC.CheckState = CheckState.Unchecked
 
-                txtpono.Clear()
+            txtpono.Clear()
             DUEDATE.Value = Now.Date
             deldate.Value = Now.Date
             txtcrdays.Clear()
@@ -718,7 +718,16 @@ Public Class SaleOrder
             Next
         End If
 
+        For Each ROW1 As DataGridViewRow In GRIDSO.Rows
+            If ClientName = "SOFTAS" Then
+                Dim colorValue As Object = ROW1.Cells(gcolor.Index).Value
 
+                If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
+                    EP.SetError(cmbcolor, "Shade cannot be blank")
+                    bln = False
+                End If
+            End If
+        Next
         'we have OPENED THE LOCK
         'If lbllocked.Visible = True And LBLCLOSED.Visible = False Then
         '    EP.SetError(lbllocked, "Unable to Update, SO Locked")
@@ -871,36 +880,36 @@ line1:
                         End If
                         'CHECK WHETHER NAME IS EQUAL TO BILLTONAME OR NOT, IF NOT THEN CHANGE IT
                         If ClientName = "KOTHARI" And DT.Rows(0).Item("BILLTONAME") <> "" AndAlso DT.Rows(0).Item("BILLTONAME") <> cmbname.Text.Trim Then
-                                cmbname.Text = DT.Rows(0).Item("BILLTONAME")
-                            End If
-
-
-                            If ClientName = "MNARESH" Or ClientName = "AFW" Then
-                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                                cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
-                                CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
-                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                            End If
-
-
-                            If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                                'cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
-                                CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
-                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                            End If
-
-                            If ClientName = "SUPRIYA" Then
-                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                            End If
-
-                            If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Then
-                                cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                                TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
-                            End If
-
+                            cmbname.Text = DT.Rows(0).Item("BILLTONAME")
                         End If
+
+
+                        If ClientName = "MNARESH" Or ClientName = "AFW" Then
+                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                            cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                            CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                        End If
+
+
+                        If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                            'cmbtrans.Text = DT.Rows(0).Item("TRANSNAME")
+                            CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                        End If
+
+                        If ClientName = "SUPRIYA" Then
+                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                        End If
+
+                        If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "SUPEEMA" Or ClientName = "MAHAVIRPOLYCOT" Then
+                            cmbcity.Text = DT.Rows(0).Item("CITYNAME")
+                            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                        End If
+
                     End If
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -2142,6 +2151,11 @@ line1:
                 GRATE.ReadOnly = True
             End If
 
+            If ClientName = "SOFTAS" Then
+                gdesc.ReadOnly = False
+                GPARTYPONO.HeaderText = "Series"
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2720,13 +2734,13 @@ LINESINGLE:
                     End If
                 End If
                 If ClientName = "SNCM" Then
-                        If cmbitemname.Text.Trim <> "" And CMBFORWARD.Text = "READY" Then
-                            DT = OBJCMN.SEARCH(" ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_SETMTRS,0) AS SETMTRS ", "", " ITEMDESIGNIMAGE LEFT OUTER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = ITEMMASTER.item_yearid AND ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND ITEMMASTER.item_NAME  = '" & cmbitemname.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TXTCUT.Text = DT.Rows(0).Item("SETMTRS")
-                        End If
+                    If cmbitemname.Text.Trim <> "" And CMBFORWARD.Text = "READY" Then
+                        DT = OBJCMN.SEARCH(" ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_SETMTRS,0) AS SETMTRS ", "", " ITEMDESIGNIMAGE LEFT OUTER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = ITEMMASTER.item_yearid AND ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND ITEMMASTER.item_NAME  = '" & cmbitemname.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then TXTCUT.Text = DT.Rows(0).Item("SETMTRS")
                     End If
-
                 End If
+
+            End If
 
 
         Catch ex As Exception
@@ -3361,7 +3375,7 @@ NEXTLINE1:
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
 
 LINE1:
-                    total()
+                    TOTAL()
                     TXTBARCODE.Clear()
                     TXTBARCODE.Focus()
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
@@ -3672,7 +3686,7 @@ LINE1:
 
                         GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), 0, 0, 0, 0, 0)
                     Next
-                    total()
+                    TOTAL()
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
                 End If
 
