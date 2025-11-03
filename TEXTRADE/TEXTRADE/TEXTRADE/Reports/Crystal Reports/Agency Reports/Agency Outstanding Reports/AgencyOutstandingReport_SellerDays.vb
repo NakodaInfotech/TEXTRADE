@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class AgencyOutstandingReport_SellerOnlyDue
+Public Class AgencyOutstandingReport_SellerDays
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "AgencyOutstandingReport_SellerOnlyDue.rpt"
+            Return "AgencyOutstandingReport_SellerDays.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.AgencyOutstandingReport_SellerOnlyDue.rpt"
+            Return "TEXTRADE.AgencyOutstandingReport_SellerDays.rpt"
         End Get
         Set
             'Do nothing
@@ -78,7 +78,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection8() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -118,7 +118,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection9() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(8)
         End Get
@@ -134,7 +134,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection5() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(10)
         End Get
@@ -142,7 +142,7 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection6() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(11)
         End Get
@@ -150,39 +150,15 @@ Public Class AgencyOutstandingReport_SellerOnlyDue
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(12)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(13)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(14)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
     Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
         Get
-            Return Me.ReportDefinition.Sections(15)
+            Return Me.ReportDefinition.Sections(12)
         End Get
     End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedAgencyOutstandingReport_SellerOnlyDue
+Public Class CachedAgencyOutstandingReport_SellerDays
     Inherits Component
     Implements ICachedReport
     
@@ -224,7 +200,7 @@ Public Class CachedAgencyOutstandingReport_SellerOnlyDue
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As AgencyOutstandingReport_SellerOnlyDue = New AgencyOutstandingReport_SellerOnlyDue()
+        Dim rpt As AgencyOutstandingReport_SellerDays = New AgencyOutstandingReport_SellerDays()
         rpt.Site = Me.Site
         Return rpt
     End Function
