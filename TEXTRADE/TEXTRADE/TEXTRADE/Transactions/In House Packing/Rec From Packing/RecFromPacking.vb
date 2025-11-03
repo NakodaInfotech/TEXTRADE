@@ -2434,6 +2434,10 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+        FILLBARCODE()
+    End Sub
+
     Private Sub CHKMANUALRATE_CheckedChanged(sender As Object, e As EventArgs) Handles CHKMANUALRATE.CheckedChanged
         Try
             If UserName <> "Admin" Then Exit Sub
