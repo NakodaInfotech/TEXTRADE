@@ -1003,4 +1003,27 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+        Private Sub CMBITEMNAME_Validated(sender As Object, e As EventArgs) Handles CMBITEMNAME.Validated
+        Try
+            If sender.Text.Trim <> "" And EDIT = False Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As New DataTable
+
+
+                Dim WHERECLAUSE As String = ""
+                If (ClientName = "SOFTAS") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & CMBPARTYNAME.Text.Trim & "' "
+                If ClientName = "SOFTAS" Then
+                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then
+                        For Each DTROW As DataRow In DT.Rows
+                            TXTDESC.Text = (DT.Rows(0).Item("STAMPING"))
+                        Next
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

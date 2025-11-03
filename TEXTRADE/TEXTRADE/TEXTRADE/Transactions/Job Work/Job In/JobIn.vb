@@ -269,6 +269,17 @@ Public Class JobIn
                 bln = False
             End If
 
+
+            For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
+                If ClientName = "SOFTAS" Then
+                    Dim colorValue As Object = ROW.Cells(gcolor.Index).Value
+
+                    If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
+                        EP.SetError(cmbcolor, "Shade cannot be blank")
+                        bln = False
+                    End If
+                End If
+            Next
             If ClientName <> "AXIS" And ClientName <> "MOMAI" And ClientName <> "GELATO" Then
                 For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
                     If ROW.Cells(GMTRS.Index).Value = 0 Then
@@ -727,7 +738,7 @@ CHECKNEXTLINEMTRS:
                 alParaval.Add(TEMPJOBINNO)
                 IntResult = OBJJobIn.UPDATE()
                 MsgBox("Details Updated")
-                If ClientName <> "SNCM" Then PRINTREPORT(TEMPJOBINNO)
+                If ClientName <> "SNCM" Or ClientName <> "SOFTAS" Then PRINTREPORT(TEMPJOBINNO)
             End If
 
             If ClientName <> "SNCM" Then PRINTBARCODE()
@@ -3097,7 +3108,7 @@ NEXTLINE:
             Cursor.Current = Cursors.WaitCursor
 
             fillcmb()
-            clear()
+            CLEAR()
 
 
             If ALLOWBARCODEPRINT = False Then
@@ -3194,7 +3205,7 @@ NEXTLINE:
                     GRIDJOBIN.FirstDisplayedScrollingRowIndex = GRIDJOBIN.RowCount - 1
                 Else
                     EDIT = False
-                    clear()
+                    CLEAR()
                 End If
 
                 'UPLOAD()
@@ -3345,7 +3356,7 @@ NEXTLINE:
                     EDIT = True
                     JobIn_Load(sender, e)
                 Else
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             End If
@@ -3562,7 +3573,7 @@ LINE1:
                 EDIT = True
                 JobIn_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDJOBIN.RowCount = 0 And TEMPJOBINNO > 1 Then
@@ -3587,12 +3598,12 @@ LINE1:
             TEMPJOBINNO = Val(TXTJINO.Text) + 1
             getmaxno()
             Dim MAXNO As Integer = TXTJINO.Text.Trim
-            clear()
+            CLEAR()
             If Val(TXTJINO.Text) - 1 >= TEMPJOBINNO Then
                 EDIT = True
                 JobIn_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDJOBIN.RowCount = 0 And TEMPJOBINNO < MAXNO Then
@@ -3644,7 +3655,7 @@ LINE1:
                     OBJMATREC.alParaval = alParaval
                     IntResult = OBJMATREC.Delete()
                     MsgBox("JobIn Receipt Deleted")
-                    clear()
+                    CLEAR()
                     EDIT = False
 
                 End If
@@ -4024,7 +4035,6 @@ LINE1:
                 OBJGDN.FORMULA = "{JOBIN_DESC.JI_NO}=" & Val(JINO) & " and {JOBIN.JI_yearid}=" & YearId
                 OBJGDN.Show()
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -5059,6 +5069,11 @@ NEXTLINE:
     End Sub
 
     Private Sub cmbcolor_Validated(sender As Object, e As EventArgs) Handles cmbcolor.Validated
+        'If ClientName = "SOFTAS" And cmbcolor.Text.Trim = "" Then
+        '    EP.SetError(cmbcolor, "Enter Shade.")
+        '    bln = False
+
+        'End If
 
         If ClientName = "SUPEEMA" Then
             If cmbcolor.Text.Trim <> "" Then
@@ -5069,5 +5084,6 @@ NEXTLINE:
                 End If
             End If
         End If
+
     End Sub
 End Class

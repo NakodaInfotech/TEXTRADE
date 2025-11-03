@@ -336,6 +336,10 @@ Public Class MaterialReceipt
                 bln = False
             End If
 
+            'If cmbcolor.Text.Trim = "" And ClientName = "SOFTAS" Then
+            '    EP.SetError(cmbcolor, "Enter Shade.")
+            '    bln = False
+            'End If
 
             If GRIDMATREC.RowCount = 0 Then
                 EP.SetError(TabControl1, "Fill Item Details")
@@ -460,7 +464,14 @@ CHECKNEXTLINEMTRS:
             TOTAL()
 
             For Each ROW As DataGridViewRow In GRIDMATREC.Rows
+                If ClientName = "SOFTAS" Then
+                    Dim colorValue As Object = ROW.Cells(gcolor.Index).Value
 
+                    If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
+                        EP.SetError(cmbcolor, "Shade cannot be blank")
+                        bln = False
+                    End If
+                End If
                 'CHECK THE MAIN LOT ITEM HSN AND ITEM HSN, IF THEY DONT MATCH GIVE MESSAGE
                 If ClientName = "MAHAVIRPOLYCOT" Then
 
@@ -2848,7 +2859,7 @@ NEXTLINE:
     End Sub
 
     Sub PRINTREPORT()
-        Try
+        Try 
             If ClientName = "SNCM" AndAlso MsgBox("Wish to Print Packing Slip", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJPS As New MATRECDesign
                 OBJPS.MdiParent = MDIMain
