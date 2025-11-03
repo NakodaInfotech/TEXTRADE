@@ -258,7 +258,7 @@ Public Class RecFromPacking
                 bln = False
             End If
 
-            If (ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "VSTRADERS" Or ClientName = "YUMILONE" Or ClientName = "REVAANT") And CMBCONTRACTOR.Text.Trim = "" Then
+            If (ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "SONU" Or ClientName = "VSTRADERS" Or ClientName = "YUMILONE" Or ClientName = "REVAANT") And CMBCONTRACTOR.Text.Trim = "" Then
                 EP.SetError(CMBCONTRACTOR, "Select Contractor")
                 bln = False
             End If
@@ -2050,6 +2050,7 @@ LINE1:
                 txtqty.ReadOnly = False
                 CMBQUALITY.TabStop = False
                 If ClientName = "SOFTAS" Then
+                    TOOLREFRESH.Visible = True
                     CHKPRINTSERIES.Visible = True
                     If CmpName = "SIDDHIM COTFAB LLP" Then CHKPRINTSERIES.CheckState = True
                     TXTFROMNO.Focus()
