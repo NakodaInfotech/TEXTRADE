@@ -872,6 +872,7 @@ Public Class DesignCardMaster
     End Sub
     Sub SHOWDATA(Optional ByVal CARDNO As Integer = -1)
         Try
+            clear()
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
                 Exit Sub
