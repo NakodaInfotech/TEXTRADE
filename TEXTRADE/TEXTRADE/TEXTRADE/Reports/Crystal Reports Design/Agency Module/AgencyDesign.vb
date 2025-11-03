@@ -3,6 +3,7 @@ Imports BL
 Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.IO
+Imports DevExpress.Utils
 
 Public Class AgencyDesign
 
@@ -114,8 +115,16 @@ Public Class AgencyDesign
             Next
 
             OBJ.RecordSelectionFormula = FORMULA
-            crpo.ReportSource = OBJ
-            crpo.RefreshReport()
+
+            If DIRECTWHATSAPP = False Then
+                crpo.ReportSource = OBJ
+                crpo.RefreshReport()
+            Else
+                If File.Exists(Application.StartupPath & "\" & PARTYNAME & "_AGENCYOUTSTANDING" & ".PDF") Then File.Delete(Application.StartupPath & "\" & PARTYNAME & "_AGENCYOUTSTANDING" & ".PDF")
+                OBJ.ExportToDisk(ExportFormatType.PortableDocFormat, Application.StartupPath & "\" & PARTYNAME & "_AGENCYOUTSTANDING" & ".PDF")
+            End If
+
+
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
