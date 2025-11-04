@@ -10341,13 +10341,13 @@ SKIPLINE:
     End Sub
 
     Private Sub CloseMultipleSaleOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseMultipleSaleOrderToolStripMenuItem.Click
-        'Try
-        '    Dim Objpinvoice As New AgencySaleOrderClose
-        '    Objpinvoice.MdiParent = Me
-        '    Objpinvoice.Show()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Try
+            Dim Objpinvoice As New AgencySaleOrderClose
+            Objpinvoice.MdiParent = Me
+            Objpinvoice.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub AddNewEntryToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem4.Click
