@@ -316,7 +316,7 @@ Public Class MagicBoxForRecPay
                     End If
                 End If
                 'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
-                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE INVOICE IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PAYMENT IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
                 Dim OBJCMN As New ClsCommon
                 Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
                 Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_CMPNAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & ROW.Cells(GPARTYNAME.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
@@ -344,6 +344,35 @@ Public Class MagicBoxForRecPay
                     CREATEPAYMENT(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
 
                 End If
+
+                '********************************************************************************************************************
+
+                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE J.V  IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP [ BUYER ]" And ROW.Cells(GTDSAMT.Index).Value > 0 Then
+
+                    'CREATE payment IN ABHEE FABRICS LLP
+                    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+                    If TEMPDT.Rows.Count > 0 Then
+                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+                    Else
+                        GoTo NEXTLINE
+                    End If
+
+                    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & ROW.Cells(GPARTYNAME.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(ROW.Cells(GPARTYNAME.Index).Value, TEMPCMPID, TEMPYEARID)
+
+                    'CHECK WHETHER bank NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & ROW.Cells(GACCNAME.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(ROW.Cells(GACCNAME.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+                    CREATEPAYMENT(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
+
+                End If
+                '******************** END OF JV GENERATION CODE ***************************
                 Dim DTNAME1 As DataTable = OBJCMN.SEARCH("ISNULL(ACC_CMPNAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & ROW.Cells(GSELLERNAME.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
 
                 If DTNAME1.Rows.Count > 0 AndAlso DTNAME1.Rows(0).Item("NAME") = "ABHEE FABRICS LLP [ SELLER ]" Then
@@ -970,7 +999,7 @@ LINE1:
 
 
         If GRIDDOUBLECLICK = False Then
-            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, CMBSELLERNAME.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim, txtremamount.Text.Trim)
+            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, CMBSELLERNAME.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim, txtremamount.Text.Trim, TXTTDSACC.Text.Trim, TXTTDSAMT.Text.Trim)
             getmaxno()
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDISSUE.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -985,6 +1014,8 @@ LINE1:
             GRIDISSUE.Item(GBILLNO.Index, TEMPROW).Value = TXTBILLNO.Text.Trim
             GRIDISSUE.Item(GAMOUNT.Index, TEMPROW).Value = TXTADJAMOUNT.Text.Trim
             GRIDISSUE.Item(gremamt.Index, TEMPROW).Value = txtremamount.Text.Trim
+            GRIDISSUE.Item(GTDSACC.Index, TEMPROW).Value = TXTTDSACC.Text.Trim
+            GRIDISSUE.Item(GTDSAMT.Index, TEMPROW).Value = TXTTDSAMT.Text.Trim
 
 
             GRIDDOUBLECLICK = False
@@ -1007,6 +1038,8 @@ LINE1:
         DTCHQDATE.Value = Now.Date
         CMBSELLERNAME.Text = ""
         txtremamount.Clear()
+        TXTTDSACC.Clear()
+        TXTTDSAMT.Clear()
         'txtPartyMtrs.Clear()
         'txtCheckPcs.Clear()
         'TXTBARCODE.Clear()
@@ -1060,7 +1093,9 @@ LINE1:
                 TXTBANKNAME.Text = GRIDISSUE.Item(GBANKNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTBILLNO.Text = GRIDISSUE.Item(GBILLNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTADJAMOUNT.Text = GRIDISSUE.Item(GAMOUNT.Index, GRIDISSUE.CurrentRow.Index).Value
-                TXTADJAMOUNT.Text = GRIDISSUE.Item(gremamt.Index, GRIDISSUE.CurrentRow.Index).Value
+                txtremamount.Text = GRIDISSUE.Item(gremamt.Index, GRIDISSUE.CurrentRow.Index).Value
+                TXTTDSACC.Text = GRIDISSUE.Item(GTDSACC.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
+                TXTTDSAMT.Text = GRIDISSUE.Item(GTDSAMT.Index, GRIDISSUE.CurrentRow.Index).Value
 
                 TEMPROW = GRIDISSUE.CurrentRow.Index
                 txtsrno.Focus()
@@ -1285,8 +1320,8 @@ LINE1:
                     End If
                 Next
                 txtremamount.Text = OBJSELECTBILL.RemAmount
-                TXTTDSACC.Text = OBJSELECTBILL.TDSAC
-                TXTTDSAMT.Text = Format(OBJSELECTBILL.TDSAMT, "0.00")
+                TXTTDSACC.Text = OBJSELECTBILL.TDSDEDUCTEDAC
+                TXTTDSAMT.Text = Format(OBJSELECTBILL.TDSDEDUCTEDAMT, "0.00")
                 TXTBILLNO.Text = SELECTEDBILLNO
                 TXTADJAMOUNT.Text = SELECTEDAMOUNT
                 If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO

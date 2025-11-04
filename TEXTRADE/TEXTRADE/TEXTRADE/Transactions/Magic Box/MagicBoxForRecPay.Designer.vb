@@ -72,9 +72,10 @@ Partial Class MagicBoxForRecPay
         Me.TXTBILLNO = New System.Windows.Forms.TextBox()
         Me.TXTADJAMOUNT = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTTDSAMT = New System.Windows.Forms.TextBox()
+        Me.TXTTDSACC = New System.Windows.Forms.TextBox()
         Me.txtremamount = New System.Windows.Forms.TextBox()
         Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GACCNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -89,8 +90,7 @@ Partial Class MagicBoxForRecPay
         Me.gremamt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTDSACC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTDSAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TXTTDSACC = New System.Windows.Forms.TextBox()
-        Me.TXTTDSAMT = New System.Windows.Forms.TextBox()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -570,6 +570,30 @@ Partial Class MagicBoxForRecPay
         Me.BlendPanel1.Size = New System.Drawing.Size(1398, 606)
         Me.BlendPanel1.TabIndex = 0
         '
+        'TXTTDSAMT
+        '
+        Me.TXTTDSAMT.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSAMT.ForeColor = System.Drawing.Color.Black
+        Me.TXTTDSAMT.Location = New System.Drawing.Point(1235, 62)
+        Me.TXTTDSAMT.Name = "TXTTDSAMT"
+        Me.TXTTDSAMT.ReadOnly = True
+        Me.TXTTDSAMT.Size = New System.Drawing.Size(102, 22)
+        Me.TXTTDSAMT.TabIndex = 749
+        Me.TXTTDSAMT.Visible = False
+        '
+        'TXTTDSACC
+        '
+        Me.TXTTDSACC.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSACC.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSACC.ForeColor = System.Drawing.Color.Black
+        Me.TXTTDSACC.Location = New System.Drawing.Point(1134, 62)
+        Me.TXTTDSACC.Name = "TXTTDSACC"
+        Me.TXTTDSACC.ReadOnly = True
+        Me.TXTTDSACC.Size = New System.Drawing.Size(102, 22)
+        Me.TXTTDSACC.TabIndex = 748
+        Me.TXTTDSACC.Visible = False
+        '
         'txtremamount
         '
         Me.txtremamount.BackColor = System.Drawing.Color.Linen
@@ -627,16 +651,6 @@ Partial Class MagicBoxForRecPay
         Me.GRIDISSUE.Size = New System.Drawing.Size(1369, 367)
         Me.GRIDISSUE.TabIndex = 12
         Me.GRIDISSUE.TabStop = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1398, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'GSRNO
         '
@@ -758,29 +772,15 @@ Partial Class MagicBoxForRecPay
         Me.GTDSAMT.ReadOnly = True
         Me.GTDSAMT.Visible = False
         '
-        'TXTTDSACC
+        'ToolStrip1
         '
-        Me.TXTTDSACC.BackColor = System.Drawing.Color.Linen
-        Me.TXTTDSACC.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTDSACC.ForeColor = System.Drawing.Color.Black
-        Me.TXTTDSACC.Location = New System.Drawing.Point(1134, 62)
-        Me.TXTTDSACC.Name = "TXTTDSACC"
-        Me.TXTTDSACC.ReadOnly = True
-        Me.TXTTDSACC.Size = New System.Drawing.Size(102, 22)
-        Me.TXTTDSACC.TabIndex = 748
-        Me.TXTTDSACC.Visible = False
-        '
-        'TXTTDSAMT
-        '
-        Me.TXTTDSAMT.BackColor = System.Drawing.Color.Linen
-        Me.TXTTDSAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTDSAMT.ForeColor = System.Drawing.Color.Black
-        Me.TXTTDSAMT.Location = New System.Drawing.Point(1235, 62)
-        Me.TXTTDSAMT.Name = "TXTTDSAMT"
-        Me.TXTTDSAMT.ReadOnly = True
-        Me.TXTTDSAMT.Size = New System.Drawing.Size(102, 22)
-        Me.TXTTDSAMT.TabIndex = 749
-        Me.TXTTDSAMT.Visible = False
+        Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1398, 25)
+        Me.ToolStrip1.TabIndex = 0
+        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'MagicBoxForRecPay
         '
