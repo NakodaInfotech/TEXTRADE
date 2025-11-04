@@ -2333,10 +2333,10 @@ Partial Class AccountsMaster
         Me.TabPage2.Controls.Add(Me.Label18)
         Me.TabPage2.Controls.Add(Me.Label9)
         Me.TabPage2.Controls.Add(Me.txtvatno)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1031, 403)
+        Me.TabPage2.Size = New System.Drawing.Size(459, 402)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Bank Details / Other Details"
         '
@@ -2558,10 +2558,10 @@ Partial Class AccountsMaster
         '
         Me.TabPage3.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage3.Controls.Add(Me.Panel1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1031, 403)
+        Me.TabPage3.Size = New System.Drawing.Size(459, 402)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Additional Details"
         '

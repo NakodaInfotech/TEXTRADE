@@ -69,11 +69,11 @@ Partial Class MagicBoxForRecPay
         Me.txtinwords = New System.Windows.Forms.TextBox()
         Me.cmbpaytype = New System.Windows.Forms.ComboBox()
         Me.CMBSELLERNAME = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.LBLPACKING = New System.Windows.Forms.Label()
         Me.TXTBILLNO = New System.Windows.Forms.TextBox()
         Me.TXTADJAMOUNT = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTTDSAMT = New System.Windows.Forms.TextBox()
+        Me.TXTTDSACC = New System.Windows.Forms.TextBox()
         Me.txtremamount = New System.Windows.Forms.TextBox()
         Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -88,6 +88,8 @@ Partial Class MagicBoxForRecPay
         Me.GBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gremamt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTDSACC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTDSAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -503,31 +505,6 @@ Partial Class MagicBoxForRecPay
         Me.CMBSELLERNAME.Size = New System.Drawing.Size(200, 22)
         Me.CMBSELLERNAME.TabIndex = 3
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(9, 61)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(81, 14)
-        Me.Label2.TabIndex = 743
-        Me.Label2.Text = "Buyer's Name"
-        Me.Label2.Visible = False
-        '
-        'LBLPACKING
-        '
-        Me.LBLPACKING.BackColor = System.Drawing.Color.Transparent
-        Me.LBLPACKING.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLPACKING.ForeColor = System.Drawing.Color.Black
-        Me.LBLPACKING.Location = New System.Drawing.Point(9, 36)
-        Me.LBLPACKING.Name = "LBLPACKING"
-        Me.LBLPACKING.Size = New System.Drawing.Size(81, 14)
-        Me.LBLPACKING.TabIndex = 744
-        Me.LBLPACKING.Text = "Seller Name"
-        Me.LBLPACKING.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'TXTBILLNO
         '
         Me.TXTBILLNO.BackColor = System.Drawing.Color.Linen
@@ -555,11 +532,11 @@ Partial Class MagicBoxForRecPay
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTTDSAMT)
+        Me.BlendPanel1.Controls.Add(Me.TXTTDSACC)
         Me.BlendPanel1.Controls.Add(Me.txtremamount)
         Me.BlendPanel1.Controls.Add(Me.TXTADJAMOUNT)
         Me.BlendPanel1.Controls.Add(Me.TXTBILLNO)
-        Me.BlendPanel1.Controls.Add(Me.LBLPACKING)
-        Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.CMBSELLERNAME)
         Me.BlendPanel1.Controls.Add(Me.cmbpaytype)
         Me.BlendPanel1.Controls.Add(Me.GroupBox3)
@@ -592,6 +569,30 @@ Partial Class MagicBoxForRecPay
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1398, 606)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'TXTTDSAMT
+        '
+        Me.TXTTDSAMT.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSAMT.ForeColor = System.Drawing.Color.Black
+        Me.TXTTDSAMT.Location = New System.Drawing.Point(1235, 62)
+        Me.TXTTDSAMT.Name = "TXTTDSAMT"
+        Me.TXTTDSAMT.ReadOnly = True
+        Me.TXTTDSAMT.Size = New System.Drawing.Size(102, 22)
+        Me.TXTTDSAMT.TabIndex = 749
+        Me.TXTTDSAMT.Visible = False
+        '
+        'TXTTDSACC
+        '
+        Me.TXTTDSACC.BackColor = System.Drawing.Color.Linen
+        Me.TXTTDSACC.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSACC.ForeColor = System.Drawing.Color.Black
+        Me.TXTTDSACC.Location = New System.Drawing.Point(1134, 62)
+        Me.TXTTDSACC.Name = "TXTTDSACC"
+        Me.TXTTDSACC.ReadOnly = True
+        Me.TXTTDSACC.Size = New System.Drawing.Size(102, 22)
+        Me.TXTTDSACC.TabIndex = 748
+        Me.TXTTDSACC.Visible = False
         '
         'txtremamount
         '
@@ -626,7 +627,7 @@ Partial Class MagicBoxForRecPay
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GSELLERNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GPAYTYPE, Me.GBANKNAME, Me.GBILLNO, Me.GAMOUNT, Me.gremamt})
+        Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GACCNAME, Me.GPARTYNAME, Me.GSELLERNAME, Me.GCHQNO, Me.GCHQDATE, Me.GCHQAMT, Me.GPAYTYPE, Me.GBANKNAME, Me.GBILLNO, Me.GAMOUNT, Me.gremamt, Me.GTDSACC, Me.GTDSAMT})
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -757,6 +758,20 @@ Partial Class MagicBoxForRecPay
         Me.gremamt.ReadOnly = True
         Me.gremamt.Visible = False
         '
+        'GTDSACC
+        '
+        Me.GTDSACC.HeaderText = "TDSACC"
+        Me.GTDSACC.Name = "GTDSACC"
+        Me.GTDSACC.ReadOnly = True
+        Me.GTDSACC.Visible = False
+        '
+        'GTDSAMT
+        '
+        Me.GTDSAMT.HeaderText = "TDSAMT"
+        Me.GTDSAMT.Name = "GTDSAMT"
+        Me.GTDSAMT.ReadOnly = True
+        Me.GTDSAMT.Visible = False
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -797,8 +812,6 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents txtremamount As TextBox
     Friend WithEvents TXTADJAMOUNT As TextBox
     Friend WithEvents TXTBILLNO As TextBox
-    Friend WithEvents LBLPACKING As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents CMBSELLERNAME As ComboBox
     Friend WithEvents cmbpaytype As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
@@ -848,4 +861,8 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents GBILLNO As DataGridViewTextBoxColumn
     Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents gremamt As DataGridViewTextBoxColumn
+    Friend WithEvents GTDSACC As DataGridViewTextBoxColumn
+    Friend WithEvents GTDSAMT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTTDSAMT As TextBox
+    Friend WithEvents TXTTDSACC As TextBox
 End Class
