@@ -167,7 +167,7 @@ Public Class IssueToPacking
 
 
 
-            If ClientName = "MNARESH" And UserName <> "Admin" Then
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then
                 Dim TEMPDATE As DateTime = ISSUEDATE.Text
                 If TEMPDATE <> DateTime.Today Then
                     EP.SetError(ISSUEDATE, "You cannot Modify And Create previous Date Entry. ")

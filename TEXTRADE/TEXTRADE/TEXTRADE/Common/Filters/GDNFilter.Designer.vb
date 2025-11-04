@@ -23,6 +23,7 @@ Partial Class GDNFilter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYGRIDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYITEMSUMM = New System.Windows.Forms.RadioButton()
         Me.RBDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
@@ -83,7 +84,7 @@ Partial Class GDNFilter
         Me.CMBAGENT = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBUNITSUMM = New System.Windows.Forms.RadioButton()
+        Me.RDBDISPPARTYITEMCHALLAN = New System.Windows.Forms.RadioButton()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.BlendPanel2.SuspendLayout()
@@ -96,6 +97,7 @@ Partial Class GDNFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDBDISPPARTYITEMCHALLAN)
         Me.GroupBox3.Controls.Add(Me.RDBUNITSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYGRIDCHALLANDETAILS)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYITEMSUMM)
@@ -121,10 +123,20 @@ Partial Class GDNFilter
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(48, 162)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(617, 232)
+        Me.GroupBox3.Size = New System.Drawing.Size(617, 269)
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Reports"
+        '
+        'RDBUNITSUMM
+        '
+        Me.RDBUNITSUMM.AutoSize = True
+        Me.RDBUNITSUMM.Location = New System.Drawing.Point(298, 193)
+        Me.RDBUNITSUMM.Name = "RDBUNITSUMM"
+        Me.RDBUNITSUMM.Size = New System.Drawing.Size(188, 18)
+        Me.RDBUNITSUMM.TabIndex = 21
+        Me.RDBUNITSUMM.Text = "Unit Wise Summ (Grid Report)"
+        Me.RDBUNITSUMM.UseVisualStyleBackColor = True
         '
         'RDBPARTYGRIDCHALLANDETAILS
         '
@@ -420,7 +432,7 @@ Partial Class GDNFilter
         Me.chkdate.BackColor = System.Drawing.Color.Transparent
         Me.chkdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkdate.ForeColor = System.Drawing.Color.Black
-        Me.chkdate.Location = New System.Drawing.Point(84, 400)
+        Me.chkdate.Location = New System.Drawing.Point(84, 431)
         Me.chkdate.Name = "chkdate"
         Me.chkdate.Size = New System.Drawing.Size(52, 18)
         Me.chkdate.TabIndex = 8
@@ -435,7 +447,7 @@ Partial Class GDNFilter
         Me.GroupBox1.Controls.Add(Me.dtfrom)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(76, 406)
+        Me.GroupBox1.Location = New System.Drawing.Point(76, 437)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
         Me.GroupBox1.TabIndex = 9
@@ -550,7 +562,7 @@ Partial Class GDNFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.Black
-        Me.cmdshow.Location = New System.Drawing.Point(410, 420)
+        Me.cmdshow.Location = New System.Drawing.Point(410, 451)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(94, 28)
         Me.cmdshow.TabIndex = 10
@@ -807,22 +819,22 @@ Partial Class GDNFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(509, 420)
+        Me.cmdexit.Location = New System.Drawing.Point(509, 451)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 11
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBUNITSUMM
+        'RDBDISPPARTYITEMCHALLAN
         '
-        Me.RDBUNITSUMM.AutoSize = True
-        Me.RDBUNITSUMM.Location = New System.Drawing.Point(298, 193)
-        Me.RDBUNITSUMM.Name = "RDBUNITSUMM"
-        Me.RDBUNITSUMM.Size = New System.Drawing.Size(188, 18)
-        Me.RDBUNITSUMM.TabIndex = 21
-        Me.RDBUNITSUMM.Text = "Unit Wise Summ (Grid Report)"
-        Me.RDBUNITSUMM.UseVisualStyleBackColor = True
+        Me.RDBDISPPARTYITEMCHALLAN.AutoSize = True
+        Me.RDBDISPPARTYITEMCHALLAN.Location = New System.Drawing.Point(298, 217)
+        Me.RDBDISPPARTYITEMCHALLAN.Name = "RDBDISPPARTYITEMCHALLAN"
+        Me.RDBDISPPARTYITEMCHALLAN.Size = New System.Drawing.Size(175, 18)
+        Me.RDBDISPPARTYITEMCHALLAN.TabIndex = 22
+        Me.RDBDISPPARTYITEMCHALLAN.Text = "Dispatch Party Item Challan"
+        Me.RDBDISPPARTYITEMCHALLAN.UseVisualStyleBackColor = True
         '
         'GDNFilter
         '
@@ -911,4 +923,5 @@ Partial Class GDNFilter
     Friend WithEvents RDBPARTYITEMSUMM As RadioButton
     Friend WithEvents RDBPARTYGRIDCHALLANDETAILS As RadioButton
     Friend WithEvents RDBUNITSUMM As RadioButton
+    Friend WithEvents RDBDISPPARTYITEMCHALLAN As RadioButton
 End Class

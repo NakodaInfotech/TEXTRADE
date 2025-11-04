@@ -2,7 +2,10 @@
 Imports System.Drawing
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports System.Security.Principal
 Imports BL
+Imports DevExpress.XtraEditors.Filtering
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTreeMap.Native
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
@@ -15,6 +18,8 @@ Public Class AgencyOutstandingGridReport
     Dim toD
     Dim a1, a2, a3, a4 As String
     Dim a11, a12, a13, a14 As String
+    Dim DTMAIL As New DataTable
+    Dim DTWHATSAPP As New DataTable
 
     Public Sub New()
 
@@ -40,11 +45,11 @@ Public Class AgencyOutstandingGridReport
             FILLNAME(CMBSELLERNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
 
             Dim OBJCMN As New ClsCommon
-            Dim DTBUYER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTBUYER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS PARTYWHATSAPP, '' AS AGENTWHATSAPP ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
             GRIDBUYERDETAILS.DataSource = DTBUYER
             If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
 
-            Dim DTSELLER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTSELLER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS PARTYWHATSAPP , '' AS AGENTWHATSAPP ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID ", " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
             GRIDSELLERDETAILS.DataSource = DTSELLER
             If DTSELLER.Rows.Count > 0 Then GRIDSELLER.FocusedRowHandle = GRIDSELLER.RowCount - 1
 
@@ -2240,6 +2245,14 @@ Public Class AgencyOutstandingGridReport
     Private Sub AgencyOutstandingGridReport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
 
+            DTWHATSAPP.Columns.Add("NAME")
+            DTWHATSAPP.Columns.Add("PARTYWHATSAPP")
+            DTWHATSAPP.Columns.Add("AGENTWHATSAPP")
+            DTWHATSAPP.Columns.Add("SUBJECT")
+            DTWHATSAPP.Columns.Add("ATTACHMENT")
+            DTWHATSAPP.Columns.Add("FILENAME")
+
+
             'DONE BY GULKIT, COZ IF FILLDONE IS NOT MENTIONED HERE THEN EVERYTIME IT GOES TO SELECTEDINDEXCHANGE EVENT ON FILLING THE COMBO
             FILLDONE = True
             CMBREPORTTYPE.SelectedIndex = 0
@@ -2509,47 +2522,57 @@ line1:
         toD = "(" & a13 & "," & a12 & "," & a11 & ")"
     End Sub
 
-    Private Sub CMDPRINT_Click(sender As Object, e As EventArgs) Handles CMDPRINT.Click
+    Private Sub CMDPRINT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs, Optional SENDWHATSAPP As Boolean = False, Optional SENDMAIL As Boolean = False, Optional PARTYNAME As String = "", Optional AGENTNAME As String = "") Handles CMDPRINT.Click
         Try
 
             'If GRIDOUTSTANDING.RowCount = 0 Then Exit Sub
             Dim OBJOUT As New AgencyDesign
             OBJOUT.MdiParent = MDIMain
             OBJOUT.OUTSTANDINGREPORTS = True
+            OBJOUT.DIRECTWHATSAPP = SENDWHATSAPP
+            OBJOUT.DIRECTMAIL = SENDMAIL
+            OBJOUT.PARTYNAME = PARTYNAME
+            OBJOUT.AGENTNAME = AGENTNAME
             OBJOUT.FORMULA = " {AGENCYOUTSTANDINGREC.BALANCE} <> 0 AND {AGENCYOUTSTANDINGREC.YEARID} = " & YearId
-            If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & CMBSELLERNAME.Text.Trim & "'"
 
             If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
-            If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA + " AND {@OD} > 0 "
+            If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {@OD} > 0 "
 
 
             Dim BUYERCLAUSE As String = ""
             Dim SELLERCLAUSE As String = ""
 
-            GRIDBUYER.ClearColumnsFilter()
-            For i As Integer = 0 To GRIDBUYER.RowCount - 1
-                Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If BUYERCLAUSE = "" Then BUYERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'" Else BUYERCLAUSE = BUYERCLAUSE & " OR {AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'"
+
+            If SENDWHATSAPP = False Then
+                GRIDBUYER.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If BUYERCLAUSE = "" Then BUYERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'" Else BUYERCLAUSE = BUYERCLAUSE & " OR {AGENCYOUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'"
+                    End If
+                Next
+                If BUYERCLAUSE <> "" Then
+                    BUYERCLAUSE = BUYERCLAUSE & ")"
+                    OBJOUT.FORMULA = OBJOUT.FORMULA & BUYERCLAUSE
                 End If
-            Next
-            If BUYERCLAUSE <> "" Then
-                BUYERCLAUSE = BUYERCLAUSE & ")"
-                OBJOUT.FORMULA = OBJOUT.FORMULA & BUYERCLAUSE
-            End If
 
 
-            GRIDSELLER.ClearColumnsFilter()
-            For i As Integer = 0 To GRIDSELLER.RowCount - 1
-                Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'"
+                GRIDSELLER.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDSELLER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & dtrow("NAME") & "'"
+                    End If
+                Next
+                If SELLERCLAUSE <> "" Then
+                    SELLERCLAUSE = SELLERCLAUSE & ")"
+                    OBJOUT.FORMULA = OBJOUT.FORMULA & SELLERCLAUSE
                 End If
-            Next
-            If SELLERCLAUSE <> "" Then
-                SELLERCLAUSE = SELLERCLAUSE & ")"
-                OBJOUT.FORMULA = OBJOUT.FORMULA & SELLERCLAUSE
+
+            Else
+                OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
             End If
 
 
@@ -2579,9 +2602,14 @@ line1:
 
             End If
 
+
+            'If PARTYNAME <> "" Then OBJOUT.PARTYNAME = OBJOUT.PARTYNAME & " AND ({@NAME} = '" & PARTYNAME & "')"
+            'OBJOUT.PARTYNAME = PARTYNAME
+
             OBJOUT.OUTSTANDINGWITHLR = CHKWITHLR.Checked
             OBJOUT.SHOWINDEX = CHKSHOWINDEX.Checked
             OBJOUT.Show()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -3040,6 +3068,75 @@ LINE1:
             MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             doc.Close()
+        End Try
+    End Sub
+
+    Private Sub CMDGRIDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDGRIDWHATSAPP.Click
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send WhatsApp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+            DTMAIL.Rows.Clear()
+            DTWHATSAPP.Rows.Clear()
+
+            GRIDSELLER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDSELLER.RowCount - 1
+                Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If RBOUTSTANDINGGRID.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGDAYS.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    End If
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                    FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
+                    'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                    DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                End If
+            Next
+
+            GRIDBUYER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If RBOUTSTANDINGGRID.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGDAYS.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    End If
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                    FILENAME.Add(dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                    'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                    DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                End If
+            Next
+
+
+            If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+            Dim OBJWHATSAPP As New SendMultipleWhatsapp
+            OBJWHATSAPP.PATH = ALATTACHMENT
+            OBJWHATSAPP.FILENAME = FILENAME
+            OBJWHATSAPP.DT = DTWHATSAPP
+            OBJWHATSAPP.ShowDialog()
+
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 

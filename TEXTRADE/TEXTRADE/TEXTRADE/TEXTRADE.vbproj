@@ -534,6 +534,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Dispatch\DispatchPartyItemChallanWiseReport.vb">
+      <DependentUpon>DispatchPartyItemChallanWiseReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8794,6 +8800,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardRep.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DesignCardRep.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Dispatch\DispatchPartyItemChallanWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DispatchPartyItemChallanWiseReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

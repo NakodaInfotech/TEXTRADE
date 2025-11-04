@@ -270,16 +270,16 @@ Public Class JobIn
             End If
 
 
-            For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
-                If ClientName = "SOFTAS" Then
-                    Dim colorValue As Object = ROW.Cells(gcolor.Index).Value
+            'For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
+            '    If ClientName = "SOFTAS" Then
+            '        Dim colorValue As Object = ROW.Cells(gcolor.Index).Value
 
-                    If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
-                        EP.SetError(cmbcolor, "Shade cannot be blank")
-                        bln = False
-                    End If
-                End If
-            Next
+            '        If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
+            '            EP.SetError(GRIDORDER, "Shade cannot be blank")
+            '            bln = False
+            '        End If
+            '    End If
+            'Next
             If ClientName <> "AXIS" And ClientName <> "MOMAI" And ClientName <> "GELATO" Then
                 For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
                     If ROW.Cells(GMTRS.Index).Value = 0 Then
@@ -973,6 +973,11 @@ LINE1:
             alParaval.Add(0)    'AVGWT
             alParaval.Add(0)    'DISPATCHFROM
             alParaval.Add(0) 'WIDTH
+
+            alParaval.Add("")  'CHNO
+            alParaval.Add("")  'REFLOTNO
+            alParaval.Add("")  'SHIPTO
+            alParaval.Add("")  'PARTYITEMNAME
 
             Dim OBJJO As New ClsCuttingIssue()
             OBJJO.alParaval = alParaval
@@ -4410,6 +4415,8 @@ LINE1:
                     Exit Sub
                 End If
 
+
+
                 If ClientName = "SBA" Or ClientName = "SHREENAKODA" Or ClientName = "SONU" Or ClientName = "KARAN" Or ClientName = "MBB" Or ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
                     Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
                     If ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Then
@@ -4453,7 +4460,16 @@ LINE1:
                             TXTBARCODE.Text = "J-" & Val(TXTJINO.Text.Trim) & "/" & GRIDJOBIN.RowCount + 1 & "/" & YearId
                         End If
                     End If
-                    FILLGRID()
+
+                    If ClientName = "SOFTAS" And cmbcolor.Text.Trim <> "" Then
+                        FILLGRID()
+
+                    Else
+                        MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
+                        cmbcolor.Focus()
+                        Exit Sub
+                    End If
+                    If ClientName <> "SOFTAS" Then FILLGRID()
                 End If
 
                 If ClientName = "KCRAYON" Then TXTMTRS.Focus()

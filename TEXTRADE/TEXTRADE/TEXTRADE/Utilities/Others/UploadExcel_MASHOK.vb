@@ -539,7 +539,7 @@ NEXTLINE:
                     MsgBox("✅ All invoices uploaded successfully.", vbInformation)
                 End If
                 If failedRows.Count > 0 Then
-                    MessageBox.Show("The following rows were not saved because party name not found:" & vbCrLf & String.Join(vbCrLf, failedRows), "Party Name Not Present", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show("The following rows were not saved because Transport name not found:" & vbCrLf & String.Join(vbCrLf, failedRows), "Transport Name Not Present", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
                 Debug.Print("Neither NONPURCHASE nor INVOICE, invalid CMBTYPE")

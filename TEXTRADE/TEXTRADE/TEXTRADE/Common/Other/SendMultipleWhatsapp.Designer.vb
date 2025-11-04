@@ -23,6 +23,9 @@ Partial Class SendMultipleWhatsapp
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.RBBOTH = New System.Windows.Forms.RadioButton()
+        Me.RBAGENT = New System.Windows.Forms.RadioButton()
+        Me.RBPARTY = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBWHATSAPP = New System.Windows.Forms.TabPage()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -74,9 +77,6 @@ Partial Class SendMultipleWhatsapp
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
-        Me.RBPARTY = New System.Windows.Forms.RadioButton()
-        Me.RBAGENT = New System.Windows.Forms.RadioButton()
-        Me.RBBOTH = New System.Windows.Forms.RadioButton()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBWHATSAPP.SuspendLayout()
@@ -102,6 +102,41 @@ Partial Class SendMultipleWhatsapp
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'RBBOTH
+        '
+        Me.RBBOTH.AutoSize = True
+        Me.RBBOTH.BackColor = System.Drawing.Color.Transparent
+        Me.RBBOTH.Checked = True
+        Me.RBBOTH.Location = New System.Drawing.Point(165, 546)
+        Me.RBBOTH.Name = "RBBOTH"
+        Me.RBBOTH.Size = New System.Drawing.Size(111, 19)
+        Me.RBBOTH.TabIndex = 7
+        Me.RBBOTH.TabStop = True
+        Me.RBBOTH.Text = "Party And Agent"
+        Me.RBBOTH.UseVisualStyleBackColor = False
+        '
+        'RBAGENT
+        '
+        Me.RBAGENT.AutoSize = True
+        Me.RBAGENT.BackColor = System.Drawing.Color.Transparent
+        Me.RBAGENT.Location = New System.Drawing.Point(371, 546)
+        Me.RBAGENT.Name = "RBAGENT"
+        Me.RBAGENT.Size = New System.Drawing.Size(84, 19)
+        Me.RBAGENT.TabIndex = 6
+        Me.RBAGENT.Text = "Only Agent"
+        Me.RBAGENT.UseVisualStyleBackColor = False
+        '
+        'RBPARTY
+        '
+        Me.RBPARTY.AutoSize = True
+        Me.RBPARTY.BackColor = System.Drawing.Color.Transparent
+        Me.RBPARTY.Location = New System.Drawing.Point(282, 546)
+        Me.RBPARTY.Name = "RBPARTY"
+        Me.RBPARTY.Size = New System.Drawing.Size(83, 19)
+        Me.RBPARTY.TabIndex = 5
+        Me.RBPARTY.Text = "Only Party"
+        Me.RBPARTY.UseVisualStyleBackColor = False
         '
         'TabControl1
         '
@@ -153,7 +188,7 @@ Partial Class SendMultipleWhatsapp
         '
         Me.GPRINTINITIALS.Caption = "Bill No"
         Me.GPRINTINITIALS.FieldName = "PRINTINITIALS"
-        Me.GPRINTINITIALS.ImageIndex = 1
+        Me.GPRINTINITIALS.ImageOptions.ImageIndex = 1
         Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
         Me.GPRINTINITIALS.OptionsColumn.AllowEdit = False
         Me.GPRINTINITIALS.Visible = True
@@ -175,7 +210,7 @@ Partial Class SendMultipleWhatsapp
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
@@ -362,7 +397,7 @@ Partial Class SendMultipleWhatsapp
         '
         Me.GridColumn1.Caption = "Name"
         Me.GridColumn1.FieldName = "NAME"
-        Me.GridColumn1.ImageIndex = 0
+        Me.GridColumn1.ImageOptions.ImageIndex = 0
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
@@ -644,41 +679,6 @@ Partial Class SendMultipleWhatsapp
         Me.cmdcancel.TabIndex = 3
         Me.cmdcancel.Text = "E&xit"
         Me.cmdcancel.UseVisualStyleBackColor = False
-        '
-        'RBPARTY
-        '
-        Me.RBPARTY.AutoSize = True
-        Me.RBPARTY.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTY.Location = New System.Drawing.Point(282, 546)
-        Me.RBPARTY.Name = "RBPARTY"
-        Me.RBPARTY.Size = New System.Drawing.Size(83, 19)
-        Me.RBPARTY.TabIndex = 5
-        Me.RBPARTY.Text = "Only Party"
-        Me.RBPARTY.UseVisualStyleBackColor = False
-        '
-        'RBAGENT
-        '
-        Me.RBAGENT.AutoSize = True
-        Me.RBAGENT.BackColor = System.Drawing.Color.Transparent
-        Me.RBAGENT.Location = New System.Drawing.Point(371, 546)
-        Me.RBAGENT.Name = "RBAGENT"
-        Me.RBAGENT.Size = New System.Drawing.Size(84, 19)
-        Me.RBAGENT.TabIndex = 6
-        Me.RBAGENT.Text = "Only Agent"
-        Me.RBAGENT.UseVisualStyleBackColor = False
-        '
-        'RBBOTH
-        '
-        Me.RBBOTH.AutoSize = True
-        Me.RBBOTH.BackColor = System.Drawing.Color.Transparent
-        Me.RBBOTH.Checked = True
-        Me.RBBOTH.Location = New System.Drawing.Point(165, 546)
-        Me.RBBOTH.Name = "RBBOTH"
-        Me.RBBOTH.Size = New System.Drawing.Size(111, 19)
-        Me.RBBOTH.TabIndex = 7
-        Me.RBBOTH.TabStop = True
-        Me.RBBOTH.Text = "Party And Agent"
-        Me.RBBOTH.UseVisualStyleBackColor = False
         '
         'SendMultipleWhatsapp
         '

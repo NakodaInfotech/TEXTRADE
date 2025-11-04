@@ -58,9 +58,11 @@ Partial Class AgencyOutstandingGridReport
         Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDGRIDWHATSAPP = New System.Windows.Forms.Button()
         Me.CHKSHOWINDEX = New System.Windows.Forms.CheckBox()
         Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.RBOUTSTANDINGDUE = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGSHORT = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGDAYS = New System.Windows.Forms.RadioButton()
         Me.RBOUTSTANDINGGRID = New System.Windows.Forms.RadioButton()
@@ -156,6 +158,7 @@ Partial Class AgencyOutstandingGridReport
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKSELLER = New System.Windows.Forms.CheckBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GPPARTYNAME = New System.Windows.Forms.GroupBox()
@@ -167,6 +170,7 @@ Partial Class AgencyOutstandingGridReport
         Me.GCITYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSTATENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAREA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKBUYER = New System.Windows.Forms.CheckBox()
         Me.TXTPERCENT = New System.Windows.Forms.TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -184,7 +188,7 @@ Partial Class AgencyOutstandingGridReport
         Me.LSTCMP = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.RBOUTSTANDINGDUE = New System.Windows.Forms.RadioButton()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -212,6 +216,7 @@ Partial Class AgencyOutstandingGridReport
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDGRIDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.CHKSHOWINDEX)
         Me.BlendPanel1.Controls.Add(Me.CMDEXCEL)
         Me.BlendPanel1.Controls.Add(Me.GroupBox4)
@@ -245,6 +250,20 @@ Partial Class AgencyOutstandingGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1444, 672)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'CMDGRIDWHATSAPP
+        '
+        Me.CMDGRIDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDGRIDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDGRIDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDGRIDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDGRIDWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.CMDGRIDWHATSAPP.Location = New System.Drawing.Point(1051, 44)
+        Me.CMDGRIDWHATSAPP.Name = "CMDGRIDWHATSAPP"
+        Me.CMDGRIDWHATSAPP.Size = New System.Drawing.Size(102, 28)
+        Me.CMDGRIDWHATSAPP.TabIndex = 767
+        Me.CMDGRIDWHATSAPP.Text = " PDF &Whatsapp"
+        Me.CMDGRIDWHATSAPP.UseVisualStyleBackColor = False
         '
         'CHKSHOWINDEX
         '
@@ -287,6 +306,16 @@ Partial Class AgencyOutstandingGridReport
         Me.GroupBox4.TabIndex = 6
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Reports"
+        '
+        'RBOUTSTANDINGDUE
+        '
+        Me.RBOUTSTANDINGDUE.AutoSize = True
+        Me.RBOUTSTANDINGDUE.Location = New System.Drawing.Point(191, 70)
+        Me.RBOUTSTANDINGDUE.Name = "RBOUTSTANDINGDUE"
+        Me.RBOUTSTANDINGDUE.Size = New System.Drawing.Size(164, 18)
+        Me.RBOUTSTANDINGDUE.TabIndex = 3
+        Me.RBOUTSTANDINGDUE.Text = "Outstanding Report (Due)"
+        Me.RBOUTSTANDINGDUE.UseVisualStyleBackColor = True
         '
         'RBOUTSTANDINGSHORT
         '
@@ -354,7 +383,7 @@ Partial Class AgencyOutstandingGridReport
         Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
         Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(1051, 44)
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(794, 637)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
         Me.CMDWHATSAPP.TabIndex = 21
@@ -629,7 +658,7 @@ Partial Class AgencyOutstandingGridReport
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(725, 637)
+        Me.cmdexit.Location = New System.Drawing.Point(708, 637)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 25
@@ -655,7 +684,7 @@ Partial Class AgencyOutstandingGridReport
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(640, 637)
+        Me.cmdok.Location = New System.Drawing.Point(623, 637)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 24
@@ -1405,7 +1434,7 @@ Partial Class AgencyOutstandingGridReport
         '
         Me.GRIDSELLER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDSELLER.Appearance.Row.Options.UseFont = True
-        Me.GRIDSELLER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GRIDSELLER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn8})
         Me.GRIDSELLER.GridControl = Me.GRIDSELLERDETAILS
         Me.GRIDSELLER.Name = "GRIDSELLER"
         Me.GRIDSELLER.OptionsBehavior.AllowIncrementalSearch = True
@@ -1469,6 +1498,12 @@ Partial Class AgencyOutstandingGridReport
         Me.GridColumn7.VisibleIndex = 4
         Me.GridColumn7.Width = 100
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "PARTYWHATSAPP"
+        Me.GridColumn1.FieldName = "PARTYWHATSAPP"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
         'CHKSELLER
         '
         Me.CHKSELLER.AutoSize = True
@@ -1522,7 +1557,7 @@ Partial Class AgencyOutstandingGridReport
         '
         Me.GRIDBUYER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBUYER.Appearance.Row.Options.UseFont = True
-        Me.GRIDBUYER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GridColumn2, Me.GCITYNAME, Me.GSTATENAME, Me.GAREA})
+        Me.GRIDBUYER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GridColumn2, Me.GCITYNAME, Me.GSTATENAME, Me.GAREA, Me.GridColumn})
         Me.GRIDBUYER.GridControl = Me.GRIDBUYERDETAILS
         Me.GRIDBUYER.Name = "GRIDBUYER"
         Me.GRIDBUYER.OptionsBehavior.AllowIncrementalSearch = True
@@ -1585,6 +1620,14 @@ Partial Class AgencyOutstandingGridReport
         Me.GAREA.Visible = True
         Me.GAREA.VisibleIndex = 4
         Me.GAREA.Width = 100
+        '
+        'GridColumn
+        '
+        Me.GridColumn.Caption = "PARTYWHATSAPP"
+        Me.GridColumn.FieldName = "PARTYWHATSAPP"
+        Me.GridColumn.Name = "GridColumn"
+        Me.GridColumn.Visible = True
+        Me.GridColumn.VisibleIndex = 5
         '
         'CHKBUYER
         '
@@ -1785,15 +1828,11 @@ Partial Class AgencyOutstandingGridReport
         Me.Label6.TabIndex = 684
         Me.Label6.Text = "Over Due Days"
         '
-        'RBOUTSTANDINGDUE
+        'GridColumn8
         '
-        Me.RBOUTSTANDINGDUE.AutoSize = True
-        Me.RBOUTSTANDINGDUE.Location = New System.Drawing.Point(191, 70)
-        Me.RBOUTSTANDINGDUE.Name = "RBOUTSTANDINGDUE"
-        Me.RBOUTSTANDINGDUE.Size = New System.Drawing.Size(164, 18)
-        Me.RBOUTSTANDINGDUE.TabIndex = 3
-        Me.RBOUTSTANDINGDUE.Text = "Outstanding Report (Due)"
-        Me.RBOUTSTANDINGDUE.UseVisualStyleBackColor = True
+        Me.GridColumn8.Caption = "AGENTWHATSAPP"
+        Me.GridColumn8.FieldName = "AGENTWHATSAPP"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'AgencyOutstandingGridReport
         '
@@ -1967,4 +2006,8 @@ Partial Class AgencyOutstandingGridReport
     Friend WithEvents CMDEXCEL As Button
     Friend WithEvents CHKSHOWINDEX As CheckBox
     Friend WithEvents RBOUTSTANDINGDUE As RadioButton
+    Friend WithEvents CMDGRIDWHATSAPP As Button
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
