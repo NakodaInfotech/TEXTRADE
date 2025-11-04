@@ -4862,6 +4862,12 @@ LINE1:
                         TXTBARCODE.Text = "G-" & Val(txtgrnno.Text.Trim) & "/" & gridgrn.RowCount + 1 & "/" & YearId
                     End If
                 End If
+                If ClientName = "SOFTAS" AndAlso FRMSTRING = "GRN FANCY" Then
+                    If cmbcolor.Text.Trim = "" Then
+                        MessageBox.Show("Shade is Blank. Please Enter Shade.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                End If
                 FILLGRID()
 
             End If

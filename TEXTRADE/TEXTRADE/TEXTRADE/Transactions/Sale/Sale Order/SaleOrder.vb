@@ -718,16 +718,6 @@ Public Class SaleOrder
             Next
         End If
 
-        For Each ROW1 As DataGridViewRow In GRIDSO.Rows
-            If ClientName = "SOFTAS" Then
-                Dim colorValue As Object = ROW1.Cells(gcolor.Index).Value
-
-                If colorValue Is Nothing OrElse colorValue.ToString().Trim() = "" Then
-                    EP.SetError(cmbcolor, "Shade cannot be blank")
-                    bln = False
-                End If
-            End If
-        Next
         'we have OPENED THE LOCK
         'If lbllocked.Visible = True And LBLCLOSED.Visible = False Then
         '    EP.SetError(lbllocked, "Unable to Update, SO Locked")
@@ -804,7 +794,7 @@ Public Class SaleOrder
         Return bln
     End Function
 
-    Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbcolor.Validating
+        Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbcolor.Validating
         Try
             If cmbcolor.Text.Trim <> "" Then COLORVALIDATE(cmbcolor, e, Me, CMBDESIGN.Text.Trim, cmbitemname.Text.Trim)
         Catch ex As Exception
@@ -2284,7 +2274,14 @@ line1:
                         End If
 
                         CALC()
-                        fillgrid(DTROW("MATCHING"))
+                        If ClientName = "SOFTAS" And cmbcolor.Text.Trim <> "" Then
+                            fillgrid(DTROW("MATCHING"))
+                        Else
+                            MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
+                            cmbcolor.Focus()
+                            Exit Sub
+                        End If
+                        If ClientName <> "SOFTAS" Then fillgrid(DTROW("MATCHING"))
                         TOTAL()
                     Next
                 Else
@@ -2293,7 +2290,16 @@ LINESINGLE:
                     If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
                         If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     End If
-                    fillgrid(cmbcolor.Text.Trim)
+                    If ClientName = "SOFTAS" AndAlso cmbcolor.Text.Trim <> "" Then
+                        fillgrid(cmbcolor.Text.Trim)
+                    Else
+                        If ClientName = "SOFTAS" Then
+                            MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
+                            cmbcolor.Focus()
+                            Exit Sub
+                        End If
+                    End If
+                        If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
                     TOTAL()
                 End If
             Else
