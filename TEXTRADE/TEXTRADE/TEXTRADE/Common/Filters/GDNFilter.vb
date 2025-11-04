@@ -252,6 +252,16 @@ Public Class GDNFilter
                 If CMBAGENT.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and ({AGENT.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "')"
                 If CMBITEM.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {ITEMMASTER.ITEM_NAME}='" & CMBITEM.Text.Trim & "'"
 
+            ElseIf RDBDISPPARTYITEMCHALLAN.Checked = True Then
+                OBJGRN.FRMSTRING = "PARTYITEMCHALLANDTLS"
+                If CMBNAME.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LEDGERS.ACC_CMPNAME}='" & CMBNAME.Text & "'"
+                If CMBQUALITY.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {QUALITYMASTER.QUALITY_NAME}='" & CMBQUALITY.Text & "'"
+                If CMBGODOWN.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {GODOWNMASTER.GODOWN_NAME}='" & CMBGODOWN.Text & "'"
+                If CMBDESIGN.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {DESIGNMASTER.DESIGN_NO}='" & CMBDESIGN.Text & "'"
+                If CMBSHADE.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and ({COLORMASTER.COLOR_NAME}='" & CMBSHADE.Text.Trim & "')"
+                If CMBAGENT.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and ({AGENT.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "')"
+                If CMBITEM.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {ITEMMASTER.ITEM_NAME}='" & CMBITEM.Text.Trim & "'"
+
             ElseIf RBDCHALLANDETAILS.Checked = True Then
                 OBJGRN.FRMSTRING = "CHALLANDTLS"
                 If CMBNAME.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LEDGERS.ACC_CMPNAME}='" & CMBNAME.Text & "'"
