@@ -13,6 +13,7 @@ Public Class DispatchDesign
     Dim RPTPARTYDESIGNSHADEDTLS As New DispatchDesignPartyColorWiseReport
     Dim RPTPARTYITEMDESIGNSHADEDTLS As New DispatchPartyItemDesignColorWiseReport
     Dim RPTPARTYITEMDESIGNSHADECHALLANDTLS As New DispatchPartyItemDesignColorChallanWiseReport
+    Dim RPTPARTYITEMCHALLANDTLS As New DispatchPartyItemChallanWiseReport
     Dim RPTCHALLANDTLS As New DispatchChallanWiseDetailsReport
     Dim RPTPARTYDESIGNDTLS As New DispatchPartyDesignWiseDetailReport
     Dim RPTPARTYDTLS As New DispatchPartyWiseDetailReport
@@ -96,6 +97,7 @@ Public Class DispatchDesign
             If FRMSTRING = "PARTYDESIGNSHADEDTLS" Then crTables = RPTPARTYDESIGNSHADEDTLS.Database.Tables
             If FRMSTRING = "PARTYITEMDESIGNSHADEDTLS" Then crTables = RPTPARTYITEMDESIGNSHADEDTLS.Database.Tables
             If FRMSTRING = "PARTYITEMDESIGNSHADECHALLANDTLS" Then crTables = RPTPARTYITEMDESIGNSHADECHALLANDTLS.Database.Tables
+            If FRMSTRING = "PARTYITEMCHALLANDTLS" Then crTables = RPTPARTYITEMCHALLANDTLS.Database.Tables
             If FRMSTRING = "KPLDTLS" Then crTables = RPTKPLDTLS.Database.Tables
             If FRMSTRING = "CHALLANREGISTER" Then crTables = RPTDISPATCHREGISTER.Database.Tables
             If FRMSTRING = "CHALLANDTLS" Then crTables = RPTCHALLANDTLS.Database.Tables
@@ -181,6 +183,9 @@ Public Class DispatchDesign
             ElseIf FRMSTRING = "PARTYITEMDESIGNSHADECHALLANDTLS" Then
                 crpo.ReportSource = RPTPARTYITEMDESIGNSHADECHALLANDTLS
                 RPTPARTYITEMDESIGNSHADECHALLANDTLS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            ElseIf FRMSTRING = "PARTYITEMCHALLANDTLS" Then
+                crpo.ReportSource = RPTPARTYITEMCHALLANDTLS
+                RPTPARTYITEMCHALLANDTLS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
             ElseIf FRMSTRING = "KPLDTLS" Then
                 crpo.ReportSource = RPTKPLDTLS
                 RPTKPLDTLS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -374,6 +379,12 @@ Public Class DispatchDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTPARTYITEMDESIGNSHADECHALLANDTLS.Export()
+            ElseIf FRMSTRING = "PARTYITEMCHALLANDTLS" Then
+                expo = RPTPARTYITEMCHALLANDTLS.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTPARTYITEMCHALLANDTLS.Export()
             ElseIf FRMSTRING = "KPLDTLS" Then
                 expo = RPTKPLDTLS.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile

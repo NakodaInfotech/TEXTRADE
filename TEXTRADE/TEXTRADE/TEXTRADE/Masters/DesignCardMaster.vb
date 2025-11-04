@@ -1450,9 +1450,9 @@ LINE1:
         CMBSELGSYM.Items.Clear()
 
         Dim symSet As New HashSet(Of String)
-        For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
-            If Not IsDBNull(row.Cells(SSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(SSYM.Index).Value.ToString) Then
-                symSet.Add(row.Cells(SSYM.Index).Value.ToString)
+        For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
+            If Not IsDBNull(row.Cells(SPSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(SPSYM.Index).Value.ToString) Then
+                symSet.Add(row.Cells(SPSYM.Index).Value.ToString)
             End If
         Next
 
@@ -4150,31 +4150,31 @@ line1:
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
             ' Proceed only if the column being edited is "WPSYM"
-            If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
-                Dim inputValue As String = e.FormattedValue.ToString().Trim()
-                If inputValue <> "" Then
-                    ' Flag to track if match is found
-                    Dim matchFound As Boolean = False
+            'If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
+            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
+            '    If inputValue <> "" Then
+            '        ' Flag to track if match is found
+            '        Dim matchFound As Boolean = False
 
-                    ' Loop through rows of main grid to check for matching "WSYM" value
-                    For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
-                        If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
-                            Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
+            '        ' Loop through rows of main grid to check for matching "WSYM" value
+            '        For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
+            '            If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
+            '                Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
 
-                            If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-                                matchFound = True
-                                Exit For
-                            End If
-                        End If
-                    Next
+            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
+            '                    matchFound = True
+            '                    Exit For
+            '                End If
+            '            End If
+            '        Next
 
-                    ' If no match found, show warning and cancel editing
-                    If Not matchFound Then
-                        MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        e.Cancel = True  ' Cancels the edit
-                    End If
-                End If
-            End If
+            '        ' If no match found, show warning and cancel editing
+            '        If Not matchFound Then
+            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '            e.Cancel = True  ' Cancels the edit
+            '        End If
+            '    End If
+            'End If
             If e.ColumnIndex = SPSYM.Index Then
                 If e.FormattedValue IsNot Nothing Then
                     GRIDSELVEDGEPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()

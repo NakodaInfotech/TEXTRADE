@@ -109,6 +109,7 @@ Partial Class DesignCardMaster
         Me.lbldesign = New System.Windows.Forms.Label()
         Me.TABCONTROLDETAILS = New System.Windows.Forms.TabControl()
         Me.TBSELVEDGE = New System.Windows.Forms.TabPage()
+        Me.CMBSELGSYM = New System.Windows.Forms.ComboBox()
         Me.GBSSHADEDETAILS = New System.Windows.Forms.GroupBox()
         Me.TXTSDMAINSRNO = New System.Windows.Forms.TextBox()
         Me.TXTSDNO = New System.Windows.Forms.TextBox()
@@ -513,7 +514,6 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMBSELGSYM = New System.Windows.Forms.ComboBox()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -789,6 +789,17 @@ Partial Class DesignCardMaster
         Me.TBSELVEDGE.Size = New System.Drawing.Size(1436, 239)
         Me.TBSELVEDGE.TabIndex = 1
         Me.TBSELVEDGE.Text = "1. Selvedge Matching"
+        '
+        'CMBSELGSYM
+        '
+        Me.CMBSELGSYM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSELGSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSELGSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBSELGSYM.FormattingEnabled = True
+        Me.CMBSELGSYM.Location = New System.Drawing.Point(43, 6)
+        Me.CMBSELGSYM.Name = "CMBSELGSYM"
+        Me.CMBSELGSYM.Size = New System.Drawing.Size(60, 23)
+        Me.CMBSELGSYM.TabIndex = 1
         '
         'GBSSHADEDETAILS
         '
@@ -1347,10 +1358,10 @@ Partial Class DesignCardMaster
         Me.TBWARP.Controls.Add(Me.TXTGRIDPE)
         Me.TBWARP.Controls.Add(Me.TXTWARPGSRNO)
         Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
-        Me.TBWARP.Location = New System.Drawing.Point(4, 24)
+        Me.TBWARP.Location = New System.Drawing.Point(4, 22)
         Me.TBWARP.Name = "TBWARP"
         Me.TBWARP.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWARP.Size = New System.Drawing.Size(1436, 239)
+        Me.TBWARP.Size = New System.Drawing.Size(1436, 241)
         Me.TBWARP.TabIndex = 0
         Me.TBWARP.Text = "2. Warp Pattern && Weft Pattern"
         '
@@ -1965,10 +1976,10 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Controls.Add(Me.GRIDWEFT)
         Me.TBWEFT.Controls.Add(Me.Label86)
         Me.TBWEFT.Controls.Add(Me.Button4)
-        Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
+        Me.TBWEFT.Location = New System.Drawing.Point(4, 22)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1436, 239)
+        Me.TBWEFT.Size = New System.Drawing.Size(1436, 241)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Warp Matching && Weft Matching"
         '
@@ -5600,18 +5611,6 @@ Partial Class DesignCardMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'CMBSELGSYM
-        '
-        Me.CMBSELGSYM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSELGSYM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSELGSYM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBSELGSYM.FormattingEnabled = True
-        Me.CMBSELGSYM.Location = New System.Drawing.Point(43, 6)
-        Me.CMBSELGSYM.Name = "CMBSELGSYM"
-        Me.CMBSELGSYM.Size = New System.Drawing.Size(60, 23)
-        Me.CMBSELGSYM.TabIndex = 1
-        Me.CMBSELGSYM.Visible = False
         '
         'DesignCardMaster
         '

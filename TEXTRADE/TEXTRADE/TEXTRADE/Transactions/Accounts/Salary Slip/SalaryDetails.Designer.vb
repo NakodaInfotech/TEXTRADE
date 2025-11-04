@@ -24,6 +24,12 @@ Partial Class SalaryDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SalaryDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -48,17 +54,12 @@ Partial Class SalaryDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CHQPRINTTOOL = New System.Windows.Forms.ToolStripButton()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TXTFROM = New System.Windows.Forms.TextBox()
-        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +69,7 @@ Partial Class SalaryDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
         Me.BlendPanel1.Controls.Add(Me.Label9)
@@ -83,6 +85,70 @@ Partial Class SalaryDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1284, 581)
         Me.BlendPanel1.TabIndex = 4
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(405, 7)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 14)
+        Me.Label4.TabIndex = 813
+        Me.Label4.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.Location = New System.Drawing.Point(446, 3)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
+        Me.TXTCOPIES.TabIndex = 812
+        Me.TXTCOPIES.Text = "1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(305, 7)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(19, 14)
+        Me.Label9.TabIndex = 811
+        Me.Label9.Text = "To"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.White
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(215, 7)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(34, 14)
+        Me.Label10.TabIndex = 810
+        Me.Label10.Text = "From"
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.Location = New System.Drawing.Point(250, 3)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(50, 22)
+        Me.TXTFROM.TabIndex = 808
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTO
+        '
+        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.Location = New System.Drawing.Point(326, 3)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(52, 22)
+        Me.TXTTO.TabIndex = 809
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMDOK
         '
@@ -324,11 +390,6 @@ Partial Class SalaryDetails
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "&Print"
         '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
         'CHQPRINTTOOL
         '
         Me.CHQPRINTTOOL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -338,77 +399,6 @@ Partial Class SalaryDetails
         Me.CHQPRINTTOOL.Size = New System.Drawing.Size(23, 22)
         Me.CHQPRINTTOOL.Text = "&Print"
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(405, 7)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(44, 14)
-        Me.Label4.TabIndex = 813
-        Me.Label4.Text = "Copies"
-        '
-        'TXTCOPIES
-        '
-        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOPIES.Location = New System.Drawing.Point(446, 3)
-        Me.TXTCOPIES.Name = "TXTCOPIES"
-        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
-        Me.TXTCOPIES.TabIndex = 812
-        Me.TXTCOPIES.Text = "1"
-        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.White
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(305, 7)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(19, 14)
-        Me.Label9.TabIndex = 811
-        Me.Label9.Text = "To"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.White
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(215, 7)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(34, 14)
-        Me.Label10.TabIndex = 810
-        Me.Label10.Text = "From"
-        '
-        'TXTFROM
-        '
-        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROM.Location = New System.Drawing.Point(250, 3)
-        Me.TXTFROM.Name = "TXTFROM"
-        Me.TXTFROM.Size = New System.Drawing.Size(50, 22)
-        Me.TXTFROM.TabIndex = 808
-        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTO
-        '
-        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTO.Location = New System.Drawing.Point(326, 3)
-        Me.TXTTO.Name = "TXTTO"
-        Me.TXTTO.Size = New System.Drawing.Size(52, 22)
-        Me.TXTTO.TabIndex = 809
-        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PRINTDIALOG
-        '
-        Me.PRINTDIALOG.AllowSelection = True
-        Me.PRINTDIALOG.AllowSomePages = True
-        Me.PRINTDIALOG.ShowHelp = True
-        Me.PRINTDIALOG.UseEXDialog = True
-        '
         'TOOLWHATSAPP
         '
         Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -417,6 +407,32 @@ Partial Class SalaryDetails
         Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
         Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
         Me.TOOLWHATSAPP.Text = "Whatsapp Cedit Note Directly"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(474, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'SalaryDetails
         '
@@ -474,4 +490,5 @@ Partial Class SalaryDetails
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
