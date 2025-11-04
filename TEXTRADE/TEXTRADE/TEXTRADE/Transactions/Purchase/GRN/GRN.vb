@@ -4864,7 +4864,7 @@ LINE1:
                 End If
                 If ClientName = "SOFTAS" AndAlso FRMSTRING = "GRN FANCY" Then
                     If cmbcolor.Text.Trim = "" Then
-                        MessageBox.Show("Please select a color before proceeding.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        MessageBox.Show("Shade is Blank. Please Enter Shade.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Exit Sub
                     End If
                 End If
