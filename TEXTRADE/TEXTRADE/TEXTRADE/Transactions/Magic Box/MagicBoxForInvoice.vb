@@ -568,6 +568,8 @@ NEXTLINE:
         BILLDATE.Value = Now.Date
         CMBBUYERS.Text = ""
         CMBSELLERS.Text = ""
+        CMBBUYERS.Enabled = True
+        CMBSELLERS.Enabled = True
         txtcrdays.Clear()
         TXTPARTYBILLNO.Clear()
         TXTPONO.Clear()
@@ -846,6 +848,8 @@ NEXTLINE:
         ENTRYDATE.Value = Date.Today
         CMBSELLERS.Text = ""
         CMBBUYERS.Text = ""
+        CMBBUYERS.Enabled = True
+        CMBSELLERS.Enabled = True
         TXTPARTYBILLNO.Clear()
         txtcrdays.Clear()
         TXTPONO.Clear()
@@ -889,6 +893,7 @@ NEXTLINE:
         CMBTDS.Text = ""
         TXTTDSPER.Clear()
         TXTTDSAMT.Clear()
+
     End Sub
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
@@ -953,7 +958,8 @@ NEXTLINE:
                 TXTREMARKS.Text = DTROW("REMARKS").ToString()
 
                 TXTPARTYBILLNO.Focus()
-
+                CMBBUYERS.Enabled = False
+                CMBSELLERS.Enabled = False
             End If
 
             'FETCH DISCOUNT WITH RESPECT TO SALE ORDER 
