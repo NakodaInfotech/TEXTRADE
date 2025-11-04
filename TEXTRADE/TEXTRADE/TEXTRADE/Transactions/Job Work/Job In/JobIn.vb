@@ -4465,11 +4465,14 @@ LINE1:
                         FILLGRID()
 
                     Else
-                        MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
-                        cmbcolor.Focus()
-                        Exit Sub
+                        If ClientName = "SOFTAS" Then
+
+                            MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
+                            cmbcolor.Focus()
+                            Exit Sub
+                        End If
                     End If
-                    If ClientName <> "SOFTAS" Then FILLGRID()
+                        If ClientName <> "SOFTAS" Then FILLGRID()
                 End If
 
                 If ClientName = "KCRAYON" Then TXTMTRS.Focus()
