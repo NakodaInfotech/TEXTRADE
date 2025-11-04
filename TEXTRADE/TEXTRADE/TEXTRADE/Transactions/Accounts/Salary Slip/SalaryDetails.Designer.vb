@@ -24,6 +24,7 @@ Partial Class SalaryDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SalaryDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TXTCOPIES = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -59,7 +60,10 @@ Partial Class SalaryDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GEMPBANK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEMPACNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBRANCH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEMPIFSC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +89,20 @@ Partial Class SalaryDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1284, 581)
         Me.BlendPanel1.TabIndex = 4
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(474, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -193,7 +211,7 @@ Partial Class SalaryDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GDATE, Me.GEMPNAME, Me.GMONTH, Me.GWORKDAYS, Me.GPAYDAYS, Me.GLEAVE, Me.GDED, Me.GTOTALEAR, Me.GLEDGERNAME, Me.GLOANLEDGERNAME, Me.GADVANCETAKEN, Me.GNETT, Me.GREMARKS, Me.GLOANEMI})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GDATE, Me.GEMPNAME, Me.GMONTH, Me.GWORKDAYS, Me.GPAYDAYS, Me.GLEAVE, Me.GDED, Me.GTOTALEAR, Me.GLEDGERNAME, Me.GLOANLEDGERNAME, Me.GADVANCETAKEN, Me.GNETT, Me.GREMARKS, Me.GLOANEMI, Me.GEMPBANK, Me.GEMPACNO, Me.GBRANCH, Me.GEMPIFSC})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -348,7 +366,7 @@ Partial Class SalaryDetails
         Me.GLOANEMI.FieldName = "LOANEMI"
         Me.GLOANEMI.Name = "GLOANEMI"
         Me.GLOANEMI.Visible = True
-        Me.GLOANEMI.VisibleIndex = 15
+        Me.GLOANEMI.VisibleIndex = 19
         '
         'ToolStrip1
         '
@@ -420,19 +438,41 @@ Partial Class SalaryDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CMDSAVELAYOUT
+        'GEMPBANK
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(474, 541)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 449
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GEMPBANK.Caption = "Bank Name"
+        Me.GEMPBANK.FieldName = "BANKNAME"
+        Me.GEMPBANK.Name = "GEMPBANK"
+        Me.GEMPBANK.Visible = True
+        Me.GEMPBANK.VisibleIndex = 15
+        Me.GEMPBANK.Width = 200
+        '
+        'GEMPACNO
+        '
+        Me.GEMPACNO.Caption = "A/C No"
+        Me.GEMPACNO.FieldName = "ACCNO"
+        Me.GEMPACNO.Name = "GEMPACNO"
+        Me.GEMPACNO.Visible = True
+        Me.GEMPACNO.VisibleIndex = 16
+        Me.GEMPACNO.Width = 120
+        '
+        'GBRANCH
+        '
+        Me.GBRANCH.Caption = "Branch"
+        Me.GBRANCH.FieldName = "BRANCH"
+        Me.GBRANCH.Name = "GBRANCH"
+        Me.GBRANCH.Visible = True
+        Me.GBRANCH.VisibleIndex = 17
+        Me.GBRANCH.Width = 120
+        '
+        'GEMPIFSC
+        '
+        Me.GEMPIFSC.Caption = "IFSC Code"
+        Me.GEMPIFSC.FieldName = "IFSCCODE"
+        Me.GEMPIFSC.Name = "GEMPIFSC"
+        Me.GEMPIFSC.Visible = True
+        Me.GEMPIFSC.VisibleIndex = 18
+        Me.GEMPIFSC.Width = 100
         '
         'SalaryDetails
         '
@@ -491,4 +531,8 @@ Partial Class SalaryDetails
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GEMPBANK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEMPACNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBRANCH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEMPIFSC As DevExpress.XtraGrid.Columns.GridColumn
 End Class
