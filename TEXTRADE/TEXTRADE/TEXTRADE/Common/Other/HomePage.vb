@@ -43,12 +43,22 @@ Public Class HomePage
             GRIDSTOCK.OptionsView.ShowFooter = True
 
             GBSALE.Visible = False
-            GBOVERDUE.Visible = False
-            GBMONTHLYSALE.Visible = True
-            GBPARTYPERFORMANCE.Visible = True
 
-            FILLMONTHLYSALE()
-            FILLPERFORMANCE()
+            If ClientName = "SHASHWAT" Or ClientName = "SUPRIYA" Then
+                GBOVERDUE.Visible = True
+                GBMONTHLYSALE.Visible = False
+                GBPARTYPERFORMANCE.Visible = False
+                FILLOVERDUE()
+            Else
+                GBOVERDUE.Visible = False
+                GBMONTHLYSALE.Visible = True
+                GBPARTYPERFORMANCE.Visible = True
+                FILLMONTHLYSALE()
+                FILLPERFORMANCE()
+            End If
+
+
+
 
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then

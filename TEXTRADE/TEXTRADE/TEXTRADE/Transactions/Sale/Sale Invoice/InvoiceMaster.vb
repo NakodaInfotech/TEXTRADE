@@ -2724,11 +2724,12 @@ Public Class InvoiceMaster
 
 
         'TAKE CREDIT LIMIT FROM ALL THE COMPANIES
-        If ClientName = "SUPRIYA" Then
-            DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE ON ACC_CMPNAME = NAME AND ACC_YEARID = YEARID", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "')")
-        Else
-            DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) As BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE On ACC_CMPNAME = NAME And ACC_YEARID = YEARID", " And ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & YearId)
-        End If
+        'NOW THEY HAVE REVERSED 04-11-25, THEY WANT CR LIMIT COMPANY WISE
+        'If ClientName = "SUPRIYA" Then
+        '    DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) AS BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE ON ACC_CMPNAME = NAME AND ACC_YEARID = YEARID", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "')")
+        'Else
+        DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN DR > 0 THEN DR ELSE CR END) As BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE On ACC_CMPNAME = NAME And ACC_YEARID = YEARID", " And ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & YearId)
+        'End If
         If DT.Rows.Count > 0 AndAlso Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
             If Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) + Val(txtgrandtotal.Text.Trim), "0.00") > Val(DT.Rows(0).Item("CRLIMIT")) Then
                 EP.SetError(cmbname, "Amount Greater then Credit Limit, Only " & Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) - Val(DT.Rows(0).Item("CRLIMIT")), "0.00") & " allowed")
@@ -2739,15 +2740,17 @@ Public Class InvoiceMaster
 
         'SET CRLIMIT FOR AGENTS ALSO
         'TAKE CREDIT LIMIT FROM ALL THE COMPANIES FOR AGENTS
-        If ClientName = "SUPRIYA" Then
-            DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN SUM(DR)-SUM(CR) > 0 THEN SUM(DR)-SUM(CR) ELSE SUM(CR)-SUM(DR) END) AS BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE ON ACC_ID = AGENTID ", " AND ACC_CMPNAME = '" & CMBAGENT.Text.Trim & "' AND LEDGERS.ACC_YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "') GROUP BY ACC_CRLIMIT")
-            If DT.Rows.Count > 0 AndAlso Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
-                If Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) + Val(txtgrandtotal.Text.Trim), "0.00") > Val(DT.Rows(0).Item("CRLIMIT")) Then
-                    EP.SetError(cmbname, "Amount Greater then Credit Limit Set for Agent, Only " & Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) - Val(DT.Rows(0).Item("CRLIMIT")), "0.00") & " allowed")
-                    bln = False
-                End If
-            End If
-        End If
+        'NOW THEY HAVE REVERSED 04-11-25, THEY WANT CR LIMIT COMPANY WISE
+        'If ClientName = "SUPRIYA" Then
+        '    DT = OBJCMN.SEARCH("ACC_CRLIMIT As CRLIMIT, (CASE WHEN SUM(DR)-SUM(CR) > 0 THEN SUM(DR)-SUM(CR) ELSE SUM(CR)-SUM(DR) END) AS BALANCE", "", "LEDGERS INNER JOIN TRIALBALANCE ON ACC_ID = AGENTID ", " AND ACC_CMPNAME = '" & CMBAGENT.Text.Trim & "' AND LEDGERS.ACC_YEARID IN (SELECT YEAR_ID FROM YEARMASTER WHERE YEAR_STARTDATE = '" & Format(AccFrom.Date, "MM/dd/yyyy") & "') GROUP BY ACC_CRLIMIT")
+        '    If DT.Rows.Count > 0 AndAlso Val(DT.Rows(0).Item("CRLIMIT")) > 0 Then
+        '        If Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) + Val(txtgrandtotal.Text.Trim), "0.00") > Val(DT.Rows(0).Item("CRLIMIT")) Then
+        '            EP.SetError(cmbname, "Amount Greater then Credit Limit Set for Agent, Only " & Format(Val(DT.Rows(0).Item("BALANCE")) - Val(OLDBAL) - Val(DT.Rows(0).Item("CRLIMIT")), "0.00") & " allowed")
+        '            bln = False
+        '        End If
+        '    End If
+        'End If
+
 
         'WE HAVE TO GIVE POPUP OF REMARKS
         If ClientName = "SNCM" And txtremarks.Text.Trim <> "" Then MsgBox(txtremarks.Text.Trim, MsgBoxStyle.Critical)
