@@ -1310,21 +1310,24 @@ LINE1:
                 Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
                 Dim SELECTEDBILLNO As String = ""
                 Dim SELECTEDAMOUNT As String = ""
+                Dim SELECTEDTDSAMT As String = ""
                 For Each DTROW As DataRow In DTBILLS.Rows
                     If SELECTEDBILLNO = "" Then
                         SELECTEDBILLNO = DTROW("BILLNO")
                         SELECTEDAMOUNT = Val(DTROW("ADJUSTAMT"))
+                        SELECTEDTDSAMT = Val(DTROW("TDS"))
                     Else
                         SELECTEDBILLNO = DTROW("BILLNO") & "|" & SELECTEDBILLNO
                         SELECTEDAMOUNT = SELECTEDAMOUNT & "|" & Val(DTROW("ADJUSTAMT"))
+                        SELECTEDTDSAMT = SELECTEDTDSAMT & "|" & Val(DTROW("TDS"))
                     End If
                 Next
                 txtremamount.Text = OBJSELECTBILL.RemAmount
-                TXTTDSACC.Text = OBJSELECTBILL.TDSDEDUCTEDAC
-                TXTTDSAMT.Text = Format(OBJSELECTBILL.TDSDEDUCTEDAMT, "0.00")
                 TXTBILLNO.Text = SELECTEDBILLNO
                 TXTADJAMOUNT.Text = SELECTEDAMOUNT
                 If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
+                If OBJSELECTBILL.TDSDEDUCTEDAMT > 0 Then TXTTDSAMT.Text = SELECTEDTDSAMT
+                If OBJSELECTBILL.TDSDEDUCTEDAC <> "" Then TXTTDSACC.Text = OBJSELECTBILL.TDSDEDUCTEDAC
 
             Else
                 MsgBox("Select Name")

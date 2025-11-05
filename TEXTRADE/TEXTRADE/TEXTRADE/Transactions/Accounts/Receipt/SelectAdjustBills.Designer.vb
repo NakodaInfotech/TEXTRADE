@@ -23,6 +23,7 @@ Partial Class SelectAdjustBills
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.CMBTDSDEDUCTEDAC = New System.Windows.Forms.ComboBox()
         Me.Label64 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -48,7 +49,6 @@ Partial Class SelectAdjustBills
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridrec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +75,16 @@ Partial Class SelectAdjustBills
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(926, 593)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'TXTADD
+        '
+        Me.TXTADD.BackColor = System.Drawing.SystemColors.Window
+        Me.TXTADD.ForeColor = System.Drawing.Color.Black
+        Me.TXTADD.Location = New System.Drawing.Point(775, 7)
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.Size = New System.Drawing.Size(26, 20)
+        Me.TXTADD.TabIndex = 864
+        Me.TXTADD.Visible = False
         '
         'CMBTDSDEDUCTEDAC
         '
@@ -288,7 +298,7 @@ Partial Class SelectAdjustBills
         Me.GTDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTDS.FieldName = "TDS"
         Me.GTDS.Name = "GTDS"
-        Me.GTDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TDS", "0.00")})
+        Me.GTDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTDS.Visible = True
         Me.GTDS.VisibleIndex = 7
         '
@@ -358,16 +368,6 @@ Partial Class SelectAdjustBills
         Me.cmdok.Text = "&Ok"
         Me.cmdok.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'TXTADD
-        '
-        Me.TXTADD.BackColor = System.Drawing.SystemColors.Window
-        Me.TXTADD.ForeColor = System.Drawing.Color.Black
-        Me.TXTADD.Location = New System.Drawing.Point(775, 7)
-        Me.TXTADD.Name = "TXTADD"
-        Me.TXTADD.Size = New System.Drawing.Size(26, 20)
-        Me.TXTADD.TabIndex = 864
-        Me.TXTADD.Visible = False
         '
         'SelectAdjustBills
         '
