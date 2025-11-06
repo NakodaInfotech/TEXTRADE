@@ -462,7 +462,10 @@ NEXTLINE:
                             g.Cells("GSHADE").Value = r("COLOR").ToString()
                             g.Cells("GQTY").Value = 0
                             g.Cells("GFOLDPER").Value = 0
-                            g.Cells("GDESCRIPTION").Value = ""
+
+                            Dim dtDESC As DataTable = OBJCMN.SEARCH("ITEMMASTER.item_remarks", "", "ITEMMASTER", "AND ITEMMASTER.ITEM_NAME = '" & r("ITEMNAME").Replace("'", "''") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+                            If dtDESC.Rows.Count > 0 Then g.Cells("GDESCRIPTION").Value = dtDESC.Rows(0)("item_remarks").ToString()
+                            'g.Cells("GDESCRIPTION").Value = ""
                             g.Cells("GBALENO").Value = ""
                             g.Cells("GPCS").Value = TOTALPCS
                             g.Cells("GCUT").Value = 0
