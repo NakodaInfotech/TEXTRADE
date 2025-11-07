@@ -1713,40 +1713,41 @@ Public Class InvoiceMaster
                         GRIDLRNO = row.Cells(GLRNO.Index).Value.ToString
 
                         'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
-
+                        If row.Cells(GTRANS.Index).Value <> "" Then
+                            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                            If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+                        End If
                         GRIDTRANSPORT = row.Cells(GTRANS.Index).Value.ToString
-                        DISCPER = Val(row.Cells(GDISCPER.Index).Value)
-                        DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
-                        SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
-                        SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
-                        OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
-                        TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
-                        CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
-                        CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
-                        SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
-                        SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
-                        IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
-                        IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
-                        GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
-                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                        FROMNO = row.Cells(GFROMNO.Index).Value
-                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
-                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value
-                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
-                        GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
-                        UNIT = row.Cells(GUNIT.Index).Value
-                        GRIDSONO = Val(row.Cells(GSONO.Index).Value)
-                        GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
-                        WT = Val(row.Cells(GWT.Index).Value)
-                        GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
-                        GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
+                            DISCPER = Val(row.Cells(GDISCPER.Index).Value)
+                            DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
+                            SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
+                            SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
+                            OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
+                            TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
+                            CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
+                            CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
+                            SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
+                            SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
+                            IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
+                            IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
+                            GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
+                            BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                            FROMNO = row.Cells(GFROMNO.Index).Value
+                            FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                            FROMTYPE = row.Cells(GFROMTYPE.Index).Value
+                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
+                            GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
+                            UNIT = row.Cells(GUNIT.Index).Value
+                            GRIDSONO = Val(row.Cells(GSONO.Index).Value)
+                            GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
+                            WT = Val(row.Cells(GWT.Index).Value)
+                            GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
+                            GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
 
 
-                    Else
+                        Else
 
-                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
+                            gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
                         ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value
                         HSNCODE = HSNCODE & "|" & row.Cells(GHSNCODE.Index).Value.ToString
 
@@ -1767,41 +1768,42 @@ Public Class InvoiceMaster
                         GRIDLRNO = GRIDLRNO & "|" & row.Cells(GLRNO.Index).Value
 
                         'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
-
+                        If row.Cells(GTRANS.Index).Value <> "" Then
+                            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                            If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+                        End If
 
                         GRIDTRANSPORT = GRIDTRANSPORT & "|" & row.Cells(GTRANS.Index).Value
-                        DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
-                        DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
-                        SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
-                        SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
-                        OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
-                        TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
-                        CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
-                        CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
-                        SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
-                        SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
-                        IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
-                        IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
-                        GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
+                            DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
+                            DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
+                            SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
+                            SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
+                            OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
+                            TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
+                            CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
+                            CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
+                            SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
+                            SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
+                            IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
+                            IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
+                            GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
 
-                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
-                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
-                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
-                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
-                        GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
-                        UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
-                        GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
-                        GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
-                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
-                        GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
-                        GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
+                            BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                            FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                            FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                            FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
+                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
+                            GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
+                            UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
+                            GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
+                            GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
+                            WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
+                            GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
+                            GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
 
 
+                        End If
                     End If
-                End If
             Next
 
             alParaval.Add(gridsrno)
