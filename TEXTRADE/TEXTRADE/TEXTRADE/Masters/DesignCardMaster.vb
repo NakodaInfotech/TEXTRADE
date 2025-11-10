@@ -1100,11 +1100,30 @@ Public Class DesignCardMaster
                 FILLPEGPLAN()
                 pegplan()
                 'GRIDDRAWING_CellValidating(Nothing, Nothing)
+                srno(GRIDWARP, TXTWARPSRNO)
+                srno(GRIDSELVEDGE, TXTSELSRNO)
+                srno(GRIDWEFT, TXTWEFTSRNO)
+                srno(GRIDWEFTDESC, TXTFDSRNO)
+                srno(GRIDWARPDESC, TXTWDSRNO)
+                srno(GRIDSELDESC, TXTSDNO)
+
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+    Public Sub srno(grid As DataGridView, txtBox As System.Windows.Forms.TextBox)
+        If grid Is Nothing OrElse txtBox Is Nothing Then Exit Sub
+
+        If grid.RowCount > 0 Then
+            Dim lastValue As Integer = Val(grid.Rows(grid.RowCount - 1).Cells(0).Value)
+            txtBox.Text = (lastValue + 1).ToString()
+        Else
+            txtBox.Text = "1"
+        End If
+    End Sub
+
+
     Sub TOTAL()
         TOTALSELVEDGE()
         TOTALSELVEDGEPATTERN()
@@ -1214,17 +1233,15 @@ LINE1:
                 Next
             End If
         End If
-        If String.IsNullOrWhiteSpace(CMBGRIDSYM.Text) Then
-            ' Set to the first item in the list (top alphabet)
-            If CMBGRIDSYM.Items.Count > 0 Then
-                CMBGRIDSYM.Text = CMBGRIDSYM.Items(0).ToString()
-            End If
-        Else
-            CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text, CMBGRIDSYM)
-        End If
+        'If String.IsNullOrWhiteSpace(CMBGRIDSYM.Text) Then
+        '    ' Set to the first item in the list (top alphabet)
+        '    If CMBGRIDSYM.Items.Count > 0 Then
+        '        CMBGRIDSYM.Text = CMBGRIDSYM.Items(0).ToString()
+        '    End If
+        'Else
+        '    CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text, CMBGRIDSYM)
+        'End If
         GRIDWARPDESC.EndEdit() '
-
-
         For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
             Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
             For i As Integer = DT_WARPDETAILS.Rows.Count - 1 To 0 Step -1
@@ -1244,6 +1261,8 @@ LINE1:
                 End If
             Next
         Next
+
+
         POPULATEGRID()
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
@@ -1451,7 +1470,11 @@ LINE1:
 
         Dim symSet As New HashSet(Of String)
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If Not IsDBNull(row.Cells(SPSYM.Index).Value) AndAlso Not String.IsNullOrWhiteSpace(row.Cells(SPSYM.Index).Value.ToString) Then
+            If row.Cells(SPSYM.Index) IsNot Nothing AndAlso
+   row.Cells(SPSYM.Index).Value IsNot Nothing AndAlso
+   Not IsDBNull(row.Cells(SPSYM.Index).Value) AndAlso
+   Not String.IsNullOrWhiteSpace(row.Cells(SPSYM.Index).Value.ToString()) Then
+
                 symSet.Add(row.Cells(SPSYM.Index).Value.ToString)
             End If
         Next
