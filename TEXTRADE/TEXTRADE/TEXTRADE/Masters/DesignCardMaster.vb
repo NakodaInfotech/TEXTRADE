@@ -589,6 +589,8 @@ Public Class DesignCardMaster
             alParaval.Add(PEGREPEATMARK2)
             alParaval.Add(PEGREPEATS2)
 
+            alParaval.Add(TXTTOTALENDS.Text.Trim)
+
 
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval

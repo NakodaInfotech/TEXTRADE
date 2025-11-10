@@ -342,36 +342,13 @@ Public Class MagicBoxForRecPay
 
 
                     CREATEPAYMENT(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
-
-                End If
-
-                '********************************************************************************************************************
-
-                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE J.V  IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
-                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP [ BUYER ]" And ROW.Cells(GTDSAMT.Index).Value > 0 Then
-
-                    'CREATE payment IN ABHEE FABRICS LLP
-                    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
-                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
-                    If TEMPDT.Rows.Count > 0 Then
-                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
-                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
-                    Else
-                        GoTo NEXTLINE
+                    If ROW.Cells(GTDSAMT.Index).Value <> "" Then
+                        CREATEJV(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
                     End If
 
-                    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & ROW.Cells(GPARTYNAME.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(ROW.Cells(GPARTYNAME.Index).Value, TEMPCMPID, TEMPYEARID)
-
-                    'CHECK WHETHER bank NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & ROW.Cells(GACCNAME.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(ROW.Cells(GACCNAME.Index).Value, TEMPCMPID, TEMPYEARID)
-
-
-                    CREATEPAYMENT(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
-
                 End If
+
+
                 '******************** END OF JV GENERATION CODE ***************************
                 Dim DTNAME1 As DataTable = OBJCMN.SEARCH("ISNULL(ACC_CMPNAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & ROW.Cells(GSELLERNAME.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
 
@@ -431,10 +408,10 @@ NEXTLINE:
         Try
             'If cmbname.Text = "ABHEE FABRICS LLP" Then
             Dim DTTABLE1 As DataTable
-                Dim alparaval1 As New ArrayList()
+            Dim alparaval1 As New ArrayList()
 
-                ' Create a HashSet to track unique entries
-                Dim addedEntries1 As New HashSet(Of String)
+            ' Create a HashSet to track unique entries
+            Dim addedEntries1 As New HashSet(Of String)
 
             For Each ROW As DataGridViewRow In GRIDISSUE.Rows
                 If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
@@ -560,6 +537,106 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+    Sub CREATEJV(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
+        Try
+            'If cmbname.Text = "ABHEE FABRICS LLP" Then
+            Dim DTTABLE1 As DataTable
+            Dim alparaval1 As New ArrayList()
+
+            ' Create a HashSet to track unique entries
+            Dim addedEntries1 As New HashSet(Of String)
+
+            For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+                If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
+
+                    If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
+                        ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
+                        Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
+                                 ROW.Cells(GACCNAME.Index).Value.ToString() &
+                                 ROW.Cells(GPARTYNAME.Index).Value.ToString()
+
+                        ' If the entry has already been added, skip it
+                        If addedEntries1.Contains(entryKey) Then
+                            Continue For
+                        End If
+
+                        ' Add this entry to the HashSet to prevent duplicates
+                        addedEntries1.Add(entryKey)
+
+                        ' Add the row values to alparaval1
+                        alparaval1.Clear()
+                        alparaval1.Add(0) 'ROW.Cells(GSRNO.Index).Value.ToString())
+                        alparaval1.Add("") '"cmbregister.Text.Trim)
+                        alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+                        alparaval1.Add(0) 'Val(TXTTOTALDR.Text.Trim))
+                        alparaval1.Add(0) 'Val(TXTTOTALCR.Text.Trim))
+                        alparaval1.Add("") 'txtremarks.Text.Trim)
+                        alparaval1.Add("") 'TXTBILLREMARKS.Text.Trim)
+                        alparaval1.Add(TEMPCMPID)
+                        alparaval1.Add(Locationid)
+                        alparaval1.Add(Userid)
+                        alparaval1.Add(TEMPYEARID)
+                        alparaval1.Add(0)
+
+                        Dim type As String = ""
+                        Dim name As String = ""
+                        Dim paytype As String = ""
+                        Dim refno As String = ""
+                        Dim debit As String = ""
+                        Dim credit As String = ""
+                        Dim gridsrno As String = ""
+
+                        For I As Integer = 0 To 1
+                            If type = "" Then
+                                type = "Dr"
+                                name = (ROW.Cells(GSELLERNAME.Index).Value.ToString())
+                                paytype = "Against Bill"
+                                refno = (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
+                                debit = (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                credit = 0
+                                gridsrno = 1
+                            Else
+                                type = type & "|" & "Cr"
+                                name = name & "|" & (ROW.Cells(GTDSACC.Index).Value.ToString())
+                                paytype = paytype & "|" & "On Account"
+                                refno = refno & "|" & (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
+                                debit = debit & "|" & 0
+                                credit = credit & "|" & (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                gridsrno = gridsrno & "|" & 2
+                            End If
+                        Next
+
+                        alparaval1.Add(type)
+                        alparaval1.Add(name)
+                        alparaval1.Add(paytype)
+                        alparaval1.Add(refno)
+                        alparaval1.Add(debit)
+                        alparaval1.Add(credit)
+                        alparaval1.Add(gridsrno)
+                        alparaval1.Add("") 'TXTSPLREMARKS.Text)
+                        alparaval1.Add("") 'TXTPARTYBILLNO.Text.Trim)
+                        alparaval1.Add("") '"CMBCOSTCENTERNAME.Text.Trim)
+
+                        ' Initialize the payment object
+                        Dim OBJCLJV As New ClsJournalMaster()
+                        OBJCLJV.alParaval = alparaval1
+
+                        ' Only save if not in edit mode
+                        If Not EDIT Then
+                            If Not USERADD Then
+                                MsgBox("Insufficient Rights")
+                                Exit Sub
+                            End If
+                            DTTABLE1 = OBJCLJV.save()
+                        End If
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Sub CREATEREC(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
         Try
             Dim DTTABLE As DataTable
@@ -1323,11 +1400,11 @@ LINE1:
                     End If
                 Next
                 txtremamount.Text = OBJSELECTBILL.RemAmount
-                TXTBILLNO.Text = SELECTEDBILLNO
+
                 TXTADJAMOUNT.Text = SELECTEDAMOUNT
-                If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
-                If OBJSELECTBILL.TDSDEDUCTEDAMT > 0 Then TXTTDSAMT.Text = SELECTEDTDSAMT
-                If OBJSELECTBILL.TDSDEDUCTEDAC <> "" Then TXTTDSACC.Text = OBJSELECTBILL.TDSDEDUCTEDAC
+                TXTTDSAMT.Text = SELECTEDTDSAMT
+                TXTBILLNO.Text = SELECTEDBILLNO
+                TXTTDSACC.Text = OBJSELECTBILL.CMBTDSDEDUCTEDAC.Text
 
             Else
                 MsgBox("Select Name")
