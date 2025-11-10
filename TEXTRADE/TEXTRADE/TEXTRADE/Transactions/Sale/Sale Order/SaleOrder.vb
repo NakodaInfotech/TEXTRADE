@@ -2274,14 +2274,8 @@ line1:
                         End If
 
                         CALC()
-                        If ClientName = "SOFTAS" And cmbcolor.Text.Trim <> "" Then
-                            fillgrid(DTROW("MATCHING"))
-                        Else
-                            MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
-                            cmbcolor.Focus()
-                            Exit Sub
-                        End If
-                        If ClientName <> "SOFTAS" Then fillgrid(DTROW("MATCHING"))
+
+                        fillgrid(DTROW("MATCHING"))
                         TOTAL()
                     Next
                 Else

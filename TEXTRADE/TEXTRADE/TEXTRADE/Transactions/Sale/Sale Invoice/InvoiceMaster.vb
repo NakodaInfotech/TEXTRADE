@@ -1713,40 +1713,41 @@ Public Class InvoiceMaster
                         GRIDLRNO = row.Cells(GLRNO.Index).Value.ToString
 
                         'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
-
+                        If row.Cells(GTRANS.Index).Value <> "" Then
+                            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                            If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+                        End If
                         GRIDTRANSPORT = row.Cells(GTRANS.Index).Value.ToString
-                        DISCPER = Val(row.Cells(GDISCPER.Index).Value)
-                        DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
-                        SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
-                        SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
-                        OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
-                        TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
-                        CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
-                        CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
-                        SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
-                        SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
-                        IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
-                        IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
-                        GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
-                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                        FROMNO = row.Cells(GFROMNO.Index).Value
-                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
-                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value
-                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
-                        GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
-                        UNIT = row.Cells(GUNIT.Index).Value
-                        GRIDSONO = Val(row.Cells(GSONO.Index).Value)
-                        GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
-                        WT = Val(row.Cells(GWT.Index).Value)
-                        GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
-                        GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
+                            DISCPER = Val(row.Cells(GDISCPER.Index).Value)
+                            DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
+                            SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
+                            SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
+                            OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
+                            TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
+                            CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
+                            CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
+                            SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
+                            SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
+                            IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
+                            IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
+                            GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
+                            BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                            FROMNO = row.Cells(GFROMNO.Index).Value
+                            FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                            FROMTYPE = row.Cells(GFROMTYPE.Index).Value
+                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
+                            GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
+                            UNIT = row.Cells(GUNIT.Index).Value
+                            GRIDSONO = Val(row.Cells(GSONO.Index).Value)
+                            GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
+                            WT = Val(row.Cells(GWT.Index).Value)
+                            GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
+                            GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
 
 
-                    Else
+                        Else
 
-                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
+                            gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
                         ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value
                         HSNCODE = HSNCODE & "|" & row.Cells(GHSNCODE.Index).Value.ToString
 
@@ -1767,41 +1768,42 @@ Public Class InvoiceMaster
                         GRIDLRNO = GRIDLRNO & "|" & row.Cells(GLRNO.Index).Value
 
                         'CHECK WHETHER TRANSPORT IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
-                        TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
-                        If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
-
+                        If row.Cells(GTRANS.Index).Value <> "" Then
+                            TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+                            If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
+                        End If
 
                         GRIDTRANSPORT = GRIDTRANSPORT & "|" & row.Cells(GTRANS.Index).Value
-                        DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
-                        DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
-                        SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
-                        SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
-                        OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
-                        TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
-                        CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
-                        CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
-                        SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
-                        SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
-                        IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
-                        IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
-                        GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
+                            DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
+                            DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
+                            SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
+                            SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
+                            OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
+                            TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
+                            CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
+                            CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
+                            SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
+                            SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
+                            IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
+                            IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
+                            GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
 
-                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
-                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
-                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
-                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
-                        GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
-                        UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
-                        GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
-                        GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
-                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
-                        GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
-                        GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
+                            BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                            FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                            FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                            FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
+                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
+                            GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
+                            UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
+                            GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
+                            GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
+                            WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
+                            GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
+                            GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
 
 
+                        End If
                     End If
-                End If
             Next
 
             alParaval.Add(gridsrno)
@@ -10374,236 +10376,238 @@ LINE1:
                 CMBAGENT.Text = DTSO.Rows(0).Item("AGENTNAME")
                 If DTSO.Rows(0).Item("TRANSNAME") <> "" Then cmbtrans.Text = DTSO.Rows(0).Item("TRANSNAME")
                 If DTSO.Rows(0).Item("CITYNAME") <> "" Then CMBTOCITY.Text = DTSO.Rows(0).Item("CITYNAME")
-                CMBPACKING.Text = DTSO.Rows(0).Item("DELIVERYAT")
+                If CMBPACKING.Text.Trim = "" Then
+                    CMBPACKING.Text = DTSO.Rows(0).Item("DELIVERYAT")
+                End If
                 txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
 
 
 
 
-                'FETCH DISCOUNT WITH RESPECT TO SALE ORDER 
-                If (ClientName = "MASHOK" Or ClientName = "ABHEE") And EDIT = False Then
+                    'FETCH DISCOUNT WITH RESPECT TO SALE ORDER 
+                    If (ClientName = "MASHOK" Or ClientName = "ABHEE") And EDIT = False Then
 
-                    GRIDCHGS.RowCount = 0
-                    Dim DT As New DataTable
-                    If DTSO.Rows(0).Item("TYPE") = "YARNSALEORDER" Or DTSO.Rows(0).Item("TYPE") = "OPENINGYARNSALEORDER" Then
-                        DT = OBJCMN.SEARCH(" ISNULL(YSO_DISCOUNT, 0) AS DISCPER, ISNULL(YSO_CD, 0) AS CDPER, 0 AS RATEDIFF, ISNULL(YSO_INT,0) AS AGENTCOMM, ISNULL(YSO_CRDAYS,0) AS CRDAYS", "", " ALLYARNSALEORDER ", " and ALLYARNSALEORDER.YSO_NO IN (" & TXTMULTISONO.Text.Trim & ") and ALLYARNSALEORDER.YSO_YEARid = " & YearId)
-                    Else
-                        DT = OBJCMN.SEARCH(" ISNULL(SO_DISCDEALER, 0) AS DISCPER, ISNULL(SO_CD, 0) AS CDPER, ISNULL(SO_DISCRATE,0) AS RATEDIFF, ISNULL(SO_INT,0) AS AGENTCOMM, ISNULL(SO_DAYS,0) AS CRDAYS", "", " ALLSALEORDER ", " and ALLSALEORDER.SO_NO IN (" & TXTMULTISONO.Text.Trim & ") and ALLSALEORDER.SO_YEARid = " & YearId)
+                        GRIDCHGS.RowCount = 0
+                        Dim DT As New DataTable
+                        If DTSO.Rows(0).Item("TYPE") = "YARNSALEORDER" Or DTSO.Rows(0).Item("TYPE") = "OPENINGYARNSALEORDER" Then
+                            DT = OBJCMN.SEARCH(" ISNULL(YSO_DISCOUNT, 0) AS DISCPER, ISNULL(YSO_CD, 0) AS CDPER, 0 AS RATEDIFF, ISNULL(YSO_INT,0) AS AGENTCOMM, ISNULL(YSO_CRDAYS,0) AS CRDAYS", "", " ALLYARNSALEORDER ", " and ALLYARNSALEORDER.YSO_NO IN (" & TXTMULTISONO.Text.Trim & ") and ALLYARNSALEORDER.YSO_YEARid = " & YearId)
+                        Else
+                            DT = OBJCMN.SEARCH(" ISNULL(SO_DISCDEALER, 0) AS DISCPER, ISNULL(SO_CD, 0) AS CDPER, ISNULL(SO_DISCRATE,0) AS RATEDIFF, ISNULL(SO_INT,0) AS AGENTCOMM, ISNULL(SO_DAYS,0) AS CRDAYS", "", " ALLSALEORDER ", " and ALLSALEORDER.SO_NO IN (" & TXTMULTISONO.Text.Trim & ") and ALLSALEORDER.SO_YEARid = " & YearId)
+                        End If
+
+                        If DT.Rows.Count > 0 Then
+
+                            TXTCRDAYS.Text = Val(DT.Rows(0).Item("CRDAYS"))
+                            duedate.Value = Convert.ToDateTime(INVOICEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim))
+
+
+                            'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
+                            'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
+                            'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
+                            If SALEAUTODISCOUNT = True And CMBSCREENTYPE.Text <> "LINE GST" And EDIT = False Then
+                                For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                    If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE2
+                                Next
+                                If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0)
+
+                                For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                    If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE2
+                                Next
+                                If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+
+
+                                For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                    If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE2
+                                Next
+                                If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0)
+
+                                'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
+                                If AUTOBROKERAGE = True Then
+                                    For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
+                                        If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE2
+                                    Next
+                                    If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
+                                End If
+                            End If
+
+LINE2:
+                        End If
                     End If
 
-                    If DT.Rows.Count > 0 Then
 
-                        TXTCRDAYS.Text = Val(DT.Rows(0).Item("CRDAYS"))
-                        duedate.Value = Convert.ToDateTime(INVOICEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim))
+                    Dim CUT As Double = 0.00
+                    Dim PER As String = "Mtrs"
 
-
-                        'IN CHARGES GRID ADD DISCOUNT GIVEN / BROKERAGE
-                        'If (ClientName = "YASHVI" Or ClientName = "SBA" Or ClientName = "DEVEN" Or ClientName = "SOFTAS" Or ClientName = "BARKHA" Or ClientName = "AVIS" Or ClientName = "MOMAI" Or ClientName = "SHREEVALLABH") Then
-                        'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO SALEAUTODISCOUNT
-                        If SALEAUTODISCOUNT = True And CMBSCREENTYPE.Text <> "LINE GST" And EDIT = False Then
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "RATE DIFFERENCE" Then GoTo LINE2
-                            Next
-                            If Val(DT.Rows(0).Item("RATEDIFF")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "RATE DIFFERENCE", Val(DT.Rows(0).Item("RATEDIFF")) * -1, 0, 0)
-
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "DISCOUNT GIVEN" Then GoTo LINE2
-                            Next
-                            If Val(DT.Rows(0).Item("DISCPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "DISCOUNT GIVEN", Val(DT.Rows(0).Item("DISCPER")) * -1, 0, 0)
+                    'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                    For Each DTROW As DataRow In DTSO.Rows
+                        For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                            If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
+                        Next
 
 
-                            For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                If DTROW.Cells(ECHARGES.Index).Value = "CASH DISCOUNT" Then GoTo LINE2
-                            Next
-                            If Val(DT.Rows(0).Item("CDPER")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "CASH DISCOUNT", Val(DT.Rows(0).Item("CDPER")) * -1, 0, 0)
+                        'ADD YARNQUALITY IN ITEMMASTER
+                        If DTROW("TYPE") = "YARNSALEORDER" Or DTROW("TYPE") = "OPENINGYARNSALEORDER" Then
+                            Dim DTITEM = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                            If DTITEM.Rows.Count = 0 Then
 
-                            'INITIALLY IT WAS WITH RESPECT TO THE ABOVE MENTIONED CLIENT, THEN CHANGED WITH RESPECT TO AUTOBROKERAGE
-                            If AUTOBROKERAGE = True Then
-                                For Each DTROW As DataGridViewRow In GRIDCHGS.Rows
-                                    If DTROW.Cells(ECHARGES.Index).Value = "BROKERAGE" Then GoTo LINE2
-                                Next
-                                If Val(DT.Rows(0).Item("AGENTCOMM")) > 0 Then GRIDCHGS.Rows.Add(GRIDCHGS.RowCount + 1, "BROKERAGE", Val(DT.Rows(0).Item("AGENTCOMM")) * -1, 0, 0)
+                                'ADD NEW ITEMNAME 
+                                Dim ALPARAVAL As New ArrayList
+                                ALPARAVAL.Clear()
+
+
+                                ALPARAVAL.Add("Finished Goods")
+
+                                Dim DTCATEGORY As DataTable = OBJCMN.SEARCH("ISNULL(CATEGORY_NAME, '') AS CATEGORY", "", " CATEGORYMASTER INNER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER.YARN_CATEGORYID = CATEGORYMASTER.CATEGORY_ID", " AND YARNQUALITYMASTER.YARN_NAME = '" & DTROW("ITEMNAME") & "' AND CATEGORY_YEARID = " & YearId)
+                                If DTCATEGORY.Rows.Count > 0 Then ALPARAVAL.Add(DTCATEGORY.Rows(0).Item("CATEGORY")) Else ALPARAVAL.Add("") 'CATEGORY
+
+                                ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'DISPLAYNAME
+                                ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'ITEMNAME
+
+                                ALPARAVAL.Add("")   'DEPARTMENT
+                                ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'CODE
+                                ALPARAVAL.Add("Kgs")   'UNIT
+                                ALPARAVAL.Add("")   'FOLD
+                                ALPARAVAL.Add(0)    'RATE
+                                ALPARAVAL.Add(0)    'VALUATIONRATE   
+                                ALPARAVAL.Add(0)    'TRANSRATE
+                                ALPARAVAL.Add(0)    'CHCKINGRATE
+                                ALPARAVAL.Add(0)    'PACKINGRATE
+                                ALPARAVAL.Add(0)    'DESIGNRATE
+                                ALPARAVAL.Add(0)    'REORDER
+                                ALPARAVAL.Add(0)    'UPPER
+                                ALPARAVAL.Add(0)    'LOWER
+
+                                Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE, '') AS HSNCODE", "", " HSNMASTER INNER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER.YARN_HSNCODEID = HSNMASTER.HSN_ID", " AND YARNQUALITYMASTER.YARN_NAME = '" & DTROW("ITEMNAME") & "' AND HSN_YEARID = " & YearId)
+                                If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTHSN.Rows(0).Item("HSNCODE")) Else ALPARAVAL.Add("") 'HSNCODE
+
+                                ALPARAVAL.Add(0)    'BLOCKED
+                                ALPARAVAL.Add(0)    'HIDEINDESIGN
+
+                                ALPARAVAL.Add("")    'WIDTH
+                                ALPARAVAL.Add("")    'GREYWIDTH
+                                ALPARAVAL.Add(0)    'SHRINKFROM
+                                ALPARAVAL.Add(0)    'SHRINKTO
+                                ALPARAVAL.Add("")   'SELVEDGE
+
+                                ALPARAVAL.Add("")   'RATETYPE
+                                ALPARAVAL.Add("")   'RATE
+
+                                ALPARAVAL.Add("")   'YARNQUALITY
+                                ALPARAVAL.Add("")   'PER
+
+
+                                ALPARAVAL.Add("")   'GRIDSRNO
+                                ALPARAVAL.Add("")   'PROCESS
+
+                                ALPARAVAL.Add("")   'REMARKS
+                                ALPARAVAL.Add("MERCHANT")
+
+                                ALPARAVAL.Add(DBNull.Value)
+                                ALPARAVAL.Add("")   'WARP
+                                ALPARAVAL.Add("")   'WEFT
+
+                                ALPARAVAL.Add(CmpId)
+                                ALPARAVAL.Add(Locationid)
+                                ALPARAVAL.Add(Userid)
+                                ALPARAVAL.Add(YearId)
+                                ALPARAVAL.Add(0)
+
+                                ALPARAVAL.Add("")   'WARPSRNO
+                                ALPARAVAL.Add("")   'WARPQUALITY
+                                ALPARAVAL.Add("")   'WARPSHADE
+                                ALPARAVAL.Add("")   'WARPENDS
+                                ALPARAVAL.Add("")   'WARPWT
+                                ALPARAVAL.Add("")   'WARPRATE
+                                ALPARAVAL.Add("")   'WARPAMOUNT
+
+                                ALPARAVAL.Add("")   'WEFTSRNO
+                                ALPARAVAL.Add("")   'WEFTQUALITY
+                                ALPARAVAL.Add("")   'WEFTSHADE
+                                ALPARAVAL.Add("")   'WEFTPICK
+                                ALPARAVAL.Add("")   'WEFTWT
+                                ALPARAVAL.Add("")   'WEFTRATE
+                                ALPARAVAL.Add("")   'WEFTAMOUNT
+
+                                ALPARAVAL.Add(0)    'WARPTL
+                                ALPARAVAL.Add(0)    'WEFTTL
+                                ALPARAVAL.Add(0)    'REED
+                                ALPARAVAL.Add(0)    'REEDSPACE
+                                ALPARAVAL.Add(0)    'PICKS
+                                ALPARAVAL.Add(0)    'TOTALWT
+                                ALPARAVAL.Add(0)    'TOTALWARPWT
+                                ALPARAVAL.Add(0)    'TOTALWEFTWT
+                                ALPARAVAL.Add("")   'WEAVE
+                                ALPARAVAL.Add("")   'GREYCATEGORY
+
+                                ALPARAVAL.Add(0)    'ACTUALWT
+                                ALPARAVAL.Add(0)    'ACTUALAMT
+                                ALPARAVAL.Add(0)    'DHARAPER
+                                ALPARAVAL.Add(0)    'DHARAAMT
+                                ALPARAVAL.Add(0)    'WASTAGEPER
+                                ALPARAVAL.Add(0)    'WASTAGEAMT
+                                ALPARAVAL.Add(0)    'WEAVINGCHGS
+                                ALPARAVAL.Add(0)    'WEAVINGAMT
+                                ALPARAVAL.Add(0)    'GSTPER
+                                ALPARAVAL.Add(0)    'GSTAMT
+                                ALPARAVAL.Add(0)    'AMOUNT
+                                ALPARAVAL.Add(0)    'TOTALGSTPER
+                                ALPARAVAL.Add(0)    'TOTALAMT
+                                ALPARAVAL.Add(0)    'WARPTOTALAMT
+                                ALPARAVAL.Add(0)    'WEFTTOTALAMT
+
+                                ALPARAVAL.Add("")   'COLORSRNO
+                                ALPARAVAL.Add("")   'COLOR
+                                ALPARAVAL.Add(0)   'VALUELOSSPER
+                                ALPARAVAL.Add("")   'COSTCENTERNAME
+                                ALPARAVAL.Add(0)    'ITEM GSM
+                                ALPARAVAL.Add(0)    'ITEM PERCENT
+                                ALPARAVAL.Add(0)    'GARMENT
+
+                                ALPARAVAL.Add(0)    'SHADESRNO
+                                ALPARAVAL.Add(0)    'SHADECOLORID
+
+                                ALPARAVAL.Add(0)    'SHADEITEMSRNO
+                                ALPARAVAL.Add(0)    'SHADEITEMID
+                                ALPARAVAL.Add(0)    'SHADEDESIGNID
+                                ALPARAVAL.Add(0)    'SHADEITEMCOLORID
+                                ALPARAVAL.Add(0)    'SHADEMTRS
+                                ALPARAVAL.Add(0)    'SHADEGRIDSRNO
+
+                                Dim objclsItemMaster As New clsItemmaster
+                                objclsItemMaster.alParaval = ALPARAVAL
+                                Dim IntResult As Integer = objclsItemMaster.SAVE()
+
                             End If
                         End If
 
-LINE2:
-                    End If
-                End If
 
 
-                Dim CUT As Double = 0.00
-                Dim PER As String = "Mtrs"
-
-                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
-                For Each DTROW As DataRow In DTSO.Rows
-                    For Each ROW As DataGridViewRow In GRIDORDER.Rows
-                        If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
-                    Next
-
-
-                    'ADD YARNQUALITY IN ITEMMASTER
-                    If DTROW("TYPE") = "YARNSALEORDER" Or DTROW("TYPE") = "OPENINGYARNSALEORDER" Then
-                        Dim DTITEM = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                        If DTITEM.Rows.Count = 0 Then
-
-                            'ADD NEW ITEMNAME 
-                            Dim ALPARAVAL As New ArrayList
-                            ALPARAVAL.Clear()
-
-
-                            ALPARAVAL.Add("Finished Goods")
-
-                            Dim DTCATEGORY As DataTable = OBJCMN.SEARCH("ISNULL(CATEGORY_NAME, '') AS CATEGORY", "", " CATEGORYMASTER INNER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER.YARN_CATEGORYID = CATEGORYMASTER.CATEGORY_ID", " AND YARNQUALITYMASTER.YARN_NAME = '" & DTROW("ITEMNAME") & "' AND CATEGORY_YEARID = " & YearId)
-                            If DTCATEGORY.Rows.Count > 0 Then ALPARAVAL.Add(DTCATEGORY.Rows(0).Item("CATEGORY")) Else ALPARAVAL.Add("") 'CATEGORY
-
-                            ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'DISPLAYNAME
-                            ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'ITEMNAME
-
-                            ALPARAVAL.Add("")   'DEPARTMENT
-                            ALPARAVAL.Add(UCase(DTROW("ITEMNAME")))        'CODE
-                            ALPARAVAL.Add("Kgs")   'UNIT
-                            ALPARAVAL.Add("")   'FOLD
-                            ALPARAVAL.Add(0)    'RATE
-                            ALPARAVAL.Add(0)    'VALUATIONRATE   
-                            ALPARAVAL.Add(0)    'TRANSRATE
-                            ALPARAVAL.Add(0)    'CHCKINGRATE
-                            ALPARAVAL.Add(0)    'PACKINGRATE
-                            ALPARAVAL.Add(0)    'DESIGNRATE
-                            ALPARAVAL.Add(0)    'REORDER
-                            ALPARAVAL.Add(0)    'UPPER
-                            ALPARAVAL.Add(0)    'LOWER
-
-                            Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE, '') AS HSNCODE", "", " HSNMASTER INNER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER.YARN_HSNCODEID = HSNMASTER.HSN_ID", " AND YARNQUALITYMASTER.YARN_NAME = '" & DTROW("ITEMNAME") & "' AND HSN_YEARID = " & YearId)
-                            If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTHSN.Rows(0).Item("HSNCODE")) Else ALPARAVAL.Add("") 'HSNCODE
-
-                            ALPARAVAL.Add(0)    'BLOCKED
-                            ALPARAVAL.Add(0)    'HIDEINDESIGN
-
-                            ALPARAVAL.Add("")    'WIDTH
-                            ALPARAVAL.Add("")    'GREYWIDTH
-                            ALPARAVAL.Add(0)    'SHRINKFROM
-                            ALPARAVAL.Add(0)    'SHRINKTO
-                            ALPARAVAL.Add("")   'SELVEDGE
-
-                            ALPARAVAL.Add("")   'RATETYPE
-                            ALPARAVAL.Add("")   'RATE
-
-                            ALPARAVAL.Add("")   'YARNQUALITY
-                            ALPARAVAL.Add("")   'PER
-
-
-                            ALPARAVAL.Add("")   'GRIDSRNO
-                            ALPARAVAL.Add("")   'PROCESS
-
-                            ALPARAVAL.Add("")   'REMARKS
-                            ALPARAVAL.Add("MERCHANT")
-
-                            ALPARAVAL.Add(DBNull.Value)
-                            ALPARAVAL.Add("")   'WARP
-                            ALPARAVAL.Add("")   'WEFT
-
-                            ALPARAVAL.Add(CmpId)
-                            ALPARAVAL.Add(Locationid)
-                            ALPARAVAL.Add(Userid)
-                            ALPARAVAL.Add(YearId)
-                            ALPARAVAL.Add(0)
-
-                            ALPARAVAL.Add("")   'WARPSRNO
-                            ALPARAVAL.Add("")   'WARPQUALITY
-                            ALPARAVAL.Add("")   'WARPSHADE
-                            ALPARAVAL.Add("")   'WARPENDS
-                            ALPARAVAL.Add("")   'WARPWT
-                            ALPARAVAL.Add("")   'WARPRATE
-                            ALPARAVAL.Add("")   'WARPAMOUNT
-
-                            ALPARAVAL.Add("")   'WEFTSRNO
-                            ALPARAVAL.Add("")   'WEFTQUALITY
-                            ALPARAVAL.Add("")   'WEFTSHADE
-                            ALPARAVAL.Add("")   'WEFTPICK
-                            ALPARAVAL.Add("")   'WEFTWT
-                            ALPARAVAL.Add("")   'WEFTRATE
-                            ALPARAVAL.Add("")   'WEFTAMOUNT
-
-                            ALPARAVAL.Add(0)    'WARPTL
-                            ALPARAVAL.Add(0)    'WEFTTL
-                            ALPARAVAL.Add(0)    'REED
-                            ALPARAVAL.Add(0)    'REEDSPACE
-                            ALPARAVAL.Add(0)    'PICKS
-                            ALPARAVAL.Add(0)    'TOTALWT
-                            ALPARAVAL.Add(0)    'TOTALWARPWT
-                            ALPARAVAL.Add(0)    'TOTALWEFTWT
-                            ALPARAVAL.Add("")   'WEAVE
-                            ALPARAVAL.Add("")   'GREYCATEGORY
-
-                            ALPARAVAL.Add(0)    'ACTUALWT
-                            ALPARAVAL.Add(0)    'ACTUALAMT
-                            ALPARAVAL.Add(0)    'DHARAPER
-                            ALPARAVAL.Add(0)    'DHARAAMT
-                            ALPARAVAL.Add(0)    'WASTAGEPER
-                            ALPARAVAL.Add(0)    'WASTAGEAMT
-                            ALPARAVAL.Add(0)    'WEAVINGCHGS
-                            ALPARAVAL.Add(0)    'WEAVINGAMT
-                            ALPARAVAL.Add(0)    'GSTPER
-                            ALPARAVAL.Add(0)    'GSTAMT
-                            ALPARAVAL.Add(0)    'AMOUNT
-                            ALPARAVAL.Add(0)    'TOTALGSTPER
-                            ALPARAVAL.Add(0)    'TOTALAMT
-                            ALPARAVAL.Add(0)    'WARPTOTALAMT
-                            ALPARAVAL.Add(0)    'WEFTTOTALAMT
-
-                            ALPARAVAL.Add("")   'COLORSRNO
-                            ALPARAVAL.Add("")   'COLOR
-                            ALPARAVAL.Add(0)   'VALUELOSSPER
-                            ALPARAVAL.Add("")   'COSTCENTERNAME
-                            ALPARAVAL.Add(0)    'ITEM GSM
-                            ALPARAVAL.Add(0)    'ITEM PERCENT
-                            ALPARAVAL.Add(0)    'GARMENT
-
-                            ALPARAVAL.Add(0)    'SHADESRNO
-                            ALPARAVAL.Add(0)    'SHADECOLORID
-
-                            ALPARAVAL.Add(0)    'SHADEITEMSRNO
-                            ALPARAVAL.Add(0)    'SHADEITEMID
-                            ALPARAVAL.Add(0)    'SHADEDESIGNID
-                            ALPARAVAL.Add(0)    'SHADEITEMCOLORID
-                            ALPARAVAL.Add(0)    'SHADEMTRS
-                            ALPARAVAL.Add(0)    'SHADEGRIDSRNO
-
-                            Dim objclsItemMaster As New clsItemmaster
-                            objclsItemMaster.alParaval = ALPARAVAL
-                            Dim IntResult As Integer = objclsItemMaster.SAVE()
-
+                        GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), DTROW("GRIDPARTYPONO"), DTROW("ORDERON"))
+                        'FETCH HSNCODE FROM ITEMMASTER
+                        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE,'') AS HSNCODE, ITEMMASTER.ITEM_REMARKS AS ITEMREMARKS, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT", "", " ITEMMASTER INNER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+                        If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
+                            CMBITEM.Text = DTROW("ITEMNAME")
+                            If DT.Rows(0).Item("UNIT") <> "" Then PER = DT.Rows(0).Item("UNIT") Else PER = "Mtrs"
+                            GETHSNCODE()
+                            If DTROW("TYPE") = "YARNSALEORDER" Or DTROW("TYPE") = "OPENINGYARNSALEORDER" Then DT.Rows(0).Item("ITEMREMARKS") = DTROW("GRIDDESC")
+                            GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", DTROW("DESIGN"), DTROW("COLOR"), 0, 0, DT.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), 0, "", "")
                         End If
-                    End If
-
-
-
-                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), DTROW("GRIDPARTYPONO"), DTROW("ORDERON"))
-                    'FETCH HSNCODE FROM ITEMMASTER
-                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(HSN_CODE,'') AS HSNCODE, ITEMMASTER.ITEM_REMARKS AS ITEMREMARKS, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT", "", " ITEMMASTER INNER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-                    If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                        CMBITEM.Text = DTROW("ITEMNAME")
-                        If DT.Rows(0).Item("UNIT") <> "" Then PER = DT.Rows(0).Item("UNIT") Else PER = "Mtrs"
-                        GETHSNCODE()
-                        If DTROW("TYPE") = "YARNSALEORDER" Or DTROW("TYPE") = "OPENINGYARNSALEORDER" Then DT.Rows(0).Item("ITEMREMARKS") = DTROW("GRIDDESC")
-                        GRIDINVOICE.Rows.Add(0, DTROW("ITEMNAME"), DT.Rows(0).Item("HSNCODE"), "", DTROW("DESIGN"), DTROW("COLOR"), 0, 0, DT.Rows(0).Item("ITEMREMARKS"), "", 0, 0, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, DTROW("TYPE"), 0, "", "", Val(DTROW("SONO")), Val(DTROW("GRIDSRNO")), 0, "", "")
-                    End If
 NEXTLINE:
-                Next
-                getsrno(GRIDORDER)
-                getsrno(GRIDINVOICE)
-                CMDSELECTSO.Enabled = False
+                    Next
+                    getsrno(GRIDORDER)
+                    getsrno(GRIDINVOICE)
+                    CMDSELECTSO.Enabled = False
 
-                TOTAL()
-                GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
-                If GRIDINVOICE.RowCount > 0 Then
-                    GRIDINVOICE.Focus()
-                    GRIDINVOICE.CurrentCell = GRIDINVOICE.Rows(0).Cells(Gpcs.Index)
+                    TOTAL()
+                    GRIDINVOICE.FirstDisplayedScrollingRowIndex = GRIDINVOICE.RowCount - 1
+                    If GRIDINVOICE.RowCount > 0 Then
+                        GRIDINVOICE.Focus()
+                        GRIDINVOICE.CurrentCell = GRIDINVOICE.Rows(0).Cells(Gpcs.Index)
+                    End If
+                    If ClientName = "ABHEE" Then
+                        GRIDINVOICE.RowCount = 0
+                    End If
                 End If
-                If ClientName = "ABHEE" Then
-                    GRIDINVOICE.RowCount = 0
-                End If
-            End If
         Catch ex As Exception
             Throw ex
         End Try
