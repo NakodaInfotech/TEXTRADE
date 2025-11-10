@@ -24,6 +24,7 @@ Public Class SelectAdjustBills
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
             Dim totalAdjustAmt As Decimal = Convert.ToDecimal(gridrec.Columns("ADJUSTAMT").SummaryItem.SummaryValue)
+            Dim totalTDSAmt As Decimal = Convert.ToDecimal(gridrec.Columns("TDS").SummaryItem.SummaryValue)
             Dim billAmt As Decimal = 0
             Decimal.TryParse(TXTBILLAMT.Text, billAmt)
 
@@ -34,6 +35,9 @@ Public Class SelectAdjustBills
                 MessageBox.Show("Total Adjust Amt Is less than Bill Amt. Remaining Amount will be OnAccount.", "", MessageBoxButtons.OK)
                 Dim remamount1 As Decimal = billAmt - totalAdjustAmt
                 RemAmount = remamount1
+            End If
+            If totalTDSAmt > 0 Then
+
             End If
             Dim totalSelectedAdjustAmt As Decimal = 0
             For i As Integer = 0 To gridrec.RowCount - 1
@@ -47,12 +51,14 @@ Public Class SelectAdjustBills
             DTBILLS.Columns.Add("REFNO")
             DTBILLS.Columns.Add("BILLDATE")
             DTBILLS.Columns.Add("ADJUSTAMT")
+            DTBILLS.Columns.Add(CMBTDSDEDUCTEDAC.Text.Trim)
+            DTBILLS.Columns.Add("TDS")
 
 
             For i As Integer = 0 To gridrec.RowCount - 1
                 Dim dtrow As DataRow = gridrec.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DTBILLS.Rows.Add(dtrow("SRNO"), dtrow("REFNO"), dtrow("DATE"), dtrow("ADJUSTAMT"))
+                    DTBILLS.Rows.Add(dtrow("SRNO"), dtrow("REFNO"), dtrow("DATE"), dtrow("ADJUSTAMT"), CMBTDSDEDUCTEDAC.Text.Trim, dtrow("TDS"))
                 End If
             Next
             ' assign your remamount string value here
