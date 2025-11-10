@@ -665,7 +665,8 @@ Public Class GRNChecking
                     TXTGRNQTY.Text = Format(Val(selectGRNtable.Rows(i).Item("QTY")), "0.00")
                     TXTGRNMTRS.Text = Format(Val(selectGRNtable.Rows(i).Item("MTRS")), "0.00")
                     TXTLOTNO.Text = selectGRNtable.Rows(i).Item("LOTNO")
-                    If Val(TXTLOTNO.Text.Trim) = 0 And ClientName = "AVIS" Then
+                    'If Val(TXTLOTNO.Text.Trim) = 0 And ClientName = "AVIS" Then
+                    If TXTLOTNO.Text.Trim = "" And ClientName = "AVIS" Then
                         TXTLOTNO.ReadOnly = False
                         TXTLOTNO.BackColor = Color.LemonChiffon
                     Else
