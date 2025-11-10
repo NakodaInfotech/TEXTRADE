@@ -547,90 +547,95 @@ NEXTLINE:
             Dim addedEntries1 As New HashSet(Of String)
 
             For Each ROW As DataGridViewRow In GRIDISSUE.Rows
-                If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
+                Dim billNos As String = (ROW.Cells(GBILLNO.Index).Value.ToString())
+                Dim billArray() As String = billNos.Split("|"c)
+                For Each billNo As String In billArray
+                    If String.IsNullOrWhiteSpace(billNo) Then Continue For
+                    If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
 
-                    If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
-                        ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
-                        Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
+                        If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
+                            ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
+                            Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
                                  ROW.Cells(GACCNAME.Index).Value.ToString() &
                                  ROW.Cells(GPARTYNAME.Index).Value.ToString()
 
-                        ' If the entry has already been added, skip it
-                        If addedEntries1.Contains(entryKey) Then
-                            Continue For
-                        End If
-
-                        ' Add this entry to the HashSet to prevent duplicates
-                        addedEntries1.Add(entryKey)
-
-                        ' Add the row values to alparaval1
-                        alparaval1.Clear()
-                        alparaval1.Add(0) 'ROW.Cells(GSRNO.Index).Value.ToString())
-                        alparaval1.Add("") '"cmbregister.Text.Trim)
-                        alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
-                        alparaval1.Add(0) 'Val(TXTTOTALDR.Text.Trim))
-                        alparaval1.Add(0) 'Val(TXTTOTALCR.Text.Trim))
-                        alparaval1.Add("") 'txtremarks.Text.Trim)
-                        alparaval1.Add("") 'TXTBILLREMARKS.Text.Trim)
-                        alparaval1.Add(TEMPCMPID)
-                        alparaval1.Add(Locationid)
-                        alparaval1.Add(Userid)
-                        alparaval1.Add(TEMPYEARID)
-                        alparaval1.Add(0)
-
-                        Dim type As String = ""
-                        Dim name As String = ""
-                        Dim paytype As String = ""
-                        Dim refno As String = ""
-                        Dim debit As String = ""
-                        Dim credit As String = ""
-                        Dim gridsrno As String = ""
-
-                        For I As Integer = 0 To 1
-                            If type = "" Then
-                                type = "Dr"
-                                name = (ROW.Cells(GSELLERNAME.Index).Value.ToString())
-                                paytype = "Against Bill"
-                                refno = (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
-                                debit = (ROW.Cells(GTDSAMT.Index).Value.ToString())
-                                credit = 0
-                                gridsrno = 1
-                            Else
-                                type = type & "|" & "Cr"
-                                name = name & "|" & (ROW.Cells(GTDSACC.Index).Value.ToString())
-                                paytype = paytype & "|" & "On Account"
-                                refno = refno & "|" & (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
-                                debit = debit & "|" & 0
-                                credit = credit & "|" & (ROW.Cells(GTDSAMT.Index).Value.ToString())
-                                gridsrno = gridsrno & "|" & 2
+                            ' If the entry has already been added, skip it
+                            If addedEntries1.Contains(entryKey) Then
+                                Continue For
                             End If
-                        Next
 
-                        alparaval1.Add(type)
-                        alparaval1.Add(name)
-                        alparaval1.Add(paytype)
-                        alparaval1.Add(refno)
-                        alparaval1.Add(debit)
-                        alparaval1.Add(credit)
-                        alparaval1.Add(gridsrno)
-                        alparaval1.Add("") 'TXTSPLREMARKS.Text)
-                        alparaval1.Add("") 'TXTPARTYBILLNO.Text.Trim)
-                        alparaval1.Add("") '"CMBCOSTCENTERNAME.Text.Trim)
+                            ' Add this entry to the HashSet to prevent duplicates
+                            addedEntries1.Add(entryKey)
 
-                        ' Initialize the payment object
-                        Dim OBJCLJV As New ClsJournalMaster()
-                        OBJCLJV.alParaval = alparaval1
+                            ' Add the row values to alparaval1
+                            alparaval1.Clear()
+                            alparaval1.Add(0) 'ROW.Cells(GSRNO.Index).Value.ToString())
+                            alparaval1.Add("") '"cmbregister.Text.Trim)
+                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+                            alparaval1.Add(0) 'Val(TXTTOTALDR.Text.Trim))
+                            alparaval1.Add(0) 'Val(TXTTOTALCR.Text.Trim))
+                            alparaval1.Add("") 'txtremarks.Text.Trim)
+                            alparaval1.Add("") 'TXTBILLREMARKS.Text.Trim)
+                            alparaval1.Add(TEMPCMPID)
+                            alparaval1.Add(Locationid)
+                            alparaval1.Add(Userid)
+                            alparaval1.Add(TEMPYEARID)
+                            alparaval1.Add(0)
 
-                        ' Only save if not in edit mode
-                        If Not EDIT Then
-                            If Not USERADD Then
-                                MsgBox("Insufficient Rights")
-                                Exit Sub
+                            Dim type As String = ""
+                            Dim name As String = ""
+                            Dim paytype As String = ""
+                            Dim refno As String = ""
+                            Dim debit As String = ""
+                            Dim credit As String = ""
+                            Dim gridsrno As String = ""
+
+                            For I As Integer = 0 To 1
+                                If type = "" Then
+                                    type = "Dr"
+                                    name = (ROW.Cells(GSELLERNAME.Index).Value.ToString())
+                                    paytype = "Against Bill"
+                                    refno = (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
+                                    debit = (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                    credit = 0
+                                    gridsrno = 1
+                                Else
+                                    type = type & "|" & "Cr"
+                                    name = name & "|" & (ROW.Cells(GTDSACC.Index).Value.ToString())
+                                    paytype = paytype & "|" & "On Account"
+                                    refno = refno & "|" & (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
+                                    debit = debit & "|" & 0
+                                    credit = credit & "|" & (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                    gridsrno = gridsrno & "|" & 2
+                                End If
+                            Next
+
+                            alparaval1.Add(type)
+                            alparaval1.Add(name)
+                            alparaval1.Add(paytype)
+                            alparaval1.Add(refno)
+                            alparaval1.Add(debit)
+                            alparaval1.Add(credit)
+                            alparaval1.Add(gridsrno)
+                            alparaval1.Add("") 'TXTSPLREMARKS.Text)
+                            alparaval1.Add("") 'TXTPARTYBILLNO.Text.Trim)
+                            alparaval1.Add("") '"CMBCOSTCENTERNAME.Text.Trim)
+
+                            ' Initialize the payment object
+                            Dim OBJCLJV As New ClsJournalMaster()
+                            OBJCLJV.alParaval = alparaval1
+
+                            ' Only save if not in edit mode
+                            If Not EDIT Then
+                                If Not USERADD Then
+                                    MsgBox("Insufficient Rights")
+                                    Exit Sub
+                                End If
+                                DTTABLE1 = OBJCLJV.save()
                             End If
-                            DTTABLE1 = OBJCLJV.save()
                         End If
                     End If
-                End If
+                Next
             Next
         Catch ex As Exception
             Throw ex

@@ -101,7 +101,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTNOOFPCS.Text.Trim))            ' No of Pcs
             alParaval.Add(CMBLOOM.Text.Trim)                    ' Loom (ComboBox)
             alParaval.Add(Val(TXTBEAMMTRS.Text.Trim))           ' Beam Mtrs
-            alParaval.Add(Val(TXTCOVERFACTOR.Text.Trim))        ' Cover Factor
+            alParaval.Add(TXTCOVERFACTOR.Text.Trim)        ' Cover Factor
             alParaval.Add(Val(TXTEFFICIENCY.Text.Trim))         ' Efficiency
             alParaval.Add(Val(TXTLOOMPROD.Text.Trim))           ' Loom Prod
             alParaval.Add(Val(TXTRPM.Text.Trim))                ' RPM
@@ -590,6 +590,7 @@ Public Class DesignCardMaster
             alParaval.Add(PEGREPEATS2)
 
             alParaval.Add(TXTTOTALENDS.Text.Trim)
+            alParaval.Add(TXTENDPERINCH.Text.Trim)
 
 
             Dim objDESIGN As New ClsDesignCardMaster
@@ -633,6 +634,9 @@ Public Class DesignCardMaster
     End Sub
     Sub clear()
         getmax_SO_no()
+        txtfinishmethod.Clear()
+        CMBQUALITIES.Text = ""
+        CMBQUALITYTYPE.Text = ""
         DTDATE.Text = Now.Date
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
@@ -654,7 +658,6 @@ Public Class DesignCardMaster
         TXTWEFTTL.Clear()
         TXTGSM.Clear()
         CMBWEAVE.Text = ""
-        CMBSHAFTS.Text = ""
         TXTTOTALWT.Clear()
         TXTGWIDTH.Clear()
         TXTGWIDTHCM.Clear()
@@ -1003,7 +1006,8 @@ Public Class DesignCardMaster
                     CMBQUALITYTYPE.Text = Convert.ToString(dr("QUALITYTYPE").ToString)
                     TXTBLENDPER.Text = dr("BLENDPER")
                     TXTGLM.Text = dr("GREYLOOMMTR")
-
+                    TXTENDPERINCH.Text = dr("ENDPERINCH")
+                    TXTTOTALENDS.Text = dr("TOTALENDS")
                 Next
                 'cmbtype.Enabled = False
 
@@ -1049,7 +1053,7 @@ Public Class DesignCardMaster
 
                 'selvedge grid shade data serializations
 
-                Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO, ISNULL(DESIGN_sdSHADE, '') AS SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE  ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
+                Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS  SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGESHADE.DESIGN_SDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
                 If dttableshade.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttableshade.Rows
                         DT_SELDETAILS.Rows.Add(Val(DTR("SDSRNO")), DTR("SDSHADE").ToString, Val(DTR("SDMAINSRNO")))
@@ -1158,6 +1162,10 @@ Public Class DesignCardMaster
                 Toolprevious_Click(sender, e)
             ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
                 toolnext_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.P Then
+                PrintToolStripButton_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.D Then
+                cmddelete_Click(sender, e)
             End If
         Catch ex As Exception
             Throw ex
@@ -1907,7 +1915,7 @@ LINE1:
         TXTLEFTSELTOTALENDS.Text = 0.00
         TXTRIGHTSELTOTALENDS.Text = 0.00
         TXTTOTALSELENDS.Text = 0.00
-        TXTENDPERINCH.Text = 0.00
+        TXTENDPERINCH.Text = 0
         txttotaldentsrepeat.Text = 0.00
         TXTTOTALENDS.Text = 0.00
         TXTTOTALMAINENDS.Text = 0.00
@@ -1930,7 +1938,7 @@ LINE1:
             Dim result As Double = totalDents * totalDrawEnds
             TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
         End If
-        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0.00")
+        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
         If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
@@ -2992,15 +3000,8 @@ LINE1:
         Try
             If CMBSELYARNQUALITY.Text.Trim <> "" And CMBSELGSYM.Text.Trim <> "" Then
                 fillselvedgegrid()
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
-            GBSSHADEDETAILS.Visible = False
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Try
-            If CMBSELGSYM.Text <> "" And CMBSELYARNQUALITY.Text.Trim <> "" Then
+                GBSSHADEDETAILS.Visible = False
+
                 For Each symRow As DataGridViewRow In GRIDSELVEDGE.Rows
                     If symRow.IsNewRow Then Continue For
                     Dim symValue As String = symRow.Cells(SSYM.Index).Value?.ToString()
@@ -3012,9 +3013,9 @@ LINE1:
             Else
                 MsgBox("Fill Yarn Quality OR Symbol")
             End If
-            If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
-                fillwarpgrid()
-            End If
+            'If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
+            '    fillwarpgrid()
+            'End If
             GBWARP.Visible = False
         Catch ex As Exception
             Throw ex
@@ -3285,27 +3286,14 @@ LINE1:
             Next
         ElseIf GDV Is GRIDPEG Then
             CalculateTotalsForGrid(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTR", "PPTR1", "PPTR2")
-
-            Dim totalDentsCount As Integer = CalculateTotalDents(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTDR", "PPTDR1", "PPTDR2")
-            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
-
             ' Reset TextBoxes before summing to avoid accumulation
             TXTTOTALPEG.Text = "0"
-            TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
-
             For Each row As DataGridViewRow In GRIDPEG.Rows
                 If row.IsNewRow Then Continue For
-
-                'Dim totalRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
-                'TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalRepeat2Val).ToString()
-
                 Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
                 TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalDentRepeat2Val).ToString()
             Next
-
-
         End If
-
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
