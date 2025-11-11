@@ -1177,8 +1177,8 @@ Public Class DesignCardMaster
                 If dttable7.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable7.Rows
                         GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
-
                     Next
+
                 End If
                 'PEGPLAN FIELD
                 Dim dttable8 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_PPSRNO, 0) AS PPSRNO, ISNULL(DESIGN_PPENDS, 0) AS PPENDS, ISNULL(DESIGN_PPREPEATMARK, '') AS PPREPEATMARK, ISNULL(DESIGN_PPREPEAT, 0) AS PPREPEAT, ISNULL(DESIGN_PPREPEATMARK1, '') AS PPGRIDREPEATMARK1, ISNULL(DESIGN_PPREPEAT1, 0) AS PPREPEAT1, ISNULL(DESIGN_PPREPEATMARK2, '') AS PPREPEATMARK2, ISNULL(DESIGN_PPREPEAT2, 0) AS PPREPEAT2 ", "", " DESIGNCARD_PEGPLAN  ", " AND  DESIGNCARD_PEGPLAN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_PEGPLAN.DESIGN_YEARID = " & YearId & " ORDER BY PPSRNO")
@@ -2021,6 +2021,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Sub CALC()
         TXTMAINRS.Text = 0.00
         TXTDENTS.Text = 0.00
@@ -2125,6 +2126,7 @@ LINE1:
         GETWEFTPE()
         CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
     End Sub
+
     Sub TOTALWARP()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
         PE = 0.00
@@ -2604,17 +2606,18 @@ LINE1:
                     ' Allow empty value if needed
                     If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
 
-                    ' Validate numeric input
-                    Dim val As Decimal
-                    If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
-                        MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        e.Cancel = True
-                    End If
-                    If Not IsNumericOrZero(cellValue) Then
-                        MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        e.Cancel = True
-                        Return
-                    End If
+                    'THIS GIVE ERROR ON VALIDATION
+                    '' Validate numeric input
+                    'Dim val As Decimal
+                    'If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                    '    MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    '    e.Cancel = True
+                    'End If
+                    'If Not IsNumericOrZero(cellValue) Then
+                    '    MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    '    e.Cancel = True
+                    '    Return
+                    'End If
                 End If
             End If
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
@@ -3235,10 +3238,12 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Function IsAlphaOnly(value As String) As Boolean
         ' Returns True if all characters in the string are letters (alphabetic)
         Return value.All(Function(c) Char.IsLetter(c))
     End Function
+
     Public Sub CalculateTotalsForGrid(dgv As DataGridView,
                                       endsCol As String, repeatsCol As String,
                                       repeats1Col As String, repeats2Col As String,
@@ -3335,6 +3340,7 @@ LINE1:
         Next
 
     End Sub
+
     Private Function ExtractValuesInsideBrackets(startIndex As Integer, dgv As DataGridView, endsCol As String) As Integer
         Dim valuesList As New List(Of String)
         For i As Integer = startIndex To dgv.Rows.Count - 1
