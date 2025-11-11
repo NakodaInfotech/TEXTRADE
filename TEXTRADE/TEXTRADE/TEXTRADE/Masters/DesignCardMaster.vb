@@ -803,6 +803,7 @@ Public Class DesignCardMaster
         GRIDDRAWING.RowCount = 1
         'GRIDPEG PLAN
         GRIDPEG.RowCount = 1
+        TXTTOTALPEG.Clear()
         'GRID PEGPLAN 
         GRIDPEGPLAN.RowCount = 0
         'DT TABLE FOR SELVEDGE 
@@ -1272,7 +1273,7 @@ LINE1:
             Next
         Next
 
-
+        CALC()
         POPULATEGRID()
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
@@ -3286,13 +3287,24 @@ LINE1:
             Next
         ElseIf GDV Is GRIDPEG Then
             CalculateTotalsForGrid(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTR", "PPTR1", "PPTR2")
+
+            Dim totalDentsCount As Integer = CalculateTotalDents(GRIDPEG, "PPENDS", "PPR", "PPR1", "PPR2", "PPTDR", "PPTDR1", "PPTDR2")
+            'TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Set total dents from function
+
             ' Reset TextBoxes before summing to avoid accumulation
             TXTTOTALPEG.Text = "0"
+            'TXTTOTALDRAWDENTS.Text = totalDentsCount.ToString()  ' Or keep/reset accordingly
+
             For Each row As DataGridViewRow In GRIDPEG.Rows
                 If row.IsNewRow Then Continue For
+
+                'Dim totalRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
+                'TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalRepeat2Val).ToString()
+
                 Dim totalDentRepeat2Val = If(IsDBNull(row.Cells("PPTDR2").Value), 0, Convert.ToDecimal(row.Cells("PPTDR2").Value))
                 TXTTOTALPEG.Text = (Convert.ToDecimal(TXTTOTALPEG.Text) + totalDentRepeat2Val).ToString()
             Next
+
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
