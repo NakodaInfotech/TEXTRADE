@@ -642,7 +642,7 @@ Public Class PurchaseOrder
         End If
 
 
-        If lbllocked.Visible = True Or LBLCLOSED.Visible = True Then
+        If lbllocked.Visible = True Or LBLCLOSED.Visible = True And ClientName <> "ABHEE" Then
             EP.SetError(lbllocked, "Entry Locked")
             bln = False
         End If
