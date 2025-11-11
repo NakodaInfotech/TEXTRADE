@@ -14,7 +14,9 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraPivotGrid.Design
 Imports DevExpress.XtraRichEdit.Commands
 Imports DevExpress.XtraRichEdit.Model
+
 Public Class DesignCardMaster
+
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As Integer           'Used for edit name
     Public tempid As Integer            'Used for edit id
@@ -28,9 +30,6 @@ Public Class DesignCardMaster
     Dim DT_SELDETAILS As New DataTable
     Dim DT_WARPDETAILS As New DataTable
     Dim DT_WEFTDETAILS As New DataTable
-
-
-
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
@@ -632,6 +631,7 @@ Public Class DesignCardMaster
             txtcardno.Text = DTTABLE.Rows(0).Item(0)
         End If
     End Sub
+
     Sub clear()
         getmax_SO_no()
         txtfinishmethod.Clear()
@@ -789,10 +789,13 @@ Public Class DesignCardMaster
         TXTDRAWENDS.Clear()
         'GRID WARP
         GRIDWARP.RowCount = 0
+        GRIDWARPDESC.RowCount = 0
         'GRID WARP PATTERN
         GRIDWARPPATTERN.RowCount = 1
+        GRIDWEFTDESC.RowCount = 0
         'GRID SLEVAGE
         GRIDSELVEDGE.RowCount = 0
+        GRIDSELDESC.RowCount = 0
 
         GRIDSELVEDGEPATTERN.RowCount = 1
         'GRID WEFT
@@ -825,7 +828,11 @@ Public Class DesignCardMaster
         Ep.Clear()
         GBSELVIEW.Visible = False
         TXTCOPYCARDNO.Clear()
+        GBWARP.Visible = False
+        GBWEFT.Visible = False
+        GBSSHADEDETAILS.Visible = False
     End Sub
+
     Private Function errorvalid() As Boolean
 
         Dim bln As Boolean = True
@@ -1119,6 +1126,7 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
+
     Public Sub srno(grid As DataGridView, txtBox As System.Windows.Forms.TextBox)
         If grid Is Nothing OrElse txtBox Is Nothing Then Exit Sub
 
@@ -1129,7 +1137,6 @@ Public Class DesignCardMaster
             txtBox.Text = "1"
         End If
     End Sub
-
 
     Sub TOTAL()
         TOTALSELVEDGE()
@@ -1197,7 +1204,7 @@ Public Class DesignCardMaster
         If CMBAGENTNAME.Text.Trim = "" Then FILLNAME(CMBAGENTNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
         If CMBDELAT.Text.Trim = "" Then FILLNAME(CMBDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
         If CMBGREYDELAT.Text.Trim = "" Then FILLNAME(CMBGREYDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
-        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE<>'ACCOUNTS'")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
     End Sub
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -1722,7 +1729,7 @@ LINE1:
 
     Private Sub CMBSELSHADE_Enter(sender As Object, e As EventArgs) Handles CMBSELSHADE.Enter
         Try
-            If CMBSELSHADE.Text.Trim = "" Then FILLCOLOR(CMBSELSHADE, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If CMBSELSHADE.Text.Trim = "" Then FILLCOLOR(CMBSELSHADE, "", "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1730,7 +1737,7 @@ LINE1:
 
     Private Sub CMBWARPSHADE_Enter(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Enter
         Try
-            If CMBWARPSHADE.Text.Trim = "" Then FILLCOLOR(CMBWARPSHADE, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If CMBWARPSHADE.Text.Trim = "" Then FILLCOLOR(CMBWARPSHADE, "", "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1738,7 +1745,7 @@ LINE1:
 
     Private Sub cmbweftshade_Enter(sender As Object, e As EventArgs) Handles cmbweftshade.Enter
         Try
-            If cmbweftshade.Text.Trim = "" Then FILLCOLOR(cmbweftshade, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If cmbweftshade.Text.Trim = "" Then FILLCOLOR(cmbweftshade, "", "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1746,7 +1753,7 @@ LINE1:
 
     Private Sub cmbweftshade_Validating(sender As Object, e As CancelEventArgs) Handles cmbweftshade.Validating
         Try
-            If cmbweftshade.Text.Trim <> "" Then COLORVALIDATE(cmbweftshade, e, Me, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If cmbweftshade.Text.Trim <> "" Then COLORVALIDATE(cmbweftshade, e, Me, "", "")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1754,7 +1761,7 @@ LINE1:
 
     Private Sub CMBWARPSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBWARPSHADE.Validating
         Try
-            If CMBWARPSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBWARPSHADE, e, Me, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If CMBWARPSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBWARPSHADE, e, Me, "", "")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1762,7 +1769,7 @@ LINE1:
 
     Private Sub CMBSELSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELSHADE.Validating
         Try
-            If CMBSELSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSELSHADE, e, Me, CMBDESIGNNO.Text.Trim, CMBITEMNAME.Text.Trim)
+            If CMBSELSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSELSHADE, e, Me, "", "")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2051,19 +2058,21 @@ LINE1:
         TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
+
     Sub TOTALWARPPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
 
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
-            If row.Cells(WPTR2.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(WPTR2.Index).Value)
+            If row.Cells(WPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(WPTR2.Index).EditedFormattedValue)
             End If
         Next
         TXTTOTALWARPGRIDPE.Text = Format(PE, "0.00")
         If GRIDWARP.RowCount > 0 Then GETWARPPE()
     End Sub
+
     Sub TOTALSELVEDGE()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDSPE As Double
         PE = 0.00
@@ -2105,13 +2114,14 @@ LINE1:
         TXTSELTOTALRATE.Text = Format(RATE, "0.00")
         TXTSELTOTALCOST.Text = Format(COST, "0.00")
     End Sub
+
     Sub TOTALSELVEDGEPATTERN()
         CalculateTotalsForGridPATTERN(GRIDSELVEDGEPATTERN, "SPENDS", "SPREPEAT", "SPREPEAT1", "SPREPEAT2", "SPTR", "SPTR1", "SPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
-            If row.Cells(SPTR2.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(SPTR2.Index).Value)
+            If row.Cells(SPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(SPTR2.Index).EditedFormattedValue)
             End If
         Next
         TXTTOTALSELGPE.Text = Format(PE, "0.00")
@@ -2120,6 +2130,7 @@ LINE1:
             GETSELPE()
         End If
     End Sub
+
     Sub TOTALWEFT()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
         PE = 0.00
@@ -2161,13 +2172,14 @@ LINE1:
         TXTTOTALWEFTRATE.Text = Format(RATE, "0.00")
         TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
     End Sub
+
     Sub TOTALWEFTPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
         Dim PE As Double
         PE = 0.00
         For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
-            If row.Cells(FPTR2.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(FPTR2.Index).Value)
+            If row.Cells(FPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
+                PE = PE + Val(row.Cells(FPTR2.Index).EditedFormattedValue)
             End If
         Next
         TXTTOTALWEFTGRIDPE.Text = Format(PE, "0.00")
@@ -2181,6 +2193,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Sub EDITWARPROW()
         If GRIDWARP.CurrentRow IsNot Nothing Then
             If GRIDWARP.CurrentRow.Index >= 0 Then
@@ -2624,20 +2637,17 @@ LINE1:
         End Try
     End Sub
 
-
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
             If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
+                TOTALWEFTPATTERN()
             End If
-
-            'CopyGridEntries(GRIDWEFTPATTERN, GRIDWEFTPATTERNCOPY)
-            'CopyGridEntries(GRIDSELVEDGEPATTERN, GRIDSELVEDGEPATTERNCOPY)
-            'MsgBox("Copied Successfully")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Private Sub CopyGridEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
         ' Clear existing rows in target if needed
         targetGrid.Rows.Clear()
@@ -2670,16 +2680,15 @@ LINE1:
 
     Private Sub GRIDWARPPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPPATTERN.KeyDown
         Try
-            If e.KeyCode = Keys.Delete And GRIDWARPPATTERN.RowCount > 0 Then
+            If e.KeyCode = Keys.Delete And GRIDWARPPATTERN.CurrentRow.Cells(WPENDS.Index).Value <> "" Then
                 If GRIDWPDOUBLECLICK = True Then
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
                 GRIDWARPPATTERN.Rows.RemoveAt(GRIDWARPPATTERN.CurrentRow.Index)
+                TOTALWARPPATTERN()
                 TOTALWARP()
                 getsrno(GRIDWARPPATTERN)
-                'ElseIf e.KeyCode = Keys.F5 Then
-                '    EDITWARPPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2702,7 +2711,7 @@ LINE1:
                     End If
                 Next
                 For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
-                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value < Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value <Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
                         DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) - 1
                     End If
                 Next
@@ -2721,16 +2730,15 @@ LINE1:
 
     Private Sub GRIDWEFTPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWEFTPATTERN.KeyDown
         Try
-            If e.KeyCode = Keys.Delete And GRIDWEFTPATTERN.RowCount > 0 Then
+            If e.KeyCode = Keys.Delete And GRIDWEFTPATTERN.CurrentRow.Cells(FPENDS.Index).Value <> "" Then
                 If GRIDWEFTPDOUBLECLICK = True Then
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
                 GRIDWEFTPATTERN.Rows.RemoveAt(GRIDWEFTPATTERN.CurrentRow.Index)
+                TOTALWEFTPATTERN()
                 TOTALWEFT()
                 getsrno(GRIDWEFTPATTERN)
-                'ElseIf e.KeyCode = Keys.F5 Then
-                '    EDITWEFTPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
@@ -2943,36 +2951,12 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub GRIDWEFTPATTERN_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFTPATTERN.CellValidating
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            '' Proceed only if the column being edited is "WPSYM"
-            'If dgv.Columns(e.ColumnIndex).Name = "FPSYM" Then
-            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
-            '    If inputValue <> "" Then
-            '        ' Flag to track if match is found
-            '        Dim matchFound As Boolean = False
 
-            '        ' Loop through rows of main grid to check for matching "WSYM" value
-            '        For Each row As DataGridViewRow In GRIDWEFT.Rows
-            '            If Not row.IsNewRow AndAlso row.Cells("FSYM").Value IsNot Nothing Then
-            '                Dim symValue As String = row.Cells("FSYM").Value.ToString().Trim()
-
-            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-            '                    matchFound = True
-            '                    Exit For
-            '                End If
-            '            End If
-            '        Next
-
-            '        ' If no match found, show warning and cancel editing
-            '        If Not matchFound Then
-            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            '            e.Cancel = True  ' Cancels the edit
-            '        End If
-            '    End If
-            'End If
             If e.ColumnIndex = FPSYM.Index Then
                 If e.FormattedValue IsNot Nothing Then
                     GRIDWEFTPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
@@ -3477,35 +3461,39 @@ LINE1:
     End Sub
 
     Private Sub CMBSELMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELMILLNAME.Validated
-        GBSSHADEDETAILS.Visible = True
+        Try
+            If CMBSELGSYM.Text.Trim <> "" And CMBSELYARNQUALITY.Text.Trim <> "" Then GBSSHADEDETAILS.Visible = True
 
 
-        If GRIDSELDOUBLECLICK = False Then
-            'TEMPDTMTRS.Clear()
-            GRIDSELDESC.RowCount = 0
-            GRIDSELDESCDOUBLECLICK = False
-            'Dim i As Integer = 0
-            'While i < TEMPDTMTRS.Rows.Count
-            '    If TEMPDTMTRS.Rows(i).Item("SDMAINSRNO") = Val(txtsrno.Text.Trim) Then
-            '        TEMPDTMTRS.Rows.RemoveAt(i)
-            '        'GRIDMTRS.Rows.RemoveAt(GRIDMTRS.CurrentRow.Index)
-            '    Else
-            '        i += 1 ' Only increment if no row is removed
-            '    End If
-            'End While
-        Else
-            If GRIDSELVEDGE.Rows.Count > 0 Then
+            If GRIDSELDOUBLECLICK = False Then
+                'TEMPDTMTRS.Clear()
                 GRIDSELDESC.RowCount = 0
                 GRIDSELDESCDOUBLECLICK = False
-                For i As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
-                    If DT_SELDETAILS.Rows(i).Item("SDMAINSRNO") = Val(GRIDSELVEDGE.CurrentRow.Cells(SSRNO.Index).Value) Then
-                        GRIDSELDESC.Rows.Add(DT_SELDETAILS.Rows(i).Item("SDSRNO"), DT_SELDETAILS.Rows(i).Item("SDSHADE"), DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
-                    End If
-                Next
+                'Dim i As Integer = 0
+                'While i < TEMPDTMTRS.Rows.Count
+                '    If TEMPDTMTRS.Rows(i).Item("SDMAINSRNO") = Val(txtsrno.Text.Trim) Then
+                '        TEMPDTMTRS.Rows.RemoveAt(i)
+                '        'GRIDMTRS.Rows.RemoveAt(GRIDMTRS.CurrentRow.Index)
+                '    Else
+                '        i += 1 ' Only increment if no row is removed
+                '    End If
+                'End While
+            Else
+                If GRIDSELVEDGE.Rows.Count > 0 Then
+                    GRIDSELDESC.RowCount = 0
+                    GRIDSELDESCDOUBLECLICK = False
+                    For i As Integer = 0 To DT_SELDETAILS.Rows.Count - 1
+                        If DT_SELDETAILS.Rows(i).Item("SDMAINSRNO") = Val(GRIDSELVEDGE.CurrentRow.Cells(SSRNO.Index).Value) Then
+                            GRIDSELDESC.Rows.Add(DT_SELDETAILS.Rows(i).Item("SDSRNO"), DT_SELDETAILS.Rows(i).Item("SDSHADE"), DT_SELDETAILS.Rows(i).Item("SDMAINSRNO"))
+                        End If
+                    Next
+                End If
             End If
-        End If
-        TXTSDNO.Text = GRIDSELDESC.RowCount + 1
-        CMBSELSHADE.Focus()
+            TXTSDNO.Text = GRIDSELDESC.RowCount + 1
+            CMBSELSHADE.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
         Try
@@ -3625,6 +3613,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Private Sub GRIDSELVEDGE_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.RowEnter
         'Try
         '    If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
@@ -3634,11 +3623,10 @@ line1:
 
     End Sub
 
-
     Private Sub CMBWARPMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWARPMILLNAME.Validated
         Try
-            GBWARP.Visible = True
 
+            If CMBGRIDSYM.Text.Trim <> "" And CMBWARPQUALITY.Text.Trim <> "" Then GBWARP.Visible = True
 
             If GRIDDOUBLECLICK = False Then
                 'TEMPDTMTRS.Clear()
@@ -3662,6 +3650,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Private Sub GRIDWARPDESC_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPDESC.KeyDown
         Try
             If e.KeyCode = Keys.Delete Then
@@ -3792,7 +3781,8 @@ line1:
 
     Private Sub CMBWEFTMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Validated
         Try
-            GBWEFT.Visible = True
+            If CMBWEFTGRIDSYMBOL.Text.Trim <> "" And CMBWEFTYARNQUALITY.Text.Trim <> "" Then GBWEFT.Visible = True
+
             If GRIDWEFTDOUBLECLICK = False Then
                 'TEMPDTMTRS.Clear()
                 GRIDWEFTDESC.RowCount = 0
@@ -4122,32 +4112,6 @@ line1:
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            '' Proceed only if the column being edited is "WPSYM"
-            'If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
-            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
-            '    If inputValue <> "" Then
-            '        ' Flag to track if match is found
-            '        Dim matchFound As Boolean = False
-
-            '        ' Loop through rows of main grid to check for matching "WSYM" value
-            '        For Each row As DataGridViewRow In GRIDWARP.Rows
-            '            If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
-            '                Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
-
-            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-            '                    matchFound = True
-            '                    Exit For
-            '                End If
-            '            End If
-            '        Next
-
-            '        ' If no match found, show warning and cancel editing
-            '        If Not matchFound Then
-            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            '            e.Cancel = True  ' Cancels the edit
-            '        End If
-            '    End If
-            'End If
             If e.ColumnIndex = WPSYM.Index Then
                 If e.FormattedValue IsNot Nothing Then
                     GRIDSELVEDGEPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
@@ -4174,49 +4138,14 @@ line1:
 
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            ' Proceed only if the column being edited is "WPSYM"
-            'If dgv.Columns(e.ColumnIndex).Name = "SPSYM" Then
-            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
-            '    If inputValue <> "" Then
-            '        ' Flag to track if match is found
-            '        Dim matchFound As Boolean = False
 
-            '        ' Loop through rows of main grid to check for matching "WSYM" value
-            '        For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
-            '            If Not row.IsNewRow AndAlso row.Cells("SSYM").Value IsNot Nothing Then
-            '                Dim symValue As String = row.Cells("SSYM").Value.ToString().Trim()
-
-            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-            '                    matchFound = True
-            '                    Exit For
-            '                End If
-            '            End If
-            '        Next
-
-            '        ' If no match found, show warning and cancel editing
-            '        If Not matchFound Then
-            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            '            e.Cancel = True  ' Cancels the edit
-            '        End If
-            '    End If
-            'End If
             If e.ColumnIndex = SPSYM.Index Then
                 If e.FormattedValue IsNot Nothing Then
                     GRIDSELVEDGEPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
                 End If
             End If
-            'If e.ColumnIndex = SPR.Index OrElse e.ColumnIndex = SPR1.Index Then ' For both repeats columns if needed
-            '    Dim value = Convert.ToString(e.FormattedValue)
-            '    If value IsNot Nothing AndAlso value.Trim() <> "" Then
-            '        Dim repeatCount As Integer
-            '        If Not Integer.TryParse(value, repeatCount) OrElse repeatCount < 1 Then
-            '            MessageBox.Show("Please enter a positive integer for repeats.")
-            '            e.Cancel = True
-            '        End If
-            '    End If
-            'End If
-            TOTALSELVEDGEPATTERN()
 
+            TOTALSELVEDGEPATTERN()
 
         Catch ex As Exception
             Throw ex
@@ -4484,16 +4413,15 @@ line1:
 
     Private Sub GRIDSELVEDGEPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDSELVEDGEPATTERN.KeyDown
         Try
-            If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.RowCount > 0 Then
+            If e.KeyCode = Keys.Delete And GRIDSELVEDGEPATTERN.CurrentRow.Cells(SPENDS.Index).Value <> "" Then
                 If GRIDWPDOUBLECLICK = True Then
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
                     Exit Sub
                 End If
                 If GRIDSELVEDGEPATTERN.RowCount > 1 Then GRIDSELVEDGEPATTERN.Rows.RemoveAt(GRIDSELVEDGEPATTERN.CurrentRow.Index)
+                TOTALSELVEDGEPATTERN()
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGEPATTERN)
-                'ElseIf e.KeyCode = Keys.F5 Then
-                '    EDITWARPPATTERNROW()
             End If
         Catch ex As Exception
             Throw ex
