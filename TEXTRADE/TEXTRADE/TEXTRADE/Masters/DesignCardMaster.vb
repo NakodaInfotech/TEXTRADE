@@ -34,9 +34,10 @@ Public Class DesignCardMaster
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
             Ep.Clear()
-            'If Not errorvalid() Then
-            '    Exit Sub
-            'End If
+
+            If Not errorvalid() Then
+                Exit Sub
+            End If
             Dim IntResult As Integer
 
             Dim alParaval As New ArrayList
@@ -826,7 +827,6 @@ Public Class DesignCardMaster
         DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
 
         Ep.Clear()
-        GBSELVIEW.Visible = False
         TXTCOPYCARDNO.Clear()
         GBWARP.Visible = False
         GBWEFT.Visible = False
@@ -855,7 +855,87 @@ Public Class DesignCardMaster
                 bln = False
             End If
         End If
+        If TXTREED.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTREED, "Fill Reed ")
+            bln = False
+        End If
+        If TXTTHREADPERDENT.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTTHREADPERDENT, "Fill E.P.D")
+            bln = False
+        End If
+        If TXTPICKS.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTPICKS, "Fill PICKS ON LOOM ")
+            bln = False
+        End If
+        If TXTREEDSPACE.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTREEDSPACE, "Fill Reed Space ")
+            bln = False
+        End If
+        If TXTWEFTTL.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTWEFTTL, "Fill WEFT TL ")
+            bln = False
+        End If
+        If TXTWARPTL.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTWARPTL, "Fill WARP TL ")
+            bln = False
+        End If
+        If TXTLEFTSEL.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTLEFTSEL, "Fill Selvedge Size ")
+            bln = False
+        End If
+        If TXTLEFTSELENDS.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTLEFTSELENDS, "Fill Selvedge E P Dent ")
+            bln = False
+        End If
+        If TXTSHRINKAGEPER.Text.Trim.Length = 0 Then
+            Ep.SetError(TXTSHRINKAGEPER, "Fill Shrinkage Percent. ")
+            bln = False
+        End If
+        If Not CheckGridsForBlankOrNull(GRIDWARPPATTERN, "WPENDS", "WPSYM") Then
+            Ep.SetError(cmdok, "Check Warp Pattern Grid. ")
+            bln = False ' If validation fails, set bln to False
+        End If
+
+        ' Check for blank/null in FPENDS and FPSYM columns for GRIDWEFTPATTERN
+        If Not CheckGridsForBlankOrNull(GRIDWEFTPATTERN, "FPENDS", "FPSYM") Then
+            Ep.SetError(cmdok, "Check Weft Pattern Grid. ")
+            bln = False ' If validation fails, set bln to False
+        End If
+
+        ' Check for blank/null in SPENDS and SPSYM columns for GRIDSELVEDGEPATTERN
+        If Not CheckGridsForBlankOrNull(GRIDSELVEDGEPATTERN, "SPENDS", "SPSYM") Then
+            Ep.SetError(cmdok, "Check Selvedge Pattern Grid. ")
+            bln = False ' If validation fails, set bln to False
+        End If
+        Return bln
     End Function
+    Public Function CheckGridsForBlankOrNull(grid As DataGridView, endColumn As String, symColumn As String) As Boolean
+        ' Loop through each row in the grid
+        For Each row As DataGridViewRow In grid.Rows
+            ' Skip the new row (this row is just for adding new data and does not contain real data yet)
+            If row.IsNewRow Then Continue For
+
+            ' Check endColumn for null or blank
+            Dim endValue As String = If(row.Cells(endColumn).Value Is DBNull.Value, "", row.Cells(endColumn).Value.ToString().Trim())
+            If String.IsNullOrWhiteSpace(endValue) Then
+                MessageBox.Show(endColumn & " cannot be left blank or null in row " & row.Index + 1, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                row.Cells(endColumn).Style.BackColor = Color.Red ' Highlight the invalid cell in red
+                grid.CurrentCell = row.Cells(endColumn) ' Set focus to the invalid cell
+                Return False ' Return False when validation fails
+            End If
+
+            ' Check symColumn for null or blank
+            Dim symValue As String = If(row.Cells(symColumn).Value Is DBNull.Value, "", row.Cells(symColumn).Value.ToString().Trim())
+            If String.IsNullOrWhiteSpace(symValue) Then
+                MessageBox.Show(symColumn & " cannot be left blank or null in row " & row.Index + 1, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                row.Cells(symColumn).Style.BackColor = Color.Red ' Highlight the invalid cell in red
+                grid.CurrentCell = row.Cells(symColumn) ' Set focus to the invalid cell
+                Return False ' Return False when validation fails
+            End If
+        Next
+        Return True ' Return True if all validations pass
+    End Function
+
 
     Private Sub DesignCardMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -1120,13 +1200,42 @@ Public Class DesignCardMaster
                 srno(GRIDWEFTDESC, TXTFDSRNO)
                 srno(GRIDWARPDESC, TXTWDSRNO)
                 srno(GRIDSELDESC, TXTSDNO)
-
+                fillMATCHINGcmb()
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
+    Sub fillMATCHINGcmb()
+        Dim OBJCMN As New ClsCommon
+        Dim dttable8 As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGN_WARPSYM AS WARPSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY DESIGN_WARPSYM")
+        If dttable8.Rows.Count > 0 Then
+            ' Clear the ComboBox first to avoid appending to any previous items
+            CMBGRIDSYM.Items.Clear()
+            For Each DTR As DataRow In dttable8.Rows
+                ' Add each value from the DataRow to the ComboBox
+                CMBGRIDSYM.Items.Add(DTR("WARPSYM").ToString())
+            Next
+        End If
+        Dim dttable1 As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGN_WARPSYM AS WEFTSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY DESIGN_WARPSYM")
+        If dttable1.Rows.Count > 0 Then
+            ' Clear the ComboBox first to avoid appending to any previous items
+            CMBWEFTGRIDSYMBOL.Items.Clear()
+            For Each DTR As DataRow In dttable1.Rows
+                ' Add each value from the DataRow to the ComboBox
+                CMBWEFTGRIDSYMBOL.Items.Add(DTR("WEFTSYM").ToString())
+            Next
+        End If
+        Dim dttable2 As DataTable = OBJCMN.SEARCH(" DISTINCT DESIGN_SELVEDGESYM AS SELSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY DESIGN_SELVEDGESYM")
+        If dttable2.Rows.Count > 0 Then
+            ' Clear the ComboBox first to avoid appending to any previous items
+            CMBSELGSYM.Items.Clear()
+            For Each DTR As DataRow In dttable2.Rows
+                ' Add each value from the DataRow to the ComboBox
+                CMBSELGSYM.Items.Add(DTR("SELSYM").ToString())
+            Next
+        End If
+    End Sub
     Public Sub srno(grid As DataGridView, txtBox As System.Windows.Forms.TextBox)
         If grid Is Nothing OrElse txtBox Is Nothing Then Exit Sub
 
@@ -2491,6 +2600,21 @@ LINE1:
                             End If
                         End If
                     Next
+                    Dim cellValue As String = e.FormattedValue.ToString()
+                    ' Allow empty value if needed
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate numeric input
+                    Dim val As Decimal
+                    If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                        MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                    If Not IsNumericOrZero(cellValue) Then
+                        MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                        Return
+                    End If
                 End If
             End If
             If e.ColumnIndex = DREPEAT.Index OrElse e.ColumnIndex = DREPEATS1.Index Then ' For both repeats columns if needed
@@ -2711,7 +2835,7 @@ LINE1:
                     End If
                 Next
                 For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
-                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value <Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
+                    If GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value < Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) Then
                         DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("FDMAINSRNO")) - 1
                     End If
                 Next
@@ -2972,6 +3096,45 @@ LINE1:
                     End If
                 End If
             End If
+            If GRIDWEFTPATTERN.Columns(e.ColumnIndex).Name = "FPENDS" OrElse GRIDWEFTPATTERN.Columns(e.ColumnIndex).Name = "FPSYM" Then
+
+                Dim cellValue As String = e.FormattedValue.ToString()
+
+                '' If the value is empty or just spaces, show an error
+                'If String.IsNullOrWhiteSpace(cellValue) Then
+                '    MessageBox.Show("This field cannot be left blank.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                '    e.Cancel = True
+                '    Return
+                'End If
+                If GRIDWEFTPATTERN.Columns(e.ColumnIndex).Name = "FPENDS" Then
+                    ' Allow empty value if needed
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate numeric input
+                    Dim val As Decimal
+                    If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                        MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDWEFTPATTERN.Columns(e.ColumnIndex).Name = "FPSYM" Then
+                    ' Allow empty values (if you want that), or you can set this to prevent empty values
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate that the value contains only alphabetic characters
+                    If Not IsAlphaOnly(e.FormattedValue.ToString()) Then
+                        MessageBox.Show("Please enter only alphabetic characters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDWEFTPATTERN.Columns(e.ColumnIndex).Name = "FPENDS" Then
+                    If Not IsNumericOrZero(cellValue) Then
+                        MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                        Return
+                    End If
+                End If
+            End If
             Button2_Click(sender, e)
             COPYWEFTSYM()
             CALC()
@@ -3011,32 +3174,6 @@ LINE1:
         Try
             Dim dgv As DataGridView = CType(sender, DataGridView)
 
-            '' Proceed only if the column being edited is "WPSYM"
-            'If dgv.Columns(e.ColumnIndex).Name = "WPSYM" Then
-            '    Dim inputValue As String = e.FormattedValue.ToString().Trim()
-            '    If inputValue <> "" Then
-            '        ' Flag to track if match is found
-            '        Dim matchFound As Boolean = False
-
-            '        ' Loop through rows of main grid to check for matching "WSYM" value
-            '        For Each row As DataGridViewRow In GRIDWARP.Rows
-            '            If Not row.IsNewRow AndAlso row.Cells("WSYM").Value IsNot Nothing Then
-            '                Dim symValue As String = row.Cells("WSYM").Value.ToString().Trim()
-
-            '                If String.Equals(inputValue, symValue, StringComparison.OrdinalIgnoreCase) Then
-            '                    matchFound = True
-            '                    Exit For
-            '                End If
-            '            End If
-            '        Next
-
-            '        ' If no match found, show warning and cancel editing
-            '        If Not matchFound Then
-            '            MessageBox.Show("SYM must match a SYM from the main grid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            '            e.Cancel = True  ' Cancels the edit
-            '        End If
-            '    End If
-            'End If
             If e.ColumnIndex = WPSYM.Index Then
                 If e.FormattedValue IsNot Nothing Then
                     GRIDWARPPATTERN.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = e.FormattedValue.ToString().ToUpper()
@@ -3052,6 +3189,45 @@ LINE1:
                     End If
                 End If
             End If
+            If GRIDWARPPATTERN.Columns(e.ColumnIndex).Name = "WPENDS" OrElse GRIDWARPPATTERN.Columns(e.ColumnIndex).Name = "WPSYM" Then
+
+                Dim cellValue As String = e.FormattedValue.ToString().Trim()
+
+                ' If the value is empty or just spaces, show an error
+                'If String.IsNullOrWhiteSpace(cellValue) Then
+                '    MessageBox.Show("This field cannot be left blank.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                '    e.Cancel = True
+                '    Return
+                'End If
+                If GRIDWARPPATTERN.Columns(e.ColumnIndex).Name = "WPENDS" Then
+                    ' Allow empty value if needed
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate numeric input
+                    Dim val As Decimal
+                    If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                        MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDWARPPATTERN.Columns(e.ColumnIndex).Name = "WPSYM" Then
+                    ' Allow empty values (if you want that), or you can set this to prevent empty values
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate that the value contains only alphabetic characters
+                    If Not IsAlphaOnly(e.FormattedValue.ToString()) Then
+                        MessageBox.Show("Please enter only alphabetic characters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDWARPPATTERN.Columns(e.ColumnIndex).Name = "WPENDS" Then
+                    If Not IsNumericOrZero(cellValue) Then
+                        MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                        Return
+                    End If
+                End If
+            End If
             COPYSYM()
             CALC()
             TOTAL()
@@ -3059,26 +3235,14 @@ LINE1:
             Throw ex
         End Try
     End Sub
+    Private Function IsAlphaOnly(value As String) As Boolean
+        ' Returns True if all characters in the string are letters (alphabetic)
+        Return value.All(Function(c) Char.IsLetter(c))
+    End Function
     Public Sub CalculateTotalsForGrid(dgv As DataGridView,
                                       endsCol As String, repeatsCol As String,
                                       repeats1Col As String, repeats2Col As String,
                                       totalRepeatCol As String, totalRepeat1Col As String, totalRepeat2Col As String)
-        'For Each row As DataGridViewRow In dgv.Rows
-        '    If row.IsNewRow Then Continue For
-
-        '    Dim ends As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(endsCol).Value)), 1, Convert.ToInt32(row.Cells(endsCol).Value))
-        '    Dim repeats As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), 1, Convert.ToInt32(row.Cells(repeatsCol).Value))
-        '    Dim repeats1 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
-        '    Dim repeats2 As Integer = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
-
-        '    Dim totalRepeat As Integer = ends * repeats
-        '    Dim totalRepeat1 As Integer = totalRepeat * repeats1
-        '    Dim totalRepeat2 As Integer = totalRepeat1 * repeats2
-
-        '    row.Cells(totalRepeatCol).Value = totalRepeat
-        '    row.Cells(totalRepeat1Col).Value = totalRepeat1
-        '    row.Cells(totalRepeat2Col).Value = totalRepeat2
-        'Next
 
         ' --- Group State Variables ---
         Dim inGroupParen As Boolean = False, groupStartParen As Integer = -1, repeatValueParen As Integer = 1
@@ -3466,18 +3630,8 @@ LINE1:
 
 
             If GRIDSELDOUBLECLICK = False Then
-                'TEMPDTMTRS.Clear()
                 GRIDSELDESC.RowCount = 0
                 GRIDSELDESCDOUBLECLICK = False
-                'Dim i As Integer = 0
-                'While i < TEMPDTMTRS.Rows.Count
-                '    If TEMPDTMTRS.Rows(i).Item("SDMAINSRNO") = Val(txtsrno.Text.Trim) Then
-                '        TEMPDTMTRS.Rows.RemoveAt(i)
-                '        'GRIDMTRS.Rows.RemoveAt(GRIDMTRS.CurrentRow.Index)
-                '    Else
-                '        i += 1 ' Only increment if no row is removed
-                '    End If
-                'End While
             Else
                 If GRIDSELVEDGE.Rows.Count > 0 Then
                     GRIDSELDESC.RowCount = 0
@@ -3495,7 +3649,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
@@ -3584,55 +3738,12 @@ line1:
             Throw ex
         End Try
     End Sub
-    Sub GRIDTEMPVIEW(mainGrid As DataGridView,
-    DataTable As DataTable,
-    mainSrnoColName As String,
-    dataSrnoColName As String,
-    dataShadeColName As String,
-    dataMainSrnoColName As String,
-    Optional rowNo As Integer = -1
-)
-        Try
-            GBSELVIEW.Visible = True
-            If mainGrid.Rows.Count > 0 Then
-                If rowNo = -1 Then rowNo = mainGrid.CurrentRow.Index
-                GRIDSELVIEWS.Rows.Clear()
-
-                Dim mainSrnoValue As Integer = Val(mainGrid.Rows(rowNo).Cells(mainSrnoColName).Value)
-                For i As Integer = 0 To DataTable.Rows.Count - 1
-                    If Val(DataTable.Rows(i).Item(dataMainSrnoColName)) = mainSrnoValue Then
-                        GRIDSELVIEWS.Rows.Add(
-                        DataTable.Rows(i).Item(dataSrnoColName),
-                        DataTable.Rows(i).Item(dataShadeColName),
-                        DataTable.Rows(i).Item(dataMainSrnoColName)
-                    )
-                    End If
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GRIDSELVEDGE_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.RowEnter
-        'Try
-        '    If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-
-    End Sub
-
     Private Sub CMBWARPMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWARPMILLNAME.Validated
         Try
-
             If CMBGRIDSYM.Text.Trim <> "" And CMBWARPQUALITY.Text.Trim <> "" Then GBWARP.Visible = True
-
             If GRIDDOUBLECLICK = False Then
-                'TEMPDTMTRS.Clear()
                 GRIDWARPDESC.RowCount = 0
                 GRIDWARPDESCDOUBLECLICK = False
-
             Else
                 If GRIDWARP.Rows.Count > 0 Then
                     GRIDWARPDESC.RowCount = 0
@@ -3763,21 +3874,6 @@ line1:
             Throw ex
         End Try
     End Sub
-    Private Sub GRIDSELVEDGE_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGE.CellClick
-        Try
-            'If GRIDSELVEDGE.RowCount > 0 Then GRIDTEMPVIEW(GRIDSELVEDGE, DT_SELDETAILS, "SSRNO", "SDSRNO", "SDSHADE", "SDMAINSRNO")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GRIDWARP_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARP.CellClick
-        Try
-            If GRIDWARP.RowCount > 0 Then GRIDTEMPVIEW(GRIDWARP, DT_WARPDETAILS, "WSRNO", "WDSRNO", "WDSHADE", "WDMAINSRNO")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
     Private Sub CMBWEFTMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Validated
         Try
@@ -3865,16 +3961,7 @@ line1:
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-
         ShowPrintPreview()
-    End Sub
-
-    Private Sub GRIDWEFT_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFT.CellClick
-        Try
-            'If GRIDWEFT.RowCount > 0 Then GRIDTEMPVIEW(GRIDWEFT, DT_WEFTDETAILS, "FSRNO", "FDSRNO", "FDSHADE", "FDMAINSRNO")
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
@@ -3899,6 +3986,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
         Try
             If CMBWEFTGRIDSYMBOL.Text <> "" And CMBWEFTYARNQUALITY.Text.Trim <> "" Then
@@ -4127,6 +4215,45 @@ line1:
                     End If
                 End If
             End If
+            If GRIDSELVEDGEPATTERN.Columns(e.ColumnIndex).Name = "SPENDS" OrElse GRIDSELVEDGEPATTERN.Columns(e.ColumnIndex).Name = "SPSYM" Then
+
+                Dim cellValue As String = e.FormattedValue.ToString()
+
+                '' If the value is empty or just spaces, show an error
+                'If String.IsNullOrWhiteSpace(cellValue) Then
+                '    MessageBox.Show("This field cannot be left blank.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                '    e.Cancel = True
+                '    Return
+                'End If
+                If GRIDSELVEDGEPATTERN.Columns(e.ColumnIndex).Name = "SPENDS" Then
+                    ' Allow empty value if needed
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate numeric input
+                    Dim val As Decimal
+                    If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                        MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDSELVEDGEPATTERN.Columns(e.ColumnIndex).Name = "SPSYM" Then
+                    ' Allow empty values (if you want that), or you can set this to prevent empty values
+                    If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                    ' Validate that the value contains only alphabetic characters
+                    If Not IsAlphaOnly(e.FormattedValue.ToString()) Then
+                        MessageBox.Show("Please enter only alphabetic characters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                    End If
+                End If
+                If GRIDSELVEDGEPATTERN.Columns(e.ColumnIndex).Name = "SPENDS" Then
+                    If Not IsNumericOrZero(cellValue) Then
+                        MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        e.Cancel = True
+                        Return
+                    End If
+                End If
+            End If
             Button1_Click(sender, e)
             COPYSELSYM()
             CALC()
@@ -4151,10 +4278,35 @@ line1:
             Throw ex
         End Try
     End Sub
+    Private Function IsNumericOrZero(value As String) As Boolean
+        ' Check if the value is either numeric or exactly "0"
+        Dim number As Decimal
+        Return (Decimal.TryParse(value, number) AndAlso number <> 0) OrElse value = "0"
+    End Function
 
     Private Sub GRIDPEG_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDPEG.CellValidating
         Try
             If GRIDPEG.RowCount > 1 Then
+                If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" OrElse GRIDPEG.Columns(e.ColumnIndex).Name = "SPSYM" Then
+
+                    Dim cellValue As String = e.FormattedValue.ToString()
+                    If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
+                        ' Allow empty value if needed
+                        If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
+
+                        ' Validate numeric input
+                        Dim val As Decimal
+                        If Not Decimal.TryParse(e.FormattedValue.ToString(), val) Then
+                            MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            e.Cancel = True
+                        End If
+                        If Not IsNumericOrZero(cellValue) Then
+                            MessageBox.Show("Please enter a valid number (0 is allowed).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            e.Cancel = True
+                            Return
+                        End If
+                    End If
+                End If
                 ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
                 Dim maxShaft As Integer = 0
                 If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
@@ -4423,6 +4575,50 @@ line1:
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGEPATTERN)
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
+        Try
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
+        Try
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
+        Try
+            If CMBNAME.Text.Trim <> "" Then
+                'GET  AGENCT 
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS_1.ACC_CMPNAME,'') AS TRANSNAME, ISNULL(LEDGERS_2.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(REGISTER_NAME,'') AS REGISTERNAME, ISNULL(STATEMASTER.state_remark, '') AS STATECODE, ISNULL(LEDGERS.ACC_GSTIN,'') AS GSTIN, ISNULL(LEDGERS.ACC_EXMILLLESS,0) AS EXMILLLESS,  ISNULL(LEDGERS.ACC_DISC,0) AS DISCPER,  ISNULL(LEDGERS.ACC_CDPER,0) AS CDPER, isnull(LEDGERS.ACC_CRDAYS,0) AS CRDAYS, ISNULL(LEDGERS.ACC_MOBILE,'') AS MOBILENO, ISNULL(TERMMASTER.TERM_NAME,'') AS TERM, ISNULL(LEDGERS.ACC_AGENTCOMM,'') AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME, ISNULL(LEDGERS.ACC_OVERSEAS,0) AS OVERSEAS, ISNULL(LEDGERS.ACC_TCS,0) AS TCS, ISNULL(LEDGERS.ACC_PARTYTDS,0) AS PARTYTDS, ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT, ISNULL(LEDGERS.ACC_RD,0) AS RATEDIFF, ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN ", "", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN SALESMANMASTER ON LEDGERS.ACC_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id LEFT OUTER JOIN REGISTERMASTER ON LEDGERS.ACC_REGISTERID = REGISTERMASTER.register_id LEFT OUTER JOIN TERMMASTER ON LEDGERS.ACC_TERMID = TERM_ID  LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_DELIVERYATID = CITY_ID ", " and LEDGERS.acc_cmpname = '" & CMBNAME.Text.Trim & "' and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and LEDGERS.acc_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    If CMBAGENTNAME.Text.Trim = "" Then CMBAGENTNAME.Text = DT.Rows(0).Item("AGENTNAME")
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTLEFTSEL.KeyPress
+        numdotkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTGWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTGWIDTH.Validated
+        Try
+            If TXTGWIDTH.Text <> "" Then TXTGWIDTHCM.Text = Format(Val(TXTGWIDTH.Text.Trim) * 2.54, "0.00")
         Catch ex As Exception
             Throw ex
         End Try
