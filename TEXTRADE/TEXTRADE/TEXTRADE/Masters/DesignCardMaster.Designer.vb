@@ -133,7 +133,6 @@ Partial Class DesignCardMaster
         Me.TXTSELWT = New System.Windows.Forms.TextBox()
         Me.TXTSELDEN = New System.Windows.Forms.TextBox()
         Me.TXTSELTE = New System.Windows.Forms.TextBox()
-        Me.Label56 = New System.Windows.Forms.Label()
         Me.CMBSELMILLNAME = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.CMBSELYARNQUALITY = New System.Windows.Forms.ComboBox()
@@ -801,7 +800,6 @@ Partial Class DesignCardMaster
         Me.TBSELVEDGE.Controls.Add(Me.TXTSELWT)
         Me.TBSELVEDGE.Controls.Add(Me.TXTSELDEN)
         Me.TBSELVEDGE.Controls.Add(Me.TXTSELTE)
-        Me.TBSELVEDGE.Controls.Add(Me.Label56)
         Me.TBSELVEDGE.Controls.Add(Me.CMBSELMILLNAME)
         Me.TBSELVEDGE.Controls.Add(Me.Label9)
         Me.TBSELVEDGE.Controls.Add(Me.CMBSELYARNQUALITY)
@@ -1139,17 +1137,6 @@ Partial Class DesignCardMaster
         Me.TXTSELTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TXTSELTE.Visible = False
         '
-        'Label56
-        '
-        Me.Label56.AutoSize = True
-        Me.Label56.BackColor = System.Drawing.Color.Transparent
-        Me.Label56.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label56.Location = New System.Drawing.Point(672, 216)
-        Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(74, 15)
-        Me.Label56.TabIndex = 898
-        Me.Label56.Text = "Total Repeat"
-        '
         'CMBSELMILLNAME
         '
         Me.CMBSELMILLNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -1292,7 +1279,6 @@ Partial Class DesignCardMaster
         Me.SPE.ReadOnly = True
         Me.SPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPE.Visible = False
         Me.SPE.Width = 50
         '
         'SBE
@@ -1302,7 +1288,6 @@ Partial Class DesignCardMaster
         Me.SBE.ReadOnly = True
         Me.SBE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SBE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SBE.Visible = False
         Me.SBE.Width = 50
         '
         'SENDS
@@ -1314,7 +1299,6 @@ Partial Class DesignCardMaster
         Me.SENDS.ReadOnly = True
         Me.SENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SENDS.Visible = False
         Me.SENDS.Width = 60
         '
         'SWT
@@ -1326,7 +1310,6 @@ Partial Class DesignCardMaster
         Me.SWT.ReadOnly = True
         Me.SWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.SWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SWT.Visible = False
         Me.SWT.Width = 60
         '
         'SCONS
@@ -1998,10 +1981,10 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Controls.Add(Me.GRIDWEFT)
         Me.TBWEFT.Controls.Add(Me.Label86)
         Me.TBWEFT.Controls.Add(Me.Button4)
-        Me.TBWEFT.Location = New System.Drawing.Point(4, 22)
+        Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1436, 241)
+        Me.TBWEFT.Size = New System.Drawing.Size(1436, 239)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Warp Matching && Weft Matching"
         '
@@ -2036,7 +2019,7 @@ Partial Class DesignCardMaster
         Me.CMBWEFTGRIDSYMBOL.Location = New System.Drawing.Point(713, 22)
         Me.CMBWEFTGRIDSYMBOL.Name = "CMBWEFTGRIDSYMBOL"
         Me.CMBWEFTGRIDSYMBOL.Size = New System.Drawing.Size(61, 23)
-        Me.CMBWEFTGRIDSYMBOL.TabIndex = 1
+        Me.CMBWEFTGRIDSYMBOL.TabIndex = 7
         '
         'CMBGRIDSYM
         '
@@ -2057,10 +2040,10 @@ Partial Class DesignCardMaster
         Me.GBWARP.Controls.Add(Me.CMDWARPCLOSE)
         Me.GBWARP.Controls.Add(Me.GRIDWARPDESC)
         Me.GBWARP.Controls.Add(Me.CMBWARPSHADE)
-        Me.GBWARP.Location = New System.Drawing.Point(417, 22)
+        Me.GBWARP.Location = New System.Drawing.Point(470, 22)
         Me.GBWARP.Name = "GBWARP"
         Me.GBWARP.Size = New System.Drawing.Size(211, 199)
-        Me.GBWARP.TabIndex = 965
+        Me.GBWARP.TabIndex = 12
         Me.GBWARP.TabStop = False
         Me.GBWARP.Text = "Shade Details"
         Me.GBWARP.Visible = False
@@ -2180,7 +2163,7 @@ Partial Class DesignCardMaster
         Me.CMBWARPSHADE.Location = New System.Drawing.Point(37, 17)
         Me.CMBWARPSHADE.Name = "CMBWARPSHADE"
         Me.CMBWARPSHADE.Size = New System.Drawing.Size(101, 23)
-        Me.CMBWARPSHADE.TabIndex = 3
+        Me.CMBWARPSHADE.TabIndex = 1
         '
         'TXTTOTALWARPCOST
         '
@@ -2302,7 +2285,7 @@ Partial Class DesignCardMaster
         Me.TXTWARPBE.Location = New System.Drawing.Point(669, 22)
         Me.TXTWARPBE.Name = "TXTWARPBE"
         Me.TXTWARPBE.Size = New System.Drawing.Size(10, 23)
-        Me.TXTWARPBE.TabIndex = 0
+        Me.TXTWARPBE.TabIndex = 6
         Me.TXTWARPBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TXTWARPBE.Visible = False
         '
@@ -2451,7 +2434,7 @@ Partial Class DesignCardMaster
         Me.GRIDWARP.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWARP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDWARP.Size = New System.Drawing.Size(544, 179)
-        Me.GRIDWARP.TabIndex = 5
+        Me.GRIDWARP.TabIndex = 13
         Me.GRIDWARP.TabStop = False
         '
         'WSRNO
@@ -2588,7 +2571,7 @@ Partial Class DesignCardMaster
         Me.GBWEFT.Controls.Add(Me.CMDWEFTCLOSE)
         Me.GBWEFT.Controls.Add(Me.GRIDWEFTDESC)
         Me.GBWEFT.Controls.Add(Me.cmbweftshade)
-        Me.GBWEFT.Location = New System.Drawing.Point(1014, 22)
+        Me.GBWEFT.Location = New System.Drawing.Point(1105, 22)
         Me.GBWEFT.Name = "GBWEFT"
         Me.GBWEFT.Size = New System.Drawing.Size(211, 199)
         Me.GBWEFT.TabIndex = 942
@@ -2879,7 +2862,7 @@ Partial Class DesignCardMaster
         Me.TXTWEFTDEN.Name = "TXTWEFTDEN"
         Me.TXTWEFTDEN.ReadOnly = True
         Me.TXTWEFTDEN.Size = New System.Drawing.Size(70, 23)
-        Me.TXTWEFTDEN.TabIndex = 4
+        Me.TXTWEFTDEN.TabIndex = 9
         Me.TXTWEFTDEN.TabStop = False
         Me.TXTWEFTDEN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2903,7 +2886,7 @@ Partial Class DesignCardMaster
         Me.CMBWEFTMILLNAME.Location = New System.Drawing.Point(1044, 22)
         Me.CMBWEFTMILLNAME.Name = "CMBWEFTMILLNAME"
         Me.CMBWEFTMILLNAME.Size = New System.Drawing.Size(150, 23)
-        Me.CMBWEFTMILLNAME.TabIndex = 5
+        Me.CMBWEFTMILLNAME.TabIndex = 10
         '
         'Label51
         '
@@ -2926,7 +2909,7 @@ Partial Class DesignCardMaster
         Me.CMBWEFTYARNQUALITY.Location = New System.Drawing.Point(772, 22)
         Me.CMBWEFTYARNQUALITY.Name = "CMBWEFTYARNQUALITY"
         Me.CMBWEFTYARNQUALITY.Size = New System.Drawing.Size(202, 23)
-        Me.CMBWEFTYARNQUALITY.TabIndex = 3
+        Me.CMBWEFTYARNQUALITY.TabIndex = 8
         '
         'GRIDWEFT
         '
@@ -2971,7 +2954,7 @@ Partial Class DesignCardMaster
         Me.GRIDWEFT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWEFT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDWEFT.Size = New System.Drawing.Size(542, 179)
-        Me.GRIDWEFT.TabIndex = 6
+        Me.GRIDWEFT.TabIndex = 11
         Me.GRIDWEFT.TabStop = False
         '
         'FSRNO
@@ -5744,7 +5727,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTSELWT As TextBox
     Friend WithEvents TXTSELDEN As TextBox
     Friend WithEvents TXTSELTE As TextBox
-    Friend WithEvents Label56 As Label
     Friend WithEvents CMBSELMILLNAME As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents CMBSELYARNQUALITY As ComboBox
@@ -5884,19 +5866,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTBEAMMTRS As TextBox
     Friend WithEvents Label41 As Label
     Friend WithEvents TXTCOPYCARDNO As TextBox
-    Friend WithEvents SSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents SSYM As DataGridViewTextBoxColumn
-    Friend WithEvents SQUALITY As DataGridViewTextBoxColumn
-    Friend WithEvents SDENIER As DataGridViewTextBoxColumn
-    Friend WithEvents SMILL As DataGridViewTextBoxColumn
-    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
-    Friend WithEvents SPE As DataGridViewTextBoxColumn
-    Friend WithEvents SBE As DataGridViewTextBoxColumn
-    Friend WithEvents SENDS As DataGridViewTextBoxColumn
-    Friend WithEvents SWT As DataGridViewTextBoxColumn
-    Friend WithEvents SCONS As DataGridViewTextBoxColumn
-    Friend WithEvents SRATE As DataGridViewTextBoxColumn
-    Friend WithEvents SCOST As DataGridViewTextBoxColumn
     Friend WithEvents Label65 As Label
     Friend WithEvents TXTTOTALSELGPE As TextBox
     Friend WithEvents TXTSELGPE As TextBox
@@ -5977,4 +5946,17 @@ Partial Class DesignCardMaster
     Friend WithEvents PPR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTDR2 As DataGridViewTextBoxColumn
+    Friend WithEvents SSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents SSYM As DataGridViewTextBoxColumn
+    Friend WithEvents SQUALITY As DataGridViewTextBoxColumn
+    Friend WithEvents SDENIER As DataGridViewTextBoxColumn
+    Friend WithEvents SMILL As DataGridViewTextBoxColumn
+    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
+    Friend WithEvents SPE As DataGridViewTextBoxColumn
+    Friend WithEvents SBE As DataGridViewTextBoxColumn
+    Friend WithEvents SENDS As DataGridViewTextBoxColumn
+    Friend WithEvents SWT As DataGridViewTextBoxColumn
+    Friend WithEvents SCONS As DataGridViewTextBoxColumn
+    Friend WithEvents SRATE As DataGridViewTextBoxColumn
+    Friend WithEvents SCOST As DataGridViewTextBoxColumn
 End Class
