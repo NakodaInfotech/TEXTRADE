@@ -276,7 +276,7 @@ Public Class Receipt
                     EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     BLN = False
 
-                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False And ClientName = "ABHEE" Then
                     'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
                     'AND DUPLLICATE ENTRIES GETS PASSED
                     Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "RECEIPTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND RECEIPTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND RECEIPTBILLDETAILS.YEARID = " & YearId)
@@ -1074,7 +1074,7 @@ Public Class Receipt
     Sub fillgrid()
         Try
             EP.Clear()
-            If Not AMOUNTVALIDATE() Then
+            If ClientName <> "ABHEE" AndAlso Not AMOUNTVALIDATE() Then
                 txtsrno.Focus()
                 Exit Sub
             End If
