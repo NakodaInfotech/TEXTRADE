@@ -1364,10 +1364,10 @@ Partial Class DesignCardMaster
         Me.TBWARP.Controls.Add(Me.TXTGRIDPE)
         Me.TBWARP.Controls.Add(Me.TXTWARPGSRNO)
         Me.TBWARP.Controls.Add(Me.GRIDWARPPATTERN)
-        Me.TBWARP.Location = New System.Drawing.Point(4, 22)
+        Me.TBWARP.Location = New System.Drawing.Point(4, 24)
         Me.TBWARP.Name = "TBWARP"
         Me.TBWARP.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWARP.Size = New System.Drawing.Size(1436, 241)
+        Me.TBWARP.Size = New System.Drawing.Size(1436, 239)
         Me.TBWARP.TabIndex = 0
         Me.TBWARP.Text = "2. Warp Pattern && Weft Pattern"
         '
@@ -2574,7 +2574,7 @@ Partial Class DesignCardMaster
         Me.GBWEFT.Location = New System.Drawing.Point(1105, 22)
         Me.GBWEFT.Name = "GBWEFT"
         Me.GBWEFT.Size = New System.Drawing.Size(211, 199)
-        Me.GBWEFT.TabIndex = 942
+        Me.GBWEFT.TabIndex = 0
         Me.GBWEFT.TabStop = False
         Me.GBWEFT.Text = "Shade Details"
         Me.GBWEFT.Visible = False
@@ -2586,7 +2586,7 @@ Partial Class DesignCardMaster
         Me.TXTFDMAINSRNO.MaxLength = 50
         Me.TXTFDMAINSRNO.Name = "TXTFDMAINSRNO"
         Me.TXTFDMAINSRNO.Size = New System.Drawing.Size(33, 23)
-        Me.TXTFDMAINSRNO.TabIndex = 5
+        Me.TXTFDMAINSRNO.TabIndex = 2
         Me.TXTFDMAINSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TXTFDMAINSRNO.Visible = False
         '
@@ -2612,7 +2612,7 @@ Partial Class DesignCardMaster
         Me.CMDWEFTCLOSE.Location = New System.Drawing.Point(151, 153)
         Me.CMDWEFTCLOSE.Name = "CMDWEFTCLOSE"
         Me.CMDWEFTCLOSE.Size = New System.Drawing.Size(55, 28)
-        Me.CMDWEFTCLOSE.TabIndex = 1
+        Me.CMDWEFTCLOSE.TabIndex = 2
         Me.CMDWEFTCLOSE.Text = "C&lose"
         Me.CMDWEFTCLOSE.UseVisualStyleBackColor = False
         '
@@ -2659,7 +2659,7 @@ Partial Class DesignCardMaster
         Me.GRIDWEFTDESC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDWEFTDESC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.GRIDWEFTDESC.Size = New System.Drawing.Size(142, 153)
-        Me.GRIDWEFTDESC.TabIndex = 2
+        Me.GRIDWEFTDESC.TabIndex = 3
         Me.GRIDWEFTDESC.TabStop = False
         '
         'FDSRNO
@@ -2694,7 +2694,7 @@ Partial Class DesignCardMaster
         Me.cmbweftshade.Location = New System.Drawing.Point(37, 17)
         Me.cmbweftshade.Name = "cmbweftshade"
         Me.cmbweftshade.Size = New System.Drawing.Size(100, 23)
-        Me.cmbweftshade.TabIndex = 3
+        Me.cmbweftshade.TabIndex = 1
         '
         'TXTTOTALWEFTCOST
         '
@@ -3114,10 +3114,10 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Controls.Add(Me.Label55)
         Me.TBDRAWING.Controls.Add(Me.Label1)
         Me.TBDRAWING.Controls.Add(Me.GRIDDRAWING)
-        Me.TBDRAWING.Location = New System.Drawing.Point(4, 22)
+        Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 241)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 239)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
@@ -3348,10 +3348,10 @@ Partial Class DesignCardMaster
         Me.TabPage1.Controls.Add(Me.GRIDPEG)
         Me.TabPage1.Controls.Add(Me.GRIDPEGPLAN)
         Me.TabPage1.Controls.Add(Me.TXTTOTALPEG)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1436, 241)
+        Me.TabPage1.Size = New System.Drawing.Size(1436, 239)
         Me.TabPage1.TabIndex = 4
         Me.TabPage1.Text = "5. Peg Plan"
         '

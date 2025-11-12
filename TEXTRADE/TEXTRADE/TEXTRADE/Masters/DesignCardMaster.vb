@@ -1188,10 +1188,11 @@ Public Class DesignCardMaster
                 If dttable8.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable8.Rows
                         GRIDPEG.Rows.Add(DTR("PPSRNO"), DTR("PPENDS").ToString, DTR("PPREPEATMARK").ToString, DTR("PPREPEAT"), DTR("PPGRIDREPEATMARK1").ToString, DTR("PPREPEAT1"), DTR("PPREPEATMARK2").ToString, DTR("PPREPEAT2"))
-
                     Next
+                    ' GRIDPEG_CellValidating(Nothing, Nothing)
                 End If
-
+                cmdbtn1_Click(Nothing, Nothing, GRIDPEG)
+                cmdbtn1_Click(Nothing, Nothing, GRIDDRAWING)
                 TOTAL()
                 CALC()
                 FILLPEGPLAN()
@@ -3557,6 +3558,7 @@ LINE1:
                         End If
                     Next
                     GBSSHADEDETAILS.Visible = True
+                    CMBSELSHADE.Focus()
                 End If
             End If
             TXTSDNO.Text = GRIDSELDESC.RowCount + 1
@@ -3630,7 +3632,7 @@ line1:
     End Sub
 
     Private Sub CMBSELSHADE_Validated(sender As Object, e As EventArgs) Handles CMBSELSHADE.Validated
-        If CMBSELSHADE.Text <> "" Then FILLGRIDSELDESC() Else CMDCLOSESEL.Focus()
+        If CMBSELSHADE.Text <> "" Then FILLGRIDSELDESC()
     End Sub
     Sub EDITGRIDSELDESCROW()
 
@@ -3680,6 +3682,8 @@ line1:
                             GRIDWARPDESC.Rows.Add(DT_WARPDETAILS.Rows(i).Item("WDSRNO"), DT_WARPDETAILS.Rows(i).Item("WDSHADE"), DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
                         End If
                     Next
+                    GBWARP.Visible = True
+                    CMBWARPSHADE.Focus()
                 End If
             End If
             TXTSDNO.Text = GRIDWARPDESC.RowCount + 1
@@ -3762,7 +3766,7 @@ line1:
     End Sub
 
     Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
-        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC() Else CMDWARPCLOSE.Focus()
+        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC()
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -3880,7 +3884,7 @@ line1:
     End Sub
 
     Private Sub cmbweftshade_Validated(sender As Object, e As EventArgs) Handles cmbweftshade.Validated
-        If cmbweftshade.Text <> "" Then FILLGRIDWEFTDESC() Else CMDWEFTCLOSE.Focus()
+        If cmbweftshade.Text <> "" Then FILLGRIDWEFTDESC()
     End Sub
     Sub EDITGRIDWEFTDESCROW()
         Try
@@ -4178,6 +4182,15 @@ line1:
                             End If
                         Next
                     End If
+                    Dim inputValues As String = Convert.ToString(e.FormattedValue).Trim()
+                    If inputValues <> "" Then
+                        ' If GRIDPEGPLAN row count is LESS than GRIDPEG row count, add a row!
+                        If GRIDPEGPLAN.RowCount < GRIDPEG.Rows.Count Then
+                            GRIDPEGPLAN.Rows.Add()
+                            ' Set SrNo for the new vertical row:
+                            GRIDPEGPLAN.Rows(GRIDPEGPLAN.RowCount - 1).Cells(0).Value = GRIDPEGPLAN.RowCount.ToString()
+                        End If
+                    End If
                 End If
                 If e.ColumnIndex = PPR.Index OrElse e.ColumnIndex = PPR1.Index Then ' For both repeats columns if needed
                     Dim value = Convert.ToString(e.FormattedValue)
@@ -4193,17 +4206,6 @@ line1:
                 ' TOTALDRAWDENTS(GRIDPEG)
                 CALC()
                 TOTAL()
-                If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
-                    Dim inputValue As String = Convert.ToString(e.FormattedValue).Trim()
-                    If inputValue <> "" Then
-                        ' If GRIDPEGPLAN row count is LESS than GRIDPEG row count, add a row!
-                        If GRIDPEGPLAN.RowCount < GRIDPEG.Rows.Count Then
-                            GRIDPEGPLAN.Rows.Add()
-                            ' Set SrNo for the new vertical row:
-                            GRIDPEGPLAN.Rows(GRIDPEGPLAN.RowCount - 1).Cells(0).Value = GRIDPEGPLAN.RowCount.ToString()
-                        End If
-                    End If
-                End If
                 pegplan()
             End If
         Catch ex As Exception
