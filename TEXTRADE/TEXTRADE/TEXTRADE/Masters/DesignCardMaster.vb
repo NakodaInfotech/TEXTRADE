@@ -1457,32 +1457,6 @@ LINE1:
         TXTWARPRATE.Clear()
         TXTWARPCOST.Clear()
     End Sub
-    Sub fillwarppatterngrid()
-        If GRIDWPDOUBLECLICK = False Then
-            GRIDWARPPATTERN.Rows.Add(Val(TXTWARPGSRNO.Text.Trim), TXTGRIDPE.Text.Trim, CMBGRIDSYM.Text.Trim)
-            getsrno(GRIDWARPPATTERN)
-        ElseIf GRIDWPDOUBLECLICK = True Then
-            GRIDWARPPATTERN.Item(WPSRNO.Index, TEMPWPROW).Value = Val(TXTWARPGSRNO.Text.Trim)
-            GRIDWARPPATTERN.Item(WPENDS.Index, TEMPWPROW).Value = TXTGRIDPE.Text.Trim
-            GRIDWARPPATTERN.Item(WPSYM.Index, TEMPWPROW).Value = CMBGRIDSYM.Text.Trim
-
-            TEMPWPROW = GRIDWARPPATTERN.CurrentRow.Index
-            TXTWARPGSRNO.Focus()
-            GRIDWPDOUBLECLICK = False
-        End If
-        GRIDWARPPATTERN.ClearSelection()
-        TXTGRIDPE.Clear()
-        CMBGRIDSYM.Text = ""
-        TOTALWARPPATTERN()
-        TXTGRIDPE.Focus()
-        If GRIDWARPPATTERN.RowCount > 0 Then
-            TXTWARPGSRNO.Text = Val(GRIDWARPPATTERN.Rows(GRIDWARPPATTERN.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
-        Else
-            TXTWARPGSRNO.Text = 1
-        End If
-        Button1_Click(errorvalid, New EventArgs)
-    End Sub
     Sub fillselvedgegrid()
         If GRIDSELDOUBLECLICK = False Then
             GRIDSELVEDGE.Rows.Add(Val(TXTSELSRNO.Text.Trim), CMBSELGSYM.Text.Trim, CMBSELYARNQUALITY.Text.Trim, TXTSELDEN.Text.Trim, CMBSELMILLNAME.Text.Trim, CMBSELSHADE.Text.Trim, Val(TXTSELPE.Text.Trim), Val(TXTSELBE.Text.Trim), Val(TXTSELTE.Text.Trim), Val(TXTSELWT.Text.Trim), Val(TXTSELCONS.Text.Trim), Val(TXTSELRATE.Text.Trim), Val(TXTSELCOST.Text.Trim))
@@ -1547,7 +1521,6 @@ LINE1:
         Next
         POPULATESELGRID()
         GRIDSELVEDGE.ClearSelection()
-
         CLEARSELVEDGE()
         COPYSELSYM()
         TOTALSELVEDGE()
@@ -1609,31 +1582,6 @@ LINE1:
         For Each symVal As String In symSet
             CMBSELGSYM.Items.Add(symVal)
         Next
-
-
-    End Sub
-    Sub FILLSELPATTERNGRID()
-        If GRIDSELPDOUBLECLICK = False Then
-            GRIDSELVEDGEPATTERN.Rows.Add(Val(TXTSELGSRNO.Text.Trim), TXTSELGPE.Text.Trim, CMBSELGSYM.Text.Trim)
-            getsrno(GRIDSELVEDGEPATTERN)
-        ElseIf GRIDSELPDOUBLECLICK = True Then
-            GRIDSELVEDGEPATTERN.Item(SPSRNO.Index, TEMPSELPROW).Value = Val(TXTSELGSRNO.Text.Trim)
-            GRIDSELVEDGEPATTERN.Item(SPENDS.Index, TEMPSELPROW).Value = Val(TXTSELGPE.Text.Trim)
-            GRIDSELVEDGEPATTERN.Item(SPSYM.Index, TEMPSELPROW).Value = CMBSELGSYM.Text.Trim
-            TXTSELGSRNO.Focus()
-            GRIDSELPDOUBLECLICK = False
-        End If
-        GRIDSELVEDGEPATTERN.ClearSelection()
-        TXTSELGPE.Clear()
-        CMBSELGSYM.Text = ""
-        TXTSELGPE.Focus()
-        If GRIDSELVEDGEPATTERN.RowCount > 0 Then
-            TXTSELGSRNO.Text = Val(GRIDSELVEDGEPATTERN.Rows(GRIDSELVEDGEPATTERN.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
-        Else
-            TXTSELGSRNO.Text = 1
-        End If
-        TOTALSELVEDGEPATTERN()
     End Sub
     Sub CLEARSELVEDGE()
         TXTSELSRNO.Clear()
@@ -1780,29 +1728,6 @@ LINE1:
         TXTWEFTCONS.Clear()
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
-    End Sub
-    Sub FILLWEFTPATTERNGRID()
-        If GRIDWEFTPDOUBLECLICK = False Then
-            GRIDWEFTPATTERN.Rows.Add(Val(TXTWEFTGRIDSRNO.Text.Trim), TXTWEFTGRIDPE.Text.Trim, CMBWEFTGRIDSYMBOL.Text.Trim)
-            getsrno(GRIDWEFTPATTERN)
-        ElseIf GRIDWEFTPDOUBLECLICK = True Then
-            GRIDWEFTPATTERN.Item(FPSRNO.Index, TEMPWEFTPROW).Value = Val(TXTWEFTGRIDSRNO.Text.Trim)
-            GRIDWEFTPATTERN.Item(FPENDS.Index, TEMPWEFTPROW).Value = Val(TXTWEFTGRIDPE.Text.Trim)
-            GRIDWEFTPATTERN.Item(FPSYM.Index, TEMPWEFTPROW).Value = Val(CMBWEFTGRIDSYMBOL.Text.Trim)
-            TXTWEFTGRIDSRNO.Focus()
-            GRIDWEFTPDOUBLECLICK = False
-        End If
-        GRIDWEFTPATTERN.ClearSelection()
-        TXTWEFTGRIDPE.Clear()
-        CMBWEFTGRIDSYMBOL.Text = ""
-        TXTWEFTGRIDPE.Focus()
-        TOTALWEFTPATTERN()
-        If GRIDWEFTPATTERN.RowCount > 0 Then
-            TXTWEFTGRIDSRNO.Text = Val(GRIDWEFTPATTERN.Rows(GRIDWEFTPATTERN.RowCount - 1).Cells(0).Value) + 1
-            ' TXTSRNO.Text = Val(GRIDSELVEDGE.RowCount) + 1
-        Else
-            TXTWEFTGRIDSRNO.Text = 1
-        End If
     End Sub
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
@@ -2124,7 +2049,7 @@ LINE1:
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
-        CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
+        BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
     End Sub
 
     Sub TOTALWARP()
@@ -2870,19 +2795,6 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub CMBSELGSYM_Validated(sender As Object, e As EventArgs)
-        'Try
-        '    If CMBSELGSYM.Text <> "" And TXTSELGPE.Text.Trim <> "" Then
-        '        FILLSELPATTERNGRID()
-        '        GETSELPE()
-        '    Else
-        '        MsgBox("Please Enter Symbol and P.E.")
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
     End Sub
 
     Private Sub CMBSELYARNQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBSELYARNQUALITY.Validated
@@ -4037,12 +3949,6 @@ line1:
         End Try
     End Sub
 
-    Private Sub CMDCALC_Click(sender As Object, e As EventArgs) Handles CMDCALC.Click
-        CALC()
-        'blendpercentcalc()
-        'CombineWarpWeftBlend(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
-    End Sub
-
     Private Sub TXTFWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTFWIDTH.Validated
         Try
             If TXTFWIDTH.Text <> "" Then TXTFWIDTHCM.Text = Format(Val(TXTFWIDTH.Text.Trim) * 2.54, "0.00")
@@ -4058,58 +3964,8 @@ line1:
             Throw ex
         End Try
     End Sub
-    'Sub blendpercentcalc()
-    '    Try
-    '        ' Dictionary to collect fiber totals
-    '        Dim fiberTotals As New Dictionary(Of String, Double)
-    '        Dim totalWarpWeight As Double = 0
 
-    '        For Each row As DataGridViewRow In GRIDWARP.Rows
-    '            ' Get yarn name and weight from grid
-    '            Dim yarnName As String = row.Cells(WQUALITY.Index).Value.ToString()
-    '            Dim yarnWeight As Double = Convert.ToDouble(row.Cells(WWT.Index).Value)
-
-    '            ' Fetch blend composition from the database
-    '            Dim OBJCLS As New ClsCommon()
-    '            Dim DT2 As DataTable = OBJCLS.SEARCH(
-    '                "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, YARNQUALITYMASTER_1.YARN_NAME AS YARNCOMPOSITIONNAME",
-    '                "",
-    '                "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN YARNQUALITYMASTER ON YARNQUALITYMASTER_COMPOSITION.YARN_YEARID = YARNQUALITYMASTER.YARN_YEARID AND YARNQUALITYMASTER_COMPOSITION.YARN_ID = YARNQUALITYMASTER.YARN_ID",
-    '                "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
-    '            )
-
-    '            ' For each fiber/percent in the blend composition
-    '            For Each compRow As DataRow In DT2.Rows
-    '                Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
-    '                Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
-
-    '                Dim fiberWeight As Double = yarnWeight * fiberPercent
-
-    '                If Not fiberTotals.ContainsKey(fiberName) Then
-    '                    fiberTotals(fiberName) = 0
-    '                End If
-    '                fiberTotals(fiberName) += fiberWeight
-    '            Next
-
-    '            totalWarpWeight += yarnWeight
-    '        Next
-
-    '        ' Calculate final blend percent for each fiber
-    '        For Each fiberName As String In fiberTotals.Keys
-    '            Dim blendPercent As Double = (fiberTotals(fiberName) / totalWarpWeight) * 100
-    '            ' Output or use blendPercent as needed
-    '            If TextBox7.Text = "" Then
-    '                TextBox7.Text = fiberName & ":" & blendPercent.ToString("0.00")
-    '            Else
-    '                TextBox7.Text = TextBox7.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0.00")
-    '            End If
-    '        Next
-
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-    Sub CombineWarpWeftBlend(gridWarp As DataGridView, warpQualityIdx As Integer, warpWeightIdx As Integer, gridWeft As DataGridView, weftQualityIdx As Integer, weftWeightIdx As Integer)
+    Sub BLENDPERCENTAGE(gridWarp As DataGridView, warpQualityIdx As Integer, warpWeightIdx As Integer, gridWeft As DataGridView, weftQualityIdx As Integer, weftWeightIdx As Integer)
         Try
             Dim fiberTotals As New Dictionary(Of String, Double)
             Dim totalWeight As Double = 0

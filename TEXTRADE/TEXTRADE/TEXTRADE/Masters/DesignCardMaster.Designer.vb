@@ -325,6 +325,20 @@ Partial Class DesignCardMaster
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label87 = New System.Windows.Forms.Label()
         Me.GRIDPEG = New System.Windows.Forms.DataGridView()
+        Me.PPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRIDPEGPLAN = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTTOTALPEG = New System.Windows.Forms.TextBox()
@@ -489,20 +503,6 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.PPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -611,6 +611,7 @@ Partial Class DesignCardMaster
         Me.Button5.TabIndex = 994
         Me.Button5.Text = "&Print"
         Me.Button5.UseVisualStyleBackColor = False
+        Me.Button5.Visible = False
         '
         'TXTCOPYCARDNO
         '
@@ -3130,10 +3131,10 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Controls.Add(Me.Label55)
         Me.TBDRAWING.Controls.Add(Me.Label1)
         Me.TBDRAWING.Controls.Add(Me.GRIDDRAWING)
-        Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
+        Me.TBDRAWING.Location = New System.Drawing.Point(4, 22)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 239)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 241)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
@@ -3364,10 +3365,10 @@ Partial Class DesignCardMaster
         Me.TabPage1.Controls.Add(Me.GRIDPEG)
         Me.TabPage1.Controls.Add(Me.GRIDPEGPLAN)
         Me.TabPage1.Controls.Add(Me.TXTTOTALPEG)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1436, 239)
+        Me.TabPage1.Size = New System.Drawing.Size(1436, 241)
         Me.TabPage1.TabIndex = 4
         Me.TabPage1.Text = "5. Peg Plan"
         '
@@ -3425,6 +3426,107 @@ Partial Class DesignCardMaster
         Me.GRIDPEG.Size = New System.Drawing.Size(175, 192)
         Me.GRIDPEG.TabIndex = 917
         Me.GRIDPEG.TabStop = False
+        '
+        'PPSRNO
+        '
+        Me.PPSRNO.HeaderText = "Sr."
+        Me.PPSRNO.Name = "PPSRNO"
+        Me.PPSRNO.ReadOnly = True
+        Me.PPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPSRNO.Width = 30
+        '
+        'PPENDS
+        '
+        Me.PPENDS.HeaderText = "Ends"
+        Me.PPENDS.Name = "PPENDS"
+        Me.PPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPENDS.Width = 120
+        '
+        'PPRM
+        '
+        Me.PPRM.HeaderText = "Repeat Mark"
+        Me.PPRM.Name = "PPRM"
+        Me.PPRM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM.Visible = False
+        '
+        'PPR
+        '
+        Me.PPR.HeaderText = "Repeats"
+        Me.PPR.Name = "PPR"
+        Me.PPR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR.Visible = False
+        '
+        'PPTR
+        '
+        Me.PPTR.HeaderText = "Total Repeat"
+        Me.PPTR.Name = "PPTR"
+        Me.PPTR.Visible = False
+        '
+        'PPTDR
+        '
+        Me.PPTDR.HeaderText = "TOTAL D R"
+        Me.PPTDR.Name = "PPTDR"
+        Me.PPTDR.Visible = False
+        '
+        'PPRM1
+        '
+        Me.PPRM1.HeaderText = "Repeat Mark 1"
+        Me.PPRM1.Name = "PPRM1"
+        Me.PPRM1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM1.Visible = False
+        '
+        'PPR1
+        '
+        Me.PPR1.HeaderText = "Repeats 1"
+        Me.PPR1.Name = "PPR1"
+        Me.PPR1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR1.Visible = False
+        '
+        'PPTR1
+        '
+        Me.PPTR1.HeaderText = "Total Repeat 1"
+        Me.PPTR1.Name = "PPTR1"
+        Me.PPTR1.Visible = False
+        '
+        'PPTDR1
+        '
+        Me.PPTDR1.HeaderText = "TOTAL D R1"
+        Me.PPTDR1.Name = "PPTDR1"
+        Me.PPTDR1.Visible = False
+        '
+        'PPRM2
+        '
+        Me.PPRM2.HeaderText = "Repeat Mark 2"
+        Me.PPRM2.Name = "PPRM2"
+        Me.PPRM2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM2.Visible = False
+        '
+        'PPR2
+        '
+        Me.PPR2.HeaderText = "Repeats 2"
+        Me.PPR2.Name = "PPR2"
+        Me.PPR2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR2.Visible = False
+        '
+        'PPTR2
+        '
+        Me.PPTR2.HeaderText = "Total Repeat 2"
+        Me.PPTR2.Name = "PPTR2"
+        Me.PPTR2.Visible = False
+        '
+        'PPTDR2
+        '
+        Me.PPTDR2.HeaderText = "TOTAL D R2"
+        Me.PPTDR2.Name = "PPTDR2"
+        Me.PPTDR2.Visible = False
         '
         'GRIDPEGPLAN
         '
@@ -5396,107 +5498,6 @@ Partial Class DesignCardMaster
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'PPSRNO
-        '
-        Me.PPSRNO.HeaderText = "Sr."
-        Me.PPSRNO.Name = "PPSRNO"
-        Me.PPSRNO.ReadOnly = True
-        Me.PPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPSRNO.Width = 30
-        '
-        'PPENDS
-        '
-        Me.PPENDS.HeaderText = "Ends"
-        Me.PPENDS.Name = "PPENDS"
-        Me.PPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPENDS.Width = 120
-        '
-        'PPRM
-        '
-        Me.PPRM.HeaderText = "Repeat Mark"
-        Me.PPRM.Name = "PPRM"
-        Me.PPRM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM.Visible = False
-        '
-        'PPR
-        '
-        Me.PPR.HeaderText = "Repeats"
-        Me.PPR.Name = "PPR"
-        Me.PPR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR.Visible = False
-        '
-        'PPTR
-        '
-        Me.PPTR.HeaderText = "Total Repeat"
-        Me.PPTR.Name = "PPTR"
-        Me.PPTR.Visible = False
-        '
-        'PPTDR
-        '
-        Me.PPTDR.HeaderText = "TOTAL D R"
-        Me.PPTDR.Name = "PPTDR"
-        Me.PPTDR.Visible = False
-        '
-        'PPRM1
-        '
-        Me.PPRM1.HeaderText = "Repeat Mark 1"
-        Me.PPRM1.Name = "PPRM1"
-        Me.PPRM1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM1.Visible = False
-        '
-        'PPR1
-        '
-        Me.PPR1.HeaderText = "Repeats 1"
-        Me.PPR1.Name = "PPR1"
-        Me.PPR1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR1.Visible = False
-        '
-        'PPTR1
-        '
-        Me.PPTR1.HeaderText = "Total Repeat 1"
-        Me.PPTR1.Name = "PPTR1"
-        Me.PPTR1.Visible = False
-        '
-        'PPTDR1
-        '
-        Me.PPTDR1.HeaderText = "TOTAL D R1"
-        Me.PPTDR1.Name = "PPTDR1"
-        Me.PPTDR1.Visible = False
-        '
-        'PPRM2
-        '
-        Me.PPRM2.HeaderText = "Repeat Mark 2"
-        Me.PPRM2.Name = "PPRM2"
-        Me.PPRM2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM2.Visible = False
-        '
-        'PPR2
-        '
-        Me.PPR2.HeaderText = "Repeats 2"
-        Me.PPR2.Name = "PPR2"
-        Me.PPR2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR2.Visible = False
-        '
-        'PPTR2
-        '
-        Me.PPTR2.HeaderText = "Total Repeat 2"
-        Me.PPTR2.Name = "PPTR2"
-        Me.PPTR2.Visible = False
-        '
-        'PPTDR2
-        '
-        Me.PPTDR2.HeaderText = "TOTAL D R2"
-        Me.PPTDR2.Name = "PPTDR2"
-        Me.PPTDR2.Visible = False
         '
         'DesignCardMaster
         '
