@@ -402,6 +402,8 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ENDPERINCH", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
+                I += 1
 
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -799,6 +801,8 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ENDPERINCH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed

@@ -393,7 +393,11 @@ Public Class MDIMain
                 OBJREMINDER.MdiParent = Me
                 OBJREMINDER.Show()
             End If
-
+            If ClientName = "AADHAR" Then
+                Dim OBJREMINDER As New DesignCardMaster
+                OBJREMINDER.MdiParent = Me
+                OBJREMINDER.Show()
+            End If
             'Dim OBJPURORDER As New PurchaseOrder
             'Dim OBJSALORDER As New SaleOrder
             'If ALLOWPOSOCHECKIN = False Then
