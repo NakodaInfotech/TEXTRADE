@@ -3800,7 +3800,7 @@ Partial Class DesignCardMaster
         Me.txtfinishmethod.Location = New System.Drawing.Point(424, 100)
         Me.txtfinishmethod.Name = "txtfinishmethod"
         Me.txtfinishmethod.Size = New System.Drawing.Size(71, 23)
-        Me.txtfinishmethod.TabIndex = 1038
+        Me.txtfinishmethod.TabIndex = 26
         '
         'TXTBEAMMTRS
         '
@@ -3809,7 +3809,7 @@ Partial Class DesignCardMaster
         Me.TXTBEAMMTRS.Name = "TXTBEAMMTRS"
         Me.TXTBEAMMTRS.ReadOnly = True
         Me.TXTBEAMMTRS.Size = New System.Drawing.Size(96, 23)
-        Me.TXTBEAMMTRS.TabIndex = 44
+        Me.TXTBEAMMTRS.TabIndex = 42
         Me.TXTBEAMMTRS.TabStop = False
         Me.TXTBEAMMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -3872,7 +3872,7 @@ Partial Class DesignCardMaster
         Me.TXTNOOFPCS.Location = New System.Drawing.Point(611, 159)
         Me.TXTNOOFPCS.Name = "TXTNOOFPCS"
         Me.TXTNOOFPCS.Size = New System.Drawing.Size(70, 23)
-        Me.TXTNOOFPCS.TabIndex = 43
+        Me.TXTNOOFPCS.TabIndex = 41
         Me.TXTNOOFPCS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTREEDSPACECM
@@ -3908,7 +3908,7 @@ Partial Class DesignCardMaster
         Me.CMBQUALITYTYPE.Location = New System.Drawing.Point(781, 100)
         Me.CMBQUALITYTYPE.Name = "CMBQUALITYTYPE"
         Me.CMBQUALITYTYPE.Size = New System.Drawing.Size(96, 23)
-        Me.CMBQUALITYTYPE.TabIndex = 30
+        Me.CMBQUALITYTYPE.TabIndex = 28
         '
         'Label80
         '
@@ -3959,7 +3959,7 @@ Partial Class DesignCardMaster
         Me.TXTPRODDAY.Name = "TXTPRODDAY"
         Me.TXTPRODDAY.ReadOnly = True
         Me.TXTPRODDAY.Size = New System.Drawing.Size(76, 23)
-        Me.TXTPRODDAY.TabIndex = 41
+        Me.TXTPRODDAY.TabIndex = 39
         Me.TXTPRODDAY.TabStop = False
         Me.TXTPRODDAY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -3980,7 +3980,7 @@ Partial Class DesignCardMaster
         Me.TXTRPM.Location = New System.Drawing.Point(72, 158)
         Me.TXTRPM.Name = "TXTRPM"
         Me.TXTRPM.Size = New System.Drawing.Size(98, 23)
-        Me.TXTRPM.TabIndex = 40
+        Me.TXTRPM.TabIndex = 38
         Me.TXTRPM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label44
@@ -4000,7 +4000,7 @@ Partial Class DesignCardMaster
         Me.TXTEFFICIENCY.Location = New System.Drawing.Point(1146, 129)
         Me.TXTEFFICIENCY.Name = "TXTEFFICIENCY"
         Me.TXTEFFICIENCY.Size = New System.Drawing.Size(87, 23)
-        Me.TXTEFFICIENCY.TabIndex = 39
+        Me.TXTEFFICIENCY.TabIndex = 37
         '
         'Label43
         '
@@ -4019,7 +4019,7 @@ Partial Class DesignCardMaster
         Me.TXTCOVERFACTOR.Location = New System.Drawing.Point(975, 101)
         Me.TXTCOVERFACTOR.Name = "TXTCOVERFACTOR"
         Me.TXTCOVERFACTOR.Size = New System.Drawing.Size(66, 23)
-        Me.TXTCOVERFACTOR.TabIndex = 31
+        Me.TXTCOVERFACTOR.TabIndex = 29
         '
         'Label42
         '
@@ -4039,7 +4039,7 @@ Partial Class DesignCardMaster
         Me.TXTFFABCOST.Name = "TXTFFABCOST"
         Me.TXTFFABCOST.ReadOnly = True
         Me.TXTFFABCOST.Size = New System.Drawing.Size(66, 23)
-        Me.TXTFFABCOST.TabIndex = 38
+        Me.TXTFFABCOST.TabIndex = 36
         Me.TXTFFABCOST.TabStop = False
         Me.TXTFFABCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4061,7 +4061,7 @@ Partial Class DesignCardMaster
         Me.TXTGFABCOST.Name = "TXTGFABCOST"
         Me.TXTGFABCOST.ReadOnly = True
         Me.TXTGFABCOST.Size = New System.Drawing.Size(96, 23)
-        Me.TXTGFABCOST.TabIndex = 37
+        Me.TXTGFABCOST.TabIndex = 35
         Me.TXTGFABCOST.TabStop = False
         Me.TXTGFABCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4083,7 +4083,7 @@ Partial Class DesignCardMaster
         Me.TXTWEAVECOST.Name = "TXTWEAVECOST"
         Me.TXTWEAVECOST.ReadOnly = True
         Me.TXTWEAVECOST.Size = New System.Drawing.Size(70, 23)
-        Me.TXTWEAVECOST.TabIndex = 36
+        Me.TXTWEAVECOST.TabIndex = 34
         Me.TXTWEAVECOST.TabStop = False
         Me.TXTWEAVECOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4105,7 +4105,7 @@ Partial Class DesignCardMaster
         Me.TXTWPP.MaxLength = 50
         Me.TXTWPP.Name = "TXTWPP"
         Me.TXTWPP.Size = New System.Drawing.Size(71, 23)
-        Me.TXTWPP.TabIndex = 35
+        Me.TXTWPP.TabIndex = 33
         Me.TXTWPP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label75
@@ -4126,7 +4126,7 @@ Partial Class DesignCardMaster
         Me.TXTSHRINKAGEPER.MaxLength = 50
         Me.TXTSHRINKAGEPER.Name = "TXTSHRINKAGEPER"
         Me.TXTSHRINKAGEPER.Size = New System.Drawing.Size(76, 23)
-        Me.TXTSHRINKAGEPER.TabIndex = 34
+        Me.TXTSHRINKAGEPER.TabIndex = 32
         Me.TXTSHRINKAGEPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label74
@@ -4147,7 +4147,7 @@ Partial Class DesignCardMaster
         Me.TXTWASTAGEPER.MaxLength = 50
         Me.TXTWASTAGEPER.Name = "TXTWASTAGEPER"
         Me.TXTWASTAGEPER.Size = New System.Drawing.Size(98, 23)
-        Me.TXTWASTAGEPER.TabIndex = 33
+        Me.TXTWASTAGEPER.TabIndex = 31
         Me.TXTWASTAGEPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label73
@@ -4168,7 +4168,7 @@ Partial Class DesignCardMaster
         Me.TXTWARPWASTAGE.MaxLength = 50
         Me.TXTWARPWASTAGE.Name = "TXTWARPWASTAGE"
         Me.TXTWARPWASTAGE.Size = New System.Drawing.Size(87, 23)
-        Me.TXTWARPWASTAGE.TabIndex = 32
+        Me.TXTWARPWASTAGE.TabIndex = 30
         Me.TXTWARPWASTAGE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label72
@@ -4193,7 +4193,7 @@ Partial Class DesignCardMaster
         Me.CMBQUALITIES.Location = New System.Drawing.Point(611, 100)
         Me.CMBQUALITIES.Name = "CMBQUALITIES"
         Me.CMBQUALITIES.Size = New System.Drawing.Size(70, 23)
-        Me.CMBQUALITIES.TabIndex = 29
+        Me.CMBQUALITIES.TabIndex = 27
         '
         'Label71
         '
@@ -4227,7 +4227,7 @@ Partial Class DesignCardMaster
         Me.CMBLOOM.Location = New System.Drawing.Point(251, 101)
         Me.CMBLOOM.Name = "CMBLOOM"
         Me.CMBLOOM.Size = New System.Drawing.Size(76, 23)
-        Me.CMBLOOM.TabIndex = 27
+        Me.CMBLOOM.TabIndex = 25
         '
         'Label39
         '
@@ -4248,7 +4248,7 @@ Partial Class DesignCardMaster
         Me.TXTBLENDPER.Name = "TXTBLENDPER"
         Me.TXTBLENDPER.ReadOnly = True
         Me.TXTBLENDPER.Size = New System.Drawing.Size(98, 23)
-        Me.TXTBLENDPER.TabIndex = 26
+        Me.TXTBLENDPER.TabIndex = 24
         Me.TXTBLENDPER.TabStop = False
         Me.TXTBLENDPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4270,7 +4270,7 @@ Partial Class DesignCardMaster
         Me.TXTGLM.Name = "TXTGLM"
         Me.TXTGLM.ReadOnly = True
         Me.TXTGLM.Size = New System.Drawing.Size(87, 23)
-        Me.TXTGLM.TabIndex = 21
+        Me.TXTGLM.TabIndex = 44
         Me.TXTGLM.TabStop = False
         Me.TXTGLM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4324,7 +4324,7 @@ Partial Class DesignCardMaster
         Me.TXTPCSL.Location = New System.Drawing.Point(424, 159)
         Me.TXTPCSL.Name = "TXTPCSL"
         Me.TXTPCSL.Size = New System.Drawing.Size(71, 23)
-        Me.TXTPCSL.TabIndex = 42
+        Me.TXTPCSL.TabIndex = 40
         Me.TXTPCSL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label63
@@ -4602,7 +4602,7 @@ Partial Class DesignCardMaster
         Me.TXTFPPI.Location = New System.Drawing.Point(781, 72)
         Me.TXTFPPI.Name = "TXTFPPI"
         Me.TXTFPPI.Size = New System.Drawing.Size(96, 23)
-        Me.TXTFPPI.TabIndex = 23
+        Me.TXTFPPI.TabIndex = 21
         Me.TXTFPPI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPICKS
@@ -4643,7 +4643,7 @@ Partial Class DesignCardMaster
         Me.TXTFEPI.MaxLength = 50
         Me.TXTFEPI.Name = "TXTFEPI"
         Me.TXTFEPI.Size = New System.Drawing.Size(70, 23)
-        Me.TXTFEPI.TabIndex = 22
+        Me.TXTFEPI.TabIndex = 20
         Me.TXTFEPI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALWT
@@ -4665,7 +4665,7 @@ Partial Class DesignCardMaster
         Me.TXTGSM.Name = "TXTGSM"
         Me.TXTGSM.ReadOnly = True
         Me.TXTGSM.Size = New System.Drawing.Size(66, 23)
-        Me.TXTGSM.TabIndex = 20
+        Me.TXTGSM.TabIndex = 43
         Me.TXTGSM.TabStop = False
         Me.TXTGSM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4687,7 +4687,7 @@ Partial Class DesignCardMaster
         Me.TXTTOTALDENTSMAIN.Name = "TXTTOTALDENTSMAIN"
         Me.TXTTOTALDENTSMAIN.ReadOnly = True
         Me.TXTTOTALDENTSMAIN.Size = New System.Drawing.Size(87, 23)
-        Me.TXTTOTALDENTSMAIN.TabIndex = 25
+        Me.TXTTOTALDENTSMAIN.TabIndex = 23
         Me.TXTTOTALDENTSMAIN.TabStop = False
         Me.TXTTOTALDENTSMAIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -4709,7 +4709,7 @@ Partial Class DesignCardMaster
         Me.TXTTOTALSELVEDGEDENTS.Name = "TXTTOTALSELVEDGEDENTS"
         Me.TXTTOTALSELVEDGEDENTS.ReadOnly = True
         Me.TXTTOTALSELVEDGEDENTS.Size = New System.Drawing.Size(66, 23)
-        Me.TXTTOTALSELVEDGEDENTS.TabIndex = 24
+        Me.TXTTOTALSELVEDGEDENTS.TabIndex = 22
         Me.TXTTOTALSELVEDGEDENTS.TabStop = False
         Me.TXTTOTALSELVEDGEDENTS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '

@@ -2578,6 +2578,18 @@ LINE1:
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
         Try
+            If CMBGRIDSYM.Text <> "" And CMBWARPQUALITY.Text.Trim <> "" Then
+                For Each symRow As DataGridViewRow In GRIDWARP.Rows
+                    If symRow.IsNewRow Then Continue For
+                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
+                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
+                        MessageBox.Show("Multiple Sym Not Allowed.")
+                        Exit Sub
+                    End If
+                Next
+            Else
+                MsgBox("Fill Yarn Quality OR Symbol")
+            End If
             'If CMBGRIDSYM.Text <> "" Then
             '    For Each symRow As DataGridViewRow In GRIDWARP.Rows
             '        If symRow.IsNewRow Then Continue For
@@ -2589,7 +2601,7 @@ LINE1:
             '    Next
             'End If
 
-            If CMBWARPQUALITY.Text <> "" Then
+            If CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
                 Dim OBJCLS As New ClsCommon()
                 Dim DT2 As New DataTable
                 DT2 = OBJCLS.SEARCH("ISNULL(YARN_DENIER, 0) As DENIER, ISNULL(MILLMASTER.MILL_NAME, '') As MILLNAME", "", "  YARNQUALITYMASTER LEFT OUTER JOIN MILLMASTER ON YARNQUALITYMASTER.YARN_YEARID = MILLMASTER.MILL_YEARID AND YARNQUALITYMASTER.YARN_MILLID = MILLMASTER.MILL_ID  ", "  And YARN_NAME ='" & CMBWARPQUALITY.Text.Trim & "'  AND YARN_YEARID = " & YearId)
@@ -2599,6 +2611,7 @@ LINE1:
                 End If
                 CMBWARPMILLNAME.Focus()
             End If
+            If CMBGRIDSYM.Text = "" Then CMBGRIDSYM.Focus() Else CMBWARPQUALITY.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3567,7 +3580,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
@@ -3884,18 +3897,7 @@ line1:
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
-            If CMBGRIDSYM.Text <> "" And CMBWARPQUALITY.Text.Trim <> "" Then
-                For Each symRow As DataGridViewRow In GRIDWARP.Rows
-                    If symRow.IsNewRow Then Continue For
-                    Dim symValue As String = symRow.Cells(WSYM.Index).Value?.ToString()
-                    If symValue = CMBGRIDSYM.Text.Trim And GRIDDOUBLECLICK = False Then
-                        MessageBox.Show("Multiple Sym Not Allowed.")
-                        Exit Sub
-                    End If
-                Next
-            Else
-                MsgBox("Fill Yarn Quality OR Symbol")
-            End If
+
             If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
                 fillwarpgrid()
             End If
@@ -4474,7 +4476,7 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTLEFTSEL.KeyPress
+    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTLEFTSEL.KeyPress, TXTNOOFPCS.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
