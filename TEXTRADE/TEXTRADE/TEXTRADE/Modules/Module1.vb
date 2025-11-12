@@ -86,7 +86,6 @@ Module Module1
     Public PENDINGPOTOOLVISIBLE As Boolean
     Public PENDINGSOTOOLVISIBLE As Boolean
     Public STOCKTOOLVISIBLE As Boolean
-    Public MONTHLYTOOLVISIBLE As Boolean
     Public SOTOOLVISIBLE As Boolean
     Public GRNCHECKTOOLVISIBLE As Boolean
     Public CHALLANWITHOUTSO As Boolean
@@ -126,6 +125,9 @@ Module Module1
     Public ALLOWDIGITALSIGN As Boolean = False
     Public SHOWREMINDERREPORT As Boolean = False
     Public ALLOWPOSOCHECKIN As Boolean = False
+    Public SHOWOVERDUE As Boolean = False
+    Public MONTHLYTOOLVISIBLE As Boolean
+    Public SHOWPERFORMANCE As Boolean = False
 
 
     Public BLOCKMASTERTRANSFER As Boolean = False

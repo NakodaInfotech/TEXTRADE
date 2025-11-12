@@ -97,6 +97,10 @@ Public Class ClsSpecialRightsMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@POSOCHECKIN", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@SHOWOVERDUE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SHOWPERFORMANCE", alParaval(I)))
+                I += 1
 
                 .Add(New SqlClient.SqlParameter("@username", alParaval(I)))
                 I += 1

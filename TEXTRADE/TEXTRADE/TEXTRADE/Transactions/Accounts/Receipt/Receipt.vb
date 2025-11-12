@@ -279,7 +279,7 @@ Public Class Receipt
                 ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
                     'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
                     'AND DUPLLICATE ENTRIES GETS PASSED
-                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "PAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND PAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND PAYMENTBILLDETAILS.YEARID = " & YearId)
+                    Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "RECEIPTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND RECEIPTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND RECEIPTBILLDETAILS.YEARID = " & YearId)
                     If DTBILL.Rows.Count > 0 AndAlso Val(ROW.Cells(gamt.Index).Value) > Val(DTBILL.Rows(0).Item("BALAMT")) Then
                         EP.SetError(cmbname, "Adjusted amt is GReater then Balance Amt")
                         BLN = False

@@ -43,34 +43,34 @@ Public Class HomePage
             GRIDSTOCK.OptionsView.ShowFooter = True
 
             GBSALE.Visible = False
+            GBOVERDUE.Visible = False
+            GBMONTHLYSALE.Visible = False
+            GBPARTYPERFORMANCE.Visible = False
 
-            If ClientName = "SHASHWAT" Or ClientName = "SUPRIYA" Then
+            If SHOWOVERDUE = True Then
                 GBOVERDUE.Visible = True
-                GBMONTHLYSALE.Visible = False
-                GBPARTYPERFORMANCE.Visible = False
                 FILLOVERDUE()
-            Else
-                GBOVERDUE.Visible = False
-                GBMONTHLYSALE.Visible = True
+            End If
+
+            If SHOWPERFORMANCE = True Then
                 GBPARTYPERFORMANCE.Visible = True
-                FILLMONTHLYSALE()
                 FILLPERFORMANCE()
+            End If
+
+            If MONTHLYTOOLVISIBLE = True Then
+                GBMONTHLYSALE.Visible = True
+                FILLMONTHLYSALE()
             End If
 
 
 
-
-
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
-                GBSALE.Visible = False
-
                 GBSTOCK.Visible = False
                 GRIDSODETAILS.Width = GRIDSO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBSALEORDER.Width = GRIDSODETAILS.Width + 10
                 GBPURORDER.Left = GBSALEORDER.Left + GBSALEORDER.Width + 10
                 GRIDPODETAILS.Width = GRIDPO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
                 GBPURORDER.Width = GRIDPODETAILS.Width + 10
-
             End If
 
         Catch ex As Exception
@@ -475,10 +475,9 @@ Public Class HomePage
 
     Private Sub HomePage_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "SONU" Then
-                GRIDREC.OptionsView.ShowFooter = True
+
+            GRIDREC.OptionsView.ShowFooter = True
                 GRIDPAY.OptionsView.ShowFooter = True
-            End If
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then GPOMTRS.Caption = "Pcs"
 
         Catch ex As Exception

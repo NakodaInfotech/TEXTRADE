@@ -26,7 +26,7 @@ Public Class ClsNarrationMaster
             'save NARRATIONMaster
             Dim strCommand As String = "SP_MASTER_NARRATIONMASTER_SAVE"
             Dim alParameter As New ArrayList
-            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 50)
+            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 5000)
             narrationParam.Value = alParaval(0)
             alParameter.Add(narrationParam)
 
@@ -56,7 +56,7 @@ Public Class ClsNarrationMaster
             'save NARRATIONMaster
             Dim strCommand As String = "SP_MASTER_NARRATIONMASTER_UPDATE"
             Dim alParameter As New ArrayList
-            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 50)
+            Dim narrationParam As New SqlClient.SqlParameter("@NARRATION", SqlDbType.NVarChar, 5000)
             narrationParam.Value = alParaval(0)
             alParameter.Add(narrationParam)
 
