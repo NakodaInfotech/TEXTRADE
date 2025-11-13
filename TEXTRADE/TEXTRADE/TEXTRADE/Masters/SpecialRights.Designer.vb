@@ -38,7 +38,7 @@ Partial Class SpecialRights
         Me.CHKBILLCHECKDISPUTE = New System.Windows.Forms.CheckBox()
         Me.CHKCHALLANSO = New System.Windows.Forms.CheckBox()
         Me.GBDASHBOARD = New System.Windows.Forms.GroupBox()
-        Me.CHKMONTHLY = New System.Windows.Forms.CheckBox()
+        Me.CHKSALEMONTHLY = New System.Windows.Forms.CheckBox()
         Me.CHKSTOCK = New System.Windows.Forms.CheckBox()
         Me.CHKPENDINGSO = New System.Windows.Forms.CheckBox()
         Me.CHKPENDINGPO = New System.Windows.Forms.CheckBox()
@@ -65,6 +65,8 @@ Partial Class SpecialRights
         Me.CMBUSER = New System.Windows.Forms.ComboBox()
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CHKOVERDUE = New System.Windows.Forms.CheckBox()
+        Me.CHKPERFORMANCE = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GBDASHBOARD.SuspendLayout()
         Me.GBHEADER.SuspendLayout()
@@ -285,32 +287,34 @@ Partial Class SpecialRights
         'GBDASHBOARD
         '
         Me.GBDASHBOARD.BackColor = System.Drawing.Color.Transparent
-        Me.GBDASHBOARD.Controls.Add(Me.CHKMONTHLY)
+        Me.GBDASHBOARD.Controls.Add(Me.CHKPERFORMANCE)
+        Me.GBDASHBOARD.Controls.Add(Me.CHKOVERDUE)
+        Me.GBDASHBOARD.Controls.Add(Me.CHKSALEMONTHLY)
         Me.GBDASHBOARD.Controls.Add(Me.CHKSTOCK)
         Me.GBDASHBOARD.Controls.Add(Me.CHKPENDINGSO)
         Me.GBDASHBOARD.Controls.Add(Me.CHKPENDINGPO)
         Me.GBDASHBOARD.Controls.Add(Me.CHKPAYOUTSTANDING)
         Me.GBDASHBOARD.Controls.Add(Me.CHKRECOUTSTANDING)
-        Me.GBDASHBOARD.Location = New System.Drawing.Point(320, 145)
+        Me.GBDASHBOARD.Location = New System.Drawing.Point(320, 118)
         Me.GBDASHBOARD.Name = "GBDASHBOARD"
-        Me.GBDASHBOARD.Size = New System.Drawing.Size(269, 116)
+        Me.GBDASHBOARD.Size = New System.Drawing.Size(349, 146)
         Me.GBDASHBOARD.TabIndex = 3
         Me.GBDASHBOARD.TabStop = False
         Me.GBDASHBOARD.Text = "Dash Board"
         '
-        'CHKMONTHLY
+        'CHKSALEMONTHLY
         '
-        Me.CHKMONTHLY.AutoSize = True
-        Me.CHKMONTHLY.BackColor = System.Drawing.Color.Transparent
-        Me.CHKMONTHLY.Checked = True
-        Me.CHKMONTHLY.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKMONTHLY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKMONTHLY.Location = New System.Drawing.Point(137, 81)
-        Me.CHKMONTHLY.Name = "CHKMONTHLY"
-        Me.CHKMONTHLY.Size = New System.Drawing.Size(133, 19)
-        Me.CHKMONTHLY.TabIndex = 5
-        Me.CHKMONTHLY.Text = "Sale Over Due Bills "
-        Me.CHKMONTHLY.UseVisualStyleBackColor = False
+        Me.CHKSALEMONTHLY.AutoSize = True
+        Me.CHKSALEMONTHLY.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSALEMONTHLY.Checked = True
+        Me.CHKSALEMONTHLY.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKSALEMONTHLY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSALEMONTHLY.Location = New System.Drawing.Point(150, 81)
+        Me.CHKSALEMONTHLY.Name = "CHKSALEMONTHLY"
+        Me.CHKSALEMONTHLY.Size = New System.Drawing.Size(121, 19)
+        Me.CHKSALEMONTHLY.TabIndex = 5
+        Me.CHKSALEMONTHLY.Text = "Sale-Pur Monthly"
+        Me.CHKSALEMONTHLY.UseVisualStyleBackColor = False
         '
         'CHKSTOCK
         '
@@ -333,7 +337,7 @@ Partial Class SpecialRights
         Me.CHKPENDINGSO.Checked = True
         Me.CHKPENDINGSO.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CHKPENDINGSO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKPENDINGSO.Location = New System.Drawing.Point(137, 56)
+        Me.CHKPENDINGSO.Location = New System.Drawing.Point(150, 56)
         Me.CHKPENDINGSO.Name = "CHKPENDINGSO"
         Me.CHKPENDINGSO.Size = New System.Drawing.Size(94, 19)
         Me.CHKPENDINGSO.TabIndex = 4
@@ -361,7 +365,7 @@ Partial Class SpecialRights
         Me.CHKPAYOUTSTANDING.Checked = True
         Me.CHKPAYOUTSTANDING.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CHKPAYOUTSTANDING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKPAYOUTSTANDING.Location = New System.Drawing.Point(137, 34)
+        Me.CHKPAYOUTSTANDING.Location = New System.Drawing.Point(150, 34)
         Me.CHKPAYOUTSTANDING.Name = "CHKPAYOUTSTANDING"
         Me.CHKPAYOUTSTANDING.Size = New System.Drawing.Size(117, 19)
         Me.CHKPAYOUTSTANDING.TabIndex = 3
@@ -666,6 +670,34 @@ Partial Class SpecialRights
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'CHKOVERDUE
+        '
+        Me.CHKOVERDUE.AutoSize = True
+        Me.CHKOVERDUE.BackColor = System.Drawing.Color.Transparent
+        Me.CHKOVERDUE.Checked = True
+        Me.CHKOVERDUE.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKOVERDUE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKOVERDUE.Location = New System.Drawing.Point(10, 106)
+        Me.CHKOVERDUE.Name = "CHKOVERDUE"
+        Me.CHKOVERDUE.Size = New System.Drawing.Size(133, 19)
+        Me.CHKOVERDUE.TabIndex = 6
+        Me.CHKOVERDUE.Text = "Sale Over Due Bills "
+        Me.CHKOVERDUE.UseVisualStyleBackColor = False
+        '
+        'CHKPERFORMANCE
+        '
+        Me.CHKPERFORMANCE.AutoSize = True
+        Me.CHKPERFORMANCE.BackColor = System.Drawing.Color.Transparent
+        Me.CHKPERFORMANCE.Checked = True
+        Me.CHKPERFORMANCE.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKPERFORMANCE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKPERFORMANCE.Location = New System.Drawing.Point(150, 106)
+        Me.CHKPERFORMANCE.Name = "CHKPERFORMANCE"
+        Me.CHKPERFORMANCE.Size = New System.Drawing.Size(156, 19)
+        Me.CHKPERFORMANCE.TabIndex = 7
+        Me.CHKPERFORMANCE.Text = "Party-Item Performance"
+        Me.CHKPERFORMANCE.UseVisualStyleBackColor = False
+        '
         'SpecialRights
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -707,7 +739,7 @@ Partial Class SpecialRights
     Friend WithEvents CHKINHOUSECHECK As System.Windows.Forms.CheckBox
     Friend WithEvents CHKGRN As System.Windows.Forms.CheckBox
     Friend WithEvents GBDASHBOARD As System.Windows.Forms.GroupBox
-    Friend WithEvents CHKMONTHLY As System.Windows.Forms.CheckBox
+    Friend WithEvents CHKSALEMONTHLY As System.Windows.Forms.CheckBox
     Friend WithEvents CHKSTOCK As System.Windows.Forms.CheckBox
     Friend WithEvents CHKPENDINGSO As System.Windows.Forms.CheckBox
     Friend WithEvents CHKPENDINGPO As System.Windows.Forms.CheckBox
@@ -729,4 +761,6 @@ Partial Class SpecialRights
     Friend WithEvents CHKWHATSAPP As CheckBox
     Friend WithEvents CHKSHOWREMINDER As CheckBox
     Friend WithEvents CHKPOSOCHECKIN As CheckBox
+    Friend WithEvents CHKPERFORMANCE As CheckBox
+    Friend WithEvents CHKOVERDUE As CheckBox
 End Class

@@ -1259,6 +1259,20 @@ Public Class PurchaseMaster
         End If
 
 
+        'CHECK WHETHER SALES LEDGER HAS CROSSED 50LAKHS OR NOT
+        Dim DTB As New DataTable
+        If CHKTDS.CheckState = CheckState.Unchecked And EDIT = False And ClientName = "SHASHWAT" Then
+            Dim TEMPTDSTOTAL As Double = Val(txtgrandtotal.Text.Trim)
+            Dim DTTDS As DataTable = OBJCMN.Execute_Any_String("SELECT ISNULL(SUM(BILL_GRANDTOTAL),0) AS GTOTAL FROM PURCHASEMASTER INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.ACC_ID WHERE BILL_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'", "", "")
+            If DTTDS.Rows.Count > 0 Then TEMPTDSTOTAL += Val(DTTDS.Rows(0).Item("GTOTAL"))
+            If TEMPTDSTOTAL > 5000000 Then
+                If MsgBox("Amount Exceeds 5000000, and TDS is not Deducted, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    EP.SetError(CHKTDS, "Deduct TDS")
+                    bln = False
+                End If
+            End If
+        End If
+
 
         If CMBSERVICETYPE.Text.Trim = "" And EDIT = False Then
             EP.SetError(CMBSERVICETYPE, " Please Select Type")

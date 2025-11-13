@@ -248,7 +248,7 @@ Public Class PaymentMaster
                     EP.SetError(cmbregister, "Please Enter Ref No, Or Do not select Against Bill/New Ref")
                     BLN = False
 
-                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False Then
+                ElseIf ROW.Cells(gpaytype.Index).Value = "Against Bill" And EDIT = False And ClientName = "ABHEE" Then
                     'IF ENTRY IS AGAINST BILL THEN CHECK FOR BALANCE AMT, COZ IF MULTIPLE TABS ARE OPEN CLIENTS ARE MAKING MISTAKE
                     'AND DUPLLICATE ENTRIES GETS PASSED
                     Dim DTBILL As DataTable = OBJCMN.SEARCH("ROUND(BALAMT,2) AS BALAMT", "", "PAYMENTBILLDETAILS", " AND NAME = '" & cmbname.Text.Trim & "' AND PAYMENTBILLDETAILS.INITIALS = '" & ROW.Cells(gbillno.Index).Value & "' AND PAYMENTBILLDETAILS.YEARID = " & YearId)
@@ -933,6 +933,7 @@ Public Class PaymentMaster
                 End If
 
             ElseIf EDIT = True Then
+
                 If GRIDDOUBLECLICK = False Then
                     'checking WHETHER AMT IS GREATER THEN CHQ AMT OR NOT
                     If Format(Val(txttotal.Text.Trim) + Val(txtamt.Text.Trim), "0.00") > Format(Val(txtchqamt.Text.Trim), "0.00") Then
@@ -1057,7 +1058,8 @@ Public Class PaymentMaster
     Sub fillgrid()
         Try
             EP.Clear()
-            If Not AMOUNTVALIDATE() Then
+
+            If ClientName <> "ABHEE" AndAlso Not AMOUNTVALIDATE() Then
                 txtsrno.Focus()
                 Exit Sub
             End If
@@ -2029,8 +2031,8 @@ LINE1:
             End If
 
 
-            If ClientName = "SOFTAS" Or ClientName = "SUPRIYA" Or ClientName = "SIMPLEX" Or ClientName = "SIDDHGIRI" Then
-                If MsgBox("Wish to Print Bill Nos Behind Chq?", MsgBoxStyle.YesNo) = vbYes Then
+            If ClientName = "SOFTAS" Or ClientName = "SUPRIYA" Or ClientName = "SIMPLEX" Or ClientName = "SIDDHGIRI" Or ClientName = "ABHEE" Then
+                If MsgBox("Wish to Print Bill Nos / Party Bank Details Behind Chq?", MsgBoxStyle.YesNo) = vbYes Then
                     Dim OBJCHQPRINT As New payment_advice
                     OBJCHQPRINT.payno = Val(txtaccno.Text.Trim)
                     OBJCHQPRINT.REGNAME = cmbregister.Text.Trim

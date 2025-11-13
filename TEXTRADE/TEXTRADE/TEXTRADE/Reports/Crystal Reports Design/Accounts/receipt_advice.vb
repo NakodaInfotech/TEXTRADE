@@ -87,8 +87,6 @@ Public Class receipt_advice
                     crTables = OBJREC_NAKODAINFOTECH.Database.Tables
                 Else
                     crTables = OBJREC.Database.Tables
-                    If ClientName = "CHINTAN" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
                 End If
             End If
             For Each crTable In crTables
@@ -126,7 +124,7 @@ Public Class receipt_advice
                     CRPO.ReportSource = OBJREC_NAKODAINFOTECH
                 Else
                     CRPO.ReportSource = OBJREC
-                    If ClientName = "CHINTAN" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
                 End If
             End If
@@ -219,8 +217,7 @@ Public Class receipt_advice
                 OBJ = New RecReport_NAKODAINFOTECH
             Else
                 OBJ = New RecReport
-                If ClientName = "CHINTAN" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
+                If ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
             End If
             crTables = OBJ.Database.Tables
 

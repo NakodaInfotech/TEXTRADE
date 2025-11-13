@@ -398,6 +398,13 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
                 I += 1
 
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ENDPERINCH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
+                I += 1
+
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
         Catch ex As Exception
@@ -789,6 +796,13 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@PPREPEATMARK2", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ENDPERINCH", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed

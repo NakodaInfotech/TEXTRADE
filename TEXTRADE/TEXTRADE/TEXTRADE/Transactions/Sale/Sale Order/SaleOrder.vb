@@ -2695,7 +2695,7 @@ LINESINGLE:
             Dim DT As New DataTable
 
             If CMBDESIGN.Text.Trim <> "" And GRIDDOUBLECLICK = False Then
-
+                If ClientName = "SOFTAS" Then cmbcolor.Text = ""
 
                 'GET ITEMNAME AUTO
                 If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") And CMBDESIGN.Text.Trim <> "" Then
