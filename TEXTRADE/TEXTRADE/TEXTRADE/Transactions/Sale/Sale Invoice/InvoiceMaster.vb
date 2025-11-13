@@ -9,6 +9,7 @@ Imports CrystalDecisions.Shared
 Imports RestSharp
 Imports Newtonsoft.Json
 Imports TaxProEInvoice.API
+Imports DevExpress.CodeParser
 
 
 Public Class InvoiceMaster
@@ -1404,35 +1405,35 @@ Public Class InvoiceMaster
                     MessageBox.Show("Details Added")
                 End If
                 DIRECTINVOICE = False
-                    If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "RMANILAL" Then
-                        GENERATEEWB()
-                        PRINTEWB()
-                    End If
+                If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "RMANILAL" Then
+                    GENERATEEWB()
+                    PRINTEWB()
+                End If
 
-                    If ClientName = "ABHEE" Then
-                        GENERATEAGENCYINVOICE()
-                        GENERATEEINV()
-                    End If
+                If ClientName = "ABHEE" Then
+                    GENERATEAGENCYINVOICE()
+                    GENERATEEINV()
+                End If
 
-                    SMSCODE()
-                    If ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "RMANILAL" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHASHWAT" Or ClientName = "SHAILESHTRADING" Then SENDDIRECTMAIL()
-
-
-                    'IF ADVANCE IS RECD FROM CLIENT THEN OPEN RECEIPT FORM AUTO
-                    'USER WILL SAVE IT MANUALLY
-                    If EDIT = False And (ClientName = "CC" Or ClientName = "C3") And Val(TXTSOADVANCE.Text.Trim) > 0 Then
-                        Dim OBJREC As New Receipt
-                        OBJREC.TEMPAUTOENTRY = True
-                        OBJREC.TEMPAMT = Val(TXTSOADVANCE.Text.Trim)
-                        OBJREC.TEMPBILLNO = "S-" & Val(TXTINVOICENO.Text.Trim)
-                        OBJREC.TEMPNAME = cmbname.Text.Trim
-                        OBJREC.MdiParent = MDIMain
-                        OBJREC.Show()
-                    End If
+                SMSCODE()
+                If ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "RMANILAL" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHASHWAT" Or ClientName = "SHAILESHTRADING" Then SENDDIRECTMAIL()
 
 
-                Else
-                    If USEREDIT = False Then
+                'IF ADVANCE IS RECD FROM CLIENT THEN OPEN RECEIPT FORM AUTO
+                'USER WILL SAVE IT MANUALLY
+                If EDIT = False And (ClientName = "CC" Or ClientName = "C3") And Val(TXTSOADVANCE.Text.Trim) > 0 Then
+                    Dim OBJREC As New Receipt
+                    OBJREC.TEMPAUTOENTRY = True
+                    OBJREC.TEMPAMT = Val(TXTSOADVANCE.Text.Trim)
+                    OBJREC.TEMPBILLNO = "S-" & Val(TXTINVOICENO.Text.Trim)
+                    OBJREC.TEMPNAME = cmbname.Text.Trim
+                    OBJREC.MdiParent = MDIMain
+                    OBJREC.Show()
+                End If
+
+
+            Else
+                If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
@@ -1718,36 +1719,36 @@ Public Class InvoiceMaster
                             If TEMPDT.Rows.Count <= 0 Then CREATELEDGER(row.Cells(GTRANS.Index).Value, TEMPCMPID, TEMPYEARID)
                         End If
                         GRIDTRANSPORT = row.Cells(GTRANS.Index).Value.ToString
-                            DISCPER = Val(row.Cells(GDISCPER.Index).Value)
-                            DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
-                            SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
-                            SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
-                            OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
-                            TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
-                            CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
-                            CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
-                            SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
-                            SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
-                            IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
-                            IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
-                            GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
-                            BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                            FROMNO = row.Cells(GFROMNO.Index).Value
-                            FROMSRNO = row.Cells(GFROMSRNO.Index).Value
-                            FROMTYPE = row.Cells(GFROMTYPE.Index).Value
-                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
-                            GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
-                            UNIT = row.Cells(GUNIT.Index).Value
-                            GRIDSONO = Val(row.Cells(GSONO.Index).Value)
-                            GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
-                            WT = Val(row.Cells(GWT.Index).Value)
-                            GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
-                            GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
+                        DISCPER = Val(row.Cells(GDISCPER.Index).Value)
+                        DISCAMT = Val(row.Cells(GDISCAMT.Index).Value)
+                        SPDISCPER = Val(row.Cells(GSPDISCPER.Index).Value)
+                        SPDISCAMT = Val(row.Cells(GSPDISCAMT.Index).Value)
+                        OTHERAMT = Val(row.Cells(GOTHERAMT.Index).Value)
+                        TAXABLEAMT = Val(row.Cells(GTAXABLEAMT.Index).Value)
+                        CGSTPER = row.Cells(GCGSTPER.Index).Value.ToString
+                        CGSTAMT = Val(row.Cells(GCGSTAMT.Index).Value)
+                        SGSTPER = row.Cells(GSGSTPER.Index).Value.ToString
+                        SGSTAMT = Val(row.Cells(GSGSTAMT.Index).Value)
+                        IGSTPER = row.Cells(GIGSTPER.Index).Value.ToString
+                        IGSTAMT = Val(row.Cells(GIGSTAMT.Index).Value)
+                        GRIDTOTAL = Val(row.Cells(GGRIDTOTAL.Index).Value)
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
+                        GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value
+                        UNIT = row.Cells(GUNIT.Index).Value
+                        GRIDSONO = Val(row.Cells(GSONO.Index).Value)
+                        GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
+                        WT = Val(row.Cells(GWT.Index).Value)
+                        GRIDPURPARTY = row.Cells(GGRIDPURPARTY.Index).Value
+                        GRIDPURPARTYBILLNO = row.Cells(GPURPARTYBILLNO.Index).Value
 
 
-                        Else
+                    Else
 
-                            gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
+                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value
                         ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value
                         HSNCODE = HSNCODE & "|" & row.Cells(GHSNCODE.Index).Value.ToString
 
@@ -1774,36 +1775,36 @@ Public Class InvoiceMaster
                         End If
 
                         GRIDTRANSPORT = GRIDTRANSPORT & "|" & row.Cells(GTRANS.Index).Value
-                            DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
-                            DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
-                            SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
-                            SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
-                            OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
-                            TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
-                            CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
-                            CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
-                            SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
-                            SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
-                            IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
-                            IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
-                            GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
+                        DISCPER = DISCPER & "|" & Val(row.Cells(GDISCPER.Index).Value)
+                        DISCAMT = DISCAMT & "|" & Val(row.Cells(GDISCAMT.Index).Value)
+                        SPDISCPER = SPDISCPER & "|" & Val(row.Cells(GSPDISCPER.Index).Value)
+                        SPDISCAMT = SPDISCAMT & "|" & Val(row.Cells(GSPDISCAMT.Index).Value)
+                        OTHERAMT = OTHERAMT & "|" & Val(row.Cells(GOTHERAMT.Index).Value)
+                        TAXABLEAMT = TAXABLEAMT & "|" & Val(row.Cells(GTAXABLEAMT.Index).Value)
+                        CGSTPER = CGSTPER & "|" & row.Cells(GCGSTPER.Index).Value
+                        CGSTAMT = CGSTAMT & "|" & Val(row.Cells(GCGSTAMT.Index).Value)
+                        SGSTPER = SGSTPER & "|" & row.Cells(GSGSTPER.Index).Value
+                        SGSTAMT = SGSTAMT & "|" & Val(row.Cells(GSGSTAMT.Index).Value)
+                        IGSTPER = IGSTPER & "|" & row.Cells(GIGSTPER.Index).Value
+                        IGSTAMT = IGSTAMT & "|" & Val(row.Cells(GIGSTAMT.Index).Value)
+                        GRIDTOTAL = GRIDTOTAL & "|" & Val(row.Cells(GGRIDTOTAL.Index).Value)
 
-                            BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-                            FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
-                            FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
-                            FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
-                            If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
-                            GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
-                            UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
-                            GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
-                            GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
-                            WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
-                            GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
-                            GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
+                        GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value
+                        UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value
+                        GRIDSONO = GRIDSONO & "|" & Val(row.Cells(GSONO.Index).Value)
+                        GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
+                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
+                        GRIDPURPARTY = GRIDPURPARTY & "|" & row.Cells(GGRIDPURPARTY.Index).Value
+                        GRIDPURPARTYBILLNO = GRIDPURPARTYBILLNO & "|" & row.Cells(GPURPARTYBILLNO.Index).Value
 
 
-                        End If
                     End If
+                End If
             Next
 
             alParaval.Add(gridsrno)
@@ -1847,7 +1848,7 @@ Public Class InvoiceMaster
             alParaval.Add(UNIT)
             alParaval.Add(GRIDSONO)
             alParaval.Add(GRIDSOSRNO)
-          
+
 
 
             Dim CSRNO As String = ""
@@ -2563,6 +2564,10 @@ Public Class InvoiceMaster
 
         If ClientName = "MASHOK" Or ClientName = "ABHEE" Then txtchallan.Text = Val(TXTINVOICENO.Text)
 
+        If ClientName = "CHINTAN" And CMBDISPATCHFROM.Text.Trim = "" Then
+            EP.SetError(CMBDISPATCHFROM, "Enter Dispatch From")
+            bln = False
+        End If
 
         If (ClientName = "REALCORPORATION") And txtchallan.Text.Trim <> TXTINVOICENO.Text.Trim And txtchallan.Text.Trim <> "" Then
             'If MsgBox("Invoice No and Challan No does not match, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
