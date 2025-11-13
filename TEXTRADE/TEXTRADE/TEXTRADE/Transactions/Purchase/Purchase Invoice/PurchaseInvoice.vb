@@ -4205,7 +4205,7 @@ LINE1:
                         lrdate.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
                         CHALLANDATE.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
                     End If
-
+                    If ClientName = "ABHEE" And Val(TXTCRDAYS.Text.Trim) > 0 Then DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(DTPARTYBILLDATE.Text).Date)
                 End If
             End If
         Catch ex As Exception
