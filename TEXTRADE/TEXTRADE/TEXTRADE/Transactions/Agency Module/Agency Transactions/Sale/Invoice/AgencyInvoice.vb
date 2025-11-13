@@ -4912,7 +4912,7 @@ SKIPLINE:
                     e.Cancel = True
                     Exit Sub
                 Else
-                    If Val(TXTCRDAYS.Text) = 0 Then duedate.Text = INVOICEDATE.Text
+                    If Val(TXTCRDAYS.Text) > 0 Then duedate.Text = INVOICEDATE.Text
                     'SAME DATE FOR CHALLANDATE / LRDATE 
                     If ClientName = "SOFTAS" Then
                         CHALLANDATE.Text = Convert.ToDateTime(INVOICEDATE.Text).Date
