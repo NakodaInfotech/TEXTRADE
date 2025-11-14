@@ -279,7 +279,7 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_SUPRIYA.Database.Tables
                 ElseIf ClientName = "SUPEEMA" Then
                     crTables = RPTGDN_SUPEEMA.Database.Tables
-                ElseIf ClientName = "SHEETAL" Then
+                ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     crTables = RPTGDN_SHEETAL.Database.Tables
                 ElseIf ClientName = "SBA" Then
                     crTables = RPTGDN_SBA.Database.Tables
@@ -482,7 +482,7 @@ Public Class GDNDESIGN
                     crpo.ReportSource = RPTGDN_SUPRIYA
                 ElseIf ClientName = "SUPEEMA" Then
                     crpo.ReportSource = RPTGDN_SUPEEMA
-                ElseIf ClientName = "SHEETAL" Then
+                ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     crpo.ReportSource = RPTGDN_SHEETAL
                 ElseIf ClientName = "SBA" Then
                     crpo.ReportSource = RPTGDN_SBA
@@ -707,7 +707,7 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_A5.Export()
 
-                ElseIf ClientName = "SHEETAL" Then
+                ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
 
                     expo = RPTGDN_SHEETAL.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -1227,7 +1227,7 @@ Public Class GDNDESIGN
                     OBJ = New GDNReport_SUPRIYA
                 ElseIf ClientName = "SUPEEMA" Then
                     OBJ = New GDNReport_SUPEEMA
-                ElseIf ClientName = "SHEETAL" Then
+                ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     OBJ = New GDNReport_SHEETAL
                 ElseIf ClientName = "SBA" Then
                     OBJ = New GDNReport_SBA

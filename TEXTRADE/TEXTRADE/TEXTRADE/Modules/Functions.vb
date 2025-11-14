@@ -209,6 +209,73 @@ PRINT 1,1
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+            ElseIf ClientName = "MILUXE" Then
+
+                'NORMAL BARCODE
+                If TEMPHEADER = "1" Then
+                    oWrite.WriteLine("SIZE 99.10 mm, 50 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 754,380,""ROMAN.TTF"",180,1,14,""QUALITY""
+TEXT 488,380,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
+TEXT 531,380,""ROMAN.TTF"",180,1,14,"":""
+TEXT 754,326,""ROMAN.TTF"",180,1,14,""DESIGN NO""
+TEXT 754,269,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 754,210,""ROMAN.TTF"",180,1,14,""MTRS""
+TEXT 531,210,""ROMAN.TTF"",180,1,14,"":""
+TEXT 531,326,""ROMAN.TTF"",180,1,14,"":""
+TEXT 531,269,""ROMAN.TTF"",180,1,14,"":""
+TEXT 488,326,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 488,269,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 488,210,""ROMAN.TTF"",180,1,14,""" & Format(Val(MTRS), "0.00") & """
+TEXT 196,206,""ROMAN.TTF"",180,1,11,""" & LOTNO & """
+BARCODE 771,155,""128M"",99,0,180,4,8,""" & BARCODE & """
+TEXT 529,50,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
+TEXT 137,43,""ROMAN.TTF"",180,1,11,""" & UNIT & """
+PRINT 1,1")
+                    oWrite.Dispose()
+                Else
+                    'PREPRINTED BARCODE
+                    oWrite.WriteLine("SIZE 99.10 mm, 75.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 741,414,""ROMAN.TTF"",180,1,14,""QUALITY""
+TEXT 479,414,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
+TEXT 518,414,""ROMAN.TTF"",180,1,14,"":""
+TEXT 741,359,""ROMAN.TTF"",180,1,14,""DESIGN NO""
+TEXT 741,303,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 741,244,""ROMAN.TTF"",180,1,14,""MTRS""
+TEXT 518,244,""ROMAN.TTF"",180,1,14,"":""
+TEXT 518,359,""ROMAN.TTF"",180,1,14,"":""
+TEXT 518,303,""ROMAN.TTF"",180,1,14,"":""
+TEXT 479,359,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 479,303,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 479,244,""ROMAN.TTF"",180,1,14,""" & Format(Val(MTRS), "0.00") & """
+TEXT 157,240,""ROMAN.TTF"",180,1,11,""" & LOTNO & """
+BARCODE 758,175,""128M"",99,0,180,4,8,""" & BARCODE & """
+TEXT 516,69,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
+TEXT 124,55,""ROMAN.TTF"",180,1,11,""" & UNIT & """
+PRINT 1,1")
+                    oWrite.Dispose()
+                End If
+
+
             ElseIf ClientName = "REALCORPORATION" Then
 
                 oWrite.WriteLine("SIZE 97.5 mm, 50 mm")
@@ -739,6 +806,67 @@ PRINT 1,1")
 
             ElseIf ClientName = "MAHAVIRPOLYCOT" Then
 
+                'oWrite.WriteLine("I8,A")
+                'oWrite.WriteLine("ZN")
+                'oWrite.WriteLine("q779")
+                'oWrite.WriteLine("S3")
+                'oWrite.WriteLine("O")
+                'oWrite.WriteLine("JF")
+                'oWrite.WriteLine("D8")
+                'oWrite.WriteLine("ZT")
+                'oWrite.WriteLine("Q800,25")
+                'oWrite.WriteLine("KI81")
+                'oWrite.WriteLine("N")
+                'oWrite.WriteLine("A764,393,2,2,2,2,N,""HSN""")
+                'oWrite.WriteLine("A764,338,2,2,2,2,N,""Width""")
+                'oWrite.WriteLine("A764,502,2,2,2,2,N,""Shade""")
+                'oWrite.WriteLine("A765,609,2,2,2,2,N,""Item""")
+                'oWrite.WriteLine("b123,335,Q,m2,s7,eL,iA,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("A270,332,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("A34,314,1,3,1,1,N,""" & UNIT & """")
+                'oWrite.WriteLine("A765,447,2,2,2,2,N,""Mtrs""")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String = ""
+                'Dim TEMPHSN As String = ""
+                'Dim TEMPREMARKS As String = ""
+                'Dim TEMPQUALITY As String = ""
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPHSN = DT.Rows(0).Item("HSNCODE")
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                '    TEMPQUALITY = DT.Rows(0).Item("SELVEDGE")
+                '    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                'End If
+
+                'oWrite.WriteLine("A556,393,2,2,2,2,N,""" & TEMPHSN & """")
+                'oWrite.WriteLine("A556,502,2,2,2,2,N,""" & SHADE & """")
+                'oWrite.WriteLine("A556,338,2,2,2,2,N,""" & TEMPWIDTH & """")
+                'oWrite.WriteLine("A556,447,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("A556,609,2,2,2,2,N,""" & ITEMNAME & """")
+                'oWrite.WriteLine("A764,557,2,2,2,2,N,""D.No""")
+                'oWrite.WriteLine("A596,609,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A556,557,2,2,2,2,N,""" & DESIGNNO & """")
+                'oWrite.WriteLine("A596,557,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A596,502,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A596,393,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A596,338,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A596,447,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A764,283,2,2,2,2,N,""Quality""")
+                'oWrite.WriteLine("A556,280,2,4,1,1,N,""" & TEMPQUALITY & """") 'SELVEDGE-REMARKS
+                'oWrite.WriteLine("A596,283,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A34,428,1,3,1,1,N,""" & RACK & "-" & SHELF & """")
+                'oWrite.WriteLine("A611,178,2,2,2,2,N,""" & ITEMNAME & """")
+                'oWrite.WriteLine("A611,117,2,4,1,1,N,""" & DESIGNNO & """")
+                'oWrite.WriteLine("A611,69,2,2,2,2,N,""" & SHADE & """")
+                'oWrite.WriteLine("A367,69,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("A6,172,3,2,2,2,N,""" & RACK & "-" & SHELF & """")
+                'oWrite.WriteLine("b128,49,Q,m2,s4,eL,iA,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("A212,45,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("P1")
+                'oWrite.Dispose()
+
                 oWrite.WriteLine("I8,A")
                 oWrite.WriteLine("ZN")
                 oWrite.WriteLine("q779")
@@ -750,14 +878,14 @@ PRINT 1,1")
                 oWrite.WriteLine("Q800,25")
                 oWrite.WriteLine("KI81")
                 oWrite.WriteLine("N")
-                oWrite.WriteLine("A764,393,2,2,2,2,N,""HSN""")
-                oWrite.WriteLine("A764,338,2,2,2,2,N,""Width""")
-                oWrite.WriteLine("A764,502,2,2,2,2,N,""Shade""")
-                oWrite.WriteLine("A765,609,2,2,2,2,N,""Item""")
-                oWrite.WriteLine("b123,335,Q,m2,s7,eL,iA,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("A270,332,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("A34,314,1,3,1,1,N,""" & UNIT & """")
-                oWrite.WriteLine("A765,447,2,2,2,2,N,""Mtrs""")
+                oWrite.WriteLine("A708,473,2,2,2,2,N,""HSN""")
+                oWrite.WriteLine("A708,418,2,2,2,2,N,""Width""")
+                oWrite.WriteLine("A708,582,2,2,2,2,N,""Shade""")
+                oWrite.WriteLine("A708,689,2,2,2,2,N,""Item""")
+                oWrite.WriteLine("b75,437,Q,m2,s7,eL,iA,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A222,434,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A39,325,1,3,1,1,N,""" & UNIT & """")
+                oWrite.WriteLine("A708,527,2,2,2,2,N,""Mtrs""")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String = ""
@@ -773,32 +901,37 @@ PRINT 1,1")
                     TEMPREMARKS = DT.Rows(0).Item("REMARKS")
                 End If
 
-                oWrite.WriteLine("A556,393,2,2,2,2,N,""" & TEMPHSN & """")
-                oWrite.WriteLine("A556,502,2,2,2,2,N,""" & SHADE & """")
-                oWrite.WriteLine("A556,338,2,2,2,2,N,""" & TEMPWIDTH & """")
-                oWrite.WriteLine("A556,447,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("A556,609,2,2,2,2,N,""" & ITEMNAME & """")
-                oWrite.WriteLine("A764,557,2,2,2,2,N,""D.No""")
-                oWrite.WriteLine("A596,609,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A556,557,2,2,2,2,N,""" & DESIGNNO & """")
-                oWrite.WriteLine("A596,557,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A596,502,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A596,393,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A596,338,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A596,447,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A764,283,2,2,2,2,N,""Quality""")
-                oWrite.WriteLine("A556,280,2,4,1,1,N,""" & TEMPQUALITY & """") 'SELVEDGE-REMARKS
-                oWrite.WriteLine("A596,283,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A34,428,1,3,1,1,N,""" & RACK & "-" & SHELF & """")
-                oWrite.WriteLine("A611,178,2,2,2,2,N,""" & ITEMNAME & """")
-                oWrite.WriteLine("A611,117,2,4,1,1,N,""" & DESIGNNO & """")
-                oWrite.WriteLine("A611,69,2,2,2,2,N,""" & SHADE & """")
-                oWrite.WriteLine("A367,69,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("A6,172,3,2,2,2,N,""" & RACK & "-" & SHELF & """")
-                oWrite.WriteLine("b128,49,Q,m2,s4,eL,iA,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("A212,45,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A519,472,2,2,2,2,N,""" & TEMPHSN & """")
+                oWrite.WriteLine("A519,581,2,2,2,2,N,""" & SHADE & """")
+                oWrite.WriteLine("A519,417,2,2,2,2,N,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("A519,526,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                oWrite.WriteLine("A519,689,2,2,2,2,N,""" & ITEMNAME & """")
+                oWrite.WriteLine("A708,637,2,2,2,2,N,""D.No""")
+                oWrite.WriteLine("A560,688,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A519,635,2,2,2,2,N,""" & DESIGNNO & """")
+                oWrite.WriteLine("A560,635,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A560,581,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A560,472,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A560,417,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A560,526,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A708,314,2,2,2,2,N,""Quality""")
+                oWrite.WriteLine("A511,310,2,4,1,1,N,""" & TEMPQUALITY & """") 'SELVEDGE-REMARKS
+                oWrite.WriteLine("A555,362,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A239,363,2,2,2,2,N,""" & RACK & "-" & SHELF & """")
+                oWrite.WriteLine("A530,180,2,2,2,2,N,""" & ITEMNAME & """")
+                oWrite.WriteLine("A527,119,2,4,1,1,N,""" & DESIGNNO & """")
+                oWrite.WriteLine("A523,72,2,2,2,2,N,""" & SHADE & """")
+                oWrite.WriteLine("A369,71,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                oWrite.WriteLine("A9,135,3,2,2,2,N,""" & RACK & "-" & SHELF & """")
+                oWrite.WriteLine("b129,51,Q,m2,s4,eL,iA,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A213,47,2,2,1,1,N,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A708,366,2,2,2,2,N,""Batch""")
+                oWrite.WriteLine("A518,363,2,2,2,2,N,""" & LOTNO & """") 'LOTNO
+                oWrite.WriteLine("A542,311,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A285,365,2,2,2,2,N,"":""")
                 oWrite.WriteLine("P1")
                 oWrite.Dispose()
+
 
             ElseIf ClientName = "RAJKRIPA" Then
 
