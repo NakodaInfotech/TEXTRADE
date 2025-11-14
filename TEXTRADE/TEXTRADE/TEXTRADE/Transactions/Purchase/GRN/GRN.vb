@@ -518,6 +518,7 @@ Public Class GRN
 
                                 ALLOWEDQTY = Val(ORDROW.Cells(OPCS.Index).Value) - Val(ORDROW.Cells(OGRNQTY.Index).Value)
                                 ALLOWEDMTRS = Val(ORDROW.Cells(OMTRS.Index).Value) - Val(ORDROW.Cells(OGRNMTRS.Index).Value)
+                                ROW.Cells(GPURRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
 
                                 If BALQTY <= ALLOWEDQTY Then
                                     ORDROW.Cells(OGRNQTY.Index).Value += BALQTY

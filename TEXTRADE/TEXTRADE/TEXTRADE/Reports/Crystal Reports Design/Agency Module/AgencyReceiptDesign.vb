@@ -65,9 +65,11 @@ Public Class AgencyReceiptDesign
             Next
 
 
-
-            strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & " AND {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "' and {LEDGERS.Acc_cmpname} = '" & recname & "' and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+            MsgBox("Recname='" & recname & "' (" & Len(recname) & " chars)")
+            strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & "  And {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "'  and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
+            MsgBox(strsearch)
             crpo.SelectionFormula = strsearch
+
 
             If ClientName = "ABHEE" Then
                 'ADD DATA IN TEMPAGENCYPAYMENTDETAILS
