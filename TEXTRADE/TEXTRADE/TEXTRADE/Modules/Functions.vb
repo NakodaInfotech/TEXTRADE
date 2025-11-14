@@ -209,6 +209,73 @@ PRINT 1,1
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+            ElseIf ClientName = "MILUXE" Then
+
+                'NORMAL BARCODE
+                If TEMPHEADER = "1" Then
+                    oWrite.WriteLine("SIZE 99.10 mm, 50 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 754,380,""ROMAN.TTF"",180,1,14,""QUALITY""
+TEXT 488,380,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
+TEXT 531,380,""ROMAN.TTF"",180,1,14,"":""
+TEXT 754,326,""ROMAN.TTF"",180,1,14,""DESIGN NO""
+TEXT 754,269,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 754,210,""ROMAN.TTF"",180,1,14,""MTRS""
+TEXT 531,210,""ROMAN.TTF"",180,1,14,"":""
+TEXT 531,326,""ROMAN.TTF"",180,1,14,"":""
+TEXT 531,269,""ROMAN.TTF"",180,1,14,"":""
+TEXT 488,326,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 488,269,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 488,210,""ROMAN.TTF"",180,1,14,""" & Format(Val(MTRS), "0.00") & """
+TEXT 196,206,""ROMAN.TTF"",180,1,11,""" & LOTNO & """
+BARCODE 771,155,""128M"",99,0,180,4,8,""" & BARCODE & """
+TEXT 529,50,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
+TEXT 137,43,""ROMAN.TTF"",180,1,11,""" & UNIT & """
+PRINT 1,1")
+                    oWrite.Dispose()
+                Else
+                    'PREPRINTED BARCODE
+                    oWrite.WriteLine("SIZE 99.10 mm, 75.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 741,414,""ROMAN.TTF"",180,1,14,""QUALITY""
+TEXT 479,414,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
+TEXT 518,414,""ROMAN.TTF"",180,1,14,"":""
+TEXT 741,359,""ROMAN.TTF"",180,1,14,""DESIGN NO""
+TEXT 741,303,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 741,244,""ROMAN.TTF"",180,1,14,""MTRS""
+TEXT 518,244,""ROMAN.TTF"",180,1,14,"":""
+TEXT 518,359,""ROMAN.TTF"",180,1,14,"":""
+TEXT 518,303,""ROMAN.TTF"",180,1,14,"":""
+TEXT 479,359,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 479,303,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 479,244,""ROMAN.TTF"",180,1,14,""" & Format(Val(MTRS), "0.00") & """
+TEXT 157,240,""ROMAN.TTF"",180,1,11,""" & LOTNO & """
+BARCODE 758,175,""128M"",99,0,180,4,8,""" & BARCODE & """
+TEXT 516,69,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
+TEXT 124,55,""ROMAN.TTF"",180,1,11,""" & UNIT & """
+PRINT 1,1")
+                    oWrite.Dispose()
+                End If
+
+
             ElseIf ClientName = "REALCORPORATION" Then
 
                 oWrite.WriteLine("SIZE 97.5 mm, 50 mm")

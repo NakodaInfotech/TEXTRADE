@@ -257,7 +257,7 @@ Public Class RecFromPackingDetails
                         If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
                     End If
 
-                    If ClientName = "DAKSH" Or ClientName = "MANSI" Then
+                    If ClientName = "DAKSH" Or ClientName = "MANSI" Or ClientName = "MILUXE" Then
                         TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
                         If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                     End If

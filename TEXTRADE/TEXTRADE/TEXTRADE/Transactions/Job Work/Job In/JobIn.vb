@@ -1225,7 +1225,7 @@ LINE1:
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
                 End If
 
-                If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Then
+                If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Then
                     TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 For NORMAL" & Chr(13) & "2 For PRE PRINTED")
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                 End If
