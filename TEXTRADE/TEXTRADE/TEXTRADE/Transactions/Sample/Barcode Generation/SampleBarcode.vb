@@ -21,7 +21,7 @@ Public Class SampleBarcode
         End Try
     End Sub
 
-    Private Function errorvalid() As Boolean
+    Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
         If CMBMERCHANT.Text.Trim = "" Then
             EP.SetError(CMBMERCHANT, " Please Fill Item Name ")
@@ -30,7 +30,7 @@ Public Class SampleBarcode
 
         'CHECK WHETHER SAME ITEMNAME WITH SAME DESIGN AND SHADE IS ENTERED OR NOT
         Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.search(" SB_NO AS NO, COLORMASTER.COLOR_name AS SHADE, DESIGNMASTER.DESIGN_NO AS DESIGN ", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SB_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN QUALITYMASTER ON SB_QUALITYID = QUALITYMASTER.QUALITY_ID ", " AND ITEMMASTER.item_name = '" & CMBMERCHANT.Text.Trim & "' AND ISNULL(QUALITYMASTER.QUALITY_NAME,'') = '" & CMBQUALITY.Text.Trim & "' AND isnull(COLORMASTER.COLOR_name,'') = '" & CMBCOLOR.Text.Trim & "' AND isnull(DESIGNMASTER.DESIGN_NO,'') = '" & CMBDESIGNNO.Text.Trim & "' AND SB_YEARID = " & YearId)
+        Dim DT As DataTable = OBJCMN.SEARCH(" SB_NO AS NO, COLORMASTER.COLOR_name AS SHADE, DESIGNMASTER.DESIGN_NO AS DESIGN ", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON SB_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN QUALITYMASTER ON SB_QUALITYID = QUALITYMASTER.QUALITY_ID ", " AND ITEMMASTER.item_name = '" & CMBMERCHANT.Text.Trim & "' AND ISNULL(QUALITYMASTER.QUALITY_NAME,'') = '" & CMBQUALITY.Text.Trim & "' AND isnull(COLORMASTER.COLOR_name,'') = '" & CMBCOLOR.Text.Trim & "' AND isnull(DESIGNMASTER.DESIGN_NO,'') = '" & CMBDESIGNNO.Text.Trim & "' AND SB_YEARID = " & YearId)
         If DT.Rows.Count > 0 Then
             If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And Val(TXTNO.Text) <> Val(DT.Rows(0).Item(0))) Then
                 EP.SetError(TXTREMARKS, "ITEM ALREADY PRESENT")
@@ -157,7 +157,7 @@ Public Class SampleBarcode
         End Try
     End Sub
 
-    Sub fillcmb()
+    Sub FILLCMB()
         Try
             If CMBMERCHANT.Text.Trim = "" Then fillitemname(CMBMERCHANT, " And ITEMMASTER.ITEM_FRMSTRING IN ('ITEMNAME')")
             fillQUALITY(CMBQUALITY, EDIT)
@@ -338,10 +338,6 @@ Public Class SampleBarcode
                 If ClientName = "KDFAB" Then
                     If MsgBox("Print Sticker With Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then TEMPHEADER = "1"
                 End If
-
-
-
-
 
 
                 If CHKPRINT.CheckState = CheckState.Checked Then

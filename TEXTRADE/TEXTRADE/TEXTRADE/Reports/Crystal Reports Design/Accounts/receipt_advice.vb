@@ -124,7 +124,7 @@ Public Class receipt_advice
                     CRPO.ReportSource = OBJREC_NAKODAINFOTECH
                 Else
                     CRPO.ReportSource = OBJREC
-                    If ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
                 End If
             End If
@@ -217,7 +217,7 @@ Public Class receipt_advice
                 OBJ = New RecReport_NAKODAINFOTECH
             Else
                 OBJ = New RecReport
-                If ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                If ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
             End If
             crTables = OBJ.Database.Tables
 

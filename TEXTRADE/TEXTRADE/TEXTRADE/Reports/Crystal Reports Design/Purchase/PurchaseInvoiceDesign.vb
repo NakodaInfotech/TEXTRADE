@@ -124,7 +124,7 @@ Public Class PurchaseInvoiceDesign
                     crTables = RPTPURRETURN_SVS.Database.Tables
                 Else
                     crTables = RPTPURRETURN.Database.Tables
-                    If ClientName = "VINAYAK" Or ClientName = "SKF" Then RPTPURRETURN.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "MILUXE" Then RPTPURRETURN.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
             End If
 
@@ -499,7 +499,7 @@ Public Class PurchaseInvoiceDesign
                     OBJ = New PurchaseReturnReport_SVS
                 Else
                     OBJ = New purchaseReturnReport
-                    If ClientName = "VINAYAK" Or ClientName = "SKF" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
             End If
 
