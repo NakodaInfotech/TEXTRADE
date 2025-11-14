@@ -752,21 +752,83 @@ PRINT 1,1")
                         ElseIf ClientName = "MAHAVIRPOLYCOT" Then
 
                             If CMBCOLOR.Text.Trim = "" Then
+                                'oWrite.WriteLine("I8,A")
+                                'oWrite.WriteLine("ZN")
+                                'oWrite.WriteLine("q779")
+                                'oWrite.WriteLine("S3")
+                                'oWrite.WriteLine("O")
+                                'oWrite.WriteLine("JF")
+                                'oWrite.WriteLine("D8")
+                                'oWrite.WriteLine("ZT")
+                                'oWrite.WriteLine("Q800,25")
+                                'oWrite.WriteLine("KI81")
+                                'oWrite.WriteLine("N")
+                                'oWrite.WriteLine("A742,379,2,2,2,2,N,""Width""")
+                                'oWrite.WriteLine("A742,603,2,2,2,2,N,""Item""")
+                                'oWrite.WriteLine("b80,367,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                'oWrite.WriteLine("A205,352,2,1,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+
+                                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                                'Dim TEMPHSN As String = ""
+                                'Dim TEMPRATE As String = ""
+                                'Dim TEMPQUALITY As String = ""
+                                'DT = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                                'If DT.Rows.Count > 0 Then
+                                '    TEMPHSN = DT.Rows(0).Item("HSNCODE")
+                                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                                '    TEMPQUALITY = DT.Rows(0).Item("SELVEDGE")
+                                '    TEMPRATE = (Val(DT.Rows(0).Item("RATE")) + 18) & "000"
+                                'End If
+
+                                'DT = OBJCMN.search(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
+                                'If DT.Rows.Count > 0 Then
+                                '    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                                'End If
+
+                                'oWrite.WriteLine("A548,379,2,2,2,2,N,""" & TEMPWIDTH & """")
+                                'oWrite.WriteLine("A548,603,2,2,2,2,N,""" & CMBMERCHANT.Text.Trim & """")
+                                'oWrite.WriteLine("A742,552,2,2,2,2,N,""D.No""")
+                                'oWrite.WriteLine("A580,603,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A548,552,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
+                                'oWrite.WriteLine("A580,552,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A580,379,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A548,314,2,4,1,1,N,""" & TEMPQUALITY & """")
+                                'oWrite.WriteLine("A742,491,2,2,2,2,N,""Series""")
+                                'oWrite.WriteLine("A548,491,2,2,2,2,N,""" & TEMPRATE & """")
+                                'oWrite.WriteLine("A580,491,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A742,317,2,2,2,2,N,""Quality""")
+                                'oWrite.WriteLine("A580,317,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A742,435,2,2,2,2,N,""HSN""")
+                                'oWrite.WriteLine("A548,435,2,2,2,2,N,""" & TEMPHSN & """")
+                                'oWrite.WriteLine("A580,435,2,2,2,2,N,"":""")
+                                'oWrite.WriteLine("A611,178,2,4,1,1,N,""" & CMBMERCHANT.Text.Trim & """")
+                                'oWrite.WriteLine("A611,117,2,4,1,1,N,""" & CMBDESIGNNO.Text.Trim & """")
+                                'oWrite.WriteLine("A185,184,2,3,2,2,N,""" & TEMPREMARKS & """")
+                                'oWrite.WriteLine("A217,23,1,2,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                'oWrite.WriteLine("b52,24,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                'oWrite.WriteLine("P1")
+                                'oWrite.Dispose()
+
+
                                 oWrite.WriteLine("I8,A")
                                 oWrite.WriteLine("ZN")
                                 oWrite.WriteLine("q779")
                                 oWrite.WriteLine("S3")
                                 oWrite.WriteLine("O")
                                 oWrite.WriteLine("JF")
+                                oWrite.WriteLine("KIZZQ0")
+                                oWrite.WriteLine("KI9+0.0")
                                 oWrite.WriteLine("D8")
                                 oWrite.WriteLine("ZT")
                                 oWrite.WriteLine("Q800,25")
-                                oWrite.WriteLine("KI81")
+                                oWrite.WriteLine("Arglabel 1101 31")
+                                oWrite.WriteLine("exit")
+                                oWrite.WriteLine("KI81")
                                 oWrite.WriteLine("N")
-                                oWrite.WriteLine("A742,379,2,2,2,2,N,""Width""")
-                                oWrite.WriteLine("A742,603,2,2,2,2,N,""Item""")
-                                oWrite.WriteLine("b80,367,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("A205,352,2,1,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                oWrite.WriteLine("A702,435,2,2,2,2,N,""Width""")
+                                oWrite.WriteLine("A708,683,2,2,2,2,N,""Item""")
+                                oWrite.WriteLine("b60,447,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                oWrite.WriteLine("A181,433,2,1,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
 
                                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                                 Dim TEMPHSN As String = ""
@@ -780,34 +842,38 @@ PRINT 1,1")
                                     TEMPRATE = (Val(DT.Rows(0).Item("RATE")) + 18) & "000"
                                 End If
 
-                                DT = OBJCMN.search(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
+                                DT = OBJCMN.SEARCH(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
                                 If DT.Rows.Count > 0 Then
                                     TEMPREMARKS = DT.Rows(0).Item("REMARKS")
                                 End If
 
-                                oWrite.WriteLine("A548,379,2,2,2,2,N,""" & TEMPWIDTH & """")
-                                oWrite.WriteLine("A548,603,2,2,2,2,N,""" & CMBMERCHANT.Text.Trim & """")
-                                oWrite.WriteLine("A742,552,2,2,2,2,N,""D.No""")
-                                oWrite.WriteLine("A580,603,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A548,552,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
-                                oWrite.WriteLine("A580,552,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A580,379,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A548,314,2,4,1,1,N,""" & TEMPQUALITY & """")
-                                oWrite.WriteLine("A742,491,2,2,2,2,N,""Series""")
-                                oWrite.WriteLine("A548,491,2,2,2,2,N,""" & TEMPRATE & """")
-                                oWrite.WriteLine("A580,491,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A742,317,2,2,2,2,N,""Quality""")
-                                oWrite.WriteLine("A580,317,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A742,435,2,2,2,2,N,""HSN""")
-                                oWrite.WriteLine("A548,435,2,2,2,2,N,""" & TEMPHSN & """")
-                                oWrite.WriteLine("A580,435,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A611,178,2,4,1,1,N,""" & CMBMERCHANT.Text.Trim & """")
-                                oWrite.WriteLine("A611,117,2,4,1,1,N,""" & CMBDESIGNNO.Text.Trim & """")
-                                oWrite.WriteLine("A185,184,2,3,2,2,N,""" & TEMPREMARKS & """")
-                                oWrite.WriteLine("A217,23,1,2,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("b52,24,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                oWrite.WriteLine("A508,435,2,2,2,2,N,""" & TEMPWIDTH & """")
+                                oWrite.WriteLine("A508,683,2,2,2,2,N,""" & CMBMERCHANT.Text.Trim & """")
+                                oWrite.WriteLine("A702,619,2,2,2,2,N,""D.No""")
+                                oWrite.WriteLine("A540,683,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A508,619,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
+                                oWrite.WriteLine("A540,619,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A540,435,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A507,304,2,4,1,1,N,""" & TEMPQUALITY & """")
+                                oWrite.WriteLine("A702,555,2,2,2,2,N,""Series""")
+                                oWrite.WriteLine("A508,555,2,2,2,2,N,""" & TEMPRATE & """")
+                                oWrite.WriteLine("A540,555,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A700,307,2,2,2,2,N,""Quality""")
+                                oWrite.WriteLine("A540,371,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A702,491,2,2,2,2,N,""HSN""")
+                                oWrite.WriteLine("A508,491,2,2,2,2,N,""" & TEMPHSN & """")
+                                oWrite.WriteLine("A540,491,2,2,2,2,N,"":""")
+                                oWrite.WriteLine("A532,160,2,4,1,1,N,""" & CMBMERCHANT.Text.Trim & """")
+                                oWrite.WriteLine("A532,97,2,4,1,1,N,""" & CMBDESIGNNO.Text.Trim & """")
+                                oWrite.WriteLine("A177,192,2,3,2,2,N,""" & TEMPREMARKS & """")
+                                oWrite.WriteLine("A208,31,1,2,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                oWrite.WriteLine("b52,32,Q,m2,s5,eL,iA,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                                oWrite.WriteLine("A700,371,2,2,2,2,N,""Group""")
+                                oWrite.WriteLine("A516,371,2,2,2,2,N,""" & TEMPCATEGORY & """") 'CATEGORY
+                                oWrite.WriteLine("A540,308,2,2,2,2,N,"":""")
                                 oWrite.WriteLine("P1")
                                 oWrite.Dispose()
+
                             Else
                                 oWrite.WriteLine("I8,A")
                                 oWrite.WriteLine("ZN")
@@ -1916,21 +1982,104 @@ PRINT 1,1")
 
                                     If ROW("SHADE") = "" Then
 
+                                        '    oWrite.WriteLine("I8,A")
+                                        '    oWrite.WriteLine("ZN")
+                                        '    oWrite.WriteLine("q779")
+                                        '    oWrite.WriteLine("S3")
+                                        '    oWrite.WriteLine("O")
+                                        '    oWrite.WriteLine("JF")
+                                        '    oWrite.WriteLine("D8")
+                                        '    oWrite.WriteLine("ZT")
+                                        '    oWrite.WriteLine("Q800,25")
+                                        '    oWrite.WriteLine("KI81")
+                                        '    oWrite.WriteLine("N")
+                                        '    oWrite.WriteLine("A742,379,2,2,2,2,N,""Width""")
+                                        '    oWrite.WriteLine("A742,603,2,2,2,2,N,""Item""")
+                                        '    oWrite.WriteLine("b80,367,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("A205,352,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
+
+                                        '    'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                                        '    Dim TEMPHSN As String = ""
+                                        '    Dim TEMPRATE As String = ""
+                                        '    Dim TEMPQUALITY As String = ""
+                                        '    DT = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_RATE, 0) AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.item_HSNCODEID = HSNMASTER.HSN_ID ", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                        '    If DT.Rows.Count > 0 Then
+                                        '        TEMPHSN = DT.Rows(0).Item("HSNCODE")
+                                        '        TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                                        '        TEMPQUALITY = DT.Rows(0).Item("SELVEDGE")
+                                        '        TEMPRATE = (Val(DT.Rows(0).Item("RATE")) + 18) & "000"
+                                        '    End If
+
+                                        '    DT = OBJCMN.search(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
+                                        '    If DT.Rows.Count > 0 Then
+                                        '        TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                                        '    End If
+
+                                        '    oWrite.WriteLine("A548,379,2,2,2,2,N,""" & TEMPWIDTH & """")
+                                        '    oWrite.WriteLine("A548,603,2,2,2,2,N,""" & ROW("ITEMNAME") & """")
+                                        '    oWrite.WriteLine("A742,552,2,2,2,2,N,""D.No""")
+                                        '    oWrite.WriteLine("A580,603,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A548,552,2,2,2,2,N,""" & ROW("DESIGNNO") & """")
+                                        '    oWrite.WriteLine("A580,552,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A580,379,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A548,314,2,4,1,1,N,""" & TEMPQUALITY & """")
+                                        '    oWrite.WriteLine("A742,491,2,2,2,2,N,""Series""")
+                                        '    oWrite.WriteLine("A548,491,2,2,2,2,N,""" & TEMPRATE & """")
+                                        '    oWrite.WriteLine("A580,491,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A742,317,2,2,2,2,N,""Quality""")
+                                        '    oWrite.WriteLine("A580,317,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A742,435,2,2,2,2,N,""HSN""")
+                                        '    oWrite.WriteLine("A548,435,2,2,2,2,N,""" & TEMPHSN & """")
+                                        '    oWrite.WriteLine("A580,435,2,2,2,2,N,"":""")
+                                        '    oWrite.WriteLine("A611,178,2,4,1,1,N,""" & ROW("ITEMNAME") & """")
+                                        '    oWrite.WriteLine("A611,117,2,4,1,1,N,""" & ROW("DESIGNNO") & """")
+                                        '    oWrite.WriteLine("A185,184,2,3,2,2,N,""" & TEMPREMARKS & """")
+                                        '    oWrite.WriteLine("A217,23,1,2,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("b52,24,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("P1")
+                                        '    oWrite.Dispose()
+
+                                        'Else
+                                        '    oWrite.WriteLine("I8,A")
+                                        '    oWrite.WriteLine("ZN")
+                                        '    oWrite.WriteLine("q300")
+                                        '    oWrite.WriteLine("O")
+                                        '    oWrite.WriteLine("JF")
+                                        '    oWrite.WriteLine("ZT")
+                                        '    oWrite.WriteLine("Q120,25")
+                                        '    oWrite.WriteLine("KI80")
+                                        '    oWrite.WriteLine("N")
+                                        '    oWrite.WriteLine("A293,109,2,3,1,1,N,""" & ROW("ITEMNAME") & """")
+                                        '    oWrite.WriteLine("A293,76,2,1,1,1,N,""" & ROW("DESIGNNO") & """")
+                                        '    oWrite.WriteLine("LO5,83,289,2")
+                                        '    oWrite.WriteLine("LO80,9,2,73")
+                                        '    oWrite.WriteLine("A215,49,2,3,1,1,N,""" & ROW("SHADE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("b10,11,Q,m2,s3,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("LO80,52,203,2")
+                                        '    oWrite.WriteLine("A266,23,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
+                                        '    oWrite.WriteLine("P1")
+                                        '    oWrite.Dispose()
+
+
                                         oWrite.WriteLine("I8,A")
                                         oWrite.WriteLine("ZN")
                                         oWrite.WriteLine("q779")
                                         oWrite.WriteLine("S3")
                                         oWrite.WriteLine("O")
                                         oWrite.WriteLine("JF")
+                                        oWrite.WriteLine("KIZZQ0")
+                                        oWrite.WriteLine("KI9+0.0")
                                         oWrite.WriteLine("D8")
                                         oWrite.WriteLine("ZT")
                                         oWrite.WriteLine("Q800,25")
-                                        oWrite.WriteLine("KI81")
+                                        oWrite.WriteLine("Arglabel 1101 31")
+                                        oWrite.WriteLine("exit")
+                                        oWrite.WriteLine("KI81")
                                         oWrite.WriteLine("N")
-                                        oWrite.WriteLine("A742,379,2,2,2,2,N,""Width""")
-                                        oWrite.WriteLine("A742,603,2,2,2,2,N,""Item""")
-                                        oWrite.WriteLine("b80,367,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
-                                        oWrite.WriteLine("A205,352,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
+                                        oWrite.WriteLine("A702,435,2,2,2,2,N,""Width""")
+                                        oWrite.WriteLine("A708,683,2,2,2,2,N,""Item""")
+                                        oWrite.WriteLine("b60,447,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        oWrite.WriteLine("A181,433,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
 
                                         'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                                         Dim TEMPHSN As String = ""
@@ -1944,32 +2093,35 @@ PRINT 1,1")
                                             TEMPRATE = (Val(DT.Rows(0).Item("RATE")) + 18) & "000"
                                         End If
 
-                                        DT = OBJCMN.search(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
+                                        DT = OBJCMN.SEARCH(" ISNULL(CAST(DESIGNMASTER.DESIGN_REMARK AS VARCHAR(1000)), '') AS REMARKS ", "", " DESIGNMASTER ", " AND DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
                                         If DT.Rows.Count > 0 Then
                                             TEMPREMARKS = DT.Rows(0).Item("REMARKS")
                                         End If
 
-                                        oWrite.WriteLine("A548,379,2,2,2,2,N,""" & TEMPWIDTH & """")
-                                        oWrite.WriteLine("A548,603,2,2,2,2,N,""" & ROW("ITEMNAME") & """")
-                                        oWrite.WriteLine("A742,552,2,2,2,2,N,""D.No""")
-                                        oWrite.WriteLine("A580,603,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A548,552,2,2,2,2,N,""" & ROW("DESIGNNO") & """")
-                                        oWrite.WriteLine("A580,552,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A580,379,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A548,314,2,4,1,1,N,""" & TEMPQUALITY & """")
-                                        oWrite.WriteLine("A742,491,2,2,2,2,N,""Series""")
-                                        oWrite.WriteLine("A548,491,2,2,2,2,N,""" & TEMPRATE & """")
-                                        oWrite.WriteLine("A580,491,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A742,317,2,2,2,2,N,""Quality""")
-                                        oWrite.WriteLine("A580,317,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A742,435,2,2,2,2,N,""HSN""")
-                                        oWrite.WriteLine("A548,435,2,2,2,2,N,""" & TEMPHSN & """")
-                                        oWrite.WriteLine("A580,435,2,2,2,2,N,"":""")
-                                        oWrite.WriteLine("A611,178,2,4,1,1,N,""" & ROW("ITEMNAME") & """")
-                                        oWrite.WriteLine("A611,117,2,4,1,1,N,""" & ROW("DESIGNNO") & """")
-                                        oWrite.WriteLine("A185,184,2,3,2,2,N,""" & TEMPREMARKS & """")
-                                        oWrite.WriteLine("A217,23,1,2,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
-                                        oWrite.WriteLine("b52,24,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        oWrite.WriteLine("A508,435,2,2,2,2,N,""" & TEMPWIDTH & """")
+                                        oWrite.WriteLine("A508,683,2,2,2,2,N,""" & ROW("ITEMNAME") & """")
+                                        oWrite.WriteLine("A702,619,2,2,2,2,N,""D.No""")
+                                        oWrite.WriteLine("A540,683,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A508,619,2,2,2,2,N,""" & ROW("DESIGNNO") & """")
+                                        oWrite.WriteLine("A540,619,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A540,435,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A507,304,2,4,1,1,N,""" & TEMPQUALITY & """")
+                                        oWrite.WriteLine("A702,555,2,2,2,2,N,""Series""")
+                                        oWrite.WriteLine("A508,555,2,2,2,2,N,""" & TEMPRATE & """")
+                                        oWrite.WriteLine("A540,555,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A700,307,2,2,2,2,N,""Quality""")
+                                        oWrite.WriteLine("A540,371,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A702,491,2,2,2,2,N,""HSN""")
+                                        oWrite.WriteLine("A508,491,2,2,2,2,N,""" & TEMPHSN & """")
+                                        oWrite.WriteLine("A540,491,2,2,2,2,N,"":""")
+                                        oWrite.WriteLine("A532,160,2,4,1,1,N,""" & ROW("ITEMNAME") & """")
+                                        oWrite.WriteLine("A532,97,2,4,1,1,N,""" & ROW("DESIGNNO") & """")
+                                        oWrite.WriteLine("A177,192,2,3,2,2,N,""" & TEMPREMARKS & """")
+                                        oWrite.WriteLine("A208,31,1,2,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
+                                        oWrite.WriteLine("b52,32,Q,m2,s5,eL,iA,""" & ROW("BARCODE") & """") 'BARCODE
+                                        oWrite.WriteLine("A700,371,2,2,2,2,N,""Group""")
+                                        oWrite.WriteLine("A516,371,2,2,2,2,N,""" & TEMPCATEGORY & """")
+                                        oWrite.WriteLine("A540,308,2,2,2,2,N,"":""")
                                         oWrite.WriteLine("P1")
                                         oWrite.Dispose()
 
@@ -1993,6 +2145,7 @@ PRINT 1,1")
                                         oWrite.WriteLine("A266,23,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
                                         oWrite.WriteLine("P1")
                                         oWrite.Dispose()
+
                                     End If
 
 
