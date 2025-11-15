@@ -79,7 +79,7 @@ Public Class CrDrNoteDesign
                     If ClientName = "VINAYAK" Then OBJCRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 Else
                     CRPO.ReportSource = OBJCRNOTE
-                    If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJCRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJCRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
 
             ElseIf FRMSTRING = "DEBIT" Then
@@ -91,7 +91,7 @@ Public Class CrDrNoteDesign
                     If ClientName = "VINAYAK" Then OBJDRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 Else
                     CRPO.ReportSource = OBJDRNOTE
-                    If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJDRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJDRNOTE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
 
             ElseIf FRMSTRING = "PROFORMACREDIT" Then
@@ -154,11 +154,11 @@ Public Class CrDrNoteDesign
             Dim OBJ As New Object
             If FRMSTRING = "CREDIT" Then
                 If CNDNA5 = True Then OBJ = New CreditNoteReportA5 Else OBJ = New CreditNoteReport
-                If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
             ElseIf FRMSTRING = "DEBIT" Then
                 If CNDNA5 = True Then OBJ = New DebitNoteReportA5 Else OBJ = New DebitNoteReport
-                If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                If ClientName = "ALENCOT" Or ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
             ElseIf FRMSTRING = "PROFORMACREDIT" Then
                 OBJ = New ProformaCreditNoteReport

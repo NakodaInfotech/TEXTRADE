@@ -1888,57 +1888,57 @@ SKIPINVOICE:
 
 
                 If ClientName = "SKF" Then
-                    OBJ = New InvoiceReport_SKF
+                    OBJ = RPTINVOICE_SKF
                 ElseIf ClientName = "AVIS" Then
-                    OBJ = New InvoiceReport_AVIS
+                    OBJ = RPTINVOICE_AVIS
                 ElseIf ClientName = "SAFFRON" Then
-                    OBJ = New InvoiceReport_SAFFRON
+                    OBJ = RPTINVOICE_SAFFRON
                 ElseIf ClientName = "PURPLE" Then
-                    OBJ = New InvoiceReport_PURPLE
+                    OBJ = RPTINVOICE_PURPLE
                 ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-                    OBJ = New InvoiceReport_CC
+                    OBJ = RPTINVOICE_CC
                 ElseIf ClientName = "SVS" Then
-                    OBJ = New InvoiceReport_SVS
+                    OBJ = RPTINVOICE_SVS
                 ElseIf ClientName = "MANINATH" Then
-                    OBJ = New InvoiceReport_MANINATH
+                    OBJ = RPTINVOICE_MANINATH
                 ElseIf ClientName = "MOMAI" Then
-                    OBJ = New InvoiceReport_MOMAI
+                    OBJ = RPTINVOICE_MOMAI
                 ElseIf ClientName = "MAHAVIR" Then
-                    OBJ = New InvoiceReport_MAHAVIR
+                    OBJ = RPTINVOICE_MAHAVIR
                 ElseIf ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
-                    OBJ = New InvoiceReport_KOTHARI
+                    OBJ = RPTINVOICE_KOTHARI
                 ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
-                    OBJ = New InvoiceReport_BARKHASHUBHI
+                    OBJ = RPTINVOICE_BARKHASHUBHI
                 ElseIf ClientName = "DRDRAPES" Then
-                    OBJ = New InvoiceReport_DRDRAPES
+                    OBJ = RPTINVOICE_DRDRAPES
                 ElseIf ClientName = "SAKARIA" Or ClientName = "NVAHAN" Then
-                    OBJ = New InvoiceReport_SAKNVAHAN
+                    OBJ = RPTINVOICE_SAKNVAHAN
                 ElseIf ClientName = "CHANDRA" Then
-                    OBJ = New InvoiceReport_CHANDRA
+                    OBJ = RPTINVOICE_CHANDRA
                 ElseIf ClientName = "DETLINE" Then
-                    OBJ = New InvoiceReport_DETLINE
+                    OBJ = RPTINVOICE_DETLINE
                 ElseIf ClientName = "KDFAB" Then
-                    OBJ = New InvoiceReport_KDFAB
+                    OBJ = RPTINVOICE_KDFAB
                 ElseIf ClientName = "SBA" Or ClientName = "SOFTAS" Then
-                    OBJ = New InvoiceReport_SBASOFTAS
+                    OBJ = RPTINVOICE_SBASOFTAS
                 ElseIf ClientName = "POONAM" Or ClientName = "KREEVE" Then
-                    OBJ = New InvoiceReport_POONAMKREEVE
+                    OBJ = RPTINVOICE_POONAMKREEVE
                 ElseIf ClientName = "GELATO" Then
-                    If IGSTFORMAT = False Then OBJ = New InvoiceReport_GELATO Else OBJ = New InvoiceReport_GELATOIGST
+                    If IGSTFORMAT = False Then OBJ = RPTINVOICE_GELATO Else OBJ = RPTINVOICE_GELATOIGST
                 ElseIf ClientName = "SANGHVI" Then
-                    OBJ = New InvoiceReport_SANGHVI
+                    OBJ = RPTINVOICE_SANGHVI
                 ElseIf ClientName = "SUPRIYA" Then
-                    OBJ = New InvoiceReport_SUPRIYA
+                    OBJ = RPTINVOICE_SUPRIYA
                 ElseIf ClientName = "SIMPLEX" Then
-                    OBJ = New InvoiceReport_SIMPLEX
+                    OBJ = RPTINVOICE_SIMPLEX
                 ElseIf ClientName = "SNCM" Then
-                    OBJ = New InvoiceReport_SNCM
+                    OBJ = RPTINVOICE_SNCM
                 ElseIf ClientName = "NAKODAINFOTECH" Then
-                    OBJ = New InvoiceReport_NI
+                    OBJ = RPTINVOICE_NAKODAINFOTECH
                 ElseIf ClientName = "ABHEE" Then
-                    OBJ = New InvoiceReport_ABHEE
+                    OBJ = RPTINVOICE_ABHEE
                 Else
-                    OBJ = New InvoiceReport_TOTALLEFT
+                    OBJ = RPTINVOICE_TOTALLEFT
                 End If
 
             End If
@@ -2016,8 +2016,8 @@ SKIPINVOICE:
 
             End If
 
-            OBJ.CLOSE
-            OBJ.DISPOSE
+            'OBJ.CLOSE
+            'OBJ.DISPOSE
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
