@@ -889,7 +889,7 @@ line1:
                             TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                         End If
 
-                        If ClientName = "SUPRIYA" Then
+                        If ClientName = "SUPRIYA" Or ClientName = "SIDDHGIRI" Then
                             cmbcity.Text = DT.Rows(0).Item("CITYNAME")
                         End If
 
