@@ -920,6 +920,28 @@ PRINT 1,1")
                             oWrite.WriteLine("PRINT 1,1")
                             oWrite.Dispose()
 
+                        ElseIf ClientName = "MILUXE" Then
+
+                            oWrite.WriteLine("SIZE 105.5 mm, 50.8 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 708,280,""ROMAN.TTF"",180,1,16,""" & CMBMERCHANT.Text.Trim & """
+TEXT 669,226,""ROMAN.TTF"",180,1,16,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 713,174,""ROMAN.TTF"",180,1,16,""" & TXTREMARKS.Text.Trim & """
+BARCODE 794,121,""128M"",65,0,180,4,8,""" & TXTBARCODE.Text.Trim & """
+TEXT 704,50,""ROMAN.TTF"",180,1,12,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1
+")
+                            oWrite.Dispose()
+
                         ElseIf ClientName = "MNARESH" Then
 
                             If TEMPHEADER = "1" Then
