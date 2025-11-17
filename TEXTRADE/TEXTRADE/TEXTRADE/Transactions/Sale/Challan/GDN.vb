@@ -2468,7 +2468,7 @@ NEXTLINE:
                 If UserName <> "Admin" Then CMDSELECTSTOCK.Enabled = False
             End If
 
-            If ClientName = "SHEETAL" Then
+            If ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                 TXTDESCRIPTION.Visible = True
                 TXTDESCRIPTION.TextAlign = HorizontalAlignment.Left
                 TXTDESCRIPTION.Left = CMBQUALITY.Left
@@ -3563,7 +3563,7 @@ LINE1:
                     End If
 
                     If ClientName = "GELATO" Then PER = "Pcs"
-                    If ClientName = "SHEETAL" Then GRIDREMARKS = TXTDESCRIPTION.Text.Trim
+                    If ClientName = "SHEETAL" Or ClientName = "MILUXE" Then GRIDREMARKS = TXTDESCRIPTION.Text.Trim
 
                     GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), GRIDREMARKS, DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, PER, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, 0, 0, "")
                     TOTAL()

@@ -212,7 +212,7 @@ Public Class InHouseChecking
 
 
             For Each row As DataGridViewRow In GRIDCHECKING.Rows
-                If Val(row.Cells(GMTRS.Index).Value) = 0 And ClientName <> "PARAS" And ClientName <> "RAJKRIPA" And ClientName <> "SNCM" Then
+                If Val(row.Cells(GMTRS.Index).Value) = 0 And ClientName <> "PARAS" And ClientName <> "RAJKRIPA" And ClientName <> "SNCM" And ClientName <> "MILUXE" Then
                     EP.SetError(TXTLOTNO, "Recd Mtrs Cannot be kept Blank")
                     bln = False
                 End If

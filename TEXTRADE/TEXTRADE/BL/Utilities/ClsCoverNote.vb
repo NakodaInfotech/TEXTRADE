@@ -78,7 +78,8 @@ Public Class ClsCoverNote
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRANDTOTAL", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -154,6 +155,8 @@ Public Class ClsCoverNote
                 .Add(New SqlClient.SqlParameter("@TOTALPCS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRANDTOTAL", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIPTO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPCOVERNO", alParaval(I)))

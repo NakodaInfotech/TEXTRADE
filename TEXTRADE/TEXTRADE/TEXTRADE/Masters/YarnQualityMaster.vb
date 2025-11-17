@@ -66,6 +66,11 @@ Public Class YarnQualityMaster
             bln = False
         End If
 
+        If ClientName = "AADHAR" And txtremarks.Text.Trim.Length = 0 Then
+            Ep.SetError(CMBHSNCODE, "Fill Remarks ")
+            bln = False
+        End If
+
         If ClientName = "NAYRA" Or ClientName = "AADHAR" And TXTDENIER.Text.Trim.Length = 0 Then
             Ep.SetError(TXTDENIER, "Fill Denier")
             bln = False

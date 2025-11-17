@@ -167,7 +167,7 @@ Public Class payment_advice
                     crTables = OBJPAY_ABHEE.Database.Tables
                 Else
                     crTables = OBJPAY.Database.Tables
-                    If ClientName = "CHINTAN" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
             End If
 
@@ -424,7 +424,7 @@ Public Class payment_advice
                 OBJ = New Paymentreport_ABHEE
             Else
                 OBJ = New Paymentreport
-                If ClientName = "CHINTAN" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
             End If
 
             crTables = OBJ.Database.Tables
