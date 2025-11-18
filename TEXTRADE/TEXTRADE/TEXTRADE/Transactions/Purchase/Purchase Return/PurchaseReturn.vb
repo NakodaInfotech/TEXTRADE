@@ -16,6 +16,8 @@ Public Class PurchaseReturn
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim TEMPMSG As Integer
     Dim ALLOWMANUALBILLNO As Boolean = False
+    Dim ALLOWMANUALPRNO As Boolean = False
+
     Dim a As Integer = 0
     Dim col As New DataGridViewCheckBoxColumn
 
@@ -37,6 +39,14 @@ Public Class PurchaseReturn
         EP.Clear()
 
         If ALLOWMANUALCNDN = True Then
+            TXTPRNO.ReadOnly = False
+            TXTPRNO.BackColor = Color.LemonChiffon
+        Else
+            TXTPRNO.ReadOnly = True
+            TXTPRNO.BackColor = Color.Linen
+        End If
+
+        If ALLOWMANUALPRNO = True Then
             TXTPRNO.ReadOnly = False
             TXTPRNO.BackColor = Color.LemonChiffon
         Else
@@ -473,6 +483,20 @@ Public Class PurchaseReturn
 
                 If dttable.Rows.Count > 0 Then
                     EP.SetError(TXTBILLNO, "Bill No Already Exist")
+                    bln = False
+                End If
+            End If
+        End If
+
+        If ALLOWMANUALPRNO = True Then
+            If TXTBILLNO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
+                Dim OBJCMN As New ClsCommon
+
+                'Dim dttable As DataTable = OBJCMN.search(" ISNULL(CONTRA.CONTRA_no,0) AS CONTRANO, ISNULL(REGISTERMASTER.register_name,'') AS REGNAME", "", " REGISTERMASTER INNER JOIN CONTRA ON REGISTERMASTER.register_id = CONTRA.CONTRA_registerid AND REGISTERMASTER.register_cmpid = CONTRA.CONTRA_cmpid AND REGISTERMASTER.register_yearid = CONTRA.CONTRA_yearid AND REGISTERMASTER.register_locationid = CONTRA.CONTRA_locationid ", "  AND CONTRA.CONTRA_no=" & txtjournalno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND CONTRA.CONTRA_CMPID = " & CmpId & " AND CONTRA.CONTRA_LOCATIONID = " & Locationid & " AND CONTRA.CONTRA_YEARID = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(PURCHASERETURN.PR_no, 0) AS BILLNO, ISNULL(REGISTERMASTER.register_name,'') AS REGNAME", "", " REGISTERMASTER INNER JOIN PURCHASERETURN ON REGISTERMASTER.register_id = PURCHASERETURN.PR_PURREGID AND REGISTERMASTER.register_cmpid = PURCHASERETURN.PR_CMPID AND REGISTERMASTER.register_yearid = PURCHASERETURN.PR_YEARID AND REGISTERMASTER.register_locationid = PURCHASERETURN.PR_LOCATIONID", "  AND PURCHASERETURN.PR_NO=" & TXTPRNO.Text.Trim & " AND REGISTER_NAME = '" & TXTINVREGNAME.Text.Trim & "' AND PURCHASERETURN.PR_cmpid = " & CmpId & " AND PURCHASERETURN.PR_locationid = " & Locationid & " AND PURCHASERETURN.PR_yearid = " & YearId)
+
+                If dttable.Rows.Count > 0 Then
+                    EP.SetError(TXTPRNO, "Bill No Already Exist")
                     bln = False
                 End If
             End If
@@ -959,6 +983,7 @@ Public Class PurchaseReturn
             USERDELETE = DTROW(0).Item(4)
 
             Cursor.Current = Cursors.WaitCursor
+            If ClientName = "SHEETAL" Then ALLOWMANUALPRNO = True
 
             clear()
 
