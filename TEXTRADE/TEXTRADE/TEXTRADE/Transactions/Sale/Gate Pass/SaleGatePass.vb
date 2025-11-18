@@ -1,6 +1,7 @@
 ﻿Imports BL
 Imports System.IO
 Imports System.ComponentModel
+Imports DevExpress.XtraMap
 
 Public Class SaleGatePass
 
@@ -153,7 +154,7 @@ Public Class SaleGatePass
 
             If PBIMAGE1.Image IsNot Nothing Then
                 Dim MS As New IO.MemoryStream
-                PBIMAGE1.Image.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                PBIMAGE1.Image.Save(MS, System.Drawing.Imaging.ImageFormat.Png)
                 alParaval.Add(MS.ToArray)
             Else
                 alParaval.Add(DBNull.Value)
@@ -691,6 +692,8 @@ LINE1:
             Dim i As Integer = 0
             If DTTABLE.Rows.Count > 0 Then
 
+
+
                 ''  GETTING DISTINCT CHALLAN NO IN TEXTBOX
                 Dim DV As DataView = DTTABLE.DefaultView
                 Dim NEWDT As DataTable = DV.ToTable(True, "GDNNO")
@@ -749,6 +752,7 @@ LINE1:
                         Else
                             GRIDGP.Rows.Add(0, 0, dr("NAME"), dr("TRANSNAME"), dr("TOCITY"), dr("ITEMNAME"), dr("QUALITY"), dr("DESIGNNO"), dr("COLOR"), dr("TRANSREFNO"), Val(dr("GDNNO")), Format(Val(dr("PCS")), "0"), Format(Val(dr("MTRS")), "0.00"), Val(dr("NOOFBALES")), Val(dr("TRANSRATE")), 0, Val(dr("GDNNO")), dr("PARTYPONO"), dr("FROMTYPE"), "", "")
                         End If
+LINE1:
                     Next
                 End If
 
@@ -1012,6 +1016,11 @@ LINE1:
 
             End If
 
+            If ClientName = "SHEETAL" Then
+                TXTBARCODE.Visible = True
+                Label2.Visible = True
+            End If
+
             If ClientName = "DRDRAPES" Then GDESCRIPTION.ReadOnly = False
 
             If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAVIRPOLYCOT" Then
@@ -1110,6 +1119,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Sub AUTOCOMPRESSIMG()
         Try
             Dim imgSource As System.Drawing.Image = PBIMAGE1.Image
@@ -1121,18 +1131,18 @@ LINE1:
             Dim intX, intY As Integer
             intX = Int(imgSource.Width / 100 * intPercent)
             intY = Int(imgSource.Height / 100 * intPercent)
-            Dim bm As Drawing.Bitmap = New System.Drawing.Bitmap(intX, intY)
-            Dim g As System.Drawing.Graphics = Drawing.Graphics.FromImage(bm)
+            Dim bm As System.Drawing.Bitmap = New System.Drawing.Bitmap(intX, intY)
+            Dim g As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(bm)
 
             Select Case intType
                 Case 0
-                    g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.Default
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default
                 Case 1
-                    g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.High
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High
                 Case 2
-                    g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBilinear
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear
                 Case 3
-                    g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic
             End Select
 
             g.DrawImage(imgSource, 0, 0, intX, intY)
@@ -1192,14 +1202,21 @@ LINE1:
                     Next
                 ElseIf ClientName = "SHEETAL" Then
 
+                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+                    For Each ROW As DataGridViewRow In GRIDGP.Rows
+                        If Val(ROW.Cells(GGDNNO.Index).Value) = Val(TXTBARCODE.Text.Trim) Then GoTo LINE1
+                    Next
+
                     Dim DTTABLE As New DataTable
                     Dim OBJCMN As New ClsCommon
                     DTTABLE = OBJCMN.SEARCH(" GDN.GDN_NO AS GDNNO, GDN.GDN_DATE AS GDNDATE, ISNULL(GDN.GDN_TRANSREFNO,'') AS CHALLANNO, LEDGERS.Acc_cmpname AS NAME, SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS PCS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS MTRS, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(GDN.GDN_BALENOFROM, 0) AS TOTALBALES, ISNULL(GDN.GDN_TOTALAMT, 0) AS TOTALAMT, 0 AS GPNO, GDN.GDN_DATE AS GPDATE, 'GDN' AS FROMTYPE", "", " GDN INNER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID INNER JOIN LEDGERS ON GDN.GDN_LEDGERID = LEDGERS.ACC_ID INNER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_ID ", " AND GDN.GDN_NO = " & Val(TXTBARCODE.Text.Trim) & " AND GDN.GDN_YEARID = " & YearId & " GROUP BY GDN.GDN_NO, GDN.GDN_DATE, ISNULL(GDN.GDN_TRANSREFNO,''), LEDGERS.Acc_cmpname, ISNULL(GODOWNMASTER.GODOWN_name, ''), ISNULL(GDN.GDN_BALENOFROM, 0), ISNULL(GDN.GDN_TOTALAMT, 0)")
 
                     FETCHDATA(DTTABLE)
+LINE1:
                 End If
             End If
             TXTBARCODE.Clear()
+            TXTBARCODE.Focus()
         Catch ex As Exception
             Throw ex
         End Try
