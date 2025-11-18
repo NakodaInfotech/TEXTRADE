@@ -922,8 +922,7 @@ PRINT 1,1")
 
                         ElseIf ClientName = "MILUXE" Then
 
-                            oWrite.WriteLine("SIZE 105.5 mm, 50.8 mm
-GAP 3 mm, 0 mm
+                            oWrite.WriteLine("SIZE 99.10 mm, 50 mm
 DIRECTION 0,0
 REFERENCE 0,0
 OFFSET 0 mm
@@ -933,14 +932,33 @@ SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
 CODEPAGE 1252
-TEXT 708,280,""ROMAN.TTF"",180,1,16,""" & CMBMERCHANT.Text.Trim & """
-TEXT 669,226,""ROMAN.TTF"",180,1,16,""" & CMBDESIGNNO.Text.Trim & """
-TEXT 713,174,""ROMAN.TTF"",180,1,16,""" & TXTREMARKS.Text.Trim & """
-BARCODE 794,121,""128M"",65,0,180,4,8,""" & TXTBARCODE.Text.Trim & """
-TEXT 704,50,""ROMAN.TTF"",180,1,12,""" & TXTBARCODE.Text.Trim & """
-PRINT 1,1
-")
+TEXT 786,299,""ROMAN.TTF"",180,1,12,""QLT""
+TEXT 716,299,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,299,""ROMAN.TTF"",180,1,12,""" & CMBMERCHANT.Text.Trim & """
+TEXT 786,256,""ROMAN.TTF"",180,1,12,""DSN""
+TEXT 716,256,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,256,""ROMAN.TTF"",180,1,12,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 786,213,""ROMAN.TTF"",180,1,12,""SNO""
+TEXT 716,213,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,213,""ROMAN.TTF"",180,1,12,""" & CMBCOLOR.Text.Trim & """
+BARCODE 786,131,""128M"",73,0,180,2,4,""" & TXTBARCODE.Text.Trim & """
+TEXT 690,53,""ROMAN.TTF"",180,1,10,""" & TXTBARCODE.Text.Trim & """
+TEXT 676,172,""ROMAN.TTF"",180,1,12,""" & TXTREMARKS.Text.Trim & """
+TEXT 372,299,""ROMAN.TTF"",180,1,12,""QLT""
+TEXT 302,299,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,299,""ROMAN.TTF"",180,1,12,""" & CMBMERCHANT.Text.Trim & """
+TEXT 372,256,""ROMAN.TTF"",180,1,12,""DSN""
+TEXT 302,256,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,256,""ROMAN.TTF"",180,1,12,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 372,213,""ROMAN.TTF"",180,1,12,""SNO""
+TEXT 302,213,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,213,""ROMAN.TTF"",180,1,12,""" & CMBCOLOR.Text.Trim & """
+BARCODE 372,131,""128M"",73,0,180,2,4,""" & TXTBARCODE.Text.Trim & """
+TEXT 276,53,""ROMAN.TTF"",180,1,10,""" & TXTBARCODE.Text.Trim & """
+TEXT 262,172,""ROMAN.TTF"",180,1,12,""" & TXTREMARKS.Text.Trim & """
+PRINT 1,1")
                             oWrite.Dispose()
+
 
                         ElseIf ClientName = "MNARESH" Then
 
@@ -2191,6 +2209,45 @@ PRINT 1,1")
                                     oWrite.WriteLine("BARCODE 155,372,""128M"",89,0,270,2,4,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("TEXT 249,265,""ROMAN.TTF"",270,1,8,""" & ROW("BARCODE") & """")
                                     oWrite.WriteLine("PRINT 1,1")
+                                    oWrite.Dispose()
+
+                                ElseIf ClientName = "MILUXE" Then
+
+                                    oWrite.WriteLine("SIZE 99.10 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 786,299,""ROMAN.TTF"",180,1,12,""QLT""
+TEXT 716,299,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,299,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
+TEXT 786,256,""ROMAN.TTF"",180,1,12,""DSN""
+TEXT 716,256,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,256,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
+TEXT 786,213,""ROMAN.TTF"",180,1,12,""SNO""
+TEXT 716,213,""ROMAN.TTF"",180,1,12,"":""
+TEXT 701,213,""ROMAN.TTF"",180,1,12,""" & ROW("SHADE") & """
+BARCODE 786,131,""128M"",73,0,180,2,4,""" & ROW("BARCODE") & """
+TEXT 690,53,""ROMAN.TTF"",180,1,10,""" & ROW("BARCODE") & """
+TEXT 676,172,""ROMAN.TTF"",180,1,12,""" & ROW("REMARKS") & """
+TEXT 372,299,""ROMAN.TTF"",180,1,12,""QLT""
+TEXT 302,299,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,299,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
+TEXT 372,256,""ROMAN.TTF"",180,1,12,""DSN""
+TEXT 302,256,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,256,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
+TEXT 372,213,""ROMAN.TTF"",180,1,12,""SNO""
+TEXT 302,213,""ROMAN.TTF"",180,1,12,"":""
+TEXT 287,213,""ROMAN.TTF"",180,1,12,""" & ROW("SHADE") & """
+BARCODE 372,131,""128M"",73,0,180,2,4,""" & ROW("BARCODE") & """
+TEXT 276,53,""ROMAN.TTF"",180,1,10,""" & ROW("BARCODE") & """
+TEXT 262,172,""ROMAN.TTF"",180,1,12,""" & ROW("REMARKS") & """
+PRINT 1,1")
                                     oWrite.Dispose()
 
                                 ElseIf ClientName = "MNARESH" Then
