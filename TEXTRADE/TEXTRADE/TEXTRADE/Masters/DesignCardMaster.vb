@@ -604,10 +604,10 @@ Public Class DesignCardMaster
                     Exit Sub
                 End If
                 IntResult = objDESIGN.SAVE()
-                txtcardno.Text = IntResult.ToString()
+                'txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
-                tempdesignno = txtcardno.Text.Trim
-
+                'tempdesignno = txtcardno.Text.Trim
+                PRINTREPORT(txtcardno.Text.Trim)
             Else
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -616,6 +616,7 @@ Public Class DesignCardMaster
                 alParaval.Add(tempdesignno)
                 IntResult = objDESIGN.UPDATE()
                 MsgBox("Details Updated")
+                PRINTREPORT(tempdesignno)
             End If
             EDIT = False
 
@@ -1430,6 +1431,7 @@ LINE1:
             Next
         Next
     End Sub
+
     Sub COPYSYM()
         CMBGRIDSYM.Items.Clear()
 
@@ -1695,13 +1697,35 @@ LINE1:
 
         For Each gridRow As DataGridViewRow In GRIDWEFT.Rows
             If gridRow.IsNewRow Then Continue For
-            Dim fsrno As Object = gridRow.Cells("FSRNO").Value
-            Dim matchedRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & fsrno & "'")
+            Dim fsrno1 As Object = gridRow.Cells(FSRNO.Index).Value
+            Dim matchedRows As DataRow() = DT_WEFTDETAILS.Select("FDMAINSRNO = '" & fsrno1 & "'")
             For shadeIdx As Integer = 0 To matchedRows.Length - 1
                 Dim shadeValue As Object = matchedRows(shadeIdx)("FDSHADE")
                 gridRow.Cells("WEFT" & (shadeIdx + 1)).Value = shadeValue
             Next
         Next
+    End Sub
+
+    Private Sub CopyGridWithSubDetails(sourceGrid As DataGridView, targetGrid As DataGridView,
+                                   sourceDetails As DataTable, targetDetails As DataTable)
+
+        'Copy main grid
+        CopyGridEntries(sourceGrid, targetGrid)
+
+        'Clear target details
+        targetDetails.Rows.Clear()
+
+        'Copy sub-grid (DT_WARPDETAILS)
+        For Each srcRow As DataRow In sourceDetails.Rows
+            Dim newRow As DataRow = targetDetails.NewRow()
+
+            newRow("FDSRNO") = srcRow("WDSRNO")
+            newRow("FDSHADE") = srcRow("WDSHADE")
+            newRow("FDMAINSRNO") = srcRow("WDMAINSRNO")
+
+            targetDetails.Rows.Add(newRow)
+        Next
+
     End Sub
     Sub COPYWEFTSYM()
         CMBWEFTGRIDSYMBOL.Items.Clear()
@@ -2709,10 +2733,10 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles cmdcopypattern.Click
         Try
             If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
-                CopyGridEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
+                CopyGridPatternEntries(GRIDWARPPATTERN, GRIDWEFTPATTERN)
                 TOTALWEFTPATTERN()
             End If
         Catch ex As Exception
@@ -2720,7 +2744,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CopyGridEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
+    Private Sub CopyGridPatternEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
         ' Clear existing rows in target if needed
         targetGrid.Rows.Clear()
 
@@ -2748,6 +2772,39 @@ LINE1:
             End If
         Next
     End Sub
+    Private Sub CopyGridEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
+
+        ' Clear existing rows
+        targetGrid.Rows.Clear()
+
+        ' Clear columns but keep structure simple if needed
+        targetGrid.Columns.Clear()
+
+        ' Add ONLY non-WARP columns
+        For Each col As DataGridViewColumn In sourceGrid.Columns
+            If Not col.Name.StartsWith("WARP", StringComparison.OrdinalIgnoreCase) Then
+                targetGrid.Columns.Add(col.Name, col.HeaderText)
+            End If
+        Next
+
+        ' Copy ONLY non-WARP column data
+        For Each srcRow As DataGridViewRow In sourceGrid.Rows
+            If Not srcRow.IsNewRow Then
+                Dim newRowIndex As Integer = targetGrid.Rows.Add()
+                Dim trgRow As DataGridViewRow = targetGrid.Rows(newRowIndex)
+
+                For Each col As DataGridViewColumn In sourceGrid.Columns
+                    If Not col.Name.StartsWith("WARP", StringComparison.OrdinalIgnoreCase) Then
+                        trgRow.Cells(col.Name).Value = srcRow.Cells(col.Name).Value
+                    End If
+                Next
+
+            End If
+        Next
+
+    End Sub
+
+
 
 
     Private Sub GRIDWARPPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPPATTERN.KeyDown
@@ -3766,13 +3823,15 @@ line1:
     End Sub
 
     Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
-        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC()
+        If CMBWARPSHADE.Text <> "" Then FILLGRIDWARPDESC() Else CMDWARPCLOSE.Focus()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles cmdcopymatching.Click
         Try
             If MsgBox("Wish to Copy Weft Pattern Grid?", MsgBoxStyle.YesNo) = vbYes Then
                 CopyGridEntries(GRIDWARP, GRIDWEFT)
+                CopyGridWithSubDetails(GRIDWARPDESC, GRIDWEFTDESC, DT_WARPDETAILS, DT_WEFTDETAILS)
+                POPULATEWEFTGRID()
             End If
         Catch ex As Exception
             Throw ex
@@ -3932,6 +3991,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
         Try
             If TXTLEFTSELENDS.Text <> "" Then TXTRIGHTSELENDS.Text = Val(TXTLEFTSELENDS.Text.Trim)
