@@ -1757,7 +1757,7 @@ LINE1:
                 Exit Sub
             End If
 
-            If ClientName = "MOMAI" Then
+            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Then
                 If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
             End If
 
@@ -1780,7 +1780,7 @@ LINE1:
                 OBJGDN.Show()
             End If
 
-            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Or ClientName = "SHEETAL" Then
+            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Then
                 Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Challan Banner?", MsgBoxStyle.YesNo)
                 If TEMPMSG2 = vbYes Then
                     Dim OBJGDN As New GDNDESIGN
@@ -1798,17 +1798,65 @@ LINE1:
     Sub PRINTBARCODE()
         Try
 
-            'PRINT BARCODE
+            Dim dirresults As String = ""
+            Dim oWrite As System.IO.StreamWriter
+            If ClientName = "SHEETAL" Then
+                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 760,479,""ROMAN.TTF"",180,1,12,""NAME""
+TEXT 649,479,""ROMAN.TTF"",180,1,12,"":""
+TEXT 760,424,""ROMAN.TTF"",180,1,12,""TRANS""
+TEXT 649,424,""ROMAN.TTF"",180,1,12,"":""
+TEXT 760,258,""ROMAN.TTF"",180,1,12,""PCS""
+TEXT 649,258,""ROMAN.TTF"",180,1,12,"":""
+TEXT 625,479,""ROMAN.TTF"",180,1,12,""" & cmbname.Text.Trim & """
+TEXT 625,424,""ROMAN.TTF"",180,1,12,""" & CMBTRANS.Text.Trim & """
+TEXT 625,258,""ROMAN.TTF"",180,1,12,""" & Format(Val(LBLTOTALPCS.Text.Trim), "0") & """
+TEXT 760,314,""ROMAN.TTF"",180,1,12,""BALES""
+TEXT 649,314,""ROMAN.TTF"",180,1,12,"":""
+TEXT 625,314,""ROMAN.TTF"",180,1,12,""" & Format(Val(TXTBALENOFROM.Text.Trim), "0") & """
+TEXT 760,203,""ROMAN.TTF"",180,1,12,""MTRS""
+TEXT 625,203,""ROMAN.TTF"",180,1,12,""" & Format(Val(LBLTOTALMTRS.Text.Trim), "0.00") & """
+TEXT 649,203,""ROMAN.TTF"",180,1,12,"":""
+TEXT 760,369,""ROMAN.TTF"",180,1,12,""DATE""
+TEXT 649,369,""ROMAN.TTF"",180,1,12,"":""
+TEXT 625,369,""ROMAN.TTF"",180,1,12,""" & Format(Convert.ToDateTime(GDNDATE.Text), "dd/MM/yyyy") & """
+TEXT 751,577,""ROMAN.TTF"",180,1,22,""" & UCase(CmpName) & """
+BAR 19,501, 738, 3
+BARCODE 760,149,""128M"",102,0,180,3,6,""" & txtgdnno.Text.Trim & """
+TEXT 443,254,""ROMAN.TTF"",180,1,24,""CH NO""
+TEXT 229,254,""ROMAN.TTF"",180,1,24,"":""
+TEXT 206,254,""ROMAN.TTF"",180,1,24,""" & Val(txtgdnno.Text.Trim) & """
+PRINT 1,1")
+                oWrite.Dispose()
 
-            'GET FRESH DATA FROM DATABASE (ONLY GRID)
-            'THIS IS DONE COZ FOR MULTIUSER THE NOS WILL BE SAME
-            'SO WE WILL ADD BARCODE IN SP AND THEN FETCH THAT DATA HERE AFTER THAT WE WILL PRINT BARCODES
-            'GRIDGDN.RowCount = 0
-            'Dim OBJGDN As New ClsGDN
-            'Dim dttable As DataTable = OBJGDN.SELECTGDN(Val(txtgdnno.Text.Trim), CmpId, Locationid, YearId)
-            'For Each dr As DataRow In dttable.Rows
-            '    GRIDGDN.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("DESC").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), dr("RACK"), dr("SHELF"), Format(dr("WT"), "0.00"), Format(dr("PURRATE"), "0.00"), Format(dr("SALERATE"), "0.00"), Format(dr("WHOLESALERATE"), "0.00"), dr("BARCODE").ToString, dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString)
-            'Next
+
+                'Printing Barcode
+                Dim psi As New ProcessStartInfo()
+                psi.FileName = "cmd.exe"
+                psi.RedirectStandardInput = False
+                psi.RedirectStandardOutput = True
+                psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+                psi.UseShellExecute = False
+
+                Dim proc As Process
+                proc = Process.Start(psi)
+                dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+                proc.WaitForExit()
+                proc.Dispose()
+
+                Exit Sub
+            End If
+
 
             Dim PRINTMRP As Integer
             If ClientName = "MOMAI" Then
@@ -1819,8 +1867,7 @@ LINE1:
 
                 For I As Integer = 0 To Val(ROW.Cells(Gpcs.Index).Value) - 1
 
-                    Dim dirresults As String = ""
-                    Dim oWrite As System.IO.StreamWriter
+
                     oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
 
                     If ClientName = "MOMAI" Then
