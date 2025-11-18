@@ -677,7 +677,15 @@ LINE1:
             OBJSELECTPO.ShowDialog()
 
             DTTABLE = OBJSELECTPO.DT1
+            FETCHDATA(DTTABLE)
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FETCHDATA(DTTABLE As DataTable)
+        Try
             Dim TEMPCHALLANNO As String = ""
 
             Dim i As Integer = 0
@@ -1173,13 +1181,23 @@ LINE1:
     Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
         Try
             If TXTBARCODE.Text.Trim.Length > 0 Then
-                Dim MATCHFOUND As Boolean = False
-                For Each ROW As DataGridViewRow In GRIDGP.Rows
-                    If ROW.Cells(GBARCODE.Index).Value.ToString = TXTBARCODE.Text.Trim Then
-                        ' GRIDGP.Rows(GRIDGP.RowCount - 1).DefaultCellStyle.BackColor = Color.Green
-                        ROW.Cells(GVERIFIED.Index).Value = 1
-                    End If
-                Next
+
+                If ClientName = "SNCM" Then
+                    Dim MATCHFOUND As Boolean = False
+                    For Each ROW As DataGridViewRow In GRIDGP.Rows
+                        If ROW.Cells(GBARCODE.Index).Value.ToString = TXTBARCODE.Text.Trim Then
+                            ' GRIDGP.Rows(GRIDGP.RowCount - 1).DefaultCellStyle.BackColor = Color.Green
+                            ROW.Cells(GVERIFIED.Index).Value = 1
+                        End If
+                    Next
+                ElseIf ClientName = "SHEETAL" Then
+
+                    Dim DTTABLE As New DataTable
+                    Dim OBJCMN As New ClsCommon
+                    DTTABLE = OBJCMN.SEARCH(" GDN.GDN_NO AS GDNNO, GDN.GDN_DATE AS GDNDATE, ISNULL(GDN.GDN_TRANSREFNO,'') AS CHALLANNO, LEDGERS.Acc_cmpname AS NAME, SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS PCS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS MTRS, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(GDN.GDN_BALENOFROM, 0) AS TOTALBALES, ISNULL(GDN.GDN_TOTALAMT, 0) AS TOTALAMT, 0 AS GPNO, GDN.GDN_DATE AS GPDATE, 'GDN' AS FROMTYPE", "", " GDN INNER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID INNER JOIN LEDGERS ON GDN.GDN_LEDGERID = LEDGERS.ACC_ID INNER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_ID ", " AND GDN.GDN_NO = " & Val(TXTBARCODE.Text.Trim) & " AND GDN.GDN_YEARID = " & YearId & " GROUP BY GDN.GDN_NO, GDN.GDN_DATE, ISNULL(GDN.GDN_TRANSREFNO,''), LEDGERS.Acc_cmpname, ISNULL(GODOWNMASTER.GODOWN_name, ''), ISNULL(GDN.GDN_BALENOFROM, 0), ISNULL(GDN.GDN_TOTALAMT, 0)")
+
+                    FETCHDATA(DTTABLE)
+                End If
             End If
             TXTBARCODE.Clear()
         Catch ex As Exception

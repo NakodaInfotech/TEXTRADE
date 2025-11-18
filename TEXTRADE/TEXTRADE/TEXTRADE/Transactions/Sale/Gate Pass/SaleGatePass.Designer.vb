@@ -23,15 +23,15 @@ Partial Class SaleGatePass
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SaleGatePass))
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.LBLNAME = New System.Windows.Forms.Label()
@@ -184,7 +184,7 @@ Partial Class SaleGatePass
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(853, 64)
+        Me.Label1.Location = New System.Drawing.Point(853, 72)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 15)
         Me.Label1.TabIndex = 700
@@ -195,7 +195,7 @@ Partial Class SaleGatePass
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(828, 35)
+        Me.Label3.Location = New System.Drawing.Point(828, 43)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 15)
         Me.Label3.TabIndex = 701
@@ -205,7 +205,7 @@ Partial Class SaleGatePass
         '
         Me.TXTENTRYNO.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTENTRYNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTENTRYNO.Location = New System.Drawing.Point(886, 31)
+        Me.TXTENTRYNO.Location = New System.Drawing.Point(886, 39)
         Me.TXTENTRYNO.Name = "TXTENTRYNO"
         Me.TXTENTRYNO.Size = New System.Drawing.Size(82, 23)
         Me.TXTENTRYNO.TabIndex = 0
@@ -303,7 +303,7 @@ Partial Class SaleGatePass
         Me.CMBVEHICLENAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBVEHICLENAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBVEHICLENAME.FormattingEnabled = True
-        Me.CMBVEHICLENAME.Location = New System.Drawing.Point(886, 89)
+        Me.CMBVEHICLENAME.Location = New System.Drawing.Point(886, 97)
         Me.CMBVEHICLENAME.MaxDropDownItems = 14
         Me.CMBVEHICLENAME.Name = "CMBVEHICLENAME"
         Me.CMBVEHICLENAME.Size = New System.Drawing.Size(132, 23)
@@ -341,7 +341,7 @@ Partial Class SaleGatePass
         Me.TXTBARCODE.BackColor = System.Drawing.Color.White
         Me.TXTBARCODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTBARCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBARCODE.Location = New System.Drawing.Point(1090, 98)
+        Me.TXTBARCODE.Location = New System.Drawing.Point(1090, 97)
         Me.TXTBARCODE.Name = "TXTBARCODE"
         Me.TXTBARCODE.Size = New System.Drawing.Size(132, 23)
         Me.TXTBARCODE.TabIndex = 923
@@ -366,7 +366,7 @@ Partial Class SaleGatePass
         Me.LBLTXTVEHICLENO.BackColor = System.Drawing.Color.Transparent
         Me.LBLTXTVEHICLENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTXTVEHICLENO.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LBLTXTVEHICLENO.Location = New System.Drawing.Point(817, 93)
+        Me.LBLTXTVEHICLENO.Location = New System.Drawing.Point(817, 101)
         Me.LBLTXTVEHICLENO.Name = "LBLTXTVEHICLENO"
         Me.LBLTXTVEHICLENO.Size = New System.Drawing.Size(67, 15)
         Me.LBLTXTVEHICLENO.TabIndex = 913
@@ -377,7 +377,7 @@ Partial Class SaleGatePass
         Me.TXTVEHICLENO.BackColor = System.Drawing.Color.White
         Me.TXTVEHICLENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTVEHICLENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTVEHICLENO.Location = New System.Drawing.Point(886, 89)
+        Me.TXTVEHICLENO.Location = New System.Drawing.Point(886, 97)
         Me.TXTVEHICLENO.Name = "TXTVEHICLENO"
         Me.TXTVEHICLENO.Size = New System.Drawing.Size(132, 23)
         Me.TXTVEHICLENO.TabIndex = 912
@@ -535,7 +535,7 @@ Partial Class SaleGatePass
         Me.DTDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.DTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.DTDATE.Location = New System.Drawing.Point(886, 60)
+        Me.DTDATE.Location = New System.Drawing.Point(886, 68)
         Me.DTDATE.Mask = "00/00/0000"
         Me.DTDATE.Name = "DTDATE"
         Me.DTDATE.Size = New System.Drawing.Size(82, 23)
@@ -633,28 +633,28 @@ Partial Class SaleGatePass
         Me.GRIDGP.AllowUserToDeleteRows = False
         Me.GRIDGP.AllowUserToResizeColumns = False
         Me.GRIDGP.AllowUserToResizeRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDGP.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDGP.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDGP.BackgroundColor = System.Drawing.Color.White
         Me.GRIDGP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDGP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDGP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDGP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDGP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDGP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GVERIFIED, Me.GNAME, Me.GTRANSPORT, Me.GTOCITY, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGN, Me.GSHADE, Me.GDESCRIPTION, Me.GBALENO, Me.Gpcs, Me.Gmtrs, Me.GNOOFBALES, Me.GRATE, Me.GAMOUNT, Me.GGDNNO, Me.GPARTYPONO, Me.GGDNTYPE, Me.GBARCODE, Me.GQTYUNIT})
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDGP.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDGP.DefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDGP.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDGP.Location = New System.Drawing.Point(3, 3)
         Me.GRIDGP.MultiSelect = False
@@ -662,9 +662,9 @@ Partial Class SaleGatePass
         Me.GRIDGP.RowHeadersVisible = False
         Me.GRIDGP.RowHeadersWidth = 30
         Me.GRIDGP.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDGP.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDGP.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDGP.RowTemplate.Height = 20
         Me.GRIDGP.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDGP.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -771,9 +771,9 @@ Partial Class SaleGatePass
         '
         'Gpcs
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.Gpcs.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.Gpcs.DefaultCellStyle = DataGridViewCellStyle3
         Me.Gpcs.HeaderText = "Pcs"
         Me.Gpcs.Name = "Gpcs"
         Me.Gpcs.ReadOnly = True
@@ -783,8 +783,8 @@ Partial Class SaleGatePass
         '
         'Gmtrs
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Gmtrs.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Gmtrs.DefaultCellStyle = DataGridViewCellStyle4
         Me.Gmtrs.HeaderText = "Mtrs"
         Me.Gmtrs.Name = "Gmtrs"
         Me.Gmtrs.ReadOnly = True
@@ -794,8 +794,8 @@ Partial Class SaleGatePass
         '
         'GNOOFBALES
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GNOOFBALES.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GNOOFBALES.DefaultCellStyle = DataGridViewCellStyle5
         Me.GNOOFBALES.HeaderText = "No Of Bales"
         Me.GNOOFBALES.Name = "GNOOFBALES"
         Me.GNOOFBALES.ReadOnly = True
@@ -804,8 +804,8 @@ Partial Class SaleGatePass
         '
         'GRATE
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle6
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -814,8 +814,8 @@ Partial Class SaleGatePass
         '
         'GAMOUNT
         '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GAMOUNT.DefaultCellStyle = DataGridViewCellStyle7
         Me.GAMOUNT.HeaderText = "Amount"
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.ReadOnly = True

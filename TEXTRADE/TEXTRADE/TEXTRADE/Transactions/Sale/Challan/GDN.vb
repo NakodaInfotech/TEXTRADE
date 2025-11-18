@@ -1832,7 +1832,7 @@ TEXT 649,369,""ROMAN.TTF"",180,1,12,"":""
 TEXT 625,369,""ROMAN.TTF"",180,1,12,""" & Format(Convert.ToDateTime(GDNDATE.Text), "dd/MM/yyyy") & """
 TEXT 751,577,""ROMAN.TTF"",180,1,22,""" & UCase(CmpName) & """
 BAR 19,501, 738, 3
-BARCODE 760,149,""128M"",102,0,180,3,6,""" & txtgdnno.Text.Trim & """
+BARCODE 760,149,""128M"",102,0,180,3,6,""" & Val(txtgdnno.Text.Trim) & """
 TEXT 443,254,""ROMAN.TTF"",180,1,24,""CH NO""
 TEXT 229,254,""ROMAN.TTF"",180,1,24,"":""
 TEXT 206,254,""ROMAN.TTF"",180,1,24,""" & Val(txtgdnno.Text.Trim) & """
