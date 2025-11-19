@@ -282,11 +282,12 @@ Public Class DebitNoteDetails
                 OBJDN.REGNAME = cmbregister.Text.Trim
                 OBJDN.PRINTSETTING = PRINTDIALOG
                 OBJDN.BILLNO = Val(ROW("SRNO"))
+                OBJDN.PARTYNAME = ROW("NAME")
                 OBJDN.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJDN.Show()
                 OBJDN.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\DN_" & Val(ROW("SRNO")) & ".pdf")
-                FILENAME.Add("DN_" & Val(ROW("SRNO")) & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "DN_" & Val(ROW("SRNO")) & ".pdf")
+                FILENAME.Add(ROW("NAME") & "DN_" & Val(ROW("SRNO")) & ".pdf")
             Next
 
             If INVOICEMAIL Then

@@ -184,9 +184,9 @@ SKIPINVOICE:
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
                 If FRMSTRING = "CREDIT" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\CN_" & BILLNO & ".pdf"
+                    oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "CN_" & BILLNO & ".pdf"
                 ElseIf FRMSTRING = "DEBIT" Then
-                    oDfDopt.DiskFileName = Application.StartupPath & "\DN_" & BILLNO & ".pdf"
+                    oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "DN_" & BILLNO & ".pdf"
                 ElseIf FRMSTRING = "PROFORMACREDIT" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\CN_" & BILLNO & ".pdf"
                 ElseIf FRMSTRING = "PROFORMADEBIT" Then

@@ -282,6 +282,7 @@ Public Class JobOutDetails
                 OBJJO.PRINTSETTING = PRINTDIALOG
                 OBJJO.FORMULA = "{JOBOUT.JO_NO}=" & Val(ROW("SRNO")) & " and {JOBOUT.JO_yearid}=" & YearId
                 OBJJO.JONO = Val(ROW("SRNO"))
+                OBJJO.PARTYNAME = ROW("NAME")
                 OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJJO.Show()
                 OBJJO.Close()

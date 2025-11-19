@@ -764,7 +764,7 @@ CHECKNEXTLINEMTRS:
 
 
             'DIRECTLY ISSUE TO JOBOUT
-            If EDIT = False And (ClientName = "KRISHNA" Or ClientName = "SOFTAS" Or ClientName = "MANSI" Or ClientName = "SNCM") Then
+            If EDIT = False And (ClientName = "KRISHNA" Or ClientName = "SOFTAS" Or ClientName = "MANSI" Or ClientName = "SNCM" Or ClientName = "MILUXE") Then
                 If MsgBox("Issue Directly to Jobber?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     Dim OBJISSUE As New YarnDirectIssueJobber
                     OBJISSUE.ShowDialog()
