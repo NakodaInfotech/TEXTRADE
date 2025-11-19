@@ -5,6 +5,8 @@ Imports BL
 Imports System.IO
 Imports HtmlAgilityPack
 Imports System.Net
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class SendWhatsapp
 
@@ -114,6 +116,8 @@ Public Class SendWhatsapp
                 GRIDDESIGN.FocusedRowHandle = GRIDDESIGN.RowCount - 1
                 GRIDDESIGN.TopRowIndex = GRIDDESIGN.RowCount - 15
             End If
+            TXTFROM.Clear()
+            TXTTO.Clear()
         Catch ex As Exception
             Throw ex
         End Try
@@ -444,5 +448,63 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub GRIDDESIGN_CustomColumnDisplayText(
+        sender As Object,
+        e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs
+    ) Handles GRIDDESIGN.CustomColumnDisplayText
 
+        Dim view As GridView = CType(sender, GridView)
+
+        If e.Column.FieldName = "SRNO" AndAlso e.ListSourceRowIndex >= 0 Then
+            Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+            If rowHandle >= 0 Then
+                Dim visibleIndex As Integer = view.GetVisibleIndex(rowHandle)
+                e.DisplayText = (visibleIndex + 1).ToString()
+            End If
+        End If
+    End Sub
+
+    Private Sub TXTTO_Validated(sender As Object, e As EventArgs) Handles TXTTO.Validated
+        Try
+            ApplyRangeSelection()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub ApplyRangeSelection()
+        Dim fromNo As Integer
+        Dim toNo As Integer
+
+        ' Validate numbers
+        If Not Integer.TryParse(TXTFROM.Text, fromNo) Then Exit Sub
+        If Not Integer.TryParse(TXTTO.Text, toNo) Then Exit Sub
+
+        ' Swap if user wrote From > To
+        If fromNo > toNo Then
+            Dim tmp = fromNo
+            fromNo = toNo
+            toNo = tmp
+        End If
+
+        Dim view As GridView = GRIDDESIGN
+
+        view.BeginUpdate()
+        Try
+            ' Sab row ke checkbox pehle clear kar do (optional)
+            For i As Integer = 0 To view.RowCount - 1
+                Dim rowHandle As Integer = view.GetVisibleRowHandle(i)
+                If rowHandle < 0 Then Continue For
+
+                ' i = visible index (0-based), isliye SrNo = i + 1
+                Dim srNo As Integer = i + 1
+
+                Dim inRange As Boolean = (srNo >= fromNo AndAlso srNo <= toNo)
+
+                ' "CHK" yaha tumhare checkbox column ka FieldName hai
+                view.SetRowCellValue(rowHandle, "CHK", inRange)
+            Next
+        Finally
+            view.EndUpdate()
+        End Try
+    End Sub
 End Class

@@ -23,6 +23,9 @@ Partial Class SendWhatsapp
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTSALESMANNO = New System.Windows.Forms.TextBox()
+        Me.CMBSALESMAN = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
@@ -44,6 +47,7 @@ Partial Class SendWhatsapp
         Me.GRIDDESIGNDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDDESIGN = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHKDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,9 +78,10 @@ Partial Class SendWhatsapp
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TXTSALESMANNO = New System.Windows.Forms.TextBox()
-        Me.CMBSALESMAN = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -124,6 +129,38 @@ Partial Class SendWhatsapp
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'TXTSALESMANNO
+        '
+        Me.TXTSALESMANNO.Location = New System.Drawing.Point(336, 161)
+        Me.TXTSALESMANNO.MaxLength = 100
+        Me.TXTSALESMANNO.Name = "TXTSALESMANNO"
+        Me.TXTSALESMANNO.Size = New System.Drawing.Size(176, 23)
+        Me.TXTSALESMANNO.TabIndex = 663
+        '
+        'CMBSALESMAN
+        '
+        Me.CMBSALESMAN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSALESMAN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSALESMAN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSALESMAN.FormattingEnabled = True
+        Me.CMBSALESMAN.Location = New System.Drawing.Point(89, 161)
+        Me.CMBSALESMAN.MaxDropDownItems = 14
+        Me.CMBSALESMAN.Name = "CMBSALESMAN"
+        Me.CMBSALESMAN.Size = New System.Drawing.Size(241, 23)
+        Me.CMBSALESMAN.TabIndex = 662
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(22, 165)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(64, 15)
+        Me.Label9.TabIndex = 661
+        Me.Label9.Text = "Sales Man"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabControl1
         '
@@ -255,26 +292,30 @@ Partial Class SendWhatsapp
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage2.Controls.Add(Me.Label11)
+        Me.TabPage2.Controls.Add(Me.Label10)
+        Me.TabPage2.Controls.Add(Me.TXTTO)
+        Me.TabPage2.Controls.Add(Me.TXTFROM)
         Me.TabPage2.Controls.Add(Me.RBUPLOAD)
         Me.TabPage2.Controls.Add(Me.RBPATH)
         Me.TabPage2.Controls.Add(Me.CMDREFRESH)
         Me.TabPage2.Controls.Add(Me.CHKSTOCK)
         Me.TabPage2.Controls.Add(Me.CHKDESIGNSELECTALL)
         Me.TabPage2.Controls.Add(Me.GRIDDESIGNDETAILS)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(705, 531)
+        Me.TabPage2.Size = New System.Drawing.Size(705, 529)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Catalog Selection"
         '
         'RBUPLOAD
         '
         Me.RBUPLOAD.AutoSize = True
-        Me.RBUPLOAD.Location = New System.Drawing.Point(238, 6)
+        Me.RBUPLOAD.Location = New System.Drawing.Point(408, 5)
         Me.RBUPLOAD.Name = "RBUPLOAD"
         Me.RBUPLOAD.Size = New System.Drawing.Size(65, 19)
-        Me.RBUPLOAD.TabIndex = 14
+        Me.RBUPLOAD.TabIndex = 4
         Me.RBUPLOAD.TabStop = True
         Me.RBUPLOAD.Text = "Upload"
         Me.RBUPLOAD.UseVisualStyleBackColor = True
@@ -282,10 +323,10 @@ Partial Class SendWhatsapp
         'RBPATH
         '
         Me.RBPATH.AutoSize = True
-        Me.RBPATH.Location = New System.Drawing.Point(168, 6)
+        Me.RBPATH.Location = New System.Drawing.Point(338, 5)
         Me.RBPATH.Name = "RBPATH"
         Me.RBPATH.Size = New System.Drawing.Size(50, 19)
-        Me.RBPATH.TabIndex = 13
+        Me.RBPATH.TabIndex = 3
         Me.RBPATH.TabStop = True
         Me.RBPATH.Text = "Path"
         Me.RBPATH.UseVisualStyleBackColor = True
@@ -301,7 +342,7 @@ Partial Class SendWhatsapp
         Me.CMDREFRESH.Location = New System.Drawing.Point(478, 2)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 23)
-        Me.CMDREFRESH.TabIndex = 12
+        Me.CMDREFRESH.TabIndex = 5
         Me.CMDREFRESH.Text = "&Refresh"
         Me.CMDREFRESH.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.CMDREFRESH.UseVisualStyleBackColor = False
@@ -328,7 +369,7 @@ Partial Class SendWhatsapp
         Me.CHKDESIGNSELECTALL.Location = New System.Drawing.Point(7, 6)
         Me.CHKDESIGNSELECTALL.Name = "CHKDESIGNSELECTALL"
         Me.CHKDESIGNSELECTALL.Size = New System.Drawing.Size(77, 18)
-        Me.CHKDESIGNSELECTALL.TabIndex = 4
+        Me.CHKDESIGNSELECTALL.TabIndex = 0
         Me.CHKDESIGNSELECTALL.Text = "Select All"
         Me.CHKDESIGNSELECTALL.UseVisualStyleBackColor = False
         '
@@ -347,7 +388,7 @@ Partial Class SendWhatsapp
         '
         Me.GRIDDESIGN.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDDESIGN.Appearance.Row.Options.UseFont = True
-        Me.GRIDDESIGN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKDESIGN, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GCATALOGNO, Me.GFILENAME})
+        Me.GRIDDESIGN.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKDESIGN, Me.GSRNO, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GCATALOGNO, Me.GFILENAME})
         Me.GRIDDESIGN.GridControl = Me.GRIDDESIGNDETAILS
         Me.GRIDDESIGN.Name = "GRIDDESIGN"
         Me.GRIDDESIGN.OptionsBehavior.AllowIncrementalSearch = True
@@ -360,8 +401,18 @@ Partial Class SendWhatsapp
         Me.GCHKDESIGN.FieldName = "CHK"
         Me.GCHKDESIGN.Name = "GCHKDESIGN"
         Me.GCHKDESIGN.Visible = True
-        Me.GCHKDESIGN.VisibleIndex = 0
+        Me.GCHKDESIGN.VisibleIndex = 1
         Me.GCHKDESIGN.Width = 35
+        '
+        'GSRNO
+        '
+        Me.GSRNO.Caption = "No."
+        Me.GSRNO.FieldName = "SRNO"
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.OptionsColumn.AllowEdit = False
+        Me.GSRNO.OptionsFilter.AllowFilter = False
+        Me.GSRNO.Visible = True
+        Me.GSRNO.VisibleIndex = 0
         '
         'GITEMNAME
         '
@@ -371,7 +422,7 @@ Partial Class SendWhatsapp
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
+        Me.GITEMNAME.VisibleIndex = 2
         Me.GITEMNAME.Width = 250
         '
         'GDESIGNNO
@@ -381,7 +432,7 @@ Partial Class SendWhatsapp
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 2
+        Me.GDESIGNNO.VisibleIndex = 3
         Me.GDESIGNNO.Width = 200
         '
         'GSHADE
@@ -391,7 +442,7 @@ Partial Class SendWhatsapp
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.OptionsColumn.AllowEdit = False
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 3
+        Me.GSHADE.VisibleIndex = 4
         Me.GSHADE.Width = 160
         '
         'GCATALOGNO
@@ -686,37 +737,45 @@ Partial Class SendWhatsapp
         Me.Label5.Text = "Other Name"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'TXTSALESMANNO
+        'TXTFROM
         '
-        Me.TXTSALESMANNO.Location = New System.Drawing.Point(336, 161)
-        Me.TXTSALESMANNO.MaxLength = 100
-        Me.TXTSALESMANNO.Name = "TXTSALESMANNO"
-        Me.TXTSALESMANNO.Size = New System.Drawing.Size(176, 23)
-        Me.TXTSALESMANNO.TabIndex = 663
+        Me.TXTFROM.Location = New System.Drawing.Point(154, 2)
+        Me.TXTFROM.MaxLength = 10
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(33, 23)
+        Me.TXTFROM.TabIndex = 1
         '
-        'CMBSALESMAN
+        'TXTTO
         '
-        Me.CMBSALESMAN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSALESMAN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSALESMAN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSALESMAN.FormattingEnabled = True
-        Me.CMBSALESMAN.Location = New System.Drawing.Point(89, 161)
-        Me.CMBSALESMAN.MaxDropDownItems = 14
-        Me.CMBSALESMAN.Name = "CMBSALESMAN"
-        Me.CMBSALESMAN.Size = New System.Drawing.Size(241, 23)
-        Me.CMBSALESMAN.TabIndex = 662
+        Me.TXTTO.Location = New System.Drawing.Point(220, 2)
+        Me.TXTTO.MaxLength = 10
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(33, 23)
+        Me.TXTTO.TabIndex = 2
         '
-        'Label9
+        'Label10
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(22, 165)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(64, 15)
-        Me.Label9.TabIndex = 661
-        Me.Label9.Text = "Sales Man"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(118, 7)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(35, 15)
+        Me.Label10.TabIndex = 664
+        Me.Label10.Text = "From"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(198, 6)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(19, 15)
+        Me.Label11.TabIndex = 666
+        Me.Label11.Text = "To"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'SendWhatsapp
         '
@@ -798,4 +857,9 @@ Partial Class SendWhatsapp
     Friend WithEvents TXTSALESMANNO As TextBox
     Friend WithEvents CMBSALESMAN As ComboBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TXTTO As TextBox
+    Friend WithEvents TXTFROM As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
 End Class
