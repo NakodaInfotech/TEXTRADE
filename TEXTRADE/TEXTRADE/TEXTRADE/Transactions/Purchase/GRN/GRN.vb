@@ -635,7 +635,7 @@ CHECKNEXTLINE:
 
             'coz if it it other item type then mtrs will be blank
             'if want to enable then check for materialtype
-            If ClientName <> "CC" And ClientName <> "C3" And ClientName <> "GELATO" And ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "KREEVE" Then
+            If ClientName <> "CC" And ClientName <> "C3" And ClientName <> "GELATO" And ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "KREEVE" And ClientName <> "LAXMI" Then
                 For Each row As DataGridViewRow In gridgrn.Rows
                     DT = OBJCMN.SEARCH("MATERIAL_NAME", "", "  ITEMMASTER INNER JOIN MATERIALTYPEMASTER ON ITEMMASTER.item_materialtypeid = MATERIALTYPEMASTER.material_id AND ITEMMASTER.item_cmpid = MATERIALTYPEMASTER.material_cmpid AND ITEMMASTER.item_locationid = MATERIALTYPEMASTER.material_locationid AND ITEMMASTER.item_yearid = MATERIALTYPEMASTER.material_yearid ", " AND ITEMMASTER.ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_CMPID = " & CmpId & " AND ITEM_LOCATIONID = " & Locationid & " AND ITEM_YEARID = " & YearId)
                     If Val(row.Cells(GMTRS.Index).Value) = 0 And (DT.Rows(0).Item(0) = "Raw Material" Or DT.Rows(0).Item(0) = "Semi Finished Goods" Or DT.Rows(0).Item(0) = "Finished Goods") Then
@@ -3772,7 +3772,7 @@ LINE1:
 
             If ClientName = "LAXMI" And FRMSTRING = "GRN FANCY" Then
                 LBLBROKER.Text = "Indent Name"
-                LBLBROKER.Location = New Point(LBLBROKER.Location.X - 40, LBLBROKER.Location.Y)
+                LBLBROKER.Location = New Point(LBLBROKER.Location.X - 30, LBLBROKER.Location.Y)
                 CMBPER.Text = "Pcs"
                 LBLLOTNO.Visible = False
                 TXTLOTNO.Visible = False
@@ -4939,7 +4939,7 @@ LINE1:
         Try
             'MTRS NOT MANDATORY FOR MOMAI
             If CMBPIECETYPE.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And Val(txtqty.Text.Trim) > 0 And cmbqtyunit.Text.Trim <> "" Then
-                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
+                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" And ClientName <> "LAXMI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
 
                 If GRIDDOUBLECLICK = False And FRMSTRING = "GRN FANCY" Then
                     If EDIT = True Then
