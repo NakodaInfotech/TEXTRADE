@@ -358,6 +358,10 @@ Public Class SaleOrder
 
     Sub CLEAR()
         Try
+            If ClientName = "LAXMI" Then
+                Label8.Text = "Indent Name"
+                CMBPER.Text = "Pcs"
+            End If
             cmbname.Enabled = True
             CMBPACKING.Enabled = True
             TEMPVERIFIED = False
@@ -2145,7 +2149,11 @@ line1:
                 gdesc.ReadOnly = False
                 GPARTYPONO.HeaderText = "Series"
             End If
-
+            If ClientName = "LAXMI" Then
+                Label8.Text = "Indent Name"
+                Label8.Location = New Point(Label8.Location.X - 40, Label8.Location.Y)
+                CMBPER.Text = "Pcs"
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -57,6 +57,7 @@ Partial Class ProformaInvoice
         Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLWHATSAPP = New System.Windows.Forms.Label()
         Me.TXTTOTALWITHGST = New System.Windows.Forms.TextBox()
         Me.CHKTCS = New System.Windows.Forms.CheckBox()
         Me.TXTTCSPER = New System.Windows.Forms.TextBox()
@@ -120,7 +121,7 @@ Partial Class ProformaInvoice
         Me.LBLBARCODE = New System.Windows.Forms.Label()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.cmbtrans = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LBLAGENT = New System.Windows.Forms.Label()
         Me.LBLRATE = New System.Windows.Forms.Label()
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -359,7 +360,6 @@ Partial Class ProformaInvoice
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.LBLWHATSAPP = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBCN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBRECD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -448,7 +448,7 @@ Partial Class ProformaInvoice
         Me.BlendPanel1.Controls.Add(Me.LBLBARCODE)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans)
-        Me.BlendPanel1.Controls.Add(Me.Label8)
+        Me.BlendPanel1.Controls.Add(Me.LBLAGENT)
         Me.BlendPanel1.Controls.Add(Me.LBLRATE)
         Me.BlendPanel1.Controls.Add(Me.TXTTOTALMTRS)
         Me.BlendPanel1.Controls.Add(Me.Label22)
@@ -504,6 +504,19 @@ Partial Class ProformaInvoice
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'LBLWHATSAPP
+        '
+        Me.LBLWHATSAPP.AutoSize = True
+        Me.LBLWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.LBLWHATSAPP.Font = New System.Drawing.Font("Calibri", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.LBLWHATSAPP.Location = New System.Drawing.Point(1029, -5)
+        Me.LBLWHATSAPP.Name = "LBLWHATSAPP"
+        Me.LBLWHATSAPP.Size = New System.Drawing.Size(205, 36)
+        Me.LBLWHATSAPP.TabIndex = 996
+        Me.LBLWHATSAPP.Text = "WhatsApp Sent"
+        Me.LBLWHATSAPP.Visible = False
         '
         'TXTTOTALWITHGST
         '
@@ -1295,16 +1308,16 @@ Partial Class ProformaInvoice
         Me.cmbtrans.Size = New System.Drawing.Size(220, 23)
         Me.cmbtrans.TabIndex = 13
         '
-        'Label8
+        'LBLAGENT
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(676, 65)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 14)
-        Me.Label8.TabIndex = 704
-        Me.Label8.Text = "Agent"
+        Me.LBLAGENT.AutoSize = True
+        Me.LBLAGENT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLAGENT.Location = New System.Drawing.Point(676, 65)
+        Me.LBLAGENT.Name = "LBLAGENT"
+        Me.LBLAGENT.Size = New System.Drawing.Size(38, 14)
+        Me.LBLAGENT.TabIndex = 704
+        Me.LBLAGENT.Text = "Agent"
         '
         'LBLRATE
         '
@@ -4135,19 +4148,6 @@ Partial Class ProformaInvoice
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'LBLWHATSAPP
-        '
-        Me.LBLWHATSAPP.AutoSize = True
-        Me.LBLWHATSAPP.BackColor = System.Drawing.Color.Transparent
-        Me.LBLWHATSAPP.Font = New System.Drawing.Font("Calibri", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.LBLWHATSAPP.Location = New System.Drawing.Point(1029, -5)
-        Me.LBLWHATSAPP.Name = "LBLWHATSAPP"
-        Me.LBLWHATSAPP.Size = New System.Drawing.Size(205, 36)
-        Me.LBLWHATSAPP.TabIndex = 996
-        Me.LBLWHATSAPP.Text = "WhatsApp Sent"
-        Me.LBLWHATSAPP.Visible = False
-        '
         'ProformaInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4255,7 +4255,7 @@ Partial Class ProformaInvoice
     Friend WithEvents LBLBARCODE As Label
     Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents cmbtrans As ComboBox
-    Friend WithEvents Label8 As Label
+    Friend WithEvents LBLAGENT As Label
     Friend WithEvents LBLRATE As Label
     Friend WithEvents TXTTOTALMTRS As TextBox
     Friend WithEvents Label22 As Label
