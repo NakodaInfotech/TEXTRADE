@@ -1803,6 +1803,7 @@ LINE1:
 
             Dim dirresults As String = ""
             Dim oWrite As System.IO.StreamWriter
+            oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
             If ClientName = "SHEETAL" Then
                 oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
 GAP 3 mm, 0 mm
