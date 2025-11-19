@@ -84,6 +84,7 @@ Partial Class StockFilter
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.RDBGREYSTOCK = New System.Windows.Forms.RadioButton()
         Me.RDBBALECOUNT = New System.Windows.Forms.RadioButton()
         Me.RBCATEGORYITEMDESIGNSHADESMALLNOUNITSUMM = New System.Windows.Forms.RadioButton()
@@ -131,7 +132,7 @@ Partial Class StockFilter
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT = New System.Windows.Forms.RadioButton()
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPDESIGN.SuspendLayout()
         CType(Me.GRIDDESIGNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -896,6 +897,7 @@ Partial Class StockFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBITEMDESIGNSHADESEMISMALLSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBITEMMONTHLYSTOCKSTATEMENT)
         Me.GroupBox3.Controls.Add(Me.RDBGREYSTOCK)
         Me.GroupBox3.Controls.Add(Me.RDBBALECOUNT)
@@ -934,6 +936,16 @@ Partial Class StockFilter
         Me.GroupBox3.Size = New System.Drawing.Size(682, 328)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
+        '
+        'RDBITEMMONTHLYSTOCKSTATEMENT
+        '
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.AutoSize = True
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Location = New System.Drawing.Point(21, 296)
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Name = "RDBITEMMONTHLYSTOCKSTATEMENT"
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Size = New System.Drawing.Size(187, 18)
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.TabIndex = 29
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Text = "Item Monthly Stock Statement"
+        Me.RDBITEMMONTHLYSTOCKSTATEMENT.UseVisualStyleBackColor = True
         '
         'RDBGREYSTOCK
         '
@@ -1422,15 +1434,15 @@ Partial Class StockFilter
         Me.GNAME.VisibleIndex = 1
         Me.GNAME.Width = 230
         '
-        'RDBITEMMONTHLYSTOCKSTATEMENT
+        'RBITEMDESIGNSHADESEMISMALLSUMM
         '
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.AutoSize = True
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Location = New System.Drawing.Point(21, 273)
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Name = "RDBITEMMONTHLYSTOCKSTATEMENT"
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Size = New System.Drawing.Size(187, 18)
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.TabIndex = 29
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.Text = "Item Monthly Stock Statement"
-        Me.RDBITEMMONTHLYSTOCKSTATEMENT.UseVisualStyleBackColor = True
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.AutoSize = True
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Location = New System.Drawing.Point(21, 272)
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Name = "RBITEMDESIGNSHADESEMISMALLSUMM"
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Size = New System.Drawing.Size(215, 18)
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.TabIndex = 30
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Text = "Item - Design - Shade Stock (Small)"
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.UseVisualStyleBackColor = True
         '
         'StockFilter
         '
@@ -1595,4 +1607,5 @@ Partial Class StockFilter
     Friend WithEvents RDBBALECOUNT As RadioButton
     Friend WithEvents RDBGREYSTOCK As RadioButton
     Friend WithEvents RDBITEMMONTHLYSTOCKSTATEMENT As RadioButton
+    Friend WithEvents RBITEMDESIGNSHADESEMISMALLSUMM As RadioButton
 End Class
