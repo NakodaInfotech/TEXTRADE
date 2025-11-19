@@ -189,7 +189,7 @@ Partial Class InvoiceMaster
         Me.LBLBARCODE = New System.Windows.Forms.Label()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.cmbtrans = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LBLAGENT = New System.Windows.Forms.Label()
         Me.LBLRATE = New System.Windows.Forms.Label()
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -870,7 +870,7 @@ Partial Class InvoiceMaster
         Me.BlendPanel1.Controls.Add(Me.LBLBARCODE)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans)
-        Me.BlendPanel1.Controls.Add(Me.Label8)
+        Me.BlendPanel1.Controls.Add(Me.LBLAGENT)
         Me.BlendPanel1.Controls.Add(Me.LBLRATE)
         Me.BlendPanel1.Controls.Add(Me.TXTTOTALMTRS)
         Me.BlendPanel1.Controls.Add(Me.Label22)
@@ -1216,10 +1216,10 @@ Partial Class InvoiceMaster
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.TXTSPECIALREMARKS)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage6.Size = New System.Drawing.Size(216, 63)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "2. Special Remarks"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1238,10 +1238,10 @@ Partial Class InvoiceMaster
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TabPage7.Controls.Add(Me.PBDESIGNIMAGE)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 23)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(216, 64)
+        Me.TabPage7.Size = New System.Drawing.Size(216, 63)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "3. Images"
         '
@@ -2021,16 +2021,16 @@ Partial Class InvoiceMaster
         Me.cmbtrans.Size = New System.Drawing.Size(220, 23)
         Me.cmbtrans.TabIndex = 13
         '
-        'Label8
+        'LBLAGENT
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(676, 65)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 14)
-        Me.Label8.TabIndex = 704
-        Me.Label8.Text = "Agent"
+        Me.LBLAGENT.AutoSize = True
+        Me.LBLAGENT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLAGENT.Location = New System.Drawing.Point(676, 65)
+        Me.LBLAGENT.Name = "LBLAGENT"
+        Me.LBLAGENT.Size = New System.Drawing.Size(38, 14)
+        Me.LBLAGENT.TabIndex = 704
+        Me.LBLAGENT.Text = "Agent"
         '
         'LBLRATE
         '
@@ -5550,7 +5550,7 @@ Partial Class InvoiceMaster
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Friend WithEvents CMDSELECTGDN As System.Windows.Forms.Button
     Friend WithEvents LBLHASTE As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents LBLAGENT As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents TXTMULTISONO As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label

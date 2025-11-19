@@ -3770,6 +3770,14 @@ LINE1:
                 TXTPARTYITEMNAME.Visible = True
             End If
 
+            If ClientName = "LAXMI" And FRMSTRING = "GRN FANCY" Then
+                LBLBROKER.Text = "Indent Name"
+                LBLBROKER.Location = New Point(LBLBROKER.Location.X - 40, LBLBROKER.Location.Y)
+                CMBPER.Text = "Pcs"
+                LBLLOTNO.Visible = False
+                TXTLOTNO.Visible = False
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

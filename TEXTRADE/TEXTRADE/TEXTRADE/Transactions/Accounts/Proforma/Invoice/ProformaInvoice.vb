@@ -50,10 +50,7 @@ Public Class ProformaInvoice
         sodate.Text = Now.Date
         GPDATE.Text = Now.Date
 
-        If ClientName = "LAXMI" Then
-            LBLAGENT.Text = "Indent Name"
-            CMBPER.Text = "Pcs"
-        End If
+
 
         If ALLOWMANUALINVNO = True Then
             TXTINVOICENO.ReadOnly = False
@@ -251,7 +248,10 @@ Public Class ProformaInvoice
 
         TXTMOBILENO.Clear()
         TXTEWAYBILLNO.Clear()
-
+        If ClientName = "LAXMI" Then
+            LBLAGENT.Text = "Indent Name"
+            CMBPER.Text = "Pcs"
+        End If
     End Sub
 
     Sub getmax_INVOICE_no()
@@ -3784,11 +3784,7 @@ LINE1:
                 CHKBILLCHECKED.Enabled = False
                 CHKBILLDISPUTE.Enabled = False
             End If
-            If ClientName = "LAXMI" Then
-                LBLAGENT.Text = "Indent Name"
-                LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
-                CMBPER.Text = "Pcs"
-            End If
+
             If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Then CHKBLANKPAPER.Visible = True
 
             If ClientName = "PARAS" Then LBLCATEGORY.Visible = True
@@ -3939,6 +3935,11 @@ LINE1:
                 LBLHASTE.Visible = True
             End If
 
+            If ClientName = "LAXMI" Then
+                LBLAGENT.Text = "Indent Name"
+                LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
+                CMBPER.Text = "Pcs"
+            End If
         Catch ex As Exception
             Throw ex
         End Try

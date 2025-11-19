@@ -152,7 +152,10 @@ Public Class GDN
         CMBSTOREITEMNAME.Text = ""
         TXTSTOREQTY.Clear()
         CMBSTOREUNIT.Text = ""
-
+        If ClientName = "LAXMI" Then
+            LBLAGENT.Text = "Indent Name"
+            CMBPER.Text = "Pcs"
+        End If
     End Sub
 
     Sub TOTAL()

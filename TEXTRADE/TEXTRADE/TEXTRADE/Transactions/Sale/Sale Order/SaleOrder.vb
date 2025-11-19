@@ -358,10 +358,7 @@ Public Class SaleOrder
 
     Sub CLEAR()
         Try
-            If ClientName = "LAXMI" Then
-                Label8.Text = "Indent Name"
-                CMBPER.Text = "Pcs"
-            End If
+
             cmbname.Enabled = True
             CMBPACKING.Enabled = True
             TEMPVERIFIED = False
@@ -560,7 +557,10 @@ Public Class SaleOrder
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then cmbqtyunit.Text = "Pcs"
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CMBPER.Text = "Qty"
-
+            If ClientName = "LAXMI" Then
+                LBLAGENT.Text = "Indent Name"
+                CMBPER.Text = "Pcs"
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -798,7 +798,7 @@ Public Class SaleOrder
         Return bln
     End Function
 
-        Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbcolor.Validating
+    Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbcolor.Validating
         Try
             If cmbcolor.Text.Trim <> "" Then COLORVALIDATE(cmbcolor, e, Me, CMBDESIGN.Text.Trim, cmbitemname.Text.Trim)
         Catch ex As Exception
@@ -2150,8 +2150,8 @@ line1:
                 GPARTYPONO.HeaderText = "Series"
             End If
             If ClientName = "LAXMI" Then
-                Label8.Text = "Indent Name"
-                Label8.Location = New Point(Label8.Location.X - 40, Label8.Location.Y)
+                LBLAGENT.Text = "Indent Name"
+                LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
             End If
         Catch ex As Exception

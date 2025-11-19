@@ -103,7 +103,7 @@ Partial Class GDN
         Me.podate = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.LBLCONSIGNEE = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LBLAGENT = New System.Windows.Forms.Label()
         Me.txtpono = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.lbllocked = New System.Windows.Forms.Label()
@@ -299,7 +299,7 @@ Partial Class GDN
         Me.BlendPanel1.Controls.Add(Me.podate)
         Me.BlendPanel1.Controls.Add(Me.Label5)
         Me.BlendPanel1.Controls.Add(Me.LBLCONSIGNEE)
-        Me.BlendPanel1.Controls.Add(Me.Label8)
+        Me.BlendPanel1.Controls.Add(Me.LBLAGENT)
         Me.BlendPanel1.Controls.Add(Me.txtpono)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.lbllocked)
@@ -1012,16 +1012,16 @@ Partial Class GDN
         Me.LBLCONSIGNEE.Text = "Consignee"
         Me.LBLCONSIGNEE.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label8
+        'LBLAGENT
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(356, 61)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 14)
-        Me.Label8.TabIndex = 710
-        Me.Label8.Text = "Agent"
+        Me.LBLAGENT.AutoSize = True
+        Me.LBLAGENT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLAGENT.Location = New System.Drawing.Point(356, 61)
+        Me.LBLAGENT.Name = "LBLAGENT"
+        Me.LBLAGENT.Size = New System.Drawing.Size(38, 14)
+        Me.LBLAGENT.TabIndex = 710
+        Me.LBLAGENT.Text = "Agent"
         '
         'txtpono
         '
@@ -2496,7 +2496,7 @@ Partial Class GDN
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents podate As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents LBLAGENT As System.Windows.Forms.Label
     Friend WithEvents LBLTYPE As System.Windows.Forms.Label
     Friend WithEvents CMBCODE As System.Windows.Forms.ComboBox
     Friend WithEvents txtpono As System.Windows.Forms.TextBox
