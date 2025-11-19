@@ -2453,7 +2453,7 @@ Public Class InvoiceMaster
                 OBJGDN.FRMSTRING = "GDN"
                 OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(txtchallan.Text.Trim) & " and {GDN.GDN_yearid}=" & YearId
                 If MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
-                OBJGDN.vendorname = cmbname.Text.Trim
+                OBJGDN.PARTYNAME = cmbname.Text.Trim
                 OBJGDN.agentname = CMBAGENT.Text.Trim
                 OBJGDN.WHITELABEL = CHKBLANKPAPER.Checked
                 OBJGDN.Show()
@@ -8728,7 +8728,7 @@ ERRORMESSAGE:
                     OBJGDN.DIRECTPRINT = True
                     OBJGDN.FRMSTRING = "GDN"
                     OBJGDN.DIRECTMAIL = True
-                    OBJGDN.vendorname = cmbname.Text.Trim
+                    OBJGDN.PARTYNAME = cmbname.Text.Trim
                     OBJGDN.agentname = CMBAGENT.Text.Trim
                     OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(DTROW("GDNNO")) & " and {GDN.GDN_yearid}=" & YearId
                     OBJGDN.JONO = Val(DTROW("GDNNO"))

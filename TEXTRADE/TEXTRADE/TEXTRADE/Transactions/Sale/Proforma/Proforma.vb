@@ -998,7 +998,7 @@ LINE1:
                 OBJPRO.MdiParent = MDIMain
                 OBJPRO.FRMSTRING = "PROFORMA"
                 OBJPRO.FORMULA = "{PROFORMA.PRO_no}=" & Val(PRONO) & " and {PROFORMA.PRO_yearid}=" & YearId
-                OBJPRO.vendorname = cmbname.Text.Trim
+                OBJPRO.PARTYNAME = cmbname.Text.Trim
 
                 OBJPRO.WHITELABEL = CHKWHITELABEL.Checked
                 OBJPRO.HIDEPCSDETAILS = CHKHIDEPCS.Checked

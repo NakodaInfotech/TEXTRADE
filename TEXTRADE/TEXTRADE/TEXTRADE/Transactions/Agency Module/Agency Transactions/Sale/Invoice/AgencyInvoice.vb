@@ -5352,7 +5352,7 @@ SKIPLINE:
                     OBJGDN.DIRECTPRINT = True
                     OBJGDN.FRMSTRING = "GDN"
                     OBJGDN.DIRECTMAIL = True
-                    OBJGDN.vendorname = cmbname.Text.Trim
+                    OBJGDN.PARTYNAME = cmbname.Text.Trim
                     OBJGDN.agentname = CMBAGENT.Text.Trim
                     OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(DTROW("GDNNO")) & " and {GDN.GDN_yearid}=" & YearId
                     OBJGDN.JONO = Val(DTROW("GDNNO"))

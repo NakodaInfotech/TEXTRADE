@@ -240,7 +240,7 @@ NEXTLINE:
                     OBJGDN.DIRECTPRINT = True
                     OBJGDN.FRMSTRING = "GDN"
                     OBJGDN.DIRECTMAIL = True
-                    OBJGDN.vendorname = NAME
+                    OBJGDN.PARTYNAME = NAME
                     OBJGDN.agentname = AGENTNAME
                     OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(DTROW("GDNNO")) & " and {GDN.GDN_yearid}=" & YearId
                     OBJGDN.JONO = Val(DTROW("GDNNO"))

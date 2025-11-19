@@ -907,7 +907,7 @@ LINE1:
             OBJGDN.DIRECTPRINT = True
             OBJGDN.FRMSTRING = "GATEPASS"
             OBJGDN.DIRECTMAIL = True
-            OBJGDN.vendorname = CMBNAME.Text.Trim
+            OBJGDN.PARTYNAME = CMBNAME.Text.Trim
             OBJGDN.agentname = CMBAGENT.Text.Trim
             OBJGDN.FORMULA = "{SALEGATEPASS.GP_NO}=" & Val(GPNO) & " and {SALEGATEPASS.GP_yearid}=" & YearId
             OBJGDN.JONO = GPNO

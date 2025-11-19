@@ -231,7 +231,7 @@ Public Class JobOutDetails
                 OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJJO.Show()
                 OBJJO.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\JOBOUT_" & I & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\JO_" & I & ".pdf")
                 FILENAME.Add("JOBOUT_" & I & ".pdf")
             Next
 
@@ -285,8 +285,8 @@ Public Class JobOutDetails
                 OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJJO.Show()
                 OBJJO.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\JOBOUT_" & Val(ROW("SRNO")) & ".pdf")
-                FILENAME.Add("JOBOUT_" & Val(ROW("SRNO")) & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "JO_" & Val(ROW("SRNO")) & ".pdf")
+                FILENAME.Add(ROW("NAME") & "JO_" & Val(ROW("SRNO")) & ".pdf")
             Next
 
             If INVOICEMAIL Then

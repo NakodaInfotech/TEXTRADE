@@ -1768,7 +1768,7 @@ LINE1:
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "GDN"
                 OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
-                OBJGDN.vendorname = cmbname.Text.Trim
+                OBJGDN.PARTYNAME = cmbname.Text.Trim
                 OBJGDN.agentname = CMBAGENT.Text.Trim
                 If (ClientName = "RAJKRIPA" Or ClientName = "MANISH" Or ClientName = "SSC" Or ClientName = "SNCM") AndAlso MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
                 If ClientName = "MYCOT" Or ClientName = "SHUBHI" Then OBJGDN.PRINTRATE = True
@@ -3425,7 +3425,7 @@ LINE1:
             OBJGDN.FRMSTRING = "GDN"
             If ClientName = "MANSI" AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"
             OBJGDN.DIRECTMAIL = True
-            OBJGDN.vendorname = cmbname.Text.Trim
+            OBJGDN.PARTYNAME = cmbname.Text.Trim
             OBJGDN.agentname = CMBAGENT.Text.Trim
             OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
             OBJGDN.JONO = GDNNO

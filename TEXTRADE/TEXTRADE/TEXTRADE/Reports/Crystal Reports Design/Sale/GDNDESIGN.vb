@@ -100,7 +100,7 @@ Public Class GDNDESIGN
     Dim ConInfo As New CrystalDecisions.Shared.TableLogOnInfo
     Dim expo As New ExportOptions
     ' Dim oDfDopt As New DiskFileDestinationOptions
-    Public vendorname As String
+    Public PARTYNAME As String
     Public agentname As String
     'NEWLY ADDED
 
@@ -589,9 +589,9 @@ Public Class GDNDESIGN
             Transfer()
 
 
-            If vendorname <> "" Then
+            If PARTYNAME <> "" Then
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search(" acc_email ", "", " LEDGERS ", " and ACC_cmpname='" & vendorname & "' and ACC_cmpid=" & CmpId & " and ACC_LOCATIONid=" & Locationid & " and ACC_YEARid=" & YearId)
+                Dim dt As DataTable = objclscommon.search(" acc_email ", "", " LEDGERS ", " and ACC_cmpname='" & PARTYNAME & "' and ACC_cmpid=" & CmpId & " and ACC_LOCATIONid=" & Locationid & " and ACC_YEARid=" & YearId)
                 If dt.Rows.Count > 0 Then
                     emailid = dt.Rows(0).Item(0).ToString
                 End If
@@ -1323,9 +1323,9 @@ Public Class GDNDESIGN
                     'ElseIf FRMSTRING = "JOBINPS" Then
                     '    TEMPATTACHMENT = "JOBINPS"
                 ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
-                    TEMPATTACHMENT = "JOBOUT"
+                    TEMPATTACHMENT = PARTYNAME & "JO"
                 ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
-                    TEMPATTACHMENT = vendorname & "GDN"
+                    TEMPATTACHMENT = PARTYNAME & "GDN"
                 ElseIf FRMSTRING = "TRANSGDN" Then
                     TEMPATTACHMENT = "TRANSGDN"
                 ElseIf FRMSTRING = "PROFORMA" Then

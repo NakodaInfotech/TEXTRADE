@@ -1554,7 +1554,7 @@ LINE1:
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "OPENINGGDN"
                 OBJGDN.FORMULA = "{OPENINGGDN.OPENINGGDN_no}=" & Val(GDNNO) & " and {OPENINGGDN.OPENINGGDN_yearid}=" & YearId
-                OBJGDN.vendorname = cmbname.Text.Trim
+                OBJGDN.PARTYNAME = cmbname.Text.Trim
                 OBJGDN.agentname = CMBAGENT.Text.Trim
                 OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
                 OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
@@ -2949,7 +2949,7 @@ LINE1:
             OBJGDN.DIRECTPRINT = True
             OBJGDN.FRMSTRING = "OPENINGGDN"
             OBJGDN.DIRECTMAIL = True
-            OBJGDN.vendorname = cmbname.Text.Trim
+            OBJGDN.PARTYNAME = cmbname.Text.Trim
             OBJGDN.agentname = CMBAGENT.Text.Trim
             OBJGDN.FORMULA = "{OPENINGGDN.GDN_no}=" & Val(GDNNO) & " and {OPENINGGDN.OPENINGGDN_yearid}=" & YearId
             OBJGDN.JONO = GDNNO

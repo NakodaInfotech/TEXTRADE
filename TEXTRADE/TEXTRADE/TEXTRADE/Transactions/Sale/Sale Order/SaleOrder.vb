@@ -2086,6 +2086,8 @@ line1:
                 CMBQUALITY.TabStop = False
                 cmbcolor.TabStop = False
                 TXTPARTYPONO.TabStop = False
+                LBLHASTE.Visible = True
+                CMBHASTE.Visible = True
                 TXTSONO.TabStop = True
                 TXTSONO.Focus()
             End If

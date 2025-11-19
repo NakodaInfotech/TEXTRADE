@@ -793,7 +793,7 @@ LINE1:
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "PACKINGSLIP"
                 OBJGDN.FORMULA = "{PACKINGSLIP.PS_no}=" & Val(PACKINGNO) & " and {PACKINGSLIP.PS_yearid}=" & YearId
-                OBJGDN.vendorname = cmbname.Text.Trim
+                OBJGDN.PARTYNAME = cmbname.Text.Trim
                 OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
                 OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
                 OBJGDN.Show()
