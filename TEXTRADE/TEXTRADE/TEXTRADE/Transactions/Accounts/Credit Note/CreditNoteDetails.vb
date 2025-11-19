@@ -293,11 +293,12 @@ Public Class CreditNoteDetails
                 OBJCN.REGNAME = cmbregister.Text.Trim
                 OBJCN.PRINTSETTING = PRINTDIALOG
                 OBJCN.BILLNO = Val(ROW("SRNO"))
+                OBJCN.PARTYNAME = ROW("NAME")
                 OBJCN.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJCN.Show()
                 OBJCN.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\CN_" & Val(ROW("SRNO")) & ".pdf")
-                FILENAME.Add("CN_" & Val(ROW("SRNO")) & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "CN_" & Val(ROW("SRNO")) & ".pdf")
+                FILENAME.Add(ROW("NAME") & "CN_" & Val(ROW("SRNO")) & ".pdf")
             Next
 
             If INVOICEMAIL Then
