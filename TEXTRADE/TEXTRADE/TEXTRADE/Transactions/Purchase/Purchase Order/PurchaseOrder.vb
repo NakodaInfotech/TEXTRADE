@@ -181,7 +181,10 @@ Public Class PurchaseOrder
         Else
             CMBORDERTYPE.SelectedIndex = 0
         End If
-
+        If ClientName = "LAXMI" Then
+            LBLBROKER.Text = "Indent Name"
+            CMBPER.Text = "Pcs"
+        End If
     End Sub
 
     Private Sub cmdclear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdclear.Click
@@ -1923,7 +1926,11 @@ LINE1:
             Else
                 CHKVERIFY.Enabled = True
             End If
-
+            If ClientName = "LAXMI" Then
+                LBLBROKER.Text = "Indent Name"
+                LBLBROKER.Location = New Point(LBLBROKER.Location.X - 40, LBLBROKER.Location.Y)
+                CMBPER.Text = "Pcs"
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -220,7 +220,7 @@ Partial Class SaleOrder
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.LBLHASTE = New System.Windows.Forms.Label()
         Me.CMBHASTE = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LBLAGENT = New System.Windows.Forms.Label()
         Me.CMBAGENT = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.lbltotalqty = New System.Windows.Forms.Label()
@@ -448,7 +448,7 @@ Partial Class SaleOrder
         Me.BlendPanel1.Controls.Add(Me.TextBox3)
         Me.BlendPanel1.Controls.Add(Me.LBLHASTE)
         Me.BlendPanel1.Controls.Add(Me.CMBHASTE)
-        Me.BlendPanel1.Controls.Add(Me.Label8)
+        Me.BlendPanel1.Controls.Add(Me.LBLAGENT)
         Me.BlendPanel1.Controls.Add(Me.CMBAGENT)
         Me.BlendPanel1.Controls.Add(Me.Label37)
         Me.BlendPanel1.Controls.Add(Me.lbltotalqty)
@@ -2705,16 +2705,16 @@ Partial Class SaleOrder
         Me.CMBHASTE.TabIndex = 3
         Me.CMBHASTE.Visible = False
         '
-        'Label8
+        'LBLAGENT
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(56, 121)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 14)
-        Me.Label8.TabIndex = 677
-        Me.Label8.Text = "Agent"
+        Me.LBLAGENT.AutoSize = True
+        Me.LBLAGENT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLAGENT.Location = New System.Drawing.Point(56, 121)
+        Me.LBLAGENT.Name = "LBLAGENT"
+        Me.LBLAGENT.Size = New System.Drawing.Size(38, 14)
+        Me.LBLAGENT.TabIndex = 677
+        Me.LBLAGENT.Text = "Agent"
         '
         'CMBAGENT
         '
@@ -4030,7 +4030,7 @@ Partial Class SaleOrder
     Friend WithEvents cmbcolor As System.Windows.Forms.ComboBox
     Friend WithEvents txtQTY As System.Windows.Forms.TextBox
     Friend WithEvents TXTAMOUNT As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents LBLAGENT As System.Windows.Forms.Label
     Friend WithEvents CMBAGENT As System.Windows.Forms.ComboBox
     Friend WithEvents cmbcity As System.Windows.Forms.ComboBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
