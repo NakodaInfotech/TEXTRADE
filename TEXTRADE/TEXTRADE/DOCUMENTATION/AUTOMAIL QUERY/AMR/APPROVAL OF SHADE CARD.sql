@@ -39,11 +39,14 @@ open CUR_MAINNAME
 
 					
 DECLARE @DBODY VARCHAR(MAX)
-			SET @DBODY =	N'<H1 style="font-family:Tahoma; font-size:11px;">ITEM DETAILS</H1>' +
+			SET @DBODY =	N'<html><body>' +
+				N'<H1 style="font-family:Tahoma; font-size:11px;">ITEM DETAILS</H1>' +
 				N'<Table Border = "1">' + 
 				N'<Tr style="font-family:Tahoma; font-size:11px;"><Th>Item Code</Th><Th>Item Name</Th></Tr>'+
 				+ISNULL(@DETAILSBODY,'')+ N'<tfoot><tr>
-				</tr></tfoot></Table></html>'
+				</tr></tfoot></Table>'+
+				 N'<br><b style="font-family:Tahoma; font-size:11px;">Note :- Kindly Ignore If Approved.</b>' +
+				N'</body></html>'
 
 
 			--FOR DETAILS***********************************************************
