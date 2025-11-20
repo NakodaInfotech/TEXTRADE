@@ -348,7 +348,7 @@ Public Class GDN
                 ROW.DefaultCellStyle.BackColor = Color.Empty
 
 
-                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" Then
+                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" And ClientName <> "LAXMI" Then
                     If Val(ROW.Cells(Gmtrs.Index).Value) = 0 Then
                         EP.SetError(cmbname, "Mtrs Cannot be 0")
                         bln = False
@@ -2525,6 +2525,13 @@ NEXTLINE:
                 TXTDESCRIPTION.Left = CMBQUALITY.Left
                 If UserName <> "Admin" Then GRATE.ReadOnly = True
             End If
+
+            If ClientName = "LAXMI" Then
+                LBLAGENT.Text = "Indent Name"
+                LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
+                CMBPER.Text = "Pcs"
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -3020,7 +3027,7 @@ LINE1:
 
 
             If CMBPIECETYPE.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" Then
-                If ClientName <> "MOMAI" And ClientName <> "KREEVE" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
+                If ClientName <> "MOMAI" And ClientName <> "KREEVE" And ClientName <> "LAXMI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
                 If ClientName <> "AMAN" And Val(TXTPCS.Text.Trim) = 0 Then Exit Sub
                 FILLGRID()
                 TOTAL()
@@ -3077,7 +3084,11 @@ LINE1:
             TXTCUT.Clear()
             TXTMTRS.Clear()
             TXTRATE.Clear()
-            CMBPER.SelectedItem = Nothing
+            If ClientName = "LAXMI" Then
+                CMBPER.Text = "Pcs"
+            Else
+                CMBPER.SelectedItem = Nothing
+            End If
             TXTAMOUNT.Clear()
             CMBPIECETYPE.Focus()
         Else

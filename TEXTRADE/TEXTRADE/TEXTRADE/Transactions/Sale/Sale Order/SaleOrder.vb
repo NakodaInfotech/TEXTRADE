@@ -1,5 +1,6 @@
 ﻿
 Imports BL
+Imports DevExpress.CodeParser
 Imports System.ComponentModel
 Imports System.IO
 
@@ -324,7 +325,14 @@ Public Class SaleOrder
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
         If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then TXTMTRS.Clear()
 
-        CMBPER.Text = "Mtrs"
+        If ClientName = "LAXMI" Then
+            CMBPER.Text = "Qty"
+            txtgridremarks.Clear()
+            cmbitemname.Text = ""
+            TXTRATE.Clear()
+        Else
+            CMBPER.Text = "Mtrs"
+        End If
         TXTAMOUNT.Clear()
         If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then cmbqtyunit.Text = "Pcs"
         If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CMBPER.Text = "Qty"
@@ -559,7 +567,7 @@ Public Class SaleOrder
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CMBPER.Text = "Qty"
             If ClientName = "LAXMI" Then
                 LBLAGENT.Text = "Indent Name"
-                CMBPER.Text = "Pcs"
+                CMBPER.Text = "Qty"
             End If
         Catch ex As Exception
             Throw ex
