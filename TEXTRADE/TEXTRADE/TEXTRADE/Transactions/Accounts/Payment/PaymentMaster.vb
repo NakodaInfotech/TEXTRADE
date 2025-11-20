@@ -2031,7 +2031,7 @@ LINE1:
             End If
 
 
-            If ClientName = "SOFTAS" Or ClientName = "SUPRIYA" Or ClientName = "SIMPLEX" Or ClientName = "SIDDHGIRI" Or ClientName = "ABHEE" Then
+            If ClientName = "SOFTAS" Or ClientName = "SUPRIYA" Or ClientName = "SIMPLEX" Or ClientName = "SIDDHGIRI" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then
                 If MsgBox("Wish to Print Bill Nos / Party Bank Details Behind Chq?", MsgBoxStyle.YesNo) = vbYes Then
                     Dim OBJCHQPRINT As New payment_advice
                     OBJCHQPRINT.payno = Val(txtaccno.Text.Trim)
