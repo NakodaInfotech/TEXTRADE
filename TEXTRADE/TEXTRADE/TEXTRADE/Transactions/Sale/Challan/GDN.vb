@@ -2645,7 +2645,7 @@ NEXTLINE:
 
                     If Val(DTROWPS("PCS")) = 0 Then DTROWPS("PCS") = 1
                     If (ClientName <> "SAKARIA" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "MARKIN" And ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SHUBHI" And ClientName <> "SUBHLAXMI" And ClientName <> "SSC" And ClientName <> "RUCHITA" And ClientName <> "SARAYU" And ClientName <> "VALIANT" And ClientName <> "MBB" And ClientName <> "RADHA" And ClientName <> "MONOGRAM" And ClientName <> "SNCM" And ClientName <> "SHAILESHTRADING" And ClientName <> "CHINTAN") AndAlso Val(DTROWPS("CUT")) = 0 Then DTROWPS("CUT") = Val(DTROWPS("MTRS"))
-
+                    
                     Dim PER As String = "Mtrs"
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
@@ -2659,7 +2659,7 @@ NEXTLINE:
                         PER = "Pcs"
                     End If
 
-                    If ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Then PER = "Pcs"
+                    If ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "LAXMI" Then PER = "Pcs"
 
                     'GET RATE FROM PRICELIST
                     If ClientName = "MYCOT" Or ClientName = "SBA" Or ClientName = "DEVEN" Then
@@ -2674,7 +2674,7 @@ NEXTLINE:
                     If ClientName = "AXIS" Or ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Then
                         Dim DTPER As DataTable = OBJCMN.SEARCH("ISNULL(UNIT_ABBR,'Mtrs') AS PER, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON item_unitid = UNIT_ID ", " AND ITEMMASTER.ITEM_NAME = '" & DTROWPS("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                         If DTPER.Rows.Count > 0 Then
-                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
+                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "LAXMI" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
                             If ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "REALCORPORATION" Then CCRATE = Val(DTPER.Rows(0).Item("RATE"))
                         End If
                     End If

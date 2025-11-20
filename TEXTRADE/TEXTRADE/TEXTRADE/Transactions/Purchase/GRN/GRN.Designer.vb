@@ -67,7 +67,7 @@ Partial Class GRN
         Me.LBLGREYKNTTINGNO = New System.Windows.Forms.Label()
         Me.CHKDIRECTFROMKNITTING = New System.Windows.Forms.CheckBox()
         Me.LBLBARCODE = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.LBLCRDAYS = New System.Windows.Forms.Label()
         Me.TXTCRDAYS = New System.Windows.Forms.TextBox()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
         Me.PANELSIZE = New System.Windows.Forms.Panel()
@@ -333,7 +333,7 @@ Partial Class GRN
         Me.BlendPanel1.Controls.Add(Me.LBLGREYKNTTINGNO)
         Me.BlendPanel1.Controls.Add(Me.CHKDIRECTFROMKNITTING)
         Me.BlendPanel1.Controls.Add(Me.LBLBARCODE)
-        Me.BlendPanel1.Controls.Add(Me.Label14)
+        Me.BlendPanel1.Controls.Add(Me.LBLCRDAYS)
         Me.BlendPanel1.Controls.Add(Me.TXTCRDAYS)
         Me.BlendPanel1.Controls.Add(Me.LBLWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.PANELSIZE)
@@ -567,17 +567,17 @@ Partial Class GRN
         Me.LBLBARCODE.Text = "Barcode Printed"
         Me.LBLBARCODE.Visible = False
         '
-        'Label14
+        'LBLCRDAYS
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(576, 130)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(51, 15)
-        Me.Label14.TabIndex = 930
-        Me.Label14.Text = "Cr. Days"
+        Me.LBLCRDAYS.AutoSize = True
+        Me.LBLCRDAYS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCRDAYS.ForeColor = System.Drawing.Color.Black
+        Me.LBLCRDAYS.Location = New System.Drawing.Point(576, 130)
+        Me.LBLCRDAYS.Name = "LBLCRDAYS"
+        Me.LBLCRDAYS.Size = New System.Drawing.Size(51, 15)
+        Me.LBLCRDAYS.TabIndex = 930
+        Me.LBLCRDAYS.Text = "Cr. Days"
         '
         'TXTCRDAYS
         '
@@ -3564,7 +3564,7 @@ Partial Class GRN
     Friend WithEvents GGRIDSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GCHECKDONE As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents Label14 As Label
+    Friend WithEvents LBLCRDAYS As Label
     Friend WithEvents TXTCRDAYS As TextBox
     Friend WithEvents LBLBARCODE As Label
     Friend WithEvents CHKDIRECTFROMKNITTING As CheckBox
