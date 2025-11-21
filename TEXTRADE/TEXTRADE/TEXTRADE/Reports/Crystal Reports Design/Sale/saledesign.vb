@@ -1875,7 +1875,7 @@ SKIPINVOICE:
 
                 'CODE DONE BY GULKIT
                 If INVOICETRANS = True Then
-                    If TRANSPORTCOPYA4 Then OBJ = New InvoiceReport_TOTALTRANSA4 Else OBJ = New InvoiceReport_TOTALTRANS
+                    If TRANSPORTCOPYA4 Then OBJ = RPTINVOICE_TOTALTRANSA4 Else OBJ = RPTINVOICE_TOTALTRANS
                     GoTo SKIPINVOICE
                 End If
 
