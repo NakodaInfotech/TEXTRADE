@@ -4362,7 +4362,7 @@ LINE2:
 
                             If ClientName = "MAHAVIR" Then GDNSRNO = Val(dr("GDNSRNO"))
                             If ClientName = "AVIS" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Then CUT = Val(dr("CUT"))
-                            If ClientName = "PURPLE" Or ClientName = "GELATO" Or ClientName = "MAHAVIR" Or ClientName = "MOMAI" Then PER = "Pcs"
+                            If ClientName = "PURPLE" Or ClientName = "GELATO" Or ClientName = "MAHAVIR" Or ClientName = "MOMAI" Or ClientName = "LAXMI" Then PER = "Pcs"
 
                             'getting per/RATE from itemmaster
                             If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "AXIS" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "DEVEN" Or ClientName = "KREEVE" Or ClientName = "NAYRA" Or ClientName = "MVIKASKUMAR" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KDFAB" Or ClientName = "KUNAL" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "CHINTAN" Or ClientName = "MAFATLAL" Or ClientName = "SUPEEMA" Or ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
@@ -5285,7 +5285,7 @@ LINE1:
 
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Or ClientName = "ARIHANTGARMENTS" Then
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Or ClientName = "ARIHANTGARMENTS" Or ClientName = "LAXMI" Then
             CMBPER.Text = "Pcs"
         Else
             CMBPER.Text = "Mtrs"
@@ -6515,6 +6515,7 @@ LINE1:
                 LBLAGENT.Text = "Indent Name"
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
+                TXTMTRS.TabStop = False
             End If
         Catch ex As Exception
             Throw ex

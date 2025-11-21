@@ -2721,7 +2721,7 @@ LINE1:
 
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC" Or ClientName = "C3"  Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Then
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "JITUBHAI" Or ClientName = "MAHAVIR" Or ClientName = "LAXMI" Then
             CMBPER.Text = "Pcs"
         Else
             CMBPER.Text = "Mtrs"
