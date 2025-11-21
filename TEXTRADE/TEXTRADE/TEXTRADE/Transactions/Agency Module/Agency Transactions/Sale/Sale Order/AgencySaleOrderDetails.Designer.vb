@@ -82,13 +82,14 @@ Partial Class AgencySaleOrderDetails
         Me.GAGENTWHATSAAP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARENTDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +100,7 @@ Partial Class AgencySaleOrderDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CHKPENDING)
         Me.BlendPanel1.Controls.Add(Me.TXTFROM)
@@ -674,6 +676,14 @@ Partial Class AgencySaleOrderDetails
         Me.GPARENTDESIGNNO.Name = "GPARENTDESIGNNO"
         Me.GPARENTDESIGNNO.OptionsColumn.AllowEdit = False
         '
+        'GORDERON
+        '
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 31
+        '
         'cmdexit
         '
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
@@ -728,13 +738,19 @@ Partial Class AgencySaleOrderDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GORDERON
+        'CMDSAVELAYOUT
         '
-        Me.GORDERON.Caption = "Order On"
-        Me.GORDERON.FieldName = "ORDERON"
-        Me.GORDERON.Name = "GORDERON"
-        Me.GORDERON.Visible = True
-        Me.GORDERON.VisibleIndex = 31
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(448, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'AgencySaleOrderDetails
         '
@@ -823,4 +839,5 @@ Partial Class AgencySaleOrderDetails
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
