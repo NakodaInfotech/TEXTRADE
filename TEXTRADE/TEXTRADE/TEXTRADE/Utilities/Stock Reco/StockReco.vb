@@ -290,6 +290,9 @@ Public Class StockReco
         LBLAVGRATE.Text = 0.0
         TXTRATE.ReadOnly = True
         GRATE.ReadOnly = True
+        If ClientName = "LAXMI" Then
+            CMBPER.Text = "Pcs"
+        End If
     End Sub
 
     Function ERRORVALID() As Boolean
@@ -1133,6 +1136,7 @@ LINE1:
             'TXTRATE.Clear()
             TXTAMOUNT.Clear()
             If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus() Else CMBPIECETYPE.Focus()
+            If ClientName = "LAXMI" Then CMBPER.Text = "Pcs"
         Catch ex As Exception
             Throw ex
         End Try
@@ -1201,7 +1205,7 @@ LINE1:
     Private Sub CMBSHELF_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBSHELF.Validated
         Try
             If CMBPIECETYPE.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And Val(txtqty.Text.Trim) > 0 And cmbqtyunit.Text.Trim <> "" Then
-                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
+                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "LAXMI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
                 If ClientName = "SBA" Or ClientName = "SUPEEMA" Or ClientName = "KARAN" Or ClientName = "RMANILAL" Or ClientName = "SST" Or ClientName = "MBB" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
                     Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
                     If ClientName = "SUPEEMA" Then
@@ -1685,6 +1689,9 @@ LINE1:
 
         If ClientName = "SST" Then
             TXTRECONO.ReadOnly = False
+        End If
+        If ClientName = "LAXMI" Then
+            CMBPER.Text = "Pcs"
         End If
     End Sub
 
