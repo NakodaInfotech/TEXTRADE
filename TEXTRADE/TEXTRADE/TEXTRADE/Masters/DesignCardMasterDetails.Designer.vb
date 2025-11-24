@@ -34,15 +34,15 @@ Partial Class DesignCardMasterDetails
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
         Me.GRIDBILLDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GQUALITYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCARDNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDENTSIN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWARPTL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTTL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDENTS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPTTL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTTTL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMAINRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALDENTSMAIN = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,7 +96,7 @@ Partial Class DesignCardMasterDetails
         Me.GGRIEGEWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBLEND = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFINISHMETHOD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITIES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWARPWES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWASTAGE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -243,7 +243,7 @@ Partial Class DesignCardMasterDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GQUALITYNAME, Me.GDESIGNNO, Me.GCARDNO, Me.GDATE, Me.GREED, Me.GREEDSPACE, Me.GDENTSIN, Me.GWARPTL, Me.GWEFTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALDENTSSEL, Me.GWEAVE, Me.GFEPI, Me.GFINISHWIDTH, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFINISHPPI, Me.GTOTALFINISHWT, Me.GSELVEDGEL, Me.GSELDENTSL, Me.GPHOTOGRAPH, Me.GSELVEDGER, Me.GSELDENTSR, Me.GSELENDSL, Me.GSELTENDSL, Me.GSELENDSR, Me.GSELTENDSR, Me.GSELTENDSLR, Me.GSORTREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE, Me.GPIECEMTRS, Me.GNOOFPCS, Me.GLOOM, Me.GBEAMMTRS, Me.GLOOMPROD, Me.GRPM, Me.GCOVERFACTOR, Me.GEFFICIENCY, Me.GGREYDELIVERYAT, Me.GGREYDELDATE, Me.GEPD, Me.GEPI, Me.GSELSIZE, Me.GSELEPDENT, Me.GSELTENDS, Me.GTOTALENDS, Me.GGWIDTH, Me.GFWIDTH, Me.GGRIEGEWT, Me.GBLEND, Me.GFINISHMETHOD, Me.GQUALITIES, Me.GQUALITYTYPE, Me.GWARPWES, Me.GWASTAGE, Me.GSHRINKAGE, Me.GWPP, Me.GWEAVINGCOSTMTR, Me.GGRIEGEFABCOST, Me.GFINISHFABCOST, Me.GPRODDAY, Me.GPIECEL, Me.GGLM, Me.GTOTALMAINENDS, Me.GTOTALDENT, Me.GTOTALDENTSREPEAT})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GDESIGNNO, Me.GCARDNO, Me.GDATE, Me.GREED, Me.GREEDSPACE, Me.GDENTS, Me.GWARPTTL, Me.GWEFTTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALDENTSSEL, Me.GWEAVE, Me.GFEPI, Me.GFINISHWIDTH, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFINISHPPI, Me.GTOTALFINISHWT, Me.GSELVEDGEL, Me.GSELDENTSL, Me.GPHOTOGRAPH, Me.GSELVEDGER, Me.GSELDENTSR, Me.GSELENDSL, Me.GSELTENDSL, Me.GSELENDSR, Me.GSELTENDSR, Me.GSELTENDSLR, Me.GSORTREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE, Me.GPIECEMTRS, Me.GNOOFPCS, Me.GLOOM, Me.GBEAMMTRS, Me.GLOOMPROD, Me.GRPM, Me.GCOVERFACTOR, Me.GEFFICIENCY, Me.GGREYDELIVERYAT, Me.GGREYDELDATE, Me.GEPD, Me.GEPI, Me.GSELSIZE, Me.GSELEPDENT, Me.GSELTENDS, Me.GTOTALENDS, Me.GGWIDTH, Me.GFWIDTH, Me.GGRIEGEWT, Me.GBLEND, Me.GFINISHMETHOD, Me.GQUALITY, Me.GQUALITYTYPE, Me.GWARPWES, Me.GWASTAGE, Me.GSHRINKAGE, Me.GWPP, Me.GWEAVINGCOSTMTR, Me.GGRIEGEFABCOST, Me.GFINISHFABCOST, Me.GPRODDAY, Me.GPIECEL, Me.GGLM, Me.GTOTALMAINENDS, Me.GTOTALDENT, Me.GTOTALDENTSREPEAT})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
@@ -253,15 +253,15 @@ Partial Class DesignCardMasterDetails
         Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
         Me.GRIDBILL.OptionsView.ShowGroupPanel = False
         '
-        'GQUALITYNAME
+        'GITEMNAME
         '
-        Me.GQUALITYNAME.Caption = "Quality Name"
-        Me.GQUALITYNAME.FieldName = "QUALITYNAME"
-        Me.GQUALITYNAME.Name = "GQUALITYNAME"
-        Me.GQUALITYNAME.OptionsColumn.AllowEdit = False
-        Me.GQUALITYNAME.Visible = True
-        Me.GQUALITYNAME.VisibleIndex = 0
-        Me.GQUALITYNAME.Width = 150
+        Me.GITEMNAME.Caption = "Quality Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 0
+        Me.GITEMNAME.Width = 150
         '
         'GDESIGNNO
         '
@@ -311,32 +311,32 @@ Partial Class DesignCardMasterDetails
         Me.GREEDSPACE.Visible = True
         Me.GREEDSPACE.VisibleIndex = 5
         '
-        'GDENTSIN
+        'GDENTS
         '
-        Me.GDENTSIN.Caption = "Dents / In"
-        Me.GDENTSIN.FieldName = "DENTSIN"
-        Me.GDENTSIN.Name = "GDENTSIN"
-        Me.GDENTSIN.OptionsColumn.AllowEdit = False
-        Me.GDENTSIN.Visible = True
-        Me.GDENTSIN.VisibleIndex = 6
+        Me.GDENTS.Caption = "Dents / In"
+        Me.GDENTS.FieldName = "DENTS"
+        Me.GDENTS.Name = "GDENTS"
+        Me.GDENTS.OptionsColumn.AllowEdit = False
+        Me.GDENTS.Visible = True
+        Me.GDENTS.VisibleIndex = 6
         '
-        'GWARPTL
+        'GWARPTTL
         '
-        Me.GWARPTL.Caption = "Warp TL"
-        Me.GWARPTL.FieldName = "WARPTL"
-        Me.GWARPTL.Name = "GWARPTL"
-        Me.GWARPTL.OptionsColumn.AllowEdit = False
-        Me.GWARPTL.Visible = True
-        Me.GWARPTL.VisibleIndex = 7
+        Me.GWARPTTL.Caption = "Warp TL"
+        Me.GWARPTTL.FieldName = "WARPTTL"
+        Me.GWARPTTL.Name = "GWARPTTL"
+        Me.GWARPTTL.OptionsColumn.AllowEdit = False
+        Me.GWARPTTL.Visible = True
+        Me.GWARPTTL.VisibleIndex = 7
         '
-        'GWEFTTL
+        'GWEFTTTL
         '
-        Me.GWEFTTL.Caption = "Weft TL"
-        Me.GWEFTTL.FieldName = "WEFTTL"
-        Me.GWEFTTL.Name = "GWEFTTL"
-        Me.GWEFTTL.OptionsColumn.AllowEdit = False
-        Me.GWEFTTL.Visible = True
-        Me.GWEFTTL.VisibleIndex = 8
+        Me.GWEFTTTL.Caption = "Weft TL"
+        Me.GWEFTTTL.FieldName = "WEFTTTL"
+        Me.GWEFTTTL.Name = "GWEFTTTL"
+        Me.GWEFTTTL.OptionsColumn.AllowEdit = False
+        Me.GWEFTTTL.Visible = True
+        Me.GWEFTTTL.VisibleIndex = 8
         '
         'GPICKS
         '
@@ -816,14 +816,14 @@ Partial Class DesignCardMasterDetails
         Me.GFINISHMETHOD.Visible = True
         Me.GFINISHMETHOD.VisibleIndex = 61
         '
-        'GQUALITIES
+        'GQUALITY
         '
-        Me.GQUALITIES.Caption = "Qualities"
-        Me.GQUALITIES.FieldName = "QUALITIES"
-        Me.GQUALITIES.Name = "GQUALITIES"
-        Me.GQUALITIES.OptionsColumn.AllowEdit = False
-        Me.GQUALITIES.Visible = True
-        Me.GQUALITIES.VisibleIndex = 62
+        Me.GQUALITY.Caption = "Qualities"
+        Me.GQUALITY.FieldName = "QUALITY"
+        Me.GQUALITY.Name = "GQUALITY"
+        Me.GQUALITY.OptionsColumn.AllowEdit = False
+        Me.GQUALITY.Visible = True
+        Me.GQUALITY.VisibleIndex = 62
         '
         'GQUALITYTYPE
         '
@@ -992,14 +992,14 @@ Partial Class DesignCardMasterDetails
     Friend WithEvents GRIDBILLDETAILS As DevExpress.XtraGrid.GridControl
     Friend WithEvents GRIDBILL As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents GQUALITYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREEDSPACE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDENTSIN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWARPTL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTTL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDENTS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPTTL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTTTL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPICKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMAINRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALDENTSMAIN As DevExpress.XtraGrid.Columns.GridColumn
@@ -1054,7 +1054,7 @@ Partial Class DesignCardMasterDetails
     Friend WithEvents GGRIEGEWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBLEND As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFINISHMETHOD As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITIES As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITYTYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWARPWES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWASTAGE As DevExpress.XtraGrid.Columns.GridColumn
