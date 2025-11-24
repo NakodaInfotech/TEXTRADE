@@ -11,7 +11,7 @@ Public Class DesignCardDesign
     Public PERIOD As String
 
     Dim RPTDESIGNCARD As New DesignCardRep
-    Dim RPTDESIGNCARDLBL As New DesignCardlblRep
+    Dim RPTDESIGNCARDLBL As New DesignCardLBL
 
 
     Private Sub DesignCardDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
