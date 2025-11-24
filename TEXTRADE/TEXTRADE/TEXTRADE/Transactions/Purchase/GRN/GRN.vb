@@ -274,7 +274,7 @@ Public Class GRN
 
     Sub HIDEVIEW()
         Try
-            If FRMSTRING = "ThenGRNJOB" Then
+            If FRMSTRING = "GRNJOB" Then
                 LBLDYEINGNAME.Visible = True
                 CMBTONAME.Visible = True
                 LBLLOTNO.Visible = True

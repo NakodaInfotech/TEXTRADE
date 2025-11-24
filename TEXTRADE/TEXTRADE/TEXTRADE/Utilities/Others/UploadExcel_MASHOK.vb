@@ -207,7 +207,6 @@ Public Class UploadExcel_MASHOK
                         frm.CHKMANUAL.Checked = True
 
 
-
                         ' Prepare grid
                         frm.GRIDEXPENSE.Rows.Clear()
                         Dim sr As Integer = 1
@@ -238,11 +237,14 @@ Public Class UploadExcel_MASHOK
                             gridRow.Cells("GHSNCODE").Value = sacCode
                             gridRow.Cells("GNOTE").Value = itemName
                             gridRow.Cells("GQTY").Value = qty
+                            frm.CALC()
                             gridRow.Cells("GRATE").Value = rate
+                            frm.CALC()
                             gridRow.Cells("gAMT").Value = amt
+                            frm.CALC()
                             gridRow.Cells("GOTHERAMT").Value = If(i = 0, otherAmt, 0)
                             gridRow.Cells("GTAXABLEAMT").Value = taxableamt
-                            gridRow.Cells("GGRIDTOTAL").Value = grandtotal
+                            gridRow.Cells("GGRIDTOTAL").Value = amt
 
                             ' Select last added row to populate GST
                             'Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
@@ -250,7 +252,7 @@ Public Class UploadExcel_MASHOK
                             frm.TXTQTY.Text = qty.ToString()
                             frm.TXTRATE.Text = rate.ToString()
                             frm.TXTTAXABLEAMT.Text = amt.ToString()
-                            frm.CMBHSNCODE.Text = sacCode
+                            frm.CMBHSNCODE.Text = SACCODE
 
                             frm.GETHSNCODE()
 
@@ -262,8 +264,9 @@ Public Class UploadExcel_MASHOK
                             gridRow.Cells("GIGSTAMT").Value = frm.TXTIGSTAMT.Text
                             sr += 1
                         Next
+                        frm.TXTGRANDTOTAL.Text = dr("GRAND TOTAL")
 
-                        frm.TOTAL()
+                        'frm.TOTAL()
                         Debug.Print("Passed duplicate check, now doing save")
                         frm.IsBulkUploadtds = True
                         If frm.SaveInvoice(False) Then
