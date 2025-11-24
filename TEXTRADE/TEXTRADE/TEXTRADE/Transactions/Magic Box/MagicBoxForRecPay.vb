@@ -7,6 +7,8 @@ Imports DevExpress.CodeParser
 Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraRichEdit.Model
 Imports iTextSharp
+Imports iTextSharp.text.pdf.qrcode
+Imports Org.BouncyCastle.Asn1
 Public Class MagicBoxForRecPay
 
     Public EDIT As Boolean          'used for editing
@@ -315,6 +317,8 @@ Public Class MagicBoxForRecPay
                         DTTABLE = OBJCLRECEIPT.SAVE()
                     End If
                 End If
+                GENERATEAGENCYCN(Val(ROW.Index))
+
                 'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
                 'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PAYMENT IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
                 Dim OBJCMN As New ClsCommon
@@ -342,9 +346,7 @@ Public Class MagicBoxForRecPay
 
 
                     CREATEPAYMENT(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
-                    If ROW.Cells(GTDSAMT.Index).Value <> "" Then
-                        CREATEJV(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
-                    End If
+                    CREATEJV(Val(ROW.Index), TEMPCMPID, TEMPYEARID)
 
                 End If
 
@@ -397,7 +399,7 @@ NEXTLINE:
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
             End If
-        Else CMBNAME.Text = "ABHEE FABRICS LLP"
+        Else cmbname.Text = "ABHEE FABRICS LLP"
             DTTABLE = getmax(" isnull(max(PAYMENT_no),0) + 1 ", "PAYMENTMASTER", " AND PAYMENT_cmpid=" & CmpId & " and PAYMENT_locationid=" & Locationid & " and PAYMENT_yearid=" & YearId)
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
@@ -543,14 +545,35 @@ NEXTLINE:
             Dim DTTABLE1 As DataTable
             Dim alparaval1 As New ArrayList()
 
-            ' Create a HashSet to track unique entries
             Dim addedEntries1 As New HashSet(Of String)
 
             For Each ROW As DataGridViewRow In GRIDISSUE.Rows
-                Dim billNos As String = (ROW.Cells(GBILLNO.Index).Value.ToString())
+
+                ' --- Split bill numbers ---
+                Dim billNos As String = ROW.Cells(GBILLNO.Index).Value.ToString()
                 Dim billArray() As String = billNos.Split("|"c)
-                For Each billNo As String In billArray
+
+                ' --- Split amounts  ---
+                Dim amtArray() As String = {}
+                If ROW.Cells(GTDSAMT.Index).Value IsNot Nothing Then
+                    amtArray = ROW.Cells(GTDSAMT.Index).Value.ToString().Split("|"c)
+                End If
+
+
+                For i = 0 To billArray.Length - 1
+                    Dim billNo As String = billArray(i).Trim()
                     If String.IsNullOrWhiteSpace(billNo) Then Continue For
+
+                    Dim tdsAmount As Decimal = 0
+                    If amtArray.Length > i Then
+                        Decimal.TryParse(amtArray(i), tdsAmount)
+                    End If
+
+                    ' === NEW CONDITION: SKIP ZERO AMOUNT ENTRIES ===
+                    If tdsAmount = 0 Then
+                        Continue For    ' <-- SKIP saving this JV entry
+                    End If
+
                     If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
 
                         If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
@@ -570,7 +593,7 @@ NEXTLINE:
                             ' Add the row values to alparaval1
                             alparaval1.Clear()
                             alparaval1.Add(0) 'ROW.Cells(GSRNO.Index).Value.ToString())
-                            alparaval1.Add("") '"cmbregister.Text.Trim)
+                            alparaval1.Add("JOURNAL REGISTER") '"cmbregister.Text.Trim)
                             alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
                             alparaval1.Add(0) 'Val(TXTTOTALDR.Text.Trim))
                             alparaval1.Add(0) 'Val(TXTTOTALCR.Text.Trim))
@@ -590,22 +613,22 @@ NEXTLINE:
                             Dim credit As String = ""
                             Dim gridsrno As String = ""
 
-                            For I As Integer = 0 To 1
+                            For j As Integer = 0 To 1
                                 If type = "" Then
                                     type = "Dr"
                                     name = (ROW.Cells(GSELLERNAME.Index).Value.ToString())
                                     paytype = "Against Bill"
-                                    refno = (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
-                                    debit = (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                    refno = billNo ' TXTINITIALS.Text.Trim
+                                    debit = tdsAmount
                                     credit = 0
                                     gridsrno = 1
                                 Else
                                     type = type & "|" & "Cr"
-                                    name = name & "|" & (ROW.Cells(GTDSACC.Index).Value.ToString())
+                                    name = name & "|" & (ROW.Cells(GSELLERNAME.Index).Value.ToString())
                                     paytype = paytype & "|" & "On Account"
-                                    refno = refno & "|" & (ROW.Cells(GBILLNO.Index).Value.ToString()) ' TXTINITIALS.Text.Trim
+                                    refno = refno & "|" & billNo ' TXTINITIALS.Text.Trim
                                     debit = debit & "|" & 0
-                                    credit = credit & "|" & (ROW.Cells(GTDSAMT.Index).Value.ToString())
+                                    credit = credit & "|" & tdsAmount
                                     gridsrno = gridsrno & "|" & 2
                                 End If
                             Next
@@ -641,6 +664,168 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+    Sub GENERATEAGENCYCN(ROWNO As Integer)
+        Try
+            'If cmbname.Text = "ABHEE FABRICS LLP" Then
+            Dim DTTABLE1 As DataTable
+            Dim alparaval1 As New ArrayList()
+
+            Dim addedEntries1 As New HashSet(Of String)
+
+            For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+
+                ' --- Split bill numbers ---
+                Dim billNos As String = ROW.Cells(GBILLNO.Index).Value.ToString()
+                Dim billArray = billNos.Split("|"c).Reverse().ToArray()
+                Dim amtArray = ROW.Cells(GTDSAMT.Index).Value.ToString().Split("|"c).Reverse().ToArray()
+
+
+
+                For i = 0 To billArray.Length - 1
+                    Dim billNo As String = billArray(i).Trim()
+                    If String.IsNullOrWhiteSpace(billNo) Then Continue For
+
+                    Dim tdsAmount As Decimal = 0
+                    If amtArray.Length > i Then
+                        Decimal.TryParse(amtArray(i), tdsAmount)
+                    End If
+
+                    ' === NEW CONDITION: SKIP ZERO AMOUNT ENTRIES ===
+                    If tdsAmount = 0 Then
+                        Continue For    ' <-- SKIP saving this JV entry
+                    End If
+
+                    If ROW.Cells(GPARTYNAME.Index).Value.ToString() = "ABHEE FABRICS LLP [ BUYER ]" Then
+
+                        If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
+                            ' Generate a unique key based on some values in the row (e.g., GSRNO and GACCNAME)
+                            Dim entryKey As String = ROW.Cells(GSRNO.Index).Value.ToString() &
+                                 ROW.Cells(GACCNAME.Index).Value.ToString() &
+                                 ROW.Cells(GPARTYNAME.Index).Value.ToString()
+
+                            ' If the entry has already been added, skip it
+                            If addedEntries1.Contains(entryKey) Then
+                                Continue For
+                            End If
+
+                            ' Add this entry to the HashSet to prevent duplicates
+                            addedEntries1.Add(entryKey)
+
+                            ' Add the row values to alparaval1
+                            alparaval1.Clear()
+
+                            alparaval1.Add(0)    'CNNO
+                            alparaval1.Add("")   'TYPE
+                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'CNDATE
+                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'ACTUALINVDATE
+
+                            alparaval1.Add("")   'BILLNO
+                            alparaval1.Add("")  'PARTYBILLNO
+                            alparaval1.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString()) 'NAME
+                            alparaval1.Add("")   'AGENT
+                            alparaval1.Add(0) 'HSNCODE
+                            alparaval1.Add(ROW.Cells(GSELLERNAME.Index).Value.ToString()) 'DEBITLEDGER
+                            alparaval1.Add(ROW.Cells(GTDSACC.Index).Value.ToString())    'PACKING (add debit to)
+
+                            alparaval1.Add("")   'INVPRINTINITIALS
+                            alparaval1.Add(0)    'PCS
+                            alparaval1.Add(0)    'MTRS
+                            alparaval1.Add(0)    'ACTUALINVAMT
+                            alparaval1.Add(0)    'DISCPER
+
+
+                            alparaval1.Add(Val(tdsAmount))
+                            alparaval1.Add(0)    'TOTALTAXAMT
+                            alparaval1.Add(0)    'OTHERCHGS
+                            alparaval1.Add(0)    'CHARGES
+
+                            alparaval1.Add(0)    'RCM
+                            alparaval1.Add(1)    'MANUALGST (KEEP IT TRUE), AS WE NEED 0 GSTAMT
+                            alparaval1.Add(0)    'MANUALROUNDOFF
+                            alparaval1.Add(1)    'NOGSTR1
+
+                            alparaval1.Add(Val(tdsAmount))
+
+                            alparaval1.Add(0)    'CGSTPER
+                            alparaval1.Add(0)    'CGSTAMT
+                            alparaval1.Add(0)    'SGSTPER
+                            alparaval1.Add(0)    'SGSTAMT
+                            alparaval1.Add(0)    'IGSTPER
+                            alparaval1.Add(0)    'IGSTAMT
+
+                            alparaval1.Add(Val(tdsAmount)) 'TOTALWITHGST
+                            alparaval1.Add(0)    'APPLYTCS
+                            alparaval1.Add(0)    'TCSPER
+                            alparaval1.Add(0)    'TCSAMT
+
+                            alparaval1.Add(0)    'ROUNDOFF
+                            alparaval1.Add(Val(tdsAmount)) 'GTOTAL
+
+                            alparaval1.Add(0)    'RECAMT
+                            alparaval1.Add(0)    'EXTRAAMT
+                            alparaval1.Add(0)    'RETURN
+                            alparaval1.Add(Val(tdsAmount)) 'BAL
+
+                            alparaval1.Add("")   'REMARKS
+                            alparaval1.Add("")   'BILLREMARKS
+                            alparaval1.Add("")   'INWORDS
+
+                            alparaval1.Add(CmpId)
+                            alparaval1.Add(Locationid)
+                            alparaval1.Add(Userid)
+                            alparaval1.Add(YearId)
+                            alparaval1.Add(0)
+
+                            alparaval1.Add("")   'CSRNO)
+                            alparaval1.Add("")   'CCHGS)
+                            alparaval1.Add("")   'CPER)
+                            alparaval1.Add("")   'CAMT)
+                            alparaval1.Add("")   'CTAXID)
+
+                            alparaval1.Add("1")  'GRIDSRNO
+                            alparaval1.Add("Against Bill")   'PAYTYPE
+                            alparaval1.Add(billNo)   'BILLINITIALS
+                            alparaval1.Add("")   'NARR
+                            alparaval1.Add(Val(tdsAmount)) 'ADJAMT
+                            alparaval1.Add(0)    'RECAMT
+                            alparaval1.Add(0)    'EXTRAAMT
+                            alparaval1.Add(0)    'RETURN
+                            alparaval1.Add(Val(tdsAmount)) 'BALANCE
+
+                            alparaval1.Add("")   'IRN
+                            alparaval1.Add("")   'ACKNO
+                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'ACKDATE
+                            alparaval1.Add(DBNull.Value) 'QRCODE
+                            alparaval1.Add("")   'SPREMARKS
+                            alparaval1.Add(0)    'CD
+                            alparaval1.Add("")   'COSTCENTRE
+
+                            alparaval1.Add("")   'COMPLAINT
+                            alparaval1.Add("")   'COMPLAINTBY
+                            alparaval1.Add("")   'COMPLAINTDATE
+
+                            Dim objclsCNmaster As New ClsAgencyCreditNote()
+                            objclsCNmaster.alParaval = alparaval1
+                            'Dim DTTABLE As DataTable = objclsCNmaster.SAVE()
+
+                            ' Only save if not in edit mode
+                            If Not EDIT Then
+                                If Not USERADD Then
+                                    MsgBox("Insufficient Rights")
+                                    Exit Sub
+                                End If
+                                DTTABLE1 = objclsCNmaster.SAVE()
+                            End If
+                        End If
+                    End If
+                Next
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Sub CREATEREC(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
         Try
@@ -1400,8 +1585,8 @@ LINE1:
                         SELECTEDTDSAMT = Val(DTROW("TDS"))
                     Else
                         SELECTEDBILLNO = DTROW("BILLNO") & "|" & SELECTEDBILLNO
-                        SELECTEDAMOUNT = SELECTEDAMOUNT & "|" & Val(DTROW("ADJUSTAMT"))
-                        SELECTEDTDSAMT = SELECTEDTDSAMT & "|" & Val(DTROW("TDS"))
+                        SELECTEDAMOUNT = Val(DTROW("ADJUSTAMT")) & "|" & SELECTEDAMOUNT
+                        SELECTEDTDSAMT = Val(DTROW("TDS")) & "|" & SELECTEDTDSAMT
                     End If
                 Next
                 txtremamount.Text = OBJSELECTBILL.RemAmount
