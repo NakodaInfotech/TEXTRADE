@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class AddressPrint100X50
+Public Class DesignCardLBL
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class AddressPrint100X50
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "AddressPrint100X50.rpt"
+            Return "DesignCardLBL.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class AddressPrint100X50
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.AddressPrint100X50.rpt"
+            Return "TEXTRADE.DesignCardLBL.rpt"
         End Get
         Set
             'Do nothing
@@ -110,7 +110,7 @@ Public Class AddressPrint100X50
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedAddressPrint100X50
+Public Class CachedDesignCardLBL
     Inherits Component
     Implements ICachedReport
     
@@ -152,7 +152,7 @@ Public Class CachedAddressPrint100X50
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As AddressPrint100X50 = New AddressPrint100X50()
+        Dim rpt As DesignCardLBL = New DesignCardLBL()
         rpt.Site = Me.Site
         Return rpt
     End Function
