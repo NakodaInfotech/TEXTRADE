@@ -2990,6 +2990,13 @@ LINE1:
             OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
             OBJCARD.Show()
         End If
+        If MsgBox("Wish to Print Label Print For This Design Card ?", MsgBoxStyle.YesNo) = vbYes Then
+            Dim OBJCARD As New DesignCardDesign
+            OBJCARD.MdiParent = MDIMain
+            OBJCARD.FRMSTRING = "DESIGNCARDLBL"
+            OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
+            OBJCARD.Show()
+        End If
     End Sub
 
     Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
