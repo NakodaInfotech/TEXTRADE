@@ -81,13 +81,13 @@ Public Class AgencyReceipt
 
     Sub CLEAR()
 
-        'If ALLOWMANUALRECNO = True Then
-        '    txtaccno.ReadOnly = False
-        '    txtaccno.BackColor = Color.LemonChiffon
-        'Else
-        '    txtaccno.ReadOnly = True
-        '    txtaccno.BackColor = Color.Linen
-        'End If
+        If ALLOWMANUALRECNO = True Then
+            txtaccno.ReadOnly = False
+            txtaccno.BackColor = Color.LemonChiffon
+        Else
+            txtaccno.ReadOnly = True
+            txtaccno.BackColor = Color.Linen
+        End If
 
         'clearing textboxes
         EP.Clear()
