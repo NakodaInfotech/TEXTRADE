@@ -6516,6 +6516,11 @@ LINE1:
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
                 TXTMTRS.TabStop = False
+                CMBQUALITY.TabStop = False
+                CMBSHADE.TabStop = False
+                TXTBALENO.TabStop = False
+                CMBPER.TabStop = False
+
             End If
         Catch ex As Exception
             Throw ex
