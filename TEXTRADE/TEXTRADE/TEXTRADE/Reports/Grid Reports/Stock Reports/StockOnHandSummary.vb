@@ -48,7 +48,10 @@ Public Class StockOnHandSummary
                 GMILLNAME.Visible = True
                 GMILLNAME.VisibleIndex = GDESIGNNO.VisibleIndex + 1
             End If
-
+            If ClientName = "LAXMI" Then
+                STOCKPRINTABLE = True
+                FRMSTRING = "GRIDSTOCKDETAILS"
+            End If
             fillgrid()
         Catch ex As Exception
             Throw ex
