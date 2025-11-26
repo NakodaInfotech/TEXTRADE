@@ -1,4 +1,5 @@
 ﻿
+
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
@@ -2994,7 +2995,7 @@ LINE1:
             Dim OBJCARD As New DesignCardDesign
             OBJCARD.MdiParent = MDIMain
             OBJCARD.FRMSTRING = "DESIGNCARDLBL"
-            OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
+            OBJCARD.FORMULA = "{DESIGNCARD_LBLPRINT.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD_LBLPRINT.DESIGN_YEARID}=" & YearId
             OBJCARD.Show()
         End If
     End Sub
