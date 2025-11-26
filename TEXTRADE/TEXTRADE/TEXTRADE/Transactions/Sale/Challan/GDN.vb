@@ -155,6 +155,7 @@ Public Class GDN
         If ClientName = "LAXMI" Then
             LBLAGENT.Text = "Indent Name"
             CMBPER.Text = "Pcs"
+            Gpcs.HeaderText = "Qty"
         End If
     End Sub
 
@@ -2530,6 +2531,14 @@ NEXTLINE:
                 LBLAGENT.Text = "Indent Name"
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
+                CMBQUALITY.TabStop = False
+                CMBCOLOR.TabStop = False
+                TXTBALENO.TabStop = False
+                TXTGRIDLOTNO.TabStop = False
+                TXTCUT.TabStop = False
+                TXTMTRS.TabStop = False
+                CMBPER.TabStop = False
+                Gpcs.HeaderText = "Qty"
             End If
 
         Catch ex As Exception

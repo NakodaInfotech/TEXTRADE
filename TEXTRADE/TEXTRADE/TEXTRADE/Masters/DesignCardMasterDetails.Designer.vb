@@ -48,26 +48,26 @@ Partial Class DesignCardMasterDetails
         Me.GTOTALDENTSMAIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGSM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTHREADPERDENT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALDENTSSEL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALSELVEDGEDENTS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWEAVE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFEPI = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GFINISHWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFINISHWIDTHCM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALDENTS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHAFTS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALDESIGNWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GFINISHPPI = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFPPI = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALFINISHWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELVEDGEL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELDENTSL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLEFTSELVEDGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLEFTSELVEDGEDENTS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPHOTOGRAPH = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELVEDGER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELDENTSR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELENDSL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELTENDSL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELENDSR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELTENDSR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSELTENDSLR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSORTREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRIGHTSELVEDGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRIGHTSELVEDGEDENTS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLEFTSELVEDGEEND = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLEFTSELVEDGETOTALEND = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRIGHTSELVEDGEEND = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRIGHTSELVEDGETOTALEND = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALSELVEDGEENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GORDERNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GORDERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -98,9 +98,9 @@ Partial Class DesignCardMasterDetails
         Me.GFINISHMETHOD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWARPWES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWASTAGE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHRINKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPWASTAGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWASTAGEPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSHRINKAGEPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWEAVINGCOSTMTR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIEGEFABCOST = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -243,7 +243,7 @@ Partial Class DesignCardMasterDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GDESIGNNO, Me.GCARDNO, Me.GDATE, Me.GREED, Me.GREEDSPACE, Me.GDENTS, Me.GWARPTTL, Me.GWEFTTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALDENTSSEL, Me.GWEAVE, Me.GFEPI, Me.GFINISHWIDTH, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFINISHPPI, Me.GTOTALFINISHWT, Me.GSELVEDGEL, Me.GSELDENTSL, Me.GPHOTOGRAPH, Me.GSELVEDGER, Me.GSELDENTSR, Me.GSELENDSL, Me.GSELTENDSL, Me.GSELENDSR, Me.GSELTENDSR, Me.GSELTENDSLR, Me.GSORTREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE, Me.GPIECEMTRS, Me.GNOOFPCS, Me.GLOOM, Me.GBEAMMTRS, Me.GLOOMPROD, Me.GRPM, Me.GCOVERFACTOR, Me.GEFFICIENCY, Me.GGREYDELIVERYAT, Me.GGREYDELDATE, Me.GEPD, Me.GEPI, Me.GSELSIZE, Me.GSELEPDENT, Me.GSELTENDS, Me.GTOTALENDS, Me.GGWIDTH, Me.GFWIDTH, Me.GGRIEGEWT, Me.GBLEND, Me.GFINISHMETHOD, Me.GQUALITY, Me.GQUALITYTYPE, Me.GWARPWES, Me.GWASTAGE, Me.GSHRINKAGE, Me.GWPP, Me.GWEAVINGCOSTMTR, Me.GGRIEGEFABCOST, Me.GFINISHFABCOST, Me.GPRODDAY, Me.GPIECEL, Me.GGLM, Me.GTOTALMAINENDS, Me.GTOTALDENT, Me.GTOTALDENTSREPEAT})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GITEMNAME, Me.GDESIGNNO, Me.GCARDNO, Me.GDATE, Me.GREED, Me.GREEDSPACE, Me.GDENTS, Me.GWARPTTL, Me.GWEFTTTL, Me.GPICKS, Me.GMAINRS, Me.GTOTALDENTSMAIN, Me.GGSM, Me.GTHREADPERDENT, Me.GTOTALSELVEDGEDENTS, Me.GWEAVE, Me.GFEPI, Me.GFINISHWIDTHCM, Me.GTOTALDENTS, Me.GSHAFTS, Me.GTOTALDESIGNWT, Me.GFPPI, Me.GTOTALFINISHWT, Me.GLEFTSELVEDGE, Me.GLEFTSELVEDGEDENTS, Me.GPHOTOGRAPH, Me.GRIGHTSELVEDGE, Me.GRIGHTSELVEDGEDENTS, Me.GLEFTSELVEDGEEND, Me.GLEFTSELVEDGETOTALEND, Me.GRIGHTSELVEDGEEND, Me.GRIGHTSELVEDGETOTALEND, Me.GTOTALSELVEDGEENDS, Me.GREFNO, Me.GPARTYNAME, Me.GORDERNO, Me.GORDERDATE, Me.GAGENTNAME, Me.GGREYFIN, Me.GDELIVERYAT, Me.GDELDATE, Me.GPIECEMTRS, Me.GNOOFPCS, Me.GLOOM, Me.GBEAMMTRS, Me.GLOOMPROD, Me.GRPM, Me.GCOVERFACTOR, Me.GEFFICIENCY, Me.GGREYDELIVERYAT, Me.GGREYDELDATE, Me.GEPD, Me.GEPI, Me.GSELSIZE, Me.GSELEPDENT, Me.GSELTENDS, Me.GTOTALENDS, Me.GGWIDTH, Me.GFWIDTH, Me.GGRIEGEWT, Me.GBLEND, Me.GFINISHMETHOD, Me.GQUALITY, Me.GQUALITYTYPE, Me.GWARPWASTAGE, Me.GWASTAGEPER, Me.GSHRINKAGEPER, Me.GWPP, Me.GWEAVINGCOSTMTR, Me.GGRIEGEFABCOST, Me.GFINISHFABCOST, Me.GPRODDAY, Me.GPIECEL, Me.GGLM, Me.GTOTALMAINENDS, Me.GTOTALDENT, Me.GTOTALDENTSREPEAT})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
@@ -384,14 +384,14 @@ Partial Class DesignCardMasterDetails
         Me.GTHREADPERDENT.Visible = True
         Me.GTHREADPERDENT.VisibleIndex = 13
         '
-        'GTOTALDENTSSEL
+        'GTOTALSELVEDGEDENTS
         '
-        Me.GTOTALDENTSSEL.Caption = "Total Dents (Sel)"
-        Me.GTOTALDENTSSEL.FieldName = "TOTALDENTSSEL"
-        Me.GTOTALDENTSSEL.Name = "GTOTALDENTSSEL"
-        Me.GTOTALDENTSSEL.OptionsColumn.AllowEdit = False
-        Me.GTOTALDENTSSEL.Visible = True
-        Me.GTOTALDENTSSEL.VisibleIndex = 14
+        Me.GTOTALSELVEDGEDENTS.Caption = "Total Dents (Sel)"
+        Me.GTOTALSELVEDGEDENTS.FieldName = "TOTALSELVEDGEDENTS"
+        Me.GTOTALSELVEDGEDENTS.Name = "GTOTALSELVEDGEDENTS"
+        Me.GTOTALSELVEDGEDENTS.OptionsColumn.AllowEdit = False
+        Me.GTOTALSELVEDGEDENTS.Visible = True
+        Me.GTOTALSELVEDGEDENTS.VisibleIndex = 14
         '
         'GWEAVE
         '
@@ -411,14 +411,14 @@ Partial Class DesignCardMasterDetails
         Me.GFEPI.Visible = True
         Me.GFEPI.VisibleIndex = 16
         '
-        'GFINISHWIDTH
+        'GFINISHWIDTHCM
         '
-        Me.GFINISHWIDTH.Caption = "Finish Width"
-        Me.GFINISHWIDTH.FieldName = "FINISHWIDTH"
-        Me.GFINISHWIDTH.Name = "GFINISHWIDTH"
-        Me.GFINISHWIDTH.OptionsColumn.AllowEdit = False
-        Me.GFINISHWIDTH.Visible = True
-        Me.GFINISHWIDTH.VisibleIndex = 17
+        Me.GFINISHWIDTHCM.Caption = "Finish Width"
+        Me.GFINISHWIDTHCM.FieldName = "FINISHWIDTHCM"
+        Me.GFINISHWIDTHCM.Name = "GFINISHWIDTHCM"
+        Me.GFINISHWIDTHCM.OptionsColumn.AllowEdit = False
+        Me.GFINISHWIDTHCM.Visible = True
+        Me.GFINISHWIDTHCM.VisibleIndex = 17
         '
         'GTOTALDENTS
         '
@@ -447,14 +447,14 @@ Partial Class DesignCardMasterDetails
         Me.GTOTALDESIGNWT.Visible = True
         Me.GTOTALDESIGNWT.VisibleIndex = 20
         '
-        'GFINISHPPI
+        'GFPPI
         '
-        Me.GFINISHPPI.Caption = "Finish PPI"
-        Me.GFINISHPPI.FieldName = "FINISHPPI"
-        Me.GFINISHPPI.Name = "GFINISHPPI"
-        Me.GFINISHPPI.OptionsColumn.AllowEdit = False
-        Me.GFINISHPPI.Visible = True
-        Me.GFINISHPPI.VisibleIndex = 21
+        Me.GFPPI.Caption = "Finish PPI"
+        Me.GFPPI.FieldName = "FPPI"
+        Me.GFPPI.Name = "GFPPI"
+        Me.GFPPI.OptionsColumn.AllowEdit = False
+        Me.GFPPI.Visible = True
+        Me.GFPPI.VisibleIndex = 21
         '
         'GTOTALFINISHWT
         '
@@ -465,23 +465,23 @@ Partial Class DesignCardMasterDetails
         Me.GTOTALFINISHWT.Visible = True
         Me.GTOTALFINISHWT.VisibleIndex = 22
         '
-        'GSELVEDGEL
+        'GLEFTSELVEDGE
         '
-        Me.GSELVEDGEL.Caption = "Selvedge (L)"
-        Me.GSELVEDGEL.FieldName = "SELVEDGEL"
-        Me.GSELVEDGEL.Name = "GSELVEDGEL"
-        Me.GSELVEDGEL.OptionsColumn.AllowEdit = False
-        Me.GSELVEDGEL.Visible = True
-        Me.GSELVEDGEL.VisibleIndex = 23
+        Me.GLEFTSELVEDGE.Caption = "Selvedge (L)"
+        Me.GLEFTSELVEDGE.FieldName = "LEFTSELVEDGE"
+        Me.GLEFTSELVEDGE.Name = "GLEFTSELVEDGE"
+        Me.GLEFTSELVEDGE.OptionsColumn.AllowEdit = False
+        Me.GLEFTSELVEDGE.Visible = True
+        Me.GLEFTSELVEDGE.VisibleIndex = 23
         '
-        'GSELDENTSL
+        'GLEFTSELVEDGEDENTS
         '
-        Me.GSELDENTSL.Caption = "Sel Dents (L)"
-        Me.GSELDENTSL.FieldName = "SELDENTSL"
-        Me.GSELDENTSL.Name = "GSELDENTSL"
-        Me.GSELDENTSL.OptionsColumn.AllowEdit = False
-        Me.GSELDENTSL.Visible = True
-        Me.GSELDENTSL.VisibleIndex = 24
+        Me.GLEFTSELVEDGEDENTS.Caption = "Sel Dents (L)"
+        Me.GLEFTSELVEDGEDENTS.FieldName = "LEFTSELVEDGEDENTS"
+        Me.GLEFTSELVEDGEDENTS.Name = "GLEFTSELVEDGEDENTS"
+        Me.GLEFTSELVEDGEDENTS.OptionsColumn.AllowEdit = False
+        Me.GLEFTSELVEDGEDENTS.Visible = True
+        Me.GLEFTSELVEDGEDENTS.VisibleIndex = 24
         '
         'GPHOTOGRAPH
         '
@@ -492,77 +492,77 @@ Partial Class DesignCardMasterDetails
         Me.GPHOTOGRAPH.Visible = True
         Me.GPHOTOGRAPH.VisibleIndex = 25
         '
-        'GSELVEDGER
+        'GRIGHTSELVEDGE
         '
-        Me.GSELVEDGER.Caption = "Selvedge (R)"
-        Me.GSELVEDGER.FieldName = "SELVEDGER"
-        Me.GSELVEDGER.Name = "GSELVEDGER"
-        Me.GSELVEDGER.OptionsColumn.AllowEdit = False
-        Me.GSELVEDGER.Visible = True
-        Me.GSELVEDGER.VisibleIndex = 26
+        Me.GRIGHTSELVEDGE.Caption = "Selvedge (R)"
+        Me.GRIGHTSELVEDGE.FieldName = "RIGHTSELVEDGE"
+        Me.GRIGHTSELVEDGE.Name = "GRIGHTSELVEDGE"
+        Me.GRIGHTSELVEDGE.OptionsColumn.AllowEdit = False
+        Me.GRIGHTSELVEDGE.Visible = True
+        Me.GRIGHTSELVEDGE.VisibleIndex = 26
         '
-        'GSELDENTSR
+        'GRIGHTSELVEDGEDENTS
         '
-        Me.GSELDENTSR.Caption = "Sel Dents (R)"
-        Me.GSELDENTSR.FieldName = "SELDENTSR"
-        Me.GSELDENTSR.Name = "GSELDENTSR"
-        Me.GSELDENTSR.OptionsColumn.AllowEdit = False
-        Me.GSELDENTSR.Visible = True
-        Me.GSELDENTSR.VisibleIndex = 27
+        Me.GRIGHTSELVEDGEDENTS.Caption = "Sel Dents (R)"
+        Me.GRIGHTSELVEDGEDENTS.FieldName = "RIGHTSELVEDGEDENTS"
+        Me.GRIGHTSELVEDGEDENTS.Name = "GRIGHTSELVEDGEDENTS"
+        Me.GRIGHTSELVEDGEDENTS.OptionsColumn.AllowEdit = False
+        Me.GRIGHTSELVEDGEDENTS.Visible = True
+        Me.GRIGHTSELVEDGEDENTS.VisibleIndex = 27
         '
-        'GSELENDSL
+        'GLEFTSELVEDGEEND
         '
-        Me.GSELENDSL.Caption = "Sel Ends (L)"
-        Me.GSELENDSL.FieldName = "SELENDSL"
-        Me.GSELENDSL.Name = "GSELENDSL"
-        Me.GSELENDSL.OptionsColumn.AllowEdit = False
-        Me.GSELENDSL.Visible = True
-        Me.GSELENDSL.VisibleIndex = 28
+        Me.GLEFTSELVEDGEEND.Caption = "Sel Ends (L)"
+        Me.GLEFTSELVEDGEEND.FieldName = "LEFTSELVEDGEEND"
+        Me.GLEFTSELVEDGEEND.Name = "GLEFTSELVEDGEEND"
+        Me.GLEFTSELVEDGEEND.OptionsColumn.AllowEdit = False
+        Me.GLEFTSELVEDGEEND.Visible = True
+        Me.GLEFTSELVEDGEEND.VisibleIndex = 28
         '
-        'GSELTENDSL
+        'GLEFTSELVEDGETOTALEND
         '
-        Me.GSELTENDSL.Caption = "Sel T. Ends (L)"
-        Me.GSELTENDSL.FieldName = "SELTENDSL"
-        Me.GSELTENDSL.Name = "GSELTENDSL"
-        Me.GSELTENDSL.OptionsColumn.AllowEdit = False
-        Me.GSELTENDSL.Visible = True
-        Me.GSELTENDSL.VisibleIndex = 29
+        Me.GLEFTSELVEDGETOTALEND.Caption = "Sel T. Ends (L)"
+        Me.GLEFTSELVEDGETOTALEND.FieldName = "LEFTSELVEDGETOTALEND"
+        Me.GLEFTSELVEDGETOTALEND.Name = "GLEFTSELVEDGETOTALEND"
+        Me.GLEFTSELVEDGETOTALEND.OptionsColumn.AllowEdit = False
+        Me.GLEFTSELVEDGETOTALEND.Visible = True
+        Me.GLEFTSELVEDGETOTALEND.VisibleIndex = 29
         '
-        'GSELENDSR
+        'GRIGHTSELVEDGEEND
         '
-        Me.GSELENDSR.Caption = "Sel Ends (R)"
-        Me.GSELENDSR.FieldName = "SELENDSR"
-        Me.GSELENDSR.Name = "GSELENDSR"
-        Me.GSELENDSR.OptionsColumn.AllowEdit = False
-        Me.GSELENDSR.Visible = True
-        Me.GSELENDSR.VisibleIndex = 30
+        Me.GRIGHTSELVEDGEEND.Caption = "Sel Ends (R)"
+        Me.GRIGHTSELVEDGEEND.FieldName = "RIGHTSELVEDGEEND"
+        Me.GRIGHTSELVEDGEEND.Name = "GRIGHTSELVEDGEEND"
+        Me.GRIGHTSELVEDGEEND.OptionsColumn.AllowEdit = False
+        Me.GRIGHTSELVEDGEEND.Visible = True
+        Me.GRIGHTSELVEDGEEND.VisibleIndex = 30
         '
-        'GSELTENDSR
+        'GRIGHTSELVEDGETOTALEND
         '
-        Me.GSELTENDSR.Caption = "Sel T. Ends (R)"
-        Me.GSELTENDSR.FieldName = "SELTENDSR"
-        Me.GSELTENDSR.Name = "GSELTENDSR"
-        Me.GSELTENDSR.OptionsColumn.AllowEdit = False
-        Me.GSELTENDSR.Visible = True
-        Me.GSELTENDSR.VisibleIndex = 31
+        Me.GRIGHTSELVEDGETOTALEND.Caption = "Sel T. Ends (R)"
+        Me.GRIGHTSELVEDGETOTALEND.FieldName = "RIGHTSELVEDGETOTALEND"
+        Me.GRIGHTSELVEDGETOTALEND.Name = "GRIGHTSELVEDGETOTALEND"
+        Me.GRIGHTSELVEDGETOTALEND.OptionsColumn.AllowEdit = False
+        Me.GRIGHTSELVEDGETOTALEND.Visible = True
+        Me.GRIGHTSELVEDGETOTALEND.VisibleIndex = 31
         '
-        'GSELTENDSLR
+        'GTOTALSELVEDGEENDS
         '
-        Me.GSELTENDSLR.Caption = "Sel T. Ends (L+R)"
-        Me.GSELTENDSLR.FieldName = "SELTENDSLR"
-        Me.GSELTENDSLR.Name = "GSELTENDSLR"
-        Me.GSELTENDSLR.OptionsColumn.AllowEdit = False
-        Me.GSELTENDSLR.Visible = True
-        Me.GSELTENDSLR.VisibleIndex = 32
+        Me.GTOTALSELVEDGEENDS.Caption = "Sel T. Ends (L+R)"
+        Me.GTOTALSELVEDGEENDS.FieldName = "TOTALSELVEDGEENDS"
+        Me.GTOTALSELVEDGEENDS.Name = "GTOTALSELVEDGEENDS"
+        Me.GTOTALSELVEDGEENDS.OptionsColumn.AllowEdit = False
+        Me.GTOTALSELVEDGEENDS.Visible = True
+        Me.GTOTALSELVEDGEENDS.VisibleIndex = 32
         '
-        'GSORTREFNO
+        'GREFNO
         '
-        Me.GSORTREFNO.Caption = "Sort /Ref No"
-        Me.GSORTREFNO.FieldName = "SORTREFNO"
-        Me.GSORTREFNO.Name = "GSORTREFNO"
-        Me.GSORTREFNO.OptionsColumn.AllowEdit = False
-        Me.GSORTREFNO.Visible = True
-        Me.GSORTREFNO.VisibleIndex = 33
+        Me.GREFNO.Caption = "Sort /Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 33
         '
         'GPARTYNAME
         '
@@ -834,32 +834,32 @@ Partial Class DesignCardMasterDetails
         Me.GQUALITYTYPE.Visible = True
         Me.GQUALITYTYPE.VisibleIndex = 63
         '
-        'GWARPWES
+        'GWARPWASTAGE
         '
-        Me.GWARPWES.Caption = "warp wes%"
-        Me.GWARPWES.FieldName = "WARPWES"
-        Me.GWARPWES.Name = "GWARPWES"
-        Me.GWARPWES.OptionsColumn.AllowEdit = False
-        Me.GWARPWES.Visible = True
-        Me.GWARPWES.VisibleIndex = 64
+        Me.GWARPWASTAGE.Caption = "warp wes%"
+        Me.GWARPWASTAGE.FieldName = "WARPWASTAGE"
+        Me.GWARPWASTAGE.Name = "GWARPWASTAGE"
+        Me.GWARPWASTAGE.OptionsColumn.AllowEdit = False
+        Me.GWARPWASTAGE.Visible = True
+        Me.GWARPWASTAGE.VisibleIndex = 64
         '
-        'GWASTAGE
+        'GWASTAGEPER
         '
-        Me.GWASTAGE.Caption = "Wastage %"
-        Me.GWASTAGE.FieldName = "WASTAGE"
-        Me.GWASTAGE.Name = "GWASTAGE"
-        Me.GWASTAGE.OptionsColumn.AllowEdit = False
-        Me.GWASTAGE.Visible = True
-        Me.GWASTAGE.VisibleIndex = 65
+        Me.GWASTAGEPER.Caption = "Wastage %"
+        Me.GWASTAGEPER.FieldName = "WASTAGEPER"
+        Me.GWASTAGEPER.Name = "GWASTAGEPER"
+        Me.GWASTAGEPER.OptionsColumn.AllowEdit = False
+        Me.GWASTAGEPER.Visible = True
+        Me.GWASTAGEPER.VisibleIndex = 65
         '
-        'GSHRINKAGE
+        'GSHRINKAGEPER
         '
-        Me.GSHRINKAGE.Caption = "Shrinkage %"
-        Me.GSHRINKAGE.FieldName = "SHRINKAGE"
-        Me.GSHRINKAGE.Name = "GSHRINKAGE"
-        Me.GSHRINKAGE.OptionsColumn.AllowEdit = False
-        Me.GSHRINKAGE.Visible = True
-        Me.GSHRINKAGE.VisibleIndex = 66
+        Me.GSHRINKAGEPER.Caption = "Shrinkage %"
+        Me.GSHRINKAGEPER.FieldName = "SHRINKAGEPER"
+        Me.GSHRINKAGEPER.Name = "GSHRINKAGEPER"
+        Me.GSHRINKAGEPER.OptionsColumn.AllowEdit = False
+        Me.GSHRINKAGEPER.Visible = True
+        Me.GSHRINKAGEPER.VisibleIndex = 66
         '
         'GWPP
         '
@@ -1005,26 +1005,26 @@ Partial Class DesignCardMasterDetails
     Friend WithEvents GTOTALDENTSMAIN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGSM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTHREADPERDENT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALDENTSSEL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALSELVEDGEDENTS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWEAVE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFEPI As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GFINISHWIDTH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFINISHWIDTHCM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALDENTS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSHAFTS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALDESIGNWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GFINISHPPI As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFPPI As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALFINISHWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELVEDGEL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELDENTSL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLEFTSELVEDGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLEFTSELVEDGEDENTS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPHOTOGRAPH As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELVEDGER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELDENTSR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELENDSL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELTENDSL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELENDSR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELTENDSR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSELTENDSLR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSORTREFNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRIGHTSELVEDGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRIGHTSELVEDGEDENTS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLEFTSELVEDGEEND As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLEFTSELVEDGETOTALEND As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRIGHTSELVEDGEEND As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRIGHTSELVEDGETOTALEND As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALSELVEDGEENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GORDERNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GORDERDATE As DevExpress.XtraGrid.Columns.GridColumn
@@ -1056,9 +1056,9 @@ Partial Class DesignCardMasterDetails
     Friend WithEvents GFINISHMETHOD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITYTYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWARPWES As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWASTAGE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHRINKAGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPWASTAGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWASTAGEPER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSHRINKAGEPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWPP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWEAVINGCOSTMTR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIEGEFABCOST As DevExpress.XtraGrid.Columns.GridColumn
