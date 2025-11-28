@@ -1,4 +1,5 @@
 ﻿
+
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
@@ -2988,6 +2989,13 @@ LINE1:
             OBJCARD.MdiParent = MDIMain
             OBJCARD.FRMSTRING = "DESIGNCARD"
             OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
+            OBJCARD.Show()
+        End If
+        If MsgBox("Wish to Print Label Print For This Design Card ?", MsgBoxStyle.YesNo) = vbYes Then
+            Dim OBJCARD As New DesignCardDesign
+            OBJCARD.MdiParent = MDIMain
+            OBJCARD.FRMSTRING = "DESIGNCARDLBL"
+            OBJCARD.FORMULA = "{DESIGNCARD_LBLPRINT.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD_LBLPRINT.DESIGN_YEARID}=" & YearId
             OBJCARD.Show()
         End If
     End Sub

@@ -5002,9 +5002,16 @@ SKIPLINE:
 
     Private Sub STOCKREPORTS_TOOL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles STOCKREPORTS_TOOL.Click
         Try
-            Dim OBJSTOCK As New StockFilter
-            OBJSTOCK.MdiParent = Me
-            OBJSTOCK.Show()
+            If ClientName = "LAXMI" Then
+                Dim OBJReport As New StockOnHandSummary
+                OBJReport.MdiParent = Me
+                OBJReport.Show()
+            Else
+                Dim OBJSTOCK As New StockFilter
+                OBJSTOCK.MdiParent = Me
+                OBJSTOCK.Show()
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

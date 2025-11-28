@@ -65,9 +65,7 @@ Public Class AgencyReceiptDesign
             Next
 
 
-            MsgBox("Recname='" & recname & "' (" & Len(recname) & " chars)")
             strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & "  And {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "'  and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
-            MsgBox(strsearch)
             crpo.SelectionFormula = strsearch
 
 

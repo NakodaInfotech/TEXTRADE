@@ -677,6 +677,11 @@ line1:
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
+                ElseIf ClientName = "NR" Then
+                    If Now.Date > DateTime.Parse("15.12.2026 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
+                        GoTo LINE1
+                    End If
                 ElseIf ClientName = "NTC" Then
                     If Now.Date > DateTime.Parse("15.04.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
@@ -1066,6 +1071,8 @@ line1:
                 Else
                     GoTo LINE1
                 End If
+
+
 
                 If DT.Rows(0).Item("VERSION") <> "1.0.099" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)

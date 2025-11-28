@@ -11,6 +11,7 @@ Public Class DesignCardDesign
     Public PERIOD As String
 
     Dim RPTDESIGNCARD As New DesignCardRep
+    Dim RPTDESIGNCARDLBL As New DesignCardLBL
 
 
     Private Sub DesignCardDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -34,6 +35,7 @@ Public Class DesignCardDesign
             End With
 
             If FRMSTRING = "DESIGNCARD" Then crTables = RPTDESIGNCARD.Database.Tables
+            If FRMSTRING = "DESIGNCARDLBL" Then crTables = RPTDESIGNCARDLBL.Database.Tables
 
             For Each crTable In crTables
                 crtableLogonInfo = crTable.LogOnInfo
@@ -45,6 +47,8 @@ Public Class DesignCardDesign
 
             If FRMSTRING = "DESIGNCARD" Then
                 crpo.ReportSource = RPTDESIGNCARD
+            ElseIf FRMSTRING = "DESIGNCARDLBL" Then
+                crpo.ReportSource = RPTDESIGNCARDLBL
             End If
 
             crpo.Zoom(100)
