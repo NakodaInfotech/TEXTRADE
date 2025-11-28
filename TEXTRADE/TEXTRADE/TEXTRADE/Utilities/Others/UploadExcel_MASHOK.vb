@@ -146,6 +146,7 @@ Public Class UploadExcel_MASHOK
                     'Exit Sub
                 End If
             End If
+
             ' Check CMBTYPE to decide save destination
             If CMBTYPE.Text.Trim = "NONPURCHASE" Then
                 Debug.Print("Entering NONPURCHASE branch")
@@ -243,15 +244,20 @@ Public Class UploadExcel_MASHOK
                             gridRow.Cells("gAMT").Value = amt
                             frm.CALC()
                             gridRow.Cells("GOTHERAMT").Value = If(i = 0, otherAmt, 0)
-                            gridRow.Cells("GTAXABLEAMT").Value = taxableamt
-                            gridRow.Cells("GGRIDTOTAL").Value = amt
+
+                            'DONE BY GULKIT, WE DONT NEED TAXABLE AND GRANDOTAL VALUE OF EXCEL, WE HAVE TO CALCULATE HERE ITSELF
+                            'gridRow.Cells("GTAXABLEAMT").Value = taxableamt
+                            'gridRow.Cells("GGRIDTOTAL").Value = amt
+
+                            gridRow.Cells("GTAXABLEAMT").Value = Format(Val(qty) * Val(rate), "0.00")
+                            gridRow.Cells("GGRIDTOTAL").Value = Format(Val(qty) * Val(rate), "0.00")
 
                             ' Select last added row to populate GST
                             'Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
 
                             frm.TXTQTY.Text = qty.ToString()
                             frm.TXTRATE.Text = rate.ToString()
-                            frm.TXTTAXABLEAMT.Text = amt.ToString()
+                            frm.TXTTAXABLEAMT.Text = Format(Val(qty) * Val(rate), "0.00")
                             frm.CMBHSNCODE.Text = SACCODE
 
                             frm.GETHSNCODE()
