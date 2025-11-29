@@ -1107,7 +1107,7 @@ Partial Class MDIMain
         Me.DefaultTypeRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReminderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutoWhatsappToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AUTOWHATSAPP_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator158 = New System.Windows.Forms.ToolStripSeparator()
         Me.TransfersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DATATRANSFER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -7315,7 +7315,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -7410,7 +7410,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -7494,13 +7494,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
         Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDINGGRID_MENU
@@ -7529,7 +7529,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
         '
         'MAGICBOX_MENU
         '
@@ -7635,7 +7635,7 @@ Partial Class MDIMain
         '
         'Utilitiesmenu
         '
-        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AutoWhatsappToolStripMenuItem, Me.ToolStripSeparator158, Me.TransfersToolStripMenuItem, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20})
+        Me.Utilitiesmenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeCompany, Me.BackupCompany, Me.ToolStripSeparator28, Me.ChangeUserToolStripMenuItem, Me.USERTRANSFER, Me.BLOCKDETAILS_MASTER, Me.ToolStripSeparator29, Me.MERGEDETAILS_MASTER, Me.UpdateEntriesToolStripMenuItem, Me.ToolStripSeparator90, Me.SendMailToolStripMenuItem, Me.SENDSMS_MASTER, Me.SENDWHATSAPP_MASTER, Me.ToolStripSeparator196, Me.ReprintBarcodeToolStripMenuItem, Me.CHANGEBARCODE_MASTER, Me.EXPORTLABEL_MASTER, Me.ToolStripSeparator84, Me.DefaultRegisterToolStripMenuItem, Me.DefaultTypeRegisterToolStripMenuItem, Me.ToolStripMenuItem2, Me.ReminderToolStripMenuItem, Me.AUTOWHATSAPP_MENU, Me.ToolStripSeparator158, Me.TransfersToolStripMenuItem, Me.STOCKADJUSTMENT_MASTER, Me.ToolStripSeparator109, Me.UploadEntriesToolStripMenuItem, Me.STOCKTAKING_MASTER, Me.RECODATA_MASTER, Me.ToolStripSeparator20})
         Me.Utilitiesmenu.Name = "Utilitiesmenu"
         Me.Utilitiesmenu.Size = New System.Drawing.Size(62, 20)
         Me.Utilitiesmenu.Text = "&Utilities"
@@ -8156,12 +8156,11 @@ Partial Class MDIMain
         Me.ReminderToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.ReminderToolStripMenuItem.Text = "Reminder"
         '
-        'AutoWhatsappToolStripMenuItem
+        'AUTOWHATSAPP_MENU
         '
-        Me.AutoWhatsappToolStripMenuItem.Name = "AutoWhatsappToolStripMenuItem"
-        Me.AutoWhatsappToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
-        Me.AutoWhatsappToolStripMenuItem.Text = "Auto Whatsapp"
-        Me.AutoWhatsappToolStripMenuItem.Visible = False
+        Me.AUTOWHATSAPP_MENU.Name = "AUTOWHATSAPP_MENU"
+        Me.AUTOWHATSAPP_MENU.Size = New System.Drawing.Size(190, 22)
+        Me.AUTOWHATSAPP_MENU.Text = "Auto Whatsapp"
         '
         'ToolStripSeparator158
         '
@@ -10144,7 +10143,7 @@ Partial Class MDIMain
     Friend WithEvents EditExistingEntryToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator308 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator307 As ToolStripSeparator
-    Friend WithEvents AutoWhatsappToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AUTOWHATSAPP_MENU As ToolStripMenuItem
     Friend WithEvents UpdateBillToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AGENCYMODULE_MENU As ToolStripMenuItem
     Friend WithEvents AgencyOpeningBillsToolStripMenuItem As ToolStripMenuItem
