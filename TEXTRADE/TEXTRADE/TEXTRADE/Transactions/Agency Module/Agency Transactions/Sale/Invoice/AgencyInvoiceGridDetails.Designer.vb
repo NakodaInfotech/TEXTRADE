@@ -99,8 +99,9 @@ Partial Class AgencyInvoiceGridDetails
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lbl = New System.Windows.Forms.Label()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
+        Me.lbl = New System.Windows.Forms.Label()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +112,7 @@ Partial Class AgencyInvoiceGridDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.Label21)
@@ -890,6 +892,15 @@ Partial Class AgencyInvoiceGridDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'TOOLREFRESH
+        '
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "&Refresh"
+        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -902,14 +913,19 @@ Partial Class AgencyInvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'TOOLREFRESH
+        'CMDSAVELAYOUT
         '
-        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
-        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLREFRESH.Name = "TOOLREFRESH"
-        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLREFRESH.Text = "&Refresh"
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(449, 540)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'AgencyInvoiceGridDetails
         '
@@ -1011,4 +1027,5 @@ Partial Class AgencyInvoiceGridDetails
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents lbl As Label
     Friend WithEvents TOOLREFRESH As ToolStripButton
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class

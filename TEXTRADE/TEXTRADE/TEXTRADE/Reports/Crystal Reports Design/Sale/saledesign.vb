@@ -1827,55 +1827,55 @@ SKIPINVOICE:
 
 
             Dim OBJ As New Object
-            If FRMSTRING = "PARTYWISEDTLS" Then OBJ = New InvoicePartyWiseDetails
-            If FRMSTRING = "PARTYWISESUMM" Then OBJ = New InvoicePartyWiseSummary
+            If FRMSTRING = "PARTYWISEDTLS" Then OBJ = RPTPARTYDTLS
+            If FRMSTRING = "PARTYWISESUMM" Then OBJ = RPTPARTYSUMM
 
-            If FRMSTRING = "JOBBERWISEDTLS" Then OBJ = New InvoiceAgentWiseDetails
-            If FRMSTRING = "JOBBERWISESUMM" Then OBJ = New InvoiceAgentWiseSummary
+            If FRMSTRING = "JOBBERWISEDTLS" Then OBJ = RPTAGENTDTLS
+            If FRMSTRING = "JOBBERWISESUMM" Then OBJ = RPTAGENTSUMM
 
-            If FRMSTRING = "ITEMWISEDTLS" Then OBJ = New InvoiceItemWiseDetails
-            If FRMSTRING = "ITEMWISESUMM" Then OBJ = New InvoiceItemWiseSummary
-            If FRMSTRING = "CATEGORYWISESUMM" Then OBJ = New InvoiceCategoryWiseSummary
+            If FRMSTRING = "ITEMWISEDTLS" Then OBJ = RPTITEMDTLS
+            If FRMSTRING = "ITEMWISESUMM" Then OBJ = RPTITEMSUMM
+            If FRMSTRING = "CATEGORYWISESUMM" Then OBJ = RPTCATEGORYSUMM
 
-            If FRMSTRING = "QUALITYWISEDTLS" Then OBJ = New InvoiceQualityWiseDetails
-            If FRMSTRING = "QUALITYWISESUMM" Then OBJ = New InvoiceQualityWiseSummary
+            If FRMSTRING = "QUALITYWISEDTLS" Then OBJ = RPTQUALITYDTLS
+            If FRMSTRING = "QUALITYWISESUMM" Then OBJ = RPTQUALITYSUMM
 
-            If FRMSTRING = "DESIGNWISEDTLS" Then OBJ = New InvoiceDesignWiseDetails
-            If FRMSTRING = "DESIGNWISESUMM" Then OBJ = New InvoiceDesignWiseSummary
+            If FRMSTRING = "DESIGNWISEDTLS" Then OBJ = RPTDESIGNDTLS
+            If FRMSTRING = "DESIGNWISESUMM" Then OBJ = RPTDESIGNSUMM
 
-            If FRMSTRING = "SHADEWISEDTLS" Then OBJ = New InvoiceColorWiseDetails
-            If FRMSTRING = "SHADEWISESUMM" Then OBJ = New InvoiceColorWiseSummary
+            If FRMSTRING = "SHADEWISEDTLS" Then OBJ = RPTSHADEDTLS
+            If FRMSTRING = "SHADEWISESUMM" Then OBJ = RPTSHADESUMM
 
-            If FRMSTRING = "TRANSWISEDTLS" Then OBJ = New InvoiceTransWiseDetails
-            If FRMSTRING = "TRANSWISESUMM" Then OBJ = New InvoiceTransWiseSummary
+            If FRMSTRING = "TRANSWISEDTLS" Then OBJ = RPTTRANSDTLS
+            If FRMSTRING = "TRANSWISESUMM" Then OBJ = RPTTRANSSUMM
 
 
             If FRMSTRING = "EXPBUYER" Then
-                OBJ = New InvoiceReport_Export_Buyer
+                OBJ = RPTINVOICE_BUYER
                 Me.Text = "Buyer Invoice"
             End If
             If FRMSTRING = "EXPCUSTOM" Then
-                OBJ = New InvoiceReport_Export_Custom
+                OBJ = RPTINVOICE_CUSTOM
                 Me.Text = "Custom Invoice"
             End If
             If FRMSTRING = "EXPGST" Then
-                OBJ = New InvoiceReport_Export_GST
+                OBJ = RPTINVOICE_EXPGST
                 Me.Text = "GST Invoice"
             End If
 
             If FRMSTRING = "YARNDO" Then
-                OBJ = New InvoiceReport_YARNDO
+                OBJ = RPTINVOICE_YARNDO
                 Me.Text = "Yarn DO"
             End If
 
-            If FRMSTRING = "PROFORMAINVOICE" Then OBJ = New ProformaInvoiceReport_TOTALLEFT
+            If FRMSTRING = "PROFORMAINVOICE" Then OBJ = RPTPROFORMAINVOICE
 
 
             If FRMSTRING = "INVOICE" Then
 
                 'CODE DONE BY GULKIT
                 If INVOICETRANS = True Then
-                    If TRANSPORTCOPYA4 Then OBJ = New InvoiceReport_TOTALTRANSA4 Else OBJ = New InvoiceReport_TOTALTRANS
+                    If TRANSPORTCOPYA4 Then OBJ = RPTINVOICE_TOTALTRANSA4 Else OBJ = RPTINVOICE_TOTALTRANS
                     GoTo SKIPINVOICE
                 End If
 

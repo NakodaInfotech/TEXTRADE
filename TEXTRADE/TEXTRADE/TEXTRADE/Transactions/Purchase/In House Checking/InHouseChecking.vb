@@ -930,7 +930,7 @@ LINE1:
             If e.KeyCode = Keys.F12 And GRIDCHECKING.RowCount > 0 Then
                 If Val(GRIDCHECKING.CurrentRow.Cells(GOUTMTRS.Index).EditedFormattedValue) > 0 Then Exit Sub
                 If GRIDCHECKING.CurrentRow.Cells(GITEMNAME.Index).Value <> "" Then
-                    If ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Then
+                    If ClientName = "SNCM" Or ClientName = "VINTAGEINDIA" Or ClientName = "SBA" Then
                         If EDIT = False Then
                             GRIDCHECKING.Rows.Insert(GRIDCHECKING.CurrentRow.Index, CloneWithValues(GRIDCHECKING.CurrentRow))
                             GRIDCHECKING.Item(GRECDMTRS.Index, GRIDCHECKING.CurrentRow.Index).Value = 0

@@ -319,8 +319,8 @@ Public Class DebitNote
                         End If
 
                         If Val(TXTADJAMT.Text) > Val(MAXALLOWEDVALUE) Then
-                            EP.SetError(TXTADJAMT, "Amount Exceeds Balance Amt.")
-                            BLN = False
+                            'EP.SetError(TXTADJAMT, "Amount Exceeds Balance Amt.")
+                            'BLN = False
                         End If
 
                     End If

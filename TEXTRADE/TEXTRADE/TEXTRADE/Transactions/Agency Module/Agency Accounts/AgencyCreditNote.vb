@@ -578,7 +578,9 @@ Public Class AgencyCreditNote
             '*******************************************
             '1. MAGICBOXFORINVOICE -- GENERATEAGENCYCN
             '*******************************************
-
+            '*******************************************
+            '2. MAGICBOXFORRECPAY -- GENERATEAGENCYCN
+            '*******************************************
 
 
 

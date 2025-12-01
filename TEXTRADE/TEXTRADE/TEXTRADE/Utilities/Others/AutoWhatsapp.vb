@@ -1,12 +1,14 @@
-﻿Imports BL
-Imports DevExpress.Utils.Internal
+﻿
+Imports BL
+
 Public Class AutoWhatsapp
+
     Dim GRIDDOUBLECLICK As Boolean
     Dim EDIT As Boolean
     Dim TEMPROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
-    Private Function errorvalid() As Boolean
+    Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
 
         If CMBTYPE.Text.Trim.Length = 0 Then
@@ -15,6 +17,7 @@ Public Class AutoWhatsapp
         End If
         Return bln
     End Function
+
     Sub SAVE()
         Try
             If ISLOCKYEAR = True Then
@@ -102,6 +105,7 @@ Public Class AutoWhatsapp
             Throw ex
         End Try
     End Sub
+
     Sub FILLGRID()
 
         GRIDAUTOWA.Enabled = True
@@ -141,7 +145,8 @@ Public Class AutoWhatsapp
 
 
     End Sub
-    Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
+
+    Sub GETSRNO(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             For Each row As DataGridViewRow In grid.Rows
                 row.Cells(0).Value = row.Index + 1
@@ -207,6 +212,7 @@ Public Class AutoWhatsapp
             Throw ex
         End Try
     End Sub
+
     Sub CLEAR()
         Try
             TXTSRNO.Text = GRIDAUTOWA.RowCount + 1
@@ -240,16 +246,7 @@ Public Class AutoWhatsapp
                 Dim TEMPMSG As Integer = MsgBox("Wish To Delete?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbNo Then Exit Sub
 
-                ''DELETE FROM TRANSPORT INSURANCE
-                'Dim OBJSM As New ClsAUTOWHATSAPP
-                'Dim ALPARAVAL As New ArrayList
-                'ALPARAVAL.Add(GRIDAUTOWA.Rows(GRIDAUTOWA.CurrentRow.Index).Cells(GSRNO.Index).Value)
-                'ALPARAVAL.Add(CmpId)
-                'ALPARAVAL.Add(Locationid)
-                'ALPARAVAL.Add(YearId)
-
-                'OBJSM.alParaval = ALPARAVAL
-                'Dim INTRES As Integer = OBJSM.DELETE()
+               
 
                 GRIDAUTOWA.Rows.RemoveAt(GRIDAUTOWA.CurrentRow.Index)
                 getsrno(GRIDAUTOWA)
@@ -277,7 +274,7 @@ Public Class AutoWhatsapp
                 Exit Sub
             End If
 
-            Dim INTRESULT As Integer
+
 
             EP.Clear()
             If Not errorvalid() Then
@@ -444,6 +441,7 @@ Public Class AutoWhatsapp
             Throw ex
         End Try
     End Sub
+
     Sub FILLCMB()
         Try
             Dim OBJCMN As New ClsCommon
@@ -471,9 +469,6 @@ Public Class AutoWhatsapp
         End If
     End Sub
 
-    Private Sub GRIDAUTOWA_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDAUTOWA.RowEnter
-
-    End Sub
     Sub GRIDVIEW(Optional ROWNO As Integer = -1)
         Try
             If GRIDAUTOWA.Rows.Count > 0 Then
@@ -499,8 +494,6 @@ Public Class AutoWhatsapp
         Catch ex As Exception
             Throw ex
         End Try
-
-
     End Sub
 
     Private Sub GRIDAUTOWA_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDAUTOWA.CellClick

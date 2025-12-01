@@ -1,4 +1,5 @@
 ﻿
+
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
@@ -2990,6 +2991,13 @@ LINE1:
             OBJCARD.FORMULA = "{DESIGNCARD.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD.DESIGN_YEARID}=" & YearId
             OBJCARD.Show()
         End If
+        If MsgBox("Wish to Print Label Print For This Design Card ?", MsgBoxStyle.YesNo) = vbYes Then
+            Dim OBJCARD As New DesignCardDesign
+            OBJCARD.MdiParent = MDIMain
+            OBJCARD.FRMSTRING = "DESIGNCARDLBL"
+            OBJCARD.FORMULA = "{DESIGNCARD_LBLPRINT.DESIGN_CARDNO}=" & Val(txtcardno.Text.Trim) & " and {DESIGNCARD_LBLPRINT.DESIGN_YEARID}=" & YearId
+            OBJCARD.Show()
+        End If
     End Sub
 
     Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
@@ -4028,6 +4036,7 @@ line1:
 
     Sub BLENDPERCENTAGE(gridWarp As DataGridView, warpQualityIdx As Integer, warpWeightIdx As Integer, gridWeft As DataGridView, weftQualityIdx As Integer, weftWeightIdx As Integer)
         Try
+
             Dim fiberTotals As New Dictionary(Of String, Double)
             Dim totalWeight As Double = 0
             Dim processGrid = Sub(g As DataGridView, qualityIdx As Integer, weightIdx As Integer)
@@ -4037,7 +4046,7 @@ line1:
 
                                       Dim OBJCLS As New ClsCommon()
                                       Dim DT2 As DataTable = OBJCLS.SEARCH(
-                                          "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, YARNQUALITYMASTER_COMPOSITION.YARN_PER, isnull(YARNQUALITYMASTER_1.YARN_REMARK,'') as YARNCOMPOSITIONNAME",
+                                          "YARNQUALITYMASTER.YARN_NAME AS YARNNAME, ISNULL(YARNQUALITYMASTER_COMPOSITION.YARN_PER,0) AS  YARN_PER, isnull(YARNQUALITYMASTER_1.YARN_REMARK,'') as YARNCOMPOSITIONNAME",
                                           "",
                                           "YARNQUALITYMASTER AS YARNQUALITYMASTER_1 RIGHT OUTER JOIN
                          YARNQUALITYMASTER_COMPOSITION ON YARNQUALITYMASTER_1.YARN_ID = YARNQUALITYMASTER_COMPOSITION.YARN_YARNQUALITYID RIGHT OUTER JOIN
@@ -4045,17 +4054,18 @@ line1:
 						 ",
                                           "And YARNQUALITYMASTER.YARN_NAME = '" & yarnName & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId
                                       )
+                                      If DT2.Rows.Count > 0 Then
+                                          For Each compRow As DataRow In DT2.Rows
+                                              Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
+                                              Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
+                                              Dim fiberWeight As Double = yarnWeight * fiberPercent
 
-                                      For Each compRow As DataRow In DT2.Rows
-                                          Dim fiberName As String = compRow("YARNCOMPOSITIONNAME").ToString()
-                                          Dim fiberPercent As Double = Convert.ToDouble(compRow("YARN_PER")) / 100
-                                          Dim fiberWeight As Double = yarnWeight * fiberPercent
-
-                                          If Not fiberTotals.ContainsKey(fiberName) Then
-                                              fiberTotals(fiberName) = 0
-                                          End If
-                                          fiberTotals(fiberName) += fiberWeight
-                                      Next
+                                              If Not fiberTotals.ContainsKey(fiberName) Then
+                                                  fiberTotals(fiberName) = 0
+                                              End If
+                                              fiberTotals(fiberName) += fiberWeight
+                                          Next
+                                      End If
                                       totalWeight += yarnWeight
                                   Next
                               End Sub

@@ -199,7 +199,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDDELETE.Location = New System.Drawing.Point(751, 509)
         Me.CMDDELETE.Name = "CMDDELETE"
         Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDDELETE.TabIndex = 15
+        Me.CMDDELETE.TabIndex = 13
         Me.CMDDELETE.Text = "&Delete"
         Me.CMDDELETE.UseVisualStyleBackColor = False
         '
@@ -213,7 +213,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDOK.Location = New System.Drawing.Point(579, 509)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
-        Me.CMDOK.TabIndex = 13
+        Me.CMDOK.TabIndex = 11
         Me.CMDOK.Text = "&Save"
         Me.CMDOK.UseVisualStyleBackColor = False
         '
@@ -226,7 +226,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDEXIT.Location = New System.Drawing.Point(837, 509)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXIT.TabIndex = 16
+        Me.CMDEXIT.TabIndex = 14
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = False
         '
@@ -276,7 +276,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDCLEAR.Location = New System.Drawing.Point(665, 509)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 14
+        Me.CMDCLEAR.TabIndex = 12
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = False
         '
@@ -314,7 +314,7 @@ Partial Class MagicBoxForRecPay
         Me.DTENTERYDATE.Mask = "00/00/0000"
         Me.DTENTERYDATE.Name = "DTENTERYDATE"
         Me.DTENTERYDATE.Size = New System.Drawing.Size(88, 23)
-        Me.DTENTERYDATE.TabIndex = 1
+        Me.DTENTERYDATE.TabIndex = 0
         Me.DTENTERYDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.DTENTERYDATE.ValidatingType = GetType(Date)
         '
@@ -348,7 +348,7 @@ Partial Class MagicBoxForRecPay
         Me.txtamt.Location = New System.Drawing.Point(808, 90)
         Me.txtamt.Name = "txtamt"
         Me.txtamt.Size = New System.Drawing.Size(102, 22)
-        Me.txtamt.TabIndex = 9
+        Me.txtamt.TabIndex = 7
         Me.txtamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'cmbaccname
@@ -362,7 +362,7 @@ Partial Class MagicBoxForRecPay
         Me.cmbaccname.MaxDropDownItems = 14
         Me.cmbaccname.Name = "cmbaccname"
         Me.cmbaccname.Size = New System.Drawing.Size(201, 22)
-        Me.cmbaccname.TabIndex = 5
+        Me.cmbaccname.TabIndex = 2
         '
         'cmbname
         '
@@ -375,7 +375,7 @@ Partial Class MagicBoxForRecPay
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(200, 22)
-        Me.cmbname.TabIndex = 6
+        Me.cmbname.TabIndex = 3
         '
         'TXTCHQNO
         '
@@ -385,7 +385,7 @@ Partial Class MagicBoxForRecPay
         Me.TXTCHQNO.MaxLength = 6
         Me.TXTCHQNO.Name = "TXTCHQNO"
         Me.TXTCHQNO.Size = New System.Drawing.Size(82, 22)
-        Me.TXTCHQNO.TabIndex = 7
+        Me.TXTCHQNO.TabIndex = 5
         Me.TXTCHQNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'DTCHQDATE
@@ -395,7 +395,7 @@ Partial Class MagicBoxForRecPay
         Me.DTCHQDATE.Location = New System.Drawing.Point(729, 90)
         Me.DTCHQDATE.Name = "DTCHQDATE"
         Me.DTCHQDATE.Size = New System.Drawing.Size(80, 22)
-        Me.DTCHQDATE.TabIndex = 8
+        Me.DTCHQDATE.TabIndex = 6
         '
         'TXTBANKNAME
         '
@@ -416,7 +416,7 @@ Partial Class MagicBoxForRecPay
         Me.txtsrno.Name = "txtsrno"
         Me.txtsrno.ReadOnly = True
         Me.txtsrno.Size = New System.Drawing.Size(39, 22)
-        Me.txtsrno.TabIndex = 4
+        Me.txtsrno.TabIndex = 1
         Me.txtsrno.TabStop = False
         '
         'tstxtbillno
@@ -490,7 +490,7 @@ Partial Class MagicBoxForRecPay
         Me.cmbpaytype.MaxDropDownItems = 14
         Me.cmbpaytype.Name = "cmbpaytype"
         Me.cmbpaytype.Size = New System.Drawing.Size(90, 22)
-        Me.cmbpaytype.TabIndex = 10
+        Me.cmbpaytype.TabIndex = 8
         '
         'CMBSELLERNAME
         '
@@ -503,7 +503,7 @@ Partial Class MagicBoxForRecPay
         Me.CMBSELLERNAME.Location = New System.Drawing.Point(448, 90)
         Me.CMBSELLERNAME.Name = "CMBSELLERNAME"
         Me.CMBSELLERNAME.Size = New System.Drawing.Size(200, 22)
-        Me.CMBSELLERNAME.TabIndex = 3
+        Me.CMBSELLERNAME.TabIndex = 4
         '
         'TXTBILLNO
         '
@@ -514,7 +514,7 @@ Partial Class MagicBoxForRecPay
         Me.TXTBILLNO.Name = "TXTBILLNO"
         Me.TXTBILLNO.ReadOnly = True
         Me.TXTBILLNO.Size = New System.Drawing.Size(101, 22)
-        Me.TXTBILLNO.TabIndex = 745
+        Me.TXTBILLNO.TabIndex = 9
         Me.TXTBILLNO.Visible = False
         '
         'TXTADJAMOUNT
@@ -649,7 +649,7 @@ Partial Class MagicBoxForRecPay
         Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDISSUE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDISSUE.Size = New System.Drawing.Size(1369, 367)
-        Me.GRIDISSUE.TabIndex = 12
+        Me.GRIDISSUE.TabIndex = 10
         Me.GRIDISSUE.TabStop = False
         '
         'GSRNO

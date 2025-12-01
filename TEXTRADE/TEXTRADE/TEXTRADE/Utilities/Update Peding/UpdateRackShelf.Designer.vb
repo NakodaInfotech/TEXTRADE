@@ -25,6 +25,7 @@ Partial Class UpdateRackShelf
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateRackShelf))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -72,7 +73,12 @@ Partial Class UpdateRackShelf
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.LBLTO = New System.Windows.Forms.Label()
+        Me.LBLFROM = New System.Windows.Forms.Label()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -86,6 +92,12 @@ Partial Class UpdateRackShelf
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label3)
+        Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
+        Me.BlendPanel1.Controls.Add(Me.TXTTO)
+        Me.BlendPanel1.Controls.Add(Me.LBLTO)
+        Me.BlendPanel1.Controls.Add(Me.LBLFROM)
+        Me.BlendPanel1.Controls.Add(Me.TXTFROM)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTSTOCK)
         Me.BlendPanel1.Controls.Add(Me.tstxtbillno)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
@@ -110,6 +122,20 @@ Partial Class UpdateRackShelf
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDSELECTSTOCK
+        '
+        Me.CMDSELECTSTOCK.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTSTOCK.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(405, 548)
+        Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
+        Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(81, 27)
+        Me.CMDSELECTSTOCK.TabIndex = 13
+        Me.CMDSELECTSTOCK.Text = "Select Stock"
+        Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
         '
         'tstxtbillno
         '
@@ -596,19 +622,77 @@ Partial Class UpdateRackShelf
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'CMDSELECTSTOCK
+        'Label3
         '
-        Me.CMDSELECTSTOCK.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTSTOCK.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(405, 548)
-        Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
-        Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(81, 27)
-        Me.CMDSELECTSTOCK.TabIndex = 13
-        Me.CMDSELECTSTOCK.Text = "Select Stock"
-        Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(731, 5)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(44, 15)
+        Me.Label3.TabIndex = 780
+        Me.Label3.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.BackColor = System.Drawing.Color.White
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTCOPIES.Location = New System.Drawing.Point(778, 1)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(41, 23)
+        Me.TXTCOPIES.TabIndex = 781
+        Me.TXTCOPIES.Text = " 1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTO
+        '
+        Me.TXTTO.BackColor = System.Drawing.Color.White
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTTO.Location = New System.Drawing.Point(677, 0)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(41, 23)
+        Me.TXTTO.TabIndex = 778
+        Me.TXTTO.Text = " "
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'LBLTO
+        '
+        Me.LBLTO.AutoSize = True
+        Me.LBLTO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTO.ForeColor = System.Drawing.Color.Black
+        Me.LBLTO.Location = New System.Drawing.Point(657, 4)
+        Me.LBLTO.Name = "LBLTO"
+        Me.LBLTO.Size = New System.Drawing.Size(19, 15)
+        Me.LBLTO.TabIndex = 779
+        Me.LBLTO.Text = "To"
+        '
+        'LBLFROM
+        '
+        Me.LBLFROM.AutoSize = True
+        Me.LBLFROM.BackColor = System.Drawing.Color.Transparent
+        Me.LBLFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLFROM.ForeColor = System.Drawing.Color.Black
+        Me.LBLFROM.Location = New System.Drawing.Point(498, 4)
+        Me.LBLFROM.Name = "LBLFROM"
+        Me.LBLFROM.Size = New System.Drawing.Size(113, 15)
+        Me.LBLFROM.TabIndex = 776
+        Me.LBLFROM.Text = "Print Barcode From"
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.BackColor = System.Drawing.Color.White
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTFROM.Location = New System.Drawing.Point(613, 0)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(41, 23)
+        Me.TXTFROM.TabIndex = 777
+        Me.TXTFROM.Text = " "
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'UpdateRackShelf
         '
@@ -685,4 +769,10 @@ Partial Class UpdateRackShelf
     Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSELECTSTOCK As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TXTCOPIES As TextBox
+    Friend WithEvents TXTTO As TextBox
+    Friend WithEvents LBLTO As Label
+    Friend WithEvents LBLFROM As Label
+    Friend WithEvents TXTFROM As TextBox
 End Class

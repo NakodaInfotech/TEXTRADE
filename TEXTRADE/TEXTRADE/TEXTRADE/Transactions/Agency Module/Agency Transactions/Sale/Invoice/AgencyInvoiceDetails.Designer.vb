@@ -125,15 +125,16 @@ Partial Class AgencyInvoiceDetails
         Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +145,7 @@ Partial Class AgencyInvoiceDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CHKBLANKPAPER)
         Me.BlendPanel1.Controls.Add(Me.Label4)
@@ -1118,6 +1120,33 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMMTYPE.Visible = True
         Me.GCOMMTYPE.VisibleIndex = 43
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 44
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 45
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 46
+        '
         'CHKEDIT
         '
         Me.CHKEDIT.AutoHeight = False
@@ -1171,32 +1200,19 @@ Partial Class AgencyInvoiceDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GCOMPLAINT
+        'CMDSAVELAYOUT
         '
-        Me.GCOMPLAINT.Caption = "Complaint"
-        Me.GCOMPLAINT.FieldName = "COMPLAINT"
-        Me.GCOMPLAINT.Name = "GCOMPLAINT"
-        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
-        Me.GCOMPLAINT.Visible = True
-        Me.GCOMPLAINT.VisibleIndex = 44
-        '
-        'GCOMPLAINTBY
-        '
-        Me.GCOMPLAINTBY.Caption = "Complaint By"
-        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
-        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
-        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
-        Me.GCOMPLAINTBY.Visible = True
-        Me.GCOMPLAINTBY.VisibleIndex = 45
-        '
-        'GCOMPLAINTDATE
-        '
-        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
-        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
-        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
-        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
-        Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 46
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(449, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 807
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'AgencyInvoiceDetails
         '
@@ -1331,4 +1347,5 @@ Partial Class AgencyInvoiceDetails
     Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class

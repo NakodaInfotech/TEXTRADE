@@ -266,6 +266,10 @@ Public Class GRN
         End If
         CMBSHIPTO.Text = ""
         TXTPARTYITEMNAME.Clear()
+        If ClientName = "LAXMI" Then
+            LBLLOTNO.Visible = False
+            TXTLOTNO.Visible = False
+        End If
     End Sub
 
     Sub HIDEVIEW()
@@ -388,12 +392,12 @@ Public Class GRN
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" GRN_NO AS GRNNO", "", " GRN INNER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.Acc_id ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND GRN_PARTYBILLNO = '" & TXTPARTYBILLNO.Text.Trim & "' AND GRN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
-                        MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("GRNNO"))
-                        e.Cancel = True
-                        Exit Sub
-                    End If
-                End If
+                MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("GRNNO"))
+                e.Cancel = True
+                Exit Sub
             End If
+        End If
+        End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3773,9 +3777,12 @@ LINE1:
             If ClientName = "LAXMI" And FRMSTRING = "GRN FANCY" Then
                 LBLBROKER.Text = "Indent Name"
                 LBLBROKER.Location = New Point(LBLBROKER.Location.X - 30, LBLBROKER.Location.Y)
+                LBLCRDAYS.Location = New Point(LBLCRDAYS.Location.X - 10, LBLCRDAYS.Location.Y)
+                TXTCRDAYS.Location = New Point(TXTCRDAYS.Location.X - 10, TXTCRDAYS.Location.Y)
                 CMBPER.Text = "Pcs"
                 LBLLOTNO.Visible = False
                 TXTLOTNO.Visible = False
+                TXTMTRS.TabStop = False
             End If
 
         Catch ex As Exception

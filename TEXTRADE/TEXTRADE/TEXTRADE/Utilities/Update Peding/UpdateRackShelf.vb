@@ -1,6 +1,9 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.CodeParser
+Imports DevExpress.Pdf.Xmp
+Imports System.IO
 
 Public Class UpdateRackShelf
 
@@ -155,12 +158,12 @@ Public Class UpdateRackShelf
                 Dim SHELFID As Integer = 0
 
                 If CMBRACK.Text.Trim <> "" Then
-                    DT = OBJCMN.search("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
                 End If
 
                 If CMBSHELF.Text.Trim <> "" Then
-                    DT = OBJCMN.search("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then SHELFID = DT.Rows(0).Item("SHELFID")
                 End If
 
@@ -434,7 +437,7 @@ LINE1:
         Try
             If TXTBARCODE.Text.Trim.Length > 0 Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
                     'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT, if YES THEN GIVE A MESSAGE THAT BARCODE EXISTS
@@ -569,4 +572,129 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If ClientName = "SHEETAL" Then
+                PRINTBARCODE()
+            End If
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub PRINTBARCODE()
+        Try
+
+            If Val(TXTTO.Text.Trim) > 0 And Val(TXTFROM.Text.Trim) > 0 Then
+                If (Val(TXTTO.Text.Trim) < Val(TXTFROM.Text.Trim)) Or (Val(TXTFROM.Text.Trim) > gridbill.RowCount) Or (Val(TXTTO.Text.Trim) > gridbill.RowCount) Then
+                    MsgBox("Invalid No Entered", MsgBoxStyle.Critical)
+                    TXTFROM.Focus()
+                    Exit Sub
+                End If
+                Dim TEMPMSG As Integer = MsgBox("Wish to Print Bar Code?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbNo Then Exit Sub
+
+                For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
+
+                    Dim ROW As DataRow = gridbill.GetDataRow(i - 1)
+
+                    ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                    'Dim TEMPREMARKS As String = ""
+                    'Dim TEMPITEMNAME As String = ""
+                    'Dim TEMPWIDTH As String = ""
+                    'Dim TEMPCATEGORY As String = ""
+                    'Dim OBJCMN As New ClsCommon
+                    'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                    'If DT.Rows.Count > 0 Then
+                    '    TEMPREMARKS = DT.Rows(0).Item("REMARKS")
+                    '    TEMPITEMNAME = DT.Rows(0).Item("ITEMDISPLAYNAME")
+                    '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                    '    TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                    'End If
+
+
+                    For J As Integer = 1 To Val(TXTCOPIES.Text.Trim)
+
+
+
+                        Dim dirresults As String = ""
+                        'Writing in file
+                        Dim oWrite As System.IO.StreamWriter
+                        oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
+
+
+
+                        If ClientName = "SHEETAL" Then
+
+                            oWrite.WriteLine("SIZE 97.5 mm, 25 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 746,188,""ROMAN.TTF"",180,1,12,""QUALITY""
+TEXT 601,190,""ROMAN.TTF"",180,1,12,"":""
+TEXT 746,141,""ROMAN.TTF"",180,1,12,""DESIGN""
+TEXT 601,145,""ROMAN.TTF"",180,1,12,"":""
+TEXT 319,187,""ROMAN.TTF"",180,1,12,""COLOR""
+TEXT 200,190,""ROMAN.TTF"",180,1,12,"":""
+TEXT 319,138,""ROMAN.TTF"",180,1,12,""MTRS""
+TEXT 200,141,""ROMAN.TTF"",180,1,12,"":""
+TEXT 746,94,""ROMAN.TTF"",180,1,12,""ROLL NO""
+TEXT 601,96,""ROMAN.TTF"",180,1,12,"":""
+TEXT 319,94,""ROMAN.TTF"",180,1,12,""RACK""
+TEXT 200,94,""ROMAN.TTF"",180,1,12,"":""
+BARCODE 746,57,""128M"",44,0,180,4,8,""" & ROW("BARCODE") & """
+TEXT 580,187,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
+TEXT 580,141,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
+TEXT 580,94,""ROMAN.TTF"",180,1,12,""" & ROW("BARCODE") & """
+TEXT 180,187,""ROMAN.TTF"",180,1,12,""" & ROW("COLOR") & """
+TEXT 180,138,""ROMAN.TTF"",180,1,12,""" & ROW("MTRS") & """
+TEXT 180,92,""ROMAN.TTF"",180,1,12,""" & CMBRACK.Text.Trim & """
+PRINT 1,1
+")
+                            oWrite.Dispose()
+
+
+                        End If
+
+
+
+
+                        'Printing Barcode
+                        Dim psi As New ProcessStartInfo()
+                        psi.FileName = "cmd.exe"
+                        psi.RedirectStandardInput = False
+                        psi.RedirectStandardOutput = True
+                        psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+                        'psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
+                        psi.UseShellExecute = False
+
+                        Dim proc As Process
+                        proc = Process.Start(psi)
+                        dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+                        '// do something with result stream
+                        proc.WaitForExit()
+
+NEXTLINE:
+                    Next
+                Next
+                TXTFROM.Clear()
+                TXTTO.Clear()
+            End If
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
