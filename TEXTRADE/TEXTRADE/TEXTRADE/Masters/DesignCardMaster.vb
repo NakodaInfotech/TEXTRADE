@@ -2011,7 +2011,7 @@ LINE1:
             Dim result As Double = totalDents * totalDrawEnds
             TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
         End If
-        If TXTTOTALENDS.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
+        ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
         If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
@@ -2068,7 +2068,7 @@ LINE1:
             Dim pcs As Double = Val(TXTNOOFPCS.Text)
             Dim pcsl As Double = Val(TXTPCSL.Text)
             Dim result As Double = pcs * pcsl
-            TXTBEAMMTRS.Text = Format(Val(TXTFINISHWT.Text) * result, "0.00")
+            TXTBEAMMTRS.Text = Format(Val(result), "0.00")
         End If
         If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
             TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0.00")
@@ -2076,6 +2076,21 @@ LINE1:
         If TXTGSM.Text <> "" Then
             TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
         End If
+        '************* EPI ******************
+        If TXTTHREADPERDENT.Text <> "" And TXTREED.Text <> "" Then
+            Dim x As Decimal = TXTREED.Text.Trim / 2
+            TXTENDPERINCH.Text = Format(Val(x * TXTTHREADPERDENT.Text.Trim), "0")
+            If TXTREEDSPACE.Text.Trim <> "" And TXTFWIDTH.Text.Trim <> "" Then
+                Dim y As Decimal = TXTENDPERINCH.Text.Trim * TXTREEDSPACE.Text.Trim
+                TXTFEPI.Text = Format(Val(y / TXTFWIDTH.Text.Trim), "0")
+            End If
+        End If
+        '************* PPI ******************
+        If TXTSHRINKAGEPER.Text <> "" Then
+            Dim X As Decimal = TXTPICKS.Text.Trim * (TXTSHRINKAGEPER.Text.Trim / 100)
+            TXTFPPI.Text = Format(Val(X + TXTPICKS.Text.Trim), "0")
+        End If
+
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
