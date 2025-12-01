@@ -646,21 +646,21 @@ Public Class DesignCardMaster
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
-        TXTREEDSPACE.Clear()
+        TXTREEDSPACE.Text = "65"
         TXTREEDSPACECM.Clear()
         TXTPICKS.Clear()
         TXTMAINRS.Clear()
         TXTTHREADPERDENT.Clear()
         TXTFEPI.Clear()
-        TXTFWIDTH.Clear()
+        TXTFWIDTH.Text = "58"
         TXTFPPI.Clear()
         TXTFWT.Clear()
         TXTDENTS.Clear()
         TXTTOTALDENTSMAIN.Clear()
         TXTTOTALSELVEDGEDENTS.Clear()
         TXTTOTALDENTS.Clear()
-        TXTWARPTL.Clear()
-        TXTWEFTTL.Clear()
+        TXTWARPTL.Text = "108"
+        TXTWEFTTL.Text = "102"
         TXTGSM.Clear()
         CMBWEAVE.Text = ""
         TXTTOTALWT.Clear()
