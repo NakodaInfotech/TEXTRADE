@@ -459,7 +459,7 @@ Public Class MDIMain
                 End If
             End If
             If ClientName = "NAKODAINFOTECH" Then
-                AutoWhatsappToolStripMenuItem.Visible = True
+                AUTOWHATSAPP_MENU.Visible = True
             End If
 
         Catch ex As Exception
@@ -5177,7 +5177,7 @@ SKIPLINE:
                 MAGICBOX_MENU.Visible = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
-            If ClientName = "NAKODAINFOTECH" Then AutoWhatsappToolStripMenuItem.Visible = True
+            If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
         Catch ex As Exception
             Throw ex
         End Try
@@ -10290,7 +10290,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AutoWhatsappToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoWhatsappToolStripMenuItem.Click
+    Private Sub AutoWhatsappToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AUTOWHATSAPP_MENU.Click
         Try
             Dim OBJAUTOWA As New AutoWhatsapp
             OBJAUTOWA.MdiParent = Me

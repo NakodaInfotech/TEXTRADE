@@ -485,6 +485,7 @@ Public Class GDNDESIGN
                 ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     crpo.ReportSource = RPTGDN_SHEETAL
                     RPTGDN_SHEETAL.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                    RPTGDN_SHEETAL.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 ElseIf ClientName = "SBA" Then
                     crpo.ReportSource = RPTGDN_SBA
                 ElseIf ClientName = "DRDRAPES" Then

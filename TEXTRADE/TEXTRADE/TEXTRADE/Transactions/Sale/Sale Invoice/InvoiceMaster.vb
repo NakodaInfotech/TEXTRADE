@@ -3325,7 +3325,7 @@ CHECKNEXTLINE:
                         row.Cells(GTAXABLEAMT.Index).Value = Format(Val(row.Cells(GAMT.Index).EditedFormattedValue) - Val(row.Cells(GDISCAMT.Index).EditedFormattedValue) - Val(row.Cells(GSPDISCAMT.Index).EditedFormattedValue) + Val(row.Cells(GOTHERAMT.Index).EditedFormattedValue), "0.00")
 
 
-                        If ClientName = "GELATO" Or ClientName = "KREEVE" Or ClientName = "CC" Then
+                        If ClientName = "GELATO" Or ClientName = "KREEVE" Or ClientName = "CC" Or ClientName = "LAXMI" Then
                             'CHANGE GST% WITH RESPECT TO RATE (TAXABLEAMT / QTY)
                             'dt = OBJCMN.search("ISNULL(HSN_CGST,0) AS CGST, ISNULL(HSN_SGST,0) AS SGST, ISNULL(HSN_IGST,0) AS IGST, ISNULL(HSN_RATE1,0) AS RATE, ISNULL(HSN_CGST1,0) AS CGST1, ISNULL(HSN_SGST1,0) AS SGST1, ISNULL(HSN_IGST1,0) AS IGST1", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID", " AND ITEMMASTER.ITEM_NAME = '" & row.Cells(GITEMNAME.Index).Value & "' AND HSN_YEARID = " & YearId)
                             dt = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGST, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & row.Cells(GITEMNAME.Index).Value & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
@@ -6520,7 +6520,7 @@ LINE1:
                 CMBSHADE.TabStop = False
                 TXTBALENO.TabStop = False
                 CMBPER.TabStop = False
-
+                GBALENO.HeaderText = "Packing"
             End If
         Catch ex As Exception
             Throw ex
@@ -9282,7 +9282,9 @@ NEXTLINE:
                 j = j & """actToStateCode"":""" & SHIPTOSTATECODE & """" & ","
                 j = j & """toStateCode"":""" & PARTYSTATECODE & """" & ","
 
-                If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                'CHANGES DONE AS PER VISHAL ON 01-12-25
+                'If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                j = j & """transactionType"":""4"","
                 j = j & """dispatchFromGSTIN"":""" & DISPATCHFROMGSTIN & """" & ","
                 j = j & """dispatchFromTradeName"":""" & DISPATCHFROM & """" & ","
                 j = j & """shipToGSTIN"":""" & SHIPTOGSTIN & """" & ","
