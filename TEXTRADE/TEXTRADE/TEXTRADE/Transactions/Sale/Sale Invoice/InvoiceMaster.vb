@@ -9282,7 +9282,9 @@ NEXTLINE:
                 j = j & """actToStateCode"":""" & SHIPTOSTATECODE & """" & ","
                 j = j & """toStateCode"":""" & PARTYSTATECODE & """" & ","
 
-                If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                'CHANGES DONE AS PER VISHAL ON 01-12-25
+                'If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                j = j & """transactionType"":""4"","
                 j = j & """dispatchFromGSTIN"":""" & DISPATCHFROMGSTIN & """" & ","
                 j = j & """dispatchFromTradeName"":""" & DISPATCHFROM & """" & ","
                 j = j & """shipToGSTIN"":""" & SHIPTOGSTIN & """" & ","
