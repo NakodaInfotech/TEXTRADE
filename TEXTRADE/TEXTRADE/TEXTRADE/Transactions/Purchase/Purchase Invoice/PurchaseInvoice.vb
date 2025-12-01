@@ -39,7 +39,7 @@ Public Class PurchaseMaster
     End Sub
 
     Private Sub cmdclear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdclear.Click
-        clear()
+        CLEAR()
         EDIT = False
         cmbregister.Enabled = True
         cmbregister.Focus()
@@ -137,7 +137,7 @@ Public Class PurchaseMaster
         If ClientName = "MANSI" Then CMBQTYUNIT.Text = "Mtrs"
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "MAHAVIR" Or ClientName = "NVAHAN" Or ClientName = "DETLINE" Then CMBPER.Text = "Qty" Else CMBPER.Text = "Mtrs"
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "MAHAVIR" Or ClientName = "NVAHAN" Or ClientName = "DETLINE" Or ClientName = "LAXMI" Then CMBPER.Text = "Qty" Else CMBPER.Text = "Mtrs"
         TXTAMT.Clear()
         TXTDISCPER.Clear()
         TXTDISCAMT.Clear()
@@ -232,10 +232,10 @@ Public Class PurchaseMaster
         CMBCOSTCENTERNAME.Text = ""
         CHKINTCALC.Checked = False
         If ClientName = "LAXMI" Then
-            CMBPER.Text = "Pcs"
             CMBDYEINGNAME.Visible = False
             Label17.Visible = False
             Label40.Visible = False
+            GBALENO.HeaderText = "Packing"
         End If
     End Sub
 
@@ -306,7 +306,7 @@ Public Class PurchaseMaster
     Private Sub PurchaseMaster_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
-                If errorvalid() = True Then
+                If ERRORVALID() = True Then
                     Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNoCancel)
                     If tempmsg = vbCancel Then Exit Sub
                     If tempmsg = vbYes Then cmdok_Click(sender, e)
