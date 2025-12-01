@@ -405,7 +405,7 @@ Partial Class MagicBoxForRecPay
         Me.TXTBANKNAME.Location = New System.Drawing.Point(1000, 90)
         Me.TXTBANKNAME.Name = "TXTBANKNAME"
         Me.TXTBANKNAME.Size = New System.Drawing.Size(199, 22)
-        Me.TXTBANKNAME.TabIndex = 11
+        Me.TXTBANKNAME.TabIndex = 9
         '
         'txtsrno
         '
@@ -510,7 +510,7 @@ Partial Class MagicBoxForRecPay
         Me.TXTBILLNO.BackColor = System.Drawing.Color.Linen
         Me.TXTBILLNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBILLNO.ForeColor = System.Drawing.Color.Black
-        Me.TXTBILLNO.Location = New System.Drawing.Point(998, 90)
+        Me.TXTBILLNO.Location = New System.Drawing.Point(1016, 76)
         Me.TXTBILLNO.Name = "TXTBILLNO"
         Me.TXTBILLNO.ReadOnly = True
         Me.TXTBILLNO.Size = New System.Drawing.Size(101, 22)
