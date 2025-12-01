@@ -39,7 +39,7 @@ Public Class PurchaseMaster
     End Sub
 
     Private Sub cmdclear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdclear.Click
-        clear()
+        CLEAR()
         EDIT = False
         cmbregister.Enabled = True
         cmbregister.Focus()
@@ -137,7 +137,7 @@ Public Class PurchaseMaster
         If ClientName = "MANSI" Then CMBQTYUNIT.Text = "Mtrs"
         TXTMTRS.Clear()
         TXTRATE.Clear()
-        If ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "MAHAVIR" Or ClientName = "NVAHAN" Or ClientName = "DETLINE" Then CMBPER.Text = "Qty" Else CMBPER.Text = "Mtrs"
+        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "MAHAVIR" Or ClientName = "NVAHAN" Or ClientName = "DETLINE" Or ClientName = "LAXMI" Then CMBPER.Text = "Qty" Else CMBPER.Text = "Mtrs"
         TXTAMT.Clear()
         TXTDISCPER.Clear()
         TXTDISCAMT.Clear()
@@ -231,6 +231,12 @@ Public Class PurchaseMaster
 
         CMBCOSTCENTERNAME.Text = ""
         CHKINTCALC.Checked = False
+        If ClientName = "LAXMI" Then
+            CMBDYEINGNAME.Visible = False
+            Label17.Visible = False
+            Label40.Visible = False
+            GBALENO.HeaderText = "Packing"
+        End If
     End Sub
 
     Sub FILLUPLOAD()
@@ -300,7 +306,7 @@ Public Class PurchaseMaster
     Private Sub PurchaseMaster_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
-                If errorvalid() = True Then
+                If ERRORVALID() = True Then
                     Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNoCancel)
                     If tempmsg = vbCancel Then Exit Sub
                     If tempmsg = vbYes Then cmdok_Click(sender, e)
@@ -1669,7 +1675,7 @@ CHECKNEXTLINE:
             End If
         End If
 
-        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" Then
+        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" And ClientName <> "LAXMI" Then
             EP.SetError(CMBAGENT, " Please Enter Agent Name ")
             bln = False
         End If
@@ -1805,7 +1811,7 @@ CHECKNEXTLINE:
                         row.Cells(GCGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) / 100), "0.00")
                         row.Cells(GSGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) / 100), "0.00")
                         row.Cells(GIGSTAMT.Index).Value = Format((Val(row.Cells(GTAXABLEAMT.Index).EditedFormattedValue) * Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) / 100), "0.00")
-                        If ClientName = "CC" Then
+                        If ClientName = "CC" Or ClientName = "LAXMI" Then
                             'CHANGE GST% WITH RESPECT TO RATE (TAXABLEAMT / QTY)
                             'dt = OBJCMN.search("ISNULL(HSN_CGST,0) AS CGST, ISNULL(HSN_SGST,0) AS SGST, ISNULL(HSN_IGST,0) AS IGST, ISNULL(HSN_RATE1,0) AS RATE, ISNULL(HSN_CGST1,0) AS CGST1, ISNULL(HSN_SGST1,0) AS SGST1, ISNULL(HSN_IGST1,0) AS IGST1", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID", " AND ITEMMASTER.ITEM_NAME = '" & row.Cells(GITEMNAME.Index).Value & "' AND HSN_YEARID = " & YearId)
                             dt1 = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGST, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(BILLDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
@@ -4162,7 +4168,19 @@ LINE1:
             CMDSELECTGRN.Visible = False
             CHKINTCALC.Visible = True
         End If
+        If ClientName = "LAXMI" Then
+            CMBPER.Text = "Qty"
+            CMBAGENT.Visible = False
+            Label17.Visible = False
+            CMBDYEINGNAME.Visible = False
+            Label40.Visible = False
+            CMBQUALITY.TabStop = False
+            cmbcolor.TabStop = False
+            TXTCUT.TabStop = False
+            TXTMTRS.TabStop = False
+            GBALENO.HeaderText = "Packing"
 
+        End If
     End Sub
 
     Private Sub TXTPARTYBILLNO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTPARTYBILLNO.Validating

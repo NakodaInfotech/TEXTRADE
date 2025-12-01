@@ -6073,5 +6073,15 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub INVOICEDATE_Validated(sender As Object, e As EventArgs) Handles INVOICEDATE.Validated
+        Try
+            If INVOICEDATE.Text <> "__/__/____" Then
+                If Val(TXTCRDAYS.Text.Trim) > 0 Then duedate.Value = Convert.ToDateTime(INVOICEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim))
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
