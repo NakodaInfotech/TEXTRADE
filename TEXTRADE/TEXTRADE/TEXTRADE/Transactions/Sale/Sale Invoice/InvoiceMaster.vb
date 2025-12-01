@@ -6520,7 +6520,7 @@ LINE1:
                 CMBSHADE.TabStop = False
                 TXTBALENO.TabStop = False
                 CMBPER.TabStop = False
-
+                GBALENO.HeaderText = "Packing"
             End If
         Catch ex As Exception
             Throw ex
