@@ -62,6 +62,7 @@ Partial Class GSTTaxFilter
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.RBGSTHSNB2CDETAILS = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -173,6 +174,7 @@ Partial Class GSTTaxFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBGSTHSNB2CDETAILS)
         Me.GroupBox3.Controls.Add(Me.RBGSTR1GRID)
         Me.GroupBox3.Controls.Add(Me.RBRCMSELFINVOICE)
         Me.GroupBox3.Controls.Add(Me.RBGSTR2MATCHREPORT)
@@ -242,15 +244,15 @@ Partial Class GSTTaxFilter
         Me.RBGSTHSNDETAILS.AutoSize = True
         Me.RBGSTHSNDETAILS.Location = New System.Drawing.Point(226, 69)
         Me.RBGSTHSNDETAILS.Name = "RBGSTHSNDETAILS"
-        Me.RBGSTHSNDETAILS.Size = New System.Drawing.Size(171, 18)
+        Me.RBGSTHSNDETAILS.Size = New System.Drawing.Size(202, 18)
         Me.RBGSTHSNDETAILS.TabIndex = 9
-        Me.RBGSTHSNDETAILS.Text = "GST HSN Wise Sale Details"
+        Me.RBGSTHSNDETAILS.Text = "GST HSN (B2B) Wise Sale Details"
         Me.RBGSTHSNDETAILS.UseVisualStyleBackColor = True
         '
         'RBITC4
         '
         Me.RBITC4.AutoSize = True
-        Me.RBITC4.Location = New System.Drawing.Point(226, 93)
+        Me.RBITC4.Location = New System.Drawing.Point(226, 117)
         Me.RBITC4.Name = "RBITC4"
         Me.RBITC4.Size = New System.Drawing.Size(51, 18)
         Me.RBITC4.TabIndex = 10
@@ -536,6 +538,16 @@ Partial Class GSTTaxFilter
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'RBGSTHSNB2CDETAILS
+        '
+        Me.RBGSTHSNB2CDETAILS.AutoSize = True
+        Me.RBGSTHSNB2CDETAILS.Location = New System.Drawing.Point(226, 93)
+        Me.RBGSTHSNB2CDETAILS.Name = "RBGSTHSNB2CDETAILS"
+        Me.RBGSTHSNB2CDETAILS.Size = New System.Drawing.Size(201, 18)
+        Me.RBGSTHSNB2CDETAILS.TabIndex = 17
+        Me.RBGSTHSNB2CDETAILS.Text = "GST HSN (B2C) Wise Sale Details"
+        Me.RBGSTHSNB2CDETAILS.UseVisualStyleBackColor = True
+        '
         'GSTTaxFilter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -596,4 +608,5 @@ Partial Class GSTTaxFilter
     Friend WithEvents dtfrom As MaskedTextBox
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents RBGSTR1GRID As RadioButton
+    Friend WithEvents RBGSTHSNB2CDETAILS As RadioButton
 End Class
