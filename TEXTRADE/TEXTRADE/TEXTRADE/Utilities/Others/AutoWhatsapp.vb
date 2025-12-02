@@ -345,6 +345,7 @@ Public Class AutoWhatsapp
             Dim CHK As String = ""
             Dim NAME As String = ""
             Dim CITY As String = ""
+            'Dim TYPE As String = ""
 
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(I)
@@ -445,7 +446,7 @@ Public Class AutoWhatsapp
     Sub FILLCMB()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DTUNIT As DataTable = OBJCMN.SEARCH("CASE When ISNULL(LEDGERS.Acc_cmpname,'') = '' THEN  CAST (0 AS BIT) ELSE  CAST (0 AS BIT) END AS CHK, LEDGERS.Acc_cmpname AS NAME , ISNULL(CITYMASTER.city_name,'') AS CITY ", " ", " LEDGERS LEFT OUTER JOIN  CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id ", " AND  Acc_TYPE = 'ACCOUNTS' AND LEDGERS.Acc_cmpid =  '" & CmpId & "' ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTUNIT As DataTable = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, NAME, CITY ", " ", " (SELECT LEDGERS.Acc_cmpname AS NAME,ISNULL(CITYMASTER.city_name, '') AS CITY,ROW_NUMBER() OVER (PARTITION BY LEDGERS.Acc_cmpname ORDER BY LEDGERS.Acc_cmpname) AS rn FROM LEDGERS LEFT JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id WHERE Acc_TYPE = 'ACCOUNTS' AND LEDGERS.Acc_cmpid = " & CmpId & ") t ", " AND  rn = 1 ORDER BY NAME")
             gridbilldetails.DataSource = DTUNIT
             If DTUNIT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -483,7 +484,7 @@ Public Class AutoWhatsapp
                 End If
 
                 Dim objclsLEDGER As New ClsCommonMaster
-                Dim dtLGR As DataTable = objclsCMST.search("AUTOWHATSAPP_DESC.AUTOWA_CHK AS CHK, LEDGERS.Acc_cmpname AS NAME, CITYMASTER.city_name AS CITY", "", " AUTOWHATSAPP_DESC LEFT OUTER JOIN LEDGERS ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN CITYMASTER ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id", "AND AUTOWHATSAPP_DESC.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = " & CmpId)
+                Dim dtLGR As DataTable = objclsCMST.search(" AUTOWHATSAPP_DESC.AUTOWA_CHK AS CHK, LEDGERS.Acc_cmpname AS NAME, CITYMASTER.city_name AS CITY ", "", " AUTOWHATSAPP_DESC LEFT JOIN LEDGERS ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = LEDGERS.Acc_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_LEDGERID = LEDGERS.Acc_id LEFT JOIN CITYMASTER ON AUTOWHATSAPP_DESC.AUTOWA_CMPID = CITYMASTER.city_cmpid AND AUTOWHATSAPP_DESC.AUTOWA_CITYID = CITYMASTER.city_id ", " AND AUTOWHATSAPP_DESC.AUTOWA_TYPE = '" & GRIDAUTOWA.Rows(ROWNO).Cells(GTYPE.Index).Value & "'AND AUTOWHATSAPP_DESC.AUTOWA_CMPID = " & CmpId)
                 gridbilldetails.DataSource = dtLGR
                 If dtLGR.Rows.Count > 0 Then
                     gridbill.FocusedRowHandle = gridbill.RowCount - 1
