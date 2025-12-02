@@ -92,6 +92,7 @@ Partial Class LedgerDetailsReport
         Me.GTDSCOMPANY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMMISSION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdcancel = New System.Windows.Forms.Button()
+        Me.GMODIFIEDDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,7 +181,7 @@ Partial Class LedgerDetailsReport
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCODE, Me.GCMPNAME, Me.GADD, Me.GNAME, Me.GGSTIN, Me.GGROUP, Me.GCSTNO, Me.GVATNO, Me.GOPBAL, Me.GDRCR, Me.GAREA, Me.GDISTRICT, Me.GCITY, Me.GPINCODE, Me.GSTATE, Me.GCOUNTRY, Me.GRESINO, Me.GALTNO, Me.GPHONE, Me.GMOBILENO, Me.GFAX, Me.GWEBSITE, Me.GEMAIL, Me.GPANNO, Me.GTYPE, Me.GSECONDARY, Me.GAGENT, Me.GTERMS, Me.GPARTYBANK, Me.GACCOUNTTYPE, Me.GACCOUNTNO, Me.GIFSCCODE, Me.GBRANCH, Me.GBANKCITY, Me.GREMARKS, Me.GTRANSPORT, Me.GINTPER, Me.GCRDAYS, Me.GCRLIMIT, Me.GTDSPER, Me.GCONTACT, Me.GDELIVERYAT, Me.GDELIVERYPINCODE, Me.GSHIPPINGADD, Me.GEXMILLDISC, Me.GDISC, Me.GCASHDISC, Me.GADD1, Me.GADD2, Me.GKMS, Me.GBROKERAGE, Me.GWHATSAPPNO, Me.GRD, Me.GGROUPOFCOMPANIES, Me.GTANNO, Me.GMSMENO, Me.GBLOCKED, Me.GUSER, Me.GTALLYLEDGER, Me.GTDSSECTION, Me.GTDSCOMPANY, Me.GCOMMISSION})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCODE, Me.GCMPNAME, Me.GADD, Me.GNAME, Me.GGSTIN, Me.GGROUP, Me.GCSTNO, Me.GVATNO, Me.GOPBAL, Me.GDRCR, Me.GAREA, Me.GDISTRICT, Me.GCITY, Me.GPINCODE, Me.GSTATE, Me.GCOUNTRY, Me.GRESINO, Me.GALTNO, Me.GPHONE, Me.GMOBILENO, Me.GFAX, Me.GWEBSITE, Me.GEMAIL, Me.GPANNO, Me.GTYPE, Me.GSECONDARY, Me.GAGENT, Me.GTERMS, Me.GPARTYBANK, Me.GACCOUNTTYPE, Me.GACCOUNTNO, Me.GIFSCCODE, Me.GBRANCH, Me.GBANKCITY, Me.GREMARKS, Me.GTRANSPORT, Me.GINTPER, Me.GCRDAYS, Me.GCRLIMIT, Me.GTDSPER, Me.GCONTACT, Me.GDELIVERYAT, Me.GDELIVERYPINCODE, Me.GSHIPPINGADD, Me.GEXMILLDISC, Me.GDISC, Me.GCASHDISC, Me.GADD1, Me.GADD2, Me.GKMS, Me.GBROKERAGE, Me.GWHATSAPPNO, Me.GRD, Me.GGROUPOFCOMPANIES, Me.GTANNO, Me.GMSMENO, Me.GBLOCKED, Me.GUSER, Me.GMODIFIEDDATE, Me.GTALLYLEDGER, Me.GTDSSECTION, Me.GTDSCOMPANY, Me.GCOMMISSION})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -734,6 +735,14 @@ Partial Class LedgerDetailsReport
         Me.cmdcancel.Text = "&Exit"
         Me.cmdcancel.UseVisualStyleBackColor = False
         '
+        'GMODIFIEDDATE
+        '
+        Me.GMODIFIEDDATE.Caption = "Create Date"
+        Me.GMODIFIEDDATE.FieldName = "MDATE"
+        Me.GMODIFIEDDATE.Name = "GMODIFIEDDATE"
+        Me.GMODIFIEDDATE.Visible = True
+        Me.GMODIFIEDDATE.VisibleIndex = 55
+        '
         'LedgerDetailsReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -821,4 +830,5 @@ Partial Class LedgerDetailsReport
     Friend WithEvents GTDSSECTION As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTDSCOMPANY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMMISSION As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMODIFIEDDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
