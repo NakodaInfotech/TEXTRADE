@@ -6518,7 +6518,6 @@ LINE1:
                 TXTMTRS.TabStop = False
                 CMBQUALITY.TabStop = False
                 CMBSHADE.TabStop = False
-                TXTBALENO.TabStop = False
                 CMBPER.TabStop = False
                 GBALENO.HeaderText = "Packing"
             End If
