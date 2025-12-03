@@ -108,6 +108,7 @@ Partial Class OrderGridReport
         Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
+        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -137,6 +138,7 @@ Partial Class OrderGridReport
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.CMBORDERTYPE)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
         Me.BlendPanel1.Controls.Add(Me.TabControl2)
@@ -366,10 +368,10 @@ Partial Class OrderGridReport
         Me.TabPage1.Controls.Add(Me.GPORDERNO)
         Me.TabPage1.Controls.Add(Me.GPITEM)
         Me.TabPage1.Controls.Add(Me.GPPARTYNAME)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1562, 532)
+        Me.TabPage1.Size = New System.Drawing.Size(1562, 534)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Filters"
         '
@@ -1021,6 +1023,20 @@ Partial Class OrderGridReport
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
+        'CMDWHATSAPP
+        '
+        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(580, 660)
+        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
+        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
+        Me.CMDWHATSAPP.TabIndex = 22
+        Me.CMDWHATSAPP.Text = "&Whatsapp"
+        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
+        '
         'OrderGridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1145,4 +1161,5 @@ Partial Class OrderGridReport
     Friend WithEvents GCHKMILL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Private WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDWHATSAPP As Button
 End Class
