@@ -249,8 +249,10 @@ Public Class UploadExcel_MASHOK
                             'gridRow.Cells("GTAXABLEAMT").Value = taxableamt
                             'gridRow.Cells("GGRIDTOTAL").Value = amt
 
-                            gridRow.Cells("GTAXABLEAMT").Value = Format(Val(qty) * Val(rate), "0.00")
-                            gridRow.Cells("GGRIDTOTAL").Value = Format(Val(qty) * Val(rate), "0.00")
+                            'gridRow.Cells("GTAXABLEAMT").Value = Format(Val(qty) * Val(rate), "0.00")
+                            gridRow.Cells("GTAXABLEAMT").Value =
+Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
+                            gridRow.Cells("GGRIDTOTAL").Value = Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
 
                             ' Select last added row to populate GST
                             'Dim lastRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(frm.GRIDEXPENSE.Rows.Count - 1)
