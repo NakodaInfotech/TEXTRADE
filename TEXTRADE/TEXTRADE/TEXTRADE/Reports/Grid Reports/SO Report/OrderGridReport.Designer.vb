@@ -32,23 +32,12 @@ Partial Class OrderGridReport
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.CMBORDERTYPE = New System.Windows.Forms.ComboBox()
         Me.LBLTYPE = New System.Windows.Forms.Label()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.tbitem = New System.Windows.Forms.TabPage()
         Me.GRIDSO = New System.Windows.Forms.DataGridView()
-        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSODATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAGENTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNOTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBALPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GPMILLNAME = New System.Windows.Forms.GroupBox()
         Me.CHKSELECTMILL = New System.Windows.Forms.CheckBox()
@@ -108,7 +97,18 @@ Partial Class OrderGridReport
         Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
+        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSODATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAGENTNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNOTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBALPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
@@ -158,6 +158,20 @@ Partial Class OrderGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1444, 692)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDWHATSAPP
+        '
+        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(580, 660)
+        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
+        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
+        Me.CMDWHATSAPP.TabIndex = 22
+        Me.CMDWHATSAPP.Text = "&Whatsapp"
+        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
         '
         'CMBORDERTYPE
         '
@@ -236,130 +250,6 @@ Partial Class OrderGridReport
         Me.GRIDSO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDSO.Size = New System.Drawing.Size(1550, 523)
         Me.GRIDSO.TabIndex = 0
-        '
-        'GITEMNAME
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle2
-        Me.GITEMNAME.HeaderText = "Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMNAME.Width = 200
-        '
-        'GSONO
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GSONO.HeaderText = "SO No"
-        Me.GSONO.Name = "GSONO"
-        Me.GSONO.ReadOnly = True
-        Me.GSONO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSONO.Width = 80
-        '
-        'GSODATE
-        '
-        Me.GSODATE.HeaderText = "SO Date"
-        Me.GSODATE.Name = "GSODATE"
-        Me.GSODATE.ReadOnly = True
-        Me.GSODATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSODATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSODATE.Width = 80
-        '
-        'GNAME
-        '
-        Me.GNAME.HeaderText = "Name"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.ReadOnly = True
-        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GNAME.Width = 250
-        '
-        'GAGENTNAME
-        '
-        Me.GAGENTNAME.HeaderText = "Agent Name"
-        Me.GAGENTNAME.Name = "GAGENTNAME"
-        Me.GAGENTNAME.ReadOnly = True
-        Me.GAGENTNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAGENTNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GAGENTNAME.Width = 200
-        '
-        'GNOTE
-        '
-        Me.GNOTE.HeaderText = "Note"
-        Me.GNOTE.Name = "GNOTE"
-        Me.GNOTE.ReadOnly = True
-        Me.GNOTE.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GNOTE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GNOTE.Width = 180
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.HeaderText = "Mill Name"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.ReadOnly = True
-        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILLNAME.Width = 190
-        '
-        'GPCS
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GPCS.HeaderText = "Pcs"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.ReadOnly = True
-        Me.GPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPCS.Width = 60
-        '
-        'GOUTPCS
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle5
-        Me.GOUTPCS.HeaderText = "Del Pcs"
-        Me.GOUTPCS.Name = "GOUTPCS"
-        Me.GOUTPCS.ReadOnly = True
-        Me.GOUTPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GOUTPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GOUTPCS.Width = 70
-        '
-        'GBALPCS
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle6
-        Me.GBALPCS.HeaderText = "Bal Pcs"
-        Me.GBALPCS.Name = "GBALPCS"
-        Me.GBALPCS.ReadOnly = True
-        Me.GBALPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBALPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBALPCS.Width = 80
-        '
-        'GRATE
-        '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle7
-        Me.GRATE.HeaderText = "Rate"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
-        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GRATE.Width = 65
-        '
-        'GDAYS
-        '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GDAYS.HeaderText = "Cr Days"
-        Me.GDAYS.Name = "GDAYS"
-        Me.GDAYS.ReadOnly = True
-        Me.GDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDAYS.Width = 75
         '
         'TabPage1
         '
@@ -1023,19 +913,129 @@ Partial Class OrderGridReport
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'CMDWHATSAPP
+        'GITEMNAME
         '
-        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
-        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
-        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
-        Me.CMDWHATSAPP.Location = New System.Drawing.Point(580, 660)
-        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
-        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
-        Me.CMDWHATSAPP.TabIndex = 22
-        Me.CMDWHATSAPP.Text = "&Whatsapp"
-        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle2
+        Me.GITEMNAME.HeaderText = "Item Name"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.ReadOnly = True
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 200
+        '
+        'GSONO
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSONO.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GSONO.HeaderText = "SO No"
+        Me.GSONO.Name = "GSONO"
+        Me.GSONO.ReadOnly = True
+        Me.GSONO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSONO.Width = 80
+        '
+        'GSODATE
+        '
+        Me.GSODATE.HeaderText = "SO Date"
+        Me.GSODATE.Name = "GSODATE"
+        Me.GSODATE.ReadOnly = True
+        Me.GSODATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSODATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSODATE.Width = 80
+        '
+        'GNAME
+        '
+        Me.GNAME.HeaderText = "Name"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.ReadOnly = True
+        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GNAME.Width = 250
+        '
+        'GAGENTNAME
+        '
+        Me.GAGENTNAME.HeaderText = "Agent Name"
+        Me.GAGENTNAME.Name = "GAGENTNAME"
+        Me.GAGENTNAME.ReadOnly = True
+        Me.GAGENTNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAGENTNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GAGENTNAME.Width = 250
+        '
+        'GNOTE
+        '
+        Me.GNOTE.HeaderText = "Note"
+        Me.GNOTE.Name = "GNOTE"
+        Me.GNOTE.ReadOnly = True
+        Me.GNOTE.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GNOTE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GNOTE.Width = 200
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.HeaderText = "Mill Name"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.ReadOnly = True
+        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILLNAME.Width = 190
+        '
+        'GPCS
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.GPCS.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GPCS.HeaderText = "Pcs"
+        Me.GPCS.Name = "GPCS"
+        Me.GPCS.ReadOnly = True
+        Me.GPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPCS.Width = 60
+        '
+        'GOUTPCS
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GOUTPCS.DefaultCellStyle = DataGridViewCellStyle5
+        Me.GOUTPCS.HeaderText = "Del Pcs"
+        Me.GOUTPCS.Name = "GOUTPCS"
+        Me.GOUTPCS.ReadOnly = True
+        Me.GOUTPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOUTPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GOUTPCS.Width = 70
+        '
+        'GBALPCS
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBALPCS.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GBALPCS.HeaderText = "Bal Pcs"
+        Me.GBALPCS.Name = "GBALPCS"
+        Me.GBALPCS.ReadOnly = True
+        Me.GBALPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBALPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBALPCS.Width = 80
+        '
+        'GRATE
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle7
+        Me.GRATE.HeaderText = "Rate"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.ReadOnly = True
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 65
+        '
+        'GDAYS
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDAYS.DefaultCellStyle = DataGridViewCellStyle8
+        Me.GDAYS.HeaderText = "Cr Days"
+        Me.GDAYS.Name = "GDAYS"
+        Me.GDAYS.ReadOnly = True
+        Me.GDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDAYS.Width = 75
         '
         'OrderGridReport
         '
@@ -1089,18 +1089,6 @@ Partial Class OrderGridReport
     Friend WithEvents CMDREFRESH As Button
     Friend WithEvents GRIDSO As DataGridView
     Friend WithEvents CMDEXPORT As Button
-    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GSONO As DataGridViewTextBoxColumn
-    Friend WithEvents GSODATE As DataGridViewTextBoxColumn
-    Friend WithEvents GNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GAGENTNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GNOTE As DataGridViewTextBoxColumn
-    Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GPCS As DataGridViewTextBoxColumn
-    Friend WithEvents GOUTPCS As DataGridViewTextBoxColumn
-    Friend WithEvents GBALPCS As DataGridViewTextBoxColumn
-    Friend WithEvents GRATE As DataGridViewTextBoxColumn
-    Friend WithEvents GDAYS As DataGridViewTextBoxColumn
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents RDBALL As RadioButton
     Friend WithEvents RDBPENDING As RadioButton
@@ -1162,4 +1150,16 @@ Partial Class OrderGridReport
     Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Private WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDWHATSAPP As Button
+    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GSONO As DataGridViewTextBoxColumn
+    Friend WithEvents GSODATE As DataGridViewTextBoxColumn
+    Friend WithEvents GNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GAGENTNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GNOTE As DataGridViewTextBoxColumn
+    Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GPCS As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTPCS As DataGridViewTextBoxColumn
+    Friend WithEvents GBALPCS As DataGridViewTextBoxColumn
+    Friend WithEvents GRATE As DataGridViewTextBoxColumn
+    Friend WithEvents GDAYS As DataGridViewTextBoxColumn
 End Class

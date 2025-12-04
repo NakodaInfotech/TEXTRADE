@@ -578,14 +578,16 @@ Public Class OrderGridReport
             For i As Integer = 0 To visibleColumns.Count - 1
                 Dim header As String = visibleColumns(i).HeaderText.Trim().ToUpper()
                 Select Case header
-                    Case "NAME"
+                    Case "NAME", "AGENT NAME"
                         columnWidths(i) = 2.5F  ' 👈 Increased
                     Case "BILL AMT"
                         columnWidths(i) = 2.0F
                     Case "RECD AMT", "BALANCE", "RUNNING BAL"
                         columnWidths(i) = 1.5F
+                    Case "NOTE"
+                        columnWidths(i) = 5.0F  ' 👈 Increased
                     Case Else
-                        columnWidths(i) = 1.0F
+                        columnWidths(i) = 1.0F  ' 👈 Increased
                 End Select
                 totalWeight += columnWidths(i)
             Next
