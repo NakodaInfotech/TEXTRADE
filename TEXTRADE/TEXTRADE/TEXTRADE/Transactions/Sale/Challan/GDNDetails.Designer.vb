@@ -81,6 +81,7 @@ Partial Class GDNDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +92,7 @@ Partial Class GDNDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKTHIRDPARTY)
         Me.BlendPanel1.Controls.Add(Me.CHKHIDEPCS)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label2)
@@ -313,7 +315,7 @@ Partial Class GDNDetails
         '
         Me.GNAME.Caption = "Customer Name"
         Me.GNAME.FieldName = "CMPNAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -662,6 +664,18 @@ Partial Class GDNDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'CHKTHIRDPARTY
+        '
+        Me.CHKTHIRDPARTY.AutoSize = True
+        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
+        Me.CHKTHIRDPARTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(765, 3)
+        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
+        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
+        Me.CHKTHIRDPARTY.TabIndex = 928
+        Me.CHKTHIRDPARTY.Text = "Third Party"
+        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
+        '
         'GDNDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -741,4 +755,5 @@ Partial Class GDNDetails
     Friend WithEvents GAGENTEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GUSERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCONTRACTOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKTHIRDPARTY As CheckBox
 End Class
