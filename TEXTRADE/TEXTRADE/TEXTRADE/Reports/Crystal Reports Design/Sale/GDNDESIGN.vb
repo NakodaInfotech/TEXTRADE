@@ -117,6 +117,7 @@ Public Class GDNDESIGN
     Public JONO As Integer = 0
     Public PRINTRATE As Boolean = False
     Public PARTYCHANGEADD As String
+    Public THIRDPARTY As Boolean = False
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -486,6 +487,7 @@ Public Class GDNDESIGN
                     crpo.ReportSource = RPTGDN_SHEETAL
                     RPTGDN_SHEETAL.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     RPTGDN_SHEETAL.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If THIRDPARTY = True Then RPTGDN_SHEETAL.DataDefinition.FormulaFields("THIRDPARTY").Text = "1"
                 ElseIf ClientName = "SBA" Then
                     crpo.ReportSource = RPTGDN_SBA
                 ElseIf ClientName = "DRDRAPES" Then
@@ -1231,6 +1233,9 @@ Public Class GDNDESIGN
                     OBJ = New GDNReport_SUPEEMA
                 ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     OBJ = New GDNReport_SHEETAL
+                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If THIRDPARTY = True Then OBJ.DataDefinition.FormulaFields("THIRDPARTY").Text = "1"
                 ElseIf ClientName = "SBA" Then
                     OBJ = New GDNReport_SBA
                 ElseIf ClientName = "DRDRAPES" Then

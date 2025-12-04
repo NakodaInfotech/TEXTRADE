@@ -184,6 +184,8 @@ Public Class PurchaseInvoiceFilter
                 OBJLABEL.MdiParent = MDIMain
                 If ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Then
                     OBJLABEL.FRMSTRING = "LABEL"
+                ElseIf ClientName = "PARAMOUNT" Or ClientName = "MILUXE" Then
+                    OBJLABEL.FRMSTRING = "100X50"
                 Else
                     OBJLABEL.FRMSTRING = "100X75"
                 End If
