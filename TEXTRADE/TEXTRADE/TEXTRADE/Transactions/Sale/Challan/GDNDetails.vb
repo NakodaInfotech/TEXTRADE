@@ -235,6 +235,9 @@ Public Class GDNDetails
                     OBJ = New GDNReport_SOFTAS
                 ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     OBJ = New GDNReport_SHEETAL
+                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                    If CHKTHIRDPARTY.Checked = True Then OBJ.DataDefinition.FormulaFields("THIRDPARTY").Text = "1"
                 ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                     OBJ = New GDNReport_CC
                 ElseIf ClientName = "DRDRAPES" Then
@@ -398,6 +401,8 @@ Public Class GDNDetails
                         OBJ = New GDNReport_SOFTAS
                     ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                         OBJ = New GDNReport_SHEETAL
+                        OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                        OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                         OBJ = New GDNReport_CC
                     ElseIf ClientName = "DRDRAPES" Then

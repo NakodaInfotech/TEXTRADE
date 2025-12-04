@@ -1780,6 +1780,7 @@ LINE1:
                 OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
                 OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
                 OBJGDN.PRINTINYARDS = CHKYARD.Checked
+                OBJGDN.THIRDPARTY = CHKTHIRDPARTY.Checked
                 If CHKCHANGEADD.CheckState = CheckState.Checked Then OBJGDN.PARTYCHANGEADD = TXTDELIVERYADDRESS.Text.Trim
                 OBJGDN.Show()
             End If

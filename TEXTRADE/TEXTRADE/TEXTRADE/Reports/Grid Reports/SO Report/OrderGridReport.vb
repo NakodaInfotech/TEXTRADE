@@ -516,7 +516,7 @@ Public Class OrderGridReport
             ' TEMPOUTSTANDING()
 
             ' Generate the PDF from DataGridView
-            Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+            Dim filePath As String = Application.StartupPath & "\Pending Order_" & CMBNAME.Text.Trim & ".pdf"
 
             ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
             ExportDataGridViewToPdfForWP(GRIDSO, filePath)
@@ -525,7 +525,7 @@ Public Class OrderGridReport
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
             OBJWHATSAPP.PATH.Add(filePath)
-            OBJWHATSAPP.FILENAME.Add("Outstanding" & CMBNAME.Text.Trim & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("Pending Order" & CMBNAME.Text.Trim & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
             ' Delete PDF if client is SNCM
