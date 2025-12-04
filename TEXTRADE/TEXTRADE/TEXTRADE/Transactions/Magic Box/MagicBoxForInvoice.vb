@@ -431,7 +431,7 @@ NEXTLINE:
 
             alParaval.Add("1")  'GRIDSRNO
             alParaval.Add("Against Bill")   'PAYTYPE
-            alParaval.Add("S-" & GRIDMAGICBOX.Rows(ROWNO).Cells(GNO.Index).Value)   'BILLINITIALS
+            alParaval.Add("S-" & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value)   'BILLINITIALS
             alParaval.Add("")   'NARR
             alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'ADJAMT
             alParaval.Add(0)    'RECAMT

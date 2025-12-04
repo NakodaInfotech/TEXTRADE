@@ -368,6 +368,14 @@ Public Class GSTTaxFilter
                 OBJHSN.MdiParent = MDIMain
                 OBJHSN.Show()
 
+            ElseIf RBGSTHSNB2CDETAILS.Checked = True Then
+
+                Dim OBJHSN As New HSNWiseDetails
+                OBJHSN.FRMSTRING = "SALEB2C"
+                If chkdate.CheckState = CheckState.Checked Then OBJHSN.WHERECLAUSE = OBJHSN.WHERECLAUSE & " And HSNSUMMARY.Date >='" & Format(Convert.ToDateTime(dtfrom.Text), "MM/dd/yyyy") & "' AND HSNSUMMARY.DATE <= '" & Format(Convert.ToDateTime(dtto.Text), "MM/dd/yyyy") & "'"
+                OBJHSN.MdiParent = MDIMain
+                OBJHSN.Show()
+
             ElseIf RBGSTHSNPURDETAILS.Checked = True Then
 
                 Dim OBJHSN As New HSNWiseDetails

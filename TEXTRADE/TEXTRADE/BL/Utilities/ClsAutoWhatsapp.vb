@@ -49,22 +49,11 @@ Public Class ClsAUTOWHATSAPP
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TIME", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@WANO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
-                I += 1
-
-                .Add(New SqlClient.SqlParameter("@CHK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@CITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTCHK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTCITY", alParaval(I)))
                 I += 1
 
             End With
@@ -72,77 +61,10 @@ Public Class ClsAUTOWHATSAPP
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
 
             Return DTTABLE
-
         Catch ex As Exception
             Throw ex
         End Try
-        ' Return 0
-
     End Function
-    Public Function UPDATE() As Integer
-        Dim intResult As Integer
-        Try
-            'save SALE order
-            Dim strCommand As String = "SP_UTILITIES_AUTOWHATSAPP_UPDATE"
-            Dim alParameter As New ArrayList
-            With alParameter
-
-                Dim I As Integer = 0
-
-                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@MONDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@TUESDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEDNESDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@THURSDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@FRIDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SATURDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SUNDAY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@TIME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
-                I += 1
-
-                .Add(New SqlClient.SqlParameter("@CHK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@CITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTCHK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@AGENTCITY", alParaval(I)))
-                I += 1
-
-
-
-                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
-                I += 1
-
-            End With
-
-            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return intResult
-
-    End Function
-
 
     Public Function UPDATELEDGERS() As Integer
         Dim intResult As Integer
@@ -155,7 +77,7 @@ Public Class ClsAUTOWHATSAPP
                 Dim I As Integer = 0
 
 
-                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WANO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
@@ -166,6 +88,8 @@ Public Class ClsAUTOWHATSAPP
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
                 I += 1
 
             End With

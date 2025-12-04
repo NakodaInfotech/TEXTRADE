@@ -2539,6 +2539,7 @@ NEXTLINE:
                 TXTMTRS.TabStop = False
                 CMBPER.TabStop = False
                 Gpcs.HeaderText = "Qty"
+                GBALENO.HeaderText = "Packing"
             End If
 
         Catch ex As Exception

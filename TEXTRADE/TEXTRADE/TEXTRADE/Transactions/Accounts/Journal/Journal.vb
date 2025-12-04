@@ -519,7 +519,7 @@ Public Class journal
                 bln = False
             End If
 
-            If row.Cells(GPAYTYPE.Index).Value = "New Ref" Then row.Cells(GREFNO.Index).Value = JVREGINITIALS & "-" & Val(txtjournalno.Text.Trim)
+            If row.Cells(GPAYTYPE.Index).Value = "New Ref." Then row.Cells(GREFNO.Index).Value = JVREGINITIALS & "-" & Val(txtjournalno.Text.Trim)
 
         Next
 

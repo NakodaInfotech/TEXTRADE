@@ -1,6 +1,8 @@
 ﻿
 Imports System.ComponentModel
+Imports System.IO
 Imports BL
+Imports iTextSharp.text.pdf
 
 Public Class OrderGridReport
 
@@ -499,5 +501,189 @@ Public Class OrderGridReport
         End Try
     End Sub
 
+    Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            ' Prepare data for grid
+            ' TEMPOUTSTANDING()
+
+            ' Generate the PDF from DataGridView
+            Dim filePath As String = Application.StartupPath & "\Outstanding_" & CMBNAME.Text.Trim & ".pdf"
+
+            ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
+            ExportDataGridViewToPdfForWP(GRIDSO, filePath)
+
+            ' Prepare WhatsApp sending form
+            Dim OBJWHATSAPP As New SendWhatsapp
+            OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
+            OBJWHATSAPP.PATH.Add(filePath)
+            OBJWHATSAPP.FILENAME.Add("Outstanding" & CMBNAME.Text.Trim & ".pdf")
+            OBJWHATSAPP.ShowDialog()
+
+            ' Delete PDF if client is SNCM
+            If ClientName = "SNCM" Then
+                For Each path As String In OBJWHATSAPP.PATH
+                    If File.Exists(path) Then
+                        File.Delete(path)
+                    End If
+                Next
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub ExportDataGridViewToPdfForWP(dgv As DataGridView, filePath As String)
+        ' 👉 Changed to A3 for bigger page size
+        Dim doc As New iTextSharp.text.Document(iTextSharp.text.PageSize.A3.Rotate(), 20, 20, 20, 20)
+
+        Try
+            PdfWriter.GetInstance(doc, New FileStream(filePath, FileMode.Create))
+            doc.Open()
+
+            ' Load Verdana font
+            Dim verdanaBaseFont As BaseFont = BaseFont.CreateFont("C:\Windows\Fonts\verdana.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            Dim verdana10 As New iTextSharp.text.Font(verdanaBaseFont, 10)
+            Dim verdana10Bold As New iTextSharp.text.Font(verdanaBaseFont, 10, iTextSharp.text.Font.BOLD)
+            Dim verdana16Bold As New iTextSharp.text.Font(verdanaBaseFont, 16, iTextSharp.text.Font.BOLD)
+
+            ' Title & Date
+            doc.Add(New iTextSharp.text.Paragraph("Order Grid Report", verdana16Bold))
+            doc.Add(New iTextSharp.text.Paragraph("Generated on: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), verdana10))
+            doc.Add(New iTextSharp.text.Paragraph(" "))
+
+            ' Collect visible columns
+            Dim visibleColumns As New List(Of DataGridViewColumn)
+            For Each col As DataGridViewColumn In dgv.Columns
+                If col.Visible Then visibleColumns.Add(col)
+            Next
+
+            Dim table As New PdfPTable(visibleColumns.Count)
+            table.WidthPercentage = 100
+            table.HeaderRows = 1
+
+            ' 👉 Custom width logic: NAME & BILL AMT are wider
+            Dim columnWidths(visibleColumns.Count - 1) As Single
+            Dim totalWeight As Single = 0.0F
+
+            For i As Integer = 0 To visibleColumns.Count - 1
+                Dim header As String = visibleColumns(i).HeaderText.Trim().ToUpper()
+                Select Case header
+                    Case "NAME", "AGENT NAME"
+                        columnWidths(i) = 2.5F  ' 👈 Increased
+                    Case "BILL AMT"
+                        columnWidths(i) = 2.0F
+                    Case "RECD AMT", "BALANCE", "RUNNING BAL"
+                        columnWidths(i) = 1.5F
+                    Case "NOTE"
+                        columnWidths(i) = 5.0F  ' 👈 Increased
+                    Case Else
+                        columnWidths(i) = 1.0F  ' 👈 Increased
+                End Select
+                totalWeight += columnWidths(i)
+            Next
+
+            ' Normalize widths to make total = 100%
+            For i As Integer = 0 To columnWidths.Length - 1
+                columnWidths(i) = columnWidths(i) / totalWeight * 100.0F
+            Next
+
+            table.SetWidths(columnWidths)
+
+            ' Headers
+            For Each col As DataGridViewColumn In visibleColumns
+                Dim headerCell As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase(col.HeaderText, verdana10Bold)) With {
+                 .BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY,
+                 .HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER,
+                 .VerticalAlignment = iTextSharp.text.Element.ALIGN_MIDDLE,
+                 .Padding = 5,
+                 .NoWrap = False
+              }
+
+                table.AddCell(headerCell)
+
+            Next
+
+
+            ' Data rows
+            For Each row As DataGridViewRow In dgv.Rows
+                If Not row.IsNewRow Then
+                    Dim isGrandTotalRow As Boolean = False
+
+                    For Each cell As DataGridViewCell In row.Cells
+                        If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Trim().ToUpper() = "GRANDTOTAL" Then
+                            isGrandTotalRow = True
+                            Exit For
+                        End If
+                    Next
+
+                    For Each col As DataGridViewColumn In visibleColumns
+                        Dim cell As DataGridViewCell = row.Cells(col.Index)
+                        Dim value As String = ""
+
+                        If cell.Value IsNot Nothing Then
+                            If TypeOf cell.Value Is DateTime Then
+                                value = CType(cell.Value, DateTime).ToString("dd/MM/yyyy")
+                            Else
+                                value = cell.Value.ToString()
+                            End If
+                        End If
+
+                        Dim pdfCell As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase(value, If(isGrandTotalRow, verdana10Bold, verdana10))) With {
+                        .VerticalAlignment = iTextSharp.text.Element.ALIGN_MIDDLE,
+                        .Padding = 4
+                    }
+
+                        ' Color logic
+                        If isGrandTotalRow Then
+                            pdfCell.BackgroundColor = New iTextSharp.text.BaseColor(250, 240, 230)
+
+                        ElseIf row.DefaultCellStyle.BackColor = System.Drawing.Color.Yellow Then
+                            pdfCell.BackgroundColor = iTextSharp.text.BaseColor.YELLOW
+
+                        ElseIf row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen Then
+                            pdfCell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY
+
+                        End If
+
+                        ' Wrapping for specific columns
+                        Dim colName As String = col.HeaderText.Trim().ToUpper()
+                        Select Case colName
+                            Case "NAME", "INV NO", "ITEM NAME", "MILL NAME", "PCS/BAGS", "REMARKS", "BROKER", "JOBBERNAME", "TRANSNAME", "GODOWN"
+                                pdfCell.NoWrap = False
+                            Case Else
+                                pdfCell.NoWrap = True
+                        End Select
+
+                        ' Alignment
+
+                        If IsNumeric(value) Then
+                            pdfCell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_RIGHT
+                        Else
+                            pdfCell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_LEFT
+                        End If
+
+                        table.AddCell(pdfCell)
+                    Next
+                End If
+            Next
+
+            doc.Add(table)
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to export PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            doc.Close()
+        End Try
+    End Sub
 
 End Class

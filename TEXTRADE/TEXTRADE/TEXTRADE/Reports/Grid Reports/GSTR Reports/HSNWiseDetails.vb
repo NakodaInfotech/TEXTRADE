@@ -18,6 +18,13 @@ Public Class HSNWiseDetails
 
     Private Sub HSNWiseDetails_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
+            If FRMSTRING = "SALE" Then
+                Me.Text = "Sale HSN (B2B) Wise Details"
+            ElseIf FRMSTRING = "SALEB2C" Then
+                Me.Text = "Sale HSN (B2C) Wise Details"
+            Else
+                Me.Text = "Purchase HSN Wise Details"
+            End If
             FILLGRID()
         Catch ex As Exception
             Throw ex
@@ -30,6 +37,10 @@ Public Class HSNWiseDetails
             Dim DT As New DataTable
             If FRMSTRING = "SALE" Then
                 DT = OBJCMN.search(" INITIALS, DATE,NAME, HSNCODE, HSNRATE, ENTRYTYPE, GSTIN, SUM(QTY) AS QTY, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(GRANDTOTAL) AS GRANDTOTAL ", "", " HSNSUMMARY ", WHERECLAUSE & " AND YEARID = " & YearId & " GROUP BY DATE,HSNSUMMARY.INITIALS, NAME, HSNCODE, HSNRATE, ENTRYTYPE, GSTIN ")
+                GPARTYBILLNO.Visible = False
+                GAGAINSTNAME.Visible = False
+            ElseIf FRMSTRING = "SALEB2C" Then
+                DT = OBJCMN.search(" INITIALS, DATE,NAME, HSNCODE, HSNRATE, ENTRYTYPE, GSTIN, SUM(QTY) AS QTY, SUM(TAXABLEAMT) AS TAXABLEAMT, SUM(CGSTAMT) AS CGSTAMT, SUM(SGSTAMT) AS SGSTAMT, SUM(IGSTAMT) AS IGSTAMT, SUM(GRANDTOTAL) AS GRANDTOTAL ", "", " HSNSUMMARYB2C ", WHERECLAUSE & " AND YEARID = " & YearId & " GROUP BY DATE,HSNSUMMARYB2C.INITIALS, NAME, HSNCODE, HSNRATE, ENTRYTYPE, GSTIN ")
                 GPARTYBILLNO.Visible = False
                 GAGAINSTNAME.Visible = False
             Else

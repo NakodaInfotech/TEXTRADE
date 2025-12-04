@@ -28,18 +28,17 @@ Partial Class AutoWhatsapp
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.LBLTYPE1 = New System.Windows.Forms.Label()
+        Me.CMDUPDATE = New System.Windows.Forms.Button()
         Me.LBLTYPE = New System.Windows.Forms.Label()
-        Me.TXTTYPE2 = New System.Windows.Forms.TextBox()
-        Me.TXTTYPE1 = New System.Windows.Forms.TextBox()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.TXTTYPE = New System.Windows.Forms.TextBox()
+        Me.GRIDAGENTDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDAGENT = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GACHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GACITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPPANEL = New System.Windows.Forms.Panel()
-        Me.TXTTIME = New System.Windows.Forms.TextBox()
+        Me.DTTIME = New System.Windows.Forms.DateTimePicker()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
         Me.CHKSUNDAY = New System.Windows.Forms.CheckBox()
         Me.CHKSATURDAY = New System.Windows.Forms.CheckBox()
@@ -55,13 +54,14 @@ Partial Class AutoWhatsapp
         Me.GSAT = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GSUN = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GTIME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CHKTHURSDAY = New System.Windows.Forms.CheckBox()
         Me.CHKWEDNESDAY = New System.Windows.Forms.CheckBox()
         Me.CHKTUESDAY = New System.Windows.Forms.CheckBox()
         Me.CMBTYPE = New System.Windows.Forms.ComboBox()
         Me.CHKMONDAY = New System.Windows.Forms.CheckBox()
-        Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
-        Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GRIDLEDGERDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDLEDGER = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,13 +70,13 @@ Partial Class AutoWhatsapp
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDAGENTDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDAGENT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GPPANEL.SuspendLayout()
         CType(Me.GRIDAUTOWA, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDLEDGERDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDLEDGER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -84,92 +84,79 @@ Partial Class AutoWhatsapp
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.LBLTYPE1)
+        Me.BlendPanel1.Controls.Add(Me.CMDUPDATE)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
-        Me.BlendPanel1.Controls.Add(Me.TXTTYPE2)
-        Me.BlendPanel1.Controls.Add(Me.TXTTYPE1)
-        Me.BlendPanel1.Controls.Add(Me.GridControl1)
+        Me.BlendPanel1.Controls.Add(Me.TXTTYPE)
+        Me.BlendPanel1.Controls.Add(Me.GRIDAGENTDETAILS)
         Me.BlendPanel1.Controls.Add(Me.GPPANEL)
-        Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
+        Me.BlendPanel1.Controls.Add(Me.GRIDLEDGERDETAILS)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
         Me.BlendPanel1.Controls.Add(Me.CMDSAVE)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1444, 581)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.Size = New System.Drawing.Size(1384, 537)
+        Me.BlendPanel1.TabIndex = 0
         '
-        'LBLTYPE1
+        'CMDUPDATE
         '
-        Me.LBLTYPE1.AutoSize = True
-        Me.LBLTYPE1.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTYPE1.Location = New System.Drawing.Point(1291, 48)
-        Me.LBLTYPE1.Name = "LBLTYPE1"
-        Me.LBLTYPE1.Size = New System.Drawing.Size(31, 15)
-        Me.LBLTYPE1.TabIndex = 15
-        Me.LBLTYPE1.Text = "Type"
+        Me.CMDUPDATE.Location = New System.Drawing.Point(717, 492)
+        Me.CMDUPDATE.Name = "CMDUPDATE"
+        Me.CMDUPDATE.Size = New System.Drawing.Size(150, 28)
+        Me.CMDUPDATE.TabIndex = 4
+        Me.CMDUPDATE.Text = "&Update Ledger && Agent"
+        Me.CMDUPDATE.UseVisualStyleBackColor = True
         '
         'LBLTYPE
         '
         Me.LBLTYPE.AutoSize = True
         Me.LBLTYPE.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTYPE.Location = New System.Drawing.Point(966, 48)
+        Me.LBLTYPE.Location = New System.Drawing.Point(736, 21)
         Me.LBLTYPE.Name = "LBLTYPE"
         Me.LBLTYPE.Size = New System.Drawing.Size(31, 15)
         Me.LBLTYPE.TabIndex = 14
         Me.LBLTYPE.Text = "Type"
         '
-        'TXTTYPE2
+        'TXTTYPE
         '
-        Me.TXTTYPE2.BackColor = System.Drawing.Color.Linen
-        Me.TXTTYPE2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTYPE2.Location = New System.Drawing.Point(1328, 45)
-        Me.TXTTYPE2.Name = "TXTTYPE2"
-        Me.TXTTYPE2.ReadOnly = True
-        Me.TXTTYPE2.Size = New System.Drawing.Size(264, 23)
-        Me.TXTTYPE2.TabIndex = 13
-        Me.TXTTYPE2.TabStop = False
+        Me.TXTTYPE.BackColor = System.Drawing.Color.Linen
+        Me.TXTTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTYPE.Location = New System.Drawing.Point(773, 18)
+        Me.TXTTYPE.Name = "TXTTYPE"
+        Me.TXTTYPE.ReadOnly = True
+        Me.TXTTYPE.Size = New System.Drawing.Size(264, 23)
+        Me.TXTTYPE.TabIndex = 12
+        Me.TXTTYPE.TabStop = False
         '
-        'TXTTYPE1
+        'GRIDAGENTDETAILS
         '
-        Me.TXTTYPE1.BackColor = System.Drawing.Color.Linen
-        Me.TXTTYPE1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTYPE1.Location = New System.Drawing.Point(1003, 45)
-        Me.TXTTYPE1.Name = "TXTTYPE1"
-        Me.TXTTYPE1.ReadOnly = True
-        Me.TXTTYPE1.Size = New System.Drawing.Size(264, 23)
-        Me.TXTTYPE1.TabIndex = 12
-        Me.TXTTYPE1.TabStop = False
+        Me.GRIDAGENTDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDAGENTDETAILS.Location = New System.Drawing.Point(1045, 47)
+        Me.GRIDAGENTDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDAGENTDETAILS.MainView = Me.GRIDAGENT
+        Me.GRIDAGENTDETAILS.Name = "GRIDAGENTDETAILS"
+        Me.GRIDAGENTDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GRIDAGENTDETAILS.Size = New System.Drawing.Size(317, 439)
+        Me.GRIDAGENTDETAILS.TabIndex = 3
+        Me.GRIDAGENTDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDAGENT})
         '
-        'GridControl1
+        'GRIDAGENT
         '
-        Me.GridControl1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridControl1.Location = New System.Drawing.Point(1275, 74)
-        Me.GridControl1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(317, 439)
-        Me.GridControl1.TabIndex = 4
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GACHK, Me.GAGENTNAME, Me.GACITY})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GRIDAGENT.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDAGENT.Appearance.Row.Options.UseFont = True
+        Me.GRIDAGENT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GACHK, Me.GAGENTNAME, Me.GACITY})
+        Me.GRIDAGENT.GridControl = Me.GRIDAGENTDETAILS
+        Me.GRIDAGENT.Name = "GRIDAGENT"
+        Me.GRIDAGENT.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDAGENT.OptionsView.ColumnAutoWidth = False
+        Me.GRIDAGENT.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDAGENT.OptionsView.ShowGroupPanel = False
         '
         'GACHK
         '
-        Me.GACHK.Caption = "AGENTCHK"
+        Me.GACHK.Caption = "CHK"
         Me.GACHK.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GACHK.FieldName = "AGENTCHK"
+        Me.GACHK.FieldName = "CHK"
         Me.GACHK.Name = "GACHK"
         Me.GACHK.OptionsColumn.ShowCaption = False
         Me.GACHK.Visible = True
@@ -185,7 +172,7 @@ Partial Class AutoWhatsapp
         'GAGENTNAME
         '
         Me.GAGENTNAME.Caption = "Agent Name"
-        Me.GAGENTNAME.FieldName = "AGENTNAME"
+        Me.GAGENTNAME.FieldName = "NAME"
         Me.GAGENTNAME.ImageOptions.ImageIndex = 0
         Me.GAGENTNAME.Name = "GAGENTNAME"
         Me.GAGENTNAME.OptionsColumn.AllowEdit = False
@@ -196,7 +183,7 @@ Partial Class AutoWhatsapp
         'GACITY
         '
         Me.GACITY.Caption = "City"
-        Me.GACITY.FieldName = "AGENTCITY"
+        Me.GACITY.FieldName = "CITY"
         Me.GACITY.Name = "GACITY"
         Me.GACITY.Visible = True
         Me.GACITY.VisibleIndex = 2
@@ -206,7 +193,7 @@ Partial Class AutoWhatsapp
         '
         Me.GPPANEL.AutoScroll = True
         Me.GPPANEL.BackColor = System.Drawing.Color.Transparent
-        Me.GPPANEL.Controls.Add(Me.TXTTIME)
+        Me.GPPANEL.Controls.Add(Me.DTTIME)
         Me.GPPANEL.Controls.Add(Me.TXTSRNO)
         Me.GPPANEL.Controls.Add(Me.CHKSUNDAY)
         Me.GPPANEL.Controls.Add(Me.CHKSATURDAY)
@@ -217,19 +204,19 @@ Partial Class AutoWhatsapp
         Me.GPPANEL.Controls.Add(Me.CHKTUESDAY)
         Me.GPPANEL.Controls.Add(Me.CMBTYPE)
         Me.GPPANEL.Controls.Add(Me.CHKMONDAY)
-        Me.GPPANEL.Location = New System.Drawing.Point(12, 36)
+        Me.GPPANEL.Location = New System.Drawing.Point(12, 9)
         Me.GPPANEL.Name = "GPPANEL"
-        Me.GPPANEL.Size = New System.Drawing.Size(929, 330)
+        Me.GPPANEL.Size = New System.Drawing.Size(699, 217)
         Me.GPPANEL.TabIndex = 0
         '
-        'TXTTIME
+        'DTTIME
         '
-        Me.TXTTIME.BackColor = System.Drawing.Color.White
-        Me.TXTTIME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTIME.Location = New System.Drawing.Point(812, 15)
-        Me.TXTTIME.Name = "TXTTIME"
-        Me.TXTTIME.Size = New System.Drawing.Size(83, 23)
-        Me.TXTTIME.TabIndex = 9
+        Me.DTTIME.CustomFormat = "hh:mm  tt"
+        Me.DTTIME.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTTIME.Location = New System.Drawing.Point(583, 15)
+        Me.DTTIME.Name = "DTTIME"
+        Me.DTTIME.Size = New System.Drawing.Size(80, 23)
+        Me.DTTIME.TabIndex = 9
         '
         'TXTSRNO
         '
@@ -247,11 +234,11 @@ Partial Class AutoWhatsapp
         Me.CHKSUNDAY.AutoSize = True
         Me.CHKSUNDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKSUNDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSUNDAY.Location = New System.Drawing.Point(739, 17)
+        Me.CHKSUNDAY.Location = New System.Drawing.Point(531, 17)
         Me.CHKSUNDAY.Name = "CHKSUNDAY"
-        Me.CHKSUNDAY.Size = New System.Drawing.Size(66, 19)
+        Me.CHKSUNDAY.Size = New System.Drawing.Size(46, 19)
         Me.CHKSUNDAY.TabIndex = 8
-        Me.CHKSUNDAY.Text = "Sunday"
+        Me.CHKSUNDAY.Text = "Sun"
         Me.CHKSUNDAY.UseVisualStyleBackColor = False
         '
         'CHKSATURDAY
@@ -259,11 +246,11 @@ Partial Class AutoWhatsapp
         Me.CHKSATURDAY.AutoSize = True
         Me.CHKSATURDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKSATURDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSATURDAY.Location = New System.Drawing.Point(650, 17)
+        Me.CHKSATURDAY.Location = New System.Drawing.Point(471, 17)
         Me.CHKSATURDAY.Name = "CHKSATURDAY"
-        Me.CHKSATURDAY.Size = New System.Drawing.Size(75, 19)
+        Me.CHKSATURDAY.Size = New System.Drawing.Size(43, 19)
         Me.CHKSATURDAY.TabIndex = 7
-        Me.CHKSATURDAY.Text = "Saturday"
+        Me.CHKSATURDAY.Text = "Sat"
         Me.CHKSATURDAY.UseVisualStyleBackColor = False
         '
         'CHKFRIDAY
@@ -271,11 +258,11 @@ Partial Class AutoWhatsapp
         Me.CHKFRIDAY.AutoSize = True
         Me.CHKFRIDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKFRIDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKFRIDAY.Location = New System.Drawing.Point(571, 16)
+        Me.CHKFRIDAY.Location = New System.Drawing.Point(409, 16)
         Me.CHKFRIDAY.Name = "CHKFRIDAY"
-        Me.CHKFRIDAY.Size = New System.Drawing.Size(61, 19)
+        Me.CHKFRIDAY.Size = New System.Drawing.Size(41, 19)
         Me.CHKFRIDAY.TabIndex = 6
-        Me.CHKFRIDAY.Text = "Friday"
+        Me.CHKFRIDAY.Text = "Fri"
         Me.CHKFRIDAY.UseVisualStyleBackColor = False
         '
         'GRIDAUTOWA
@@ -300,7 +287,7 @@ Partial Class AutoWhatsapp
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDAUTOWA.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDAUTOWA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDAUTOWA.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GTYPE, Me.GMON, Me.GTUE, Me.GWED, Me.GTHU, Me.GFRI, Me.GSAT, Me.GSUN, Me.GTIME})
+        Me.GRIDAUTOWA.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GTYPE, Me.GMON, Me.GTUE, Me.GWED, Me.GTHU, Me.GFRI, Me.GSAT, Me.GSUN, Me.GTIME, Me.GNO})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -318,8 +305,8 @@ Partial Class AutoWhatsapp
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
         Me.GRIDAUTOWA.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDAUTOWA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDAUTOWA.Size = New System.Drawing.Size(916, 285)
-        Me.GRIDAUTOWA.TabIndex = 11
+        Me.GRIDAUTOWA.Size = New System.Drawing.Size(691, 173)
+        Me.GRIDAUTOWA.TabIndex = 10
         Me.GRIDAUTOWA.TabStop = False
         '
         'GSRNO
@@ -338,64 +325,63 @@ Partial Class AutoWhatsapp
         Me.GTYPE.ReadOnly = True
         Me.GTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTYPE.Width = 175
+        Me.GTYPE.Width = 120
         '
         'GMON
         '
-        Me.GMON.HeaderText = "Monday"
+        Me.GMON.HeaderText = "Mon"
         Me.GMON.Name = "GMON"
         Me.GMON.ReadOnly = True
         Me.GMON.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMON.Width = 85
+        Me.GMON.Width = 60
         '
         'GTUE
         '
-        Me.GTUE.HeaderText = "Tuesday"
+        Me.GTUE.HeaderText = "Tue"
         Me.GTUE.Name = "GTUE"
         Me.GTUE.ReadOnly = True
         Me.GTUE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTUE.Width = 85
+        Me.GTUE.Width = 60
         '
         'GWED
         '
-        Me.GWED.HeaderText = "Wednesday"
+        Me.GWED.HeaderText = "Wed"
         Me.GWED.Name = "GWED"
         Me.GWED.ReadOnly = True
         Me.GWED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
-        Me.GWED.Width = 85
+        Me.GWED.Width = 60
         '
         'GTHU
         '
-        Me.GTHU.HeaderText = "Thursday"
+        Me.GTHU.HeaderText = "Thu"
         Me.GTHU.Name = "GTHU"
         Me.GTHU.ReadOnly = True
         Me.GTHU.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTHU.Width = 85
+        Me.GTHU.Width = 60
         '
         'GFRI
         '
-        Me.GFRI.HeaderText = "Friday"
+        Me.GFRI.HeaderText = "Fri"
         Me.GFRI.Name = "GFRI"
         Me.GFRI.ReadOnly = True
         Me.GFRI.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFRI.Width = 85
+        Me.GFRI.Width = 60
         '
         'GSAT
         '
-        Me.GSAT.HeaderText = "Saturday"
+        Me.GSAT.HeaderText = "Sat"
         Me.GSAT.Name = "GSAT"
         Me.GSAT.ReadOnly = True
         Me.GSAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSAT.Width = 85
+        Me.GSAT.Width = 60
         '
         'GSUN
         '
-        Me.GSUN.HeaderText = "Sunday"
+        Me.GSUN.HeaderText = "Sun"
         Me.GSUN.Name = "GSUN"
         Me.GSUN.ReadOnly = True
         Me.GSUN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSUN.Width = 85
+        Me.GSUN.Width = 60
         '
         'GTIME
         '
@@ -406,16 +392,22 @@ Partial Class AutoWhatsapp
         Me.GTIME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GTIME.Width = 80
         '
+        'GNO
+        '
+        Me.GNO.HeaderText = "WANO"
+        Me.GNO.Name = "GNO"
+        Me.GNO.Visible = False
+        '
         'CHKTHURSDAY
         '
         Me.CHKTHURSDAY.AutoSize = True
         Me.CHKTHURSDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKTHURSDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKTHURSDAY.Location = New System.Drawing.Point(478, 17)
+        Me.CHKTHURSDAY.Location = New System.Drawing.Point(349, 17)
         Me.CHKTHURSDAY.Name = "CHKTHURSDAY"
-        Me.CHKTHURSDAY.Size = New System.Drawing.Size(77, 19)
+        Me.CHKTHURSDAY.Size = New System.Drawing.Size(46, 19)
         Me.CHKTHURSDAY.TabIndex = 5
-        Me.CHKTHURSDAY.Text = "Thursday"
+        Me.CHKTHURSDAY.Text = "Thu"
         Me.CHKTHURSDAY.UseVisualStyleBackColor = False
         '
         'CHKWEDNESDAY
@@ -423,11 +415,11 @@ Partial Class AutoWhatsapp
         Me.CHKWEDNESDAY.AutoSize = True
         Me.CHKWEDNESDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKWEDNESDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKWEDNESDAY.Location = New System.Drawing.Point(387, 17)
+        Me.CHKWEDNESDAY.Location = New System.Drawing.Point(288, 17)
         Me.CHKWEDNESDAY.Name = "CHKWEDNESDAY"
-        Me.CHKWEDNESDAY.Size = New System.Drawing.Size(90, 19)
+        Me.CHKWEDNESDAY.Size = New System.Drawing.Size(51, 19)
         Me.CHKWEDNESDAY.TabIndex = 4
-        Me.CHKWEDNESDAY.Text = "Wednesday"
+        Me.CHKWEDNESDAY.Text = "Wed"
         Me.CHKWEDNESDAY.UseVisualStyleBackColor = False
         '
         'CHKTUESDAY
@@ -435,11 +427,11 @@ Partial Class AutoWhatsapp
         Me.CHKTUESDAY.AutoSize = True
         Me.CHKTUESDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKTUESDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKTUESDAY.Location = New System.Drawing.Point(302, 17)
+        Me.CHKTUESDAY.Location = New System.Drawing.Point(232, 17)
         Me.CHKTUESDAY.Name = "CHKTUESDAY"
-        Me.CHKTUESDAY.Size = New System.Drawing.Size(70, 19)
+        Me.CHKTUESDAY.Size = New System.Drawing.Size(44, 19)
         Me.CHKTUESDAY.TabIndex = 3
-        Me.CHKTUESDAY.Text = "Tuesday"
+        Me.CHKTUESDAY.Text = "Tue"
         Me.CHKTUESDAY.UseVisualStyleBackColor = False
         '
         'CMBTYPE
@@ -454,7 +446,7 @@ Partial Class AutoWhatsapp
         Me.CMBTYPE.Location = New System.Drawing.Point(43, 15)
         Me.CMBTYPE.MaxLength = 100
         Me.CMBTYPE.Name = "CMBTYPE"
-        Me.CMBTYPE.Size = New System.Drawing.Size(175, 23)
+        Me.CMBTYPE.Size = New System.Drawing.Size(120, 23)
         Me.CMBTYPE.TabIndex = 1
         '
         'CHKMONDAY
@@ -462,36 +454,36 @@ Partial Class AutoWhatsapp
         Me.CHKMONDAY.AutoSize = True
         Me.CHKMONDAY.BackColor = System.Drawing.Color.Transparent
         Me.CHKMONDAY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKMONDAY.Location = New System.Drawing.Point(225, 17)
+        Me.CHKMONDAY.Location = New System.Drawing.Point(169, 17)
         Me.CHKMONDAY.Name = "CHKMONDAY"
-        Me.CHKMONDAY.Size = New System.Drawing.Size(71, 19)
+        Me.CHKMONDAY.Size = New System.Drawing.Size(51, 19)
         Me.CHKMONDAY.TabIndex = 2
-        Me.CHKMONDAY.Text = "Monday"
+        Me.CHKMONDAY.Text = "Mon"
         Me.CHKMONDAY.UseVisualStyleBackColor = False
         '
-        'gridbilldetails
+        'GRIDLEDGERDETAILS
         '
-        Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(947, 74)
-        Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.gridbilldetails.MainView = Me.gridbill
-        Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(320, 439)
-        Me.gridbilldetails.TabIndex = 1
-        Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
+        Me.GRIDLEDGERDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDLEDGERDETAILS.Location = New System.Drawing.Point(717, 47)
+        Me.GRIDLEDGERDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDLEDGERDETAILS.MainView = Me.GRIDLEDGER
+        Me.GRIDLEDGERDETAILS.Name = "GRIDLEDGERDETAILS"
+        Me.GRIDLEDGERDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GRIDLEDGERDETAILS.Size = New System.Drawing.Size(320, 439)
+        Me.GRIDLEDGERDETAILS.TabIndex = 2
+        Me.GRIDLEDGERDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDLEDGER})
         '
-        'gridbill
+        'GRIDLEDGER
         '
-        Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GCITY})
-        Me.gridbill.GridControl = Me.gridbilldetails
-        Me.gridbill.Name = "gridbill"
-        Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
-        Me.gridbill.OptionsView.ColumnAutoWidth = False
-        Me.gridbill.OptionsView.ShowAutoFilterRow = True
-        Me.gridbill.OptionsView.ShowGroupPanel = False
+        Me.GRIDLEDGER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDLEDGER.Appearance.Row.Options.UseFont = True
+        Me.GRIDLEDGER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GCITY})
+        Me.GRIDLEDGER.GridControl = Me.GRIDLEDGERDETAILS
+        Me.GRIDLEDGER.Name = "GRIDLEDGER"
+        Me.GRIDLEDGER.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDLEDGER.OptionsView.ColumnAutoWidth = False
+        Me.GRIDLEDGER.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDLEDGER.OptionsView.ShowGroupPanel = False
         '
         'GCHK
         '
@@ -531,20 +523,20 @@ Partial Class AutoWhatsapp
         '
         'CMDEXIT
         '
-        Me.CMDEXIT.Location = New System.Drawing.Point(650, 391)
+        Me.CMDEXIT.Location = New System.Drawing.Point(15, 497)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXIT.TabIndex = 3
+        Me.CMDEXIT.TabIndex = 5
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = True
         '
         'CMDSAVE
         '
-        Me.CMDSAVE.Location = New System.Drawing.Point(564, 391)
+        Me.CMDSAVE.Location = New System.Drawing.Point(300, 232)
         Me.CMDSAVE.Name = "CMDSAVE"
-        Me.CMDSAVE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVE.TabIndex = 2
-        Me.CMDSAVE.Text = "&Save"
+        Me.CMDSAVE.Size = New System.Drawing.Size(120, 28)
+        Me.CMDSAVE.TabIndex = 1
+        Me.CMDSAVE.Text = "&Save Day && Time"
         Me.CMDSAVE.UseVisualStyleBackColor = True
         '
         'EP
@@ -556,7 +548,7 @@ Partial Class AutoWhatsapp
         'AutoWhatsapp
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1444, 581)
+        Me.ClientSize = New System.Drawing.Size(1384, 537)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -566,14 +558,14 @@ Partial Class AutoWhatsapp
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDAGENTDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDAGENT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GPPANEL.ResumeLayout(False)
         Me.GPPANEL.PerformLayout()
         CType(Me.GRIDAUTOWA, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDLEDGERDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDLEDGER, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -591,16 +583,26 @@ Partial Class AutoWhatsapp
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMBTYPE As ComboBox
     Friend WithEvents CMDSAVE As Button
-    Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
-    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
+    Private WithEvents GRIDLEDGERDETAILS As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDLEDGER As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Private WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents GPPANEL As Panel
-    Friend WithEvents TXTTIME As TextBox
     Friend WithEvents TXTSRNO As TextBox
     Friend WithEvents GRIDAUTOWA As DataGridView
+    Friend WithEvents LBLTYPE As Label
+    Friend WithEvents TXTTYPE As TextBox
+    Private WithEvents GRIDAGENTDETAILS As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDAGENT As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GACHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GACITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DTTIME As DateTimePicker
+    Friend WithEvents CMDUPDATE As Button
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GMON As DataGridViewCheckBoxColumn
@@ -611,15 +613,5 @@ Partial Class AutoWhatsapp
     Friend WithEvents GSAT As DataGridViewCheckBoxColumn
     Friend WithEvents GSUN As DataGridViewCheckBoxColumn
     Friend WithEvents GTIME As DataGridViewTextBoxColumn
-    Friend WithEvents LBLTYPE1 As Label
-    Friend WithEvents LBLTYPE As Label
-    Friend WithEvents TXTTYPE2 As TextBox
-    Friend WithEvents TXTTYPE1 As TextBox
-    Private WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Private WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GACHK As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Private WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GACITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNO As DataGridViewTextBoxColumn
 End Class
