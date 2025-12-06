@@ -10,6 +10,7 @@ Imports RestSharp
 Imports Newtonsoft.Json
 Imports TaxProEInvoice.API
 Imports DevExpress.CodeParser
+Imports DevExpress.Charts.Native
 
 
 Public Class InvoiceMaster
@@ -5863,6 +5864,7 @@ LINE1:
         End Try
     End Sub
 
+
     Private Sub GRIDINVOICE_CellValidating(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellValidatingEventArgs) Handles GRIDINVOICE.CellValidating
         Dim colNum As Integer = GRIDINVOICE.Columns(e.ColumnIndex).Index
         If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
@@ -5880,9 +5882,56 @@ LINE1:
 
                     'FOR REVERSE CALC
                     If (ClientName = "CC" Or ClientName = "C3") And colNum = GGRIDTOTAL.Index And CHKRETAIL.CheckState = CheckState.Checked And CHKREVERSECALC.CheckState = CheckState.Checked Then
-                        Dim OBJCMN As New ClsCommon
-                        Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGST ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GITEMNAME.Index).EditedFormattedValue & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
-                        GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GRATE.Index).Value = Format((Val(GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GGRIDTOTAL.Index).EditedFormattedValue) / (Val(DTHSN.Rows(0).Item("IGST")) + 100)) * 100, "0.00")
+                        For Each row As DataGridViewRow In GRIDINVOICE.Rows
+
+                            Dim OBJCMN As New ClsCommon
+                            'Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGST ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GITEMNAME.Index).EditedFormattedValue & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                            Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGST, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GITEMNAME.Index).EditedFormattedValue & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                            'dt = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGST, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGST, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGST, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & row.Cells(GITEMNAME.Index).Value & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+
+                            'GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GRATE.Index).Value = Format((Val(GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GGRIDTOTAL.Index).EditedFormattedValue) / (Val(DTHSN.Rows(0).Item("IGST")) + 100)) * 100, "0.00")
+
+                            If DTHSN.Rows.Count > 0 Then
+                                'IF WE HAVE NOT MENTIONED RATE SECTION IN HSNCODE THEN APPLY NORMAL GST RATES AND NOT GST1 RATES, OR ELSE IF EXPORT IS CHECKED THEN ALSO GOTO NORATE SECTION
+                                If Val(DTHSN.Rows(0).Item("RATE")) = 0 Or CHKEXPORTGST.Checked = True Then GoTo NORATE
+
+                                'THIS CODE WAS REMOVED AS PER CLIENTS REQUIREMENT
+                                'If Val(dt.Rows(0).Item("RATE")) <= Format((Val(row.Cells(GAMT.Index).EditedFormattedValue) + Val(row.Cells(GOTHERAMT.Index).EditedFormattedValue)) / Val(row.Cells(Gpcs.Index).EditedFormattedValue), "0.00") Then
+
+                                'IN NEW CHANGES CLIENT NEEDS RATE-DISCOUNT-SPECIALDISCOUT, AND THEN WHETEVER THE RATES COMES, WE HAVE TO CALC GSTRATE IN THAT RATE
+                                'If Val(dt.Rows(0).Item("RATE")) <= Format(Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00") Then
+                                Dim CALCON As Double = 0.0
+
+                                CALCON = Format(Val(row.Cells(GRATE.Index).EditedFormattedValue), "0.00")
+
+
+                                If Val(DTHSN.Rows(0).Item("RATE")) <= CALCON Then
+                                    If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("CGST1"))
+                                    If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("SGST1"))
+                                    If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("IGST1"))
+
+                                    GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GRATE.Index).Value = Format((Val(GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GGRIDTOTAL.Index).EditedFormattedValue) / (Val(DTHSN.Rows(0).Item("IGST1")) + 100)) * 100, "0.00")
+                                    TOTAL()
+                                Else
+NORATE:
+
+                                    If CHKEXPORTGST.Checked = True Then
+                                        If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("EXPCGST"))
+                                        If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("EXPSGST"))
+                                        If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("EXPIGST"))
+                                    Else
+                                        If Val(row.Cells(GCGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GCGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("CGST"))
+                                        If Val(row.Cells(GSGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GSGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("SGST"))
+                                        If Val(row.Cells(GIGSTPER.Index).EditedFormattedValue) > 0 Then row.Cells(GIGSTPER.Index).Value = Val(DTHSN.Rows(0).Item("IGST"))
+                                    End If
+                                    GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GRATE.Index).Value = Format((Val(GRIDINVOICE.Rows(GRIDINVOICE.CurrentRow.Index).Cells(GGRIDTOTAL.Index).EditedFormattedValue) / (Val(DTHSN.Rows(0).Item("IGST")) + 100)) * 100, "0.00")
+
+
+                                End If
+
+
+                            End If
+                        Next
                     End If
 
 
