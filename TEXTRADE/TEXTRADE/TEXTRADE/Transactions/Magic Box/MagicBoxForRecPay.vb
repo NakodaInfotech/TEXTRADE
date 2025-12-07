@@ -1,14 +1,8 @@
-﻿Imports System.ComponentModel
-Imports System.Globalization
-Imports System.IO
-Imports System.Windows.Forms
+﻿
+Imports System.ComponentModel
 Imports BL
-Imports DevExpress.CodeParser
-Imports DevExpress.DataProcessing.InMemoryDataProcessor
-Imports DevExpress.XtraRichEdit.Model
-Imports iTextSharp
-Imports iTextSharp.text.pdf.qrcode
-Imports Org.BouncyCastle.Asn1
+
+
 Public Class MagicBoxForRecPay
 
     Public EDIT As Boolean          'used for editing
@@ -24,7 +18,7 @@ Public Class MagicBoxForRecPay
         DTENTERYDATE.Text = Now.Date
         getmaxno()
         cmbaccname.Text = ""
-        cmbname.Text = ""
+        CMBNAME.Text = ""
         TXTCHQNO.Clear()
         txtremarks.Clear()
         CMBSELLERNAME.Text = ""
@@ -123,7 +117,7 @@ Public Class MagicBoxForRecPay
             USERDELETE = DTROW(0).Item(4)
 
             'getmaxno_receiptmaster()
-            fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            fillledger(CMBNAME, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             If CMBSELLERNAME.Text.Trim = "" Then FILLNAME(CMBSELLERNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
             'If CMBSELLERNAME.Text.Trim = "" Then FILLNAME(CMBSELLERNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
@@ -399,7 +393,7 @@ NEXTLINE:
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
             End If
-        Else cmbname.Text = "ABHEE FABRICS LLP"
+        Else CMBNAME.Text = "ABHEE FABRICS LLP"
             DTTABLE = getmax(" isnull(max(PAYMENT_no),0) + 1 ", "PAYMENTMASTER", " AND PAYMENT_cmpid=" & CmpId & " and PAYMENT_locationid=" & Locationid & " and PAYMENT_yearid=" & YearId)
             If DTTABLE.Rows.Count > 0 Then
                 txtsrno.Text = DTTABLE.Rows(0).Item(0)
@@ -1239,15 +1233,15 @@ LINE1:
 
     Private Sub TXTBANKNAME_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBANKNAME.Validating
         Try
-            If cmbaccname.Text.Trim <> "" And cmbname.Text.Trim <> "" And Val(txtamt.Text.Trim) > 0 Then
+            If cmbaccname.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And Val(txtamt.Text.Trim) > 0 Then
                 fillgrid()
             ElseIf cmbaccname.Text.Trim = "" Then
                 MsgBox("Enter Bank Name", MsgBoxStyle.Critical)
                 cmbaccname.Focus()
                 Exit Sub
-            ElseIf cmbname.Text.Trim = "" Then
+            ElseIf CMBNAME.Text.Trim = "" Then
                 MsgBox("Enter Name", MsgBoxStyle.Critical)
-                cmbname.Focus()
+                CMBNAME.Focus()
                 Exit Sub
             ElseIf Val(txtamt.Text.Trim) <= 0 Then
                 MsgBox("Enter Amt....", MsgBoxStyle.Critical)
@@ -1266,12 +1260,12 @@ LINE1:
 
 
         If GRIDDOUBLECLICK = False Then
-            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, cmbname.Text.Trim, CMBSELLERNAME.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim, txtremamount.Text.Trim, TXTTDSACC.Text.Trim, TXTTDSAMT.Text.Trim)
+            GRIDISSUE.Rows.Add(Val(txtsrno.Text.Trim), cmbaccname.Text.Trim, CMBNAME.Text.Trim, CMBSELLERNAME.Text.Trim, TXTCHQNO.Text.Trim, Format(DTCHQDATE.Value.Date, "dd/MM/yyyy"), Format(Val(txtamt.Text.Trim), "0.00"), cmbpaytype.Text.Trim, TXTBANKNAME.Text.Trim, TXTBILLNO.Text.Trim, TXTADJAMOUNT.Text.Trim, txtremamount.Text.Trim, TXTTDSACC.Text.Trim, TXTTDSAMT.Text.Trim)
             getmaxno()
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDISSUE.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
             GRIDISSUE.Item(GACCNAME.Index, TEMPROW).Value = cmbaccname.Text.Trim
-            GRIDISSUE.Item(GPARTYNAME.Index, TEMPROW).Value = cmbname.Text.Trim
+            GRIDISSUE.Item(GPARTYNAME.Index, TEMPROW).Value = CMBNAME.Text.Trim
             GRIDISSUE.Item(GSELLERNAME.Index, TEMPROW).Value = CMBSELLERNAME.Text.Trim
             GRIDISSUE.Item(GCHQNO.Index, TEMPROW).Value = TXTCHQNO.Text.Trim
             GRIDISSUE.Item(GCHQDATE.Index, TEMPROW).Value = Format(DTCHQDATE.Value.Date, "dd/MM/yyyy")
@@ -1298,7 +1292,7 @@ LINE1:
         txtamt.Clear()
         TXTBANKNAME.Clear()
         cmbaccname.Text = ""
-        cmbname.Text = ""
+        CMBNAME.Text = ""
         TXTADJAMOUNT.Clear()
         TXTBILLNO.Clear()
         cmbpaytype.Text = ""
@@ -1351,7 +1345,7 @@ LINE1:
                 GRIDDOUBLECLICK = True
                 txtsrno.Text = GRIDISSUE.Item(GSRNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 cmbaccname.Text = GRIDISSUE.Item(GACCNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
-                cmbname.Text = GRIDISSUE.Item(GPARTYNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
+                CMBNAME.Text = GRIDISSUE.Item(GPARTYNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 CMBSELLERNAME.Text = GRIDISSUE.Item(GSELLERNAME.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 TXTCHQNO.Text = GRIDISSUE.Item(GCHQNO.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
                 DTCHQDATE.Text = GRIDISSUE.Item(GCHQDATE.Index, GRIDISSUE.CurrentRow.Index).Value.ToString
@@ -1515,28 +1509,25 @@ LINE1:
         If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
     End Sub
 
-    Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbname.KeyDown
+    Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                'OBJLEDGER.STRSEARCH = " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'"
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPCODE <> "" Then CMBACCCODE.Text = OBJLEDGER.TEMPCODE
-                If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
+                If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
+    Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Creditors' or groupmaster.group_SECONDARY = 'Indirect Expenses' or groupmaster.group_SECONDARY = 'Direct Expenses') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1565,13 +1556,14 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub cmbpaytype_Validated(sender As Object, e As EventArgs) Handles cmbpaytype.Validated
         Try
-            If cmbname.Text.Trim <> "" And cmbpaytype.Text.Trim = "Against Bill" Then
+            If CMBNAME.Text.Trim <> "" And cmbpaytype.Text.Trim = "Against Bill" Then
 
 
                 Dim OBJSELECTBILL As New SelectAdjustBills
-                If cmbname.Text = "ABHEE FABRICS LLP" Then OBJSELECTBILL.CMPNAME = CMBSELLERNAME.Text.Trim Else OBJSELECTBILL.CMPNAME = cmbname.Text.Trim
+                If CMBNAME.Text = "ABHEE FABRICS LLP" Then OBJSELECTBILL.CMPNAME = CMBSELLERNAME.Text.Trim Else OBJSELECTBILL.CMPNAME = CMBNAME.Text.Trim
                 OBJSELECTBILL.AMOUNT = txtamt.Text.Trim
                 OBJSELECTBILL.ShowDialog()
                 Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
@@ -1598,7 +1590,7 @@ LINE1:
 
             Else
                 MsgBox("Select Name")
-                cmbname.Focus()
+                CMBNAME.Focus()
                 Exit Sub
             End If
 
@@ -1607,7 +1599,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBSELLERNAME_Enter(sender As Object, e As EventArgs)
+    Private Sub CMBSELLERNAME_Enter(sender As Object, e As EventArgs) Handles CMBSELLERNAME.Enter
         Try
             If CMBSELLERNAME.Text.Trim = "" Then FILLNAME(CMBSELLERNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
@@ -1615,7 +1607,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBSELLERNAME_Validating(sender As Object, e As CancelEventArgs)
+    Private Sub CMBSELLERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELLERNAME.Validating
         Try
             If CMBSELLERNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLERNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
         Catch ex As Exception
@@ -1623,9 +1615,7 @@ LINE1:
         End Try
     End Sub
 
-
-
-    Private Sub CMBSELLERNAME_KeyDown(sender As Object, e As KeyEventArgs)
+    Private Sub CMBSELLERNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLERNAME.KeyDown
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -1641,19 +1631,12 @@ LINE1:
         End Try
     End Sub
 
-    'Private Sub CMBBUYER_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLERNAME.KeyDown
-    '    Try
-    '        If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-    '        If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+    Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
+        Try
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 
-    '        If e.KeyCode = Keys.F1 Then
-    '            Dim OBJLEDGER As New SelectLedger
-    '            OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'"
-    '            OBJLEDGER.ShowDialog()
-    '            If OBJLEDGER.TEMPNAME <> "" Then CMBSELLERNAME.Text = OBJLEDGER.TEMPNAME
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
 End Class

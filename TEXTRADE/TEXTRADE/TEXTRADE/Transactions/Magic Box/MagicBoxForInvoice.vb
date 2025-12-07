@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.CodeParser
 
 Public Class MagicBoxForInvoice
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -431,7 +432,13 @@ NEXTLINE:
 
             alParaval.Add("1")  'GRIDSRNO
             alParaval.Add("Against Bill")   'PAYTYPE
-            alParaval.Add("S-" & GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value)   'BILLINITIALS
+
+            'GET BILLINITIALS FROM MASTER
+            Dim OBJCMN As New ClsCommon
+            Dim DTINITIALS As DataTable = OBJCMN.SEARCH("AGENCYINVOICEMASTER.AINVOICE_INITIALS AS INITIALS", "", " AGENCYINVOICEMASTER ", " AND AINVOICE_NO = " & Val(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value)) & " AND AINVOICE_YEARID = " & YearId)
+            If DTINITIALS.Rows.Count > 0 Then alParaval.Add(DTINITIALS.Rows(0).Item("INITIALS")) Else alParaval.Add("")     'BILLINITIALS
+
+
             alParaval.Add("")   'NARR
             alParaval.Add(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GTDSAMT.Index).Value)) 'ADJAMT
             alParaval.Add(0)    'RECAMT
