@@ -117,6 +117,7 @@ Public Class saledesign
     Dim RPTSHADESUMM As New InvoiceColorWiseSummary
     Dim RPTTRANSDTLS As New InvoiceTransWiseDetails
     Dim RPTTRANSSUMM As New InvoiceTransWiseSummary
+    Dim RPTINVOICE_LAXMI As New InvoiceReport_LAXMI
 
     Public WHERECLAUSE As String
     Public IGSTFORMAT As Boolean = False
@@ -351,6 +352,8 @@ Public Class saledesign
                     crTables = RPTINVOICE_SIMPLEX.Database.Tables
                 ElseIf ClientName = "SNCM" Then
                     crTables = RPTINVOICE_SNCM.Database.Tables
+                ElseIf ClientName = "LAXMI" Then
+                    crTables = RPTINVOICE_LAXMI.Database.Tables
                 ElseIf ClientName = "NAKODAINFOTECH" Then
                     crTables = RPTINVOICE_NAKODAINFOTECH.Database.Tables
                 ElseIf ClientName = "ABHEE" Then
@@ -521,6 +524,8 @@ SKIPINVOICE:
                 ElseIf ClientName = "SNCM" Then
                     CRPO.ReportSource = RPTINVOICE_SNCM
                     RPTINVOICE_SNCM.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+                ElseIf ClientName = "LAXMI" Then
+                    CRPO.ReportSource = RPTINVOICE_LAXMI
                 ElseIf ClientName = "ABHEE" Then
 
 
@@ -1109,6 +1114,8 @@ SKIPINVOICE:
                 ElseIf ClientName = "SNCM" Then
                     OBJ = New InvoiceReport_SNCM
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+                ElseIf ClientName = "LAXMI" Then
+                    OBJ = New InvoiceReport_LAXMI
                 ElseIf ClientName = "NAKODAINFOTECH" Then
                     OBJ = New InvoiceReport_NI
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -1933,6 +1940,8 @@ SKIPINVOICE:
                     OBJ = RPTINVOICE_SIMPLEX
                 ElseIf ClientName = "SNCM" Then
                     OBJ = RPTINVOICE_SNCM
+                ElseIf ClientName = "LAXMI" Then
+                    OBJ = RPTINVOICE_LAXMI
                 ElseIf ClientName = "NAKODAINFOTECH" Then
                     OBJ = RPTINVOICE_NAKODAINFOTECH
                 ElseIf ClientName = "ABHEE" Then
@@ -2065,6 +2074,7 @@ SKIPINVOICE:
             RPTINVOICE_SUPRIYA.Dispose()
             RPTINVOICE_YARNDO.Dispose()
             RPTINVOICE_NAKODAINFOTECH.Dispose()
+            RPTINVOICE_LAXMI.Dispose()
         Catch ex As Exception
             Throw ex
         End Try
