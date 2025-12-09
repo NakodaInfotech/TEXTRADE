@@ -1875,7 +1875,7 @@ NEXTLINE:
 
     Private Sub TXTGRIDTOTAL_Validated(sender As Object, e As EventArgs) Handles TXTGRIDTOTAL.Validated
         Try
-            If CMBDRNAME.Text.Trim <> "" And Val(TXTAMT.Text.Trim) <> 0 And TXTSRNO.Text.Trim > 0 Then
+            If CMBDRNAME.Text.Trim <> "" And CMBNAME.Text.Trim <> CMBDRNAME.Text.Trim And Val(TXTAMT.Text.Trim) <> 0 And TXTSRNO.Text.Trim > 0 Then
                 fillgrid()
                 TOTAL()
             Else

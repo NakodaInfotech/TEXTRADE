@@ -27,7 +27,7 @@ Partial Class SelectAdjustBills
         Me.CMBTDSDEDUCTEDAC = New System.Windows.Forms.ComboBox()
         Me.Label64 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtremaining = New System.Windows.Forms.TextBox()
+        Me.TXTREMAINING = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTBILLAMT = New System.Windows.Forms.TextBox()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
@@ -62,7 +62,7 @@ Partial Class SelectAdjustBills
         Me.BlendPanel1.Controls.Add(Me.CMBTDSDEDUCTEDAC)
         Me.BlendPanel1.Controls.Add(Me.Label64)
         Me.BlendPanel1.Controls.Add(Me.Label3)
-        Me.BlendPanel1.Controls.Add(Me.txtremaining)
+        Me.BlendPanel1.Controls.Add(Me.TXTREMAINING)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTBILLAMT)
         Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
@@ -122,18 +122,18 @@ Partial Class SelectAdjustBills
         Me.Label3.TabIndex = 637
         Me.Label3.Text = "Remaining Amt"
         '
-        'txtremaining
+        'TXTREMAINING
         '
-        Me.txtremaining.BackColor = System.Drawing.Color.Linen
-        Me.txtremaining.Enabled = False
-        Me.txtremaining.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtremaining.Location = New System.Drawing.Point(712, 546)
-        Me.txtremaining.Name = "txtremaining"
-        Me.txtremaining.ReadOnly = True
-        Me.txtremaining.Size = New System.Drawing.Size(89, 23)
-        Me.txtremaining.TabIndex = 636
-        Me.txtremaining.TabStop = False
-        Me.txtremaining.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTREMAINING.BackColor = System.Drawing.Color.Linen
+        Me.TXTREMAINING.Enabled = False
+        Me.TXTREMAINING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTREMAINING.Location = New System.Drawing.Point(712, 546)
+        Me.TXTREMAINING.Name = "TXTREMAINING"
+        Me.TXTREMAINING.ReadOnly = True
+        Me.TXTREMAINING.Size = New System.Drawing.Size(89, 23)
+        Me.TXTREMAINING.TabIndex = 636
+        Me.TXTREMAINING.TabStop = False
+        Me.TXTREMAINING.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
         '
@@ -143,9 +143,9 @@ Partial Class SelectAdjustBills
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(573, 7)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(50, 15)
+        Me.Label1.Size = New System.Drawing.Size(52, 15)
         Me.Label1.TabIndex = 635
-        Me.Label1.Text = "Bill Amt"
+        Me.Label1.Text = "Chq Amt"
         '
         'TXTBILLAMT
         '
@@ -408,7 +408,7 @@ Partial Class SelectAdjustBills
     Friend WithEvents cmdok As Button
     Friend WithEvents GADJUSTAMT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
-    Friend WithEvents txtremaining As TextBox
+    Friend WithEvents TXTREMAINING As TextBox
     Friend WithEvents GTDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBTDSDEDUCTEDAC As ComboBox
     Friend WithEvents Label64 As Label

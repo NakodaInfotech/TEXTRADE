@@ -4232,7 +4232,7 @@ LINE1:
                     Exit Sub
                 Else
                     If EDIT = False Then DUEDATE.Value = DTPARTYBILLDATE.Text
-                    If ClientName = "MOHATUL" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MANSI" Or ClientName = "MAHAVIRPOLYCOT" Then
+                    If ClientName = "MOHATUL" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MANSI" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "MILUXE" Or ClientName = "SHAILESHTRADING" Then
                         BILLDATE.Text = DTPARTYBILLDATE.Text
                         lrdate.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
                         CHALLANDATE.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date

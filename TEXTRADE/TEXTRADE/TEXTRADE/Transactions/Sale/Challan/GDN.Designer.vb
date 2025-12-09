@@ -223,6 +223,7 @@ Partial Class GDN
         Me.SSTOREUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.SALELOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -242,6 +243,7 @@ Partial Class GDN
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKTHIRDPARTY)
         Me.BlendPanel1.Controls.Add(Me.LBLDYEINGRECNO)
         Me.BlendPanel1.Controls.Add(Me.TXTDYEINGRECNO)
         Me.BlendPanel1.Controls.Add(Me.LBLCONTRACTOR)
@@ -2413,6 +2415,17 @@ Partial Class GDN
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CHKTHIRDPARTY
+        '
+        Me.CHKTHIRDPARTY.AutoSize = True
+        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
+        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(1127, 5)
+        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
+        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
+        Me.CHKTHIRDPARTY.TabIndex = 927
+        Me.CHKTHIRDPARTY.Text = "Third Party"
+        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
+        '
         'GDN
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2625,4 +2638,5 @@ Partial Class GDN
     Friend WithEvents TXTDYEINGRECNO As TextBox
     Friend WithEvents CHKCHANGEADD As CheckBox
     Friend WithEvents TXTDELIVERYADDRESS As TextBox
+    Friend WithEvents CHKTHIRDPARTY As CheckBox
 End Class

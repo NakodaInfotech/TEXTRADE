@@ -1,7 +1,10 @@
-﻿Imports System.ComponentModel
+﻿
+Imports System.ComponentModel
 Imports BL
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraTreeList.Accessibility
+
 Public Class SelectAdjustBills
     Public CMPNAME As String = ""
     Public AMOUNT As Integer
@@ -15,7 +18,6 @@ Public Class SelectAdjustBills
     Public Property RemAmount As String
     Public TDSDEDUCTEDAC As String = ""
     Public TDSDEDUCTEDAMT As Decimal
-
 
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         Me.Close()
@@ -71,6 +73,7 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Private Sub SelectBills_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Or (e.KeyCode = Keys.X And e.Alt = True) Then
@@ -82,9 +85,11 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Sub FILLCMB()
         If CMBTDSDEDUCTEDAC.Text = "" Then FILLNAME(CMBTDSDEDUCTEDAC, "FALSE", " AND LEDGERS.ACC_TDSAC = 1")
     End Sub
+
     Sub fillgrid(ByVal TEMPCONDITION)
         Try
             Dim OBJCMN As New ClsCommon
@@ -99,6 +104,7 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Private Sub SelectBills_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Receipt.SELECTEDBILLNO = ""
@@ -116,6 +122,7 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Private Sub CHKSELECTALL_CheckedChanged(sender As Object, e As EventArgs) Handles CHKSELECTALL.CheckedChanged
         Try
             If griddetails.Visible = True Then
@@ -128,6 +135,7 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Private Sub gridrec_RowStyle(sender As Object, e As RowStyleEventArgs) Handles gridrec.RowStyle
         Try
             If e.RowHandle >= 0 Then
@@ -144,14 +152,12 @@ Public Class SelectAdjustBills
             Throw ex
         End Try
     End Sub
+
     Private Sub gridrec_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles gridrec.CellValueChanging
         Try
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-            If e.Column.FieldName = "CHK" Then
-                ' Only run when CHK column changes
-                'Dim chkVal = view.GetRowCellValue(e.RowHandle, "CHK")
-                'If chkVal = True Then
-                view.PostEditor() ' Commit edit
+            view.PostEditor() ' Commit edit
+            If e.Column.FieldName = "CHK" AndAlso e.Value = True Then
 
                 ' Get BALAMT and TDS values
                 Dim balAmtVal = view.GetRowCellValue(e.RowHandle, "BALAMT")
@@ -165,59 +171,57 @@ Public Class SelectAdjustBills
 
                 ' BALAMT + TDS
                 Dim totalAmt As Decimal = balAmt + tds
-                'If e.Column.FieldName = "CHK" Then
-                '    ' Apply logic based on checkbox
-                '    If Convert.ToBoolean(e.Value) = True Then
                 view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", totalAmt)
-                '    Else
-                '        view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", 0)
-                '    End If
-                'End If
-                view.RefreshRow(e.RowHandle)
+            Else
+                view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", 0.00)
             End If
-            'End If
+
+            view.RefreshRow(e.RowHandle)
+            view.PostEditor()
+            view.UpdateCurrentRow()
+            TOTAL()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub TOTAL()
+        Try
+            TXTREMAINING.Text = Format(Val(TXTBILLAMT.Text.Trim) - Val(gridrec.Columns("ADJUSTAMT").SummaryText), "0.00")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
     Private Sub gridrec_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles gridrec.CellValueChanged
-        Try
-            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-            If e.Column.FieldName = "TDS" Then
-                Dim chkVal = view.GetRowCellValue(e.RowHandle, "CHK")
-                If chkVal = True Then
-                    ' Only run when CHK column changes
-                    'Dim chkVal = view.GetRowCellValue(e.RowHandle, "CHK")
-                    'If chkVal = True Then
-                    view.PostEditor() ' Commit edit
+        'Try
+        '    Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        '    view.PostEditor() ' Commit edit
+        '    Dim chkVal = view.GetRowCellValue(e.RowHandle, "CHK")
+        '    If chkVal = False Then
 
-                    ' Get BALAMT and TDS values
-                    Dim balAmtVal = view.GetRowCellValue(e.RowHandle, "BALAMT")
-                    Dim tdsVal = view.GetRowCellValue(e.RowHandle, "TDS")
+        '        ' Get BALAMT and TDS values
+        '        Dim balAmtVal = view.GetRowCellValue(e.RowHandle, "BALAMT")
+        '        Dim tdsVal = view.GetRowCellValue(e.RowHandle, "TDS")
 
-                    ' Convert to decimal safely
-                    Dim balAmt As Decimal = 0D
-                    Dim tds As Decimal = 0D
-                    If balAmtVal IsNot DBNull.Value Then Decimal.TryParse(balAmtVal.ToString(), balAmt)
-                    If tdsVal IsNot DBNull.Value Then Decimal.TryParse(tdsVal.ToString(), tds)
+        '        ' Convert to decimal safely
+        '        Dim balAmt As Decimal = 0D
+        '        Dim tds As Decimal = 0D
+        '        If balAmtVal IsNot DBNull.Value Then Decimal.TryParse(balAmtVal.ToString(), balAmt)
+        '        If tdsVal IsNot DBNull.Value Then Decimal.TryParse(tdsVal.ToString(), tds)
 
-                    ' BALAMT + TDS
-                    Dim totalAmt As Decimal = balAmt + tds
-                    'If e.Column.FieldName = "CHK" Then
-                    '    ' Apply logic based on checkbox
-                    '    If Convert.ToBoolean(e.Value) = True Then
-                    view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", totalAmt)
-                    '    Else
-                    '        view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", 0)
-                    '    End If
-                    'End If
-                    view.RefreshRow(e.RowHandle)
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        '        ' BALAMT + TDS
+        '        Dim totalAmt As Decimal = balAmt + tds
+        '        view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", totalAmt)
+        '        view.RefreshRow(e.RowHandle)
+        '    Else
+        '        view.SetRowCellValue(e.RowHandle, "ADJUSTAMT", 0.00)
+        '        view.RefreshRow(e.RowHandle)
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub CMBTDSDEDUCTEDAC_Enter(sender As Object, e As EventArgs) Handles CMBTDSDEDUCTEDAC.Enter
