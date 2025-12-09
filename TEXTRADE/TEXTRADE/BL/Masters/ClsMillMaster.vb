@@ -40,6 +40,10 @@ Public Class ClsMillMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@CONTACTPERSON", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CONTACTNO", alParaval(I)))
+                I += 1
 
             End With
 
@@ -69,6 +73,10 @@ Public Class ClsMillMaster
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CONTACTPERSON", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CONTACTNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TEMPID", alParaval(I)))
                 I += 1

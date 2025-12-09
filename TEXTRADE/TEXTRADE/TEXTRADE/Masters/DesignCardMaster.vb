@@ -4091,11 +4091,19 @@ line1:
             TXTBLENDPER.Text = ""
             For Each fiberName In fiberTotals.Keys
                 Dim blendPercent As Double = (fiberTotals(fiberName) / totalWeight) * 100
-                If TXTBLENDPER.Text = "" Then
-                    TXTBLENDPER.Text = fiberName & ":" & blendPercent.ToString("0")
+                Dim blendname As String
+                If blendname = "" Then
+                    blendname = fiberName '& ":" & blendPercent.ToString("0")
                 Else
-                    TXTBLENDPER.Text = TXTBLENDPER.Text.Trim + " | " + fiberName & ":" & blendPercent.ToString("0")
+                    blendname = blendname + " | " + fiberName ' & ":" & blendPercent.ToString("0")
                 End If
+                Dim blendpercentvalue As String
+                If blendpercentvalue = "" Then
+                    blendpercentvalue = blendPercent.ToString("0")
+                Else
+                    blendpercentvalue = blendpercentvalue + " | " + blendPercent.ToString("0")
+                End If
+                TXTBLENDPER.Text = blendname & ":" & blendpercentvalue
             Next
 
         Catch ex As Exception
