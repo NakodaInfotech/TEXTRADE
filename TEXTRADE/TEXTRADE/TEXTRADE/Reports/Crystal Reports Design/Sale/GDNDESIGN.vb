@@ -94,6 +94,7 @@ Public Class GDNDESIGN
     Dim RPTDAILYACT As New DailyActivityReport
 
     Dim RPTPROFORMA As New ProformaReport
+    Dim RPTGDN_LAXMI As New GDNReport_LAXMI
 
 
     Dim tempattachment As String
@@ -306,6 +307,8 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_A5.Database.Tables
                 ElseIf ClientName = "AARYA" Then
                     crTables = RPTGDN_AARYA.Database.Tables
+                ElseIf ClientName = "LAXMI" Then
+                    crTables = RPTGDN_LAXMI.Database.Tables
                 Else
                     crTables = RPTGDN.Database.Tables
                 End If
@@ -525,6 +528,8 @@ Public Class GDNDESIGN
                     crpo.ReportSource = RPTGDN_REALCORP
                 ElseIf ClientName = "AARYA" Then
                     crpo.ReportSource = RPTGDN_AARYA
+                ElseIf ClientName = "LAXMI" Then
+                    crpo.ReportSource = RPTGDN_LAXMI
                 ElseIf ClientName = "BARKHA" Then
                     crpo.ReportSource = RPTGDN_A5
                 Else
@@ -859,6 +864,15 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_AARYA.Export()
                     RPTGDN_AARYA.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+
+                ElseIf ClientName = "LAXMI" Then
+                    RPTGDN_LAXMI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    expo = RPTGDN_LAXMI.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGDN_LAXMI.Export()
+                    RPTGDN_LAXMI.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
 
                 ElseIf ClientName = "BARKHA" Then
                     RPTGDN_A5.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -1272,6 +1286,8 @@ Public Class GDNDESIGN
                     OBJ = New GDNReport_REALCORP
                 ElseIf ClientName = "AARYA" Then
                     OBJ = New GDNReport_AARYA
+                ElseIf ClientName = "LAXMI" Then
+                    OBJ = New GDNReport_LAXMI
                 ElseIf ClientName = "BARKHA" Then
                     OBJ = New GDNReport_A5
                 Else
