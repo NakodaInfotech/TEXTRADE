@@ -553,21 +553,21 @@ Public Class AgencyReceipt
     Private Sub cmbname_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Validated
         Try
             If cmbseller.Text <> "" Then
-                If cmbname.Text.Trim <> "" And EDIT = True Then
-                    gridpayment.DataSource = Nothing
-                    gridpaydesc.DataSource = Nothing
-                    gridpaydesc.RowCount = 0
-                    gridpayment.RowCount = 0
-                    GRIDDESC.RowCount = 0
-                    txttotal.Clear()
-                    txtdesctotal.Clear()
+                'If cmbname.Text.Trim <> "" And EDIT = True Then
+                '    gridpayment.DataSource = Nothing
+                '    gridpaydesc.DataSource = Nothing
+                '    gridpaydesc.RowCount = 0
+                '    gridpayment.RowCount = 0
+                '    GRIDDESC.RowCount = 0
+                '    txttotal.Clear()
+                '    txtdesctotal.Clear()
 
-                    If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
-                        fillgridINVOICE()
-                        'Else
-                        '    Call txtbillno_Validating(sender, e)
-                    End If
-                End If
+                '    If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
+                '        fillgridINVOICE()
+                '        'Else
+                '        '    Call txtbillno_Validating(sender, e)
+                '    End If
+                'End If
                 If cmbname.Text.Trim <> "" Then
                     GETBALANCE()
                     Dim OBJCMN As New ClsCommon
