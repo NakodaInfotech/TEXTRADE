@@ -509,7 +509,7 @@ Public Class AgencyCreditNote
                         CMBPAYTYPE.Text = "Against Bill"
                         CMBBILLNO.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBILLINITIALS").Index).Value
                         CMBBILLNO.Enabled = True
-                        TXTNARR.Clear()
+                        TXTNARR.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("REFNO").Index).Value 'PARTYBILLNO
                         LBLBILLTOTAL.Text = GRIDBILL.Rows(e.RowIndex).Cells(GRIDBILL.Columns("INVBALAMT").Index).Value
 
                         'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT

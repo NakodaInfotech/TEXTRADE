@@ -475,6 +475,7 @@ Public Class AccountsMaster
             '1) MDIMAIN --- UPLOAD ACCOUNTS SECTION
             '2) MAGICBOXINVOICE
             '3) INVOICEMASTER -- CREATEAGENCYINVOICE
+            '4) DEBITENOTEMASTER -- CREATEAGENCYCN
 
 
             If CHKCOMMON.CheckState = CheckState.Unchecked Then
