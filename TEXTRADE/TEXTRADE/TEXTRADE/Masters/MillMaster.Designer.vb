@@ -24,6 +24,10 @@ Partial Class MillMaster
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TXTCONTACTNO = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TXTCONTACTPERSON = New System.Windows.Forms.TextBox()
         Me.CMDCLEAR = New System.Windows.Forms.Button()
         Me.LBLCODE = New System.Windows.Forms.Label()
         Me.txtremarks = New System.Windows.Forms.TextBox()
@@ -40,6 +44,10 @@ Partial Class MillMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.TXTCONTACTNO)
+        Me.BlendPanel1.Controls.Add(Me.Label2)
+        Me.BlendPanel1.Controls.Add(Me.TXTCONTACTPERSON)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
         Me.BlendPanel1.Controls.Add(Me.LBLCODE)
         Me.BlendPanel1.Controls.Add(Me.txtremarks)
@@ -51,15 +59,62 @@ Partial Class MillMaster
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(369, 122)
+        Me.BlendPanel1.Size = New System.Drawing.Size(369, 179)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(23, 105)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(65, 14)
+        Me.Label1.TabIndex = 159
+        Me.Label1.Text = "Contact No"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label1.Visible = False
+        '
+        'TXTCONTACTNO
+        '
+        Me.TXTCONTACTNO.ForeColor = System.Drawing.Color.DimGray
+        Me.TXTCONTACTNO.Location = New System.Drawing.Point(94, 101)
+        Me.TXTCONTACTNO.Name = "TXTCONTACTNO"
+        Me.TXTCONTACTNO.Size = New System.Drawing.Size(152, 23)
+        Me.TXTCONTACTNO.TabIndex = 3
+        Me.TXTCONTACTNO.Visible = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(3, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(87, 14)
+        Me.Label2.TabIndex = 158
+        Me.Label2.Text = "Contact Person"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label2.Visible = False
+        '
+        'TXTCONTACTPERSON
+        '
+        Me.TXTCONTACTPERSON.BackColor = System.Drawing.Color.White
+        Me.TXTCONTACTPERSON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCONTACTPERSON.Location = New System.Drawing.Point(94, 71)
+        Me.TXTCONTACTPERSON.Name = "TXTCONTACTPERSON"
+        Me.TXTCONTACTPERSON.Size = New System.Drawing.Size(152, 22)
+        Me.TXTCONTACTPERSON.TabIndex = 2
+        Me.TXTCONTACTPERSON.Visible = False
         '
         'CMDCLEAR
         '
-        Me.CMDCLEAR.Location = New System.Drawing.Point(94, 80)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(94, 144)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 155
+        Me.CMDCLEAR.TabIndex = 5
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = True
         '
@@ -69,9 +124,9 @@ Partial Class MillMaster
         Me.LBLCODE.BackColor = System.Drawing.Color.Transparent
         Me.LBLCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCODE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LBLCODE.Location = New System.Drawing.Point(41, 43)
+        Me.LBLCODE.Location = New System.Drawing.Point(39, 46)
         Me.LBLCODE.Name = "LBLCODE"
-        Me.LBLCODE.Size = New System.Drawing.Size(51, 14)
+        Me.LBLCODE.Size = New System.Drawing.Size(54, 14)
         Me.LBLCODE.TabIndex = 154
         Me.LBLCODE.Text = "Wt/Cone"
         Me.LBLCODE.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -79,7 +134,7 @@ Partial Class MillMaster
         'txtremarks
         '
         Me.txtremarks.ForeColor = System.Drawing.Color.DimGray
-        Me.txtremarks.Location = New System.Drawing.Point(94, 39)
+        Me.txtremarks.Location = New System.Drawing.Point(94, 42)
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Size = New System.Drawing.Size(152, 23)
         Me.txtremarks.TabIndex = 1
@@ -90,10 +145,10 @@ Partial Class MillMaster
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.Black
-        Me.cmddelete.Location = New System.Drawing.Point(180, 80)
+        Me.cmddelete.Location = New System.Drawing.Point(180, 144)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 3
+        Me.cmddelete.TabIndex = 6
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -103,10 +158,10 @@ Partial Class MillMaster
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(8, 80)
+        Me.cmdok.Location = New System.Drawing.Point(8, 144)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 2
+        Me.cmdok.TabIndex = 4
         Me.cmdok.Text = "Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -116,9 +171,9 @@ Partial Class MillMaster
         Me.lblgroup.BackColor = System.Drawing.Color.Transparent
         Me.lblgroup.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblgroup.Location = New System.Drawing.Point(55, 13)
+        Me.lblgroup.Location = New System.Drawing.Point(55, 16)
         Me.lblgroup.Name = "lblgroup"
-        Me.lblgroup.Size = New System.Drawing.Size(37, 14)
+        Me.lblgroup.Size = New System.Drawing.Size(39, 14)
         Me.lblgroup.TabIndex = 149
         Me.lblgroup.Text = "Name"
         Me.lblgroup.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -127,7 +182,7 @@ Partial Class MillMaster
         '
         Me.txtname.BackColor = System.Drawing.Color.LemonChiffon
         Me.txtname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtname.Location = New System.Drawing.Point(94, 9)
+        Me.txtname.Location = New System.Drawing.Point(94, 12)
         Me.txtname.Name = "txtname"
         Me.txtname.Size = New System.Drawing.Size(152, 22)
         Me.txtname.TabIndex = 0
@@ -138,10 +193,10 @@ Partial Class MillMaster
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(266, 80)
+        Me.cmdexit.Location = New System.Drawing.Point(266, 144)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 4
+        Me.cmdexit.TabIndex = 7
         Me.cmdexit.Text = "Exit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -154,7 +209,7 @@ Partial Class MillMaster
         'MillMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(369, 122)
+        Me.ClientSize = New System.Drawing.Size(369, 179)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -178,4 +233,8 @@ Partial Class MillMaster
     Friend WithEvents cmdexit As System.Windows.Forms.Button
     Friend WithEvents Ep As System.Windows.Forms.ErrorProvider
     Friend WithEvents CMDCLEAR As System.Windows.Forms.Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TXTCONTACTNO As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TXTCONTACTPERSON As TextBox
 End Class

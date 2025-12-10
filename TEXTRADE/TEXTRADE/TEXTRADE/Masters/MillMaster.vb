@@ -12,6 +12,8 @@ Public Class MillMaster
     Sub clear()
         txtname.Clear()
         txtremarks.Clear()
+        TXTCONTACTNO.Clear()
+        TXTCONTACTPERSON.Clear()
         txtname.Focus()
     End Sub
 
@@ -68,6 +70,8 @@ Public Class MillMaster
                 OBJMILL.alParaval.Add(CmpId)
                 OBJMILL.alParaval.Add(Userid)
                 OBJMILL.alParaval.Add(YearId)
+                OBJMILL.alParaval.Add(TXTCONTACTPERSON.Text.Trim)
+                OBJMILL.alParaval.Add(TXTCONTACTNO.Text.Trim)
 
                 If EDIT = False Then
                     If USERADD = False Then
@@ -129,6 +133,8 @@ Public Class MillMaster
                     txtname.Text = DT.Rows(0).Item("NAME")
                     tempname = DT.Rows(0).Item("NAME")
                     txtremarks.Text = DT.Rows(0).Item("REMARKS")
+                    TXTCONTACTPERSON.Text = DT.Rows(0).Item("CONTACTPERSON")
+                    TXTCONTACTNO.Text = DT.Rows(0).Item("CONTACTNO")
                 End If
             End If
         Catch ex As Exception
@@ -149,6 +155,19 @@ Public Class MillMaster
                 Exit Sub
             End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MillMaster_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "AADHAR" Then
+                Label1.Visible = True
+                TXTCONTACTPERSON.Visible = True
+                Label2.Visible = True
+                TXTCONTACTNO.Visible = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try
