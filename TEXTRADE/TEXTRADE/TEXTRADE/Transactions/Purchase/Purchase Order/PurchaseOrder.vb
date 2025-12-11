@@ -253,6 +253,7 @@ Public Class PurchaseOrder
             Cursor.Current = Cursors.WaitCursor
             If ClientName = "SUPRIYA" Then ALLOWMANUALPONO = True
             If ClientName = "ABHEE" Then ALLOWMANUALPONO = True
+            If ClientName = "LAXMI" Then ALLOWMANUALPONO = True
 
             fillcmb()
             clear()

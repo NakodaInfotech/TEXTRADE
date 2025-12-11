@@ -428,7 +428,7 @@ Public Class Receipt
             If CMBPARTYBANK.Text = "" Then FILLBANK(CMBPARTYBANK)
 
 
-            If ClientName = "MANSI" Then
+            If ClientName = "MANSI" Or ClientName = "LAXMI" Then
                 ALLOWMANUALRECNO = True
             End If
             ACCDATE.Text = Now.Date
