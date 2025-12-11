@@ -73,6 +73,11 @@ Public Class HomePage
                 GBPURORDER.Width = GRIDPODETAILS.Width + 10
             End If
 
+            If ClientName = "SOFTAS" Then
+                GRIDSODETAILS.Width = GRIDSO.VisibleColumns.Cast(Of GridColumn)().Sum(Function(COL) COL.Width) + 50
+                GBSALEORDER.Width = GRIDSODETAILS.Width + 10
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

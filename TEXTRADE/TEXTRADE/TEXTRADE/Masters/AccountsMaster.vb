@@ -476,6 +476,7 @@ Public Class AccountsMaster
             '2) MAGICBOXINVOICE
             '3) INVOICEMASTER -- CREATEAGENCYINVOICE
             '4) DEBITENOTEMASTER -- CREATEAGENCYCN
+            '5) CREDITENOTEMASTER -- CREATEAGENCYCN
 
 
             If CHKCOMMON.CheckState = CheckState.Unchecked Then

@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Net
+Imports System.Security.AccessControl
 Imports BL
 Imports Newtonsoft.Json
 Imports RestSharp
@@ -797,7 +798,7 @@ Public Class DebitNote
 
 
                 'CREATE AUTO CREDIT NOTE IN AGENCY
-                'If ClientName = "ABHEE" Then CREATEAGENCYCN()
+                If ClientName = "ABHEE" And CHKGSTR1.Checked = False Then CREATEAGENCYCN()
 
             Else
                 If USEREDIT = False Then
@@ -1144,9 +1145,6 @@ Public Class DebitNote
             For Each row As Windows.Forms.DataGridViewRow In GRIDCHGS.Rows
                 If row.Cells(0).Value <> Nothing Then
 
-                    'WE NEED BILLINITIALS OF THIS ENTRY NO
-
-
                     If CSRNO = "" Then
                         CSRNO = row.Cells(ESRNO.Index).Value.ToString
                         CCHGS = row.Cells(ECHARGES.Index).Value.ToString
@@ -1182,14 +1180,27 @@ Public Class DebitNote
             Dim RETURNAMT As String = ""
             Dim BALANCE As String = ""
 
+            Dim AGENCYINITIALS As String = ""
+
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDPAYMENT.Rows
                 If row.Cells(GADJSRNO.Index).Value <> Nothing Then
+
+                    'WE NEED BILLINITIALS FROM AGENCYINVOICE OF THIS ENTRY NO
+                    'FIRST WE WILL CHECK IN LLP WHETHER IT IS OF OPENING OR CURRENT YEAR
+                    'AFTER THAT WE WILL CHECK THE SAME ENTRTY NO IN AGENCY (EITHER OPENING OR CURRENT YEAR)
+                    'THAT INITIALS WILL BE ADDED HERE
+                    Dim DTPUR As DataTable = OBJCMN.SEARCH("BILLNO, PARTYBILLNO, BILLTYPE", "", "PAYMENTBILLDETAILS", " AND INITIALS = '" & row.Cells(gbillno.Index).Value & "' AND YEARID = " & YearId)
+                    If DTPUR.Rows.Count > 0 Then
+                        Dim DTAGINV As DataTable = OBJCMN.SEARCH("INITIALS", "", " AGENCYPAYMENTBILLDETAILS ", " AND PARTYBILLNO = '" & DTPUR.Rows(0).Item("PARTYBILLNO") & "' AND BILLTYPE = '" & DTPUR.Rows(0).Item("BILLTYPE") & "' AND BILLNO = " & Val(DTPUR.Rows(0).Item("BILLNO")) & " AND YEARID = " & TEMPYEARID)
+                        If DTAGINV.Rows.Count > 0 Then AGENCYINITIALS = DTAGINV.Rows(0).Item("INITIALS") Else AGENCYINITIALS = ""
+                    End If
+
                     If pgridsrno = "" Then
 
                         pgridsrno = row.Cells(GADJSRNO.Index).Value.ToString
                         paytype = row.Cells(gpaytype.Index).Value
-                        billINITIALS = row.Cells(gbillno.Index).Value.ToString
+                        billINITIALS = AGENCYINITIALS
                         narr = row.Cells(gdesc.Index).Value
                         ADJAMT = Val(row.Cells(GADJAMT.Index).Value)
                         AMTPAID = Val(row.Cells(GAMTPAID.Index).Value)
@@ -1197,12 +1208,11 @@ Public Class DebitNote
                         RETURNAMT = Val(row.Cells(GRETURN.Index).Value)
                         BALANCE = Val(row.Cells(GBALANCE.Index).Value)
 
-
                     Else
 
                         pgridsrno = pgridsrno & "|" & row.Cells(GADJSRNO.Index).Value.ToString
                         paytype = paytype & "|" & row.Cells(gpaytype.Index).Value
-                        billINITIALS = billINITIALS & "|" & row.Cells(gbillno.Index).Value.ToString
+                        billINITIALS = billINITIALS & "|" & AGENCYINITIALS
                         narr = narr & "|" & row.Cells(gdesc.Index).Value
                         ADJAMT = ADJAMT & "|" & Val(row.Cells(GADJAMT.Index).Value)
                         AMTPAID = AMTPAID & "|" & Val(row.Cells(GAMTPAID.Index).Value)
@@ -1210,6 +1220,7 @@ Public Class DebitNote
                         RETURNAMT = RETURNAMT & "|" & Val(row.Cells(GRETURN.Index).Value)
                         BALANCE = BALANCE & "|" & Val(row.Cells(GBALANCE.Index).Value)
                     End If
+                    AGENCYINITIALS = ""
                 End If
             Next
 
@@ -1246,7 +1257,7 @@ Public Class DebitNote
 
 
             'ADD THIS AGENCYCREDITNOTE NUMBER IN SPECIAL REMARKS
-            Dim DTDN As DataTable = OBJCMN.Execute_Any_String("UPDATE DEBITNOTEMASTER SET DN_SPECIALREMARKS = 'AGENCY CN NO - " & Val(DTTABLE.Rows(0).Item(0)) & " FROM DEBITNOTEMASTER INNER JOIN REGISTERMASTER ON DN_REGISTERID = REGISTER_ID WHERE DN_NO = " & Val(TXTDNNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND DN_YEARID = " & YearId, "", "")
+            Dim DTDN As DataTable = OBJCMN.Execute_Any_String("UPDATE DEBITNOTEMASTER SET DN_SPECIALREMARKS = 'AGENCY CN NO - " & Val(DTTABLE.Rows(0).Item(0)) & "' FROM DEBITNOTEMASTER INNER JOIN REGISTERMASTER ON DN_REGISTERID = REGISTER_ID WHERE DN_NO = " & Val(TXTDNNO.Text.Trim) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND DN_YEARID = " & YearId, "", "")
 
         Catch ex As Exception
             Throw ex

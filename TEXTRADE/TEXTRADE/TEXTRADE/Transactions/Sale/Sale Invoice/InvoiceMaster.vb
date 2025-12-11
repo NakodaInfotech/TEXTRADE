@@ -3561,7 +3561,7 @@ NORATE:
 
 
                     'FIRST MAIL THE INVOICE 
-                    If ClientName = "AVIS" Or ClientName = "SNCM" Then SENDMAILBEFOREDELETE()
+                    If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "ABHEE" Then SENDMAILBEFOREDELETE()
 
 
 
@@ -3630,6 +3630,11 @@ NORATE:
             ElseIf ClientName = "SNCM" Then
                 OBJ = New InvoiceReport_TOTALLEFT
                 TOMAIL = "nakoda8020@gmail.com"
+                SUBJECT = "Deleted Invoice"
+
+            ElseIf ClientName = "ABHEE" Then
+                OBJ = New InvoiceReport_ABHEE
+                TOMAIL = "abheefabrics@gmail.com"
                 SUBJECT = "Deleted Invoice"
             End If
 
@@ -6352,24 +6357,31 @@ NORATE:
                     txtlrno.Visible = False
                     LBLLRDATE.Visible = False
                     LRDATE.Visible = False
-                    TXTSRNO.Visible = False
-                    CMBITEM.Visible = False
-                    TXTHSNCODE.Visible = False
-                    TXTQTY.Visible = False
-                    TXTFOLDPER.Visible = False
-                    TXTGRIDLRNO.Visible = False
-                    CMBGRIDTRANS.Visible = False
-                    CMBQUALITY.Visible = False
-                    CMBDESIGN.Visible = False
-                    CMBSHADE.Visible = False
-                    TXTDESCRIPTION.Visible = False
-                    TXTBALENO.Visible = False
-                    TXTPCS.Visible = False
-                    TXTCUT.Visible = False
-                    TXTMTRS.Visible = False
-                    TXTRATE.Visible = False
-                    CMBPER.Visible = False
-                    TXTAMT.Visible = False
+
+                    'THIS IS DONE SO THAT USER CAN ENTER DATA MANUALLY
+                    'SOMETIME THEY DELETE THE INV FROM SOFTWARE AND FORGET TO DELETE FROM PORTAL,
+                    'THAT TIME WE NEED TO CREATE THE INVOICE AGAIN MANUALLY
+                    If CHALLANWITHOUTSO = False Then
+                        TXTSRNO.Visible = False
+                        CMBITEM.Visible = False
+                        TXTHSNCODE.Visible = False
+                        TXTQTY.Visible = False
+                        TXTFOLDPER.Visible = False
+                        TXTGRIDLRNO.Visible = False
+                        CMBGRIDTRANS.Visible = False
+                        CMBQUALITY.Visible = False
+                        CMBDESIGN.Visible = False
+                        CMBSHADE.Visible = False
+                        TXTDESCRIPTION.Visible = False
+                        TXTBALENO.Visible = False
+                        TXTPCS.Visible = False
+                        TXTCUT.Visible = False
+                        TXTMTRS.Visible = False
+                        TXTRATE.Visible = False
+                        CMBPER.Visible = False
+                        TXTAMT.Visible = False
+                    End If
+
                     GGRIDPURPARTY.Visible = True
                     GPURPARTYBILLNO.Visible = True
 
