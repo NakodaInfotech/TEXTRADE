@@ -433,6 +433,11 @@ Public Class GRN
                 bln = False
             End If
 
+            If ClientName = "SOFTAS" And TXTLOTNO.Text.Trim = "" Then
+                EP.SetError(TXTLOTNO, " Please Enter Lot No")
+                bln = False
+            End If
+
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
             If FRMSTRING = "GRN" Or FRMSTRING = "GRNJOB" Then
@@ -440,10 +445,7 @@ Public Class GRN
                     EP.SetError(CMBTONAME, " Please Fill Company Name ")
                     bln = False
                 End If
-                If ClientName = "SOFTAS" And TXTLOTNO.Text.Trim = "" Then
-                    EP.SetError(TXTLOTNO, " Please Enter Lot No")
-                    bln = False
-                End If
+
 
                 'LOTNO DUPLICATION
                 If CMBTONAME.Text.Trim <> "" And TXTLOTNO.Text.Trim <> "" Then

@@ -573,7 +573,7 @@ Partial Class GRN
         Me.LBLCRDAYS.BackColor = System.Drawing.Color.Transparent
         Me.LBLCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCRDAYS.ForeColor = System.Drawing.Color.Black
-        Me.LBLCRDAYS.Location = New System.Drawing.Point(576, 130)
+        Me.LBLCRDAYS.Location = New System.Drawing.Point(582, 130)
         Me.LBLCRDAYS.Name = "LBLCRDAYS"
         Me.LBLCRDAYS.Size = New System.Drawing.Size(51, 15)
         Me.LBLCRDAYS.TabIndex = 930
@@ -583,7 +583,7 @@ Partial Class GRN
         '
         Me.TXTCRDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCRDAYS.Location = New System.Drawing.Point(629, 126)
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(635, 126)
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(70, 23)
         Me.TXTCRDAYS.TabIndex = 929

@@ -1074,7 +1074,7 @@ line1:
 
 
 
-                If DT.Rows(0).Item("VERSION") <> "1.0.099" Then
+                If DT.Rows(0).Item("VERSION") <> "2.0.001" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)
 LINE1:
                     MsgBox(" VERSION EXPIRED PLEASE CONTACT NAKODA INFOTECH ON 02249724411", MsgBoxStyle.Critical)
