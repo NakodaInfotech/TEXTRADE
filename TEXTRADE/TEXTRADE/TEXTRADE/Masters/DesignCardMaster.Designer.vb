@@ -324,20 +324,6 @@ Partial Class DesignCardMaster
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label87 = New System.Windows.Forms.Label()
         Me.GRIDPEG = New System.Windows.Forms.DataGridView()
-        Me.PPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPTDR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRIDPEGPLAN = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTTOTALPEG = New System.Windows.Forms.TextBox()
@@ -502,6 +488,21 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.PPSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPRM2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPTDR2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPSYM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -536,7 +537,7 @@ Partial Class DesignCardMaster
         '
         'BLENDPANEL1
         '
-        Me.BLENDPANEL1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BLENDPANEL1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.BLENDPANEL1.Controls.Add(Me.TXTADD)
         Me.BLENDPANEL1.Controls.Add(Me.CMBCODE)
         Me.BLENDPANEL1.Controls.Add(Me.Label12)
@@ -3350,10 +3351,10 @@ Partial Class DesignCardMaster
         Me.TabPage1.Controls.Add(Me.GRIDPEG)
         Me.TabPage1.Controls.Add(Me.GRIDPEGPLAN)
         Me.TabPage1.Controls.Add(Me.TXTTOTALPEG)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1436, 241)
+        Me.TabPage1.Size = New System.Drawing.Size(1436, 239)
         Me.TabPage1.TabIndex = 4
         Me.TabPage1.Text = "5. Peg Plan"
         '
@@ -3386,7 +3387,7 @@ Partial Class DesignCardMaster
         DataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDPEG.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle54
         Me.GRIDPEG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDPEG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PPSRNO, Me.PPENDS, Me.PPRM, Me.PPR, Me.PPTR, Me.PPTDR, Me.PPRM1, Me.PPR1, Me.PPTR1, Me.PPTDR1, Me.PPRM2, Me.PPR2, Me.PPTR2, Me.PPTDR2})
+        Me.GRIDPEG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PPSRNO, Me.PPENDS, Me.PPRM, Me.PPR, Me.PPTR, Me.PPTDR, Me.PPRM1, Me.PPR1, Me.PPTR1, Me.PPTDR1, Me.PPRM2, Me.PPR2, Me.PPTR2, Me.PPTDR2, Me.PPSYM})
         DataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle55.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3408,110 +3409,9 @@ Partial Class DesignCardMaster
         Me.GRIDPEG.RowTemplate.Height = 20
         Me.GRIDPEG.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDPEG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDPEG.Size = New System.Drawing.Size(175, 192)
+        Me.GRIDPEG.Size = New System.Drawing.Size(227, 192)
         Me.GRIDPEG.TabIndex = 917
         Me.GRIDPEG.TabStop = False
-        '
-        'PPSRNO
-        '
-        Me.PPSRNO.HeaderText = "Sr."
-        Me.PPSRNO.Name = "PPSRNO"
-        Me.PPSRNO.ReadOnly = True
-        Me.PPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPSRNO.Width = 30
-        '
-        'PPENDS
-        '
-        Me.PPENDS.HeaderText = "Ends"
-        Me.PPENDS.Name = "PPENDS"
-        Me.PPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPENDS.Width = 120
-        '
-        'PPRM
-        '
-        Me.PPRM.HeaderText = "Repeat Mark"
-        Me.PPRM.Name = "PPRM"
-        Me.PPRM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM.Visible = False
-        '
-        'PPR
-        '
-        Me.PPR.HeaderText = "Repeats"
-        Me.PPR.Name = "PPR"
-        Me.PPR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR.Visible = False
-        '
-        'PPTR
-        '
-        Me.PPTR.HeaderText = "Total Repeat"
-        Me.PPTR.Name = "PPTR"
-        Me.PPTR.Visible = False
-        '
-        'PPTDR
-        '
-        Me.PPTDR.HeaderText = "TOTAL D R"
-        Me.PPTDR.Name = "PPTDR"
-        Me.PPTDR.Visible = False
-        '
-        'PPRM1
-        '
-        Me.PPRM1.HeaderText = "Repeat Mark 1"
-        Me.PPRM1.Name = "PPRM1"
-        Me.PPRM1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM1.Visible = False
-        '
-        'PPR1
-        '
-        Me.PPR1.HeaderText = "Repeats 1"
-        Me.PPR1.Name = "PPR1"
-        Me.PPR1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR1.Visible = False
-        '
-        'PPTR1
-        '
-        Me.PPTR1.HeaderText = "Total Repeat 1"
-        Me.PPTR1.Name = "PPTR1"
-        Me.PPTR1.Visible = False
-        '
-        'PPTDR1
-        '
-        Me.PPTDR1.HeaderText = "TOTAL D R1"
-        Me.PPTDR1.Name = "PPTDR1"
-        Me.PPTDR1.Visible = False
-        '
-        'PPRM2
-        '
-        Me.PPRM2.HeaderText = "Repeat Mark 2"
-        Me.PPRM2.Name = "PPRM2"
-        Me.PPRM2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPRM2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPRM2.Visible = False
-        '
-        'PPR2
-        '
-        Me.PPR2.HeaderText = "Repeats 2"
-        Me.PPR2.Name = "PPR2"
-        Me.PPR2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.PPR2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PPR2.Visible = False
-        '
-        'PPTR2
-        '
-        Me.PPTR2.HeaderText = "Total Repeat 2"
-        Me.PPTR2.Name = "PPTR2"
-        Me.PPTR2.Visible = False
-        '
-        'PPTDR2
-        '
-        Me.PPTDR2.HeaderText = "TOTAL D R2"
-        Me.PPTDR2.Name = "PPTDR2"
-        Me.PPTDR2.Visible = False
         '
         'GRIDPEGPLAN
         '
@@ -3543,7 +3443,7 @@ Partial Class DesignCardMaster
         Me.GRIDPEGPLAN.DefaultCellStyle = DataGridViewCellStyle59
         Me.GRIDPEGPLAN.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.GRIDPEGPLAN.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDPEGPLAN.Location = New System.Drawing.Point(197, 6)
+        Me.GRIDPEGPLAN.Location = New System.Drawing.Point(249, 6)
         Me.GRIDPEGPLAN.MultiSelect = False
         Me.GRIDPEGPLAN.Name = "GRIDPEGPLAN"
         Me.GRIDPEGPLAN.ReadOnly = True
@@ -5484,6 +5384,113 @@ Partial Class DesignCardMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'PPSRNO
+        '
+        Me.PPSRNO.HeaderText = "Sr."
+        Me.PPSRNO.Name = "PPSRNO"
+        Me.PPSRNO.ReadOnly = True
+        Me.PPSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPSRNO.Width = 30
+        '
+        'PPENDS
+        '
+        Me.PPENDS.HeaderText = "Ends"
+        Me.PPENDS.Name = "PPENDS"
+        Me.PPENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPENDS.Width = 120
+        '
+        'PPRM
+        '
+        Me.PPRM.HeaderText = "Repeat Mark"
+        Me.PPRM.Name = "PPRM"
+        Me.PPRM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM.Visible = False
+        '
+        'PPR
+        '
+        Me.PPR.HeaderText = "Repeats"
+        Me.PPR.Name = "PPR"
+        Me.PPR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR.Visible = False
+        '
+        'PPTR
+        '
+        Me.PPTR.HeaderText = "Total Repeat"
+        Me.PPTR.Name = "PPTR"
+        Me.PPTR.Visible = False
+        '
+        'PPTDR
+        '
+        Me.PPTDR.HeaderText = "TOTAL D R"
+        Me.PPTDR.Name = "PPTDR"
+        Me.PPTDR.Visible = False
+        '
+        'PPRM1
+        '
+        Me.PPRM1.HeaderText = "Repeat Mark 1"
+        Me.PPRM1.Name = "PPRM1"
+        Me.PPRM1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM1.Visible = False
+        '
+        'PPR1
+        '
+        Me.PPR1.HeaderText = "Repeats 1"
+        Me.PPR1.Name = "PPR1"
+        Me.PPR1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR1.Visible = False
+        '
+        'PPTR1
+        '
+        Me.PPTR1.HeaderText = "Total Repeat 1"
+        Me.PPTR1.Name = "PPTR1"
+        Me.PPTR1.Visible = False
+        '
+        'PPTDR1
+        '
+        Me.PPTDR1.HeaderText = "TOTAL D R1"
+        Me.PPTDR1.Name = "PPTDR1"
+        Me.PPTDR1.Visible = False
+        '
+        'PPRM2
+        '
+        Me.PPRM2.HeaderText = "Repeat Mark 2"
+        Me.PPRM2.Name = "PPRM2"
+        Me.PPRM2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPRM2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPRM2.Visible = False
+        '
+        'PPR2
+        '
+        Me.PPR2.HeaderText = "Repeats 2"
+        Me.PPR2.Name = "PPR2"
+        Me.PPR2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPR2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPR2.Visible = False
+        '
+        'PPTR2
+        '
+        Me.PPTR2.HeaderText = "Total Repeat 2"
+        Me.PPTR2.Name = "PPTR2"
+        Me.PPTR2.Visible = False
+        '
+        'PPTDR2
+        '
+        Me.PPTDR2.HeaderText = "TOTAL D R2"
+        Me.PPTDR2.Name = "PPTDR2"
+        Me.PPTDR2.Visible = False
+        '
+        'PPSYM
+        '
+        Me.PPSYM.HeaderText = "SYM"
+        Me.PPSYM.Name = "PPSYM"
+        Me.PPSYM.Width = 50
+        '
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5934,6 +5941,19 @@ Partial Class DesignCardMaster
     Friend WithEvents Label20 As Label
     Friend WithEvents TXTADD As TextBox
     Friend WithEvents CMBCODE As ComboBox
+    Friend WithEvents SSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents SSYM As DataGridViewTextBoxColumn
+    Friend WithEvents SQUALITY As DataGridViewTextBoxColumn
+    Friend WithEvents SDENIER As DataGridViewTextBoxColumn
+    Friend WithEvents SMILL As DataGridViewTextBoxColumn
+    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
+    Friend WithEvents SPE As DataGridViewTextBoxColumn
+    Friend WithEvents SBE As DataGridViewTextBoxColumn
+    Friend WithEvents SENDS As DataGridViewTextBoxColumn
+    Friend WithEvents SWT As DataGridViewTextBoxColumn
+    Friend WithEvents SCONS As DataGridViewTextBoxColumn
+    Friend WithEvents SRATE As DataGridViewTextBoxColumn
+    Friend WithEvents SCOST As DataGridViewTextBoxColumn
     Friend WithEvents PPSRNO As DataGridViewTextBoxColumn
     Friend WithEvents PPENDS As DataGridViewTextBoxColumn
     Friend WithEvents PPRM As DataGridViewTextBoxColumn
@@ -5948,17 +5968,5 @@ Partial Class DesignCardMaster
     Friend WithEvents PPR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTR2 As DataGridViewTextBoxColumn
     Friend WithEvents PPTDR2 As DataGridViewTextBoxColumn
-    Friend WithEvents SSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents SSYM As DataGridViewTextBoxColumn
-    Friend WithEvents SQUALITY As DataGridViewTextBoxColumn
-    Friend WithEvents SDENIER As DataGridViewTextBoxColumn
-    Friend WithEvents SMILL As DataGridViewTextBoxColumn
-    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
-    Friend WithEvents SPE As DataGridViewTextBoxColumn
-    Friend WithEvents SBE As DataGridViewTextBoxColumn
-    Friend WithEvents SENDS As DataGridViewTextBoxColumn
-    Friend WithEvents SWT As DataGridViewTextBoxColumn
-    Friend WithEvents SCONS As DataGridViewTextBoxColumn
-    Friend WithEvents SRATE As DataGridViewTextBoxColumn
-    Friend WithEvents SCOST As DataGridViewTextBoxColumn
+    Friend WithEvents PPSYM As DataGridViewTextBoxColumn
 End Class

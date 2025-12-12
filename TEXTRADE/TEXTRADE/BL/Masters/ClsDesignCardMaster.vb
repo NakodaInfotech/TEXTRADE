@@ -397,6 +397,8 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PPSYM", alParaval(I)))
+                I += 1
 
                 .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
@@ -796,6 +798,8 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@PPREPEATMARK2", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PPREPEAT2", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PPSYM", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
