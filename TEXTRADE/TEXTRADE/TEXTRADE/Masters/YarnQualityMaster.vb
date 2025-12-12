@@ -67,7 +67,7 @@ Public Class YarnQualityMaster
         End If
 
         If ClientName = "AADHAR" And txtremarks.Text.Trim.Length = 0 Then
-            Ep.SetError(CMBHSNCODE, "Fill Remarks ")
+            Ep.SetError(txtremarks, "Fill Remarks ")
             bln = False
         End If
 
@@ -121,9 +121,8 @@ Public Class YarnQualityMaster
                 If Not errorvalid() Then
                     Exit Sub
                 End If
-                If ClientName = "AADHAR" Then
+                If ClientName = "AADHAR" And EDIT = False Then
                     txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
-
                 End If
                 Dim OBJYARN As New ClsYarnQualityMaster
                 OBJYARN.alParaval.Add(txtname.Text.Trim)
@@ -306,7 +305,7 @@ Public Class YarnQualityMaster
                     CMBHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
                     TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
                     TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
-                    txtcount.Text = DT.Rows(0).Item("COUNT")
+                    'txtcount.Text = DT.Rows(0).Item("COUNT")
                     TXTSHADENO.Text = DT.Rows(0).Item("SHADENO")
                     CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
 
