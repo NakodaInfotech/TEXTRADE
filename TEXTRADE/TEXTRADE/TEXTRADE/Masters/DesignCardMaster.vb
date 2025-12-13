@@ -4099,13 +4099,13 @@ line1:
                 If blendname = "" Then
                     blendname = fiberName '& ":" & blendPercent.ToString("0")
                 Else
-                    blendname = blendname + " | " + fiberName ' & ":" & blendPercent.ToString("0")
+                    blendname = blendname + " / " + fiberName ' & ":" & blendPercent.ToString("0")
                 End If
                 Dim blendpercentvalue As String
                 If blendpercentvalue = "" Then
                     blendpercentvalue = blendPercent.ToString("0")
                 Else
-                    blendpercentvalue = blendpercentvalue + " | " + blendPercent.ToString("0")
+                    blendpercentvalue = blendpercentvalue + " / " + blendPercent.ToString("0")
                 End If
                 TXTBLENDPER.Text = blendname & ":" & blendpercentvalue
             Next
