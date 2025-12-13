@@ -251,7 +251,7 @@ Public Class ClsAgencyReceiptMaster
         Return 0
     End Function
 
-    Public Function GETBILLS(ByVal CMPID As Integer, ByVal NAME As String, ByVal YEARID As Integer, Optional ByVal SELLER As String = "") As DataTable
+    Public Function GETBILLS(ByVal CMPID As Integer, ByVal NAME As String, ByVal YEARID As Integer, Optional ByVal SELLER As String = "", Optional PAYDATE As Date = Nothing) As DataTable
         Dim dtTable As DataTable
         Try
 
@@ -262,6 +262,7 @@ Public Class ClsAgencyReceiptMaster
                 .Add(New SqlClient.SqlParameter("@SELLER", SELLER))
                 .Add(New SqlClient.SqlParameter("@CMPID", CMPID))
                 .Add(New SqlClient.SqlParameter("@YEARID", YEARID))
+                .Add(New SqlClient.SqlParameter("@PAYDATE", PAYDATE))
             End With
             dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
 

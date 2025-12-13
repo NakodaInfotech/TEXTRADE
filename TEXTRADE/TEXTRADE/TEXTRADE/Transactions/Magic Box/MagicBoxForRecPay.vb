@@ -1,54 +1,250 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraGrid.Views.Base
 
 
 Public Class MagicBoxForRecPay
-    '    Public Sub New()
+    Public Sub New()
 
-    '        ' This call is required by the designer.
-    '        InitializeComponent()
-    '        FILLCMB()
-    '        CLEAR()
-    '        ' Add any initialization after the InitializeComponent() call.
+        ' This call is required by the designer.
+        InitializeComponent()
+        FILLCMB()
+        CLEAR()
+        ' Add any initialization after the InitializeComponent() call.
 
-    '    End Sub
+    End Sub
 
-    '    Sub FILLCMB()
-    '        Try
-    '            FILLNAME(CMBNAME, False, " and groupmaster.group_secondary = 'Sundry Debtors' AND ACC_TYPE = 'ACCOUNTS'")
-    '            FILLNAME(CMBSELLERNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
-    '            FILLNAME(CMBACCNAME, False, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') ")
-    '            FILLNAME(CMBTDSDEDUCTEDAC, "FALSE", " AND LEDGERS.ACC_TDSAC = 1")
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
+    Sub FILLCMB()
+        Try
+            FILLNAME(CMBNAME, False, " and groupmaster.group_secondary = 'Sundry Debtors' AND ACC_TYPE = 'ACCOUNTS'")
+            FILLNAME(CMBSELLERNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            FILLNAME(CMBACCNAME, False, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') ")
+            FILLNAME(CMBTDSDEDUCTEDAC, "FALSE", " AND LEDGERS.ACC_TDSAC = 1")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-    '    Sub CLEAR()
-    '        EP.Clear()
-    '        DTENTERYDATE.Text = Now.Date
-    '        getmaxno()
+    Sub CLEAR()
+        EP.Clear()
+        DTENTRYDATE.Text = Now.Date
+        GETMAXNO()
 
-    '        CMBACCNAME.Text = ""
-    '        CMBNAME.Text = ""
-    '        CMBSELLERNAME.Text = ""
-    '        TXTCHQNO.Clear()
-    '        DTCHQDATE.Value = Now.Date
-    '        TXTPARTYBANKNAME.Clear()
-    '        TXTCHQAMT.Clear()
-    '        CMBPAYTYPE.SelectedIndex = -1
-    '        TXTREMAINING.Clear()
-    '        CMBTDSDEDUCTEDAC.Text = ""
-    '        TXTREMARKS.Clear()
-    '        TXTINWORDS.Clear()
-    '        GRIDBILLDETAILS.DataSource = Nothing
-    '    End Sub
+        CMBACCNAME.Text = ""
+        CMBNAME.Text = ""
+        CMBSELLERNAME.Text = ""
+        TXTCHQNO.Clear()
+        DTCHQDATE.Value = Now.Date
+        TXTPARTYBANKNAME.Clear()
+        TXTCHQAMT.Clear()
+        CMBPAYTYPE.SelectedIndex = 0
+        TXTREMAINING.Clear()
+        CMBTDSDEDUCTEDAC.Text = ""
+        TXTREMARKS.Clear()
+        TXTINWORDS.Clear()
+        GRIDBILLDETAILS.DataSource = Nothing
+    End Sub
 
-    '    Sub GETMAXNO()
-    '        Dim DTTABLE As DataTable = getmax(" isnull(max(Areceipt_NO),0) + 1 ", " AGENCYRECEIPTMASTER ", " and Areceipt_yearid=" & YearId)
-    '        If DTTABLE.Rows.Count > 0 Then TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
-    '    End Sub
+    Sub GETMAXNO()
+        Dim DTTABLE As DataTable = getmax(" isnull(max(Areceipt_NO),0) + 1 ", " AGENCYRECEIPTMASTER ", " and Areceipt_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
+    End Sub
+
+    Private Sub cmbaccname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBACCNAME.Enter
+        Try
+            'OPEN BANK A/C AND BANK OD A/C
+            If CMBACCNAME.Text.Trim = "" Then fillledger(CMBACCNAME, False, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbaccname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBACCNAME.Validating
+        Try
+            If CMBACCNAME.Text.Trim <> "" Then ledgervalidate(CMBACCNAME, CMBACCCODE, e, Me, txtadd, " AND (GROUPMASTER.group_SECONDARY = 'BANK A/C' OR GROUPMASTER.group_SECONDARY = 'BANK OD A/C' OR GROUPMASTER.group_SECONDARY = 'CASH IN HAND') AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
+        Try
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
+        Try
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "Sundry debtors", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBANKNAME_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TXTPARTYBANKNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJPARTYBANK As New SelectPartyBank
+                OBJPARTYBANK.FRMSTRING = "PARTYBANK"
+                OBJPARTYBANK.ShowDialog()
+                If OBJPARTYBANK.TEMPNAME <> "" Then TXTPARTYBANKNAME.Text = OBJPARTYBANK.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLERNAME_Enter(sender As Object, e As EventArgs) Handles CMBSELLERNAME.Enter
+        Try
+            If CMBSELLERNAME.Text.Trim = "" Then FILLNAME(CMBSELLERNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELLERNAME.Validating
+        Try
+            If CMBSELLERNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLERNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLERNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLERNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBSELLERNAME.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSELLERNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELLERNAME.Validated, CMBNAME.Validated
+        Try
+            FILLGRIDBILL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub FILLGRIDBILL()
+        Try
+            If DTENTRYDATE.Text = "__/__/____" Then DTENTRYDATE.Text = Now.Date
+            Dim OBJ As New ClsAgencyReceiptMaster
+            Dim DT As DataTable = OBJ.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBSELLERNAME.Text.Trim, Convert.ToDateTime(DTENTRYDATE.Text).Date)
+            GRIDBILLDETAILS.DataSource = DT
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MagicBoxForRecPay_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            SendKeys.Send("{Tab}")
+        End If
+    End Sub
+
+    Private Sub CMDCLEAR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDCLEAR.Click
+        CLEAR()
+        DTENTRYDATE.Focus()
+    End Sub
+
+    Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
+        Try
+            Me.Close()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTCHQAMT_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTCHQAMT.KeyPress
+        numdotkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub TXTCHQAMT_Validated(sender As Object, e As EventArgs) Handles TXTCHQAMT.Validated
+        Try
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub DTENTERYDATE_Validating(sender As Object, e As CancelEventArgs) Handles DTENTRYDATE.Validating
+        Try
+            If DTENTRYDATE.Text = "__/__/____" Then
+                MsgBox(" Please Enter Proper Date", MsgBoxStyle.Critical)
+                e.Cancel = True
+            Else
+                If Not datecheck(DTENTRYDATE.Text) Then
+                    MsgBox("Date not in Accounting Year", MsgBoxStyle.Critical)
+                    e.Cancel = True
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub TOTAL()
+        Try
+            TXTREMAINING.Text = Format(Val(TXTCHQAMT.Text.Trim) - Val(GADJAMT.SummaryText), "0.00")
+            TXTINWORDS.Text = CurrencyToWord(TXTCHQAMT.Text)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDBILL_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GRIDBILL.CellValueChanging
+        Try
+            Dim VIEW As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            VIEW.PostEditor() ' Commit edit
+            Dim BALAMTVAL = VIEW.GetRowCellValue(e.RowHandle, "BALAMT")
+            If e.Column.FieldName = "CHK" AndAlso e.Value = True Then
+                VIEW.SetRowCellValue(e.RowHandle, "ADJUSTAMT", BALAMTVAL)
+                VIEW.SetRowCellValue(e.RowHandle, "TEMPBAL", 0.00)
+            Else
+                VIEW.SetRowCellValue(e.RowHandle, "ADJUSTAMT", 0.00)
+                VIEW.SetRowCellValue(e.RowHandle, "TEMPBAL", BALAMTVAL)
+            End If
+
+            VIEW.RefreshRow(e.RowHandle)
+            VIEW.PostEditor()
+            VIEW.UpdateCurrentRow()
+            TOTAL()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     '    Function ERRORVALID() As Boolean
     '        Try
@@ -85,32 +281,21 @@ Public Class MagicBoxForRecPay
     '            End If
 
 
-    '            If DTENTERYDATE.Text = "__/__/____" Then
-    '                EP.SetError(DTENTERYDATE, " Please Enter Proper Date")
-    '                bln = False
+    '            If DTENTRYDATE.Text = "__/__/____" Then
+    '                EP.SetError(DTENTRYDATE, " Please Enter Proper Date")
+    '                BLN = False
     '            Else
-    '                If Not datecheck(DTENTERYDATE.Text) Then
-    '                    EP.SetError(DTENTERYDATE, "Date not in Accounting Year")
-    '                    bln = False
+    '                If Not datecheck(DTENTRYDATE.Text) Then
+    '                    EP.SetError(DTENTRYDATE, "Date not in Accounting Year")
+    '                    BLN = False
     '                End If
     '            End If
 
-    '            Return bln
+    '            Return BLN
     '        Catch ex As Exception
     '            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
     '        End Try
     '    End Function
-
-    '    Private Sub MagicBoxForRecPay_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-    '        If e.KeyCode = Keys.Enter Then
-    '            SendKeys.Send("{Tab}")
-    '        End If
-    '    End Sub
-
-    '    Private Sub CMDCLEAR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDCLEAR.Click
-    '        CLEAR()
-    '        DTENTERYDATE.Focus()
-    '    End Sub
 
     '    Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
     '        Try
@@ -118,7 +303,7 @@ Public Class MagicBoxForRecPay
 
 
     '            EP.Clear()
-    '            If Not errorvalid() Then
+    '            If Not ERRORVALID() Then
     '                Exit Sub
     '            End If
 
@@ -147,7 +332,7 @@ Public Class MagicBoxForRecPay
     '                    alparaval.Clear()
     '                    alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
     '                    alparaval.Add("RECEIPT")
-    '                    alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+    '                    alparaval.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy"))
     '                    alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
     '                    alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
     '                    alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
@@ -321,7 +506,7 @@ Public Class MagicBoxForRecPay
     '            Next
 
     '            CLEAR()
-    '            DTENTERYDATE.Focus()
+    '            DTENTRYDATE.Focus()
 
     '        Catch ex As Exception
     '            Throw ex
@@ -358,7 +543,7 @@ Public Class MagicBoxForRecPay
     '                        alparaval1.Clear()
     '                        alparaval1.Add(ROW.Cells(GSRNO.Index).Value.ToString())
     '                        alparaval1.Add("PAYMENT")
-    '                        alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+    '                        alparaval1.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy"))
     '                        alparaval1.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
     '                        alparaval1.Add(ROW.Cells(GSELLERNAME.Index).Value.ToString())
     '                        alparaval1.Add(ROW.Cells(GCHQAMT.Index).Value)
@@ -517,7 +702,7 @@ Public Class MagicBoxForRecPay
     '                            alparaval1.Clear()
     '                            alparaval1.Add(0) 'ROW.Cells(GSRNO.Index).Value.ToString())
     '                            alparaval1.Add("JOURNAL REGISTER") '"cmbregister.Text.Trim)
-    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy"))
     '                            alparaval1.Add(0) 'Val(TXTTOTALDR.Text.Trim))
     '                            alparaval1.Add(0) 'Val(TXTTOTALCR.Text.Trim))
     '                            alparaval1.Add("") 'txtremarks.Text.Trim)
@@ -640,8 +825,8 @@ Public Class MagicBoxForRecPay
 
     '                            alparaval1.Add(0)    'CNNO
     '                            alparaval1.Add("")   'TYPE
-    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'CNDATE
-    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'ACTUALINVDATE
+    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy")) 'CNDATE
+    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy")) 'ACTUALINVDATE
 
     '                            alparaval1.Add("")   'BILLNO
     '                            alparaval1.Add("")  'PARTYBILLNO
@@ -718,7 +903,7 @@ Public Class MagicBoxForRecPay
 
     '                            alparaval1.Add("")   'IRN
     '                            alparaval1.Add("")   'ACKNO
-    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy")) 'ACKDATE
+    '                            alparaval1.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy")) 'ACKDATE
     '                            alparaval1.Add(DBNull.Value) 'QRCODE
     '                            alparaval1.Add("")   'SPREMARKS
     '                            alparaval1.Add(0)    'CD
@@ -777,7 +962,7 @@ Public Class MagicBoxForRecPay
     '                    alparaval.Clear()
     '                    alparaval.Add(ROW.Cells(GSRNO.Index).Value.ToString())
     '                    alparaval.Add("RECEIPT")
-    '                    alparaval.Add(Format(Convert.ToDateTime(DTENTERYDATE.Text).Date, "MM/dd/yyyy"))
+    '                    alparaval.Add(Format(Convert.ToDateTime(DTENTRYDATE.Text).Date, "MM/dd/yyyy"))
     '                    alparaval.Add(ROW.Cells(GACCNAME.Index).Value.ToString())
     '                    alparaval.Add(ROW.Cells(GPARTYNAME.Index).Value.ToString())
     '                    alparaval.Add(ROW.Cells(GCHQAMT.Index).Value)
@@ -892,23 +1077,23 @@ Public Class MagicBoxForRecPay
     '            Dim OBJSM As New ClsAccountsMaster
     '            Dim OBJCMN As New ClsCommon
     '            Dim DTLEDGER As DataTable = OBJCMN.SEARCH(" GROUPMASTER.group_name AS GROUPNAME, ISNULL(LEDGERS.ACC_INTPER, 0) AS INTPER, ISNULL(LEDGERS.Acc_add1,'') AS ADD1, ISNULL(LEDGERS.Acc_add2,'') AS ADD2, ISNULL(AREAMASTER.area_name, '') AS AREA, ISNULL(CITYMASTER.city_name, '') AS CITYNAME, ISNULL(LEDGERS.Acc_zipcode, '') AS PINCODE, ISNULL(STATEMASTER.state_name, '') AS STATE, ISNULL(COUNTRYMASTER.country_name, '') AS COUNTRY, ISNULL(LEDGERS.Acc_crdays, 0) AS CRDAYS, ISNULL(LEDGERS.Acc_crlimit, 0) AS CRLIMIT, ISNULL(LEDGERS.Acc_resino, '') AS RESINO, ISNULL(LEDGERS.Acc_altno, '') AS ALTNO, ISNULL(LEDGERS.Acc_phone, '') 
-    '                         AS PHONENO, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS WHATSAPPNO, ISNULL(LEDGERS.Acc_fax, '') AS FAX, ISNULL(LEDGERS.Acc_website, '') AS WEBSITE, 
-    '                         ISNULL(LEDGERS.Acc_email, '') AS EMAIL, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(LEDGERS.ACC_AGENTCOMM, 0) AS COMMISSION, 
-    '                         ISNULL(LEDGERS.ACC_DISC, 0) AS DISCOUNT, ISNULL(LEDGERS.ACC_CDPER, 0) AS CASHDISC, ISNULL(LEDGERS.ACC_KMS, 0) AS KMS, ISNULL(LEDGERS.Acc_panno, '') AS PANNO, ISNULL(LEDGERS.ACC_GSTIN, '') 
-    '                         AS GSTIN, ISNULL(LEDGERS.Acc_add, '') AS ADDRESS, ISNULL(LEDGERS.Acc_shippingadd, '') AS SHIPPINGADDRESS, ISNULL(LEDGERS.Acc_remarks, '') AS REMARKS, LEDGERS.Acc_code AS CODE, 
-    '                         ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN, ISNULL(DELIVERYCITYMASTER.city_name, '') AS DELIVERYAT, LEDGERS.Acc_TYPE AS TYPE, ISNULL(LEDGERS.ACC_DELIVERYPINCODE, '') 
-    '                         AS DELIVERYPINNO, ISNULL(LEDGERS.ACC_UPI, '') AS UPI, ISNULL(LEDGERS.ACC_MSMENO, '') AS MSME, ISNULL(LEDGERS.ACC_COMMISSION, 0) AS BROKERAGECOMM, ISNULL(LEDGERS.ACC_WARNING, '') 
-    '                         AS WARNINGTEXT, ISNULL(LEDGERS.ACC_GSTINVERIFIED, 0) AS GSTVERIFIED, ISNULL(LEDGERS.ACC_MSMETYPE, '') AS MSMETYPE, ISNULL(LEDGERS.ACC_EXMILLLESS, 0) AS EXMILLLESS, 
-    '                         ISNULL(LEDGERS.ACC_LOCKDAYS, 0) AS LOCKDAYS ", "", " LEDGERS INNER JOIN
-    '                         GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN
-    '						 SALESMANMASTER ON SALESMANMASTER.SALESMAN_ID = LEDGERS.ACC_SALESMANID LEFT OUTER JOIN
-    '                         CITYMASTER AS DELIVERYCITYMASTER ON LEDGERS.ACC_DELIVERYATID = DELIVERYCITYMASTER.city_id LEFT OUTER JOIN
-    '                         LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN
-    '						 LEDGERS AS TRANSLEDGERS ON TRANSLEDGERS.Acc_id = LEDGERS.ACC_TRANSID LEFT OUTER JOIN
-    '                         COUNTRYMASTER ON LEDGERS.Acc_countryid = COUNTRYMASTER.country_id LEFT OUTER JOIN
-    '                         STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN
-    '                         CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN 
-    '						 AREAMASTER ON AREAMASTER.area_id = LEDGERS.Acc_areaid ", " AND LEDGERS.ACC_CMPNAME = '" & NAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+    '                             AS PHONENO, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS WHATSAPPNO, ISNULL(LEDGERS.Acc_fax, '') AS FAX, ISNULL(LEDGERS.Acc_website, '') AS WEBSITE, 
+    '                             ISNULL(LEDGERS.Acc_email, '') AS EMAIL, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(LEDGERS.ACC_AGENTCOMM, 0) AS COMMISSION, 
+    '                             ISNULL(LEDGERS.ACC_DISC, 0) AS DISCOUNT, ISNULL(LEDGERS.ACC_CDPER, 0) AS CASHDISC, ISNULL(LEDGERS.ACC_KMS, 0) AS KMS, ISNULL(LEDGERS.Acc_panno, '') AS PANNO, ISNULL(LEDGERS.ACC_GSTIN, '') 
+    '                             AS GSTIN, ISNULL(LEDGERS.Acc_add, '') AS ADDRESS, ISNULL(LEDGERS.Acc_shippingadd, '') AS SHIPPINGADDRESS, ISNULL(LEDGERS.Acc_remarks, '') AS REMARKS, LEDGERS.Acc_code AS CODE, 
+    '                             ISNULL(SALESMANMASTER.SALESMAN_NAME, '') AS SALESMAN, ISNULL(DELIVERYCITYMASTER.city_name, '') AS DELIVERYAT, LEDGERS.Acc_TYPE AS TYPE, ISNULL(LEDGERS.ACC_DELIVERYPINCODE, '') 
+    '                             AS DELIVERYPINNO, ISNULL(LEDGERS.ACC_UPI, '') AS UPI, ISNULL(LEDGERS.ACC_MSMENO, '') AS MSME, ISNULL(LEDGERS.ACC_COMMISSION, 0) AS BROKERAGECOMM, ISNULL(LEDGERS.ACC_WARNING, '') 
+    '                             AS WARNINGTEXT, ISNULL(LEDGERS.ACC_GSTINVERIFIED, 0) AS GSTVERIFIED, ISNULL(LEDGERS.ACC_MSMETYPE, '') AS MSMETYPE, ISNULL(LEDGERS.ACC_EXMILLLESS, 0) AS EXMILLLESS, 
+    '                             ISNULL(LEDGERS.ACC_LOCKDAYS, 0) AS LOCKDAYS ", "", " LEDGERS INNER JOIN
+    '                             GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN
+    '    						 SALESMANMASTER ON SALESMANMASTER.SALESMAN_ID = LEDGERS.ACC_SALESMANID LEFT OUTER JOIN
+    '                             CITYMASTER AS DELIVERYCITYMASTER ON LEDGERS.ACC_DELIVERYATID = DELIVERYCITYMASTER.city_id LEFT OUTER JOIN
+    '                             LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.Acc_id LEFT OUTER JOIN
+    '    						 LEDGERS AS TRANSLEDGERS ON TRANSLEDGERS.Acc_id = LEDGERS.ACC_TRANSID LEFT OUTER JOIN
+    '                             COUNTRYMASTER ON LEDGERS.Acc_countryid = COUNTRYMASTER.country_id LEFT OUTER JOIN
+    '                             STATEMASTER ON LEDGERS.Acc_stateid = STATEMASTER.state_id LEFT OUTER JOIN
+    '                             CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN 
+    '    						 AREAMASTER ON AREAMASTER.area_id = LEDGERS.Acc_areaid ", " AND LEDGERS.ACC_CMPNAME = '" & NAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
 
 
 
@@ -1081,146 +1266,5 @@ Public Class MagicBoxForRecPay
     '        End Try
     '    End Sub
 
-    '    Sub TOTAL()
-    '        Try
-    '            'If GRIDISSUE.RowCount > 0 Then
-    '            LBLTOTALAMT.Text = 0.0
-    '            For Each ROW As DataGridViewRow In GRIDISSUE.Rows
-    '                If ROW.Cells(GSRNO.Index).Value <> Nothing Then
-    '                    LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GCHQAMT.Index).EditedFormattedValue), "0.00")
-    '                End If
-    '            Next
-    '            TXTINWORDS.Text = CurrencyToWord(LBLTOTALAMT.Text)
-    '            'End If
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
 
-    '    Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
-    '        Try
-    '            Me.Close()
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub txtamt_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTCHQAMT.KeyPress
-    '        numdotkeypress(e, sender, Me)
-    '    End Sub
-
-    '    Private Sub cmbaccname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBACCNAME.Enter
-    '        Try
-    '            'OPEN BANK A/C AND BANK OD A/C
-    '            If CMBACCNAME.Text.Trim = "" Then fillledger(CMBACCNAME, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub cmbaccname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBACCNAME.Validating
-    '        Try
-    '            If CMBACCNAME.Text.Trim <> "" Then ledgervalidate(CMBACCNAME, CMBACCCODE, e, Me, txtadd, " AND (GROUPMASTER.group_SECONDARY = 'BANK A/C' OR GROUPMASTER.group_SECONDARY = 'BANK OD A/C' OR GROUPMASTER.group_SECONDARY = 'CASH IN HAND') AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
-    '        Try
-    '            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
-    '        Catch ex As Exception
-    '            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
-    '        Try
-    '            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "Sundry debtors", "ACCOUNTS")
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub cmbname_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
-    '        Try
-    '            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-    '            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-    '            If e.KeyCode = Keys.F1 Then
-    '                Dim OBJLEDGER As New SelectLedger
-    '                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'"
-    '                OBJLEDGER.ShowDialog()
-    '                If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
-    '            End If
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub TXTBANKNAME_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TXTPARTYBANKNAME.KeyDown
-    '        Try
-    '            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-    '            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-    '            If e.KeyCode = Keys.F1 Then
-    '                Dim OBJPARTYBANK As New SelectPartyBank
-    '                OBJPARTYBANK.FRMSTRING = "PARTYBANK"
-    '                OBJPARTYBANK.ShowDialog()
-    '                If OBJPARTYBANK.TEMPNAME <> "" Then TXTPARTYBANKNAME.Text = OBJPARTYBANK.TEMPNAME
-    '            End If
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub CMBSELLERNAME_Enter(sender As Object, e As EventArgs) Handles CMBSELLERNAME.Enter
-    '        Try
-    '            If CMBSELLERNAME.Text.Trim = "" Then FILLNAME(CMBSELLERNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub CMBSELLERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBSELLERNAME.Validating
-    '        Try
-    '            If CMBSELLERNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBSELLERNAME, CMBACCCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub CMBSELLERNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBSELLERNAME.KeyDown
-    '        Try
-    '            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-    '            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-    '            If e.KeyCode = Keys.F1 Then
-    '                Dim OBJLEDGER As New SelectLedger
-    '                OBJLEDGER.STRSEARCH = "  And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
-    '                OBJLEDGER.ShowDialog()
-    '                If OBJLEDGER.TEMPNAME <> "" Then CMBSELLERNAME.Text = OBJLEDGER.TEMPNAME
-    '            End If
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Private Sub CMBSELLERNAME_Validated(sender As Object, e As EventArgs) Handles CMBSELLERNAME.Validated, CMBNAME.Validated
-    '        Try
-    '            FILLGRIDBILL()
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
-
-    '    Sub FILLGRIDBILL()
-    '        Try
-    '            Dim OBJ As New ClsAgencyReceiptMaster
-    '            Dim DT As DataTable = OBJ.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBSELLERNAME.Text.Trim)
-    '            GRIDBILLDETAILS.DataSource = DT
-    '        Catch ex As Exception
-    '            Throw ex
-    '        End Try
-    '    End Sub
 End Class

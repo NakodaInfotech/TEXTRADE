@@ -47,6 +47,7 @@ Partial Class AgencyReceipt
         Me.TXTCOPY = New System.Windows.Forms.TextBox()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.LBLCITY = New System.Windows.Forms.Label()
         Me.CHQDATE = New System.Windows.Forms.MaskedTextBox()
@@ -178,7 +179,6 @@ Partial Class AgencyReceipt
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -308,6 +308,18 @@ Partial Class AgencyReceipt
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 573)
         Me.BlendPanel1.TabIndex = 918
+        '
+        'CHKINTCALC
+        '
+        Me.CHKINTCALC.AutoSize = True
+        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
+        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKINTCALC.Location = New System.Drawing.Point(859, 522)
+        Me.CHKINTCALC.Name = "CHKINTCALC"
+        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
+        Me.CHKINTCALC.TabIndex = 1001
+        Me.CHKINTCALC.Text = "Hold Int Calc"
+        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'Button1
         '
@@ -972,9 +984,9 @@ Partial Class AgencyReceipt
         Me.groupbill.Controls.Add(Me.gridbill)
         Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.groupbill.ForeColor = System.Drawing.Color.Black
-        Me.groupbill.Location = New System.Drawing.Point(557, 41)
+        Me.groupbill.Location = New System.Drawing.Point(527, 41)
         Me.groupbill.Name = "groupbill"
-        Me.groupbill.Size = New System.Drawing.Size(765, 387)
+        Me.groupbill.Size = New System.Drawing.Size(790, 387)
         Me.groupbill.TabIndex = 6
         Me.groupbill.TabStop = False
         '
@@ -1016,7 +1028,7 @@ Partial Class AgencyReceipt
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
         Me.gridbill.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.gridbill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.gridbill.Size = New System.Drawing.Size(751, 350)
+        Me.gridbill.Size = New System.Drawing.Size(775, 350)
         Me.gridbill.TabIndex = 0
         Me.gridbill.TabStop = False
         '
@@ -1850,18 +1862,6 @@ Partial Class AgencyReceipt
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'CHKINTCALC
-        '
-        Me.CHKINTCALC.AutoSize = True
-        Me.CHKINTCALC.BackColor = System.Drawing.Color.Transparent
-        Me.CHKINTCALC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKINTCALC.Location = New System.Drawing.Point(859, 522)
-        Me.CHKINTCALC.Name = "CHKINTCALC"
-        Me.CHKINTCALC.Size = New System.Drawing.Size(97, 19)
-        Me.CHKINTCALC.TabIndex = 1001
-        Me.CHKINTCALC.Text = "Hold Int Calc"
-        Me.CHKINTCALC.UseVisualStyleBackColor = False
         '
         'AgencyReceipt
         '

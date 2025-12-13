@@ -1200,4 +1200,20 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub ORDERDATE_Validating(sender As Object, e As CancelEventArgs) Handles ORDERDATE.Validating
+        Try
+            If ORDERDATE.Text = "__/__/____" Then
+                MsgBox(" Please Enter Proper Date", MsgBoxStyle.Critical)
+                e.Cancel = True
+            Else
+                If Not datecheck(ORDERDATE.Text) Then
+                    MsgBox("Date not in Accounting Year", MsgBoxStyle.Critical)
+                    e.Cancel = True
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

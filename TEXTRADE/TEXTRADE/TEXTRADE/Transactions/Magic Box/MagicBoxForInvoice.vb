@@ -2308,6 +2308,17 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub BILLDATE_Validating(sender As Object, e As CancelEventArgs) Handles BILLDATE.Validating
+        Try
+            If Not datecheck(BILLDATE.Text) Then
+                MsgBox("Date not in Accounting Year", MsgBoxStyle.Critical)
+                e.Cancel = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     'Sub GENERATESO(ROWNO As Integer, TEMPCMPID As Integer, TEMPYEARID As Integer)
     '    Try
 

@@ -26,14 +26,13 @@ Partial Class MagicBoxForRecPay
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
-        Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TXTENTRYNO = New System.Windows.Forms.TextBox()
         Me.CMDCLEAR = New System.Windows.Forms.Button()
-        Me.DTENTERYDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.DTENTRYDATE = New System.Windows.Forms.MaskedTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
         Me.TXTCHQAMT = New System.Windows.Forms.TextBox()
@@ -59,11 +58,16 @@ Partial Class MagicBoxForRecPay
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTEMPBAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GADJAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GADJTDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -72,11 +76,6 @@ Partial Class MagicBoxForRecPay
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTEMPBAL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GADJAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GADJTDS = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -110,19 +109,6 @@ Partial Class MagicBoxForRecPay
         Me.miniToolStrip.Size = New System.Drawing.Size(1280, 25)
         Me.miniToolStrip.TabIndex = 0
         '
-        'CMDDELETE
-        '
-        Me.CMDDELETE.BackColor = System.Drawing.Color.Transparent
-        Me.CMDDELETE.FlatAppearance.BorderSize = 0
-        Me.CMDDELETE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDDELETE.ForeColor = System.Drawing.Color.Black
-        Me.CMDDELETE.Location = New System.Drawing.Point(209, 518)
-        Me.CMDDELETE.Name = "CMDDELETE"
-        Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDDELETE.TabIndex = 16
-        Me.CMDDELETE.Text = "&Delete"
-        Me.CMDDELETE.UseVisualStyleBackColor = False
-        '
         'CMDOK
         '
         Me.CMDOK.BackColor = System.Drawing.Color.Transparent
@@ -130,7 +116,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDOK.FlatAppearance.BorderSize = 0
         Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(37, 518)
+        Me.CMDOK.Location = New System.Drawing.Point(69, 518)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 14
@@ -143,7 +129,7 @@ Partial Class MagicBoxForRecPay
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(295, 518)
+        Me.CMDEXIT.Location = New System.Drawing.Point(241, 518)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 17
@@ -193,26 +179,26 @@ Partial Class MagicBoxForRecPay
         Me.CMDCLEAR.FlatAppearance.BorderSize = 0
         Me.CMDCLEAR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDCLEAR.ForeColor = System.Drawing.Color.Black
-        Me.CMDCLEAR.Location = New System.Drawing.Point(123, 518)
+        Me.CMDCLEAR.Location = New System.Drawing.Point(155, 518)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
         Me.CMDCLEAR.TabIndex = 15
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = False
         '
-        'DTENTERYDATE
+        'DTENTRYDATE
         '
-        Me.DTENTERYDATE.AsciiOnly = True
-        Me.DTENTERYDATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.DTENTERYDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DTENTERYDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.DTENTERYDATE.Location = New System.Drawing.Point(292, 23)
-        Me.DTENTERYDATE.Mask = "00/00/0000"
-        Me.DTENTERYDATE.Name = "DTENTERYDATE"
-        Me.DTENTERYDATE.Size = New System.Drawing.Size(88, 23)
-        Me.DTENTERYDATE.TabIndex = 1
-        Me.DTENTERYDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.DTENTERYDATE.ValidatingType = GetType(Date)
+        Me.DTENTRYDATE.AsciiOnly = True
+        Me.DTENTRYDATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.DTENTRYDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTENTRYDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.DTENTRYDATE.Location = New System.Drawing.Point(292, 23)
+        Me.DTENTRYDATE.Mask = "00/00/0000"
+        Me.DTENTRYDATE.Name = "DTENTRYDATE"
+        Me.DTENTRYDATE.Size = New System.Drawing.Size(88, 23)
+        Me.DTENTRYDATE.TabIndex = 1
+        Me.DTENTRYDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.DTENTRYDATE.ValidatingType = GetType(Date)
         '
         'GroupBox5
         '
@@ -359,7 +345,7 @@ Partial Class MagicBoxForRecPay
         Me.CMBPAYTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBPAYTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBPAYTYPE.FormattingEnabled = True
-        Me.CMBPAYTYPE.Items.AddRange(New Object() {"On Account", "Against Bill"})
+        Me.CMBPAYTYPE.Items.AddRange(New Object() {"Against Bill", "On Account"})
         Me.CMBPAYTYPE.Location = New System.Drawing.Point(292, 197)
         Me.CMBPAYTYPE.MaxDropDownItems = 14
         Me.CMBPAYTYPE.Name = "CMBPAYTYPE"
@@ -408,14 +394,13 @@ Partial Class MagicBoxForRecPay
         Me.BlendPanel1.Controls.Add(Me.CMBACCNAME)
         Me.BlendPanel1.Controls.Add(Me.TXTCHQAMT)
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
-        Me.BlendPanel1.Controls.Add(Me.DTENTERYDATE)
+        Me.BlendPanel1.Controls.Add(Me.DTENTRYDATE)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
         Me.BlendPanel1.Controls.Add(Me.TXTENTRYNO)
         Me.BlendPanel1.Controls.Add(Me.Label12)
         Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
         Me.BlendPanel1.Controls.Add(Me.CMDOK)
-        Me.BlendPanel1.Controls.Add(Me.CMDDELETE)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.ForeColor = System.Drawing.Color.Transparent
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
@@ -501,7 +486,7 @@ Partial Class MagicBoxForRecPay
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GBILLNO, Me.GREFNO, Me.GDATE, Me.GBALAMT, Me.GTOTAL, Me.GTDS, Me.GDAYS, Me.GTEMPBAL, Me.GCOMPLAINT, Me.GADJAMT, Me.GADJTDS})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GBILLNO, Me.GREFNO, Me.GDATE, Me.GBALAMT, Me.GTOTAL, Me.GTDS, Me.GDAYS, Me.GADJAMT, Me.GADJTDS, Me.GTEMPBAL, Me.GCOMPLAINT})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsCustomization.AllowColumnMoving = False
@@ -532,25 +517,13 @@ Partial Class MagicBoxForRecPay
         'GBILLNO
         '
         Me.GBILLNO.Caption = "Bill No."
-        Me.GBILLNO.FieldName = "BILLNO"
+        Me.GBILLNO.FieldName = "BILLINITIALS"
         Me.GBILLNO.ImageOptions.ImageIndex = 0
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.OptionsColumn.AllowEdit = False
         Me.GBILLNO.Visible = True
         Me.GBILLNO.VisibleIndex = 1
         Me.GBILLNO.Width = 150
-        '
-        'GDATE
-        '
-        Me.GDATE.Caption = "Date"
-        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GDATE.FieldName = "DATE"
-        Me.GDATE.Name = "GDATE"
-        Me.GDATE.OptionsColumn.AllowEdit = False
-        Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 3
-        Me.GDATE.Width = 90
         '
         'GREFNO
         '
@@ -562,17 +535,17 @@ Partial Class MagicBoxForRecPay
         Me.GREFNO.VisibleIndex = 2
         Me.GREFNO.Width = 150
         '
-        'GTOTAL
+        'GDATE
         '
-        Me.GTOTAL.Caption = "B‎ill Amt"
-        Me.GTOTAL.DisplayFormat.FormatString = "0.00"
-        Me.GTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTAL.FieldName = "BILLAMT"
-        Me.GTOTAL.Name = "GTOTAL"
-        Me.GTOTAL.OptionsColumn.AllowEdit = False
-        Me.GTOTAL.Visible = True
-        Me.GTOTAL.VisibleIndex = 5
-        Me.GTOTAL.Width = 100
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDATE.FieldName = "BILLDATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 3
+        Me.GDATE.Width = 90
         '
         'GBALAMT
         '
@@ -586,6 +559,18 @@ Partial Class MagicBoxForRecPay
         Me.GBALAMT.VisibleIndex = 4
         Me.GBALAMT.Width = 100
         '
+        'GTOTAL
+        '
+        Me.GTOTAL.Caption = "B‎ill Amt"
+        Me.GTOTAL.DisplayFormat.FormatString = "0.00"
+        Me.GTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTAL.FieldName = "BILLAMT"
+        Me.GTOTAL.Name = "GTOTAL"
+        Me.GTOTAL.OptionsColumn.AllowEdit = False
+        Me.GTOTAL.Visible = True
+        Me.GTOTAL.VisibleIndex = 5
+        Me.GTOTAL.Width = 100
+        '
         'GTDS
         '
         Me.GTDS.Caption = "T.D.S."
@@ -596,6 +581,60 @@ Partial Class MagicBoxForRecPay
         Me.GTDS.OptionsColumn.AllowEdit = False
         Me.GTDS.Visible = True
         Me.GTDS.VisibleIndex = 6
+        '
+        'GDAYS
+        '
+        Me.GDAYS.Caption = "Days"
+        Me.GDAYS.DisplayFormat.FormatString = "0"
+        Me.GDAYS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GDAYS.FieldName = "DAYS"
+        Me.GDAYS.Name = "GDAYS"
+        Me.GDAYS.OptionsColumn.AllowEdit = False
+        Me.GDAYS.Visible = True
+        Me.GDAYS.VisibleIndex = 7
+        Me.GDAYS.Width = 50
+        '
+        'GTEMPBAL
+        '
+        Me.GTEMPBAL.Caption = "Temp Bal"
+        Me.GTEMPBAL.DisplayFormat.FormatString = "0.00"
+        Me.GTEMPBAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTEMPBAL.FieldName = "TEMPBAL"
+        Me.GTEMPBAL.Name = "GTEMPBAL"
+        Me.GTEMPBAL.OptionsColumn.AllowEdit = False
+        Me.GTEMPBAL.Visible = True
+        Me.GTEMPBAL.VisibleIndex = 8
+        Me.GTEMPBAL.Width = 100
+        '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        '
+        'GADJAMT
+        '
+        Me.GADJAMT.Caption = "Adjust Amt"
+        Me.GADJAMT.DisplayFormat.FormatString = "0.00"
+        Me.GADJAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GADJAMT.FieldName = "ADJAMT"
+        Me.GADJAMT.Name = "GADJAMT"
+        Me.GADJAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ADJAMT", "0.00")})
+        Me.GADJAMT.Visible = True
+        Me.GADJAMT.VisibleIndex = 8
+        Me.GADJAMT.Width = 100
+        '
+        'GADJTDS
+        '
+        Me.GADJTDS.Caption = "Adjust TDS"
+        Me.GADJTDS.DisplayFormat.FormatString = "0.00"
+        Me.GADJTDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GADJTDS.FieldName = "ADJTDS"
+        Me.GADJTDS.Name = "GADJTDS"
+        Me.GADJTDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ADJTDS", "0.00")})
+        Me.GADJTDS.Visible = True
+        Me.GADJTDS.VisibleIndex = 9
         '
         'Label8
         '
@@ -693,60 +732,6 @@ Partial Class MagicBoxForRecPay
         Me.Label1.TabIndex = 750
         Me.Label1.Text = "Bank Name"
         '
-        'GDAYS
-        '
-        Me.GDAYS.Caption = "Days"
-        Me.GDAYS.DisplayFormat.FormatString = "0"
-        Me.GDAYS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GDAYS.FieldName = "DAYS"
-        Me.GDAYS.Name = "GDAYS"
-        Me.GDAYS.OptionsColumn.AllowEdit = False
-        Me.GDAYS.Visible = True
-        Me.GDAYS.VisibleIndex = 7
-        Me.GDAYS.Width = 50
-        '
-        'GTEMPBAL
-        '
-        Me.GTEMPBAL.Caption = "Temp Bal"
-        Me.GTEMPBAL.DisplayFormat.FormatString = "0.00"
-        Me.GTEMPBAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTEMPBAL.FieldName = "TEMPBAL"
-        Me.GTEMPBAL.Name = "GTEMPBAL"
-        Me.GTEMPBAL.OptionsColumn.AllowEdit = False
-        Me.GTEMPBAL.Visible = True
-        Me.GTEMPBAL.VisibleIndex = 8
-        Me.GTEMPBAL.Width = 100
-        '
-        'GCOMPLAINT
-        '
-        Me.GCOMPLAINT.Caption = "Complaint"
-        Me.GCOMPLAINT.FieldName = "COMPLAINT"
-        Me.GCOMPLAINT.Name = "GCOMPLAINT"
-        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
-        '
-        'GADJAMT
-        '
-        Me.GADJAMT.Caption = "Adjust Amt"
-        Me.GADJAMT.DisplayFormat.FormatString = "0.00"
-        Me.GADJAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GADJAMT.FieldName = "ADJAMT"
-        Me.GADJAMT.Name = "GADJAMT"
-        Me.GADJAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ADJAMT", "0.00")})
-        Me.GADJAMT.Visible = True
-        Me.GADJAMT.VisibleIndex = 9
-        Me.GADJAMT.Width = 100
-        '
-        'GADJTDS
-        '
-        Me.GADJTDS.Caption = "Adjust TDS"
-        Me.GADJTDS.DisplayFormat.FormatString = "0.00"
-        Me.GADJTDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GADJTDS.FieldName = "ADJTDS"
-        Me.GADJTDS.Name = "GADJTDS"
-        Me.GADJTDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ADJTDS", "0.00")})
-        Me.GADJTDS.Visible = True
-        Me.GADJTDS.VisibleIndex = 10
-        '
         'MagicBoxForRecPay
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -788,14 +773,13 @@ Partial Class MagicBoxForRecPay
     Friend WithEvents TXTCHQAMT As TextBox
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents TXTREMARKS As TextBox
-    Friend WithEvents DTENTERYDATE As MaskedTextBox
+    Friend WithEvents DTENTRYDATE As MaskedTextBox
     Friend WithEvents CMDCLEAR As Button
     Friend WithEvents TXTENTRYNO As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDOK As Button
-    Friend WithEvents CMDDELETE As Button
     Friend WithEvents miniToolStrip As ToolStrip
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
