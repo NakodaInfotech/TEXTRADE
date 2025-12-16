@@ -3288,7 +3288,7 @@ LINE1:
 
     Private Sub txtqty_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtqty.Validated
         CALC()
-        If ClientName = "AFW" And Val(txtqty.Text.Trim) > 1 Then TXTCUT.TabStop = True Else TXTCUT.TabStop = False
+        If ClientName = "AFW" Or (ClientName = "MBB" And FRMSTRING = "GRN FANCY") And Val(txtqty.Text.Trim) > 1 Then TXTCUT.TabStop = True Else TXTCUT.TabStop = False
     End Sub
 
     Private Sub CMBDESIGN_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDESIGN.Enter
@@ -3787,6 +3787,10 @@ LINE1:
                 TXTMTRS.TabStop = False
             End If
 
+
+            If ClientName = "MBB" Then
+                TXTCUT.TabStop = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try

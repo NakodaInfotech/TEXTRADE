@@ -1253,24 +1253,20 @@ Public Class AgencyReceipt
             gridbill.Columns(i).DefaultCellStyle.Format = "N2"
             i += 1
 
-            'gridbill.Columns(i).Visible = False
-            'gridbill.Columns(i).Name = "TDS "
-            'i += 1
+            gridbill.Columns(i).Width = 60
+            gridbill.Columns(i).Name = "INVTDSAMT"
+            gridbill.Columns(i).HeaderText = "TDS"
+            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(i).ReadOnly = True
+            i += 1
 
-            'gridbill.Columns(i).Width = 50
-            'gridbill.Columns(i).Name = "TDS"
-            'gridbill.Columns(i).HeaderText = "TDS"
-            'gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            'gridbill.Columns(i).ReadOnly = True
-            'i += 1
-
-            'gridbill.Columns(i).Width = 40
-            'gridbill.Columns(i).Name = "DAYS"
-            'gridbill.Columns(i).HeaderText = "Days"
-            'gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            'gridbill.Columns(i).ReadOnly = True
-            'i += 1
-
+            gridbill.Columns(i).Width = 40
+            gridbill.Columns(i).Name = "DAYS"
+            gridbill.Columns(i).HeaderText = "Days"
+            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(i).ReadOnly = True
+            i += 1
 
 
         Catch ex As Exception
@@ -1278,7 +1274,7 @@ Public Class AgencyReceipt
         End Try
     End Sub
 
-    Sub fillgridINVOICE()
+    Sub FILLGRIDINVOICE()
 
         gridbill.DataSource = Nothing
         TXTINVTOTAL.Clear()
@@ -1288,7 +1284,7 @@ Public Class AgencyReceipt
 
         Dim objpayment As New ClsAgencyReceiptMaster
         Dim DT As New DataTable
-        DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId, cmbseller.Text.Trim)
+        DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId, cmbseller.Text.Trim, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
         End If
@@ -1521,9 +1517,6 @@ LINE1:
     Private Sub cmbseller_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbseller.Validating
         Try
             If cmbseller.Text.Trim <> "" Then ledgervalidate(cmbseller, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
-            'If txtbillno.Text.Trim = "" And cmbseller.Text.Trim <> "" Then
-            '    fillgridINVOICE()
-            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2055,13 +2048,6 @@ LINE1:
         Finally
             Cursor.Current = Cursors.Default
         End Try
-    End Sub
-
-    Private Sub cmbseller_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbseller.Validated
-        'If cmbseller.Text.Trim <> "" Then
-        '    GETBALANCE()
-
-        'End If
     End Sub
 
     Private Sub Receipt_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
