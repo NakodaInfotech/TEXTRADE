@@ -571,7 +571,7 @@ Public Class DesignCardMaster
                         PEGREPEATS1 = Val(row.Cells(PPR1.Index).Value)
                         PEGREPEATMARK2 = row.Cells(PPRM2.Index).Value
                         PEGREPEATS2 = Val(row.Cells(PPR2.Index).Value)
-                        PEGSYM = row.Cells(PPSYM.Index).Value.ToString()
+                        PEGSYM = row.Cells(PPSYM.Index).Value
                     Else
                         PEGSrNo = PEGSrNo & "|" & Val(row.Cells(PPSRNO.Index).Value)
                         PEGEnds = PEGEnds & "|" & row.Cells(PPENDS.Index).Value.ToString()
@@ -581,7 +581,7 @@ Public Class DesignCardMaster
                         PEGREPEATS1 = PEGREPEATS1 & "|" & Val(row.Cells(PPR1.Index).Value)
                         PEGREPEATMARK2 = PEGREPEATMARK2 & "|" & row.Cells(PPRM2.Index).Value
                         PEGREPEATS2 = PEGREPEATS2 & "|" & Val(row.Cells(PPR2.Index).Value)
-                        PEGSYM = PEGSYM & "|" & row.Cells(PPSYM.Index).Value.ToString()
+                        PEGSYM = PEGSYM & "|" & row.Cells(PPSYM.Index).Value
                     End If
                 End If
             Next
