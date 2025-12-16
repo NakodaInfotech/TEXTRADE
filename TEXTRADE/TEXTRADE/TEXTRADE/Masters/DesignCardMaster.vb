@@ -2064,7 +2064,7 @@ LINE1:
         End If
         TXTFWT.Text = 0.000
         TXTFINISHWT.Text = 0.000
-        TXTGSM.Text = 0.00
+        TXTGSM.Text = 0
         TXTGLM.Text = 0.00
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
         If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
@@ -2075,10 +2075,10 @@ LINE1:
             TXTBEAMMTRS.Text = Format(Val(result), "0.00")
         End If
         If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
-            TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0.00")
+            TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
         End If
         If TXTGSM.Text <> "" Then
-            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.00")
+            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10) / 100, "0.000")
         End If
         '************* EPI ******************
         If TXTTHREADPERDENT.Text <> "" And TXTREED.Text <> "" Then
