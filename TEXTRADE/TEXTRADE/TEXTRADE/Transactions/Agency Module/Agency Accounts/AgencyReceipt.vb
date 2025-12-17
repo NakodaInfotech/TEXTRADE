@@ -835,7 +835,7 @@ Public Class AgencyReceipt
                         cmbpaytype.Text = "Against Bill"
                         cmbbillno.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("INVBILLINITIALS").Index).Value
                         cmbbillno.Enabled = True
-                        txtnarr.Clear()
+                        txtnarr.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("REFNO").Index).Value
                         lblbilltotal.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("INVBALAMT").Index).Value
 
                         Dim A As System.ComponentModel.CancelEventArgs
