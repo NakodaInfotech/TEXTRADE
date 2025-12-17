@@ -1998,6 +1998,52 @@ LINE1:
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
 
+        ''================ MAIN CALCULATIONS =================
+        'If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTRIGHTSEL.Text <> "" Then
+        '    TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
+        'End If
+        'If TXTREED.Text <> "" Then
+        '    TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
+        'End If
+        'If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then
+        '    TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
+        'End If
+        ''================ SELVEDGE DENTS =================
+        'If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then
+        '    TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        'End If
+        'If TXTRIGHTSEL.Text <> "" And TXTDENTS.Text <> "" Then
+        '    TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        'End If
+        'If TXTLEFTSELDENTS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then
+        '    TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
+        'End If
+        ''================ TOTAL DENTS =================
+        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then
+        '    TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
+        'End If
+        ''================ SELVEDGE ENDS =================
+        'If TXTTHREADPERDENT.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then
+        '    TXTLEFTSELTOTALENDS.Text =
+        'Format(Val(TXTTHREADPERDENT.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+        'End If
+        'If TXTTHREADPERDENT.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then
+        '    TXTRIGHTSELTOTALENDS.Text =
+        'Format(Val(TXTTHREADPERDENT.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        'End If
+        'If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then
+        '    TXTTOTALSELENDS.Text =
+        'Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
+        'End If
+        ''================ FINAL TOTAL ENDS (CORRECT) =================
+        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" And TXTTOTALSELENDS.Text <> "" Then
+        '    Dim mainDents As Double = Val(TXTTOTALDENTSMAIN.Text)
+        '    Dim endsPerDent As Double = Val(TXTTHREADPERDENT.Text)   ' eg: 4
+        '    Dim selvedgeEnds As Double = Val(TXTTOTALSELENDS.Text)
+        '    Dim mainEnds As Double = mainDents * endsPerDent
+        '    Dim totalEnds As Double = Math.Ceiling(mainEnds + selvedgeEnds)
+        '    TXTTOTALENDS.Text = totalEnds.ToString()
+        'End If
         If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
         If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
         If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
@@ -2078,7 +2124,8 @@ LINE1:
             TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
         End If
         If TXTGSM.Text <> "" Then
-            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10) / 100, "0.000")
+            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.000")
+            TXTGLM.Text = TXTFINISHWT.Text
         End If
         '************* EPI ******************
         If TXTTHREADPERDENT.Text <> "" And TXTREED.Text <> "" Then
