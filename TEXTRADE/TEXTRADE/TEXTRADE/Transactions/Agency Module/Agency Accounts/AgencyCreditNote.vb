@@ -577,9 +577,8 @@ Public Class AgencyCreditNote
             'WHENEVER WE MAKE CHANGES HERE DONE FORGET TO MAKE CHANGES IN THE FOLLOWING CODE ALSO
             '*******************************************
             '1. MAGICBOXFORINVOICE -- GENERATEAGENCYCN
-            '*******************************************
-            '*******************************************
-            '2. MAGICBOXFORRECPAY -- GENERATEAGENCYCN
+            '2. CREDITNOTEMASTER SAVE -- GENERATEAGENCYCN
+            '3. MAGICBOXFORRECPAY -- GENERATEAGENCYCN
             '*******************************************
 
 
@@ -1194,7 +1193,7 @@ LINE1:
             TXTINVTOTAL.Clear()
             Dim objpayment As New ClsAGENCYReceiptMaster
             Dim DT As New DataTable
-            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBDEBITLEDGER.Text.Trim)
+            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBDEBITLEDGER.Text.Trim, Convert.ToDateTime(CNDATE.Text).Date)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
         Catch ex As Exception
             Throw ex

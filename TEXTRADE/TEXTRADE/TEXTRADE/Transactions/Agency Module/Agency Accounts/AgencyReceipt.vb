@@ -626,6 +626,11 @@ Public Class AgencyReceipt
     Private Sub cmdsave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdsave.Click
         Try
 
+            'IF ANY CHANGES DONE IN COLUMNS THEN DONT FORGET TO MAKE CHANGES IN THE FOLLOWING LOCATIONS ALSO
+            '*****************************
+            '1. MAGICBOXRECPAY -- GENERATEAGENCYRECEIPT
+            '*****************************
+
             Dim DTTABLE As DataTable
 
             EP.Clear()
