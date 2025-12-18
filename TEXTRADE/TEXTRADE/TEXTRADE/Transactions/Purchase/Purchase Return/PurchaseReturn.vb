@@ -2103,6 +2103,8 @@ LINE1:
                 Dim OBJPUR As New PurchaseInvoiceDesign
                 OBJPUR.MdiParent = MDIMain
                 OBJPUR.FRMSTRING = "PURRETURN"
+                OBJPUR.PARTYNAME = CMBNAME.Text.Trim
+                OBJPUR.AGENTNAME = CMBAGENT.Text.Trim
                 OBJPUR.WHERECLAUSE = "{PURCHASERETURN.PR_NO}=" & Val(PRNO) & " and {PURCHASERETURN.PR_yearid}=" & YearId
                 OBJPUR.Show()
             End If
@@ -2900,8 +2902,8 @@ LINE1:
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
             OBJWHATSAPP.AGENTNAME = CMBAGENT.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\PURRET_" & Val(PRNO) & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("PURRET_" & Val(PRNO) & ".pdf")
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & CMBNAME.Text.Trim & "_PURRET_" & Val(PRNO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add(CMBNAME.Text.Trim & "_PURRET_" & Val(PRNO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception

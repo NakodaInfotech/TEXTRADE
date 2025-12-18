@@ -126,8 +126,8 @@ Public Class PurchaseReturnDetails
                 OBJPURRET.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJPURRET.Show()
                 OBJPURRET.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\PURRET_" & I & ".pdf")
-                FILENAME.Add("PURRET_" & I & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\ _PURRET_" & I & ".pdf")
+                FILENAME.Add(" _PURRET_" & I & ".pdf")
             Next
 
             If INVOICEMAIL Then
@@ -169,11 +169,13 @@ Public Class PurchaseReturnDetails
                 OBJPURRET.DIRECTWHATSAPP = WHATSAPP
                 OBJPURRET.PRINTSETTING = PRINTDIALOG
                 OBJPURRET.PURRETNO = Val(ROW("SRNO"))
+                OBJPURRET.PARTYNAME = ROW("NAME")
+                OBJPURRET.AGENTNAME = ROW("AGENT")
                 OBJPURRET.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJPURRET.Show()
                 OBJPURRET.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\PURRET_" & Val(ROW("SRNO")) & ".pdf")
-                FILENAME.Add("PURRET_" & Val(ROW("SRNO")) & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "_PURRET_" & Val(ROW("SRNO")) & ".pdf")
+                FILENAME.Add(ROW("NAME") & "_PURRET_" & Val(ROW("SRNO")) & ".pdf")
             Next
 
             If INVOICEMAIL Then

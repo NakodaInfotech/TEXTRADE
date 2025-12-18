@@ -520,7 +520,7 @@ SKIPINVOICE:
             Else
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
-                oDfDopt.DiskFileName = Application.StartupPath & "\PURRET_" & PURRETNO & ".pdf"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_PURRET_" & PURRETNO & ".pdf"
 
                 'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
                 If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
