@@ -1657,7 +1657,7 @@ CHECKNEXTLINE:
             End If
 
             'AS PER KUMAR BHAI WE NEED TO ENTER 0 IN GST
-            If CMBSCREENTYPE.Text = "TOTAL GST" And ClientName <> "ALENCOT" And ClientName <> "YASHVI" And ClientName <> "SHALIBHADRA" And ClientName <> "KREEVE" And ClientName <> "VINAYAK" And ClientName <> "KRISHNA" And ClientName <> "MASHOK" And ClientName <> "ABHEE" Then
+            If CMBSCREENTYPE.Text = "TOTAL GST" And ClientName <> "ALENCOT" And ClientName <> "YASHVI" And ClientName <> "SHALIBHADRA" And ClientName <> "KREEVE" And ClientName <> "VINAYAK" And ClientName <> "KRISHNA" And ClientName <> "MASHOK" And ClientName <> "ABHEE" And ClientName <> "SUPEEMA" Then
                 If Val(TXTCGSTAMT1.Text.Trim) = 0 And Val(TXTSGSTAMT1.Text.Trim) = 0 And Val(TXTIGSTAMT1.Text.Trim) = 0 Then
                     EP.SetError(TXTCGSTAMT1, "Enter CGST/SGST/IGST")
                     bln = False

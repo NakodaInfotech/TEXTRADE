@@ -2383,7 +2383,9 @@ NEXTLINE:
                 LBLCHALLAN.Text = "Patta"
                 LBLCONSIGNEE.Text = "Exp. To"
                 TXTSONO.TabStop = True
-                TXTMULTISONO.Visible = False
+                'TXTMULTISONO.Visible = False
+                TXTMULTISONO.TabStop = True
+                TXTMULTISONO.TabIndex = TXTSONO.TabIndex
                 SODATE.TabStop = True
             End If
 

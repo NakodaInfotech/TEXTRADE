@@ -8821,7 +8821,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardLBL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>DesignCardLBL.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Design Card\DesignCardRep.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

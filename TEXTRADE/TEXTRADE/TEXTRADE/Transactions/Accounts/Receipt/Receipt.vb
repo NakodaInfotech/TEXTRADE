@@ -1315,6 +1315,7 @@ Public Class Receipt
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, Locationid, YearId, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
             SETGRIDINVOICE(DT)
+            CreateFilterTextBoxes()
 
             'Dim DTROW As DataRow
             'For Each DTROW In DT.Rows
@@ -2497,13 +2498,8 @@ NEXTLINE:
                 groupbill.Controls.RemoveAt(i)
             End If
         Next
-
-
-
         filterTextBoxes.Clear()
-
         If gridbill.Columns.Count = 0 Then Exit Sub
-
         Dim xPos As Integer = gridbill.RowHeadersVisible * gridbill.RowHeadersWidth
         For Each col As DataGridViewColumn In gridbill.Columns
             If col.Visible Then

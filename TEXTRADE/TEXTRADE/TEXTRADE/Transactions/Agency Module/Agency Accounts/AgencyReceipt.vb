@@ -626,6 +626,11 @@ Public Class AgencyReceipt
     Private Sub cmdsave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdsave.Click
         Try
 
+            'IF ANY CHANGES DONE IN COLUMNS THEN DONT FORGET TO MAKE CHANGES IN THE FOLLOWING LOCATIONS ALSO
+            '*****************************
+            '1. MAGICBOXRECPAY -- GENERATEAGENCYRECEIPT
+            '*****************************
+
             Dim DTTABLE As DataTable
 
             EP.Clear()
@@ -830,7 +835,7 @@ Public Class AgencyReceipt
                         cmbpaytype.Text = "Against Bill"
                         cmbbillno.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("INVBILLINITIALS").Index).Value
                         cmbbillno.Enabled = True
-                        txtnarr.Clear()
+                        txtnarr.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("REFNO").Index).Value
                         lblbilltotal.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("INVBALAMT").Index).Value
 
                         Dim A As System.ComponentModel.CancelEventArgs
