@@ -541,7 +541,7 @@ Public Class Receipt
                 End If
             End If
             gridpayment.ClearSelection()
-            'CreateFilterTextBoxes()
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try

@@ -1710,7 +1710,7 @@ LINE1:
             GRIDBILL.DataSource = Nothing
             TXTINVTOTAL.Clear()
             Dim objpayment As New ClsReceiptMaster
-            Dim DT As New DataTable
+            'Dim DT As New DataTable
             DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, Locationid, YearId, Convert.ToDateTime(CNDATE.Text).Date)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
             CreateFilterTextBoxes()
@@ -1724,7 +1724,7 @@ LINE1:
         Try
             'FOR ADDING NEW CHKCOL IN GRIDBILL
 
-            DT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+            'DT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
             GRIDBILL.DataSource = DT
             If a = 0 Then
                 GRIDBILL.Columns.Insert(0, col)
@@ -3876,49 +3876,53 @@ LINE1:                      'GET INVPRINTTINITIALS | PCS | MTRS | BILLAMT
     End Sub
 
     Public Sub FilterGrid(sender As Object, e As EventArgs)
-        'Try
-        '    Dim filterClauses As New List(Of String)()
-        '    For Each txt As TextBox In filterTextBoxes
-        '        Dim colIndex As Integer = CInt(txt.Tag)
-        '        Dim colName As String = GRIDBILL.Columns(colIndex).DataPropertyName
-        '        Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+        Try
+            If GRIDBILL.DataSource Is Nothing Then Exit Sub
+            If filterTextBoxes Is Nothing OrElse filterTextBoxes.Count = 0 Then Exit Sub
 
-        '        If filterText <> "" Then
-        '            ' Check data type
-        '            Dim colType As Type = DT.Columns(colName).DataType
-        '            If colType Is GetType(String) Then
-        '                filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
-        '            ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
-        '                ' Numeric filter: try direct match
-        '                Dim valDouble As Double
-        '                If Double.TryParse(filterText, valDouble) Then
-        '                    filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
-        '                End If
-        '            ElseIf colType Is GetType(DateTime) Then
-        '                Dim valDate As DateTime
-        '                If DateTime.TryParse(filterText, valDate) Then
-        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
-        '                End If
-        '            ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
-        '                Dim valDate As DateTime
-        '                If DateTime.TryParse(filterText, valDate) Then
-        '                    ' For exact date match
-        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+            Dim filterClauses As New List(Of String)()
+            For Each txt As TextBox In filterTextBoxes
+                Dim colIndex As Integer = CInt(txt.Tag)
+                Dim colName As String = GRIDBILL.Columns(colIndex).DataPropertyName
+                Dim filterText As String = txt.Text.Trim().Replace("'", "''")
 
-        '                    ' Or you can do range filtering, example hardcoded here (customize as needed)
-        '                    ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
-        '                End If
+                If filterText <> "" Then
+                    ' Check data type
+                    Dim colType As Type = DT.Columns(colName).DataType
+                    If colType Is GetType(String) Then
+                        filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
+                    ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
+                        ' Numeric filter: try direct match
+                        Dim valDouble As Double
+                        If Double.TryParse(filterText, valDouble) Then
+                            filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
+                        End If
+                    ElseIf colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+                        End If
+                    ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+                        Dim valDate As DateTime
+                        If DateTime.TryParse(filterText, valDate) Then
+                            ' For exact date match
+                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
 
-        '            End If
-        '        End If
-        '    Next
+                            ' Or you can do range filtering, example hardcoded here (customize as needed)
+                            ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
+                        End If
+
+                    End If
+                End If
+            Next
 
 
-        '    Dim filterString As String = String.Join(" AND ", filterClauses)
-        '    DT.DefaultView.RowFilter = filterString
-        'Catch ex As Exception
-        '    MsgBox("Error while filtering: " & ex.Message)
-        'End Try
+            Dim filterString As String = String.Join(" AND ", filterClauses)
+            DT.DefaultView.RowFilter = filterString
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+
     End Sub
     Private Sub gridbill_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDBILL.SortCompare
         Try
