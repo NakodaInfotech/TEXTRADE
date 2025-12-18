@@ -6358,6 +6358,49 @@ NORATE:
                     LBLLRDATE.Visible = False
                     LRDATE.Visible = False
 
+
+                    GGRIDPURPARTY.Visible = True
+                    GPURPARTYBILLNO.Visible = True
+
+                    TXTGRIDLRNO.Visible = True
+                    GLRNO.Visible = True
+                    CMBGRIDTRANS.Visible = True
+                    GTRANS.Visible = True
+
+                    CMBQUALITY.Visible = False
+                    GQUALITY.Visible = False
+                    CMBDESIGN.Visible = False
+                    GDESIGN.Visible = False
+                    CMBSHADE.Visible = False
+                    GSHADE.Visible = False
+
+                    TXTQTY.Visible = True
+                    GQTY.Visible = True
+                    TXTFOLDPER.Visible = True
+                    GFOLDPER.Visible = True
+
+                    GWT.Visible = True
+                    LBLTOTALWT.Visible = True
+                    CMDSELECTSTOCK.Visible = True
+
+                    CMDREMOVELR.Visible = True
+
+
+
+                    TXTQTY.Left = TXTHSNCODE.Left + TXTHSNCODE.Width
+                    TXTFOLDPER.Left = TXTQTY.Left + TXTQTY.Width
+                    TXTDESCRIPTION.Left = TXTFOLDPER.Left + TXTFOLDPER.Width
+                    TXTBALENO.Left = TXTDESCRIPTION.Left + TXTDESCRIPTION.Width
+                    TXTPCS.Left = TXTBALENO.Left + TXTBALENO.Width
+                    TXTCUT.Left = TXTPCS.Left + TXTPCS.Width
+                    TXTMTRS.Left = TXTCUT.Left + TXTCUT.Width
+                    TXTRATE.Left = TXTMTRS.Left + TXTMTRS.Width
+                    CMBPER.Left = TXTRATE.Left + TXTRATE.Width
+                    TXTAMT.Left = CMBPER.Left + CMBPER.Width
+                    TXTGRIDLRNO.Left = TXTAMT.Left + TXTAMT.Width
+                    CMBGRIDTRANS.Left = TXTGRIDLRNO.Left + TXTGRIDLRNO.Width
+
+
                     'THIS IS DONE SO THAT USER CAN ENTER DATA MANUALLY
                     'SOMETIME THEY DELETE THE INV FROM SOFTWARE AND FORGET TO DELETE FROM PORTAL,
                     'THAT TIME WE NEED TO CREATE THE INVOICE AGAIN MANUALLY
@@ -6382,23 +6425,6 @@ NORATE:
                         TXTAMT.Visible = False
                     End If
 
-                    GGRIDPURPARTY.Visible = True
-                    GPURPARTYBILLNO.Visible = True
-
-                    GLRNO.Visible = True
-                    GTRANS.Visible = True
-
-                    GQUALITY.Visible = False
-                    GDESIGN.Visible = False
-                    GSHADE.Visible = False
-                    GQTY.Visible = True
-                    GFOLDPER.Visible = True
-
-                    GWT.Visible = True
-                    LBLTOTALWT.Visible = True
-                    CMDSELECTSTOCK.Visible = True
-
-                    CMDREMOVELR.Visible = True
                 End If
             Else
                 CMDSELECTGDN.Visible = True
