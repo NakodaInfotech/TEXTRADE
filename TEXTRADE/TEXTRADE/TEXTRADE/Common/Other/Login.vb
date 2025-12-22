@@ -1014,14 +1014,13 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "VAISHALI" Then '(MIHIR BHAI)
-                    DISCONTINUECLIENT = True
-                    'HIDEYARN = False
-                    'HIDEACCOUNTS = True
-                    'HIDESTORES = False
-                    'If Now.Date > DateTime.Parse("15.12.2024 00:00") Then
-                    '    Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
-                    '    GoTo LINE1
-                    'End If
+                    HIDEYARN = False
+                    HIDEACCOUNTS = True
+                    HIDESTORES = False
+                    If Now.Date > DateTime.Parse("15.12.2026 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
+                        GoTo LINE1
+                    End If
                 ElseIf ClientName = "VALIANT" Then
                     HIDEYARN = False
                     HIGHVERSION = True
