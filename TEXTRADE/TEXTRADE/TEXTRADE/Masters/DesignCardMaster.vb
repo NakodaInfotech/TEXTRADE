@@ -1102,7 +1102,7 @@ Public Class DesignCardMaster
                     CMBQUALITIES.Text = Convert.ToString(dr("QUALITY").ToString)
                     CMBQUALITYTYPE.Text = Convert.ToString(dr("QUALITYTYPE").ToString)
                     TXTBLENDPER.Text = dr("BLENDPER")
-                    TXTGLM.Text = dr("GREYLOOMMTR")
+                    TXTGLM.Text = Format(Val(dr("GREYLOOMMTR")), "0.000")
                     TXTENDPERINCH.Text = dr("ENDPERINCH")
                     TXTTOTALENDS.Text = dr("TOTALENDS")
                 Next
@@ -2051,8 +2051,14 @@ LINE1:
         If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
         If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
         If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
-        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
-        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        'If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+        'AS PER RANJAN
+        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+
+        'If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        'RANJAN
+        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+
         If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
         If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
         'new code 
@@ -2115,7 +2121,7 @@ LINE1:
         TXTFWT.Text = 0.000
         TXTFINISHWT.Text = 0.000
         TXTGSM.Text = 0
-        TXTGLM.Text = 0.00
+        TXTGLM.Text = 0.000
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
         If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
         If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
@@ -3894,7 +3900,7 @@ line1:
             TXTFDMAINSRNO.Clear()
             cmbweftshade.Text = ""
             cmbweftshade.Focus()
-            TXTWDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+            TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
         Catch ex As Exception
             Throw ex
         End Try
@@ -4068,6 +4074,10 @@ line1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs) Handles cmdbtn1.Click
+
     End Sub
 
     Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
