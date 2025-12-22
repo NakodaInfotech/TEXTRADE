@@ -1255,6 +1255,71 @@ PRINT 1,1")
                             oWrite.WriteLine("P1")
                             oWrite.Dispose()
 
+                        ElseIf ClientName = "SHEETAL" Then
+
+
+                            'GET RATE
+                            Dim TEMPRATE As Double = 0
+                            Dim TEMPHSN As String = ""
+                            DT = OBJCMN.SEARCH("ITEMMASTER.ITEM_RATE AS RATE, ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ISNULL(ITEMMASTER.ITEM_NAME,'') = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                                TEMPHSN = DT.Rows(0).Item("HSNCODE")
+                            End If
+
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='40.0 mm'></xpml>^XA
+^SZ2^JMA
+^MCY^PMN
+^PW460
+^MMT
+^MD20
+^PR2,2,2
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='40.0 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='40.0 mm'></xpml>^XA
+^FT6,32
+^CI0
+^AAN,27,15^FD" & CMBMERCHANT.Text.Trim & "^FS
+^FT6,160
+^AFN,26,13^FDITEM^FS
+^FT78,160
+^AFN,26,13^FD:^FS
+^FT102,160
+^AFN,26,13^FD" & CMBMERCHANT.Text.Trim & "^FS
+^FT6,201
+^AFN,26,13^FDRATE^FS
+^FT78,201
+^AFN,26,13^FD:^FS
+^FT102,201
+^AFN,26,13^FDRs. " & Format(Val(TEMPRATE), "0.00") & "/-^FS
+^FT6,235
+^AFN,26,13^FDHSN^FS
+^FT78,235
+^AFN,26,13^FD:^FS
+^FT102,235
+^AFN,26,13^FD" & TEMPHSN & "^FS
+^FT6,269
+^AFN,26,13^FDSHADE^FS
+^FT78,269
+^AFN,26,13^FD:^FS
+^FT102,269
+^AFN,26,13^FD" & CMBCOLOR.Text.Trim & "^FS
+^FT6,303
+^AFN,26,13^FDBASE^FS
+^FT78,303
+^AFN,26,13^FD:^FS
+^FT102,303
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
+^FO27,40
+^BY2,2.5^B3N,N,56,N,N^FD" & TXTBARCODE.Text.Trim & "^FS
+^FT180,116
+^ADN,18,10^FD" & TXTBARCODE.Text.Trim & "^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>")
+                            oWrite.Dispose()
+
                         ElseIf ClientName = "SHREENAKODA" Then
 
                             oWrite.WriteLine("I8,A")
@@ -2544,6 +2609,71 @@ PRINT 1,1")
                                     oWrite.WriteLine("A283,315,2,4,1,1,N,""" & ROW("ITEMNAME") & """")
                                     oWrite.WriteLine("A151,155,2,4,1,1,N,""" & ROW("REMARKS") & """")
                                     oWrite.WriteLine("P1")
+                                    oWrite.Dispose()
+
+                                ElseIf ClientName = "SHEETAL" Then
+
+
+                                    'GET RATE
+                                    Dim TEMPRATE As Double = 0
+                                    Dim TEMPHSN As String = ""
+                                    DT = OBJCMN.SEARCH("ITEMMASTER.ITEM_RATE AS RATE, ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ISNULL(ITEMMASTER.ITEM_NAME,'') = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                    If DT.Rows.Count > 0 Then
+                                        TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                                        TEMPHSN = DT.Rows(0).Item("HSNCODE")
+                                    End If
+
+                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='40.0 mm'></xpml>^XA
+^SZ2^JMA
+^MCY^PMN
+^PW460
+^MMT
+^MD20
+^PR2,2,2
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='40.0 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='40.0 mm'></xpml>^XA
+^FT6,32
+^CI0
+^AAN,27,15^FD" & ROW("ITEMNAME") & "^FS
+^FT6,160
+^AFN,26,13^FDITEM^FS
+^FT78,160
+^AFN,26,13^FD:^FS
+^FT102,160
+^AFN,26,13^FD" & ROW("ITEMNAME") & "^FS
+^FT6,201
+^AFN,26,13^FDRATE^FS
+^FT78,201
+^AFN,26,13^FD:^FS
+^FT102,201
+^AFN,26,13^FDRs. " & Format(Val(TEMPRATE), "0.00") & "/-^FS
+^FT6,235
+^AFN,26,13^FDHSN^FS
+^FT78,235
+^AFN,26,13^FD:^FS
+^FT102,235
+^AFN,26,13^FD" & TEMPHSN & "^FS
+^FT6,269
+^AFN,26,13^FDSHADE^FS
+^FT78,269
+^AFN,26,13^FD:^FS
+^FT102,269
+^AFN,26,13^FD" & ROW("SHADE") & "^FS
+^FT6,303
+^AFN,26,13^FDBASE^FS
+^FT78,303
+^AFN,26,13^FD:^FS
+^FT102,303
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
+^FO27,40
+^BY2,2.5^B3N,N,56,N,N^FD" & ROW("BARCODE") & "^FS
+^FT180,116
+^ADN,18,10^FD" & ROW("BARCODE") & "^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>")
                                     oWrite.Dispose()
 
                                 ElseIf ClientName = "SHREENAKODA" Then
