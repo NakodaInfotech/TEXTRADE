@@ -3,6 +3,7 @@ Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports BL
+Imports DevExpress.CodeParser
 
 Public Class receipt_advice
 
@@ -19,6 +20,7 @@ Public Class receipt_advice
     Dim OBJRECMONTHLY As New RecMonthlyReport
     Dim OBJRECPARTYSUMM As New RecPartySummReport
     Dim OBJRECREG As New ReceiptRegisterReport
+    Dim OBJREC_ABHEE As New RecReport_ABHEE
 
 
     Public WHERECLAUSE As String = ""
@@ -85,6 +87,8 @@ Public Class receipt_advice
                 strsearch = strsearch & "  {receiptmaster.receipt_no}= " & recno & " and {RECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {receiptmaster.receipt_cmpid} = " & CmpId & " and {receiptmaster.receipt_LOCATIONid} = " & Locationid & " and {receiptmaster.receipt_YEARid} = " & YearId
                 If ClientName = "NAKODAINFOTECH" Then
                     crTables = OBJREC_NAKODAINFOTECH.Database.Tables
+                ElseIf ClientName = "ABHEE" Then
+                    crTables = OBJREC_ABHEE.Database.Tables
                 Else
                     crTables = OBJREC.Database.Tables
                 End If
@@ -122,6 +126,9 @@ Public Class receipt_advice
             Else
                 If ClientName = "NAKODAINFOTECH" Then
                     CRPO.ReportSource = OBJREC_NAKODAINFOTECH
+                ElseIf ClientName = "ABHEE" Then
+                    CRPO.ReportSource = OBJREC_ABHEE
+
                 Else
                     CRPO.ReportSource = OBJREC
                     If ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJREC.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -170,6 +177,14 @@ Public Class receipt_advice
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
                     OBJREC_NAKODAINFOTECH.Export()
+
+                ElseIf ClientName = "ABHEE" Then
+                    oDfDopt.DiskFileName = Application.StartupPath & "\RECEIPTREPORT.PDF"
+                    expo = OBJREC_ABHEE.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    OBJREC_ABHEE.Export()
                 Else
                     oDfDopt.DiskFileName = Application.StartupPath & "\RECEIPTREPORT.PDF"
                     expo = OBJREC.ExportOptions
@@ -215,6 +230,8 @@ Public Class receipt_advice
             Dim OBJ As New Object
             If ClientName = "NAKODAINFOTECH" Then
                 OBJ = New RecReport_NAKODAINFOTECH
+            ElseIf ClientName = "ABHEE" Then
+                OBJ = New RecReport_ABHEE
             Else
                 OBJ = New RecReport
                 If ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
