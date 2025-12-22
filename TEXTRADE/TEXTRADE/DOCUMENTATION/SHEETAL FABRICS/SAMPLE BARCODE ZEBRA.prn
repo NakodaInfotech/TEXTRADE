@@ -1,0 +1,51 @@
+﻿<xpml><page quantity='0' pitch='40.0 mm'></xpml>^XA
+^SZ2^JMA
+^MCY^PMN
+^PW460
+^MMT
+^MD20
+^PR2,2,2
+^JZY
+^LH0,0^LRN
+^XZ
+<xpml></page></xpml><xpml><page quantity='0' pitch='40.0 mm'></xpml><xpml></page></xpml><xpml><page quantity='1' pitch='40.0 mm'></xpml>^XA
+^FT6,32
+^CI0
+^AAN,27,15^FD80 PC COTTON LINEN POLY^FS
+^FT6,160
+^AFN,26,13^FDITEM^FS
+^FT78,160
+^AFN,26,13^FD:^FS
+^FT102,160
+^AFN,26,13^FD80 PC COTTON LINEN POL^FS
+^FT6,201
+^AFN,26,13^FDRATE^FS
+^FT78,201
+^AFN,26,13^FD:^FS
+^FT102,201
+^AFN,26,13^FDRs. 100/-^FS
+^FT6,235
+^AFN,26,13^FDHSN^FS
+^FT78,235
+^AFN,26,13^FD:^FS
+^FT102,235
+^AFN,26,13^FD520811^FS
+^FT6,269
+^AFN,26,13^FDSHADE^FS
+^FT78,269
+^AFN,26,13^FD:^FS
+^FT102,269
+^AFN,26,13^FDWHITE^FS
+^FT6,303
+^AFN,26,13^FDBASE^FS
+^FT78,303
+^AFN,26,13^FD:^FS
+^FT102,303
+^AFN,26,13^FD100% COTTON^FS
+^FO27,40
+^BY2,2.5^B3N,N,56,N,N^FDS-99999/O9/O9^FS
+^FT180,116
+^ADN,18,10^FDS-99999/9/9^FS
+^PQ1,0,1,Y
+^XZ
+<xpml></page></xpml><xpml><end/></xpml>
