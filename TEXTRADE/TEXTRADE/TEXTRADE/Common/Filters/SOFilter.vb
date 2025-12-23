@@ -327,7 +327,8 @@ Public Class SOFilter
                     'OPEN ORDERVSSTOCK REPORT
                     Dim OBJORDER As New OrderGridReport
                     OBJORDER.MdiParent = MDIMain
-
+                    OBJORDER.FRMSTRING = FRMSTRING
+                    OBJORDER.NAME = CMBNAME.Text.Trim
                     If CMBORDERTYPE.Text = "YARN" Then
                         OBJORDER.ORDERTYPE = "YARN" & FRMSTRING
 

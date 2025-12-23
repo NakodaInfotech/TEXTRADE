@@ -6,6 +6,7 @@ Imports iTextSharp.text.pdf
 
 Public Class OrderGridReport
 
+    Public NAME As String
     Public SOCLAUSE As String
     Public ORDERTYPE As String
     Public FRMSTRING As String
@@ -13,11 +14,11 @@ Public Class OrderGridReport
 
     Public Sub New()
         InitializeComponent()
-        FILLCMB()
     End Sub
 
     Private Sub OrderGridReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            FILLCMB()
             FILLGRID()
         Catch ex As Exception
             Throw ex
@@ -26,6 +27,9 @@ Public Class OrderGridReport
 
     Sub FILLCMB()
         Try
+            If NAME <> "" Then
+                CMBNAME.Text = NAME
+            End If
             If FRMSTRING = "SO" Then
                 If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             Else
