@@ -508,7 +508,7 @@ Public Class AgencyReceipt
                         If Convert.ToBoolean(dr("SMSSEND")) = True Then LBLSMS.Visible = True
                         If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
 
-                        gridpayment.Rows.Add(0, dr("GRIDSRNO"), dr("PAYTYPE").ToString, dr("BILLINITIALS").ToString, dr("NARR").ToString, Format(dr("AMT"), "0.00"), Format(dr("AMTPAID"), "0.00"), Format(dr("EXTRAAMT"), "0.00"), Format(dr("RETURN"), "0.00"), Format(dr("BALANCE"), "0.00"))
+                        gridpayment.Rows.Add(0, dr("GRIDSRNO"), dr("PAYTYPE").ToString, dr("BILLINITIALS").ToString, dr("NARR").ToString, Format(dr("AMT"), "0.00"), Format(dr("AMTPAID"), "0.00"), Format(dr("EXTRAAMT"), "0.00"), Format(dr("RETURN"), "0.00"), Format(dr("BALANCE"), "0.00"), Val(dr("CRDAYS")), Val(dr("DAYS")), Format(Convert.ToDateTime(dr("DUEDATE")).Date, "dd/MM/yyyy"))
                         If Val(dr("AMTPAID")) > 0 Or Val(dr("EXTRAAMT")) > 0 Or Val(dr("RETURN")) > 0 Then
                             gridpayment.Rows(gridpayment.RowCount - 1).DefaultCellStyle.BackColor = Color.Linen
                             lbllocked.Visible = True
@@ -530,10 +530,10 @@ Public Class AgencyReceipt
                     TXTOURREMARKS.Text = Convert.ToString(DT.Rows(0).Item("OURREMARKS"))
                     TXTSPECIALREMARKS.Text = Convert.ToString(DT.Rows(0).Item("SPECIALREMARKS"))
 
-                    
+
 
                     'filling gridINVOICE
-                    fillgridINVOICE()
+                    FILLGRIDINVOICE()
 
                     cmbregister.Enabled = False
                     ACCDATE.Focus()
@@ -594,7 +594,7 @@ Public Class AgencyReceipt
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
             If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
             If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" And cmbseller.Text.Trim <> "" Then
-                fillgridINVOICE()
+                FILLGRIDINVOICE()
                 'Else
                 '    Call txtbillno_Validating(sender, e)
             End If
@@ -837,7 +837,9 @@ Public Class AgencyReceipt
                         cmbbillno.Enabled = True
                         txtnarr.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("REFNO").Index).Value
                         lblbilltotal.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("INVBALAMT").Index).Value
-
+                        TXTCRDAYS.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("CRDAYS").Index).Value
+                        TXTDAYS.Text = gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("DAYS").Index).Value
+                        dtinvduedate.Value = Convert.ToDateTime(gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("DUEDATE").Index).Value).Date
                         Dim A As System.ComponentModel.CancelEventArgs
                         txtamt_Validating(sender, A)
 
@@ -1063,9 +1065,14 @@ Public Class AgencyReceipt
                 txtamt.Text = Val(lblbilltotal.Text)
             End If
             'End If
+
+            Dim dtinvduedate1 As Date
+
+            ' Assign a value (e.g. from a DateTimePicker, or calculated value)
+            dtinvduedate1 = dtinvduedate.Value
             If GRIDDOUBLECLICK = False Then
 
-                gridpayment.Rows.Add(0, txtsrno.Text.Trim, cmbpaytype.Text.Trim, cmbbillno.Text.Trim, txtnarr.Text.Trim, Val(txtamt.Text.Trim), 0, 0, 0, Val(txtamt.Text.Trim))
+                gridpayment.Rows.Add(0, txtsrno.Text.Trim, cmbpaytype.Text.Trim, cmbbillno.Text.Trim, txtnarr.Text.Trim, Val(txtamt.Text.Trim), 0, 0, 0, Val(txtamt.Text.Trim), TXTCRDAYS.Text.Trim, TXTDAYS.Text.Trim, dtinvduedate1.ToString("dd/MM/yyyy"))
                 getpaysrno(gridpayment)
             Else
                 gridpayment.Item(1, TEMPROW).Value = txtsrno.Text.Trim
@@ -1186,7 +1193,7 @@ Public Class AgencyReceipt
 
     Sub SETGRIDINVOICE(ByVal DT As DataTable)
         Try
-            DT.DefaultView.Sort = "BILLDATE, BILLTYPE, BILLNO ASC"
+            'DT.DefaultView.Sort = "BILLDATE, BILLTYPE, BILLNO ASC"
             gridbill.DataSource = DT
             If a = 0 Then
                 gridbill.Columns.Insert(0, col)
@@ -1194,85 +1201,81 @@ Public Class AgencyReceipt
             End If
             Dim i As Integer = 0
 
-            gridbill.Columns(i).Width = 40
-            gridbill.Columns(i).Name = "INVCHK"
-            gridbill.Columns(i).HeaderText = ""
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(0).Width = 40
+            gridbill.Columns(0).Name = "INVCHK"
+            gridbill.Columns(0).HeaderText = ""
+            gridbill.Columns(0).ReadOnly = True
 
-            gridbill.Columns(i).Width = 80
-            gridbill.Columns(i).Name = "INVBILLINITIALS"
-            gridbill.Columns(i).HeaderText = "Bill No."
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(1).Width = 80
+            gridbill.Columns(1).Name = "INVBILLINITIALS"
+            gridbill.Columns(1).HeaderText = "Bill No."
+            gridbill.Columns(1).ReadOnly = True
 
-            gridbill.Columns(i).Width = 80
-            gridbill.Columns(i).Name = "REFNO"
-            gridbill.Columns(i).HeaderText = "Ref No"
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(2).Width = 80
+            gridbill.Columns(2).Name = "REFNO"
+            gridbill.Columns(2).HeaderText = "Ref No"
+            gridbill.Columns(2).ReadOnly = True
 
-            gridbill.Columns(i).Width = 80
-            gridbill.Columns(i).Name = "INVBILLDATE"
-            gridbill.Columns(i).HeaderText = "Bill Date"
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(3).Width = 80
+            gridbill.Columns(3).Name = "INVBILLDATE"
+            gridbill.Columns(3).HeaderText = "Bill Date"
+            gridbill.Columns(3).ReadOnly = True
 
-            gridbill.Columns(i).Width = 100
-            gridbill.Columns(i).Name = "INVBALAMT"
-            gridbill.Columns(i).HeaderText = "Bal. Amt"
-            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(4).Width = 100
+            gridbill.Columns(4).Name = "INVBALAMT"
+            gridbill.Columns(4).HeaderText = "Bal. Amt"
+            gridbill.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(4).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(4).ReadOnly = True
 
-            gridbill.Columns(i).Width = 100
-            gridbill.Columns(i).Name = "INVBILLAMT"
-            gridbill.Columns(i).HeaderText = "Bill Amt"
-            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(5).Width = 100
+            gridbill.Columns(5).Name = "INVBILLAMT"
+            gridbill.Columns(5).HeaderText = "Bill Amt"
+            gridbill.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(5).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(5).ReadOnly = True
 
-            gridbill.Columns(i).Visible = False
-            gridbill.Columns(i).Name = "INVBILLTYPE"
-            i += 1
+            gridbill.Columns(6).Visible = False
+            gridbill.Columns(6).Name = "INVBILLTYPE"
 
-            gridbill.Columns(i).Visible = False
-            gridbill.Columns(i).Name = "INVBILLNO"
-            i += 1
+            gridbill.Columns(7).Visible = False
+            gridbill.Columns(7).Name = "INVBILLNO"
 
 
-            gridbill.Columns(i).Width = 150
-            gridbill.Columns(i).Name = "INVPURNAME"
-            gridbill.Columns(i).HeaderText = "Pur Name"
-            gridbill.Columns(i).Visible = True
-            i += 1
+            gridbill.Columns(8).Width = 150
+            gridbill.Columns(8).Name = "INVPURNAME"
+            gridbill.Columns(8).HeaderText = "Pur Name"
+            gridbill.Columns(8).Visible = True
 
 
-            gridbill.Columns(i).Width = 80
-            gridbill.Columns(i).Name = "TEMPBAL"
-            gridbill.Columns(i).HeaderText = "Temp Bal"
-            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).ReadOnly = True
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
-            i += 1
+            gridbill.Columns(9).Width = 80
+            gridbill.Columns(9).Name = "TEMPBAL"
+            gridbill.Columns(9).HeaderText = "Temp Bal"
+            gridbill.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(9).ReadOnly = True
+            gridbill.Columns(9).DefaultCellStyle.Format = "N2"
 
-            gridbill.Columns(i).Width = 60
-            gridbill.Columns(i).Name = "INVTDSAMT"
-            gridbill.Columns(i).HeaderText = "TDS"
-            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(10).Width = 60
+            gridbill.Columns(10).Name = "INVTDSAMT"
+            gridbill.Columns(10).HeaderText = "TDS"
+            gridbill.Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(10).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(10).ReadOnly = True
 
-            gridbill.Columns(i).Width = 40
-            gridbill.Columns(i).Name = "DAYS"
-            gridbill.Columns(i).HeaderText = "Days"
-            gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).ReadOnly = True
-            i += 1
+            gridbill.Columns(11).Width = 40
+            gridbill.Columns(11).Name = "DAYS"
+            gridbill.Columns(11).HeaderText = "Days"
+            gridbill.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            gridbill.Columns(11).ReadOnly = True
 
+            gridbill.Columns(12).Visible = False
+            gridbill.Columns(12).Name = "CRDAYS"
+
+            gridbill.Columns(13).Visible = False
+            gridbill.Columns(13).Name = "DUEDATE"
+
+            'gridbill.Columns(i).Visible = False
+            'gridbill.Columns(i).Name = "DAYS"
 
         Catch ex As Exception
             Throw ex
@@ -2087,6 +2090,12 @@ LINE1:
             Gbdesc.Visible = False
         End If
         If ClientName = "MAHAVIR" Or ClientName = "PURVITEX" Or ClientName = "SOFTAS" Then ALLOWMANUALRECNO = True
+        If ClientName = "ABHEE" Then
+            gridpayment.Columns(GCRDAYS.Index).Visible = True
+            gridpayment.Columns(GDUEDATE.Index).Visible = True
+            gridpayment.Columns(GDAYS.Index).Visible = True
+
+        End If
     End Sub
 
     Private Sub cmbledgername_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbledgername.KeyDown
@@ -2202,6 +2211,8 @@ NEXTLINE:
         fillcmbbillno()
     End Sub
 
+
+
     Private Sub CHQDATE_GotFocus(sender As Object, e As EventArgs) Handles CHQDATE.GotFocus
         CHQDATE.SelectionStart = 0
     End Sub
@@ -2218,6 +2229,54 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+    Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
+        Try
+            Dim DT As New DataTable
+            Dim OBJCMN As New ClsCommon
+            If EDIT = True Then SENDWHATSAPP(TEMPARECEIPTNO)
+            DT = OBJCMN.Execute_Any_String("UPDATE AGENCYRECEIPTMASTER SET ARECEIPT_SENDWHATSAPP = 1 WHERE ARECEIPT_NO = " & TEMPARECEIPTNO & " AND ARECEIPT_YEARID = " & YearId, "", "")
+            LBLWHATSAPP.Visible = True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Async Sub SENDWHATSAPP(RECNO As Integer)
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim WHATSAPPNO As String = ""
+            Dim OBJREC As New AgencyReceiptDesign
+            OBJREC.MdiParent = MDIMain
+            OBJREC.DIRECTPRINT = True
+            OBJREC.FRMSTRING = "RECEIPT"
+            OBJREC.DIRECTMAIL = False
+            OBJREC.DIRECTWHATSAPP = True
+            OBJREC.REGNAME = cmbregister.Text.Trim
+            OBJREC.PRINTSETTING = PRINTDIALOG
+            OBJREC.recno = Val(RECNO)
+            OBJREC.NOOFCOPIES = 1
+            OBJREC.Show()
+            OBJREC.Close()
+
+            Dim OBJWHATSAPP As New SendWhatsapp
+            OBJWHATSAPP.PARTYNAME = cmbname.Text.Trim
+            OBJWHATSAPP.AGENTNAME = GETAGENTNAME(cmbname.Text.Trim)
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\AGENCYRECEIPT_" & Val(RECNO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("AGENCYRECEIPT_" & Val(RECNO) & ".pdf")
+            OBJWHATSAPP.ShowDialog()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 #Region "AUTOSEARCHTEXTBOX"
 
     Public filterTextBoxes As New List(Of TextBox)
@@ -2226,9 +2285,9 @@ NEXTLINE:
     Public Sub CreateFilterTextBoxes()
 
         'REMOVE OLD TEXTBOXES AND THEN RECREATE
-        For i As Integer = gridbill.Controls.Count - 1 To 0 Step -1
-            If TypeOf gridbill.Controls(i) Is TextBox Then
-                gridbill.Controls.RemoveAt(i)
+        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf groupbill.Controls(i) Is TextBox Then
+                groupbill.Controls.RemoveAt(i)
             End If
         Next
 
@@ -2248,62 +2307,134 @@ NEXTLINE:
                 txt.Tag = col.Index
                 txt.Name = "TXT" & col.Index
                 AddHandler txt.TextChanged, AddressOf FilterGrid
-                gridbill.Controls.Add(txt)
+                groupbill.Controls.Add(txt)
                 filterTextBoxes.Add(txt)
             End If
         Next
+        'For Each col As DataGridViewColumn In gridbill.Columns
+        '    If col.Visible Then
+        '        Dim txt As New TextBox()
+        '        Dim rect As Rectangle = gridbill.GetCellDisplayRectangle(col.Index, -1, True)
+
+        '        txt.Width = rect.Width - 4
+        '        txt.Left = rect.Left + 2
+        '        txt.Height = 18
+        '        txt.Top = rect.Top + (rect.Height - txt.Height) \ 2   ' 👈 SAFE
+
+        '        txt.Tag = col.Index
+        '        txt.Name = "TXT" & col.Index
+        '        AddHandler txt.TextChanged, AddressOf FilterGrid
+
+        '        gridbill.Controls.Add(txt)
+        '        filterTextBoxes.Add(txt)
+        '    End If
+        'Next
+
     End Sub
 
     Public Sub FilterGrid(sender As Object, e As EventArgs)
+        'Try
+        '    ' SAFETY CHECK – add this FIRST
+        '    If gridbill.DataSource Is Nothing Then Exit Sub
+
+        '    Dim filterClauses As New List(Of String)()
+        '    'If DT Is Nothing Then
+        '    '    MsgBox("DT DataTable is not initialized.")
+        '    '    Exit Sub
+        '    'End If
+
+        '    For Each txt As TextBox In filterTextBoxes
+        '        Dim colIndex As Integer = CInt(txt.Tag)
+        '        Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
+        '        If Not DT.Columns.Contains(colName) Then
+        '            MsgBox("Column '" & colName & "' not found in DataTable.")
+        '            Continue For
+        '        End If
+        '        Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+
+        '        If filterText <> "" Then
+        '            ' Check data type
+        '            Dim colType As Type = DT.Columns(colName).DataType
+        '            If colType Is GetType(String) Then
+        '                filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
+        '            ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
+        '                ' Numeric filter: try direct match
+        '                Dim valDouble As Double
+        '                If Double.TryParse(filterText, valDouble) Then
+        '                    filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
+        '                End If
+        '            ElseIf colType Is GetType(DateTime) Then
+        '                Dim valDate As DateTime
+        '                If DateTime.TryParse(filterText, valDate) Then
+        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+        '                End If
+        '            ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+        '                Dim valDate As DateTime
+        '                If DateTime.TryParse(filterText, valDate) Then
+        '                    ' For exact date match
+        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+
+        '                    ' Or you can do range filtering, example hardcoded here (customize as needed)
+        '                    ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
+        '                End If
+
+        '            End If
+        '        End If
+        '    Next
+
+
+        '    Dim filterString As String = String.Join(" AND ", filterClauses)
+        '    'DT.DefaultView.RowFilter = filterString
+        '    Dim src As DataTable = TryCast(gridbill.DataSource, DataTable)
+        '    If src IsNot Nothing Then
+        '        src.DefaultView.RowFilter = filterString
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox("Error while filtering: " & ex.Message)
+        'End Try
         Try
+            ' SAFETY CHECKS
+            If gridbill.DataSource Is Nothing Then Exit Sub
+            If filterTextBoxes Is Nothing OrElse filterTextBoxes.Count = 0 Then Exit Sub
+
+            Dim src As DataTable = TryCast(gridbill.DataSource, DataTable)
+            If src Is Nothing Then Exit Sub
+
             Dim filterClauses As New List(Of String)()
-            'If DT Is Nothing Then
-            '    MsgBox("DT DataTable is not initialized.")
-            '    Exit Sub
-            'End If
 
             For Each txt As TextBox In filterTextBoxes
+                If txt Is Nothing OrElse txt.Tag Is Nothing Then Continue For
+
                 Dim colIndex As Integer = CInt(txt.Tag)
+                If colIndex < 0 OrElse colIndex >= gridbill.Columns.Count Then Continue For
+
                 Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
-                If Not DT.Columns.Contains(colName) Then
-                    MsgBox("Column '" & colName & "' not found in DataTable.")
-                    Continue For
-                End If
+                If String.IsNullOrEmpty(colName) OrElse Not src.Columns.Contains(colName) Then Continue For
+
                 Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+                If filterText = "" Then Continue For
 
-                If filterText <> "" Then
-                    ' Check data type
-                    Dim colType As Type = DT.Columns(colName).DataType
-                    If colType Is GetType(String) Then
-                        filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
-                    ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
-                        ' Numeric filter: try direct match
-                        Dim valDouble As Double
-                        If Double.TryParse(filterText, valDouble) Then
-                            filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
-                        End If
-                    ElseIf colType Is GetType(DateTime) Then
-                        Dim valDate As DateTime
-                        If DateTime.TryParse(filterText, valDate) Then
-                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
-                        End If
-                    ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
-                        Dim valDate As DateTime
-                        If DateTime.TryParse(filterText, valDate) Then
-                            ' For exact date match
-                            filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
+                Dim colType As Type = src.Columns(colName).DataType
 
-                            ' Or you can do range filtering, example hardcoded here (customize as needed)
-                            ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
-                        End If
+                If colType Is GetType(String) Then
+                    filterClauses.Add($"[{colName}] LIKE '%{filterText}%'")
 
+                ElseIf colType Is GetType(Integer) OrElse colType Is GetType(Double) OrElse colType Is GetType(Decimal) Then
+                    Dim num As Double
+                    If Double.TryParse(filterText, num) Then
+                        filterClauses.Add($"[{colName}] = {num}")
+                    End If
+
+                ElseIf colType Is GetType(DateTime) Then
+                    Dim d As DateTime
+                    If DateTime.TryParse(filterText, d) Then
+                        filterClauses.Add($"[{colName}] = #{d:MM/dd/yyyy}#")
                     End If
                 End If
             Next
 
+            src.DefaultView.RowFilter = String.Join(" AND ", filterClauses)
 
-            Dim filterString As String = String.Join(" AND ", filterClauses)
-            DT.DefaultView.RowFilter = filterString
         Catch ex As Exception
             MsgBox("Error while filtering: " & ex.Message)
         End Try

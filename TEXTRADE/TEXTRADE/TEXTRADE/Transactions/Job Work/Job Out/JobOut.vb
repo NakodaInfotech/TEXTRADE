@@ -2798,8 +2798,8 @@ LINE1:
 
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = CMBNAME.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\JOBOUT_" & Val(JONO) & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("JOBOUT_" & Val(JONO) & ".pdf")
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\JO_" & Val(JONO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("JO_" & Val(JONO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception
