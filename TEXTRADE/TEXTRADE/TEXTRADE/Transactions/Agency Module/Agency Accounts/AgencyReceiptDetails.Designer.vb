@@ -37,14 +37,16 @@ Partial Class AgencyReceiptDetails
         Me.Label1 = New System.Windows.Forms.Label()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridpayment = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gsellername = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gchqno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHQDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gregisterid = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gsellername = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gremarks = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHECKPDC = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,16 +58,20 @@ Partial Class AgencyReceiptDetails
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.CHQPRINTTOOL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridpayment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -212,6 +218,7 @@ Partial Class AgencyReceiptDetails
         Me.griddetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.griddetails.MainView = Me.gridpayment
         Me.griddetails.Name = "griddetails"
+        Me.griddetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me.griddetails.Size = New System.Drawing.Size(1204, 480)
         Me.griddetails.TabIndex = 1
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridpayment})
@@ -220,20 +227,31 @@ Partial Class AgencyReceiptDetails
         '
         Me.gridpayment.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridpayment.Appearance.Row.Options.UseFont = True
-        Me.gridpayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gname, Me.gsellername, Me.gdate, Me.gtotal, Me.gchqno, Me.GCHQDATE, Me.gregisterid, Me.GBILLREMARKS, Me.gremarks, Me.GCHECKPDC, Me.GAGENTNAME, Me.GGROUPMASTER, Me.GSPECIALREMARK})
+        Me.gridpayment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gname, Me.gsellername, Me.gdate, Me.gtotal, Me.gchqno, Me.GCHQDATE, Me.gregisterid, Me.GBILLREMARKS, Me.gremarks, Me.GCHECKPDC, Me.GAGENTNAME, Me.GGROUPMASTER, Me.GSPECIALREMARK})
         Me.gridpayment.GridControl = Me.griddetails
         Me.gridpayment.Name = "gridpayment"
         Me.gridpayment.OptionsBehavior.AllowIncrementalSearch = True
         Me.gridpayment.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridpayment.OptionsBehavior.Editable = False
         Me.gridpayment.OptionsSelection.CheckBoxSelectorColumnWidth = 30
         Me.gridpayment.OptionsSelection.MultiSelect = True
-        Me.gridpayment.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridpayment.OptionsView.ColumnAutoWidth = False
         Me.gridpayment.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridpayment.OptionsView.ShowAutoFilterRow = True
         Me.gridpayment.OptionsView.ShowFooter = True
         Me.gridpayment.OptionsView.ShowGroupPanel = False
+        '
+        'GCHK
+        '
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
         'gsrno
         '
@@ -253,6 +271,15 @@ Partial Class AgencyReceiptDetails
         Me.gname.Visible = True
         Me.gname.VisibleIndex = 2
         Me.gname.Width = 200
+        '
+        'gsellername
+        '
+        Me.gsellername.Caption = "Seller Name"
+        Me.gsellername.FieldName = "SELLER"
+        Me.gsellername.Name = "gsellername"
+        Me.gsellername.Visible = True
+        Me.gsellername.VisibleIndex = 3
+        Me.gsellername.Width = 190
         '
         'gdate
         '
@@ -299,15 +326,6 @@ Partial Class AgencyReceiptDetails
         Me.gregisterid.Caption = "Registerid"
         Me.gregisterid.FieldName = "Registerid"
         Me.gregisterid.Name = "gregisterid"
-        '
-        'gsellername
-        '
-        Me.gsellername.Caption = "Seller Name"
-        Me.gsellername.FieldName = "SELLER"
-        Me.gsellername.Name = "gsellername"
-        Me.gsellername.Visible = True
-        Me.gsellername.VisibleIndex = 3
-        Me.gsellername.Width = 190
         '
         'GBILLREMARKS
         '
@@ -375,7 +393,7 @@ Partial Class AgencyReceiptDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.CHQPRINTTOOL, Me.ToolStripSeparator2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.TOOLWHATSAPP, Me.CHQPRINTTOOL, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -403,6 +421,15 @@ Partial Class AgencyReceiptDetails
         Me.ExcelExport.Name = "ExcelExport"
         Me.ExcelExport.Size = New System.Drawing.Size(23, 22)
         Me.ExcelExport.Text = "&Export to Excel"
+        '
+        'TOOLWHATSAPP
+        '
+        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
+        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
+        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLWHATSAPP.Text = "Whatsapp Cedit Note Directly"
         '
         'CHQPRINTTOOL
         '
@@ -458,8 +485,10 @@ Partial Class AgencyReceiptDetails
         Me.BlendPanel1.PerformLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridpayment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -502,4 +531,8 @@ Partial Class AgencyReceiptDetails
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Friend WithEvents PRINTDIALOG As PrintDialog
     Private WithEvents imageList1 As ImageList
+    Friend WithEvents TOOLWHATSAPP As ToolStripButton
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
 End Class
