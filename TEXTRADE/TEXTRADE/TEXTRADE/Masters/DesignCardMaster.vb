@@ -2044,7 +2044,7 @@ LINE1:
         '    Dim totalEnds As Double = Math.Ceiling(mainEnds + selvedgeEnds)
         '    TXTTOTALENDS.Text = totalEnds.ToString()
         'End If
-        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
+        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (Val(TXTLEFTSEL.Text) + Val(TXTRIGHTSEL.Text)), "0.00")
         If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
         If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
         If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
@@ -2062,15 +2062,15 @@ LINE1:
         If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
         If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
         'new code 
-        If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTTOTALDENTSMAIN.Text) * Val(TXTTHREADPERDENT.Text), "0.00")
-        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALENDS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELENDS.Text), "0.00")
+        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTTOTALDENTSMAIN.Text) * Val(TXTTHREADPERDENT.Text), "0.00")
+        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALENDS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELENDS.Text), "0.00")
 
-        'If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
-        '    Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
-        '    Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
-        '    Dim result As Double = totalDents * totalDrawEnds
-        '    TXTTOTALENDS.Text = Math.Ceiling(result).ToString()
-        'End If
+        If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
+            Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
+            Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
+            Dim result As Double = Format(Val(totalDents) * Val(totalDrawEnds), "0.00")
+            TXTTOTALENDS.Text = Format((result), "0.00")
+        End If
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
         If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
