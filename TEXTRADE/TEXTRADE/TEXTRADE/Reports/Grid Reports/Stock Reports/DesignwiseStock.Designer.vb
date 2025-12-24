@@ -38,9 +38,9 @@ Partial Class DesignwiseStock
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSAMPLEMATCH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTIMESTAMP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +61,7 @@ Partial Class DesignwiseStock
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1006, 582)
+        Me.BlendPanel1.Size = New System.Drawing.Size(924, 582)
         Me.BlendPanel1.TabIndex = 7
         '
         'CMDREFRESH
@@ -131,7 +131,7 @@ Partial Class DesignwiseStock
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(974, 511)
+        Me.gridbilldetails.Size = New System.Drawing.Size(907, 511)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -228,12 +228,18 @@ Partial Class DesignwiseStock
         Me.GTIMESTAMP.FieldName = "TIMESTAMP"
         Me.GTIMESTAMP.Name = "GTIMESTAMP"
         '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "BARCODE"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1006, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(924, 25)
         Me.ToolStrip1.TabIndex = 255
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -246,18 +252,10 @@ Partial Class DesignwiseStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'GBARCODE
-        '
-        Me.GBARCODE.Caption = "BARCODE"
-        Me.GBARCODE.FieldName = "BARCODE"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 7
-        '
         'DesignwiseStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1006, 582)
+        Me.ClientSize = New System.Drawing.Size(924, 582)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True

@@ -114,6 +114,62 @@ Public Class DesignwiseStock
     End Sub
 
     Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
+        ' OLD CODE BY FETCHING SAMPLEBARCODE WHILE SCANNING EACH BARCODE
+        '        Try
+        '            If TXTBARCODE.Text.Trim.Length > 0 Then
+        '                Dim OBJCMN As New ClsCommon
+        '                Dim DT As New DataTable
+        '                Dim MATCHFOUND As Boolean = False
+        '                Dim matchedRowIndex As Integer = -1
+
+        '                'GET DATA FROM SAMPLE BARCODE
+        '                'no need for yearid clause here as we need to fetch this barcode in all acccouting year
+        '                DT = OBJCMN.SEARCH(" SAMPLEBARCODE.SB_NO AS SBNO, SAMPLEBARCODE.SB_GRIDSRNO AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_NAME,'') AS QUALITY, ISNULL(DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SAMPLEBARCODE.SB_REMARKS, '') AS REMARKS, SAMPLEBARCODE.SB_BARCODE AS BARCODE", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN QUALITYMASTER ON SAMPLEBARCODE.SB_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND SB_BARCODE = '" & TXTBARCODE.Text.Trim & "'")
+        '                If DT.Rows.Count > 0 Then
+
+        '                    For I As Integer = 0 To gridbill.RowCount - 1
+        '                        Dim ROW As DataRow = gridbill.GetDataRow(I)
+        '                        If ROW("ITEMNAME") = DT.Rows(0).Item("ITEMNAME") And ROW("DESIGNNO") = DT.Rows(0).Item("DESIGNNO") Then
+        '                            ROW("SAMPLEMATCH") = True
+        '                            MATCHFOUND = True
+        '                            matchedRowIndex = I
+        '                            If ClientName <> "AVIS" Then GoTo LINE1
+        '                        End If
+        '                    Next
+
+        '                    'IF ENTRY IS NOT FOUND THEN GIVE MESSAGE
+        '                    If MATCHFOUND = False Then MsgBox("Sample Not Present in Stock", MsgBoxStyle.Critical)
+
+        'LINE1:
+        '                    If MATCHFOUND AndAlso matchedRowIndex >= 0 Then
+        '                        DT = CType(gridbill.DataSource, DataView).ToTable()
+
+        '                        Dim matchedRow As DataRow = DT.Rows(matchedRowIndex)
+        '                        Dim rowData As Object() = matchedRow.ItemArray
+
+        '                        DT.Rows.Remove(matchedRow)
+
+        '                        Dim newRow As DataRow = DT.NewRow()
+        '                        newRow.ItemArray = rowData
+        '                        DT.Rows.Add(newRow)
+
+        '                        gridbilldetails.DataSource = DT
+        '                        gridbilldetails.RefreshDataSource()
+
+        '                        Dim lastRowHandle As Integer = gridbill.RowCount - 1
+        '                        gridbill.FocusedRowHandle = lastRowHandle
+        '                        gridbill.MakeRowVisible(lastRowHandle)
+        '                    End If
+        '                    TXTBARCODE.Clear()
+        '                    TXTBARCODE.Focus()
+        '                Else
+        '                    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
+        '                    TXTBARCODE.Clear()
+        '                End If
+        '            End If
+        '        Catch ex As Exception
+        '            Throw ex
+        '        End Try
         Try
             If TXTBARCODE.Text.Trim.Length > 0 Then
                 Dim OBJCMN As New ClsCommon
@@ -121,68 +177,44 @@ Public Class DesignwiseStock
                 Dim MATCHFOUND As Boolean = False
                 Dim matchedRowIndex As Integer = -1
 
-                'GET DATA FROM SAMPLE BARCODE
-                'no need for yearid clause here as we need to fetch this barcode in all acccouting year
-                If ClientName <> "AVIS" Then
-                    DT = OBJCMN.SEARCH(" SAMPLEBARCODE.SB_NO AS SBNO, SAMPLEBARCODE.SB_GRIDSRNO AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_NAME,'') AS QUALITY, ISNULL(DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(SAMPLEBARCODE.SB_REMARKS, '') AS REMARKS, SAMPLEBARCODE.SB_BARCODE AS BARCODE", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN QUALITYMASTER ON SAMPLEBARCODE.SB_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND SB_BARCODE = '" & TXTBARCODE.Text.Trim & "'")
-                    If DT.Rows.Count > 0 Then
+                For I As Integer = 0 To gridbill.RowCount - 1
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If ROW("BARCODE") = TXTBARCODE.Text.Trim And TXTBARCODE.Text.Trim <> "" Then
+                        ROW("SAMPLEMATCH") = True
+                        MATCHFOUND = True
+                        matchedRowIndex = I
+                        If ClientName <> "AVIS" Then GoTo LINE1
+                    End If
+                Next
 
-                        For I As Integer = 0 To gridbill.RowCount - 1
-                            Dim ROW As DataRow = gridbill.GetDataRow(I)
-                            If ROW("ITEMNAME") = DT.Rows(0).Item("ITEMNAME") And ROW("DESIGNNO") = DT.Rows(0).Item("DESIGNNO") Then
-                                ROW("SAMPLEMATCH") = True
-                                MATCHFOUND = True
-                                matchedRowIndex = I
-                                If ClientName <> "AVIS" Then GoTo LINE1
-                            End If
-                        Next
-
-                        'IF ENTRY IS NOT FOUND THEN GIVE MESSAGE
-                        If MATCHFOUND = False Then MsgBox("Sample Not Present in Stock", MsgBoxStyle.Critical)
+                'IF ENTRY IS NOT FOUND THEN GIVE MESSAGE
+                If MATCHFOUND = False Then MsgBox("Invalid Barcode : " & TXTBARCODE.Text.Trim, MsgBoxStyle.Critical)
 
 LINE1:
-                        If MATCHFOUND AndAlso matchedRowIndex >= 0 Then
-                            DT = CType(gridbill.DataSource, DataView).ToTable()
+                If MATCHFOUND AndAlso matchedRowIndex >= 0 Then
+                    DT = CType(gridbill.DataSource, DataView).ToTable()
 
-                            Dim matchedRow As DataRow = DT.Rows(matchedRowIndex)
-                            Dim rowData As Object() = matchedRow.ItemArray
+                    Dim matchedRow As DataRow = DT.Rows(matchedRowIndex)
+                    Dim rowData As Object() = matchedRow.ItemArray
 
-                            DT.Rows.Remove(matchedRow)
+                    DT.Rows.Remove(matchedRow)
 
-                            Dim newRow As DataRow = DT.NewRow()
-                            newRow.ItemArray = rowData
-                            DT.Rows.Add(newRow)
+                    Dim newRow As DataRow = DT.NewRow()
+                    newRow.ItemArray = rowData
+                    DT.Rows.Add(newRow)
 
-                            gridbilldetails.DataSource = DT
-                            gridbilldetails.RefreshDataSource()
+                    gridbilldetails.DataSource = DT
+                    gridbilldetails.RefreshDataSource()
 
-                            Dim lastRowHandle As Integer = gridbill.RowCount - 1
-                            gridbill.FocusedRowHandle = lastRowHandle
-                            gridbill.MakeRowVisible(lastRowHandle)
-                        End If
-                        TXTBARCODE.Clear()
-                        TXTBARCODE.Focus()
-                    Else
-                        MsgBox("Invalid Barcode : " & TXTBARCODE.Text.Trim, MsgBoxStyle.Critical)
-                        TXTBARCODE.Clear()
-                    End If
-                ElseIf ClientName = "AVIS" Then
-                    For I As Integer = 0 To gridbill.RowCount - 1
-                        Dim ROW As DataRow = gridbill.GetDataRow(I)
-                        If ROW("BARCODE") = TXTBARCODE.Text.Trim Then
-                            ROW("SAMPLEMATCH") = True
-                            MATCHFOUND = True
-                            matchedRowIndex = I
-                            TXTBARCODE.Clear()
-                            TXTBARCODE.Focus()
-                        End If
-                    Next
-                    If MATCHFOUND = False Then
-                        MsgBox("Invalid Barcode : " & TXTBARCODE.Text.Trim, MsgBoxStyle.Critical)
-                        TXTBARCODE.Clear()
-                        TXTBARCODE.Focus()
-                    End If
+                    Dim lastRowHandle As Integer = gridbill.RowCount - 1
+                    gridbill.FocusedRowHandle = lastRowHandle
+                    gridbill.MakeRowVisible(lastRowHandle)
                 End If
+                TXTBARCODE.Clear()
+                TXTBARCODE.Focus()
+
+
+
             End If
         Catch ex As Exception
             Throw ex

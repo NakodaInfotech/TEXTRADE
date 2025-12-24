@@ -84,6 +84,7 @@ Partial Class StockFilter
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBITEMMONTHLYSTOCKSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.RDBGREYSTOCK = New System.Windows.Forms.RadioButton()
         Me.RDBBALECOUNT = New System.Windows.Forms.RadioButton()
@@ -132,7 +133,7 @@ Partial Class StockFilter
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM = New System.Windows.Forms.RadioButton()
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPDESIGN.SuspendLayout()
         CType(Me.GRIDDESIGNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -897,6 +898,7 @@ Partial Class StockFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM)
         Me.GroupBox3.Controls.Add(Me.RBITEMDESIGNSHADESEMISMALLSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBITEMMONTHLYSTOCKSTATEMENT)
         Me.GroupBox3.Controls.Add(Me.RDBGREYSTOCK)
@@ -936,6 +938,16 @@ Partial Class StockFilter
         Me.GroupBox3.Size = New System.Drawing.Size(682, 328)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
+        '
+        'RBITEMDESIGNSHADESEMISMALLSUMM
+        '
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.AutoSize = True
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Location = New System.Drawing.Point(21, 272)
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Name = "RBITEMDESIGNSHADESEMISMALLSUMM"
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Size = New System.Drawing.Size(215, 18)
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.TabIndex = 30
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Text = "Item - Design - Shade Stock (Small)"
+        Me.RBITEMDESIGNSHADESEMISMALLSUMM.UseVisualStyleBackColor = True
         '
         'RDBITEMMONTHLYSTOCKSTATEMENT
         '
@@ -1434,15 +1446,15 @@ Partial Class StockFilter
         Me.GNAME.VisibleIndex = 1
         Me.GNAME.Width = 230
         '
-        'RBITEMDESIGNSHADESEMISMALLSUMM
+        'RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM
         '
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.AutoSize = True
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Location = New System.Drawing.Point(21, 272)
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Name = "RBITEMDESIGNSHADESEMISMALLSUMM"
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Size = New System.Drawing.Size(215, 18)
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.TabIndex = 30
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.Text = "Item - Design - Shade Stock (Small)"
-        Me.RBITEMDESIGNSHADESEMISMALLSUMM.UseVisualStyleBackColor = True
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.AutoSize = True
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Location = New System.Drawing.Point(445, 273)
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Name = "RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM"
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Size = New System.Drawing.Size(65, 18)
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.TabIndex = 31
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Text = "Singles"
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.UseVisualStyleBackColor = True
         '
         'StockFilter
         '
@@ -1608,4 +1620,5 @@ Partial Class StockFilter
     Friend WithEvents RDBGREYSTOCK As RadioButton
     Friend WithEvents RDBITEMMONTHLYSTOCKSTATEMENT As RadioButton
     Friend WithEvents RBITEMDESIGNSHADESEMISMALLSUMM As RadioButton
+    Friend WithEvents RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM As RadioButton
 End Class
