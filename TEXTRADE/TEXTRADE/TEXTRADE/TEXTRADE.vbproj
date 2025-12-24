@@ -556,6 +556,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GDNReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_SHEETAL.vb">
       <DependentUpon>GDNReport_SHEETAL.rpt</DependentUpon>
@@ -603,6 +604,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RecReport_ABHEE.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
@@ -614,6 +616,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InvoiceReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Stock\Stock Reports\BarcodeStockSummSmallReport.vb">
       <DependentUpon>BarcodeStockSummSmallReport.rpt</DependentUpon>
