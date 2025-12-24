@@ -1077,7 +1077,6 @@ line1:
                 End If
 
 
-
                 If DT.Rows(0).Item("VERSION") <> "2.0.001" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)
 LINE1:
