@@ -257,7 +257,7 @@ Public Class GDNDESIGN
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
                     crTables = RPTGDN_SVS.Database.Tables
-                ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Then
+                ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Or ClientName = "NR" Then
                     crTables = RPTGDN_BALAJI.Database.Tables
                 ElseIf ClientName = "SOFTAS" Then
                     crTables = RPTGDN_SOFTAS.Database.Tables
@@ -456,7 +456,7 @@ Public Class GDNDESIGN
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
                     crpo.ReportSource = RPTGDN_SVS
-                ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Then
+                ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Or ClientName = "NR" Then
                     If WHITELABEL = True Then RPTGDN_BALAJI.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN_BALAJI.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then RPTGDN_BALAJI.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_BALAJI.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     RPTGDN_BALAJI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -684,7 +684,7 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_SVS.Export()
 
-                ElseIf ClientName = "BALAJI" Then
+                ElseIf ClientName = "BALAJI" Or ClientName = "NR" Then
 
                     expo = RPTGDN_BALAJI.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -1219,7 +1219,7 @@ Public Class GDNDESIGN
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
                     OBJ = New GDNReport_SVS
-                ElseIf ClientName = "BALAJI" Then
+                ElseIf ClientName = "BALAJI" Or ClientName = "NR" Then
                     OBJ = New GDNReport_BALAJI
                     If WHITELABEL = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0

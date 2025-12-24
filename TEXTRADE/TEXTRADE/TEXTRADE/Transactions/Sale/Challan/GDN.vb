@@ -3086,7 +3086,7 @@ LINE1:
 
         GRIDGDN.FirstDisplayedScrollingRowIndex = GRIDGDN.RowCount - 1
 
-        If ClientName <> "SKF" And ClientName <> "MANIBHADRA" And ClientName <> "ALENCOT" And ClientName <> "MNARESH" And ClientName <> "SOFTAS" And ClientName <> "MANISH" And ClientName <> "MVIKASKUMAR" And ClientName <> "MOMAI" And ClientName <> "SMS" And ClientName <> "SHREEVALLABH" And ClientName <> "RAJDEEP" And ClientName <> "KREEVE" And ClientName <> "MSSYNTHETICS" And ClientName <> "AMAN" And ClientName <> "BALAJI" And ClientName <> "VINAYAK" And ClientName <> "MAFATLAL" And ClientName <> "NAMOCOT" Then
+        If ClientName <> "SKF" And ClientName <> "MANIBHADRA" And ClientName <> "ALENCOT" And ClientName <> "MNARESH" And ClientName <> "SOFTAS" And ClientName <> "MANISH" And ClientName <> "MVIKASKUMAR" And ClientName <> "MOMAI" And ClientName <> "SMS" And ClientName <> "SHREEVALLABH" And ClientName <> "RAJDEEP" And ClientName <> "KREEVE" And ClientName <> "MSSYNTHETICS" And ClientName <> "AMAN" And ClientName <> "BALAJI" And ClientName <> "VINAYAK" And ClientName <> "MAFATLAL" And ClientName <> "NAMOCOT" And ClientName <> "NR" Then
 
             CMBITEMNAME.Text = ""
             TXTDESCRIPTION.Clear()
@@ -3401,7 +3401,7 @@ LINE1:
 
     Private Sub TXTMTRS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTMTRS.Validating
         Try
-            If ClientName = "MANIBHADRA" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then TXTAMOUNT_Validating(sender, e)
+            If ClientName = "MANIBHADRA" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "MAFATLAL" Or ClientName = "MASHOK" Or ClientName = "NR" Then TXTAMOUNT_Validating(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

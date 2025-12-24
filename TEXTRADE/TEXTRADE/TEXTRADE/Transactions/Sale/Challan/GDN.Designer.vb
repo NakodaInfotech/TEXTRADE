@@ -46,6 +46,7 @@ Partial Class GDN
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.LBLDYEINGRECNO = New System.Windows.Forms.Label()
         Me.TXTDYEINGRECNO = New System.Windows.Forms.TextBox()
         Me.LBLCONTRACTOR = New System.Windows.Forms.Label()
@@ -223,7 +224,6 @@ Partial Class GDN
         Me.SSTOREUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.SALELOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,6 +332,17 @@ Partial Class GDN
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 582)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKTHIRDPARTY
+        '
+        Me.CHKTHIRDPARTY.AutoSize = True
+        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
+        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(1127, 5)
+        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
+        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
+        Me.CHKTHIRDPARTY.TabIndex = 927
+        Me.CHKTHIRDPARTY.Text = "Third Party"
+        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
         '
         'LBLDYEINGRECNO
         '
@@ -467,7 +478,7 @@ Partial Class GDN
         Me.TXTBALENOTO.Location = New System.Drawing.Point(844, 111)
         Me.TXTBALENOTO.Name = "TXTBALENOTO"
         Me.TXTBALENOTO.Size = New System.Drawing.Size(58, 22)
-        Me.TXTBALENOTO.TabIndex = 14
+        Me.TXTBALENOTO.TabIndex = 13
         Me.TXTBALENOTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLSMS
@@ -514,7 +525,7 @@ Partial Class GDN
         Me.TXTBALENOFROM.Location = New System.Drawing.Point(702, 111)
         Me.TXTBALENOFROM.Name = "TXTBALENOFROM"
         Me.TXTBALENOFROM.Size = New System.Drawing.Size(58, 22)
-        Me.TXTBALENOFROM.TabIndex = 13
+        Me.TXTBALENOFROM.TabIndex = 12
         Me.TXTBALENOFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLBALEFROM
@@ -619,7 +630,7 @@ Partial Class GDN
         Me.cmbcity.MaxDropDownItems = 14
         Me.cmbcity.Name = "cmbcity"
         Me.cmbcity.Size = New System.Drawing.Size(200, 22)
-        Me.cmbcity.TabIndex = 12
+        Me.cmbcity.TabIndex = 11
         '
         'LBLCITY
         '
@@ -892,7 +903,7 @@ Partial Class GDN
         Me.TXTBARCODE.Location = New System.Drawing.Point(972, 111)
         Me.TXTBARCODE.Name = "TXTBARCODE"
         Me.TXTBARCODE.Size = New System.Drawing.Size(195, 23)
-        Me.TXTBARCODE.TabIndex = 11
+        Me.TXTBARCODE.TabIndex = 16
         '
         'TXTMERCHANT
         '
@@ -2414,17 +2425,6 @@ Partial Class GDN
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'CHKTHIRDPARTY
-        '
-        Me.CHKTHIRDPARTY.AutoSize = True
-        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
-        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(1127, 5)
-        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
-        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
-        Me.CHKTHIRDPARTY.TabIndex = 927
-        Me.CHKTHIRDPARTY.Text = "Third Party"
-        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
         '
         'GDN
         '

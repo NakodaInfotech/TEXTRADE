@@ -2537,7 +2537,12 @@ Public Class InvoiceMaster
 
             OBJPRINT.ShowDialog()
 
-
+            If ClientName = "KCRAYON" Then
+                Dim dttable As New DataTable
+                Dim OBJCMN As New ClsCommon
+                dttable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PRINT = 1 FROM INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTER_ID WHERE INVOICE_NO = " & INVOICENO & " AND REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId, "", "")
+                LBLPRINT.Visible = True
+            End If
 
 
             If ClientName = "DAKSH" AndAlso MsgBox("Wish to Print Envelope?", MsgBoxStyle.YesNo) = vbYes Then
@@ -3752,12 +3757,6 @@ LINE1:
         Try
             If EDIT = True Then PRINTREPORT(TEMPINVOICENO)
             If ClientName <> "SUPRIYA" Then PRINTEWB()
-            If ClientName = "KCRAYON" Then
-                Dim dttable As New DataTable
-                Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_PRINT = 1 WHERE INVOICE_NO = " & TXTINVOICENO.Text.Trim & " AND INVOICE_YEARID = " & YearId, "", "")
-                LBLPRINT.Visible = True
-            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
