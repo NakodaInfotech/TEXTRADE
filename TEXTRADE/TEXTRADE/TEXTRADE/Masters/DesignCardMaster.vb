@@ -52,7 +52,7 @@ Public Class DesignCardMaster
             alParaval.Add(Val(TXTREEDSPACE.Text.Trim))
             alParaval.Add(Val(TXTPICKS.Text.Trim))
             alParaval.Add(Val(TXTMAINRS.Text.Trim))
-            alParaval.Add(Val(TXTTHREADPERDENT.Text.Trim))
+            alParaval.Add(TXTTHREADPERDENT.Text.Trim)
             alParaval.Add(Val(TXTFEPI.Text.Trim))
             alParaval.Add(Val(TXTFWIDTH.Text.Trim))
             alParaval.Add(Val(TXTFPPI.Text.Trim))
@@ -2138,12 +2138,13 @@ LINE1:
             TXTGLM.Text = TXTFINISHWT.Text
         End If
         '************* EPI ******************
-        If TXTTHREADPERDENT.Text <> "" And TXTREED.Text <> "" Then
+        If Val(TXTTOTALDRAWDENTS.Text) > 0 And TXTREED.Text <> "" Then
             Dim x As Decimal = TXTREED.Text.Trim / 2
-            TXTENDPERINCH.Text = Format(Val(x * TXTTHREADPERDENT.Text.Trim), "0")
+            Dim I As Decimal = Format(Val(x / TXTTOTALDRAWDENTS.Text.Trim), "0.00")
+            TXTENDPERINCH.Text = Format(Val(I * TXTTOTALDRAWENDS.Text.Trim), "0.00")
             If TXTREEDSPACE.Text.Trim <> "" And TXTFWIDTH.Text.Trim <> "" Then
                 Dim y As Decimal = TXTENDPERINCH.Text.Trim * TXTREEDSPACE.Text.Trim
-                TXTFEPI.Text = Format(Val(y / TXTFWIDTH.Text.Trim), "0")
+                TXTFEPI.Text = Format(Val(y / TXTFWIDTH.Text.Trim), "0.00")
             End If
         End If
         '************* PPI ******************
@@ -2151,13 +2152,11 @@ LINE1:
             Dim X As Decimal = TXTPICKS.Text.Trim * (TXTSHRINKAGEPER.Text.Trim / 100)
             TXTFPPI.Text = Format(Val(X + TXTPICKS.Text.Trim), "0")
         End If
-
         GETSELPE()
         GETWARPPE()
         GETWEFTPE()
         BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
     End Sub
-
     Sub TOTALWARP()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
         PE = 0.00
@@ -2191,7 +2190,6 @@ LINE1:
                 COST = COST + Val(row.Cells(WCOST.Index).Value)
             End If
         Next
-
         TXTTOTALWARPPE.Text = Format(PE, "0.00")
         TXTTOTALWARPBE.Text = Format(BE, "0.00")
         TXTTOTALWARPTE.Text = Format(TE, "0.00")
@@ -2200,7 +2198,6 @@ LINE1:
         TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
-
     Sub TOTALWARPPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
 
@@ -3708,7 +3705,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
