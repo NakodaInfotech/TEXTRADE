@@ -1785,7 +1785,7 @@ LINE1:
                 OBJGDN.Show()
             End If
 
-            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Then
+            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MSANCHITKUMAR" Then
                 Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Challan Banner?", MsgBoxStyle.YesNo)
                 If TEMPMSG2 = vbYes Then
                     Dim OBJGDN As New GDNDESIGN

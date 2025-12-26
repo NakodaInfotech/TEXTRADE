@@ -546,6 +546,11 @@
       <DependentUpon>DispatchPartyItemChallanWiseReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNBannerPrintReport1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GDNBannerPrintReport.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_AARYA.vb">
       <DependentUpon>GDNReport_AARYA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -9529,7 +9534,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNBannerPrintReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GDNBannerPrintReport.vb</LastGenOutput>
+      <LastGenOutput>GDNBannerPrintReport1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Receipt\RecReport_NAKODAINFOTECH.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
