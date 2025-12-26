@@ -1626,7 +1626,8 @@ CHECKNEXTLINE:
         'TO BLOCK EXCESS QTY
         If ClientName = "ABHEE" Then
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
-                If (ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
+                'If (ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value) Then
+                If (ROW.Cells(OORDERON.Index).Value = "PCS" And Val(ROW.Cells(OGRNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value)) Or (ROW.Cells(OORDERON.Index).Value = "MTRS" And Val(ROW.Cells(OGRNMTRS.Index).Value) > Val(ROW.Cells(OMTRS.Index).Value)) Then
                     EP.SetError(cmbname, "Excess Qty Not Allowed")
                     bln = False
                 End If

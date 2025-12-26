@@ -23,6 +23,10 @@ Partial Class DebitNote
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -44,14 +48,12 @@ Partial Class DebitNote
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DebitNote))
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.groupbill = New System.Windows.Forms.GroupBox()
+        Me.GRIDBILL = New System.Windows.Forms.DataGridView()
         Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.CHKINTCALC = New System.Windows.Forms.CheckBox()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
@@ -136,7 +138,6 @@ Partial Class DebitNote
         Me.GBILLINVNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.TXTINVTOTAL = New System.Windows.Forms.TextBox()
-        Me.GRIDBILL = New System.Windows.Forms.DataGridView()
         Me.TXTTOTALWITHGST = New System.Windows.Forms.TextBox()
         Me.CHKTCS = New System.Windows.Forms.CheckBox()
         Me.TXTTCSPER = New System.Windows.Forms.TextBox()
@@ -239,9 +240,10 @@ Partial Class DebitNote
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.groupbill = New System.Windows.Forms.GroupBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
+        Me.groupbill.SuspendLayout()
+        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -255,11 +257,9 @@ Partial Class DebitNote
         Me.TabPage3.SuspendLayout()
         Me.TAB1.SuspendLayout()
         CType(Me.GRIDINVOICE, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBRECD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        Me.groupbill.SuspendLayout()
         Me.SuspendLayout()
         '
         'EP
@@ -392,6 +392,61 @@ Partial Class DebitNote
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1283, 556)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'groupbill
+        '
+        Me.groupbill.BackColor = System.Drawing.Color.Transparent
+        Me.groupbill.Controls.Add(Me.GRIDBILL)
+        Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.groupbill.ForeColor = System.Drawing.Color.Black
+        Me.groupbill.Location = New System.Drawing.Point(562, 265)
+        Me.groupbill.Name = "groupbill"
+        Me.groupbill.Size = New System.Drawing.Size(677, 238)
+        Me.groupbill.TabIndex = 1017
+        Me.groupbill.TabStop = False
+        '
+        'GRIDBILL
+        '
+        Me.GRIDBILL.AllowUserToAddRows = False
+        Me.GRIDBILL.AllowUserToDeleteRows = False
+        Me.GRIDBILL.AllowUserToResizeColumns = False
+        Me.GRIDBILL.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDBILL.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.GRIDBILL.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDBILL.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDBILL.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GRIDBILL.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.GRIDBILL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDBILL.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GRIDBILL.GridColor = System.Drawing.SystemColors.ControlText
+        Me.GRIDBILL.Location = New System.Drawing.Point(4, 31)
+        Me.GRIDBILL.Margin = New System.Windows.Forms.Padding(2)
+        Me.GRIDBILL.MultiSelect = False
+        Me.GRIDBILL.Name = "GRIDBILL"
+        Me.GRIDBILL.RowHeadersVisible = False
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDBILL.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.GRIDBILL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.GRIDBILL.Size = New System.Drawing.Size(669, 202)
+        Me.GRIDBILL.TabIndex = 993
+        Me.GRIDBILL.TabStop = False
         '
         'CMDAUTOPOST
         '
@@ -1439,49 +1494,6 @@ Partial Class DebitNote
         Me.TXTINVTOTAL.TabIndex = 994
         Me.TXTINVTOTAL.TabStop = False
         Me.TXTINVTOTAL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'GRIDBILL
-        '
-        Me.GRIDBILL.AllowUserToAddRows = False
-        Me.GRIDBILL.AllowUserToDeleteRows = False
-        Me.GRIDBILL.AllowUserToResizeColumns = False
-        Me.GRIDBILL.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDBILL.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.GRIDBILL.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDBILL.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDBILL.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDBILL.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.GRIDBILL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDBILL.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GRIDBILL.GridColor = System.Drawing.SystemColors.ControlText
-        Me.GRIDBILL.Location = New System.Drawing.Point(4, 31)
-        Me.GRIDBILL.Margin = New System.Windows.Forms.Padding(2)
-        Me.GRIDBILL.MultiSelect = False
-        Me.GRIDBILL.Name = "GRIDBILL"
-        Me.GRIDBILL.RowHeadersVisible = False
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDBILL.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.GRIDBILL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBILL.Size = New System.Drawing.Size(669, 201)
-        Me.GRIDBILL.TabIndex = 993
-        Me.GRIDBILL.TabStop = False
         '
         'TXTTOTALWITHGST
         '
@@ -2676,18 +2688,6 @@ Partial Class DebitNote
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'groupbill
-        '
-        Me.groupbill.BackColor = System.Drawing.Color.Transparent
-        Me.groupbill.Controls.Add(Me.GRIDBILL)
-        Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.groupbill.ForeColor = System.Drawing.Color.Black
-        Me.groupbill.Location = New System.Drawing.Point(562, 265)
-        Me.groupbill.Name = "groupbill"
-        Me.groupbill.Size = New System.Drawing.Size(677, 238)
-        Me.groupbill.TabIndex = 1017
-        Me.groupbill.TabStop = False
-        '
         'DebitNote
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2704,6 +2704,8 @@ Partial Class DebitNote
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        Me.groupbill.ResumeLayout(False)
+        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
@@ -2722,12 +2724,10 @@ Partial Class DebitNote
         Me.TabPage3.PerformLayout()
         Me.TAB1.ResumeLayout(False)
         CType(Me.GRIDINVOICE, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBRECD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.groupbill.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

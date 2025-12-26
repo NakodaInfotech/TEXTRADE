@@ -25,6 +25,7 @@ Public Class BankRegisterDetails
 
     Private Sub BankRegisterDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            TXTBANKNAME.Text = BankName
             dtfrom.Value = FromDate
             dtto.Value = ToDate
             chkdate.Checked = True

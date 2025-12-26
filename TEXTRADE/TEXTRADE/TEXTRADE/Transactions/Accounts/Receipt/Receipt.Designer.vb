@@ -294,7 +294,7 @@ Partial Class Receipt
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridbill.DefaultCellStyle = DataGridViewCellStyle6
         Me.gridbill.GridColor = System.Drawing.SystemColors.ControlText
-        Me.gridbill.Location = New System.Drawing.Point(7, 38)
+        Me.gridbill.Location = New System.Drawing.Point(7, 32)
         Me.gridbill.Margin = New System.Windows.Forms.Padding(2)
         Me.gridbill.MultiSelect = False
         Me.gridbill.Name = "gridbill"
@@ -302,7 +302,7 @@ Partial Class Receipt
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
         Me.gridbill.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.gridbill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.gridbill.Size = New System.Drawing.Size(782, 196)
+        Me.gridbill.Size = New System.Drawing.Size(782, 203)
         Me.gridbill.TabIndex = 0
         Me.gridbill.TabStop = False
         '

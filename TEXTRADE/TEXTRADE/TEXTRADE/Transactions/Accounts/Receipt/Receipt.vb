@@ -2502,11 +2502,11 @@ NEXTLINE:
         If gridbill.Columns.Count = 0 Then Exit Sub
         Dim xPos As Integer = gridbill.RowHeadersVisible * gridbill.RowHeadersWidth
         For Each col As DataGridViewColumn In gridbill.Columns
-            If col.Visible Then
+            If col.Visible And col.HeaderText <> "" Then
                 Dim txt As New TextBox()
                 txt.Width = col.Width
-                txt.Left = gridbill.GetCellDisplayRectangle(col.Index, -1, True).Left
-                txt.Top = 5 ' Or a header-compliant Y offset
+                txt.Left = gridbill.GetCellDisplayRectangle(col.Index, -1, True).Left + 5
+                txt.Top = 10 ' Or a header-compliant Y offset
                 txt.Tag = col.Index
                 txt.Name = "TXT" & col.Index
                 AddHandler txt.TextChanged, AddressOf FilterGrid

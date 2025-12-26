@@ -25,6 +25,7 @@ Partial Class BankRegisterDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BankRegisterDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTBANKNAME = New System.Windows.Forms.TextBox()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,6 +79,7 @@ Partial Class BankRegisterDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTBANKNAME)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.griddetails)
         Me.BlendPanel1.Controls.Add(Me.cmdshowdetails)
@@ -105,6 +107,18 @@ Partial Class BankRegisterDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1284, 582)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'TXTBANKNAME
+        '
+        Me.TXTBANKNAME.BackColor = System.Drawing.Color.White
+        Me.TXTBANKNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBANKNAME.ForeColor = System.Drawing.Color.Black
+        Me.TXTBANKNAME.Location = New System.Drawing.Point(17, 61)
+        Me.TXTBANKNAME.Name = "TXTBANKNAME"
+        Me.TXTBANKNAME.ReadOnly = True
+        Me.TXTBANKNAME.Size = New System.Drawing.Size(423, 23)
+        Me.TXTBANKNAME.TabIndex = 450
+        Me.TXTBANKNAME.TabStop = False
         '
         'CMDREFRESH
         '
@@ -163,7 +177,7 @@ Partial Class BankRegisterDetails
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "Name"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.gname.Visible = True
@@ -184,7 +198,7 @@ Partial Class BankRegisterDetails
         '
         Me.gbillinitials.Caption = "Bill No."
         Me.gbillinitials.FieldName = "Bill No"
-        Me.gbillinitials.ImageIndex = 1
+        Me.gbillinitials.ImageOptions.ImageIndex = 1
         Me.gbillinitials.Name = "gbillinitials"
         Me.gbillinitials.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.gbillinitials.Visible = True
@@ -278,7 +292,7 @@ Partial Class BankRegisterDetails
         '
         Me.guser.Caption = "User Name"
         Me.guser.FieldName = "USERNAME"
-        Me.guser.ImageIndex = 2
+        Me.guser.ImageOptions.ImageIndex = 2
         Me.guser.Name = "guser"
         Me.guser.Visible = True
         Me.guser.VisibleIndex = 10
@@ -642,4 +656,5 @@ Partial Class BankRegisterDetails
     Friend WithEvents CMDREFRESH As System.Windows.Forms.Button
     Friend WithEvents GSECONDARY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCITYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TXTBANKNAME As TextBox
 End Class

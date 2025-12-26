@@ -596,10 +596,19 @@ Public Class RecFromPacking
                 IntResult = OBJJobIn.UPDATE()
                 MsgBox("Details Updated")
             End If
-
-            PRINTBARCODE()
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DTLOT As DataTable = OBJCMN.SEARCH("*", "", " RECPACKING ", " AND  RECPACKING.REC_BARCODEPRINTED=1 AND REC_NO= " & TXTRECNO.Text.Trim & " AND REC_YEARID = " & YearId)
+                If DTLOT.Rows.Count > 0 Then
+                    MsgBox("You Have Already Printed a Barcode?")
+                Else
+                    PRINTBARCODE()
+                End If
+            Else
+                PRINTBARCODE()
+            End If
             EDIT = False
-            clear()
+                clear()
             FILLBARCODE()
             If ClientName = "SOFTAS" Then CMBBARCODE.Focus() Else cmbGodown.Focus()
         Catch ex As Exception

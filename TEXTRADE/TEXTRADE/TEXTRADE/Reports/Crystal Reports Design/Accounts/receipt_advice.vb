@@ -84,7 +84,7 @@ Public Class receipt_advice
                 crTables = OBJRECREG.Database.Tables
 
             Else
-                strsearch = strsearch & "  {receiptmaster.receipt_no}= " & recno & " and {RECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {ledgermaster.Acc_cmpname} = '" & recname & "' and {receiptmaster.receipt_cmpid} = " & CmpId & " and {receiptmaster.receipt_LOCATIONid} = " & Locationid & " and {receiptmaster.receipt_YEARid} = " & YearId
+                strsearch = strsearch & "  {RECEIPT_REPORT.RECEIPTNO}= " & Val(recno) & " and {RECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {RECEIPT_REPORT.YEARID} = " & YearId
                 If ClientName = "NAKODAINFOTECH" Then
                     crTables = OBJREC_NAKODAINFOTECH.Database.Tables
                 ElseIf ClientName = "ABHEE" Then
