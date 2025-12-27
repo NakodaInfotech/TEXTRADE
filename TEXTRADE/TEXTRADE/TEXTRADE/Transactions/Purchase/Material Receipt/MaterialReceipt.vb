@@ -4552,7 +4552,10 @@ NEXTLINE:
 
             If cmbitemname.Text.Trim <> "" Then
                 DT = OBJCMN.SEARCH(" ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE", "", " ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID", " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then LBLHSN.Text = (DT.Rows(0).Item("HSNCODE"))
+                If DT.Rows.Count > 0 Then
+                    LBLHSN.Text = (DT.Rows(0).Item("HSNCODE"))
+                    If ClientName = "MAHAVIRPOLYCOT" Then LBLHSN.Text = "I-" & LBLHSN.Text
+                End If
             End If
 
         Catch ex As Exception
