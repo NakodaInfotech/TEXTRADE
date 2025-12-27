@@ -2512,6 +2512,7 @@ NEXTLINE:
                 AddHandler txt.TextChanged, AddressOf FilterGrid
                 groupbill.Controls.Add(txt)
                 filterTextBoxes.Add(txt)
+                If ClientName <> "ABHEE" Then txt.TabStop = False
             End If
         Next
     End Sub

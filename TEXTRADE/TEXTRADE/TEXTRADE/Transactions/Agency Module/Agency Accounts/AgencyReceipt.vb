@@ -2299,7 +2299,7 @@ NEXTLINE:
 
         Dim xPos As Integer = gridbill.RowHeadersVisible * gridbill.RowHeadersWidth
         For Each col As DataGridViewColumn In gridbill.Columns
-            If col.Visible Then
+            If col.Visible And col.HeaderText <> "" Then
                 Dim txt As New TextBox()
                 txt.Width = col.Width
                 txt.Left = gridbill.GetCellDisplayRectangle(col.Index, -1, True).Left
@@ -2309,89 +2309,13 @@ NEXTLINE:
                 AddHandler txt.TextChanged, AddressOf FilterGrid
                 groupbill.Controls.Add(txt)
                 filterTextBoxes.Add(txt)
+                If ClientName <> "ABHEE" Then txt.TabStop = False
             End If
         Next
-        'For Each col As DataGridViewColumn In gridbill.Columns
-        '    If col.Visible Then
-        '        Dim txt As New TextBox()
-        '        Dim rect As Rectangle = gridbill.GetCellDisplayRectangle(col.Index, -1, True)
-
-        '        txt.Width = rect.Width - 4
-        '        txt.Left = rect.Left + 2
-        '        txt.Height = 18
-        '        txt.Top = rect.Top + (rect.Height - txt.Height) \ 2   ' 👈 SAFE
-
-        '        txt.Tag = col.Index
-        '        txt.Name = "TXT" & col.Index
-        '        AddHandler txt.TextChanged, AddressOf FilterGrid
-
-        '        gridbill.Controls.Add(txt)
-        '        filterTextBoxes.Add(txt)
-        '    End If
-        'Next
 
     End Sub
 
     Public Sub FilterGrid(sender As Object, e As EventArgs)
-        'Try
-        '    ' SAFETY CHECK – add this FIRST
-        '    If gridbill.DataSource Is Nothing Then Exit Sub
-
-        '    Dim filterClauses As New List(Of String)()
-        '    'If DT Is Nothing Then
-        '    '    MsgBox("DT DataTable is not initialized.")
-        '    '    Exit Sub
-        '    'End If
-
-        '    For Each txt As TextBox In filterTextBoxes
-        '        Dim colIndex As Integer = CInt(txt.Tag)
-        '        Dim colName As String = gridbill.Columns(colIndex).DataPropertyName
-        '        If Not DT.Columns.Contains(colName) Then
-        '            MsgBox("Column '" & colName & "' not found in DataTable.")
-        '            Continue For
-        '        End If
-        '        Dim filterText As String = txt.Text.Trim().Replace("'", "''")
-
-        '        If filterText <> "" Then
-        '            ' Check data type
-        '            Dim colType As Type = DT.Columns(colName).DataType
-        '            If colType Is GetType(String) Then
-        '                filterClauses.Add(String.Format("[{0}] LIKE '%{1}%'", colName, filterText))
-        '            ElseIf colType Is GetType(Double) OrElse colType Is GetType(Integer) Then
-        '                ' Numeric filter: try direct match
-        '                Dim valDouble As Double
-        '                If Double.TryParse(filterText, valDouble) Then
-        '                    filterClauses.Add(String.Format("[{0}] = {1}", colName, valDouble))
-        '                End If
-        '            ElseIf colType Is GetType(DateTime) Then
-        '                Dim valDate As DateTime
-        '                If DateTime.TryParse(filterText, valDate) Then
-        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
-        '                End If
-        '            ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
-        '                Dim valDate As DateTime
-        '                If DateTime.TryParse(filterText, valDate) Then
-        '                    ' For exact date match
-        '                    filterClauses.Add(String.Format("[{0}] = #{1}#", colName, valDate.ToString("MM/dd/yyyy")))
-
-        '                    ' Or you can do range filtering, example hardcoded here (customize as needed)
-        '                    ' filterClauses.Add(String.Format("[{0}] >= #{1}# AND [{0}] <= #{2}#", colName, valDate.AddDays(-1).ToString("MM/dd/yyyy"), valDate.AddDays(1).ToString("MM/dd/yyyy")))
-        '                End If
-
-        '            End If
-        '        End If
-        '    Next
-
-
-        '    Dim filterString As String = String.Join(" AND ", filterClauses)
-        '    'DT.DefaultView.RowFilter = filterString
-        '    Dim src As DataTable = TryCast(gridbill.DataSource, DataTable)
-        '    If src IsNot Nothing Then
-        '        src.DefaultView.RowFilter = filterString
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox("Error while filtering: " & ex.Message)
-        'End Try
         Try
             ' SAFETY CHECKS
             If gridbill.DataSource Is Nothing Then Exit Sub

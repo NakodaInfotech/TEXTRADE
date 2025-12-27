@@ -2634,7 +2634,7 @@ NEXTLINE:
 
         Dim xPos As Integer = GRIDBILL.RowHeadersVisible * GRIDBILL.RowHeadersWidth
         For Each col As DataGridViewColumn In GRIDBILL.Columns
-            If col.Visible Then
+            If col.Visible And col.HeaderText <> "" Then
                 Dim txt As New TextBox()
                 txt.Width = col.Width
                 txt.Left = GRIDBILL.GetCellDisplayRectangle(col.Index, -1, True).Left
@@ -2644,6 +2644,8 @@ NEXTLINE:
                 AddHandler txt.TextChanged, AddressOf FilterGrid
                 GPPAYMENT.Controls.Add(txt)
                 filterTextBoxes.Add(txt)
+                If ClientName <> "ABHEE" Then txt.TabStop = False
+
             End If
         Next
     End Sub
@@ -2696,6 +2698,7 @@ NEXTLINE:
     End Sub
 
 #End Region
+
     Private Sub GRIDBILL_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDBILL.SortCompare
         Try
             If GRIDBILL.ColumnCount = 15 And e.Column.Index > 1 Then
