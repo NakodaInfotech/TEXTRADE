@@ -871,7 +871,11 @@ Public Class StockFilter
 
                 'RBCATEGORYITEMDESIGNSHADESMALLNOUNITSUMM
                 If RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Checked = True Then
-                    OBJSTOCK.WHERECLAUSE = " {BARCODESTOCK_DESIGN.YEARID} = " & YearId
+                    If MsgBox("Wish to Print Singles Report?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                        OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and { BARCODESTOCK.ViewMode } = 1 "
+                    Else
+                        OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and { BARCODESTOCK.ViewMode } = 2 "
+                    End If
                 End If
 
 
@@ -893,6 +897,7 @@ Public Class StockFilter
                 ElseIf RBCATEGORYITEMDESIGNSHADESMALLNOUNITSUMM.Checked = True Then
                     OBJSTOCK.FRMSTRING = "CATEGORYITEMDESIGNSHADESTOCKNOUNITSMALLSUMM"
                 ElseIf RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Checked = True Then
+                    OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE.Replace("BARCODESTOCK", "BARCODESTOCK_DESIGN")
                     OBJSTOCK.FRMSTRING = "CATEGORYITEMDESIGNSHADESTOCKNOUNITSMALLSINGLESUMM"
                 ElseIf RBITEMDESIGNSHADESUMM.Checked = True Then
                     OBJSTOCK.FRMSTRING = "BARCODEITEMDESIGNSHADESTOCKSUMM"
