@@ -390,32 +390,54 @@ Public Class SampleBarcode
 
                         ElseIf ClientName = "AVIS" Then
 
-                            oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
-n
-M0500
-MT
-O0214
-V0
-t1
-Kf0070
-c0000
-e
-<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
-D11
-H22
-ySPM
-A2
-1911C1200560007" & CMBDESIGNNO.Text.Trim & " 
-1911C0800790007" & CMBMERCHANT.Text.Trim & "
-1911C1200340007" & TEMPWIDTH & "
-1X1100000960000L187001
-1X1100000060000L187001
-1X1100000060000L001090
-1X1100000070185L001090
-1W1D44000001201352,LA," & TXTBARCODE.Text.Trim & "
-Q0001
-E
-<xpml></page></xpml><xpml><end/></xpml>")
+                            '                            oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
+                            'n
+                            'M0500
+                            'MT
+                            'O0214
+                            'V0
+                            't1
+                            'Kf0070
+                            'c0000
+                            'e
+                            '<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
+                            'D11
+                            'H22
+                            'ySPM
+                            'A2
+                            '1911C1200560007" & CMBDESIGNNO.Text.Trim & " 
+                            '1911C0800790007" & CMBMERCHANT.Text.Trim & "
+                            '1911C1200340007" & TEMPWIDTH & "
+                            '1X1100000960000L187001
+                            '1X1100000060000L187001
+                            '1X1100000060000L001090
+                            '1X1100000070185L001090
+                            '1W1D44000001201352,LA," & TXTBARCODE.Text.Trim & "
+                            'Q0001
+                            'E
+                            '<xpml></page></xpml><xpml><end/></xpml>")
+                            '                            oWrite.Dispose()
+
+                            oWrite.WriteLine("^XA
+^SZ2^JMA
+^MCY^PMN
+^PW380
+^JZY
+^LH0,0^LRN
+^XZ
+^XA
+^FT8,25
+^CI0
+^A0N,20,27^FD " & CMBMERCHANT.Text.Trim & " ^FS
+^FT8,64
+^A0N,28,38^" & CMBDESIGNNO.Text.Trim & " ^FS
+^FT8,104
+^A0N,28,38^FD " & TEMPWIDTH & "^FS
+^FO256,72
+^BQN,2,5^FDLA," & TXTBARCODE.Text.Trim & " ^FS
+^PQ1,0,1,Y
+^XZ
+")
                             oWrite.Dispose()
 
 
@@ -1730,32 +1752,54 @@ PRINT 1,1")
 
                                 ElseIf ClientName = "AVIS" Then
 
-                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
-n
-M0500
-MT
-O0214
-V0
-t1
-Kf0070
-c0000
-e
-<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
-D11
-H22
-ySPM
-A2
-1911C1200560007" & ROW("DESIGNNO") & "
-1911C0800790007" & ROW("ITEMNAME") & "
-1911C1200340007" & TEMPWIDTH & "
-1X1100000960000L187001
-1X1100000060000L187001
-1X1100000060000L001090
-1X1100000070185L001090
-1W1D44000001201352,LA," & ROW("BARCODE") & "
-Q0001
-E
-<xpml></page></xpml><xpml><end/></xpml>")
+                                    '                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
+                                    'n
+                                    'M0500
+                                    'MT
+                                    'O0214
+                                    'V0
+                                    't1
+                                    'Kf0070
+                                    'c0000
+                                    'e
+                                    '<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
+                                    'D11
+                                    'H22
+                                    'ySPM
+                                    'A2
+                                    '1911C1200560007" & ROW("DESIGNNO") & "
+                                    '1911C0800790007" & ROW("ITEMNAME") & "
+                                    '1911C1200340007" & TEMPWIDTH & "
+                                    '1X1100000960000L187001
+                                    '1X1100000060000L187001
+                                    '1X1100000060000L001090
+                                    '1X1100000070185L001090
+                                    '1W1D44000001201352,LA," & ROW("BARCODE") & "
+                                    'Q0001
+                                    'E
+                                    '<xpml></page></xpml><xpml><end/></xpml>")
+                                    '                                    oWrite.Dispose()
+
+                                    oWrite.WriteLine("^XA
+^SZ2^JMA
+^MCY^PMN
+^PW380
+^JZY
+^LH0,0^LRN
+^XZ
+^XA
+^FT8,25
+^CI0
+^A0N,20,27^FD" & ROW("ITEMNAME") & "^FS
+^FT8,64
+^A0N,28,38^FD" & ROW("DESIGNNO") & "^FS
+^FT8,104
+^A0N,28,38^FD" & TEMPWIDTH & "^FS
+^FO256,72
+^BQN,2,5^FDLA," & ROW("BARCODE") & "^FS
+^PQ1,0,1,Y
+^XZ
+")
                                     oWrite.Dispose()
 
 
