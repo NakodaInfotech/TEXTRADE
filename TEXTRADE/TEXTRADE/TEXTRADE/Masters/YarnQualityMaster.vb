@@ -99,9 +99,12 @@ Public Class YarnQualityMaster
     Private Sub TXTNAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtname.Validating
         Try
             If txtname.Text.Trim <> "" Then
+                If ClientName = "AADHAR" Then
+                    txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
+                End If
                 If (EDIT = False) Or (EDIT = True And LCase(tempname) <> LCase(txtname.Text.Trim)) Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH("YARN_ID AS ID", "", "YARNQUALITYMASTER", " AND YARN_NAME = '" & txtname.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("YARN_ID As ID", "", "YARNQUALITYMASTER", " And YARN_NAME = '" & txtname.Text.Trim & "' AND YARN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         MsgBox("Yarn Quality Name Already Exists", MsgBoxStyle.Critical)
                         e.Cancel = True
@@ -122,7 +125,7 @@ Public Class YarnQualityMaster
                     Exit Sub
                 End If
                 If ClientName = "AADHAR" And EDIT = False Then
-                    txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
+                    ' txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
                 End If
                 Dim OBJYARN As New ClsYarnQualityMaster
                 OBJYARN.alParaval.Add(txtname.Text.Trim)
