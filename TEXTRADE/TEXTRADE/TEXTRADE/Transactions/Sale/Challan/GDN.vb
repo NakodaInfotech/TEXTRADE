@@ -2536,7 +2536,6 @@ NEXTLINE:
                 CMBPER.Text = "Pcs"
                 CMBQUALITY.TabStop = False
                 CMBCOLOR.TabStop = False
-                TXTBALENO.TabStop = False
                 TXTGRIDLOTNO.TabStop = False
                 TXTCUT.TabStop = False
                 TXTMTRS.TabStop = False
