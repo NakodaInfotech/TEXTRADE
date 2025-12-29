@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Runtime.InteropServices
 Imports System.Security.Principal
 Imports BL
+Imports DevExpress.Utils.Internal
 Imports DevExpress.XtraEditors.Filtering
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTreeMap.Native
@@ -3088,42 +3089,55 @@ LINE1:
             DTWHATSAPP.Rows.Clear()
 
             GRIDSELLER.ClearColumnsFilter()
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 AND  YEARID = " & YearId & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
             For i As Integer = 0 To GRIDSELLER.RowCount - 1
                 Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If RBOUTSTANDINGGRID.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGDAYS.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGSHORT.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGDUE.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                ' 🔹 ADDED (FILTER IN MEMORY)
+                Dim rows() As DataRow = DT.Select("SELLERNAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+                If rows.Length > 0 Then
+
+                    If Convert.ToBoolean(dtrow("CHK")) = True And Val(DT.Rows(0).Item("BALANCE")) > 0 Then
+                        If RBOUTSTANDINGGRID.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGDAYS.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        End If
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                        FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
+                        'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                        DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                     End If
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
-                    FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
-                    'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
-                    DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                 End If
             Next
 
             GRIDBUYER.ClearColumnsFilter()
+            Dim DT1 As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0  AND YEARID = " & YearId & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
             For i As Integer = 0 To GRIDBUYER.RowCount - 1
                 Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If RBOUTSTANDINGGRID.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGDAYS.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGSHORT.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                    ElseIf RBOUTSTANDINGDUE.Checked = True Then
-                        Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                ' 🔹 ADDED (FILTER IN MEMORY)
+                Dim rows() As DataRow = DT.Select("NAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+
+                If rows.Length > 0 Then
+                    If Convert.ToBoolean(dtrow("CHK")) = True And Val(DT1.Rows(0).Item("BALANCE")) > 0 Then
+                        If RBOUTSTANDINGGRID.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGDAYS.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        End If
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                        FILENAME.Add(dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                        'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                        DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                     End If
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
-                    FILENAME.Add(dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
-                    'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
-                    DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                 End If
             Next
 
