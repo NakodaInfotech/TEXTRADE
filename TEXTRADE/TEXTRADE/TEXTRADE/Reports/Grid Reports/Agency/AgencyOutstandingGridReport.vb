@@ -2610,6 +2610,7 @@ line1:
             OBJOUT.OUTSTANDINGWITHLR = CHKWITHLR.Checked
             OBJOUT.SHOWINDEX = CHKSHOWINDEX.Checked
             OBJOUT.Show()
+            If SENDWHATSAPP = True Then OBJOUT.Close()
 
         Catch ex As Exception
             Throw ex
