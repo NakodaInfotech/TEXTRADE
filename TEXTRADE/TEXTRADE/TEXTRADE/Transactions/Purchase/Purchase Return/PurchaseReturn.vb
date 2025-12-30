@@ -1738,7 +1738,9 @@ LINE1:
             If Convert.ToDateTime(ACTUALINVDATE.Text).Date >= "01/07/2017" And ITEMNAME <> "" Then
                 Dim OBJCMN As New ClsCommon
                 'Dim DT As DataTable = OBJCMN.search(" ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER.HSN_IGST, 0) AS IGSTPER ", "", "HSNMASTER INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID ", " AND ITEMMASTER.ITEM_NAME= '" & GRIDBILL.Rows(0).Cells(gitemname.Index).Value & "' AND HSNMASTER.HSN_YEARID='" & YearId & "' ORDER BY HSNMASTER.HSN_ID DESC")
-                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & ITEMNAME & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                'Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & ITEMNAME & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                Dim dt = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE,ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGSTPER, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & CMBITEM.Text.Trim & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+
                 If DT.Rows.Count > 0 Then
 
                     TXTHSNCODE.Clear()
@@ -1750,15 +1752,48 @@ LINE1:
                     TXTIGSTAMT.Clear()
 
                     TXTHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
+                    'If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
+                    '    TXTIGSTPER.Text = 0
+                    '    TXTCGSTPER.Text = Val(DT.Rows(0).Item("CGSTPER"))
+                    '    TXTSGSTPER.Text = Val(DT.Rows(0).Item("SGSTPER"))
+                    'Else
+                    '    TXTCGSTPER.Text = 0
+                    '    TXTSGSTPER.Text = 0
+                    '    TXTIGSTPER.Text = Val(DT.Rows(0).Item("IGSTPER"))
+                    'End If
+                    Dim CALCON As Double = 0.0
+                    CALCON = Val(TXTRATE.Text.Trim)
+
                     If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
+                        If Val(dt.Rows(0).Item("RATE")) = 0 Then GoTo NORATE
+
                         TXTIGSTPER.Text = 0
-                        TXTCGSTPER.Text = Val(DT.Rows(0).Item("CGSTPER"))
-                        TXTSGSTPER.Text = Val(DT.Rows(0).Item("SGSTPER"))
+
+                        If Val(dt.Rows(0).Item("RATE")) <= CALCON Then
+                            TXTCGSTPER.Text = Val(dt.Rows(0).Item("CGST1"))
+                            TXTSGSTPER.Text = Val(dt.Rows(0).Item("SGST1"))
+
+                        Else
+NORATE:
+                                TXTCGSTPER.Text = Val(dt.Rows(0).Item("CGSTPER"))
+                                TXTSGSTPER.Text = Val(dt.Rows(0).Item("SGSTPER"))
+                            End If
+
+
                     Else
                         TXTCGSTPER.Text = 0
                         TXTSGSTPER.Text = 0
-                        TXTIGSTPER.Text = Val(DT.Rows(0).Item("IGSTPER"))
-                    End If
+                        If Val(dt.Rows(0).Item("RATE")) = 0 Then GoTo NORATE1
+
+                        If Val(dt.Rows(0).Item("RATE")) <= CALCON Then
+                                TXTIGSTPER.Text = Val(dt.Rows(0).Item("IGST1"))
+
+                            Else
+NORATE1:
+                                TXTIGSTPER.Text = Val(dt.Rows(0).Item("IGSTPER"))
+                            End If
+
+                        End If
                 End If
                 TOTAL()
             End If
@@ -2460,6 +2495,7 @@ LINE1:
     End Sub
 
     Private Sub TXTRATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTRATE.Validated, TXTMTRS.Validated, TXTQTY.Validated
+        GETHSNCODE()
         TOTAL()
     End Sub
 
