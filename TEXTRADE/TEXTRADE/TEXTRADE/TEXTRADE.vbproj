@@ -2105,6 +2105,12 @@
     <Compile Include="Reports\Grid Reports\Stock Reports\ItemMonthlyStockStatement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\LRStockValuation.Designer.vb">
+      <DependentUpon>LRStockValuation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\LRStockValuation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.Designer.vb">
       <DependentUpon>RackCapacityGridReport.vb</DependentUpon>
     </Compile>
@@ -9831,6 +9837,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\ItemMonthlyStockStatement.resx">
       <DependentUpon>ItemMonthlyStockStatement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\LRStockValuation.resx">
+      <DependentUpon>LRStockValuation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.resx">
       <DependentUpon>RackCapacityGridReport.vb</DependentUpon>

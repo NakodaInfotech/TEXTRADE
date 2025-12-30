@@ -10818,4 +10818,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub LRSTOCKVALUE_MENU_Click(sender As Object, e As EventArgs) Handles LRSTOCKVALUE_MENU.Click
+        Try
+            Dim OBJLR As New LRStockValuation
+            OBJLR.MdiParent = Me
+            OBJLR.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

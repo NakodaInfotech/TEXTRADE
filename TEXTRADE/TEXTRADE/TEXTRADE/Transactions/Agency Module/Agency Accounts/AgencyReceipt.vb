@@ -199,8 +199,8 @@ Public Class AgencyReceipt
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             'OPEN ALL LEDGERS
-            'If cmbname.Text.Trim = "" Then fillledger(cmbname, edit, " and groupmaster.group_SECONDARY = 'Sundry Debtors' and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
-            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
+            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and groupmaster.group_SECONDARY = 'Sundry Debtors' and acc_YEARid = " & YearId)
+            'If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
@@ -842,6 +842,7 @@ Public Class AgencyReceipt
                         dtinvduedate.Value = Convert.ToDateTime(gridbill.Rows(e.RowIndex).Cells(gridbill.Columns("DUEDATE").Index).Value).Date
                         Dim A As System.ComponentModel.CancelEventArgs
                         txtamt_Validating(sender, A)
+                        gridbill.Focus()
 
                     End If
                     total()
@@ -1052,7 +1053,7 @@ Public Class AgencyReceipt
     Sub fillgrid()
         Try
             EP.Clear()
-            If Not AMOUNTVALIDATE() Then
+            If ClientName <> "ABHEE" AndAlso Not AMOUNTVALIDATE() Then
                 txtsrno.Focus()
                 Exit Sub
             End If
@@ -1179,9 +1180,7 @@ Public Class AgencyReceipt
 
     Private Sub cmbseller_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbseller.Enter
         Try
-            'OPEN BANK A/C AND BANK OD A/C
-            If cmbseller.Text.Trim = "" Then fillledger(cmbseller, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
-            'If cmbseller.Text.Trim = "" Then fillledger(cmbseller, EDIT, " and (groupmaster.group_SECONDARY = 'BANK A/C' OR groupmaster.group_SECONDARY = 'BANK OD A/C' OR groupmaster.group_SECONDARY = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
+            If cmbseller.Text.Trim = "" Then fillledger(cmbseller, EDIT, " and (groupmaster.group_SECONDARY = 'SUNDRY CREDITORS') and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
