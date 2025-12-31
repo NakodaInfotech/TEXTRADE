@@ -125,7 +125,6 @@ Public Class AgencyDesign
             End If
 
 
-
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally

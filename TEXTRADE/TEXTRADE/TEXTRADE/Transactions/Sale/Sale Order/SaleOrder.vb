@@ -1796,45 +1796,47 @@ LINE1:
 
     Private Sub CMBCONSIGNEE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBHASTE.Validating
         Try
-            Cursor.Current = Cursors.WaitCursor
-            If CMBHASTE.Text.Trim <> "" Then
-                pcase(CMBHASTE)
-                Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable
-                dt = objclscommon.search("ADDRESS_full", "", " ADDRESSMASTER INNER JOIN LEDGERS ON ADDRESSMASTER.ADDRESS_LEDGERID = LEDGERS.ACC_id AND ADDRESSMASTER.ADDRESS_cmpid = LEDGERS.ACC_cmpid AND ADDRESSMASTER.ADDRESS_locationid = LEDGERS.ACC_locationid AND ADDRESSMASTER.ADDRESS_yearid = LEDGERS.ACC_yearid  ", "  and  LEDGERS.ACC_cmpname ='" & cmbname.Text.Trim & "'  and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
-                If dt.Rows.Count = 0 Then
-                    Dim a As String = CMBHASTE.Text.Trim
-                    Dim tempmsg As Integer = MsgBox("ADDRESS not present, Add New?", MsgBoxStyle.YesNo, "Textrade")
-                    If tempmsg = vbYes Then
+            '            Cursor.Current = Cursors.WaitCursor
+            '            If CMBHASTE.Text.Trim <> "" Then
+            '                pcase(CMBHASTE)
+            '                Dim objclscommon As New ClsCommonMaster
+            '                Dim dt As DataTable
+            '                dt = objclscommon.search("ADDRESS_full", "", " ADDRESSMASTER INNER JOIN LEDGERS ON ADDRESSMASTER.ADDRESS_LEDGERID = LEDGERS.ACC_id AND ADDRESSMASTER.ADDRESS_cmpid = LEDGERS.ACC_cmpid AND ADDRESSMASTER.ADDRESS_locationid = LEDGERS.ACC_locationid AND ADDRESSMASTER.ADDRESS_yearid = LEDGERS.ACC_yearid  ", "  and  LEDGERS.ACC_cmpname ='" & cmbname.Text.Trim & "'  and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
+            '                If dt.Rows.Count = 0 Then
+            '                    Dim a As String = CMBHASTE.Text.Trim
+            '                    Dim tempmsg As Integer = MsgBox("ADDRESS not present, Add New?", MsgBoxStyle.YesNo, "Textrade")
+            '                    If tempmsg = vbYes Then
 
-                        CMBHASTE.Text = a
-                        Dim objADDRESSmaster As New addressMaster
-                        objADDRESSmaster.txtname.Text = CMBHASTE.Text
-                        objADDRESSmaster.cmbname.Text = cmbname.Text
-                        objADDRESSmaster.cmbname.Enabled = False
-                        objADDRESSmaster.ShowDialog()
-                        dt = objclscommon.search("ADDRESS_alias", "", "ADDRESSMaster", " and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
-                        If dt.Rows.Count > 0 Then
-                            Dim dt1 As New DataTable
-                            dt1 = CMBHASTE.DataSource
-                            If CMBHASTE.DataSource <> Nothing Then
-line1:
-                                If dt1.Rows.Count > 0 Then
-                                    dt1.Rows.Add(CMBHASTE.Text.Trim)
-                                    CMBHASTE.Text = a
-                                End If
-                            End If
-                        End If
-                        e.Cancel = True
-                    Else
-                        e.Cancel = True
-                    End If
-                Else
-                    txtDeliveryadd.Text = dt.Rows(0).Item(0).ToString
-                End If
-            End If
+            '                        CMBHASTE.Text = a
+            '                        Dim objADDRESSmaster As New addressMaster
+            '                        objADDRESSmaster.txtname.Text = CMBHASTE.Text
+            '                        objADDRESSmaster.cmbname.Text = cmbname.Text
+            '                        objADDRESSmaster.cmbname.Enabled = False
+            '                        objADDRESSmaster.ShowDialog()
+            '                        dt = objclscommon.search("ADDRESS_alias", "", "ADDRESSMaster", " and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
+            '                        If dt.Rows.Count > 0 Then
+            '                            Dim dt1 As New DataTable
+            '                            dt1 = CMBHASTE.DataSource
+            '                            If CMBHASTE.DataSource <> Nothing Then
+            'line1:
+            '                                If dt1.Rows.Count > 0 Then
+            '                                    dt1.Rows.Add(CMBHASTE.Text.Trim)
+            '                                    CMBHASTE.Text = a
+            '                                End If
+            '                            End If
+            '                        End If
+            '                        e.Cancel = True
+            '                    Else
+            '                        e.Cancel = True
+            '                    End If
+            '                Else
+            '                    txtDeliveryadd.Text = dt.Rows(0).Item(0).ToString
+            '                End If
+            '            End If
+            If CMBHASTE.Text.Trim <> "" Then NAMEVALIDATE(CMBHASTE, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS")
+
         Catch ex As Exception
-            GoTo line1
+            'GoTo line1
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
