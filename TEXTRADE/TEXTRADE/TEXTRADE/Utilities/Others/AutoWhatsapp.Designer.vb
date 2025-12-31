@@ -69,6 +69,8 @@ Partial Class AutoWhatsapp
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.chkall = New System.Windows.Forms.CheckBox()
+        Me.chkagentall = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDAGENTDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDAGENT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +86,8 @@ Partial Class AutoWhatsapp
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.chkagentall)
+        Me.BlendPanel1.Controls.Add(Me.chkall)
         Me.BlendPanel1.Controls.Add(Me.CMDUPDATE)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
         Me.BlendPanel1.Controls.Add(Me.TXTTYPE)
@@ -111,7 +115,7 @@ Partial Class AutoWhatsapp
         '
         Me.LBLTYPE.AutoSize = True
         Me.LBLTYPE.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTYPE.Location = New System.Drawing.Point(736, 21)
+        Me.LBLTYPE.Location = New System.Drawing.Point(858, 21)
         Me.LBLTYPE.Name = "LBLTYPE"
         Me.LBLTYPE.Size = New System.Drawing.Size(31, 15)
         Me.LBLTYPE.TabIndex = 14
@@ -121,7 +125,7 @@ Partial Class AutoWhatsapp
         '
         Me.TXTTYPE.BackColor = System.Drawing.Color.Linen
         Me.TXTTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTYPE.Location = New System.Drawing.Point(773, 18)
+        Me.TXTTYPE.Location = New System.Drawing.Point(895, 18)
         Me.TXTTYPE.Name = "TXTTYPE"
         Me.TXTTYPE.ReadOnly = True
         Me.TXTTYPE.Size = New System.Drawing.Size(264, 23)
@@ -545,6 +549,30 @@ Partial Class AutoWhatsapp
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'chkall
+        '
+        Me.chkall.AutoSize = True
+        Me.chkall.BackColor = System.Drawing.Color.Transparent
+        Me.chkall.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.chkall.Location = New System.Drawing.Point(755, 21)
+        Me.chkall.Name = "chkall"
+        Me.chkall.Size = New System.Drawing.Size(77, 18)
+        Me.chkall.TabIndex = 15
+        Me.chkall.Text = "Select &All"
+        Me.chkall.UseVisualStyleBackColor = False
+        '
+        'chkagentall
+        '
+        Me.chkagentall.AutoSize = True
+        Me.chkagentall.BackColor = System.Drawing.Color.Transparent
+        Me.chkagentall.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.chkagentall.Location = New System.Drawing.Point(1214, 21)
+        Me.chkagentall.Name = "chkagentall"
+        Me.chkagentall.Size = New System.Drawing.Size(77, 18)
+        Me.chkagentall.TabIndex = 16
+        Me.chkagentall.Text = "Select &All"
+        Me.chkagentall.UseVisualStyleBackColor = False
+        '
         'AutoWhatsapp
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -614,4 +642,6 @@ Partial Class AutoWhatsapp
     Friend WithEvents GSUN As DataGridViewCheckBoxColumn
     Friend WithEvents GTIME As DataGridViewTextBoxColumn
     Friend WithEvents GNO As DataGridViewTextBoxColumn
+    Friend WithEvents chkagentall As CheckBox
+    Friend WithEvents chkall As CheckBox
 End Class

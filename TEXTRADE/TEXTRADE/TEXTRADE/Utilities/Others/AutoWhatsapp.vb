@@ -1,6 +1,7 @@
 ﻿
 Imports BL
 Imports DevExpress.CodeParser
+Imports DevExpress.XtraGrid.Views.Base
 
 Public Class AutoWhatsapp
 
@@ -371,4 +372,25 @@ Public Class AutoWhatsapp
         End Try
     End Sub
 
+    Private Sub chkagentall_CheckedChanged(sender As Object, e As EventArgs) Handles chkagentall.CheckedChanged
+        Try
+            For i As Integer = 0 To GRIDAGENT.RowCount - 1
+                Dim dtrow As DataRow = GRIDAGENT.GetDataRow(i)
+                dtrow("CHK") = chkagentall.Checked
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub chkall_CheckedChanged(sender As Object, e As EventArgs) Handles chkall.CheckedChanged
+        Try
+            For i As Integer = 0 To GRIDLEDGER.RowCount - 1
+                Dim dtrow As DataRow = GRIDLEDGER.GetDataRow(i)
+                dtrow("CHK") = chkall.Checked
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
