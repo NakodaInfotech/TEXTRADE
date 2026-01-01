@@ -22,12 +22,11 @@ Partial Class LRStockValuation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
@@ -36,23 +35,7 @@ Partial Class LRStockValuation
         Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.tbitem = New System.Windows.Forms.TabPage()
-        Me.GRIDSO = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRSTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGST = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRUNBAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GINT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFINAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GARATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRIDSTOCK = New System.Windows.Forms.DataGridView()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GPITEM = New System.Windows.Forms.GroupBox()
         Me.CHKSELECTITEM = New System.Windows.Forms.CheckBox()
@@ -75,10 +58,27 @@ Partial Class LRStockValuation
         Me.CMDEXPORT = New System.Windows.Forms.Button()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
+        Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRSTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAMT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGST = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRUNBAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDAYS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GINT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFINAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GARATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TXTINTPER = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.tbitem.SuspendLayout()
-        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDSTOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.GPITEM.SuspendLayout()
         CType(Me.GRIDBILLDETAILSITEM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +93,8 @@ Partial Class LRStockValuation
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTINTPER)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.CMBNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBITEMNAME)
@@ -106,7 +108,7 @@ Partial Class LRStockValuation
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 674)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.TabIndex = 0
         '
         'Label9
         '
@@ -167,7 +169,7 @@ Partial Class LRStockValuation
         Me.CMDWHATSAPP.Location = New System.Drawing.Point(473, 638)
         Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
         Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
-        Me.CMDWHATSAPP.TabIndex = 22
+        Me.CMDWHATSAPP.TabIndex = 6
         Me.CMDWHATSAPP.Text = "&Whatsapp"
         Me.CMDWHATSAPP.UseVisualStyleBackColor = False
         '
@@ -179,13 +181,13 @@ Partial Class LRStockValuation
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(1316, 618)
-        Me.TabControl2.TabIndex = 6
+        Me.TabControl2.TabIndex = 3
         '
         'tbitem
         '
         Me.tbitem.AutoScroll = True
         Me.tbitem.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.tbitem.Controls.Add(Me.GRIDSO)
+        Me.tbitem.Controls.Add(Me.GRIDSTOCK)
         Me.tbitem.Location = New System.Drawing.Point(4, 24)
         Me.tbitem.Name = "tbitem"
         Me.tbitem.Padding = New System.Windows.Forms.Padding(3)
@@ -193,180 +195,34 @@ Partial Class LRStockValuation
         Me.tbitem.TabIndex = 0
         Me.tbitem.Text = "Item Details"
         '
-        'GRIDSO
+        'GRIDSTOCK
         '
-        Me.GRIDSO.AllowUserToAddRows = False
-        Me.GRIDSO.AllowUserToDeleteRows = False
-        Me.GRIDSO.AllowUserToResizeColumns = False
-        Me.GRIDSO.AllowUserToResizeRows = False
-        Me.GRIDSO.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDSO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDSO.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDSO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
-        Me.GRIDSO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GNAME, Me.GLR, Me.GLRTOTAL, Me.GMTRS, Me.GMTRSTOTAL, Me.GRATE, Me.GAMT, Me.GGST, Me.GTOTAL, Me.GRUNBAL, Me.GDATE, Me.GDAYS, Me.GINT, Me.GFINAL, Me.GARATE})
-        Me.GRIDSO.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSO.Location = New System.Drawing.Point(6, 3)
-        Me.GRIDSO.MultiSelect = False
-        Me.GRIDSO.Name = "GRIDSO"
-        Me.GRIDSO.RowHeadersVisible = False
-        Me.GRIDSO.RowHeadersWidth = 30
-        Me.GRIDSO.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.GRIDSO.RowsDefaultCellStyle = DataGridViewCellStyle12
-        Me.GRIDSO.RowTemplate.Height = 20
-        Me.GRIDSO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSO.Size = New System.Drawing.Size(1475, 570)
-        Me.GRIDSO.TabIndex = 0
-        '
-        'GSRNO
-        '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GSRNO.HeaderText = "Sr"
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GNAME
-        '
-        Me.GNAME.HeaderText = "Name"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.ReadOnly = True
-        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GNAME.Width = 220
-        '
-        'GLR
-        '
-        Me.GLR.HeaderText = "LR"
-        Me.GLR.Name = "GLR"
-        Me.GLR.ReadOnly = True
-        Me.GLR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLR.Width = 60
-        '
-        'GLRTOTAL
-        '
-        Me.GLRTOTAL.HeaderText = "Cum"
-        Me.GLRTOTAL.Name = "GLRTOTAL"
-        Me.GLRTOTAL.ReadOnly = True
-        Me.GLRTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRTOTAL.Width = 60
-        '
-        'GMTRS
-        '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle9
-        Me.GMTRS.HeaderText = "Mtrs"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.ReadOnly = True
-        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GMTRSTOTAL
-        '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRSTOTAL.DefaultCellStyle = DataGridViewCellStyle10
-        Me.GMTRSTOTAL.HeaderText = "Cum"
-        Me.GMTRSTOTAL.Name = "GMTRSTOTAL"
-        Me.GMTRSTOTAL.ReadOnly = True
-        Me.GMTRSTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRSTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GRATE
-        '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle11
-        Me.GRATE.HeaderText = "Rate"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
-        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GRATE.Width = 70
-        '
-        'GAMT
-        '
-        Me.GAMT.HeaderText = "Amount"
-        Me.GAMT.Name = "GAMT"
-        Me.GAMT.ReadOnly = True
-        Me.GAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GGST
-        '
-        Me.GGST.HeaderText = "GST"
-        Me.GGST.Name = "GGST"
-        Me.GGST.ReadOnly = True
-        Me.GGST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGST.Width = 80
-        '
-        'GTOTAL
-        '
-        Me.GTOTAL.HeaderText = "Total Amt"
-        Me.GTOTAL.Name = "GTOTAL"
-        Me.GTOTAL.ReadOnly = True
-        Me.GTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GRUNBAL
-        '
-        Me.GRUNBAL.HeaderText = "Cum"
-        Me.GRUNBAL.Name = "GRUNBAL"
-        Me.GRUNBAL.ReadOnly = True
-        Me.GRUNBAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRUNBAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GDATE
-        '
-        Me.GDATE.HeaderText = "Date"
-        Me.GDATE.Name = "GDATE"
-        Me.GDATE.ReadOnly = True
-        Me.GDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDATE.Width = 80
-        '
-        'GDAYS
-        '
-        Me.GDAYS.HeaderText = "Days"
-        Me.GDAYS.Name = "GDAYS"
-        Me.GDAYS.ReadOnly = True
-        Me.GDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDAYS.Width = 60
-        '
-        'GINT
-        '
-        Me.GINT.HeaderText = "Interest"
-        Me.GINT.Name = "GINT"
-        Me.GINT.ReadOnly = True
-        Me.GINT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GINT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GFINAL
-        '
-        Me.GFINAL.HeaderText = "Final Amt"
-        Me.GFINAL.Name = "GFINAL"
-        Me.GFINAL.ReadOnly = True
-        Me.GFINAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFINAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GARATE
-        '
-        Me.GARATE.HeaderText = "A Rate"
-        Me.GARATE.Name = "GARATE"
-        Me.GARATE.ReadOnly = True
-        Me.GARATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GARATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GARATE.Width = 80
+        Me.GRIDSTOCK.AllowUserToAddRows = False
+        Me.GRIDSTOCK.AllowUserToDeleteRows = False
+        Me.GRIDSTOCK.AllowUserToResizeColumns = False
+        Me.GRIDSTOCK.AllowUserToResizeRows = False
+        Me.GRIDSTOCK.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDSTOCK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDSTOCK.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDSTOCK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.GRIDSTOCK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDSTOCK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GNAME, Me.GLR, Me.GLRTOTAL, Me.GMTRS, Me.GMTRSTOTAL, Me.GRATE, Me.GAMT, Me.GGST, Me.GTOTAL, Me.GRUNBAL, Me.GDATE, Me.GDAYS, Me.GINT, Me.GFINAL, Me.GARATE})
+        Me.GRIDSTOCK.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDSTOCK.Location = New System.Drawing.Point(6, 3)
+        Me.GRIDSTOCK.MultiSelect = False
+        Me.GRIDSTOCK.Name = "GRIDSTOCK"
+        Me.GRIDSTOCK.RowHeadersVisible = False
+        Me.GRIDSTOCK.RowHeadersWidth = 30
+        Me.GRIDSTOCK.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.GRIDSTOCK.RowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.GRIDSTOCK.RowTemplate.Height = 20
+        Me.GRIDSTOCK.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSTOCK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDSTOCK.Size = New System.Drawing.Size(1475, 570)
+        Me.GRIDSTOCK.TabIndex = 0
         '
         'TabPage1
         '
@@ -579,7 +435,7 @@ Partial Class LRStockValuation
         Me.CMDEXPORT.Location = New System.Drawing.Point(559, 638)
         Me.CMDEXPORT.Name = "CMDEXPORT"
         Me.CMDEXPORT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXPORT.TabIndex = 4
+        Me.CMDEXPORT.TabIndex = 7
         Me.CMDEXPORT.Text = "&Export"
         Me.CMDEXPORT.UseVisualStyleBackColor = False
         '
@@ -593,7 +449,7 @@ Partial Class LRStockValuation
         Me.CMDREFRESH.Location = New System.Drawing.Point(645, 638)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 1
+        Me.CMDREFRESH.TabIndex = 4
         Me.CMDREFRESH.Text = "&Refresh"
         Me.CMDREFRESH.UseVisualStyleBackColor = False
         '
@@ -607,9 +463,165 @@ Partial Class LRStockValuation
         Me.cmdexit.Location = New System.Drawing.Point(731, 638)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 3
+        Me.cmdexit.TabIndex = 5
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'GNAME
+        '
+        Me.GNAME.HeaderText = "Name"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.ReadOnly = True
+        Me.GNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GNAME.Width = 220
+        '
+        'GLR
+        '
+        Me.GLR.HeaderText = "LR"
+        Me.GLR.Name = "GLR"
+        Me.GLR.ReadOnly = True
+        Me.GLR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLR.Width = 60
+        '
+        'GLRTOTAL
+        '
+        Me.GLRTOTAL.HeaderText = "Cum"
+        Me.GLRTOTAL.Name = "GLRTOTAL"
+        Me.GLRTOTAL.ReadOnly = True
+        Me.GLRTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRTOTAL.Width = 60
+        '
+        'GMTRS
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle2
+        Me.GMTRS.HeaderText = "Mtrs"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
+        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GMTRSTOTAL
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRSTOTAL.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GMTRSTOTAL.HeaderText = "Cum"
+        Me.GMTRSTOTAL.Name = "GMTRSTOTAL"
+        Me.GMTRSTOTAL.ReadOnly = True
+        Me.GMTRSTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRSTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GRATE
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GRATE.HeaderText = "Rate"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.ReadOnly = True
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 70
+        '
+        'GAMT
+        '
+        Me.GAMT.HeaderText = "Amount"
+        Me.GAMT.Name = "GAMT"
+        Me.GAMT.ReadOnly = True
+        Me.GAMT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAMT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GGST
+        '
+        Me.GGST.HeaderText = "GST"
+        Me.GGST.Name = "GGST"
+        Me.GGST.ReadOnly = True
+        Me.GGST.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGST.Width = 80
+        '
+        'GTOTAL
+        '
+        Me.GTOTAL.HeaderText = "Total Amt"
+        Me.GTOTAL.Name = "GTOTAL"
+        Me.GTOTAL.ReadOnly = True
+        Me.GTOTAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GRUNBAL
+        '
+        Me.GRUNBAL.HeaderText = "Cum"
+        Me.GRUNBAL.Name = "GRUNBAL"
+        Me.GRUNBAL.ReadOnly = True
+        Me.GRUNBAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRUNBAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GDATE
+        '
+        Me.GDATE.HeaderText = "Date"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.ReadOnly = True
+        Me.GDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDATE.Width = 80
+        '
+        'GDAYS
+        '
+        Me.GDAYS.HeaderText = "Days"
+        Me.GDAYS.Name = "GDAYS"
+        Me.GDAYS.ReadOnly = True
+        Me.GDAYS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDAYS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDAYS.Width = 60
+        '
+        'GINT
+        '
+        Me.GINT.HeaderText = "Interest"
+        Me.GINT.Name = "GINT"
+        Me.GINT.ReadOnly = True
+        Me.GINT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GINT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GFINAL
+        '
+        Me.GFINAL.HeaderText = "Final Amt"
+        Me.GFINAL.Name = "GFINAL"
+        Me.GFINAL.ReadOnly = True
+        Me.GFINAL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFINAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GARATE
+        '
+        Me.GARATE.HeaderText = "A Rate"
+        Me.GARATE.Name = "GARATE"
+        Me.GARATE.ReadOnly = True
+        Me.GARATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GARATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GARATE.Width = 80
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(844, 14)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(34, 15)
+        Me.Label1.TabIndex = 767
+        Me.Label1.Text = "Int %"
+        '
+        'TXTINTPER
+        '
+        Me.TXTINTPER.Location = New System.Drawing.Point(883, 10)
+        Me.TXTINTPER.MaxLength = 6
+        Me.TXTINTPER.Name = "TXTINTPER"
+        Me.TXTINTPER.Size = New System.Drawing.Size(100, 23)
+        Me.TXTINTPER.TabIndex = 2
+        Me.TXTINTPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LRStockValuation
         '
@@ -626,7 +638,7 @@ Partial Class LRStockValuation
         Me.BlendPanel1.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
         Me.tbitem.ResumeLayout(False)
-        CType(Me.GRIDSO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDSTOCK, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.GPITEM.ResumeLayout(False)
         Me.GPITEM.PerformLayout()
@@ -646,7 +658,7 @@ Partial Class LRStockValuation
     Friend WithEvents CMDWHATSAPP As Button
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents tbitem As TabPage
-    Friend WithEvents GRIDSO As DataGridView
+    Friend WithEvents GRIDSTOCK As DataGridView
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents GPITEM As GroupBox
     Friend WithEvents CHKSELECTITEM As CheckBox
@@ -673,7 +685,6 @@ Partial Class LRStockValuation
     Friend WithEvents CMDEXPORT As Button
     Friend WithEvents CMDREFRESH As Button
     Friend WithEvents cmdexit As Button
-    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GNAME As DataGridViewTextBoxColumn
     Friend WithEvents GLR As DataGridViewTextBoxColumn
     Friend WithEvents GLRTOTAL As DataGridViewTextBoxColumn
@@ -689,4 +700,6 @@ Partial Class LRStockValuation
     Friend WithEvents GINT As DataGridViewTextBoxColumn
     Friend WithEvents GFINAL As DataGridViewTextBoxColumn
     Friend WithEvents GARATE As DataGridViewTextBoxColumn
+    Friend WithEvents TXTINTPER As TextBox
+    Friend WithEvents Label1 As Label
 End Class
