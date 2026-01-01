@@ -53,12 +53,12 @@ Public Class LRStockValuation
     Sub FILLGRID()
         Try
 
-            Dim WHERECLAUSE As String = " AND SOLD = 0 AND YEARID = " & YearId
+            Dim WHERECLAUSE As String = " AND PURCHASELRSTOCK.SOLD = 0 AND PURCHASELRSTOCK.YEARID = " & YearId
             Dim NAMECLAUSE As String = ""
             Dim ITEMCLAUSE As String = ""
 
-            If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and NAME ='" & CMBNAME.Text.Trim & "'"
-            If CMBITEMNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and ITEMNAME ='" & CMBITEMNAME.Text.Trim & "'"
+            If CMBNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and PURCHASELRSTOCK.NAME ='" & CMBNAME.Text.Trim & "'"
+            If CMBITEMNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " and PURCHASELRSTOCK.ITEMNAME ='" & CMBITEMNAME.Text.Trim & "'"
 
 
             'FOR NAME
@@ -67,9 +67,9 @@ Public Class LRStockValuation
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
                     If NAMECLAUSE = "" Then
-                        NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                        NAMECLAUSE = " AND (PURCHASELRSTOCK.NAME = '" & dtrow("NAME") & "'"
                     Else
-                        NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                        NAMECLAUSE = NAMECLAUSE & " OR PURCHASELRSTOCK.NAME = '" & dtrow("NAME") & "'"
                     End If
                 End If
             Next
@@ -85,9 +85,9 @@ Public Class LRStockValuation
                 Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
                     If ITEMCLAUSE = "" Then
-                        ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        ITEMCLAUSE = " AND (PURCHASELRSTOCK.ITEMNAME = '" & dtrow("ITEMNAME") & "'"
                     Else
-                        ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        ITEMCLAUSE = ITEMCLAUSE & " OR PURCHASELRSTOCK.ITEMNAME = '" & dtrow("ITEMNAME") & "'"
                     End If
                 End If
             Next
@@ -98,49 +98,49 @@ Public Class LRStockValuation
 
 
 
-            GRIDSO.RowCount = 0
+            GRIDSTOCK.RowCount = 0
             Dim OBJCMN As New ClsCommon
             Dim LASTITEMNAME As String = ""
-            Dim TOTALPCS, TOTALDELPCS, TOTALBALPCS As Double
-            Dim GTOTALPCS, GTOTALDELPCS, GTOTALBALPCS As Double
-            Dim DT As DataTable = OBJCMN.SEARCH(" ITEMMASTER.item_name AS ITEMNAME, '' AS MILLNAME, ALLSALEORDER.so_no AS SONO, ALLSALEORDER.so_date AS SODATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.Acc_cmpname,'') AS AGENTNAME, ALLSALEORDER.so_NOTE AS NOTE, ALLSALEORDER_DESC.SO_MTRS AS PCS, (CASE WHEN '" & ClientName & "' = 'ABHEE' AND ALLSALEORDER.SO_ORDERON = 'PCS' THEN ALLSALEORDER_DESC.SO_RECDQTY ELSE ALLSALEORDER_DESC.SO_RECDMTRS END) AS OUTPCS, ALLSALEORDER_DESC.BALANCE AS BALPCS, ALLSALEORDER_DESC.SO_RATE AS RATE, SO_DAYS AS [DAYS], ISNULL(ITEMMASTER.ITEM_REORDER,0) AS PERDAYPROD ", "", " ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.so_no = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.TYPE = ALLSALEORDER_DESC.TYPE AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID INNER JOIN ITEMMASTER ON ALLSALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLSALEORDER.so_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON ALLSALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN DESIGNMASTER ON ALLSALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON ALLSALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_ID", " AND ALLSALEORDER.SO_YEARID =" & YearId & WHERECLAUSE & " ORDER BY ITEMMASTER.item_name, ALLSALEORDER.SO_DATE, ALLSALEORDER.SO_NO")
+            Dim TOTALLR, TOTALMTRS, TOTALAMT, TOTALGST, TOTALTAXABLE, TOTALINT, TOTALFINAL As Double
+            Dim GTOTALLR, GTOTALMTRS, GTOTALAMT, GTOTALGST, GTOTALTAXABLE, GTOTALINT, GTOTALFINAL As Double
+            Dim DT As DataTable = OBJCMN.SEARCH("  ITEMNAME, NAME, COUNT(LRNO) AS LR, SUM(TOTALMTRS) AS MTRS, RATE, ROUND(RATE*SUM(TOTALMTRS),2) AS AMT, ROUND(RATE*SUM(TOTALMTRS)*0.05,2) AS GST, ROUND((RATE*SUM(TOTALMTRS)) + (RATE*SUM(TOTALMTRS)*0.05),2) AS AMTWITHGST , BILLDATE AS [DATE], DATEDIFF(D,BILLDATE, GETDATE()) AS DAYS ", "", " PURCHASELRSTOCK ", WHERECLAUSE & " GROUP BY ITEMNAME, NAME, RATE, BILLDATE ORDER BY ITEMNAME, NAME ")
 
-            For Each DTROW As DataRow In DT.Rows
-                If LASTITEMNAME <> DTROW("ITEMNAME") Then
-                    LASTITEMNAME = DTROW("ITEMNAME")
-                    If GRIDSO.RowCount > 0 Then
-                        GRIDSO.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
-                        GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-                        GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-                        GRIDSO.Rows.Add("", "", "", "", "", "", "", "", "", "", "", "")
+            'For Each DTROW As DataRow In DT.Rows
+            '    If LASTITEMNAME <> DTROW("ITEMNAME") Then
+            '        LASTITEMNAME = DTROW("ITEMNAME")
+            '        If GRIDSTOCK.RowCount > 0 Then
+            '            GRIDSTOCK.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
+            '            GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
+            '            GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+            '            GRIDSTOCK.Rows.Add("", "", "", "", "", "", "", "", "", "", "", "")
 
-                        TOTALPCS = 0
-                        TOTALDELPCS = 0
-                        TOTALBALPCS = 0
-                    End If
-                    GRIDSO.Rows.Add(DTROW("ITEMNAME"), "", "", "PER DAY PROD - " & Val(DTROW("PERDAYPROD")), "", "", "", "", "", "", "", "")
-                    GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-                End If
-                GRIDSO.Rows.Add("", Val(DTROW("SONO")), Format(DTROW("SODATE"), "dd/MM/yyyy"), DTROW("NAME"), DTROW("AGENTNAME"), DTROW("NOTE"), DTROW("MILLNAME"), Val(DTROW("PCS")), Val(DTROW("OUTPCS")), Val(DTROW("BALPCS")), Format(Val(DTROW("RATE")), "0.00"), Val(DTROW("DAYS")))
-                TOTALPCS += Val(DTROW("PCS"))
-                GTOTALPCS += Val(DTROW("PCS"))
-                TOTALDELPCS += Val(DTROW("OUTPCS"))
-                GTOTALDELPCS += Val(DTROW("OUTPCS"))
-                TOTALBALPCS += Val(DTROW("BALPCS"))
-                GTOTALBALPCS += Val(DTROW("BALPCS"))
-            Next
+            '            TOTALPCS = 0
+            '            TOTALDELPCS = 0
+            '            TOTALBALPCS = 0
+            '        End If
+            '        GRIDSTOCK.Rows.Add(DTROW("ITEMNAME"), "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+            '        GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+            '    End If
+            '    GRIDSTOCK.Rows.Add(DTROW("NAME"), Val(DTROW("LR")), 0, Val(DTROW("MTRS")), 0, Format(Val(DTROW("RATE")), "0.00"), Format(Val(DTROW("AMT")), "0.00"), Format(Val(DTROW("GST")), "0.00"), Format(Val(DTROW("AMTWITHGST")), "0.00"), 0, Format(DTROW("DATE"), "dd/MM/yyyy"), Val(DTROW("DAYS")), Format(((Val(DTROW("AMT")) * (Val(TXTINTPER.Text.Trim) / 100)) / 30) * Val(DTROW("DAYS")), "0.00"), Format(Val(DTROW("AMT")) + (((Val(DTROW("AMT")) * (Val(TXTINTPER.Text.Trim) / 100)) / 30) * Val(DTROW("DAYS"))), "0.00"), "")
+            '    TOTALPCS += Val(DTROW("PCS"))
+            '    GTOTALPCS += Val(DTROW("PCS"))
+            '    TOTALDELPCS += Val(DTROW("OUTPCS"))
+            '    GTOTALDELPCS += Val(DTROW("OUTPCS"))
+            '    TOTALBALPCS += Val(DTROW("BALPCS"))
+            '    GTOTALBALPCS += Val(DTROW("BALPCS"))
+            'Next
 
-            'FOR TOTAL AND GRANDTOTAL ON LAST LINE
-            If GRIDSO.RowCount > 0 Then
-                GRIDSO.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+            ''FOR TOTAL AND GRANDTOTAL ON LAST LINE
+            'If GRIDSTOCK.RowCount > 0 Then
+            '    GRIDSTOCK.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
+            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
+            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
 
 
-                GRIDSO.Rows.Add("", "", "", "", "", "GRAND TOTAL", "", Val(GTOTALPCS), Val(GTOTALDELPCS), Val(GTOTALBALPCS), "", "")
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.ForeColor = Color.DarkGreen
-                GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-            End If
+            '    GRIDSTOCK.Rows.Add("", "", "", "", "", "GRAND TOTAL", "", Val(GTOTALPCS), Val(GTOTALDELPCS), Val(GTOTALBALPCS), "", "")
+            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.DarkGreen
+            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+            'End If
 
         Catch ex As Exception
             Throw ex
@@ -168,15 +168,15 @@ Public Class LRStockValuation
             xlWorkBook = xlapp.Workbooks.Add(misValue)
             xlWorkSheet = CType(xlWorkBook.Sheets("Sheet1"), Excel.Worksheet)
 
-            For k = 0 To GRIDSO.ColumnCount - 1
+            For k = 0 To GRIDSTOCK.ColumnCount - 1
                 xlWorkSheet.Cells(1, k + 1).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter
-                xlWorkSheet.Cells(1, k + 1) = GRIDSO.Columns(k).HeaderText
+                xlWorkSheet.Cells(1, k + 1) = GRIDSTOCK.Columns(k).HeaderText
                 xlWorkSheet.Rows.Item(1).EntireColumn.AutoFit()
             Next
-            For i = 0 To GRIDSO.RowCount - 1
-                For j = 0 To GRIDSO.ColumnCount - 1
+            For i = 0 To GRIDSTOCK.RowCount - 1
+                For j = 0 To GRIDSTOCK.ColumnCount - 1
                     xlWorkSheet.Cells(i + 2, j + 1).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter
-                    xlWorkSheet.Cells(i + 2, j + 1) = GRIDSO(j, i).Value.ToString()
+                    xlWorkSheet.Cells(i + 2, j + 1) = GRIDSTOCK(j, i).Value.ToString()
                 Next
                 xlWorkSheet.Rows.Item(i + 2).EntireColumn.AutoFit()
             Next
@@ -244,7 +244,7 @@ Public Class LRStockValuation
             Dim filePath As String = Application.StartupPath & "\Pending Order_" & CMBNAME.Text.Trim & ".pdf"
 
             ' ✅ Replace "YourDataGridView" with the actual DataGridView object from your form
-            ExportDataGridViewToPdfForWP(GRIDSO, filePath)
+            ExportDataGridViewToPdfForWP(GRIDSTOCK, filePath)
 
             ' Prepare WhatsApp sending form
             Dim OBJWHATSAPP As New SendWhatsapp

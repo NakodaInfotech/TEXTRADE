@@ -3,6 +3,7 @@ Imports BL
 Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports DevExpress.Utils.Gesture
 
 Public Class Reprint
     Public TEMPNO As String
@@ -86,9 +87,11 @@ Public Class Reprint
 
             For Each ROW As DataGridViewRow In GRIDREPRINT.Rows
                 If ClientName = "AVIS" And ROW.Cells(GPIECETYPE.Index).Value = "SECOND" Then ROW.Cells(GPIECETYPE.Index).Value = "FRESH"
+                If ClientName = "MAHAVIRPOLYCOT" And ROW.Cells(GFROMTYPE.Index).Value = "PACKING" And UserName <> "Admin" Then GoTo LINE2
                 For I As Integer = 1 To Val(txtcopies.Text.Trim)
                     BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GUNIT.Index).Value, ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GBALENO.Index).Value, ROW.Cells(GPRINTDESC.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), 1, Val(ROW.Cells(GCUT.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", "", ROW.Cells(GSHELF.Index).Value)
                 Next
+LINE2:          If ClientName = "MAHAVIRPOLYCOT" And ROW.Cells(GFROMTYPE.Index).Value = "PACKING" And UserName <> "Admin" Then    MessageBox.Show("You have already printed this barcode.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Next
 LINE1:
             clear()

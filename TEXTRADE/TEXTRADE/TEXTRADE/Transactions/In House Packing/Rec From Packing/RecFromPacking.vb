@@ -1917,7 +1917,7 @@ LINE1:
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         If EDIT = True Then
             PRINTREPORT()
-            If ClientName = "MAHAVIRPOLYCOT" Then
+            If ClientName = "MAHAVIRPOLYCOT" And UserName <> "Admin" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DTLOT As DataTable = OBJCMN.SEARCH("*", "", " RECPACKING ", " AND  RECPACKING.REC_BARCODEPRINTED=1 AND REC_NO= " & TXTRECNO.Text.Trim & " AND REC_YEARID = " & YearId)
                 If DTLOT.Rows.Count > 0 Then
