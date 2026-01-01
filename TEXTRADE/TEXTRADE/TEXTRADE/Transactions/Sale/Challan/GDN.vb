@@ -660,6 +660,8 @@ CHECKNEXTLINEMTRS:
 
 
                 CMBAGENT.Text = DTSO.Rows(0).Item("AGENTNAME")
+                If DTSO.Rows(0).Item("HASTE") <> "" And CMBHASTE.Text.Trim = "" Then CMBHASTE.Text = DTSO.Rows(0).Item("HASTE")
+
                 If DTSO.Rows(0).Item("TRANSNAME") <> "" Then CMBTRANS.Text = DTSO.Rows(0).Item("TRANSNAME")
                 cmbcity.Text = DTSO.Rows(0).Item("CITYNAME")
                 CMBDISPATCHTO.Text = DTSO.Rows(0).Item("DELIVERYAT")

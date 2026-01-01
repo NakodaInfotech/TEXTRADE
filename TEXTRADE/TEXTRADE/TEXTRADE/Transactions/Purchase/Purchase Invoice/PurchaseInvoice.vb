@@ -1679,7 +1679,7 @@ CHECKNEXTLINE:
             End If
         End If
 
-        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" And ClientName <> "LAXMI" Then
+        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" And ClientName <> "LAXMI" And ClientName <> "NR" Then
             EP.SetError(CMBAGENT, " Please Enter Agent Name ")
             bln = False
         End If
