@@ -49,9 +49,10 @@ Partial Class SelectSO
         Me.GGRIDPARTYPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDDESC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.GORDERON = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GHASTE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +117,7 @@ Partial Class SelectSO
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GGRIDSRNO, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GTYPE, Me.GPONO, Me.GREFNO, Me.GRATE, Me.GAGENTNAME, Me.GTRANSNAME, Me.GCITY, Me.GGRIDPARTYPONO, Me.GREMARKS, Me.GGRIDDESC, Me.GORDERON})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GGRIDSRNO, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GTYPE, Me.GPONO, Me.GREFNO, Me.GRATE, Me.GAGENTNAME, Me.GTRANSNAME, Me.GCITY, Me.GGRIDPARTYPONO, Me.GREMARKS, Me.GGRIDDESC, Me.GORDERON, Me.GHASTE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -350,6 +351,15 @@ Partial Class SelectSO
         Me.GGRIDDESC.VisibleIndex = 19
         Me.GGRIDDESC.Width = 120
         '
+        'GORDERON
+        '
+        Me.GORDERON.Caption = "Order On"
+        Me.GORDERON.FieldName = "ORDERON"
+        Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.OptionsColumn.AllowEdit = False
+        Me.GORDERON.Visible = True
+        Me.GORDERON.VisibleIndex = 20
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -371,14 +381,14 @@ Partial Class SelectSO
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'GORDERON
+        'GHASTE
         '
-        Me.GORDERON.Caption = "Order On"
-        Me.GORDERON.FieldName = "ORDERON"
-        Me.GORDERON.Name = "GORDERON"
-        Me.GORDERON.OptionsColumn.AllowEdit = False
-        Me.GORDERON.Visible = True
-        Me.GORDERON.VisibleIndex = 20
+        Me.GHASTE.Caption = "Haste"
+        Me.GHASTE.FieldName = "HASTE"
+        Me.GHASTE.Name = "GHASTE"
+        Me.GHASTE.Visible = True
+        Me.GHASTE.VisibleIndex = 21
+        Me.GHASTE.Width = 150
         '
         'SelectSO
         '
@@ -431,4 +441,5 @@ Partial Class SelectSO
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDDESC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GORDERON As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GHASTE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
