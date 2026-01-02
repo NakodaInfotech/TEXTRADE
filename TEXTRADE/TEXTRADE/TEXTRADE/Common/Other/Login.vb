@@ -1182,7 +1182,7 @@ LINE1:
                     OBJRPT.MISALLDAILY_EXCEL(CmpId, YearId, Now.Date, Now.Date)
                     Dim ALATTACHMENT As New ArrayList
                     ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx")
-                    sendemail("mastercot@yahoo.in,ankitrshah81@yahoo.com,rpshah6012@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
+                    sendemail("mastercot@yahoo.in,ankitrshah81@yahoo.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
                     End
                 End If
             End If
