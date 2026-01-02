@@ -181,7 +181,7 @@ Public Class ClsStockMaster
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMDONE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TEMPSOLD", alParaval(I)))
                 I = I + 1
 
             End With
