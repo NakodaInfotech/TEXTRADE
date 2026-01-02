@@ -6,7 +6,7 @@ Imports iTextSharp.text.pdf
 
 Public Class OrderGridReport
 
-    Public NAME As String
+    Public NAME As String = ""
     Public SOCLAUSE As String
     Public ORDERTYPE As String
     Public FRMSTRING As String
@@ -27,9 +27,7 @@ Public Class OrderGridReport
 
     Sub FILLCMB()
         Try
-            If NAME <> "" Then
-                CMBNAME.Text = NAME
-            End If
+            If ClientName <> "ABHEE" And NAME <> "" Then CMBNAME.Text = NAME Else CMBNAME.Text = ""
             If FRMSTRING = "SO" Then
                 If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             Else

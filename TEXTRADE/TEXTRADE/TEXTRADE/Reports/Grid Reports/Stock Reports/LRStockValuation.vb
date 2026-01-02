@@ -52,8 +52,8 @@ Public Class LRStockValuation
 
     Sub FILLGRID()
         Try
-
-            Dim WHERECLAUSE As String = " AND PURCHASELRSTOCK.SOLD = 0 AND PURCHASELRSTOCK.YEARID = " & YearId
+            Dim IntRate As Double = Val(TXTINTPER.Text)
+            Dim WHERECLAUSE As String = " AND PURCHASELRSTOCK.SOLD = 0  AND PURCHASELRSTOCK.YEARID = " & YearId
             Dim NAMECLAUSE As String = ""
             Dim ITEMCLAUSE As String = ""
 
@@ -99,48 +99,105 @@ Public Class LRStockValuation
 
 
             GRIDSTOCK.RowCount = 0
+
             Dim OBJCMN As New ClsCommon
             Dim LASTITEMNAME As String = ""
-            Dim TOTALLR, TOTALMTRS, TOTALAMT, TOTALGST, TOTALTAXABLE, TOTALINT, TOTALFINAL As Double
-            Dim GTOTALLR, GTOTALMTRS, GTOTALAMT, GTOTALGST, GTOTALTAXABLE, GTOTALINT, GTOTALFINAL As Double
+
+            Dim TOTALLR, TOTALRUNLR, TOTALMTRS, TOTALRUNMTR, TOTALAMT, TOTALGST, TOTALRUNTAMT, TOTALFINAL, TOTALINT, TOTALFAMT, TOTALARATE As Double
+            Dim GTOTALLR, GTOTALRUNLR, GTOTALMTRS, GTOTALRUNMTR, GTOTALAMT, GTOTALGST, GTOTALRUNTAMT, GTOTALFINAL As Double
+
             Dim DT As DataTable = OBJCMN.SEARCH("  ITEMNAME, NAME, COUNT(LRNO) AS LR, SUM(TOTALMTRS) AS MTRS, RATE, ROUND(RATE*SUM(TOTALMTRS),2) AS AMT, ROUND(RATE*SUM(TOTALMTRS)*0.05,2) AS GST, ROUND((RATE*SUM(TOTALMTRS)) + (RATE*SUM(TOTALMTRS)*0.05),2) AS AMTWITHGST , BILLDATE AS [DATE], DATEDIFF(D,BILLDATE, GETDATE()) AS DAYS ", "", " PURCHASELRSTOCK ", WHERECLAUSE & " GROUP BY ITEMNAME, NAME, RATE, BILLDATE ORDER BY ITEMNAME, NAME ")
+            Dim RUNLR As Double = 0
+            Dim RUNMTR As Double = 0
+            Dim RUNTAMT As Double = 0
 
-            'For Each DTROW As DataRow In DT.Rows
-            '    If LASTITEMNAME <> DTROW("ITEMNAME") Then
-            '        LASTITEMNAME = DTROW("ITEMNAME")
-            '        If GRIDSTOCK.RowCount > 0 Then
-            '            GRIDSTOCK.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
-            '            GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-            '            GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-            '            GRIDSTOCK.Rows.Add("", "", "", "", "", "", "", "", "", "", "", "")
+            For Each DTROW As DataRow In DT.Rows
 
-            '            TOTALPCS = 0
-            '            TOTALDELPCS = 0
-            '            TOTALBALPCS = 0
-            '        End If
-            '        GRIDSTOCK.Rows.Add(DTROW("ITEMNAME"), "", "", "", "", "", "", "", "", "", "", "", "", "", "")
-            '        GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-            '    End If
-            '    GRIDSTOCK.Rows.Add(DTROW("NAME"), Val(DTROW("LR")), 0, Val(DTROW("MTRS")), 0, Format(Val(DTROW("RATE")), "0.00"), Format(Val(DTROW("AMT")), "0.00"), Format(Val(DTROW("GST")), "0.00"), Format(Val(DTROW("AMTWITHGST")), "0.00"), 0, Format(DTROW("DATE"), "dd/MM/yyyy"), Val(DTROW("DAYS")), Format(((Val(DTROW("AMT")) * (Val(TXTINTPER.Text.Trim) / 100)) / 30) * Val(DTROW("DAYS")), "0.00"), Format(Val(DTROW("AMT")) + (((Val(DTROW("AMT")) * (Val(TXTINTPER.Text.Trim) / 100)) / 30) * Val(DTROW("DAYS"))), "0.00"), "")
-            '    TOTALPCS += Val(DTROW("PCS"))
-            '    GTOTALPCS += Val(DTROW("PCS"))
-            '    TOTALDELPCS += Val(DTROW("OUTPCS"))
-            '    GTOTALDELPCS += Val(DTROW("OUTPCS"))
-            '    TOTALBALPCS += Val(DTROW("BALPCS"))
-            '    GTOTALBALPCS += Val(DTROW("BALPCS"))
-            'Next
+                Dim AMT As Double = Val(DTROW("AMT"))
+                Dim DAYS As Integer = Val(DTROW("DAYS"))
+                Dim INTAMT As Double = Math.Round((AMT * IntRate / 100 / 30) * DAYS, 0)
+                Dim WITHINT As Double = Math.Round(AMT + INTAMT, 0)
 
-            ''FOR TOTAL AND GRANDTOTAL ON LAST LINE
-            'If GRIDSTOCK.RowCount > 0 Then
-            '    GRIDSTOCK.Rows.Add("", "", "", "", "", "TOTAL", "", Val(TOTALPCS), Val(TOTALDELPCS), Val(TOTALBALPCS), "", "")
-            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
-            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                If LASTITEMNAME <> DTROW("ITEMNAME").ToString Then
+                    If GRIDSTOCK.RowCount > 0 Then
+                        ' ITEM TOTAL
+                        GRIDSTOCK.Rows.Add("TOTAL", TOTALLR, "", Format(TOTALMTRS, "0.00"), "", "", Format(TOTALAMT, "0.00"), Format(TOTALGST, "0.00"), Format(TOTALFINAL, "0.00"), "", "", "", TOTALINT, TOTALFAMT, TOTALARATE)
+                        GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.Maroon
+                        GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+
+                        ' Reset item totals
+                        TOTALLR = 0 : TOTALMTRS = 0 : TOTALAMT = 0 : TOTALGST = 0 : TOTALFINAL = 0 : RUNLR = 0 : RUNMTR = 0 : RUNTAMT = 0 : TOTALRUNLR = 0 : TOTALRUNMTR = 0 : TOTALRUNTAMT = 0 : TOTALINT = 0 : TOTALFAMT = 0 : TOTALARATE = 0
+
+                        GRIDSTOCK.Rows.Add()
+                    End If
+
+                    LASTITEMNAME = DTROW("ITEMNAME").ToString
+                    GRIDSTOCK.Rows.Add(LASTITEMNAME)
+                    With GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1)
+                        .DefaultCellStyle.BackColor = Color.Black
+                        .DefaultCellStyle.ForeColor = Color.White
+                        .DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                    End With
+
+                End If
+                RUNLR += Val(DTROW("LR"))
+                RUNMTR += Val(DTROW("MTRS"))
+                RUNTAMT += Val(DTROW("AMTWITHGST"))
+
+                ' Detail row
+                GRIDSTOCK.Rows.Add(DTROW("NAME"), Val(DTROW("LR")), RUNLR, Val(DTROW("MTRS")), RUNMTR, Format(Val(DTROW("RATE")), "0.00"), Format(Val(DTROW("AMT")), "0.00"), Format(Val(DTROW("GST")), "0.00"), Format(Val(DTROW("AMTWITHGST")), "0.00"), RUNTAMT, Format(DTROW("DATE"), "dd/MM/yyyy"), Val(DTROW("DAYS")), Format(INTAMT, "0"), Format(WITHINT, "0"), Format(IntRate, "0.00") & "%")
+                With GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1)
+                    .DefaultCellStyle.BackColor = Color.FromArgb(255, 224, 224) ' Light pink
+                End With
+                ' Item totals
+                TOTALLR += Val(DTROW("LR"))
+                TOTALMTRS += Val(DTROW("MTRS"))
+                TOTALAMT += Val(DTROW("AMT"))
+                TOTALGST += Val(DTROW("GST"))
+                TOTALFINAL += Val(DTROW("AMTWITHGST"))
+                'TOTALRUNLR += Val(RUNLR)
+                TOTALRUNMTR += Val(RUNMTR)
+                'TOTALRUNTAMT += Val(RUNTAMT)
+                TOTALINT += Val(INTAMT)
+                TOTALFAMT += Val(WITHINT)
+                If TOTALRUNMTR > 0 Then
+                    TOTALARATE = Math.Round(TOTALFAMT / TOTALRUNMTR, 2)
+                Else
+                    TOTALARATE = 0
+                End If
+
+                ' Grand totals
+                GTOTALLR += Val(DTROW("LR"))
+                GTOTALMTRS += Val(DTROW("MTRS"))
+                GTOTALAMT += Val(DTROW("AMT"))
+                GTOTALGST += Val(DTROW("GST"))
+                GTOTALFINAL += Val(DTROW("AMTWITHGST"))
+                'GTOTALRUNLR += Val(TOTALRUNLR)
+                'GTOTALRUNMTR += Val(TOTALRUNMTR)
+                'GTOTALRUNTAMT += Val(TOTALRUNTAMT)
+
+            Next
+
+            'FOR TOTAL AND GRANDTOTAL ON LAST LINE
+            If GRIDSTOCK.RowCount > 0 Then
+                GRIDSTOCK.Rows.Add("TOTAL", TOTALLR, "", Format(TOTALMTRS, "0.00"), "", "", Format(TOTALAMT, "0.00"), Format(TOTALGST, "0.00"), Format(TOTALFINAL, "0.00"), "", "", "", TOTALINT, TOTALFAMT, TOTALARATE)
+                With GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1)
+                    .DefaultCellStyle.ForeColor = Color.Maroon
+                    .DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                    .DefaultCellStyle.BackColor = Color.White
+                End With
 
 
-            '    GRIDSTOCK.Rows.Add("", "", "", "", "", "GRAND TOTAL", "", Val(GTOTALPCS), Val(GTOTALDELPCS), Val(GTOTALBALPCS), "", "")
-            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.ForeColor = Color.DarkGreen
-            '    GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
-            'End If
+                ' Grand total
+                GRIDSTOCK.Rows.Add("GRAND TOTAL", GTOTALLR, "", Format(GTOTALMTRS, "0.00"), "", "", Format(GTOTALAMT, "0.00"), Format(GTOTALGST, "0.00"), Format(GTOTALFINAL, "0.00"), "", "", "")
+                With GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1)
+                    .DefaultCellStyle.ForeColor = Color.DarkGreen
+                    .DefaultCellStyle.Font = New Font("Calibri", 10, FontStyle.Bold)
+                    .DefaultCellStyle.BackColor = Color.White
+                End With
+
+            End If
+
 
         Catch ex As Exception
             Throw ex
