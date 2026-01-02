@@ -231,6 +231,7 @@ Public Class PurchaseMaster
 
         CMBCOSTCENTERNAME.Text = ""
         CHKINTCALC.Checked = False
+        CHKTEMPSOLD.Checked = False
         If ClientName = "LAXMI" Then
             CMBDYEINGNAME.Visible = False
             Label17.Visible = False
@@ -491,7 +492,7 @@ Public Class PurchaseMaster
                         TXTSPLREMARKS.Text = dr("SPLREMARKS")
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
                         If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
-
+                        If dr("TEMPSOLD") = 0 Then CHKTEMPSOLD.Checked = False Else CHKTEMPSOLD.Checked = True
 
                         'Item Grid
                         GRIDBILL.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGNNO"), dr("COLOR"), Val(dr("AQTY")), Val(dr("FOLDPER")), dr("PRINTDESC"), dr("LOTNO"), dr("BALENO").ToString, Val(dr("QTY")), dr("UNIT").ToString, Val(dr("CUT")), Val(dr("MTRS")), Val(dr("WT")), Val(dr("RATE")), dr("PER").ToString, Val(dr("AMT")), Val(dr("DISCPER")), Val(dr("DISCAMT")), Val(dr("SPDISCPER")), Val(dr("SPDISCAMT")), Val(dr("OTHERAMT")), Val(dr("TAXABLEAMT")), Val(dr("CGSTPER")), Val(dr("CGSTAMT")), Val(dr("SGSTPER")), Val(dr("SGSTAMT")), Val(dr("IGSTPER")), Val(dr("IGSTAMT")), Val(dr("GRIDTOTAL")), dr("GRNNO"), dr("GRNGRIDSRNO"), dr("GRIDTYPE"), dr("GRIDDONE"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")))
@@ -710,6 +711,7 @@ Public Class PurchaseMaster
             alParaval.Add(Val(TXTTOTALWITHGST.Text.Trim))
             If CHKMANUALTCS.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             If CHKTCS.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+
             alParaval.Add(Val(TXTTCSPER.Text.Trim))
             alParaval.Add(Val(TXTTCSAMT.Text.Trim))
 
@@ -1065,6 +1067,7 @@ Public Class PurchaseMaster
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+            If CHKTEMPSOLD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval
@@ -1676,7 +1679,7 @@ CHECKNEXTLINE:
             End If
         End If
 
-        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" And ClientName <> "LAXMI" Then
+        If CMBAGENT.Text.Trim.Length = 0 And ClientName <> "NVAHAN" And ClientName <> "SAKARIA" And ClientName <> "MOMAI" And ClientName <> "SUBHLAXMI" And ClientName <> "ABHEE" And ClientName <> "LAXMI" And ClientName <> "NR" Then
             EP.SetError(CMBAGENT, " Please Enter Agent Name ")
             bln = False
         End If

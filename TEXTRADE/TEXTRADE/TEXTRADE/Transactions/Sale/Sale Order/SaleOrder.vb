@@ -1796,50 +1796,9 @@ LINE1:
 
     Private Sub CMBCONSIGNEE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBHASTE.Validating
         Try
-            '            Cursor.Current = Cursors.WaitCursor
-            '            If CMBHASTE.Text.Trim <> "" Then
-            '                pcase(CMBHASTE)
-            '                Dim objclscommon As New ClsCommonMaster
-            '                Dim dt As DataTable
-            '                dt = objclscommon.search("ADDRESS_full", "", " ADDRESSMASTER INNER JOIN LEDGERS ON ADDRESSMASTER.ADDRESS_LEDGERID = LEDGERS.ACC_id AND ADDRESSMASTER.ADDRESS_cmpid = LEDGERS.ACC_cmpid AND ADDRESSMASTER.ADDRESS_locationid = LEDGERS.ACC_locationid AND ADDRESSMASTER.ADDRESS_yearid = LEDGERS.ACC_yearid  ", "  and  LEDGERS.ACC_cmpname ='" & cmbname.Text.Trim & "'  and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
-            '                If dt.Rows.Count = 0 Then
-            '                    Dim a As String = CMBHASTE.Text.Trim
-            '                    Dim tempmsg As Integer = MsgBox("ADDRESS not present, Add New?", MsgBoxStyle.YesNo, "Textrade")
-            '                    If tempmsg = vbYes Then
-
-            '                        CMBHASTE.Text = a
-            '                        Dim objADDRESSmaster As New addressMaster
-            '                        objADDRESSmaster.txtname.Text = CMBHASTE.Text
-            '                        objADDRESSmaster.cmbname.Text = cmbname.Text
-            '                        objADDRESSmaster.cmbname.Enabled = False
-            '                        objADDRESSmaster.ShowDialog()
-            '                        dt = objclscommon.search("ADDRESS_alias", "", "ADDRESSMaster", " and ADDRESS_alias = '" & CMBHASTE.Text.Trim & "' and ADDRESS_cmpid = " & CmpId & " and ADDRESS_Locationid = " & Locationid & " and ADDRESS_Yearid = " & YearId)
-            '                        If dt.Rows.Count > 0 Then
-            '                            Dim dt1 As New DataTable
-            '                            dt1 = CMBHASTE.DataSource
-            '                            If CMBHASTE.DataSource <> Nothing Then
-            'line1:
-            '                                If dt1.Rows.Count > 0 Then
-            '                                    dt1.Rows.Add(CMBHASTE.Text.Trim)
-            '                                    CMBHASTE.Text = a
-            '                                End If
-            '                            End If
-            '                        End If
-            '                        e.Cancel = True
-            '                    Else
-            '                        e.Cancel = True
-            '                    End If
-            '                Else
-            '                    txtDeliveryadd.Text = dt.Rows(0).Item(0).ToString
-            '                End If
-            '            End If
             If CMBHASTE.Text.Trim <> "" Then NAMEVALIDATE(CMBHASTE, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS")
-
         Catch ex As Exception
-            'GoTo line1
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        Finally
-            Cursor.Current = Cursors.Default
+            Throw ex
         End Try
     End Sub
 
@@ -2414,21 +2373,9 @@ LINESINGLE:
 
     Private Sub CMBHASTE_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBHASTE.Enter
         Try
-            Cursor.Current = Cursors.WaitCursor
-            If CMBHASTE.Text.Trim = "" Then
-                Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search(" ADDRESS_alias ", "", "   ADDRESSMASTER INNER JOIN LEDGERS ON ADDRESSMASTER.ADDRESS_LEDGERID = LEDGERS.ACC_id AND ADDRESSMASTER.ADDRESS_cmpid = LEDGERS.ACC_cmpid AND ADDRESSMASTER.ADDRESS_locationid = LEDGERS.ACC_locationid AND ADDRESSMASTER.ADDRESS_yearid = LEDGERS.ACC_yearid  ", "  and  LEDGERS.ACC_cmpname ='" & cmbname.Text.Trim & "' and ADDRESS_cmpid=" & CmpId & " and ADDRESS_Locationid=" & Locationid & " and ADDRESS_Yearid=" & YearId)
-                If dt.Rows.Count > 0 Then
-                    dt.DefaultView.Sort = "ADDRESS_alias"
-                    CMBHASTE.DataSource = dt
-                    CMBHASTE.DisplayMember = "ADDRESS_alias"
-                End If
-                CMBHASTE.SelectAll()
-            End If
+            If CMBHASTE.Text.Trim = "" Then FILLNAME(CMBHASTE, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        Finally
-            Cursor.Current = Cursors.Default
+            Throw ex
         End Try
     End Sub
 
@@ -3890,5 +3837,21 @@ LINE1:
 
     Private Sub TXTCUT_GotFocus(sender As Object, e As EventArgs) Handles TXTCUT.GotFocus
         TXTCUT.SelectAll()
+    End Sub
+
+    Private Sub CMBHASTE_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBHASTE.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPNAME <> "" Then CMBHASTE.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
