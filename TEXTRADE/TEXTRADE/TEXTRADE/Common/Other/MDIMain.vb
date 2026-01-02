@@ -10828,4 +10828,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub UpdatePendingLRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePendingLRStockToolStripMenuItem.Click
+        Try
+            Dim OBJLR As New UpdatePendingLrStock
+            OBJLR.MdiParent = Me
+            OBJLR.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
