@@ -24,6 +24,7 @@ Partial Class LedgerFilter
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LedgerFilter))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.CMBGROUPOFCOMPANIES = New System.Windows.Forms.ComboBox()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.CHKREMARKS = New System.Windows.Forms.CheckBox()
@@ -33,6 +34,7 @@ Partial Class LedgerFilter
         Me.TXTAMT = New System.Windows.Forms.TextBox()
         Me.CHKHEADER = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.RBSUMMRUNBAL = New System.Windows.Forms.RadioButton()
         Me.RBPARTYMONTHLY = New System.Windows.Forms.RadioButton()
         Me.RBPARTYSUMM = New System.Windows.Forms.RadioButton()
         Me.RBCONFIRMATIONSUMM = New System.Windows.Forms.RadioButton()
@@ -76,7 +78,8 @@ Partial Class LedgerFilter
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lblname = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
-        Me.RBSUMMRUNBAL = New System.Windows.Forms.RadioButton()
+        Me.GPARTYWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAGENTWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -92,6 +95,7 @@ Partial Class LedgerFilter
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.CMBGROUPOFCOMPANIES)
         Me.BlendPanel1.Controls.Add(Me.Label47)
         Me.BlendPanel1.Controls.Add(Me.CHKREMARKS)
@@ -120,6 +124,20 @@ Partial Class LedgerFilter
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDWHATSAPP
+        '
+        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(488, 526)
+        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
+        Me.CMDWHATSAPP.Size = New System.Drawing.Size(84, 28)
+        Me.CMDWHATSAPP.TabIndex = 672
+        Me.CMDWHATSAPP.Text = "&WhatAapp"
+        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
         '
         'CMBGROUPOFCOMPANIES
         '
@@ -235,6 +253,17 @@ Partial Class LedgerFilter
         Me.GroupBox5.Size = New System.Drawing.Size(229, 353)
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
+        '
+        'RBSUMMRUNBAL
+        '
+        Me.RBSUMMRUNBAL.AutoSize = True
+        Me.RBSUMMRUNBAL.BackColor = System.Drawing.Color.Transparent
+        Me.RBSUMMRUNBAL.Location = New System.Drawing.Point(13, 237)
+        Me.RBSUMMRUNBAL.Name = "RBSUMMRUNBAL"
+        Me.RBSUMMRUNBAL.Size = New System.Drawing.Size(157, 19)
+        Me.RBSUMMRUNBAL.TabIndex = 9
+        Me.RBSUMMRUNBAL.Text = "Summ With Running Bal"
+        Me.RBSUMMRUNBAL.UseVisualStyleBackColor = False
         '
         'RBPARTYMONTHLY
         '
@@ -357,7 +386,7 @@ Partial Class LedgerFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdshow.Location = New System.Drawing.Point(459, 526)
+        Me.cmdshow.Location = New System.Drawing.Point(579, 526)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(84, 28)
         Me.cmdshow.TabIndex = 9
@@ -393,13 +422,13 @@ Partial Class LedgerFilter
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GUNDER, Me.GCITY, Me.GAGENTNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GUNDER, Me.GCITY, Me.GAGENTNAME, Me.GPARTYWHATSAPP, Me.GAGENTWHATSAPP})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
-        Me.gridbill.OptionsView.ShowFooter = True
+        Me.gridbill.OptionsView.ShowGroupPanel = False
         '
         'GCHK
         '
@@ -421,7 +450,7 @@ Partial Class LedgerFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -653,7 +682,7 @@ Partial Class LedgerFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(547, 526)
+        Me.cmdexit.Location = New System.Drawing.Point(667, 526)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 10
@@ -718,16 +747,17 @@ Partial Class LedgerFilter
         Me.cmbname.Size = New System.Drawing.Size(264, 23)
         Me.cmbname.TabIndex = 0
         '
-        'RBSUMMRUNBAL
+        'GPARTYWHATSAPP
         '
-        Me.RBSUMMRUNBAL.AutoSize = True
-        Me.RBSUMMRUNBAL.BackColor = System.Drawing.Color.Transparent
-        Me.RBSUMMRUNBAL.Location = New System.Drawing.Point(13, 237)
-        Me.RBSUMMRUNBAL.Name = "RBSUMMRUNBAL"
-        Me.RBSUMMRUNBAL.Size = New System.Drawing.Size(157, 19)
-        Me.RBSUMMRUNBAL.TabIndex = 9
-        Me.RBSUMMRUNBAL.Text = "Summ With Running Bal"
-        Me.RBSUMMRUNBAL.UseVisualStyleBackColor = False
+        Me.GPARTYWHATSAPP.Caption = "Party Whatsapp"
+        Me.GPARTYWHATSAPP.FieldName = "PARTYWHATSAPP"
+        Me.GPARTYWHATSAPP.Name = "GPARTYWHATSAPP"
+        '
+        'GAGENTWHATSAPP
+        '
+        Me.GAGENTWHATSAPP.Caption = "AGENT WHATSAPP"
+        Me.GAGENTWHATSAPP.FieldName = "AGENTWHATSAPP"
+        Me.GAGENTWHATSAPP.Name = "GAGENTWHATSAPP"
         '
         'LedgerFilter
         '
@@ -813,4 +843,7 @@ Partial Class LedgerFilter
     Friend WithEvents Label47 As Label
     Friend WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RBSUMMRUNBAL As RadioButton
+    Friend WithEvents CMDWHATSAPP As Button
+    Friend WithEvents GPARTYWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAGENTWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
 End Class

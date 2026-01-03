@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 
 Public Class LedgerFilter
@@ -8,6 +9,8 @@ Public Class LedgerFilter
     Dim a1, a2, a3, a4 As String
     Dim a11, a12, a13, a14 As String
     Public FRMSTRING As String
+    Dim DTMAIL As New DataTable
+    Dim DTWHATSAPP As New DataTable
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -34,7 +37,7 @@ Public Class LedgerFilter
 
     Sub FILLCMB()
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, False, "")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, False, "")
             If CMBGROUP.Text.Trim = "" Then FILLGROUP("")
             If CMBGROUPOFCOMPANIES.Text.Trim = "" Then FILLGROUPCOMPANY(CMBGROUPOFCOMPANIES)
         Catch ex As Exception
@@ -76,6 +79,25 @@ Public Class LedgerFilter
 
     Private Sub LedgerFilter_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            DTMAIL.Columns.Add("NAME")
+            DTMAIL.Columns.Add("PARTYEMAILID")
+            DTMAIL.Columns.Add("AGENTNAME")
+            DTMAIL.Columns.Add("AGENTEMAILID")
+            DTMAIL.Columns.Add("SUBJECT")
+            DTMAIL.Columns.Add("ATTACHMENT")
+            DTMAIL.Columns.Add("FILENAME")
+
+
+
+            DTWHATSAPP.Columns.Add("NAME")
+            DTWHATSAPP.Columns.Add("PARTYWHATSAPP")
+            DTWHATSAPP.Columns.Add("AGENTNAME")
+            DTWHATSAPP.Columns.Add("AGENTWHATSAPP")
+            DTWHATSAPP.Columns.Add("SUBJECT")
+            DTWHATSAPP.Columns.Add("ATTACHMENT")
+            DTWHATSAPP.Columns.Add("FILENAME")
+
+
             FILLCMB()
         Catch ex As Exception
             Throw ex
@@ -97,12 +119,55 @@ Public Class LedgerFilter
     Private Sub RBACCOUNT_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RBACCOUNT.CheckedChanged
         Try
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search(" CAST (0 AS BIT) AS CHK,LEDGERS.Acc_cmpname AS NAME, GROUPMASTER.group_secondary AS UNDER, ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(AGENTLEDGERS.ACC_CMPNAME,'') AS AGENTNAME  ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", " AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            Dim dt As DataTable = objclsCMST.search(" CAST (0 AS BIT) AS CHK,LEDGERS.Acc_cmpname AS NAME, GROUPMASTER.group_secondary AS UNDER, ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(AGENTLEDGERS.ACC_CMPNAME,'') AS AGENTNAME, ISNULL(LEDGERS.ACC_WHATSAPPNO,'') AS PARTYWHATSAPP, ISNULL(AGENTLEDGERS.ACC_WHATSAPPNO,'') AS AGENTWHATSAPP  ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID ", " AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
+        Try
+            If MsgBox("Send WhatsApp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+            DTMAIL.Rows.Clear()
+            DTWHATSAPP.Rows.Clear()
+
+            If RBSELECTED.Checked = True Then
+                gridbill.ClearColumnsFilter()
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        Call cmdshow_Click(sender, e, True, False, "", dtrow("NAME"), "")
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_LEDGER" & ".PDF")
+                        FILENAME.Add(dtrow("NAME") & "_LEDGER.pdf")
+                        DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTNAME"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - LEDGER ", Application.StartupPath & "\" & dtrow("NAME") & "_LEDGER.pdf", dtrow("NAME") & "_LEDGER.pdf")
+                    End If
+                Next
+            End If
+
+
+            If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+            Dim OBJWHATSAPP As New SendMultipleWhatsapp
+            OBJWHATSAPP.PATH = ALATTACHMENT
+            OBJWHATSAPP.FILENAME = FILENAME
+            OBJWHATSAPP.DT = DTWHATSAPP
+            OBJWHATSAPP.ShowDialog()
+
+            If ClientName = "SNCM" Then
+                For Each filePath As String In OBJWHATSAPP.PATH
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                    End If
+                Next
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -130,10 +195,13 @@ Public Class LedgerFilter
         gridbilldetails.Visible = False
     End Sub
 
-    Private Sub cmdshow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdshow.Click
+    Private Sub cmdshow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs, Optional SENDWHATSAPP As Boolean = False, Optional SENDMAIL As Boolean = False, Optional GROUPNAME As String = "", Optional PARTYNAME As String = "", Optional AGENTNAME As String = "") Handles cmdshow.Click
         Try
             Dim objreg As New registerdesign
             objreg.PARTYNAME = cmbname.Text.Trim
+            objreg.DIRECTMAIL = SENDMAIL
+            objreg.DIRECTWHATSAPP = SENDWHATSAPP
+            If SENDWHATSAPP = True Or SENDMAIL = True Then objreg.DIRECTPRINT = True
 
             If RBPARTYSTATEMENT.Checked = True Or RBPARTYSTATEMENTDTLS.Checked = True Then
 
@@ -172,7 +240,7 @@ Public Class LedgerFilter
 
                 objreg.SHOWHEADER = CHKHEADER.Checked
                 objreg.OPENING = OPENING
-                If RBPARTYSTATEMENT.Checked = True Then objreg.frmstring = "PARTYSTATEMENT" Else objreg.frmstring = "PARTYSTATEMENTDTLS"
+                If RBPARTYSTATEMENT.Checked = True Then objreg.FRMSTRING = "PARTYSTATEMENT" Else objreg.FRMSTRING = "PARTYSTATEMENTDTLS"
                 objreg.strsearch = " {REGISTER_GROUPED.Yearid} = " & YearId & " AND {REGISTER_GROUPED.name} = '" & cmbname.Text.Trim & "'"
                 objreg.MdiParent = MDIMain
                 objreg.Show()
@@ -197,22 +265,22 @@ Public Class LedgerFilter
             If ClientName = "SAKARIA" And CMBGROUPOFCOMPANIES.Text.Trim <> "" Then objreg.PERIOD = CMBGROUPOFCOMPANIES.Text.Trim & " - " & objreg.PERIOD
 
             If RBSUMMARY.Checked = True Then
-                objreg.frmstring = "LedgerBook"
+                objreg.FRMSTRING = "LedgerBook"
             ElseIf RBDETAILS.Checked = True Then
-                objreg.frmstring = "LedgerBookDetails"
+                objreg.FRMSTRING = "LedgerBookDetails"
             ElseIf RBPARTYMONTHLY.Checked = True Then
-                objreg.frmstring = "LedgerBookMonthlyTypeSumm"
+                objreg.FRMSTRING = "LedgerBookMonthlyTypeSumm"
                 If MsgBox("Print Letter Format", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then objreg.LETTERFORMAT = 1 Else objreg.LETTERFORMAT = 0
             ElseIf RBTFORMAT.Checked = True Then
-                objreg.frmstring = "LedgerBookTFormat"
+                objreg.FRMSTRING = "LedgerBookTFormat"
             ElseIf RBCONFIRMATION.Checked = True Then
-                objreg.frmstring = "LedgerBookConfirm"
+                objreg.FRMSTRING = "LedgerBookConfirm"
             ElseIf RBCONFIRMATIONSUMM.Checked = True Then
-                objreg.frmstring = "LedgerBookConfirmSumm"
+                objreg.FRMSTRING = "LedgerBookConfirmSumm"
             ElseIf RBPARTYSUMM.Checked = True Then
-                objreg.frmstring = "LedgerPartySumm"
+                objreg.FRMSTRING = "LedgerPartySumm"
             ElseIf RBSUMMRUNBAL.Checked = True Then
-                objreg.frmstring = "LedgerBookRunBal"
+                objreg.FRMSTRING = "LedgerBookRunBal"
             End If
 
             'objreg.strsearch = "{LEDGERBOOK.ACC_Type} <> 'OPENING' AND {LEDGERBOOK.Yearid} = " & YearId
@@ -236,31 +304,40 @@ Public Class LedgerFilter
                 If CMBSIGN.Text = "<>" Then objreg.strsearch = objreg.strsearch & " and ({LEDGERBOOK.DR} <>" & Val(TXTAMT.Text.Trim) & " AND {LEDGERBOOK.CR} <>" & Val(TXTAMT.Text.Trim) & ") "
             End If
 
-            gridbill.ClearColumnsFilter()
-            Dim NAMECLAUSE As String = ""
-            For i As Integer = 0 To gridbill.RowCount - 1
-                Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If NAMECLAUSE = "" Then
-                        If RBACCOUNT.Checked = True Then NAMECLAUSE = " AND ({LEDGERBOOK.Name} = '" & dtrow("NAME") & "'" Else NAMECLAUSE = " AND ({LEDGERBOOK.GROUP_Name} = '" & dtrow("NAME") & "'"
-                    Else
-                        If RBACCOUNT.Checked = True Then NAMECLAUSE = NAMECLAUSE & " OR {LEDGERBOOK.Name} = '" & dtrow("NAME") & "'" Else NAMECLAUSE = NAMECLAUSE & " OR {LEDGERBOOK.GROUP_Name} = '" & dtrow("NAME") & "'"
+            If RBSELECTED.Checked = True And SENDMAIL = False And SENDWHATSAPP = False Then
+                gridbill.ClearColumnsFilter()
+                Dim NAMECLAUSE As String = ""
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If NAMECLAUSE = "" Then
+                            If RBACCOUNT.Checked = True Then NAMECLAUSE = " AND ({LEDGERBOOK.Name} = '" & dtrow("NAME") & "'" Else NAMECLAUSE = " AND ({LEDGERBOOK.GROUP_Name} = '" & dtrow("NAME") & "'"
+                        Else
+                            If RBACCOUNT.Checked = True Then NAMECLAUSE = NAMECLAUSE & " OR {LEDGERBOOK.Name} = '" & dtrow("NAME") & "'" Else NAMECLAUSE = NAMECLAUSE & " OR {LEDGERBOOK.GROUP_Name} = '" & dtrow("NAME") & "'"
+                        End If
                     End If
+                Next
+                If NAMECLAUSE <> "" Then
+                    NAMECLAUSE = NAMECLAUSE & ")"
+                    objreg.strsearch = objreg.strsearch & NAMECLAUSE
                 End If
-            Next
-
-            If NAMECLAUSE <> "" Then
-                NAMECLAUSE = NAMECLAUSE & ")"
-                objreg.strsearch = objreg.strsearch & NAMECLAUSE
+            Else
+                'WHEN WHATSAPP OR MAIL IS SELECTED
+                If PARTYNAME <> "" Then objreg.strsearch = objreg.strsearch & " AND ({LEDGERBOOK.Name} = '" & PARTYNAME & "') "
+                objreg.PARTYNAME = PARTYNAME
             End If
+
+
             objreg.NEWPAGE = CHKGROUPONNEWPG.CheckState
             objreg.SHOWNARRATION = CHKREMARKS.Checked
             If CHKADDRESS.Checked = True Then objreg.ADDRESS = 1 Else objreg.ADDRESS = 0
             If CHKPANNO.Checked = True Then objreg.PANNO = 1 Else objreg.PANNO = 0
 
-            objreg.PARTYNAME = cmbname.Text.Trim
+            If cmbname.Text.Trim <> "" Then objreg.PARTYNAME = cmbname.Text.Trim
             objreg.MdiParent = MDIMain
             objreg.Show()
+            If SENDMAIL = True Or SENDWHATSAPP = True Then objreg.Close()
+
 
         Catch ex As Exception
             Throw ex
