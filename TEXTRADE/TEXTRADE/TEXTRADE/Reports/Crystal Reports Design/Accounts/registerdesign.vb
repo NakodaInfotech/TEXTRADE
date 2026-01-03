@@ -72,6 +72,12 @@ Public Class registerdesign
     Public SHOWHEADER As Boolean
     Public SHOWNARRATION As Boolean = False
 
+    Public DIRECTMAIL As Boolean = False
+    Public DIRECTWHATSAPP As Boolean = False
+    Public DIRECTPRINT As Boolean = False
+    Public PRINTSETTING As Object = Nothing
+    Public NOOFCOPIES As Integer = 1
+
     Public bankname As String
 
     Dim fromD
@@ -136,6 +142,12 @@ Public Class registerdesign
 
     Private Sub CRPO_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CRPO.Load
         Try
+
+            If DIRECTPRINT = True Then
+                PRINTDIRECTADVICE()
+                Exit Sub
+            End If
+
             Dim crParameterFieldDefinitions As ParameterFieldDefinitions
             Dim crParameterFieldDefinition As ParameterFieldDefinition
             Dim crParameterValues As New ParameterValues
@@ -155,82 +167,82 @@ Public Class registerdesign
                 .Password = Dbpassword
                 .IntegratedSecurity = Dbsecurity
             End With
-            If frmstring = "CashRegister" Or frmstring = "BankRegister" Or frmstring = "BankBookDetails" Then
-                If frmstring = "CashRegister" Then
+            If FRMSTRING = "CashRegister" Or FRMSTRING = "BankRegister" Or FRMSTRING = "BankBookDetails" Then
+                If FRMSTRING = "CashRegister" Then
                     crTables = rptcr.Database.Tables
-                ElseIf frmstring = "BankRegister" Then
+                ElseIf FRMSTRING = "BankRegister" Then
                     crTables = rptBr.Database.Tables
-                ElseIf frmstring = "BankBookDetails" Then
+                ElseIf FRMSTRING = "BankBookDetails" Then
                     crTables = rptBrd.Database.Tables
                 End If
-            ElseIf frmstring = "DayBook" Or frmstring = "DayBookDetails" Then
-                If frmstring = "DayBook" Then
+            ElseIf FRMSTRING = "DayBook" Or FRMSTRING = "DayBookDetails" Then
+                If FRMSTRING = "DayBook" Then
                     crTables = rptdb.Database.Tables
-                ElseIf frmstring = "DayBookDetails" Then
+                ElseIf FRMSTRING = "DayBookDetails" Then
                     crTables = rptdbd.Database.Tables
                 End If
 
-            ElseIf frmstring = "PurchaseRegister" Then
+            ElseIf FRMSTRING = "PurchaseRegister" Then
                 crTables = RPTPURREG.Database.Tables
 
-            ElseIf frmstring = "JvRegister" Then
+            ElseIf FRMSTRING = "JvRegister" Then
                 crTables = rptjvr.Database.Tables
 
-            ElseIf frmstring = "ExpenseRegister" Or frmstring = "ExpenseRegisterDetails" Or frmstring = "ExpenseRegisterMonthly" Then
-                If frmstring = "ExpenseRegister" Then
+            ElseIf FRMSTRING = "ExpenseRegister" Or FRMSTRING = "ExpenseRegisterDetails" Or FRMSTRING = "ExpenseRegisterMonthly" Then
+                If FRMSTRING = "ExpenseRegister" Then
                     crTables = RPTEXP.Database.Tables
-                ElseIf frmstring = "ExpenseRegisterDetails" Then
+                ElseIf FRMSTRING = "ExpenseRegisterDetails" Then
                     crTables = RPTEXPD.Database.Tables
-                ElseIf frmstring = "ExpenseRegisterMonthly" Then
+                ElseIf FRMSTRING = "ExpenseRegisterMonthly" Then
                     crTables = RPTEXPM.Database.Tables
                 End If
 
-            ElseIf frmstring = "ContraRegister" Or frmstring = "ContraRegisterDetails" Then
-                If frmstring = "ContraRegister" Then
+            ElseIf FRMSTRING = "ContraRegister" Or FRMSTRING = "ContraRegisterDetails" Then
+                If FRMSTRING = "ContraRegister" Then
                     crTables = rptconr.Database.Tables
-                ElseIf frmstring = "ContraRegisterDetails" Then
+                ElseIf FRMSTRING = "ContraRegisterDetails" Then
                     crTables = rptconrd.Database.Tables
                 End If
 
-            ElseIf frmstring = "SaleRegister" Then
+            ElseIf FRMSTRING = "SaleRegister" Then
                 crTables = RPTSALEREG.Database.Tables
 
-            ElseIf frmstring = "LedgerBook" Or frmstring = "LedgerBookRunBal" Or frmstring = "LedgerBookDetails" Or frmstring = "LedgerBookConfirm" Or frmstring = "LedgerBookConfirmSumm" Or frmstring = "LedgerBookTFormat" Or frmstring = "LedgerPartySumm" Or frmstring = "LedgerBookMonthlyTypeSumm" Then
-                If frmstring = "LedgerBook" Then
+            ElseIf FRMSTRING = "LedgerBook" Or FRMSTRING = "LedgerBookRunBal" Or FRMSTRING = "LedgerBookDetails" Or FRMSTRING = "LedgerBookConfirm" Or FRMSTRING = "LedgerBookConfirmSumm" Or FRMSTRING = "LedgerBookTFormat" Or FRMSTRING = "LedgerPartySumm" Or FRMSTRING = "LedgerBookMonthlyTypeSumm" Then
+                If FRMSTRING = "LedgerBook" Then
                     crTables = RPTLEDGERAC.Database.Tables
-                ElseIf frmstring = "LedgerBookRunBal" Then
+                ElseIf FRMSTRING = "LedgerBookRunBal" Then
                     crTables = RPTLEDGERACRUNBAL.Database.Tables
-                ElseIf frmstring = "LedgerBookTFormat" Then
+                ElseIf FRMSTRING = "LedgerBookTFormat" Then
                     crTables = RPTLEDGERACTFORMAT.Database.Tables
-                ElseIf frmstring = "LedgerBookDetails" Then
+                ElseIf FRMSTRING = "LedgerBookDetails" Then
                     crTables = RPTLEDGERACDETAILS.Database.Tables
-                ElseIf frmstring = "LedgerBookMonthlyTypeSumm" Then
+                ElseIf FRMSTRING = "LedgerBookMonthlyTypeSumm" Then
                     crTables = RPTLEDGERMONTHLYTYPESUMM.Database.Tables
-                ElseIf frmstring = "LedgerBookConfirm" Then
+                ElseIf FRMSTRING = "LedgerBookConfirm" Then
                     crTables = rptlbc.Database.Tables
-                ElseIf frmstring = "LedgerBookConfirmSumm" Then
+                ElseIf FRMSTRING = "LedgerBookConfirmSumm" Then
                     crTables = RPTLBCSUMM.Database.Tables
-                ElseIf frmstring = "LedgerPartySumm" Then
+                ElseIf FRMSTRING = "LedgerPartySumm" Then
                     crTables = RPTLEDGERACSUMM.Database.Tables
                 End If
-            ElseIf frmstring = "SaleRegisterMonthly" Or frmstring = "PurchaseRegisterMonthly" Then
-                If frmstring = "SaleRegisterMonthly" Then
+            ElseIf FRMSTRING = "SaleRegisterMonthly" Or FRMSTRING = "PurchaseRegisterMonthly" Then
+                If FRMSTRING = "SaleRegisterMonthly" Then
                     crTables = RPTSALEREGMONTHLY.Database.Tables
-                ElseIf frmstring = "PurchaseRegisterMonthly" Then
+                ElseIf FRMSTRING = "PurchaseRegisterMonthly" Then
                     crTables = RPTPURREGMONTHLY.Database.Tables
                 End If
 
-            ElseIf frmstring = "GROUPSUMMMONTHLY" Then
+            ElseIf FRMSTRING = "GROUPSUMMMONTHLY" Then
                 crTables = RPTGROUPMONTHLY.Database.Tables
 
-            ElseIf frmstring = "purchasetax" Or frmstring = "saletax" Or frmstring = "purchasetaxdetail" Or frmstring = "saletaxdetail" Then
-                If frmstring = "purchasetax" Then
+            ElseIf FRMSTRING = "purchasetax" Or FRMSTRING = "saletax" Or FRMSTRING = "purchasetaxdetail" Or FRMSTRING = "saletaxdetail" Then
+                If FRMSTRING = "purchasetax" Then
                     crTables = rptptr.Database.Tables
-                ElseIf frmstring = "saletax" Then
+                ElseIf FRMSTRING = "saletax" Then
                     crTables = rptstr.Database.Tables
-                ElseIf frmstring = "purchasetaxdetail" Then
+                ElseIf FRMSTRING = "purchasetaxdetail" Then
                     crTables = rptptdr.Database.Tables
-                ElseIf frmstring = "saletaxdetail" Then
+                ElseIf FRMSTRING = "saletaxdetail" Then
                     crTables = rptstdr.Database.Tables
                 End If
             End If
@@ -242,29 +254,29 @@ Public Class registerdesign
             Next
             '************************ END *******************
 
-            If frmstring = "CashRegister" Or frmstring = "BankRegister" Or frmstring = "BankBookDetails" Then
-                If frmstring = "CashRegister" Then
+            If FRMSTRING = "CashRegister" Or FRMSTRING = "BankRegister" Or FRMSTRING = "BankBookDetails" Then
+                If FRMSTRING = "CashRegister" Then
                     crParameterFieldDefinitions = rptcr.DataDefinition.ParameterFields
-                ElseIf frmstring = "BankRegister" Then
+                ElseIf FRMSTRING = "BankRegister" Then
                     crParameterFieldDefinitions = rptBr.DataDefinition.ParameterFields
-                ElseIf frmstring = "BankBookDetails" Then
+                ElseIf FRMSTRING = "BankBookDetails" Then
                     crParameterFieldDefinitions = rptBrd.DataDefinition.ParameterFields
                 End If
 
-                If frmstring = "CashRegister" Then
-                    crParameterDiscreteValue.Value = reg
+                If FRMSTRING = "CashRegister" Then
+                    crParameterDiscreteValue.Value = REG
                     crParameterFieldDefinition = crParameterFieldDefinitions.Item("@CASHNAME")
-                ElseIf frmstring = "BankRegister" Then
-                    crParameterDiscreteValue.Value = reg
+                ElseIf FRMSTRING = "BankRegister" Then
+                    crParameterDiscreteValue.Value = REG
                     crParameterFieldDefinition = crParameterFieldDefinitions.Item("@BANKNAME")
                 End If
 
-                If frmstring <> "BankBookDetails" Then
+                If FRMSTRING <> "BankBookDetails" Then
                     crParameterValues = crParameterFieldDefinition.CurrentValues
                     crParameterValues.Clear()
                 End If
 
-                If frmstring <> "BankBookDetails" Then
+                If FRMSTRING <> "BankBookDetails" Then
                     crParameterValues.Add(crParameterDiscreteValue)
                     crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
 
@@ -300,9 +312,9 @@ Public Class registerdesign
                     crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
 
 
-                    If frmstring = "CashRegister" Then
+                    If FRMSTRING = "CashRegister" Then
                         rptcr.DataDefinition.FormulaFields("OPENING").Text = OPENING
-                    ElseIf frmstring = "BankRegister" Then
+                    ElseIf FRMSTRING = "BankRegister" Then
                         rptBr.DataDefinition.FormulaFields("OPENING").Text = OPENING
                     End If
                     crParameterDiscreteValue.Value = TODATE.Date
@@ -311,15 +323,15 @@ Public Class registerdesign
                     crParameterValues.Add(crParameterDiscreteValue)
                     crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
                 End If
-                If frmstring = "CashRegister" Then
+                If FRMSTRING = "CashRegister" Then
                     CRPO.ReportSource = rptcr
 
-                ElseIf frmstring = "BankRegister" Then
+                ElseIf FRMSTRING = "BankRegister" Then
                     CRPO.ReportSource = rptBr
                     rptBr.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
-                    rptBr.DataDefinition.FormulaFields("NAME").Text = "'" & reg & "'"
+                    rptBr.DataDefinition.FormulaFields("NAME").Text = "'" & REG & "'"
 
-                ElseIf frmstring = "BankBookDetails" Then
+                ElseIf FRMSTRING = "BankBookDetails" Then
 
                     rptBrd.DataDefinition.FormulaFields("OPENING").Text = "'" & OPENING & " " & OPENINGDRCR & "'"
                     rptBrd.DataDefinition.FormulaFields("CLOSINGBAL").Text = "'" & CLOSINGAMT & " " & CLOSINGDRCR & "'"
@@ -365,17 +377,17 @@ Public Class registerdesign
 
                     CRPO.ReportSource = rptBrd
                 End If
-            ElseIf frmstring = "DayBook" Or frmstring = "DayBookDetails" Then
+            ElseIf FRMSTRING = "DayBook" Or FRMSTRING = "DayBookDetails" Then
 
 
-                If frmstring = "DayBook" Then
+                If FRMSTRING = "DayBook" Then
                     strsearch = strsearch & " {@DATE} in date " & fromD & " to date " & toD
                     strsearch = strsearch & " and {REPORT_SP_DAYBOOK.CMPID}=" & CmpId & " AND {REPORT_SP_DAYBOOK.LOCATIONID}=" & Locationid & " AND {REPORT_SP_DAYBOOK.YEARID}=" & YearId
 
                     CRPO.SelectionFormula = strsearch
 
                     CRPO.ReportSource = rptdb
-                ElseIf frmstring = "DayBookDetails" Then
+                ElseIf FRMSTRING = "DayBookDetails" Then
                     strsearch = strsearch & " ({@DATE} in date " & fromD & " to date " & toD & ")"
                     strsearch = strsearch & "  and {REPORT_SP_DAYBOOK_DETAILS.CMPID}=" & CmpId & " and {REPORT_SP_DAYBOOK_DETAILS.LOCATIONID}=" & Locationid & " and {REPORT_SP_DAYBOOK_DETAILS.YEARID}=" & YearId
                     CRPO.SelectionFormula = strsearch
@@ -383,12 +395,12 @@ Public Class registerdesign
                 End If
 
                 'for purchase
-            ElseIf frmstring = "PurchaseRegister" Then
+            ElseIf FRMSTRING = "PurchaseRegister" Then
 
                 crParameterFieldDefinitions = RPTPURREG.DataDefinition.ParameterFields
                 RPTPURREG.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
-                crParameterDiscreteValue.Value = reg
+                crParameterDiscreteValue.Value = REG
                 crParameterFieldDefinition = crParameterFieldDefinitions.Item("@REGNAME")
                 crParameterValues = crParameterFieldDefinition.CurrentValues
                 crParameterValues.Add(crParameterDiscreteValue)
@@ -429,7 +441,7 @@ Public Class registerdesign
                 CRPO.ReportSource = RPTPURREG
 
 
-            ElseIf frmstring = "GROUPSUMMMONTHLY" Then
+            ElseIf FRMSTRING = "GROUPSUMMMONTHLY" Then
                 crParameterFieldDefinitions = RPTGROUPMONTHLY.DataDefinition.ParameterFields
                 RPTGROUPMONTHLY.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                 RPTGROUPMONTHLY.DataDefinition.FormulaFields("OPENING").Text = OPENING
@@ -478,18 +490,18 @@ Public Class registerdesign
 
                 CRPO.ReportSource = RPTGROUPMONTHLY
 
-            ElseIf frmstring = "JvRegister" Then
+            ElseIf FRMSTRING = "JvRegister" Then
                 strsearch = strsearch & "({@DATE} in date " & fromD & " to date " & toD & ") and {JOURNALMASTER.JOURNAL_YEARID}=" & YearId
-                If reg <> "" Then strsearch = strsearch & " And {REGISTERMASTER.REGISTER_NAME}='" & reg & "'"
+                If REG <> "" Then strsearch = strsearch & " And {REGISTERMASTER.REGISTER_NAME}='" & REG & "'"
                 CRPO.SelectionFormula = strsearch
                 rptjvr.DataDefinition.FormulaFields("PERIOD").Text = "' JOURNAL REGISTER - " & PERIOD & "'"
                 CRPO.ReportSource = rptjvr
 
 
-            ElseIf frmstring = "ExpenseRegister" Or frmstring = "ExpenseRegisterDetails" Or frmstring = "ExpenseRegisterMonthly" Then
-                If frmstring = "ExpenseRegister" Then
-                    If reg <> "" Then
-                        strsearch = strsearch & " {REPORT_SP_EXPENSESUMMARY.regtype}='" & reg & "'"
+            ElseIf FRMSTRING = "ExpenseRegister" Or FRMSTRING = "ExpenseRegisterDetails" Or FRMSTRING = "ExpenseRegisterMonthly" Then
+                If FRMSTRING = "ExpenseRegister" Then
+                    If REG <> "" Then
+                        strsearch = strsearch & " {REPORT_SP_EXPENSESUMMARY.regtype}='" & REG & "'"
                         strsearch = strsearch & " and ({@DATE} in date " & fromD & " to date " & toD & ")"
                     Else
                         strsearch = strsearch & "({@DATE} in date " & fromD & " to date " & toD & ")"
@@ -500,9 +512,9 @@ Public Class registerdesign
 
                     RPTEXP.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     CRPO.ReportSource = RPTEXP
-                ElseIf frmstring = "ExpenseRegisterDetails" Then
-                    If reg <> "" Then
-                        strsearch = strsearch & " {REPORT_SP_EXPENSEDETAILS.regtype}='" & reg & "'"
+                ElseIf FRMSTRING = "ExpenseRegisterDetails" Then
+                    If REG <> "" Then
+                        strsearch = strsearch & " {REPORT_SP_EXPENSEDETAILS.regtype}='" & REG & "'"
                         strsearch = strsearch & " and ({@DATE} in date " & fromD & " to date " & toD & ")"
                     Else
                         strsearch = strsearch & " ({@DATE} in date " & fromD & " to date " & toD & ")"
@@ -513,15 +525,15 @@ Public Class registerdesign
                     RPTEXPD.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     CRPO.ReportSource = RPTEXPD
 
-                ElseIf frmstring = "ExpenseRegisterMonthly" Then
+                ElseIf FRMSTRING = "ExpenseRegisterMonthly" Then
 
                 End If
 
 
-            ElseIf frmstring = "ContraRegister" Or frmstring = "ContraRegisterDetails" Then
-                If frmstring = "ContraRegister" Then
-                    If reg <> "" Then
-                        strsearch = strsearch & " {REPORT_SP_ContraSUMMARY.regtype}='" & reg & "'"
+            ElseIf FRMSTRING = "ContraRegister" Or FRMSTRING = "ContraRegisterDetails" Then
+                If FRMSTRING = "ContraRegister" Then
+                    If REG <> "" Then
+                        strsearch = strsearch & " {REPORT_SP_ContraSUMMARY.regtype}='" & REG & "'"
                         strsearch = strsearch & " and ({@DATE} in date " & fromD & " to date " & toD & ")"
                     Else
                         strsearch = strsearch & "({@DATE} in date " & fromD & " to date " & toD & ")"
@@ -531,9 +543,9 @@ Public Class registerdesign
                     CRPO.SelectionFormula = strsearch
 
                     CRPO.ReportSource = rptconr
-                ElseIf frmstring = "ContraRegisterDetails" Then
-                    If reg <> "" Then
-                        strsearch = strsearch & " {REPORT_SP_contra_DETAILS.regtype}='" & reg & "'"
+                ElseIf FRMSTRING = "ContraRegisterDetails" Then
+                    If REG <> "" Then
+                        strsearch = strsearch & " {REPORT_SP_contra_DETAILS.regtype}='" & REG & "'"
                         strsearch = strsearch & " and ({@DATE} in date " & fromD & " to date " & toD & ")"
                     Else
                         strsearch = strsearch & " ({@DATE} in date " & fromD & " to date " & toD & ")"
@@ -545,12 +557,12 @@ Public Class registerdesign
                 End If
 
 
-            ElseIf frmstring = "SaleRegister" Then
+            ElseIf FRMSTRING = "SaleRegister" Then
 
                 crParameterFieldDefinitions = RPTSALEREG.DataDefinition.ParameterFields
                 RPTSALEREG.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
-                crParameterDiscreteValue.Value = reg
+                crParameterDiscreteValue.Value = REG
                 crParameterFieldDefinition = crParameterFieldDefinitions.Item("@REGNAME")
                 crParameterValues = crParameterFieldDefinition.CurrentValues
                 crParameterValues.Add(crParameterDiscreteValue)
@@ -591,21 +603,21 @@ Public Class registerdesign
                 CRPO.ReportSource = RPTSALEREG
 
 
-            ElseIf frmstring = "purchasetax" Or frmstring = "saletax" Or frmstring = "purchasetaxdetail" Or frmstring = "saletaxdetail" Then
-                If frmstring = "purchasetax" Then
+            ElseIf FRMSTRING = "purchasetax" Or FRMSTRING = "saletax" Or FRMSTRING = "purchasetaxdetail" Or FRMSTRING = "saletaxdetail" Then
+                If FRMSTRING = "purchasetax" Then
                     strsearch = strsearch & " {report_purchasetax.CMPID}=" & CmpId & " AND {report_purchasetax.LOCATIONID}=" & Locationid & " AND {report_purchasetax.YEARID}=" & YearId
                     CRPO.SelectionFormula = strsearch
                     CRPO.ReportSource = rptptr
-                ElseIf frmstring = "saletax" Then
+                ElseIf FRMSTRING = "saletax" Then
                     strsearch = strsearch & " {report_invoicetax.CMPID}=" & CmpId & " AND {report_invoicetax.LOCATIONID}=" & Locationid & " AND {report_invoicetax.YEARID}=" & YearId
                     CRPO.SelectionFormula = strsearch
                     CRPO.ReportSource = rptstr
-                ElseIf frmstring = "purchasetaxdetail" Then
+                ElseIf FRMSTRING = "purchasetaxdetail" Then
                     strsearch = strsearch & "  ({@date} in date " & fromD & " to date " & toD & ")"
                     strsearch = strsearch & " and {purchasemaster.bill_cmpid}=" & CmpId & " and {purchasemaster.bill_LOCATIONid}=" & Locationid & " and {purchasemaster.bill_YEARid}=" & YearId
                     CRPO.SelectionFormula = strsearch
                     CRPO.ReportSource = rptptdr
-                ElseIf frmstring = "saletaxdetail" Then
+                ElseIf FRMSTRING = "saletaxdetail" Then
                     strsearch = strsearch & "  ({@DATE} in date " & fromD & " to date " & toD & ")"
                     strsearch = strsearch & " and {invoicemaster.invoice_cmpid}=" & CmpId & " and {invoicemaster.invoice_LOCATIONid}=" & Locationid & " and {invoicemaster.invoice_YEARid}=" & YearId
                     CRPO.SelectionFormula = strsearch
@@ -613,9 +625,9 @@ Public Class registerdesign
                 End If
 
                 'ledger Book
-            ElseIf frmstring = "LedgerBook" Or frmstring = "LedgerBookRunBal" Or frmstring = "LedgerBookDetails" Or frmstring = "LedgerBookConfirm" Or frmstring = "LedgerBookConfirmSumm" Or frmstring = "LedgerBookTFormat" Or frmstring = "LedgerPartySumm" Or frmstring = "LedgerBookMonthlyTypeSumm" Then
+            ElseIf FRMSTRING = "LedgerBook" Or FRMSTRING = "LedgerBookRunBal" Or FRMSTRING = "LedgerBookDetails" Or FRMSTRING = "LedgerBookConfirm" Or FRMSTRING = "LedgerBookConfirmSumm" Or FRMSTRING = "LedgerBookTFormat" Or FRMSTRING = "LedgerPartySumm" Or FRMSTRING = "LedgerBookMonthlyTypeSumm" Then
 
-                If frmstring = "LedgerBook" Then
+                If FRMSTRING = "LedgerBook" Then
 
                     RPTLEDGERAC.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERAC.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -629,7 +641,7 @@ Public Class registerdesign
                     RPTLEDGERAC.DataDefinition.FormulaFields("PANNO").Text = PANNO
                     If SHOWNARRATION = True Then RPTLEDGERAC.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
 
-                ElseIf frmstring = "LedgerBookRunBal" Then
+                ElseIf FRMSTRING = "LedgerBookRunBal" Then
 
                     RPTLEDGERACRUNBAL.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERACRUNBAL.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -643,7 +655,7 @@ Public Class registerdesign
                     RPTLEDGERACRUNBAL.DataDefinition.FormulaFields("PANNO").Text = PANNO
                     If SHOWNARRATION = True Then RPTLEDGERACRUNBAL.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
 
-                ElseIf frmstring = "LedgerBookTFormat" Then
+                ElseIf FRMSTRING = "LedgerBookTFormat" Then
 
                     RPTLEDGERACTFORMAT.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERACTFORMAT.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -657,7 +669,7 @@ Public Class registerdesign
                     CRPO.ReportSource = RPTLEDGERACTFORMAT
                     RPTLEDGERACTFORMAT.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
 
-                ElseIf frmstring = "LedgerBookDetails" Then
+                ElseIf FRMSTRING = "LedgerBookDetails" Then
 
                     RPTLEDGERACDETAILS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERACDETAILS.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -672,7 +684,7 @@ Public Class registerdesign
                     RPTLEDGERACDETAILS.DataDefinition.FormulaFields("PANNO").Text = PANNO
 
 
-                ElseIf frmstring = "LedgerBookMonthlyTypeSumm" Then
+                ElseIf FRMSTRING = "LedgerBookMonthlyTypeSumm" Then
 
                     RPTLEDGERMONTHLYTYPESUMM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERMONTHLYTYPESUMM.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -684,7 +696,7 @@ Public Class registerdesign
                     RPTLEDGERMONTHLYTYPESUMM.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
                     RPTLEDGERMONTHLYTYPESUMM.DataDefinition.FormulaFields("PRINTLETTER").Text = LETTERFORMAT
 
-                ElseIf frmstring = "LedgerBookConfirm" Then
+                ElseIf FRMSTRING = "LedgerBookConfirm" Then
 
                     rptlbc.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     rptlbc.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -697,7 +709,7 @@ Public Class registerdesign
                     rptlbc.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
                     If SHOWNARRATION = True Then rptlbc.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
 
-                ElseIf frmstring = "LedgerBookConfirmSumm" Then
+                ElseIf FRMSTRING = "LedgerBookConfirmSumm" Then
 
                     RPTLBCSUMM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLBCSUMM.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
@@ -708,7 +720,7 @@ Public Class registerdesign
                     RPTLBCSUMM.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
                     RPTLBCSUMM.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
 
-                ElseIf frmstring = "LedgerPartySumm" Then
+                ElseIf FRMSTRING = "LedgerPartySumm" Then
 
                     RPTLEDGERACSUMM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTLEDGERACSUMM.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(FROMDATE.Date, "MM/dd/yyyy") & "'"
@@ -719,18 +731,18 @@ Public Class registerdesign
 
                 End If
 
-            ElseIf frmstring = "SaleRegisterMonthly" Or frmstring = "PurchaseRegisterMonthly" Then
-                If frmstring = "SaleRegisterMonthly" Then
+            ElseIf FRMSTRING = "SaleRegisterMonthly" Or FRMSTRING = "PurchaseRegisterMonthly" Then
+                If FRMSTRING = "SaleRegisterMonthly" Then
                     crParameterFieldDefinitions = RPTSALEREGMONTHLY.DataDefinition.ParameterFields
-                ElseIf frmstring = "PurchaseRegisterMonthly" Then
+                ElseIf FRMSTRING = "PurchaseRegisterMonthly" Then
                     crParameterFieldDefinitions = RPTPURREGMONTHLY.DataDefinition.ParameterFields
-                ElseIf frmstring = "ContraRegisterMonthly" Then
+                ElseIf FRMSTRING = "ContraRegisterMonthly" Then
                     crParameterFieldDefinitions = rptconrm.DataDefinition.ParameterFields
-                ElseIf frmstring = "JvRegisterMonthly" Then
+                ElseIf FRMSTRING = "JvRegisterMonthly" Then
                     crParameterFieldDefinitions = rptjvrm.DataDefinition.ParameterFields
                 End If
 
-                crParameterDiscreteValue.Value = reg
+                crParameterDiscreteValue.Value = REG
                 crParameterFieldDefinition = crParameterFieldDefinitions.Item("@REGISTERNAME")
                 crParameterValues = crParameterFieldDefinition.CurrentValues
 
@@ -776,17 +788,17 @@ Public Class registerdesign
                 crParameterValues.Add(crParameterDiscreteValue)
                 crParameterFieldDefinition.ApplyCurrentValues(crParameterValues)
 
-                If frmstring = "SaleRegisterMonthly" Then
+                If FRMSTRING = "SaleRegisterMonthly" Then
                     CRPO.ReportSource = RPTSALEREGMONTHLY
                     RPTSALEREGMONTHLY.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
-                ElseIf frmstring = "PurchaseRegisterMonthly" Then
+                ElseIf FRMSTRING = "PurchaseRegisterMonthly" Then
                     CRPO.ReportSource = RPTPURREGMONTHLY
                     RPTPURREGMONTHLY.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
 
-                ElseIf frmstring = "ContraRegisterMonthly" Then
+                ElseIf FRMSTRING = "ContraRegisterMonthly" Then
                     CRPO.ReportSource = rptconrm
-                ElseIf frmstring = "JvRegisterMonthly" Then
+                ElseIf FRMSTRING = "JvRegisterMonthly" Then
                     CRPO.ReportSource = rptjvrm
                 End If
 
@@ -798,6 +810,142 @@ Public Class registerdesign
             Throw ex
         End Try
     End Sub
+
+    Sub PRINTDIRECTADVICE()
+        Try
+
+
+            Dim crParameterFieldDefinitions As ParameterFieldDefinitions
+            Dim crParameterFieldDefinition As ParameterFieldDefinition
+            Dim crParameterValues As New ParameterValues
+            Dim crParameterDiscreteValue As New ParameterDiscreteValue
+
+            '**************** SET SERVER ************************
+            Dim crtableLogonInfo As New TableLogOnInfo
+            Dim crConnecttionInfo As New ConnectionInfo
+            Dim crTables As Tables
+            Dim crTable As Table
+
+            getFromToDate()
+            With crConnecttionInfo
+                .ServerName = SERVERNAME
+                .DatabaseName = DatabaseName
+                .UserID = DBUSERNAME
+                .Password = Dbpassword
+                .IntegratedSecurity = Dbsecurity
+            End With
+
+
+            Dim OBJ As New Object
+
+            If FRMSTRING = "LedgerBook" Then
+                OBJ = New LedgerBookAcReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                OBJ.GroupFooterSection7.SectionFormat.EnableNewPageAfter = NEWPAGE
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+                OBJ.DataDefinition.FormulaFields("PANNO").Text = PANNO
+                If SHOWNARRATION = True Then OBJ.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
+
+            ElseIf FRMSTRING = "LedgerBookRunBal" Then
+                OBJ = New LedgerBookAcRunBalReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DATADEFINITION.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                OBJ.GroupFooterSection7.SectionFormat.EnableNewPageAfter = NEWPAGE
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+                OBJ.DataDefinition.FormulaFields("PANNO").Text = PANNO
+                If SHOWNARRATION = True Then OBJ.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
+
+            ElseIf FRMSTRING = "LedgerBookTFormat" Then
+                OBJ = New LedgerBookAcReport_TReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.Subreports("LedgerBook_Debit").DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.Subreports("LedgerBook_Debit").DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.Subreports("LedgerBook_Credit").DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.Subreports("LedgerBook_Credit").DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
+
+            ElseIf FRMSTRING = "LedgerBookDetails" Then
+
+                OBJ = New LedgerBookAcReportDetails
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                OBJ.GroupFooterSection7.SectionFormat.EnableNewPageAfter = NEWPAGE
+                If SHOWNARRATION = True Then OBJ.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+                OBJ.DataDefinition.FormulaFields("PANNO").Text = PANNO
+
+            ElseIf FRMSTRING = "LedgerBookMonthlyTypeSumm" Then
+
+                OBJ = New LedgerBookMonthlyTypeSummReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+                OBJ.DataDefinition.FormulaFields("PRINTLETTER").Text = LETTERFORMAT
+
+            ElseIf FRMSTRING = "LedgerBookConfirm" Then
+
+                OBJ = New LedgerBookAcConfirmReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                OBJ.GroupFooterSection6.SectionFormat.EnableNewPageAfter = NEWPAGE
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+                If SHOWNARRATION = True Then OBJ.DataDefinition.FormulaFields("SHOWREMARKS").Text = 1
+
+            ElseIf FRMSTRING = "LedgerBookConfirmSumm" Then
+                OBJ = New LedgerBookConfirmationReport_Summ
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                OBJ.GroupFooterSection4.SectionFormat.EnableNewPageAfter = NEWPAGE
+                OBJ.DataDefinition.FormulaFields("ADDRESS").Text = ADDRESS
+
+            ElseIf FRMSTRING = "LedgerPartySumm" Then
+                OBJ = New LedgerBookAcSummReport
+                OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                OBJ.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(FROMDATE.Date, "MM/dd/yyyy") & "'"
+                OBJ.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(TODATE.Date, "MM/dd/yyyy") & "'"
+
+            End If
+
+
+            crTables = OBJ.Database.Tables
+
+            For Each crTable In crTables
+                crtableLogonInfo = crTable.LogOnInfo
+                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                crTable.ApplyLogOnInfo(crtableLogonInfo)
+            Next
+
+            OBJ.RecordSelectionFormula = strsearch
+            OBJ.REFRESH()
+
+            If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
+                OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+                OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+            Else
+                If File.Exists(Application.StartupPath & "\" & PARTYNAME & "_LEDGER" & ".PDF") Then File.Delete(Application.StartupPath & "\" & PARTYNAME & "_LEDGER" & ".PDF")
+                OBJ.ExportToDisk(ExportFormatType.PortableDocFormat, Application.StartupPath & "\" & PARTYNAME & "_LEDGER" & ".PDF")
+            End If
+            OBJ.CLOSE()
+            OBJ.DISPOSE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Private Sub sendmailtool_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles sendmailtool.Click
         Try
