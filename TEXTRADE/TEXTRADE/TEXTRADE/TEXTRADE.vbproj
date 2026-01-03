@@ -474,6 +474,12 @@
       <DependentUpon>AgencyOutstandingReport_BuyerDetailsNew.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerOnlyDue1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgencyOutstandingReport_SellerOnlyDue.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerShort.vb">
       <DependentUpon>AgencyOutstandingReport_SellerShort.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -494,12 +500,6 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_BuyerOnlyDue.vb">
       <DependentUpon>AgencyOutstandingReport_BuyerOnlyDue.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerOnlyDue.vb">
-      <DependentUpon>AgencyOutstandingReport_SellerOnlyDue.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -8606,6 +8606,12 @@
     <Compile Include="Utilities\Update Peding\UpdatePendingEntryDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Update Peding\UpdatePendingLrStock.Designer.vb">
+      <DependentUpon>UpdatePendingLrStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdatePendingLrStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Update Peding\UpdateQualityWt.Designer.vb">
       <DependentUpon>UpdateQualityWt.vb</DependentUpon>
     </Compile>
@@ -8825,7 +8831,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerOnlyDue.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>AgencyOutstandingReport_SellerOnlyDue.vb</LastGenOutput>
+      <LastGenOutput>AgencyOutstandingReport_SellerOnlyDue1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Agency Reports\Agency Outstanding Reports\AgencyOutstandingReport_SellerDays.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -13563,6 +13569,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdatePendingEntryDetails.resx">
       <DependentUpon>UpdatePendingEntryDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\UpdatePendingLrStock.resx">
+      <DependentUpon>UpdatePendingLrStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateQualityWt.resx">
       <DependentUpon>UpdateQualityWt.vb</DependentUpon>
