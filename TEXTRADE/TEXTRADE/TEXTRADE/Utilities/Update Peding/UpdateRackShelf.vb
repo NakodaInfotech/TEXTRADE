@@ -629,7 +629,41 @@ LINE1:
 
                         If ClientName = "SHEETAL" Then
 
-                            oWrite.WriteLine("SIZE 97.5 mm, 25 mm
+                            '                            oWrite.WriteLine("SIZE 97.5 mm, 25 mm
+                            'GAP 3 mm, 0 mm
+                            'DIRECTION 0,0
+                            'REFERENCE 0,0
+                            'OFFSET 0 mm
+                            'SET PEEL OFF
+                            'SET CUTTER OFF
+                            'SET PARTIAL_CUTTER OFF
+                            'SET TEAR ON
+                            'CLS
+                            'CODEPAGE 1252
+                            'TEXT 746,188,""ROMAN.TTF"",180,1,12,""QUALITY""
+                            'TEXT 601,190,""ROMAN.TTF"",180,1,12,"":""
+                            'TEXT 746,141,""ROMAN.TTF"",180,1,12,""DESIGN""
+                            'TEXT 601,145,""ROMAN.TTF"",180,1,12,"":""
+                            'TEXT 319,187,""ROMAN.TTF"",180,1,12,""COLOR""
+                            'TEXT 200,190,""ROMAN.TTF"",180,1,12,"":""
+                            'TEXT 319,138,""ROMAN.TTF"",180,1,12,""MTRS""
+                            'TEXT 200,141,""ROMAN.TTF"",180,1,12,"":""
+                            'TEXT 746,94,""ROMAN.TTF"",180,1,12,""ROLL NO""
+                            'TEXT 601,96,""ROMAN.TTF"",180,1,12,"":""
+                            'TEXT 319,94,""ROMAN.TTF"",180,1,12,""RACK""
+                            'TEXT 200,94,""ROMAN.TTF"",180,1,12,"":""
+                            'BARCODE 746,57,""128M"",44,0,180,4,8,""" & ROW("BARCODE") & """
+                            'TEXT 580,187,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
+                            'TEXT 580,141,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
+                            'TEXT 580,94,""ROMAN.TTF"",180,1,12,""" & ROW("BARCODE") & """
+                            'TEXT 180,187,""ROMAN.TTF"",180,1,12,""" & ROW("COLOR") & """
+                            'TEXT 180,138,""ROMAN.TTF"",180,1,12,""" & ROW("MTRS") & """
+                            'TEXT 180,92,""ROMAN.TTF"",180,1,12,""" & CMBRACK.Text.Trim & """
+                            'PRINT 1,1
+                            '")
+                            '                            oWrite.Dispose()
+
+                            oWrite.WriteLine("SIZE 97.5 mm, 30 mm
 GAP 3 mm, 0 mm
 DIRECTION 0,0
 REFERENCE 0,0
@@ -640,28 +674,32 @@ SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
 CODEPAGE 1252
-TEXT 746,188,""ROMAN.TTF"",180,1,12,""QUALITY""
-TEXT 601,190,""ROMAN.TTF"",180,1,12,"":""
-TEXT 746,141,""ROMAN.TTF"",180,1,12,""DESIGN""
-TEXT 601,145,""ROMAN.TTF"",180,1,12,"":""
-TEXT 319,187,""ROMAN.TTF"",180,1,12,""COLOR""
-TEXT 200,190,""ROMAN.TTF"",180,1,12,"":""
-TEXT 319,138,""ROMAN.TTF"",180,1,12,""MTRS""
-TEXT 200,141,""ROMAN.TTF"",180,1,12,"":""
-TEXT 746,94,""ROMAN.TTF"",180,1,12,""ROLL NO""
-TEXT 601,96,""ROMAN.TTF"",180,1,12,"":""
-TEXT 319,94,""ROMAN.TTF"",180,1,12,""RACK""
-TEXT 200,94,""ROMAN.TTF"",180,1,12,"":""
-BARCODE 746,57,""128M"",44,0,180,4,8,""" & ROW("BARCODE") & """
-TEXT 580,187,""ROMAN.TTF"",180,1,12,""" & ROW("ITEMNAME") & """
-TEXT 580,141,""ROMAN.TTF"",180,1,12,""" & ROW("DESIGNNO") & """
-TEXT 580,94,""ROMAN.TTF"",180,1,12,""" & ROW("BARCODE") & """
-TEXT 180,187,""ROMAN.TTF"",180,1,12,""" & ROW("COLOR") & """
-TEXT 180,138,""ROMAN.TTF"",180,1,12,""" & ROW("MTRS") & """
-TEXT 180,92,""ROMAN.TTF"",180,1,12,""" & CMBRACK.Text.Trim & """
+TEXT 746,228,""ROMAN.TTF"",180,1,13,""QUALITY""
+TEXT 602,230,""ROMAN.TTF"",180,1,13,"":""
+TEXT 746,175,""ROMAN.TTF"",180,1,13,""DESIGN""
+TEXT 602,179,""ROMAN.TTF"",180,1,13,"":""
+TEXT 319,227,""ROMAN.TTF"",180,1,13,""COLOR""
+TEXT 201,230,""ROMAN.TTF"",180,1,13,"":""
+TEXT 319,171,""ROMAN.TTF"",180,1,13,""MTRS""
+TEXT 201,175,""ROMAN.TTF"",180,1,13,"":""
+TEXT 746,121,""ROMAN.TTF"",180,1,13,""ROLL NO""
+TEXT 602,123,""ROMAN.TTF"",180,1,13,"":""
+TEXT 319,121,""ROMAN.TTF"",180,1,13,""RACK""
+TEXT 201,121,""ROMAN.TTF"",180,1,13,"":""
+BARCODE 746,70,""128M"",44,0,180,4,8,""" & ROW("BARCODE") & """
+TEXT 580,227,""ROMAN.TTF"",180,1,13,""" & ROW("ITEMNAME") & """
+TEXT 580,175,""ROMAN.TTF"",180,1,13,""" & ROW("DESIGNNO") & """
+TEXT 580,121,""ROMAN.TTF"",180,1,13,""" & ROW("BARCODE") & """
+TEXT 180,227,""ROMAN.TTF"",180,1,13,""" & ROW("COLOR") & """
+TEXT 180,171,""ROMAN.TTF"",180,1,13,""" & ROW("MTRS") & """
+TEXT 180,121,""ROMAN.TTF"",180,1,13,""" & CMBRACK.Text.Trim & """
 PRINT 1,1
+
 ")
                             oWrite.Dispose()
+
+
+
 
 
                         End If
