@@ -8934,6 +8934,9 @@
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.resx">
       <DependentUpon>GDNUnitSummGridreport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\LotPieceTypeSummary.resx">
+      <DependentUpon>LotPieceTypeSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.resx">
       <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
     </EmbeddedResource>

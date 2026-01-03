@@ -10838,4 +10838,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub LotPieceTypeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LotPieceTypeToolStripMenuItem.Click
+        Try
+            Dim OBJLR As New LotPieceTypeSummary
+            OBJLR.MdiParent = Me
+            OBJLR.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
