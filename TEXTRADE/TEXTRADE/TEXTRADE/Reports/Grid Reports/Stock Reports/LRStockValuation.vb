@@ -53,7 +53,7 @@ Public Class LRStockValuation
     Sub FILLGRID()
         Try
             Dim IntRate As Double = Val(TXTINTPER.Text)
-            Dim WHERECLAUSE As String = " AND PURCHASELRSTOCK.SOLD = 0  AND PURCHASELRSTOCK.YEARID = " & YearId
+            Dim WHERECLAUSE As String = " AND PURCHASELRSTOCK.SOLD = 0 and PURCHASELRSTOCK.TEMPSOLD=0 AND PURCHASELRSTOCK.YEARID = " & YearId
             Dim NAMECLAUSE As String = ""
             Dim ITEMCLAUSE As String = ""
 
