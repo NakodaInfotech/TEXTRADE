@@ -33,6 +33,10 @@ Public Class ClsAUTOWHATSAPP
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@SCHEDULER", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SCHDATE", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@MONDAY", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TUESDAY", alParaval(I)))

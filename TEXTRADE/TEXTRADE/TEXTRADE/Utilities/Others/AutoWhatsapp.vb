@@ -13,11 +13,11 @@ Public Class AutoWhatsapp
             FILLCMB()
 
             Dim OBJCMN As New ClsCommon
-            Dim DTTABLE As DataTable = OBJCMN.Execute_Any_String(" SELECT  AUTOWA_GRIDSRNO AS GRIDSRNO, AUTOWA_TYPE AS TYPE, ISNULL(AUTOWHATSAPP.AUTOWA_MON,0) AS MON, ISNULL(AUTOWHATSAPP.AUTOWA_TUE,0) AS TUE, ISNULL(AUTOWHATSAPP.AUTOWA_WED,0) AS WED, ISNULL(AUTOWHATSAPP.AUTOWA_THU,0) AS THU, ISNULL(AUTOWHATSAPP.AUTOWA_FRI,0) AS FRI, ISNULL(AUTOWHATSAPP.AUTOWA_SAT,0) AS SAT, ISNULL(AUTOWHATSAPP.AUTOWA_SUN,0)  AS SUN, AUTOWA_TIME AS TIME, AUTOWA_ID AS NO FROM AUTOWHATSAPP WHERE AUTOWA_CMPID = " & CmpId & " ORDER BY AUTOWA_GRIDSRNO", "", "")
+            Dim DTTABLE As DataTable = OBJCMN.Execute_Any_String(" SELECT  AUTOWA_GRIDSRNO AS GRIDSRNO, AUTOWA_TYPE AS TYPE, AUTOWA_SCHEDULER AS SCHEDULER, AUTOWA_SCHDATE AS SCHDATE, ISNULL(AUTOWHATSAPP.AUTOWA_MON,0) AS MON, ISNULL(AUTOWHATSAPP.AUTOWA_TUE,0) AS TUE, ISNULL(AUTOWHATSAPP.AUTOWA_WED,0) AS WED, ISNULL(AUTOWHATSAPP.AUTOWA_THU,0) AS THU, ISNULL(AUTOWHATSAPP.AUTOWA_FRI,0) AS FRI, ISNULL(AUTOWHATSAPP.AUTOWA_SAT,0) AS SAT, ISNULL(AUTOWHATSAPP.AUTOWA_SUN,0)  AS SUN, AUTOWA_TIME AS TIME, AUTOWA_ID AS NO FROM AUTOWHATSAPP WHERE AUTOWA_CMPID = " & CmpId & " ORDER BY AUTOWA_GRIDSRNO", "", "")
             If DTTABLE.Rows.Count > 0 Then
                 GRIDAUTOWA.RowCount = 0
                 For Each DR As DataRow In DTTABLE.Rows
-                    GRIDAUTOWA.Rows.Add(DR("GRIDSRNO"), DR("TYPE"), DR("MON"), DR("TUE"), DR("WED"), DR("THU"), DR("FRI"), DR("SAT"), DR("SUN"), DR("TIME"), DR("NO"))
+                    GRIDAUTOWA.Rows.Add(DR("GRIDSRNO"), DR("TYPE"), DR("SCHEDULER"), DR("SCHDATE"), DR("MON"), DR("TUE"), DR("WED"), DR("THU"), DR("FRI"), DR("SAT"), DR("SUN"), DR("TIME"), DR("NO"))
                 Next
                 GRIDAUTOWA.FirstDisplayedScrollingRowIndex = GRIDAUTOWA.RowCount - 1
             End If
@@ -72,10 +72,12 @@ Public Class AutoWhatsapp
     Sub FILLGRID()
 
         If GRIDDOUBLECLICK = False Then
-            GRIDAUTOWA.Rows.Add(Val(TXTSRNO.Text.Trim), CMBTYPE.Text.Trim, CHKMONDAY.Checked, CHKTUESDAY.Checked, CHKWEDNESDAY.Checked, CHKTHURSDAY.Checked, CHKFRIDAY.Checked, CHKSATURDAY.Checked, CHKSUNDAY.Checked, DTTIME.Text.Trim, 0)
+            GRIDAUTOWA.Rows.Add(Val(TXTSRNO.Text.Trim), CMBTYPE.Text.Trim, CMBSCHEDULER.Text.Trim, SCHDATE.Value, CHKMONDAY.Checked, CHKTUESDAY.Checked, CHKWEDNESDAY.Checked, CHKTHURSDAY.Checked, CHKFRIDAY.Checked, CHKSATURDAY.Checked, CHKSUNDAY.Checked, DTTIME.Text.Trim, 0)
             GETSRNO(GRIDAUTOWA)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDAUTOWA.Item(GTYPE.Index, TEMPROW).Value = CMBTYPE.Text
+            GRIDAUTOWA.Item(GSCHEDULER.Index, TEMPROW).Value = CMBSCHEDULER.Text
+            GRIDAUTOWA.Item(GDATE.Index, TEMPROW).Value = SCHDATE.Value
             GRIDAUTOWA.Item(GMON.Index, TEMPROW).Value = CHKMONDAY.Checked
             GRIDAUTOWA.Item(GTUE.Index, TEMPROW).Value = CHKTUESDAY.Checked
             GRIDAUTOWA.Item(GWED.Index, TEMPROW).Value = CHKWEDNESDAY.Checked
@@ -153,6 +155,8 @@ Public Class AutoWhatsapp
                 TXTSRNO.Text = GRIDAUTOWA.Item(GSRNO.Index, GRIDAUTOWA.CurrentRow.Index).Value.ToString
                 CMBTYPE.Text = GRIDAUTOWA.Item(GTYPE.Index, GRIDAUTOWA.CurrentRow.Index).Value.ToString
                 CMBTYPE.Enabled = False
+                CMBSCHEDULER.Text = GRIDAUTOWA.Item(GSCHEDULER.Index, GRIDAUTOWA.CurrentRow.Index).Value.ToString
+                SCHDATE.Text = GRIDAUTOWA.Item(GDATE.Index, GRIDAUTOWA.CurrentRow.Index).Value.ToString
                 CHKMONDAY.Checked = Convert.ToBoolean(GRIDAUTOWA.Item(GMON.Index, GRIDAUTOWA.CurrentRow.Index).Value)
                 CHKTUESDAY.Checked = Convert.ToBoolean(GRIDAUTOWA.Item(GTUE.Index, GRIDAUTOWA.CurrentRow.Index).Value)
                 CHKWEDNESDAY.Checked = Convert.ToBoolean(GRIDAUTOWA.Item(GWED.Index, GRIDAUTOWA.CurrentRow.Index).Value)
@@ -202,6 +206,8 @@ Public Class AutoWhatsapp
 
             Dim GRIDSRNO As String = ""
             Dim TYPE As String = ""
+            Dim SCHEDULER As String = ""
+            Dim SCHDATE As String = ""
             Dim MONDAY As String = ""
             Dim TUESDAY As String = ""
             Dim WEDNESDAY As String = ""
@@ -218,6 +224,8 @@ Public Class AutoWhatsapp
 
                         GRIDSRNO = Val(row.Cells(GSRNO.Index).Value)
                         TYPE = row.Cells(GTYPE.Index).Value.ToString
+                        SCHEDULER = row.Cells(GSCHEDULER.Index).Value.ToString
+                        SCHDATE = row.Cells(GDATE.Index).Value
                         MONDAY = row.Cells(GMON.Index).Value
                         TUESDAY = row.Cells(GTUE.Index).Value
                         WEDNESDAY = row.Cells(GWED.Index).Value
@@ -232,6 +240,8 @@ Public Class AutoWhatsapp
 
                         GRIDSRNO = GRIDSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
                         TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value.ToString
+                        SCHEDULER = SCHEDULER & "|" & row.Cells(GSCHEDULER.Index).Value.ToString
+                        SCHDATE = SCHDATE & "|" & row.Cells(GDATE.Index).Value
                         MONDAY = MONDAY & "|" & row.Cells(GMON.Index).Value
                         TUESDAY = TUESDAY & "|" & row.Cells(GTUE.Index).Value
                         WEDNESDAY = WEDNESDAY & "|" & row.Cells(GWED.Index).Value
@@ -250,6 +260,8 @@ Public Class AutoWhatsapp
 
             alparaval.Add(GRIDSRNO)
             alparaval.Add(TYPE)
+            alparaval.Add(SCHEDULER)
+            alparaval.Add(SCHDATE)
             alparaval.Add(MONDAY)
             alparaval.Add(TUESDAY)
             alparaval.Add(WEDNESDAY)

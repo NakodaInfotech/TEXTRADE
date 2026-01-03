@@ -666,6 +666,12 @@
     <Compile Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\LotPieceTypeSummary.Designer.vb">
+      <DependentUpon>LotPieceTypeSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\LotPieceTypeSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Purchase Analysis\MonthlyPurchaseAnalysisGridReport.Designer.vb">
       <DependentUpon>MonthlyPurchaseAnalysisGridReport.vb</DependentUpon>
     </Compile>
