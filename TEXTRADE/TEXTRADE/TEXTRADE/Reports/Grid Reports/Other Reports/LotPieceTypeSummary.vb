@@ -15,19 +15,19 @@ Public Class LotPieceTypeSummary
         Try
             Dim objclsCMST As New ClsCommon
             Dim dt As New DataTable
-
-            Dim sql As String = " DECLARE @COLS NVARCHAR(MAX); DECLARE @COLS_PCT NVARCHAR(MAX); DECLARE @SQL NVARCHAR(MAX); 
+            Dim sql As String = "DECLARE @COLS NVARCHAR(MAX); DECLARE @COLS_PCT NVARCHAR(MAX); DECLARE @SQL NVARCHAR(MAX); 
 SELECT @COLS = STRING_AGG(QUOTENAME(PIECETYPE), ','), @COLS_PCT = STRING_AGG( 'CAST((' + QUOTENAME(PIECETYPE) + '*100.0)/NULLIF(ACCEPTEDMTRS,0) AS DECIMAL(10,2)) AS '
         + QUOTENAME(PIECETYPE + '_PCT') , ',') FROM (SELECT DISTINCT PM.PIECETYPE_name AS PIECETYPE FROM MATERIALRECEIPT_DESC MRD INNER JOIN PIECETYPEMASTER PM  
         ON MRD.MATREC_PIECETYPEID = PM.PIECETYPE_id WHERE MRD.MATREC_YEARID = " & YearId & " ) X; 
-        SET @SQL = ' SELECT JOBBERNAME, LOTNO, ACCEPTEDMTRS, BALMTRS, ' + @COLS + ', ' + @COLS_PCT + ' FROM (
+        SET @SQL = ' SELECT JOBBERNAME, LOTNO, ACCEPTEDMTRS, BALMTRS, BALMTRS_PCT,' + @COLS + ', ' + @COLS_PCT + ' FROM (
     SELECT  
         LV.JOBBERNAME,
         LV.LOTNO,
         LV.ACCEPTEDMTRS,
         PM.PIECETYPE_name AS PIECETYPE,
         SUM(MRD.MATREC_RECDMTRS) AS RECDMTRS,
-        LV.BALMTRS
+        LV.BALMTRS,
+		CAST((BALMTRS * 100.0) / NULLIF(ACCEPTEDMTRS,0) AS DECIMAL(10,2)) AS BALMTRS_PCT
     FROM MATERIALRECEIPT MR
     INNER JOIN MATERIALRECEIPT_DESC MRD
         ON MR.MATREC_NO = MRD.MATREC_NO
@@ -62,46 +62,27 @@ PIVOT (
 
 EXEC sp_executesql @SQL;
 "
-
             dt = objclsCMST.Execute_Any_String(sql, "", "")
-
-            ' 🔹 2️⃣ Bind to DevExpress Grid
             gridbilldetails.DataSource = dt
             gridbill.PopulateColumns()
-
-            ' 🔹 3️⃣ Show footer (SUMMARY REQUIRED)
             gridbill.OptionsView.ShowFooter = True
-
-            ' 🔹 4️⃣ ADD SUMMARY TO NUMERIC COLUMNS
-            ' 🔥 VALUE ke just RIGHT me _PCT column set karo
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In gridbill.Columns
-
-                ' Sirf base columns (NOT _PCT)
                 If Not col.FieldName.EndsWith("_PCT") Then
-
                     Dim pctColName As String = col.FieldName & "_PCT"
-
                     ' Agar uska % column exist karta hai
                     If gridbill.Columns(pctColName) IsNot Nothing Then
                         gridbill.Columns(pctColName).VisibleIndex = col.VisibleIndex + 1
                     End If
-
                 End If
             Next
-
-
-            ' 🔹 5️⃣ HIDE ZERO VALUE COLUMNS (⭐ THIS IS WHAT YOU ASKED)
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In gridbill.Columns
                 If col.SummaryItem IsNot Nothing _
            AndAlso col.SummaryItem.SummaryValue IsNot Nothing _
            AndAlso IsNumeric(col.SummaryItem.SummaryValue) _
            AndAlso Convert.ToDecimal(col.SummaryItem.SummaryValue) = 0 Then
-
                     col.Visible = False
                 End If
             Next
-
-            ' 🔹 6️⃣ Focus last row
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
             End If
@@ -128,6 +109,18 @@ EXEC sp_executesql @SQL;
 
         Catch ex As Exception
             MsgBox("Lot Piece Type Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
+    Private Sub cmdcancel_Click(sender As Object, e As EventArgs) Handles cmdcancel.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
+        Try
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
