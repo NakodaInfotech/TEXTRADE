@@ -2579,12 +2579,18 @@ line1:
                 End If
 
             Else
-                OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
+                If CMBREPORTTYPE.Text = "BUYERWISE" Then
+                    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
+                Else
+                    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {AGENCYOUTSTANDINGREC.SELLERNAME} = '" & PARTYNAME & "'"
+                End If
+
+
             End If
 
 
 
-            If chkdate.Checked = True Then
+                If chkdate.Checked = True Then
                 getFromToDate()
                 OBJOUT.FORMULA = OBJOUT.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
                 OBJOUT.PERIOD = Format(dtfrom.Value, "dd/MM/yyyy") & " - " & Format(dtto.Value, "dd/MM/yyyy")
@@ -3095,6 +3101,8 @@ LINE1:
             DTMAIL.Rows.Clear()
             DTWHATSAPP.Rows.Clear()
 
+
+
             GRIDSELLER.ClearColumnsFilter()
             Dim OBJCMN As New ClsCommon
             Dim WHERECLAUSE As String = " "
@@ -3152,28 +3160,28 @@ LINE1:
 
             For i As Integer = 0 To GRIDSELLER.RowCount - 1
 
-                    Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
-                    If Convert.ToBoolean(dtrow("CHK")) = False Then Continue For
+                Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = False Then Continue For
 
-                    Dim sellerName As String = dtrow("NAME").ToString().Replace("'", "''")
-                    Dim SellerRows() As DataRow = DT.Select("SELLERNAME = '" & sellerName & "'")
+                Dim sellerName As String = dtrow("NAME").ToString().Replace("'", "''")
+                Dim SellerRows() As DataRow = DT.Select("SELLERNAME = '" & sellerName & "'")
 
-                    If SellerRows.Length = 0 Then Continue For
+                If SellerRows.Length = 0 Then Continue For
 
-                    Dim IsAnyBillDue As Boolean = False
+                Dim IsAnyBillDue As Boolean = False
 
-                    For Each r As DataRow In SellerRows
-                        If Val(r("BALANCE")) <> 0 Then
+                For Each r As DataRow In SellerRows
+                    If Val(r("BALANCE")) <> 0 Then
                         Dim OD As Integer =
     DateDiff(DateInterval.Day, CDate(r("DATE")), Mydate.Date) - Val(r("CRDAYS"))
 
 
                         If OD > 0 Then
-                                IsAnyBillDue = True
+                            IsAnyBillDue = True
                             'Exit For
                         End If
-                        End If
-                    Next
+                    End If
+                Next
                 If RBOUTSTANDINGGRID.Checked = True Then
                     Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
                 ElseIf RBOUTSTANDINGDAYS.Checked = True Then
@@ -3185,10 +3193,10 @@ LINE1:
                     Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
                     'Else GoTo LINE1
                 End If
-                            ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
-                            FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
-                            'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
-                            DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
+                'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                 'End If
                 'End If
 LINE1:
