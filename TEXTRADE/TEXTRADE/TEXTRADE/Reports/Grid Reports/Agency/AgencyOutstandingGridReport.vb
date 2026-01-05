@@ -2,6 +2,7 @@
 Imports System.Drawing
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports System.Runtime.Remoting.Messaging
 Imports System.Security.Principal
 Imports BL
 Imports DevExpress.Utils.Internal
@@ -686,7 +687,7 @@ Public Class AgencyOutstandingGridReport
 
 #Region "SELLERWISE"
 
-    Sub FILLSELLERNAMEGRID()
+    Public Sub FILLSELLERNAMEGRID()
         Try
             GRIDOUTSTANDING.RowCount = 0
             GCMPNAME.Visible = False
@@ -2540,6 +2541,11 @@ line1:
 
             If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
             If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {@OD} > 0 "
+            'If CHKDUE.Checked = True Then
+            '    OBJOUT.FORMULA &= " AND DateDiff('d', Date({AGENCYOUTSTANDINGREC.DATE}), CurrentDate) - {AGENCYOUTSTANDINGREC.CRDAYS}"
+            'End If
+
+
 
 
             Dim BUYERCLAUSE As String = ""
@@ -3091,48 +3097,143 @@ LINE1:
 
             GRIDSELLER.ClearColumnsFilter()
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 AND  YEARID = " & YearId & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
-            For i As Integer = 0 To GRIDSELLER.RowCount - 1
-                Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
-                ' 🔹 ADDED (FILTER IN MEMORY)
-                Dim rows() As DataRow = DT.Select("SELLERNAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
-                If rows.Length > 0 Then
+            Dim WHERECLAUSE As String = " "
 
-                    If Convert.ToBoolean(dtrow("CHK")) = True And Val(DT.Rows(0).Item("BALANCE")) > 0 Then
-                        If RBOUTSTANDINGGRID.Checked = True Then
-                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                        ElseIf RBOUTSTANDINGDAYS.Checked = True Then
-                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                        ElseIf RBOUTSTANDINGSHORT.Checked = True Then
-                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                        ElseIf RBOUTSTANDINGDUE.Checked = True Then
-                            Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+
+            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND SELLERNAME = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
+            If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
+            If CMBSTATE.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND STATE = '" & CMBSTATE.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND ITEMNAME = '" & CMBITEMNAME.Text.Trim & "'"
+            If CHKHOLDINTCALC.Checked = True Then WHERECLAUSE = WHERECLAUSE & " AND CAST(HOLDINTCALC AS bit) = 'FALSE'"
+            If chkdate.CheckState = CheckState.Checked Then
+                WHERECLAUSE = WHERECLAUSE & " AND DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "'  AND DATE <='" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+            End If
+            Mydate = dtto.Value.Date
+
+            If CHKDUE.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND DUEDATE < '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            If CHKLASTYEAR.CheckState = CheckState.Checked Then WHERECLAUSE = WHERECLAUSE & " AND TYPE = 'OPENING'"
+            If Val(TXTOVERDUEDAYS.Text.Trim) > 0 Then WHERECLAUSE = WHERECLAUSE & " AND DATEADD(DAY, " & Val(TXTOVERDUEDAYS.Text.Trim) & ", DUEDATE)  <= '" & Format(Mydate.Date, "MM/dd/yyyy") & "'"
+            'Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 AND  YEARID = " & YearId & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
+            ' If RBOUTSTANDINGGRID.Checked = True Then
+            Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 and YEARID = " & YearId & " " & WHERECLAUSE & " ORDER BY SELLERNAME, NAME, DATE, TYPE, BILL", "", "")
+            'ElseIf RBOUTSTANDINGDUE.Checked = True Then
+            'Dim DT As DataTable = OBJCMN.Execute_Any_String("SELECT AGENCYOUTSTANDINGREC.*, Cmpmaster.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0    AND DUEDATE < '" & Today.ToString("yyyy-MM-dd") & "' AND YEARID IN (4) ORDER BY SELLERNAME, NAME, DATE, TYPE, BILL", "", "")
+            '    For i As Integer = 0 To GRIDSELLER.RowCount - 1
+            '        Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+            '        ' 🔹 ADDED (FILTER IN MEMORY)
+            '        Dim rows() As DataRow = DT.Select("SELLERNAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+            '        Dim rows1() As DataRow = DT.Select("SELLERNAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+
+            '        If rows.Length > 0 Then
+
+            '            If Convert.ToBoolean(dtrow("CHK")) = True And Val(DT.Rows(0).Item("BALANCE")) > 0 Then
+            '                Dim SellerRows() As DataRow =
+            'DT.Select("SELLERNAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+
+            '                Dim IsAnyBillDue As Boolean = False
+
+            '                For Each r As DataRow In SellerRows
+            '                    If Val(r("BALANCE")) <> 0 Then
+            '                        Dim BillDate As Date = CDate(r("DATE"))
+            '                        Dim CrDays As Integer = Val(r("CRDAYS"))
+
+            '                        Dim OD As Integer =
+            '        DateDiff(DateInterval.Day, BillDate, Today) - CrDays
+
+            '                        If OD > 0 Then
+            '                            IsAnyBillDue = True
+            '                            'Exit For
+            '                        End If
+            '                    End If
+            '                Next
+
+            For i As Integer = 0 To GRIDSELLER.RowCount - 1
+
+                    Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = False Then Continue For
+
+                    Dim sellerName As String = dtrow("NAME").ToString().Replace("'", "''")
+                    Dim SellerRows() As DataRow = DT.Select("SELLERNAME = '" & sellerName & "'")
+
+                    If SellerRows.Length = 0 Then Continue For
+
+                    Dim IsAnyBillDue As Boolean = False
+
+                    For Each r As DataRow In SellerRows
+                        If Val(r("BALANCE")) <> 0 Then
+                        Dim OD As Integer =
+    DateDiff(DateInterval.Day, CDate(r("DATE")), Mydate.Date) - Val(r("CRDAYS"))
+
+
+                        If OD > 0 Then
+                                IsAnyBillDue = True
+                            'Exit For
                         End If
-                        ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
-                        FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
-                        'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
-                        DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
-                    End If
+                        End If
+                    Next
+                If RBOUTSTANDINGGRID.Checked = True Then
+                    Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                ElseIf RBOUTSTANDINGDAYS.Checked = True Then
+                    Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                ElseIf RBOUTSTANDINGSHORT.Checked = True Then
+                    Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    If RBOUTSTANDINGDUE.Checked AndAlso Not IsAnyBillDue Then Continue For
+                ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                    Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                    'Else GoTo LINE1
                 End If
+                            ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
+                            FILENAME.Add(dtrow("NAME") & "_OUTSTANDING.pdf")
+                            'DTMAIL.Rows.Add(ROW("NAME"), ROW("PARTYEMAIL"), ROW("AGENT"), ROW("AGENTEMAIL"), UCase(CmpName) & " - OUTSTANDING ", Application.StartupPath & "\" & ROW("NAME") & "_OUTSTANDING.pdf", ROW("NAME") & "_OUTSTANDING.pdf")
+                            DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
+                'End If
+                'End If
+LINE1:
             Next
+            ' End If
+
 
             GRIDBUYER.ClearColumnsFilter()
             Dim DT1 As DataTable = OBJCMN.Execute_Any_String(" SELECT AGENCYOUTSTANDINGREC.*, CMPMASTER.CMP_NAME AS CMPNAME FROM AGENCYOUTSTANDINGREC INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0  AND YEARID = " & YearId & " ORDER BY NAME, SELLERNAME, DATE, TYPE, BILL", "", "")
             For i As Integer = 0 To GRIDBUYER.RowCount - 1
                 Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
                 ' 🔹 ADDED (FILTER IN MEMORY)
-                Dim rows() As DataRow = DT.Select("NAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+                Dim rows() As DataRow = DT1.Select("NAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
 
                 If rows.Length > 0 Then
                     If Convert.ToBoolean(dtrow("CHK")) = True And Val(DT1.Rows(0).Item("BALANCE")) > 0 Then
+                        Dim buyerRows() As DataRow =
+            DT1.Select("NAME = '" & dtrow("NAME").ToString().Replace("'", "''") & "'")
+
+                        Dim IsAnyBillDue As Boolean = False
+
+                        For Each r As DataRow In buyerRows
+                            If Val(r("BALANCE")) > 0 Then
+                                Dim BillDate As Date = CDate(r("DATE"))
+                                Dim CrDays As Integer = Val(r("CRDAYS"))
+
+                                Dim OD As Integer =
+                    DateDiff(DateInterval.Day, BillDate, Today) - CrDays
+
+                                If OD > 0 Then
+                                    IsAnyBillDue = True
+                                    Exit For
+                                End If
+                            End If
+                        Next
+
                         If RBOUTSTANDINGGRID.Checked = True Then
                             Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
                         ElseIf RBOUTSTANDINGDAYS.Checked = True Then
                             Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
                         ElseIf RBOUTSTANDINGSHORT.Checked = True Then
                             Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
-                        ElseIf RBOUTSTANDINGDUE.Checked = True Then
+                        ElseIf RBOUTSTANDINGDUE.Checked = True And IsAnyBillDue Then
                             Call CMDPRINT_Click(sender, e, True, False, dtrow("NAME"), "")
+                        Else GoTo LINE2
                         End If
                         ALATTACHMENT.Add(Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING" & ".PDF")
                         FILENAME.Add(dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
@@ -3140,6 +3241,7 @@ LINE1:
                         DTWHATSAPP.Rows.Add(dtrow("NAME"), dtrow("PARTYWHATSAPP"), dtrow("AGENTWHATSAPP"), UCase(CmpName) & " - AGENCYOUTSTANDING ", Application.StartupPath & "\" & dtrow("NAME") & "_AGENCYOUTSTANDING.pdf", dtrow("NAME") & "_AGENCYOUTSTANDING.pdf")
                     End If
                 End If
+LINE2:
             Next
 
 
