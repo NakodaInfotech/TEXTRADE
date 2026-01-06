@@ -2024,7 +2024,7 @@ line1:
             ALPARAVAL.Add("")   'COMPLAINT
             ALPARAVAL.Add("")   'COMPLAINTBY
             ALPARAVAL.Add("")   'COMPLAINTDATE
-
+            ALPARAVAL.Add(0)    'TEMPSOLD
             Dim OBJPI As New ClsPurchaseMaster()
             OBJPI.alParaval = ALPARAVAL
             Dim DT As DataTable = OBJPI.SAVE()
