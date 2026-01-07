@@ -851,8 +851,11 @@ NEXTLINE:
         GRIDMAGICBOX.FirstDisplayedScrollingRowIndex = GRIDMAGICBOX.RowCount - 1
         'txtsrno.Text = txtsrno.Text.Trim + 1
         ' Clear all relevant input fields used in grid entry
-        BILLDATE.Value = Date.Today
-        ENTRYDATE.Value = Date.Today
+        'BILLDATE.Value = Date.Today
+        BILLDATE.Value = BILLDATE.Value.Date
+        'ENTRYDATE.Value = Date.Today
+        ENTRYDATE.Value = ENTRYDATE.Value.Date
+
         CMBSELLERS.Text = ""
         CMBBUYERS.Text = ""
         CMBBUYERS.Enabled = True
