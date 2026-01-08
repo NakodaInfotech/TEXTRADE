@@ -6,6 +6,8 @@ Public Class JobInDetails
     Public TYPE As String
     Dim TEMPPONO As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Dim DTMAIL As New DataTable
+    Dim DTWHATSAPP As New DataTable
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -36,6 +38,34 @@ Public Class JobInDetails
             Exit Sub
         End If
 
+        DTMAIL.Columns.Add("PRINTINITIALS")
+        DTMAIL.Columns.Add("Registerid")
+        DTMAIL.Columns.Add("REGNAME")
+        DTMAIL.Columns.Add("INITIALS")
+        DTMAIL.Columns.Add("DATE")
+        DTMAIL.Columns.Add("NAME")
+        DTMAIL.Columns.Add("PARTYEMAILID")
+        DTMAIL.Columns.Add("AGENTNAME")
+        DTMAIL.Columns.Add("AGENTEMAILID")
+        DTMAIL.Columns.Add("GRANDTOTAL")
+        DTMAIL.Columns.Add("SUBJECT")
+        DTMAIL.Columns.Add("ATTACHMENT")
+        DTMAIL.Columns.Add("FILENAME")
+
+        DTWHATSAPP.Columns.Add("PRINTINITIALS")
+        DTWHATSAPP.Columns.Add("Registerid")
+        DTWHATSAPP.Columns.Add("REGNAME")
+        DTWHATSAPP.Columns.Add("INITIALS")
+        DTWHATSAPP.Columns.Add("DATE")
+        DTWHATSAPP.Columns.Add("NAME")
+        DTWHATSAPP.Columns.Add("PARTYWHATSAPP")
+        DTWHATSAPP.Columns.Add("AGENTNAME")
+        DTWHATSAPP.Columns.Add("AGENTWHATSAPP")
+        DTWHATSAPP.Columns.Add("")
+        DTWHATSAPP.Columns.Add("SUBJECT")
+        DTWHATSAPP.Columns.Add("ATTACHMENT")
+        DTWHATSAPP.Columns.Add("FILENAME")
+
         fillgrid(" AND dbo.JOBIN.JI_yearid=" & YearId & " order by dbo.JOBIN.JI_no ")
     End Sub
 
@@ -48,7 +78,7 @@ Public Class JobInDetails
 
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable
-            dt = objclsCMST.search(" JOBIN.JI_no AS SRNO, JOBIN.JI_date AS DATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, JOBIN.JI_TOTALQTY AS TOTALPCS, JOBIN.JI_TOTALMTRS AS TOTALMTRS, ISNULL(JOBIN.JI_JOBOUTNO, 0) AS JONO, ISNULL(JOBIN.JI_remarks, '') AS REMARKS, ISNULL(JOBIN.JI_LOTNO, '') AS LOTNO, ISNULL(WEAVERLEDGERS.Acc_cmpname, '') AS WEAVERNAME, ISNULL(JOBIN.JI_WEAVERCHNO, '') AS WEAVERCHNO, ISNULL(JOBIN.JI_CHALLANNO, '') AS CHALLANNO, JOBIN.JI_TOTALAMOUNT AS TOTALAMOUNT, ISNULL(LEDGERS.ACC_WHATSAPPNO, '0') AS PARTYWHATSAAP, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAIL, ISNULL(USERMASTER.User_Name, '') AS USERNAME, ISNULL(MACHINEMASTER.MACHINE_NAME, '') AS MACHINE, ISNULL(CONTRACTMASTER.CONTRACT_NAME, '') AS OPERATOR ", "", " JOBIN INNER JOIN LEDGERS ON JOBIN.JI_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CONTRACTMASTER ON JOBIN.JI_CONTRACTORID = CONTRACTMASTER.CONTRACT_ID LEFT OUTER JOIN MACHINEMASTER ON JOBIN.JI_MACHINEID = MACHINEMASTER.MACHINE_ID LEFT OUTER JOIN USERMASTER ON JOBIN.JI_userid = USERMASTER.User_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON JOBIN.JI_ledgerid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN GODOWNMASTER ON JOBIN.ji_godownid = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS WEAVERLEDGERS ON JOBIN.JI_PURLEDGERID = WEAVERLEDGERS.Acc_id", TEMPCONDITION)
+            dt = objclsCMST.search(" CAST(0 AS BIT) AS CHK,JOBIN.JI_no AS SRNO, JOBIN.JI_date AS DATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, JOBIN.JI_TOTALQTY AS TOTALPCS, JOBIN.JI_TOTALMTRS AS TOTALMTRS, ISNULL(JOBIN.JI_JOBOUTNO, 0) AS JONO, ISNULL(JOBIN.JI_remarks, '') AS REMARKS, ISNULL(JOBIN.JI_LOTNO, '') AS LOTNO, ISNULL(WEAVERLEDGERS.Acc_cmpname, '') AS WEAVERNAME, ISNULL(JOBIN.JI_WEAVERCHNO, '') AS WEAVERCHNO, ISNULL(JOBIN.JI_CHALLANNO, '') AS CHALLANNO, JOBIN.JI_TOTALAMOUNT AS TOTALAMOUNT, ISNULL(LEDGERS.ACC_WHATSAPPNO, '0') AS PARTYWHATSAPP, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAIL, ISNULL(USERMASTER.User_Name, '') AS USERNAME, ISNULL(MACHINEMASTER.MACHINE_NAME, '') AS MACHINE, ISNULL(CONTRACTMASTER.CONTRACT_NAME, '') AS OPERATOR, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAILID ", "", " JOBIN INNER JOIN LEDGERS ON JOBIN.JI_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CONTRACTMASTER ON JOBIN.JI_CONTRACTORID = CONTRACTMASTER.CONTRACT_ID LEFT OUTER JOIN MACHINEMASTER ON JOBIN.JI_MACHINEID = MACHINEMASTER.MACHINE_ID LEFT OUTER JOIN USERMASTER ON JOBIN.JI_userid = USERMASTER.User_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON JOBIN.JI_ledgerid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN GODOWNMASTER ON JOBIN.ji_godownid = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS WEAVERLEDGERS ON JOBIN.JI_PURLEDGERID = WEAVERLEDGERS.Acc_id", TEMPCONDITION)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -273,41 +303,69 @@ Public Class JobInDetails
 
             Dim ALATTACHMENT As New ArrayList
             Dim FILENAME As New ArrayList
-
+            DTMAIL.Rows.Clear()
+            DTWHATSAPP.Rows.Clear()
             If INVOICEMAIL = False And WHATSAPP = False Then
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
-            Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
-            For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
-                Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+            'Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
+            For I As Integer = 0 To Val(gridbill.RowCount - 1)
+                Dim ROW As DataRow = gridbill.GetDataRow(I)
+                If ROW("CHK") = True Then
+                    Dim OBJJO As New GDNDESIGN
+                    OBJJO.MdiParent = MDIMain
+                    OBJJO.DIRECTPRINT = True
+                    OBJJO.FRMSTRING = "JOBIN"
+                    OBJJO.DIRECTMAIL = INVOICEMAIL
+                    OBJJO.DIRECTWHATSAPP = WHATSAPP
+                    OBJJO.PRINTSETTING = PRINTDIALOG
+                    OBJJO.PARTYNAME = ROW("NAME")
+                    OBJJO.FORMULA = "{JOBIN.JI_NO}=" & Val(ROW("SRNO")) & " and {JOBIN.JI_yearid}=" & YearId
+                    OBJJO.JONO = Val(ROW("SRNO"))
+                    OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                    OBJJO.Show()
+                    OBJJO.Close()
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    FILENAME.Add(ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
 
-                Dim OBJJO As New GDNDESIGN
-                OBJJO.MdiParent = MDIMain
-                OBJJO.DIRECTPRINT = True
-                OBJJO.FRMSTRING = "JOBIN"
-                OBJJO.DIRECTMAIL = INVOICEMAIL
-                OBJJO.DIRECTWHATSAPP = WHATSAPP
-                OBJJO.PRINTSETTING = PRINTDIALOG
-                OBJJO.FORMULA = "{JOBIN.JI_NO}=" & Val(ROW("SRNO")) & " and {JOBIN.JI_yearid}=" & YearId
-                OBJJO.JONO = Val(ROW("SRNO"))
-                OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-                OBJJO.Show()
-                OBJJO.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\JOBIN_" & Val(ROW("SRNO")) & ".pdf")
-                FILENAME.Add("JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    Dim OBJCMN As New ClsCommon
+                    'ADDINT IN DTEMAIL
+                    DTMAIL.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYEMAILID"), "", "", "", UCase(CmpName) & " - REC No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    'ADDING IN WHATSAPP
+
+                    DTWHATSAPP.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), "", 0, "", UCase(CmpName) & " - Rec No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+
+                    If INVOICEMAIL = False And WHATSAPP = False Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE JOBIN SET JI_SENDWHATSAPP = 1 FROM JOBIN  WHERE JI_NO = " & Val(ROW("SRNO")) & " and  AND JI_YEARID = " & YearId, "", "")
+                End If
             Next
 
-            If INVOICEMAIL Then
-                Dim OBJMAIL As New SendMail
-                OBJMAIL.ALATTACHMENT = ALATTACHMENT
-                OBJMAIL.subject = "JOBIN"
-                OBJMAIL.ShowDialog()
-            End If
+            'If INVOICEMAIL Then
+            '    Dim OBJMAIL As New SendMail
+            '    OBJMAIL.ALATTACHMENT = ALATTACHMENT
+            '    OBJMAIL.subject = "JOBIN"
+            '    OBJMAIL.ShowDialog()
+            'End If
 
+            'If WHATSAPP = True Then
+            '    Dim OBJWHATSAPP As New SendWhatsapp
+            '    OBJWHATSAPP.PATH = ALATTACHMENT
+            '    OBJWHATSAPP.FILENAME = FILENAME
+            '    OBJWHATSAPP.ShowDialog()
+            'End If
+            If INVOICEMAIL = True Then
+                If DTMAIL.Rows.Count = 0 Then Exit Sub
+                Dim OBJEMAIL As New SendMultipleMail
+                OBJEMAIL.FORMTYPE = "INVOICE"
+                OBJEMAIL.DT = DTMAIL
+                OBJEMAIL.ShowDialog()
+                Exit Sub
+            End If
             If WHATSAPP = True Then
-                Dim OBJWHATSAPP As New SendWhatsapp
+                If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+                Dim OBJWHATSAPP As New SendMultipleWhatsapp
                 OBJWHATSAPP.PATH = ALATTACHMENT
                 OBJWHATSAPP.FILENAME = FILENAME
+                OBJWHATSAPP.DT = DTWHATSAPP
                 OBJWHATSAPP.ShowDialog()
             End If
         Catch ex As Exception
