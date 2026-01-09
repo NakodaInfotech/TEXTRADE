@@ -32,6 +32,7 @@ Partial Class JobInDetails
         Me.TXTTO = New System.Windows.Forms.TextBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -174,16 +175,23 @@ Partial Class JobInDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GPURCHASENAME, Me.GGODOWN, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GJONO, Me.GLOTNO, Me.GREMARKS, Me.GWEAVERNAME, Me.GWEAVERCHNO, Me.GCHALLANNO, Me.GTOTALAMOUNT, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GUSERNAME, Me.GMACHINE, Me.GOPERATOR})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GPURCHASENAME, Me.GGODOWN, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GJONO, Me.GLOTNO, Me.GREMARKS, Me.GWEAVERNAME, Me.GWEAVERCHNO, Me.GCHALLANNO, Me.GTOTALAMOUNT, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GUSERNAME, Me.GMACHINE, Me.GOPERATOR})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
-        Me.gridbill.OptionsBehavior.Editable = False
+        Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
         Me.gridbill.OptionsSelection.MultiSelect = True
-        Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
+        '
+        'GCHK
+        '
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
         '
         'gsrno
         '
@@ -552,4 +560,5 @@ Partial Class JobInDetails
     Friend WithEvents GPURCHASENAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMACHINE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GOPERATOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
 End Class

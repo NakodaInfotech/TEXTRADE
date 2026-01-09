@@ -2833,7 +2833,10 @@ LINE1:
                 TXTHSNCODE.Text = dt.Rows(0).Item("HSNCODE")
 
                 Dim CALCON As Double = 0.0
-                CALCON = TXTRATE.Text
+                'CALCON = TXTRATE.Text
+                If TXTRATE.Text.Trim() <> "" Then
+                    CALCON = CDbl(TXTRATE.Text)
+                End If
 
                 If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
                     If Val(dt.Rows(0).Item("RATE")) = 0 Or CHKEXPORTGST.Checked = True Then GoTo NORATE
