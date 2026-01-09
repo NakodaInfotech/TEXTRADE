@@ -311,10 +311,10 @@ Public Class AgencyReceiptDetails
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
             For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
-                Dim OBJREC As New receipt_advice
+                Dim OBJREC As New AgencyReceiptDesign
                 OBJREC.MdiParent = MDIMain
                 OBJREC.DIRECTPRINT = True
-                OBJREC.FRMSTRING = "RECEIPT"
+                OBJREC.FRMSTRING = "AGENCYREC"
                 OBJREC.DIRECTMAIL = INVOICEMAIL
                 OBJREC.DIRECTWHATSAPP = WHATSAPP
                 OBJREC.REGNAME = cmbregister.Text.Trim
@@ -323,8 +323,8 @@ Public Class AgencyReceiptDetails
                 OBJREC.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJREC.Show()
                 OBJREC.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\RECEIPT_" & I & ".pdf")
-                FILENAME.Add("RECEIPT_" & I & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\AGENCYRECEIPTREPORT" & I & ".pdf")
+                FILENAME.Add("AGENCYRECEIPTREPORT" & I & ".pdf")
 
                 If INVOICEMAIL = False And WHATSAPP = False Then
                     Dim OBJCMN As New ClsCommon
@@ -398,10 +398,10 @@ Public Class AgencyReceiptDetails
 
                 Dim ROW As DataRow = gridpayment.GetDataRow(I)
                 If ROW("CHK") = True Then
-                    Dim OBJREC As New receipt_advice
+                    Dim OBJREC As New AgencyReceiptDesign
                     OBJREC.MdiParent = MDIMain
                     OBJREC.DIRECTPRINT = True
-                    OBJREC.FRMSTRING = "RECEIPT"
+                    OBJREC.FRMSTRING = "AGENCYREC"
                     OBJREC.DIRECTMAIL = INVOICEMAIL
                     OBJREC.DIRECTWHATSAPP = WHATSAPP
                     OBJREC.REGNAME = cmbregister.Text.Trim
@@ -411,20 +411,20 @@ Public Class AgencyReceiptDetails
                     OBJREC.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJREC.Show()
                     OBJREC.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "\RECEIPT_" & Val(ROW("SRNO")) & ".pdf")
-                    FILENAME.Add(ROW("NAME") & "RECEIPT_" & Val(ROW("SRNO")) & ".pdf")
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf")
+                    FILENAME.Add(ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf")
 
 
 
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" register_name,ISNULL (REGISTERMASTER.register_id, 0) AS Registerid ", "", " RegisterMaster ", " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' and register_YEARid = " & YearId)
                     'ADDINT IN DTEMAIL
-                    DTMAIL.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("Registerid"), cmbregister.Text.Trim, ROW("INITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYEMAILID"), ROW("AGENTNAME"), ROW("AGENTEMAILID"), "", UCase(CmpName) & " - REC No. " & ROW("INITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "RECEIPT_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "RECEIPT_" & Val(ROW("SRNO")) & ".pdf")
+                    DTMAIL.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("Registerid"), cmbregister.Text.Trim, ROW("INITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYEMAILID"), ROW("AGENTNAME"), ROW("AGENTEMAILID"), "", UCase(CmpName) & " - REC No. " & ROW("INITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf")
                     'ADDING IN WHATSAPP
 
-                    DTWHATSAPP.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("Registerid"), cmbregister.Text.Trim, ROW("INITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), ROW("AGENTNAME"), ROW("AGENTWHATSAPP"), "", UCase(CmpName) & " - Rec No. " & ROW("INITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "RECEIPT_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "RECEIPT_" & Val(ROW("SRNO")) & ".pdf")
+                    DTWHATSAPP.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("Registerid"), cmbregister.Text.Trim, ROW("INITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), ROW("AGENTNAME"), ROW("AGENTWHATSAPP"), "", UCase(CmpName) & " - Rec No. " & ROW("INITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "AGENCYRECEIPT_" & Val(ROW("SRNO")) & ".pdf")
 
-                    If INVOICEMAIL = False And WHATSAPP = False Then DT = OBJCMN.Execute_Any_String("UPDATE RECEIPTMASTER SET RECEIPT_PRINT = 1 FROM RECEIPTMASTER INNER JOIN REGISTERMASTER ON RECEIPT_REGISTERID = REGISTER_ID WHERE RECEIPT_NO = " & Val(ROW("SRNO")) & " and REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND RECEIPT_YEARID = " & YearId, "", "")
+                    If INVOICEMAIL = False And WHATSAPP = False Then DT = OBJCMN.Execute_Any_String("UPDATE AGENCYRECEIPTMASTER SET ARECEIPT_PRINT = 1 FROM AGENCYRECEIPTMASTER INNER JOIN REGISTERMASTER ON ARECEIPT_REGISTERID = REGISTER_ID WHERE ARECEIPT_NO = " & Val(ROW("SRNO")) & " and REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND ARECEIPT_YEARID = " & YearId, "", "")
                 End If
 
             Next

@@ -851,8 +851,11 @@ NEXTLINE:
         GRIDMAGICBOX.FirstDisplayedScrollingRowIndex = GRIDMAGICBOX.RowCount - 1
         'txtsrno.Text = txtsrno.Text.Trim + 1
         ' Clear all relevant input fields used in grid entry
-        BILLDATE.Value = Date.Today
-        ENTRYDATE.Value = Date.Today
+        'BILLDATE.Value = Date.Today
+        BILLDATE.Value = BILLDATE.Value.Date
+        'ENTRYDATE.Value = Date.Today
+        ENTRYDATE.Value = ENTRYDATE.Value.Date
+
         CMBSELLERS.Text = ""
         CMBBUYERS.Text = ""
         CMBBUYERS.Enabled = True
@@ -2024,7 +2027,7 @@ line1:
             ALPARAVAL.Add("")   'COMPLAINT
             ALPARAVAL.Add("")   'COMPLAINTBY
             ALPARAVAL.Add("")   'COMPLAINTDATE
-
+            ALPARAVAL.Add(0)    'TEMPSOLD
             Dim OBJPI As New ClsPurchaseMaster()
             OBJPI.alParaval = ALPARAVAL
             Dim DT As DataTable = OBJPI.SAVE()

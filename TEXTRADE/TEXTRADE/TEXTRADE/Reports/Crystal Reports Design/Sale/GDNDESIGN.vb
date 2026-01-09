@@ -1342,7 +1342,7 @@ Public Class GDNDESIGN
 
                 Dim TEMPATTACHMENT As String = ""
                 If FRMSTRING = "JOBIN" Then
-                    TEMPATTACHMENT = "JOBIN"
+                    TEMPATTACHMENT = PARTYNAME & "JOBIN"
                     'ElseIf FRMSTRING = "JOBINPS" Then
                     '    TEMPATTACHMENT = "JOBINPS"
                 ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then

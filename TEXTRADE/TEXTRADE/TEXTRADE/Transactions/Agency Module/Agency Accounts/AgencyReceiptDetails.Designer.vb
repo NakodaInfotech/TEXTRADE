@@ -38,7 +38,6 @@ Partial Class AgencyReceiptDetails
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridpayment = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsellername = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,6 +52,7 @@ Partial Class AgencyReceiptDetails
         Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGROUPMASTER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSPECIALREMARK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdprint = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -248,16 +248,12 @@ Partial Class AgencyReceiptDetails
         Me.GCHK.VisibleIndex = 0
         Me.GCHK.Width = 30
         '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        '
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "SRNO"
         Me.gsrno.Name = "gsrno"
+        Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
         Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 60
@@ -268,6 +264,7 @@ Partial Class AgencyReceiptDetails
         Me.gname.FieldName = "Name"
         Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
+        Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.Visible = True
         Me.gname.VisibleIndex = 2
         Me.gname.Width = 200
@@ -277,6 +274,7 @@ Partial Class AgencyReceiptDetails
         Me.gsellername.Caption = "Seller Name"
         Me.gsellername.FieldName = "SELLER"
         Me.gsellername.Name = "gsellername"
+        Me.gsellername.OptionsColumn.AllowEdit = False
         Me.gsellername.Visible = True
         Me.gsellername.VisibleIndex = 3
         Me.gsellername.Width = 190
@@ -288,6 +286,7 @@ Partial Class AgencyReceiptDetails
         Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.gdate.FieldName = "Date"
         Me.gdate.Name = "gdate"
+        Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 4
         '
@@ -298,6 +297,7 @@ Partial Class AgencyReceiptDetails
         Me.gtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gtotal.FieldName = "Total"
         Me.gtotal.Name = "gtotal"
+        Me.gtotal.OptionsColumn.AllowEdit = False
         Me.gtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gtotal.Visible = True
         Me.gtotal.VisibleIndex = 5
@@ -308,6 +308,7 @@ Partial Class AgencyReceiptDetails
         Me.gchqno.Caption = "Chq. No."
         Me.gchqno.FieldName = "Chq. No."
         Me.gchqno.Name = "gchqno"
+        Me.gchqno.OptionsColumn.AllowEdit = False
         Me.gchqno.Visible = True
         Me.gchqno.VisibleIndex = 6
         '
@@ -318,6 +319,7 @@ Partial Class AgencyReceiptDetails
         Me.GCHQDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCHQDATE.FieldName = "CHQDATE"
         Me.GCHQDATE.Name = "GCHQDATE"
+        Me.GCHQDATE.OptionsColumn.AllowEdit = False
         Me.GCHQDATE.Visible = True
         Me.GCHQDATE.VisibleIndex = 7
         '
@@ -326,12 +328,14 @@ Partial Class AgencyReceiptDetails
         Me.gregisterid.Caption = "Registerid"
         Me.gregisterid.FieldName = "Registerid"
         Me.gregisterid.Name = "gregisterid"
+        Me.gregisterid.OptionsColumn.AllowEdit = False
         '
         'GBILLREMARKS
         '
         Me.GBILLREMARKS.Caption = "Against Bill Nos"
         Me.GBILLREMARKS.FieldName = "BILLREMARKS"
         Me.GBILLREMARKS.Name = "GBILLREMARKS"
+        Me.GBILLREMARKS.OptionsColumn.AllowEdit = False
         Me.GBILLREMARKS.Visible = True
         Me.GBILLREMARKS.VisibleIndex = 8
         Me.GBILLREMARKS.Width = 220
@@ -341,6 +345,7 @@ Partial Class AgencyReceiptDetails
         Me.gremarks.Caption = "Remarks"
         Me.gremarks.FieldName = "Remarks"
         Me.gremarks.Name = "gremarks"
+        Me.gremarks.OptionsColumn.AllowEdit = False
         Me.gremarks.Visible = True
         Me.gremarks.VisibleIndex = 9
         Me.gremarks.Width = 202
@@ -350,6 +355,7 @@ Partial Class AgencyReceiptDetails
         Me.GCHECKPDC.Caption = "Check PDC"
         Me.GCHECKPDC.FieldName = "CHECKPDC"
         Me.GCHECKPDC.Name = "GCHECKPDC"
+        Me.GCHECKPDC.OptionsColumn.AllowEdit = False
         Me.GCHECKPDC.Visible = True
         Me.GCHECKPDC.VisibleIndex = 10
         '
@@ -358,6 +364,7 @@ Partial Class AgencyReceiptDetails
         Me.GAGENTNAME.Caption = "Agent Name"
         Me.GAGENTNAME.FieldName = "AGENTNAME"
         Me.GAGENTNAME.Name = "GAGENTNAME"
+        Me.GAGENTNAME.OptionsColumn.AllowEdit = False
         Me.GAGENTNAME.Visible = True
         Me.GAGENTNAME.VisibleIndex = 11
         Me.GAGENTNAME.Width = 200
@@ -367,6 +374,7 @@ Partial Class AgencyReceiptDetails
         Me.GGROUPMASTER.Caption = "Group Name"
         Me.GGROUPMASTER.FieldName = "GROUPNAME"
         Me.GGROUPMASTER.Name = "GGROUPMASTER"
+        Me.GGROUPMASTER.OptionsColumn.AllowEdit = False
         Me.GGROUPMASTER.Visible = True
         Me.GGROUPMASTER.VisibleIndex = 12
         Me.GGROUPMASTER.Width = 150
@@ -376,8 +384,14 @@ Partial Class AgencyReceiptDetails
         Me.GSPECIALREMARK.Caption = "Special Remark"
         Me.GSPECIALREMARK.FieldName = "SPECIALREMARK"
         Me.GSPECIALREMARK.Name = "GSPECIALREMARK"
+        Me.GSPECIALREMARK.OptionsColumn.AllowEdit = False
         Me.GSPECIALREMARK.Visible = True
         Me.GSPECIALREMARK.VisibleIndex = 13
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
         'cmdprint
         '
