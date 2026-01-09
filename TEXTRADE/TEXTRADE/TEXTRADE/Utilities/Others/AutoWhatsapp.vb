@@ -405,4 +405,30 @@ Public Class AutoWhatsapp
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBSCHEDULER_Validated(sender As Object, e As EventArgs) Handles CMBSCHEDULER.Validated
+        Try
+            If CMBSCHEDULER.Text = "MONTHLY" Then
+                SCHDATE.Enabled = True
+                CHKMONDAY.Enabled = False
+                CHKTUESDAY.Enabled = False
+                CHKWEDNESDAY.Enabled = False
+                CHKTHURSDAY.Enabled = False
+                CHKFRIDAY.Enabled = False
+                CHKSATURDAY.Enabled = False
+                CHKSUNDAY.Enabled = False
+            Else
+                SCHDATE.Enabled = False
+                CHKMONDAY.Enabled = True
+                CHKTUESDAY.Enabled = True
+                CHKWEDNESDAY.Enabled = True
+                CHKTHURSDAY.Enabled = True
+                CHKFRIDAY.Enabled = True
+                CHKSATURDAY.Enabled = True
+                CHKSUNDAY.Enabled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
