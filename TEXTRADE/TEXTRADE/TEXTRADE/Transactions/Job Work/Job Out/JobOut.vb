@@ -323,7 +323,7 @@ Public Class JobOut
 
 
             If TXTLOTNO.Text.Trim = "" Then
-                If ClientName = "VINAYAK" Then
+                If ClientName = "VINAYAK" Or ClientName = "SNCM" Then
                     TXTLOTNO.Text = Val(txtsrno.Text.Trim) & "/" & Format(AccFrom.Date, "yy") & "-" & Format(AccTo.Date, "yy")
                 Else
                     If MsgBox("Lot No is Kept Blank, Please Enter Lot No Or Job Out No in this Column, Wish to Proceed without Lot No?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
