@@ -3451,7 +3451,7 @@ LINE1:
     End Sub
 
     Private Sub GRIDMATREC_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDMATREC.CellDoubleClick
-        If GRIDMATREC.CurrentRow.DefaultCellStyle.BackColor <> Color.Yellow Then
+        If ClientName = "VALIANT" Or GRIDMATREC.CurrentRow.DefaultCellStyle.BackColor <> Color.Yellow Then
             EDITROW()
         Else
             MsgBox("This Row Is Locked")
@@ -4383,10 +4383,22 @@ LINE1:
                 GSHELF.Visible = False
                 CMBRACK.Left = TXTRECDMTRS.Right
                 CMBYESNO.Left = CMBRACK.Right
+
+                If ClientName = "VALIANT" Then
+                    CMBRACK.Visible = False
+                    GRACK.Visible = False
+                    CMBYESNO.Left = TXTRECDMTRS.Right
+                    TabControl1.Width += 200
+                End If
+
                 TXTDIFF.Left = CMBYESNO.Right
                 CMBBALENO.DropDownStyle = ComboBoxStyle.DropDownList
                 TXTPCSNO.Visible = True
+                TXTPCSNO.Left = TXTDIFF.Right + 100
+
             End If
+
+
             If ClientName = "SNCM" Then
                 TXTRECDMTRS.ReadOnly = True
                 TXTCUT.Enabled = False
@@ -4705,9 +4717,10 @@ NEXTLINE:
                     Exit Sub
                 End If
 
-                'If Val(CMBCHECKSRNO.Text.Trim) = 0 And LOTSTATUSONMTRS = False Then
-                '    If MsgBox("Pcs No not selected, This will be considered as TP, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                'End If
+                If Val(CMBCHECKSRNO.Text.Trim) = 0 And ClientName = "VALIANT" Then
+                    MsgBox("Pcs No not Selected", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
 
                 If GRIDDOUBLECLICK = False Then
                     If EDIT = True Then
