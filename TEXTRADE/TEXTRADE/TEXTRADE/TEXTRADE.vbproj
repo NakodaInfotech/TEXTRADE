@@ -666,6 +666,12 @@
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\DispatchUnitWiseSummary.Designer.vb">
+      <DependentUpon>DispatchUnitWiseSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\DispatchUnitWiseSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.Designer.vb">
       <DependentUpon>GDNUnitSummGridreport.vb</DependentUpon>
     </Compile>
@@ -8940,6 +8946,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DispatchUnitWiseSummary.resx">
+      <DependentUpon>DispatchUnitWiseSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\GDNUnitSummGridreport.resx">
       <DependentUpon>GDNUnitSummGridreport.vb</DependentUpon>
