@@ -698,6 +698,9 @@ CHECKNEXTLINEMTRS:
 
                     If ClientName = "KREEVE" Or ClientName = "SMS" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", "", DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, Format(Val(DTROW("MTRS")), "0.00"), Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "")
 
+                    If ClientName = "LAXMI" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", DTROW("GRIDDESC"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "")
+
+
                     If ClientName = "SNCM" Then
                         Dim OBJCMN As New ClsCommon
                         Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(so_no, 0) AS SONO, ISNULL(so_remarks, '') AS REMARKS", "", " SALEORDER", " AND SO_NO = '" & DTROW("SONO") & "' AND SO_YEARID = " & YearId)
