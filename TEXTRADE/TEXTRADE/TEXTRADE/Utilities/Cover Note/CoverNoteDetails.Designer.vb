@@ -33,6 +33,7 @@ Partial Class CoverNoteDetails
         Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -175,26 +176,34 @@ Partial Class CoverNoteDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
-        Me.gridbill.OptionsBehavior.Editable = False
-        Me.gridbill.OptionsCustomization.AllowColumnMoving = False
-        Me.gridbill.OptionsCustomization.AllowGroup = False
+        Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
+        Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
         Me.gridbill.OptionsSelection.MultiSelect = True
-        Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
         '
+        'GCHK
+        '
+        Me.GCHK.Caption = "GridColumn1"
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
+        '
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "TEMPCOVERNO"
         Me.gsrno.Name = "gsrno"
+        Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
         Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 50
@@ -206,6 +215,7 @@ Partial Class CoverNoteDetails
         Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.gdate.FieldName = "COVERDATE"
         Me.gdate.Name = "gdate"
+        Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 2
         Me.gdate.Width = 80
@@ -215,6 +225,7 @@ Partial Class CoverNoteDetails
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "PARTYNAME"
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
@@ -224,6 +235,7 @@ Partial Class CoverNoteDetails
         Me.GAGENT.Caption = "Agent"
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
+        Me.GAGENT.OptionsColumn.AllowEdit = False
         Me.GAGENT.Visible = True
         Me.GAGENT.VisibleIndex = 4
         Me.GAGENT.Width = 220
@@ -233,6 +245,7 @@ Partial Class CoverNoteDetails
         Me.GINVNO.Caption = "Inv No"
         Me.GINVNO.FieldName = "INVNO"
         Me.GINVNO.Name = "GINVNO"
+        Me.GINVNO.OptionsColumn.AllowEdit = False
         Me.GINVNO.Visible = True
         Me.GINVNO.VisibleIndex = 5
         '
@@ -241,6 +254,7 @@ Partial Class CoverNoteDetails
         Me.GREGNAME.Caption = "Register Name"
         Me.GREGNAME.FieldName = "REGNAME"
         Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.OptionsColumn.AllowEdit = False
         Me.GREGNAME.Visible = True
         Me.GREGNAME.VisibleIndex = 6
         Me.GREGNAME.Width = 150
@@ -250,6 +264,7 @@ Partial Class CoverNoteDetails
         Me.GINVINITIALS.Caption = "Inv Initials"
         Me.GINVINITIALS.FieldName = "INVINITIALS"
         Me.GINVINITIALS.Name = "GINVINITIALS"
+        Me.GINVINITIALS.OptionsColumn.AllowEdit = False
         Me.GINVINITIALS.Visible = True
         Me.GINVINITIALS.VisibleIndex = 7
         '
@@ -258,6 +273,7 @@ Partial Class CoverNoteDetails
         Me.GPRINTINITIALS.Caption = "Print Initials"
         Me.GPRINTINITIALS.FieldName = "PRINTINITIALS"
         Me.GPRINTINITIALS.Name = "GPRINTINITIALS"
+        Me.GPRINTINITIALS.OptionsColumn.AllowEdit = False
         Me.GPRINTINITIALS.Visible = True
         Me.GPRINTINITIALS.VisibleIndex = 8
         '
@@ -286,6 +302,7 @@ Partial Class CoverNoteDetails
         Me.GINVDATE.Caption = "Inv Date"
         Me.GINVDATE.FieldName = "INVDATE"
         Me.GINVDATE.Name = "GINVDATE"
+        Me.GINVDATE.OptionsColumn.AllowEdit = False
         Me.GINVDATE.Visible = True
         Me.GINVDATE.VisibleIndex = 11
         '
@@ -294,6 +311,7 @@ Partial Class CoverNoteDetails
         Me.GLRNO.Caption = "LR No"
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
         Me.GLRNO.VisibleIndex = 12
         '
@@ -302,6 +320,7 @@ Partial Class CoverNoteDetails
         Me.GTRANSPORT.Caption = "Transport"
         Me.GTRANSPORT.FieldName = "TRANSPORT"
         Me.GTRANSPORT.Name = "GTRANSPORT"
+        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
         Me.GTRANSPORT.VisibleIndex = 13
         Me.GTRANSPORT.Width = 150
@@ -311,6 +330,7 @@ Partial Class CoverNoteDetails
         Me.GLRDATE.Caption = "LR Date"
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.OptionsColumn.AllowEdit = False
         Me.GLRDATE.Visible = True
         Me.GLRDATE.VisibleIndex = 14
         '
@@ -319,6 +339,7 @@ Partial Class CoverNoteDetails
         Me.GTOTALMTRS.Caption = "Total Mtrs"
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
         Me.GTOTALMTRS.Visible = True
         Me.GTOTALMTRS.VisibleIndex = 15
         Me.GTOTALMTRS.Width = 80
@@ -327,8 +348,9 @@ Partial Class CoverNoteDetails
         '
         Me.GTOTALPCS.Caption = "Total Pcs"
         Me.GTOTALPCS.FieldName = "TOTALPCS"
-        Me.GTOTALPCS.ImageIndex = 0
+        Me.GTOTALPCS.ImageOptions.ImageIndex = 0
         Me.GTOTALPCS.Name = "GTOTALPCS"
+        Me.GTOTALPCS.OptionsColumn.AllowEdit = False
         Me.GTOTALPCS.Visible = True
         Me.GTOTALPCS.VisibleIndex = 16
         Me.GTOTALPCS.Width = 80
@@ -338,6 +360,7 @@ Partial Class CoverNoteDetails
         Me.GGRANDTOTAL.Caption = "Grand Total"
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
+        Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
         Me.GGRANDTOTAL.Visible = True
         Me.GGRANDTOTAL.VisibleIndex = 17
         '
@@ -378,6 +401,7 @@ Partial Class CoverNoteDetails
         Me.GREMARKS.Caption = "Remarks"
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
         Me.GREMARKS.VisibleIndex = 21
         Me.GREMARKS.Width = 240
@@ -526,7 +550,6 @@ Partial Class CoverNoteDetails
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
-    Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Private WithEvents gsrno As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GTOTALPCS As DevExpress.XtraGrid.Columns.GridColumn
@@ -568,4 +591,6 @@ Partial Class CoverNoteDetails
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As Drawing.Printing.PrintDocument
     Private WithEvents imageList1 As ImageList
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
