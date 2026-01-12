@@ -231,6 +231,9 @@ Public Class SaleOrderDesign
         ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
             tempattachment = "SAMPLEPRICELIST"
             objmail.subject = "Sample Price List"
+        ElseIf FRMSTRING = "STOCKRECO" Then
+            tempattachment = "STOCKRECO"
+            objmail.subject = "Stock Reco"
         End If
 
         Try
@@ -472,6 +475,8 @@ Public Class SaleOrderDesign
                     TEMPATTACHMENT = "SAMPLENOTE"
                 ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                     TEMPATTACHMENT = "SAMPLEPRICELIST"
+                ElseIf FRMSTRING = "STOCKRECO" Then
+                    TEMPATTACHMENT = "STOCKRECO"
                 End If
 
 
@@ -507,6 +512,8 @@ Public Class SaleOrderDesign
                 tempattachment = "SAMPLENOTE"
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 tempattachment = "SAMPLEPRICELIST"
+            ElseIf FRMSTRING = "STOCKRECO" Then
+                tempattachment = "STOCKRECO"
             End If
 
             Dim OBJWHATSAPP As New SendWhatsapp
