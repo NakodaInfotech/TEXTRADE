@@ -405,58 +405,76 @@ Public Class payment_advice
                 .Password = Dbpassword
                 .IntegratedSecurity = Dbsecurity
             End With
+            If FRMSTRING = "ENVELOPE" Then
+                'CRPO.SelectionFormula = WHERECLAUSE
 
-            strsearch = "  {PAYMENT_REPORT.PAYMENTNO}= " & payno & " AND {PAYMENT_REPORT.REGNAME}= '" & REGNAME & "' and {PAYMENT_REPORT.YEARID} = " & YearId
+                ''CRPO.ReportSource = OBJENVELOPE
+                'Dim OBJ As New Object
+
+                'OBJ = New EnvelopeReport
+                'crTables = OBJ.Database.Tables
+
+                'For Each crTable In crTables
+                '    crtableLogonInfo = crTable.LogOnInfo
+                '    crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                '    crTable.ApplyLogOnInfo(crtableLogonInfo)
+                'Next
+                strsearch = WHERECLAUSE
+
+            Else
+                strsearch = "  {PAYMENT_REPORT.PAYMENTNO}= " & payno & " AND {PAYMENT_REPORT.REGNAME}= '" & REGNAME & "' and {PAYMENT_REPORT.YEARID} = " & YearId
+            End If
 
             'ADD DATA IN TEMPPAYMENTDETAILS
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
-            DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT PAYMENTMASTER.PAYMENT_NO, PAYMENT_DATE, LEDGERS.Acc_cmpname, ACCLEDGERS.Acc_cmpname, PAYMENT_CHQNO, PAYMENTMASTER_DESC.PAYMENT_amt, PAYMENTMASTER.PAYMENT_cmpid, PAYMENTMASTER.PAYMENT_yearid  FROM PAYMENTMASTER_DESC INNER JOIN PAYMENTMASTER ON PAYMENTMASTER_DESC.PAYMENT_no =PAYMENTMASTER.PAYMENT_no AND PAYMENTMASTER_DESC.PAYMENT_registerid =PAYMENTMASTER.PAYMENT_registerid AND PAYMENTMASTER_DESC.PAYMENT_yearid =PAYMENTMASTER.PAYMENT_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_ledgerid = LEDGERS.ACC_ID INNER JOIN LEDGERS AS ACCLEDGERS ON PAYMENTMASTER.PAYMENT_accid = ACCLEDGERS.ACC_ID WHERE PAYMENTMASTER.PAYMENT_YEARID =" & YearId & " AND PAYMENT_BILLINITIALS In (Select PAYMENT_BILLINITIALS FROM PAYMENTMASTER_DESC INNER JOIN REGISTERMASTER ON PAYMENTMASTER_DESC.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID WHERE PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(payno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId & ")", "", "")
+                Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPPAYMENTDETAILS WHERE YEARID = " & YearId, "", "")
+                DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPPAYMENTDETAILS SELECT PAYMENTMASTER.PAYMENT_NO, PAYMENT_DATE, LEDGERS.Acc_cmpname, ACCLEDGERS.Acc_cmpname, PAYMENT_CHQNO, PAYMENTMASTER_DESC.PAYMENT_amt, PAYMENTMASTER.PAYMENT_cmpid, PAYMENTMASTER.PAYMENT_yearid  FROM PAYMENTMASTER_DESC INNER JOIN PAYMENTMASTER ON PAYMENTMASTER_DESC.PAYMENT_no =PAYMENTMASTER.PAYMENT_no AND PAYMENTMASTER_DESC.PAYMENT_registerid =PAYMENTMASTER.PAYMENT_registerid AND PAYMENTMASTER_DESC.PAYMENT_yearid =PAYMENTMASTER.PAYMENT_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_ledgerid = LEDGERS.ACC_ID INNER JOIN LEDGERS AS ACCLEDGERS ON PAYMENTMASTER.PAYMENT_accid = ACCLEDGERS.ACC_ID WHERE PAYMENTMASTER.PAYMENT_YEARID =" & YearId & " AND PAYMENT_BILLINITIALS In (Select PAYMENT_BILLINITIALS FROM PAYMENTMASTER_DESC INNER JOIN REGISTERMASTER ON PAYMENTMASTER_DESC.PAYMENT_REGISTERID = REGISTERMASTER.REGISTER_ID WHERE PAYMENTMASTER_DESC.PAYMENT_NO = " & Val(payno) & " AND REGISTERMASTER.REGISTER_NAME = '" & REGNAME & "' And PAYMENTMASTER_DESC.PAYMENT_yearid = " & YearId & ")", "", "")
 
-            CRPO.SelectionFormula = strsearch
+                CRPO.SelectionFormula = strsearch
 
-            Dim OBJ As New Object
+                Dim OBJ As New Object
             If ClientName = "SUPEEMA" Then
                 OBJ = New Paymentreport_SUPEEMA
             ElseIf ClientName = "VALIANT" Then
                 OBJ = New PaymentreportA5
             ElseIf ClientName = "ABHEE" Then
                 OBJ = New Paymentreport_ABHEE
+            ElseIf ClientName = "MAHAVIRPOLYCOT" And FRMSTRING = "ENVELOPE" Then
+                OBJ = New EnvelopeReport
             Else
-                OBJ = New Paymentreport
-                If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-            End If
+                    OBJ = New Paymentreport
+                    If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                End If
 
-            crTables = OBJ.Database.Tables
+                crTables = OBJ.Database.Tables
 
-            For Each crTable In crTables
-                crtableLogonInfo = crTable.LogOnInfo
-                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-                crTable.ApplyLogOnInfo(crtableLogonInfo)
-            Next
+                For Each crTable In crTables
+                    crtableLogonInfo = crTable.LogOnInfo
+                    crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                    crTable.ApplyLogOnInfo(crtableLogonInfo)
+                Next
 
-            OBJ.RecordSelectionFormula = strsearch
+                OBJ.RecordSelectionFormula = strsearch
 
 
-            If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
-                OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
-                OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
-            Else
-                Dim expo As New ExportOptions
-                Dim oDfDopt As New DiskFileDestinationOptions
-                oDfDopt.DiskFileName = Application.StartupPath & "\" & LEDGERSNAME & "PAYMENT_" & payno & ".pdf"
+                If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
+                    OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+                    OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+                Else
+                    Dim expo As New ExportOptions
+                    Dim oDfDopt As New DiskFileDestinationOptions
+                    oDfDopt.DiskFileName = Application.StartupPath & "\" & LEDGERSNAME & "PAYMENT_" & payno & ".pdf"
 
-                'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
-                If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
-                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                expo = OBJ.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                OBJ.Export()
-                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-            End If
-
+                    'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
+                    If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
+                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    expo = OBJ.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    OBJ.Export()
+                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+                End If
         Catch ex As Exception
             Throw ex
         End Try

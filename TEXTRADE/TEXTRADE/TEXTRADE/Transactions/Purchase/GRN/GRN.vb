@@ -183,7 +183,7 @@ Public Class GRN
                 Me.Text = "Grey Rec Note"
                 LBLGRN.Text = "Grey Rec Note"
             End If
-
+            If ClientName = "MAHAVIRPOLYCOT" Then cmbqtyunit.Text = "LUMP"
         ElseIf FRMSTRING = "GRN FANCY" Then
             cmbtype.Text = "Fancy Material"
 
@@ -4893,7 +4893,15 @@ LINE1:
             Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(CATEGORY_NAME,'') AS CATEGORY, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNIT_ID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 LBLCATEGORY.Text = DT.Rows(0).Item("CATEGORY")
-                If DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
+                If ClientName = "MAHAVIRPOLYCOT" And FRMSTRING = "GRN FANCY" Then
+                    cmbqtyunit.Text = "UNCHECK LUMP"
+
+                ElseIf ClientName = "MAHAVIRPOLYCOT" And FRMSTRING = "GRNJOB" Then
+                    cmbqtyunit.Text = "LUMP"
+
+                Else
+                    If DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
+                End If
             End If
         Catch ex As Exception
             Throw ex
