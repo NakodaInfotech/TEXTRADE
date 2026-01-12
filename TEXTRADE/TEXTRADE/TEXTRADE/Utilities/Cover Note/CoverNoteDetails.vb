@@ -52,7 +52,7 @@ Public Class CoverNoteDetails
         Try
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable
-            dt = objclsCMST.search("COVERNOTE.COVER_NO AS TEMPCOVERNO, COVERNOTE.COVER_COVERDATE AS COVERDATE, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT,  ISNULL(COVERNOTE.COVER_REMARKS, '') AS REMARKS, COVERNOTE_DESC.COVER_SRNO AS SRNO, ISNULL(COVERNOTE_DESC.COVER_INVNO, 0) AS INVNO, ISNULL(REGISTERMASTER.register_name, '') AS REGNAME, ISNULL(COVERNOTE_DESC.COVER_INVINITIALS, '') AS INVINITIALS, ISNULL(COVERNOTE_DESC.COVER_PRINTINITIALS, '') AS PRINTINITIALS, ISNULL(COVERNOTE_DESC.COVER_INVDATE, '') AS INVDATE, ISNULL(COVERNOTE_DESC.COVER_LRNO, '') AS LRNO, ISNULL(COVERNOTE_DESC.COVER_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(COVERNOTE_DESC.COVER_TOTALPCS, 0) AS TOTALPCS, ISNULL(COVERNOTE_DESC.COVER_GRANDTOTAL, 0) AS GRANDTOTAL, ISNULL(COVERNOTE_DESC.COVER_LRDATE, '') AS LRDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(GRIDLEDGERS.Acc_cmpname, '') AS GRIDNAME, ISNULL(GRIDAGENTLEDGERS.Acc_cmpname, '') AS GRIDAGENTNAME, ISNULL(COVERNOTE.COVER_COURIERNAME, '') AS COURIERNAME, ISNULL(COVERNOTE.COVER_COURIERDOCKETNO, '') AS COURIERDOCKETNO, COVERNOTE.COVER_COURIERDATE AS COURIERDATE ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", TEMPCONDITION)
+            dt = objclsCMST.search("CAST(0 AS BIT) AS CHK,COVERNOTE.COVER_NO AS TEMPCOVERNO, COVERNOTE.COVER_COVERDATE AS COVERDATE, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT,  ISNULL(COVERNOTE.COVER_REMARKS, '') AS REMARKS, COVERNOTE_DESC.COVER_SRNO AS SRNO, ISNULL(COVERNOTE_DESC.COVER_INVNO, 0) AS INVNO, ISNULL(REGISTERMASTER.register_name, '') AS REGNAME, ISNULL(COVERNOTE_DESC.COVER_INVINITIALS, '') AS INVINITIALS, ISNULL(COVERNOTE_DESC.COVER_PRINTINITIALS, '') AS PRINTINITIALS, ISNULL(COVERNOTE_DESC.COVER_INVDATE, '') AS INVDATE, ISNULL(COVERNOTE_DESC.COVER_LRNO, '') AS LRNO, ISNULL(COVERNOTE_DESC.COVER_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(COVERNOTE_DESC.COVER_TOTALPCS, 0) AS TOTALPCS, ISNULL(COVERNOTE_DESC.COVER_GRANDTOTAL, 0) AS GRANDTOTAL, ISNULL(COVERNOTE_DESC.COVER_LRDATE, '') AS LRDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(GRIDLEDGERS.Acc_cmpname, '') AS GRIDNAME, ISNULL(GRIDAGENTLEDGERS.Acc_cmpname, '') AS GRIDAGENTNAME, ISNULL(COVERNOTE.COVER_COURIERNAME, '') AS COURIERNAME, ISNULL(COVERNOTE.COVER_COURIERDOCKETNO, '') AS COURIERDOCKETNO, COVERNOTE.COVER_COURIERDATE AS COURIERDATE ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", TEMPCONDITION)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -160,6 +160,21 @@ Public Class CoverNoteDetails
             Else
                 If MsgBox("Wish to Print Selected Cover  Note ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED()
+                End If
+            End If
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
+                    If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
+                        MsgBox("Enter Proper  Cover Note Nos", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+                    If MsgBox("Wish to Envelope from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
+                        SERVERPROPDIRECTENVELOPE()
+                    End If
+                Else
+                    If MsgBox("Wish to Print Selected Envelope ?", MsgBoxStyle.YesNo) = vbYes Then
+                        SERVERPROPSELECTEDENVELOPE()
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -287,7 +302,6 @@ Public Class CoverNoteDetails
                     OBJWHATSAPP.ShowDialog()
                 End If
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -349,7 +363,7 @@ Public Class CoverNoteDetails
                 If INVOICEMAIL Then
                     Dim OBJMAIL As New SendMail
                     OBJMAIL.ALATTACHMENT = ALATTACHMENT
-                    OBJMAIL.subject = "MAINAGENTCOVERNOTE"
+                    OBJMAIL.subject = "MAINCOVERNOTE"
                     OBJMAIL.ShowDialog()
                 End If
 
@@ -364,7 +378,175 @@ Public Class CoverNoteDetails
             Throw ex
         End Try
     End Sub
+    Sub SERVERPROPDIRECTENVELOPE(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
+        Try
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+            If INVOICEMAIL = False And WHATSAPP = False Then
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
+            End If
 
+            'Dim objclsCMST As New ClsCommonMaster
+            'Dim dt As DataTable
+            'dt = objclsCMST.search(" ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", " AND COVERNOTE.COVER_NO BETWEEN " & TXTFROM.Text & " AND " & TXTTO.Text & " ")
+
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                Dim TEMPMSG1 As Integer = MsgBox("Wish to Print Party Envelope ?", MsgBoxStyle.YesNo)
+                If TEMPMSG1 = vbYes Then
+                    'For Each dr As DataRow In dt.Rows
+                    For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
+                        Dim OBJENV As New payment_advice
+                        OBJENV.MdiParent = MDIMain
+                        OBJENV.DIRECTPRINT = True
+                        OBJENV.FRMSTRING = "ENVELOPE"
+                        OBJENV.DIRECTMAIL = INVOICEMAIL
+                        OBJENV.DIRECTWHATSAPP = WHATSAPP
+                        'OBJJV.REGNAME = cmbregister.Text.Trim
+                        OBJENV.PRINTSETTING = PRINTDIALOG
+                        'OBJENV.COVERNOTENO = Val(I)
+                        'Dim objclsCMST As New ClsCommonMaster
+                        'Dim dt As DataTable
+                        'dt = objclsCMST.search(" ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", " AND COVERNOTE.COVER_NO = " & Val(I) & " ")
+                        OBJENV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        'OBJENV.WHERECLAUSE = "{LEDGERS.Acc_cmpname} = '" & dr("PARTYNAME") & "' and {LEDGERS.ACC_YEARID} = " & YearId
+                        Dim rowHandle As Integer = gridbill.LocateByValue("TEMPCOVERNO", I)
+                        If rowHandle < 0 Then Continue For
+
+                        If rowHandle < 0 Or rowHandle >= gridbill.RowCount Then Continue For
+
+                        Dim PARTYNAME As String =
+                              Convert.ToString(gridbill.GetRowCellValue(rowHandle, "PARTYNAME")).Trim()
+
+                        If PARTYNAME = "" Then Continue For
+
+                        OBJENV.WHERECLAUSE = "{LEDGERS.Acc_cmpname} = '" & PARTYNAME.Replace("'", "''") & "' AND {LEDGERS.ACC_YEARID} = " & YearId
+
+
+                        OBJENV.Show()
+                        OBJENV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
+                        FILENAME.Add("COVER_" & I & ".pdf")
+                    Next
+                    'Next
+                Else
+                    MsgBox("Wish to Print Agent Envelope ?", MsgBoxStyle.YesNo)
+                    For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
+                        Dim OBJENV As New payment_advice
+                        OBJENV.MdiParent = MDIMain
+                        OBJENV.DIRECTPRINT = True
+                        OBJENV.FRMSTRING = "ENVELOPE"
+                        OBJENV.DIRECTMAIL = INVOICEMAIL
+                        OBJENV.DIRECTWHATSAPP = WHATSAPP
+                        'OBJJV.REGNAME = cmbregister.Text.Trim
+                        OBJENV.PRINTSETTING = PRINTDIALOG
+                        'OBJENV.COVERNOTENO = Val(I)
+                        OBJENV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        Dim rowHandle As Integer = gridbill.LocateByValue("TEMPCOVERNO", I)
+                        If rowHandle < 0 Then Continue For
+
+                        If rowHandle < 0 Or rowHandle >= gridbill.RowCount Then Continue For
+
+                        Dim AGENT As String =
+                              Convert.ToString(gridbill.GetRowCellValue(rowHandle, "AGENT")).Trim()
+
+                        If AGENT = "" Then Continue For
+                        OBJENV.WHERECLAUSE = "{LEDGERS.Acc_cmpname} = '" & AGENT.Replace("'", "''") & "' AND {LEDGERS.ACC_YEARID} = " & YearId
+
+                        OBJENV.Show()
+                        OBJENV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\COVER_" & I & ".pdf")
+                        FILENAME.Add("COVER_" & I & ".pdf")
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub SERVERPROPSELECTEDENVELOPE(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
+        Try
+
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+
+            If INVOICEMAIL = False And WHATSAPP = False Then
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
+            End If
+
+            Dim TEMPMSG As Integer = MsgBox("Wish to Print Party Envelope ?", MsgBoxStyle.YesNo)
+            If TEMPMSG = vbYes Then
+
+                'Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
+                For I As Integer = 0 To Val(gridbill.RowCount - 1)
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    Dim PARTYNAME As String = Convert.ToString(gridbill.GetRowCellValue(I, "PARTYNAME"))
+                    If ROW("CHK") = True Then
+                        Dim OBJENV As New payment_advice
+                        OBJENV.MdiParent = MDIMain
+                        OBJENV.DIRECTPRINT = True
+                        OBJENV.FRMSTRING = "ENVELOPE"
+                        OBJENV.DIRECTMAIL = INVOICEMAIL
+                        OBJENV.DIRECTWHATSAPP = WHATSAPP
+                        OBJENV.PRINTSETTING = PRINTDIALOG
+
+                        If PARTYNAME = "" Then Continue For
+                        OBJENV.WHERECLAUSE = "{LEDGERS.Acc_cmpname} = '" & PARTYNAME.Replace("'", "''") & "' AND {LEDGERS.ACC_YEARID} = " & YearId
+
+                        'OBJENV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
+                        OBJENV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        OBJENV.Show()
+                        OBJENV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\COVERNOTE_" & Val(ROW("SRNO")) & ".pdf")
+                        FILENAME.Add("COVER_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    End If
+                Next
+            Else
+                MsgBox("Wish to Print Agent Envelope ?", MsgBoxStyle.YesNo)
+                'Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
+                For I As Integer = 0 To Val(gridbill.RowCount - 1)
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    Dim AGENT As String = Convert.ToString(gridbill.GetRowCellValue(I, "AGENT"))
+
+                    If ROW("CHK") = True Then
+                        Dim OBJENV As New payment_advice
+                        OBJENV.MdiParent = MDIMain
+                        OBJENV.DIRECTPRINT = True
+                        OBJENV.FRMSTRING = "ENVELOPE"
+                        OBJENV.DIRECTMAIL = INVOICEMAIL
+                        OBJENV.DIRECTWHATSAPP = WHATSAPP
+                        OBJENV.PRINTSETTING = PRINTDIALOG
+
+
+                        If AGENT = "" Then Continue For
+                        OBJENV.WHERECLAUSE = "{LEDGERS.Acc_cmpname} = '" & AGENT.Replace("'", "''") & "' AND {LEDGERS.ACC_YEARID} = " & YearId
+
+                        'OBJENV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
+                        OBJENV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        OBJENV.Show()
+                        OBJENV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\COVERNOTE_" & Val(ROW("SRNO")) & ".pdf")
+                        FILENAME.Add("COVER_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                    End If
+                Next
+
+                If INVOICEMAIL Then
+                    Dim OBJMAIL As New SendMail
+                    OBJMAIL.ALATTACHMENT = ALATTACHMENT
+                    OBJMAIL.subject = "MAINCOVERNOTE"
+                    OBJMAIL.ShowDialog()
+                End If
+
+                If WHATSAPP = True Then
+                    Dim OBJWHATSAPP As New SendWhatsapp
+                    OBJWHATSAPP.PATH = ALATTACHMENT
+                    OBJWHATSAPP.FILENAME = FILENAME
+                    OBJWHATSAPP.ShowDialog()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Sub SERVERPROPDIRECT_WHATS(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
         Try
             Dim ALATTACHMENT As New ArrayList

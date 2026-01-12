@@ -290,7 +290,7 @@ Public Class LotFilter
                     OBJGRN.PERIOD = "PENDING LOTS - " & OBJGRN.PERIOD
                     OBJGRN.PENDINGCOMPLETED = "PENDING"
                     'NO NEED OF TOTALPCS-RECDPCS CLAUSE AS WE HAVE WRITTEN GROUP SELECTION CLAUSE IN REPORT ITSELF JUST FOR DETAILS REPORT
-                    If RBDETAILS.Checked = True Then
+                    If RBDETAILS.Checked = True Or (RBSUMMARY.Checked = True And ClientName = "VALIANT") Then
                         OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " AND {LOT_VIEW.LOTCOMPLETED}=FALSE"
                     Else
                         OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and ({LOT_VIEW.TOTALPCS}-{LOT_VIEW.RECDPCS})>0 AND {LOT_VIEW.LOTCOMPLETED}=FALSE"
@@ -318,7 +318,12 @@ Public Class LotFilter
 
 
             If RBSUMMARY.Checked = True Then
-                OBJGRN.FRMSTRING = "LOTSUMM"
+                If ClientName = "VALIANT" Then
+                    OBJGRN.FRMSTRING = "LOTPCSSUMM"
+                    OBJGRN.WHERECLAUSE = Replace(OBJGRN.WHERECLAUSE, "LOT_VIEW", "LOT_VIEW_DETAILS")
+                Else
+                    OBJGRN.FRMSTRING = "LOTSUMM"
+                End If
             ElseIf RBDETAILS.Checked = True Then
                 OBJGRN.FRMSTRING = "LOTDETAILS"
                 OBJGRN.WHERECLAUSE = Replace(OBJGRN.WHERECLAUSE, "LOT_VIEW", "LOT_VIEW_DETAILS")

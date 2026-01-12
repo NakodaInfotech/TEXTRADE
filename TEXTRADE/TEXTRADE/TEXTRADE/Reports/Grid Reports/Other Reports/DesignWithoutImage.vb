@@ -1,20 +1,22 @@
-﻿Imports BL
-Imports DevExpress.XtraGrid.Views.Base
-Imports SystemWindows.Forms
+﻿
+Imports BL
+
 Public Class DesignWithoutImage
+
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean
+
     Private Sub CMDEXIT_Click(sender As Object, e As EventArgs) Handles CMDEXIT.Click
         Me.Close()
     End Sub
 
     Private Sub ExcelExport_Click(sender As Object, e As EventArgs) Handles ExcelExport.Click
         Try
-            Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Design Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Sale Details"
+            opti.SheetName = "Design Details"
             GRIDBILL.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Sale Details", GRIDBILL.VisibleColumns.Count + GRIDBILL.GroupCount)
+            EXCELCMPHEADER(PATH, "Design Details", GRIDBILL.VisibleColumns.Count + GRIDBILL.GroupCount)
         Catch ex As Exception
             MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
@@ -40,6 +42,7 @@ Public Class DesignWithoutImage
             Throw ex
         End Try
     End Sub
+
     Sub FILLGRID()
         Try
             Dim objclsCMST As New ClsCommonMaster
