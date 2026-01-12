@@ -27,12 +27,10 @@ Partial Class DispatchUnitWiseSummary
         Me.CHKINV = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +40,7 @@ Partial Class DispatchUnitWiseSummary
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.Label7)
         Me.BlendPanel2.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel2.Controls.Add(Me.CHKINV)
         Me.BlendPanel2.Controls.Add(Me.gridbilldetails)
@@ -50,7 +49,7 @@ Partial Class DispatchUnitWiseSummary
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 605)
+        Me.BlendPanel2.Size = New System.Drawing.Size(787, 605)
         Me.BlendPanel2.TabIndex = 3
         '
         'CMDREFRESH
@@ -60,7 +59,7 @@ Partial Class DispatchUnitWiseSummary
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDREFRESH.Location = New System.Drawing.Point(140, 570)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(315, 568)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 654
@@ -81,11 +80,11 @@ Partial Class DispatchUnitWiseSummary
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(32, 37)
+        Me.gridbilldetails.Location = New System.Drawing.Point(19, 96)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(383, 525)
+        Me.gridbilldetails.Size = New System.Drawing.Size(747, 466)
         Me.gridbilldetails.TabIndex = 652
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -93,7 +92,6 @@ Partial Class DispatchUnitWiseSummary
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GUNIT, Me.GPCS, Me.GMTRS})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -105,39 +103,6 @@ Partial Class DispatchUnitWiseSummary
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
         '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 0
-        Me.GUNIT.Width = 120
-        '
-        'GPCS
-        '
-        Me.GPCS.Caption = "Pcs"
-        Me.GPCS.DisplayFormat.FormatString = "0"
-        Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "TOTALPCS"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 1
-        Me.GPCS.Width = 100
-        '
-        'GMTRS
-        '
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "TOTALMTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 2
-        Me.GMTRS.Width = 100
-        '
         'cmdexit
         '
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
@@ -145,7 +110,7 @@ Partial Class DispatchUnitWiseSummary
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(226, 570)
+        Me.cmdexit.Location = New System.Drawing.Point(401, 568)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 1
@@ -157,7 +122,7 @@ Partial Class DispatchUnitWiseSummary
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(787, 25)
         Me.ToolStrip2.TabIndex = 255
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -170,11 +135,23 @@ Partial Class DispatchUnitWiseSummary
         Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
         Me.TOOLEXCEL.Text = "&Excel"
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label7.Location = New System.Drawing.Point(40, 47)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(282, 29)
+        Me.Label7.TabIndex = 655
+        Me.Label7.Text = "Dispatch Unit Wise Report "
+        '
         'DispatchUnitWiseSummary
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1234, 605)
+        Me.ClientSize = New System.Drawing.Size(787, 605)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -197,10 +174,8 @@ Partial Class DispatchUnitWiseSummary
     Friend WithEvents CHKINV As CheckBox
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPCS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents TOOLEXCEL As ToolStripButton
+    Friend WithEvents Label7 As Label
 End Class

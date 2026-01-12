@@ -116,13 +116,13 @@ Public Class GDNFilter
                 If chkdate.Checked = True Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
                 If CMBNAME.Text.Trim <> "" Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
                 Exit Sub
-            ElseIf RDBDISPATCHUNITSUMM.Checked = True Then
-                Dim GRIDUNITSUMM As New GDNUnitSummGridreport
-                GRIDUNITSUMM.MdiParent = MDIMain
-                GRIDUNITSUMM.Show()
-                If chkdate.Checked = True Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
-                If CMBNAME.Text.Trim <> "" Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
-                Exit Sub
+                'ElseIf RDBDISPATCHUNITSUMM.Checked = True Then
+                '    Dim GRIDDISPATCHUNITSUMM As New DispatchUnitWiseSummary
+                '    GRIDDISPATCHUNITSUMM.MdiParent = MDIMain
+                '    GRIDDISPATCHUNITSUMM.Show()
+                '    If chkdate.Checked = True Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+                '    If CMBNAME.Text.Trim <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
+                '    Exit Sub
             End If
 
 
@@ -319,7 +319,29 @@ Public Class GDNFilter
                 OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & NAMECLAUSE
             End If
 
+            If RDBDISPATCHUNITSUMM.Checked = True Then
+                Dim GRIDDISPATCHUNITSUMM As New DispatchUnitWiseSummary
+                GRIDDISPATCHUNITSUMM.MdiParent = MDIMain
+                ' GRIDDISPATCHUNITSUMM.WHERECLAUSE = " GDN.GDN_yearid=" & YearId
 
+                If chkdate.Checked = True Then
+                    getFromToDate()
+                    GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and @DATE in date " & fromD & " to date " & toD & ""
+                End If
+                If CMBNAME.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and LEDGERS.ACC_CMPNAME=''" & CMBNAME.Text & "''"
+                If CMBQUALITY.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and QUALITYMASTER.QUALITY_NAME=''" & CMBQUALITY.Text & "''"
+                If CMBGODOWN.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and GODOWNMASTER.GODOWN_NAME=''" & CMBGODOWN.Text & "''"
+                If CMBDESIGN.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and DESIGNMASTER.DESIGN_NO=''" & CMBDESIGN.Text & "''"
+                If CMBSHADE.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and (COLORMASTER.COLOR_NAME=''" & CMBSHADE.Text.Trim & "')"
+                If CMBAGENT.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and (AGENTLEDGERS.ACC_CMPNAME=''" & CMBAGENT.Text.Trim & "')"
+                If CMBITEM.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and ITEMMASTER.ITEM_NAME=''" & CMBITEM.Text.Trim & "''"
+                If CMBUNIT.Text <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " and UNITMASTER.UNIT_ABBR=''" & CMBUNIT.Text.Trim & "''"
+                If chkdate.Checked = True Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= ''" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= ''" & Format(dtto.Value.Date, "MM/dd/yyyy") & "''"
+                If CMBNAME.Text.Trim <> "" Then GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = ''" & CMBNAME.Text.Trim & "''"
+                GRIDDISPATCHUNITSUMM.WHERECLAUSE = GRIDDISPATCHUNITSUMM.WHERECLAUSE
+                GRIDDISPATCHUNITSUMM.Show()
+                Exit Sub
+            End If
             OBJGRN.Show()
         Catch ex As Exception
             Throw ex
