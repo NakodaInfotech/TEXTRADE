@@ -47,7 +47,7 @@ Partial Class DesignWithoutImage
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(595, 581)
         Me.BlendPanel1.TabIndex = 7
         '
         'CMDEXIT
@@ -57,7 +57,7 @@ Partial Class DesignWithoutImage
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(246, 541)
+        Me.CMDEXIT.Location = New System.Drawing.Point(257, 541)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 322
@@ -66,11 +66,11 @@ Partial Class DesignWithoutImage
         '
         'GRIDBILLDETAILS
         '
-        Me.GRIDBILLDETAILS.Location = New System.Drawing.Point(12, 45)
+        Me.GRIDBILLDETAILS.Location = New System.Drawing.Point(16, 45)
         Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
         Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
-        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(539, 490)
+        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(563, 490)
         Me.GRIDBILLDETAILS.TabIndex = 315
         Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
         '
@@ -104,7 +104,7 @@ Partial Class DesignWithoutImage
         Me.GITEMNAME.FieldName = "ITEMNAME"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 0
+        Me.GITEMNAME.VisibleIndex = 1
         Me.GITEMNAME.Width = 250
         '
         'ToolStrip1
@@ -112,7 +112,7 @@ Partial Class DesignWithoutImage
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(595, 25)
         Me.ToolStrip1.TabIndex = 318
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -138,7 +138,7 @@ Partial Class DesignWithoutImage
         'DesignWithoutImage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(595, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True

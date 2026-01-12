@@ -116,6 +116,13 @@ Public Class GDNFilter
                 If chkdate.Checked = True Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
                 If CMBNAME.Text.Trim <> "" Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
                 Exit Sub
+            ElseIf RDBDISPATCHUNITSUMM.Checked = True Then
+                Dim GRIDUNITSUMM As New GDNUnitSummGridreport
+                GRIDUNITSUMM.MdiParent = MDIMain
+                GRIDUNITSUMM.Show()
+                If chkdate.Checked = True Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND GDN.GDN_DATE >= '" & Format(dtfrom.Value.Date, "MM/dd/yyyy") & "' AND GDN.GDN_DATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
+                If CMBNAME.Text.Trim <> "" Then GRIDUNITSUMM.WHERECLAUSE = GRIDUNITSUMM.WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "'"
+                Exit Sub
             End If
 
 

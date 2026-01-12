@@ -23,6 +23,7 @@ Partial Class GDNFilter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBDISPPARTYITEMCHALLAN = New System.Windows.Forms.RadioButton()
         Me.RDBUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYGRIDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYITEMSUMM = New System.Windows.Forms.RadioButton()
@@ -84,7 +85,7 @@ Partial Class GDNFilter
         Me.CMBAGENT = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBDISPPARTYITEMCHALLAN = New System.Windows.Forms.RadioButton()
+        Me.RDBDISPATCHUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.BlendPanel2.SuspendLayout()
@@ -97,6 +98,7 @@ Partial Class GDNFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDBDISPATCHUNITSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBDISPPARTYITEMCHALLAN)
         Me.GroupBox3.Controls.Add(Me.RDBUNITSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBPARTYGRIDCHALLANDETAILS)
@@ -127,6 +129,16 @@ Partial Class GDNFilter
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Reports"
+        '
+        'RDBDISPPARTYITEMCHALLAN
+        '
+        Me.RDBDISPPARTYITEMCHALLAN.AutoSize = True
+        Me.RDBDISPPARTYITEMCHALLAN.Location = New System.Drawing.Point(298, 217)
+        Me.RDBDISPPARTYITEMCHALLAN.Name = "RDBDISPPARTYITEMCHALLAN"
+        Me.RDBDISPPARTYITEMCHALLAN.Size = New System.Drawing.Size(175, 18)
+        Me.RDBDISPPARTYITEMCHALLAN.TabIndex = 22
+        Me.RDBDISPPARTYITEMCHALLAN.Text = "Dispatch Party Item Challan"
+        Me.RDBDISPPARTYITEMCHALLAN.UseVisualStyleBackColor = True
         '
         'RDBUNITSUMM
         '
@@ -826,15 +838,15 @@ Partial Class GDNFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBDISPPARTYITEMCHALLAN
+        'RDBDISPATCHUNITSUMM
         '
-        Me.RDBDISPPARTYITEMCHALLAN.AutoSize = True
-        Me.RDBDISPPARTYITEMCHALLAN.Location = New System.Drawing.Point(298, 217)
-        Me.RDBDISPPARTYITEMCHALLAN.Name = "RDBDISPPARTYITEMCHALLAN"
-        Me.RDBDISPPARTYITEMCHALLAN.Size = New System.Drawing.Size(175, 18)
-        Me.RDBDISPPARTYITEMCHALLAN.TabIndex = 22
-        Me.RDBDISPPARTYITEMCHALLAN.Text = "Dispatch Party Item Challan"
-        Me.RDBDISPPARTYITEMCHALLAN.UseVisualStyleBackColor = True
+        Me.RDBDISPATCHUNITSUMM.AutoSize = True
+        Me.RDBDISPATCHUNITSUMM.Location = New System.Drawing.Point(26, 217)
+        Me.RDBDISPATCHUNITSUMM.Name = "RDBDISPATCHUNITSUMM"
+        Me.RDBDISPATCHUNITSUMM.Size = New System.Drawing.Size(204, 18)
+        Me.RDBDISPATCHUNITSUMM.TabIndex = 23
+        Me.RDBDISPATCHUNITSUMM.Text = "Dispatch Party Unit Wise Challan"
+        Me.RDBDISPATCHUNITSUMM.UseVisualStyleBackColor = True
         '
         'GDNFilter
         '
@@ -924,4 +936,5 @@ Partial Class GDNFilter
     Friend WithEvents RDBPARTYGRIDCHALLANDETAILS As RadioButton
     Friend WithEvents RDBUNITSUMM As RadioButton
     Friend WithEvents RDBDISPPARTYITEMCHALLAN As RadioButton
+    Friend WithEvents RDBDISPATCHUNITSUMM As RadioButton
 End Class
