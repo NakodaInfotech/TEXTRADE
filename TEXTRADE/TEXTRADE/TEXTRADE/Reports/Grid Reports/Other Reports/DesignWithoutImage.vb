@@ -46,12 +46,17 @@ Public Class DesignWithoutImage
     Sub FILLGRID()
         Try
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search("DESIGN_NO AS DESIGNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID LEFT OUTER JOIN ITEMDESIGNIMAGE ON DESIGNMASTER.DESIGN_ID = ITEMDESIGN_DESIGNID ", " AND ITEMDESIGN_PATH IS NULL AND DESIGNMASTER.DESIGN_yearid = " & YearId)
-            If dt.Rows.Count > 0 Then
-                GRIDBILL.FocusedRowHandle = GRIDBILL.RowCount - 1
-                GRIDBILL.TopRowIndex = GRIDBILL.RowCount - 15
+            Dim DT As New DataTable
+            If ClientName = "SNCM" Then
+                DT = objclsCMST.search("DISTINCT DESIGNNO, ITEMNAME", "", " BARCODESTOCK LEFT OUTER JOIN ITEMDESIGNIMAGE ON BARCODESTOCK.DESIGNID = ITEMDESIGN_DESIGNID ", " and BARCODESTOCK.DESIGNNO <> '' AND ITEMDESIGN_PATH IS NULL AND BARCODESTOCK.YEARID = " & YearId & " ORDER BY BARCODESTOCK.DESIGNNO, ITEMNAME")
+            Else
+                DT = objclsCMST.search("DESIGN_NO AS DESIGNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID LEFT OUTER JOIN ITEMDESIGNIMAGE ON DESIGNMASTER.DESIGN_ID = ITEMDESIGN_DESIGNID ", " AND ITEMDESIGN_PATH IS NULL AND DESIGNMASTER.DESIGN_yearid = " & YearId)
             End If
-            GRIDBILLDETAILS.DataSource = dt
+            If DT.Rows.Count > 0 Then
+                    GRIDBILL.FocusedRowHandle = GRIDBILL.RowCount - 1
+                    GRIDBILL.TopRowIndex = GRIDBILL.RowCount - 15
+                End If
+                GRIDBILLDETAILS.DataSource = dt
         Catch ex As Exception
             Throw ex
         End Try
