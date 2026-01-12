@@ -1464,6 +1464,8 @@ Public Class InvoiceMaster
                 If ClientName <> "SOFTAS" And ClientName <> "SNCM" And ClientName <> "ABHEE" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
             End If
 
+            If Not IsBulkUpload And ClientName = "BARKHA" Then Call TOOLWHATSAPP_Click(sender, e)
+
             'done temp
             If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Or IsBulkUpload = True Then
                 CLEAR()

@@ -49,6 +49,7 @@ Public Class GRNDesign
     Dim RPTLOTREGISTER As New LotStatus_Register
     Dim RPTLOTREPORT As New LotStatus_Details
     Dim RPTLOTPCSDETAILS As New LotStatus_PcsDetails
+    Dim RPTLOTPCSSUMM As New LotStatus_PcsSumm
     Dim RPTLOTVALUE As New LotStatus_SummValue
     Dim RPTLOTTAGGING As New LotTaggingReport
 
@@ -148,6 +149,7 @@ Public Class GRNDesign
             If FRMSTRING = "LOTREGISTER" Then crTables = RPTLOTREGISTER.Database.Tables
             If FRMSTRING = "LOTDETAILS" Then crTables = RPTLOTREPORT.Database.Tables
             If FRMSTRING = "LOTPCSDETAILS" Then crTables = RPTLOTPCSDETAILS.Database.Tables
+            If FRMSTRING = "LOTPCSSUMM" Then crTables = RPTLOTPCSSUMM.Database.Tables
             If FRMSTRING = "LOTVALUE" Then crTables = RPTLOTVALUE.Database.Tables
             If FRMSTRING = "LOTTAGGING" Then crTables = RPTLOTTAGGING.Database.Tables
 
@@ -241,6 +243,9 @@ Public Class GRNDesign
             ElseIf FRMSTRING = "LOTPCSDETAILS" Then
                 crpo.ReportSource = RPTLOTPCSDETAILS
                 RPTLOTPCSDETAILS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            ElseIf FRMSTRING = "LOTPCSSUMM" Then
+                crpo.ReportSource = RPTLOTPCSSUMM
+                RPTLOTPCSSUMM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
             ElseIf FRMSTRING = "LOTVALUE" Then
                 crpo.ReportSource = RPTLOTVALUE
                 RPTLOTVALUE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
@@ -553,6 +558,12 @@ Public Class GRNDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTLOTPCSDETAILS.Export()
+            ElseIf FRMSTRING = "LOTPCSSUMM" Then
+                expo = RPTLOTPCSSUMM.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTLOTPCSSUMM.Export()
             ElseIf FRMSTRING = "LOTVALUE" Then
                 expo = RPTLOTVALUE.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
