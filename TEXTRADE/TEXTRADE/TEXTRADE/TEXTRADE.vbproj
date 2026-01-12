@@ -2641,6 +2641,12 @@
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoEway.Designer.vb">
+      <DependentUpon>AutoEway.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoEway.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.Designer.vb">
       <DependentUpon>SelectPurLRStock.vb</DependentUpon>
     </Compile>
@@ -10131,6 +10137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoEway.resx">
+      <DependentUpon>AutoEway.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.resx">
       <DependentUpon>SelectPurLRStock.vb</DependentUpon>
