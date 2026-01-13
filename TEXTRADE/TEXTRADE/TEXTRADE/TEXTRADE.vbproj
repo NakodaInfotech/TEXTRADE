@@ -12477,7 +12477,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Stock Reports\ItemDesignShadeWiseStockReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ItemDesignShadeWiseStockReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_TOTALTRANSA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
