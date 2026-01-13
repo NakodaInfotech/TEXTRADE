@@ -12973,6 +12973,1867 @@ fontItalic As Boolean = False)
         End Try
         Return Nothing
     End Function
+    Public Function MISALLDAILY_EXCELAVIS(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date) As Object
+        Try
+
+            SetWorkSheet()
+            objSheet.Name = "MIS"
+
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+
+            RowIndex = 1
+            For i As Integer = 1 To 26
+                SetColumnWidth(Range(i), 13)
+            Next
+
+            SetColumnWidth(Range("1"), 5)
+            SetColumnWidth(Range("2"), 20)
+
+
+            '''''''''''Report Title
+            Dim OBJCMN As New ClsCommon
+            Dim DT As New System.Data.DataTable
+            Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+            Dim DTCMP As System.Data.DataTable = OBJCMN.SEARCH(" CMP_DISPLAYEDNAME AS CMPNAME, CMP_ADD1 As ADD1, CMP_ADD2 AS ADD2", "", " CMPMASTER", " AND CMP_ID = " & CMPID)
+
+            RowIndex = 2
+            Write(DTCMP.Rows(0).Item("CMPNAME"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 14)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD1
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD1"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD2
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD2"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            RowIndex += 1
+            Write("DAILY MIS REPORT (" & Format(FROMDATE, "dd/MM/yyyy") & "-" & Format(TODATE, "dd/MM/yyyy") & ")", Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 12)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+
+            'FREEZE TOP 6 ROWS
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Select()
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Application.ActiveWindow.FreezePanes = True
+
+
+            SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("SR.", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("PARTICULARS", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("TODAYS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UPTO LAST DATE", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UPTO DATE (MONTH)", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("UPTO DATE (YEAR)", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+            'SALES
+            RowIndex += 1
+            Write("1", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("SALES", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Quantity", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND invoice_DATE = CAST(GETDATE() AS DATE) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("INVMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND invoice_DATE < CAST(GETDATE() AS DATE) AND MONTH(invoice_DATE) = MONTH(GETDATE()) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("INVMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND invoice_DATE <= CAST(GETDATE() AS DATE) AND MONTH(invoice_DATE) = MONTH(GETDATE()) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("INVMTRS")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_TOTALMTRS),0) AS INVMTRS", "", " INVOICEMASTER ", " AND invoice_DATE <= CAST(GETDATE() AS DATE) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("INVMTRS")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+            'SALES VALUE
+            RowIndex += 1
+            Write("Value", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_SUBTOTAL),0) AS GTOTAL", "", " INVOICEMASTER ", " AND invoice_DATE = CAST(GETDATE() AS DATE) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GTOTAL")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_SUBTOTAL),0) AS GTOTAL", "", " INVOICEMASTER ", " AND invoice_DATE < CAST(GETDATE() AS DATE) AND MONTH(invoice_DATE) = MONTH(GETDATE()) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GTOTAL")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_SUBTOTAL),0) AS GTOTAL", "", " INVOICEMASTER ", " AND invoice_DATE <= CAST(GETDATE() AS DATE) AND MONTH(invoice_DATE) = MONTH(GETDATE()) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GTOTAL")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(INVOICE_SUBTOTAL),0) AS GTOTAL", "", " INVOICEMASTER ", " AND invoice_DATE <= CAST(GETDATE() AS DATE) AND INVOICE_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GTOTAL")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'SALES ORDER
+            RowIndex += 2
+            Write("2", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("ORDERS RECEIVED", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Number", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("No.", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(COUNT(SO_NO),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE = CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(COUNT(SO_NO),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE < CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(COUNT(SO_NO),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(COUNT(SO_NO),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+            'ORDER METERS
+            RowIndex += 1
+            Write("Quantity", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALMTRS),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE = CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALMTRS),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE < CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALMTRS),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALMTRS),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+            'ORDER VALUE
+            RowIndex += 1
+            Write("Value", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALAMT),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE = CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALAMT),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE < CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALAMT),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND MONTH(SO_DATE) = MONTH(GETDATE()) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(SO_TOTALAMT),0) TOTALSO", "", " SALEORDER ", " AND SO_DATE <= CAST(GETDATE() AS DATE) AND SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALSO")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'GREY PURCHASE
+            RowIndex += 2
+            Write("3", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("GREY PURCHASE", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Quantity", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(GRN_TOTALMTRS),0) AS GRNMTRS", "", " GRN ", " AND GRN_TYPE = 'Job Work' AND GRN_DATE = CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GRNMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(GRN_TOTALMTRS),0) AS GRNMTRS", "", " GRN ", " AND GRN_TYPE = 'Job Work' AND GRN_DATE < CAST(GETDATE() AS DATE) AND MONTH(GRN_DATE) = MONTH(GETDATE()) AND GRN_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GRNMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(GRN_TOTALMTRS),0) AS GRNMTRS", "", " GRN ", " AND GRN_TYPE = 'Job Work' AND GRN_DATE <= CAST(GETDATE() AS DATE) AND MONTH(GRN_DATE) = MONTH(GETDATE()) AND GRN_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GRNMTRS")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(GRN_TOTALMTRS),0) AS GRNMTRS", "", " GRN ", " AND GRN_TYPE = 'Job Work' AND GRN_DATE <= CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GRNMTRS")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+            RowIndex += 1
+            Write("Value", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BILL_SUBTOTAL),0) AS TOTALAMT", "", " PURCHASEMASTER ", " AND PURCHASEMASTER.BILL_PARTYBILLDATE = CAST(GETDATE() AS DATE) AND PURCHASEMASTER.BILL_YEARID = " & YEARID & " AND PURCHASEMASTER.BILL_INITIALS IN (SELECT DISTINCT BILL_INITIALS FROM GRN INNER JOIN PURCHASEMASTER_DESC ON GRN_NO = PURCHASEMASTER_DESC.BILL_GRNNO And grn_yearid = PURCHASEMASTER_DESC.BILL_yearid And PURCHASEMASTER_DESC.BILL_TYPE = 'Job Work' WHERE GRN_DATE = CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID & ")")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALAMT")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BILL_SUBTOTAL),0) AS TOTALAMT", "", " PURCHASEMASTER ", " AND PURCHASEMASTER.BILL_PARTYBILLDATE < CAST(GETDATE() AS DATE) AND MONTH(PURCHASEMASTER.BILL_PARTYBILLDATE) = MONTH(GETDATE()) AND PURCHASEMASTER.BILL_YEARID = " & YEARID & " AND PURCHASEMASTER.BILL_INITIALS IN (SELECT DISTINCT BILL_INITIALS FROM GRN INNER JOIN PURCHASEMASTER_DESC ON GRN_NO = PURCHASEMASTER_DESC.BILL_GRNNO And grn_yearid = PURCHASEMASTER_DESC.BILL_yearid And PURCHASEMASTER_DESC.BILL_TYPE = 'Job Work' WHERE GRN_DATE < CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID & ")")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BILL_SUBTOTAL),0) AS TOTALAMT", "", " PURCHASEMASTER ", " AND PURCHASEMASTER.BILL_PARTYBILLDATE <= CAST(GETDATE() AS DATE) AND MONTH(PURCHASEMASTER.BILL_PARTYBILLDATE) = MONTH(GETDATE()) AND PURCHASEMASTER.BILL_YEARID = " & YEARID & " AND PURCHASEMASTER.BILL_INITIALS IN (SELECT DISTINCT BILL_INITIALS FROM GRN INNER JOIN PURCHASEMASTER_DESC ON GRN_NO = PURCHASEMASTER_DESC.BILL_GRNNO And grn_yearid = PURCHASEMASTER_DESC.BILL_yearid And PURCHASEMASTER_DESC.BILL_TYPE = 'Job Work' WHERE GRN_DATE <= CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID & ")")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALAMT")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BILL_SUBTOTAL),0) AS TOTALAMT", "", " PURCHASEMASTER ", " AND PURCHASEMASTER.BILL_PARTYBILLDATE <= CAST(GETDATE() AS DATE) AND PURCHASEMASTER.BILL_YEARID = " & YEARID & " AND PURCHASEMASTER.BILL_INITIALS IN (SELECT DISTINCT BILL_INITIALS FROM GRN INNER JOIN PURCHASEMASTER_DESC ON GRN_NO = PURCHASEMASTER_DESC.BILL_GRNNO And grn_yearid = PURCHASEMASTER_DESC.BILL_yearid And PURCHASEMASTER_DESC.BILL_TYPE = 'Job Work' WHERE GRN_DATE <= CAST(GETDATE() AS DATE) AND GRN_YEARID = " & YEARID & ")")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+            'STOCK
+            RowIndex += 2
+            Write("STOCKS", Range("2"), XlHAlign.xlHAlignLeft, , True, 13)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignCenter, , True, 13)
+            Write("GREY STOCK TRANSPORT", Range("4"), XlHAlign.xlHAlignCenter, , True, 13)
+            Write("GREY STOCK PROCESS", Range("5"), XlHAlign.xlHAlignCenter, , True, 13)
+            Write("PROCESS STOCK", Range("6"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("WIP TOTAL STOCK", Range("7"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("GODOWN STOCK (FRESH)", Range("8"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("GODOWN STOCK (PCS)", Range("9"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("PACKING STOCK", Range("10"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("READY FOR DISPATCH", Range("11"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            Write("FINISH TOTAL STOCK", Range("12"), XlHAlign.xlHAlignCenter, , True, 13, True)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+            RowIndex += 1
+            Write("4", Range("1"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Opening Stock", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            'GREY STOCK TRANSPORT
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS GREYMTRS", "", " GREYSTOCKTRANSPORT ", " AND DATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GREYMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'GREY STOCK PROCESS
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS GREYMTRS", "", " GREYSTOCKPROCESS ", " AND DATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GREYMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'PROCESS STOCK
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS PROCESSMTRS", "", " LOT_VIEW ", " and LOT_VIEW.LOTCOMPLETED ='FALSE' AND DATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("PROCESSMTRS")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'TOTAL WIP OPENING STOCK
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("6").ToString & RowIndex & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+
+            'BARCODE STOCK ONLY FRESH PIECETYPE
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(MTRS),0) AS TOTALMTRS", "", " BARCODESTOCK ", " and PIECETYPE ='FRESH' AND DATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'BARCODE STOCK ONLY PIECES PIECETYPE
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(MTRS),0) AS TOTALMTRS", "", " BARCODESTOCK ", " and PIECETYPE ='PIECES' AND DATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'INHOUSE PACKING STOCK
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISNULL(ISSUEPACKING_DESC.ISS_OUTMTRS, 0), 2)), 0) AS TOTALMTRS", "", " ISSUEPACKING_DESC INNER JOIN ISSUEPACKING ON ISSUEPACKING.ISS_NO = ISSUEPACKING_DESC.ISS_NO AND ISSUEPACKING.ISS_YEARID = ISSUEPACKING_DESC.ISS_YEARID", " and ISSUEPACKING.ISS_DATE < CAST(GETDATE() AS DATE) AND ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISNULL(ISSUEPACKING_DESC.ISS_OUTMTRS, 0), 2) > 0  AND ISSUEPACKING.ISS_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'READY FOR DISPATCH
+            DT = OBJCMN.SEARCH(" SUM(T.MTRS) AS MTRS ", "", " (SELECT ISNULL(SUM(GDN.GDN_TOTALMTRS), 0) AS MTRS FROM GDN WHERE  ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND GDN.GDN_DATE < CAST(GETDATE() AS DATE)AND GDN.GDN_YEARID = " & YEARID & " UNION ALL SELECT ISNULL(SUM(OPENINGGDN.OPENINGGDN_TOTALMTRS), 0) AS MTRS FROM OPENINGGDN WHERE  ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND OPENINGGDN.OPENINGGDN_DATE < CAST(GETDATE() AS DATE) AND OPENINGGDN.OPENINGGDN_YEARID = " & YEARID & " ) AS T", "")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("MTRS")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'TOTAL FINISH OPENING STOCK
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & RowIndex & ":" & objColumn.Item("11").ToString & RowIndex & ")", Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'TODAYS RECEIPT STOCK
+            RowIndex += 1
+            Write("Today's Receipt", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            'GREY STOCK TRANSPORT
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS GREYMTRS", "", " GREYSTOCKTRANSPORT ", " AND DATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GREYMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            'GREY STOCK PROCESS
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS GREYMTRS", "", " GREYSTOCKPROCESS ", " AND DATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("GREYMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'PROCESS STOCK
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(BALMTRS),0) AS PROCESSMTRS", "", " LOT_VIEW ", " and LOT_VIEW.LOTCOMPLETED ='FALSE' AND DATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("PROCESSMTRS")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'TOTAL WIP TODAYS STOCK
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("6").ToString & RowIndex & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+            'BARCODE STOCK ONLY FRESH PIECETYPE
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(MTRS),0) AS TOTALMTRS", "", " BARCODESTOCK ", " and PIECETYPE ='FRESH' AND DATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("8"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'BARCODE STOCK ONLY PIECES PIECETYPE
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(MTRS),0) AS TOTALMTRS", "", " BARCODESTOCK ", " and PIECETYPE ='PIECES' AND DATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("9"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'INHOUSE PACKING STOCK
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISNULL(ISSUEPACKING_DESC.ISS_OUTMTRS, 0), 2)), 0) AS TOTALMTRS", "", " ISSUEPACKING_DESC INNER JOIN ISSUEPACKING ON ISSUEPACKING.ISS_NO = ISSUEPACKING_DESC.ISS_NO AND ISSUEPACKING.ISS_YEARID = ISSUEPACKING_DESC.ISS_YEARID", " and ISSUEPACKING.ISS_DATE = CAST(GETDATE() AS DATE) AND ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISNULL(ISSUEPACKING_DESC.ISS_OUTMTRS, 0), 2) > 0  AND ISSUEPACKING.ISS_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("TOTALMTRS")), Range("10"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'READY FOR DISPATCH
+            DT = OBJCMN.SEARCH(" SUM(T.MTRS) AS MTRS ", "", " (SELECT ISNULL(SUM(GDN.GDN_TOTALMTRS), 0) AS MTRS FROM GDN WHERE  ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND GDN.GDN_DATE = CAST(GETDATE() AS DATE)AND GDN.GDN_YEARID = " & YEARID & " UNION ALL SELECT ISNULL(SUM(OPENINGGDN.OPENINGGDN_TOTALMTRS), 0) AS MTRS FROM OPENINGGDN WHERE  ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND OPENINGGDN.OPENINGGDN_DATE = CAST(GETDATE() AS DATE) AND OPENINGGDN.OPENINGGDN_YEARID = " & YEARID & " ) AS T", "")
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("MTRS")), Range("11"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            'TOTAL FINISH TODAYS STOCK
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & RowIndex & ":" & objColumn.Item("11").ToString & RowIndex & ")", Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+            'CLOSING STOCK
+            RowIndex += 1
+            Write("Closing Stock", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex - 2 & ":" & objColumn.Item("4").ToString & RowIndex - 1 & ")", Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("5").ToString & RowIndex - 2 & ":" & objColumn.Item("5").ToString & RowIndex - 1 & ")", Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("6").ToString & RowIndex - 2 & ":" & objColumn.Item("6").ToString & RowIndex - 1 & ")", Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex - 2 & ":" & objColumn.Item("7").ToString & RowIndex - 1 & ")", Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("8").ToString & RowIndex - 2 & ":" & objColumn.Item("8").ToString & RowIndex - 1 & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex - 2 & ":" & objColumn.Item("9").ToString & RowIndex - 1 & ")", Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex - 2 & ":" & objColumn.Item("10").ToString & RowIndex - 1 & ")", Range("10"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex - 2 & ":" & objColumn.Item("11").ToString & RowIndex - 1 & ")", Range("11"), XlHAlign.xlHAlignRight, , True, 10)
+            FORMULA("=SUM(" & objColumn.Item("12").ToString & RowIndex - 2 & ":" & objColumn.Item("12").ToString & RowIndex - 1 & ")", Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+            'SALE ORDER
+            RowIndex += 2
+            Write("5", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("PENDING SALE ORDER", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING ORDERS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PO ISSUED", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("BALANCE ORDER", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Quantity", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ALLSALEORDER_DESC.SO_MTRS - ALLSALEORDER_DESC.SO_RECDMTRS),0) AS ORDERMTRS", "", " ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.SO_NO = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.TYPE = ALLSALEORDER_DESC.TYPE AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID ", " AND ALLSALEORDER_DESC.SO_CLOSED = 0 AND (ALLSALEORDER_DESC.SO_MTRS - ALLSALEORDER_DESC.SO_RECDMTRS) > 0 and ALLSALEORDER.SO_DATE < CAST(GETDATE() AS DATE) AND ALLSALEORDER_DESC.SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("ORDERMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ALLSALEORDER_DESC.SO_MTRS - ALLSALEORDER_DESC.SO_RECDMTRS),0) AS ORDERMTRS", "", " ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.SO_NO = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.TYPE = ALLSALEORDER_DESC.TYPE AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID ", " AND ALLSALEORDER_DESC.SO_CLOSED = 0 AND (ALLSALEORDER_DESC.SO_MTRS - ALLSALEORDER_DESC.SO_RECDMTRS) > 0 and ALLSALEORDER.SO_DATE = CAST(GETDATE() AS DATE) AND ALLSALEORDER_DESC.SO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("ORDERMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")", Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'PURCHASE ORDER
+            RowIndex += 2
+            Write("6", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("PENDING PURCHASE ORDER", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING ORDERS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RECEIVED", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("BALANCE ORDER", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Quantity", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ALLPURCHASEORDER_DESC.PO_MTRS - ALLPURCHASEORDER_DESC.PO_RECDMTRS),0) AS ORDERMTRS", "", " ALLPURCHASEORDER INNER JOIN ALLPURCHASEORDER_DESC ON ALLPURCHASEORDER.PO_NO = ALLPURCHASEORDER_DESC.PO_NO AND ALLPURCHASEORDER.TYPE = ALLPURCHASEORDER_DESC.TYPE AND ALLPURCHASEORDER.PO_YEARID = ALLPURCHASEORDER_DESC.PO_YEARID ", " AND ALLPURCHASEORDER_DESC.PO_CLOSED = 0 AND (ALLPURCHASEORDER_DESC.PO_MTRS - ALLPURCHASEORDER_DESC.PO_RECDMTRS) > 0 and ALLPURCHASEORDER.PO_DATE < CAST(GETDATE() AS DATE) AND ALLPURCHASEORDER_DESC.PO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("ORDERMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(ALLPURCHASEORDER_DESC.PO_MTRS - ALLPURCHASEORDER_DESC.PO_RECDMTRS),0) AS ORDERMTRS", "", " ALLPURCHASEORDER INNER JOIN ALLPURCHASEORDER_DESC ON ALLPURCHASEORDER.PO_NO = ALLPURCHASEORDER_DESC.PO_NO AND ALLPURCHASEORDER.TYPE = ALLPURCHASEORDER_DESC.TYPE AND ALLPURCHASEORDER.PO_YEARID = ALLPURCHASEORDER_DESC.PO_YEARID ", " AND ALLPURCHASEORDER_DESC.PO_CLOSED = 0 AND (ALLPURCHASEORDER_DESC.PO_MTRS - ALLPURCHASEORDER_DESC.PO_RECDMTRS) > 0 and ALLPURCHASEORDER.PO_DATE = CAST(GETDATE() AS DATE) AND ALLPURCHASEORDER_DESC.PO_YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("ORDERMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")", Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+            'RECEIVABLE BALANCE
+            RowIndex += 2
+            Write("7", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("RECEIVABLE", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING BALANCE", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("SALES / DEBITNOTE", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PAYMENT RECEIVED", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("CREDIT NOTE", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("CLOSING BALANCE", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Value", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(DR)-SUM(CR),0) AS BALAMT", "", " REGISTER ", " AND Secondary = 'Sundry Debtors' AND  REGISTER.ACC_BILLDATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("BALAMT")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(DR),0) AS DEBITAMT", "", " REGISTER ", " AND acc_type <> 'RECEIPT' AND Secondary = 'Sundry Debtors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("DEBITAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(CR),0) AS RECAMT", "", " REGISTER ", " AND acc_type = 'RECEIPT' AND Secondary = 'Sundry Debtors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("RECAMT")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(CR),0) AS CREDITAMT", "", " REGISTER ", " AND acc_type <> 'RECEIPT' AND Secondary = 'Sundry Debtors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("CREDITAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-SUM(" & objColumn.Item("6").ToString & RowIndex & ":" & objColumn.Item("7").ToString & RowIndex & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'PAYABLE BALANCE
+            RowIndex += 2
+            Write("8", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("PAYABLE", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING BALANCE", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PURCHASE / CREDITNOTE", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PAYMENT MADE", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DEBIT NOTE", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("CLOSING BALANCE", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            RowIndex += 1
+            Write("Value", Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+            Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(CR)-SUM(DR),0) AS BALAMT", "", " REGISTER ", " AND Secondary = 'Sundry Creditors' AND  REGISTER.ACC_BILLDATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("BALAMT")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(CR),0) AS CREDITAMT", "", " REGISTER ", " AND acc_type <> 'PAYMENT' AND Secondary = 'Sundry Creditors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("CREDITAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(DR),0) AS PAYAMT", "", " REGISTER ", " AND acc_type = 'PAYMENT' AND Secondary = 'Sundry Creditors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("PAYAMT")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+            DT = OBJCMN.SEARCH(" ISNULL(SUM(DR),0) AS DEBITAMT", "", " REGISTER ", " AND acc_type <> 'PAYMENT' AND Secondary = 'Sundry Creditors' AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+            If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("DEBITAMT")), Range("7"), XlHAlign.xlHAlignRight, , False, 10)
+
+            FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-SUM(" & objColumn.Item("6").ToString & RowIndex & ":" & objColumn.Item("7").ToString & RowIndex & ")", Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+
+
+            'BANK A/C
+            RowIndex += 2
+            Write("9", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("BANK", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING BALANCE", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RECEIPT", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PAYMENT", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("CLOSING BALANCE", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ACC_CMPNAME AS BANKNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID", " AND (GROUP_Secondary = 'BANK A/C' OR GROUP_Secondary = 'BANK OD A/C') AND  ACC_YEARID = " & YEARID)
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("BANKNAME"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(DR)-SUM(CR),0) AS BALAMT", "", " REGISTER ", " AND NAME = '" & ROW("BANKNAME") & "' AND  REGISTER.ACC_BILLDATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("BALAMT")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(DR),0) AS DEBITAMT", "", " REGISTER ", " AND NAME = '" & ROW("BANKNAME") & "' AND (acc_type = 'RECEIPT' OR acc_type = 'CONTRA' OR acc_type = 'PAYMENT') AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("DEBITAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(CR),0) AS CREDITAMT", "", " REGISTER ", "  AND NAME = '" & ROW("BANKNAME") & "' AND (acc_type = 'PAYMENT' OR acc_type = 'CONTRA' OR acc_type = 'RECEIPT') AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("CREDITAMT")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+                FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            Next
+
+
+
+
+
+            'CASH IN HAND
+            RowIndex += 2
+            Write("10", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("CASH LEDGER", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("OPENING BALANCE", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RECEIPT", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PAYMENT", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("CLOSING BALANCE", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" ACC_CMPNAME AS CASHNAME", "", " LEDGERS INNER JOIN GROUPMASTER ON ACC_GROUPID = GROUP_ID", " AND GROUP_Secondary = 'Cash In Hand' AND  ACC_YEARID = " & YEARID)
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("CASHNAME"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("Rupees", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(DR)-SUM(CR),0) AS BALAMT", "", " REGISTER ", " AND NAME = '" & ROW("CASHNAME") & "' AND  REGISTER.ACC_BILLDATE < CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("BALAMT")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(DR),0) AS DEBITAMT", "", " REGISTER ", " AND NAME = '" & ROW("CASHNAME") & "' AND (acc_type = 'RECEIPT' OR acc_type = 'CONTRA' OR acc_type = 'PAYMENT') AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("DEBITAMT")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+
+                DT = OBJCMN.SEARCH(" ISNULL(SUM(CR),0) AS CREDITAMT", "", " REGISTER ", " AND NAME = '" & ROW("CASHNAME") & "' AND (acc_type = 'PAYMENT' OR acc_type = 'CONTRA' OR acc_type = 'RECEIPT') AND  REGISTER.ACC_BILLDATE = CAST(GETDATE() AS DATE) AND YEARID = " & YEARID)
+                If DT.Rows.Count > 0 Then Write(Val(DT.Rows(0).Item("CREDITAMT")), Range("6"), XlHAlign.xlHAlignRight, , False, 10)
+
+                FORMULA("=SUM(" & objColumn.Item("4").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            Next
+
+
+
+
+            'DYEING RECEIPT SUMMARY
+            RowIndex += 2
+            Write("11", Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("JOBBER NAME", Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("UNITS", Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("RECEIPT FROM JOBBER", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("ISSUE TO JOBBER", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+
+            DT = OBJCMN.SEARCH(" T.JOBBERNAME, SUM(T.ISSUEMTRS) AS ISSUEMTRS, SUM(T.RECMTRS) AS RECMTRS ", "", "(SELECT LEDGERS.ACC_CMPNAME AS JOBBERNAME, SUM(GRN.GRN_TOTALMTRS) AS ISSUEMTRS, 0 AS RECMTRS FROM GRN INNER JOIN LEDGERS ON GRN.GRN_TOLEDGERID = LEDGERS.ACC_ID WHERE GRN.GRN_YEARID = " & YEARID & " AND GRN.GRN_DATE = CAST(GETDATE() AS DATE) GROUP BY LEDGERS.ACC_CMPNAME UNION ALL SELECT LEDGERS.ACC_CMPNAME AS JOBBERNAME, SUM(JOBOUT.JO_TOTALMTRS) AS ISSUEMTRS, 0 AS RECMTRS FROM JOBOUT INNER JOIN LEDGERS ON JOBOUT.JO_LEDGERID = LEDGERS.ACC_ID WHERE JOBOUT.JO_YEARID = " & YEARID & " AND JOBOUT.JO_DATE = CAST(GETDATE() AS DATE) GROUP BY LEDGERS.ACC_CMPNAME UNION ALL SELECT LEDGERS.ACC_CMPNAME AS JOBBERNAME, 0 AS ISSUEMTRS, SUM(MATERIALRECEIPT.MATREC_TOTALRECDMTR) AS RECMTRS FROM MATERIALRECEIPT INNER JOIN LEDGERS ON MATERIALRECEIPT.MATREC_LEDGERID = LEDGERS.ACC_ID WHERE MATERIALRECEIPT.MATREC_YEARID = " & YEARID & " AND MATERIALRECEIPT.MATREC_DATE = CAST(GETDATE() AS DATE)  GROUP BY LEDGERS.ACC_CMPNAME UNION ALL SELECT LEDGERS.ACC_CMPNAME AS JOBBERNAME, 0 AS ISSUEMTRS, SUM(JOBIN.JI_TOTALMTRS) AS RECMTRS FROM JOBIN INNER JOIN LEDGERS ON JOBIN.JI_LEDGERID = LEDGERS.ACC_ID WHERE JOBIN.JI_YEARID = " & YEARID & " AND JOBIN.JI_DATE = CAST(GETDATE() AS DATE) GROUP BY LEDGERS.ACC_CMPNAME) AS T", " GROUP BY T.JOBBERNAME ")
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("JOBBERNAME"), Range("2"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write("Meters", Range("3"), XlHAlign.xlHAlignLeft, , False, 10)
+                Write(Val(DT.Rows(0).Item("RECMTRS")), Range("4"), XlHAlign.xlHAlignRight, , False, 10)
+                Write(Val(DT.Rows(0).Item("ISSUEMTRS")), Range("5"), XlHAlign.xlHAlignRight, , False, 10)
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            Next
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 8, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 8, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 8, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 8, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 8, objColumn.Item("12").ToString & RowIndex)
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+            'With objSheet.PageSetup
+            '    .Orientation = XlPageOrientation.xlPortrait
+            '    .TopMargin = 20
+            '    .LeftMargin = 10
+            '    .RightMargin = 5
+            '    .BottomMargin = 10
+            '    .Zoom = False
+            'End With
+
+
+            '****************** END OF MIS CODE ***************************
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "VALUE LOSS %"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+            DTCMP = OBJCMN.SEARCH(" CMP_DISPLAYEDNAME AS CMPNAME, CMP_ADD1 As ADD1, CMP_ADD2 AS ADD2", "", " CMPMASTER", " AND CMP_ID = " & CMPID)
+
+            RowIndex = 2
+            Write(DTCMP.Rows(0).Item("CMPNAME"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 14)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD1
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD1"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            'ADD2
+            RowIndex += 1
+            Write(DTCMP.Rows(0).Item("ADD2"), Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 10)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+            RowIndex += 1
+            Write("VALUE LOSS PERCENTAGE REPORT (" & Format(FROMDATE, "dd/MM/yyyy") & "-" & Format(TODATE, "dd/MM/yyyy") & ")", Range("1"), XlHAlign.xlHAlignCenter, Range("12"), True, 12)
+            SetBorder(RowIndex, Range("1"), Range("12"))
+
+
+            'FREEZE TOP 6 ROWS
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Select()
+            objSheet.Range(objColumn.Item("1").ToString & 8, objColumn.Item("12").ToString & 8).Application.ActiveWindow.FreezePanes = True
+
+
+            SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("CHALLANNO", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("CHALLANDATE", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("MILL", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("LOTNO", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DESIGNNO", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("SHADE", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("INWARDMTR", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("ISSUECARDNO", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("FRESHMTRS", Range("9"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("SECONDMTRS", Range("10"), XlHAlign.xlHAlignLeft, , True, 10)
+            Write("VALUELOSS_PERCENT", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("REMARKS", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & RowIndex, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & RowIndex, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+
+
+
+            'LOOP MILL WISE FOR CURRENT MONTH
+            DT = OBJCMN.SEARCH(" * ", "", "(SELECT MIN(ISSUEPACKING.ISS_CHALLANNO) AS CHALLANNO,MIN(ISSUEPACKING.ISS_date) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(RECPACKING.REC_LOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,MAX(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) AS INWARDMTR,MIN(ISNULL(RECPACKING.REC_FROMNO, 0)) AS ISSUECARDNO,SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS FRESHMTRS,MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0)) AS SECONDMTRS,ROUND(CASE WHEN MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) = 0 THEN 0 ELSE ((MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)) - SUM(ISNULL(RECPACKING_DESC.REC_MTRS, 0))) * 100.0 / MIN(ISNULL(RECPACKING.REC_ISSUEMTRS, 0)))END, 2) AS VALUELOSS_PERCENT,MIN(CAST(ISNULL(RECPACKING.REC_REMARKS, '') AS NVARCHAR(255))) AS REMARKS,MIN(ISNULL(RECPACKING.REC_NO, 0)) AS SRNO,MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM RECPACKING INNER JOIN RECPACKING_DESC ON RECPACKING.REC_NO = RECPACKING_DESC.REC_NO AND RECPACKING.REC_YEARID = RECPACKING_DESC.REC_YEARID INNER JOIN ISSUEPACKING ON RECPACKING.REC_FROMNO = ISSUEPACKING.ISS_no AND RECPACKING.REC_YEARID = ISSUEPACKING.ISS_yearid LEFT JOIN PIECETYPEMASTER ON RECPACKING_DESC.REC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN DESIGNMASTER ON RECPACKING_DESC.REC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON RECPACKING_DESC.REC_COLORID = COLORMASTER.COLOR_id LEFT JOIN UNITMASTER ON RECPACKING_DESC.REC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON RECPACKING_DESC.REC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON RECPACKING.REC_USERID = USERMASTER.User_id LEFT JOIN CONTRACTMASTER ON ISSUEPACKING.ISS_CONTRACTID = CONTRACTMASTER.CONTRACT_ID LEFT JOIN LEDGERS ON RECPACKING.REC_LEDGERID = LEDGERS.Acc_id LEFT JOIN GODOWNMASTER ON RECPACKING.REC_GODOWNID = GODOWNMASTER.GODOWN_id  WHERE RECPACKING.REC_YEARID =
+             " & YEARID & " GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, RECPACKING.REC_LOTNO UNION ALL SELECT MIN(MATERIALRECEIPT.MATREC_CHALLANNO) AS CHALLANNO,MIN(MATERIALRECEIPT.MATREC_DATE) AS CHALLANDATE,ISNULL(LEDGERS.Acc_cmpname, '') AS MILL,ISNULL(MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO, '') AS LOTNO,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO,ISNULL(COLORMASTER.COLOR_name, '') AS SHADE,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) AS INWARDMTR,MIN(ISNULL(MATERIALRECEIPT.MATREC_CHKNO, 0)) AS ISSUECARDNO,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0)) AS FRESHMTRS,SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_DIFF, 0)) AS SECONDMTRS,ROUND(CASE WHEN SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) = 0 THEN 0 ELSE ((SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)) - SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_RECDMTRS, 0))) * 100.0 / SUM(ISNULL(MATERIALRECEIPT_DESC.MATREC_MTRS, 0)))END, 2) AS VALUELOSS_PERCENT , MIN(CAST(ISNULL(MATERIALRECEIPT.MATREC_remarks, '') AS NVARCHAR(255))) AS REMARKS, MIN(ISNULL(MATERIALRECEIPT.MATREC_NO, 0)) AS SRNO, MIN(ISNULL(PIECETYPEMASTER.PIECETYPE_name, '')) AS PIECETYPE FROM MATERIALRECEIPT INNER JOIN MATERIALRECEIPT_DESC ON MATERIALRECEIPT.MATREC_NO = MATERIALRECEIPT_DESC.MATREC_NO AND MATERIALRECEIPT.MATREC_yearid = MATERIALRECEIPT_DESC.MATREC_YEARID LEFT JOIN LEDGERS ON MATERIALRECEIPT.MATREC_ledgerid = LEDGERS.Acc_id LEFT JOIN DESIGNMASTER ON MATERIALRECEIPT_DESC.MATREC_DESIGNID = DESIGNMASTER.DESIGN_id LEFT JOIN COLORMASTER ON MATERIALRECEIPT_DESC.MATREC_COLORID = COLORMASTER.COLOR_id LEFT JOIN PIECETYPEMASTER ON MATERIALRECEIPT_DESC.MATREC_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT JOIN UNITMASTER ON MATERIALRECEIPT_DESC.MATREC_QTYUNITID = UNITMASTER.unit_id LEFT JOIN ITEMMASTER ON MATERIALRECEIPT_DESC.MATREC_ITEMID = ITEMMASTER.item_id LEFT JOIN USERMASTER ON MATERIALRECEIPT.MATREC_userid = USERMASTER.User_id  WHERE MATERIALRECEIPT.MATREC_yearid =
+             " & YEARID & " GROUP BY LEDGERS.Acc_cmpname, DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name, MATERIALRECEIPT_DESC.MATREC_GRIDLOTNO) as T")
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("CHALLANNO"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("CHALLANDATE"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("MILL"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("LOTNO"), Range("4"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("DESIGNNO"), Range("5"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("SHADE"), Range("6"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("INWARDMTR"), Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("ISSUECARDNO"), Range("8"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("FRESHMTRS"), Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("SECONDMTRS"), Range("10"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("VALUELOSS_PERCENT"), Range("11"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("REMARKS"), Range("12"), XlHAlign.xlHAlignLeft, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & 8, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & 8, objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("10").ToString & 8, objColumn.Item("10").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("11").ToString & 8, objColumn.Item("11").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("12").ToString & 8, objColumn.Item("12").ToString & RowIndex)
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+            'SaveAndClose()
+
+            'SALE BUYER WISE
+
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "SALE BUYER WISE"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+            RowIndex += 2
+
+
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("NAME", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("MTRS", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RETURNMTRS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+
+
+
+
+            'SALE BUYER WISE
+            DT = OBJCMN.SEARCH("   GP_DATE AS DATE, ISNULL(LEDGERS.Acc_cmpname,'') AS NAME ,SUM(CAST(SALEGATEPASS_DESC.GP_MTRS AS DECIMAL(18,2)))  AS MTRS, CAST(ISNULL(T.MTRS,0) AS DECIMAL(18,2)) AS RETURNMTRS     ", "", "   SALEGATEPASS INNER JOIN LEDGERS ON GP_ledgerid = LEDGERS.ACC_ID INNER JOIN SALEGATEPASS_DESC ON SALEGATEPASS.GP_NO = SALEGATEPASS_DESC.GP_NO AND SALEGATEPASS.GP_YEARID = SALEGATEPASS_DESC.GP_YEARID LEFT OUTER JOIN (SELECT SALRET_DATE AS DATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, SUM(SALERETURN_DESC.SALRET_MTRS) AS MTRS  FROM SALERETURN INNER JOIN LEDGERS ON SALRET_ledgerid = LEDGERS.ACC_ID INNER JOIN SALERETURN_DESC ON SALERETURN.SALRET_NO = SALERETURN_DESC.SALRET_NO AND SALERETURN.SALRET_YEARID = SALERETURN_DESC.SALRET_YEARID WHERE SALRET_DATE = CAST(GETDATE() AS DATE) GROUP BY SALRET_DATE, ISNULL(LEDGERS.ACC_CMPNAME,'') ) AS T ON T.DATE = GP_date AND T.NAME = LEDGERS.ACC_CMPNAME ", " AND GP_DATE = CAST(GETDATE() AS DATE)
+             GROUP BY GP_DATE, T.MTRS, ISNULL(LEDGERS.ACC_CMPNAME,'')  ORDER BY MTRS DESC")
+            Dim DT1 = OBJCMN.SEARCH("  TOTALMTRS =  SUM(SALEGATEPASS_DESC.GP_MTRS)  ", "", "  SALEGATEPASS_DESC INNER JOIN SALEGATEPASS ON SALEGATEPASS.GP_NO = SALEGATEPASS_DESC.GP_NO AND SALEGATEPASS.GP_YEARID = SALEGATEPASS_DESC.GP_YEARID ", " AND GP_DATE = CAST(GETDATE() AS DATE)")
+            Dim DT2 = OBJCMN.SEARCH("   TOTALRETURNMTRS = ISNULL(SUM(SALERETURN_DESC.SALRET_MTRS),0)  ", "", "  SALERETURN_DESC INNER JOIN SALERETURN ON SALERETURN.SALRET_NO = SALERETURN_DESC.SALRET_NO AND SALERETURN.SALRET_YEARID = SALERETURN_DESC.SALRET_YEARID ", " AND SALRET_DATE = CAST(GETDATE() AS DATE)")
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("NAME"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("MTRS"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("RETURNMTRS"), Range("4"), XlHAlign.xlHAlignLeft, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            Next
+            objSheet.Columns("B").AutoFit()
+            objSheet.Columns("C:D").AutoFit()
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+
+            Dim HeaderRow As Integer = RowIndex - DT.Rows.Count
+
+            Dim tblRange As Object =
+    objSheet.Range("A" & HeaderRow & ":D" & RowIndex)
+
+            Dim tbl As Object =
+    objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "SALE_BUYER_WISE_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+
+
+
+            'FOR TOTAL MTRS DISPLAY
+            'For Each ROW As DataRow In DT1.Rows
+            '    RowIndex += 1
+            '    Write(ROW("TOTALMTRS"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+
+            '    SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            'Next
+            'SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            ''FOR TOTAL RETURNMTRS DISPLAY
+
+
+            'For Each ROW As DataRow In DT2.Rows
+            '    RowIndex += 1
+            '    Write(ROW("TOTALRETURNMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+
+            '    SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            'Next
+            'SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+
+            RowIndex += 1   ' Move to next empty row
+
+            ' Set background yellow for the entire total row
+            Dim totalRange As Excel.Range = objSheet.Range("A" & RowIndex, "D" & RowIndex)
+            totalRange.Interior.Color = RGB(255, 255, 0) ' Yellow
+            totalRange.Font.Bold = True
+
+            ' Write "GRAND TOTAL:"
+            objSheet.Cells(RowIndex, 1).Value = "GRAND TOTAL:"
+
+            ' Write the totals
+            objSheet.Cells(RowIndex, 3).Value = DT1.Rows(0)("TOTALMTRS")
+            objSheet.Cells(RowIndex, 4).Value = DT2.Rows(0)("TOTALRETURNMTRS")
+
+            ' OPTIONAL: Format numbers
+            objSheet.Cells(RowIndex, 3).NumberFormat = "0.0"
+            objSheet.Cells(RowIndex, 4).NumberFormat = "0.0"
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '*************************************************
+            'DAILY DISPATCH DETAILS
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "DAILY DISPATCH DETAILS"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            ' SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+
+            RowIndex += 2
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("TOTALMTRS", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RUNNINGMTRS", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("AMOUNT", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RUNNINGAMOUNT", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+
+
+
+            'DT = OBJCMN.SEARCH(" IM.INVOICE_NO AS INVOICENO, IM.INVOICE_DATE AS DATE, IM.INVOICE_TOTALMTRS, SUM(IM.INVOICE_TOTALMTRS) OVER ( PARTITION BY IM.INVOICE_REGISTERID ORDER BY IM.INVOICE_NO ) AS RUNNINGMTRS, REG.register_name AS REGISTERNAME, IM.INVOICE_TOTALTAXABLEAMT AS AMOUNT, SUM(IM.INVOICE_TOTALTAXABLEAMT)  OVER ( PARTITION BY IM.INVOICE_REGISTERID ORDER BY IM.INVOICE_NO ) AS RUNNINGAMOUNT, IM.INVOICE_REGISTERID  ", "", " INVOICEMASTER AS IM LEFT OUTER JOIN REGISTERMASTER AS REG ON IM.INVOICE_REGISTERID = REG.register_id AND IM.INVOICE_YEARID = REG.register_yearid  ", " AND IM.INVOICE_YEARID = " & YEARID & " AND INVOICE_DATE = '2025-11-26' ORDER BY IM.INVOICE_REGISTERID, IM.INVOICE_NO")
+            DT = OBJCMN.SEARCH(" T.[DATE], T.TOTALMTRS, SUM(T.TOTALMTRS) OVER (ORDER BY T.[DATE] ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RUNNINGMTRS, T.AMOUNT, SUM(T.AMOUNT) OVER (ORDER BY T.[DATE] ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RUNNINGAMOUNT  ", "", " ( SELECT IM.INVOICE_DATE AS [DATE], SUM(ISNULL(IM.INVOICE_TOTALMTRS, 0)) AS TOTALMTRS, SUM(ISNULL(IM.INVOICE_TOTALTAXABLEAMT, 0)) AS AMOUNT FROM INVOICEMASTER AS IM LEFT JOIN REGISTERMASTER AS REG ON IM.INVOICE_REGISTERID = REG.register_id AND IM.INVOICE_YEARID = REG.register_yearid  WHERE IM.INVOICE_YEARID = 12 AND IM.INVOICE_DATE = CAST(GETDATE() AS DATE) GROUP BY IM.INVOICE_DATE ) T ", " ORDER BY T.[DATE]")
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("RUNNINGMTRS"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("AMOUNT"), Range("4"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("RUNNINGAMOUNT"), Range("5"), XlHAlign.xlHAlignLeft, , True, 10)
+
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            Next
+            objSheet.Columns("B:C").AutoFit()
+            objSheet.Columns("D:E").AutoFit()
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":E" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "DIALY_DISPATCH_DETAILS_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+
+            '********************************
+            'Order Details
+
+            'DAILY ORDER DETAILS
+
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "DAILY ORDER DETAILS"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("12").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("MTRS", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RUNNINGMTRS", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+
+
+
+            'DT = OBJCMN.SEARCH("   so_date AS DATE, ISNULL(ASO.SO_TOTALMTRS, 0) AS TOTALMTRS, SUM(SO_TOTALMTRS) OVER (ORDER BY SO_NO) AS RUNNINGMTRS     ", "", "   ALLSALEORDER AS ASO ", " AND SO_YEARID = 12 AND so_date = '2025-11-26' ORDER BY so_no ")
+            DT = OBJCMN.SEARCH("   so_date AS [DATE], SUM(ISNULL(ASO.SO_TOTALMTRS, 0)) AS TOTALMTRS, SUM(SUM(ISNULL(ASO.SO_TOTALMTRS, 0))) OVER (ORDER BY so_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RUNNINGMTRS     ", "", "   ALLSALEORDER AS ASO ", " AND SO_YEARID = 12 AND so_date = CAST(GETDATE() AS DATE) GROUP BY so_date ORDER BY so_date; ")
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("RUNNINGMTRS"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":C" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "DIALY_ORDER_DETAILS_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+            'FOR TOTAL MTRS DISPLAY
+            'For Each ROW As DataRow In DT1.Rows
+            '    RowIndex += 1
+            '    Write(ROW("TOTALMTRS"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+
+            '    SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            'Next
+            'SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            ''FOR TOTAL RETURNMTRS DISPLAY
+
+
+            'For Each ROW As DataRow In DT2.Rows
+            '    RowIndex += 1
+            '    Write(ROW("TOTALRETURNMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+
+            '    SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("12").ToString & RowIndex)
+            'Next
+            'SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+
+            RowIndex += 1   ' Move to next empty row
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***************************************
+            'DAILY ORDER DETAILS BUYERWISE
+
+            'Order Details
+
+            'DAILY ORDER DETAILS BUYERWISE
+
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "DAILY ORDER DETAILS BUYERWISE"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("7").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, Range("1"), True, 10)
+            Write("BUYER", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DISPATCHTO", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("TOTALMTRS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RUNNINGMTRS", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("AMOUNT", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("RUNNINGAMOUNT", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+
+
+
+            DT = OBJCMN.SEARCH("   so_date AS DATE,ISNULL(LEDGERS.ACC_CMPNAME, '') AS BUYER, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO , ISNULL(ASO.SO_TOTALMTRS, 0) AS TOTALMTRS, SUM(SO_TOTALMTRS) OVER (ORDER BY SO_NO) AS RUNNINGMTRS, ISNULL(SO_SUBTOTAL, 0) AS TOTALAMOUNT, SUM(SO_SUBTOTAL) OVER (ORDER BY SO_NO) AS RUNNINGAMOUNT       ", "", "  ALLSALEORDER AS ASO INNER JOIN LEDGERS ON ASO.so_ledgerid = LEDGERS.Acc_id AND ASO.SO_YEARID = LEDGERS.Acc_yearid INNER JOIN LEDGERS AS PACKINGLEDGERS ON ASO.SO_PACKINGID = PACKINGLEDGERS.Acc_id AND ASO.SO_YEARID = PACKINGLEDGERS.Acc_yearid ", " AND SO_YEARID = 12 AND so_date = CAST(GETDATE() AS DATE) ORDER BY so_no ")
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("BUYER"), Range("2"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("DISPATCHTO"), Range("3"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("RUNNINGMTRS"), Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("TOTALAMOUNT"), Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("RUNNINGAMOUNT"), Range("7"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            Next
+            objSheet.Columns("B").AutoFit()
+            objSheet.Columns("C").AutoFit()
+            objSheet.Columns("D:E").AutoFit()
+            objSheet.Columns("F:G").AutoFit()
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":G" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "DIALY_DISPATCH_DETAILS_BUYERWISE_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+
+            RowIndex += 1   ' Move to next empty row
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '*****************
+            'PACKED GOOD LIST
+
+            'PACKED GOOD LIST
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "PACKED GOOD LIST"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("2").ToString & RowIndex + 1)
+
+            RowIndex += 2
+            Write("DISPATCHTO", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PACKEDMTRS", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+
+
+
+            DT = OBJCMN.SEARCH(" *  ", "", " (SELECT    ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO, SUM(ISNULL(GDN.GDN_TOTALMTRS, 0)) AS MTRS  FROM GDN INNER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id  LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GDN.GDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id  WHERE 1 = 1  AND ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(GDN.GDN_OUTMTRS,0),0) = 0   AND GDN.GDN_YEARID = 12   GROUP BY  PACKINGLEDGERS.Acc_cmpname UNION ALL  SELECT   ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO,  SUM(ISNULL(OPENINGGDN.OPENINGGDN_TOTALMTRS, 0)) AS MTRS    FROM OPENINGGDN INNER JOIN GODOWNMASTER ON OPENINGGDN.OPENINGGDN_GODOWNID = GODOWNMASTER.GODOWN_id  INNER JOIN LEDGERS ON OPENINGGDN.OPENINGGDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON OPENINGGDN.OPENINGGDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id  WHERE 1 = 1  AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTMTRS,0),0) = 0 AND OPENINGGDN.OPENINGGDN_YEARID = 12    GROUP BY  PACKINGLEDGERS.Acc_cmpname ) AS T   ")
+
+            DT2 = OBJCMN.SEARCH(" 'GRANDTOTAL' AS GRANDTOTAL,SUM(MTRS) AS TOTALMTRS  ", "", "  (SELECT    ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO, SUM(ISNULL(GDN.GDN_TOTALMTRS, 0)) AS MTRS  FROM GDN INNER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id  LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GDN.GDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id  WHERE 1 = 1  AND ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(GDN.GDN_OUTMTRS,0),0) = 0   AND GDN.GDN_YEARID = 12   GROUP BY  PACKINGLEDGERS.Acc_cmpname UNION ALL  SELECT   ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO,  SUM(ISNULL(OPENINGGDN.OPENINGGDN_TOTALMTRS, 0)) AS MTRS    FROM OPENINGGDN INNER JOIN GODOWNMASTER ON OPENINGGDN.OPENINGGDN_GODOWNID = GODOWNMASTER.GODOWN_id  INNER JOIN LEDGERS ON OPENINGGDN.OPENINGGDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON OPENINGGDN.OPENINGGDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id  WHERE 1 = 1  AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTMTRS,0),0) = 0 AND OPENINGGDN.OPENINGGDN_YEARID = 12    GROUP BY  PACKINGLEDGERS.Acc_cmpname ) AS T  ")
+
+            Dim DT3 = OBJCMN.SEARCH(" *  ", "", "  (SELECT GDN.GDN_NO AS SRNO, ISNULL(GDN.GDN_date, GETDATE()) AS DATE, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS BUYER, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO,  ISNULL(ITEMMASTER.ITEM_NAME, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(GDN_DESC.GDN_PCS, 0) AS PCS, ISNULL(GDN_DESC.GDN_MTRS, 0) AS MTRS FROM GDN INNER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID INNER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id  LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GDN.GDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id LEFT OUTER JOIN ITEMMASTER ON GDN_DESC.GDN_ITEMID = ITEMMASTER.item_id AND GDN_DESC.GDN_YEARID = ITEMMASTER.item_yearid LEFT OUTER JOIN DESIGNMASTER ON GDN_DESC.GDN_DESIGNID = DESIGNMASTER.DESIGN_id AND  GDN_DESC.GDN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN COLORMASTER ON GDN_DESC.GDN_COLORID = COLORMASTER.COLOR_id AND GDN_DESC.GDN_YEARID = COLORMASTER.COLOR_yearid WHERE 1 = 1  AND ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(GDN.GDN_OUTMTRS,0),0) = 0   AND GDN.GDN_YEARID = 12 UNION ALL  SELECT OPENINGGDN.OPENINGGDN_NO AS SRNO, ISNULL(OPENINGGDN.OPENINGGDN_date, GETDATE()) AS DATE, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS BUYER,  ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DISPATCHTO,  ISNULL(ITEMMASTER.ITEM_NAME, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(OPENINGGDN_DESC.OPENINGGDN_PCS, 0) AS PCS,  ISNULL(OPENINGGDN_DESC.OPENINGGDN_MTRS, 0) AS MTRS FROM OPENINGGDN  INNER JOIN OPENINGGDN_DESC ON OPENINGGDN.OPENINGGDN_NO = OPENINGGDN_DESC.OPENINGGDN_NO AND OPENINGGDN.OPENINGGDN_YEARID = OPENINGGDN_DESC.OPENINGGDN_YEARID INNER JOIN GODOWNMASTER ON OPENINGGDN.OPENINGGDN_GODOWNID = GODOWNMASTER.GODOWN_id  INNER JOIN LEDGERS ON OPENINGGDN.OPENINGGDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON OPENINGGDN.OPENINGGDN_DISPATCHTOID = PACKINGLEDGERS.Acc_id  LEFT OUTER JOIN ITEMMASTER ON OPENINGGDN_DESC.OPENINGGDN_ITEMID = ITEMMASTER.item_id AND OPENINGGDN_DESC.OPENINGGDN_YEARID = ITEMMASTER.item_yearid LEFT OUTER JOIN DESIGNMASTER ON OPENINGGDN_DESC.OPENINGGDN_DESIGNID = DESIGNMASTER.DESIGN_id AND  OPENINGGDN_DESC.OPENINGGDN_YEARID = DESIGNMASTER.DESIGN_yearid LEFT OUTER JOIN COLORMASTER ON OPENINGGDN_DESC.OPENINGGDN_COLORID = COLORMASTER.COLOR_id AND OPENINGGDN_DESC.OPENINGGDN_YEARID = COLORMASTER.COLOR_yearid WHERE 1 = 1  AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTMTRS,0),0) = 0 AND OPENINGGDN.OPENINGGDN_YEARID = 12 ) AS T     ", "  ORDER BY SRNO, MTRS DESC ")
+            Dim DT4 = OBJCMN.SEARCH(" SUM(PCS) AS TOTALPCS, SUM(MTRS) AS TOTALMTRS   ", "", "  ( SELECT ISNULL(GDN_DESC.GDN_PCS, 0) AS PCS, ISNULL(GDN_DESC.GDN_MTRS, 0) AS MTRS FROM GDN INNER JOIN GDN_DESC  ON GDN.GDN_NO = GDN_DESC.GDN_NO  AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID WHERE GDN.GDN_YEARID = 12  AND ROUND(ISNULL(GDN.GDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(GDN.GDN_OUTMTRS,0),0) = 0  UNION ALL SELECT  ISNULL(OPENINGGDN_DESC.OPENINGGDN_PCS, 0), ISNULL(OPENINGGDN_DESC.OPENINGGDN_MTRS, 0) FROM OPENINGGDN INNER JOIN OPENINGGDN_DESC  ON OPENINGGDN.OPENINGGDN_NO = OPENINGGDN_DESC.OPENINGGDN_NO AND OPENINGGDN.OPENINGGDN_YEARID = OPENINGGDN_DESC.OPENINGGDN_YEARID WHERE OPENINGGDN.OPENINGGDN_YEARID = 12  AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTPCS,0),0) = 0 AND ROUND(ISNULL(OPENINGGDN.OPENINGGDN_OUTMTRS,0),0) = 0 ) T  ")
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DISPATCHTO"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("MTRS"), Range("2"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":E" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "PACKED_GOODLIST_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            'GRANDTOTAL FOR SUMMARY
+            For Each ROW As DataRow In DT2.Rows
+                RowIndex += 1
+                Write(ROW("GRANDTOTAL"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("2"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+
+            RowIndex += 3   ' Move to next empty row
+            'Dim DetailStartRow As Integer = RowIndex
+            'FOR DETAILS HEADERS
+
+            SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("9").ToString & RowIndex + 1)
+
+            Write("Sr.No", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Date", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Supplier Name", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Dispatch To", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Item Name", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Design No", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Shade", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Pcs", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Mtrs", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("7").ToString & RowIndex, objColumn.Item("7").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("8").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+
+            For Each ROW As DataRow In DT3.Rows
+                RowIndex += 1
+                Write(ROW("SRNO"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("DATE"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("BUYER"), Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("DISPATCHTO"), Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("ITEMNAME"), Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("DESIGNNO"), Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("SHADE"), Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("PCS"), Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("MTRS"), Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            Next
+            objSheet.Columns("C").AutoFit()
+            objSheet.Columns("D").AutoFit()
+            objSheet.Columns("E").AutoFit()
+            objSheet.Columns("F").AutoFit()
+            objSheet.Columns("G").AutoFit()
+            objSheet.Columns("H").AutoFit()
+            objSheet.Columns("I").AutoFit()
+
+            'SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("7").ToString & 8, objColumn.Item("7").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("8").ToString & 8, objColumn.Item("8").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("9").ToString & 8, objColumn.Item("9").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT3.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":I" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "PACKED_GOODLIST_DETAIL_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            'FOR DETAILS TOTAL
+            For Each ROW As DataRow In DT4.Rows
+                RowIndex += 1
+                Write(ROW("TOTALPCS"), Range("8"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("9"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("8").ToString & RowIndex, objColumn.Item("9").ToString & RowIndex)
+            Next
+
+            'SetBorder(RowIndex, objColumn.Item("8").ToString & objColumn.Item("8").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("9").ToString & objColumn.Item("9").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("8") & RowIndex, objColumn.Item("8") & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("9") & RowIndex, objColumn.Item("9") & RowIndex)
+
+            RowIndex += 1   ' Move to next empty row
+
+            ' OPTIONAL: Border
+            'totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '****************************************
+            'LOT SUMMARY
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "LOT SUMMARY"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("4").ToString & RowIndex + 1)
+
+            RowIndex += 2
+
+            Write("PROCESS HOUSE", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("WIPSTOCK", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("GREYSTAGE", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("TOTAL MTRS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PROGRAM MTRS", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DIFFERENCE", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & RowIndex, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+
+
+
+
+            'DT = OBJCMN.SEARCH(" WITH LotAgg AS ( SELECT JOBBERNAME AS PROCESSHOUSE,  SUM(CAST(BALMTRS AS DECIMAL(18,2)))      AS LOT_BALMTRS, SUM(CAST(PROGRAMMTRS AS DECIMAL(18,2))) AS PROGRAMMTRS FROM LOT_VIEW WHERE YEARID = 12 AND [DATE] >= '2025-11-01' AND [DATE] <  '2025-11-27' GROUP BY JOBBERNAME ), GreyAgg AS ( SELECT NAME AS JOBBERNAME, SUM(CAST(BALMTRS AS DECIMAL(18,2))) AS GREY_BALMTRS FROM GREYSTOCKPROCESS WHERE YEARID = 12 GROUP BY NAME ) SELECT L.PROCESSHOUSE, L.LOT_BALMTRS AS WIPSTOCK, G.GREY_BALMTRS AS GREYSTAGE, L.PROGRAMMTRS , CASE WHEN ISNULL(L.PROGRAMMTRS,0) = 0 THEN 0 ELSE L.LOT_BALMTRS  + ISNULL(G.GREY_BALMTRS, 0) - L.PROGRAMMTRS END AS DIFFERENCE FROM LotAgg L LEFT JOIN GreyAgg G ON LTRIM(RTRIM(G.JOBBERNAME)) = LTRIM(RTRIM(L.PROCESSHOUSE)) ORDER BY L.PROCESSHOUSE")
+            DT = OBJCMN.SEARCH("L.PROCESSHOUSE, L.LOT_BALMTRS AS WIPSTOCK, ISNULL(G.GREY_BALMTRS,0) AS GREYSTAGE, (ISNULL (L.LOT_BALMTRS, 0) + ISNULL(G.GREY_BALMTRS, 0)) AS TOTALMTRS, L.PROGRAMMTRS, CASE WHEN ISNULL(L.PROGRAMMTRS,0)=0 THEN 0 ELSE L.LOT_BALMTRS + ISNULL(G.GREY_BALMTRS,0) - L.PROGRAMMTRS END AS DIFFERENCE  ", "", " ( " & "   SELECT " & "       JOBBERNAME AS PROCESSHOUSE, " & "       SUM(CAST(ISNULL(BALMTRS,0) AS DECIMAL(18,2))) AS LOT_BALMTRS, " & "       SUM(CAST(ISNULL(PROGRAMMTRS,0) AS DECIMAL(18,2))) AS PROGRAMMTRS " & "   FROM LOT_VIEW " & "   WHERE YEARID = 12 " & "     AND [DATE] >= '2025-11-01' " & "     AND [DATE] <  '2025-11-27' " & "   GROUP BY JOBBERNAME " & ") L " & "LEFT JOIN ( " & "   SELECT " & "       NAME AS JOBBERNAME, " & "       SUM(CAST(ISNULL(BALMTRS,0) AS DECIMAL(18,2))) AS GREY_BALMTRS " & "   FROM GREYSTOCKPROCESS " & "   WHERE YEARID = 12 " & "   GROUP BY NAME " & ") G ON LTRIM(RTRIM(G.JOBBERNAME)) = LTRIM(RTRIM(L.PROCESSHOUSE))  ", "  ORDER BY L.PROCESSHOUSE ")
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("PROCESSHOUSE"), Range("1"), XlHAlign.xlHAlignLeft, , True, 10)
+                Write(ROW("WIPSTOCK"), Range("2"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("GREYSTAGE"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("PROGRAMMTRS"), Range("5"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("DIFFERENCE"), Range("6"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("6").ToString & RowIndex)
+            Next
+
+            objSheet.Columns("A").AutoFit()
+            objSheet.Columns("B").AutoFit()
+            objSheet.Columns("C").AutoFit()
+            objSheet.Columns("D").AutoFit()
+            objSheet.Columns("E").AutoFit()
+            objSheet.Columns("F").AutoFit()
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & 8, objColumn.Item("4").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("5").ToString & 8, objColumn.Item("5").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("6").ToString & 8, objColumn.Item("6").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":F" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "LOT_SUMMARY_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            RowIndex += 1   ' Move to next empty row
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+
+
+            '**********************************
+            'MATERIAL INWARD
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "MATERIAL INWARD"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("4").ToString & RowIndex + 1)
+            '================= REPORT HEADING =================
+
+            objSheet.Cells(RowIndex, 1) = "DYEING RECEIPT"
+
+            ' Merge heading across 4 columns (DATE–RETURNMTRS)
+            objSheet.Range("A" & RowIndex & ":D" & RowIndex).Merge()
+
+            With objSheet.Range("A" & RowIndex)
+                .Font.Bold = True
+                .Font.Size = 16
+                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            End With
+
+
+            RowIndex += 2
+
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PROCESSNAME", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DESIGNNO", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("TOTALMTRS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+
+
+
+
+
+            'DT = OBJCMN.SEARCH(" MIN(MATR.MATREC_DATE) AS [DATE], LEDGERS.ACC_CMPNAME AS PROCESSNAME,  STUFF(( SELECT DISTINCT ', ' + DM.DESIGN_NO FROM MATERIALRECEIPT M2 INNER JOIN MATERIALRECEIPT_DESC D2  ON M2.MATREC_NO = D2.MATREC_NO AND M2.MATREC_YEARID = D2.MATREC_YEARID LEFT JOIN DESIGNMASTER DM  ON D2.MATREC_DESIGNID = DM.DESIGN_ID AND D2.MATREC_YEARID = DM.DESIGN_YEARID WHERE M2.MATREC_YEARID  = MIN(MATR.MATREC_YEARID) AND M2.MATREC_DATE    = MATR.MATREC_DATE AND M2.MATREC_LEDGERID = MATR.MATREC_LEDGERID FOR XML PATH(''), TYPE ).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS DESIGNNOS, SUM(ISNULL(MATR.MATREC_TOTALRECDMTR, 0)) AS TOTALMTRS  ", " ", " MATERIALRECEIPT MATR INNER JOIN LEDGERS  ON MATR.MATREC_LEDGERID = LEDGERS.ACC_ID AND MATR.MATREC_YEARID = LEDGERS.ACC_YEARID   ", " AND MATR.MATREC_YEARID = 12 AND MATR.MATREC_DATE = '2025-12-22'  GROUP BY  MATR.MATREC_LEDGERID, LEDGERS.ACC_CMPNAME, MATR.MATREC_DATE ORDER BY TOTALMTRS DESC  ")
+            DT = OBJCMN.SEARCH(" MIN(MATR.MATREC_DATE) AS [DATE], LEDGERS.ACC_CMPNAME AS PROCESSNAME,  ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNOS, SUM(ISNULL(MATRECD.MATREC_RECDMTRS, 0)) AS TOTALMTRS    ", " ", " MATERIALRECEIPT MATR INNER JOIN LEDGERS  ON MATR.MATREC_LEDGERID = LEDGERS.ACC_ID AND MATR.MATREC_YEARID = LEDGERS.ACC_YEARID   INNER JOIN MATERIALRECEIPT_DESC AS MATRECD ON MATR.MATREC_NO = MATRECD.MATREC_NO AND MATR.MATREC_yearid = MATRECD.MATREC_YEARID LEFT OUTER JOIN DESIGNMASTER ON MATRECD.MATREC_DESIGNID = DESIGNMASTER.DESIGN_id AND MATRECD.MATREC_YEARID = DESIGNMASTER.DESIGN_yearid    ", " AND MATR.MATREC_YEARID = 12 AND MATR.MATREC_DATE = CAST(GETDATE() AS DATE)  GROUP BY   LEDGERS.ACC_CMPNAME ,DESIGNMASTER.DESIGN_NO ORDER BY TOTALMTRS DESC  ")
+
+            'DT1 = OBJCMN.SEARCH(" MIN(G.grn_date) AS [DATE], LEDGERS.ACC_CMPNAME AS PROCESSNAME, STUFF(( SELECT DISTINCT ', ' + DM.DESIGN_NO FROM GRN  INNER JOIN GRN_DESC ON GRN.grn_no = GRN_DESC.GRN_NO AND GRN.grn_yearid = GRN_DESC.GRN_YEARID LEFT JOIN DESIGNMASTER DM ON GRN_DESC.GRN_DESIGNID = DM.DESIGN_ID AND GRN_DESC.GRN_YEARID = DM.DESIGN_YEARID WHERE GRN.grn_yearid = MIN(G.grn_yearid)  AND GRN.grn_date   = G.grn_date AND GRN.GRN_TYPE   = G.GRN_TYPE AND GRN.grn_ledgerid = G.grn_ledgerid FOR XML PATH(''), TYPE ).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS DESIGNNOS, SUM(ISNULL(G.GRN_TOTALMTRS, 0)) AS TOTALMTRS   ", " ", " GRN AS G  INNER JOIN LEDGERS ON G.grn_ledgerid = LEDGERS.ACC_ID AND G.grn_yearid = LEDGERS.ACC_YEARID  ", " AND G.grn_yearid = 12  AND GRN_TYPE = 'FANCY MATERIAL' AND G.grn_date = '2025-11-21' GROUP BY  G.grn_ledgerid, LEDGERS.ACC_CMPNAME, G.grn_date, G.GRN_TYPE ORDER BY  TOTALMTRS DESC  ")
+            DT1 = OBJCMN.SEARCH(" MIN(G.grn_date) AS [DATE], LEDGERS.ACC_CMPNAME AS PROCESSNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '')AS DESIGNNOS, SUM(ISNULL(GRN_DESC.GRN_MTRS, 0)) AS TOTALMTRS      ", " ", " GRN AS G  INNER JOIN LEDGERS ON G.grn_ledgerid = LEDGERS.ACC_ID AND G.grn_yearid = LEDGERS.ACC_YEARID  INNER JOIN GRN_DESC ON G.grn_no = GRN_DESC.GRN_NO AND G.grn_yearid = GRN_DESC.GRN_YEARID LEFT OUTER JOIN DESIGNMASTER ON GRN_DESC.GRN_DESIGNID = DESIGNMASTER.DESIGN_id AND GRN_DESC.GRN_YEARID = DESIGNMASTER.DESIGN_yearid  ", " AND G.grn_yearid = 12  AND GRN_TYPE = 'FANCY MATERIAL' AND G.grn_date = CAST(GETDATE() AS DATE) GROUP BY   LEDGERS.ACC_CMPNAME,DESIGNMASTER.DESIGN_NO ORDER BY  TOTALMTRS DESC   ")
+
+
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("PROCESSNAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("DESIGNNOS"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":D" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "MATERIAL_INWARD_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            RowIndex += 2   ' Move to next empty row
+
+            '================= REPORT HEADING =================
+            RowIndex += 3  ' Move to next empty row
+
+            objSheet.Cells(RowIndex, 1) = "FINISH INWARD"
+
+            ' Merge heading across 4 columns (DATE–RETURNMTRS)
+            objSheet.Range("A" & RowIndex & ":D" & RowIndex).Merge()
+
+            With objSheet.Range("A" & RowIndex)
+                .Font.Bold = True
+                .Font.Size = 16
+                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            End With
+
+            RowIndex += 1
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("PROCESSNAME", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("DESIGNNOS", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("TOTALMTRS", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("4").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+
+            For Each ROW As DataRow In DT1.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("PROCESSNAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("DESIGNNOS"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+                Write(ROW("TOTALMTRS"), Range("4"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT1.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":D" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "FINISH_INWARD_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            objExcel.AlertBeforeOverwriting = False
+            objExcel.DisplayAlerts = False
+            objSheet.SaveAs(_SaveFilePath)
+
+            '***********************************************
+            'PAYMENT RECEITP DETAILS
+
+            objSheet = CType(objBook.Sheets.Add(After:=objSheet, Count:=1), Excel.Worksheet)
+            objSheet.Name = "PAYMENT RECEIPT DETAILS"
+
+            RowIndex = 1
+            objColumn.Clear()
+            For I As Integer = 1 To 26
+                SetColumn(I, Chr(64 + I))
+            Next
+
+            SetColumnWidth(Range(1), 12)
+
+            '''''''''''Report Title
+            'Dim OBJCMN As New ClsCommon
+            'Dim DT As New System.Data.DataTable
+            'Dim DTNP As New System.Data.DataTable
+            'CMPNAME
+
+
+            'RECEIPT DETAILS
+
+            'SetBorder(RowIndex + 1, objColumn.Item("1").ToString & RowIndex + 1, objColumn.Item("4").ToString & RowIndex + 1)
+            '================= REPORT HEADING =================
+
+            objSheet.Cells(RowIndex, 1) = "RECEIPT DETAILS"
+
+            ' Merge heading across 4 columns (DATE–RETURNMTRS)
+            objSheet.Range("A" & RowIndex & ":D" & RowIndex).Merge()
+
+            With objSheet.Range("A" & RowIndex)
+                .Font.Bold = True
+                .Font.Size = 16
+                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            End With
+
+            RowIndex += 2
+
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("NAME", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("AMOUNT", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+
+
+
+
+            DT = OBJCMN.SEARCH(" CONVERT(VARCHAR(10), RECEIPT_DATE, 120) AS [Date], ISNULL(LEDGERS.ACC_CMPNAME,'') AS [Name],  SUM(CAST(RECEIPTMASTER.receipt_total AS DECIMAL(18,2))) AS [Amount] ", " ", " RECEIPTMASTER INNER JOIN LEDGERS ON receipt_ledgerid = LEDGERS.ACC_ID  ", " AND RECEIPT_DATE = CAST(GETDATE() AS DATE)  GROUP BY RECEIPT_DATE, ISNULL(LEDGERS.ACC_CMPNAME,'') ")
+            DT1 = OBJCMN.SEARCH(" 'GRAND TOTAL' AS [Name], SUM(CAST(receipt_total AS DECIMAL(18,2))) AS [Amount] ", " ", " RECEIPTMASTER  ", " AND RECEIPT_DATE = CAST(GETDATE() AS DATE)   ")
+            DT2 = OBJCMN.SEARCH(" CONVERT(VARCHAR(10), PAYMENT_DATE, 120) AS [Date], ISNULL(LEDGERS.ACC_CMPNAME,'') AS [Name], SUM(CAST(PAYMENTMASTER.PAYMENT_total AS DECIMAL(18,2))) AS [Amount] ", " ", " PAYMENTMASTER INNER JOIN LEDGERS ON PAYMENT_ledgerid = LEDGERS.ACC_ID   ", " AND PAYMENT_DATE = CAST(GETDATE() AS DATE) GROUP BY PAYMENT_DATE, ISNULL(LEDGERS.ACC_CMPNAME,'')   ")
+            DT3 = OBJCMN.SEARCH("  'GRAND TOTAL' AS [Name], SUM(CAST(PAYMENT_total AS DECIMAL(18,2))) AS [Amount] ", " ", " PAYMENTMASTER  ", " AND PAYMENT_DATE = CAST(GETDATE() AS DATE) ORDER BY  [Name]    ")
+
+
+            For Each ROW As DataRow In DT.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("NAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("AMOUNT"), Range("3"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("4").ToString & RowIndex)
+            Next
+            objSheet.Columns("B").AutoFit()
+            objSheet.Columns("C").AutoFit()
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":C" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "RECIEPT_DETAILS_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            'RowIndex += 2   ' Move to next empty row
+
+            'RECEIPT GRNADTOTAL
+
+            'Write("GRANDTOTAL", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            'Write("AMOUNT", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            'SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            'SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+
+            For Each ROW As DataRow In DT1.Rows
+                RowIndex += 1
+                Write(ROW("NAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("AMOUNT"), Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+
+
+            RowIndex += 3
+            'PAYMENT DETAILS
+
+            '================= REPORT HEADING =================
+
+            objSheet.Cells(RowIndex, 1) = "PAYMENT DETAILS"
+
+            ' Merge heading across 4 columns (DATE–RETURNMTRS)
+            objSheet.Range("A" & RowIndex & ":D" & RowIndex).Merge()
+
+            With objSheet.Range("A" & RowIndex)
+                .Font.Bold = True
+                .Font.Size = 16
+                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            End With
+
+            RowIndex += 2
+
+            RowIndex += 1
+            Write("DATE", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("NAME", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("AMOUNT", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & RowIndex, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+
+
+            For Each ROW As DataRow In DT2.Rows
+                RowIndex += 1
+                Write(ROW("DATE"), Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("NAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("AMOUNT"), Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("9").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("10").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+                'FORMULA("=SUM(" & objColumn.Item("11").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+                'FORMULA("=SUM(" & objColumn.Item("7").ToString & RowIndex & ":" & objColumn.Item("5").ToString & RowIndex & ")-" & objColumn.Item("6").ToString & RowIndex, Range("12"), XlHAlign.xlHAlignRight, , True, 10)
+
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+            objSheet.Columns("B").AutoFit()
+            objSheet.Columns("C").AutoFit()
+
+            SetBorder(RowIndex, objColumn.Item("1").ToString & 8, objColumn.Item("1").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            HeaderRow = RowIndex - DT2.Rows.Count
+
+            tblRange = objSheet.Range("A" & HeaderRow & ":C" & RowIndex)
+
+            tbl = objSheet.ListObjects.Add(1, tblRange, , 1)   ' 1 = xlSrcRange, xlYes
+
+            tbl.Name = "PAYMENT_DETAILS_TABLE"
+            tbl.TableStyle = "TableStyleMedium2"
+
+            'PAYMENT GRANDTOTAL
+
+            For Each ROW As DataRow In DT1.Rows
+                RowIndex += 1
+                Write(ROW("NAME"), Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+                Write(ROW("AMOUNT"), Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+
+                SetBorder(RowIndex, objColumn.Item("1").ToString & RowIndex, objColumn.Item("3").ToString & RowIndex)
+            Next
+
+            SetBorder(RowIndex, objColumn.Item("2").ToString & 8, objColumn.Item("2").ToString & RowIndex)
+            SetBorder(RowIndex, objColumn.Item("3").ToString & 8, objColumn.Item("3").ToString & RowIndex)
+
+            ' OPTIONAL: Border
+            totalRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous
+
+
+            objBook.Application.ActiveWindow.Zoom = 100
+            SaveAndClose()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return Nothing
+    End Function
 
     '    Public Function VALUELOSS_EXCEL(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date) As Object
     '        Try
