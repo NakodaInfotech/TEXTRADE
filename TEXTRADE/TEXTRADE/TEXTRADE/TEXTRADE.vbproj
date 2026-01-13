@@ -612,6 +612,11 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Proforma\ProformaReport_LAXMI.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProformaReport_LAXMI.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -8920,6 +8925,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Payment\Paymentreport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Paymentreport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Proforma\ProformaReport_LAXMI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProformaReport_LAXMI.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
