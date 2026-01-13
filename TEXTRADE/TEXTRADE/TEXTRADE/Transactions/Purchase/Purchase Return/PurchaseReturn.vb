@@ -2358,21 +2358,21 @@ NORATE1:
     Private Sub TXTAMT_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTAMT.Validated
         If CMBITEM.Text.Trim <> "" And Val(TXTQTY.Text.Trim) > 0 And Val(TXTRATE.Text.Trim) > 0 And Val(TXTAMT.Text.Trim) > 0 Then
 
-            If GRIDDOUBLECLICK = False Then
-                If EDIT = True Then
-                    'GET LAST BARCODE SRNO
-                    Dim LSRNO As Integer = 0
-                    Dim RSRNO As Integer = 0
-                    Dim SNO As Integer = 0
-                    LSRNO = InStr(GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                    RSRNO = InStr(LSRNO + 1, GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                    SNO = GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+            'If GRIDDOUBLECLICK = False Then
+            '    If EDIT = True Then
+            '        'GET LAST BARCODE SRNO
+            '        Dim LSRNO As Integer = 0
+            '        Dim RSRNO As Integer = 0
+            '        Dim SNO As Integer = 0
+            '        LSRNO = InStr(GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+            '        RSRNO = InStr(LSRNO + 1, GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+            '        SNO = GRIDPURRET.Rows(GRIDPURRET.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
 
-                    TXTBARCODE.Text = "PR-" & Val(TXTPRNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
-                Else
-                    TXTBARCODE.Text = "PR-" & Val(TXTPRNO.Text.Trim) & "/" & GRIDPURRET.RowCount + 1 & "/" & YearId
-                End If
-            End If
+            '        TXTBARCODE.Text = "PR-" & Val(TXTPRNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+            '    Else
+            '        TXTBARCODE.Text = "PR-" & Val(TXTPRNO.Text.Trim) & "/" & GRIDPURRET.RowCount + 1 & "/" & YearId
+            '    End If
+            'End If
 
             fillgrid()
             TOTAL()
