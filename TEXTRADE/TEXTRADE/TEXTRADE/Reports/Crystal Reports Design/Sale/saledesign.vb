@@ -53,7 +53,7 @@ Public Class saledesign
 
     Dim RPTPROFORMAINVOICE As New ProformaInvoiceReport_TOTALLEFT
 
-
+    Dim RPTPROFORMAQUOTATION As New ProformaReport_LAXMI
     Dim RPTINVOICE_BUYER As New InvoiceReport_Export_Buyer
     Dim RPTINVOICE_CUSTOM As New InvoiceReport_Export_Custom
     Dim RPTINVOICE_EXPGST As New InvoiceReport_Export_GST
@@ -162,6 +162,8 @@ Public Class saledesign
                 tempattachment = "INVOICE"
             ElseIf FRMSTRING = "PROFORMAINVOICE" Then
                 tempattachment = "PROFORMA"
+            ElseIf FRMSTRING = "QUOTATION" Then
+                tempattachment = "QUOTATION"
             ElseIf FRMSTRING = "YARNDO" Then
                 tempattachment = "YARNDO"
             Else
@@ -269,7 +271,7 @@ Public Class saledesign
             End If
 
             If FRMSTRING = "PROFORMAINVOICE" Then crTables = RPTPROFORMAINVOICE.Database.Tables
-
+            If FRMSTRING = "QUOTATION" Then crTables = RPTPROFORMAQUOTATION.Database.Tables
 
             If FRMSTRING = "INVOICE" Then
 
@@ -377,7 +379,7 @@ SKIPINVOICE:
             '************************ END *******************
             getFromToDate()
 
-            If FRMSTRING <> "INVOICE" And FRMSTRING <> "EXPBUYER" And FRMSTRING <> "EXPCUSTOM" And FRMSTRING <> "EXPGST" And FRMSTRING <> "PROFORMAINVOICE" And FRMSTRING <> "YARNDO" Then
+            If FRMSTRING <> "INVOICE" And FRMSTRING <> "EXPBUYER" And FRMSTRING <> "EXPCUSTOM" And FRMSTRING <> "EXPGST" And FRMSTRING <> "PROFORMAINVOICE" And FRMSTRING <> "QUOTATION" And FRMSTRING <> "YARNDO" Then
                 crParameterDiscreteValue.Value = CmpId
                 crParameterFieldDefinition = crParameterFieldDefinitions.Item("@CMPID")
                 crParameterValues = crParameterFieldDefinition.CurrentValues
@@ -561,7 +563,10 @@ SKIPINVOICE:
                 RPTPROFORMAINVOICE.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                 If BLANKPAPER = True Then RPTPROFORMAINVOICE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTPROFORMAINVOICE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                 If ClientName = "ALENCOT" Then RPTPROFORMAINVOICE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
+            ElseIf FRMSTRING = "QUOTATION" Then
+                CRPO.ReportSource = RPTPROFORMAQUOTATION
+                'RPTPROFORMAQUOTATION.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
+                'If BLANKPAPER = True Then RPTPROFORMAQUOTATION.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTPROFORMAQUOTATION.DataDefinition.FormulaFields("WHITELABEL").Text = 0
             ElseIf FRMSTRING = "EXPBUYER" Then
                 CRPO.ReportSource = RPTINVOICE_BUYER
                 RPTINVOICE_BUYER.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
@@ -1157,7 +1162,9 @@ SKIPINVOICE:
             ElseIf FRMSTRING = "PROFORMAINVOICE" Then
                 strsearch = strsearch & "{PROFORMAINVOICEMASTER.INVOICE_no}=" & Val(INVNO) & " and {REGISTERMASTER.REGISTER_NAME} = '" & registername & "' and {PROFORMAINVOICEMASTER.INVOICE_yearid}=" & YearId
                 OBJ = New ProformaInvoiceReport_TOTALLEFT
-
+            ElseIf FRMSTRING = "QUOTATION" Then
+                strsearch = strsearch & "{PROFORMAINVOICEMASTER.INVOICE_no}=" & Val(INVNO) & " and {REGISTERMASTER.REGISTER_NAME} = '" & registername & "' and {PROFORMAINVOICEMASTER.INVOICE_yearid}=" & YearId
+                OBJ = New ProformaReport_LAXMI
             ElseIf FRMSTRING = "YARNDO" Then
                 OBJ = New InvoiceReport_YARNDO
                 strsearch = strsearch & " {INVOICEMASTER.INVOICE_no}= " & INVNO & " AND {REGISTERMASTER.REGISTER_NAME} = '" & registername & "' AND {INVOICEMASTER.INVOICE_cmpid} = " & CmpId & " AND {INVOICEMASTER.INVOICE_locationid} = " & Locationid & " AND {INVOICEMASTER.INVOICE_yearid} = " & YearId
@@ -1259,6 +1266,8 @@ SKIPINVOICE:
                 tempattachment = "INVOICE"
             ElseIf FRMSTRING = "PROFORMAINVOICE" Then
                 tempattachment = "PROFORMA"
+            ElseIf FRMSTRING = "QUOTATION" Then
+                tempattachment = "QUOTATION"
             ElseIf FRMSTRING = "YARNDO" Then
                 tempattachment = "YARNDO"
             Else
@@ -1297,6 +1306,8 @@ SKIPINVOICE:
                 objmail.subject = "Yarn DO"
             ElseIf FRMSTRING = "PROFORMAINVOICE" Then
                 objmail.subject = "Proforma Invoice"
+            ElseIf FRMSTRING = "QUOTATION" Then
+                objmail.subject = "Quotation"
             Else
                 objmail.subject = "Invoice Summary"
             End If
@@ -1877,6 +1888,8 @@ SKIPINVOICE:
 
             If FRMSTRING = "PROFORMAINVOICE" Then OBJ = RPTPROFORMAINVOICE
 
+            If FRMSTRING = "QUOTATION" Then OBJ = RPTPROFORMAQUOTATION
+
 
             If FRMSTRING = "INVOICE" Then
 
@@ -2009,6 +2022,8 @@ SKIPINVOICE:
             Else
                 If FRMSTRING = "PROFORMA" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\PROFORMA.PDF"
+                ElseIf FRMSTRING = "QUOTATION" Then
+                    oDfDopt.DiskFileName = Application.StartupPath & "\QUOTATION.PDF"
                 ElseIf FRMSTRING = "YARNDO" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\YARNDO.PDF"
                 Else
@@ -2075,6 +2090,7 @@ SKIPINVOICE:
             RPTINVOICE_YARNDO.Dispose()
             RPTINVOICE_NAKODAINFOTECH.Dispose()
             RPTINVOICE_LAXMI.Dispose()
+            RPTPROFORMAQUOTATION.Dispose()
         Catch ex As Exception
             Throw ex
         End Try
