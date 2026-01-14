@@ -1456,6 +1456,8 @@ Public Class InvoiceMaster
                 If ClientName = "AVIS" And txtlrno.Text.Trim <> "" Then SENDDIRECTMAIL()
 
                 SMSCODE()
+                If Not IsBulkUpload And ClientName = "BARKHA" Then Call TOOLWHATSAPP_Click(sender, e)
+
                 EDIT = False
             End If
 
@@ -1464,7 +1466,6 @@ Public Class InvoiceMaster
                 If ClientName <> "SOFTAS" And ClientName <> "SNCM" And ClientName <> "ABHEE" Then PRINTREPORT(TXTINVOICENO.Text.Trim)
             End If
 
-            If Not IsBulkUpload And ClientName = "BARKHA" Then Call TOOLWHATSAPP_Click(sender, e)
 
             'done temp
             If ClientName = "ALENCOT" Or ClientName = "RMANILAL" Or ClientName = "SUPEEMA" Or ClientName = "RAJKRIPA" Or IsBulkUpload = True Then
@@ -10960,4 +10961,5 @@ LINE1:
         Catch ex As Exception
         End Try
     End Sub
+
 End Class

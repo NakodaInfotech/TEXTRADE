@@ -612,6 +612,11 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Proforma\ProformaReport_LAXMI.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProformaReport_LAXMI.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2639,6 +2644,12 @@
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoEway.Designer.vb">
+      <DependentUpon>AutoEway.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoEway.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.Designer.vb">
@@ -8915,6 +8926,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Paymentreport_ABHEE.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Proforma\ProformaReport_LAXMI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProformaReport_LAXMI.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RecReport_ABHEE.vb</LastGenOutput>
@@ -10131,6 +10146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoEway.resx">
+      <DependentUpon>AutoEway.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Invoice\SelectPurLRStock.resx">
       <DependentUpon>SelectPurLRStock.vb</DependentUpon>
@@ -12468,7 +12486,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Stock Reports\ItemDesignShadeWiseStockReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ItemDesignShadeWiseStockReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_TOTALTRANSA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

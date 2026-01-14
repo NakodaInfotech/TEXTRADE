@@ -10848,4 +10848,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoEWayToolStripMenuItem.Click
+        Try
+            Dim OBJHOLD As New AutoEway
+            OBJHOLD.MdiParent = Me
+            OBJHOLD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

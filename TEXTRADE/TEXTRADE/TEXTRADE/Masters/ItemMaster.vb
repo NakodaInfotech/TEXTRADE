@@ -1613,6 +1613,13 @@ Public Class ItemMaster
             If ClientName = "SUPEEMA" Then
                 GRPITEMDETAILS.Visible = True
             End If
+
+            If ClientName = "MNIKHIL" Then
+                LBLGSM.Visible = True
+                TXTGSM.Visible = True
+                LBLFOLD.Text = "Avg"
+            End If
+
             If ClientName = "TINUMINU" Then
                 LBLREORDER.Text = "Area"
                 LBLOPRATE.Visible = True
