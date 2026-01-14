@@ -189,6 +189,102 @@ Public Class LotFilter
 
                 OBJLOTGRID.Show()
                 Exit Sub
+
+
+            ElseIf RDBLOTPIECETYPE.Checked = True Then
+                Dim OBJLOTGRID As New LotPieceTypeSummary
+                OBJLOTGRID.MdiParent = MDIMain
+                OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " AND YEARID = " & YearId
+                If chkdate.CheckState = CheckState.Checked Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and MR.MATREC_DATE <= ''" & Format(dtto.Value.Date, "MM/dd/yyyy") & "''"
+                If CMBJOBBER.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.JOBBERNAME=''" & CMBJOBBER.Text.Trim & "''"
+                If CMBGROUP.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.GROUPNAME=''" & CMBGROUP.Text.Trim & "''"
+                If CMBITEMNAME.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.GREYITEMNAME=''" & CMBITEMNAME.Text.Trim & "''"
+                If CMBQUALITY.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.QUALITY=''" & CMBQUALITY.Text.Trim & "''"
+                If CMBCATEGORY.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.CATEGORYNAME=''" & CMBCATEGORY.Text.Trim & "''"
+                If CHKPENDINGPROG.Checked = True Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.PROGRAMDONE=''FALSE'' AND (LV.TOTALMTRS - LV.PROGRAMMTRS > 0)"
+                If CMBDYEINGJOB.Text.Trim <> "Both" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and (LV.DYEINGJOB=''" & CMBDYEINGJOB.Text.Trim & "'' OR LV.DYEINGJOB='''')"
+
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If LOTCLAUSE = "" Then
+                            LOTCLAUSE = " AND (LV.LOTNO = ''" & dtrow("LOTNO") & "''"
+                        Else
+                            LOTCLAUSE = LOTCLAUSE & " OR LV.LOTNO = ''" & dtrow("LOTNO") & "''"
+                        End If
+                    End If
+                Next
+                If LOTCLAUSE <> "" Then
+                    LOTCLAUSE = LOTCLAUSE & ")"
+                    OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & LOTCLAUSE
+                End If
+
+
+                For i As Integer = 0 To gridbillchallan.RowCount - 1
+                    Dim dtrow As DataRow = gridbillchallan.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If CHALLANCLAUSE = "" Then
+                            CHALLANCLAUSE = " AND (LV.CHALLANNO = ''" & dtrow("CHALLANNO") & "''"
+                        Else
+                            CHALLANCLAUSE = CHALLANCLAUSE & " OR LV.CHALLANNO = ''" & dtrow("CHALLANNO") & "''"
+                        End If
+                    End If
+                Next
+                If CHALLANCLAUSE <> "" Then
+                    CHALLANCLAUSE = CHALLANCLAUSE & ")"
+                    OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & CHALLANCLAUSE
+                End If
+
+
+
+                For i As Integer = 0 To Gridparty.RowCount - 1
+                    Dim dtrow As DataRow = Gridparty.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If PARTYCLAUSE = "" Then
+                            PARTYCLAUSE = " AND (LV.JOBBERNAME = ''" & dtrow("NAME") & "''"
+                        Else
+                            PARTYCLAUSE = PARTYCLAUSE & " OR LV.JOBBERNAME = ''" & dtrow("NAME") & "''"
+                        End If
+                    End If
+                Next
+                If PARTYCLAUSE <> "" Then
+                    PARTYCLAUSE = PARTYCLAUSE & ")"
+                    OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & PARTYCLAUSE
+                End If
+
+
+                For i As Integer = 0 To GRIDITEM.RowCount - 1
+                    Dim dtrow As DataRow = GRIDITEM.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ITEMCLAUSE = "" Then
+                            ITEMCLAUSE = " AND (LV.GREYITEMNAME = '" & dtrow("ITEMNAME") & "''"
+                        Else
+                            ITEMCLAUSE = ITEMCLAUSE & " OR LV.GREYITEMNAME = '" & dtrow("ITEMNAME") & "''"
+                        End If
+                    End If
+                Next
+                If ITEMCLAUSE <> "" Then
+                    ITEMCLAUSE = ITEMCLAUSE & ")"
+                    OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & ITEMCLAUSE
+                End If
+
+
+                If LOTSTATUSONMTRS = False Then
+                    If RDBPENDING.Checked = True Then
+                        OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and (LV.TOTALPCS-LV.RECDPCS)>0 AND LV.LOTCOMPLETED=''FALSE''"
+                    ElseIf RDBCOMPLETE.Checked = True Then
+                        OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and ((LV.TOTALPCS-LV.RECDPCS)=0 OR LV.LOTCOMPLETED=''TRUE'')"
+                    End If
+                Else
+                    If RDBPENDING.Checked = True Then
+                        OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.LOTCOMPLETED=''FALSE''"
+                    ElseIf RDBCOMPLETE.Checked = True Then
+                        OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and LV.LOTCOMPLETED=''TRUE''"
+                    End If
+                End If
+
+                OBJLOTGRID.Show()
+                Exit Sub
             End If
 
 
