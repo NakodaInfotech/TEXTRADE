@@ -10858,4 +10858,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CutPackFilterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CutPackFilterToolStripMenuItem.Click
+        Try
+            Dim OBJCUPACK As New CutPackFilter
+            OBJCUPACK.MdiParent = Me
+            OBJCUPACK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -1,7 +1,6 @@
-﻿Imports CrystalDecisions.CrystalReports.Engine
-Imports System.Data.SqlClient
+﻿
+Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
-Imports System.IO
 
 Public Class JobOutDesign
 
@@ -27,6 +26,11 @@ Public Class JobOutDesign
     Dim RPTTRANSSUMM As New JOTransWiseSummaryReport
 
     Dim RPTJOBSHEET As New JobSheetReport
+
+    Dim RPTCUTPACKITEM As New CutPackItemReport
+    Dim RPTCUTPACKLOT As New JobSheetReport
+    Dim RPTCUTPACKCONTRACTOR As New JobSheetReport
+
 
     Private Sub JobOutDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -73,6 +77,11 @@ Public Class JobOutDesign
             If FRMSTRING = "TRANSWISESUMM" Then crTables = RPTTRANSSUMM.Database.Tables
 
             If FRMSTRING = "JOBSHEET" Then crTables = RPTJOBSHEET.Database.Tables
+
+
+            If FRMSTRING = "CUTPACKITEM" Then crTables = RPTCUTPACKITEM.Database.Tables
+            If FRMSTRING = "CUTPACKLOT" Then crTables = RPTCUTPACKLOT.Database.Tables
+            If FRMSTRING = "CUTPACKCONTRACTOR" Then crTables = RPTCUTPACKCONTRACTOR.Database.Tables
 
 
             For Each crTable In crTables
@@ -134,6 +143,17 @@ Public Class JobOutDesign
 
             ElseIf FRMSTRING = "JOBSHEET" Then
                 crpo.ReportSource = RPTJOBSHEET
+
+            ElseIf FRMSTRING = "CUTPACKITEM" Then
+                crpo.ReportSource = RPTCUTPACKITEM
+                RPTCUTPACKITEM.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            ElseIf FRMSTRING = "CUTPACKLOT" Then
+                crpo.ReportSource = RPTCUTPACKLOT
+                RPTCUTPACKLOT.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+            ElseIf FRMSTRING = "CUTPACKCONTRACTOR" Then
+                crpo.ReportSource = RPTCUTPACKCONTRACTOR
+                RPTCUTPACKCONTRACTOR.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+
             End If
 
             crpo.Zoom(100)
@@ -276,6 +296,26 @@ Public Class JobOutDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTTRANSSUMM.Export()
+
+
+            ElseIf FRMSTRING = "CUTPACKITEM" Then
+                expo = RPTCUTPACKITEM.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTCUTPACKITEM.Export()
+            ElseIf FRMSTRING = "CUTPACKLOT" Then
+                expo = RPTCUTPACKLOT.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTCUTPACKLOT.Export()
+            ElseIf FRMSTRING = "CUTPACKCONTRACTOR" Then
+                expo = RPTCUTPACKCONTRACTOR.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTCUTPACKCONTRACTOR.Export()
             End If
 
         Catch ex As Exception

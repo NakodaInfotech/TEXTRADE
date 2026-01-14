@@ -330,6 +330,12 @@
     <Compile Include="Common\Filters\CatalogFilter.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Common\Filters\CutPackFilter.Designer.vb">
+      <DependentUpon>CutPackFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Filters\CutPackFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\DailyActivityFilter.Designer.vb">
       <DependentUpon>DailyActivityFilter.vb</DependentUpon>
     </Compile>
@@ -413,6 +419,11 @@
     </Compile>
     <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Job Work\Job Out\CutPackItemReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CutPackItemReport.rpt</DependentUpon>
     </Compile>
     <Compile Include="Masters\CustomLayout.Designer.vb">
       <DependentUpon>CustomLayout.vb</DependentUpon>
@@ -8766,6 +8777,9 @@
     <EmbeddedResource Include="Common\Filters\CatalogFilter.resx">
       <DependentUpon>CatalogFilter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Filters\CutPackFilter.resx">
+      <DependentUpon>CutPackFilter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\DailyActivityFilter.resx">
       <DependentUpon>DailyActivityFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -8807,6 +8821,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
       <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job Out\CutPackItemReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackItemReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
