@@ -41,6 +41,7 @@ Partial Class LotFilter
         Me.dtfrom = New System.Windows.Forms.DateTimePicker()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CHKPARTRECDLOT = New System.Windows.Forms.CheckBox()
         Me.CMBDYEINGJOB = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GPITEMNAME = New System.Windows.Forms.GroupBox()
@@ -89,7 +90,7 @@ Partial Class LotFilter
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CHKPARTRECDLOT = New System.Windows.Forms.CheckBox()
+        Me.RDBLOTPIECETYPE = New System.Windows.Forms.RadioButton()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -162,7 +163,7 @@ Partial Class LotFilter
         Me.GroupBox3.Controls.Add(Me.RDBCOMPLETE)
         Me.GroupBox3.Controls.Add(Me.RDBFULL)
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(53, 134)
+        Me.GroupBox3.Location = New System.Drawing.Point(53, 126)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(133, 99)
         Me.GroupBox3.TabIndex = 7
@@ -351,6 +352,18 @@ Partial Class LotFilter
         Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel2.TabIndex = 0
         '
+        'CHKPARTRECDLOT
+        '
+        Me.CHKPARTRECDLOT.AutoSize = True
+        Me.CHKPARTRECDLOT.BackColor = System.Drawing.Color.Transparent
+        Me.CHKPARTRECDLOT.ForeColor = System.Drawing.Color.Black
+        Me.CHKPARTRECDLOT.Location = New System.Drawing.Point(161, 104)
+        Me.CHKPARTRECDLOT.Name = "CHKPARTRECDLOT"
+        Me.CHKPARTRECDLOT.Size = New System.Drawing.Size(139, 19)
+        Me.CHKPARTRECDLOT.TabIndex = 763
+        Me.CHKPARTRECDLOT.Text = "Show Only Part Recd"
+        Me.CHKPARTRECDLOT.UseVisualStyleBackColor = False
+        '
         'CMBDYEINGJOB
         '
         Me.CMBDYEINGJOB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -460,7 +473,7 @@ Partial Class LotFilter
         '
         Me.GITEMNAME.Caption = "NAME"
         Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.ImageIndex = 0
+        Me.GITEMNAME.ImageOptions.ImageIndex = 0
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
@@ -529,7 +542,7 @@ Partial Class LotFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -539,6 +552,7 @@ Partial Class LotFilter
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.RDBLOTPIECETYPE)
         Me.GroupBox2.Controls.Add(Me.RBLOTTAGGING)
         Me.GroupBox2.Controls.Add(Me.RBREGISTERSUMM)
         Me.GroupBox2.Controls.Add(Me.RBREGISTER)
@@ -547,9 +561,9 @@ Partial Class LotFilter
         Me.GroupBox2.Controls.Add(Me.RBSUMMARY)
         Me.GroupBox2.Controls.Add(Me.RBDETAILS)
         Me.GroupBox2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(53, 239)
+        Me.GroupBox2.Location = New System.Drawing.Point(53, 226)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(272, 188)
+        Me.GroupBox2.Size = New System.Drawing.Size(272, 204)
         Me.GroupBox2.TabIndex = 8
         Me.GroupBox2.TabStop = False
         '
@@ -709,7 +723,7 @@ Partial Class LotFilter
         '
         Me.GCHALLAN.Caption = "Challan No"
         Me.GCHALLAN.FieldName = "CHALLANNO"
-        Me.GCHALLAN.ImageIndex = 0
+        Me.GCHALLAN.ImageOptions.ImageIndex = 0
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.OptionsColumn.AllowEdit = False
         Me.GCHALLAN.Visible = True
@@ -721,7 +735,7 @@ Partial Class LotFilter
         Me.CHKGRIDDETAILS.AutoSize = True
         Me.CHKGRIDDETAILS.BackColor = System.Drawing.Color.Transparent
         Me.CHKGRIDDETAILS.ForeColor = System.Drawing.Color.Black
-        Me.CHKGRIDDETAILS.Location = New System.Drawing.Point(63, 111)
+        Me.CHKGRIDDETAILS.Location = New System.Drawing.Point(63, 106)
         Me.CHKGRIDDETAILS.Name = "CHKGRIDDETAILS"
         Me.CHKGRIDDETAILS.Size = New System.Drawing.Size(92, 19)
         Me.CHKGRIDDETAILS.TabIndex = 6
@@ -796,7 +810,7 @@ Partial Class LotFilter
         '
         Me.GLOTNO.Caption = "Lot No"
         Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.ImageIndex = 0
+        Me.GLOTNO.ImageOptions.ImageIndex = 0
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.OptionsColumn.AllowEdit = False
         Me.GLOTNO.Visible = True
@@ -891,17 +905,15 @@ Partial Class LotFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'CHKPARTRECDLOT
+        'RDBLOTPIECETYPE
         '
-        Me.CHKPARTRECDLOT.AutoSize = True
-        Me.CHKPARTRECDLOT.BackColor = System.Drawing.Color.Transparent
-        Me.CHKPARTRECDLOT.ForeColor = System.Drawing.Color.Black
-        Me.CHKPARTRECDLOT.Location = New System.Drawing.Point(161, 109)
-        Me.CHKPARTRECDLOT.Name = "CHKPARTRECDLOT"
-        Me.CHKPARTRECDLOT.Size = New System.Drawing.Size(139, 19)
-        Me.CHKPARTRECDLOT.TabIndex = 763
-        Me.CHKPARTRECDLOT.Text = "Show Only Part Recd"
-        Me.CHKPARTRECDLOT.UseVisualStyleBackColor = False
+        Me.RDBLOTPIECETYPE.AutoSize = True
+        Me.RDBLOTPIECETYPE.Location = New System.Drawing.Point(10, 182)
+        Me.RDBLOTPIECETYPE.Name = "RDBLOTPIECETYPE"
+        Me.RDBLOTPIECETYPE.Size = New System.Drawing.Size(152, 18)
+        Me.RDBLOTPIECETYPE.TabIndex = 7
+        Me.RDBLOTPIECETYPE.Text = "Lot Piece Type Summary"
+        Me.RDBLOTPIECETYPE.UseVisualStyleBackColor = True
         '
         'LotFilter
         '
@@ -1009,4 +1021,5 @@ Partial Class LotFilter
     Friend WithEvents RBREGISTERSUMM As RadioButton
     Friend WithEvents RBLOTTAGGING As RadioButton
     Friend WithEvents CHKPARTRECDLOT As CheckBox
+    Friend WithEvents RDBLOTPIECETYPE As RadioButton
 End Class
