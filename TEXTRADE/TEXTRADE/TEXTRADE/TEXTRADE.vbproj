@@ -420,7 +420,17 @@
     <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Job Work\Job Out\CutPackItemReport.vb">
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
+      <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackLotReport.vb">
+      <DependentUpon>CutPackLotReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackItemReport.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CutPackItemReport.rpt</DependentUpon>
@@ -8822,7 +8832,15 @@
     <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
       <DependentUpon>SelectCustomLayout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job Out\CutPackItemReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackLotReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackLotReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackItemReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackItemReport.vb</LastGenOutput>
     </EmbeddedResource>

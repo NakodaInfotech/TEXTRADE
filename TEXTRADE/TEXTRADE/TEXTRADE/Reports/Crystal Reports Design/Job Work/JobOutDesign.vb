@@ -28,8 +28,8 @@ Public Class JobOutDesign
     Dim RPTJOBSHEET As New JobSheetReport
 
     Dim RPTCUTPACKITEM As New CutPackItemReport
-    Dim RPTCUTPACKLOT As New JobSheetReport
-    Dim RPTCUTPACKCONTRACTOR As New JobSheetReport
+    Dim RPTCUTPACKLOT As New CutPackLotReport
+    Dim RPTCUTPACKCONTRACTOR As New CutPackContractorReport
 
 
     Private Sub JobOutDesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
