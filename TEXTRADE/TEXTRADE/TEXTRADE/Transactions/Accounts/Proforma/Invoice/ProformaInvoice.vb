@@ -3958,6 +3958,11 @@ LINE1:
                 LBLAGENT.Text = "Indent Name"
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
+                CMBQUALITY.TabStop = False
+                CMBSHADE.TabStop = False
+                TXTCUT.TabStop = False
+                TXTMTRS.TabStop = False
+
             End If
         Catch ex As Exception
             Throw ex
