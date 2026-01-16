@@ -434,6 +434,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CutPackItemReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Masters\CustomLayout.Designer.vb">
       <DependentUpon>CustomLayout.vb</DependentUpon>
@@ -637,6 +638,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProformaReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.vb">
       <AutoGen>True</AutoGen>
