@@ -466,7 +466,7 @@ Public Class journal
         End Try
     End Sub
 
-    Private Function errorvalid() As Boolean
+    Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
         TOTAL()
 
@@ -477,12 +477,10 @@ Public Class journal
             End If
         End If
 
+        Dim OBJCMN As New ClsCommon
         If ALLOWMANUALJVNO = True Then
             If txtjournalno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                Dim OBJCMN As New ClsCommon
-
                 Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOURNALMASTER.journal_no,0) AS JOURNALNO, ISNULL(REGISTERMASTER.register_name,'') AS REGNAME", "", " REGISTERMASTER INNER JOIN JOURNALMASTER ON REGISTERMASTER.register_id = JOURNALMASTER.journal_registerid AND REGISTERMASTER.register_cmpid = JOURNALMASTER.journal_cmpid AND REGISTERMASTER.register_yearid = JOURNALMASTER.journal_yearid AND REGISTERMASTER.register_locationid = JOURNALMASTER.journal_locationid ", "  AND JOURNALMASTER.journal_no=" & txtjournalno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND JOURNALMASTER.journal_cmpid = " & CmpId & " AND JOURNALMASTER.journal_locationid = " & Locationid & " AND JOURNALMASTER.journal_yearid = " & YearId)
-
                 If dttable.Rows.Count > 0 Then
                     EP.SetError(txtjournalno, "Journal No Already Exist")
                     bln = False
@@ -495,7 +493,16 @@ Public Class journal
         If cmbregister.Text.Trim.Length = 0 Then
             EP.SetError(cmbregister, "Select Register Name")
             bln = False
+        Else
+            Dim dt As DataTable = OBJCMN.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'JOURNAL' and register_YEARid = " & YearId)
+            If dt.Rows.Count > 0 Then
+                JVREGABBR = dt.Rows(0).Item(0).ToString
+                JVREGINITIALS = dt.Rows(0).Item(1).ToString
+                JVREGID = dt.Rows(0).Item(2)
+            End If
         End If
+
+
 
         If gridjournal.RowCount = 0 Then
             EP.SetError(txtcredit, "Enter Transactions")
@@ -520,7 +527,6 @@ Public Class journal
             End If
 
             If row.Cells(GPAYTYPE.Index).Value = "New Ref." Then row.Cells(GREFNO.Index).Value = JVREGINITIALS & "-" & Val(txtjournalno.Text.Trim)
-
         Next
 
         If Val(TXTTOTALDR.Text.Trim) <> Val(TXTTOTALCR.Text.Trim) Then
@@ -583,8 +589,7 @@ Public Class journal
                 'clear()
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
-                Dim dt As DataTable
-                dt = clscommon.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'JOURNAL' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & Locationid & " and register_YEARid = " & YearId)
+                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'JOURNAL' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & Locationid & " and register_YEARid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     jvregabbr = dt.Rows(0).Item(0).ToString
                     JVREGINITIALS = dt.Rows(0).Item(1).ToString
