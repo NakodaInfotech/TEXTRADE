@@ -1131,7 +1131,7 @@ LINE1:
                     End If
 
                     Dim OBJRPT As New clsReportDesigner("MIS Report", System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx", 0)
-                    OBJRPT.MISALLDAILY_EXCEL(CmpId, YearId, Now.Date, Now.Date)
+                    OBJRPT.MISALLDAILY_EXCELAVIS(CmpId, YearId, Now.Date, Now.Date)
                     Dim ALATTACHMENT As New ArrayList
                     ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx")
                     sendemail("rm@avisindustries.in,gm@avisindustries.in,aroraaoc@gmail.com,infoavisindustries@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
