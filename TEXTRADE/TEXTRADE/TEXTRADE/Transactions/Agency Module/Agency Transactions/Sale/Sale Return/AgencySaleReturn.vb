@@ -2569,7 +2569,7 @@ LINE1:
             TXTINVTOTAL.Clear()
             Dim objpayment As New ClsAgencyReceiptMaster
             Dim DT As New DataTable
-            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBSELLER.Text.Trim)
+            DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, YearId, CMBSELLER.Text.Trim, Convert.ToDateTime(SALRETDATE.Text).Date)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
         Catch ex As Exception
             Throw ex

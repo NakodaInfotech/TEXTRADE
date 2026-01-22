@@ -9,6 +9,278 @@ Public Class MagicBox
     Public EDIT As Boolean
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
+
+        'OG CODE
+        '        Try
+        '            For Each row As Windows.Forms.DataGridViewRow In GRIDMAGICBOX.Rows
+        '                Dim alParaval As New ArrayList
+        '                Dim NO As String = ""
+        '                Dim GRIDSRNO As String = ""
+        '                Dim ORDERDATE As String = ""
+        '                Dim BUYERS As String = ""
+        '                Dim SELLERS As String = ""
+        '                Dim DISCOUNT As String = ""
+        '                Dim DELPERIOD As String = ""
+        '                Dim DUEDATE As String = ""
+        '                Dim ORDERNO As String = ""
+        '                Dim MERCHANT As String = ""
+        '                Dim QUALITY As String = ""
+        '                Dim DESIGN As String = ""
+        '                Dim gridremarks As String = ""
+        '                Dim COLOR As String = ""
+        '                Dim PARTYPONO As String = ""
+        '                Dim qty As String = ""
+        '                Dim QTYUNIT As String = ""
+        '                Dim CUT As String = ""
+        '                Dim MTRS As String = ""
+        '                Dim RATE As String = ""
+        '                Dim PER As String = ""
+        '                Dim AMOUNT As String = ""
+        '                Dim RECDQTY As String = ""
+        '                Dim RECDMTRS As String = ""
+        '                Dim DONE As String = ""
+        '                Dim SAMPLEDONE As String = ""
+        '                Dim CLOSED As String = ""
+        '                Dim REMARKS As String = ""
+        '                Dim CRDAYS As String = ""
+
+        '                If row.Cells(0).Value <> Nothing Then
+
+        '                    GRIDSRNO = 1 'row.Cells(gsrno.Index).Value.ToString
+        '                    NO = row.Cells(GNO.Index).Value.ToString
+        '                    ORDERDATE = Format(Convert.ToDateTime(row.Cells(GDATE.Index).Value), "MM/dd/yyyy")
+        '                    BUYERS = row.Cells(GBUYERS.Index).Value.ToString
+        '                    SELLERS = row.Cells(GSELLERS.Index).Value.ToString
+        '                    CRDAYS = row.Cells(GCRDAYS.Index).Value.ToString
+        '                    DISCOUNT = row.Cells(GDISCOUNT.Index).Value.ToString
+        '                    DELPERIOD = row.Cells(GDELPERIOD.Index).Value.ToString
+        '                    DUEDATE = Format(Convert.ToDateTime(row.Cells(GDUEDATE.Index).Value), "MM/dd/yyyy")
+        '                    ORDERNO = row.Cells(GORDERNO.Index).Value.ToString
+        '                    MERCHANT = row.Cells(gitemname.Index).Value.ToString
+        '                    QUALITY = "" 'row.Cells(GQUALITY.Index).Value.ToString
+        '                    DESIGN = row.Cells(GDESCRIPTION.Index).Value.ToString
+        '                    gridremarks = "" ' row.Cells(gdesc.Index).Value.ToString
+        '                    COLOR = "" 'row.Cells(gcolor.Index).Value.ToString
+        '                    PARTYPONO = "" ' row.Cells(GORDERNO.Index).Value.ToString
+        '                    qty = row.Cells(gQty.Index).Value.ToString
+        '                    QTYUNIT = row.Cells(gqtyunit.Index).Value.ToString
+        '                    CUT = row.Cells(gcut.Index).Value
+        '                    MTRS = row.Cells(GMTRS.Index).Value
+        '                    RATE = row.Cells(GRATE.Index).Value
+        '                    PER = "" 'row.Cells(GPER.Index).Value
+        '                    AMOUNT = "" 'row.Cells(GAMOUNT.Index).Value
+        '                    RECDQTY = "" 'Val(row.Cells(GRECDQTY.Index).Value)
+        '                    RECDMTRS = "" 'Val(row.Cells(GRECDMTRS.Index).Value)
+
+        '                    DONE = 0 'If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then DONE = 1 Else DONE = 0
+        '                    SAMPLEDONE = 0 'If Convert.ToBoolean(row.Cells(GSAMPLEDONE.Index).Value) = True Then SAMPLEDONE = 1 Else SAMPLEDONE = 0
+        '                    CLOSED = 0 'If Convert.ToBoolean(row.Cells(GCLOSED.Index).Value) = True Then CLOSED = 1 Else CLOSED = 0
+        '                    REMARKS = row.Cells(GREMARKS.Index).Value
+
+        '                End If
+
+        '                ' WE HAVE COMMENTED THIS LINE BCOZ FOR TEMPORARY CLIENT WANT MANUAL NUMBER ALLOW
+        '                ''alParaval.Add(0)
+
+        '                Dim AORDNO As Integer = 0
+        '                Dim DTTABLE As DataTable = getmax(" isnull(max(ASO_no),0) + 1 ", " AGENCYSALEORDER ", " and ASO_yearid=" & YearId)
+        '                If DTTABLE.Rows.Count > 0 Then AORDNO = DTTABLE.Rows(0).Item(0)
+        '                row.Cells(GNO.Index).Value = Val(AORDNO)
+
+
+        '                alParaval.Add(AORDNO)
+        '                alParaval.Add(ORDERDATE)
+        '                alParaval.Add(BUYERS)
+        '                alParaval.Add("") ' HASTE
+        '                alParaval.Add("") 'AGENT
+
+        '                alParaval.Add(ORDERNO) 'PONO
+        '                alParaval.Add(DUEDATE) 'DueDate.Value)
+        '                alParaval.Add("") 'cmbtrans.Text.Trim)
+        '                alParaval.Add("") 'cmbtrans2.Text.Trim)
+        '                alParaval.Add("") 'cmbcity.Text.Trim)
+        '                alParaval.Add("") 'TXTREFNO.Text.Trim)
+
+        '                alParaval.Add("") 'CMBRISK.Text.Trim)
+        '                alParaval.Add("") 'TXTCONSIGNOR.Text.Trim)
+        '                alParaval.Add("") 'TXTCONSIGNEE.Text.Trim)
+        '                alParaval.Add(SELLERS)
+        '                alParaval.Add("") 'CMBCURRENCY.Text.Trim)
+        '                alParaval.Add(0) 'lbltotalqty.Text.Trim)
+        '                alParaval.Add(0) 'LBLTOTALMTRS.Text.Trim)
+        '                alParaval.Add(0) 'lbltotalbale.Text.Trim)       '' *** TOTAL BALE INSTED OF TOTAL AMT.
+        '                alParaval.Add(0) 'lbltotalamt.Text.Trim)
+
+        '                alParaval.Add(0) 'txtdisper.Text.Trim)
+        '                alParaval.Add(0) 'txtdisamt.Text.Trim)
+        '                alParaval.Add(0) 'txtpfper.Text.Trim)
+        '                alParaval.Add(0) 'txtpfamt.Text.Trim)
+        '                alParaval.Add(0) 'txttestchgs.Text.Trim)
+        '                alParaval.Add(0) 'txtnett.Text.Trim)
+        '                alParaval.Add(0) 'Val(TXTEXCISEID.Text.Trim))
+        '                alParaval.Add(0) 'TXTEXCISE.Text.Trim)
+        '                alParaval.Add(0) 'txtexciseAMT.Text.Trim)
+        '                alParaval.Add(0) 'TXTEDUCESS.Text.Trim)
+        '                alParaval.Add(0) 'txteducessAMT.Text.Trim)
+        '                alParaval.Add(0) 'TXTHSECESS.Text.Trim)
+        '                alParaval.Add(0) 'txthsecessAMT.Text.Trim)
+        '                alParaval.Add(0) 'txtsubtotal.Text.Trim)
+
+        '                alParaval.Add(0) 'cmbtax.Text.Trim)
+        '                alParaval.Add(0) 'txttax.Text.Trim)
+        '                alParaval.Add(0) 'cmbaddtax.Text.Trim)
+        '                alParaval.Add(0) 'txtaddtax.Text.Trim)
+        '                alParaval.Add(0) 'txtfrper.Text.Trim)
+        '                alParaval.Add(0) 'txtfreight.Text.Trim)
+        '                alParaval.Add(0) 'cmboctroi.Text.Trim)
+        '                alParaval.Add(0) 'txtoctroi.Text.Trim)
+        '                alParaval.Add(0) 'txtinspchgs.Text.Trim)
+        '                alParaval.Add(0) 'txtroundoff.Text.Trim)
+        '                alParaval.Add(0) 'txtgrandtotal.Text.Trim)
+
+
+        '                alParaval.Add("") 'txtinwords.Text.Trim)
+
+        '                alParaval.Add(REMARKS)
+        '                alParaval.Add("") 'txtnote.Text.Trim)
+        '                alParaval.Add("") 'txttnc.Text.Trim)
+
+
+        '                alParaval.Add("") 'cmbmisc.Text.Trim)
+        '                alParaval.Add(Val(0)) 'txtDiscrate.Text.Trim))
+        '                alParaval.Add(0) 'Val(txtDiscLot.Text.Trim))
+        '                alParaval.Add(0) 'Val(txtdd.Text.Trim))
+        '                alParaval.Add(0) 'Val(txtkatai.Text.Trim))
+        '                alParaval.Add(DISCOUNT)
+        '                alParaval.Add(0) 'Val(txtadat.Text.Trim))
+        '                alParaval.Add(CRDAYS)
+        '                alParaval.Add(0) 'Val(txtint.Text.Trim))
+        '                alParaval.Add(0) 'Val(TXTADVANCE.Text.Trim))
+        '                alParaval.Add(0) 'Val(TXTBALANCE.Text.Trim))
+        '                alParaval.Add(0) 'CMBSALESMAN.Text.Trim)
+        '                alParaval.Add(0) 'CMBPACKINGTYPE.Text.Trim)
+        '                alParaval.Add("") 'CMBFORWARD.Text.Trim)
+
+
+
+        '                alParaval.Add(CmpId)
+        '                alParaval.Add(Locationid)
+        '                alParaval.Add(Userid)
+        '                alParaval.Add(YearId)
+        '                alParaval.Add(0)
+
+        '                alParaval.Add(GRIDSRNO)
+        '                alParaval.Add(MERCHANT)
+        '                alParaval.Add(QUALITY)
+        '                alParaval.Add(DESIGN)
+        '                alParaval.Add(gridremarks)
+        '                alParaval.Add(COLOR)
+        '                alParaval.Add(PARTYPONO)
+        '                alParaval.Add(qty)
+        '                alParaval.Add(QTYUNIT)
+        '                alParaval.Add(CUT)
+        '                alParaval.Add(MTRS)
+        '                alParaval.Add(RATE)
+        '                alParaval.Add(PER)
+        '                alParaval.Add(AMOUNT)
+        '                alParaval.Add(RECDQTY)
+        '                alParaval.Add(RECDMTRS)
+        '                alParaval.Add(DONE)
+        '                alParaval.Add(SAMPLEDONE)
+        '                alParaval.Add(CLOSED)
+
+        '                alParaval.Add("") 'CMBSAMPLE.Text.Trim)
+        '                alParaval.Add("") 'CMBFROMCITY.Text.Trim)
+        '                alParaval.Add(1)    'VERIFIED
+        '                alParaval.Add(row.Cells(gorderon.Index).Value)
+
+        '                Dim OBJSO As New ClsAgencySaleOrder()
+        '                OBJSO.alParaval = alParaval
+        '                Dim DT As DataTable = OBJSO.SAVE()
+
+
+
+        '                'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
+        '                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE ORDER IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+        '                Dim OBJCMN As New ClsCommon
+        '                Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
+        '                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+        '                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
+
+        '                    'CREATE PO IN ABHEE FABRICS LLP
+        '                    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+        '                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+        '                    If TEMPDT.Rows.Count > 0 Then
+        '                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+        '                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+        '                    Else
+        '                        GoTo NEXTLINE
+        '                    End If
+
+        '                    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+        '                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+        '                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(row.Cells(GSELLERS.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+        '                    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+        '                    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
+        '                    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
+
+        '                    GENERATEPO(Val(row.Index), TEMPCMPID, TEMPYEARID)
+        '                End If
+        '                '******************** END OF PO GENERATION CODE ***************************
+
+
+
+        '                '**************** GENERATE SALE ORDER ******************************
+        '                DTNAME = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+        '                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
+
+        '                    'CREATE PO IN ABHEE FABRICS LLP
+        '                    'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
+        '                    Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
+        '                    If TEMPDT.Rows.Count > 0 Then
+        '                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+        '                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+        '                    Else
+        '                        GoTo NEXTLINE
+        '                    End If
+
+        '                    'CHECK WHETHER SELLER NAME IS PRESENT OR NOT, IF NOT PRESENT THEN ADD NEW 
+        '                    TEMPDT = OBJCMN.SEARCH("ACC_ID AS LEDGERID ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND ACC_YEARID = " & TEMPYEARID)
+        '                    If TEMPDT.Rows.Count > 0 Then TEMPLEDGERID = TEMPDT.Rows(0).Item("LEDGERID") Else CREATELEDGER(row.Cells(GBUYERS.Index).Value, TEMPCMPID, TEMPYEARID)
+
+
+        '                    'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+        '                    TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
+        '                    If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
+
+        '                    GENERATESO(Val(row.Index), TEMPCMPID, TEMPYEARID)
+        '                End If
+        '                '******************** END OF SO GENERATION CODE ***************************
+
+
+
+
+
+
+
+
+        'NEXTLINE:
+        '            Next
+
+        '            MessageBox.Show("Details Added")
+
+
+        '            CLEAR()
+
+
+        '        Catch ex As Exception
+        '            Throw ex
+        '        End Try
+        ' *************** END OF OGCODE ************
+
+
         Try
             For Each row As Windows.Forms.DataGridViewRow In GRIDMAGICBOX.Rows
                 Dim alParaval As New ArrayList
@@ -76,6 +348,17 @@ Public Class MagicBox
                     REMARKS = row.Cells(GREMARKS.Index).Value
 
                 End If
+
+
+
+                Dim OBJCMN As New ClsCommon
+                'IF BUYER OR SELLER IS ABHEE THEN DONE SAVE IN AGENCY ORDER
+                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then GoTo DONTSAVEINAGENCYORDER
+
+                DTNAME = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then GoTo DONTSAVEINAGENCYORDER
+
 
                 ' WE HAVE COMMENTED THIS LINE BCOZ FOR TEMPORARY CLIENT WANT MANUAL NUMBER ALLOW
                 ''alParaval.Add(0)
@@ -196,14 +479,13 @@ Public Class MagicBox
                 OBJSO.alParaval = alParaval
                 Dim DT As DataTable = OBJSO.SAVE()
 
+DONTSAVEINAGENCYORDER:
 
-
-                'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
-                'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE ORDER IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
-                Dim OBJCMN As New ClsCommon
-                Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
-                Dim DTNAME As DataTable = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
-                If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
+                    'WE NEED TO CREATE THE SAME ORDER IN ABHEE FABRICS LLP COMPANY
+                    'IF BUYER IS ABHEE FABRICS LLP THEN WE NEED TO CREATE PURCHASE ORDER IN THE NAME OF SELLER IN ABHEE FABRICS LLP COMPANY
+                    Dim TEMPYEARID, TEMPCMPID, TEMPLEDGERID, TEMPITEMID As Integer
+                    DTNAME = OBJCMN.SEARCH("ISNULL(ACC_NAME,'') AS NAME", "", " LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GBUYERS.Index).Value & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                    If DTNAME.Rows.Count > 0 AndAlso DTNAME.Rows(0).Item("NAME") = "ABHEE FABRICS LLP" Then
 
                     'CREATE PO IN ABHEE FABRICS LLP
                     'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
@@ -223,6 +505,9 @@ Public Class MagicBox
                     'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
                     TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
+
+                    'WE WILL GENERATE AUTO PONO 
+                    row.Cells(GNO.Index).Value = 0
 
                     GENERATEPO(Val(row.Index), TEMPCMPID, TEMPYEARID)
                 End If
@@ -253,6 +538,10 @@ Public Class MagicBox
                     TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
+
+                    'WE WILL GENERATE AUTO SONO 
+                    row.Cells(GNO.Index).Value = 0
+
                     GENERATESO(Val(row.Index), TEMPCMPID, TEMPYEARID)
                 End If
                 '******************** END OF SO GENERATION CODE ***************************
@@ -276,6 +565,8 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+
+
     End Sub
 
     Sub CREATELEDGER(NAME As String, TEMPCMPID As Integer, TEMPYEARID As Integer)
