@@ -697,6 +697,10 @@ DONTSAVEINAGENCYORDER:
                     TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
+
+                    'WE WILL GENERATE AUTO PURCHASEINVOICE NO 
+                    row.Cells(gsrno.Index).Value = 0
+
                     GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
 
                     'WE WILL HAVE TO CREATE JOURNAL IF TDS IS APPLICABLE IN LLP
@@ -1276,7 +1280,7 @@ NEXTLINE:
 
     Private Sub CMDSELECTPO_Click(sender As Object, e As EventArgs) Handles CMDSELECTPO.Click
         Try
-            If CMBBUYERS.Text.Trim = "" Then
+            If CMBBUYERS.Text.Trim = "" Or CMBSELLERS.Text.Trim = "" Then
                 MsgBox("Select Party Name", MsgBoxStyle.Critical)
                 CMBBUYERS.Focus()
                 Exit Sub
@@ -2389,6 +2393,8 @@ line1:
             Dim OBJPI As New ClsPurchaseMaster()
             OBJPI.alParaval = ALPARAVAL
             Dim DT As DataTable = OBJPI.SAVE()
+
+            GRIDMAGICBOX.Rows(ROWNO).Cells(gsrno.Index).Value = DT.Rows(0).Item(0)
 
         Catch ex As Exception
             Throw ex
