@@ -23,15 +23,7 @@ Partial Class TDSChallan
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.CMDAPPLY = New System.Windows.Forms.Button()
-        Me.TXTBSRCODE = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TXTCHQNO = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TXTCHNO = New System.Windows.Forms.TextBox()
-        Me.CHDATE = New System.Windows.Forms.DateTimePicker()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.TXTADD = New System.Windows.Forms.TextBox()
+        Me.groupbill = New System.Windows.Forms.GroupBox()
         Me.griddetails = New DevExpress.XtraGrid.GridControl()
         Me.gridregister = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,10 +39,21 @@ Partial Class TDSChallan
         Me.GBANKNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCMPNOPCMP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTDSLEDGER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
-        Me.cmdshowdetails = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
+        Me.TXTINTAMOUNT = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CMDAPPLY = New System.Windows.Forms.Button()
+        Me.TXTBSRCODE = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TXTCHQNO = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TXTCHNO = New System.Windows.Forms.TextBox()
+        Me.CHDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
+        Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
+        Me.cmdshowdetails = New System.Windows.Forms.Button()
         Me.CHKUNPAID = New System.Windows.Forms.CheckBox()
         Me.chkdate = New System.Windows.Forms.CheckBox()
         Me.dtto = New System.Windows.Forms.DateTimePicker()
@@ -63,17 +66,23 @@ Partial Class TDSChallan
         Me.lblname = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
         Me.LBLBALEFROM = New System.Windows.Forms.Label()
-        Me.TXTINTAMOUNT = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BlendPanel1.SuspendLayout()
+        Me.groupbill.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.groupbill)
         Me.BlendPanel1.Controls.Add(Me.TXTINTAMOUNT)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.CMDAPPLY)
@@ -85,11 +94,8 @@ Partial Class TDSChallan
         Me.BlendPanel1.Controls.Add(Me.CHDATE)
         Me.BlendPanel1.Controls.Add(Me.Label7)
         Me.BlendPanel1.Controls.Add(Me.TXTADD)
-        Me.BlendPanel1.Controls.Add(Me.griddetails)
         Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
         Me.BlendPanel1.Controls.Add(Me.cmdshowdetails)
-        Me.BlendPanel1.Controls.Add(Me.cmdok)
-        Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.CHKUNPAID)
         Me.BlendPanel1.Controls.Add(Me.chkdate)
         Me.BlendPanel1.Controls.Add(Me.dtto)
@@ -103,115 +109,32 @@ Partial Class TDSChallan
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 613)
         Me.BlendPanel1.TabIndex = 0
         '
-        'CMDAPPLY
+        'groupbill
         '
-        Me.CMDAPPLY.BackColor = System.Drawing.Color.Transparent
-        Me.CMDAPPLY.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDAPPLY.FlatAppearance.BorderSize = 0
-        Me.CMDAPPLY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDAPPLY.ForeColor = System.Drawing.Color.Black
-        Me.CMDAPPLY.Location = New System.Drawing.Point(1036, 51)
-        Me.CMDAPPLY.Name = "CMDAPPLY"
-        Me.CMDAPPLY.Size = New System.Drawing.Size(93, 28)
-        Me.CMDAPPLY.TabIndex = 9
-        Me.CMDAPPLY.Text = "Apply for All"
-        Me.CMDAPPLY.UseVisualStyleBackColor = False
-        '
-        'TXTBSRCODE
-        '
-        Me.TXTBSRCODE.BackColor = System.Drawing.Color.White
-        Me.TXTBSRCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBSRCODE.Location = New System.Drawing.Point(946, 59)
-        Me.TXTBSRCODE.Name = "TXTBSRCODE"
-        Me.TXTBSRCODE.Size = New System.Drawing.Size(84, 22)
-        Me.TXTBSRCODE.TabIndex = 8
-        Me.TXTBSRCODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label2
-        '
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(887, 63)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(57, 14)
-        Me.Label2.TabIndex = 823
-        Me.Label2.Text = "BSR Code"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'TXTCHQNO
-        '
-        Me.TXTCHQNO.BackColor = System.Drawing.Color.White
-        Me.TXTCHQNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHQNO.Location = New System.Drawing.Point(946, 34)
-        Me.TXTCHQNO.Name = "TXTCHQNO"
-        Me.TXTCHQNO.Size = New System.Drawing.Size(84, 22)
-        Me.TXTCHQNO.TabIndex = 7
-        Me.TXTCHQNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label1
-        '
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(887, 38)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(57, 14)
-        Me.Label1.TabIndex = 822
-        Me.Label1.Text = "Chq No"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'TXTCHNO
-        '
-        Me.TXTCHNO.BackColor = System.Drawing.Color.White
-        Me.TXTCHNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHNO.Location = New System.Drawing.Point(797, 34)
-        Me.TXTCHNO.Name = "TXTCHNO"
-        Me.TXTCHNO.Size = New System.Drawing.Size(84, 22)
-        Me.TXTCHNO.TabIndex = 5
-        Me.TXTCHNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CHDATE
-        '
-        Me.CHDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.CHDATE.Location = New System.Drawing.Point(797, 59)
-        Me.CHDATE.Name = "CHDATE"
-        Me.CHDATE.Size = New System.Drawing.Size(84, 22)
-        Me.CHDATE.TabIndex = 6
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(745, 63)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(49, 14)
-        Me.Label7.TabIndex = 820
-        Me.Label7.Text = "Ch Date"
-        '
-        'TXTADD
-        '
-        Me.TXTADD.Location = New System.Drawing.Point(1237, 38)
-        Me.TXTADD.Name = "TXTADD"
-        Me.TXTADD.Size = New System.Drawing.Size(12, 22)
-        Me.TXTADD.TabIndex = 484
-        Me.TXTADD.Visible = False
+        Me.groupbill.BackColor = System.Drawing.Color.Transparent
+        Me.groupbill.Controls.Add(Me.griddetails)
+        Me.groupbill.Controls.Add(Me.cmdok)
+        Me.groupbill.Controls.Add(Me.cmdexit)
+        Me.groupbill.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.groupbill.ForeColor = System.Drawing.Color.Black
+        Me.groupbill.Location = New System.Drawing.Point(16, 85)
+        Me.groupbill.Name = "groupbill"
+        Me.groupbill.Size = New System.Drawing.Size(1218, 525)
+        Me.groupbill.TabIndex = 1018
+        Me.groupbill.TabStop = False
         '
         'griddetails
         '
         Me.griddetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.griddetails.Location = New System.Drawing.Point(15, 93)
+        Me.griddetails.Location = New System.Drawing.Point(7, 35)
         Me.griddetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.griddetails.MainView = Me.gridregister
         Me.griddetails.Name = "griddetails"
         Me.griddetails.Size = New System.Drawing.Size(1205, 452)
-        Me.griddetails.TabIndex = 10
+        Me.griddetails.TabIndex = 13
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridregister})
         '
         'gridregister
@@ -248,7 +171,7 @@ Partial Class TDSChallan
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.OptionsColumn.AllowEdit = False
         Me.gname.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
@@ -260,7 +183,7 @@ Partial Class TDSChallan
         '
         Me.gbillinitials.Caption = "Bill No."
         Me.gbillinitials.FieldName = "BILLINITIALS"
-        Me.gbillinitials.ImageIndex = 1
+        Me.gbillinitials.ImageOptions.ImageIndex = 1
         Me.gbillinitials.Name = "gbillinitials"
         Me.gbillinitials.OptionsColumn.AllowEdit = False
         Me.gbillinitials.Visible = True
@@ -370,6 +293,153 @@ Partial Class TDSChallan
         Me.GTDSLEDGER.Name = "GTDSLEDGER"
         Me.GTDSLEDGER.Width = 250
         '
+        'cmdok
+        '
+        Me.cmdok.BackColor = System.Drawing.Color.Transparent
+        Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdok.FlatAppearance.BorderSize = 0
+        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdok.ForeColor = System.Drawing.Color.Black
+        Me.cmdok.Location = New System.Drawing.Point(528, 492)
+        Me.cmdok.Name = "cmdok"
+        Me.cmdok.Size = New System.Drawing.Size(80, 28)
+        Me.cmdok.TabIndex = 14
+        Me.cmdok.Text = "&Save"
+        Me.cmdok.UseVisualStyleBackColor = False
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(614, 492)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 15
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'TXTINTAMOUNT
+        '
+        Me.TXTINTAMOUNT.BackColor = System.Drawing.Color.White
+        Me.TXTINTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTINTAMOUNT.Location = New System.Drawing.Point(640, 34)
+        Me.TXTINTAMOUNT.Name = "TXTINTAMOUNT"
+        Me.TXTINTAMOUNT.Size = New System.Drawing.Size(84, 22)
+        Me.TXTINTAMOUNT.TabIndex = 824
+        Me.TXTINTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(565, 38)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 14)
+        Me.Label3.TabIndex = 825
+        Me.Label3.Text = "Int Amount"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'CMDAPPLY
+        '
+        Me.CMDAPPLY.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAPPLY.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAPPLY.FlatAppearance.BorderSize = 0
+        Me.CMDAPPLY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAPPLY.ForeColor = System.Drawing.Color.Black
+        Me.CMDAPPLY.Location = New System.Drawing.Point(1036, 51)
+        Me.CMDAPPLY.Name = "CMDAPPLY"
+        Me.CMDAPPLY.Size = New System.Drawing.Size(93, 28)
+        Me.CMDAPPLY.TabIndex = 9
+        Me.CMDAPPLY.Text = "Apply for All"
+        Me.CMDAPPLY.UseVisualStyleBackColor = False
+        '
+        'TXTBSRCODE
+        '
+        Me.TXTBSRCODE.BackColor = System.Drawing.Color.White
+        Me.TXTBSRCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBSRCODE.Location = New System.Drawing.Point(946, 59)
+        Me.TXTBSRCODE.Name = "TXTBSRCODE"
+        Me.TXTBSRCODE.Size = New System.Drawing.Size(84, 22)
+        Me.TXTBSRCODE.TabIndex = 8
+        Me.TXTBSRCODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label2
+        '
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(887, 63)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(57, 14)
+        Me.Label2.TabIndex = 823
+        Me.Label2.Text = "BSR Code"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCHQNO
+        '
+        Me.TXTCHQNO.BackColor = System.Drawing.Color.White
+        Me.TXTCHQNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCHQNO.Location = New System.Drawing.Point(946, 34)
+        Me.TXTCHQNO.Name = "TXTCHQNO"
+        Me.TXTCHQNO.Size = New System.Drawing.Size(84, 22)
+        Me.TXTCHQNO.TabIndex = 7
+        Me.TXTCHQNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(887, 38)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(57, 14)
+        Me.Label1.TabIndex = 822
+        Me.Label1.Text = "Chq No"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TXTCHNO
+        '
+        Me.TXTCHNO.BackColor = System.Drawing.Color.White
+        Me.TXTCHNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCHNO.Location = New System.Drawing.Point(797, 34)
+        Me.TXTCHNO.Name = "TXTCHNO"
+        Me.TXTCHNO.Size = New System.Drawing.Size(84, 22)
+        Me.TXTCHNO.TabIndex = 5
+        Me.TXTCHNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CHDATE
+        '
+        Me.CHDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.CHDATE.Location = New System.Drawing.Point(797, 59)
+        Me.CHDATE.Name = "CHDATE"
+        Me.CHDATE.Size = New System.Drawing.Size(84, 22)
+        Me.CHDATE.TabIndex = 6
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(745, 63)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(49, 14)
+        Me.Label7.TabIndex = 820
+        Me.Label7.Text = "Ch Date"
+        '
+        'TXTADD
+        '
+        Me.TXTADD.Location = New System.Drawing.Point(1237, 38)
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.Size = New System.Drawing.Size(12, 22)
+        Me.TXTADD.TabIndex = 484
+        Me.TXTADD.Visible = False
+        '
         'CMBACCCODE
         '
         Me.CMBACCCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -396,34 +466,6 @@ Partial Class TDSChallan
         Me.cmdshowdetails.TabIndex = 4
         Me.cmdshowdetails.Text = "&Show Details"
         Me.cmdshowdetails.UseVisualStyleBackColor = False
-        '
-        'cmdok
-        '
-        Me.cmdok.BackColor = System.Drawing.Color.Transparent
-        Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdok.FlatAppearance.BorderSize = 0
-        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(536, 550)
-        Me.cmdok.Name = "cmdok"
-        Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 11
-        Me.cmdok.Text = "&Save"
-        Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(622, 550)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 12
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
         '
         'CHKUNPAID
         '
@@ -554,32 +596,22 @@ Partial Class TDSChallan
         Me.LBLBALEFROM.Text = "Challan No"
         Me.LBLBALEFROM.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'TXTINTAMOUNT
+        'GridView1
         '
-        Me.TXTINTAMOUNT.BackColor = System.Drawing.Color.White
-        Me.TXTINTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTINTAMOUNT.Location = New System.Drawing.Point(640, 34)
-        Me.TXTINTAMOUNT.Name = "TXTINTAMOUNT"
-        Me.TXTINTAMOUNT.Size = New System.Drawing.Size(84, 22)
-        Me.TXTINTAMOUNT.TabIndex = 824
-        Me.TXTINTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.GridView1.Name = "GridView1"
         '
-        'Label3
+        'GridView2
         '
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(565, 38)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 14)
-        Me.Label3.TabIndex = 825
-        Me.Label3.Text = "Int Amount"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.GridView2.Name = "GridView2"
+        '
+        'GridView3
+        '
+        Me.GridView3.Name = "GridView3"
         '
         'TDSChallan
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 613)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -589,23 +621,20 @@ Partial Class TDSChallan
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        Me.groupbill.ResumeLayout(False)
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Private WithEvents griddetails As DevExpress.XtraGrid.GridControl
-    Private WithEvents gridregister As DevExpress.XtraGrid.Views.Grid.GridView
-    Private WithEvents gDate As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gbillinitials As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBACCCODE As System.Windows.Forms.ComboBox
     Friend WithEvents cmdshowdetails As System.Windows.Forms.Button
-    Friend WithEvents cmdok As System.Windows.Forms.Button
-    Friend WithEvents cmdexit As System.Windows.Forms.Button
     Friend WithEvents CHKUNPAID As System.Windows.Forms.CheckBox
     Friend WithEvents chkdate As System.Windows.Forms.CheckBox
     Friend WithEvents dtto As System.Windows.Forms.DateTimePicker
@@ -617,16 +646,7 @@ Partial Class TDSChallan
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents lblname As System.Windows.Forms.Label
     Friend WithEvents cmbname As System.Windows.Forms.ComboBox
-    Friend WithEvents GBILLAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTDS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHQNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBANKNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TXTADD As System.Windows.Forms.TextBox
-    Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCMPNOPCMP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDAPPLY As Button
     Friend WithEvents TXTBSRCODE As TextBox
     Friend WithEvents Label2 As Label
@@ -636,7 +656,27 @@ Partial Class TDSChallan
     Friend WithEvents CHDATE As DateTimePicker
     Friend WithEvents Label7 As Label
     Friend WithEvents LBLBALEFROM As Label
-    Friend WithEvents GTDSLEDGER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TXTINTAMOUNT As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents groupbill As GroupBox
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Private WithEvents griddetails As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridregister As DevExpress.XtraGrid.Views.Grid.GridView
+    Private WithEvents gDate As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents gbillinitials As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBILLAMT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHQNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBANKNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCMPNOPCMP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTDSLEDGER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cmdok As Button
+    Friend WithEvents cmdexit As Button
 End Class
