@@ -874,7 +874,7 @@ Public Class StockFilter
                     If MsgBox("Wish to Print Singles Report?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                         OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and { BARCODESTOCK.ViewMode } = 1 "
                     Else
-                        OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and { BARCODESTOCK.ViewMode } = 2 "
+                        OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and { BARCODESTOCK.ViewMode } <> 1 "
                     End If
                 End If
 
