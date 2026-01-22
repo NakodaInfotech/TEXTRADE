@@ -86,6 +86,10 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOSTCENTERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLANTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCREATED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -97,9 +101,6 @@ Partial Class PurchaseInvoiceDetails
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLANTBY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,7 +206,7 @@ Partial Class PurchaseInvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE, Me.GCREATED})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -734,6 +735,44 @@ Partial Class PurchaseInvoiceDetails
         Me.GTRANSPORT.VisibleIndex = 46
         Me.GTRANSPORT.Width = 130
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 47
+        '
+        'GCOMPLANTBY
+        '
+        Me.GCOMPLANTBY.Caption = "Complaint By"
+        Me.GCOMPLANTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLANTBY.Name = "GCOMPLANTBY"
+        Me.GCOMPLANTBY.OptionsColumn.AllowEdit = False
+        Me.GCOMPLANTBY.Visible = True
+        Me.GCOMPLANTBY.VisibleIndex = 48
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 49
+        '
+        'GCREATED
+        '
+        Me.GCREATED.Caption = "Created Date"
+        Me.GCREATED.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.GCREATED.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCREATED.FieldName = "CREATED"
+        Me.GCREATED.Name = "GCREATED"
+        Me.GCREATED.Visible = True
+        Me.GCREATED.VisibleIndex = 50
+        Me.GCREATED.Width = 100
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -873,33 +912,6 @@ Partial Class PurchaseInvoiceDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GCOMPLAINT
-        '
-        Me.GCOMPLAINT.Caption = "Complaint"
-        Me.GCOMPLAINT.FieldName = "COMPLAINT"
-        Me.GCOMPLAINT.Name = "GCOMPLAINT"
-        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
-        Me.GCOMPLAINT.Visible = True
-        Me.GCOMPLAINT.VisibleIndex = 47
-        '
-        'GCOMPLANTBY
-        '
-        Me.GCOMPLANTBY.Caption = "Complaint By"
-        Me.GCOMPLANTBY.FieldName = "COMPLAINTBY"
-        Me.GCOMPLANTBY.Name = "GCOMPLANTBY"
-        Me.GCOMPLANTBY.OptionsColumn.AllowEdit = False
-        Me.GCOMPLANTBY.Visible = True
-        Me.GCOMPLANTBY.VisibleIndex = 48
-        '
-        'GCOMPLAINTDATE
-        '
-        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
-        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
-        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
-        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
-        Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 49
-        '
         'PurchaseInvoiceDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -996,4 +1008,5 @@ Partial Class PurchaseInvoiceDetails
     Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLANTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -40,6 +40,7 @@ Public Class TDSChallan
         End If
 
         griddetails.DataSource = dt
+        CreateDevExpressFilterEditors()
 
         If cmbname.Text.Trim = "" Then GTDSLEDGER.Visible = True Else GTDSLEDGER.Visible = False
 
@@ -47,7 +48,7 @@ Public Class TDSChallan
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, False, " AND LEDGERS.ACC_TDSAC = 'TRUE' AND GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes' and LEDGERS.ACC_YEARID = " & YearId)
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, False, " AND LEDGERS.ACC_TDSAC = 'TRUE' AND GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes' and LEDGERS.ACC_YEARID = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
@@ -91,7 +92,7 @@ Public Class TDSChallan
 
     Private Sub TDSChallan_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            fillname(cmbname, False, " AND LEDGERS.ACC_TDSAC = 'TRUE' and LEDGERS.ACC_YEARID = " & YearId)
+            FILLNAME(cmbname, False, " AND LEDGERS.ACC_TDSAC = 'TRUE' and LEDGERS.ACC_YEARID = " & YearId)
             'fillgrid()
         Catch ex As Exception
             Throw ex
@@ -262,4 +263,100 @@ Public Class TDSChallan
     Private Sub TXTINTAMOUNT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTINTAMOUNT.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
+
+#Region "AUTOSEARCH_DEVEXPRESS"
+
+    Public filterEditors As New List(Of DevExpress.XtraEditors.TextEdit)
+
+    ' Call AFTER grid data binding (after fillgrid)
+    Public Sub CreateDevExpressFilterEditors()
+
+        ' Remove old editors
+        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf groupbill.Controls(i) Is DevExpress.XtraEditors.TextEdit Then
+                groupbill.Controls.RemoveAt(i)
+            End If
+        Next
+
+        filterEditors.Clear()
+
+        Dim xPos As Integer = griddetails.Left + 23
+        Dim yPos As Integer = griddetails.Top - 25   ' above grid
+
+        For Each col As DevExpress.XtraGrid.Columns.GridColumn In gridregister.Columns
+
+            If col.Visible Then
+                Dim txt As New DevExpress.XtraEditors.TextEdit()
+
+                txt.Width = col.Width
+                txt.Left = xPos
+                txt.Top = yPos
+                txt.Tag = col.FieldName
+                txt.Name = "TXTFLT_" & col.FieldName
+
+                AddHandler txt.EditValueChanged, AddressOf FilterDevExpressGrid
+
+                groupbill.Controls.Add(txt)
+                txt.BringToFront()
+
+                filterEditors.Add(txt)
+
+                xPos += col.Width
+            End If
+        Next
+
+    End Sub
+    Public Sub FilterDevExpressGrid(sender As Object, e As EventArgs)
+        Try
+            If gridregister Is Nothing OrElse gridregister.Columns.Count = 0 Then Exit Sub
+
+            Dim filters As New List(Of String)
+
+            For Each txt As DevExpress.XtraEditors.TextEdit In filterEditors
+
+                If txt Is Nothing OrElse txt.Tag Is Nothing Then Continue For
+
+                Dim fieldName As String = txt.Tag.ToString()
+                Dim value As String = txt.Text.Trim().Replace("'", "''")
+
+                If value = "" Then Continue For
+
+                Dim col = gridregister.Columns(fieldName)
+                If col Is Nothing Then Continue For
+
+                Dim colType As Type = col.ColumnType
+
+                If colType Is GetType(String) Then
+                    filters.Add($"[{fieldName}] LIKE '%{value}%'")
+
+                ElseIf colType Is GetType(Integer) OrElse
+                   colType Is GetType(Decimal) OrElse
+                   colType Is GetType(Double) Then
+
+                    Dim num As Double
+                    If Double.TryParse(value, num) Then
+                        filters.Add($"[{fieldName}] = {num}")
+                    End If
+
+                ElseIf colType Is GetType(Date) OrElse colType Is GetType(DateTime) Then
+                    Dim d As DateTime
+                    If DateTime.TryParse(value, d) Then
+                        filters.Add($"[{fieldName}] = #{d:MM/dd/yyyy}#")
+                    End If
+                End If
+            Next
+
+            gridregister.ActiveFilterString = String.Join(" AND ", filters)
+
+        Catch ex As Exception
+            MessageBox.Show("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub ClearDevExpressFilters()
+        For Each txt As DevExpress.XtraEditors.TextEdit In filterEditors
+            txt.EditValue = Nothing
+        Next
+        gridregister.ActiveFilterString = ""
+    End Sub
+#End Region
 End Class
