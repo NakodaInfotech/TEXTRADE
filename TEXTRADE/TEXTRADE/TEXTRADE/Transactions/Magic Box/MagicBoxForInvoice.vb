@@ -364,7 +364,9 @@ Public Class MagicBoxForInvoice
             For Each row As Windows.Forms.DataGridViewRow In GRIDMAGICBOX.Rows
                 Dim SRNO As Integer
                 Dim DTTABLE As New DataTable
-                DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
+                'GET MAXNO IN MIXTURE OF ALL 2 TABLES
+                'DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
+                DTTABLE = getmax(" isnull(max(INVOICENO),0) + 1 ", " (SELECT MAX(AINVOICE_no) AS INVOICENO FROM AGENCYINVOICEMASTER WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT MAX(BILL_NO) AS INVOICENO FROM PURCHASEMASTER WHERE BILL_YEARID = " & YearId & ") AS T ", "")
                 If DTTABLE.Rows.Count > 0 Then SRNO = DTTABLE.Rows(0).Item(0)
                 row.Cells(gsrno.Index).Value = Val(SRNO)
 
@@ -374,7 +376,9 @@ Public Class MagicBoxForInvoice
                 'CHECKING BILLNO DUPLICATION 
                 Dim OBJCMN As New ClsCommon
                 If row.Cells(GNO.Index).Value <> "" And row.Cells(GSELLERS.Index).Value <> "" Then
-                    Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & row.Cells(GNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    'CHECK PARTYBILLNO IN BOTH THE TABLES
+                    'Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GSELLERS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & row.Cells(GNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    Dim DTP As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, AINVOICE_PARTYPONO AS PARTYBILLNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_PARTYBILLNO AS PARTYBILLNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_LEDGERID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & row.Cells(GSELLERS.Index).Value & "' AND T.PARTYBILLNO = '" & row.Cells(GNO.Index).Value & "'")
                     If DTP.Rows.Count > 0 Then
                         MsgBox("Party Bill " & row.Cells(GNO.Index).Value & " Already Exists in Entry No " & DTP.Rows(0).Item("BILLNO"))
                         GoTo NEXTLINE
@@ -383,7 +387,9 @@ Public Class MagicBoxForInvoice
 
                 'CHECKING LRNO DUPLICATION 
                 If row.Cells(GLRNO.Index).Value <> "" And row.Cells(GTRANS.Index).Value <> "" Then
-                    Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & row.Cells(GLRNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    'CHECK LRNO IN BOTH THE TABLES
+                    'Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & row.Cells(GLRNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
+                    Dim DTP As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_C1MPNAME AS NAME, AINVOICE_LRNO AS LRNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_LRNO AS LRNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_TRANSNAMEID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & row.Cells(GTRANS.Index).Value & "' AND T.LRNO = '" & row.Cells(GLRNO.Index).Value & "'")
                     If DTP.Rows.Count > 0 Then
                         MsgBox("LR No " & row.Cells(GLRNO.Index).Value & " Already Exists In Entry No " & DTP.Rows(0).Item("BILLNO"))
                         GoTo NEXTLINE
@@ -698,8 +704,9 @@ DONTSAVEINAGENCYORDER:
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
 
-                    'WE WILL GENERATE AUTO PURCHASEINVOICE NO 
-                    row.Cells(gsrno.Index).Value = 0
+                    'WE WILL GENERATE MAX INVOICENO
+                    DTTABLE = getmax(" isnull(max(INVOICENO),0) + 1 ", " (SELECT MAX(AINVOICE_no) AS INVOICENO FROM AGENCYINVOICEMASTER WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT MAX(BILL_NO) AS INVOICENO FROM PURCHASEMASTER WHERE BILL_YEARID = " & YearId & ") AS T ", "")
+                    If DTTABLE.Rows.Count > 0 Then row.Cells(gsrno.Index).Value = Val(DTTABLE.Rows(0).Item(0))
 
                     GENERATEPI(Val(row.Index), TEMPCMPID, TEMPYEARID)
 
@@ -1377,7 +1384,7 @@ LINE2:
 
     Sub getmax_SO_no()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(AINVOICE_no),0) + 1 ", "AGENCYINVOICEMASTER", " AND AINVOICE_cmpid=" & CmpId & " and AINVOICE_locationid=" & Locationid & " and AINVOICE_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(INVOICENO),0) + 1 ", " (SELECT MAX(AINVOICE_no) AS INVOICENO FROM AGENCYINVOICEMASTER WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT MAX(BILL_NO) AS INVOICENO FROM PURCHASEMASTER WHERE BILL_YEARID = " & YearId & ") AS T ", "")
         If DTTABLE.Rows.Count > 0 Then
             txtsrno.Text = DTTABLE.Rows(0).Item(0)
         End If
@@ -2522,7 +2529,9 @@ line1:
         Try
             If TXTLR.Text.Trim <> "" And CMBTRANS.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBTRANS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & TXTLR.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                'CHECK IN BOTH THE TABLES
+                'Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBTRANS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & TXTLR.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, AINVOICE_LRNO AS LRNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_LRNO AS LRNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_TRANSNAMEID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & CMBTRANS.Text.Trim & "' AND T.LRNO = '" & TXTLR.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
                     MsgBox("LR No Already Exists In Entry No " & DT.Rows(0).Item("BILLNO"))
                     e.Cancel = True
@@ -2654,7 +2663,8 @@ LINE1:
         Try
             If TXTPARTYBILLNO.Text.Trim <> "" And CMBSELLERS.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBSELLERS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & TXTPARTYBILLNO.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                'Dim DT As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & CMBSELLERS.Text.Trim & "' AND AGENCYINVOICEMASTER.AINVOICE_PARTYPONO = '" & TXTPARTYBILLNO.Text.Trim & "' AND AINVOICE_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, AINVOICE_PARTYPONO AS PARTYBILLNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_PURLEDGERID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_PARTYBILLNO AS PARTYBILLNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_LEDGERID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & CMBSELLERS.Text.Trim & "' AND T.PARTYBILLNO = '" & TXTPARTYBILLNO.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
                     MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("BILLNO"))
                     e.Cancel = True

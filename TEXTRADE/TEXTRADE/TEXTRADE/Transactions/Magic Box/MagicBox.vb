@@ -364,7 +364,9 @@ Public Class MagicBox
                 ''alParaval.Add(0)
 
                 Dim AORDNO As Integer = 0
-                Dim DTTABLE As DataTable = getmax(" isnull(max(ASO_no),0) + 1 ", " AGENCYSALEORDER ", " and ASO_yearid=" & YearId)
+                'GET MAXNO IN MIXTURE OF ALL 3 TABLES
+                'Dim DTTABLE As DataTable = getmax(" isnull(max(ASO_no),0) + 1 ", " AGENCYSALEORDER ", " and ASO_yearid=" & YearId)
+                Dim DTTABLE As DataTable = getmax(" ISNULL(MAX(ORDERNO),0) + 1  ", " (SELECT MAX(ASO_NO) AS ORDERNO FROM AGENCYSALEORDER WHERE ASO_YEARID = " & YearId & " UNION ALL SELECT MAX(PO_NO) AS ORDERNO FROM PURCHASEORDER WHERE PO_YEARID = " & YearId & " UNION ALL SELECT MAX(SO_NO) AS ORDERNO FROM SALEORDER WHERE SO_YEARID = " & YearId & ") AS T ", "")
                 If DTTABLE.Rows.Count > 0 Then AORDNO = DTTABLE.Rows(0).Item(0)
                 row.Cells(GNO.Index).Value = Val(AORDNO)
 
@@ -506,8 +508,10 @@ DONTSAVEINAGENCYORDER:
                     TEMPDT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & row.Cells(gitemname.Index).Value & "' AND ITEM_YEARID = " & TEMPYEARID)
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
-                    'WE WILL GENERATE AUTO PONO 
-                    row.Cells(GNO.Index).Value = 0
+                    'WE WILL GENERATE MAX ORDERNO
+                    DTTABLE = getmax(" ISNULL(MAX(ORDERNO),0) + 1  ", " (SELECT MAX(ASO_NO) AS ORDERNO FROM AGENCYSALEORDER WHERE ASO_YEARID = " & YearId & " UNION ALL SELECT MAX(PO_NO) AS ORDERNO FROM PURCHASEORDER WHERE PO_YEARID = " & YearId & " UNION ALL SELECT MAX(SO_NO) AS ORDERNO FROM SALEORDER WHERE SO_YEARID = " & YearId & ") AS T ", "")
+                    If DTTABLE.Rows.Count > 0 Then row.Cells(GNO.Index).Value = Val(DTTABLE.Rows(0).Item(0))
+
 
                     GENERATEPO(Val(row.Index), TEMPCMPID, TEMPYEARID)
                 End If
@@ -539,18 +543,13 @@ DONTSAVEINAGENCYORDER:
                     If TEMPDT.Rows.Count > 0 Then TEMPITEMID = TEMPDT.Rows(0).Item("ITEMID") Else CREATEITEM(row.Cells(gitemname.Index).Value, TEMPCMPID, TEMPYEARID)
 
 
-                    'WE WILL GENERATE AUTO SONO 
-                    row.Cells(GNO.Index).Value = 0
+                    'WE WILL GENERATE MAX ORDERNO
+                    DTTABLE = getmax(" ISNULL(MAX(ORDERNO),0) + 1  ", " (SELECT MAX(ASO_NO) AS ORDERNO FROM AGENCYSALEORDER WHERE ASO_YEARID = " & YearId & " UNION ALL SELECT MAX(PO_NO) AS ORDERNO FROM PURCHASEORDER WHERE PO_YEARID = " & YearId & " UNION ALL SELECT MAX(SO_NO) AS ORDERNO FROM SALEORDER WHERE SO_YEARID = " & YearId & ") AS T ", "")
+                    If DTTABLE.Rows.Count > 0 Then row.Cells(GNO.Index).Value = Val(DTTABLE.Rows(0).Item(0))
 
                     GENERATESO(Val(row.Index), TEMPCMPID, TEMPYEARID)
                 End If
                 '******************** END OF SO GENERATION CODE ***************************
-
-
-
-
-
-
 
 
 NEXTLINE:
