@@ -1414,8 +1414,11 @@ Public Class InvoiceMaster
                     PRINTEWB()
                 End If
 
+
+
                 If ClientName = "ABHEE" Then
-                    GENERATEAGENCYINVOICE()
+                    'NOW NO NEED TO GENERATE INVOICE IN ABHEE
+                    'GENERATEAGENCYINVOICE()
                     GENERATEEINV()
                 End If
 
