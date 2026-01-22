@@ -330,6 +330,12 @@
     <Compile Include="Common\Filters\CatalogFilter.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Common\Filters\CutPackFilter.Designer.vb">
+      <DependentUpon>CutPackFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Filters\CutPackFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Filters\DailyActivityFilter.Designer.vb">
       <DependentUpon>DailyActivityFilter.vb</DependentUpon>
     </Compile>
@@ -413,6 +419,22 @@
     </Compile>
     <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
+      <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackLotReport.vb">
+      <DependentUpon>CutPackLotReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackItemReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CutPackItemReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Masters\CustomLayout.Designer.vb">
       <DependentUpon>CustomLayout.vb</DependentUpon>
@@ -616,6 +638,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProformaReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.vb">
       <AutoGen>True</AutoGen>
@@ -2644,6 +2667,12 @@
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.Designer.vb">
+      <DependentUpon>AutoE-Invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\AutoEway.Designer.vb">
@@ -8766,6 +8795,9 @@
     <EmbeddedResource Include="Common\Filters\CatalogFilter.resx">
       <DependentUpon>CatalogFilter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Filters\CutPackFilter.resx">
+      <DependentUpon>CutPackFilter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Filters\DailyActivityFilter.resx">
       <DependentUpon>DailyActivityFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -8807,6 +8839,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
       <DependentUpon>SelectCustomLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackLotReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackLotReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackItemReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CutPackItemReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\CustomLayout.resx">
       <DependentUpon>CustomLayout.vb</DependentUpon>
@@ -10146,6 +10190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.resx">
+      <DependentUpon>AutoE-Invoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoEway.resx">
       <DependentUpon>AutoEway.vb</DependentUpon>

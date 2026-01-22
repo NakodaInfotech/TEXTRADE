@@ -475,6 +475,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator38 = New System.Windows.Forms.ToolStripSeparator()
         Me.SALEAUTOPOSTADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator219 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AutoEWayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -658,6 +659,7 @@ Partial Class MDIMain
         Me.JobOutFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JobInFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EMBPROD_FILTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CutPackFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator87 = New System.Windows.Forms.ToolStripSeparator()
         Me.JobOutDetailReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator23 = New System.Windows.Forms.ToolStripSeparator()
@@ -1234,7 +1236,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.AutoEWayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoEInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4125,7 +4127,7 @@ Partial Class MDIMain
         '
         'SALE_MASTER
         '
-        Me.SALE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SALEADD, Me.SALEEDIT, Me.ToolStripSeparator38, Me.SALEAUTOPOSTADD, Me.ToolStripSeparator219, Me.AutoEWayToolStripMenuItem})
+        Me.SALE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SALEADD, Me.SALEEDIT, Me.ToolStripSeparator38, Me.SALEAUTOPOSTADD, Me.ToolStripSeparator219, Me.AutoEWayToolStripMenuItem, Me.AutoEInvoiceToolStripMenuItem})
         Me.SALE_MASTER.Enabled = False
         Me.SALE_MASTER.Name = "SALE_MASTER"
         Me.SALE_MASTER.Size = New System.Drawing.Size(182, 22)
@@ -4162,6 +4164,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator219.Name = "ToolStripSeparator219"
         Me.ToolStripSeparator219.Size = New System.Drawing.Size(198, 6)
+        '
+        'AutoEWayToolStripMenuItem
+        '
+        Me.AutoEWayToolStripMenuItem.Name = "AutoEWayToolStripMenuItem"
+        Me.AutoEWayToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AutoEWayToolStripMenuItem.Text = "Auto E-Way"
         '
         'SALERETURNCHALLAN_MASTER
         '
@@ -5314,7 +5322,7 @@ Partial Class MDIMain
         '
         'JOB_REPORTS
         '
-        Me.JOB_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PendingJoToolStripMenuItem, Me.ToolStripSeparator192, Me.JobOutFilterToolStripMenuItem, Me.JobInFilterToolStripMenuItem, Me.EMBPROD_FILTER, Me.ToolStripSeparator87, Me.JobOutDetailReportToolStripMenuItem, Me.ToolStripSeparator23})
+        Me.JOB_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PendingJoToolStripMenuItem, Me.ToolStripSeparator192, Me.JobOutFilterToolStripMenuItem, Me.JobInFilterToolStripMenuItem, Me.EMBPROD_FILTER, Me.CutPackFilterToolStripMenuItem, Me.ToolStripSeparator87, Me.JobOutDetailReportToolStripMenuItem, Me.ToolStripSeparator23})
         Me.JOB_REPORTS.Enabled = False
         Me.JOB_REPORTS.Name = "JOB_REPORTS"
         Me.JOB_REPORTS.Size = New System.Drawing.Size(169, 22)
@@ -5349,6 +5357,12 @@ Partial Class MDIMain
         Me.EMBPROD_FILTER.Size = New System.Drawing.Size(190, 22)
         Me.EMBPROD_FILTER.Text = "Emb Production Filter"
         Me.EMBPROD_FILTER.Visible = False
+        '
+        'CutPackFilterToolStripMenuItem
+        '
+        Me.CutPackFilterToolStripMenuItem.Name = "CutPackFilterToolStripMenuItem"
+        Me.CutPackFilterToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.CutPackFilterToolStripMenuItem.Text = "Cut Pack Filter"
         '
         'ToolStripSeparator87
         '
@@ -9020,11 +9034,11 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'AutoEWayToolStripMenuItem
+        'AutoEInvoiceToolStripMenuItem
         '
-        Me.AutoEWayToolStripMenuItem.Name = "AutoEWayToolStripMenuItem"
-        Me.AutoEWayToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.AutoEWayToolStripMenuItem.Text = "Auto E-Way"
+        Me.AutoEInvoiceToolStripMenuItem.Name = "AutoEInvoiceToolStripMenuItem"
+        Me.AutoEInvoiceToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AutoEInvoiceToolStripMenuItem.Text = "Auto E-Invoice"
         '
         'MDIMain
         '
@@ -10264,4 +10278,6 @@ Partial Class MDIMain
     Friend WithEvents UpdatePendingLRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LotPieceTypeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AutoEWayToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CutPackFilterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AutoEInvoiceToolStripMenuItem As ToolStripMenuItem
 End Class

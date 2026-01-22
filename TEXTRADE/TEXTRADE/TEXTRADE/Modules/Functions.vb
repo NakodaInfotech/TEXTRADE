@@ -8058,10 +8058,12 @@ line1:
                         Dim alParaval As New ArrayList
 
                         alParaval.Add(CMBMILLNAME.Text.Trim)
-                        alParaval.Add("")
+                        alParaval.Add("")   'REMARKS
                         alParaval.Add(CmpId)
                         alParaval.Add(Userid)
                         alParaval.Add(YearId)
+                        alParaval.Add("")   'CONTACTPERSON
+                        alParaval.Add("")   'CONTACTNO
 
                         Dim objclsCATEGORY As New ClsMillMaster
                         objclsCATEGORY.alParaval = alParaval
@@ -8079,6 +8081,7 @@ line1:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+
     Sub WEAVEVALIDATE(ByRef CMBWEAVE As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
         Try
             Cursor.Current = Cursors.WaitCursor

@@ -1153,7 +1153,28 @@ Public Class ProformaInvoice
 
             If MsgBox("Wish to Print Invoice?", MsgBoxStyle.YesNo) = vbNo Then Exit Sub
             Dim OBJINVOICE As New saledesign
-            OBJINVOICE.FRMSTRING = "PROFORMAINVOICE"
+            If ClientName = "LAXMI" Then
+
+                If MsgBox("Wish to Print Invoice?", MsgBoxStyle.YesNo) = vbYes Then
+                    OBJINVOICE.FRMSTRING = "PROFORMAINVOICE"
+                Else
+                    If MsgBox("Wish to Print Quotation?", MsgBoxStyle.YesNo) = vbYes Then
+                        OBJINVOICE.FRMSTRING = "QUOTATION"
+                    Else
+                        Exit Sub
+                    End If
+                End If
+
+            Else
+
+                If MsgBox("Wish to Print Invoice?", MsgBoxStyle.YesNo) = vbYes Then
+                    OBJINVOICE.FRMSTRING = "PROFORMAINVOICE"
+                Else
+                    Exit Sub
+                End If
+
+            End If
+            'OBJINVOICE.FRMSTRING = "PROFORMAINVOICE"
             OBJINVOICE.BLANKPAPER = CHKBLANKPAPER.Checked
             OBJINVOICE.IGSTFORMAT = False
             OBJINVOICE.INVOICECOPYNAME = "CUSTOMER COPY"
@@ -3937,6 +3958,11 @@ LINE1:
                 LBLAGENT.Text = "Indent Name"
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
+                CMBQUALITY.TabStop = False
+                CMBSHADE.TabStop = False
+                TXTCUT.TabStop = False
+                TXTMTRS.TabStop = False
+
             End If
         Catch ex As Exception
             Throw ex

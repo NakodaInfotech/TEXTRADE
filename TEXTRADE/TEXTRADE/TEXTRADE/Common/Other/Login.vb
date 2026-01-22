@@ -527,7 +527,7 @@ line1:
                     'End If
                 ElseIf ClientName = "MANMANDIR" Then
                     HIDESAMPLEMODULE = False
-                    If Now.Date > DateTime.Parse("15.01.2026 00:00") Then
+                    If Now.Date > DateTime.Parse("15.01.2027 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -714,7 +714,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "POOJA" Then
-                    If Now.Date > DateTime.Parse("15.01.2026 00:00") Then
+                    If Now.Date > DateTime.Parse("15.01.2027 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
@@ -1131,7 +1131,7 @@ LINE1:
                     End If
 
                     Dim OBJRPT As New clsReportDesigner("MIS Report", System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx", 0)
-                    OBJRPT.MISALLDAILY_EXCEL(CmpId, YearId, Now.Date, Now.Date)
+                    OBJRPT.MISALLDAILY_EXCELAVIS(CmpId, YearId, Now.Date, Now.Date)
                     Dim ALATTACHMENT As New ArrayList
                     ALATTACHMENT.Add(System.AppDomain.CurrentDomain.BaseDirectory & "MIS Report.xlsx")
                     sendemail("rm@avisindustries.in,gm@avisindustries.in,aroraaoc@gmail.com,infoavisindustries@gmail.com", ALATTACHMENT(0), "MIS Report", "MIS REPORT AS ON " & Format(Now.Date, "dd/MM/yyyy"), ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
