@@ -20,6 +20,8 @@ Public Class SaleReturn
     Dim PARTYCHALLANNO As String
     Dim a As Integer = 0
     Dim col As New DataGridViewCheckBoxColumn
+    Private DT As DataTable
+
 
     Public Sub New()
 
@@ -2963,6 +2965,7 @@ LINE1:
             Dim DT As New DataTable
             DT = objpayment.GETBILLS(CmpId, CMBNAME.Text.Trim, Locationid, YearId)
             If DT.Rows.Count > 0 Then SETGRIDINVOICE(DT)
+            CreateFilterTextBoxes()
         Catch ex As Exception
             Throw ex
         End Try
@@ -2972,7 +2975,7 @@ LINE1:
         Try
             'FOR ADDING NEW CHKCOL IN GRIDBILL
 
-            DT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+            'DT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
             GRIDBILL.DataSource = DT
             If a = 0 Then
                 GRIDBILL.Columns.Insert(0, col)
@@ -4643,6 +4646,17 @@ NEXTLINE:
         FILLCMBBILLNO()
     End Sub
 
+    'Private Sub gridbill_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs)
+    '    Try
+    '        If GRIDBILL.ColumnCount = 15 And e.Column.Index > 1 Then
+    '            e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+    '            e.Handled = True
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+
     Private Sub cmbqtyunit_Enter(sender As Object, e As EventArgs) Handles cmbqtyunit.Enter
         Try
             If cmbqtyunit.Text.Trim = "" Then fillunit(cmbqtyunit)
@@ -4718,4 +4732,129 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+#Region "AUTOSEARCHTEXTBOX"
+
+    Public filterTextBoxes As New List(Of TextBox)
+
+    ' Call this after setting new data (e.g., on "Display" click)
+    Public Sub CreateFilterTextBoxes()
+
+
+        ''REMOVE OLD TEXTBOXES AND THEN RECREATE
+        'For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+        '    If TypeOf groupbill.Controls(i) Is TextBox Then
+        '        groupbill.Controls.RemoveAt(i)
+        '    End If
+        'Next
+        'filterTextBoxes.Clear()
+        'If GRIDBILL.Columns.Count = 0 Then Exit Sub
+        'Dim xPos As Integer = GRIDBILL.RowHeadersVisible * GRIDBILL.RowHeadersWidth
+        'For Each col As DataGridViewColumn In GRIDBILL.Columns
+        '    If col.Visible And col.HeaderText <> "" Then
+        '        Dim txt As New TextBox()
+        '        txt.Width = col.Width
+        '        txt.Left = GRIDBILL.GetCellDisplayRectangle(col.Index, -1, True).Left + 5
+        '        txt.Top = 19 ' Or a header-compliant Y offset
+        '        txt.Tag = col.Index
+        '        txt.Name = "TXT" & col.Index
+        '        AddHandler txt.TextChanged, AddressOf FilterGrid
+        '        groupbill.Controls.Add(txt)
+        '        filterTextBoxes.Add(txt)
+        '        If ClientName <> "ABHEE" Then txt.TabStop = False
+        '    End If
+        'Next
+
+        ' REMOVE OLD TEXTBOXES
+        For i As Integer = groupbill.Controls.Count - 1 To 0 Step -1
+            If TypeOf groupbill.Controls(i) Is TextBox Then
+                groupbill.Controls.RemoveAt(i)
+            End If
+        Next
+        Dim xPos As Integer = GRIDBILL.Left + IIf(GRIDBILL.RowHeadersVisible, GRIDBILL.RowHeadersWidth, 0)
+        Dim yPos As Integer = GRIDBILL.Top + GRIDBILL.ColumnHeadersHeight - 49
+
+        For Each col As DataGridViewColumn In GRIDBILL.Columns
+            If col.Visible Then
+
+                Dim txt As New TextBox()
+                txt.Width = col.Width
+                txt.Left = xPos
+                txt.Top = yPos
+                txt.Tag = col.Index
+                txt.Name = "TXT" & col.Index
+                AddHandler txt.TextChanged, AddressOf FilterGrid
+
+                groupbill.Controls.Add(txt)  ' IMPORTANT FIX
+                txt.BringToFront()
+
+                filterTextBoxes.Add(txt)
+
+                xPos += col.Width
+            End If
+        Next
+    End Sub
+
+    Public Sub FilterGrid(sender As Object, e As EventArgs)
+        Try
+            ' SAFETY CHECKS
+            If GRIDBILL.DataSource Is Nothing Then Exit Sub
+            If filterTextBoxes Is Nothing OrElse filterTextBoxes.Count = 0 Then Exit Sub
+
+            Dim src As DataTable = TryCast(GRIDBILL.DataSource, DataTable)
+            If src Is Nothing Then Exit Sub
+
+            Dim filterClauses As New List(Of String)()
+
+            For Each txt As TextBox In filterTextBoxes
+                If txt Is Nothing OrElse txt.Tag Is Nothing Then Continue For
+
+                Dim colIndex As Integer = CInt(txt.Tag)
+                If colIndex < 0 OrElse colIndex >= GRIDBILL.Columns.Count Then Continue For
+
+                Dim colName As String = GRIDBILL.Columns(colIndex).DataPropertyName
+                If String.IsNullOrEmpty(colName) OrElse Not src.Columns.Contains(colName) Then Continue For
+
+                Dim filterText As String = txt.Text.Trim().Replace("'", "''")
+                If filterText = "" Then Continue For
+
+                Dim colType As Type = src.Columns(colName).DataType
+
+                If colType Is GetType(String) Then
+                    filterClauses.Add($"[{colName}] LIKE '%{filterText}%'")
+
+                ElseIf colType Is GetType(Integer) OrElse colType Is GetType(Double) OrElse colType Is GetType(Decimal) Then
+                    Dim num As Double
+                    If Double.TryParse(filterText, num) Then
+                        filterClauses.Add($"[{colName}] = {num}")
+                    End If
+
+                ElseIf colType Is GetType(DateTime) Then
+                    Dim d As DateTime
+                    If DateTime.TryParse(filterText, d) Then
+                        filterClauses.Add($"[{colName}] = #{d:MM/dd/yyyy}#")
+                    End If
+                End If
+            Next
+
+            src.DefaultView.RowFilter = String.Join(" AND ", filterClauses)
+
+        Catch ex As Exception
+            MsgBox("Error while filtering: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub gridbill_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles GRIDBILL.SortCompare
+        Try
+            If GRIDBILL.ColumnCount = 15 And e.Column.Index > 1 Then
+                e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
+
+
 End Class
