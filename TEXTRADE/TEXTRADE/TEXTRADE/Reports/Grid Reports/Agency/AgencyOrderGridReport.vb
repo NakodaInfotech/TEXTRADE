@@ -76,8 +76,12 @@ Public Class AgencyOrderGridReport
 
             SOCLAUSE = " AND 1=1 "
 
-            If CMBBUYER.Text <> "" Then SOCLAUSE = SOCLAUSE & " and BUYERLEDGERS.ACC_CMPNAME='" & CMBBUYER.Text.Trim & "'"
-            If CMBSELLER.Text <> "" Then SOCLAUSE = SOCLAUSE & " and SELLERLEDGERS.ACC_CMPNAME='" & CMBSELLER.Text.Trim & "'"
+            If CMBBUYER.Text <> "" Then
+                If CMBBUYER.Text.Trim = "ABHEE FABRICS LLP [ BUYER ]" Then SOCLAUSE = SOCLAUSE & " AND  ALLSALEORDER.[TYPE] = 'PURCHASEORDER' " Else SOCLAUSE = SOCLAUSE & " and BUYERLEDGERS.ACC_CMPNAME='" & CMBBUYER.Text.Trim & "'"
+            End If
+            If CMBSELLER.Text <> "" Then
+                If CMBSELLER.Text.Trim = "ABHEE FABRICS LLP [ SELLER ]" Then SOCLAUSE = SOCLAUSE & " AND ALLSALEORDER.[TYPE] = 'SALEORDER' " Else SOCLAUSE = SOCLAUSE & " and SELLERLEDGERS.ACC_CMPNAME='" & CMBSELLER.Text.Trim & "'"
+            End If
             If chkdate.Checked = True Then SOCLAUSE &= " AND ALLSALEORDER.SO_date BETWEEN '" & Format(dtfrom.Value.Date, "YYYY-MM-dd") & "' AND '" & Format(dtto.Value.Date, "YYYY-MM-dd") & "'"
 
 

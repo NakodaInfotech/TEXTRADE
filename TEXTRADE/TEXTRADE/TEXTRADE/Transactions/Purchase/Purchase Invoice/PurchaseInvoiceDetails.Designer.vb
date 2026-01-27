@@ -90,6 +90,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOMPLANTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -101,7 +102,7 @@ Partial Class PurchaseInvoiceDetails
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,7 +208,7 @@ Partial Class PurchaseInvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE, Me.GCREATED, Me.GCHANGEDATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE, Me.GCREATED, Me.GCHANGEDATE, Me.GTDSAMT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -774,6 +775,14 @@ Partial Class PurchaseInvoiceDetails
         Me.GCREATED.VisibleIndex = 50
         Me.GCREATED.Width = 100
         '
+        'GCHANGEDATE
+        '
+        Me.GCHANGEDATE.Caption = "Change Dt"
+        Me.GCHANGEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCHANGEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
+        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -913,13 +922,15 @@ Partial Class PurchaseInvoiceDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GCHANGEDATE
+        'GTDSAMT
         '
-        Me.GCHANGEDATE.Caption = "Change Dt"
-        Me.GCHANGEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GCHANGEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
-        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        Me.GTDSAMT.Caption = "TDS Amt"
+        Me.GTDSAMT.DisplayFormat.FormatString = "0.00"
+        Me.GTDSAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTDSAMT.FieldName = "TDSAMT"
+        Me.GTDSAMT.Name = "GTDSAMT"
+        Me.GTDSAMT.Visible = True
+        Me.GTDSAMT.VisibleIndex = 51
         '
         'PurchaseInvoiceDetails
         '
@@ -1019,4 +1030,5 @@ Partial Class PurchaseInvoiceDetails
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHANGEDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTDSAMT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

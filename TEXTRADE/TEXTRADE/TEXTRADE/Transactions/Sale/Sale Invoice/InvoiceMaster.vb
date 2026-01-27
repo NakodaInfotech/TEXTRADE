@@ -5708,8 +5708,8 @@ LINE1:
 
     Private Sub TXTCRDAYS_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCRDAYS.Validated
         Try
-            If INVOICEDATE.Text <> "__/__/____" Then
-                If Val(TXTCRDAYS.Text.Trim) > 0 Then duedate.Value = Convert.ToDateTime(INVOICEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim))
+            If INVOICEDATE.Text <> "__/__/____" AndAlso Val(TXTCRDAYS.Text.Trim) > 0 Then
+                If ClientName = "ABHEE" Then duedate.Value = Convert.ToDateTime(CHANGEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim)) Else duedate.Value = Convert.ToDateTime(INVOICEDATE.Text).Date.AddDays(Val(TXTCRDAYS.Text.Trim))
             End If
         Catch ex As Exception
             Throw ex

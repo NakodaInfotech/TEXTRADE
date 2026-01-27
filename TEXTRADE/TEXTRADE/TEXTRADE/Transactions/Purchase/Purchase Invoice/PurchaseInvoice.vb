@@ -3879,7 +3879,13 @@ LINE1:
     Private Sub TXTCRDAYS_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCRDAYS.Validated
         Try
             If Val(TXTCRDAYS.Text.Trim) > 0 Then
-                If ClientName = "SAKARIA" Then DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(BILLDATE.Text).Date) Else DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(DTPARTYBILLDATE.Text).Date)
+                If ClientName = "SAKARIA" Then
+                    DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(BILLDATE.Text).Date)
+                ElseIf ClientName = "ABHEE" Then
+                    DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(CHANGEDATE.Text).Date)
+                Else
+                    DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(DTPARTYBILLDATE.Text).Date)
+                End If
             End If
         Catch ex As Exception
             Throw ex
