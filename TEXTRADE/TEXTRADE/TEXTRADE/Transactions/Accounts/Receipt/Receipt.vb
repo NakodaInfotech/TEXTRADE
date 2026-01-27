@@ -1928,7 +1928,7 @@ LINE1:
                 If txtchqno.Text.Trim <> "" And txtchqno.Text.Trim <> "RTGS" And txtchqno.Text.Trim <> "NEFT" And txtchqno.Text.Trim <> "IMPS" And txtchqno.Text.Trim <> "ONLINE" And txtchqno.Text.Trim <> "GPAY" And txtchqno.Text.Trim <> "UPI" Then
                     'checking whether CHQNO IS ALREADY PAID WITH THE SAME BANK OR NOT....
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH(" RECEIPT_INITIALS", "", " RECEIPTMASTER ", " AND RECEIPT_BANKNAME = '" & CMBPARTYBANK.Text.Trim & "' AND RECEIPT_CHQNO = '" & txtchqno.Text.Trim & "' AND RECEIPT_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH(" RECEIPT_INITIALS", "", " RECEIPTMASTER INNER JOIN LEDGERS ON RECEIPT_LEDGERID = LEDGERS.ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND RECEIPT_BANKNAME = '" & CMBPARTYBANK.Text.Trim & "' AND RECEIPT_CHQNO = '" & txtchqno.Text.Trim & "' AND RECEIPT_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         If (EDIT = False) Or (EDIT = True And CHQNO <> txtchqno.Text.Trim) Then
                             MsgBox("Chq. No. Already Present with this Bank in Receipt No." & DT.Rows(0).Item(0), MsgBoxStyle.Critical, "TEXTRADE")

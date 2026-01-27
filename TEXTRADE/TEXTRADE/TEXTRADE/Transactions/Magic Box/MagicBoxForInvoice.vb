@@ -389,7 +389,7 @@ Public Class MagicBoxForInvoice
                 If row.Cells(GLRNO.Index).Value <> "" And row.Cells(GTRANS.Index).Value <> "" Then
                     'CHECK LRNO IN BOTH THE TABLES
                     'Dim DTP As DataTable = OBJCMN.SEARCH(" AINVOICE_NO AS BILLNO", "", " AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id", " AND LEDGERS.ACC_CMPNAME = '" & row.Cells(GTRANS.Index).Value & "' AND AGENCYINVOICEMASTER.AINVOICE_LRNO = '" & row.Cells(GLRNO.Index).Value & "' AND AINVOICE_YEARID = " & YearId)
-                    Dim DTP As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_C1MPNAME AS NAME, AINVOICE_LRNO AS LRNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_LRNO AS LRNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_TRANSNAMEID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & row.Cells(GTRANS.Index).Value & "' AND T.LRNO = '" & row.Cells(GLRNO.Index).Value & "'")
+                    Dim DTP As DataTable = OBJCMN.SEARCH(" BILLNO", "", " (SELECT AINVOICE_no AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, AINVOICE_LRNO AS LRNO FROM AGENCYINVOICEMASTER INNER JOIN LEDGERS ON AGENCYINVOICEMASTER.AINVOICE_TRANSID = LEDGERS.Acc_id WHERE AINVOICE_YEARID = " & YearId & " UNION ALL SELECT BILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME, BILL_LRNO AS LRNO FROM PURCHASEMASTER INNER JOIN LEDGERS ON PURCHASEMASTER.BILL_TRANSNAMEID = LEDGERS.Acc_id WHERE BILL_YEARID = " & YearId & " ) AS T ", " AND T.NAME = '" & row.Cells(GTRANS.Index).Value & "' AND T.LRNO = '" & row.Cells(GLRNO.Index).Value & "'")
                     If DTP.Rows.Count > 0 Then
                         MsgBox("LR No " & row.Cells(GLRNO.Index).Value & " Already Exists In Entry No " & DTP.Rows(0).Item("BILLNO"))
                         GoTo NEXTLINE
@@ -1124,6 +1124,12 @@ NEXTLINE:
 
         GRIDMAGICBOX.Enabled = True
         Dim currentMainSrNo As Integer = GRIDMAGICBOX.RowCount + 1
+
+        If CMBBUYERS.Text.Trim <> "ABHEE FABRICS LLP [ BUYER ]" And CMBSELLERS.Text.Trim <> "ABHEE FABRICS LLP [ SELLER ]" Then
+            CHKTDS.Checked = False
+            CMBTDS.Text = ""
+            TXTTDSPER.Clear()
+        End If
 
         If GRIDDOUBLECLICK = False Then
             GRIDMAGICBOX.Rows.Add(Val(txtsrno.Text.Trim), TXTPARTYBILLNO.Text.Trim, TXTLR.Text.Trim, TXTPONO.Text.Trim, Format(BILLDATE.Value.Date, "dd/MM/yyyy"), Format(ENTRYDATE.Value.Date, "dd/MM/yyyy"), CMBSELLERS.Text.Trim, CMBBUYERS.Text.Trim, Val(txtcrdays.Text), TXTPOSRNO.Text.Trim, TXTPOTYPE.Text.Trim, cmbitemname.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTFOLD.Text.Trim), "0.00"), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATES.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), Format(Val(TXTCHRGS.Text.Trim), "0.00"), Format(Val(TXTSUBTOTAL.Text.Trim), "0.00"), Format(Val(TXTCGSTPER.Text.Trim), "0.00"), Format(Val(TXTCGSTAMT.Text.Trim), "0.00"), Format(Val(TXTSGSTPER.Text.Trim), "0.00"), Format(Val(TXTSGSTAMT.Text.Trim), "0.00"), Format(Val(TXTIGSTPER.Text.Trim), "0.00"), Format(Val(TXTIGSTAMT.Text.Trim), "0.00"), Val(TXTROUNDOFF.Text.Trim), Format(Val(TXTGRANDTOTAL.Text.Trim), "0.00"), Format(Val(TXTCOMMPER.Text.Trim), "0.00"), CMBCOMM.Text.Trim, CMBTRANS.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, TXTHSN.Text.Trim, CHKMANUAL.CheckState, CHKMANUALROUND.CheckState, CHKTDS.CheckState, CMBTDS.Text.Trim, Val(TXTTDSPER.Text.Trim), Val(TXTTDSAMT.Text.Trim))
@@ -2397,6 +2403,10 @@ line1:
             ALPARAVAL.Add("")   'COMPLAINTBY
             ALPARAVAL.Add("")   'COMPLAINTDATE
             ALPARAVAL.Add(0)    'TEMPSOLD
+            ALPARAVAL.Add(Format(Convert.ToDateTime(GRIDMAGICBOX.Rows(ROWNO).Cells(GBILLDATE.Index).Value).Date, "MM/dd/yyyy"))   'CHANGEDATE
+
+
+
             Dim OBJPI As New ClsPurchaseMaster()
             OBJPI.alParaval = ALPARAVAL
             Dim DT As DataTable = OBJPI.SAVE()

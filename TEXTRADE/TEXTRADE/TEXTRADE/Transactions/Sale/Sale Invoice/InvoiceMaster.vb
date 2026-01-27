@@ -71,6 +71,7 @@ Public Class InvoiceMaster
 
         TXTDOCKETNO.Clear()
         DTDOCKETDATE.Value = Now.Date
+        CHANGEDATE.Text = Now.Date
         TXTCOMPLAINTDATE.Clear()
         TXTCOURIER.Clear()
         TXTCOMPLAINT.Clear()
@@ -618,7 +619,7 @@ Public Class InvoiceMaster
                     TXTINWORDSUSD.Text = dr("INWORDSUSD")
 
 
-
+                    CHANGEDATE.Text = Format(Convert.ToDateTime(dr("CHANGEDATE")), "dd/MM/yyyy")
 
 
                     TXTMULTISONO.Text = Convert.ToString(dr("PONO"))
@@ -1393,6 +1394,7 @@ Public Class InvoiceMaster
             alParaval.Add(TXTCOMPLAINT.Text.Trim)
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
+            alParaval.Add(Format(Convert.ToDateTime(CHANGEDATE.Text).Date, "MM/dd/yyyy"))
 
             Dim objclsPurord As New ClsInvoiceMaster()
             objclsPurord.alParaval = alParaval
@@ -6406,6 +6408,10 @@ NORATE:
                     CMBGRIDTRANS.Left = TXTGRIDLRNO.Left + TXTGRIDLRNO.Width
 
 
+                    LBLAGENT.Text = "Change Dt"
+                    CMBAGENT.Visible = False
+                    CHANGEDATE.Visible = True
+
                     'THIS IS DONE SO THAT USER CAN ENTER DATA MANUALLY
                     'SOMETIME THEY DELETE THE INV FROM SOFTWARE AND FORGET TO DELETE FROM PORTAL,
                     'THAT TIME WE NEED TO CREATE THE INVOICE AGAIN MANUALLY
@@ -10965,4 +10971,21 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CHANGEDATE_Validating(sender As Object, e As CancelEventArgs) Handles CHANGEDATE.Validating
+        Try
+            If CHANGEDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(CHANGEDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                Else
+                    duedate.Text = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(CHANGEDATE.Text).Date)
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

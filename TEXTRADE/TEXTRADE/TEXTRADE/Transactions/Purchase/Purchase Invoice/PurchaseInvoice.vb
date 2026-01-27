@@ -53,6 +53,7 @@ Public Class PurchaseMaster
         CMBSERVICETYPE.Enabled = True
 
         If ClientName <> "KCRAYON" Then BILLDATE.Text = Now.Date
+        CHANGEDATE.Text = Now.Date
         tstxtbillno.Clear()
 
         If ALLOWMANUALBILLNO = True Then
@@ -493,6 +494,7 @@ Public Class PurchaseMaster
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
                         If dr("HOLDINTCALC") = 0 Then CHKINTCALC.Checked = False Else CHKINTCALC.Checked = True
                         If dr("TEMPSOLD") = 0 Then CHKTEMPSOLD.Checked = False Else CHKTEMPSOLD.Checked = True
+                        CHANGEDATE.Text = Format(Convert.ToDateTime(dr("CHANGEDATE")).Date, "dd/MM/yyyy")
 
                         'Item Grid
                         GRIDBILL.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGNNO"), dr("COLOR"), Val(dr("AQTY")), Val(dr("FOLDPER")), dr("PRINTDESC"), dr("LOTNO"), dr("BALENO").ToString, Val(dr("QTY")), dr("UNIT").ToString, Val(dr("CUT")), Val(dr("MTRS")), Val(dr("WT")), Val(dr("RATE")), dr("PER").ToString, Val(dr("AMT")), Val(dr("DISCPER")), Val(dr("DISCAMT")), Val(dr("SPDISCPER")), Val(dr("SPDISCAMT")), Val(dr("OTHERAMT")), Val(dr("TAXABLEAMT")), Val(dr("CGSTPER")), Val(dr("CGSTAMT")), Val(dr("SGSTPER")), Val(dr("SGSTAMT")), Val(dr("IGSTPER")), Val(dr("IGSTAMT")), Val(dr("GRIDTOTAL")), dr("GRNNO"), dr("GRNGRIDSRNO"), dr("GRIDTYPE"), dr("GRIDDONE"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")))
@@ -1068,6 +1070,8 @@ Public Class PurchaseMaster
             alParaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alParaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             If CHKTEMPSOLD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
+            alParaval.Add(Format(Convert.ToDateTime(CHANGEDATE.Text).Date, "MM/dd/yyyy"))
+
 
             Dim OBJINV As New ClsPurchaseMaster
             OBJINV.alParaval = alParaval
@@ -1325,153 +1329,153 @@ Public Class PurchaseMaster
 
         'FOR ABHEE WE HAVE WRITTEN SEPERATE CODE
         'FOR ORDER CHECKING, FIRST REMOVE GDNQTY
-        If ClientName = "ABHEE" Then
-            Dim TEMPORDERROWNO As Integer = -1
-            Dim TEMPORDERMATCH As Boolean = False
-            If GRIDORDER.RowCount > 0 Then
+        '        If ClientName = "ABHEE" Then
+        '            Dim TEMPORDERROWNO As Integer = -1
+        '            Dim TEMPORDERMATCH As Boolean = False
+        '            If GRIDORDER.RowCount > 0 Then
 
-                For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
-                    ORDROW.Cells(OGRNQTY.Index).Value = 0
-                    ORDROW.Cells(OGRNMTRS.Index).Value = 0
-                Next
+        '                For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
+        '                    ORDROW.Cells(OGRNQTY.Index).Value = 0
+        '                    ORDROW.Cells(OGRNMTRS.Index).Value = 0
+        '                Next
 
-                For Each CHROW As DataGridViewRow In GRIDBILL.Rows
-                    CHROW.Cells(GGRNNO.Index).Value = 0
-                    CHROW.Cells(GGRNSRNO.Index).Value = 0
-                Next
-                'GET MULTISONO
-                Dim MULTISONO() As String = (From row As DataGridViewRow In GRIDORDER.Rows.Cast(Of DataGridViewRow)() Where Not row.IsNewRow Select CStr(row.Cells(OFROMNO.Index).Value)).Distinct.ToArray
-                TXTMULTIPONO.Clear()
-                For Each a As String In MULTISONO
-                    If TXTMULTIPONO.Text = "" Then
-                        TXTMULTIPONO.Text = a
-                    Else
-                        TXTMULTIPONO.Text = TXTMULTIPONO.Text & "," & a
-                    End If
-                Next
+        '                For Each CHROW As DataGridViewRow In GRIDBILL.Rows
+        '                    CHROW.Cells(GGRNNO.Index).Value = 0
+        '                    CHROW.Cells(GGRNSRNO.Index).Value = 0
+        '                Next
+        '                'GET MULTISONO
+        '                Dim MULTISONO() As String = (From row As DataGridViewRow In GRIDORDER.Rows.Cast(Of DataGridViewRow)() Where Not row.IsNewRow Select CStr(row.Cells(OFROMNO.Index).Value)).Distinct.ToArray
+        '                TXTMULTIPONO.Clear()
+        '                For Each a As String In MULTISONO
+        '                    If TXTMULTIPONO.Text = "" Then
+        '                        TXTMULTIPONO.Text = a
+        '                    Else
+        '                        TXTMULTIPONO.Text = TXTMULTIPONO.Text & "," & a
+        '                    End If
+        '                Next
 
-                Dim ALLOWEDQTY, BALQTY As Double
-                ALLOWEDQTY = 0
-                BALQTY = 0
+        '                Dim ALLOWEDQTY, BALQTY As Double
+        '                ALLOWEDQTY = 0
+        '                BALQTY = 0
 
-                'ORDERON PCS
-                If GRIDORDER.Rows(0).Cells(OORDERON.Index).Value = "PCS" Then
+        '                'ORDERON PCS
+        '                If GRIDORDER.Rows(0).Cells(OORDERON.Index).Value = "PCS" Then
 
-                    For Each ROW As DataGridViewRow In GRIDBILL.Rows
-                        For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
-                            ' Check for matching item, design, and color (shade for PURCHASE)
-                            If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(OITEMNAME.Index).Value And ROW.Cells(GDESIGNNO.Index).Value = ORDROW.Cells(ODESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(OCOLOR.Index).Value Then
+        '                    For Each ROW As DataGridViewRow In GRIDBILL.Rows
+        '                        For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
+        '                            ' Check for matching item, design, and color (shade for PURCHASE)
+        '                            If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(OITEMNAME.Index).Value And ROW.Cells(GDESIGNNO.Index).Value = ORDROW.Cells(ODESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(OCOLOR.Index).Value Then
 
-                                TEMPORDERMATCH = True
+        '                                TEMPORDERMATCH = True
 
-                                BALQTY = Val(ROW.Cells(gQty.Index).Value) - ALLOWEDQTY
-                                ALLOWEDQTY = Val(ORDROW.Cells(OMTRS.Index).Value) - Val(ORDROW.Cells(OGRNMTRS.Index).Value)
-
-
-                                If (Val(ORDROW.Cells(OGRNMTRS.Index).Value) = 0 And Val(ORDROW.Cells(OMTRS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGRNMTRS.Index).Value) >= Val(ORDROW.Cells(OMTRS.Index).Value)) Then
-                                    TEMPORDERROWNO = ORDROW.Index
-
-                                    ORDROW.Cells(OGRNMTRS.Index).Value = ALLOWEDQTY
-                                    BALQTY = Val(ROW.Cells(gQty.Index).Value) - ALLOWEDQTY
-
-                                    ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
-
-                                    GoTo CHECKNEXTLINEABHEEPCS
-                                End If
-
-                                ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
-                                ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
-                                TEMPORDERROWNO = -1
-                                Exit For
-CHECKNEXTLINEABHEEPCS:
-                            End If
-                        Next
-
-                        ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
-                        If TEMPORDERROWNO >= 0 Then
-                            GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
-                            ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
-                            TEMPORDERROWNO = -1
-                        End If
-
-                        ' If no matching was found, change row color and ask for user confirmation
-                        If TEMPORDERMATCH = False Then
-                            ROW.DefaultCellStyle.BackColor = Color.LightGreen
-
-                            If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
-                                bln = False
-                            End If
-                        End If
-
-                        TEMPORDERMATCH = False
-                    Next
-
-                Else
-                    'ORDERON MTRS
-                    For Each ROW As DataGridViewRow In GRIDBILL.Rows
-                        For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
-                            ' Check for matching item, design, and color (shade for PURCHASE)
-                            If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(OITEMNAME.Index).Value And ROW.Cells(GDESIGNNO.Index).Value = ORDROW.Cells(ODESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(OCOLOR.Index).Value Then
-
-                                TEMPORDERMATCH = True
-
-                                BALQTY = Val(ROW.Cells(GMTRS.Index).Value) - ALLOWEDQTY
-                                ALLOWEDQTY = Val(ORDROW.Cells(OMTRS.Index).Value) - Val(ORDROW.Cells(OGRNMTRS.Index).Value)
+        '                                BALQTY = Val(ROW.Cells(gQty.Index).Value) - ALLOWEDQTY
+        '                                ALLOWEDQTY = Val(ORDROW.Cells(OMTRS.Index).Value) - Val(ORDROW.Cells(OGRNMTRS.Index).Value)
 
 
-                                If (Val(ORDROW.Cells(OGRNMTRS.Index).Value) = 0 And Val(ORDROW.Cells(OMTRS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGRNMTRS.Index).Value) >= Val(ORDROW.Cells(OMTRS.Index).Value)) Then
-                                    TEMPORDERROWNO = ORDROW.Index
+        '                                If (Val(ORDROW.Cells(OGRNMTRS.Index).Value) = 0 And Val(ORDROW.Cells(OMTRS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGRNMTRS.Index).Value) >= Val(ORDROW.Cells(OMTRS.Index).Value)) Then
+        '                                    TEMPORDERROWNO = ORDROW.Index
 
-                                    ORDROW.Cells(OGRNMTRS.Index).Value = ALLOWEDQTY
-                                    BALQTY = Val(ROW.Cells(GMTRS.Index).Value) - ALLOWEDQTY
+        '                                    ORDROW.Cells(OGRNMTRS.Index).Value = ALLOWEDQTY
+        '                                    BALQTY = Val(ROW.Cells(gQty.Index).Value) - ALLOWEDQTY
 
-                                    ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+        '                                    ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
 
-                                    GoTo CHECKNEXTLINEABHEEMTRS
-                                End If
+        '                                    GoTo CHECKNEXTLINEABHEEPCS
+        '                                End If
 
-                                'NO NEED TO UPDATE PCS 
-                                'ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
-                                ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
-                                ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
-                                TEMPORDERROWNO = -1
-                                Exit For
-CHECKNEXTLINEABHEEMTRS:
-                            End If
-                        Next
+        '                                ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+        '                                ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+        '                                TEMPORDERROWNO = -1
+        '                                Exit For
+        'CHECKNEXTLINEABHEEPCS:
+        '                            End If
+        '                        Next
 
-                        ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
-                        If TEMPORDERROWNO >= 0 Then
-                            'NO NEED TO UPDATE PCS
-                            'GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
-                            GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
-                            ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
-                            TEMPORDERROWNO = -1
-                        End If
+        '                        ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
+        '                        If TEMPORDERROWNO >= 0 Then
+        '                            GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+        '                            ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
+        '                            TEMPORDERROWNO = -1
+        '                        End If
 
-                        ' If no matching was found, change row color and ask for user confirmation
-                        If TEMPORDERMATCH = False Then
-                            ROW.DefaultCellStyle.BackColor = Color.LightGreen
+        '                        ' If no matching was found, change row color and ask for user confirmation
+        '                        If TEMPORDERMATCH = False Then
+        '                            ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
-                            If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
-                                bln = False
-                            End If
-                        End If
+        '                            If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+        '                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+        '                                bln = False
+        '                            End If
+        '                        End If
 
-                        TEMPORDERMATCH = False
-                    Next
-                End If
+        '                        TEMPORDERMATCH = False
+        '                    Next
 
-            End If
-        End If
+        '                Else
+        '                    'ORDERON MTRS
+        '                    For Each ROW As DataGridViewRow In GRIDBILL.Rows
+        '                        For Each ORDROW As DataGridViewRow In GRIDORDER.Rows
+        '                            ' Check for matching item, design, and color (shade for PURCHASE)
+        '                            If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(OITEMNAME.Index).Value And ROW.Cells(GDESIGNNO.Index).Value = ORDROW.Cells(ODESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(OCOLOR.Index).Value Then
+
+        '                                TEMPORDERMATCH = True
+
+        '                                BALQTY = Val(ROW.Cells(GMTRS.Index).Value) - ALLOWEDQTY
+        '                                ALLOWEDQTY = Val(ORDROW.Cells(OMTRS.Index).Value) - Val(ORDROW.Cells(OGRNMTRS.Index).Value)
+
+
+        '                                If (Val(ORDROW.Cells(OGRNMTRS.Index).Value) = 0 And Val(ORDROW.Cells(OMTRS.Index).Value) < Val(BALQTY)) Or (Val(ORDROW.Cells(OGRNMTRS.Index).Value) >= Val(ORDROW.Cells(OMTRS.Index).Value)) Then
+        '                                    TEMPORDERROWNO = ORDROW.Index
+
+        '                                    ORDROW.Cells(OGRNMTRS.Index).Value = ALLOWEDQTY
+        '                                    BALQTY = Val(ROW.Cells(GMTRS.Index).Value) - ALLOWEDQTY
+
+        '                                    ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+
+        '                                    GoTo CHECKNEXTLINEABHEEMTRS
+        '                                End If
+
+        '                                'NO NEED TO UPDATE PCS 
+        '                                'ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+        '                                ORDROW.Cells(OGRNMTRS.Index).Value = Val(ORDROW.Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+        '                                ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+        '                                TEMPORDERROWNO = -1
+        '                                Exit For
+        'CHECKNEXTLINEABHEEMTRS:
+        '                            End If
+        '                        Next
+
+        '                        ' If no further matching is found but we have TEMPORDERROWNO, add value in that row
+        '                        If TEMPORDERROWNO >= 0 Then
+        '                            'NO NEED TO UPDATE PCS
+        '                            'GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+        '                            GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+        '                            ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
+        '                            TEMPORDERROWNO = -1
+        '                        End If
+
+        '                        ' If no matching was found, change row color and ask for user confirmation
+        '                        If TEMPORDERMATCH = False Then
+        '                            ROW.DefaultCellStyle.BackColor = Color.LightGreen
+
+        '                            If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+        '                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+        '                                bln = False
+        '                            End If
+        '                        End If
+
+        '                        TEMPORDERMATCH = False
+        '                    Next
+        '                End If
+
+        '            End If
+        '        End If
 
 
 
 
         'FOR ORDER CHECKING, FIRST REMOVE GDNQTY
-        If ClientName = "NVAHAN" Or ClientName = "MASHOK" Then
+        If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
             Dim TEMPORDERROWNO As Integer = -1
             Dim TEMPORDERMATCH As Boolean = False
             If GRIDORDER.RowCount > 0 Then
@@ -4166,7 +4170,8 @@ LINE1:
             GFOLDPER.Visible = True
             TXTFOLDPER.Visible = True
             TXTAQTY.Visible = True
-
+            LBLCHANGEDATE.Visible = True
+            CHANGEDATE.Visible = True
         End If
 
 
@@ -4271,12 +4276,12 @@ LINE1:
                     If Val(TXTCRDAYS.Text) = 0 Then DUEDATE.Text = BILLDATE.Text
                     'SAME DATE FOR CHALLANDATE / LRDATE 
                     If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Or ClientName = "SAFFRONOFF" Or ClientName = "SAFFRON" Or ClientName = "SOFTAS" Then
-                        DTPARTYBILLDATE.Text = BILLDATE.Text
-                        lrdate.Value = Convert.ToDateTime(BILLDATE.Text).Date
-                        CHALLANDATE.Value = Convert.ToDateTime(BILLDATE.Text).Date
+                            DTPARTYBILLDATE.Text = BILLDATE.Text
+                            lrdate.Value = Convert.ToDateTime(BILLDATE.Text).Date
+                            CHALLANDATE.Value = Convert.ToDateTime(BILLDATE.Text).Date
+                        End If
                     End If
                 End If
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -6170,6 +6175,24 @@ NEXTLINE:
                     MsgBox("Enter Proper Date")
                     e.Cancel = True
                     Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHANGEDATE_Validating(sender As Object, e As CancelEventArgs) Handles CHANGEDATE.Validating
+        Try
+            If CHANGEDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(CHANGEDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                Else
+                    DUEDATE.Text = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(CHANGEDATE.Text).Date)
                 End If
             End If
         Catch ex As Exception
