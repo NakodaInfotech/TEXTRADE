@@ -1948,7 +1948,7 @@ PRINT 1,1")
                 oWrite.WriteLine("TEXT 751,270,""ROMAN.TTF"",180,1,14,""SHADE""")
                 oWrite.WriteLine("TEXT 594,329,""ROMAN.TTF"",180,1,14,"":""")
                 oWrite.WriteLine("TEXT 594,270,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 561,329,""ROMAN.TTF"",""" & DESIGNNO & """")
+                oWrite.WriteLine("TEXT 561,329,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """")
                 oWrite.WriteLine("TEXT 561,270,""ROMAN.TTF"",180,1,14,""" & SHADE & """")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER

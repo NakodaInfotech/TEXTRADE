@@ -424,11 +424,13 @@
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackLotReport.vb">
       <DependentUpon>CutPackLotReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackItemReport.vb">
       <AutoGen>True</AutoGen>
