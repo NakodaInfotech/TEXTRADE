@@ -37,10 +37,10 @@ Partial Class SelectInvoice
         Me.GINVPRINTINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSHIPTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GSHIPTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,7 +160,7 @@ Partial Class SelectInvoice
         '
         'GDATE
         '
-        Me.GDATE.Caption = "Inc Date"
+        Me.GDATE.Caption = "Inv Date"
         Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GDATE.FieldName = "INVDATE"
@@ -207,6 +207,14 @@ Partial Class SelectInvoice
         Me.GLRNO.VisibleIndex = 9
         Me.GLRNO.Width = 120
         '
+        'GSHIPTO
+        '
+        Me.GSHIPTO.Caption = "Ship To"
+        Me.GSHIPTO.FieldName = "SHIPTO"
+        Me.GSHIPTO.Name = "GSHIPTO"
+        Me.GSHIPTO.Visible = True
+        Me.GSHIPTO.VisibleIndex = 10
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -241,14 +249,6 @@ Partial Class SelectInvoice
         Me.cmdok.TabIndex = 2
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GSHIPTO
-        '
-        Me.GSHIPTO.Caption = "Ship To"
-        Me.GSHIPTO.FieldName = "SHIPTO"
-        Me.GSHIPTO.Name = "GSHIPTO"
-        Me.GSHIPTO.Visible = True
-        Me.GSHIPTO.VisibleIndex = 10
         '
         'SelectInvoice
         '
