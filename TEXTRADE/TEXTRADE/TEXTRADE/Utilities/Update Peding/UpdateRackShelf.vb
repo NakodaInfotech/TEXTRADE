@@ -1,8 +1,6 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports DevExpress.CodeParser
-Imports DevExpress.Pdf.Xmp
 Imports System.IO
 
 Public Class UpdateRackShelf
@@ -485,10 +483,12 @@ LINE1:
                 Dim OBJRACK As New ClsUpdateRackShelf
 
                 ALPARAVAL.Add(TEMPENTRYNO)
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(Userid)
                 ALPARAVAL.Add(YearId)
                 OBJRACK.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJRACK.DELETE()
-                MsgBox("Entry Deleted Succesfully")
+                MsgBox("Entry Deleted Successfully")
                 CLEAR()
                 EDIT = False
                 DTUPDATEDATE.Focus()
