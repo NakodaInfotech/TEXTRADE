@@ -67,9 +67,7 @@ Partial Class UpdateHoldforIntCalc
         '
         resources.ApplyResources(Me.RBPENDING, "RBPENDING")
         Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
-        Me.RBPENDING.Checked = True
         Me.RBPENDING.Name = "RBPENDING"
-        Me.RBPENDING.TabStop = True
         Me.RBPENDING.UseVisualStyleBackColor = False
         '
         'CMDREFRESH
@@ -86,7 +84,9 @@ Partial Class UpdateHoldforIntCalc
         '
         resources.ApplyResources(Me.RBENTERED, "RBENTERED")
         Me.RBENTERED.BackColor = System.Drawing.Color.Transparent
+        Me.RBENTERED.Checked = True
         Me.RBENTERED.Name = "RBENTERED"
+        Me.RBENTERED.TabStop = True
         Me.RBENTERED.UseVisualStyleBackColor = False
         '
         'CMDSAVE

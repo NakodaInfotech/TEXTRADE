@@ -2500,7 +2500,6 @@ NEXTLINE:
             If CMBTDS.Text.Trim <> "" AndAlso Val(TXTTDSPER.Text.Trim) > 0 Then
 
                 For i As Integer = 0 To gridbill.Rows.Count - 1
-
                     Dim ROW As DataGridViewRow = gridbill.Rows(i)
 
                     ' skip new row
@@ -2513,7 +2512,7 @@ NEXTLINE:
                         If DT.Rows.Count > 0 AndAlso CBool(DT.Rows(0)("TDSONGTOTAL")) = True Then
                             ROW.Cells("TDS").Value = Format(Val(ROW.Cells("GRANDTOTAL").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
                         Else
-                            ROW.Cells("TDS").Value = Format(Val(ROW.Cells("INVBILLAMT").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+                            ROW.Cells("TDS").Value = Format((Val(ROW.Cells("GRANDTOTAL").Value) - (Val(ROW.Cells("GRANDTOTAL").Value) * 0.05)) * Val(TXTTDSPER.Text.Trim) / 100, "0")
                         End If
                     End If
                 Next
