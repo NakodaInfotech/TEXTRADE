@@ -108,7 +108,14 @@ Partial Class Receipt
         Me.Label23 = New System.Windows.Forms.Label()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.POSTINGDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.CMDAPPLYTDS = New System.Windows.Forms.Button()
+        Me.CMBTDS = New System.Windows.Forms.ComboBox()
+        Me.TXTTDSPER = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.CMDAUTOPOST = New System.Windows.Forms.Button()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.CHQDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
@@ -916,8 +923,15 @@ Partial Class Receipt
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.Lavender, System.Drawing.Color.Lavender)
+        Me.BlendPanel1.Controls.Add(Me.POSTINGDATE)
+        Me.BlendPanel1.Controls.Add(Me.CMDAPPLYTDS)
+        Me.BlendPanel1.Controls.Add(Me.CMBTDS)
+        Me.BlendPanel1.Controls.Add(Me.TXTTDSPER)
+        Me.BlendPanel1.Controls.Add(Me.Label19)
         Me.BlendPanel1.Controls.Add(Me.CMDAUTOPOST)
         Me.BlendPanel1.Controls.Add(Me.groupbill)
+        Me.BlendPanel1.Controls.Add(Me.Label20)
+        Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.CHQDATE)
         Me.BlendPanel1.Controls.Add(Me.Label16)
         Me.BlendPanel1.Controls.Add(Me.LBLWHATSAPP)
@@ -993,6 +1007,66 @@ Partial Class Receipt
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 531)
         Me.BlendPanel1.TabIndex = 0
         '
+        'POSTINGDATE
+        '
+        Me.POSTINGDATE.AsciiOnly = True
+        Me.POSTINGDATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.POSTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.POSTINGDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.POSTINGDATE.Location = New System.Drawing.Point(1086, 330)
+        Me.POSTINGDATE.Mask = "00/00/0000"
+        Me.POSTINGDATE.Name = "POSTINGDATE"
+        Me.POSTINGDATE.Size = New System.Drawing.Size(82, 23)
+        Me.POSTINGDATE.TabIndex = 1001
+        Me.POSTINGDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.POSTINGDATE.ValidatingType = GetType(Date)
+        '
+        'CMDAPPLYTDS
+        '
+        Me.CMDAPPLYTDS.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAPPLYTDS.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAPPLYTDS.FlatAppearance.BorderSize = 0
+        Me.CMDAPPLYTDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAPPLYTDS.ForeColor = System.Drawing.Color.Black
+        Me.CMDAPPLYTDS.Location = New System.Drawing.Point(1182, 387)
+        Me.CMDAPPLYTDS.Name = "CMDAPPLYTDS"
+        Me.CMDAPPLYTDS.Size = New System.Drawing.Size(80, 28)
+        Me.CMDAPPLYTDS.TabIndex = 1004
+        Me.CMDAPPLYTDS.Text = "Apply TDS"
+        Me.CMDAPPLYTDS.UseVisualStyleBackColor = False
+        '
+        'CMBTDS
+        '
+        Me.CMBTDS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTDS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTDS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBTDS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTDS.FormattingEnabled = True
+        Me.CMBTDS.Items.AddRange(New Object() {""})
+        Me.CMBTDS.Location = New System.Drawing.Point(1086, 360)
+        Me.CMBTDS.Name = "CMBTDS"
+        Me.CMBTDS.Size = New System.Drawing.Size(215, 22)
+        Me.CMBTDS.TabIndex = 1002
+        '
+        'TXTTDSPER
+        '
+        Me.TXTTDSPER.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTTDSPER.Location = New System.Drawing.Point(1086, 390)
+        Me.TXTTDSPER.Name = "TXTTDSPER"
+        Me.TXTTDSPER.Size = New System.Drawing.Size(76, 22)
+        Me.TXTTDSPER.TabIndex = 1003
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
+        Me.Label19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(1044, 393)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(36, 14)
+        Me.Label19.TabIndex = 1006
+        Me.Label19.Text = "TDS%"
+        '
         'CMDAUTOPOST
         '
         Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
@@ -1007,6 +1081,28 @@ Partial Class Receipt
         Me.CMDAUTOPOST.Text = "&Auto Post"
         Me.CMDAUTOPOST.UseVisualStyleBackColor = False
         Me.CMDAUTOPOST.Visible = False
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(1020, 363)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(62, 14)
+        Me.Label20.TabIndex = 1005
+        Me.Label20.Text = "TDS Name"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(1010, 335)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(75, 14)
+        Me.Label18.TabIndex = 1007
+        Me.Label18.Text = "Posting Date"
         '
         'CHQDATE
         '
@@ -2060,4 +2156,11 @@ Partial Class Receipt
     Friend WithEvents LBLCITY As Label
     Friend WithEvents LBLPRINT As Label
     Friend WithEvents CMDAUTOPOST As Button
+    Friend WithEvents POSTINGDATE As MaskedTextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents CMBTDS As ComboBox
+    Friend WithEvents CMDAPPLYTDS As Button
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents TXTTDSPER As TextBox
 End Class
