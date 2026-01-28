@@ -188,7 +188,9 @@ Public Class ClsUpdateRackShelf
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ENTRYNO", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(2)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(3)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
         Catch ex As Exception

@@ -542,10 +542,9 @@ SKIPINVOICE:
                         RPTINVOICE_ABHEE.DataDefinition.FormulaFields("BALQTY").Text = Val(DTSO.Rows(0).Item("SOQTY")) - Val(DTSO.Rows(0).Item("ISSQTY"))
                     End If
                     RPTINVOICE_ABHEE.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    If SHOWSIGNONINVOICE = True Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
+                    If INVOICECOPYNAME = "OFFICE COPY" Then RPTINVOICE_ABHEE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 Else
-                    CRPO.ReportSource = RPTINVOICE_TOTALLEFT
+                        CRPO.ReportSource = RPTINVOICE_TOTALLEFT
                     RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                     If BLANKPAPER = True Then RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If SHOWSIGNONINVOICE = True Then RPTINVOICE_TOTALLEFT.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -1144,7 +1143,7 @@ SKIPINVOICE:
                         OBJ.DataDefinition.FormulaFields("BALQTY").Text = Val(DTSO.Rows(0).Item("SOQTY")) - Val(DTSO.Rows(0).Item("ISSQTY"))
                     End If
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If INVOICECOPYNAME = "OFFICE COPY" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 Else
                     OBJ = New InvoiceReport_TOTALLEFT
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"

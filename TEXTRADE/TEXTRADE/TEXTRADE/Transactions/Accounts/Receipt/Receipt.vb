@@ -176,6 +176,9 @@ Public Class Receipt
         LBLSMS.Visible = False
         TXTSPECIALREMARKS.Clear()
 
+        CMBTDS.Text = ""
+        TXTTDSPER.Clear()
+
     End Sub
 
     Sub getmaxno_receiptmaster()
@@ -426,13 +429,14 @@ Public Class Receipt
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillregister(cmbregister, " and register_type = 'RECEIPT'")
             If CMBPARTYBANK.Text = "" Then FILLBANK(CMBPARTYBANK)
-
+            FILLNAME(CMBTDS, False, " AND LEDGERS.ACC_TDSAC = 1 and GROUPMASTER.GROUP_PRIMARY = 'Current Assets'")
 
             If ClientName = "MANSI" Or ClientName = "LAXMI" Then
                 ALLOWMANUALRECNO = True
             End If
             ACCDATE.Text = Now.Date
             CHQDATE.Text = Now.Date
+            POSTINGDATE.Text = Now.Date
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
@@ -2468,6 +2472,58 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    'Private Sub CMDAPPLYTDS_Click(sender As Object, e As EventArgs) Handles CMDAPPLYTDS.Click
+    '    Try
+    '        If CMBTDS.Text.Trim <> "" And Val(TXTTDSPER.Text.Trim) > 0 Then
+    '            For I As Integer = 0 To Val(gridbill.RowCount - 1)
+    '                Dim ROW As DataRow = gridbill.GetDataRow(I)
+    '                If ROW("CHK") = True Then
+    '                    Dim OBJCMN As New ClsCommon
+    '                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_TDSONGTOTAL,0) AS TDSONGTOTAL", "", " LEDGERS ", " AND LEDGERS.ACC_CMPNAME = '" & CMBTDS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+    '                    If DT.Rows.Count > 0 AndAlso Convert.ToBoolean(DT.Rows(0).Item("TDSONGTOTAL")) = True Then
+    '                        ROW("POSTAMT") = Format(Val(ROW("GRANDTOTAL")) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+    '                    Else
+    '                        ROW("POSTAMT") = Format(Val(ROW("TOTALTAXABLEAMT")) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+    '                    End If
+    '                End If
+    '            Next
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+
+
+    Private Sub CMDAPPLYTDS_Click(sender As Object, e As EventArgs) Handles CMDAPPLYTDS.Click
+        Try
+            If CMBTDS.Text.Trim <> "" AndAlso Val(TXTTDSPER.Text.Trim) > 0 Then
+
+                For i As Integer = 0 To gridbill.Rows.Count - 1
+
+                    Dim ROW As DataGridViewRow = gridbill.Rows(i)
+
+                    ' skip new row
+                    If ROW.IsNewRow Then Continue For
+
+                    If CBool(ROW.Cells("INVCHK").Value) = True Then
+
+                        Dim OBJCMN As New ClsCommon
+                        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.ACC_TDSONGTOTAL,0) AS TDSONGTOTAL", "", "LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & CMBTDS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 AndAlso CBool(DT.Rows(0)("TDSONGTOTAL")) = True Then
+                            ROW.Cells("TDS").Value = Format(Val(ROW.Cells("GRANDTOTAL").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+                        Else
+                            ROW.Cells("TDS").Value = Format(Val(ROW.Cells("INVBILLAMT").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+                        End If
+                    End If
+                Next
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
 
     Private Sub CHQDATE_GotFocus(sender As Object, e As EventArgs) Handles CHQDATE.GotFocus
         CHQDATE.SelectionStart = 0
