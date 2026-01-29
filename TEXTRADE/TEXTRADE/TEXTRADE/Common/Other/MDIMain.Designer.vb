@@ -476,6 +476,7 @@ Partial Class MDIMain
         Me.SALEAUTOPOSTADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator219 = New System.Windows.Forms.ToolStripSeparator()
         Me.AutoEWayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoEInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -1236,7 +1237,7 @@ Partial Class MDIMain
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.AutoEInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4170,6 +4171,12 @@ Partial Class MDIMain
         Me.AutoEWayToolStripMenuItem.Name = "AutoEWayToolStripMenuItem"
         Me.AutoEWayToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.AutoEWayToolStripMenuItem.Text = "Auto E-Way"
+        '
+        'AutoEInvoiceToolStripMenuItem
+        '
+        Me.AutoEInvoiceToolStripMenuItem.Name = "AutoEInvoiceToolStripMenuItem"
+        Me.AutoEInvoiceToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AutoEInvoiceToolStripMenuItem.Text = "Auto E-Invoice"
         '
         'SALERETURNCHALLAN_MASTER
         '
@@ -9034,11 +9041,10 @@ Partial Class MDIMain
         '
         Me.Timer1.Interval = 10
         '
-        'AutoEInvoiceToolStripMenuItem
+        'SyncTimer
         '
-        Me.AutoEInvoiceToolStripMenuItem.Name = "AutoEInvoiceToolStripMenuItem"
-        Me.AutoEInvoiceToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.AutoEInvoiceToolStripMenuItem.Text = "Auto E-Invoice"
+        Me.SyncTimer.Enabled = True
+        Me.SyncTimer.Interval = 3600000
         '
         'MDIMain
         '
@@ -10280,4 +10286,5 @@ Partial Class MDIMain
     Friend WithEvents AutoEWayToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CutPackFilterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AutoEInvoiceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SyncTimer As Timer
 End Class
