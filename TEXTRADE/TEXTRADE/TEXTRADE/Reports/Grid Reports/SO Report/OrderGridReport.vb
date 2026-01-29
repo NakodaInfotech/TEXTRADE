@@ -464,11 +464,20 @@ Public Class OrderGridReport
         End Try
     End Sub
 
-
-
-
     Private Sub ShowReport(orderNo As Integer)
         Try
+
+            If ORDERTYPE = "SO" Then
+                Dim RPTSO As New AgencyDesign() ' or another CrystalReport
+                RPTSO.MdiParent = MDIMain
+                RPTSO.FORMULA = " {ALLSALEORDER.SO_NO}=" & orderNo & " AND {ALLSALEORDER.SO_yearid}=" & YearId
+                RPTSO.FRMSTRING = "ORDERDETAILS"
+                RPTSO.Show()
+                Exit Sub
+            End If
+
+
+
             Dim rpt As New SaleInvoiceDesign() ' or another CrystalReport
             rpt.MdiParent = MDIMain
 
