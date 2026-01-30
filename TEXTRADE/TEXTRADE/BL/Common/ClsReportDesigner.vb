@@ -14886,8 +14886,8 @@ fontItalic As Boolean = False)
                 RowIndex += 1
 
                 Write(Dr("DESIGNNO").ToString, Range("1"), XlHAlign.xlHAlignLeft)
-                Write(Val(Dr("SALERATE")), Range("2"), XlHAlign.xlHAlignRight)
-                Write(Dr("HSN_CODE").ToString, Range("3"), XlHAlign.xlHAlignCenter)
+                Write("", Range("2"), XlHAlign.xlHAlignRight)
+                Write("", Range("3"), XlHAlign.xlHAlignCenter)
 
                 Write("", Range("4"), XlHAlign.xlHAlignCenter)   ' GST
                 Write("", Range("5"), XlHAlign.xlHAlignLeft)     ' Design Tag
@@ -14902,7 +14902,7 @@ fontItalic As Boolean = False)
 
                 Write("", Range("12"), XlHAlign.xlHAlignCenter)
                 Write("", Range("13"), XlHAlign.xlHAlignRight)
-                Write("0", Range("14"), XlHAlign.xlHAlignRight)
+                Write(Dr("NOOFBALES"), Range("14"), XlHAlign.xlHAlignRight)
                 Write("", Range("15"), XlHAlign.xlHAlignCenter)
 
                 SetBorder(RowIndex, "A" & RowIndex, "O" & RowIndex)

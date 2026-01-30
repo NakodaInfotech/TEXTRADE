@@ -109,20 +109,16 @@ Public Class MDIMain
             Dim OBJCMN As New ClsCommon
 
             DT = OBJCMN.SEARCH(
-            "BARCODESTOCK.ITEMNAME, " &
-            "BARCODESTOCK.SALERATE, " &
-            "HSNMASTER.HSN_CODE, " &
-            "BARCODESTOCK.DESIGNNO, " &
-            "BARCODESTOCK.COLOR, " &
-            "BARCODESTOCK.CREATED, " &
-            "BARCODESTOCK.MODIFIED",
-            "",
-            "BARCODESTOCK " &
-            "INNER JOIN ITEMMASTER ON BARCODESTOCK.ITEMID = ITEMMASTER.ITEM_ID " &
-            "INNER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID",
+              "BARCODESTOCK.ITEMNAME, " &
+    "BARCODESTOCK.DESIGNNO, " &
+    "BARCODESTOCK.COLOR, " &
+    "COUNT(BARCODESTOCK.BALENO) AS NOOFBALES",
+    "",
+    "BARCODESTOCK",
             " AND (BARCODESTOCK.CREATED >= '" & SyncDate & "' " &
             " OR BARCODESTOCK.MODIFIED >= '" & SyncDate & "') " &
-            " AND BARCODESTOCK.YEARID = " & YearId
+            " AND BARCODESTOCK.YEARID = " & YearId &
+             " GROUP BY BARCODESTOCK.ITEMNAME, BARCODESTOCK.DESIGNNO, BARCODESTOCK.COLOR"
         )
 
         Catch ex As Exception
