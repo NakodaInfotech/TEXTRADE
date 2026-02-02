@@ -2067,7 +2067,7 @@ NEXTLINE:
         End If
 
         If FRMSTRING = "GRN FANCY" And Val(TXTCUT.Text.Trim) > 0 Then
-            If ClientName = "SBA" Or ClientName = "POOJA" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "GELATO" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Then txtqty.Text = "1"
+            If ClientName = "SBA" Or ClientName = "POOJA" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "GELATO" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Or ClientName = "SONU" Then txtqty.Text = "1"
         End If
 
         If (ClientName = "SSC" Or ClientName = "MBB") And Val(TXTCUT.Text.Trim) = 0 Then TEMPQTY = 1

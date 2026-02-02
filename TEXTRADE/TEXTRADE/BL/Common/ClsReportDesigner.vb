@@ -1,4 +1,8 @@
-﻿
+﻿Imports System.Net.Http
+Imports System.Net.Http.Headers
+Imports System.IO
+Imports System.Threading.Tasks
+
 Imports Excel
 'Imports DB
 'Imports AsianERPBL.ModGeneral
@@ -14834,6 +14838,89 @@ fontItalic As Boolean = False)
         End Try
         Return Nothing
     End Function
+    Public Sub GenerateStockExcel(ByVal DT As System.Data.DataTable)
+
+        Try
+            '========================
+            ' CREATE WORKSHEET
+            '========================
+            SetWorkSheet()
+
+            '========================
+            ' SET COLUMNS (A–O)
+            '========================
+            For i As Integer = 1 To 15
+                Dim ColLetter As String = Chr(64 + i)
+                SetColumn(i, ColLetter)
+                SetColumnWidth(ColLetter & ":" & ColLetter, 18)
+            Next
+
+            '========================
+            ' HEADER ROW
+            '========================
+            RowIndex = 1
+
+            Write("Design Name/Number", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Sales Price", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("HSN Code", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("GST (%)", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Design Tag", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Sample Design Price", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Sample Design Source", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Notes", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Quantity Per Set", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Minimum Stock Quantity", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Colors", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Size", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Size Rate", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Stock", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Third Party QR Code", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
+
+            SetBorder(RowIndex, "A1", "O1")
+
+            '========================
+            ' DATA ROWS
+            '========================
+            For Each Dr As System.Data.DataRow In DT.Rows
+
+                RowIndex += 1
+
+                Write(Dr("DESIGNNO").ToString, Range("1"), XlHAlign.xlHAlignLeft)
+                Write("", Range("2"), XlHAlign.xlHAlignRight)
+                Write("", Range("3"), XlHAlign.xlHAlignCenter)
+
+                Write("", Range("4"), XlHAlign.xlHAlignCenter)   ' GST
+                Write("", Range("5"), XlHAlign.xlHAlignLeft)     ' Design Tag
+                Write("", Range("6"), XlHAlign.xlHAlignRight)    ' Sample Price
+                Write("", Range("7"), XlHAlign.xlHAlignLeft)     ' Sample Source
+                Write("", Range("8"), XlHAlign.xlHAlignLeft)     ' Notes
+
+                Write("1", Range("9"), XlHAlign.xlHAlignCenter)
+                Write("0", Range("10"), XlHAlign.xlHAlignCenter)
+
+                Write(Dr("COLOR").ToString, Range("11"), XlHAlign.xlHAlignLeft)
+
+                Write("", Range("12"), XlHAlign.xlHAlignCenter)
+                Write("", Range("13"), XlHAlign.xlHAlignRight)
+                Write(Dr("NOOFBALES"), Range("14"), XlHAlign.xlHAlignRight)
+                Write("", Range("15"), XlHAlign.xlHAlignCenter)
+
+                SetBorder(RowIndex, "A" & RowIndex, "O" & RowIndex)
+
+            Next
+
+            '========================
+            ' SAVE & CLOSE
+            '========================
+            SaveAndClose()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+
 
     '    Public Function VALUELOSS_EXCEL(ByVal CMPID As Integer, ByVal YEARID As Integer, ByVal FROMDATE As Date, ByVal TODATE As Date) As Object
     '        Try

@@ -175,9 +175,12 @@ Public Class Receipt
         PBlock.Visible = False
         LBLSMS.Visible = False
         TXTSPECIALREMARKS.Clear()
+        CMDAPPLYTDS.Enabled = True
 
         CMBTDS.Text = ""
         TXTTDSPER.Clear()
+        TXTTOTALTDS.Clear()
+        GBTDS.Visible = True
 
     End Sub
 
@@ -452,6 +455,7 @@ Public Class Receipt
                     gridpayment.RowCount = 0
                     gridpaydesc.RowCount = 0
                     GRIDDESC.RowCount = 0
+                    GBTDS.Visible = False
 
                     For Each dr As DataRow In dt.Rows
 
@@ -571,13 +575,14 @@ Public Class Receipt
             If cmbname.Text.Trim <> "" Then
                 GETBALANCE()
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("ISNULL(PARTYBANKMASTER.PARTYBANK_name, '') AS PARTYBANKNAME, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WARNING, '') AS WARNINGTEXT, ISNULL(CITYMASTER.city_name, '') AS CITY", "", "PARTYBANKMASTER RIGHT OUTER JOIN CITYMASTER AS CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.Acc_cityid ON PARTYBANKMASTER.PARTYBANK_id = LEDGERS.ACC_BANKID", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ACC_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(PARTYBANKMASTER.PARTYBANK_name, '') AS PARTYBANKNAME, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.ACC_WARNING, '') AS WARNINGTEXT, ISNULL(CITYMASTER.city_name, '') AS CITY, ISNULL(ACCOUNTSMASTER_TDS.ACC_TDSPER,0) AS TDSPER, ISNULL(LEDGERS.ACC_TDSDEDUCTEDAC,'') AS TDSDEDUCTEDAC", "", "PARTYBANKMASTER RIGHT OUTER JOIN CITYMASTER AS CITYMASTER RIGHT OUTER JOIN LEDGERS ON CITYMASTER.city_id = LEDGERS.Acc_cityid ON PARTYBANKMASTER.PARTYBANK_id = LEDGERS.ACC_BANKID LEFT OUTER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.ACC_ID = ACCOUNTSMASTER_TDS.ACC_ID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND LEDGERS.ACC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If CMBPARTYBANK.Text.Trim = "" Then CMBPARTYBANK.Text = DT.Rows(0).Item("PARTYBANKNAME")
                     TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
                     LBLCITY.Text = DT.Rows(0).Item("CITY")
-
+                    TXTTDSPER.Text = Val(DT.Rows(0).Item("TDSPER"))
+                    CMBTDS.Text = DT.Rows(0).Item("TDSDEDUCTEDAC")
                 End If
             End If
         Catch ex As Exception
@@ -619,6 +624,119 @@ Public Class Receipt
         End Try
     End Sub
 
+    Sub AUTOPOSTTDSJV()
+        Try
+
+            EP.Clear()
+
+            If POSTINGDATE.Text = "__/__/____" Then
+                EP.SetError(POSTINGDATE, " Please Enter Proper Date")
+                Exit Sub
+            Else
+                If Not datecheck(POSTINGDATE.Text) Then
+                    EP.SetError(POSTINGDATE, "Date not in Accounting Year")
+                    Exit Sub
+                End If
+
+                If Convert.ToDateTime(POSTINGDATE.Text).Date < SALEBLOCKDATE.Date Then
+                    EP.SetError(POSTINGDATE, "Date is Blocked, Please make entries after " & Format(SALEBLOCKDATE.Date, "dd/MM/yyyy"))
+                    Exit Sub
+                End If
+            End If
+
+            If CMBTDS.Text.Trim <> "" And Val(TXTTDSPER.Text.Trim) > 0 Then
+                If MsgBox("Wish to Auto Post Journal Entries", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                For Each ROW As DataGridViewRow In gridbill.Rows
+                    If ROW.Cells("INVCHK").Value = True And Val(ROW.Cells("TDS").Value) > 0 Then
+
+                        'CHECK WHETHER TDS IS ALREADY DEDUCTED FOR THIS ENTRY OR NOT, IF ALREADY DEDUCTED THEN SKIP IT
+                        Dim OBJCMN As New ClsCommon
+                        Dim DTCHECK As DataTable = OBJCMN.SEARCH(" JOURNAL_NO AS JVNO ", "", " JOURNALMASTER INNER JOIN LEDGERS ON JOURNAL_LEDGERID = LEDGERS.ACC_ID ", " AND JOURNAL_REFNO = '" & ROW.Cells("INVBILLINITIALS").Value & "' AND LEDGERS.ACC_TDSAC = 'TRUE' AND JOURNALMASTER.JOURNAL_DEBIT > 0 AND JOURNALMASTER.JOURNAL_YEARID = " & YearId)
+                        If DTCHECK.Rows.Count > 0 Then GoTo NEXTLINE
+
+
+                        Dim alParaval As New ArrayList
+                        alParaval.Add(0)
+                        alParaval.Add("JOURNAL REGISTER")
+                        alParaval.Add(Format(Convert.ToDateTime(POSTINGDATE.Text).Date, "MM/dd/yyyy"))
+                        alParaval.Add(Val(ROW.Cells("TDS").Value))
+                        alParaval.Add(Val(ROW.Cells("TDS").Value))
+                        alParaval.Add("Against Bill - " & ROW.Cells("INVBILLINITIALS").Value)
+                        alParaval.Add("Against Bill - " & ROW.Cells("INVBILLINITIALS").Value)
+                        alParaval.Add(CmpId)
+                        alParaval.Add(Locationid)
+                        alParaval.Add(Userid)
+                        alParaval.Add(YearId)
+                        alParaval.Add(0)
+
+                        Dim type As String = ""
+                        Dim name As String = ""
+                        Dim paytype As String = ""
+                        Dim refno As String = ""
+                        Dim debit As String = ""
+                        Dim credit As String = ""
+                        Dim gridsrno As String = ""
+
+                        type = "Dr" & "|" & "Cr"
+                        name = CMBTDS.Text.Trim & "|" & cmbname.Text.Trim
+                        paytype = "On Account" & "|" & "Against Bill"
+                        refno = ROW.Cells("INVBILLINITIALS").Value & "|" & ROW.Cells("INVBILLINITIALS").Value
+                        debit = Val(ROW.Cells("TDS").Value) & "|" & 0
+                        credit = 0 & "|" & Val(ROW.Cells("TDS").Value)
+                        gridsrno = 1 & "|" & 2
+
+                        alParaval.Add(type)
+                        alParaval.Add(name)
+                        alParaval.Add(paytype)
+                        alParaval.Add(refno)
+                        alParaval.Add(debit)
+                        alParaval.Add(credit)
+                        alParaval.Add(gridsrno)
+                        alParaval.Add("")   'SPECIAL REMARKS
+                        alParaval.Add("")   'PARTYBILLNO
+                        alParaval.Add("")   'COSTCENTER
+
+                        Dim objclsjvmaster As New ClsJournalMaster()
+                        objclsjvmaster.alParaval = alParaval
+                        Dim DT As DataTable = objclsjvmaster.save()
+                        Dim TEMPJVNO As Integer = DT.Rows(0).Item(0)
+                        ACCOUNTSENTRY(DT.Rows(0).Item(0), cmbname.Text.Trim, Val(ROW.Cells("TDS").Value))
+
+                    End If
+NEXTLINE:
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ACCOUNTSENTRY(ByVal JVNO As Integer, CRNAME As String, AMOUNT As Double)
+        Try
+            Dim OBJJV As New ClsJournalMaster
+            Dim INTRESULT As Integer
+            Dim ALPARAVAL As New ArrayList
+            ALPARAVAL.Add(CRNAME)    'ADDING FROMIDNAME
+            ALPARAVAL.Add(Val(AMOUNT))
+            ALPARAVAL.Add(CMBTDS.Text.Trim)    'ADDING NAME TOID
+            ALPARAVAL.Add(Val(JVNO))            'JOURNAL NO
+            ALPARAVAL.Add(Format(Convert.ToDateTime(POSTINGDATE.Text).Date, "MM/dd/yyyy"))            'JOURNAL DATE
+            ALPARAVAL.Add("")        'REMARKS
+            ALPARAVAL.Add("JOURNAL REGISTER")        'REGISTER
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+            ALPARAVAL.Add("")   'PARTYBILLNO
+
+            OBJJV.alParaval = ALPARAVAL
+            INTRESULT = OBJJV.ACCOUNTS()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub cmdsave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdsave.Click
         Try
             If ISLOCKYEAR = True Then
@@ -632,6 +750,11 @@ Public Class Receipt
             If Not ERRORVALID() Then
                 Exit Sub
             End If
+
+
+            'AUTOPOSTING TDS JV
+            If EDIT = False And CMDAPPLYTDS.Enabled = False Then AUTOPOSTTDSJV()
+
 
             'GET BILLREMARKS
             TXTBILLREMARKS.Clear()
@@ -877,9 +1000,10 @@ Public Class Receipt
         End Try
     End Sub
 
-    Sub total()
+    Sub TOTAL()
 
         TXTINVTOTAL.Text = 0.0
+        TXTTOTALTDS.Text = 0.0
         txtdesctotal.Text = 0.0
         txttotal.Text = 0.0
         txtchqbal.Text = 0.0
@@ -894,11 +1018,12 @@ Public Class Receipt
 
         For Each row As DataGridViewRow In gridbill.Rows
             If Convert.ToBoolean(row.Cells("INVCHK").Value) = True Then
-                TXTINVTOTAL.Text = Format(Val(TXTINVTOTAL.Text) + row.Cells(gridbill.Columns("INVBALAMT").Index).Value, "0.00")
+                TXTINVTOTAL.Text = Format(Val(TXTINVTOTAL.Text) + row.Cells(gridbill.Columns("INVBALAMT").Index).EditedFormattedValue, "0.00")
+                TXTTOTALTDS.Text = Format(Val(TXTTOTALTDS.Text) + row.Cells(gridbill.Columns("TDS").Index).EditedFormattedValue, "0.00")
 
                 For Each PAYROW As DataGridViewRow In gridpayment.Rows
                     If PAYROW.Cells(gbillno.Index).Value = row.Cells("INVBILLINITIALS").Value Then
-                        row.Cells("TEMPBAL").Value = Format(Val(row.Cells("INVBALAMT").Value) - Val(PAYROW.Cells(gamt.Index).Value), "0.00")
+                        row.Cells("TEMPBAL").Value = Format(Val(row.Cells("INVBALAMT").EditedFormattedValue) - Val(PAYROW.Cells(gamt.Index).EditedFormattedValue), "0.00")
                     End If
                 Next
 
@@ -2473,28 +2598,6 @@ NEXTLINE:
         End Try
     End Sub
 
-    'Private Sub CMDAPPLYTDS_Click(sender As Object, e As EventArgs) Handles CMDAPPLYTDS.Click
-    '    Try
-    '        If CMBTDS.Text.Trim <> "" And Val(TXTTDSPER.Text.Trim) > 0 Then
-    '            For I As Integer = 0 To Val(gridbill.RowCount - 1)
-    '                Dim ROW As DataRow = gridbill.GetDataRow(I)
-    '                If ROW("CHK") = True Then
-    '                    Dim OBJCMN As New ClsCommon
-    '                    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_TDSONGTOTAL,0) AS TDSONGTOTAL", "", " LEDGERS ", " AND LEDGERS.ACC_CMPNAME = '" & CMBTDS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
-    '                    If DT.Rows.Count > 0 AndAlso Convert.ToBoolean(DT.Rows(0).Item("TDSONGTOTAL")) = True Then
-    '                        ROW("POSTAMT") = Format(Val(ROW("GRANDTOTAL")) * Val(TXTTDSPER.Text.Trim) / 100, "0")
-    '                    Else
-    '                        ROW("POSTAMT") = Format(Val(ROW("TOTALTAXABLEAMT")) * Val(TXTTDSPER.Text.Trim) / 100, "0")
-    '                    End If
-    '                End If
-    '            Next
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-
     Private Sub CMDAPPLYTDS_Click(sender As Object, e As EventArgs) Handles CMDAPPLYTDS.Click
         Try
             If CMBTDS.Text.Trim <> "" AndAlso Val(TXTTDSPER.Text.Trim) > 0 Then
@@ -2510,12 +2613,16 @@ NEXTLINE:
                         Dim OBJCMN As New ClsCommon
                         Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.ACC_TDSONGTOTAL,0) AS TDSONGTOTAL", "", "LEDGERS", " AND LEDGERS.ACC_CMPNAME = '" & CMBTDS.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
                         If DT.Rows.Count > 0 AndAlso CBool(DT.Rows(0)("TDSONGTOTAL")) = True Then
-                            ROW.Cells("TDS").Value = Format(Val(ROW.Cells("GRANDTOTAL").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+                            ROW.Cells("TDS").Value = Format(Val(ROW.Cells("INVBILLAMT").Value) * Val(TXTTDSPER.Text.Trim) / 100, "0")
                         Else
-                            ROW.Cells("TDS").Value = Format((Val(ROW.Cells("GRANDTOTAL").Value) - (Val(ROW.Cells("GRANDTOTAL").Value) * 0.05)) * Val(TXTTDSPER.Text.Trim) / 100, "0")
+                            ROW.Cells("TDS").Value = Format(((Val(ROW.Cells("INVBILLAMT").Value) / 105) * 100) * Val(TXTTDSPER.Text.Trim) / 100, "0")
                         End If
+                        ROW.Cells("INVBALAMT").Value = Format(Val(ROW.Cells("INVBALAMT").Value) - Val(ROW.Cells("TDS").Value), "0.00")
+                        ROW.Cells("TDS").ReadOnly = False
                     End If
                 Next
+                TOTAL()
+                CMDAPPLYTDS.Enabled = False
             End If
 
         Catch ex As Exception
@@ -2624,6 +2731,33 @@ NEXTLINE:
                 e.SortResult = CDbl(e.CellValue1).CompareTo(CDbl(e.CellValue2))
                 e.Handled = True
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub gridbill_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles gridbill.CellValidating
+        Try
+            Dim colNum As Integer = gridbill.Columns(e.ColumnIndex).Index
+            If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
+            If gridbill.CurrentCell.ReadOnly = True Then Return
+            Select Case colNum
+
+                Case gridbill.Columns("TDS").Index
+                    Dim dDebit As Decimal
+                    Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
+
+                    If bValid Then
+                        If gridbill.CurrentCell.Value = Nothing Then gridbill.CurrentCell.Value = "0.00"
+                        gridbill.CurrentCell.Value = Convert.ToDecimal(gridbill.Item(colNum, e.RowIndex).Value)
+                        gridbill.CurrentRow.Cells("INVBALAMT").Value = Format(Val(gridbill.CurrentRow.Cells("TEMPBAL").Value) - Val(gridbill.CurrentRow.Cells("TDS").EditedFormattedValue), "0.00")
+                        TOTAL()
+                    Else
+                        MessageBox.Show("Invalid Number Entered")
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+            End Select
         Catch ex As Exception
             Throw ex
         End Try

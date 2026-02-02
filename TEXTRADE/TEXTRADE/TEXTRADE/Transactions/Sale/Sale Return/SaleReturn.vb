@@ -1232,8 +1232,8 @@ Public Class SaleReturn
                 PRINTREPORT(TEMPSALRETNO)
             End If
 
-            'DONE TEMP
-            PRINTBARCODE()
+            'NO NEED OF BARCODE PRINTING HERE, FOR BARCODE WE WILL USE SALE RETURN CHALLAN
+            'PRINTBARCODE()
 
 
             EDIT = False
@@ -2693,7 +2693,8 @@ LINE1:
         Try
             If EDIT = True Then
                 PRINTREPORT(TEMPSALRETNO)
-                PRINTBARCODE()
+                'NO NEED OF BARCODE PRINTING HERE, FOR BARCODE WE WILL USE SALE RETURN CHALLAN
+                'PRINTBARCODE()
             End If
         Catch ex As Exception
             Throw ex
