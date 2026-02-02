@@ -24,6 +24,7 @@ Partial Class AgencyInvoiceDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgencyInvoiceDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -125,6 +126,7 @@ Partial Class AgencyInvoiceDetails
         Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMMAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -134,7 +136,6 @@ Partial Class AgencyInvoiceDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,6 +169,20 @@ Partial Class AgencyInvoiceDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(449, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 807
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'ToolStrip1
         '
@@ -411,7 +426,7 @@ Partial Class AgencyInvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME, Me.GCOMM, Me.GCOMMTYPE, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GREFNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GADD, Me.GAGENT, Me.GSHIPPEDTO, Me.GEWAYBILLNO, Me.GTRANSPORT, Me.GLRNO, Me.GLRDATE, Me.GSO, Me.GBALES, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GIRNNO, Me.GACKNO, Me.GACKDATE, Me.GDOCKETNO, Me.GDOCKETDATE, Me.GCOURIER, Me.GCHGSDTLS, Me.GFROMCITY, Me.GTOCITY, Me.GUSERNAME, Me.GCREATEDDATE, Me.GPONO, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENTMAIL, Me.GAGENTWHATSAPP, Me.GPRINTINITIALS, Me.GINITIALS, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARKS, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GREFERREDBY, Me.GTRADINGACC, Me.GMONTHNAME, Me.GCOMM, Me.GCOMMTYPE, Me.GCOMMAMT, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -1120,6 +1135,17 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMMTYPE.Visible = True
         Me.GCOMMTYPE.VisibleIndex = 43
         '
+        'GCOMMAMT
+        '
+        Me.GCOMMAMT.Caption = "Commission Amt"
+        Me.GCOMMAMT.FieldName = "COMMAMT"
+        Me.GCOMMAMT.Name = "GCOMMAMT"
+        Me.GCOMMAMT.UnboundDataType = GetType(Double)
+        Me.GCOMMAMT.UnboundExpression = "Round([GRANDTOTAL] * [COMM] / 100, 1)"
+        Me.GCOMMAMT.Visible = True
+        Me.GCOMMAMT.VisibleIndex = 44
+        Me.GCOMMAMT.Width = 100
+        '
         'GCOMPLAINT
         '
         Me.GCOMPLAINT.Caption = "Complaint"
@@ -1127,7 +1153,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMPLAINT.Name = "GCOMPLAINT"
         Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINT.Visible = True
-        Me.GCOMPLAINT.VisibleIndex = 44
+        Me.GCOMPLAINT.VisibleIndex = 45
         '
         'GCOMPLAINTBY
         '
@@ -1136,7 +1162,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
         Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINTBY.Visible = True
-        Me.GCOMPLAINTBY.VisibleIndex = 45
+        Me.GCOMPLAINTBY.VisibleIndex = 46
         '
         'GCOMPLAINTDATE
         '
@@ -1145,7 +1171,7 @@ Partial Class AgencyInvoiceDetails
         Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
         Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 46
+        Me.GCOMPLAINTDATE.VisibleIndex = 47
         '
         'CHKEDIT
         '
@@ -1199,20 +1225,6 @@ Partial Class AgencyInvoiceDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'CMDSAVELAYOUT
-        '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(449, 541)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 807
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'AgencyInvoiceDetails
         '
@@ -1348,4 +1360,5 @@ Partial Class AgencyInvoiceDetails
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GCOMMAMT As DevExpress.XtraGrid.Columns.GridColumn
 End Class
