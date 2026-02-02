@@ -23,6 +23,7 @@ Partial Class PurchaseInvoiceGridDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -87,16 +88,18 @@ Partial Class PurchaseInvoiceGridDetails
         Me.GFROMCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cmdprint = New System.Windows.Forms.Button()
+        Me.CMDPDF = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +121,7 @@ Partial Class PurchaseInvoiceGridDetails
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmbregister)
         Me.BlendPanel1.Controls.Add(Me.Label1)
-        Me.BlendPanel1.Controls.Add(Me.cmdprint)
+        Me.BlendPanel1.Controls.Add(Me.CMDPDF)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.lbl)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -126,6 +129,20 @@ Partial Class PurchaseInvoiceGridDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(534, 523)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -201,11 +218,11 @@ Partial Class PurchaseInvoiceGridDetails
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
         Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(595, 523)
+        Me.cmdexit.Location = New System.Drawing.Point(706, 523)
         Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(75, 29)
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 3
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
@@ -215,11 +232,11 @@ Partial Class PurchaseInvoiceGridDetails
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
         Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdok.FlatAppearance.BorderSize = 0
-        Me.cmdok.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdok.Location = New System.Drawing.Point(514, 523)
+        Me.cmdok.Location = New System.Drawing.Point(620, 523)
         Me.cmdok.Name = "cmdok"
-        Me.cmdok.Size = New System.Drawing.Size(75, 29)
+        Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
@@ -239,7 +256,7 @@ Partial Class PurchaseInvoiceGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -751,6 +768,30 @@ Partial Class PurchaseInvoiceGridDetails
         Me.GMONTHNAME.Visible = True
         Me.GMONTHNAME.VisibleIndex = 48
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 49
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 50
+        '
+        'GCOMPLAINTDT
+        '
+        Me.GCOMPLAINTDT.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDT.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDT.Name = "GCOMPLAINTDT"
+        Me.GCOMPLAINTDT.Visible = True
+        Me.GCOMPLAINTDT.VisibleIndex = 51
+        '
         'cmbregister
         '
         Me.cmbregister.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -774,17 +815,15 @@ Partial Class PurchaseInvoiceGridDetails
         Me.Label1.TabIndex = 313
         Me.Label1.Text = "Register"
         '
-        'cmdprint
+        'CMDPDF
         '
-        Me.cmdprint.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdprint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdprint.Location = New System.Drawing.Point(318, 527)
-        Me.cmdprint.Name = "cmdprint"
-        Me.cmdprint.Size = New System.Drawing.Size(63, 24)
-        Me.cmdprint.TabIndex = 256
-        Me.cmdprint.Text = "&Print"
-        Me.cmdprint.UseVisualStyleBackColor = True
-        Me.cmdprint.Visible = False
+        Me.CMDPDF.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDPDF.Location = New System.Drawing.Point(448, 523)
+        Me.CMDPDF.Name = "CMDPDF"
+        Me.CMDPDF.Size = New System.Drawing.Size(80, 28)
+        Me.CMDPDF.TabIndex = 256
+        Me.CMDPDF.Text = "PDF"
+        Me.CMDPDF.UseVisualStyleBackColor = True
         '
         'ToolStrip1
         '
@@ -833,20 +872,6 @@ Partial Class PurchaseInvoiceGridDetails
         Me.lbl.Size = New System.Drawing.Size(156, 14)
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
-        '
-        'CMDSAVELAYOUT
-        '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(428, 523)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 449
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'PurchaseInvoiceGridDetails
         '
@@ -914,7 +939,7 @@ Partial Class PurchaseInvoiceGridDetails
     Friend WithEvents GPURTYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmbregister As ComboBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents cmdprint As Button
+    Friend WithEvents CMDPDF As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents toolStripSeparator As ToolStripSeparator
@@ -944,4 +969,7 @@ Partial Class PurchaseInvoiceGridDetails
     Friend WithEvents GAQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTDT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

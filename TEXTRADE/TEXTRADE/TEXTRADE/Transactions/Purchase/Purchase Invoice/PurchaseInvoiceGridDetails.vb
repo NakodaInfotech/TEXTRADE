@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports BL
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+Imports System.Diagnostics
 
 Public Class PurchaseInvoiceGridDetails
 
@@ -175,6 +177,35 @@ Public Class PurchaseInvoiceGridDetails
             OBJSELECTSG.ShowDialog()
 
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmdprint_Click(sender As Object, e As EventArgs) Handles CMDPDF.Click
+        Try
+            Dim filePath As String = Application.StartupPath & "\PurchaseInvoiceDetails.pdf"
+            gridbill.OptionsPrint.AutoWidth = False   ' keeps column widths
+            gridbill.OptionsPrint.UsePrintStyles = True
+
+            ' PDF export options
+            Dim pdfOptions As New PdfExportOptions()
+
+            ' Printing system to control page layout
+            Dim ps As New PrintingSystem()
+            Dim link As New PrintableComponentLink(ps)
+
+            link.Component = gridbilldetails
+            link.Landscape = True                      ' LANDSCAPE
+            link.PaperKind = System.Drawing.Printing.PaperKind.A4
+            link.Margins = New Printing.Margins(20, 20, 20, 20)
+
+            ' Create document and export
+            link.CreateDocument()
+            link.ExportToPdf(filePath)
+
+            ' Open PDF
+            Process.Start(New ProcessStartInfo(filePath) With {.UseShellExecute = True})
         Catch ex As Exception
             Throw ex
         End Try
