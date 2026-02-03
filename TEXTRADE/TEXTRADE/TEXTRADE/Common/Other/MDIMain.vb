@@ -58,6 +58,11 @@ Public Class MDIMain
             SCROLLERS()
             LBLCHECKIN.Left = Me.Width
         End If
+        If ClientName = "SNCM" Then
+            SyncTimer.Enabled = True
+            SyncTimer.Interval = 3600000 ' 1 hour
+            Call RunVastraSyncAsync()
+        End If
     End Sub
     Private Sub AutoSyncExcelData()
         ' 1. Read Excel
