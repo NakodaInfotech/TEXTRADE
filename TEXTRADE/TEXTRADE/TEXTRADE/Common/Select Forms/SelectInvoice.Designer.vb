@@ -41,6 +41,7 @@ Partial Class SelectInvoice
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +90,7 @@ Partial Class SelectInvoice
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GNAME, Me.GAGENTNAME, Me.GREGNAME, Me.GDATE, Me.GINVINITIALS, Me.GINVPRINTINITIALS, Me.GTRANSPORT, Me.GLRNO, Me.GSHIPTO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GNAME, Me.GAGENTNAME, Me.GREGNAME, Me.GDATE, Me.GINVINITIALS, Me.GINVPRINTINITIALS, Me.GTRANSPORT, Me.GLRNO, Me.GSHIPTO, Me.GTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -250,6 +251,15 @@ Partial Class SelectInvoice
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GTYPE
+        '
+        Me.GTYPE.Caption = "Type"
+        Me.GTYPE.FieldName = "TYPE"
+        Me.GTYPE.Name = "GTYPE"
+        Me.GTYPE.OptionsColumn.AllowEdit = False
+        Me.GTYPE.Visible = True
+        Me.GTYPE.VisibleIndex = 11
+        '
         'SelectInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -291,4 +301,5 @@ Partial Class SelectInvoice
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSHIPTO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
