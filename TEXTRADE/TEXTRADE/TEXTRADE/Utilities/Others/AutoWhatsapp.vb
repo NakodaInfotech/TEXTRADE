@@ -1,4 +1,5 @@
 ﻿
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip
 Imports BL
 Imports DevExpress.CodeParser
 Imports DevExpress.XtraGrid.Views.Base
@@ -13,7 +14,7 @@ Public Class AutoWhatsapp
             FILLCMB()
 
             Dim OBJCMN As New ClsCommon
-            Dim DTTABLE As DataTable = OBJCMN.Execute_Any_String(" SELECT  AUTOWA_GRIDSRNO AS GRIDSRNO, AUTOWA_TYPE AS TYPE, AUTOWA_SCHEDULER AS SCHEDULER, AUTOWA_SCHDATE AS SCHDATE, ISNULL(AUTOWHATSAPP.AUTOWA_MON,0) AS MON, ISNULL(AUTOWHATSAPP.AUTOWA_TUE,0) AS TUE, ISNULL(AUTOWHATSAPP.AUTOWA_WED,0) AS WED, ISNULL(AUTOWHATSAPP.AUTOWA_THU,0) AS THU, ISNULL(AUTOWHATSAPP.AUTOWA_FRI,0) AS FRI, ISNULL(AUTOWHATSAPP.AUTOWA_SAT,0) AS SAT, ISNULL(AUTOWHATSAPP.AUTOWA_SUN,0)  AS SUN, AUTOWA_TIME AS TIME, AUTOWA_ID AS NO FROM AUTOWHATSAPP WHERE AUTOWA_CMPID = " & CmpId & " ORDER BY AUTOWA_GRIDSRNO", "", "")
+            Dim DTTABLE As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(AUTOWA_VASTRA,0) AS VASTRA, AUTOWA_GRIDSRNO AS GRIDSRNO, AUTOWA_TYPE AS TYPE, AUTOWA_SCHEDULER AS SCHEDULER, AUTOWA_SCHDATE AS SCHDATE, ISNULL(AUTOWHATSAPP.AUTOWA_MON,0) AS MON, ISNULL(AUTOWHATSAPP.AUTOWA_TUE,0) AS TUE, ISNULL(AUTOWHATSAPP.AUTOWA_WED,0) AS WED, ISNULL(AUTOWHATSAPP.AUTOWA_THU,0) AS THU, ISNULL(AUTOWHATSAPP.AUTOWA_FRI,0) AS FRI, ISNULL(AUTOWHATSAPP.AUTOWA_SAT,0) AS SAT, ISNULL(AUTOWHATSAPP.AUTOWA_SUN,0)  AS SUN, AUTOWA_TIME AS TIME, AUTOWA_ID AS NO FROM AUTOWHATSAPP WHERE AUTOWA_CMPID = " & CmpId & " ORDER BY AUTOWA_GRIDSRNO", "", "")
             If DTTABLE.Rows.Count > 0 Then
                 GRIDAUTOWA.RowCount = 0
                 For Each DR As DataRow In DTTABLE.Rows
@@ -21,8 +22,14 @@ Public Class AutoWhatsapp
                 Next
                 GRIDAUTOWA.FirstDisplayedScrollingRowIndex = GRIDAUTOWA.RowCount - 1
             End If
-
             TXTSRNO.Text = Val(GRIDAUTOWA.RowCount) + 1
+            If DTTABLE.Rows.Count > 0 Then
+                If Val(DTTABLE.Rows(0).Item("VASTRA")) = 1 Then
+                    CHKVASTRA.Checked = True
+                Else
+                    CHKVASTRA.Checked = False
+                End If
+            End If
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -217,6 +224,7 @@ Public Class AutoWhatsapp
             Dim SUNDAY As String = ""
             Dim TIME As String = ""
             Dim WANO As String = ""
+            Dim VASTRA As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDAUTOWA.Rows
                 If row.Cells(GSRNO.Index).Value <> Nothing Then
@@ -235,6 +243,7 @@ Public Class AutoWhatsapp
                         SUNDAY = row.Cells(GSUN.Index).Value
                         TIME = row.Cells(GTIME.Index).Value.ToString
                         WANO = Val(row.Cells(GNO.Index).Value)
+                        If Convert.ToBoolean(CHKVASTRA.Checked) = True Then VASTRA = 1 Else VASTRA = 0
 
                     Else
 
@@ -251,6 +260,8 @@ Public Class AutoWhatsapp
                         SUNDAY = SUNDAY & "|" & row.Cells(GSUN.Index).Value
                         TIME = TIME & "|" & row.Cells(GTIME.Index).Value.ToString
                         WANO = WANO & "|" & Val(row.Cells(GNO.Index).Value)
+                        If Convert.ToBoolean(CHKVASTRA.Checked) = True Then VASTRA = VASTRA & "|" & "1" Else VASTRA = VASTRA & "|" & "0"
+
 
 
                     End If
@@ -273,6 +284,7 @@ Public Class AutoWhatsapp
             alparaval.Add(WANO)
             alparaval.Add(CmpId)
             alparaval.Add(Userid)
+            alparaval.Add(VASTRA)
 
             Dim OBJAUTOWA As New ClsAUTOWHATSAPP
             OBJAUTOWA.alParaval = alparaval

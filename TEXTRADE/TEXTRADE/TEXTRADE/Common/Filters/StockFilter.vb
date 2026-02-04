@@ -1516,8 +1516,7 @@ Public Class StockFilter
             If ClientName = "AVIS" Then
                 LBLFORWARD.Visible = True
                 CMBFORWARD.Visible = True
-                LBLDAYS.Visible = True
-                CMBDAYS.Visible = True
+
             End If
 
             If ClientName = "SONU" Then

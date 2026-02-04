@@ -23,8 +23,6 @@ Partial Class StockFilter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
-        Me.CMBDAYS = New System.Windows.Forms.ComboBox()
-        Me.LBLDAYS = New System.Windows.Forms.Label()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.CMBJOBBERNAME = New System.Windows.Forms.ComboBox()
         Me.LBLJOBBERNAME = New System.Windows.Forms.Label()
@@ -171,8 +169,6 @@ Partial Class StockFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel2.Controls.Add(Me.CMBDAYS)
-        Me.BlendPanel2.Controls.Add(Me.LBLDAYS)
         Me.BlendPanel2.Controls.Add(Me.TXTADD)
         Me.BlendPanel2.Controls.Add(Me.CMBJOBBERNAME)
         Me.BlendPanel2.Controls.Add(Me.LBLJOBBERNAME)
@@ -208,33 +204,6 @@ Partial Class StockFilter
         Me.BlendPanel2.Name = "BlendPanel2"
         Me.BlendPanel2.Size = New System.Drawing.Size(1238, 581)
         Me.BlendPanel2.TabIndex = 0
-        '
-        'CMBDAYS
-        '
-        Me.CMBDAYS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDAYS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDAYS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDAYS.FormattingEnabled = True
-        Me.CMBDAYS.Items.AddRange(New Object() {"", "30", "60", "90", "180"})
-        Me.CMBDAYS.Location = New System.Drawing.Point(440, 68)
-        Me.CMBDAYS.Name = "CMBDAYS"
-        Me.CMBDAYS.Size = New System.Drawing.Size(54, 22)
-        Me.CMBDAYS.TabIndex = 767
-        Me.CMBDAYS.Visible = False
-        '
-        'LBLDAYS
-        '
-        Me.LBLDAYS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLDAYS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLDAYS.ForeColor = System.Drawing.Color.Black
-        Me.LBLDAYS.Location = New System.Drawing.Point(401, 72)
-        Me.LBLDAYS.Name = "LBLDAYS"
-        Me.LBLDAYS.Size = New System.Drawing.Size(36, 14)
-        Me.LBLDAYS.TabIndex = 768
-        Me.LBLDAYS.Text = "Days"
-        Me.LBLDAYS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.LBLDAYS.Visible = False
         '
         'TXTADD
         '
@@ -290,7 +259,7 @@ Partial Class StockFilter
         Me.CHKALLCMP.BackColor = System.Drawing.Color.Transparent
         Me.CHKALLCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKALLCMP.ForeColor = System.Drawing.Color.Black
-        Me.CHKALLCMP.Location = New System.Drawing.Point(444, 100)
+        Me.CHKALLCMP.Location = New System.Drawing.Point(406, 71)
         Me.CHKALLCMP.Name = "CHKALLCMP"
         Me.CHKALLCMP.Size = New System.Drawing.Size(93, 18)
         Me.CHKALLCMP.TabIndex = 10
@@ -1652,6 +1621,4 @@ Partial Class StockFilter
     Friend WithEvents RDBITEMMONTHLYSTOCKSTATEMENT As RadioButton
     Friend WithEvents RBITEMDESIGNSHADESEMISMALLSUMM As RadioButton
     Friend WithEvents RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM As RadioButton
-    Friend WithEvents CMBDAYS As ComboBox
-    Friend WithEvents LBLDAYS As Label
 End Class
