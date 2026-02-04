@@ -24,7 +24,7 @@ Public Class AutoWhatsapp
             End If
             TXTSRNO.Text = Val(GRIDAUTOWA.RowCount) + 1
             If DTTABLE.Rows.Count > 0 Then
-                If Val(DTTABLE.Rows(0).Item("VASTRA")) = 1 Then
+                If Val(DTTABLE.Rows(0).Item("VASTRA")) = True Then
                     CHKVASTRA.Checked = True
                 Else
                     CHKVASTRA.Checked = False
