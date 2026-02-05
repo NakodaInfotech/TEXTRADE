@@ -607,4 +607,17 @@ NEXTLINE:
         End Try
     End Function
 
+    Private Sub CMBDESIGNNAME_Validated(sender As Object, e As EventArgs) Handles CMBDESIGNNAME.Validated
+        Try
+            If CMBDESIGNNAME.Text.Trim <> "" And CMBITEMNAME.Text.Trim = "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" DESIGNMASTER.DESIGN_NO, ITEMMASTER.item_name as ITEMNAME ", "", " DESIGNMASTER INNER JOIN ITEMMASTER ON DESIGNMASTER.DESIGN_ITEMID = ITEMMASTER.item_id AND DESIGNMASTER.DESIGN_yearid = ITEMMASTER.item_yearid ", "  AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGNNAME.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    CMBITEMNAME.Text = DT.Rows(0).Item("ITEMNAME").ToString
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

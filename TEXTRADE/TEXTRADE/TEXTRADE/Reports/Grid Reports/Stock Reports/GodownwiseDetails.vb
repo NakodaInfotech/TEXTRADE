@@ -218,22 +218,48 @@ Public Class GodownwiseDetails
 
     Private Sub CMDPHOTOVIEW_Click(sender As Object, e As EventArgs) Handles CMDPHOTOVIEW.Click
         Try
-
-            'GET IMAGES FROM DESIGNMASTER
             PBIMAGE1.Image = Nothing
             Dim OBJCMN As New ClsCommon
-            Dim DTIMG As DataTable = OBJCMN.SEARCH("ITEMDESIGNIMAGE.ITEMDESIGN_IMAGE1 AS PHOTO", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.ITEM_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id ", " AND ITEMMASTER.ITEM_NAME = '" & gridbill.GetFocusedRowCellValue("ITEMNAME") & "' AND DESIGNMASTER.DESIGN_NO = '" & gridbill.GetFocusedRowCellValue("DESIGNNO") & "' AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId)
-            If DTIMG.Rows.Count > 0 Then
-                If IsDBNull(DTIMG.Rows(0).Item("PHOTO")) = False Then
-                    PBIMAGE1.Image = Image.FromStream(New IO.MemoryStream(DirectCast(DTIMG.Rows(0).Item("PHOTO"), Byte())))
-                Else
-                    PBIMAGE1.Image = Nothing
+            Dim DTIMG As DataTable = OBJCMN.SEARCH("ITEMDESIGNIMAGE.ITEMDESIGN_IMAGE1 AS PHOTO,ITEMDESIGN_FILENAME,ITEMDESIGN_PATH , VERSION.VERSION_CATALOGIP ", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.ITEM_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id CROSS JOIN VERSION ", " AND ITEMMASTER.ITEM_NAME = '" & gridbill.GetFocusedRowCellValue("ITEMNAME") & "' AND DESIGNMASTER.DESIGN_NO = '" & gridbill.GetFocusedRowCellValue("DESIGNNO") & "' AND ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId)
+
+            'GET IMAGES FROM DESIGNMASTER
+            If ClientName = "AVIS" Then
+                PBIMAGE1.Image = Nothing
+                If DTIMG.Rows.Count > 0 Then
+                    Dim baseUrl As String = ""
+                    Dim fileName As String = ""
+                    If Not IsDBNull(DTIMG.Rows(0)("VERSION_CATALOGIP")) Then baseUrl = DTIMG.Rows(0)("VERSION_CATALOGIP").ToString()
+                    If Not IsDBNull(DTIMG.Rows(0)("ITEMDESIGN_FILENAME")) Then fileName = DTIMG.Rows(0)("ITEMDESIGN_FILENAME").ToString()
+                    If baseUrl <> "" AndAlso fileName <> "" Then
+                        ' Ensure proper URL formatting
+                        If Not baseUrl.EndsWith("/") Then baseUrl &= "/"
+                        Dim imageUrl As String = baseUrl & fileName
+                        Try
+                            Dim req As Net.WebRequest = Net.WebRequest.Create(imageUrl)
+                            Using resp As Net.WebResponse = req.GetResponse()
+                                Using stream As IO.Stream = resp.GetResponseStream()
+                                    PBIMAGE1.Image = Image.FromStream(stream)
+                                End Using
+                            End Using
+                        Catch ex As Exception
+                            PBIMAGE1.Image = Nothing
+                            MessageBox.Show("Unable to load image from web." & vbCrLf & imageUrl)
+                        End Try
+                    End If
+                End If
+            Else
+                If DTIMG.Rows.Count > 0 Then
+                    If IsDBNull(DTIMG.Rows(0).Item("PHOTO")) = False Then
+                        PBIMAGE1.Image = Image.FromStream(New IO.MemoryStream(DirectCast(DTIMG.Rows(0).Item("PHOTO"), Byte())))
+                    Else
+                        PBIMAGE1.Image = Nothing
+                    End If
                 End If
             End If
-
             Dim objVIEW As New ViewImage
             objVIEW.pbsoftcopy.Image = PBIMAGE1.Image
-            objVIEW.ShowDialog()
+                objVIEW.ShowDialog()
+
         Catch ex As Exception
             Throw ex
         End Try
