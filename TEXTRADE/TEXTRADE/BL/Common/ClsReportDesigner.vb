@@ -14885,12 +14885,12 @@ fontItalic As Boolean = False)
 
                 RowIndex += 1
 
-                Write(Dr("DESIGNNO").ToString, Range("1"), XlHAlign.xlHAlignLeft)
+                Write(Dr("Design").ToString, Range("1"), XlHAlign.xlHAlignLeft)
                 Write("", Range("2"), XlHAlign.xlHAlignRight)
                 Write("", Range("3"), XlHAlign.xlHAlignCenter)
 
                 Write("", Range("4"), XlHAlign.xlHAlignCenter)   ' GST
-                Write("", Range("5"), XlHAlign.xlHAlignLeft)     ' Design Tag
+                Write(Dr("DESIGNTAG").ToString, Range("5"), XlHAlign.xlHAlignLeft)     ' Design Tag
                 Write("", Range("6"), XlHAlign.xlHAlignRight)    ' Sample Price
                 Write("", Range("7"), XlHAlign.xlHAlignLeft)     ' Sample Source
                 Write("", Range("8"), XlHAlign.xlHAlignLeft)     ' Notes
@@ -14898,7 +14898,7 @@ fontItalic As Boolean = False)
                 Write("1", Range("9"), XlHAlign.xlHAlignCenter)
                 Write("0", Range("10"), XlHAlign.xlHAlignCenter)
 
-                Write(Dr("COLOR").ToString, Range("11"), XlHAlign.xlHAlignLeft)
+                Write("", Range("11"), XlHAlign.xlHAlignLeft)
 
                 Write("", Range("12"), XlHAlign.xlHAlignCenter)
                 Write("", Range("13"), XlHAlign.xlHAlignRight)
