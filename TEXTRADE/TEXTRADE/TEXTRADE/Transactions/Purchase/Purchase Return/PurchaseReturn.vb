@@ -983,7 +983,7 @@ Public Class PurchaseReturn
             USERDELETE = DTROW(0).Item(4)
 
             Cursor.Current = Cursors.WaitCursor
-            If ClientName = "SHEETAL" Then ALLOWMANUALPRNO = True
+            If ClientName = "SHEETAL" Or ClientName = "MILUXE" Then ALLOWMANUALPRNO = True
 
             clear()
 
