@@ -2530,7 +2530,8 @@ line1:
             OBJOUT.AGENTNAME = AGENTNAME
             OBJOUT.FORMULA = " {OUTSTANDINGREC.BALANCE} <> 0 AND {OUTSTANDINGREC.YEARID} = " & YearId
             If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & CMBSELLERNAME.Text.Trim & "'"
+            'If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & CMBSELLERNAME.Text.Trim & "'"
 
             If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
             If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {@OD} > 0 "
@@ -2563,7 +2564,8 @@ line1:
                 For i As Integer = 0 To GRIDSELLER.RowCount - 1
                     Dim dtrow As DataRow = GRIDSELLER.GetDataRow(i)
                     If Convert.ToBoolean(dtrow("CHK")) = True Then
-                        If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({OUTSTANDINGREC.AGENT} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {OUTSTANDINGREC.AGENT} = '" & dtrow("NAME") & "'"
+                        'If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({OUTSTANDINGREC.AGENT} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {OUTSTANDINGREC.AGENT} = '" & dtrow("NAME") & "'"
+                        If SELLERCLAUSE = "" Then SELLERCLAUSE = " AND ({OUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'" Else SELLERCLAUSE = SELLERCLAUSE & " OR {OUTSTANDINGREC.NAME} = '" & dtrow("NAME") & "'"
                     End If
                 Next
                 If SELLERCLAUSE <> "" Then
@@ -2572,11 +2574,12 @@ line1:
                 End If
 
             Else
-                If CMBREPORTTYPE.Text = "BUYERWISE" Then
-                    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
-                Else
-                    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & PARTYNAME & "'"
-                End If
+                'If CMBREPORTTYPE.Text = "BUYERWISE" Then
+                '    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
+                'Else
+                '    OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & PARTYNAME & "'"
+                'End If
+                OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & PARTYNAME & "'"
 
 
             End If
