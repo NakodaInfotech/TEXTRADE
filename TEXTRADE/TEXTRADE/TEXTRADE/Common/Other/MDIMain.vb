@@ -5179,6 +5179,10 @@ SKIPLINE:
                 MAGICBOX_MENU.Visible = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
+            If ClientName <> "MNARESH" Then
+                AutoEInvoice.Visible = False
+                AutoEway.Visible = False
+            End If
             If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
         Catch ex As Exception
             Throw ex
