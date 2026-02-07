@@ -24,6 +24,7 @@ Partial Class InvoiceDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InvoiceDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKMERGEDPDF = New System.Windows.Forms.CheckBox()
         Me.CHKBLANKPAPER = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CHKMULTI = New System.Windows.Forms.CheckBox()
@@ -114,6 +115,7 @@ Partial Class InvoiceDetails
         Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -133,7 +135,6 @@ Partial Class InvoiceDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +145,7 @@ Partial Class InvoiceDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKMERGEDPDF)
         Me.BlendPanel1.Controls.Add(Me.CHKBLANKPAPER)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.CHKMULTI)
@@ -168,6 +170,17 @@ Partial Class InvoiceDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKMERGEDPDF
+        '
+        Me.CHKMERGEDPDF.AutoSize = True
+        Me.CHKMERGEDPDF.BackColor = System.Drawing.Color.White
+        Me.CHKMERGEDPDF.Location = New System.Drawing.Point(958, 4)
+        Me.CHKMERGEDPDF.Name = "CHKMERGEDPDF"
+        Me.CHKMERGEDPDF.Size = New System.Drawing.Size(83, 18)
+        Me.CHKMERGEDPDF.TabIndex = 806
+        Me.CHKMERGEDPDF.Text = "Merge PDF"
+        Me.CHKMERGEDPDF.UseVisualStyleBackColor = False
         '
         'CHKBLANKPAPER
         '
@@ -1091,6 +1104,14 @@ Partial Class InvoiceDetails
         Me.GCOMPLAINTDATE.Visible = True
         Me.GCOMPLAINTDATE.VisibleIndex = 70
         '
+        'GCHANGEDATE
+        '
+        Me.GCHANGEDATE.Caption = "Change Dt"
+        Me.GCHANGEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCHANGEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
+        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        '
         'CHKEDIT
         '
         Me.CHKEDIT.AutoHeight = False
@@ -1249,14 +1270,6 @@ Partial Class InvoiceDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GCHANGEDATE
-        '
-        Me.GCHANGEDATE.Caption = "Change Dt"
-        Me.GCHANGEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GCHANGEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
-        Me.GCHANGEDATE.Name = "GCHANGEDATE"
-        '
         'InvoiceDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1389,4 +1402,5 @@ Partial Class InvoiceDetails
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHANGEDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKMERGEDPDF As CheckBox
 End Class

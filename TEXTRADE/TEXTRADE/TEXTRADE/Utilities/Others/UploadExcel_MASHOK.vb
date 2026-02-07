@@ -1,6 +1,14 @@
 ﻿
+Imports System.IO
+Imports System.IO.Compression
 Imports System.Runtime.InteropServices
 Imports BL
+Imports DevExpress.Compression
+Imports DevExpress.Export
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraPrintingLinks
+Imports DevExpress.XtraRichEdit
 
 Public Class UploadExcel_MASHOK
 
@@ -61,6 +69,27 @@ Public Class UploadExcel_MASHOK
         Dim oBook As Excel.Workbook = Nothing
         Dim oSheet As Excel.Worksheet = Nothing
         Dim dt As New DataTable()
+
+        Dim dtSuccess As New DataTable 'excel grid
+        Dim dtError As New DataTable
+
+        'For GRIDCOMPLETE
+        dtSuccess.Columns.Add("ROWNO")
+        dtSuccess.Columns.Add("NAME")
+        dtSuccess.Columns.Add("PARTYBILLNO")
+        dtSuccess.Columns.Add("GRANDTOTAL")
+        dtSuccess.Columns.Add("INVOICENO")
+
+
+        'For GRIDERROR
+        dtError.Columns.Add("ROWNO")
+        dtError.Columns.Add("NAME")
+        dtError.Columns.Add("PARTYBILLNO")
+        dtError.Columns.Add("GRANDTOTAL")
+        dtError.Columns.Add("ERROR")
+        dtError.Columns.Add("INVOICENO")     ' excel grid
+
+
         Dim OBJCMN As New ClsCommon
 
 
@@ -79,6 +108,8 @@ Public Class UploadExcel_MASHOK
                 colIndex += 1
             End While
 
+            dt.Columns.Add("EXCELROWNO", GetType(Integer)) 'excel grid
+
             ' 3. Read Data Rows
             Debug.Print("Reading data rows")
             Dim rowIndex As Integer = 2
@@ -92,9 +123,13 @@ Public Class UploadExcel_MASHOK
             'End While
             While oSheet.Cells(rowIndex, 1).Value IsNot Nothing
                 Dim row As DataRow = dt.NewRow()
-                For i As Integer = 1 To dt.Columns.Count
+                For i As Integer = 1 To dt.Columns.Count - 1 ' -1 added excel grid
                     row(i - 1) = Convert.ToString(oSheet.Cells(rowIndex, i).Value)
                 Next
+
+                '⭐ Store real Excel row number
+                row("EXCELROWNO") = rowIndex  ' excel grid
+
                 If CMBTYPE.Text.Trim = "NONPURCHASE" Then
 
                     ' Check if the 'name' field is blank during reading
@@ -160,22 +195,53 @@ Public Class UploadExcel_MASHOK
 
                 For Each dr As DataRow In dt.Rows
 
+                    Dim excelRowNo As Integer = dr("EXCELROWNO")                            'excel grid
+                    Dim excelPartyName As String = dr("NAME").ToString().Trim()
+                    Dim excelBillNo As String = dr("PARTY BILL NO").ToString().Trim()
+                    Dim excelGrandTotal As String = dr("GRAND TOTAL").ToString().Trim()     'excel grid
+
                     Dim PARTYNAME As String = dr("name").ToString().Trim()
                     Dim PARTYBILLNO As String = dr("party bill no").ToString().Trim()
                     Dim BILLDATE As String = dr("party bill date").ToString().Trim()
                     Dim SACCODE As String = dr("SAC CODE").ToString().Trim()
 
                     Try
-                        If Not PartyExists(partyName) Then
-                            failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & partyName & "')")
+                        If Not PartyExists(PARTYNAME) Then
+                            failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & PARTYNAME & "')")
                             'Increment error count
+
+                            Dim er As DataRow = dtError.NewRow() 'excel grid
+                            'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                            'er("PARTYNAME") = dr("NAME").ToString()
+                            'er("PARTYBILLNO") = dr("party bill no").ToString()
+                            'er("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            er("ROWNO") = excelRowNo
+                            er("NAME") = PARTYNAME
+                            er("PARTYBILLNO") = excelBillNo
+                            er("GRANDTOTAL") = excelGrandTotal
+                            er("ERROR") = "Party not found"
+                            dtError.Rows.Add(er) 'excel grid
+
                             errorCount += 1
                             Continue For
                         End If
 
-                        If Not HSNExists(sacCode) Then
+                        If Not HSNExists(SACCODE) Then
                             ' Add to missing list: Excel row number (start at 2 for first data row)
-                            missingHSNRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2).ToString() & " (HSN: '" & sacCode & "')")
+                            missingHSNRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2).ToString() & " (HSN: '" & SACCODE & "')")
+
+                            Dim er As DataRow = dtError.NewRow()            'excel grid
+                            'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                            'er("PARTYNAME") = dr("NAME").ToString()
+                            'er("PARTYBILLNO") = dr("party bill no").ToString()
+                            'er("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            er("ROWNO") = excelRowNo
+                            er("NAME") = PARTYNAME
+                            er("PARTYBILLNO") = excelBillNo
+                            er("GRANDTOTAL") = excelGrandTotal
+                            er("ERROR") = "HSN not found"
+                            dtError.Rows.Add(er)                            'excel grid
+
                             errorCount += 1 ' Increment error count as in your logic
                             Continue For ' Skip this entry, do not save
                         End If
@@ -199,6 +265,19 @@ Public Class UploadExcel_MASHOK
                         frm.TXTPARTYBILLNO.Text = dr("party bill no").ToString().Trim()
                         If Not IsPartyBillNoAlreadySavedInDB(frm.TXTPARTYBILLNO.Text.Trim, PARTYNAME) Then
                             failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & PARTYBILLNO & "')")
+
+                            Dim er As DataRow = dtError.NewRow()            'excel grid
+                            'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                            'er("PARTYNAME") = dr("NAME").ToString()
+                            'er("PARTYBILLNO") = dr("party bill no").ToString()
+                            'er("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            er("ROWNO") = excelRowNo
+                            er("NAME") = PARTYNAME
+                            er("PARTYBILLNO") = excelBillNo
+                            er("GRANDTOTAL") = excelGrandTotal
+                            er("ERROR") = "Party Bill No Already exists"
+                            dtError.Rows.Add(er)                            'excel grid
+
                             'Increment error count
                             errorCount += 1
                             Continue For
@@ -235,7 +314,7 @@ Public Class UploadExcel_MASHOK
                             Dim gridRow As DataGridViewRow = frm.GRIDEXPENSE.Rows(gridRowIndex)
                             gridRow.Cells("srno").Value = sr
                             gridRow.Cells("GDRNAME").Value = "WEAVING CHARGES"
-                            gridRow.Cells("GHSNCODE").Value = sacCode
+                            gridRow.Cells("GHSNCODE").Value = SACCODE
                             gridRow.Cells("GNOTE").Value = itemName
                             gridRow.Cells("GQTY").Value = qty
                             frm.CALC()
@@ -279,12 +358,38 @@ Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
                         frm.IsBulkUploadtds = True
                         If frm.SaveInvoice(False) Then
                             successCount += 1
+
+                            Dim sr1 As DataRow = dtSuccess.NewRow()                 'excel grid
+                            'sr1("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                            'sr1("ROWNO") = dr("EXCELROWNO")
+                            'sr1("PARTYNAME") = dr("NAME").ToString()
+                            'sr1("PARTYBILLNO") = dr("party bill no").ToString()
+                            'sr1("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            sr1("ROWNO") = excelRowNo
+                            sr1("NAME") = PARTYNAME
+                            sr1("PARTYBILLNO") = excelBillNo
+                            sr1("GRANDTOTAL") = excelGrandTotal
+                            dtSuccess.Rows.Add(sr1)                                 'excel grid
+
                             If frm.CHKTDS.CheckState = CheckState.Checked Then
                                 Dim OBJTDS As New DeductTDS()
                                 OBJTDS.AutoDeductTDS(frm.TXTNPNO.Text.Trim(), frm.CMBREGISTER.Text.Trim())
                             End If
                         Else
                             errorCount += 1
+
+                            Dim er As DataRow = dtError.NewRow()                    'excel grid
+                            'er("ROWNO") = dr("EXCELROWNO")
+                            'er("PARTYNAME") = dr("NAME").ToString()
+                            'er("PARTYBILLNO") = dr("party bill no").ToString()
+                            'er("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            er("ROWNO") = excelRowNo
+                            er("NAME") = PARTYNAME
+                            er("PARTYBILLNO") = excelBillNo
+                            er("GRANDTOTAL") = excelGrandTotal
+                            er("ERROR") = "Failed while saving voucher"
+                            dtError.Rows.Add(er)                                    'excel grid
+
                         End If
 
                     Catch exRow As Exception
@@ -292,10 +397,27 @@ Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
                         ' Handle error in individual row, continue to next
                         duplicateBillNos.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " - Error: " & exRow.Message)
                         errorCount += 1
+
+                        Dim er As DataRow = dtError.NewRow()                        'excel grid
+                        'er("ROWNO") = dr("EXCELROWNO")
+                        'er("PARTYNAME") = dr("NAME").ToString()
+                        'er("PARTYBILLNO") = dr("party bill no").ToString()
+                        'er("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                        er("ROWNO") = excelRowNo
+                        er("NAME") = PARTYNAME
+                        er("PARTYBILLNO") = excelBillNo
+                        er("GRANDTOTAL") = excelGrandTotal
+                        er("ERROR") = exRow.Message
+                        dtError.Rows.Add(er)                                        'excel grid
+
                         Continue For
                     End Try
                 Next
                 Debug.Print("After loop, preparing to show messages")
+
+                GRIDCOMPLETE.DataSource = dtSuccess                                 'excel grid
+                GRIDERROR.DataSource = dtError                                      'excel grid
+
                 If failedRows.Count > 0 Then
                     MessageBox.Show("The following rows were not saved because party name not found:" & vbCrLf & String.Join(vbCrLf, failedRows), "Party Name Not Present", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -341,11 +463,36 @@ Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
                     Dim checkDuplicate As DataTable = OBJCMN.SEARCH("INVOICE_NO", "", " INVOICEMASTER INNER JOIN REGISTERMASTER ON INVOICE_REGISTERID = REGISTERMASTER.REGISTER_ID", " AND INVOICE_NO = " & Val(INVOICENO) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICE_YEARID = " & YearId)
                     If checkDuplicate.Rows.Count > 0 Then
                         duplicateList.Add("Row " & (dt.Rows.IndexOf(dr) + 2).ToString() & " (Invoice: " & INVOICENO & ")")
+
+                        Dim er As DataRow = dtError.NewRow()            'excel grid
+                        'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                        er("ROWNO") = dr("EXCELROWNO")
+                        er("NAME") = dr("TRANSPORT").ToString()
+                        er("PARTYBILLNO") = dr("SO NO").ToString()
+                        er("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                        er("ERROR") = "Duplicate Invoices found and Skipped"
+                        er("INVOICENO") = dr("CHALLAN NO")
+                        dtError.Rows.Add(er)                            'excel grid
+
+                        'Increment error count
+                        errorCount += 1
+
                         Continue For  ' skip this record, don't add to invoice
                     End If
 
                     If Not PartyExists(TRANSPORT) Then
                         failedRows.Add("Row " & (dt.Rows.IndexOf(dr) + 2) & " ('" & TRANSPORT & "')")
+
+                        Dim er As DataRow = dtError.NewRow()            'excel grid
+                        'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                        er("ROWNO") = dr("EXCELROWNO")
+                        er("NAME") = dr("TRANSPORT").ToString()
+                        er("PARTYBILLNO") = dr("SO NO").ToString()
+                        er("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                        er("ERROR") = "Transport not found"
+                        er("INVOICENO") = dr("CHALLAN NO")
+                        dtError.Rows.Add(er)                            'excel grid
+
                         'Increment error count
                         errorCount += 1
                         Continue For
@@ -355,6 +502,17 @@ Format((Val(qty) * Val(rate)) - gridRow.Cells("GOTHERAMT").Value, "0.00")
                     Dim dtSONO As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ALLSALEORDER.SO_DATE AS SODATE, ISNULL(PACKINGLEDGERS.Acc_cmpname, '') AS DELIVERYTO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(ALLSALEORDER_DESC.SO_GRIDREMARKS, '') AS [DESC], ISNULL(ALLSALEORDER_DESC.SO_QTY,  0) AS PCS, ISNULL(ALLSALEORDER_DESC.SO_CUT, 0) AS CUT, ISNULL(ALLSALEORDER_DESC.SO_RATE, 0) AS RATE, ISNULL(ALLSALEORDER_DESC.SO_PER, '') AS PER, ISNULL(ALLSALEORDER_DESC.SO_AMOUNT, 0) AS AMOUNT, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENT, ISNULL(ALLSALEORDER.SO_CD, 0) AS DISCOUNT, ISNULL(ALLSALEORDER.SO_DAYS, 0) AS CRDAYS, ISNULL(ALLSALEORDER_DESC.SO_MTRS, 0) AS MTRS, ISNULL(ALLSALEORDER_DESC.SO_RATE, 0) AS RATE, ISNULL(ALLSALEORDER_DESC.SO_GRIDSRNO, 0) AS SOSRNO, ISNULL(ALLSALEORDER_DESC.SO_GRIDREMARKS, '') AS GRIDDESC, ISNULL(ALLSALEORDER.so_pono, '') AS PARTYPONO , ISNULL(ALLSALEORDER.SO_ORDERON, '') AS ORDERON, ALLSALEORDER.TYPE, ISNULL(SO_DISCDEALER, 0) AS DISCPER, ISNULL(SO_CD, 0) AS CDPER, ISNULL(SO_DISCRATE,0) AS RATEDIFF, ISNULL(SO_INT,0) AS AGENTCOMM, ISNULL(CITYMASTER.CITY_NAME,'') AS CITYNAME,ISNULL(ALLSALEORDER.so_remarks,'') AS REMARKS ", "", "ALLSALEORDER INNER JOIN ALLSALEORDER_DESC ON ALLSALEORDER.so_no = ALLSALEORDER_DESC.SO_NO AND ALLSALEORDER.SO_YEARID = ALLSALEORDER_DESC.SO_YEARID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON ALLSALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN COLORMASTER ON ALLSALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON ALLSALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN QUALITYMASTER ON ALLSALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON ALLSALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON ALLSALEORDER.SO_transid = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON ALLSALEORDER.SO_PACKINGID = PACKINGLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON ALLSALEORDER.so_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CITYMASTER ON ALLSALEORDER.so_cityid = CITYMASTER.CITY_ID ", " AND ALLSALEORDER.SO_NO = " & Val(SONO) & " AND ALLSALEORDER.SO_YEARID = " & YearId)
                     If dtSONO.Rows.Count = 0 Then
                         MessageBox.Show("SONO " & SONO & " not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                        Dim er As DataRow = dtError.NewRow()            'excel grid
+                        'er("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                        er("ROWNO") = dr("EXCELROWNO")
+                        er("NAME") = dr("TRANSPORT").ToString()
+                        er("PARTYBILLNO") = dr("SO NO").ToString()
+                        er("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                        er("ERROR") = "SONO not found"
+                        er("INVOICENO") = dr("CHALLAN NO")
+                        dtError.Rows.Add(er)                            'excel grid
+
                         errorCount += 1
                         Continue For
                     End If
@@ -484,8 +642,8 @@ NEXTLINE:
                             g.Cells("GRATE").Value = Val(r("RATE"))
                             g.Cells("GPER").Value = r("PER").ToString()
                             If r("PER") = "Pcs" Then g.Cells("GAMT").Value = Format(Val(r("RATE")) * Val(TOTALPCS), "0.00") Else g.Cells("GAMT").Value = Format(Val(r("RATE")) * Val(TOTALMTRS), "0.00")
-                            g.Cells("GLRNO").Value = lrNo
-                            g.Cells("GTRANS").Value = transport
+                            g.Cells("GLRNO").Value = LRNO
+                            g.Cells("GTRANS").Value = TRANSPORT
                             g.Cells("GDISCPER").Value = 0
                             g.Cells("GDISCAMT").Value = 0
                             g.Cells("GSPDISCPER").Value = 0
@@ -506,7 +664,7 @@ NEXTLINE:
                             g.Cells("GDONE").Value = 0
                             g.Cells("GPARTYPONO").Value = 0
                             g.Cells("GUNIT").Value = 0
-                            g.Cells("GSONO").Value = sono
+                            g.Cells("GSONO").Value = SONO
                             g.Cells("GSOSRNO").Value = Val(r("SOSRNO"))
                             g.Cells("GWT").Value = 0
                             g.Cells("GGRIDPURPARTY").Value = 0
@@ -535,16 +693,59 @@ NEXTLINE:
 
                         If frmInv.SaveInvoice(False) Then
                             successCount += 1
-                            Debug.Print("Invoice " & invoiceNo & " created from SO " & sono)
+
+                            Dim sr1 As DataRow = dtSuccess.NewRow()                 'excel grid
+                            'sr1("ROWNO") = dt.Rows.IndexOf(dr) + 2
+                            'sr1("ROWNO") = dr("EXCELROWNO")
+                            'sr1("PARTYNAME") = dr("NAME").ToString()
+                            'sr1("PARTYBILLNO") = dr("party bill no").ToString()
+                            'sr1("GRANDTOTAL") = dr("GRAND TOTAL").ToString()
+                            sr1("ROWNO") = dr("EXCELROWNO")
+                            sr1("NAME") = dr("TRANSPORT").ToString()
+                            sr1("PARTYBILLNO") = dr("SO NO").ToString()
+                            sr1("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                            dtSuccess.Rows.Add(sr1)                                 'excel grid
+
+                            Debug.Print("Invoice " & INVOICENO & " created from SO " & SONO)
                         Else
                             errorCount += 1
+
+                            Dim er As DataRow = dtError.NewRow()                    'excel grid
+                            er("ROWNO") = dr("EXCELROWNO")
+                            er("NAME") = dr("TRANSPORT").ToString()
+                            er("PARTYBILLNO") = dr("SO NO").ToString()
+                            er("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                            If frmInv.ExcessQty = True Then
+                                er("ERROR") = "Qty Mtrs Greater than Sale Order"
+                            Else
+                                er("ERROR") = "Failed while saving voucher"
+
+                            End If
+                            er("INVOICENO") = dr("CHALLAN NO")
+                            dtError.Rows.Add(er)                                    'excel grid
+
                         End If
 
                     Catch ex As Exception
-                        MessageBox.Show("Error saving invoice no: " & invoiceNo & vbCrLf & ex.Message)
+                        MessageBox.Show("Error saving invoice no: " & INVOICENO & vbCrLf & ex.Message)
                         errorCount += 1
+
+                        Dim er As DataRow = dtError.NewRow()                        'excel grid
+                        er("ROWNO") = dr("EXCELROWNO")
+                        er("NAME") = dr("TRANSPORT").ToString()
+                        er("PARTYBILLNO") = dr("SO NO").ToString()
+                        er("GRANDTOTAL") = dr("TOTAL MTRS").ToString()
+                        er("ERROR") = ex.Message
+                        er("INVOICENO") = dr("CHALLAN NO")
+                        dtError.Rows.Add(er)                                        'excel grid
+
                     End Try
                 Next
+
+                GRIDCOMPLETE.DataSource = dtSuccess                                 'excel grid
+                GRIDERROR.DataSource = dtError                                      'excel grid
+
+
                 MessageBox.Show(successCount & " invoices saved successfully, " & errorCount & " errors.", "Invoice Upload Summary", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If duplicateList.Count > 0 Then
                     Dim msg As String = "⚠️ Duplicate invoices found and skipped:" & vbCrLf & String.Join(vbCrLf, duplicateList)
@@ -605,6 +806,70 @@ NEXTLINE:
 
         Return nextNo
     End Function
+
+    Private Sub CMDEXCEL_Click(sender As Object, e As EventArgs) Handles CMDEXCEL.Click
+        Dim xlApp As New Excel.Application
+        Dim xlBook As Excel.Workbook = xlApp.Workbooks.Add()
+        Dim xlSheet As Excel.Worksheet
+
+        xlApp.Visible = False
+        xlApp.DisplayAlerts = False
+
+        ' =======================
+        ' SHEET 1 → SUCCESS GRID
+        ' =======================
+        xlSheet = CType(xlBook.Sheets(1), Excel.Worksheet)
+        xlSheet.Name = "Success Records"
+
+        ExportGridToSheet(GRIDCOMPLETE, xlSheet)
+
+        ' =======================
+        ' SHEET 2 → ERROR GRID
+        ' =======================
+        xlSheet = CType(xlBook.Sheets.Add(After:=xlBook.Sheets(xlBook.Sheets.Count)), Excel.Worksheet)
+        xlSheet.Name = "Error Records"
+
+        ExportGridToSheet(GRIDERROR, xlSheet)
+
+        ' Save File
+        Dim sfd As New SaveFileDialog()
+        sfd.Filter = "Excel File|*.xlsx"
+
+        If sfd.ShowDialog() = DialogResult.OK Then
+            xlBook.SaveAs(sfd.FileName)
+        End If
+
+        xlBook.Close()
+        xlApp.Quit()
+
+        MessageBox.Show("Excel exported with two sheets!", "Done")
+
+
+
+    End Sub
+
+
+    Private Sub ExportGridToSheet(grid As DevExpress.XtraGrid.GridControl, sheet As Excel.Worksheet)
+
+        Dim view = CType(grid.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Headers
+        For col = 0 To view.Columns.Count - 1
+            sheet.Cells(1, col + 1).Value = view.Columns(col).Caption
+            sheet.Cells(1, col + 1).Font.Bold = True
+        Next
+
+        ' Data
+        For row = 0 To view.RowCount - 1
+            For col = 0 To view.Columns.Count - 1
+                sheet.Cells(row + 2, col + 1).Value = view.GetRowCellValue(row, view.Columns(col))
+            Next
+        Next
+
+        sheet.Columns.AutoFit()
+
+    End Sub
+
 
     ' Helper function: Checks if party name exists in LEDGERS for current year
     Private Function PartyExists(partyName As String) As Boolean

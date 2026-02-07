@@ -113,6 +113,8 @@ Partial Class AutoEway
         Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1036,6 +1038,13 @@ Partial Class AutoEway
         Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
         Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
         '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
+        '
         'AutoEway
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1149,4 +1158,6 @@ Partial Class AutoEway
     Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
 End Class

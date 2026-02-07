@@ -636,22 +636,61 @@ PRINT 1,1")
 
             ElseIf ClientName = "SARAYU" Then
 
+                'oWrite.WriteLine("I8,A")
+                'oWrite.WriteLine("ZN")
+                'oWrite.WriteLine("q799")
+                'oWrite.WriteLine("O")
+                'oWrite.WriteLine("JF")
+                'oWrite.WriteLine("ZT")
+                'oWrite.WriteLine("Q400,B25")
+                'oWrite.WriteLine("KI80")
+                'oWrite.WriteLine("N")
+                'oWrite.WriteLine("A768,237,2,2,2,2,N,""M.NA""")
+                'oWrite.WriteLine("A649,237,2,2,2,2,N,"":""")
+                'If GRIDDESC <> "" Then oWrite.WriteLine("A618,237,2,2,2,2,N,""" & GRIDDESC & """") Else oWrite.WriteLine("A618,237,2,2,2,2,N,""" & ITEMNAME & """")
+                'oWrite.WriteLine("A768,97,2,2,2,2,N,""MTRS""")
+                'oWrite.WriteLine("A649,97,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A768,50,2,2,2,2,N,""WIDTH""")
+                'oWrite.WriteLine("A649,50,2,2,2,2,N,"":""")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+
+                'oWrite.WriteLine("A618,50,2,2,2,2,N,""" & TEMPWIDTH & """")
+                'oWrite.WriteLine("A618,97,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("A618,191,2,2,2,2,N,""" & DESIGNNO & """")
+                'oWrite.WriteLine("A649,191,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A768,191,2,2,2,2,N,""D.NO""")
+                'oWrite.WriteLine("A768,144,2,2,2,2,N,""C.NO""")
+                'oWrite.WriteLine("A649,144,2,2,2,2,N,"":""")
+                'oWrite.WriteLine("A618,144,2,2,2,2,N,""" & SHADE & """")
+                'oWrite.WriteLine("b63,63,Q,m2,s6,eL,iA,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("A217,45,2,3,1,1,N,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("P1")
+                'oWrite.Dispose()
                 oWrite.WriteLine("I8,A")
                 oWrite.WriteLine("ZN")
-                oWrite.WriteLine("q799")
+                oWrite.WriteLine("q580")
                 oWrite.WriteLine("O")
                 oWrite.WriteLine("JF")
+                oWrite.WriteLine("KIZZQ0")
+                oWrite.WriteLine("KI9+0.0")
                 oWrite.WriteLine("ZT")
-                oWrite.WriteLine("Q400,B25")
+                oWrite.WriteLine("Q400,25")
                 oWrite.WriteLine("KI80")
                 oWrite.WriteLine("N")
-                oWrite.WriteLine("A768,237,2,2,2,2,N,""M.NA""")
-                oWrite.WriteLine("A649,237,2,2,2,2,N,"":""")
-                If GRIDDESC <> "" Then oWrite.WriteLine("A618,237,2,2,2,2,N,""" & GRIDDESC & """") Else oWrite.WriteLine("A618,237,2,2,2,2,N,""" & ITEMNAME & """")
-                oWrite.WriteLine("A768,97,2,2,2,2,N,""MTRS""")
-                oWrite.WriteLine("A649,97,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A768,50,2,2,2,2,N,""WIDTH""")
-                oWrite.WriteLine("A649,50,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A518,374,2,2,2,2,N,""M.NA""")
+                oWrite.WriteLine("A386,380,2,2,2,2,N,"":""")
+                If GRIDDESC <> "" Then oWrite.WriteLine("A348,374,2,2,2,2,N,""" & GRIDDESC & """") Else oWrite.WriteLine("A348,374,2,2,2,2,N,""" & ITEMNAME & """")
+                oWrite.WriteLine("A518,207,2,2,2,2,N,""MTRS""")
+                oWrite.WriteLine("A386,213,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A517,151,2,2,2,2,N,""WIDTH""")
+                oWrite.WriteLine("A386,157,2,2,2,2,N,"":""")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
@@ -661,16 +700,16 @@ PRINT 1,1")
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("A618,50,2,2,2,2,N,""" & TEMPWIDTH & """")
-                oWrite.WriteLine("A618,97,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("A618,191,2,2,2,2,N,""" & DESIGNNO & """")
-                oWrite.WriteLine("A649,191,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A768,191,2,2,2,2,N,""D.NO""")
-                oWrite.WriteLine("A768,144,2,2,2,2,N,""C.NO""")
-                oWrite.WriteLine("A649,144,2,2,2,2,N,"":""")
-                oWrite.WriteLine("A618,144,2,2,2,2,N,""" & SHADE & """")
-                oWrite.WriteLine("b63,63,Q,m2,s6,eL,iA,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("A217,45,2,3,1,1,N,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A348,151,2,2,2,2,N,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("A348,207,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """")
+                oWrite.WriteLine("A348,318,2,2,2,2,N,""" & DESIGNNO & """")
+                oWrite.WriteLine("A386,324,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A518,318,2,2,2,2,N,""D.NO""")
+                oWrite.WriteLine("A518,262,2,2,2,2,N,""SHADE""")
+                oWrite.WriteLine("A386,269,2,2,2,2,N,"":""")
+                oWrite.WriteLine("A348,262,2,2,2,2,N,""" & SHADE & """")
+                oWrite.WriteLine("B461,99,2,9,2,4,51,N,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("A409,42,2,4,1,1,N,""" & BARCODE & """") 'BARCODE
                 oWrite.WriteLine("P1")
                 oWrite.Dispose()
 
