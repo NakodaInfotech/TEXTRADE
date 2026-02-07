@@ -420,6 +420,12 @@
     <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\BeamMaster.Designer.vb">
+      <DependentUpon>BeamMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\BeamMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2879,6 +2885,12 @@
       <DependentUpon>BeamProgramDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.Designer.vb">
+      <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
@@ -8842,6 +8854,9 @@
     <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
       <DependentUpon>SelectCustomLayout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\BeamMaster.resx">
+      <DependentUpon>BeamMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
@@ -10297,6 +10312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.resx">
       <DependentUpon>BeamProgramDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.resx">
+      <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
@@ -14437,9 +14455,7 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transactions\Yarn Module\Yarn InterGodown Transfer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -75,6 +75,8 @@ Partial Class YarnQualityMaster
         Me.txtname = New System.Windows.Forms.TextBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.CMBGREYQUALITY = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GPSTORES.SuspendLayout()
         CType(Me.GRIDSTORES, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +88,8 @@ Partial Class YarnQualityMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label6)
+        Me.BlendPanel1.Controls.Add(Me.CMBGREYQUALITY)
         Me.BlendPanel1.Controls.Add(Me.Label8)
         Me.BlendPanel1.Controls.Add(Me.CMBMILLNAME)
         Me.BlendPanel1.Controls.Add(Me.Label7)
@@ -126,7 +130,7 @@ Partial Class YarnQualityMaster
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(41, 127)
+        Me.Label8.Location = New System.Drawing.Point(40, 98)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(64, 14)
         Me.Label8.TabIndex = 365
@@ -138,7 +142,7 @@ Partial Class YarnQualityMaster
         Me.CMBMILLNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBMILLNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBMILLNAME.FormattingEnabled = True
-        Me.CMBMILLNAME.Location = New System.Drawing.Point(111, 123)
+        Me.CMBMILLNAME.Location = New System.Drawing.Point(110, 94)
         Me.CMBMILLNAME.Name = "CMBMILLNAME"
         Me.CMBMILLNAME.Size = New System.Drawing.Size(233, 23)
         Me.CMBMILLNAME.TabIndex = 4
@@ -149,7 +153,7 @@ Partial Class YarnQualityMaster
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(48, 98)
+        Me.Label7.Location = New System.Drawing.Point(213, 70)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(59, 14)
         Me.Label7.TabIndex = 363
@@ -160,7 +164,7 @@ Partial Class YarnQualityMaster
         '
         Me.TXTSHADENO.BackColor = System.Drawing.Color.White
         Me.TXTSHADENO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSHADENO.Location = New System.Drawing.Point(111, 95)
+        Me.TXTSHADENO.Location = New System.Drawing.Point(276, 66)
         Me.TXTSHADENO.Name = "TXTSHADENO"
         Me.TXTSHADENO.Size = New System.Drawing.Size(67, 22)
         Me.TXTSHADENO.TabIndex = 3
@@ -183,7 +187,7 @@ Partial Class YarnQualityMaster
         '
         Me.txtcount.BackColor = System.Drawing.Color.LemonChiffon
         Me.txtcount.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcount.Location = New System.Drawing.Point(111, 12)
+        Me.txtcount.Location = New System.Drawing.Point(110, 12)
         Me.txtcount.Name = "txtcount"
         Me.txtcount.Size = New System.Drawing.Size(233, 22)
         Me.txtcount.TabIndex = 0
@@ -196,7 +200,7 @@ Partial Class YarnQualityMaster
         Me.CMBHSNCODE.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBHSNCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBHSNCODE.FormattingEnabled = True
-        Me.CMBHSNCODE.Location = New System.Drawing.Point(111, 312)
+        Me.CMBHSNCODE.Location = New System.Drawing.Point(270, 260)
         Me.CMBHSNCODE.MaxDropDownItems = 14
         Me.CMBHSNCODE.Name = "CMBHSNCODE"
         Me.CMBHSNCODE.Size = New System.Drawing.Size(73, 23)
@@ -208,7 +212,7 @@ Partial Class YarnQualityMaster
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(47, 156)
+        Me.Label5.Location = New System.Drawing.Point(47, 127)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(58, 14)
         Me.Label5.TabIndex = 359
@@ -219,7 +223,7 @@ Partial Class YarnQualityMaster
         '
         Me.TXTRATE.BackColor = System.Drawing.Color.White
         Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE.Location = New System.Drawing.Point(111, 152)
+        Me.TXTRATE.Location = New System.Drawing.Point(110, 123)
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(67, 22)
         Me.TXTRATE.TabIndex = 5
@@ -231,7 +235,7 @@ Partial Class YarnQualityMaster
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(108, 338)
+        Me.Label4.Location = New System.Drawing.Point(27, 424)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(163, 14)
         Me.Label4.TabIndex = 357
@@ -242,7 +246,7 @@ Partial Class YarnQualityMaster
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(49, 317)
+        Me.Label3.Location = New System.Drawing.Point(209, 264)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 14)
         Me.Label3.TabIndex = 356
@@ -254,7 +258,7 @@ Partial Class YarnQualityMaster
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(62, 71)
+        Me.Label2.Location = New System.Drawing.Point(62, 70)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(44, 14)
         Me.Label2.TabIndex = 313
@@ -265,7 +269,7 @@ Partial Class YarnQualityMaster
         '
         Me.TXTDENIER.BackColor = System.Drawing.Color.White
         Me.TXTDENIER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTDENIER.Location = New System.Drawing.Point(111, 67)
+        Me.TXTDENIER.Location = New System.Drawing.Point(110, 66)
         Me.TXTDENIER.Name = "TXTDENIER"
         Me.TXTDENIER.Size = New System.Drawing.Size(67, 22)
         Me.TXTDENIER.TabIndex = 2
@@ -397,7 +401,7 @@ Partial Class YarnQualityMaster
         Me.CMBCATEGORY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBCATEGORY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCATEGORY.FormattingEnabled = True
-        Me.CMBCATEGORY.Location = New System.Drawing.Point(111, 181)
+        Me.CMBCATEGORY.Location = New System.Drawing.Point(110, 152)
         Me.CMBCATEGORY.MaxDropDownItems = 14
         Me.CMBCATEGORY.Name = "CMBCATEGORY"
         Me.CMBCATEGORY.Size = New System.Drawing.Size(233, 22)
@@ -408,7 +412,7 @@ Partial Class YarnQualityMaster
         Me.lblcategory.AutoSize = True
         Me.lblcategory.BackColor = System.Drawing.Color.Transparent
         Me.lblcategory.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblcategory.Location = New System.Drawing.Point(52, 185)
+        Me.lblcategory.Location = New System.Drawing.Point(52, 156)
         Me.lblcategory.Name = "lblcategory"
         Me.lblcategory.Size = New System.Drawing.Size(53, 14)
         Me.lblcategory.TabIndex = 311
@@ -420,7 +424,7 @@ Partial Class YarnQualityMaster
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(13, 289)
+        Me.Label1.Location = New System.Drawing.Point(13, 264)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(95, 14)
         Me.Label1.TabIndex = 157
@@ -431,7 +435,7 @@ Partial Class YarnQualityMaster
         '
         Me.TXTBOXWT.BackColor = System.Drawing.Color.White
         Me.TXTBOXWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBOXWT.Location = New System.Drawing.Point(111, 285)
+        Me.TXTBOXWT.Location = New System.Drawing.Point(110, 260)
         Me.TXTBOXWT.Name = "TXTBOXWT"
         Me.TXTBOXWT.Size = New System.Drawing.Size(73, 22)
         Me.TXTBOXWT.TabIndex = 3
@@ -565,7 +569,7 @@ Partial Class YarnQualityMaster
         Me.LBLCODE.BackColor = System.Drawing.Color.Transparent
         Me.LBLCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCODE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LBLCODE.Location = New System.Drawing.Point(27, 210)
+        Me.LBLCODE.Location = New System.Drawing.Point(27, 181)
         Me.LBLCODE.Name = "LBLCODE"
         Me.LBLCODE.Size = New System.Drawing.Size(79, 22)
         Me.LBLCODE.TabIndex = 154
@@ -575,7 +579,7 @@ Partial Class YarnQualityMaster
         'txtremarks
         '
         Me.txtremarks.ForeColor = System.Drawing.Color.DimGray
-        Me.txtremarks.Location = New System.Drawing.Point(111, 210)
+        Me.txtremarks.Location = New System.Drawing.Point(110, 181)
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Size = New System.Drawing.Size(233, 69)
@@ -633,7 +637,7 @@ Partial Class YarnQualityMaster
         '
         Me.txtname.BackColor = System.Drawing.Color.LemonChiffon
         Me.txtname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtname.Location = New System.Drawing.Point(111, 39)
+        Me.txtname.Location = New System.Drawing.Point(110, 39)
         Me.txtname.Name = "txtname"
         Me.txtname.Size = New System.Drawing.Size(233, 22)
         Me.txtname.TabIndex = 1
@@ -656,6 +660,27 @@ Partial Class YarnQualityMaster
         Me.Ep.BlinkRate = 0
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(47, 293)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(62, 15)
+        Me.Label6.TabIndex = 672
+        Me.Label6.Text = "Effect Into"
+        '
+        'CMBGREYQUALITY
+        '
+        Me.CMBGREYQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBGREYQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBGREYQUALITY.FormattingEnabled = True
+        Me.CMBGREYQUALITY.Location = New System.Drawing.Point(110, 289)
+        Me.CMBGREYQUALITY.Name = "CMBGREYQUALITY"
+        Me.CMBGREYQUALITY.Size = New System.Drawing.Size(233, 23)
+        Me.CMBGREYQUALITY.TabIndex = 671
         '
         'YarnQualityMaster
         '
@@ -723,4 +748,6 @@ Partial Class YarnQualityMaster
     Friend WithEvents TXTSHADENO As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents CMBMILLNAME As ComboBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents CMBGREYQUALITY As ComboBox
 End Class
