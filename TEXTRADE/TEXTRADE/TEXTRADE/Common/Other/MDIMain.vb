@@ -11074,4 +11074,13 @@ SKIPLINE:
 
     End Function
 
+    Private Sub AddNewEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem7.Click
+        Try
+            Dim OBJUPLOAD As New BeamMaster
+            OBJUPLOAD.MdiParent = Me
+            OBJUPLOAD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
