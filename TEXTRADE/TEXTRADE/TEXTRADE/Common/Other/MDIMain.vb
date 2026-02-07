@@ -6123,6 +6123,13 @@ SKIPLINE:
 
     Private Sub RECOUT_TOOL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RECOUT_TOOL.Click
         Try
+            If ClientName = "ABHEE" Then
+                Dim OBJAOUT As New AgencyOutstandingGridReport
+                OBJAOUT.MdiParent = Me
+                OBJAOUT.Show()
+                Exit Sub
+            End If
+
             Dim OBJOUT As New OutstandingFilter
             OBJOUT.FRMSTRING = "RECOUTSTANDING"
             OBJOUT.MdiParent = Me
