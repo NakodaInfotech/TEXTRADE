@@ -84,6 +84,7 @@ Partial Class StockFilter
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.RBITEMDESIGNSHADESEMISMALLSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBITEMMONTHLYSTOCKSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.RDBGREYSTOCK = New System.Windows.Forms.RadioButton()
@@ -133,7 +134,6 @@ Partial Class StockFilter
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPDESIGN.SuspendLayout()
         CType(Me.GRIDDESIGNDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -259,7 +259,7 @@ Partial Class StockFilter
         Me.CHKALLCMP.BackColor = System.Drawing.Color.Transparent
         Me.CHKALLCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKALLCMP.ForeColor = System.Drawing.Color.Black
-        Me.CHKALLCMP.Location = New System.Drawing.Point(444, 100)
+        Me.CHKALLCMP.Location = New System.Drawing.Point(406, 71)
         Me.CHKALLCMP.Name = "CHKALLCMP"
         Me.CHKALLCMP.Size = New System.Drawing.Size(93, 18)
         Me.CHKALLCMP.TabIndex = 10
@@ -939,6 +939,16 @@ Partial Class StockFilter
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         '
+        'RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM
+        '
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.AutoSize = True
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Location = New System.Drawing.Point(445, 273)
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Name = "RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM"
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Size = New System.Drawing.Size(65, 18)
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.TabIndex = 31
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Text = "Singles"
+        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.UseVisualStyleBackColor = True
+        '
         'RBITEMDESIGNSHADESEMISMALLSUMM
         '
         Me.RBITEMDESIGNSHADESEMISMALLSUMM.AutoSize = True
@@ -1445,16 +1455,6 @@ Partial Class StockFilter
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 1
         Me.GNAME.Width = 230
-        '
-        'RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM
-        '
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.AutoSize = True
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Location = New System.Drawing.Point(445, 273)
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Name = "RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM"
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Size = New System.Drawing.Size(65, 18)
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.TabIndex = 31
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.Text = "Singles"
-        Me.RBCATEGORYITEMDESIGNSHADESMALLNOSINGLEUNITSUMM.UseVisualStyleBackColor = True
         '
         'StockFilter
         '

@@ -43,6 +43,7 @@ Partial Class UpdateHoldforIntCalc
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GENTRYTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
@@ -121,7 +122,7 @@ Partial Class UpdateHoldforIntCalc
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GNEWDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GNAME, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GENTRYTYPE, Me.GREGNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GENTRYNO, Me.GDATE, Me.GNEWDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GNAME, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GGRANDTOTAL, Me.GENTRYTYPE, Me.GREGNAME, Me.GTRANSNAME})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -236,6 +237,12 @@ Partial Class UpdateHoldforIntCalc
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.OptionsColumn.AllowEdit = False
         '
+        'GTRANSNAME
+        '
+        resources.ApplyResources(Me.GTRANSNAME, "GTRANSNAME")
+        Me.GTRANSNAME.FieldName = "TRANSNAME"
+        Me.GTRANSNAME.Name = "GTRANSNAME"
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
@@ -290,4 +297,5 @@ Partial Class UpdateHoldforIntCalc
     Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDUEDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

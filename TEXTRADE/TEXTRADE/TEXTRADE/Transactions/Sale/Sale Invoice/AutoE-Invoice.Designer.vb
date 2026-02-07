@@ -115,7 +115,6 @@ Partial Class AutoEInvoice
         Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmbregister = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -131,6 +130,7 @@ Partial Class AutoEInvoice
         Me.TOOLGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.CMDGENERERATEEINV = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +141,7 @@ Partial Class AutoEInvoice
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDGENERERATEEINV)
         Me.BlendPanel1.Controls.Add(Me.CHKBLANKPAPER)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.CHKMULTI)
@@ -154,7 +155,6 @@ Partial Class AutoEInvoice
         Me.BlendPanel1.Controls.Add(Me.Label21)
         Me.BlendPanel1.Controls.Add(Me.Label22)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
-        Me.BlendPanel1.Controls.Add(Me.CMDOK)
         Me.BlendPanel1.Controls.Add(Me.cmdcancel)
         Me.BlendPanel1.Controls.Add(Me.cmbregister)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -1094,20 +1094,6 @@ Partial Class AutoEInvoice
         Me.CHKEDIT.Name = "CHKEDIT"
         Me.CHKEDIT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
-        'CMDOK
-        '
-        Me.CMDOK.BackColor = System.Drawing.Color.Transparent
-        Me.CMDOK.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDOK.FlatAppearance.BorderSize = 0
-        Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(535, 541)
-        Me.CMDOK.Name = "CMDOK"
-        Me.CMDOK.Size = New System.Drawing.Size(80, 28)
-        Me.CMDOK.TabIndex = 2
-        Me.CMDOK.Text = "&Ok"
-        Me.CMDOK.UseVisualStyleBackColor = False
-        '
         'cmdcancel
         '
         Me.cmdcancel.BackColor = System.Drawing.Color.Transparent
@@ -1239,6 +1225,20 @@ Partial Class AutoEInvoice
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
+        'CMDGENERERATEEINV
+        '
+        Me.CMDGENERERATEEINV.BackColor = System.Drawing.Color.Transparent
+        Me.CMDGENERERATEEINV.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDGENERERATEEINV.FlatAppearance.BorderSize = 0
+        Me.CMDGENERERATEEINV.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDGENERERATEEINV.ForeColor = System.Drawing.Color.Black
+        Me.CMDGENERERATEEINV.Location = New System.Drawing.Point(495, 539)
+        Me.CMDGENERERATEEINV.Name = "CMDGENERERATEEINV"
+        Me.CMDGENERERATEEINV.Size = New System.Drawing.Size(118, 28)
+        Me.CMDGENERERATEEINV.TabIndex = 806
+        Me.CMDGENERERATEEINV.Text = "&Generate E-Invoice"
+        Me.CMDGENERERATEEINV.UseVisualStyleBackColor = False
+        '
         'AutoEInvoice
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1353,7 +1353,6 @@ Partial Class AutoEInvoice
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents CMDOK As Button
     Friend WithEvents cmdcancel As Button
     Friend WithEvents cmbregister As ComboBox
     Friend WithEvents Label1 As Label
@@ -1369,4 +1368,5 @@ Partial Class AutoEInvoice
     Friend WithEvents TOOLGRIDDETAILS As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents lbl As Label
+    Friend WithEvents CMDGENERERATEEINV As Button
 End Class

@@ -76,6 +76,7 @@ Partial Class AutoWhatsapp
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CHKVASTRA = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDAGENTDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDAGENT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +92,7 @@ Partial Class AutoWhatsapp
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKVASTRA)
         Me.BlendPanel1.Controls.Add(Me.chkagentall)
         Me.BlendPanel1.Controls.Add(Me.chkall)
         Me.BlendPanel1.Controls.Add(Me.CMDUPDATE)
@@ -619,6 +621,18 @@ Partial Class AutoWhatsapp
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'CHKVASTRA
+        '
+        Me.CHKVASTRA.AutoSize = True
+        Me.CHKVASTRA.BackColor = System.Drawing.Color.Transparent
+        Me.CHKVASTRA.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKVASTRA.Location = New System.Drawing.Point(728, 238)
+        Me.CHKVASTRA.Name = "CHKVASTRA"
+        Me.CHKVASTRA.Size = New System.Drawing.Size(85, 19)
+        Me.CHKVASTRA.TabIndex = 13
+        Me.CHKVASTRA.Text = "Vastra App"
+        Me.CHKVASTRA.UseVisualStyleBackColor = False
+        '
         'AutoWhatsapp
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -694,4 +708,5 @@ Partial Class AutoWhatsapp
     Friend WithEvents GSUN As DataGridViewCheckBoxColumn
     Friend WithEvents GTIME As DataGridViewTextBoxColumn
     Friend WithEvents GNO As DataGridViewTextBoxColumn
+    Friend WithEvents CHKVASTRA As CheckBox
 End Class

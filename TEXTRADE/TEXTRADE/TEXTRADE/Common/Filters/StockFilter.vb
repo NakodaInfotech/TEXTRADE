@@ -183,14 +183,14 @@ Public Class StockFilter
 
 
                 Dim OBJDESIGN As New DesignHistory
-                    OBJDESIGN.MdiParent = MDIMain
-                    OBJDESIGN.DESIGNNO = CMBDESIGN.Text.Trim
-                    OBJDESIGN.Show()
-                    Exit Sub
-                End If
+                OBJDESIGN.MdiParent = MDIMain
+                OBJDESIGN.DESIGNNO = CMBDESIGN.Text.Trim
+                OBJDESIGN.Show()
+                Exit Sub
+            End If
 
 
-                If RBNILSTOCK.Checked = True Then
+            If RBNILSTOCK.Checked = True Then
                 Dim OBJNILSTOCK As New ColorwiseStock
                 OBJNILSTOCK.MdiParent = MDIMain
                 OBJNILSTOCK.FRMSTRING = "NILSTOCKREPORT"
@@ -206,25 +206,25 @@ Public Class StockFilter
 
                 'FOR UNIT
                 gridbillunit.ClearColumnsFilter()
-                    For i As Integer = 0 To gridbillunit.RowCount - 1
-                        Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If UNITCLAUSE = "" Then
-                                UNITCLAUSE = " And (UNIT = '" & dtrow("UNIT") & "'"
-                            Else
-                                UNITCLAUSE = UNITCLAUSE & " OR UNIT = '" & dtrow("UNIT") & "'"
-                            End If
+                For i As Integer = 0 To gridbillunit.RowCount - 1
+                    Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If UNITCLAUSE = "" Then
+                            UNITCLAUSE = " And (UNIT = '" & dtrow("UNIT") & "'"
+                        Else
+                            UNITCLAUSE = UNITCLAUSE & " OR UNIT = '" & dtrow("UNIT") & "'"
                         End If
-                    Next
-                    If UNITCLAUSE <> "" Then
-                        UNITCLAUSE = UNITCLAUSE & ")"
-                        OBJNILSTOCK.WHERECLAUSE = OBJNILSTOCK.WHERECLAUSE & UNITCLAUSE
                     End If
-
-                    OBJNILSTOCK.TEMPMTRS = Val(TXTMTRS.Text.Trim)
-                    OBJNILSTOCK.Show()
-                    Exit Sub
+                Next
+                If UNITCLAUSE <> "" Then
+                    UNITCLAUSE = UNITCLAUSE & ")"
+                    OBJNILSTOCK.WHERECLAUSE = OBJNILSTOCK.WHERECLAUSE & UNITCLAUSE
                 End If
+
+                OBJNILSTOCK.TEMPMTRS = Val(TXTMTRS.Text.Trim)
+                OBJNILSTOCK.Show()
+                Exit Sub
+            End If
 
 
 
@@ -520,104 +520,107 @@ Public Class StockFilter
                 Dim COLORCLAUSE As String = ""
 
                 OBJREP.SOCLAUSE = " AND ALLSALEORDER_DESC.SO_CLOSED = 'FALSE' "
-                    If CMBCATEGORY.Text.Trim <> "" Then
-                        OBJREP.BARCODECLAUSE = OBJREP.BARCODECLAUSE & " and BARCODESTOCK.CATEGORY='" & CMBCATEGORY.Text.Trim & "'"
-                        OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " and CATEGORYMASTER.CATEGORY_NAME='" & CMBCATEGORY.Text.Trim & "'"
-                    End If
+                If CMBCATEGORY.Text.Trim <> "" Then
+                    OBJREP.BARCODECLAUSE = OBJREP.BARCODECLAUSE & " and BARCODESTOCK.CATEGORY='" & CMBCATEGORY.Text.Trim & "'"
+                    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " and CATEGORYMASTER.CATEGORY_NAME='" & CMBCATEGORY.Text.Trim & "'"
+                End If
 
-                    'FOR NAME
-                    gridbill.ClearColumnsFilter()
-                    For i As Integer = 0 To gridbill.RowCount - 1
-                        Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If NAMECLAUSE = "" Then
-                                NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
-                            Else
-                                NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
-                            End If
+                'FOR NAME
+                gridbill.ClearColumnsFilter()
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If NAMECLAUSE = "" Then
+                            NAMECLAUSE = " AND (LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
+                        Else
+                            NAMECLAUSE = NAMECLAUSE & " OR LEDGERS.ACC_CMPNAME = '" & dtrow("NAME") & "'"
                         End If
-                    Next
-                    If NAMECLAUSE <> "" Then
-                        NAMECLAUSE = NAMECLAUSE & ")"
-                        OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & NAMECLAUSE
                     End If
+                Next
+                If NAMECLAUSE <> "" Then
+                    NAMECLAUSE = NAMECLAUSE & ")"
+                    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & NAMECLAUSE
+                End If
 
 
-                    'FOR ITEMNAME
-                    GRIDITEM.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDITEM.RowCount - 1
-                        Dim dtrow As DataRow = GRIDITEM.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If ITEMCLAUSE = "" Then
-                                ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
-                            Else
-                                ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
-                            End If
+                'FOR ITEMNAME
+                GRIDITEM.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDITEM.RowCount - 1
+                    Dim dtrow As DataRow = GRIDITEM.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If ITEMCLAUSE = "" Then
+                            ITEMCLAUSE = " AND (ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
+                        Else
+                            ITEMCLAUSE = ITEMCLAUSE & " OR ITEMMASTER.ITEM_NAME = '" & dtrow("ITEMNAME") & "'"
                         End If
-                    Next
-                    If ITEMCLAUSE <> "" Then
-                        ITEMCLAUSE = ITEMCLAUSE & ")"
-                        OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & ITEMCLAUSE
                     End If
+                Next
+                If ITEMCLAUSE <> "" Then
+                    ITEMCLAUSE = ITEMCLAUSE & ")"
+                    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & ITEMCLAUSE
+                End If
 
-                    'FOR DESIGN
-                    GRIDDESIGN.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDDESIGN.RowCount - 1
-                        Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If DESIGNCLAUSE = "" Then
-                                DESIGNCLAUSE = " AND (DESIGNMASTER.DESIGN_NO = '" & dtrow("DESIGNNO") & "'"
-                            Else
-                                DESIGNCLAUSE = DESIGNCLAUSE & " OR DESIGNMASTER.DESIGN_NO = '" & dtrow("DESIGNNO") & "'"
-                            End If
+                'FOR DESIGN
+                GRIDDESIGN.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDDESIGN.RowCount - 1
+                    Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If DESIGNCLAUSE = "" Then
+                            DESIGNCLAUSE = " AND (DESIGNMASTER.DESIGN_NO = '" & dtrow("DESIGNNO") & "'"
+                        Else
+                            DESIGNCLAUSE = DESIGNCLAUSE & " OR DESIGNMASTER.DESIGN_NO = '" & dtrow("DESIGNNO") & "'"
                         End If
-                    Next
-                    If DESIGNCLAUSE <> "" Then
-                        DESIGNCLAUSE = DESIGNCLAUSE & ")"
-                        OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & DESIGNCLAUSE
                     End If
+                Next
+                If DESIGNCLAUSE <> "" Then
+                    DESIGNCLAUSE = DESIGNCLAUSE & ")"
+                    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & DESIGNCLAUSE
+                End If
 
-                    'FOR SHADE
-                    GRIDSHADE.ClearColumnsFilter()
-                    For i As Integer = 0 To GRIDSHADE.RowCount - 1
-                        Dim dtrow As DataRow = GRIDSHADE.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If COLORCLAUSE = "" Then
-                                COLORCLAUSE = " AND (COLORMASTER.COLOR_NAME = '" & dtrow("COLOR") & "'"
-                            Else
-                                COLORCLAUSE = COLORCLAUSE & " OR COLORMASTER.COLOR_NAME = '" & dtrow("COLOR") & "'"
-                            End If
+                'FOR SHADE
+                GRIDSHADE.ClearColumnsFilter()
+                For i As Integer = 0 To GRIDSHADE.RowCount - 1
+                    Dim dtrow As DataRow = GRIDSHADE.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If COLORCLAUSE = "" Then
+                            COLORCLAUSE = " AND (COLORMASTER.COLOR_NAME = '" & dtrow("COLOR") & "'"
+                        Else
+                            COLORCLAUSE = COLORCLAUSE & " OR COLORMASTER.COLOR_NAME = '" & dtrow("COLOR") & "'"
                         End If
-                    Next
-                    If COLORCLAUSE <> "" Then
-                        COLORCLAUSE = COLORCLAUSE & ")"
-                        OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & COLORCLAUSE
                     End If
+                Next
+                If COLORCLAUSE <> "" Then
+                    COLORCLAUSE = COLORCLAUSE & ")"
+                    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & COLORCLAUSE
+                End If
 
 
 
-                    'FOR UNIT
-                    gridbillunit.ClearColumnsFilter()
-                    For i As Integer = 0 To gridbillunit.RowCount - 1
-                        Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
-                        If Convert.ToBoolean(dtrow("CHK")) = True Then
-                            If UNITCLAUSE = "" Then
-                                UNITCLAUSE = " And (BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
-                            Else
-                                UNITCLAUSE = UNITCLAUSE & " OR BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
-                            End If
+                'FOR UNIT
+                gridbillunit.ClearColumnsFilter()
+                For i As Integer = 0 To gridbillunit.RowCount - 1
+                    Dim dtrow As DataRow = gridbillunit.GetDataRow(i)
+                    If Convert.ToBoolean(dtrow("CHK")) = True Then
+                        If UNITCLAUSE = "" Then
+                            UNITCLAUSE = " And (BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
+                        Else
+                            UNITCLAUSE = UNITCLAUSE & " OR BARCODESTOCK.UNIT = '" & dtrow("UNIT") & "'"
                         End If
-                    Next
-                    If UNITCLAUSE <> "" Then
-                        UNITCLAUSE = UNITCLAUSE & ")"
-                        OBJREP.BARCODECLAUSE = OBJREP.BARCODECLAUSE & UNITCLAUSE
                     End If
+                Next
+                If UNITCLAUSE <> "" Then
+                    UNITCLAUSE = UNITCLAUSE & ")"
+                    OBJREP.BARCODECLAUSE = OBJREP.BARCODECLAUSE & UNITCLAUSE
+                End If
+
+                'If CMBDAYS.Text.Trim <> "" Then
+                '    OBJREP.SOCLAUSE = OBJREP.SOCLAUSE & " and CATEGORYMASTER.CATEGORY_NAME='" & CMBDAYS.Text.Trim & "'"
+                'End If
 
 
+                'End If
 
-                    'End If
-
-                    OBJREP.Show()
+                OBJREP.Show()
                 Exit Sub
 
             End If
@@ -1513,6 +1516,7 @@ Public Class StockFilter
             If ClientName = "AVIS" Then
                 LBLFORWARD.Visible = True
                 CMBFORWARD.Visible = True
+
             End If
 
             If ClientName = "SONU" Then

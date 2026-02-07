@@ -1,8 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports System.Net.Http
-Imports System.Net.Http.Headers
-Imports System.IO
-
+﻿
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
@@ -59,125 +55,7 @@ Public Class MDIMain
             LBLCHECKIN.Left = Me.Width
         End If
     End Sub
-    Private Sub AutoSyncExcelData()
-        ' 1. Read Excel
-        ' 2. Select rows where IsSynced = "No"
-        ' 3. Upload only those rows via API
-        ' 4. If API success → mark IsSynced = "Yes"
-        ' 5. Update LastSyncTime
-    End Sub
-    Private Async Sub SyncTimer_Tick(sender As Object, e As EventArgs) Handles SyncTimer.Tick
-        SyncTimer.Enabled = False
-        Try
-            Dim DT As DataTable = FetchDeltaStock()
 
-            If DT.Rows.Count > 0 Then
-
-                Dim FilePath As String =
-                AppDomain.CurrentDomain.BaseDirectory &
-                "VASTRA_STOCK_" & Format(Now, "yyyyMMdd_HHmmss") & ".xlsx"
-
-                Dim OBJRPT As New clsReportDesigner("Vastra Stock", FilePath, 0)
-                OBJRPT.GenerateStockExcel(DT)
-
-                Dim Success As Boolean = Await UploadExcelToVastra(FilePath)
-
-                If Success Then
-                    UpdateLastSyncTime("VASTRA_STOCK", DateTime.Now)
-                    'File.Delete(FilePath)
-                End If
-
-            End If
-
-        Catch ex As Exception
-            ' log silently
-        End Try
-
-    End Sub
-
-
-
-    Private Function FetchDeltaStock() As DataTable
-
-        Dim DT As New DataTable
-        Try
-            Dim LastSync As DateTime = GetLastSyncTime("VASTRA_STOCK")
-
-            ' IMPORTANT: format datetime for SQL
-            Dim SyncDate As String = LastSync.ToString("yyyy-MM-dd HH:mm:ss")
-
-            Dim OBJCMN As New ClsCommon
-
-            DT = OBJCMN.SEARCH(
-              "BARCODESTOCK.ITEMNAME, " &
-    "BARCODESTOCK.DESIGNNO, " &
-    "BARCODESTOCK.COLOR, " &
-    "COUNT(BARCODESTOCK.BALENO) AS NOOFBALES",
-    "",
-    "BARCODESTOCK",
-            " AND (BARCODESTOCK.CREATED >= '" & SyncDate & "' " &
-            " OR BARCODESTOCK.MODIFIED >= '" & SyncDate & "') " &
-            " AND BARCODESTOCK.YEARID = " & YearId &
-             " GROUP BY BARCODESTOCK.ITEMNAME, BARCODESTOCK.DESIGNNO, BARCODESTOCK.COLOR"
-        )
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-        Return DT
-
-    End Function
-    Public Function GetLastSyncTime(ByVal SyncKey As String) As DateTime
-
-        Try
-            Dim OBJCMN As New ClsCommon
-
-            Dim DT As DataTable = OBJCMN.SEARCH(
-            "LAST_SYNC_TIME",
-            "",
-            "SYNC_LOG",
-            " AND SYNC_KEY = '" & SyncKey & "'"
-        )
-
-            ' FIRST RUN (no entry found)
-            If DT.Rows.Count = 0 Then
-                Return DateTime.Parse("2000-01-01 00:00:00")
-            End If
-
-            ' NORMAL CASE
-            If IsDBNull(DT.Rows(0)("LAST_SYNC_TIME")) Then
-                Return DateTime.Parse("2000-01-01 00:00:00")
-            Else
-                Return Convert.ToDateTime(DT.Rows(0)("LAST_SYNC_TIME"))
-            End If
-
-        Catch ex As Exception
-            ' Fail-safe: never block sync
-            Return DateTime.Parse("2000-01-01 00:00:00")
-        End Try
-
-    End Function
-    Public Sub UpdateLastSyncTime(ByVal SyncKey As String, ByVal SyncTime As DateTime)
-        Try
-            Dim OBJCMN As New ClsCommon
-            Dim SyncDate As String = SyncTime.ToString("yyyy-MM-dd HH:mm:ss")
-            ' Check if record exists
-            Dim DT As DataTable = OBJCMN.SEARCH("SYNC_KEY", "", "SYNC_LOG", " AND SYNC_KEY = '" & SyncKey & "'")
-            If DT.Rows.Count = 0 Then
-                OBJCMN.Execute_Any_String("INSERT INTO SYNC_LOG (SYNC_KEY, LAST_SYNC_TIME) " & "VALUES ('" & SyncKey & "', '" & SyncDate & "')", "", "")
-            Else
-                OBJCMN.Execute_Any_String("UPDATE SYNC_LOG SET LAST_SYNC_TIME = '" & SyncDate & "' " & "WHERE SYNC_KEY = '" & SyncKey & "'", "", "")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Async Function RunVastraSyncAsync() As Task
-        Await Task.Run(Sub()
-                           SyncTimer_Tick(Nothing, EventArgs.Empty)
-                       End Sub)
-    End Function
     Private Sub MDIMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Me.Text = CmpName & " (" & AccFrom & " - " & AccTo & ")                     User - " & UserName
@@ -187,10 +65,6 @@ Public Class MDIMain
                 Timer1.Enabled = True
                 LBLCHECKIN.Visible = True
                 Timer1.Interval = 15
-            ElseIf ClientName = "SNCM" Then
-                SyncTimer.Enabled = True
-                SyncTimer.Interval = 3600000 ' 1 hour
-                Call RunVastraSyncAsync()
             End If
 
 
@@ -5305,6 +5179,10 @@ SKIPLINE:
                 MAGICBOX_MENU.Visible = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
+            If ClientName <> "MNARESH" Then
+                AutoEInvoiceToolStripMenuItem.Visible = False
+                AutoEWayToolStripMenuItem.Visible = False
+            End If
             If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
         Catch ex As Exception
             Throw ex
@@ -11006,73 +10884,7 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-    Public Async Function UploadExcelToVastra(ByVal FilePath As String) As Task(Of Boolean)
 
-        Try
-            If Not File.Exists(FilePath) Then
-                Throw New Exception("Excel file not found: " & FilePath)
-            End If
-
-            Dim ApiUrl As String = "http://13.235.138.204:3000/upload-design-stock-tally-v2"
-
-            Using client As New HttpClient()
-
-                '========================
-                ' HEADERS (MANDATORY)
-                '========================
-                client.DefaultRequestHeaders.Add("api-key", "1")
-                client.DefaultRequestHeaders.Add("udid", "84b117c789b95c26")
-                client.DefaultRequestHeaders.Add("device-type", "tally")
-                client.DefaultRequestHeaders.Add("Authorization", "Hpxt-Lgx-seBT-3BpCH-80236-1645172896638")
-                client.DefaultRequestHeaders.Add("app-secret", "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b")
-
-                client.Timeout = TimeSpan.FromMinutes(10)
-
-                '========================
-                ' MULTIPART FORM DATA
-                '========================
-                Using form As New MultipartFormDataContent()
-
-                    ' REQUIRED FIELDS
-                    form.Add(New StringContent("RwLV-njR-qdqy-VRA04-80236-1645172896633"), "location_code")
-                    form.Add(New StringContent("1"), "colorSizeMap")
-                    form.Add(New StringContent("0"), "isClearDesignStock")
-
-                    ' EXCEL FILE
-                    Dim fileBytes As Byte() = File.ReadAllBytes(FilePath)
-                    Dim fileContent As New ByteArrayContent(fileBytes)
-
-                    fileContent.Headers.ContentType =
-                    MediaTypeHeaderValue.Parse(
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
-
-                    ' IMPORTANT: field name MUST be "document"
-                    form.Add(fileContent, "document", Path.GetFileName(FilePath))
-
-                    '========================
-                    ' POST REQUEST
-                    '========================
-                    Dim response As HttpResponseMessage = Await client.PostAsync(ApiUrl, form)
-
-                    Dim responseText As String = Await response.Content.ReadAsStringAsync()
-
-                    If response.IsSuccessStatusCode Then
-                        ' Optional: log responseText
-                        Return True
-                    Else
-                        Throw New Exception("Upload failed: " & responseText)
-                    End If
-
-                End Using
-            End Using
-
-        Catch ex As Exception
-            ' Log error (file / network / API validation)
-            Return False
-        End Try
-
-    End Function
 
     Private Sub AddNewEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem7.Click
         Try

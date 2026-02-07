@@ -1,6 +1,10 @@
 ﻿
 Imports BL
+Imports DevExpress.CodeParser
 Imports DevExpress.XtraGrid.Views.Grid
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports System.IO
 
 Public Class InvoiceDetails
     Dim SALEREGID As Integer
@@ -80,7 +84,7 @@ Public Class InvoiceDetails
 
             Dim clscommon As New ClsCommon
             Dim dt As DataTable
-            dt = clscommon.search(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
             If dt.Rows.Count > 0 Then
                 cmbregister.Text = dt.Rows(0).Item(0).ToString
             End If
@@ -96,10 +100,10 @@ Public Class InvoiceDetails
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
                 Dim dt As DataTable
-                dt = clscommon.search(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+                dt = clscommon.SEARCH(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     SALEREGID = dt.Rows(0).Item(0)
-                    fillgrid(" and INVOICEMASTER.INVOICE_yearid = " & YearId & " AND INVOICEMASTER.INVOICE_registerid = " & SALEREGID & " order by dbo.INVOICEMASTER.INVOICE_no ")
+                    FILLGRID(" and INVOICEMASTER.INVOICE_yearid = " & YearId & " AND INVOICEMASTER.INVOICE_registerid = " & SALEREGID & " order by dbo.INVOICEMASTER.INVOICE_no ")
                 Else
                     MsgBox("Register Not Present, Add New from Master Module")
                     e.Cancel = True
@@ -184,7 +188,7 @@ Public Class InvoiceDetails
 
 
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("ISNULL(STATE_REMARK,'') AS STATECODE", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATE_ID INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICEMASTER.INVOICE_REGISTERID ", " AND INVOICEMASTER.INVOICE_NO = " & Val(I) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(STATE_REMARK,'') AS STATECODE", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATE_ID INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICEMASTER.INVOICE_REGISTERID ", " AND INVOICEMASTER.INVOICE_NO = " & Val(I) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
                 If DT.Rows.Count > 0 AndAlso DT.Rows(0).Item("STATECODE") <> CMPSTATECODE Then OBJINVOICE.IGSTFORMAT = True
                 OBJINVOICE.registername = cmbregister.Text.Trim
                 OBJINVOICE.PRINTSETTING = PRINTDIALOG
@@ -223,6 +227,8 @@ Public Class InvoiceDetails
 
             Dim ALATTACHMENT As New ArrayList
             Dim FILENAME As New ArrayList
+            Dim partyFiles As New Dictionary(Of String, List(Of String)) 'mobile → pdf list
+            Dim partyRows As New Dictionary(Of String, DataRow) 'mobile → store party info
             DTMAIL.Rows.Clear()
             DTWHATSAPP.Rows.Clear()
 
@@ -270,43 +276,107 @@ Public Class InvoiceDetails
                         ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
                         FILENAME.Add(ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
                     End If
-
+                    Dim invoicePath As String = ALATTACHMENT(ALATTACHMENT.Count - 1).ToString
 
                     'ADDINT IN DTEMAIL
                     DTMAIL.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("REGID"), cmbregister.Text.Trim, ROW("PRINTINITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYMAIL"), ROW("AGENTNAME"), ROW("AGENTMAIL"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Invoice No. " & ROW("PRINTINITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
 
                     'ADDING IN DTWHATSAPP
                     If ClientName = "MAHAVIRPOLYCOT" Then ROW("AGENTWHATSAPP") = ""
-                    DTWHATSAPP.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("REGID"), cmbregister.Text.Trim, ROW("PRINTINITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), ROW("AGENTNAME"), ROW("AGENTWHATSAPP"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Invoice No. " & ROW("PRINTINITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
+                    If CHKMERGEDPDF.CheckState = False Then
 
+                        DTWHATSAPP.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("REGID"), cmbregister.Text.Trim, ROW("PRINTINITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), ROW("AGENTNAME"), ROW("AGENTWHATSAPP"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Invoice No. " & ROW("PRINTINITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
+
+                    End If
                     DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_SENDWHATSAPP = 1, INVOICE_PRINT = 1 FROM InvoiceMaster INNER JOIN REGISTERMASTER On INVOICEMASTER.INVOICE_REGISTERID = REGISTERMASTER.register_id WHERE INVOICE_NO = " & Val(ROW("SRNO")) & " AND REGISTER_NAME '" & cmbregister.Text.Trim & "'  AND INVOICE_YEARID = " & YearId, "", "")
 
                 End If
             Next
+            If CHKMERGEDPDF.CheckState = True Then
+                If INVOICEMAIL Then
+                    If ALATTACHMENT.Count = 0 Then Exit Sub
 
-            If INVOICEMAIL Then
-                If DTMAIL.Rows.Count = 0 Then Exit Sub
-                Dim OBJEMAIL As New SendMultipleMail
-                OBJEMAIL.FORMTYPE = "INVOICE"
-                OBJEMAIL.DT = DTMAIL
-                OBJEMAIL.ShowDialog()
-                Exit Sub
+                    'Convert ArrayList to List(Of String)
+                    Dim pdfFiles As New List(Of String)
+                    For Each f As String In ALATTACHMENT
+                        pdfFiles.Add(f)
+                    Next
+
+                    'Merged output file
+                    Dim mergedPath As String = Application.StartupPath & "\MERGED_INVOICES.pdf"
+
+                    'Merge PDFs
+                    MergePDFFiles(pdfFiles, mergedPath)
+
+                    'Clear old list and send only merged file
+                    ALATTACHMENT.Clear()
+                    FILENAME.Clear()
+
+                    ALATTACHMENT.Add(mergedPath)
+                    FILENAME.Add("Invoices.pdf")
+
+                    Dim OBJEMAIL As New SendMultipleMail
+                    OBJEMAIL.FORMTYPE = "INVOICE"
+                    OBJEMAIL.DT = DTMAIL
+                    OBJEMAIL.ShowDialog()
+                End If
+            Else
+                If INVOICEMAIL Then
+                    If DTMAIL.Rows.Count = 0 Then Exit Sub
+                    Dim OBJEMAIL As New SendMultipleMail
+                    OBJEMAIL.FORMTYPE = "INVOICE"
+                    OBJEMAIL.DT = DTMAIL
+                    OBJEMAIL.ShowDialog()
+                    Exit Sub
+                End If
             End If
-
             'If INVOICEMAIL Then
             '    Dim OBJMAIL As New SendMail
             '    OBJMAIL.ALATTACHMENT = ALATTACHMENT
             '    OBJMAIL.subject = "Invoice"
             '    OBJMAIL.ShowDialog()
             'End If
+            If CHKMERGEDPDF.Checked AndAlso WHATSAPP Then
+                If WHATSAPP = True Then
+                    If ALATTACHMENT.Count = 0 Then Exit Sub
 
-            If WHATSAPP = True Then
-                If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
-                Dim OBJWHATSAPP As New SendMultipleWhatsapp
-                OBJWHATSAPP.PATH = ALATTACHMENT
-                OBJWHATSAPP.FILENAME = FILENAME
-                OBJWHATSAPP.DT = DTWHATSAPP
-                OBJWHATSAPP.ShowDialog()
+                    Dim pdfFiles As New List(Of String)
+                    For Each f As String In ALATTACHMENT
+                        pdfFiles.Add(f)
+                    Next
+
+                    Dim mergedPath As String = Application.StartupPath & "\MERGED_INVOICES.pdf"
+                    MergePDFFiles(pdfFiles, mergedPath)
+
+                    'Send only one row
+                    DTWHATSAPP.Rows.Clear()
+                    DTWHATSAPP.Rows.Add(0, 0, cmbregister.Text.Trim, "", Now.Date,
+                        "Multiple Invoices", "", "", "", 0,
+                        "Invoices Attached", mergedPath, "Invoices.pdf")
+
+                    ALATTACHMENT.Clear()
+                    FILENAME.Clear()
+                    ALATTACHMENT.Add(mergedPath)
+                    FILENAME.Add("Invoices.pdf")
+
+
+                    Dim OBJWHATSAPP As New SendMultipleWhatsapp
+                    OBJWHATSAPP.PATH = ALATTACHMENT
+                    OBJWHATSAPP.FILENAME = FILENAME
+                    OBJWHATSAPP.DT = DTWHATSAPP
+                    OBJWHATSAPP.ShowDialog()
+                End If
+            Else
+
+
+                If WHATSAPP = True Then
+                    If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+                    Dim OBJWHATSAPP As New SendMultipleWhatsapp
+                    OBJWHATSAPP.PATH = ALATTACHMENT
+                    OBJWHATSAPP.FILENAME = FILENAME
+                    OBJWHATSAPP.DT = DTWHATSAPP
+                    OBJWHATSAPP.ShowDialog()
+                End If
             End If
 
 
@@ -534,5 +604,23 @@ Public Class InvoiceDetails
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Public Sub MergePDFFiles(ByVal inputFiles As List(Of String), ByVal outputFile As String)
+
+        Dim document As New Document()
+        Dim copy As New PdfCopy(document, New FileStream(outputFile, FileMode.Create))
+        document.Open()
+
+        For Each filePath As String In inputFiles
+            If File.Exists(filePath) Then
+                Dim reader As New PdfReader(filePath)
+                For i As Integer = 1 To reader.NumberOfPages
+                    copy.AddPage(copy.GetImportedPage(reader, i))
+                Next
+                reader.Close()
+            End If
+        Next
+
+        document.Close()
     End Sub
 End Class

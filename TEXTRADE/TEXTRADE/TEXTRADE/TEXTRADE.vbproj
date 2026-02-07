@@ -2887,6 +2887,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.Designer.vb">
+      <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
     </Compile>
@@ -10306,6 +10312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.resx">
       <DependentUpon>BeamProgramDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.resx">
+      <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>

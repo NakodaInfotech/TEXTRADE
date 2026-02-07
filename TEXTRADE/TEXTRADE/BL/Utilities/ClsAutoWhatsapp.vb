@@ -59,6 +59,8 @@ Public Class ClsAUTOWHATSAPP
                 I += 1
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@VASTRA", alParaval(I)))
+                I += 1
 
             End With
 

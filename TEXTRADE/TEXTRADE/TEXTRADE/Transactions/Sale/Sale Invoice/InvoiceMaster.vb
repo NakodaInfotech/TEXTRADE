@@ -29,6 +29,9 @@ Public Class InvoiceMaster
     Public DIRECTPARTYNAME As String = ""
     Public TEMPPURNO As Integer, TEMPPURREGNAME As String, TEMPPARTYNAME As String
     Public IsBulkUpload As Boolean = False
+    Public AutoEway As Boolean = False
+    Public AutoEInv As Boolean = False
+    Public ExcessQty As Boolean = False
 
 
     Public Sub New()
@@ -858,7 +861,7 @@ Public Class InvoiceMaster
         End Try
     End Sub
 
-    Private Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
+    Public Sub cmdOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdOK.Click
         If ISLOCKYEAR = True Then
             MsgBox("Unable to Make changes, Year is Locked", MsgBoxStyle.Critical)
             Exit Sub
@@ -3207,7 +3210,9 @@ CHECKNEXTLINE:
             For Each ROW As DataGridViewRow In GRIDORDER.Rows
                 If (ROW.Cells(OGDNQTY.Index).Value) > Val(ROW.Cells(OPCS.Index).Value) Then
                     EP.SetError(cmbname, "Excess Qty Not Allowed")
+                    ExcessQty = True
                     bln = False
+                    Return False
                 End If
             Next
         End If
@@ -4096,7 +4101,7 @@ LINE2:
                             'ITEM | DESIGN | SAHDE | BALENO | RATE
                         ElseIf ClientName = "REALCORPORATION" Then
                             DT1 = OBJCMN.SEARCH(" DISTINCT ISNULL(GDN.GDN_NO, 0) AS GDNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS PCS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS MTRS , ISNULL(HSN_CODE,'') AS HSNCODE, ISNULL(HSN_CGST,0) AS CGSTPER, ISNULL(HSN_SGST,0) AS SGSTPER, ISNULL(HSN_IGST,0) AS IGSTPER, ISNULL(GDN_DESC.GDN_RATE,0) AS RATE, ISNULL(GDN_DESC.GDN_SRNO,0) AS GDNSRNO, ISNULL(GDN_DESC.GDN_BALENO, '') AS BALENO,ISNULL(GDN_DESC.GDN_PRINTDESC, '') AS PRINTDESC, '' AS GRIDPARTYPONO, '' AS UNIT ", "", " GDN INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_CMPID = GDN_DESC.GDN_CMPID AND GDN.GDN_LOCATIONID = GDN_DESC.GDN_LOCATIONID AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID LEFT OUTER JOIN DESIGNMASTER ON GDN_DESC.GDN_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON GDN_DESC.GDN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN QUALITYMASTER ON GDN_DESC.GDN_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON GDN_DESC.GDN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN PIECETYPEMASTER ON GDN_DESC.GDN_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT OUTER JOIN CITYMASTER ON GDN.GDN_CITYid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGER ON GDN.GDN_transid = TRANSLEDGER.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON GDN.GDN_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID ", "  and GDN.GDN_NO IN(" & txtchallan.Text.Trim & ")  and GDN_DESC.GDN_SALEDONE=0 AND GDN.GDN_YEARID = " & YearId & " GROUP BY ISNULL(GDN.GDN_NO, 0), ISNULL(ITEMMASTER.item_name, ''), ISNULL(QUALITYMASTER.QUALITY_name, ''), ISNULL(DESIGNMASTER.DESIGN_NO, ''), ISNULL(COLORMASTER.COLOR_name, '') , ISNULL(GDN_DESC.GDN_PRINTDESC, ''), ISNULL(GDN_DESC.GDN_BALENO, ''), ISNULL(HSN_CODE,''), ISNULL(HSN_CGST,0), ISNULL(HSN_SGST,0), ISNULL(HSN_IGST,0), ISNULL(GDN_DESC.GDN_RATE,0), ISNULL(GDN_BALENOFROM,0), ISNULL(GDN_BALENOTO,0), ISNULL(GDN_SRNO,0)  ")
-                        ElseIf ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "MANIBHADRA" Or ClientName = "DRDRAPES" Or ClientName = "KARAN" Or ClientName = "VINAYAK" Or ClientName = "POOJA" Or ClientName = "DEVEN" Or ClientName = "KEMLINO" Or ClientName = "MSANCHITKUMAR" Then
+                        ElseIf ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "MANIBHADRA" Or ClientName = "DRDRAPES" Or ClientName = "KARAN" Or ClientName = "POOJA" Or ClientName = "DEVEN" Or ClientName = "KEMLINO" Or ClientName = "MSANCHITKUMAR" Then
                             DT1 = OBJCMN.SEARCH(" DISTINCT ISNULL(GDN.GDN_NO, 0) AS GDNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEM, '' AS QUALITY, '' AS DESIGN, '' AS COLOR, SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS PCS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS MTRS , ISNULL(HSN_CODE,'') AS HSNCODE, ISNULL(HSN_CGST,0) AS CGSTPER, ISNULL(HSN_SGST,0) AS SGSTPER, ISNULL(HSN_IGST,0) AS IGSTPER, ISNULL(GDN_DESC.GDN_RATE, 0) AS RATE, 0 AS GDNSRNO, ISNULL(GDN_DESC.GDN_BALENO, '') AS BALENO,ISNULL(GDN_DESC.GDN_PRINTDESC, '') AS PRINTDESC, '' AS GRIDPARTYPONO, '' AS UNIT ", "", " GDN INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID LEFT OUTER JOIN ITEMMASTER ON GDN_DESC.GDN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN CITYMASTER ON GDN.GDN_CITYid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGER ON GDN.GDN_transid = TRANSLEDGER.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON GDN.GDN_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID ", "  and GDN.GDN_NO IN(" & txtchallan.Text.Trim & ")  and GDN.GDN_YEARID = " & YearId & " GROUP BY ISNULL(GDN.GDN_NO, 0), ISNULL(ITEMMASTER.item_name, ''),ISNULL(GDN_DESC.GDN_PRINTDESC, ''), ISNULL(GDN_DESC.GDN_BALENO, ''), ISNULL(HSN_CODE,''), ISNULL(HSN_CGST,0), ISNULL(HSN_SGST,0), ISNULL(HSN_IGST,0), ISNULL(GDN_DESC.GDN_RATE, 0)")
                             'ONLY ITEMNAME
                         ElseIf ClientName = "NAYRA" Or ClientName = "PARTOBA" Or ClientName = "KUNAL" Or ClientName = "VINIT" Or ClientName = "SARAYU" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "MNARESH" Or ClientName = "MILUXE" Then
@@ -4118,7 +4123,7 @@ LINE2:
 
 
                             'THIS IS FOR SINGLE SINGLE ENTRY
-                        ElseIf ClientName = "CC" Or ClientName = "SNCM" Or ClientName = "AFW" Or ClientName = "MAHAJAN" Then
+                        ElseIf ClientName = "CC" Or ClientName = "SNCM" Or ClientName = "AFW" Or ClientName = "MAHAJAN" Or ClientName = "VINAYAK" Then
                             DT1 = OBJCMN.SEARCH(" ISNULL(GDN.GDN_NO, 0) AS GDNNO, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(QUALITYMASTER.QUALITY_name, '') AS QUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR,ISNULL(GDN_DESC.GDN_PRINTDESC, '') AS PRINTDESC, ISNULL(GDN_DESC.GDN_BALENO, '') AS BALENO, ISNULL(GDN_DESC.GDN_PCS, 0) AS PCS, ISNULL(GDN_DESC.GDN_MTRS, 0) AS MTRS , ISNULL(HSN_CODE,'') AS HSNCODE, ISNULL(HSN_CGST,0) AS CGSTPER, ISNULL(HSN_SGST,0) AS SGSTPER, ISNULL(HSN_IGST,0) AS IGSTPER, ISNULL(GDN_DESC.GDN_RATE, 0) AS RATE, ISNULL(GDN_DESC.GDN_GRIDPARTYPONO, '') AS GRIDPARTYPONO, '' AS UNIT  ", "", " GDN INNER JOIN LEDGERS ON GDN.GDN_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN GDN_DESC ON GDN.GDN_NO = GDN_DESC.GDN_NO AND GDN.GDN_YEARID = GDN_DESC.GDN_YEARID LEFT OUTER JOIN DESIGNMASTER ON GDN_DESC.GDN_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON GDN_DESC.GDN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN QUALITYMASTER ON GDN_DESC.GDN_QUALITYID = QUALITYMASTER.QUALITY_id LEFT OUTER JOIN ITEMMASTER ON GDN_DESC.GDN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN PIECETYPEMASTER ON GDN_DESC.GDN_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id LEFT OUTER JOIN CITYMASTER ON GDN.GDN_CITYid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGER ON GDN.GDN_transid = TRANSLEDGER.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON GDN.GDN_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN GODOWNMASTER ON GDN.GDN_GODOWNID = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSN_ID ", " and GDN.GDN_NO IN(" & txtchallan.Text.Trim & ")  and GDN_DESC.GDN_SALEDONE=0 AND GDN.GDN_YEARID = " & YearId & " ORDER BY GDN_DESC.GDN_SRNO")
 
                             'THIS IS FOR SINGLE SINGLE ENTRY WITHOUT COLOR
@@ -6994,7 +6999,7 @@ NORATE:
         End Try
     End Sub
 
-    Private Sub TOOLEINV_Click(sender As Object, e As EventArgs) Handles TOOLEINV.Click
+    Public Sub TOOLEINV_Click(sender As Object, e As EventArgs) Handles TOOLEINV.Click
         Try
             If EDIT = False Then Exit Sub
             If TXTSACCODE.Text.Trim = "" Then GENERATEEINV() Else GENERATEJOBEINV()
@@ -7768,6 +7773,9 @@ ERRORMESSAGE:
 
                 bitmap1.Save(Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png")
                 PBQRCODE.ImageLocation = Application.StartupPath & "\" & TEMPREG.Rows(0).Item("INITIALS") & Val(TXTINVOICENO.Text.Trim) & AccFrom.Year & ".png"
+                If AutoEInv Then
+                    PBQRCODE.Image = bitmap1
+                End If
                 PBQRCODE.Refresh()
 
                 If PBQRCODE.Image IsNot Nothing Then
@@ -9073,7 +9081,7 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TOOLEWB_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEWB.Click
+    Public Sub TOOLEWB_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEWB.Click
         Try
             If EDIT = False Then Exit Sub
             If ALLOWEINVOICE = True And TXTIRNNO.Text.Trim = "" Then
@@ -10038,8 +10046,9 @@ NEXTLINE:
                 Dim BINREADER As New BinaryReader(STRREADER)
                 Dim BFFER As Byte() = BINREADER.ReadBytes(CInt(RESPONSE.ContentLength))
                 File.WriteAllBytes(Application.StartupPath & "\EWB_" & TXTEWAYBILLNO.Text.Trim & ".pdf", BFFER)
-                Process.Start(Application.StartupPath & "\EWB_" & TXTEWAYBILLNO.Text.Trim & ".pdf")
-
+                If Not AutoEway Then
+                    Process.Start(Application.StartupPath & "\EWB_" & TXTEWAYBILLNO.Text.Trim & ".pdf")
+                End If
                 'ADD DATA IN EWAYENTRY
                 DT = OBJCMN.Execute_Any_String("INSERT INTO EWAYENTRY VALUES (" & Val(TXTINVOICENO.Text.Trim) & ",'INVOICE','" & TOKENNO & "','" & EWBNO & "','PRINT SUCCESS1', GETDATE(), " & CmpId & "," & Userid & "," & YearId & ")", "", "")
                 DT = OBJCMN.Execute_Any_String("INSERT INTO EWAYENTRY VALUES (" & Val(TXTINVOICENO.Text.Trim) & ",'INVOICE','" & TOKENNO & "','" & EWBNO & "','PRINT SUCCESS2', GETDATE(), " & CmpId & "," & Userid & "," & YearId & ")", "", "")
@@ -10826,7 +10835,12 @@ NEXTLINE:
             If showMessage Then
                 MessageBox.Show("Details Added")
             End If
-            Return True ' Success
+            If ExcessQty = True Then
+                Return False
+            Else
+                Return True ' Success
+
+            End If
         Catch ex As Exception
             MessageBox.Show("Error saving invoice: " & ex.Message)
             Return False
@@ -10987,5 +11001,51 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Public Sub LoadInvoice(ByVal BillNo As Integer, REGISTER As String)
+        Try
+            'CLEAR SCREEN FIRST
+            CLEAR()
+
+            'SET EDIT MODE
+            EDIT = True
+
+            'SET THE BILL NUMBER IN FIELD
+            TXTINVOICENO.Text = BillNo
+            TEMPINVOICENO = TXTINVOICENO.Text
+            TEMPREGNAME = REGISTER
+            'NOW LOAD DATA USING YOUR EXISTING SHOWDATA()
+            Dim DTROW() As DataRow
+            DTROW = USERRIGHTS.Select("FormName = 'SALE INVOICE'")
+
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
+
+            Cursor.Current = Cursors.WaitCursor
+
+            CLEAR()
+            cmbname.Enabled = True
+
+
+            'If DIRECTINVOICE = True Then
+            '    cmbname.Text = TEMPPARTYNAME
+            '    cmbname_Validated(sender, e)
+            '    If ClientName = "AFW" Then Call CMDSELECTGDN_Click(sender, e) Else GETDATAFROMPUR()
+            'End If
+
+
+            If EDIT = True Then SHOWDATA()
+
+
+            If TXTIRNNO.Text <> "" And TXTACKNO.Text <> "" Then
+                LBLEINVGENERATED.Visible = True
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error Loading Invoice " & BillNo & vbCrLf & ex.Message)
+        End Try
+
     End Sub
 End Class
