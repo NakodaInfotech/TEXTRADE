@@ -192,6 +192,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClsBeamMaster.vb" />
     <Compile Include="Common\ClsCommon.vb" />
     <Compile Include="Common\ClsCommonMaster.vb" />
     <Compile Include="Masters\ClsBaseMaster.vb" />

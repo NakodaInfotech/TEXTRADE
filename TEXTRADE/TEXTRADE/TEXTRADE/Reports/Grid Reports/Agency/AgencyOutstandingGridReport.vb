@@ -2529,8 +2529,14 @@ line1:
             OBJOUT.PARTYNAME = PARTYNAME
             OBJOUT.AGENTNAME = AGENTNAME
             OBJOUT.FORMULA = " {OUTSTANDINGREC.BALANCE} <> 0 AND {OUTSTANDINGREC.YEARID} = " & YearId
-            If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & CMBSELLERNAME.Text.Trim & "'"
+
+            If CMBREPORTTYPE.Text.Trim = "BUYERWISE" Then
+                If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & CMBBUYERNAME.Text.Trim & "'"
+                If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & CMBSELLERNAME.Text.Trim & "'"
+            Else
+                If CMBBUYERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.AGENT} = '" & CMBBUYERNAME.Text.Trim & "'"
+                If CMBSELLERNAME.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.NAME} = '" & CMBSELLERNAME.Text.Trim & "'"
+            End If
 
             If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
             If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {@OD} > 0 "
