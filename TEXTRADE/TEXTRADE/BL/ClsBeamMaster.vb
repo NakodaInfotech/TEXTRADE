@@ -18,21 +18,36 @@ Public Class ClsBeamMaster
             Dim alParameter As New ArrayList
             Dim I As Integer = 0
 
-            alParameter.Add(New SqlParameter("@BEAM_NAME", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@HSNCODE", alparaval(I))) : I += 1
+            alParameter.Add(New SqlParameter("@BEAM_NAME", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@HSNCODE", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@BEAM_TL", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@WT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@CMPID", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@USERID", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@YEARID", alparaval(I)))
+            I += 1
 
-            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I))) : I += 1
-
-            alParameter.Add(New SqlParameter("@CMPID", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@USERID", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@YEARID", alparaval(I))) : I += 1
-
-            alParameter.Add(New SqlParameter("@SRNO", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDQUALITY", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@SHADE", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDENDS", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I))) : I += 1
+            'grid value
+            alParameter.Add(New SqlParameter("@SRNO", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDQUALITY", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@SHADE", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDENDS", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I)))
+            I += 1
 
             Return objDBOperation.executeNonQuery(strCommand, alParameter)
 
@@ -51,23 +66,39 @@ Public Class ClsBeamMaster
             Dim alParameter As New ArrayList
             Dim I As Integer = 0
 
-            alParameter.Add(New SqlParameter("@BEAM_NAME", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@HSNCODE", alparaval(I))) : I += 1
+            alParameter.Add(New SqlParameter("@BEAM_NAME", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@HSNCODE", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@BEAM_TL", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@WT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@CMPID", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@USERID", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@YEARID", alparaval(I)))
+            I += 1
 
-            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I))) : I += 1
+            'grid value
+            alParameter.Add(New SqlParameter("@SRNO", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDQUALITY", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@SHADE", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDENDS", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I)))
+            I += 1
 
-            alParameter.Add(New SqlParameter("@CMPID", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@USERID", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@YEARID", alparaval(I))) : I += 1
-
-            alParameter.Add(New SqlParameter("@SRNO", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDQUALITY", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@SHADE", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDENDS", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I))) : I += 1
-
-            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I))) : I += 1
+            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I)))
+            I += 1
 
             Return objDBOperation.executeNonQuery(strCommand, alParameter)
 
@@ -82,12 +113,14 @@ Public Class ClsBeamMaster
 
     Public Function DELETE() As DataTable
         Try
-            Dim strCommand As String = "SP_MASTER_BEAMMASTER_DELETE"
+            Dim strCommand As String = "SP_BEAMMASTER_DELETE"
             Dim alParameter As New ArrayList
             Dim I As Integer = 0
 
-            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I))) : I += 1
-            alParameter.Add(New SqlParameter("@YEARID", alparaval(I))) : I += 1
+            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@YEARID", alparaval(I)))
+            I += 1
 
             Return objDBOperation.execute(strCommand, alParameter).Tables(0)
 

@@ -38,11 +38,6 @@ Partial Class BeamMaster
         Me.TXTTOTALWT = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWTPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTGRIDWT = New System.Windows.Forms.TextBox()
         Me.TXTGRIDENDS = New System.Windows.Forms.TextBox()
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
@@ -58,6 +53,11 @@ Partial Class BeamMaster
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTBEAMDESC = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GSRNO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWTPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GPGRID.SuspendLayout()
         CType(Me.GRIDBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +167,7 @@ Partial Class BeamMaster
         Me.TXTTOTALWT.BackColor = System.Drawing.Color.Linen
         Me.TXTTOTALWT.Location = New System.Drawing.Point(464, 186)
         Me.TXTTOTALWT.Name = "TXTTOTALWT"
+        Me.TXTTOTALWT.ReadOnly = True
         Me.TXTTOTALWT.Size = New System.Drawing.Size(100, 23)
         Me.TXTTOTALWT.TabIndex = 844
         Me.TXTTOTALWT.TabStop = False
@@ -227,50 +228,6 @@ Partial Class BeamMaster
         Me.GRIDBEAM.Size = New System.Drawing.Size(593, 150)
         Me.GRIDBEAM.TabIndex = 4
         Me.GRIDBEAM.TabStop = False
-        '
-        'GSRNO
-        '
-        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.Width = 30
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 200
-        '
-        'GSHADE
-        '
-        Me.GSHADE.HeaderText = "Shade"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.ReadOnly = True
-        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADE.Width = 150
-        '
-        'GENDS
-        '
-        Me.GENDS.HeaderText = "Ends"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.ReadOnly = True
-        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GENDS.Width = 80
-        '
-        'GWTPER
-        '
-        Me.GWTPER.HeaderText = "Wt/100 Mtrs"
-        Me.GWTPER.Name = "GWTPER"
-        Me.GWTPER.ReadOnly = True
-        Me.GWTPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWTPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'TXTGRIDWT
         '
@@ -387,7 +344,6 @@ Partial Class BeamMaster
         Me.TXTHSNCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTHSNCODE.Location = New System.Drawing.Point(118, 46)
         Me.TXTHSNCODE.Name = "TXTHSNCODE"
-        Me.TXTHSNCODE.ReadOnly = True
         Me.TXTHSNCODE.Size = New System.Drawing.Size(68, 22)
         Me.TXTHSNCODE.TabIndex = 1
         Me.TXTHSNCODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -415,6 +371,50 @@ Partial Class BeamMaster
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
+        '
+        'GSRNO
+        '
+        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle8
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.Width = 30
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 200
+        '
+        'GSHADE
+        '
+        Me.GSHADE.HeaderText = "Shade"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.ReadOnly = True
+        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADE.Width = 150
+        '
+        'GENDS
+        '
+        Me.GENDS.HeaderText = "Ends"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.ReadOnly = True
+        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GENDS.Width = 80
+        '
+        'GWTPER
+        '
+        Me.GWTPER.HeaderText = "Wt/100 Mtrs"
+        Me.GWTPER.Name = "GWTPER"
+        Me.GWTPER.ReadOnly = True
+        Me.GWTPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWTPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'BeamMaster
         '
@@ -462,7 +462,7 @@ Partial Class BeamMaster
     Friend WithEvents cmddelete As Button
     Friend WithEvents cmdexit As Button
     Friend WithEvents LBLTOTAL As Label
-    Friend WithEvents GSRNO As DataGridViewCheckBoxColumn
+    Friend WithEvents GSRNO As DataGridViewButtonColumn
     Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents GSHADE As DataGridViewTextBoxColumn
     Friend WithEvents GENDS As DataGridViewTextBoxColumn
