@@ -42,6 +42,7 @@ Partial Class SaleOrderClose
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDISPATCHTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,7 +73,6 @@ Partial Class SaleOrderClose
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GDISPATCHTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,7 +304,7 @@ Partial Class SaleOrderClose
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -320,6 +320,16 @@ Partial Class SaleOrderClose
         Me.GAGENTNAME.Visible = True
         Me.GAGENTNAME.VisibleIndex = 5
         Me.GAGENTNAME.Width = 200
+        '
+        'GDISPATCHTO
+        '
+        Me.GDISPATCHTO.Caption = "Dispatch To"
+        Me.GDISPATCHTO.FieldName = "DISPATCHTO"
+        Me.GDISPATCHTO.Name = "GDISPATCHTO"
+        Me.GDISPATCHTO.OptionsColumn.AllowEdit = False
+        Me.GDISPATCHTO.Visible = True
+        Me.GDISPATCHTO.VisibleIndex = 7
+        Me.GDISPATCHTO.Width = 200
         '
         'GCITY
         '
@@ -630,15 +640,6 @@ Partial Class SaleOrderClose
         Me.cmdok.TabIndex = 3
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GDISPATCHTO
-        '
-        Me.GDISPATCHTO.Caption = "Dispatch To"
-        Me.GDISPATCHTO.FieldName = "DISPATCHTO"
-        Me.GDISPATCHTO.Name = "GDISPATCHTO"
-        Me.GDISPATCHTO.Visible = True
-        Me.GDISPATCHTO.VisibleIndex = 7
-        Me.GDISPATCHTO.Width = 200
         '
         'SaleOrderClose
         '

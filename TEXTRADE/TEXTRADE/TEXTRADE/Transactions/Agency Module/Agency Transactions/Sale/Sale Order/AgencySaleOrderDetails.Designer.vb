@@ -25,6 +25,7 @@ Partial Class AgencySaleOrderDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgencySaleOrderDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -89,7 +90,6 @@ Partial Class AgencySaleOrderDetails
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +120,20 @@ Partial Class AgencySaleOrderDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 6
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(448, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'ToolStrip1
         '
@@ -389,6 +403,7 @@ Partial Class AgencySaleOrderDetails
         Me.GSHIPTO.Caption = "Selller Name"
         Me.GSHIPTO.FieldName = "SHIPTO"
         Me.GSHIPTO.Name = "GSHIPTO"
+        Me.GSHIPTO.OptionsColumn.AllowEdit = False
         Me.GSHIPTO.Visible = True
         Me.GSHIPTO.VisibleIndex = 5
         Me.GSHIPTO.Width = 210
@@ -516,6 +531,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPER.Caption = "Per"
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
+        Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.Visible = True
         Me.GPER.VisibleIndex = 30
         '
@@ -562,6 +578,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAMT.FieldName = "AMOUNT"
         Me.GAMT.Name = "GAMT"
+        Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Visible = True
         Me.GAMT.VisibleIndex = 19
         '
@@ -570,6 +587,7 @@ Partial Class AgencySaleOrderDetails
         Me.GSALESMAN.Caption = "Sales Man"
         Me.GSALESMAN.FieldName = "SALESMAN"
         Me.GSALESMAN.Name = "GSALESMAN"
+        Me.GSALESMAN.OptionsColumn.AllowEdit = False
         Me.GSALESMAN.Visible = True
         Me.GSALESMAN.VisibleIndex = 20
         '
@@ -633,6 +651,7 @@ Partial Class AgencySaleOrderDetails
         Me.GUSERNAME.Caption = "User Name"
         Me.GUSERNAME.FieldName = "USERNAME"
         Me.GUSERNAME.Name = "GUSERNAME"
+        Me.GUSERNAME.OptionsColumn.AllowEdit = False
         Me.GUSERNAME.Visible = True
         Me.GUSERNAME.VisibleIndex = 25
         Me.GUSERNAME.Width = 100
@@ -642,6 +661,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPARTYWHATSAAP.Caption = "Party Whatsaap No"
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
+        Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
         Me.GPARTYWHATSAAP.VisibleIndex = 26
         '
@@ -650,6 +670,7 @@ Partial Class AgencySaleOrderDetails
         Me.GPARTYEMAIL.Caption = "Party Email ID "
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
+        Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
         Me.GPARTYEMAIL.VisibleIndex = 27
         '
@@ -658,6 +679,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAGENTWHATSAAP.Caption = "Agent Whatsaap No"
         Me.GAGENTWHATSAAP.FieldName = "AGENTWHATSAAP"
         Me.GAGENTWHATSAAP.Name = "GAGENTWHATSAAP"
+        Me.GAGENTWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GAGENTWHATSAAP.Visible = True
         Me.GAGENTWHATSAAP.VisibleIndex = 28
         '
@@ -666,6 +688,7 @@ Partial Class AgencySaleOrderDetails
         Me.GAGENTEMAIL.Caption = "Agent Email"
         Me.GAGENTEMAIL.FieldName = "AGENTEMAIL"
         Me.GAGENTEMAIL.Name = "GAGENTEMAIL"
+        Me.GAGENTEMAIL.OptionsColumn.AllowEdit = False
         Me.GAGENTEMAIL.Visible = True
         Me.GAGENTEMAIL.VisibleIndex = 29
         '
@@ -681,6 +704,7 @@ Partial Class AgencySaleOrderDetails
         Me.GORDERON.Caption = "Order On"
         Me.GORDERON.FieldName = "ORDERON"
         Me.GORDERON.Name = "GORDERON"
+        Me.GORDERON.OptionsColumn.AllowEdit = False
         Me.GORDERON.Visible = True
         Me.GORDERON.VisibleIndex = 31
         '
@@ -737,20 +761,6 @@ Partial Class AgencySaleOrderDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'CMDSAVELAYOUT
-        '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(448, 541)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 449
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'AgencySaleOrderDetails
         '

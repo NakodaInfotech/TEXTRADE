@@ -115,11 +115,23 @@ Public Class SaleOrderClose
                     If Convert.ToBoolean(DTROW("CLOSED")) = True AndAlso IsDBNull(DTROW("CLOSEDDATE")) = False AndAlso DTROW("CLOSEDDATE") <> "" Then
                         Dim TEMP As DateTime
                         DateTime.TryParse(DTROW("CLOSEDDATE"), TEMP)
-                        If DTROW("TYPE") = "SALEORDER" Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE SALEORDER_DESC SET SO_CLOSED = 1, SO_CLOSEDDATE = '" & Format(TEMP, "MM/dd/yyyy") & "', SO_CLOSEDREASON = '" & DTROW("REASON") & "' WHERE SO_NO = " & Val(DTROW("SONO")) & " AND SO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND SO_YEARID = " & YearId, "", "") Else Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGSALEORDER_DESC SET OPSO_CLOSED = 1, OPSO_CLOSEDDATE = '" & Format(TEMP, "MM/dd/yyyy") & "', OPSO_CLOSEDREASON = '" & DTROW("REASON") & "' WHERE OPSO_NO = " & Val(DTROW("SONO")) & " AND OPSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OPSO_YEARID = " & YearId, "", "")
+                        If DTROW("TYPE") = "SALEORDER" Then
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE SALEORDER_DESC SET SO_CLOSED = 1, SO_CLOSEDDATE = '" & Format(TEMP, "MM/dd/yyyy") & "', SO_CLOSEDREASON = '" & DTROW("REASON") & "' WHERE SO_NO = " & Val(DTROW("SONO")) & " AND SO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND SO_YEARID = " & YearId, "", "")
+                        ElseIf DTROW("TYPE") = "AGENCYSALEORDER" Then
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE AGENCYSALEORDER_DESC SET ASO_CLOSED = 1, ASO_CLOSEDDATE = '" & Format(TEMP, "MM/dd/yyyy") & "', ASO_CLOSEDREASON = '" & DTROW("REASON") & "' WHERE ASO_NO = " & Val(DTROW("SONO")) & " AND ASO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND ASO_YEARID = " & YearId, "", "")
+                        Else
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGSALEORDER_DESC SET OPSO_CLOSED = 1, OPSO_CLOSEDDATE = '" & Format(TEMP, "MM/dd/yyyy") & "', OPSO_CLOSEDREASON = '" & DTROW("REASON") & "' WHERE OPSO_NO = " & Val(DTROW("SONO")) & " AND OPSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OPSO_YEARID = " & YearId, "", "")
+                        End If
                     End If
                 Else
                     If Convert.ToBoolean(DTROW("CLOSED")) = True Then
-                        If DTROW("TYPE") = "SALEORDER" Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE SALEORDER_DESC SET SO_CLOSED = 0, SO_CLOSEDREASON = '' WHERE SO_NO = " & Val(DTROW("SONO")) & " AND SO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND SO_YEARID = " & YearId, "", "") Else Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGSALEORDER_DESC SET OPSO_CLOSED = 0, OPSO_CLOSEDREASON = '' WHERE OPSO_NO = " & Val(DTROW("SONO")) & " AND OPSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OPSO_YEARID = " & YearId, "", "")
+                        If DTROW("TYPE") = "SALEORDER" Then
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE SALEORDER_DESC SET SO_CLOSED = 0, SO_CLOSEDREASON = '' WHERE SO_NO = " & Val(DTROW("SONO")) & " AND SO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND SO_YEARID = " & YearId, "", "")
+                        ElseIf DTROW("TYPE") = "AGENCYSALEORDER" Then
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE AGENCYSALEORDER_DESC SET ASO_CLOSED = 0, ASO_CLOSEDREASON = '' WHERE ASO_NO = " & Val(DTROW("SONO")) & " AND ASO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND ASO_YEARID = " & YearId, "", "")
+                        Else
+                            Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE OPENINGSALEORDER_DESC SET OPSO_CLOSED = 0, OPSO_CLOSEDREASON = '' WHERE OPSO_NO = " & Val(DTROW("SONO")) & " AND OPSO_GRIDSRNO = " & Val(DTROW("GRIDSRNO")) & " AND OPSO_YEARID = " & YearId, "", "")
+                        End If
                     End If
                 End If
             Next
