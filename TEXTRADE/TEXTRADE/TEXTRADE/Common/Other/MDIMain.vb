@@ -10938,4 +10938,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub YarnInterGodownTransferToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YarnInterGodownTransferToolStripMenuItem.Click
+        Try
+            Dim OBJHOLD As New YarnInterGodownTransfer
+            OBJHOLD.MdiParent = Me
+            OBJHOLD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
