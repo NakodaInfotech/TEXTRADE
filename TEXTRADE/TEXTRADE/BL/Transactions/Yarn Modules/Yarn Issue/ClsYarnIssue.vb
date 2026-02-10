@@ -88,9 +88,16 @@ Public Class ClsYarnIssue
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@liftingdate", alParaval(I)))
+                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@YARNRECD", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMDESC", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@EWBNO", alParaval(I)))
                 I = I + 1
 
 
@@ -178,10 +185,16 @@ Public Class ClsYarnIssue
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@liftingdate", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@YARNRECD", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMDESC", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@EWBNO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@YARNNO", alParaval(I)))
