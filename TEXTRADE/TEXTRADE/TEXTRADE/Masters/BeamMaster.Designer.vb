@@ -38,6 +38,11 @@ Partial Class BeamMaster
         Me.TXTTOTALWT = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWTPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTGRIDWT = New System.Windows.Forms.TextBox()
         Me.TXTGRIDENDS = New System.Windows.Forms.TextBox()
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
@@ -49,15 +54,10 @@ Partial Class BeamMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TXTTL = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TXTHSNCODE = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTBEAMDESC = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GSRNO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWTPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CMBHSNCODE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GPGRID.SuspendLayout()
         CType(Me.GRIDBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +67,7 @@ Partial Class BeamMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBHSNCODE)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
@@ -78,7 +79,6 @@ Partial Class BeamMaster
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.TXTTL)
         Me.BlendPanel1.Controls.Add(Me.Label2)
-        Me.BlendPanel1.Controls.Add(Me.TXTHSNCODE)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTBEAMDESC)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -229,6 +229,50 @@ Partial Class BeamMaster
         Me.GRIDBEAM.TabIndex = 4
         Me.GRIDBEAM.TabStop = False
         '
+        'GSRNO
+        '
+        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle8
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.Width = 30
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 200
+        '
+        'GSHADE
+        '
+        Me.GSHADE.HeaderText = "Shade"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.ReadOnly = True
+        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADE.Width = 150
+        '
+        'GENDS
+        '
+        Me.GENDS.HeaderText = "Ends"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.ReadOnly = True
+        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GENDS.Width = 80
+        '
+        'GWTPER
+        '
+        Me.GWTPER.HeaderText = "Wt/100 Mtrs"
+        Me.GWTPER.Name = "GWTPER"
+        Me.GWTPER.ReadOnly = True
+        Me.GWTPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWTPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'TXTGRIDWT
         '
         Me.TXTGRIDWT.BackColor = System.Drawing.Color.LemonChiffon
@@ -338,16 +382,6 @@ Partial Class BeamMaster
         Me.Label2.TabIndex = 352
         Me.Label2.Text = "HSN / SAC Code"
         '
-        'TXTHSNCODE
-        '
-        Me.TXTHSNCODE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTHSNCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTHSNCODE.Location = New System.Drawing.Point(118, 46)
-        Me.TXTHSNCODE.Name = "TXTHSNCODE"
-        Me.TXTHSNCODE.Size = New System.Drawing.Size(68, 22)
-        Me.TXTHSNCODE.TabIndex = 1
-        Me.TXTHSNCODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -372,49 +406,18 @@ Partial Class BeamMaster
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'GSRNO
+        'CMBHSNCODE
         '
-        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.Width = 30
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 200
-        '
-        'GSHADE
-        '
-        Me.GSHADE.HeaderText = "Shade"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.ReadOnly = True
-        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADE.Width = 150
-        '
-        'GENDS
-        '
-        Me.GENDS.HeaderText = "Ends"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.ReadOnly = True
-        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GENDS.Width = 80
-        '
-        'GWTPER
-        '
-        Me.GWTPER.HeaderText = "Wt/100 Mtrs"
-        Me.GWTPER.Name = "GWTPER"
-        Me.GWTPER.ReadOnly = True
-        Me.GWTPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWTPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CMBHSNCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBHSNCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBHSNCODE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBHSNCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBHSNCODE.FormattingEnabled = True
+        Me.CMBHSNCODE.Location = New System.Drawing.Point(118, 46)
+        Me.CMBHSNCODE.MaxDropDownItems = 14
+        Me.CMBHSNCODE.Name = "CMBHSNCODE"
+        Me.CMBHSNCODE.Size = New System.Drawing.Size(73, 23)
+        Me.CMBHSNCODE.TabIndex = 697
         '
         'BeamMaster
         '
@@ -441,7 +444,6 @@ Partial Class BeamMaster
     Friend WithEvents TXTBEAMDESC As TextBox
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents Label1 As Label
-    Friend WithEvents TXTHSNCODE As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents TXTTL As TextBox
@@ -467,4 +469,5 @@ Partial Class BeamMaster
     Friend WithEvents GSHADE As DataGridViewTextBoxColumn
     Friend WithEvents GENDS As DataGridViewTextBoxColumn
     Friend WithEvents GWTPER As DataGridViewTextBoxColumn
+    Friend WithEvents CMBHSNCODE As ComboBox
 End Class

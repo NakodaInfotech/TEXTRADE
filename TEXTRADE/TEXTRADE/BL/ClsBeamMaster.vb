@@ -24,9 +24,9 @@ Public Class ClsBeamMaster
             I += 1
             alParameter.Add(New SqlParameter("@BEAM_TL", alparaval(I)))
             I += 1
-            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
-            I += 1
             alParameter.Add(New SqlParameter("@WT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
             I += 1
             alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I)))
             I += 1
@@ -72,9 +72,9 @@ Public Class ClsBeamMaster
             I += 1
             alParameter.Add(New SqlParameter("@BEAM_TL", alparaval(I)))
             I += 1
-            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
-            I += 1
             alParameter.Add(New SqlParameter("@WT", alparaval(I)))
+            I += 1
+            alParameter.Add(New SqlParameter("@TOTALENDS", alparaval(I)))
             I += 1
             alParameter.Add(New SqlParameter("@TOTALWT", alparaval(I)))
             I += 1
@@ -84,6 +84,7 @@ Public Class ClsBeamMaster
             I += 1
             alParameter.Add(New SqlParameter("@YEARID", alparaval(I)))
             I += 1
+
 
             'grid value
             alParameter.Add(New SqlParameter("@SRNO", alparaval(I)))

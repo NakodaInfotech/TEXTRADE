@@ -30,7 +30,7 @@ Public Class BeamMaster
     Sub clear()
         Try
             TXTBEAMDESC.Clear()
-            TXTHSNCODE.Clear()
+            CMBHSNCODE.Text = ""
             TXTTL.Clear()
             TXTWTTL.Clear()
             TXTSRNO.Clear()
@@ -81,10 +81,11 @@ Public Class BeamMaster
 
                         TEMPBEAMID = ROW("BEAMID")
                         TEMPBEAMNAME = ROW("BEAMNAME")
-                        TXTHSNCODE.Text = ROW("HSNCODE")
+                        CMBHSNCODE.Text = ROW("HSNCODE")
                         TXTBEAMDESC.Text = ROW("BEAMNAME").ToString
                         TXTTL.Text = ROW("TAPLINE")
                         TXTWTTL.Text = ROW("WTTL")
+                        If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
 
                         If ROW("GRIDQUALITY") <> "" Then GRIDBEAM.Rows.Add(Val(ROW("GRIDSRNO")), ROW("GRIDQUALITY"), ROW("SHADE"), Val(ROW("GRIDENDS")), Val(ROW("GRIDWT")))
                         GETSRNO(GRIDBEAM)
@@ -96,6 +97,25 @@ Public Class BeamMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
 
+    End Sub
+
+
+    Sub FILLHSNITEMDESC(ByRef CMBHSNCODE As ComboBox)
+        Try
+            Dim objclscommon As New ClsCommon
+            Dim dt As DataTable
+
+            dt = objclscommon.SEARCH(" ISNULL(HSN_CODE, '') AS HSNCODE ", "", " HSNMASTER ", " AND HSN_YEARID = " & YearId)
+            If dt.Rows.Count > 0 Then
+                dt.DefaultView.Sort = "HSNCODE"
+                CMBHSNCODE.DataSource = dt
+                CMBHSNCODE.DisplayMember = "HSNCODE"
+                CMBHSNCODE.Text = ""
+            End If
+            CMBHSNCODE.SelectAll()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     ' SIMPLE COLOR FILL (NO DESIGN / ITEM)
@@ -152,7 +172,7 @@ Public Class BeamMaster
 
         For Each r As DataRow In dt.Rows
             TXTBEAMDESC.Text = r("BEAMNAME").ToString
-            TXTHSNCODE.Text = r("HSNCODE").ToString
+            CMBHSNCODE.Text = r("HSNCODE").ToString
 
             If r("GRIDQUALITY").ToString <> "" Then
                 GRIDBEAM.Rows.Add(r("GRIDSRNO"), r("GRIDQUALITY"), r("SHADE"), r("GRIDENDS"), r("GRIDWT"))
@@ -234,7 +254,7 @@ Public Class BeamMaster
         numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTGRIDENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTGRIDENDS.KeyPress, TXTHSNCODE.KeyPress, CMBSHADE.KeyPress, TXTTL.KeyPress
+    Private Sub TXTGRIDENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTGRIDENDS.KeyPress, CMBSHADE.KeyPress, TXTTL.KeyPress
         numkeypress(e, sender, Me)
     End Sub
     Private Sub CMBGRIDQUALITY_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBGRIDQUALITY.Enter
@@ -272,7 +292,7 @@ Public Class BeamMaster
 
     Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
         Try
-            CLEAR()
+            clear()
             EDIT = False
         Catch ex As Exception
             Throw ex
@@ -295,7 +315,7 @@ Public Class BeamMaster
             Dim DT As DataTable = objclsBeamMaster.DELETE
             If DT.Rows.Count > 0 Then
                 MsgBox(DT.Rows(0).Item(0))
-                CLEAR()
+                clear()
                 EDIT = False
             End If
 
@@ -324,7 +344,7 @@ Public Class BeamMaster
             Dim alParaval As New ArrayList
 
             alParaval.Add(TXTBEAMDESC.Text.Trim)
-            alParaval.Add(TXTHSNCODE.Text.Trim)
+            alParaval.Add(CMBHSNCODE.Text.Trim)
             alParaval.Add(Val(TXTTL.Text.Trim))
             alParaval.Add(Format(Val(TXTWTTL.Text.Trim), "0.000"))
 
@@ -366,9 +386,9 @@ Public Class BeamMaster
 
 
             Dim objclsBeamMaster As New ClsBeamMaster
-            objclsBeamMaster.alParaval = alParaval
+            objclsBeamMaster.alparaval = alParaval
 
-            If edit = False Then
+            If EDIT = False Then
                 If USERADD = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
@@ -385,7 +405,7 @@ Public Class BeamMaster
                 MsgBox("Details Updated")
 
             End If
-            edit = False
+            EDIT = False
 
 
             clear()
@@ -394,7 +414,7 @@ Public Class BeamMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Private Sub TXTHSNCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTHSNCODE.KeyDown
+    Private Sub TXTHSNCODE_KeyDown(sender As Object, e As KeyEventArgs)
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -403,7 +423,7 @@ Public Class BeamMaster
                 Dim OBJLEDGER As New SelectHSN
                 OBJLEDGER.STRSEARCH = " AND HSN_TYPE='GOODS'"
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPCODE <> "" Then TXTHSNCODE.Text = OBJLEDGER.TEMPCODE
+                If OBJLEDGER.TEMPCODE <> "" Then CMBHSNCODE.Text = OBJLEDGER.TEMPCODE
             End If
         Catch ex As Exception
             Throw ex
@@ -493,6 +513,22 @@ Public Class BeamMaster
             If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBHSNCODE_Enter(sender As Object, e As EventArgs) Handles CMBHSNCODE.Enter
+        Try
+            If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHADE.Validating
+        Try
+            If CMBHSNCODE.Text.Trim <> "" Then HSNITEMDESCVALIDATE(CMBHSNCODE, e, Me)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
     'Private Sub TXTGRIDENDS_Validated(sender As Object, e As EventArgs) Handles TXTGRIDENDS.Validated

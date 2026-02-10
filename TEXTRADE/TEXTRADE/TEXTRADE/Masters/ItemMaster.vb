@@ -259,6 +259,8 @@ Public Class ItemMaster
             alParaval.Add(TXTGSM.Text.Trim)
             alParaval.Add(TXTPERCENT.Text.Trim)
             alParaval.Add(CHKGARMENT.CheckState)
+            alParaval.Add(TXTTOTALBEAMENDS.Text.Trim)
+            alParaval.Add(TXTTOTALWEFTENDS.Text.Trim)
 
 
             Dim SHADESRNO As String = ""
@@ -360,6 +362,8 @@ Public Class ItemMaster
             alParaval.Add(WEFTRATE)
             alParaval.Add(WEFTAMOUNT)
             alParaval.Add(WEFTSHADESRNO)
+
+
 
 
 
@@ -668,6 +672,9 @@ Public Class ItemMaster
         DT_WEFTDETAILS.Columns.Add("WEFTAMOUNT")
         DT_WEFTDETAILS.Columns.Add("SHADESRNO")
 
+        TXTTOTALBEAMENDS.Clear()
+        TXTTOTALWEFTENDS.Clear()
+
     End Sub
 
     Sub FILLGRIDCOLOR()
@@ -779,7 +786,7 @@ Public Class ItemMaster
         Try
             If CMBWARPQUALITY.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) As ENDS, ISNULL(BEAM_TAPLINE, 0) As TAPLINE, ISNULL(BEAM_WTMTRS, 0) As BEAMWT, ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT ", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     'TXTTL.Text = DT.Rows(0).Item("TAPLINE")
                     TXTWARPENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
@@ -1956,17 +1963,21 @@ line1:
             TXTGSTAMOUNT.Clear()
             TXTTOTALGSTPERCENT.Clear()
             TXTTOTALMTRS.Clear()
+            TXTTOTALBEAMENDS.Clear()
+            TXTTOTALWEFTENDS.Clear()
             For Each ROW As DataGridViewRow In GRIDCOMP.Rows
                 TXTTOTALPER.Text = Format(Val(TXTTOTALPER.Text) + Val(ROW.Cells(GPER.Index).EditedFormattedValue), "0.00")
             Next
 
             For Each ROW As DataGridViewRow In GRIDWARP.Rows
                 TXTTOTALWARPWT.Text = Format(Val(TXTTOTALWARPWT.Text.Trim) + Val(ROW.Cells(WWT.Index).Value), "0.00")
+                TXTTOTALBEAMENDS.Text = Format(Val(TXTTOTALBEAMENDS.Text.Trim) + Val(ROW.Cells(WENDS.Index).Value), "0")
                 TXTTOTALWARPAMOUNT.Text = Format(Val(TXTTOTALWARPAMOUNT.Text.Trim) + Val(ROW.Cells(WAMOUNT.Index).Value), "0.00")
             Next
 
             For Each ROW As DataGridViewRow In GRIDWEFT.Rows
                 TXTTOTALWEFTWT.Text = Format(Val(TXTTOTALWEFTWT.Text.Trim) + Val(ROW.Cells(FWT.Index).Value), "0.00")
+                TXTTOTALWEFTENDS.Text = Format(Val(TXTTOTALWEFTENDS.Text.Trim) + Val(ROW.Cells(FPICK.Index).Value), "0")
                 TXTTOTALWEFTAMOUNT.Text = Format(Val(TXTTOTALWEFTAMOUNT.Text.Trim) + Val(ROW.Cells(FAMOUNT.Index).Value), "0.00")
             Next
             For Each ROW As DataGridViewRow In GRIDITEM.Rows
@@ -2131,6 +2142,8 @@ line1:
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub CMBCOLOR_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBCOLOR.Enter, CMBSHADE.Enter
         Try

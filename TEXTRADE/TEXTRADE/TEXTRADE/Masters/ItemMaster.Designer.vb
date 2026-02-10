@@ -24,6 +24,10 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -62,15 +66,18 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemMaster))
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
         Me.GPMAINGROUP = New System.Windows.Forms.GroupBox()
         Me.GRPBEAMDETAILS = New System.Windows.Forms.GroupBox()
+        Me.TXTTOTALBEAMENDS = New System.Windows.Forms.TextBox()
         Me.GRIDWARP = New System.Windows.Forms.DataGridView()
+        Me.WSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTWARPWT = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.TXTWARPENDS = New System.Windows.Forms.TextBox()
@@ -89,6 +96,7 @@ Partial Class ItemMaster
         Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.GRPWEFTYARNDETAILS = New System.Windows.Forms.GroupBox()
+        Me.TXTTOTALWEFTENDS = New System.Windows.Forms.TextBox()
         Me.GRIDWEFT = New System.Windows.Forms.DataGridView()
         Me.FSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -296,12 +304,6 @@ Partial Class ItemMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.WSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.GPMAINGROUP.SuspendLayout()
         Me.GRPBEAMDETAILS.SuspendLayout()
@@ -479,6 +481,7 @@ Partial Class ItemMaster
         'GRPBEAMDETAILS
         '
         Me.GRPBEAMDETAILS.BackColor = System.Drawing.Color.Transparent
+        Me.GRPBEAMDETAILS.Controls.Add(Me.TXTTOTALBEAMENDS)
         Me.GRPBEAMDETAILS.Controls.Add(Me.GRIDWARP)
         Me.GRPBEAMDETAILS.Controls.Add(Me.TXTWARPWT)
         Me.GRPBEAMDETAILS.Controls.Add(Me.Label24)
@@ -497,6 +500,17 @@ Partial Class ItemMaster
         Me.GRPBEAMDETAILS.TabIndex = 952
         Me.GRPBEAMDETAILS.TabStop = False
         Me.GRPBEAMDETAILS.Visible = False
+        '
+        'TXTTOTALBEAMENDS
+        '
+        Me.TXTTOTALBEAMENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALBEAMENDS.Location = New System.Drawing.Point(240, 141)
+        Me.TXTTOTALBEAMENDS.Name = "TXTTOTALBEAMENDS"
+        Me.TXTTOTALBEAMENDS.ReadOnly = True
+        Me.TXTTOTALBEAMENDS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALBEAMENDS.TabIndex = 1023
+        Me.TXTTOTALBEAMENDS.TabStop = False
+        Me.TXTTOTALBEAMENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDWARP
         '
@@ -543,6 +557,68 @@ Partial Class ItemMaster
         Me.GRIDWARP.Size = New System.Drawing.Size(505, 97)
         Me.GRIDWARP.TabIndex = 6
         Me.GRIDWARP.TabStop = False
+        '
+        'WSRNO
+        '
+        Me.WSRNO.HeaderText = "Sr."
+        Me.WSRNO.Name = "WSRNO"
+        Me.WSRNO.ReadOnly = True
+        Me.WSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WSRNO.Width = 30
+        '
+        'WQUALITY
+        '
+        Me.WQUALITY.HeaderText = " Beam Name"
+        Me.WQUALITY.Name = "WQUALITY"
+        Me.WQUALITY.ReadOnly = True
+        Me.WQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WQUALITY.Width = 200
+        '
+        'WENDS
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WENDS.DefaultCellStyle = DataGridViewCellStyle3
+        Me.WENDS.HeaderText = "Ends"
+        Me.WENDS.Name = "WENDS"
+        Me.WENDS.ReadOnly = True
+        Me.WENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WENDS.Width = 60
+        '
+        'WWT
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WWT.DefaultCellStyle = DataGridViewCellStyle4
+        Me.WWT.HeaderText = "Wt"
+        Me.WWT.Name = "WWT"
+        Me.WWT.ReadOnly = True
+        Me.WWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WWT.Width = 60
+        '
+        'WRATE
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WRATE.DefaultCellStyle = DataGridViewCellStyle5
+        Me.WRATE.HeaderText = "Rate"
+        Me.WRATE.Name = "WRATE"
+        Me.WRATE.ReadOnly = True
+        Me.WRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WRATE.Width = 70
+        '
+        'WAMOUNT
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.WAMOUNT.DefaultCellStyle = DataGridViewCellStyle6
+        Me.WAMOUNT.HeaderText = "Amount"
+        Me.WAMOUNT.Name = "WAMOUNT"
+        Me.WAMOUNT.ReadOnly = True
+        Me.WAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.WAMOUNT.Width = 70
         '
         'TXTWARPWT
         '
@@ -632,7 +708,7 @@ Partial Class ItemMaster
         Me.Label19.AutoSize = True
         Me.Label19.BackColor = System.Drawing.Color.Transparent
         Me.Label19.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(261, 145)
+        Me.Label19.Location = New System.Drawing.Point(148, 145)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(34, 15)
         Me.Label19.TabIndex = 911
@@ -758,6 +834,7 @@ Partial Class ItemMaster
         'GRPWEFTYARNDETAILS
         '
         Me.GRPWEFTYARNDETAILS.BackColor = System.Drawing.Color.Transparent
+        Me.GRPWEFTYARNDETAILS.Controls.Add(Me.TXTTOTALWEFTENDS)
         Me.GRPWEFTYARNDETAILS.Controls.Add(Me.GRIDWEFT)
         Me.GRPWEFTYARNDETAILS.Controls.Add(Me.Label25)
         Me.GRPWEFTYARNDETAILS.Controls.Add(Me.TXTWEFTWT)
@@ -778,6 +855,17 @@ Partial Class ItemMaster
         Me.GRPWEFTYARNDETAILS.TabIndex = 1022
         Me.GRPWEFTYARNDETAILS.TabStop = False
         Me.GRPWEFTYARNDETAILS.Visible = False
+        '
+        'TXTTOTALWEFTENDS
+        '
+        Me.TXTTOTALWEFTENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALWEFTENDS.Location = New System.Drawing.Point(457, 142)
+        Me.TXTTOTALWEFTENDS.Name = "TXTTOTALWEFTENDS"
+        Me.TXTTOTALWEFTENDS.ReadOnly = True
+        Me.TXTTOTALWEFTENDS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTOTALWEFTENDS.TabIndex = 951
+        Me.TXTTOTALWEFTENDS.TabStop = False
+        Me.TXTTOTALWEFTENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDWEFT
         '
@@ -1025,7 +1113,7 @@ Partial Class ItemMaster
         Me.LBLTOTAL.AutoSize = True
         Me.LBLTOTAL.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTAL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTAL.Location = New System.Drawing.Point(477, 146)
+        Me.LBLTOTAL.Location = New System.Drawing.Point(402, 146)
         Me.LBLTOTAL.Name = "LBLTOTAL"
         Me.LBLTOTAL.Size = New System.Drawing.Size(34, 15)
         Me.LBLTOTAL.TabIndex = 923
@@ -3216,68 +3304,6 @@ Partial Class ItemMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'WSRNO
-        '
-        Me.WSRNO.HeaderText = "Sr."
-        Me.WSRNO.Name = "WSRNO"
-        Me.WSRNO.ReadOnly = True
-        Me.WSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WSRNO.Width = 30
-        '
-        'WQUALITY
-        '
-        Me.WQUALITY.HeaderText = " Beam Name"
-        Me.WQUALITY.Name = "WQUALITY"
-        Me.WQUALITY.ReadOnly = True
-        Me.WQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WQUALITY.Width = 200
-        '
-        'WENDS
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WENDS.DefaultCellStyle = DataGridViewCellStyle3
-        Me.WENDS.HeaderText = "Ends"
-        Me.WENDS.Name = "WENDS"
-        Me.WENDS.ReadOnly = True
-        Me.WENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WENDS.Width = 60
-        '
-        'WWT
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WWT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.WWT.HeaderText = "Wt"
-        Me.WWT.Name = "WWT"
-        Me.WWT.ReadOnly = True
-        Me.WWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WWT.Width = 60
-        '
-        'WRATE
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WRATE.DefaultCellStyle = DataGridViewCellStyle5
-        Me.WRATE.HeaderText = "Rate"
-        Me.WRATE.Name = "WRATE"
-        Me.WRATE.ReadOnly = True
-        Me.WRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WRATE.Width = 70
-        '
-        'WAMOUNT
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.WAMOUNT.DefaultCellStyle = DataGridViewCellStyle6
-        Me.WAMOUNT.HeaderText = "Amount"
-        Me.WAMOUNT.Name = "WAMOUNT"
-        Me.WAMOUNT.ReadOnly = True
-        Me.WAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.WAMOUNT.Width = 70
-        '
         'ItemMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3557,4 +3583,6 @@ Partial Class ItemMaster
     Friend WithEvents WWT As DataGridViewTextBoxColumn
     Friend WithEvents WRATE As DataGridViewTextBoxColumn
     Friend WithEvents WAMOUNT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTTOTALBEAMENDS As TextBox
+    Friend WithEvents TXTTOTALWEFTENDS As TextBox
 End Class

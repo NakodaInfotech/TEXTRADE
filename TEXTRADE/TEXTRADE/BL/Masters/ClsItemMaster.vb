@@ -204,6 +204,10 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@GARMENT", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALBEAMENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALWEFTENDS", alParaval(I)))
+                I += 1
 
                 'GRID SHADE
                 .Add(New SqlClient.SqlParameter("@SHADESRNO", alParaval(I)))
@@ -358,21 +362,6 @@ Public Class clsItemmaster
                 I += 1
 
 
-                .Add(New SqlClient.SqlParameter("@WARPSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPQUALITY", alParaval(I)))
-                I += 1
-
-                .Add(New SqlClient.SqlParameter("@WARPENDS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPAMOUNT", alParaval(I)))
-                I += 1
-
-
 
                 .Add(New SqlClient.SqlParameter("@WARPTL", alParaval(I)))
                 I = I + 1
@@ -439,6 +428,10 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@GARMENT", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALBEAMENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALWEFTENDS", alParaval(I)))
+                I += 1
 
                 'GRID SHADE
                 .Add(New SqlClient.SqlParameter("@SHADESRNO", alParaval(I)))
@@ -477,6 +470,9 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTSHADESRNO", alParaval(I)))
                 I += 1
+
+
+
 
 
                 .Add(New SqlClient.SqlParameter("@itemid", alParaval(I)))
