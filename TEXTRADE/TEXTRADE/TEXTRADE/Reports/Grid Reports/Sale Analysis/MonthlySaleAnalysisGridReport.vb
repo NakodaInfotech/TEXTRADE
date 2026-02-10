@@ -273,6 +273,12 @@ Public Class MonthlySaleAnalysisGridReport
             End If
 
 
+
+            If CMBSUBGROUP.Text = "ITEMWISE" Or CMBREPORTTYPE.Text = "ITEMWISE" Then WHERECLAUSE = WHERECLAUSE.Replace("INVDESC.ITEMNAME", "ITEMMASTER.ITEM_NAME")
+
+
+
+
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
 
@@ -767,7 +773,7 @@ Public Class MonthlySaleAnalysisGridReport
 
             ' Set the font size for the header and content (optional)
             Dim headerFont As New Font(baseFont, 8, Font.Bold)
-            Dim contentFont As New Font(baseFont, 8)
+            Dim contentFont As New Font(baseFont, 7)
 
             ' Define a light yellow color to highlight the rows
             Dim highlightColor As New BaseColor(255, 255, 204) ' Light Yellow color
@@ -791,7 +797,8 @@ Public Class MonthlySaleAnalysisGridReport
                     End If
 
                     ' Check if this is the "Grand Total" row (last row or based on specific condition)
-                    Dim isGrandTotal As Boolean = row.Cells(0).Value.ToString().ToLower() = "grand total" Or "item total" Or "party total" Or "category total" Or "city total"
+                    Dim isGrandTotal As Boolean = False
+                    If row.Cells(0).Value.ToString().ToLower() = "grand total" Or row.Cells(0).Value.ToString().ToLower() = "item total" Or row.Cells(0).Value.ToString().ToLower() = "party total" Or row.Cells(0).Value.ToString().ToLower() = "category total" Or row.Cells(0).Value.ToString().ToLower() = "city total" Then isGrandTotal = True
                     'Dim isGrandTotal As Boolean = row.Cells(0).Value.ToString().ToLower() = "party total"
 
                     ' If the row is either empty in the first column or is the "Grand Total" row, highlight it
