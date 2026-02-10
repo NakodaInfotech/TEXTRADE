@@ -84,6 +84,7 @@ Partial Class OpeningStockReport
         Me.BlendPanel1.Controls.Add(Me.cmbtype)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
+        Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
@@ -170,6 +171,7 @@ Partial Class OpeningStockReport
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
+        Me.gridbill.OptionsView.ShowGroupPanel = False
         '
         'gsrno
         '
@@ -471,7 +473,7 @@ Partial Class OpeningStockReport
         '
         Me.GDESIGN.Caption = "Design"
         Me.GDESIGN.FieldName = "DESIGN"
-        Me.GDESIGN.ImageIndex = 0
+        Me.GDESIGN.ImageOptions.ImageIndex = 0
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.Visible = True
         Me.GDESIGN.VisibleIndex = 7
