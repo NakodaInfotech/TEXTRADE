@@ -602,7 +602,6 @@ Public Class ItemMaster
 
         TXTWARPSRNO.Clear()
         CMBWARPQUALITY.Text = ""
-        TXTWARPDENIER.Clear()
         TXTWARPENDS.Clear()
         TXTWARPWT.Clear()
         TXTTOTALWARPWT.Clear()
@@ -777,23 +776,18 @@ Public Class ItemMaster
     End Sub
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
-        'TXTWARPDENIER.Text = FETCHDENIER(CMBWARPQUALITY.Text.Trim)
         Try
-            'If CMBWARPQUALITY.Text.Trim <> "" Then
-            '    Dim OBJCMN As New ClsCommon
-            '    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) As ENDS, ISNULL(BEAM_TAPLINE, 0) As TAPLINE, ISNULL(BEAM_WTMTRS, 0) As BEAMWT, ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-            '    If DT.Rows.Count > 0 Then
-            '        TXTTL.Text = DT.Rows(0).Item("TAPLINE")
-            '        If MULTIYARN = True Then
-            '            TXTENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
-            '            TXTBEAMWT.Text = Val(DT.Rows(0).Item("TOTALWT"))
-            '        Else
-            '            TXTENDS.Text = Val(DT.Rows(0).Item("ENDS"))
-            '            TXTBEAMWT.Text = Val(DT.Rows(0).Item("BEAMWT"))
-            '        End If
-            '    End If
-            '    TOTAL()
-            'End If
+            If CMBWARPQUALITY.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) As ENDS, ISNULL(BEAM_TAPLINE, 0) As TAPLINE, ISNULL(BEAM_WTMTRS, 0) As BEAMWT, ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    'TXTTL.Text = DT.Rows(0).Item("TAPLINE")
+                    TXTWARPENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
+                    TXTWARPWT.Text = Val(DT.Rows(0).Item("TOTALWT"))
+
+                End If
+                TOTAL()
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -807,13 +801,13 @@ Public Class ItemMaster
 
     Sub CALC()
         Try
-            If Val(TXTWARPWT.Text.Trim) = 0 And Val(TXTWARPENDS.Text.Trim) > 0 And Val(TXTWARPTL.Text.Trim) > 0 And Val(TXTWARPDENIER.Text.Trim) > 0 Then
-                If ClientName = "NAYRA" Then
-                    TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-                Else
-                    TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-                End If
-            End If
+            'If Val(TXTWARPWT.Text.Trim) = 0 And Val(TXTWARPENDS.Text.Trim) > 0 And Val(TXTWARPTL.Text.Trim) > 0 Then
+            '    If ClientName = "NAYRA" Then
+            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
+            '    Else
+            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
+            '    End If
+            'End If
 
             If CMBWEFTQUALITY.Text.Trim <> "" And Val(TXTWEFTPICK.Text.Trim) > 0 And Val(TXTREEDSPACE.Text.Trim) > 0 And Val(TXTWEFTTL.Text.Trim) > 0 And Val(TXTWEFTWT.Text.Trim) = 0 Then
                 If ClientName = "NAYRA" Then
@@ -834,12 +828,11 @@ Public Class ItemMaster
     Sub FILLWARPGRID()
 
         If GRIDWARPDOUBLECLICK = False Then
-            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBWARPQUALITY.Text.Trim, Val(TXTWARPDENIER.Text.Trim), Val(TXTWARPENDS.Text.Trim), Val(TXTWARPWT.Text.Trim), Format(Val(TXTWARPRATE.Text.Trim), "0.00"), Format(Val(TXTWARPAMOUNT.Text.Trim), "0.00"))
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBWARPQUALITY.Text.Trim, Val(TXTWARPENDS.Text.Trim), Val(TXTWARPWT.Text.Trim), Format(Val(TXTWARPRATE.Text.Trim), "0.00"), Format(Val(TXTWARPAMOUNT.Text.Trim), "0.00"))
             getsrno(GRIDWARP)
         ElseIf GRIDWARPDOUBLECLICK = True Then
             GRIDWARP.Item(WSRNO.Index, TEMPWARPROW).Value = Val(TXTWARPSRNO.Text.Trim)
             GRIDWARP.Item(WQUALITY.Index, TEMPWARPROW).Value = CMBWARPQUALITY.Text.Trim
-            GRIDWARP.Item(WDENIER.Index, TEMPWARPROW).Value = Val(TXTWARPDENIER.Text.Trim)
             GRIDWARP.Item(WENDS.Index, TEMPWARPROW).Value = Val(TXTWARPENDS.Text.Trim)
             GRIDWARP.Item(WWT.Index, TEMPWARPROW).Value = Val(TXTWARPWT.Text.Trim)
             GRIDWARP.Item(WRATE.Index, TEMPWARPROW).Value = Format(Val(TXTWARPRATE.Text.Trim), "0.00")
@@ -850,7 +843,6 @@ Public Class ItemMaster
         End If
         TOTAL()
         CMBWARPQUALITY.Text = ""
-        TXTWARPDENIER.Clear()
         TXTWARPENDS.Clear()
         TXTWARPWT.Clear()
         TXTWARPRATE.Clear()
@@ -948,7 +940,6 @@ LINE1:
                 TEMPWARPROW = e.RowIndex
                 TXTWARPSRNO.Text = Val(GRIDWARP.Item(WSRNO.Index, e.RowIndex).Value)
                 CMBWARPQUALITY.Text = GRIDWARP.Item(WQUALITY.Index, e.RowIndex).Value
-                TXTWARPDENIER.Text = GRIDWARP.Item(WDENIER.Index, e.RowIndex).Value
                 TXTWARPENDS.Text = GRIDWARP.Item(WENDS.Index, e.RowIndex).Value
                 TXTWARPWT.Text = GRIDWARP.Item(WWT.Index, e.RowIndex).Value
                 TXTWARPRATE.Text = GRIDWARP.Item(WRATE.Index, e.RowIndex).Value
@@ -1107,6 +1098,7 @@ line1:
         fillitemname(CMBGRIDITEMNAME, "")
         FILLDESIGN(CMBGRIDDESIGN, "")
         If CMBWARPQUALITY.Text = "" Then fillBEAM(CMBWARPQUALITY, EDIT)
+
 
     End Sub
 
@@ -1274,9 +1266,7 @@ line1:
                     dt = OBJCMN.SEARCH(" ITEMMASTER_BEAMDETAILS.ITEM_WARPSRNO AS SRNO, YARNQUALITYMASTER.YARN_NAME AS YARNQUALITY, ITEMMASTER_BEAMDETAILS.ITEM_WARPENDS AS ENDS, ITEMMASTER_BEAMDETAILS.ITEM_WARPWT AS WT, ITEMMASTER_BEAMDETAILS.ITEM_WARPRATE AS RATE, ITEMMASTER_BEAMDETAILS.ITEM_WARPAMOUNT AS AMOUNT ", "", " ITEMMASTER_BEAMDETAILS INNER JOIN YARNQUALITYMASTER ON ITEMMASTER_BEAMDETAILS.ITEM_WARPQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND ITEMMASTER_BEAMDETAILS.ITEM_ID = " & Val(tempItemId) & " AND ITEMMASTER_BEAMDETAILS.ITEM_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
                         For Each ROW As DataRow In dt.Rows
-                            TXTWARPDENIER.Text = FETCHDENIER(ROW("YARNQUALITY"))
-                            GRIDWARP.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), Val(TXTWARPDENIER.Text.Trim), Val(ROW("ENDS")), Val(ROW("WT")), Val(ROW("RATE")), Val(ROW("AMOUNT")))
-                            TXTWARPDENIER.Clear()
+                            GRIDWARP.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), Val(ROW("ENDS")), Val(ROW("WT")), Val(ROW("RATE")), Val(ROW("AMOUNT")))
                         Next
                     End If
 
