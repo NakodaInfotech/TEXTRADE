@@ -36,6 +36,7 @@ Public Class YarnQualityMaster
         GRIDCOMP.RowCount = 0
         GRIDSTORES.RowCount = 0
         TXTTOTALPER.Clear()
+        CMBGREYQUALITY.Text = ""
 
     End Sub
 
@@ -184,6 +185,14 @@ Public Class YarnQualityMaster
                 OBJYARN.alParaval.Add(txtcount.Text.Trim)
                 OBJYARN.alParaval.Add(TXTSHADENO.Text.Trim)
                 OBJYARN.alParaval.Add(CMBMILLNAME.Text.Trim)
+
+                If CMBGREYQUALITY.Text.Trim = "" Then
+                    OBJYARN.alParaval.Add(txtname.Text.Trim)
+                Else
+                    OBJYARN.alParaval.Add(CMBGREYQUALITY.Text.Trim)
+                End If
+
+
                 If EDIT = False Then
                     If USERADD = False Then
                         MsgBox("Insufficient Rights")
@@ -222,6 +231,7 @@ Public Class YarnQualityMaster
             FILLSTOREITEMNAME(CMBSTOREITEM)
             FILLMILL(CMBMILLNAME, False)
             If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
+            If CMBGREYQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBGREYQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -286,6 +296,7 @@ Public Class YarnQualityMaster
             USERDELETE = DTROW(0).Item(4)
 
             FILLCMB()
+            clear()
             txtname.Text = tempname
 
             If EDIT = True Then
@@ -311,6 +322,7 @@ Public Class YarnQualityMaster
                     'txtcount.Text = DT.Rows(0).Item("COUNT")
                     TXTSHADENO.Text = DT.Rows(0).Item("SHADENO")
                     CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
+                    CMBGREYQUALITY.Text = DT.Rows(0).Item("GREYQUALITY")
 
                     'CHARGES GRID
                     Dim OBJCMN As New ClsCommon
@@ -628,4 +640,41 @@ Public Class YarnQualityMaster
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBGREYQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBGREYQUALITY.Enter
+        Try
+            If CMBGREYQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBGREYQUALITY, EDIT)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBGREYQUALITY_Validating(sender As Object, e As CancelEventArgs) Handles CMBGREYQUALITY.Validating
+        Try
+            If CMBGREYQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBGREYQUALITY, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBGREYQUALITY_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBGREYQUALITY.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJYARN As New SelectQuality
+                OBJYARN.ShowDialog()
+                If OBJYARN.TEMPNAME <> "" Then CMBGREYQUALITY.Text = OBJYARN.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
+
+
+
 End Class

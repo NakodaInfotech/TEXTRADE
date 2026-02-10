@@ -17,23 +17,28 @@ Public Class ClsLoomMaster
 
 #Region "Function"
 
-    Public Function save() As Integer
+    Public Function SAVE() As Integer
         Dim intResult As Integer
 
         Try
 
-            'save CategoryMaster
             Dim strCommand As String = "SP_MASTER_LOOMMASTER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
-                .Add(New SqlClient.SqlParameter("@LOOMname", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@LOOMremarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALLOOMS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
+                I += 1
 
             End With
 
@@ -47,24 +52,30 @@ Public Class ClsLoomMaster
     End Function
 
 
-    Public Function Update() As Integer
+    Public Function UPDATE() As Integer
         Dim intResult As Integer
 
         Try
 
-            'save CategoryMaster
             Dim strCommand As String = "SP_MASTER_LOOMMASTER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
-                .Add(New SqlClient.SqlParameter("@LOOMname", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@LOOMremarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
-                .Add(New SqlClient.SqlParameter("@LOOMid", alParaval(7)))
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALLOOMS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOOMID", alParaval(I)))
+                I += 1
 
             End With
 

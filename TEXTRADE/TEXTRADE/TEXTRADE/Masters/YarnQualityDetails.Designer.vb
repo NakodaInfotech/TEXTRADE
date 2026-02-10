@@ -35,13 +35,14 @@ Partial Class YarnQualityDetails
         Me.GBOXWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDENIER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gremarks = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGREYQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +134,7 @@ Partial Class YarnQualityDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GNAME, Me.GCATEGORY, Me.GBOXWT, Me.GHSNCODE, Me.GDENIER, Me.GRATE, Me.gremarks})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GNAME, Me.GCATEGORY, Me.GBOXWT, Me.GHSNCODE, Me.GDENIER, Me.GRATE, Me.gremarks, Me.GGREYQUALITY})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
@@ -150,7 +151,7 @@ Partial Class YarnQualityDetails
         Me.GID.DisplayFormat.FormatString = "0"
         Me.GID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GID.FieldName = "ID"
-        Me.GID.ImageIndex = 1
+        Me.GID.ImageOptions.ImageIndex = 1
         Me.GID.Name = "GID"
         Me.GID.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GID.Width = 81
@@ -159,7 +160,7 @@ Partial Class YarnQualityDetails
         '
         Me.GNAME.Caption = "Yarn Quality Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
@@ -200,6 +201,16 @@ Partial Class YarnQualityDetails
         Me.GDENIER.Visible = True
         Me.GDENIER.VisibleIndex = 4
         '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.DisplayFormat.FormatString = "0.00"
+        Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 5
+        '
         'gremarks
         '
         Me.gremarks.Caption = "Remarks"
@@ -208,6 +219,16 @@ Partial Class YarnQualityDetails
         Me.gremarks.Visible = True
         Me.gremarks.VisibleIndex = 6
         Me.gremarks.Width = 300
+        '
+        'GGREYQUALITY
+        '
+        Me.GGREYQUALITY.Caption = "Effect Into"
+        Me.GGREYQUALITY.FieldName = "GREYQUALITY"
+        Me.GGREYQUALITY.Name = "GGREYQUALITY"
+        Me.GGREYQUALITY.OptionsColumn.AllowEdit = False
+        Me.GGREYQUALITY.Visible = True
+        Me.GGREYQUALITY.VisibleIndex = 7
+        Me.GGREYQUALITY.Width = 90
         '
         'ToolStrip1
         '
@@ -223,7 +244,7 @@ Partial Class YarnQualityDetails
         Me.ToolStripButton1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(56, 22)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(59, 22)
         Me.ToolStripButton1.Text = "Add New"
         '
         'toolStripSeparator
@@ -244,16 +265,6 @@ Partial Class YarnQualityDetails
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'GRATE
-        '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.DisplayFormat.FormatString = "0.00"
-        Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 5
         '
         'YarnQualityDetails
         '
@@ -295,4 +306,5 @@ Partial Class YarnQualityDetails
     Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDENIER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGREYQUALITY As DevExpress.XtraGrid.Columns.GridColumn
 End Class
