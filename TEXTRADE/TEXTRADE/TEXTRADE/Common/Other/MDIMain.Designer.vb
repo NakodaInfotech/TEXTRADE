@@ -1246,6 +1246,8 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.LoomMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -2743,7 +2745,7 @@ Partial Class MDIMain
         '
         'YarnRelatedMasterToolStripMenuItem
         '
-        Me.YarnRelatedMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BeamMasterToolStripMenuItem})
+        Me.YarnRelatedMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BeamMasterToolStripMenuItem, Me.LoomMasterToolStripMenuItem})
         Me.YarnRelatedMasterToolStripMenuItem.Name = "YarnRelatedMasterToolStripMenuItem"
         Me.YarnRelatedMasterToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.YarnRelatedMasterToolStripMenuItem.Text = "Yarn Related Master"
@@ -9106,6 +9108,19 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'LoomMasterToolStripMenuItem
+        '
+        Me.LoomMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem9})
+        Me.LoomMasterToolStripMenuItem.Name = "LoomMasterToolStripMenuItem"
+        Me.LoomMasterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoomMasterToolStripMenuItem.Text = "Loom Master"
+        '
+        'AddNewEntryToolStripMenuItem9
+        '
+        Me.AddNewEntryToolStripMenuItem9.Name = "AddNewEntryToolStripMenuItem9"
+        Me.AddNewEntryToolStripMenuItem9.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem9.Text = "Add New Entry"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10355,4 +10370,6 @@ Partial Class MDIMain
     Friend WithEvents RollsRecdFromWarperToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddNewEntryToolStripMenuItem8 As ToolStripMenuItem
     Friend WithEvents EditExisitingEntryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoomMasterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewEntryToolStripMenuItem9 As ToolStripMenuItem
 End Class
