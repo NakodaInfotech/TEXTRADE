@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class BeamDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,17 +20,17 @@ Partial Class BeamDetails
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.shed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTAPLINE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.shed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWTMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,9 +78,7 @@ Partial Class BeamDetails
         '
         'gridbill
         '
-        Me.gridbill.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
         Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GENDS, Me.GTAPLINE, Me.shed, Me.GWTMTRS, Me.GTOTALENDS, Me.GTOTALWT})
         Me.gridbill.GridControl = Me.gridbilldetails
@@ -92,12 +90,6 @@ Partial Class BeamDetails
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
-        '
-        'shed
-        '
-        Me.shed.Caption = "BEAMID"
-        Me.shed.FieldName = "BEAMID"
-        Me.shed.Name = "shed"
         '
         'GBEAMNAME
         '
@@ -140,6 +132,12 @@ Partial Class BeamDetails
         Me.GTAPLINE.Name = "GTAPLINE"
         Me.GTAPLINE.Visible = True
         Me.GTAPLINE.VisibleIndex = 4
+        '
+        'shed
+        '
+        Me.shed.Caption = "BEAMID"
+        Me.shed.FieldName = "BEAMID"
+        Me.shed.Name = "shed"
         '
         'GWTMTRS
         '
