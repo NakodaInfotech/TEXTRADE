@@ -85,7 +85,6 @@ Public Class ClsBeamMaster
             alParameter.Add(New SqlParameter("@YEARID", alparaval(I)))
             I += 1
 
-
             'grid value
             alParameter.Add(New SqlParameter("@SRNO", alparaval(I)))
             I += 1
@@ -96,9 +95,6 @@ Public Class ClsBeamMaster
             alParameter.Add(New SqlParameter("@GRIDENDS", alparaval(I)))
             I += 1
             alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I)))
-            I += 1
-
-            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I)))
             I += 1
 
             Return objDBOperation.executeNonQuery(strCommand, alParameter)
