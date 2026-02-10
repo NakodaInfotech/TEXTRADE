@@ -22,14 +22,14 @@ Partial Class SelectYarnStockGdnTransfer
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.CMBCHALLANNO = New System.Windows.Forms.ComboBox()
+        Me.CMBLRNO = New System.Windows.Forms.ComboBox()
         Me.LBLENTRYNO = New System.Windows.Forms.Label()
         Me.TXTENTRYNO = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -38,7 +38,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TXTCUT = New System.Windows.Forms.TextBox()
-        Me.TXTPCS = New System.Windows.Forms.TextBox()
+        Me.TXTQTY = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CMBUNIT = New System.Windows.Forms.ComboBox()
         Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
@@ -86,7 +86,7 @@ Partial Class SelectYarnStockGdnTransfer
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.Label7)
-        Me.BlendPanel1.Controls.Add(Me.CMBCHALLANNO)
+        Me.BlendPanel1.Controls.Add(Me.CMBLRNO)
         Me.BlendPanel1.Controls.Add(Me.LBLENTRYNO)
         Me.BlendPanel1.Controls.Add(Me.TXTENTRYNO)
         Me.BlendPanel1.Controls.Add(Me.Label3)
@@ -95,7 +95,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.TXTCUT)
-        Me.BlendPanel1.Controls.Add(Me.TXTPCS)
+        Me.BlendPanel1.Controls.Add(Me.TXTQTY)
         Me.BlendPanel1.Controls.Add(Me.Label5)
         Me.BlendPanel1.Controls.Add(Me.CMBUNIT)
         Me.BlendPanel1.Controls.Add(Me.LBLTOTALMTRS)
@@ -153,16 +153,16 @@ Partial Class SelectYarnStockGdnTransfer
         Me.Label7.TabIndex = 735
         Me.Label7.Text = "Challan No"
         '
-        'CMBCHALLANNO
+        'CMBLRNO
         '
-        Me.CMBCHALLANNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCHALLANNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCHALLANNO.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBCHALLANNO.FormattingEnabled = True
-        Me.CMBCHALLANNO.Location = New System.Drawing.Point(832, 94)
-        Me.CMBCHALLANNO.Name = "CMBCHALLANNO"
-        Me.CMBCHALLANNO.Size = New System.Drawing.Size(93, 21)
-        Me.CMBCHALLANNO.TabIndex = 734
+        Me.CMBLRNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBLRNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBLRNO.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBLRNO.FormattingEnabled = True
+        Me.CMBLRNO.Location = New System.Drawing.Point(832, 94)
+        Me.CMBLRNO.Name = "CMBLRNO"
+        Me.CMBLRNO.Size = New System.Drawing.Size(93, 21)
+        Me.CMBLRNO.TabIndex = 734
         '
         'LBLENTRYNO
         '
@@ -252,15 +252,15 @@ Partial Class SelectYarnStockGdnTransfer
         Me.TXTCUT.TabIndex = 559
         Me.TXTCUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTPCS
+        'TXTQTY
         '
-        Me.TXTPCS.BackColor = System.Drawing.Color.White
-        Me.TXTPCS.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPCS.ForeColor = System.Drawing.Color.Black
-        Me.TXTPCS.Location = New System.Drawing.Point(991, 11)
-        Me.TXTPCS.Name = "TXTPCS"
-        Me.TXTPCS.Size = New System.Drawing.Size(80, 21)
-        Me.TXTPCS.TabIndex = 558
+        Me.TXTQTY.BackColor = System.Drawing.Color.White
+        Me.TXTQTY.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTQTY.ForeColor = System.Drawing.Color.Black
+        Me.TXTQTY.Location = New System.Drawing.Point(991, 11)
+        Me.TXTQTY.Name = "TXTQTY"
+        Me.TXTQTY.Size = New System.Drawing.Size(80, 21)
+        Me.TXTQTY.TabIndex = 558
         '
         'Label5
         '
@@ -709,46 +709,46 @@ Partial Class SelectYarnStockGdnTransfer
         Me.gridwo.AllowUserToDeleteRows = False
         Me.gridwo.AllowUserToResizeColumns = False
         Me.gridwo.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridwo.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridwo.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
         Me.gridwo.BackgroundColor = System.Drawing.Color.White
         Me.gridwo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridwo.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridwo.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.gridwo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridwo.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridwo.DefaultCellStyle = DataGridViewCellStyle8
         Me.gridwo.GridColor = System.Drawing.SystemColors.Control
         Me.gridwo.Location = New System.Drawing.Point(17, 168)
         Me.gridwo.Margin = New System.Windows.Forms.Padding(2)
         Me.gridwo.MultiSelect = False
         Me.gridwo.Name = "gridwo"
         Me.gridwo.ReadOnly = True
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridwo.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridwo.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.gridwo.RowHeadersVisible = False
         Me.gridwo.RowHeadersWidth = 30
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        Me.gridwo.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
+        Me.gridwo.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.gridwo.RowTemplate.Height = 20
         Me.gridwo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gridwo.Size = New System.Drawing.Size(1207, 456)
@@ -797,7 +797,7 @@ Partial Class SelectYarnStockGdnTransfer
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Friend WithEvents Label7 As Label
-    Private WithEvents CMBCHALLANNO As ComboBox
+    Private WithEvents CMBLRNO As ComboBox
     Friend WithEvents LBLENTRYNO As Label
     Friend WithEvents TXTENTRYNO As TextBox
     Friend WithEvents Label3 As Label
@@ -806,7 +806,7 @@ Partial Class SelectYarnStockGdnTransfer
     Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents TXTCUT As TextBox
-    Friend WithEvents TXTPCS As TextBox
+    Friend WithEvents TXTQTY As TextBox
     Friend WithEvents Label5 As Label
     Private WithEvents CMBUNIT As ComboBox
     Friend WithEvents LBLTOTALMTRS As Label

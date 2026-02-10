@@ -100,18 +100,18 @@ Public Class SelectYarnStockGdnTransfer
 
     Sub FILLLRNO()
         Try
-            If CMBLRNO.Text.Trim = "" Then
+            If CMBBALENO.Text.Trim = "" Then
                 Dim WHERECLAUSE As String = ""
                 If GODOWN <> "" Then WHERECLAUSE = " AND GODOWN = '" & GODOWN & "' "
                 Dim objclscommon As New ClsCommonMaster
                 Dim dt As DataTable = objclscommon.search(" DISTINCT LRNO ", "", " YARNSTOCKVIEW ", WHERECLAUSE & " AND YEARID = " & YearId)
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "LRNO"
-                    CMBLRNO.DataSource = dt
-                    CMBLRNO.DisplayMember = "LRNO"
-                    CMBLRNO.Text = ""
+                    CMBBALENO.DataSource = dt
+                    CMBBALENO.DisplayMember = "LRNO"
+                    CMBBALENO.Text = ""
                 End If
-                CMBLRNO.SelectAll()
+                CMBBALENO.SelectAll()
             End If
         Catch ex As Exception
             Throw ex
@@ -473,7 +473,7 @@ Public Class SelectYarnStockGdnTransfer
         End If
         If CMBUNIT.Text.Trim <> "" Then WHERE = WHERE & " and UNIT = '" & CMBUNIT.Text.Trim & "'"
         If CMBCATEGORY.Text.Trim <> "" Then WHERE = WHERE & " and CATEGORY = '" & CMBCATEGORY.Text.Trim & "'"
-        If CMBLRNO.Text.Trim <> "" Then WHERE = WHERE & " and CHALLANNO = '" & CMBLRNO.Text.Trim & "'"
+        If CMBBALENO.Text.Trim <> "" Then WHERE = WHERE & " and CHALLANNO = '" & CMBBALENO.Text.Trim & "'"
         If TXTBARCODE.Text.Trim <> "" Then WHERE = WHERE & " and BARCODE = '" & TXTBARCODE.Text.Trim & "'"
         If Val(TXTENTRYNO.Text.Trim) <> 0 Then WHERE = WHERE & " and FROMNO = " & Val(TXTENTRYNO.Text.Trim)
 
@@ -495,7 +495,7 @@ Public Class SelectYarnStockGdnTransfer
         LBLTOTALMTRS.Text = 0.00
         CMBBALENO.Text = ""
         CMBLOTNO.Text = ""
-        CMBLRNO.Text = ""
+        CMBBALENO.Text = ""
         txtsearch.Clear()
         TXTBARCODE.Clear()
         FILLGRID("")
