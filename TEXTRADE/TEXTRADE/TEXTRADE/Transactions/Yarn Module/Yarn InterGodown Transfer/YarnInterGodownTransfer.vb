@@ -840,31 +840,31 @@ NEXTLINE:
     End Sub
 
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
-        Try
-            Dim DTJO As New DataTable
-            Dim OBJSELECTGDN As New SelectYarnStockGdnTransfer
-            OBJSELECTGDN.GODOWN = CMBFROMGODOWN.Text.Trim
-            OBJSELECTGDN.ShowDialog()
-            DTJO = OBJSELECTGDN.DT
-            If DTJO.Rows.Count > 0 Then
-                For Each DTROWPS As DataRow In DTJO.Rows
+        '        Try
+        '            Dim DTJO As New DataTable
+        '            Dim OBJSELECTGDN As New SelectYarnStockGdnTransfer
+        '            OBJSELECTGDN.GODOWN = CMBFROMGODOWN.Text.Trim
+        '            OBJSELECTGDN.ShowDialog()
+        '            DTJO = OBJSELECTGDN.DT
+        '            If DTJO.Rows.Count > 0 Then
+        '                For Each DTROWPS As DataRow In DTJO.Rows
 
-                    ''CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
-                    'For Each ROW As DataGridViewRow In GRIDJO.Rows
-                    '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
-                    'Next
+        '                    ''CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+        '                    'For Each ROW As DataGridViewRow In GRIDJO.Rows
+        '                    '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
+        '                    'Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), "", "", "")
-LINE1:
-                Next
-                getsrno(GRIDJO)
-                'total()
-                GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
-            End If
-            total()
-        Catch ex As Exception
-            Throw ex
-        End Try
+        '                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), "", "", "")
+        'LINE1:
+        '                Next
+        '                getsrno(GRIDJO)
+        '                'total()
+        '                GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
+        '            End If
+        '            total()
+        '        Catch ex As Exception
+        '            Throw ex
+        '        End Try
     End Sub
     Sub total()
         Try
