@@ -6516,13 +6516,7 @@ SKIPLINE:
                         ALPARAVAL.Add("")   'WARPAMOUNT
 
 
-                        ALPARAVAL.Add("")   'WEFTSRNO
-                        ALPARAVAL.Add("")   'WEFTQUALITY
-                        ALPARAVAL.Add("")   'WEFTSHADE
-                        ALPARAVAL.Add("")   'WEFTPICK
-                        ALPARAVAL.Add("")   'WEFTWT
-                        ALPARAVAL.Add("")   'WEFTRATE
-                        ALPARAVAL.Add("")   'WEFTAMOUNT
+
 
                         ALPARAVAL.Add(0)    'WARPTL
                         ALPARAVAL.Add(0)    'WEFTTL
@@ -6558,6 +6552,8 @@ SKIPLINE:
                         ALPARAVAL.Add(0)    'ITEM GSM
                         ALPARAVAL.Add(0)    'ITEM PERCENT
                         ALPARAVAL.Add(0)    'GARMENT
+                        ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                        ALPARAVAL.Add(0)    'TOTALWEFTENDS
 
                         ALPARAVAL.Add(0)    'SHADESRNO
                         ALPARAVAL.Add(0)    'SHADECOLORID
@@ -6568,6 +6564,16 @@ SKIPLINE:
                         ALPARAVAL.Add(0)    'SHADEITEMCOLORID
                         ALPARAVAL.Add(0)    'SHADEMTRS
                         ALPARAVAL.Add(0)    'SHADEsrno
+
+                        ALPARAVAL.Add("")   'WEFTSRNO
+                        ALPARAVAL.Add("")   'WEFTQUALITY
+                        ALPARAVAL.Add("")   'WEFTSHADE
+                        ALPARAVAL.Add("")   'WEFTPICK
+                        ALPARAVAL.Add("")   'WEFTWT
+                        ALPARAVAL.Add("")   'WEFTRATE
+                        ALPARAVAL.Add("")   'WEFTAMOUNT
+                        ALPARAVAL.Add(0)    'WEFTSHADESRNO
+
 
                         Dim objclsItemMaster As New clsItemmaster
                         objclsItemMaster.alParaval = ALPARAVAL
@@ -10918,6 +10924,26 @@ SKIPLINE:
             Dim OBJRRFW As New BeamDetails
             OBJRRFW.MdiParent = Me
             OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem9.Click
+        Try
+            Dim OBJRRFW As New LoomMaster
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub YarnInterGodownTransferToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YarnInterGodownTransferToolStripMenuItem.Click
+        Try
+            Dim OBJHOLD As New YarnInterGodownTransfer
+            OBJHOLD.MdiParent = Me
+            OBJHOLD.Show()
         Catch ex As Exception
             Throw ex
         End Try

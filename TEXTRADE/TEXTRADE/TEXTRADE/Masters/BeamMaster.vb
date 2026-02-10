@@ -30,7 +30,7 @@ Public Class BeamMaster
     Sub clear()
         Try
             TXTBEAMDESC.Clear()
-            TXTHSNCODE.Clear()
+            CMBHSNCODE.Text = ""
             TXTTL.Clear()
             TXTWTTL.Clear()
             TXTSRNO.Clear()
@@ -51,6 +51,25 @@ Public Class BeamMaster
 
         If CMBGRIDQUALITY.Text = "" Then fillYARNQUALITY(CMBGRIDQUALITY, EDIT)
         If CMBSHADE.Text = "" Then FILLCOLOR(CMBSHADE)
+        If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
+    End Sub
+
+    Sub FILLHSNITEMDESC(ByRef CMBHSNCODE As ComboBox)
+        Try
+            Dim objclscommon As New ClsCommon
+            Dim dt As DataTable
+
+            dt = objclscommon.SEARCH(" ISNULL(HSN_CODE, '') AS HSNCODE ", "", " HSNMASTER ", " AND HSN_YEARID = " & YearId)
+            If dt.Rows.Count > 0 Then
+                dt.DefaultView.Sort = "HSNCODE"
+                CMBHSNCODE.DataSource = dt
+                CMBHSNCODE.DisplayMember = "HSNCODE"
+                CMBHSNCODE.Text = ""
+            End If
+            CMBHSNCODE.SelectAll()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub BeamMaster_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -81,7 +100,7 @@ Public Class BeamMaster
 
                         TEMPBEAMID = ROW("BEAMID")
                         TEMPBEAMNAME = ROW("BEAMNAME")
-                        TXTHSNCODE.Text = ROW("HSNCODE")
+                        CMBHSNCODE.Text = ROW("HSNCODE")
                         TXTBEAMDESC.Text = ROW("BEAMNAME").ToString
                         TXTTL.Text = ROW("TAPLINE")
                         TXTWTTL.Text = ROW("WTTL")
@@ -152,7 +171,7 @@ Public Class BeamMaster
 
         For Each r As DataRow In dt.Rows
             TXTBEAMDESC.Text = r("BEAMNAME").ToString
-            TXTHSNCODE.Text = r("HSNCODE").ToString
+            CMBHSNCODE.Text = r("HSNCODE").ToString
 
             If r("GRIDQUALITY").ToString <> "" Then
                 GRIDBEAM.Rows.Add(r("GRIDSRNO"), r("GRIDQUALITY"), r("SHADE"), r("GRIDENDS"), r("GRIDWT"))
@@ -165,7 +184,7 @@ Public Class BeamMaster
 
 #End Region
 
-#Region "Grid Logic"
+
 
     Sub GETSRNO(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -206,8 +225,8 @@ Public Class BeamMaster
         Next
     End Sub
 
-#End Region
-#Region "Validation / Save"
+
+
 
     Private Function errorvalid() As Boolean
         EP.Clear()
@@ -234,7 +253,7 @@ Public Class BeamMaster
         numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTGRIDENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTGRIDENDS.KeyPress, TXTHSNCODE.KeyPress, CMBSHADE.KeyPress, TXTTL.KeyPress
+    Private Sub TXTGRIDENDS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTGRIDENDS.KeyPress, CMBSHADE.KeyPress, TXTTL.KeyPress
         numkeypress(e, sender, Me)
     End Sub
     Private Sub CMBGRIDQUALITY_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBGRIDQUALITY.Enter
@@ -324,10 +343,9 @@ Public Class BeamMaster
             Dim alParaval As New ArrayList
 
             alParaval.Add(TXTBEAMDESC.Text.Trim)
-            alParaval.Add(TXTHSNCODE.Text.Trim)
+            alParaval.Add(CMBHSNCODE.Text.Trim)
             alParaval.Add(Val(TXTTL.Text.Trim))
             alParaval.Add(Format(Val(TXTWTTL.Text.Trim), "0.000"))
-
             alParaval.Add(Format(Val(TXTTOTALENDS.Text.Trim), "0"))
             alParaval.Add(Format(Val(TXTTOTALWT.Text.Trim), "0.000"))
             alParaval.Add(CmpId)
@@ -394,7 +412,7 @@ Public Class BeamMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Private Sub TXTHSNCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTHSNCODE.KeyDown
+    Private Sub TXTHSNCODE_KeyDown(sender As Object, e As KeyEventArgs)
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -403,7 +421,7 @@ Public Class BeamMaster
                 Dim OBJLEDGER As New SelectHSN
                 OBJLEDGER.STRSEARCH = " AND HSN_TYPE='GOODS'"
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPCODE <> "" Then TXTHSNCODE.Text = OBJLEDGER.TEMPCODE
+                If OBJLEDGER.TEMPCODE <> "" Then CMBHSNCODE.Text = OBJLEDGER.TEMPCODE
             End If
         Catch ex As Exception
             Throw ex
@@ -495,21 +513,37 @@ Public Class BeamMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    'Private Sub TXTGRIDENDS_Validated(sender As Object, e As EventArgs) Handles TXTGRIDENDS.Validated
-    '    Try
-    '        If Val(TXTGRIDWT.Text.Trim) = 0 And Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTTL.Text.Trim) > 0 And CMBGRIDQUALITY.Text.Trim <> "" Then
-    '            'GET DENIER FROM YARNMASTER
-    '            Dim OBJCMN As New ClsCommon
-    '            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(QUALITY_DENIER,0) AS DENIER", "", "QUALITYMASTER ", " AND QUALITY_NAME = '" & CMBGRIDQUALITY.Text.Trim & "' AND QUALITY_YEARID = " & YearId)
-    '            If DT.Rows.Count > 0 Then
-    '                '(ENDS * TL* DENIER)/9000000
-    '                TXTGRIDWT.Text = Format((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim) * Val(DT.Rows(0).Item("DENIER"))) / 9000000, "0.000")
-    '            End If
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-#End Region
+
+    Private Sub CMBHSNCODE_Validating(sender As Object, e As CancelEventArgs) Handles CMBHSNCODE.Validating
+        Try
+            If CMBHSNCODE.Text.Trim <> "" Then HSNITEMDESCVALIDATE(CMBHSNCODE, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBHSNCODE_Enter(sender As Object, e As EventArgs) Handles CMBHSNCODE.Enter
+        Try
+            If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTGRIDENDS_Validated(sender As Object, e As EventArgs) Handles TXTGRIDENDS.Validated
+        Try
+            If Val(TXTGRIDWT.Text.Trim) = 0 And Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTTL.Text.Trim) > 0 And CMBGRIDQUALITY.Text.Trim <> "" Then
+                'GET DENIER FROM YARNMASTER
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(YARN_DENIER,0) AS DENIER", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBGRIDQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    '(ENDS * TL* DENIER)/9000000
+                    TXTGRIDWT.Text = Format((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim) * Val(DT.Rows(0).Item("DENIER"))) / 9000000, "0.000")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 End Class
