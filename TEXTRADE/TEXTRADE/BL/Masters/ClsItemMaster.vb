@@ -125,8 +125,7 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPQUALITY", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WARPSHADE", alParaval(I)))
-                I += 1
+
                 .Add(New SqlClient.SqlParameter("@WARPENDS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))
@@ -136,20 +135,7 @@ Public Class clsItemmaster
                 .Add(New SqlClient.SqlParameter("@WARPAMOUNT", alParaval(I)))
                 I += 1
 
-                .Add(New SqlClient.SqlParameter("@WEFTSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTPICK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTAMOUNT", alParaval(I)))
-                I += 1
+
 
                 .Add(New SqlClient.SqlParameter("@WARPTL", alParaval(I)))
                 I = I + 1
@@ -203,6 +189,7 @@ Public Class clsItemmaster
                 .Add(New SqlClient.SqlParameter("@WEFTTOTALAMOUNT", alParaval(I)))
                 I += 1
 
+
                 .Add(New SqlClient.SqlParameter("@COLORSRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
@@ -238,6 +225,27 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADEGRIDSRNO", alParaval(I)))
                 I += 1
+
+
+
+
+                .Add(New SqlClient.SqlParameter("@WEFTSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTQUALITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTPICK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTAMOUNT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTSHADESRNO", alParaval(I)))
+                I += 1
+
 
             End With
 
@@ -354,8 +362,7 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPQUALITY", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WARPSHADE", alParaval(I)))
-                I += 1
+
                 .Add(New SqlClient.SqlParameter("@WARPENDS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))
@@ -365,20 +372,6 @@ Public Class clsItemmaster
                 .Add(New SqlClient.SqlParameter("@WARPAMOUNT", alParaval(I)))
                 I += 1
 
-                .Add(New SqlClient.SqlParameter("@WEFTSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTPICK", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTAMOUNT", alParaval(I)))
-                I += 1
 
 
                 .Add(New SqlClient.SqlParameter("@WARPTL", alParaval(I)))
@@ -467,6 +460,24 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADEGRIDSRNO", alParaval(I)))
                 I += 1
+
+                .Add(New SqlClient.SqlParameter("@WEFTSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTQUALITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTPICK", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTAMOUNT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@WEFTSHADESRNO", alParaval(I)))
+                I += 1
+
 
                 .Add(New SqlClient.SqlParameter("@itemid", alParaval(I)))
                 I += 1

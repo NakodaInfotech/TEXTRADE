@@ -14,6 +14,7 @@ Public Class ItemMaster
     Public tempItemName, tempItemCODE, frmstring As String
     Dim DT_ITEMDETAILS As New DataTable
     Dim tempItemId As Integer
+    Dim DT_WEFTDETAILS As New DataTable
 
     Public Sub New()
 
@@ -28,6 +29,8 @@ Public Class ItemMaster
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
+
+
 
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
@@ -170,7 +173,6 @@ Public Class ItemMaster
 
             Dim WARPSRNO As String = ""
             Dim WARPQUALITY As String = ""
-            Dim WARPSHADE As String = ""
             Dim WARPENDS As String = ""
             Dim WARPWT As String = ""
             Dim WARPRATE As String = ""
@@ -181,7 +183,6 @@ Public Class ItemMaster
                     If WARPSRNO = "" Then
                         WARPSRNO = Val(row.Cells(WSRNO.Index).Value)
                         WARPQUALITY = row.Cells(WQUALITY.Index).Value.ToString
-                        WARPSHADE = row.Cells(WSHADE.Index).Value.ToString
                         WARPENDS = Val(row.Cells(WENDS.Index).Value)
                         WARPWT = Val(row.Cells(WWT.Index).Value)
                         WARPRATE = Val(row.Cells(WRATE.Index).Value)
@@ -189,7 +190,6 @@ Public Class ItemMaster
                     Else
                         WARPSRNO = WARPSRNO & "|" & Val(row.Cells(WSRNO.Index).Value)
                         WARPQUALITY = WARPQUALITY & "|" & row.Cells(WQUALITY.Index).Value.ToString
-                        WARPSHADE = WARPSHADE & "|" & row.Cells(WSHADE.Index).Value.ToString
                         WARPENDS = WARPENDS & "|" & Val(row.Cells(WENDS.Index).Value)
                         WARPWT = WARPWT & "|" & Val(row.Cells(WWT.Index).Value)
                         WARPRATE = WARPRATE & "|" & Val(row.Cells(WRATE.Index).Value)
@@ -201,52 +201,10 @@ Public Class ItemMaster
 
             alParaval.Add(WARPSRNO)
             alParaval.Add(WARPQUALITY)
-            alParaval.Add(WARPSHADE)
             alParaval.Add(WARPENDS)
             alParaval.Add(WARPWT)
             alParaval.Add(WARPRATE)
             alParaval.Add(WARPAMOUNT)
-
-
-
-            Dim WEFTSRNO As String = ""
-            Dim WEFTQUALITY As String = ""
-            Dim WEFTSHADE As String = ""
-            Dim WEFTPICK As String = ""
-            Dim WEFTWT As String = ""
-            Dim WEFTRATE As String = ""
-            Dim WEFTAMOUNT As String = ""
-
-            For Each row As Windows.Forms.DataGridViewRow In GRIDWEFT.Rows
-                If row.Cells(0).Value <> Nothing Then
-                    If WEFTSRNO = "" Then
-                        WEFTSRNO = Val(row.Cells(FSRNO.Index).Value)
-                        WEFTQUALITY = row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTSHADE = row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPICK = Val(row.Cells(FPICK.Index).Value)
-                        WEFTWT = Val(row.Cells(FWT.Index).Value)
-                        WEFTRATE = Val(row.Cells(FRATE.Index).Value)
-                        WEFTAMOUNT = Val(row.Cells(FAMOUNT.Index).Value)
-                    Else
-                        WEFTSRNO = WEFTSRNO & "|" & Val(row.Cells(FSRNO.Index).Value)
-                        WEFTQUALITY = WEFTQUALITY & "|" & row.Cells(FQUALITY.Index).Value.ToString
-                        WEFTSHADE = WEFTSHADE & "|" & row.Cells(FSHADE.Index).Value.ToString
-                        WEFTPICK = WEFTPICK & "|" & Val(row.Cells(FPICK.Index).Value)
-                        WEFTWT = WEFTWT & "|" & Val(row.Cells(FWT.Index).Value)
-                        WEFTRATE = WEFTRATE & "|" & Val(row.Cells(FRATE.Index).Value)
-                        WEFTAMOUNT = WEFTAMOUNT & "|" & Val(row.Cells(FAMOUNT.Index).Value)
-                    End If
-                End If
-            Next
-
-
-            alParaval.Add(WEFTSRNO)
-            alParaval.Add(WEFTQUALITY)
-            alParaval.Add(WEFTSHADE)
-            alParaval.Add(WEFTPICK)
-            alParaval.Add(WEFTWT)
-            alParaval.Add(WEFTRATE)
-            alParaval.Add(WEFTAMOUNT)
 
 
             alParaval.Add(Val(TXTWARPTL.Text.Trim))
@@ -358,6 +316,52 @@ Public Class ItemMaster
             alParaval.Add(ITEMSHADE)
             alParaval.Add(MTRS)
             alParaval.Add(SHADEGRIDSRNO)
+
+            Dim WEFTSRNO As String = ""
+            Dim WEFTQUALITY As String = ""
+            Dim WEFTSHADE As String = ""
+            Dim WEFTPICK As String = ""
+            Dim WEFTWT As String = ""
+            Dim WEFTRATE As String = ""
+            Dim WEFTAMOUNT As String = ""
+            Dim WEFTSHADESRNO As String = ""
+
+            For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                If DT_WEFTDETAILS.Rows(i).Item(0) <> Nothing Then
+                    If WEFTSRNO = "" Then
+                        WEFTSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("WEFTSRNO"))
+                        WEFTQUALITY = DT_WEFTDETAILS.Rows(i).Item("WEFTQUALITY")
+                        WEFTSHADE = DT_WEFTDETAILS.Rows(i).Item("WEFTSHADE")
+                        WEFTPICK = Val(DT_WEFTDETAILS.Rows(i).Item("WEFTPICK"))
+                        WEFTWT = Val(DT_WEFTDETAILS.Rows(i).Item("WEFTWT"))
+                        WEFTRATE = Val(DT_WEFTDETAILS.Rows(i).Item("WEFTRATE"))
+                        WEFTAMOUNT = Val(DT_WEFTDETAILS.Rows(i).Item("WEFTAMOUNT"))
+                        WEFTSHADESRNO = Val(DT_WEFTDETAILS.Rows(i).Item("SHADESRNO"))
+                    Else
+                        WEFTSRNO = WEFTSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("WEFTSRNO"))
+                        WEFTQUALITY = WEFTQUALITY & "|" & DT_WEFTDETAILS.Rows(i).Item("WEFTQUALITY")
+                        WEFTSHADE = WEFTSHADE & "|" & DT_WEFTDETAILS.Rows(i).Item("WEFTSHADE")
+                        WEFTPICK = WEFTPICK & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("WEFTPICK"))
+                        WEFTWT = WEFTWT & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("WEFTWT"))
+                        WEFTRATE = WEFTRATE & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("WEFTRATE"))
+                        WEFTAMOUNT = WEFTAMOUNT & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("WEFTAMOUNT"))
+                        WEFTSHADESRNO = WEFTSHADESRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("SHADESRNO"))
+
+                    End If
+                End If
+            Next
+
+
+            alParaval.Add(WEFTSRNO)
+            alParaval.Add(WEFTQUALITY)
+            alParaval.Add(WEFTSHADE)
+            alParaval.Add(WEFTPICK)
+            alParaval.Add(WEFTWT)
+            alParaval.Add(WEFTRATE)
+            alParaval.Add(WEFTAMOUNT)
+            alParaval.Add(WEFTSHADESRNO)
+
+
 
             Dim objclsItemMaster As New clsItemmaster
             objclsItemMaster.alParaval = alParaval
@@ -561,8 +565,9 @@ Public Class ItemMaster
 
         CMBPROCESS.Text = ""
         TXTPSRNO.Clear()
-        TXTSHADESRNO.Clear()
+        TXTSHADESRNO.Text = 1
         TXTITEMSRNO.Clear()
+
         DT_ITEMDETAILS.Reset()
         DT_ITEMDETAILS.Columns.Add("ITEMSRNO")
         DT_ITEMDETAILS.Columns.Add("ITEM")
@@ -597,8 +602,6 @@ Public Class ItemMaster
 
         TXTWARPSRNO.Clear()
         CMBWARPQUALITY.Text = ""
-        CMBWARPSHADE.Text = ""
-        TXTWARPDENIER.Clear()
         TXTWARPENDS.Clear()
         TXTWARPWT.Clear()
         TXTTOTALWARPWT.Clear()
@@ -609,7 +612,7 @@ Public Class ItemMaster
         TXTTOTALWARPAMOUNT.Clear()
         TXTTOTALWEFTAMOUNT.Clear()
         GRIDWARP.RowCount = 0
-        TXTWEFTSRNO.Clear()
+        TXTWEFTSRNO.Text = 1
         CMBWEFTQUALITY.Text = ""
         CMBWEFTSHADE.Text = ""
         TXTWEFTDENIER.Clear()
@@ -653,6 +656,18 @@ Public Class ItemMaster
         TXTGSM.Clear()
         TXTPERCENT.Clear()
         CHKGARMENT.CheckState = CheckState.Unchecked
+
+        DT_WEFTDETAILS.Reset()
+        DT_WEFTDETAILS.Columns.Add("WEFTSRNO")
+        DT_WEFTDETAILS.Columns.Add("WEFTQUALITY")
+        DT_WEFTDETAILS.Columns.Add("WEFTSHADE")
+        ' DT_WEFTDETAILS.Columns.Add("WEFTDENIER")
+        DT_WEFTDETAILS.Columns.Add("WEFTPICK")
+        DT_WEFTDETAILS.Columns.Add("WEFTWT")
+        DT_WEFTDETAILS.Columns.Add("WEFTRATE")
+        DT_WEFTDETAILS.Columns.Add("WEFTAMOUNT")
+        DT_WEFTDETAILS.Columns.Add("SHADESRNO")
+
     End Sub
 
     Sub FILLGRIDCOLOR()
@@ -670,6 +685,7 @@ Public Class ItemMaster
             CMBCOLOR.Text = ""
             GRIDSHADE.ClearSelection()
             CMBCOLOR.Focus()
+            Call GRIDCOLOR_CellClick(GRIDCOLOR, New DataGridViewCellEventArgs(0, 0))
         Catch ex As Exception
             Throw ex
         End Try
@@ -701,7 +717,7 @@ Public Class ItemMaster
 
     Private Sub CMBWARPQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Enter
         Try
-            If CMBWARPQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBWARPQUALITY, EDIT)
+            If CMBWARPQUALITY.Text.Trim = "" Then fillBEAM(CMBWARPQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -709,27 +725,15 @@ Public Class ItemMaster
 
     Private Sub CMBWARPQUALITY_Validating(sender As Object, e As CancelEventArgs) Handles CMBWARPQUALITY.Validating
         Try
-            If CMBWARPQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBWARPQUALITY, e, Me)
+            If CMBWARPQUALITY.Text.Trim <> "" Then BEAMVALIDATE(CMBWARPQUALITY, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBWARPSHADE_Enter(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Enter
-        Try
-            If CMBWARPSHADE.Text.Trim = "" Then FILLCOLOR(CMBWARPSHADE, "", "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
-    Private Sub CMBWARPSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBWARPSHADE.Validating
-        Try
-            If CMBWARPSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBWARPSHADE, e, Me, "", "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
+
 
     Private Sub CMBWEFTQUALITY_Enter(sender As Object, e As EventArgs) Handles CMBWEFTQUALITY.Enter
         Try
@@ -772,7 +776,21 @@ Public Class ItemMaster
     End Sub
 
     Private Sub CMBWARPQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBWARPQUALITY.Validated
-        TXTWARPDENIER.Text = FETCHDENIER(CMBWARPQUALITY.Text.Trim)
+        Try
+            If CMBWARPQUALITY.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) As ENDS, ISNULL(BEAM_TAPLINE, 0) As TAPLINE, ISNULL(BEAM_WTMTRS, 0) As BEAMWT, ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    'TXTTL.Text = DT.Rows(0).Item("TAPLINE")
+                    TXTWARPENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
+                    TXTWARPWT.Text = Val(DT.Rows(0).Item("TOTALWT"))
+
+                End If
+                TOTAL()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
         CALC()
     End Sub
 
@@ -783,13 +801,13 @@ Public Class ItemMaster
 
     Sub CALC()
         Try
-            If Val(TXTWARPWT.Text.Trim) = 0 And Val(TXTWARPENDS.Text.Trim) > 0 And Val(TXTWARPTL.Text.Trim) > 0 And Val(TXTWARPDENIER.Text.Trim) > 0 Then
-                If ClientName = "NAYRA" Then
-                    TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-                Else
-                    TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-                End If
-            End If
+            'If Val(TXTWARPWT.Text.Trim) = 0 And Val(TXTWARPENDS.Text.Trim) > 0 And Val(TXTWARPTL.Text.Trim) > 0 Then
+            '    If ClientName = "NAYRA" Then
+            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
+            '    Else
+            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
+            '    End If
+            'End If
 
             If CMBWEFTQUALITY.Text.Trim <> "" And Val(TXTWEFTPICK.Text.Trim) > 0 And Val(TXTREEDSPACE.Text.Trim) > 0 And Val(TXTWEFTTL.Text.Trim) > 0 And Val(TXTWEFTWT.Text.Trim) = 0 Then
                 If ClientName = "NAYRA" Then
@@ -810,13 +828,11 @@ Public Class ItemMaster
     Sub FILLWARPGRID()
 
         If GRIDWARPDOUBLECLICK = False Then
-            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBWARPQUALITY.Text.Trim, CMBWARPSHADE.Text.Trim, Val(TXTWARPDENIER.Text.Trim), Val(TXTWARPENDS.Text.Trim), Val(TXTWARPWT.Text.Trim), Format(Val(TXTWARPRATE.Text.Trim), "0.00"), Format(Val(TXTWARPAMOUNT.Text.Trim), "0.00"))
+            GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBWARPQUALITY.Text.Trim, Val(TXTWARPENDS.Text.Trim), Val(TXTWARPWT.Text.Trim), Format(Val(TXTWARPRATE.Text.Trim), "0.00"), Format(Val(TXTWARPAMOUNT.Text.Trim), "0.00"))
             getsrno(GRIDWARP)
         ElseIf GRIDWARPDOUBLECLICK = True Then
             GRIDWARP.Item(WSRNO.Index, TEMPWARPROW).Value = Val(TXTWARPSRNO.Text.Trim)
             GRIDWARP.Item(WQUALITY.Index, TEMPWARPROW).Value = CMBWARPQUALITY.Text.Trim
-            GRIDWARP.Item(WSHADE.Index, TEMPWARPROW).Value = CMBWARPSHADE.Text.Trim
-            GRIDWARP.Item(WDENIER.Index, TEMPWARPROW).Value = Val(TXTWARPDENIER.Text.Trim)
             GRIDWARP.Item(WENDS.Index, TEMPWARPROW).Value = Val(TXTWARPENDS.Text.Trim)
             GRIDWARP.Item(WWT.Index, TEMPWARPROW).Value = Val(TXTWARPWT.Text.Trim)
             GRIDWARP.Item(WRATE.Index, TEMPWARPROW).Value = Format(Val(TXTWARPRATE.Text.Trim), "0.00")
@@ -827,8 +843,6 @@ Public Class ItemMaster
         End If
         TOTAL()
         CMBWARPQUALITY.Text = ""
-        CMBWARPSHADE.Text = ""
-        TXTWARPDENIER.Clear()
         TXTWARPENDS.Clear()
         TXTWARPWT.Clear()
         TXTWARPRATE.Clear()
@@ -840,9 +854,29 @@ Public Class ItemMaster
     Sub FILLWEFTGRID()
 
         If GRIDWEFTDOUBLECLICK = False Then
-            GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTDENIER.Text.Trim), Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim))
-            getsrno(GRIDWEFT)
+
+            If GRIDCOLOR.RowCount > 0 Then
+                GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim), GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value)
+                DT_WEFTDETAILS.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim), GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(0).Value)
+                getsrno(GRIDWEFT)
+            Else
+                MsgBox("Please Fill Shade First")
+            End If
+
         ElseIf GRIDWEFTDOUBLECLICK = True Then
+
+            For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                If GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = DT_WEFTDETAILS.Rows(I).Item("WEFTSRNO") And GRIDWEFT.Item(FSHADESRNO.Index, TEMPWEFTROW).Value = DT_WEFTDETAILS.Rows(I).Item("SHADESRNO") Then
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTQUALITY") = CMBWEFTQUALITY.Text.Trim
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTSHADE") = CMBWEFTSHADE.Text.Trim
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTPICK") = Val(TXTWEFTDENIER.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTWT") = Val(TXTWEFTPICK.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTRATE") = Val(TXTWEFTWT.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTAMOUNT") = Val(TXTWEFTRATE.Text.Trim)
+                End If
+            Next
+LINE1:
+
             GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = Val(TXTWEFTSRNO.Text.Trim)
             GRIDWEFT.Item(FQUALITY.Index, TEMPWEFTROW).Value = CMBWEFTQUALITY.Text.Trim
             GRIDWEFT.Item(FSHADE.Index, TEMPWEFTROW).Value = CMBWEFTSHADE.Text.Trim
@@ -865,6 +899,10 @@ Public Class ItemMaster
         TXTWEFTAMOUNT.Clear()
         TXTWEFTSRNO.Text = GRIDWEFT.RowCount + 1
         CMBWEFTQUALITY.Focus()
+
+
+
+
     End Sub
 
     Function CHECKWARP() As Boolean
@@ -872,7 +910,7 @@ Public Class ItemMaster
             Dim BLN As Boolean = True
             For Each row As DataGridViewRow In GRIDWARP.Rows
                 If (GRIDWARPDOUBLECLICK = True And TEMPWARPROW <> row.Index) Or GRIDWARPDOUBLECLICK = False Then
-                    If CMBWARPQUALITY.Text.Trim = row.Cells(WQUALITY.Index).Value And CMBWARPSHADE.Text.Trim = row.Cells(WSHADE.Index).Value Then BLN = False
+                    If CMBWARPQUALITY.Text.Trim = row.Cells(WQUALITY.Index).Value Then BLN = False
                 End If
             Next
             Return BLN
@@ -902,8 +940,6 @@ Public Class ItemMaster
                 TEMPWARPROW = e.RowIndex
                 TXTWARPSRNO.Text = Val(GRIDWARP.Item(WSRNO.Index, e.RowIndex).Value)
                 CMBWARPQUALITY.Text = GRIDWARP.Item(WQUALITY.Index, e.RowIndex).Value
-                CMBWARPSHADE.Text = GRIDWARP.Item(WSHADE.Index, e.RowIndex).Value
-                TXTWARPDENIER.Text = GRIDWARP.Item(WDENIER.Index, e.RowIndex).Value
                 TXTWARPENDS.Text = GRIDWARP.Item(WENDS.Index, e.RowIndex).Value
                 TXTWARPWT.Text = GRIDWARP.Item(WWT.Index, e.RowIndex).Value
                 TXTWARPRATE.Text = GRIDWARP.Item(WRATE.Index, e.RowIndex).Value
@@ -957,14 +993,29 @@ Public Class ItemMaster
 
     Private Sub GRIDWEFT_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWEFT.KeyDown
         Try
-            If e.KeyCode = Keys.Delete And GRIDWEFT.RowCount > 0 Then
-                If GRIDWEFTDOUBLECLICK = True Then
-                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
-                    Exit Sub
+            If e.KeyCode = Keys.Delete Then
+                Dim del As Boolean = False
+                If GRIDWEFT.RowCount > 0 Then
+                    Dim row As Integer = GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) And GRIDWEFT.Rows(GRIDWEFT.CurrentRow.Index).Cells(FSRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) Then
+                            If del = False Then
+                                DT_WEFTDETAILS.Rows.RemoveAt(I)
+                                GRIDWEFT.Rows.RemoveAt(GRIDWEFT.CurrentRow.Index)
+                                del = True
+                                GoTo line1
+                            End If
+                        End If
+                    Next
+line1:
+                    For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                        If GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) And del = True And row < Val(DT_WEFTDETAILS.Rows(I).Item(FSRNO.Index)) Then
+                            DT_WEFTDETAILS.Rows(I).Item("SRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("SRNO")) - 1
+                        End If
+                    Next
+                    getsrno(GRIDWEFT)
+                    TOTAL()
                 End If
-
-                GRIDWEFT.Rows.RemoveAt(GRIDWEFT.CurrentRow.Index)
-                getsrno(GRIDWEFT)
             End If
         Catch ex As Exception
             Throw ex
@@ -1038,15 +1089,16 @@ Public Class ItemMaster
 
         If CMBPROCESS.Text.Trim = "" Then FILLPROCESS(CMBPROCESS)
         If CMBHSNCODE.Text.Trim = "" Then FILLHSNITEMDESC(CMBHSNCODE)
-        fillYARNQUALITY(CMBWARPQUALITY, EDIT)
+        'fillYARNQUALITY(CMBWARPQUALITY, EDIT)
         fillYARNQUALITY(CMBWEFTQUALITY, EDIT)
-        FILLCOLOR(CMBWARPSHADE, "", "")
         FILLCOLOR(CMBWEFTSHADE, "", "")
         FILLCOLOR(CMBCOLOR, "", "")
         FILLCOLOR(CMBSHADE, "", "")
         FILLCOLOR(CMBGRIDSHADE, "", "")
         fillitemname(CMBGRIDITEMNAME, "")
         FILLDESIGN(CMBGRIDDESIGN, "")
+        If CMBWARPQUALITY.Text = "" Then fillBEAM(CMBWARPQUALITY, EDIT)
+
 
     End Sub
 
@@ -1111,7 +1163,7 @@ Public Class ItemMaster
 
                 Dim objCommon As New ClsCommonMaster
                 'Dim dttable As DataTable = objCommon.search("  ITEMMASTER.item_id AS ITEMID, MATERIALTYPEMASTER.material_name AS MATERIALTYPE, ISNULL(CATEGORYMASTER.category_name, '') AS CATEGORY, ITEMMASTER.item_name AS ITEMNAME, ISNULL(ITEMMASTER.item_code, '') AS ITEMCODE, ISNULL(ITEMMASTER.item_BLOCKED, 0) AS BLOCKED, ISNULL(ITEMMASTER.item_HIDEINDESIGN, 0) AS HIDEINDESIGN,  ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(DEPARTMENTMASTER.DEPARTMENT_name, '') AS DEPARTMENT, ITEMMASTER.item_reorder AS REORDER, ITEMMASTER.ITEM_FOLD AS FOLD, ITEMMASTER.ITEM_RATE AS RATE, ITEMMASTER.ITEM_VALUATIONRATE AS VALUATIONRATE, ITEMMASTER.ITEM_TRANSRATE AS TRANSPORTRATE,ITEMMASTER.ITEM_CHECKRATE AS CHECKINGRATE,ITEMMASTER.ITEM_PACKRATE AS PACKINGRATE,ITEMMASTER.ITEM_DESIGNRATE AS DESIGNRATE, ITEMMASTER.item_upper AS UPPER, ITEMMASTER.item_lower AS LOWER, ISNULL(ITEM_WIDTH,'') AS WIDTH, ISNULL(ITEM_GREYWIDTH,'') AS GREYWIDTH, ISNULL(ITEM_SHRINKFROM,0) AS SHRINKFROM, ISNULL(ITEM_SHRINKTO,0) AS SHRINKTO, ISNULL(ITEM_SELVEDGE,'') AS SELVEDGE, ISNULL(ITEMMASTER.item_remarks, '') AS REMARKS,ITEMMASTER.ITEM_PHOTO AS IMGPATH,ISNULL(ITEM_WARP,'') AS WARP ,ISNULL(ITEM_WEFT,'') AS WEFT, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME, ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(ITEM_WARPTL, 0) AS WARPTL, ISNULL(ITEM_WEFTTL, 0) AS WEFTTL, ISNULL(ITEM_REED, 0) AS REED, ISNULL(ITEM_REEDSPACE, 0) AS REEDSPACE, ISNULL(ITEM_PICKS, 0) AS PICKS, ISNULL(ITEM_WEAVE, '') AS WEAVE, ISNULL(GREYCATEGORYMASTER.category_name, '') AS GREYCATEGORY, ISNULL(ITEMMASTER.ITEM_ACTUALWT, 0) AS ACTUALWT, ISNULL(ITEMMASTER.ITEM_ACTUALAMOUNT, 0) AS ACTUALAMOUNT, ISNULL(ITEMMASTER.ITEM_DHARAPER, 0) AS DHARAPER, ISNULL(ITEMMASTER.ITEM_WASTAGEPER, 0) AS WASTAGEPER, ISNULL(ITEMMASTER.ITEM_WEAVINGCHRGS, 0) AS WEAVINGCHRGS, ISNULL(ITEMMASTER.ITEM_GSTPER, 0) AS GSTPER, ISNULL(ITEMMASTER.ITEM_AMOUNT, 0) AS AMOUNT, ISNULL(ITEMMASTER.ITEM_TOTALGSTPER, 0) AS TOTALGSTPER, ISNULL(ITEMMASTER.ITEM_TOTALAMOUNT, 0) AS TOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WARPTOTALAMOUNT, 0) AS WARPTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WEFTTOTALAMOUNT, 0) AS WEFTTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_VALUELOSSPER, 0) AS VALUELOSSPER , ISNULL(COSTCENTERMASTER.COSTCENTER_name, '') AS COSTCENTERNAME", "", " ITEMMASTER INNER JOIN MATERIALTYPEMASTER ON ITEMMASTER.item_materialtypeid = MATERIALTYPEMASTER.material_id LEFT OUTER JOIN COSTCENTERMASTER ON ITEMMASTER.ITEM_COSTCENTERNAMEID = COSTCENTERMASTER.COSTCENTER_id LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN CATEGORYMASTER AS GREYCATEGORYMASTER ON ITEMMASTER.ITEM_GREYCATEGORYID = GREYCATEGORYMASTER.category_id LEFT OUTER JOIN DEPARTMENTMASTER ON ITEMMASTER.item_departmentid = DEPARTMENTMASTER.DEPARTMENT_id ", " and ITEMMASTER.Item_Name = '" & tempItemName & "' AND ITEMMASTER.ITEM_FRMSTRING = '" & frmstring & "' and ITEMMASTER.Item_yearid = " & YearId)
-                Dim dttable As DataTable = objCommon.search("ITEMMASTER.item_id AS ITEMID, MATERIALTYPEMASTER.material_name AS MATERIALTYPE, ISNULL(CATEGORYMASTER.category_name, '') AS CATEGORY, ITEMMASTER.item_name AS ITEMNAME,  ISNULL(ITEMMASTER.item_code, '') AS ITEMCODE, ISNULL(ITEMMASTER.ITEM_BLOCKED, 0) AS BLOCKED, ISNULL(ITEMMASTER.ITEM_HIDEINDESIGN, 0) AS HIDEINDESIGN, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT,  ISNULL(DEPARTMENTMASTER.DEPARTMENT_name, '') AS DEPARTMENT, ITEMMASTER.item_reorder AS REORDER, ITEMMASTER.ITEM_FOLD AS FOLD, ITEMMASTER.ITEM_RATE AS RATE,  ITEMMASTER.ITEM_VALUATIONRATE AS VALUATIONRATE, ITEMMASTER.ITEM_TRANSRATE AS TRANSPORTRATE, ITEMMASTER.ITEM_CHECKRATE AS CHECKINGRATE, ITEMMASTER.ITEM_PACKRATE AS PACKINGRATE,  ITEMMASTER.ITEM_DESIGNRATE AS DESIGNRATE, ITEMMASTER.item_upper AS UPPER, ITEMMASTER.item_lower AS LOWER, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_GREYWIDTH, '')  AS GREYWIDTH, ISNULL(ITEMMASTER.ITEM_SHRINKFROM, 0) AS SHRINKFROM, ISNULL(ITEMMASTER.ITEM_SHRINKTO, 0) AS SHRINKTO, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE,  ISNULL(ITEMMASTER.item_remarks, '') AS REMARKS, ITEMMASTER.ITEM_PHOTO AS IMGPATH, ISNULL(ITEMMASTER.ITEM_WARP, '') AS WARP, ISNULL(ITEMMASTER.ITEM_WEFT, '') AS WEFT,  ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME, ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WARPTL, 0) AS WARPTL, ISNULL(ITEMMASTER.ITEM_WEFTTL, 0) AS WEFTTL,  ISNULL(ITEMMASTER.ITEM_REED, 0) AS REED, ISNULL(ITEMMASTER.ITEM_REEDSPACE, 0) AS REEDSPACE, ISNULL(ITEMMASTER.ITEM_PICKS, 0) AS PICKS, ISNULL(ITEMMASTER.ITEM_WEAVE, '') AS WEAVE,  ISNULL(GREYCATEGORYMASTER.category_name, '') AS GREYCATEGORY, ISNULL(ITEMMASTER.ITEM_ACTUALWT, 0) AS ACTUALWT, ISNULL(ITEMMASTER.ITEM_ACTUALAMOUNT, 0) AS ACTUALAMOUNT,  ISNULL(ITEMMASTER.ITEM_DHARAPER, 0) AS DHARAPER, ISNULL(ITEMMASTER.ITEM_WASTAGEPER, 0) AS WASTAGEPER, ISNULL(ITEMMASTER.ITEM_WEAVINGCHRGS, 0) AS WEAVINGCHRGS,  ISNULL(ITEMMASTER.ITEM_GSTPER, 0) AS GSTPER, ISNULL(ITEMMASTER.ITEM_AMOUNT, 0) AS AMOUNT, ISNULL(ITEMMASTER.ITEM_TOTALGSTPER, 0) AS TOTALGSTPER, ISNULL(ITEMMASTER.ITEM_TOTALAMOUNT, 0)  AS TOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WARPTOTALAMOUNT, 0) AS WARPTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WEFTTOTALAMOUNT, 0) AS WEFTTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_VALUELOSSPER,  0) AS VALUELOSSPER, ISNULL(COSTCENTERMASTER.COSTCENTER_name, '') AS COSTCENTERNAME, ISNULL(ITEMMASTER.ITEM_GSM, 0) AS GSM, ISNULL(ITEMMASTER.ITEM_PERCENT, 0) AS [PERCENT], ISNULL(ITEMMASTER.ITEM_GARMENT, 0) AS GARMENT , ISNULL(COLORMASTER.COLOR_name,'') AS SHADE ,  ISNULL(ITEMMASTER_SHADEDETAILS.ITEM_SHADESRNO,0) AS SHADESRNO  ", "", "   ITEMMASTER LEFT OUTER JOIN MATERIALTYPEMASTER ON ITEMMASTER.item_materialtypeid = MATERIALTYPEMASTER.material_id LEFT OUTER JOIN ITEMMASTER_SHADEDETAILS ON ITEMMASTER.item_id = ITEMMASTER_SHADEDETAILS.ITEM_ID AND ITEMMASTER.item_yearid = ITEMMASTER_SHADEDETAILS.ITEM_YEARID LEFT OUTER JOIN COLORMASTER ON ITEMMASTER_SHADEDETAILS.ITEM_SHADECOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN COSTCENTERMASTER ON ITEMMASTER.ITEM_COSTCENTERNAMEID = COSTCENTERMASTER.COSTCENTER_id LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN CATEGORYMASTER AS GREYCATEGORYMASTER ON ITEMMASTER.ITEM_GREYCATEGORYID = GREYCATEGORYMASTER.category_id LEFT OUTER JOIN DEPARTMENTMASTER ON ITEMMASTER.item_departmentid = DEPARTMENTMASTER.DEPARTMENT_id  ", " and ITEMMASTER.Item_Name = '" & tempItemName & "' AND ITEMMASTER.ITEM_FRMSTRING = '" & frmstring & "' and ITEMMASTER.Item_yearid = " & YearId)
+                Dim dttable As DataTable = objCommon.search("ITEMMASTER.item_id AS ITEMID, MATERIALTYPEMASTER.material_name AS MATERIALTYPE, ISNULL(CATEGORYMASTER.category_name, '') AS CATEGORY, ITEMMASTER.item_name AS ITEMNAME,  ISNULL(ITEMMASTER.item_code, '') AS ITEMCODE, ISNULL(ITEMMASTER.ITEM_BLOCKED, 0) AS BLOCKED, ISNULL(ITEMMASTER.ITEM_HIDEINDESIGN, 0) AS HIDEINDESIGN, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT,  ISNULL(DEPARTMENTMASTER.DEPARTMENT_name, '') AS DEPARTMENT, ITEMMASTER.item_reorder AS REORDER, ITEMMASTER.ITEM_FOLD AS FOLD, ITEMMASTER.ITEM_RATE AS RATE,  ITEMMASTER.ITEM_VALUATIONRATE AS VALUATIONRATE, ITEMMASTER.ITEM_TRANSRATE AS TRANSPORTRATE, ITEMMASTER.ITEM_CHECKRATE AS CHECKINGRATE, ITEMMASTER.ITEM_PACKRATE AS PACKINGRATE,  ITEMMASTER.ITEM_DESIGNRATE AS DESIGNRATE, ITEMMASTER.item_upper AS UPPER, ITEMMASTER.item_lower AS LOWER, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_GREYWIDTH, '')  AS GREYWIDTH, ISNULL(ITEMMASTER.ITEM_SHRINKFROM, 0) AS SHRINKFROM, ISNULL(ITEMMASTER.ITEM_SHRINKTO, 0) AS SHRINKTO, ISNULL(ITEMMASTER.ITEM_SELVEDGE, '') AS SELVEDGE,  ISNULL(ITEMMASTER.item_remarks, '') AS REMARKS, ITEMMASTER.ITEM_PHOTO AS IMGPATH, ISNULL(ITEMMASTER.ITEM_WARP, '') AS WARP, ISNULL(ITEMMASTER.ITEM_WEFT, '') AS WEFT,  ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME, ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(ITEMMASTER.ITEM_WARPTL, 0) AS WARPTL, ISNULL(ITEMMASTER.ITEM_WEFTTL, 0) AS WEFTTL,  ISNULL(ITEMMASTER.ITEM_REED, 0) AS REED, ISNULL(ITEMMASTER.ITEM_REEDSPACE, 0) AS REEDSPACE, ISNULL(ITEMMASTER.ITEM_PICKS, 0) AS PICKS, ISNULL(ITEMMASTER.ITEM_WEAVE, '') AS WEAVE,  ISNULL(GREYCATEGORYMASTER.category_name, '') AS GREYCATEGORY, ISNULL(ITEMMASTER.ITEM_ACTUALWT, 0) AS ACTUALWT, ISNULL(ITEMMASTER.ITEM_ACTUALAMOUNT, 0) AS ACTUALAMOUNT,  ISNULL(ITEMMASTER.ITEM_DHARAPER, 0) AS DHARAPER, ISNULL(ITEMMASTER.ITEM_WASTAGEPER, 0) AS WASTAGEPER, ISNULL(ITEMMASTER.ITEM_WEAVINGCHRGS, 0) AS WEAVINGCHRGS,  ISNULL(ITEMMASTER.ITEM_GSTPER, 0) AS GSTPER, ISNULL(ITEMMASTER.ITEM_AMOUNT, 0) AS AMOUNT, ISNULL(ITEMMASTER.ITEM_TOTALGSTPER, 0) AS TOTALGSTPER, ISNULL(ITEMMASTER.ITEM_TOTALAMOUNT, 0)  AS TOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WARPTOTALAMOUNT, 0) AS WARPTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_WEFTTOTALAMOUNT, 0) AS WEFTTOTALAMOUNT, ISNULL(ITEMMASTER.ITEM_VALUELOSSPER,  0) AS VALUELOSSPER, ISNULL(COSTCENTERMASTER.COSTCENTER_name, '') AS COSTCENTERNAME, ISNULL(ITEMMASTER.ITEM_GSM, 0) AS GSM, ISNULL(ITEMMASTER.ITEM_PERCENT, 0) AS [PERCENT], ISNULL(ITEMMASTER.ITEM_GARMENT, 0) AS GARMENT , ISNULL(COLORMASTER.COLOR_name,'') AS SHADE ,  ISNULL(ITEMMASTER_SHADEDETAILS.ITEM_SHADESRNO,0) AS SHADESRNO  ", "", "   ITEMMASTER LEFT OUTER JOIN MATERIALTYPEMASTER ON ITEMMASTER.item_materialtypeid = MATERIALTYPEMASTER.material_id LEFT OUTER JOIN ITEMMASTER_SHADEDETAILS ON ITEMMASTER.item_id = ITEMMASTER_SHADEDETAILS.ITEM_ID AND ITEMMASTER.item_yearid = ITEMMASTER_SHADEDETAILS.ITEM_YEARID LEFT OUTER JOIN COLORMASTER ON ITEMMASTER_SHADEDETAILS.ITEM_SHADECOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN COSTCENTERMASTER ON ITEMMASTER.ITEM_COSTCENTERNAMEID = COSTCENTERMASTER.COSTCENTER_id LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN CATEGORYMASTER AS GREYCATEGORYMASTER ON ITEMMASTER.ITEM_GREYCATEGORYID = GREYCATEGORYMASTER.category_id LEFT OUTER JOIN DEPARTMENTMASTER ON ITEMMASTER.item_departmentid = DEPARTMENTMASTER.DEPARTMENT_id  ", " and ITEMMASTER.Item_Name = '" & tempItemName & "' AND ITEMMASTER.ITEM_FRMSTRING = '" & frmstring & "' and ITEMMASTER.Item_yearid =   " & YearId & "   ORDER BY ITEMMASTER_SHADEDETAILS.ITEM_SHADESRNO ")
 
                 If USEREDIT = False And USERVIEW = False Then
                     MsgBox("Insufficient Rights")
@@ -1211,22 +1263,21 @@ Public Class ItemMaster
 
 
                     'WARPGRID
-                    dt = OBJCMN.SEARCH(" ITEMMASTER_WARPDETAILS.ITEM_WARPSRNO AS SRNO, YARNQUALITYMASTER.YARN_NAME AS YARNQUALITY, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ITEMMASTER_WARPDETAILS.ITEM_WARPENDS AS ENDS, ITEMMASTER_WARPDETAILS.ITEM_WARPWT AS WT, ITEMMASTER_WARPDETAILS.ITEM_WARPRATE AS RATE, ITEMMASTER_WARPDETAILS.ITEM_WARPAMOUNT AS AMOUNT ", "", " ITEMMASTER_WARPDETAILS INNER JOIN YARNQUALITYMASTER ON ITEMMASTER_WARPDETAILS.ITEM_WARPQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN COLORMASTER ON ITEMMASTER_WARPDETAILS.ITEM_WARPSHADEID = COLORMASTER.COLOR_id ", " AND ITEMMASTER_WARPDETAILS.ITEM_ID = " & Val(tempItemId) & " AND ITEMMASTER_WARPDETAILS.ITEM_YEARID = " & YearId)
+                    dt = OBJCMN.SEARCH(" ITEMMASTER_BEAMDETAILS.ITEM_WARPSRNO AS SRNO, YARNQUALITYMASTER.YARN_NAME AS YARNQUALITY, ITEMMASTER_BEAMDETAILS.ITEM_WARPENDS AS ENDS, ITEMMASTER_BEAMDETAILS.ITEM_WARPWT AS WT, ITEMMASTER_BEAMDETAILS.ITEM_WARPRATE AS RATE, ITEMMASTER_BEAMDETAILS.ITEM_WARPAMOUNT AS AMOUNT ", "", " ITEMMASTER_BEAMDETAILS INNER JOIN YARNQUALITYMASTER ON ITEMMASTER_BEAMDETAILS.ITEM_WARPQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND ITEMMASTER_BEAMDETAILS.ITEM_ID = " & Val(tempItemId) & " AND ITEMMASTER_BEAMDETAILS.ITEM_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
                         For Each ROW As DataRow In dt.Rows
-                            TXTWARPDENIER.Text = FETCHDENIER(ROW("YARNQUALITY"))
-                            GRIDWARP.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("SHADE"), Val(TXTWARPDENIER.Text.Trim), Val(ROW("ENDS")), Val(ROW("WT")), Val(ROW("RATE")), Val(ROW("AMOUNT")))
-                            TXTWARPDENIER.Clear()
+                            GRIDWARP.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), Val(ROW("ENDS")), Val(ROW("WT")), Val(ROW("RATE")), Val(ROW("AMOUNT")))
                         Next
                     End If
 
 
                     'WEFT
-                    dt = OBJCMN.SEARCH(" ITEMMASTER_WEFTDETAILS.ITEM_WEFTSRNO AS SRNO, YARNQUALITYMASTER.YARN_NAME AS YARNQUALITY, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ITEMMASTER_WEFTDETAILS.ITEM_WEFTPICK AS PICK, ITEMMASTER_WEFTDETAILS.ITEM_WEFTWT AS WT, ITEMMASTER_WEFTDETAILS.ITEM_WEFTRATE AS RATE, ITEMMASTER_WEFTDETAILS.ITEM_WEFTAMOUNT AS AMOUNT ", "", " ITEMMASTER_WEFTDETAILS INNER JOIN YARNQUALITYMASTER ON ITEMMASTER_WEFTDETAILS.ITEM_WEFTQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN COLORMASTER ON ITEMMASTER_WEFTDETAILS.ITEM_WEFTSHADEID = COLORMASTER.COLOR_id ", " AND ITEMMASTER_WEFTDETAILS.ITEM_ID = " & Val(tempItemId) & " AND ITEMMASTER_WEFTDETAILS.ITEM_YEARID = " & YearId)
+                    dt = OBJCMN.SEARCH(" ITEMMASTER_WEFTDETAILS.ITEM_WEFTSRNO AS WEFTSRNO, YARNQUALITYMASTER.YARN_NAME AS WEFTQUALITY, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ITEMMASTER_WEFTDETAILS.ITEM_WEFTPICK AS WEFTPICK, ITEMMASTER_WEFTDETAILS.ITEM_WEFTWT AS WEFTWT, ITEMMASTER_WEFTDETAILS.ITEM_WEFTRATE AS WEFTRATE, ITEMMASTER_WEFTDETAILS.ITEM_WEFTAMOUNT AS WEFTAMOUNT ,ITEMMASTER_WEFTDETAILS.ITEM_WEFTSHADESRNO AS SHADESRNO ", "", " ITEMMASTER_WEFTDETAILS INNER JOIN YARNQUALITYMASTER ON ITEMMASTER_WEFTDETAILS.ITEM_WEFTQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN COLORMASTER ON ITEMMASTER_WEFTDETAILS.ITEM_WEFTSHADEID = COLORMASTER.COLOR_id ", " AND ITEMMASTER_WEFTDETAILS.ITEM_ID = " & Val(tempItemId) & " AND ITEMMASTER_WEFTDETAILS.ITEM_YEARID = " & YearId & " ORDER BY ITEMMASTER_WEFTDETAILS.ITEM_WEFTSRNO ")
                     If dt.Rows.Count > 0 Then
                         For Each ROW As DataRow In dt.Rows
-                            TXTWEFTDENIER.Text = FETCHDENIER(ROW("YARNQUALITY"))
-                            GRIDWEFT.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("SHADE"), Val(TXTWEFTDENIER.Text.Trim), Val(ROW("PICK")), Val(ROW("WT")), Val(ROW("RATE")), Val(ROW("AMOUNT")))
+                            TXTWEFTDENIER.Text = FETCHDENIER(ROW("WEFTQUALITY"))
+                            ' GRIDWEFT.Rows.Add(Val(ROW("WEFTSRNO")), ROW("WEFTQUALITY"), ROW("WEFTSHADE"), Val(TXTWEFTDENIER.Text.Trim), Val(ROW("WEFTPICK")), Val(ROW("WEFTWT")), Val(ROW("WEFTRATE")), Val(ROW("WEFTAMOUNT")), Val(ROW("SHADESRNO")))
+                            DT_WEFTDETAILS.Rows.Add(Val(ROW("WEFTSRNO")), ROW("WEFTQUALITY"), ROW("WEFTSHADE"), Val(ROW("WEFTPICK")), Val(ROW("WEFTWT")), Val(ROW("WEFTRATE")), Val(ROW("WEFTAMOUNT")), Val(ROW("SHADESRNO")))
                             TXTWEFTDENIER.Clear()
                         Next
                     End If
@@ -1586,6 +1637,7 @@ Public Class ItemMaster
 
     Private Sub ItemMaster_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            YARNGROUPBOX()
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then
                 LBLDEPT.Visible = False
                 CMBDEPARTMENT.Visible = False
@@ -1611,6 +1663,7 @@ Public Class ItemMaster
                 LBLDISPLAYNAME.Text = "Mill No"
             End If
             If ClientName = "SUPEEMA" Then
+                GPMAINGROUP.Visible = True
                 GRPITEMDETAILS.Visible = True
             End If
 
@@ -1677,7 +1730,7 @@ Public Class ItemMaster
 
             If ClientName = "NAYRA" Or ClientName = "AKASHDEEP" Or ClientName = "VSTRADERS" Then
                 LBLSELVEDGE.Text = "Composition"
-                GPWARPWEFT.Visible = True
+                GPMAINGROUP.Visible = True
                 GPWARPWEFTCALC.Visible = True
                 If ClientName = "NAYRA" Then
                     WENDS.HeaderText = "Reed"
@@ -2292,8 +2345,21 @@ LINE1:
                         GRIDITEM.Rows.Add(DT_ITEMDETAILS.Rows(i).Item("ITEMSRNO"), DT_ITEMDETAILS.Rows(i).Item("ITEM"), DT_ITEMDETAILS.Rows(i).Item("ITEMDESIGN"), DT_ITEMDETAILS.Rows(i).Item("ITEMSHADE"), DT_ITEMDETAILS.Rows(i).Item("MTRS"), DT_ITEMDETAILS.Rows(i).Item("SHADESRNO"))
                     End If
                 Next
+
+                GRIDWEFT.RowCount = 0
+                GRIDWEFTDOUBLECLICK = False
+                For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+
+                    If DT_WEFTDETAILS.Rows(i).Item("SHADESRNO") = GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(0).Value Then
+                        GRIDWEFT.Rows.Add(DT_WEFTDETAILS.Rows(i).Item("WEFTSRNO"), DT_WEFTDETAILS.Rows(i).Item("WEFTQUALITY"), DT_WEFTDETAILS.Rows(i).Item("WEFTSHADE"), TXTWEFTDENIER.Text.Trim, DT_WEFTDETAILS.Rows(i).Item("WEFTPICK"), DT_WEFTDETAILS.Rows(i).Item("WEFTWT"), DT_WEFTDETAILS.Rows(i).Item("WEFTRATE"), DT_WEFTDETAILS.Rows(i).Item("WEFTAMOUNT"), DT_WEFTDETAILS.Rows(i).Item("SHADESRNO"))
+                    End If
+                    TXTWEFTSRNO.Text = GRIDWEFT.RowCount + 1
+                Next
+
                 TOTAL()
             End If
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2328,10 +2394,28 @@ LINE1:
                         DT_ITEMDETAILS.Rows(I).Item("SHADESRNO") = Val(DT_ITEMDETAILS.Rows(I).Item("SHADESRNO")) - 1
                     End If
                 Next
+
+
+
+
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value = Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) Then
+                        DT_WEFTDETAILS.Rows.RemoveAt(I)
+                        GoTo LINE1
+                    End If
+                Next
+                For I As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
+                    If GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value < Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) Then
+                        DT_WEFTDETAILS.Rows(I).Item("SHADESRNO") = Val(DT_WEFTDETAILS.Rows(I).Item("SHADESRNO")) - 1
+                    End If
+                Next
+                'GRIDCOLOR.Rows.RemoveAt(GRIDCOLOR.CurrentRow.Index)
+                'GRIDWEFT.RowCount = 0
+
                 GRIDCOLOR.Rows.RemoveAt(GRIDCOLOR.CurrentRow.Index)
                 GRIDITEM.RowCount = 0
-
                 getsrno(GRIDCOLOR)
+
             End If
         Catch ex As Exception
             Throw ex
@@ -2400,5 +2484,14 @@ line1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+
+    Sub YARNGROUPBOX()
+        If HIDEYARN = False And ClientName <> "VALIANT" Then
+            GPMAINGROUP.Visible = True
+            GRPBEAMDETAILS.Visible = True
+            GRPWEFTYARNDETAILS.Visible = True
+        End If
     End Sub
 End Class

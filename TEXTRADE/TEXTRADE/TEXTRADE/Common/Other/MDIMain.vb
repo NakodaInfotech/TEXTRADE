@@ -5180,8 +5180,8 @@ SKIPLINE:
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
             If ClientName <> "MNARESH" Then
-                AutoEInvoice.Visible = False
-                AutoEway.Visible = False
+                AutoEInvoiceToolStripMenuItem.Visible = False
+                AutoEWayToolStripMenuItem.Visible = False
             End If
             If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
         Catch ex As Exception
@@ -6123,6 +6123,13 @@ SKIPLINE:
 
     Private Sub RECOUT_TOOL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RECOUT_TOOL.Click
         Try
+            If ClientName = "ABHEE" Then
+                Dim OBJAOUT As New AgencyOutstandingGridReport
+                OBJAOUT.MdiParent = Me
+                OBJAOUT.Show()
+                Exit Sub
+            End If
+
             Dim OBJOUT As New OutstandingFilter
             OBJOUT.FRMSTRING = "RECOUTSTANDING"
             OBJOUT.MdiParent = Me
@@ -10886,4 +10893,13 @@ SKIPLINE:
     End Sub
 
 
+    Private Sub AddNewEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem7.Click
+        Try
+            Dim OBJUPLOAD As New BeamMaster
+            OBJUPLOAD.MdiParent = Me
+            OBJUPLOAD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

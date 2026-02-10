@@ -5652,6 +5652,71 @@ PRINT 1,1")
         End Try
     End Sub
 
+
+
+    Sub fillBEAM(ByRef CMBBEAM As ComboBox, ByRef edit As Boolean)
+        Try
+            If CMBBEAM.Text.Trim = "" Then
+                Dim OBJCMN As New ClsCommonMaster
+                Dim dt As DataTable
+                dt = OBJCMN.search(" BEAM_name ", "", " BEAMMaster", " AND BEAM_YEARID = " & YearId)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "BEAM_name"
+                    CMBBEAM.DataSource = dt
+                    CMBBEAM.DisplayMember = "BEAM_name"
+                    CMBBEAM.Text = ""
+                End If
+                CMBBEAM.SelectAll()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+    Sub BEAMVALIDATE(ByRef CMBBEAM As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBBEAM.Text.Trim <> "" Then
+                uppercase(CMBBEAM)
+                Dim OBJCMN As New ClsCommonMaster
+                Dim dt As DataTable
+                dt = OBJCMN.search("BEAM_NAME", "", "BEAMMASTER", " and BEAM_NAME = '" & CMBBEAM.Text.Trim & "' and BEAM_Yearid = " & YearId)
+                If dt.Rows.Count = 0 Then
+                    Dim a As String = CMBBEAM.Text.Trim
+                    Dim tempmsg As Integer = MsgBox("Beam Name not present, Add New?", MsgBoxStyle.YesNo, "PROCESS")
+                    If tempmsg = vbYes Then
+                        CMBBEAM.Text = a
+                        Dim OBJBEAM As New BEAMMASTER
+                        OBJBEAM.TEMPBEAMNAME = CMBBEAM.Text.Trim()
+                        OBJBEAM.ShowDialog()
+                        dt = OBJCMN.search("BEAM_name", "", "BEAMMaster", " and BEAM_name = '" & CMBBEAM.Text.Trim & "' and BEAM_Yearid = " & YearId)
+                        If dt.Rows.Count > 0 Then
+                            Dim dt1 As New DataTable
+                            dt1 = CMBBEAM.DataSource
+                            If CMBBEAM.DataSource <> Nothing Then
+line1:
+                                If dt1.Rows.Count > 0 Then
+                                    dt1.Rows.Add(CMBBEAM.Text.Trim)
+                                    CMBBEAM.Text = a
+                                End If
+                            End If
+                        End If
+                        e.Cancel = True
+                    Else
+                        e.Cancel = True
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            GoTo line1
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+
     Sub filldesignation(ByRef cmbdesignation As ComboBox)
         Try
             If cmbdesignation.Text.Trim = "" Then
