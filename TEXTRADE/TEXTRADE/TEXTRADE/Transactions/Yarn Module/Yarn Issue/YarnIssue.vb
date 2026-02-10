@@ -141,7 +141,8 @@ Public Class YarnIssue
         TXTCHALLANNO.Clear()
         CMBPROCESS.Text = ""
         CMBMACHINE.Text = ""
-
+        TXTVEHICLENO.Clear()
+        TXTEWBNO.Clear()
         TXTADD.Clear()
         YISSDATE.Text = Now.Date
         tstxtbillno.Clear()
@@ -150,6 +151,7 @@ Public Class YarnIssue
         CMBTRANS.Text = ""
         TXTLRNO.Clear()
         DTLRDATE.Value = Now.Date
+        DTLIFTDATE.Value = Now.Date
         txtremarks.Clear()
         TXTBEAMDESC.Clear()
 
@@ -352,6 +354,7 @@ Public Class YarnIssue
             Dim CONES As String = ""
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
+            Dim LIFTDATE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -368,6 +371,7 @@ Public Class YarnIssue
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
+                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
 
 
                     Else
@@ -384,6 +388,7 @@ Public Class YarnIssue
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
+                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
 
                     End If
                 End If
@@ -402,9 +407,13 @@ Public Class YarnIssue
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
+            alParaval.Add(LIFTDATE)
 
             alParaval.Add(CHKYARNRECD.Checked)
             alParaval.Add(TXTBEAMDESC.Text.Trim)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
+            alParaval.Add(TXTEWBNO.Text.Trim)
+
 
 
             Dim objCUTTING As New ClsYarnIssue()
@@ -583,7 +592,9 @@ Public Class YarnIssue
 
                         Dim TEMPLRDATE As String = ""
                         If dr("LRNO") <> "" Then TEMPLRDATE = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), TEMPLRDATE)
+                        Dim TEMPLIFTDATE As String = ""
+                        If dr("LRNO") <> "" Then TEMPLIFTDATE = Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy")
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), TEMPLRDATE, TEMPLIFTDATE)
 
                         If Convert.ToDecimal(dr("RECDWT")) > 0 Then
                             lbllocked.Visible = True
@@ -738,9 +749,11 @@ Public Class YarnIssue
         Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
         Dim TEMPLRDATE As String = ""
         If TXTLRNO.Text.Trim <> "" Then TEMPLRDATE = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
+        Dim TEMPLIFTDATE As String = ""
+        TEMPLIFTDATE = Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy")
 
         If GRIDDOUBLECLICK = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, 0, 0, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, 0, 0, 0, 0, 0, TEMPLIFTDATE)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -757,6 +770,7 @@ Public Class YarnIssue
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = TEMPLRDATE
+            GRIDYARN.Item(GLIFTINGDATE.Index, TEMPROW).Value = TEMPLIFTDATE
 
 
             GRIDDOUBLECLICK = False
@@ -778,6 +792,7 @@ Public Class YarnIssue
         TXTCONES.Clear()
         TXTLRNO.Clear()
         DTLRDATE.Value = Now.Date
+        DTLIFTDATE.Value = Now.Date
 
         'txtPartyMtrs.Clear()
         'txtCheckPcs.Clear()
@@ -1153,6 +1168,7 @@ LINE1:
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
+                DTLIFTDATE.Text = GRIDYARN.Item(GLIFTINGDATE.Index, GRIDYARN.CurrentRow.Index).Value
 
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
