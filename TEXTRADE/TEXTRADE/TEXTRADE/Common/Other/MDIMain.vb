@@ -10912,4 +10912,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem7.Click
+        Try
+            Dim OBJRRFW As New BeamDetails
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
