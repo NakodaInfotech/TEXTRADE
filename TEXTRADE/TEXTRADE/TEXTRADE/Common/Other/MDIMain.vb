@@ -10902,4 +10902,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem8.Click
+        Try
+            Dim OBJRRFW As New RollsRecdFromWarper
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
