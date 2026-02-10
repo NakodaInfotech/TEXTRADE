@@ -420,18 +420,6 @@
     <Compile Include="Common\Select Forms\SelectCustomLayout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Masters\BeamDetails.Designer.vb">
-      <DependentUpon>BeamDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Masters\BeamDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Masters\BeamMaster.Designer.vb">
-      <DependentUpon>BeamMaster.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Masters\BeamMaster.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8859,12 +8847,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Select Forms\SelectCustomLayout.resx">
       <DependentUpon>SelectCustomLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Masters\BeamDetails.resx">
-      <DependentUpon>BeamDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Masters\BeamMaster.resx">
-      <DependentUpon>BeamMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

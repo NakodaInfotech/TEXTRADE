@@ -70,6 +70,8 @@ Public Class ClsYarnQualityMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@GREYQUALITY", alParaval(I)))
+                I += 1
 
             End With
 
@@ -130,6 +132,8 @@ Public Class ClsYarnQualityMaster
                 .Add(New SqlClient.SqlParameter("@SHADENO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYQUALITY", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPID", alParaval(I)))
