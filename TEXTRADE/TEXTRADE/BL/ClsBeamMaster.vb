@@ -114,7 +114,7 @@ Public Class ClsBeamMaster
 
     Public Function DELETE() As DataTable
         Try
-            Dim strCommand As String = "SP_BEAMMASTER_DELETE"
+            Dim strCommand As String = "SP_MASTER_BEAMMASTER_DELETE"
             Dim alParameter As New ArrayList
             Dim I As Integer = 0
 
