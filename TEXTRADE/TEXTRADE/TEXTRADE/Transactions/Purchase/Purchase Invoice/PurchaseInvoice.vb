@@ -2615,13 +2615,7 @@ LINE1:
                                     ALPARAVAL.Add("")   'WARPRATE
                                     ALPARAVAL.Add("")   'WARPAMOUNT
 
-                                    ALPARAVAL.Add("")   'WEFTSRNO
-                                    ALPARAVAL.Add("")   'WEFTQUALITY
-                                    ALPARAVAL.Add("")   'WEFTSHADE
-                                    ALPARAVAL.Add("")   'WEFTPICK
-                                    ALPARAVAL.Add("")   'WEFTWT
-                                    ALPARAVAL.Add("")   'WEFTRATE
-                                    ALPARAVAL.Add("")   'WEFTAMOUNT
+
 
                                     ALPARAVAL.Add(0)    'WARPTL
                                     ALPARAVAL.Add(0)    'WEFTTL
@@ -2660,6 +2654,9 @@ LINE1:
                                     ALPARAVAL.Add(0)    'ITEM PERCENT
                                     ALPARAVAL.Add(0)    'GARMENT
 
+                                    ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                                    ALPARAVAL.Add(0)    'TOTALWEFTENDS
+
                                     ALPARAVAL.Add(0)    'SHADESRNO
                                     ALPARAVAL.Add(0)    'SHADECOLORID
 
@@ -2669,6 +2666,15 @@ LINE1:
                                     ALPARAVAL.Add(0)    'SHADEITEMCOLORID
                                     ALPARAVAL.Add(0)    'SHADEMTRS
                                     ALPARAVAL.Add(0)    'SHADESRNO
+
+                                    ALPARAVAL.Add("")   'WEFTSRNO
+                                    ALPARAVAL.Add("")   'WEFTQUALITY
+                                    ALPARAVAL.Add("")   'WEFTSHADE
+                                    ALPARAVAL.Add("")   'WEFTPICK
+                                    ALPARAVAL.Add("")   'WEFTWT
+                                    ALPARAVAL.Add("")   'WEFTRATE
+                                    ALPARAVAL.Add("")   'WEFTAMOUNT
+                                    ALPARAVAL.Add(0)    'WEFTSHADESRNO
 
                                     Dim objclsItemMaster As New clsItemmaster
                                     objclsItemMaster.alParaval = ALPARAVAL
@@ -4860,13 +4866,7 @@ LINE2:
                             ALPARAVAL.Add("")   'WARPRATE
                             ALPARAVAL.Add("")   'WARPAMOUNT
 
-                            ALPARAVAL.Add("")   'WEFTSRNO
-                            ALPARAVAL.Add("")   'WEFTQUALITY
-                            ALPARAVAL.Add("")   'WEFTSHADE
-                            ALPARAVAL.Add("")   'WEFTPICK
-                            ALPARAVAL.Add("")   'WEFTWT
-                            ALPARAVAL.Add("")   'WEFTRATE
-                            ALPARAVAL.Add("")   'WEFTAMOUNT
+
 
                             ALPARAVAL.Add(0)    'WARPTL
                             ALPARAVAL.Add(0)    'WEFTTL
@@ -4902,6 +4902,8 @@ LINE2:
                             ALPARAVAL.Add(0)    'ITEM GSM
                             ALPARAVAL.Add(0)    'ITEM PERCENT
                             ALPARAVAL.Add(0)    'GARMENT
+                            ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                            ALPARAVAL.Add(0)    'TOTALWEFTENDS
 
                             ALPARAVAL.Add(0)    'SHADESRNO
                             ALPARAVAL.Add(0)    'SHADECOLORID
@@ -4912,6 +4914,15 @@ LINE2:
                             ALPARAVAL.Add(0)    'SHADEITEMCOLORID
                             ALPARAVAL.Add(0)    'SHADEMTRS
                             ALPARAVAL.Add(0)    'SHADEGRIDSRNO
+
+                            ALPARAVAL.Add("")   'WEFTSRNO
+                            ALPARAVAL.Add("")   'WEFTQUALITY
+                            ALPARAVAL.Add("")   'WEFTSHADE
+                            ALPARAVAL.Add("")   'WEFTPICK
+                            ALPARAVAL.Add("")   'WEFTWT
+                            ALPARAVAL.Add("")   'WEFTRATE
+                            ALPARAVAL.Add("")   'WEFTAMOUNT
+                            ALPARAVAL.Add(0)    'WEFTSHADESRNO
 
                             Dim objclsItemMaster As New clsItemmaster
                             objclsItemMaster.alParaval = ALPARAVAL

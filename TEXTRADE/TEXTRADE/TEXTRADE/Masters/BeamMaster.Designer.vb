@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class BeamMaster
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class BeamMaster
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -38,7 +38,7 @@ Partial Class BeamMaster
         Me.TXTTOTALWT = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -48,16 +48,15 @@ Partial Class BeamMaster
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.CMBGRIDQUALITY = New System.Windows.Forms.ComboBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TXTWTTL = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TXTTL = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TXTHSNCODE = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTBEAMDESC = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CMBHSNCODE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GPGRID.SuspendLayout()
         CType(Me.GRIDBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,18 +66,17 @@ Partial Class BeamMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBHSNCODE)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.GPGRID)
-        Me.BlendPanel1.Controls.Add(Me.Label5)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTWTTL)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.TXTTL)
         Me.BlendPanel1.Controls.Add(Me.Label2)
-        Me.BlendPanel1.Controls.Add(Me.TXTHSNCODE)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTBEAMDESC)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -167,6 +165,7 @@ Partial Class BeamMaster
         Me.TXTTOTALWT.BackColor = System.Drawing.Color.Linen
         Me.TXTTOTALWT.Location = New System.Drawing.Point(464, 186)
         Me.TXTTOTALWT.Name = "TXTTOTALWT"
+        Me.TXTTOTALWT.ReadOnly = True
         Me.TXTTOTALWT.Size = New System.Drawing.Size(100, 23)
         Me.TXTTOTALWT.TabIndex = 844
         Me.TXTTOTALWT.TabStop = False
@@ -321,17 +320,6 @@ Partial Class BeamMaster
         Me.TXTSRNO.TabIndex = 840
         Me.TXTSRNO.TabStop = False
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.ForeColor = System.Drawing.Color.Red
-        Me.Label5.Location = New System.Drawing.Point(115, 75)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(159, 15)
-        Me.Label5.TabIndex = 696
-        Me.Label5.Text = "Press 'F1' To Select HSN/SAC"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -381,17 +369,6 @@ Partial Class BeamMaster
         Me.Label2.TabIndex = 352
         Me.Label2.Text = "HSN / SAC Code"
         '
-        'TXTHSNCODE
-        '
-        Me.TXTHSNCODE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTHSNCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTHSNCODE.Location = New System.Drawing.Point(118, 46)
-        Me.TXTHSNCODE.Name = "TXTHSNCODE"
-        Me.TXTHSNCODE.ReadOnly = True
-        Me.TXTHSNCODE.Size = New System.Drawing.Size(68, 22)
-        Me.TXTHSNCODE.TabIndex = 1
-        Me.TXTHSNCODE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -415,6 +392,19 @@ Partial Class BeamMaster
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
+        '
+        'CMBHSNCODE
+        '
+        Me.CMBHSNCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBHSNCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBHSNCODE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBHSNCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBHSNCODE.FormattingEnabled = True
+        Me.CMBHSNCODE.Location = New System.Drawing.Point(118, 46)
+        Me.CMBHSNCODE.MaxDropDownItems = 14
+        Me.CMBHSNCODE.Name = "CMBHSNCODE"
+        Me.CMBHSNCODE.Size = New System.Drawing.Size(73, 23)
+        Me.CMBHSNCODE.TabIndex = 697
         '
         'BeamMaster
         '
@@ -441,13 +431,11 @@ Partial Class BeamMaster
     Friend WithEvents TXTBEAMDESC As TextBox
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents Label1 As Label
-    Friend WithEvents TXTHSNCODE As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents TXTTL As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TXTWTTL As TextBox
-    Friend WithEvents Label5 As Label
     Friend WithEvents GPGRID As GroupBox
     Friend WithEvents TXTSRNO As TextBox
     Friend WithEvents CMBSHADE As ComboBox
@@ -462,9 +450,10 @@ Partial Class BeamMaster
     Friend WithEvents cmddelete As Button
     Friend WithEvents cmdexit As Button
     Friend WithEvents LBLTOTAL As Label
-    Friend WithEvents GSRNO As DataGridViewCheckBoxColumn
+    Friend WithEvents GSRNO As DataGridViewButtonColumn
     Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents GSHADE As DataGridViewTextBoxColumn
     Friend WithEvents GENDS As DataGridViewTextBoxColumn
     Friend WithEvents GWTPER As DataGridViewTextBoxColumn
+    Friend WithEvents CMBHSNCODE As ComboBox
 End Class

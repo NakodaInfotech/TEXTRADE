@@ -509,6 +509,7 @@ LINE1:
             Dim CONES As String = ""
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
+            Dim LIFTDATE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -525,7 +526,7 @@ LINE1:
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = ""
                         LRDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
-
+                        LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -540,6 +541,7 @@ LINE1:
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & ""
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
 
                     End If
                 End If
@@ -557,8 +559,11 @@ LINE1:
             ALPARAVAL.Add(CONES)
             ALPARAVAL.Add(LRNO)
             ALPARAVAL.Add(LRDATE)
+            ALPARAVAL.Add(LIFTDATE)
             ALPARAVAL.Add(0)    'CHKYARNRECD
             ALPARAVAL.Add("")    'BEAMRECDDESC
+            ALPARAVAL.Add("")    'VEHICLE NO
+            ALPARAVAL.Add("")    'EWB NO
 
             Dim OBJYAARNISSUE As New ClsYarnIssue
             OBJYAARNISSUE.alParaval = ALPARAVAL
