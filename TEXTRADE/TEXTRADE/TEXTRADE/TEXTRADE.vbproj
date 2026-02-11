@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\LoomMasterDetails.Designer.vb">
+      <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\LoomMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8904,6 +8910,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\LoomMaster.resx">
       <DependentUpon>LoomMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
+      <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -93,7 +93,7 @@ Public Class ClsLoomMaster
         Try
 
             Dim strcommand As String = ""
-            strcommand = "SP_MASTER_LOOM_DELETE"
+            strcommand = "SP_MASTER_LOOMMASTER_DELETE"
 
             Dim alParameter As New ArrayList
 
