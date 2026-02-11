@@ -110,45 +110,45 @@ Public Class RollsRecdFromWarper
             alParaval.Add(NETTWT)
 
 
-            '            Dim OBJROLLSREC As New ClsRollsReceived
-            '            OBJROLLSREC.alParaval = alParaval
+            Dim OBJROLLSREC As New ClsRollsReceived
+            OBJROLLSREC.alParaval = alParaval
 
-            '            If EDIT = False Then
-            '                If USERADD = False Then
-            '                    MsgBox("Insufficient Rights")
-            '                    Exit Sub
-            '                End If
-            '                Dim DT As DataTable = OBJROLLSREC.SAVE()
-            '                TEMPROLLSRECDNO = DT.Rows(0).Item(0)
-            '                TXTROLLSRECDNO.Text = TEMPROLLSRECDNO
-            '                MsgBox("Details Added")
+            If EDIT = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                Dim DT As DataTable = OBJROLLSREC.SAVE()
+                TEMPROLLSRECDNO = DT.Rows(0).Item(0)
+                TXTROLLSRECDNO.Text = TEMPROLLSRECDNO
+                MsgBox("Details Added")
 
-            '            Else
-            '                If USEREDIT = False Then
-            '                    MsgBox("Insufficient Rights")
-            '                    Exit Sub
-            '                End If
-            '                alParaval.Add(TEMPROLLSRECDNO)
-            '                IntResult = OBJROLLSREC.UPDATE()
-            '                EDIT = False
-            '                MsgBox("Details Updated")
+            Else
+                If USEREDIT = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                alParaval.Add(TEMPROLLSRECDNO)
+                IntResult = OBJROLLSREC.UPDATE()
+                EDIT = False
+                MsgBox("Details Updated")
 
-            '            End If
+            End If
 
-            '            If lbllocked.Visible = False Then
-            '                If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            '                    Dim OBJSIZER As New DirectIssueSizer
-            '                    OBJSIZER.ShowDialog()
-            '                    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
-            '                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
-            '                End If
-            '            End If
+            If lbllocked.Visible = False Then
+                If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    Dim OBJSIZER As New DirectIssueSizer
+                    OBJSIZER.ShowDialog()
+                    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
+                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
+                End If
+            End If
 
-            'LINE1:
-            '            If gridupload.RowCount > 0 Then SAVEUPLOAD()
-            '            CLEAR()
-            '            Show NEXT BILL ON EDIT MODE DONT CLEAR
-            '            Call toolnext_Click(sender, e)
+LINE1:
+            If gridupload.RowCount > 0 Then SAVEUPLOAD()
+            CLEAR()
+            Show NEXT BILL ON EDIT MODE DONT CLEAR
+                        Call toolnext_Click(sender, e)
             ROLLSRECDDATE.Focus()
 
         Catch ex As Exception
