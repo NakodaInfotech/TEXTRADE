@@ -407,6 +407,7 @@
     <Compile Include="Transactions\Stores\ClsStoreInward.vb" />
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollIssue.vb" />
+    <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsRecdFromWarper.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Challan\ClsYarnChallan.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Inter GodownTransfer\ClsYarnInterGodownTransfer.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamIssue.vb" />
