@@ -432,6 +432,12 @@
     <Compile Include="Masters\BeamMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\LoomMaster.Designer.vb">
+      <DependentUpon>LoomMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\LoomMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2171,6 +2177,12 @@
       <DependentUpon>LRStockValuation.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Grid Reports\Stock Reports\LRStockValuation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\OpeningStockYarnReport.Designer.vb">
+      <DependentUpon>OpeningStockYarnReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\OpeningStockYarnReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.Designer.vb">
@@ -8878,6 +8890,9 @@
     <EmbeddedResource Include="Masters\BeamMaster.resx">
       <DependentUpon>BeamMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\LoomMaster.resx">
+      <DependentUpon>LoomMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
@@ -9973,6 +9988,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\LRStockValuation.resx">
       <DependentUpon>LRStockValuation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\OpeningStockYarnReport.resx">
+      <DependentUpon>OpeningStockYarnReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\RackCapacityGridReport.resx">
       <DependentUpon>RackCapacityGridReport.vb</DependentUpon>

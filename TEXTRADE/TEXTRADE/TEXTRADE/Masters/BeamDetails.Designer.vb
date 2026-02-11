@@ -32,8 +32,6 @@ Partial Class BeamDetails
         Me.GTAPLINE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.shed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWTMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
@@ -80,7 +78,7 @@ Partial Class BeamDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GENDS, Me.GTAPLINE, Me.shed, Me.GWTMTRS, Me.GTOTALENDS, Me.GTOTALWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GTAPLINE, Me.GENDS, Me.GWTMTRS, Me.shed})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -122,6 +120,7 @@ Partial Class BeamDetails
         Me.GENDS.Caption = "Ends"
         Me.GENDS.FieldName = "ENDS"
         Me.GENDS.Name = "GENDS"
+        Me.GENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GENDS.Visible = True
         Me.GENDS.VisibleIndex = 3
         '
@@ -131,7 +130,7 @@ Partial Class BeamDetails
         Me.GTAPLINE.FieldName = "TAPLINE"
         Me.GTAPLINE.Name = "GTAPLINE"
         Me.GTAPLINE.Visible = True
-        Me.GTAPLINE.VisibleIndex = 4
+        Me.GTAPLINE.VisibleIndex = 3
         '
         'shed
         '
@@ -144,20 +143,10 @@ Partial Class BeamDetails
         Me.GWTMTRS.Caption = "Wt./100 Mtrs."
         Me.GWTMTRS.FieldName = "WTMTRS"
         Me.GWTMTRS.Name = "GWTMTRS"
+        Me.GWTMTRS.OptionsColumn.AllowEdit = False
+        Me.GWTMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWTMTRS.Visible = True
         Me.GWTMTRS.VisibleIndex = 5
-        '
-        'GTOTALENDS
-        '
-        Me.GTOTALENDS.Caption = "Total Ends"
-        Me.GTOTALENDS.FieldName = "TOTALENDS"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
-        '
-        'GTOTALWT
-        '
-        Me.GTOTALWT.Caption = "Total Wt"
-        Me.GTOTALWT.FieldName = "TOTALWT"
-        Me.GTOTALWT.Name = "GTOTALWT"
         '
         'GridView1
         '
@@ -260,8 +249,6 @@ Partial Class BeamDetails
     Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTAPLINE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWTMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents TOOLEXCEL As ToolStripButton
