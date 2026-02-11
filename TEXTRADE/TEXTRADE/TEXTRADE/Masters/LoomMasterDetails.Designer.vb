@@ -31,14 +31,12 @@ Partial Class LoomMasterDetails
         Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GTEMPID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gremarks = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GTOTALLOOMS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +56,7 @@ Partial Class LoomMasterDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(886, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(459, 627)
         Me.BlendPanel1.TabIndex = 6
         '
         'CMDREFRESH
@@ -68,7 +66,7 @@ Partial Class LoomMasterDetails
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(420, 624)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(135, 584)
         Me.CMDREFRESH.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(93, 32)
@@ -83,7 +81,7 @@ Partial Class LoomMasterDetails
         Me.CMDADDNEW.FlatAppearance.BorderSize = 0
         Me.CMDADDNEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDADDNEW.ForeColor = System.Drawing.Color.Black
-        Me.CMDADDNEW.Location = New System.Drawing.Point(320, 624)
+        Me.CMDADDNEW.Location = New System.Drawing.Point(35, 584)
         Me.CMDADDNEW.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CMDADDNEW.Name = "CMDADDNEW"
         Me.CMDADDNEW.Size = New System.Drawing.Size(93, 32)
@@ -98,7 +96,7 @@ Partial Class LoomMasterDetails
         Me.CMDEDIT.FlatAppearance.BorderSize = 0
         Me.CMDEDIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEDIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEDIT.Location = New System.Drawing.Point(520, 624)
+        Me.CMDEDIT.Location = New System.Drawing.Point(235, 584)
         Me.CMDEDIT.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CMDEDIT.Name = "CMDEDIT"
         Me.CMDEDIT.Size = New System.Drawing.Size(93, 32)
@@ -113,7 +111,7 @@ Partial Class LoomMasterDetails
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(621, 624)
+        Me.CMDEXIT.Location = New System.Drawing.Point(336, 584)
         Me.CMDEXIT.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(93, 32)
@@ -129,7 +127,7 @@ Partial Class LoomMasterDetails
         Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
         Me.GRIDBILLDETAILS.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
-        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(950, 579)
+        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(408, 531)
         Me.GRIDBILLDETAILS.TabIndex = 315
         Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
         '
@@ -137,7 +135,7 @@ Partial Class LoomMasterDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTEMPID, Me.GNAME, Me.GPARTYNAME, Me.GDESIGN, Me.gremarks})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTEMPID, Me.GNAME, Me.GTOTALLOOMS})
         Me.GRIDBILL.DetailHeight = 404
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
@@ -157,47 +155,21 @@ Partial Class LoomMasterDetails
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Blanket Name"
+        Me.GNAME.Caption = "Loom Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
-        Me.GNAME.Width = 170
-        '
-        'GPARTYNAME
-        '
-        Me.GPARTYNAME.Caption = "Party Name"
-        Me.GPARTYNAME.FieldName = "PARTYNAME"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.Visible = True
-        Me.GPARTYNAME.VisibleIndex = 1
-        Me.GPARTYNAME.Width = 200
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.Caption = "Design"
-        Me.GDESIGN.FieldName = "DESIGN"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 2
-        Me.GDESIGN.Width = 100
-        '
-        'gremarks
-        '
-        Me.gremarks.Caption = "Remarks"
-        Me.gremarks.FieldName = "REMARKS"
-        Me.gremarks.Name = "gremarks"
-        Me.gremarks.Visible = True
-        Me.gremarks.VisibleIndex = 3
-        Me.gremarks.Width = 300
+        Me.GNAME.Width = 201
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(886, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(459, 25)
         Me.ToolStrip1.TabIndex = 318
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -228,10 +200,20 @@ Partial Class LoomMasterDetails
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'GTOTALLOOMS
+        '
+        Me.GTOTALLOOMS.Caption = "Total Looms"
+        Me.GTOTALLOOMS.FieldName = "TOTALLOOMS"
+        Me.GTOTALLOOMS.Name = "GTOTALLOOMS"
+        Me.GTOTALLOOMS.OptionsColumn.AllowEdit = False
+        Me.GTOTALLOOMS.Visible = True
+        Me.GTOTALLOOMS.VisibleIndex = 1
+        Me.GTOTALLOOMS.Width = 126
+        '
         'LoomMasterDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(886, 581)
+        Me.ClientSize = New System.Drawing.Size(459, 627)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.KeyPreview = True
@@ -259,12 +241,10 @@ Partial Class LoomMasterDetails
     Friend WithEvents GRIDBILL As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GTEMPID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDESIGN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gremarks As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents ExcelExport As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents GTOTALLOOMS As DevExpress.XtraGrid.Columns.GridColumn
 End Class
