@@ -76,7 +76,7 @@ Public Class YarnInterGodownTransfer
         TXTWT.Clear()
         TXTCONES.Clear()
         TXTLRNO.Clear()
-        DTLRDATE.Value = Now.Date
+        'DTLRDATE.Value = Now.Date
         LIFTINGDATE.Text = Now.Date
     End Sub
 
@@ -193,7 +193,6 @@ Public Class YarnInterGodownTransfer
 
 
             Dim gridsrno As String = ""
-            Dim PIECETYPE As String = ""
             Dim YARNQUALITY As String = ""
             Dim MILLNAME As String = ""
             Dim DESIGN As String = ""
@@ -207,12 +206,7 @@ Public Class YarnInterGodownTransfer
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTINGDATE As String = ""
-            Dim BARCODE As String = "" 'BARCODE ADDED
-            Dim OUTPCS As String = ""
-            Dim OUTMTRS As String = ""
-            Dim PONO As String = ""
-            Dim GRIDGSRNO As String = ""
-            Dim FROMTYPE As String = ""
+
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDJO.Rows
                 If row.Cells(0).Value <> Nothing Then
@@ -229,14 +223,14 @@ Public Class YarnInterGodownTransfer
                         WEIGHT = row.Cells(GWT.Index).Value.ToString
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value
-                        LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
+                        'LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = row.Cells(GLIFTINGDATE.Index).Value
-                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                        OUTPCS = row.Cells(GOUTPCS.Index).Value.ToString
-                        OUTMTRS = row.Cells(GOUTMTRS.Index).Value.ToString
-                        PONO = row.Cells(GPONO.Index).Value.ToString
-                        GRIDGSRNO = row.Cells(GGRIDSRNO.Index).Value.ToString
-                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
+                        'BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        'OUTPCS = row.Cells(GOUTPCS.Index).Value.ToString
+                        'OUTMTRS = row.Cells(GOUTMTRS.Index).Value.ToString
+                        'PONO = row.Cells(GPONO.Index).Value.ToString
+                        'GRIDGSRNO = row.Cells(GGRIDSRNO.Index).Value.ToString
+                        'FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value.ToString
@@ -251,21 +245,20 @@ Public Class YarnInterGodownTransfer
                         WEIGHT = WEIGHT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
-                        LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
+                        'LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = LIFTINGDATE & "|" & (row.Cells(GLIFTINGDATE.Index).Value)
-                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-                        OUTPCS = OUTPCS & "|" & row.Cells(GOUTPCS.Index).Value.ToString
-                        OUTMTRS = OUTMTRS & "|" & row.Cells(GOUTMTRS.Index).Value.ToString
-                        PONO = PONO & "|" & row.Cells(GPONO.Index).Value.ToString
-                        GRIDGSRNO = GRIDGSRNO & "|" & row.Cells(GGRIDSRNO.Index).Value.ToString
-                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
+                        'BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        'OUTPCS = OUTPCS & "|" & row.Cells(GOUTPCS.Index).Value.ToString
+                        'OUTMTRS = OUTMTRS & "|" & row.Cells(GOUTMTRS.Index).Value.ToString
+                        'PONO = PONO & "|" & row.Cells(GPONO.Index).Value.ToString
+                        'GRIDGSRNO = GRIDGSRNO & "|" & row.Cells(GGRIDSRNO.Index).Value.ToString
+                        'FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
 
                     End If
                 End If
             Next
 
             alParaval.Add(gridsrno)
-            alParaval.Add(PIECETYPE)
             alParaval.Add(YARNQUALITY)
             alParaval.Add(MILLNAME)
             alParaval.Add(DESIGN)
@@ -277,14 +270,14 @@ Public Class YarnInterGodownTransfer
             alParaval.Add(WEIGHT)
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
-            alParaval.Add(LRDATE)
+            'alParaval.Add(LRDATE)
             alParaval.Add(LIFTINGDATE)
-            alParaval.Add(BARCODE)
-            alParaval.Add(OUTPCS)
-            alParaval.Add(OUTMTRS)
-            alParaval.Add(PONO)
-            alParaval.Add(GRIDGSRNO)
-            alParaval.Add(FROMTYPE)
+            'alParaval.Add(BARCODE)
+            'alParaval.Add(OUTPCS)
+            'alParaval.Add(OUTMTRS)
+            'alParaval.Add(PONO)
+            'alParaval.Add(GRIDGSRNO)
+            'alParaval.Add(FROMTYPE)
 
 
 
@@ -513,7 +506,7 @@ Public Class YarnInterGodownTransfer
             GRIDJO.Enabled = True
 
             If GRIDDOUBLECLICK = False Then
-                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), LIFTINGDATE.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0, "")
+                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, LIFTINGDATE.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0, "")
                 getsrno(GRIDJO)
             ElseIf GRIDDOUBLECLICK = True Then
                 GRIDJO.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -528,7 +521,7 @@ Public Class YarnInterGodownTransfer
                 GRIDJO.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
                 GRIDJO.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
                 GRIDJO.Item(GLRNO.Index, TEMPROW).Value = Val(TXTLRNO.Text.Trim)
-                GRIDJO.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
+                'GRIDJO.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
                 GRIDJO.Item(GLIFTINGDATE.Index, TEMPROW).Value = Val(LIFTINGDATE.Text.Trim)
 
                 GRIDDOUBLECLICK = False
@@ -576,7 +569,7 @@ Public Class YarnInterGodownTransfer
                 TXTWT.Text = GRIDJO.Item(GWT.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDJO.Item(GCONES.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TXTLRNO.Text = GRIDJO.Item(GLRNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                DTLRDATE.Text = GRIDJO.Item(GLRDATE.Index, GRIDJO.CurrentRow.Index).Value
+                'DTLRDATE.Text = GRIDJO.Item(GLRDATE.Index, GRIDJO.CurrentRow.Index).Value
                 LIFTINGDATE.Text = GRIDJO.Item(GLIFTINGDATE.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TEMPROW = GRIDJO.CurrentRow.Index
                 txtsrno.Focus()
@@ -802,7 +795,7 @@ LINE1:
                     'If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Then GRIDDESC = txtremarks.Text.Trim
 
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
-                    If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
+                    'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
 
                     'BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(GYARNQUALITY.Index).Value, ROW.Cells(GMILLNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GJOBBERLOTNO.Index).Value, ROW.Cells(GPCOLOR.Index).Value, ROW.Cells(GCOLOR.Index).Value, ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GQTY.Index).Value, ROW.Cells(GWT.Index).Value, ROW.Cells(GCONES.Index).Value, GRIDDESC, Val(ROW.Cells(GLRNO.Index).Value), Val(ROW.Cells(GLRDATE.Index).Value), 0, "", TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", "")
 NEXTLINE:
@@ -854,7 +847,7 @@ NEXTLINE:
                     '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
                     'Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), "", "", "")
+                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LRNO"), DTROWPS("LIFTINGDATE"))
 LINE1:
                 Next
                 getsrno(GRIDJO)
@@ -903,7 +896,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub DTLRDATE_Validating(sender As Object, e As CancelEventArgs) Handles DTLRDATE.Validating
+    Private Sub DTLRDATE_Validating(sender As Object, e As CancelEventArgs)
         Try
             If ClientName = "MJFABRIC" Then Exit Sub
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
@@ -1002,7 +995,7 @@ LINE1:
 
                     'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
                     For Each ROW As DataGridViewRow In GRIDJO.Rows
-                        If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
+                        ' If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
                     Next
 
 
@@ -1052,6 +1045,63 @@ LINE1:
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLRNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTLRNO.Validating
+        Try
+            If ClientName = "MJFABRIC" Then Exit Sub
+            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
+                'If GRIDDOUBLECLICK = False Then
+                '    If EDIT = True Then
+                '        'GET LAST BARCODE SRNO
+                '        Dim LSRNO As Integer = 0
+                '        Dim RSRNO As Integer = 0
+                '        Dim SNO As Integer = 0
+                '        LSRNO = InStr(GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                '        RSRNO = InStr(LSRNO + 1, GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                '        SNO = GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+
+                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                '    Else
+                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & GRIDJOBIN.RowCount + 1 & "/" & YearId
+                '    End If
+                'End If
+                fillgrid()
+
+            Else
+                'If CMBJONO.Text.Trim = "" Then
+                '    MsgBox("Enter Job Out No.", MsgBoxStyle.Critical)
+                '    CMBJONO.Focus()
+                If CMBYARNQUALITY.Text.Trim = "" Then
+                    MsgBox("Enter  Yarn Quality", MsgBoxStyle.Critical)
+                    CMBYARNQUALITY.Focus()
+                    'ElseIf CMBQUALITY.Text.Trim = "" Then
+                    '    MsgBox("Enter Quality", MsgBoxStyle.Critical)
+                    '    CMBQUALITY.Focus()
+                    ''ElseIf CMBQUALITY.Text.Trim = "" And ClientName <> "KCRAYON" Then
+                    ''    MsgBox("Enter Quality", MsgBoxStyle.Critical)
+                    ''    CMBQUALITY.Focus()
+                    ''ElseIf CMBDESIGN.Text.Trim = "" Then
+                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
+                    ''    CMBDESIGN.Focus()
+                    ''ElseIf CMBDESIGN.Text.Trim = "" And ClientName <> "KCRAYON" Then
+                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
+                    ''    CMBDESIGN.Focus()
+                    ''ElseIf Val(txtqty.Text.Trim) = 0 Then
+                    ''    MsgBox("Enter Quantity", MsgBoxStyle.Critical)
+                    ''    txtqty.Focus()
+                    ''ElseIf cmbqtyunit.Text.Trim = "" Then
+                    ''    MsgBox("Enter Unit", MsgBoxStyle.Critical)
+                    ''    cmbqtyunit.Focus()
+                ElseIf Val(TXTWT.Text.Trim) = 0 Then
+                    MsgBox("Enter Weight", MsgBoxStyle.Critical)
+                    TXTWT.Focus()
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

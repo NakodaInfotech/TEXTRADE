@@ -148,8 +148,8 @@ Public Class RollsRecdFromWarper
             '            If gridupload.RowCount > 0 Then SAVEUPLOAD()
             '            CLEAR()
             '            Show NEXT BILL ON EDIT MODE DONT CLEAR
-            '            Call toolnext_Click(sender, e)
-            ROLLSRECDDATE.Focus()
+            '                        Call toolnext_Click(sender, e)
+            '            ROLLSRECDDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
