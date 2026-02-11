@@ -32,7 +32,7 @@ Public Class LoomMasterDetails
             End If
 
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " and   LOOMMASTER.LOOM_ID = " & LOOMID & "  and LOOMMASTER.LOOM_YEARID = " & YearId)
+            Dim dt As DataTable = objclsCMST.search(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID , LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", "   and LOOMMASTER.LOOM_YEARID = " & YearId)
             GRIDBILLDETAILS.DataSource = dt
             If dt.Rows.Count > 0 Then
                 GRIDBILL.FocusedRowHandle = GRIDBILL.RowCount - 1
@@ -43,7 +43,7 @@ Public Class LoomMasterDetails
         End Try
     End Sub
 
-    Sub SHOWFORM(ByVal EDITVAL As Boolean, ByVal ID As Integer)
+    Sub SHOWFORM(ByVal EDITVAL As Boolean, ByVal LOOMID As Integer)
         Try
             If (EDITVAL = True And USEREDIT = False And USERVIEW = False) Or (EDITVAL = False And USERADD = False) Then
                 MsgBox("Insufficient Rights")
@@ -53,7 +53,7 @@ Public Class LoomMasterDetails
             Dim OBJDEPT As New LoomMaster
             OBJDEPT.MdiParent = MDIMain
             OBJDEPT.EDIT = EDITVAL
-            OBJDEPT.LOOMID = ID
+            OBJDEPT.LOOMID = LOOMID
             OBJDEPT.Show()
         Catch ex As Exception
             Throw ex

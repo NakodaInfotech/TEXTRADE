@@ -29,14 +29,14 @@ Partial Class LoomMasterDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.GRIDBILLDETAILS = New DevExpress.XtraGrid.GridControl()
         Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GTEMPID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOOMID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALLOOMS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GTOTALLOOMS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,7 +135,7 @@ Partial Class LoomMasterDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTEMPID, Me.GNAME, Me.GTOTALLOOMS})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GLOOMID, Me.GNAME, Me.GTOTALLOOMS})
         Me.GRIDBILL.DetailHeight = 404
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
@@ -147,11 +147,12 @@ Partial Class LoomMasterDetails
         Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
         Me.GRIDBILL.OptionsView.ShowGroupPanel = False
         '
-        'GTEMPID
+        'GLOOMID
         '
-        Me.GTEMPID.Caption = "NO"
-        Me.GTEMPID.FieldName = "TEMPID"
-        Me.GTEMPID.Name = "GTEMPID"
+        Me.GLOOMID.Caption = "NO"
+        Me.GLOOMID.FieldName = "LOOMID"
+        Me.GLOOMID.Name = "GLOOMID"
+        Me.GLOOMID.OptionsColumn.AllowEdit = False
         '
         'GNAME
         '
@@ -163,6 +164,16 @@ Partial Class LoomMasterDetails
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
         Me.GNAME.Width = 201
+        '
+        'GTOTALLOOMS
+        '
+        Me.GTOTALLOOMS.Caption = "Total Looms"
+        Me.GTOTALLOOMS.FieldName = "TOTALLOOMS"
+        Me.GTOTALLOOMS.Name = "GTOTALLOOMS"
+        Me.GTOTALLOOMS.OptionsColumn.AllowEdit = False
+        Me.GTOTALLOOMS.Visible = True
+        Me.GTOTALLOOMS.VisibleIndex = 1
+        Me.GTOTALLOOMS.Width = 126
         '
         'ToolStrip1
         '
@@ -200,16 +211,6 @@ Partial Class LoomMasterDetails
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'GTOTALLOOMS
-        '
-        Me.GTOTALLOOMS.Caption = "Total Looms"
-        Me.GTOTALLOOMS.FieldName = "TOTALLOOMS"
-        Me.GTOTALLOOMS.Name = "GTOTALLOOMS"
-        Me.GTOTALLOOMS.OptionsColumn.AllowEdit = False
-        Me.GTOTALLOOMS.Visible = True
-        Me.GTOTALLOOMS.VisibleIndex = 1
-        Me.GTOTALLOOMS.Width = 126
-        '
         'LoomMasterDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -239,7 +240,7 @@ Partial Class LoomMasterDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents GRIDBILLDETAILS As DevExpress.XtraGrid.GridControl
     Friend WithEvents GRIDBILL As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GTEMPID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOOMID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton

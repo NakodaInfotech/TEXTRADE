@@ -53,7 +53,7 @@ Public Class LoomMaster
 
                 'GRID
                 Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR1 As DataRow In dttable.Rows
                         GRIDLOOM.Rows.Add(DTR1("LOOMID"))
@@ -69,7 +69,7 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -101,9 +101,10 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+
         Catch ex As Exception
-            Throw ex
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
@@ -292,6 +293,8 @@ LINE1:
 
     Sub FILLCMB()
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+
+
     End Sub
 
 
