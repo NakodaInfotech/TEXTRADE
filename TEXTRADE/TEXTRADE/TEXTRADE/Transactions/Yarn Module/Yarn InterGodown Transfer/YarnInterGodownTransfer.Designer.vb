@@ -59,7 +59,6 @@ Partial Class YarnInterGodownTransfer
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.LIFTINGDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.DTLRDATE = New System.Windows.Forms.DateTimePicker()
         Me.TXTCONES = New System.Windows.Forms.TextBox()
         Me.TXTWT = New System.Windows.Forms.TextBox()
         Me.txtqty = New System.Windows.Forms.TextBox()
@@ -105,18 +104,10 @@ Partial Class YarnInterGodownTransfer
         Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -490,7 +481,6 @@ Partial Class YarnInterGodownTransfer
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.TabPage1.Controls.Add(Me.LIFTINGDATE)
-        Me.TabPage1.Controls.Add(Me.DTLRDATE)
         Me.TabPage1.Controls.Add(Me.TXTCONES)
         Me.TabPage1.Controls.Add(Me.TXTWT)
         Me.TabPage1.Controls.Add(Me.txtqty)
@@ -518,22 +508,13 @@ Partial Class YarnInterGodownTransfer
         Me.LIFTINGDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.LIFTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LIFTINGDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.LIFTINGDATE.Location = New System.Drawing.Point(1164, 1)
+        Me.LIFTINGDATE.Location = New System.Drawing.Point(1084, 1)
         Me.LIFTINGDATE.Mask = "00/00/0000"
         Me.LIFTINGDATE.Name = "LIFTINGDATE"
         Me.LIFTINGDATE.Size = New System.Drawing.Size(82, 23)
         Me.LIFTINGDATE.TabIndex = 18
         Me.LIFTINGDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.LIFTINGDATE.ValidatingType = GetType(Date)
-        '
-        'DTLRDATE
-        '
-        Me.DTLRDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DTLRDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTLRDATE.Location = New System.Drawing.Point(1084, 1)
-        Me.DTLRDATE.Name = "DTLRDATE"
-        Me.DTLRDATE.Size = New System.Drawing.Size(80, 23)
-        Me.DTLRDATE.TabIndex = 16
         '
         'TXTCONES
         '
@@ -615,7 +596,7 @@ Partial Class YarnInterGodownTransfer
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDJO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDJO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GQTY, Me.GUNIT, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GLIFTINGDATE, Me.GBARCODE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO, Me.GFROMTYPE})
+        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLIFTINGDATE})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -638,7 +619,7 @@ Partial Class YarnInterGodownTransfer
         Me.GRIDJO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDJO.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDJO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDJO.Size = New System.Drawing.Size(1390, 220)
+        Me.GRIDJO.Size = New System.Drawing.Size(1162, 220)
         Me.GRIDJO.TabIndex = 0
         Me.GRIDJO.TabStop = False
         '
@@ -1025,15 +1006,6 @@ Partial Class YarnInterGodownTransfer
         Me.GQTY.Name = "GQTY"
         Me.GQTY.Width = 60
         '
-        'GUNIT
-        '
-        Me.GUNIT.HeaderText = "Unit"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.ReadOnly = True
-        Me.GUNIT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GUNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
-        Me.GUNIT.Visible = False
-        '
         'GWT
         '
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
@@ -1056,63 +1028,12 @@ Partial Class YarnInterGodownTransfer
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Width = 70
         '
-        'GLRDATE
-        '
-        Me.GLRDATE.HeaderText = "L.R. Date"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.Width = 80
-        '
         'GLIFTINGDATE
         '
         Me.GLIFTINGDATE.HeaderText = "Lift Date"
         Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
         Me.GLIFTINGDATE.Visible = False
         Me.GLIFTINGDATE.Width = 80
-        '
-        'GBARCODE
-        '
-        Me.GBARCODE.HeaderText = "Barcode"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.ReadOnly = True
-        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBARCODE.Width = 120
-        '
-        'GOUTPCS
-        '
-        Me.GOUTPCS.HeaderText = "OUTPCS"
-        Me.GOUTPCS.Name = "GOUTPCS"
-        Me.GOUTPCS.Visible = False
-        '
-        'GOUTMTRS
-        '
-        Me.GOUTMTRS.HeaderText = "OUTMTRS"
-        Me.GOUTMTRS.Name = "GOUTMTRS"
-        Me.GOUTMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GOUTMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
-        Me.GOUTMTRS.Visible = False
-        '
-        'GPONO
-        '
-        Me.GPONO.HeaderText = "PO NO"
-        Me.GPONO.Name = "GPONO"
-        Me.GPONO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPONO.Visible = False
-        '
-        'GGRIDSRNO
-        '
-        Me.GGRIDSRNO.HeaderText = "GRID SRNO"
-        Me.GGRIDSRNO.Name = "GGRIDSRNO"
-        Me.GGRIDSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGRIDSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
-        Me.GGRIDSRNO.Visible = False
-        '
-        'GFROMTYPE
-        '
-        Me.GFROMTYPE.HeaderText = "FROMTYPE"
-        Me.GFROMTYPE.Name = "GFROMTYPE"
-        Me.GFROMTYPE.Visible = False
         '
         'YarnInterGodownTransfer
         '
@@ -1199,7 +1120,6 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TXTPSHADE As TextBox
     Friend WithEvents TXTGRIDLOTNO As TextBox
-    Friend WithEvents DTLRDATE As DateTimePicker
     Friend WithEvents TXTCONES As TextBox
     Friend WithEvents TXTWT As TextBox
     Friend WithEvents txtqty As TextBox
@@ -1215,16 +1135,8 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents GCOLOR As DataGridViewTextBoxColumn
     Friend WithEvents GLOTNO As DataGridViewTextBoxColumn
     Friend WithEvents GQTY As DataGridViewTextBoxColumn
-    Friend WithEvents GUNIT As DataGridViewTextBoxColumn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GCONES As DataGridViewTextBoxColumn
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GLRDATE As DataGridViewTextBoxColumn
     Friend WithEvents GLIFTINGDATE As DataGridViewTextBoxColumn
-    Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
-    Friend WithEvents GOUTPCS As DataGridViewTextBoxColumn
-    Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
-    Friend WithEvents GPONO As DataGridViewTextBoxColumn
-    Friend WithEvents GGRIDSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
 End Class
