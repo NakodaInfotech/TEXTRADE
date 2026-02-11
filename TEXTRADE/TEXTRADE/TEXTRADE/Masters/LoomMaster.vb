@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraGrid.Design
 
 Public Class LoomMaster
 
@@ -31,6 +32,29 @@ Public Class LoomMaster
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
+
+            Dim ALPARAVAL As New ArrayList
+            ALPARAVAL.Add(LOOMID)
+            ALPARAVAL.Add(YearId)
+            Dim OBJSELECT As New ClsLoomMaster
+            OBJSELECT.ALPARAVAL = ALPARAVAL
+            Dim dttable As DataTable = OBJSELECT.GETLOOM()
+            If dttable.Rows.Count > 0 Then
+                CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
+                LBLTOTALLOOMS.Text = dttable.Rows(0).Item("TOTALLOOMS").ToString
+
+            End If
+
+            'GRID
+            Dim OBJCMN As New ClsCommon
+            dttable = OBJCMN.SEARCH(" BLANKETMASTER.BLANKET_ID AS TEMPID, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN ", "", "  BLANKETMASTER INNER JOIN BLANKETMASTER_DESIGN ON BLANKETMASTER.BLANKET_ID = BLANKETMASTER_DESIGN.BLANKET_ID AND BLANKETMASTER.BLANKET_YEARID = BLANKETMASTER_DESIGN.BLANKET_YEARID LEFT OUTER JOIN DESIGNMASTER ON BLANKETMASTER_DESIGN.BLANKET_DESIGNID = DESIGNMASTER.DESIGN_id ", " AND BLANKETMASTER_DESIGN.BLANKET_ID = " & LOOMID & " AND BLANKETMASTER_DESIGN.BLANKET_YEARID = " & YearId)
+            If dttable.Rows.Count > 0 Then
+                For Each DTR1 As DataRow In dttable.Rows
+                    GRIDLOOM.Rows.Add(DTR1("LOOMID"))
+                Next
+            End If
+
+
 
             'FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
             clear()
@@ -219,6 +243,32 @@ LINE1:
             Throw ex
         End Try
     End Function
+
+    Private Sub CMDDELETE_Click(sender As Object, e As EventArgs) Handles CMDDELETE.Click
+        Try
+            If EDIT = True Then
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                Dim tempmsg As Integer = MsgBox("Delete Blanket Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
+                If tempmsg = vbYes Then
+
+                    Dim OBJLOOM As New ClsLoomMaster
+                    Dim ALPARAVAL As New ArrayList
+                    ALPARAVAL.Add(LOOMID)
+                    ALPARAVAL.Add(YearId)
+                    OBJLOOM.alParaval = ALPARAVAL
+                    Dim INTRES As Integer = OBJLOOM.DELETE()
+                    EDIT = False
+                    clear()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub TXTLOOMNO_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTTO.KeyPress, TXTFROM.KeyPress
         numkeypress(e, sender, Me)
