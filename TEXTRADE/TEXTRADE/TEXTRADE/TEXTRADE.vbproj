@@ -2917,6 +2917,12 @@
     <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollIssueDetails.Designer.vb">
+      <DependentUpon>RollIssueDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollIssueDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.Designer.vb">
       <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
     </Compile>
@@ -2927,6 +2933,12 @@
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.Designer.vb">
+      <DependentUpon>SelectRolls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.Designer.vb">
@@ -10376,11 +10388,17 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollIssueDetails.resx">
+      <DependentUpon>RollIssueDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.resx">
       <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.resx">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectRolls.resx">
+      <DependentUpon>SelectRolls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.resx">
       <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>

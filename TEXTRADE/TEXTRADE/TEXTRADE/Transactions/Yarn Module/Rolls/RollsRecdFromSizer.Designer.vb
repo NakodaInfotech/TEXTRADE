@@ -111,6 +111,7 @@ Partial Class RollsRecdFromSizer
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.lbllocked = New System.Windows.Forms.Label()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -1078,6 +1079,10 @@ Partial Class RollsRecdFromSizer
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'RollsRecdFromSizer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1186,4 +1191,5 @@ Partial Class RollsRecdFromSizer
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class
