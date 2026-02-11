@@ -88,7 +88,7 @@ Public Class YarnInterGodownTransfer
     End Sub
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(TRANSFER_no),0) + 1 ", " INTERGODOWNTRANSFER ", " AND TRANSFER_cmpid=" & CmpId & " and  TRANSFER_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(YTRANSFER_no),0) + 1 ", " YARNINTERGODOWNTRANSFER ", " AND YTRANSFER_cmpid=" & CmpId & " and  YTRANSFER_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTGODOWNNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
     Function errorvalid() As Boolean
@@ -376,7 +376,7 @@ Public Class YarnInterGodownTransfer
                     Exit Sub
                 End If
 
-                Dim objJO As New ClsInterGodownTransfer()
+                Dim objJO As New ClsYarnInterGodownTransfer()
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(TEMPGODOWNNO)
                 ALPARAVAL.Add(CmpId)
