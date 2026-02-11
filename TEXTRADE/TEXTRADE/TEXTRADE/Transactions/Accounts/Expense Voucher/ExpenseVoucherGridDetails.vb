@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 
 Public Class ExpenseVoucherGridDetails
@@ -66,7 +67,7 @@ Public Class ExpenseVoucherGridDetails
         Try
             If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'EXPENSE'")
             Dim clscommon As New ClsCommon
-            Dim dt As DataTable = clscommon.search(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'EXPENSE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+            Dim dt As DataTable = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'EXPENSE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
             If dt.Rows.Count > 0 Then cmbregister.Text = dt.Rows(0).Item(0).ToString
         Catch ex As Exception
             Throw ex
@@ -80,7 +81,7 @@ Public Class ExpenseVoucherGridDetails
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
                 Dim dt As DataTable
-                dt = clscommon.search(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'EXPENSE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
+                dt = clscommon.SEARCH(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'EXPENSE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     PURCHASEREGID = dt.Rows(0).Item(0)
                     fillgrid(" and dbo.NONPURCHASE.NP_cmpid=" & CmpId & " and NONPURCHASE.NP_locationid = " & Locationid & " and NONPURCHASE.NP_yearid = " & YearId & " AND NONPURCHASE.NP_registerid = " & PURCHASEREGID & " order by dbo.NONPURCHASE.NP_no ")
@@ -101,6 +102,49 @@ Public Class ExpenseVoucherGridDetails
     Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
         Try
             showform(True, gridbill.GetFocusedRowCellValue("EXPNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            Dim layoutFileName As String = $"{Me.Name}"
+            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
+            gridbill.SaveLayoutToXml(layoutPath)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
+
+
+
+
+            ' Prompt user for filename
+            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
+
+            ' Exit if the user cancels or enters nothing
+            If String.IsNullOrWhiteSpace(userFileName) Then
+                MessageBox.Show("Save cancelled.")
+                Exit Sub
+            End If
+
+            ' Add .xml extension and construct path
+            Dim FileName As String = $"{userFileName}.xml"
+
+            ' Save layout to file
+            gridbill.SaveLayoutToXml(layoutPath)
+            MessageBox.Show("Layout saved as: " & FileName)
+
+            ' Read file content
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
+
+            Dim OBJSELECTSG As New SelectCustomLayout
+            OBJSELECTSG.FORMNAMES = layoutFileName
+            OBJSELECTSG.FILENAME = FileName
+            OBJSELECTSG.FILES = xmlContent
+            OBJSELECTSG.ShowDialog()
+
+
         Catch ex As Exception
             Throw ex
         End Try
