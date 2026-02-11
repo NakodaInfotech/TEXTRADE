@@ -2,7 +2,7 @@
 Imports BL
 Imports DevExpress.XtraGrid.Views.Grid
 
-Public Class RollIssueDetails
+Public Class RollsIssueToSizerDetails
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
@@ -15,7 +15,7 @@ Public Class RollIssueDetails
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            Dim OBJROLLISSUE As New RollsRecdFromSizer
+            Dim OBJROLLISSUE As New RollsIssueToSizer
             OBJROLLISSUE.EDIT = EDITVAL
             OBJROLLISSUE.MdiParent = MDIMain
             OBJROLLISSUE.TEMPROLLSISSUENO = ROLLISSUENO
