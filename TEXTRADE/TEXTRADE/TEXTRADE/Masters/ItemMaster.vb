@@ -680,8 +680,13 @@ Public Class ItemMaster
     Sub FILLGRIDCOLOR()
         Try
             If GRIDSHADEDOUBLECLICK = False Then
-                GRIDSHADE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBCOLOR.Text.Trim)
-                getsrno(GRIDSHADE)
+                If GRIDWARP.RowCount > 0 Then
+                    GRIDSHADE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBCOLOR.Text.Trim)
+                    getsrno(GRIDSHADE)
+                Else
+                    MsgBox("Please Fill Beam Detail First")
+                End If
+
             ElseIf GRIDSHADEDOUBLECLICK = True Then
                 GRIDSHADE.Item(GSRNO.Index, TEMPSHADEROW).Value = Val(TXTSRNO.Text.Trim)
                 GRIDSHADE.Item(GCOLOR.Index, TEMPSHADEROW).Value = CMBCOLOR.Text.Trim

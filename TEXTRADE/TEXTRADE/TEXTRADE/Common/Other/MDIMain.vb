@@ -10958,4 +10958,34 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem8.Click
+        Try
+            Dim OBJRRFW As New LoomMasterDetails
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJRRFW As New RollsIssueToSizer
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem9.Click
+        Try
+            Dim OBJRRFW As New RollsIssueToSizerDetails
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

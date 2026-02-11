@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\LoomMasterDetails.Designer.vb">
+      <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\LoomMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2911,16 +2917,28 @@
     <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.Designer.vb">
-      <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.Designer.vb">
+      <DependentUpon>RollsIssueToSizerDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.vb">
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.Designer.vb">
+      <DependentUpon>RollsIssueToSizer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.Designer.vb">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.Designer.vb">
+      <DependentUpon>SelectRolls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.Designer.vb">
@@ -8905,6 +8923,9 @@
     <EmbeddedResource Include="Masters\LoomMaster.resx">
       <DependentUpon>LoomMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
+      <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
@@ -10367,11 +10388,17 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.resx">
-      <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.resx">
+      <DependentUpon>RollsIssueToSizerDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.resx">
+      <DependentUpon>RollsIssueToSizer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.resx">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectRolls.resx">
+      <DependentUpon>SelectRolls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.resx">
       <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>
