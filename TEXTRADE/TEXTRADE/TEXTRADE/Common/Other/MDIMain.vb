@@ -10948,4 +10948,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub OPENINGSTOCKYARN_Click(sender As Object, e As EventArgs) Handles OPENINGSTOCKYARN.Click
+        Try
+            Dim OBJSTOCK As New OpeningStockYarnReport
+            OBJSTOCK.MdiParent = Me
+            OBJSTOCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
