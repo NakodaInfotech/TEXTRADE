@@ -152,7 +152,7 @@ Public Class RollsRecdFromWarper
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJROLLSREC As New ClsRollsReceived
+                Dim OBJROLLSREC As New ClsRollsRecdFromWarper
 
                 OBJROLLSREC.alParaval.Add(TEMPROLLSRECDNO)
                 OBJROLLSREC.alParaval.Add(YearId)
@@ -349,7 +349,7 @@ Public Class RollsRecdFromWarper
             alParaval.Add(NETTWT)
 
 
-            Dim OBJROLLSREC As New ClsRollsReceived
+            Dim OBJROLLSREC As New ClsRollsRecdFromWarper
             OBJROLLSREC.alParaval = alParaval
 
             If EDIT = False Then
@@ -385,9 +385,9 @@ Public Class RollsRecdFromWarper
 
 LINE1:
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
-            CLEAR()
-            Show NEXT BILL ON EDIT MODE DONT CLEAR
-                                    Call toolnext_Click(sender, e)
+            'CLEAR()
+            'Show NEXT BILL ON EDIT MODE DONT CLEAR
+            Call toolnext_Click(sender, e)
             ROLLSRECDDATE.Focus()
 
         Catch ex As Exception
@@ -614,7 +614,7 @@ LINE1:
     Sub SAVEUPLOAD()
 
         Try
-            Dim OBJROLLSREC As New ClsRollsReceived
+            Dim OBJROLLSREC As New ClsRollsRecdFromWarper
             For Each row As Windows.Forms.DataGridViewRow In gridupload.Rows
                 Dim MS As New IO.MemoryStream
                 Dim ALPARAVAL As New ArrayList
@@ -987,7 +987,7 @@ LINE1:
                     alParaval.Add(TEMPROLLSRECDNO)
                     alParaval.Add(YearId)
 
-                    Dim CLSRECD As New ClsRollsReceived
+                    Dim CLSRECD As New ClsRollsRecdFromWarper
                     CLSRECD.alParaval = alParaval
                     IntResult = CLSRECD.Delete()
 
@@ -1075,9 +1075,9 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            Dim OBJROLLS As New RollsRecdDetails
-            OBJROLLS.MdiParent = MDIMain
-            OBJROLLS.Show()
+            'Dim OBJROLLS As New RollsRecdDetails
+            'OBJROLLS.MdiParent = MDIMain
+            'OBJROLLS.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -1137,7 +1137,7 @@ LINE1:
 
             Dim OBJPROG As New SelectProgram
             Dim DT As DataTable = OBJPROG.DT
-            OBJPROG.WARPERNAME = CMBNAME.Text.Trim
+            OBJPROG.PARTYNAME = CMBNAME.Text.Trim
             OBJPROG.ShowDialog()
             If DT.Rows.Count > 0 Then
                 TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
@@ -1204,7 +1204,7 @@ LINE1:
 
     Private Sub RollsRecdFromWarper_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ALLOWMFG = False Then Exit Sub
+            'If ALLOWMFG = False Then Exit Sub
 
             If ClientName <> "SASHWINKUMAR" Then
                 TXTROLLS.ReadOnly = False
