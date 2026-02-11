@@ -804,7 +804,7 @@ Public Class YarnIssue
 
     End Sub
 
-    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
+    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
 
             If USEREDIT = False And USERVIEW = False Then
@@ -884,7 +884,7 @@ Public Class YarnIssue
         End Try
     End Sub
 
-    Private Sub toolprevious_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolprevious.Click
+    Private Sub toolprevious_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -910,7 +910,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolnext.Click
+    Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -1006,7 +1006,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
+    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If EDIT = True Then PRINTREPORT(TEMPYARNNO)
         Catch ex As Exception
@@ -1076,7 +1076,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub tooldelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tooldelete.Click
+    Private Sub tooldelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Call cmddelete_Click(sender, e)
     End Sub
 

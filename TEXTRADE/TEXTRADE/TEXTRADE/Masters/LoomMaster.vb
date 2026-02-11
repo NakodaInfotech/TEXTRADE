@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraGrid.Design
 
 Public Class LoomMaster
 
@@ -27,16 +28,38 @@ Public Class LoomMaster
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
-
             'FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+            FILLCMB()
             clear()
-            If WEAVERNAME <> "" Then
-                CMBNAME.Text = WEAVERNAME
-                FILLGRID()
+            CMBNAME.Text = WEAVERNAME
+
+            If EDIT = True Then
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                Dim ALPARAVAL As New ArrayList
+                ALPARAVAL.Add(LOOMID)
+                ALPARAVAL.Add(YearId)
+                Dim OBJSELECT As New ClsLoomMaster
+                OBJSELECT.ALPARAVAL = ALPARAVAL
+                Dim dttable As DataTable = OBJSELECT.GETLOOM()
+                If dttable.Rows.Count > 0 Then
+                    CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
+                    LBLTOTALLOOMS.Text = dttable.Rows(0).Item("TOTALLOOMS").ToString
+
+                End If
+
+                'GRID
+                Dim OBJCMN As New ClsCommon
+                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
+                If dttable.Rows.Count > 0 Then
+                    For Each DTR1 As DataRow In dttable.Rows
+                        GRIDLOOM.Rows.Add(DTR1("LOOMID"))
+                    Next
+                End If
+
             End If
 
         Catch ex As Exception
@@ -46,7 +69,7 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -78,9 +101,10 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+
         Catch ex As Exception
-            Throw ex
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
@@ -220,6 +244,32 @@ LINE1:
         End Try
     End Function
 
+    Private Sub CMDDELETE_Click(sender As Object, e As EventArgs) Handles CMDDELETE.Click
+        Try
+            If EDIT = True Then
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                Dim tempmsg As Integer = MsgBox("Delete Blanket Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
+                If tempmsg = vbYes Then
+
+                    Dim OBJLOOM As New ClsLoomMaster
+                    Dim ALPARAVAL As New ArrayList
+                    ALPARAVAL.Add(LOOMID)
+                    ALPARAVAL.Add(YearId)
+                    OBJLOOM.alParaval = ALPARAVAL
+                    Dim INTRES As Integer = OBJLOOM.DELETE()
+                    EDIT = False
+                    clear()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TXTLOOMNO_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTTO.KeyPress, TXTFROM.KeyPress
         numkeypress(e, sender, Me)
     End Sub
@@ -240,4 +290,14 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Sub FILLCMB()
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+
+
+    End Sub
+
+
+
+
 End Class

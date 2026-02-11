@@ -14846,21 +14846,17 @@ fontItalic As Boolean = False)
             '========================
             SetWorkSheet()
 
-            '========================
-            ' SET COLUMNS (A–O)
-            '========================
+            ' Columns A to O
             For i As Integer = 1 To 15
-                Dim ColLetter As String = Chr(64 + i)
-                SetColumn(i, ColLetter)
-                SetColumnWidth(ColLetter & ":" & ColLetter, 18)
+                Dim col As String = Chr(64 + i)
+                SetColumn(i.ToString(), col)
+                SetColumnWidth(col & ":" & col, 18)
             Next
 
-            '========================
-            ' HEADER ROW
-            '========================
             RowIndex = 1
 
-            Write("Design Name/Number", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+            ' ================= HEADERS (EXACT MATCH WITH VASTRA) =================
+            Write("Design Name/Number*", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Sales Price", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("HSN Code", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("GST (%)", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
@@ -14874,44 +14870,40 @@ fontItalic As Boolean = False)
             Write("Size", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Size Rate", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Stock", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
-            Write("Third Party QR Code", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
+            Write("Third Party QR code", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
 
             SetBorder(RowIndex, "A1", "O1")
 
-            '========================
-            ' DATA ROWS
-            '========================
-            For Each Dr As System.Data.DataRow In DT.Rows
+            ' ================= DATA ROWS (SIZE + COLOR WISE) =================
+            For Each row As DataRow In DT.Rows
 
                 RowIndex += 1
 
-                Write(Dr("Design").ToString, Range("1"), XlHAlign.xlHAlignLeft)
-                Write("", Range("2"), XlHAlign.xlHAlignRight)
-                Write("", Range("3"), XlHAlign.xlHAlignCenter)
+                Write(row("Design").ToString(), Range("1"), XlHAlign.xlHAlignLeft)
+                Write(row("SalesPrice").ToString(), Range("2"), XlHAlign.xlHAlignRight)
+                Write(row("HSNCode").ToString(), Range("3"), XlHAlign.xlHAlignCenter)
+                Write(row("GST").ToString(), Range("4"), XlHAlign.xlHAlignCenter)
+                Write(row("DESIGNTAG").ToString(), Range("5"), XlHAlign.xlHAlignLeft)
 
-                Write("", Range("4"), XlHAlign.xlHAlignCenter)   ' GST
-                Write(Dr("DESIGNTAG").ToString, Range("5"), XlHAlign.xlHAlignLeft)     ' Design Tag
-                Write("", Range("6"), XlHAlign.xlHAlignRight)    ' Sample Price
-                Write("", Range("7"), XlHAlign.xlHAlignLeft)     ' Sample Source
-                Write("", Range("8"), XlHAlign.xlHAlignLeft)     ' Notes
+                Write(row("SamplePrice").ToString(), Range("6"), XlHAlign.xlHAlignRight)
+                Write(row("SampleSource").ToString(), Range("7"), XlHAlign.xlHAlignLeft)
+                Write("", Range("8"), XlHAlign.xlHAlignLeft)
 
                 Write("1", Range("9"), XlHAlign.xlHAlignCenter)
                 Write("0", Range("10"), XlHAlign.xlHAlignCenter)
 
-                Write("", Range("11"), XlHAlign.xlHAlignLeft)
+                ' 🔥 MOST IMPORTANT FIELDS FOR VASTRA
+                Write(row("Color").ToString(), Range("11"), XlHAlign.xlHAlignLeft)
+                Write(row("Size").ToString(), Range("12"), XlHAlign.xlHAlignCenter)
+                Write(row("SizeRate").ToString(), Range("13"), XlHAlign.xlHAlignRight)
+                Write(row("Stock").ToString(), Range("14"), XlHAlign.xlHAlignRight)
 
-                Write("", Range("12"), XlHAlign.xlHAlignCenter)
-                Write("", Range("13"), XlHAlign.xlHAlignRight)
-                Write(Dr("NOOFBALES"), Range("14"), XlHAlign.xlHAlignRight)
                 Write("", Range("15"), XlHAlign.xlHAlignCenter)
 
                 SetBorder(RowIndex, "A" & RowIndex, "O" & RowIndex)
 
             Next
 
-            '========================
-            ' SAVE & CLOSE
-            '========================
             SaveAndClose()
 
         Catch ex As Exception

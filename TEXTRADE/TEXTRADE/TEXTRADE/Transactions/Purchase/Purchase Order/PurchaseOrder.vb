@@ -627,7 +627,7 @@ Public Class PurchaseOrder
             bln = False
         End If
 
-        If ClientName <> "MOMAI" Then
+        If ClientName <> "MOMAI" Or ClientName <> "LAXMI" Then
             For Each row As DataGridViewRow In gridpo.Rows
                 If Val(row.Cells(GMTRS.Index).Value) = 0 Then
                     EP.SetError(txtqty, "Mtrs Cannot be 0")
@@ -1396,7 +1396,7 @@ LINE1:
 
     Private Sub cmbtoname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbtoname.Validating
         Try
-            If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS", CMBTRANS.Text)
+            If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors",, "Sundry Debtors", "ACCOUNTS", CMBTRANS.Text)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1404,7 +1404,7 @@ LINE1:
 
     Private Sub cmbtoname_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbtoname.Validated
         If cmbitemname.Text.Trim <> "" Then
-            If ClientName <> "MOMAI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
+            If (ClientName <> "MOMAI" And ClientName <> "LAXMI") And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
             If ClientName = "SNCM" And Val(txtrate.Text.Trim) = 0 Then Exit Sub
             fillgrid()
             total()
@@ -2000,7 +2000,11 @@ LINE1:
 
     Private Sub cmbtoname_Enter(sender As Object, e As EventArgs) Handles cmbtoname.Enter
         Try
-            If cmbtoname.Text.Trim = "" Then fillname(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            'If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+
+            'If CMBPACKING.Text.Trim = "" Then FILLNAME(CMBPACKING, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try

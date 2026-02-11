@@ -88,6 +88,61 @@ Public Class ClsLoomMaster
 
     End Function
 
+
+    Public Function DELETE() As Integer
+        Try
+
+            Dim strcommand As String = ""
+            strcommand = "SP_MASTER_LOOMMASTER_DELETE"
+
+            Dim alParameter As New ArrayList
+
+            With alParameter
+                Dim I As Integer = 0
+
+                .Add(New SqlClient.SqlParameter("@LOOMID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+            End With
+
+            Dim INTES As Integer = objDBOperation.executeNonQuery(strcommand, alParameter)
+
+            Return 0
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
+    'Select Name
+    Public Function GETLOOM() As DataTable
+        Try
+            Dim dtTable As DataTable
+            Dim strcommand As String = ""
+            strcommand = "SP_SELECTLOOM_FOR_EDIT"
+
+            Dim alParameter As New ArrayList
+            With alParameter
+                Dim I As Integer = 0
+
+                .Add(New SqlClient.SqlParameter("@LOOMID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+            End With
+            dtTable = objDBOperation.execute(strcommand, alParameter).Tables(0)
+
+            Return dtTable
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
+
 #End Region
 
 

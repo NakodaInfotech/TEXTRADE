@@ -26,40 +26,20 @@ Public Class SelectYarnStockGdnTransfer
     Private Sub SelectYarnStockGdnTransfer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Top = 100
 
-        If ClientName = "INDRANI" Then LBLBALENO.Text = "SO No"
-        If ClientName = "AMAN" Then LBLBALENO.Text = "Challan No"
-
-
         Dim objclspreq As New ClsCommon()
-        DT.Columns.Add("PIECETYPE")
-        DT.Columns.Add("ITEMNAME")
-        DT.Columns.Add("QUALITY")
+        DT.Columns.Add("YARNQUALITY")
+        DT.Columns.Add("MILLNAME")
         DT.Columns.Add("DESIGNNO")
+        DT.Columns.Add("PARTYLOTNO")
+        DT.Columns.Add("PARTYCOLOR")
         DT.Columns.Add("COLOR")
-        DT.Columns.Add("GODOWN")
-        DT.Columns.Add("JOBBERNAME")
-        DT.Columns.Add("UNIT")
-        DT.Columns.Add("PCS")
-        DT.Columns.Add("CUT")
-        DT.Columns.Add("MTRS")
-        DT.Columns.Add("BARCODE")
         DT.Columns.Add("LOTNO")
-        DT.Columns.Add("FROMNO")
-        DT.Columns.Add("FROMSRNO")
-        DT.Columns.Add("TYPE")
-        DT.Columns.Add("BALENO")
-        DT.Columns.Add("GRIDREMARKS")
-        DT.Columns.Add("PURNAME")
-        DT.Columns.Add("RACK")
-        DT.Columns.Add("SHELF")
-        DT.Columns.Add("CHALLANNO")
-        DT.Columns.Add("PURRATE")
+        DT.Columns.Add("BAGS")
+        DT.Columns.Add("WT")
+        DT.Columns.Add("CONES")
+        DT.Columns.Add("LRNO")
+        DT.Columns.Add("LIFTINGDATE")
 
-        'FOR ALL CLIENTS
-        'FILLBARCODESTOCKPIECETYPE(CMBPIECETYPE)
-        If ClientName <> "SANGHVI" And ClientName <> "TINUMINU" Then FILLLOTNO()
-        'FILLBALENO()
-        'fillunit()
         FILLLRNO()
         fillCATEGORY(CMBCATEGORY, False)
         CMBPIECETYPE.SelectedItem = Nothing
@@ -71,32 +51,9 @@ Public Class SelectYarnStockGdnTransfer
 
         If ClientName = "AVIS" Or ClientName = "ANOX" Then cmbselect.Text = "Design"
 
-        If ClientName <> "SVS" Then
-            CLB_Item.Visible = True
-            LBLITEM.Visible = True
-            CHKItem.Visible = True
-        End If
         FILLGRID("")
     End Sub
 
-    'Sub FILLBARCODESTOCKPIECETYPE(ByRef CMBPIECETYPE As ComboBox)
-    '    Try
-    '        If CMBPIECETYPE.Text.Trim = "" Then
-    '            Dim objclscommon As New ClsCommonMaster
-    '            Dim dt As DataTable
-    '            dt = objclscommon.search(" DISTINCT PIECETYPE ", "", " BARCODESTOCK ", " AND YEARID = " & YearId)
-    '            If dt.Rows.Count > 0 Then
-    '                dt.DefaultView.Sort = "PIECETYPE"
-    '                CMBPIECETYPE.DataSource = dt
-    '                CMBPIECETYPE.DisplayMember = "PIECETYPE"
-    '                CMBPIECETYPE.Text = ""
-    '            End If
-    '            CMBPIECETYPE.SelectAll()
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
 
     Sub FILLLRNO()
         Try
@@ -138,99 +95,21 @@ Public Class SelectYarnStockGdnTransfer
         End Try
     End Sub
 
-    'Sub FILLBALENO()
-    '    Try
-    '        If CMBBALENO.Text.Trim = "" Then
-    '            Dim WHERECLAUSE As String = ""
-    '            If GODOWN <> "" Then WHERECLAUSE = " AND GODOWN = '" & GODOWN & "' "
-    '            Dim objclscommon As New ClsCommonMaster
-    '            Dim dt As New DataTable
-    '            If ClientName = "AMAN" Or ClientName = "AARYA" Then
-    '                dt = objclscommon.search(" DISTINCT CHALLANNO AS BALENO ", "", " STOCKREGISTER ", WHERECLAUSE & " AND YEARID = " & YearId)
 
-    '            ElseIf ClientName = "MAHAJAN" Then
-    '                dt = objclscommon.search(" DISTINCT BALENO AS BALENO ", "", " STOCKREGISTER ", WHERECLAUSE & " AND YEARID = " & YearId)
-    '            Else
-
-    '                dt = objclscommon.search(" DISTINCT BALENO ", "", " YARNSTOKCVIEW ", WHERECLAUSE & " AND YEARID = " & YearId)
-    '            End If
-    '            If dt.Rows.Count > 0 Then
-    '                dt.DefaultView.Sort = "BALENO"
-    '                CMBBALENO.DataSource = dt
-    '                CMBBALENO.DisplayMember = "BALENO"
-    '                CMBBALENO.Text = ""
-    '            End If
-    '            CMBBALENO.SelectAll()
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-    'Sub FILLUNIT()
-    '    Try
-    '        If CMBUNIT.Text.Trim = "" Then
-    '            Dim WHERECLAUSE As String = ""
-    '            If GODOWN <> "" Then WHERECLAUSE = " AND GODOWN = '" & GODOWN & "' "
-    '            Dim objclscommon As New ClsCommonMaster
-    '            Dim dt As DataTable = objclscommon.search(" DISTINCT UNIT ", "", " BARCODESTOCK ", WHERECLAUSE & " AND YEARID = " & YearId)
-    '            If dt.Rows.Count > 0 Then
-    '                dt.DefaultView.Sort = "UNIT"
-    '                CMBUNIT.DataSource = dt
-    '                CMBUNIT.DisplayMember = "UNIT"
-    '                CMBUNIT.Text = ""
-    '            End If
-    '            CMBUNIT.SelectAll()
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
 
     Sub FILLGRID(ByVal WHERE As String)
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            If GODOWN <> "" And ALLOWBARCODEPRINT = True Then WHERE = WHERE & " AND GODOWN = '" & GODOWN & "'"
+            If GODOWN <> "" Then WHERE = WHERE & " AND GODOWN = '" & GODOWN & "'"
             'If ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Then WHERE = WHERE & " AND GODOWN = '" & GODOWN & "'"
-            If ClientName = "ABHEE" Then WHERE = WHERE & " AND ITEMNAME = '" & ITEMNAME & "'"
 
-            If Val(TXTCUT.Text.Trim) <> 0 Then WHERE = WHERE & " AND CUT = " & Val(TXTCUT.Text.Trim)
             If FILTER <> "" Then WHERE = WHERE & FILTER
 
             Dim OBJCMN As New ClsCommon()
             Dim DT As New DataTable
-            'If ClientName <> "SOFTAS" Then
-            '    Dim DTUNIT As DataTable = OBJCMN.SEARCH("UNIT_ABBR", "", "DEFAULTSTOCKUNIT", "")
-            '    If DTUNIT.Rows.Count > 0 Then WHERE = WHERE & " AND UNIT IN (SELECT UNIT_ABBR FROM DEFAULTSTOCKUNIT)"
-            'End If
+            DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO ,  CAST(GETDATE() AS DATE) AS LIFTINGDATE  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & " AND BAGS > 0 OR CONES > 0 OR WT > 0  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
 
-
-
-            'If ClientName = "SVS" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, 1 AS PCS, CUT, MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, CAST(DATE AS DATE) AS [DATE], PURNAME, RACK, SHELF, CHALLANNO, PURRATE FROM BARCODESTOCK WHERE ROUND(MTRS,0) > 0 " & WHERE & SELECTIONFORMULA & " AND YEARID = " & YearId, "", "")
-            'ElseIf ClientName = "MOHAN" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, 1 AS PCS, CUT, MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, CAST(DATE AS DATE) AS [DATE], PURNAME, RACK, SHELF, CHALLANNO, PURRATE FROM BARCODESTOCK WHERE 1 = 1 " & WHERE & SELECTIONFORMULA & " AND YEARID = " & YearId, "", "")
-            '    'WE HAVE ADDED FRMSTRING COZ IF WE DO NOT ADD THIS CLAUSE HERE THEN IT WILL NOT SHOW DESIGN AND QUALITY IN PACKINGSLIP AND JOBOUT 
-            '    'WHEN WE CLICK ON SELECT STOCK (AS ALLOWPACKINGSLIP IS TRUE)
-            '    'IN CHALLAN WE WILL PASS FRMSTRING = "" IF ALLOWPACKINGSLIP IS TRUE
-
-            'ElseIf ClientName = "AMAN" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT 'NONE' AS ITEMNAME, '' AS QUALITY, '' AS DESIGNNO, '' AS COLOR, GODOWN, NAME, 'Pcs' AS UNIT, SUM(PCS)-SUM(ISSPCS) AS PCS, 0 AS CUT, ROUND(ISNULL(SUM(MTRS)-SUM(ISSMTRS),0),2) AS MTRS, '' AS BARCODE, '' AS LOTNO, 0 AS FROMNO, 0 AS FROMSRNO, '' AS TYPE, 'FRESH' AS PIECETYPE, CHALLANNO AS BALENO, '' AS GRIDREMARKS, '' AS CATEGORY, '' AS [DATE], '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM STOCKREGISTER WHERE 1 = 1 " & WHERE & SELECTIONFORMULA & " AND YEARID = " & YearId & " GROUP BY NAME, GODOWN, CHALLANNO HAVING ROUND(ISNULL(SUM(MTRS)-SUM(ISSMTRS),0),2) > 0", "", "")
-            'ElseIf ClientName = "MAHAJAN" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, '' AS JOBBERNAME, '' AS UNIT, (SUM(PCS) - SUM(ISSPCS)) AS PCS, 0 AS CUT, (SUM(MTRS) - SUM(ISSMTRS)) AS MTRS, '' AS BARCODE, '' AS LOTNO, 0 AS FROMNO, 0 AS FROMSRNO, '' AS TYPE, PIECETYPE, BALENO AS BALENO, '' AS GRIDREMARKS, '' AS CATEGORY, '' AS DATE, '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM STOCKREGISTER WHERE YEARID = " & YearId & WHERE & "  GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, PIECETYPE,BALENO ", "", "")
-            'ElseIf ALLOWPACKINGSLIP = True And FRMSTRING = "" And ClientName = "KOTHARI" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT '' AS ITEMNAME, '' AS QUALITY, '' AS DESIGNNO, '' AS COLOR,  GODOWN, '' AS JOBBERNAME, '' AS UNIT, SUM(PCS) AS PCS, 0 AS CUT, SUM(MTRS) AS MTRS, '' AS BARCODE, '' AS LOTNO, FROMNO, 0 AS FROMSRNO, TYPE, '' AS PIECETYPE, BALENO, '' AS GRIDREMARKS, '' AS CATEGORY, '' AS [DATE], '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM BARCODESTOCK WHERE BARCODE = '' GROUP BY FROMNO, GODOWN, JOBBERNAME, TYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND GODOWN = '" & GODOWN & "' AND YEARID = " & YearId, "", "")
-            'ElseIf ALLOWPACKINGSLIP = True And FRMSTRING = "" And ClientName <> "MARKIN" Then
-            '    DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, '' AS QUALITY, '' AS DESIGNNO, '' AS COLOR,  GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, 0 AS CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, '' AS [DATE], '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM BARCODESTOCK GROUP BY FROMNO, ITEMNAME, GODOWN, JOBBERNAME, UNIT, BARCODE, LOTNO, FROMSRNO, TYPE, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, YEARID HAVING ROUND(SUM(MTRS),2) >0 " & WHERE & SELECTIONFORMULA & " AND YEARID = " & YearId, "", "")
-            'Else
-            If ALLOWBARCODEPRINT = False And ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SAKARIA" And ClientName <> "BARKHA" And ClientName <> "SHUBHI" And ClientName <> "SUBHLAXMI" And ClientName <> "MAHAJAN" Then
-                'DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, '' AS JOBBERNAME, '' AS UNIT, (SUM(PCS) - SUM(ISSPCS)) AS PCS, 0 AS CUT, (SUM(MTRS) - SUM(ISSMTRS)) AS MTRS, '' AS BARCODE, '' AS LOTNO, 0 AS FROMNO, 0 AS FROMSRNO, '' AS TYPE, PIECETYPE, '' AS BALENO, '' AS GRIDREMARKS, '' AS CATEGORY, '' AS DATE, '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM STOCKREGISTER WHERE YEARID = " & YearId & WHERE & "  GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, PIECETYPE", "", "")
-                DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, SUM(BAGS) AS BAGS, SUM(CONES) AS CONES,SUM (WT) AS WT, LOTNO,CATEGORY, LRNO  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & " AND BAGS > 0 AND CONES > 0 AND WT > 0  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
-
-            Else
-                DT = OBJCMN.Execute_Any_String("Select ITEMNAME, QUALITY, DESIGNNO, Color, GODOWN, JOBBERNAME, UNIT, PCS, CUT, MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, Type, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, CAST(DATE AS DATE) AS [DATE], PURNAME, RACK, SHELF, CHALLANNO, PURRATE FROM BARCODESTOCK WHERE 1=1 " & WHERE & SELECTIONFORMULA & " And YEARID = " & YearId & " ORDER BY TYPE, FROMNO, FROMSRNO", "", "")
-            End If
             gridwo.DataSource = DT
             If DT.Rows.Count > 0 Then
 
@@ -268,12 +147,12 @@ Public Class SelectYarnStockGdnTransfer
                 gridwo.Columns(I).DefaultCellStyle.Format = "N2"
                 I = I + 1
 
-                gridwo.Columns(I).Width = 60 'CONES
+                gridwo.Columns(I).Width = 60 'WT
                 gridwo.Columns(I).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 gridwo.Columns(I).DefaultCellStyle.Format = "N2"
                 I = I + 1
 
-                gridwo.Columns(I).Width = 80 'WT
+                gridwo.Columns(I).Width = 80 'CONES
                 gridwo.Columns(I).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 gridwo.Columns(I).DefaultCellStyle.Format = "N2"
                 gridwo.Columns(I).DefaultCellStyle.Font = New Font("Calibri", 12, FontStyle.Regular, GraphicsUnit.Point)
@@ -281,8 +160,8 @@ Public Class SelectYarnStockGdnTransfer
 
                 'gridwo.Columns(I).Width = 80 'BARCODE
                 'I = I + 1
-                gridwo.Columns(I).Width = 70 'LOTNO
-                I = I + 1
+                'gridwo.Columns(I).Width = 70 'LOTNO
+                'I = I + 1
                 'gridwo.Columns(I).Visible = False 'FROMNO
                 'I = I + 1
                 'gridwo.Columns(I).Visible = False 'FROMSRNO
@@ -300,14 +179,11 @@ Public Class SelectYarnStockGdnTransfer
 
                 'gridwo.Columns(I).Width = 80 'GRIDREMARKS
                 'I = I + 1
-                gridwo.Columns(I).Width = 120 'CATEGORY
-                I = I + 1
                 gridwo.Columns(I).Width = 100 'LRNO
                 I = I + 1
-                'gridwo.Columns(I).Width = 80 'DATE
-                'I = I + 1
-                'gridwo.Columns(I).Width = 200 'PURNAME
-                'I = I + 1
+
+                gridwo.Columns(I).Width = 80 'LIFTINGDATE
+                I = I + 1
                 'gridwo.Columns(I).Width = 80 'RACK
                 'I = I + 1
                 'gridwo.Columns(I).Width = 80 'SHELF
@@ -379,11 +255,11 @@ Public Class SelectYarnStockGdnTransfer
 
             For Each ROW As DataGridViewRow In gridwo.Rows
                 If ROW.Cells(0).Value = True Then
-                    Dim DTROW() As DataRow = DT.Select("BARCODE='" & ROW.Cells(10).Value & "'")
+                    Dim DTROW() As DataRow = DT.Select("YARNQUALITY='" & ROW.Cells(2).Value & "'")
                     If DTROW.Length = 0 Then
                         'DT.Rows.Add(ROW.Cells(16).Value, ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value, ROW.Cells(11).Value, ROW.Cells(12).Value, ROW.Cells(13).Value, ROW.Cells(14).Value, ROW.Cells(15).Value, ROW.Cells(17).Value, ROW.Cells(18).Value, ROW.Cells(21).Value, ROW.Cells(22).Value, ROW.Cells(23).Value, ROW.Cells(24).Value, Val(ROW.Cells(25).Value))
 
-                        DT.Rows.Add(ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value, ROW.Cells(11).Value)
+                        DT.Rows.Add(ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, "", "", ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value)
                     End If
                 End If
             Next
