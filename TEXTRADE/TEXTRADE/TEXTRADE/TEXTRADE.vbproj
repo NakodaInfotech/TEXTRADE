@@ -2905,10 +2905,10 @@
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\BeamIssueWeaver.Designer.vb">
+    <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.Designer.vb">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\BeamIssueWeaver.vb">
+    <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.Designer.vb">
@@ -10364,7 +10364,7 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.resx">
       <DependentUpon>BeamProgramDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\BeamIssueWeaver.resx">
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.resx">

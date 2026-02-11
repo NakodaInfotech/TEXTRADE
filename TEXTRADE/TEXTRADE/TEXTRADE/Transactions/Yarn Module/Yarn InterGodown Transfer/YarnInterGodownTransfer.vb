@@ -206,12 +206,7 @@ Public Class YarnInterGodownTransfer
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTINGDATE As String = ""
-            Dim BARCODE As String = "" 'BARCODE ADDED
-            Dim OUTPCS As String = ""
-            Dim OUTMTRS As String = ""
-            Dim PONO As String = ""
-            Dim GRIDGSRNO As String = ""
-            Dim FROMTYPE As String = ""
+
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDJO.Rows
                 If row.Cells(0).Value <> Nothing Then
