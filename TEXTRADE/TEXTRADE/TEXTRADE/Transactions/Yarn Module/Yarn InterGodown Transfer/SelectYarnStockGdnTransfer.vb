@@ -42,7 +42,6 @@ Public Class SelectYarnStockGdnTransfer
         DT.Columns.Add("WT")
         DT.Columns.Add("CONES")
         DT.Columns.Add("LRNO")
-        DT.Columns.Add("LRDATE")
         DT.Columns.Add("LIFTINGDATE")
         'DT.Columns.Add("FROMSRNO")
         'DT.Columns.Add("TYPE")
@@ -225,7 +224,7 @@ Public Class SelectYarnStockGdnTransfer
             'Else
             If ALLOWBARCODEPRINT = False And ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SAKARIA" And ClientName <> "BARKHA" And ClientName <> "SHUBHI" And ClientName <> "SUBHLAXMI" And ClientName <> "MAHAJAN" Then
                 'DT = OBJCMN.Execute_Any_String("SELECT ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, '' AS JOBBERNAME, '' AS UNIT, (SUM(PCS) - SUM(ISSPCS)) AS PCS, 0 AS CUT, (SUM(MTRS) - SUM(ISSMTRS)) AS MTRS, '' AS BARCODE, '' AS LOTNO, 0 AS FROMNO, 0 AS FROMSRNO, '' AS TYPE, PIECETYPE, '' AS BALENO, '' AS GRIDREMARKS, '' AS CATEGORY, '' AS DATE, '' AS PURNAME, '' AS RACK, '' AS SHELF, '' AS CHALLANNO, 0 AS PURRATE FROM STOCKREGISTER WHERE YEARID = " & YearId & WHERE & "  GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, PIECETYPE", "", "")
-                DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO , CAST(GETDATE() AS DATE) AS LRDATE, CAST(GETDATE() AS DATE) AS LIFTINGDATE  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & " AND BAGS > 0 AND CONES > 0 AND WT > 0  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
+                DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO ,  CAST(GETDATE() AS DATE) AS LIFTINGDATE  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & " AND BAGS > 0 AND CONES > 0 AND WT > 0  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
 
             Else
                 DT = OBJCMN.Execute_Any_String("Select ITEMNAME, QUALITY, DESIGNNO, Color, GODOWN, JOBBERNAME, UNIT, PCS, CUT, MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, Type, PIECETYPE, BALENO, GRIDREMARKS, CATEGORY, CAST(DATE AS DATE) AS [DATE], PURNAME, RACK, SHELF, CHALLANNO, PURRATE FROM BARCODESTOCK WHERE 1=1 " & WHERE & SELECTIONFORMULA & " And YEARID = " & YearId & " ORDER BY TYPE, FROMNO, FROMSRNO", "", "")
@@ -301,8 +300,7 @@ Public Class SelectYarnStockGdnTransfer
                 'I = I + 1
                 gridwo.Columns(I).Width = 100 'LRNO
                 I = I + 1
-                gridwo.Columns(I).Width = 80 'LRDATE
-                I = I + 1
+
                 gridwo.Columns(I).Width = 80 'LIFTINGDATE
                 I = I + 1
                 'gridwo.Columns(I).Width = 80 'RACK
@@ -380,7 +378,7 @@ Public Class SelectYarnStockGdnTransfer
                     If DTROW.Length = 0 Then
                         'DT.Rows.Add(ROW.Cells(16).Value, ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value, ROW.Cells(11).Value, ROW.Cells(12).Value, ROW.Cells(13).Value, ROW.Cells(14).Value, ROW.Cells(15).Value, ROW.Cells(17).Value, ROW.Cells(18).Value, ROW.Cells(21).Value, ROW.Cells(22).Value, ROW.Cells(23).Value, ROW.Cells(24).Value, Val(ROW.Cells(25).Value))
 
-                        DT.Rows.Add(ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, "", "", ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value, ROW.Cells(11).Value)
+                        DT.Rows.Add(ROW.Cells(1).Value, ROW.Cells(2).Value, ROW.Cells(3).Value, "", "", ROW.Cells(4).Value, ROW.Cells(5).Value, ROW.Cells(6).Value, ROW.Cells(7).Value, ROW.Cells(8).Value, ROW.Cells(9).Value, ROW.Cells(10).Value)
                     End If
                 End If
             Next

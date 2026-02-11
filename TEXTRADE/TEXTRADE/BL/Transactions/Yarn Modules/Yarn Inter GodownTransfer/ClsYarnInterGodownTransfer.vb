@@ -81,23 +81,10 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRDATE", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I))) 'BARCODE ADDED
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDGSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
-                I = I + 1
+
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -174,23 +161,11 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRDATE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I))) 'BARCODE ADDED
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDGSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
-                I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@TEMPGODOWNNO", alParaval(I)))
                 I = I + 1
