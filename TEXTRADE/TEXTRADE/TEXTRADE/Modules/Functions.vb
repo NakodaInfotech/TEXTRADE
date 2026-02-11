@@ -7484,7 +7484,16 @@ line1:
             Throw ex
         End Try
     End Sub
-
+    Function GETDEFAULTGODOWN() As String
+        Try
+            Dim clscommon As New ClsCommon
+            Dim dt As DataTable
+            dt = clscommon.SEARCH(" GODOWN_NAME AS GODOWNNAME ", "", " GODOWNMASTER ", " and GODOWN_ISDEFAULT = 'True' and GODOWN_YEARID = " & YearId)
+            If dt.Rows.Count > 0 Then Return dt.Rows(0).Item("GODOWNNAME") Else Return ""
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Sub FILLPROCESS(ByRef CMBPROCESS As ComboBox)
         Try
             If CMBPROCESS.Text.Trim = "" Then
