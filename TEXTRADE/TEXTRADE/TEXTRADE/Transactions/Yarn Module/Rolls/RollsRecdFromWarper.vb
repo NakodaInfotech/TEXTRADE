@@ -597,7 +597,7 @@ LINE1:
             ALPARAVAL.Add("1")
             ALPARAVAL.Add("ROLLRECD")
 
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval = ALPARAVAL
             If USERADD = False Then
                 MsgBox("Insufficient Rights")

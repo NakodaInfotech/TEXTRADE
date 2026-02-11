@@ -60,7 +60,7 @@ Public Class RollIssueDetails
 
     Sub fillgrid()
         Try
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval.Add(0)
             OBJROLLISSUE.alParaval.Add(YearId)
             Dim dttable As DataTable = OBJROLLISSUE.selectROLLISSUE()

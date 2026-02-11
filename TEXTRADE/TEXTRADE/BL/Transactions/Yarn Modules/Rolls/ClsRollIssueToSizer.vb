@@ -1,6 +1,6 @@
 ﻿
 Imports DB
-Public Class ClsRollIssue
+Public Class ClsRollIssueToSizer
     Private objDBOperation As DBOperation
     Public alParaval As New ArrayList
 

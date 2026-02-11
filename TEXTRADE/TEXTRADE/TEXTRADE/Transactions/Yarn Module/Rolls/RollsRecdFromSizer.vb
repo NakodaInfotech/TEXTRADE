@@ -143,7 +143,7 @@ Public Class RollsRecdFromSizer
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJROLLISSUE As New ClsRollIssue
+                Dim OBJROLLISSUE As New ClsRollIssueToSizer
 
                 OBJROLLISSUE.alParaval.Add(TEMPROLLSISSUENO)
                 OBJROLLISSUE.alParaval.Add(YearId)
@@ -277,7 +277,7 @@ Public Class RollsRecdFromSizer
 
 
 
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval = alParaval
 
             If EDIT = False Then
@@ -315,7 +315,7 @@ Public Class RollsRecdFromSizer
     Sub SAVEUPLOAD()
 
         Try
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
 
 
             For Each row As Windows.Forms.DataGridViewRow In gridupload.Rows
@@ -719,7 +719,7 @@ LINE1:
                     alParaval.Add(TEMPROLLSISSUENO)
                     alParaval.Add(YearId)
 
-                    Dim CLSISSUE As New ClsRollIssue
+                    Dim CLSISSUE As New ClsRollIssueToSizer
                     CLSISSUE.alParaval = alParaval
                     IntResult = CLSISSUE.Delete()
 
