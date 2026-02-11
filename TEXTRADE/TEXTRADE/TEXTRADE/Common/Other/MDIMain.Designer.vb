@@ -263,6 +263,7 @@ Partial Class MDIMain
         Me.EditExistingEntryToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoomMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITYADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.QUALITYEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -1251,7 +1252,9 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RollsIssueToSizerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1260,7 +1263,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.Utilitiesmenu, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -2758,33 +2761,39 @@ Partial Class MDIMain
         '
         Me.BeamMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem7, Me.EditExistingEntryToolStripMenuItem7})
         Me.BeamMasterToolStripMenuItem.Name = "BeamMasterToolStripMenuItem"
-        Me.BeamMasterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BeamMasterToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.BeamMasterToolStripMenuItem.Text = "Beam Master"
         '
         'AddNewEntryToolStripMenuItem7
         '
         Me.AddNewEntryToolStripMenuItem7.Name = "AddNewEntryToolStripMenuItem7"
-        Me.AddNewEntryToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem7.Size = New System.Drawing.Size(168, 22)
         Me.AddNewEntryToolStripMenuItem7.Text = "Add New Entry"
         '
         'EditExistingEntryToolStripMenuItem7
         '
         Me.EditExistingEntryToolStripMenuItem7.Name = "EditExistingEntryToolStripMenuItem7"
-        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(168, 22)
         Me.EditExistingEntryToolStripMenuItem7.Text = "Edit Existing Entry"
         '
         'LoomMasterToolStripMenuItem
         '
         Me.LoomMasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem9, Me.EditExistingEntryToolStripMenuItem8})
         Me.LoomMasterToolStripMenuItem.Name = "LoomMasterToolStripMenuItem"
-        Me.LoomMasterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoomMasterToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.LoomMasterToolStripMenuItem.Text = "Loom Master"
         '
         'AddNewEntryToolStripMenuItem9
         '
         Me.AddNewEntryToolStripMenuItem9.Name = "AddNewEntryToolStripMenuItem9"
-        Me.AddNewEntryToolStripMenuItem9.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem9.Size = New System.Drawing.Size(168, 22)
         Me.AddNewEntryToolStripMenuItem9.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem8
+        '
+        Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
+        Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
         '
         'QUALITY_MASTER
         '
@@ -7400,7 +7409,7 @@ Partial Class MDIMain
         '
         'RollsTransactionsToolStripMenuItem
         '
-        Me.RollsTransactionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RollsRecdFromWarperToolStripMenuItem})
+        Me.RollsTransactionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RollsRecdFromWarperToolStripMenuItem, Me.RollsIssueToSizerToolStripMenuItem})
         Me.RollsTransactionsToolStripMenuItem.Name = "RollsTransactionsToolStripMenuItem"
         Me.RollsTransactionsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.RollsTransactionsToolStripMenuItem.Text = "Rolls Transactions"
@@ -7415,13 +7424,13 @@ Partial Class MDIMain
         'AddNewEntryToolStripMenuItem8
         '
         Me.AddNewEntryToolStripMenuItem8.Name = "AddNewEntryToolStripMenuItem8"
-        Me.AddNewEntryToolStripMenuItem8.Size = New System.Drawing.Size(172, 22)
+        Me.AddNewEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
         Me.AddNewEntryToolStripMenuItem8.Text = "Add new Entry"
         '
         'EditExisitingEntryToolStripMenuItem
         '
         Me.EditExisitingEntryToolStripMenuItem.Name = "EditExisitingEntryToolStripMenuItem"
-        Me.EditExisitingEntryToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.EditExisitingEntryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EditExisitingEntryToolStripMenuItem.Text = "Edit Exisiting Entry"
         '
         'YarnInterGodownTransferToolStripMenuItem
@@ -9142,11 +9151,24 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'EditExistingEntryToolStripMenuItem8
+        'RollsIssueToSizerToolStripMenuItem
         '
-        Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
-        Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
+        Me.RollsIssueToSizerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem10, Me.EditExistingEntryToolStripMenuItem9})
+        Me.RollsIssueToSizerToolStripMenuItem.Name = "RollsIssueToSizerToolStripMenuItem"
+        Me.RollsIssueToSizerToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.RollsIssueToSizerToolStripMenuItem.Text = "Rolls Issue To Sizer"
+        '
+        'AddNewEntryToolStripMenuItem10
+        '
+        Me.AddNewEntryToolStripMenuItem10.Name = "AddNewEntryToolStripMenuItem10"
+        Me.AddNewEntryToolStripMenuItem10.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem10.Text = "Add new Entry"
+        '
+        'EditExistingEntryToolStripMenuItem9
+        '
+        Me.EditExistingEntryToolStripMenuItem9.Name = "EditExistingEntryToolStripMenuItem9"
+        Me.EditExistingEntryToolStripMenuItem9.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem9.Text = "Edit Existing Entry"
         '
         'MDIMain
         '
@@ -10403,4 +10425,7 @@ Partial Class MDIMain
     Friend WithEvents OPENINGSTOCKYARN As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator319 As ToolStripSeparator
     Friend WithEvents EditExistingEntryToolStripMenuItem8 As ToolStripMenuItem
+    Friend WithEvents RollsIssueToSizerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewEntryToolStripMenuItem10 As ToolStripMenuItem
+    Friend WithEvents EditExistingEntryToolStripMenuItem9 As ToolStripMenuItem
 End Class

@@ -81,7 +81,7 @@ Public Class RollsIssueToSizer
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(YARN_no),0) + 1 ", " YARNISSUE ", " AND YARN_cmpid=" & CmpId & " and YARN_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(ROLLISSUE_NO),0) + 1 ", " ROLLISSUETOSIZER ", " AND ROLLISSUE_cmpid=" & CmpId & " and ROLLISSUE_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTSERIES.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -117,14 +117,14 @@ Public Class RollsIssueToSizer
     End Sub
 
     Sub FILLCMB()
-        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
+        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If cmbtrans.Text = "" Then FILLNAME(cmbtrans, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'TRANSPORT'")
     End Sub
 
     Private Sub RollsIssueToSizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ROLLSISSUE'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN PRODUCTION'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -455,7 +455,7 @@ Public Class RollsIssueToSizer
 
     Private Sub cmbname_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -478,7 +478,7 @@ Public Class RollsIssueToSizer
 
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
-            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "SIZER")
+            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
