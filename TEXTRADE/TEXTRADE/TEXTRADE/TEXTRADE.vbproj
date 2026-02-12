@@ -2917,10 +2917,10 @@
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdDetails.Designer.vb">
-      <DependentUpon>BeamRecdDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.Designer.vb">
+      <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizer.Designer.vb">
@@ -10412,8 +10412,8 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdDetails.resx">
-      <DependentUpon>BeamRecdDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.resx">
+      <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizer.resx">
       <DependentUpon>BeamRecdFromSizer.vb</DependentUpon>
