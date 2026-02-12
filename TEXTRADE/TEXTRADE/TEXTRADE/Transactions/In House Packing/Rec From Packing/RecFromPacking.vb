@@ -138,7 +138,7 @@ Public Class RecFromPacking
         CHKMANUALRATE.CheckState = CheckState.Unchecked
         TXTRATE.ReadOnly = True
         GRATE.ReadOnly = True
-
+        If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED"
 
 
     End Sub

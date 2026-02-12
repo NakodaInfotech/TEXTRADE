@@ -136,7 +136,11 @@ Public Class GRN
         cmbitemname.Text = ""
         txtgridremarks.Clear()
         TXTBALENO.Clear()
-        If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED" Else CMBQUALITY.Text = ""
+
+        If ClientName = "KOTHARI" Then
+            If FRMSTRING = "GRNJOB" Then CMBQUALITY.Text = "GREY" Else CMBQUALITY.Text = "FINISHED"
+        End If
+
         CMBRACK.Text = ""
         CMBSHELF.Text = ""
 

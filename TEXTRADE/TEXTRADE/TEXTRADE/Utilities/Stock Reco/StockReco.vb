@@ -293,6 +293,7 @@ Public Class StockReco
         If ClientName = "LAXMI" Then
             CMBPER.Text = "Pcs"
         End If
+        If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED"
     End Sub
 
     Function ERRORVALID() As Boolean
@@ -2267,6 +2268,14 @@ LINE1:
     Private Sub TXTNOOFENTRIES_Validated(sender As Object, e As EventArgs) Handles TXTNOOFENTRIES.Validated
         Try
             If ClientName = "SUPEEMA" Then TXTMTRS.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTRATE_Enter(sender As Object, e As EventArgs) Handles TXTRATE.Enter
+        Try
+            If ClientName = "KOTHARI" Then TXTRATE.SelectAll()
         Catch ex As Exception
             Throw ex
         End Try

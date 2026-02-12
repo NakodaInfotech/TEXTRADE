@@ -153,6 +153,7 @@ Public Class JobIn
         End If
         CMBMACHINE.Text = ""
         CMBCONTRACTOR.Text = ""
+        If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED"
     End Sub
 
     Sub TOTAL()
