@@ -373,12 +373,12 @@ Public Class RollsRecdFromWarper
             End If
 
             If lbllocked.Visible = False Then
-                'If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                '    Dim OBJSIZER As New DirectIssueSizer
-                '    OBJSIZER.ShowDialog()
-                '    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
-                '    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
-                'End If
+                If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    Dim OBJSIZER As New DirectIssueSizer
+                    OBJSIZER.ShowDialog()
+                    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
+                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
+                End If
             End If
 
 LINE1:
