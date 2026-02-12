@@ -138,15 +138,15 @@ Public Class BeamRecdWarper
     End Sub
 
     Sub FILLCMB()
-        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND (LEDGERS.ACC_SUBTYPE = 'WARPER' OR LEDGERS.ACC_SUBTYPE = 'SIZER')")
-        If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'MILL'")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+        If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM RECD'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -359,118 +359,118 @@ LINE1:
     End Sub
 
     Sub DIRECTISSUEWEAVER(ByVal WEAVERNAME As String)
-        Try
-            Dim ALPARAVAL As New ArrayList
-            ALPARAVAL.Add(Format(Convert.ToDateTime(DTBEAMRECDDATE.Text.Trim).Date, "MM/dd/yyyy"))
-            ALPARAVAL.Add(CMBOURGODOWN.Text.Trim)
-            ALPARAVAL.Add(WEAVERNAME)
-            ALPARAVAL.Add("")   'TRANSPORT
-            ALPARAVAL.Add("")   'VEHICLE NO
-            ALPARAVAL.Add("")   'EWBNO
-            ALPARAVAL.Add("")   'REMARKS
+        'Try
+        '    Dim ALPARAVAL As New ArrayList
+        '    ALPARAVAL.Add(Format(Convert.ToDateTime(DTBEAMRECDDATE.Text.Trim).Date, "MM/dd/yyyy"))
+        '    ALPARAVAL.Add(CMBOURGODOWN.Text.Trim)
+        '    ALPARAVAL.Add(WEAVERNAME)
+        '    ALPARAVAL.Add("")   'TRANSPORT
+        '    ALPARAVAL.Add("")   'VEHICLE NO
+        '    ALPARAVAL.Add("")   'EWBNO
+        '    ALPARAVAL.Add("")   'REMARKS
 
-            ALPARAVAL.Add(Val(TXTTOTALCUT.Text.Trim))
-            ALPARAVAL.Add(Val(TXTTOTALWT.Text.Trim))
+        '    ALPARAVAL.Add(Val(TXTTOTALCUT.Text.Trim))
+        '    ALPARAVAL.Add(Val(TXTTOTALWT.Text.Trim))
 
-            ALPARAVAL.Add(CmpId)
-            ALPARAVAL.Add(Userid)
-            ALPARAVAL.Add(YearId)
+        '    ALPARAVAL.Add(CmpId)
+        '    ALPARAVAL.Add(Userid)
+        '    ALPARAVAL.Add(YearId)
 
-            Dim SRNO As String = ""
-            Dim BEAMNAME As String = ""
-            Dim BEAMNO As String = ""
-            Dim ENDS As String = ""
-            Dim TL As String = ""
-            Dim CUT As String = ""
-            Dim WT As String = ""
-            Dim WTCUT As String = ""
-            Dim NARR As String = ""
-            Dim FROMNO As String = ""
-            Dim FROMSRNO As String = ""
-            Dim FROMTYPE As String = ""
-            Dim OUTCUT As String = ""
-            Dim GRIDDONE As String = ""
-            Dim NAME As String = ""
-            Dim LOOMNO As String = ""
-            Dim UPLOADDATE As String = ""
+        '    Dim SRNO As String = ""
+        '    Dim BEAMNAME As String = ""
+        '    Dim BEAMNO As String = ""
+        '    Dim ENDS As String = ""
+        '    Dim TL As String = ""
+        '    Dim CUT As String = ""
+        '    Dim WT As String = ""
+        '    Dim WTCUT As String = ""
+        '    Dim NARR As String = ""
+        '    Dim FROMNO As String = ""
+        '    Dim FROMSRNO As String = ""
+        '    Dim FROMTYPE As String = ""
+        '    Dim OUTCUT As String = ""
+        '    Dim GRIDDONE As String = ""
+        '    Dim NAME As String = ""
+        '    Dim LOOMNO As String = ""
+        '    Dim UPLOADDATE As String = ""
 
-            For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
-                If SRNO = "" Then
-                    SRNO = Val(row.Cells(GSRNO.Index).Value)
-                    BEAMNAME = row.Cells(GBEAMNAME.Index).Value
-                    BEAMNO = row.Cells(GBEAMNO.Index).Value
-                    ENDS = row.Cells(GENDS.Index).Value
-                    TL = row.Cells(GTAPLINE.Index).Value
-                    CUT = Val(row.Cells(GCUT.Index).Value)
-                    WT = Val(row.Cells(GWT.Index).Value)
-                    WTCUT = Val(row.Cells(GWTCUT.Index).Value)
-                    NARR = row.Cells(GNARR.Index).Value
-                    FROMNO = Val(TXTBEAMRECDNO.Text.Trim)
-                    FROMSRNO = Val(row.Cells(GSRNO.Index).Value)
-                    FROMTYPE = "BEAMWARPER"
-                    OUTCUT = "0"
-                    GRIDDONE = "0"
-                    NAME = CMBNAME.Text.Trim
-                    LOOMNO = "0"
-                    UPLOADDATE = ""
-                Else
-                    SRNO = SRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
-                    BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value
-                    BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value
-                    ENDS = ENDS & "|" & row.Cells(GENDS.Index).Value
-                    TL = TL & "|" & row.Cells(GTAPLINE.Index).Value
-                    CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
-                    WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
-                    WTCUT = WTCUT & "|" & Val(row.Cells(GWTCUT.Index).Value)
-                    NARR = NARR & "|" & row.Cells(GNARR.Index).Value
-                    FROMNO = FROMNO & "|" & Val(TXTBEAMRECDNO.Text.Trim)
-                    FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
-                    FROMTYPE = FROMTYPE & "|" & "BEAMWARPER"
-                    OUTCUT = OUTCUT & "|" & "0"
-                    GRIDDONE = GRIDDONE & "|" & "0"
-                    NAME = NAME & "|" & CMBNAME.Text.Trim
-                    LOOMNO = LOOMNO & "|" & "0"
-                    UPLOADDATE = UPLOADDATE & "|" & ""
-                End If
-            Next
+        '    For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
+        '        If SRNO = "" Then
+        '            SRNO = Val(row.Cells(GSRNO.Index).Value)
+        '            BEAMNAME = row.Cells(GBEAMNAME.Index).Value
+        '            BEAMNO = row.Cells(GBEAMNO.Index).Value
+        '            ENDS = row.Cells(GENDS.Index).Value
+        '            TL = row.Cells(GTAPLINE.Index).Value
+        '            CUT = Val(row.Cells(GCUT.Index).Value)
+        '            WT = Val(row.Cells(GWT.Index).Value)
+        '            WTCUT = Val(row.Cells(GWTCUT.Index).Value)
+        '            NARR = row.Cells(GNARR.Index).Value
+        '            FROMNO = Val(TXTBEAMRECDNO.Text.Trim)
+        '            FROMSRNO = Val(row.Cells(GSRNO.Index).Value)
+        '            FROMTYPE = "BEAMWARPER"
+        '            OUTCUT = "0"
+        '            GRIDDONE = "0"
+        '            NAME = CMBNAME.Text.Trim
+        '            LOOMNO = "0"
+        '            UPLOADDATE = ""
+        '        Else
+        '            SRNO = SRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
+        '            BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value
+        '            BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value
+        '            ENDS = ENDS & "|" & row.Cells(GENDS.Index).Value
+        '            TL = TL & "|" & row.Cells(GTAPLINE.Index).Value
+        '            CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
+        '            WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
+        '            WTCUT = WTCUT & "|" & Val(row.Cells(GWTCUT.Index).Value)
+        '            NARR = NARR & "|" & row.Cells(GNARR.Index).Value
+        '            FROMNO = FROMNO & "|" & Val(TXTBEAMRECDNO.Text.Trim)
+        '            FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
+        '            FROMTYPE = FROMTYPE & "|" & "BEAMWARPER"
+        '            OUTCUT = OUTCUT & "|" & "0"
+        '            GRIDDONE = GRIDDONE & "|" & "0"
+        '            NAME = NAME & "|" & CMBNAME.Text.Trim
+        '            LOOMNO = LOOMNO & "|" & "0"
+        '            UPLOADDATE = UPLOADDATE & "|" & ""
+        '        End If
+        '    Next
 
-            'SCHEDULE GRID DATA SAME AS MAIN GRID DATA, LOOM NO ALWAYS 0
-            ALPARAVAL.Add(SRNO)
-            ALPARAVAL.Add(BEAMNAME)
-            ALPARAVAL.Add(LOOMNO)
-
-
-            ALPARAVAL.Add(SRNO)
-            ALPARAVAL.Add(BEAMNAME)
-            ALPARAVAL.Add(BEAMNO)
-            ALPARAVAL.Add(ENDS)
-            ALPARAVAL.Add(TL)
-            ALPARAVAL.Add(CUT)
-            ALPARAVAL.Add(WT)
-            ALPARAVAL.Add(WTCUT)
-            ALPARAVAL.Add(NARR)
-            ALPARAVAL.Add(FROMNO)
-            ALPARAVAL.Add(FROMSRNO)
-            ALPARAVAL.Add(FROMTYPE)
-            ALPARAVAL.Add(OUTCUT)
-            ALPARAVAL.Add(GRIDDONE)
-            ALPARAVAL.Add(NAME)
-            ALPARAVAL.Add(LOOMNO)
-            ALPARAVAL.Add(UPLOADDATE)
+        '    'SCHEDULE GRID DATA SAME AS MAIN GRID DATA, LOOM NO ALWAYS 0
+        '    ALPARAVAL.Add(SRNO)
+        '    ALPARAVAL.Add(BEAMNAME)
+        '    ALPARAVAL.Add(LOOMNO)
 
 
-            Dim OBJBEAMISSUE As New ClsBeamIssueToWeaver
-            OBJBEAMISSUE.alParaval = ALPARAVAL
-            If USERADD = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
-            Dim DT As DataTable = OBJBEAMISSUE.SAVE()
-            MsgBox("Beam Issue To Weaver Added")
+        '    ALPARAVAL.Add(SRNO)
+        '    ALPARAVAL.Add(BEAMNAME)
+        '    ALPARAVAL.Add(BEAMNO)
+        '    ALPARAVAL.Add(ENDS)
+        '    ALPARAVAL.Add(TL)
+        '    ALPARAVAL.Add(CUT)
+        '    ALPARAVAL.Add(WT)
+        '    ALPARAVAL.Add(WTCUT)
+        '    ALPARAVAL.Add(NARR)
+        '    ALPARAVAL.Add(FROMNO)
+        '    ALPARAVAL.Add(FROMSRNO)
+        '    ALPARAVAL.Add(FROMTYPE)
+        '    ALPARAVAL.Add(OUTCUT)
+        '    ALPARAVAL.Add(GRIDDONE)
+        '    ALPARAVAL.Add(NAME)
+        '    ALPARAVAL.Add(LOOMNO)
+        '    ALPARAVAL.Add(UPLOADDATE)
 
-        Catch ex As Exception
-            Throw ex
-        End Try
+
+        '    Dim OBJBEAMISSUE As New ClsBeamIssueToWeaver
+        '    OBJBEAMISSUE.alParaval = ALPARAVAL
+        '    If USERADD = False Then
+        '        MsgBox("Insufficient Rights")
+        '        Exit Sub
+        '    End If
+        '    Dim DT As DataTable = OBJBEAMISSUE.SAVE()
+        '    MsgBox("Beam Issue To Weaver Added")
+
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Sub SAVEUPLOAD()
@@ -671,7 +671,7 @@ LINE1:
 
     Private Sub CMBGODOWN_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBOURGODOWN.Enter
         Try
-            If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT, " and GODOWN_ISOUR = 'True'")
+            If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -685,8 +685,8 @@ LINE1:
             If e.KeyCode = Keys.F1 Then
                 Dim OBJGODOWN As New SelectGodown
                 OBJGODOWN.FRMSTRING = "GODOWN"
-                OBJGODOWN.SEARCH = " AND GODOWN_ISOUR = 'True'"
-                OBJGODOWN.ShowDialog()
+                OBJGODOWN.SEARCH = " And GODOWN_ISOUR = 'True'"
+            OBJGODOWN.ShowDialog()
                 If OBJGODOWN.TEMPNAME <> "" Then CMBOURGODOWN.Text = OBJGODOWN.TEMPNAME
             End If
         Catch ex As Exception
@@ -696,7 +696,7 @@ LINE1:
 
     Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBOURGODOWN.Validating
         Try
-            If CMBOURGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBOURGODOWN, e, Me, " and GODOWN_ISOUR = 'True'")
+            If CMBOURGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBOURGODOWN, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1069,7 +1069,7 @@ LINE1:
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) AS ENDS, ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    If MULTIYARN = True Then TXTENDS.Text = DT.Rows(0).Item("TOTALENDS") Else TXTENDS.Text = DT.Rows(0).Item("ENDS")
+                    TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
                     TXTTAPLINE.Text = DT.Rows(0).Item("TAPLINE")
                 End If
             End If
@@ -1088,7 +1088,7 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            Dim OBJBEAM As New BeamRecdDetails
+            Dim OBJBEAM As New BeamRecdWarperDetails
             OBJBEAM.MdiParent = MDIMain
             OBJBEAM.Show()
         Catch ex As Exception
@@ -1156,7 +1156,7 @@ LINE1:
     End Sub
 
     Private Sub BeamRecdWarper_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-        If ALLOWMFG = False Then Exit Sub
+        'If ALLOWMFG = False Then Exit Sub
     End Sub
 
     Private Sub DTCHALLANDATE_GotFocus(sender As Object, e As EventArgs) Handles DTCHALLANDATE.GotFocus
