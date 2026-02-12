@@ -28,10 +28,10 @@ Partial Class BeamDetails
         Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTAPLINE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.shed = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWTMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.shed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
@@ -115,15 +115,6 @@ Partial Class BeamDetails
         Me.GQUALITY.VisibleIndex = 2
         Me.GQUALITY.Width = 200
         '
-        'GENDS
-        '
-        Me.GENDS.Caption = "Ends"
-        Me.GENDS.FieldName = "ENDS"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GENDS.Visible = True
-        Me.GENDS.VisibleIndex = 3
-        '
         'GTAPLINE
         '
         Me.GTAPLINE.Caption = "Tapline"
@@ -132,21 +123,30 @@ Partial Class BeamDetails
         Me.GTAPLINE.Visible = True
         Me.GTAPLINE.VisibleIndex = 3
         '
-        'shed
+        'GENDS
         '
-        Me.shed.Caption = "BEAMID"
-        Me.shed.FieldName = "BEAMID"
-        Me.shed.Name = "shed"
+        Me.GENDS.Caption = "Ends"
+        Me.GENDS.FieldName = "ENDS"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GENDS.Visible = True
+        Me.GENDS.VisibleIndex = 4
         '
         'GWTMTRS
         '
         Me.GWTMTRS.Caption = "Wt./100 Mtrs."
-        Me.GWTMTRS.FieldName = "WTMTRS"
+        Me.GWTMTRS.FieldName = "GRIDWTMTRS"
         Me.GWTMTRS.Name = "GWTMTRS"
         Me.GWTMTRS.OptionsColumn.AllowEdit = False
         Me.GWTMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWTMTRS.Visible = True
         Me.GWTMTRS.VisibleIndex = 5
+        '
+        'shed
+        '
+        Me.shed.Caption = "BEAMID"
+        Me.shed.FieldName = "BEAMID"
+        Me.shed.Name = "shed"
         '
         'GridView1
         '

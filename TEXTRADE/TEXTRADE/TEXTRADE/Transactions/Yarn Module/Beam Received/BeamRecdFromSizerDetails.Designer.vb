@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class RollsIssueToSizerDetails
+Partial Class BeamRecdFromSizerDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -26,18 +26,21 @@ Partial Class RollsIssueToSizerDetails
         Me.Label14 = New System.Windows.Forms.Label()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GROLLISSUENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GROLLISSUEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSIZER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GVEHICALNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALIYTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMRECNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GROLLS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCUT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWTCUT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNARR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDONE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALBEAM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALCUT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gdone = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -70,7 +73,7 @@ Partial Class RollsIssueToSizerDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 586)
-        Me.BlendPanel1.TabIndex = 11
+        Me.BlendPanel1.TabIndex = 9
         '
         'Label14
         '
@@ -100,7 +103,7 @@ Partial Class RollsIssueToSizerDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLISSUENO, Me.GROLLISSUEDATE, Me.GGODOWN, Me.GSIZER, Me.GTRANSPORT, Me.GVEHICALNO, Me.GQUALIYTY, Me.GMILLNAME, Me.GROLLS, Me.GWT, Me.GNARR, Me.GDONE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GNAME, Me.GMILLNAME, Me.GCHALLANNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GCUT, Me.GWT, Me.GWTCUT, Me.GNARR, Me.GTOTALBEAM, Me.GTOTALCUT, Me.GTOTALWT, Me.gdone})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -112,77 +115,36 @@ Partial Class RollsIssueToSizerDetails
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
-        'GROLLISSUENO
+        'GBEAMRECNO
         '
-        Me.GROLLISSUENO.Caption = "Sr. No."
-        Me.GROLLISSUENO.FieldName = "ROLLISSUENO"
-        Me.GROLLISSUENO.Name = "GROLLISSUENO"
-        Me.GROLLISSUENO.OptionsColumn.AllowEdit = False
-        Me.GROLLISSUENO.Visible = True
-        Me.GROLLISSUENO.VisibleIndex = 0
-        Me.GROLLISSUENO.Width = 60
+        Me.GBEAMRECNO.Caption = "Sr. No."
+        Me.GBEAMRECNO.FieldName = "BEAMRECNO"
+        Me.GBEAMRECNO.Name = "GBEAMRECNO"
+        Me.GBEAMRECNO.OptionsColumn.AllowEdit = False
+        Me.GBEAMRECNO.Visible = True
+        Me.GBEAMRECNO.VisibleIndex = 0
+        Me.GBEAMRECNO.Width = 60
         '
-        'GROLLISSUEDATE
+        'GDATE
         '
-        Me.GROLLISSUEDATE.Caption = "Date"
-        Me.GROLLISSUEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GROLLISSUEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GROLLISSUEDATE.FieldName = "ROLLISSUEDATE"
-        Me.GROLLISSUEDATE.Name = "GROLLISSUEDATE"
-        Me.GROLLISSUEDATE.OptionsColumn.AllowEdit = False
-        Me.GROLLISSUEDATE.Visible = True
-        Me.GROLLISSUEDATE.VisibleIndex = 1
-        Me.GROLLISSUEDATE.Width = 60
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDATE.FieldName = "DATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 1
         '
-        'GGODOWN
+        'GNAME
         '
-        Me.GGODOWN.Caption = "Godown"
-        Me.GGODOWN.FieldName = "GODOWN"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.OptionsColumn.AllowEdit = False
-        Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 2
-        Me.GGODOWN.Width = 100
-        '
-        'GSIZER
-        '
-        Me.GSIZER.Caption = "Sizer Name"
-        Me.GSIZER.FieldName = "SIZER"
-        Me.GSIZER.Name = "GSIZER"
-        Me.GSIZER.OptionsColumn.AllowEdit = False
-        Me.GSIZER.Visible = True
-        Me.GSIZER.VisibleIndex = 3
-        Me.GSIZER.Width = 180
-        '
-        'GTRANSPORT
-        '
-        Me.GTRANSPORT.Caption = "Transport"
-        Me.GTRANSPORT.FieldName = "TRANSPORT"
-        Me.GTRANSPORT.Name = "GTRANSPORT"
-        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
-        Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 4
-        Me.GTRANSPORT.Width = 100
-        '
-        'GVEHICALNO
-        '
-        Me.GVEHICALNO.Caption = "Vehical No."
-        Me.GVEHICALNO.FieldName = "VEHICALNO"
-        Me.GVEHICALNO.Name = "GVEHICALNO"
-        Me.GVEHICALNO.OptionsColumn.AllowEdit = False
-        Me.GVEHICALNO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GROSSWT", "")})
-        Me.GVEHICALNO.Visible = True
-        Me.GVEHICALNO.VisibleIndex = 5
-        Me.GVEHICALNO.Width = 60
-        '
-        'GQUALIYTY
-        '
-        Me.GQUALIYTY.Caption = "Quality"
-        Me.GQUALIYTY.FieldName = "QUALITY"
-        Me.GQUALIYTY.Name = "GQUALIYTY"
-        Me.GQUALIYTY.Visible = True
-        Me.GQUALIYTY.VisibleIndex = 6
-        Me.GQUALIYTY.Width = 120
+        Me.GNAME.Caption = "Sizer Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 220
         '
         'GMILLNAME
         '
@@ -190,20 +152,49 @@ Partial Class RollsIssueToSizerDetails
         Me.GMILLNAME.FieldName = "MILLNAME"
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 7
-        Me.GMILLNAME.Width = 180
+        Me.GMILLNAME.Width = 200
         '
-        'GROLLS
+        'GCHALLANNO
         '
-        Me.GROLLS.Caption = "Rolls"
-        Me.GROLLS.FieldName = "ROLLS"
-        Me.GROLLS.Name = "GROLLS"
-        Me.GROLLS.OptionsColumn.AllowEdit = False
-        Me.GROLLS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GROLLS.Visible = True
-        Me.GROLLS.VisibleIndex = 8
-        Me.GROLLS.Width = 60
+        Me.GCHALLANNO.Caption = "Challan No."
+        Me.GCHALLANNO.FieldName = "CHALLANNO"
+        Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
+        Me.GCHALLANNO.Visible = True
+        Me.GCHALLANNO.VisibleIndex = 3
+        Me.GCHALLANNO.Width = 80
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.Caption = "Beam No."
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.OptionsColumn.AllowEdit = False
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 4
+        Me.GBEAMNO.Width = 80
+        '
+        'GBEAMNAME
+        '
+        Me.GBEAMNAME.Caption = "Beam Name"
+        Me.GBEAMNAME.FieldName = "BEAMNAME"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.OptionsColumn.AllowEdit = False
+        Me.GBEAMNAME.Visible = True
+        Me.GBEAMNAME.VisibleIndex = 5
+        Me.GBEAMNAME.Width = 160
+        '
+        'GCUT
+        '
+        Me.GCUT.Caption = "Cut"
+        Me.GCUT.DisplayFormat.FormatString = "0.000"
+        Me.GCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCUT.FieldName = "CUT"
+        Me.GCUT.Name = "GCUT"
+        Me.GCUT.OptionsColumn.AllowEdit = False
+        Me.GCUT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GCUT.Visible = True
+        Me.GCUT.VisibleIndex = 6
         '
         'GWT
         '
@@ -215,8 +206,19 @@ Partial Class RollsIssueToSizerDetails
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 9
-        Me.GWT.Width = 60
+        Me.GWT.VisibleIndex = 7
+        Me.GWT.Width = 80
+        '
+        'GWTCUT
+        '
+        Me.GWTCUT.Caption = "Wt./Cut"
+        Me.GWTCUT.DisplayFormat.FormatString = "0.000"
+        Me.GWTCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWTCUT.FieldName = "WTCUT"
+        Me.GWTCUT.Name = "GWTCUT"
+        Me.GWTCUT.OptionsColumn.AllowEdit = False
+        Me.GWTCUT.Visible = True
+        Me.GWTCUT.VisibleIndex = 8
         '
         'GNARR
         '
@@ -225,18 +227,44 @@ Partial Class RollsIssueToSizerDetails
         Me.GNARR.Name = "GNARR"
         Me.GNARR.OptionsColumn.AllowEdit = False
         Me.GNARR.Visible = True
-        Me.GNARR.VisibleIndex = 10
-        Me.GNARR.Width = 180
+        Me.GNARR.VisibleIndex = 9
+        Me.GNARR.Width = 250
         '
-        'GDONE
+        'GTOTALBEAM
         '
-        Me.GDONE.Caption = "Locked"
-        Me.GDONE.ColumnEdit = Me.CHKDONE
-        Me.GDONE.FieldName = "DONE"
-        Me.GDONE.Name = "GDONE"
-        Me.GDONE.Visible = True
-        Me.GDONE.VisibleIndex = 11
-        Me.GDONE.Width = 60
+        Me.GTOTALBEAM.Caption = "Total Beam(s)"
+        Me.GTOTALBEAM.FieldName = "TOTALBEAM"
+        Me.GTOTALBEAM.Name = "GTOTALBEAM"
+        Me.GTOTALBEAM.OptionsColumn.AllowEdit = False
+        Me.GTOTALBEAM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        '
+        'GTOTALCUT
+        '
+        Me.GTOTALCUT.Caption = "Total Cut"
+        Me.GTOTALCUT.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALCUT.FieldName = "TOTALCUT"
+        Me.GTOTALCUT.Name = "GTOTALCUT"
+        Me.GTOTALCUT.OptionsColumn.AllowEdit = False
+        Me.GTOTALCUT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        '
+        'GTOTALWT
+        '
+        Me.GTOTALWT.Caption = "Total Wt."
+        Me.GTOTALWT.DisplayFormat.FormatString = "0.000"
+        Me.GTOTALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALWT.FieldName = "TOTALWT"
+        Me.GTOTALWT.Name = "GTOTALWT"
+        Me.GTOTALWT.OptionsColumn.AllowEdit = False
+        Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        '
+        'gdone
+        '
+        Me.gdone.Caption = "DONE"
+        Me.gdone.ColumnEdit = Me.CHKDONE
+        Me.gdone.FieldName = "GRIDDONE"
+        Me.gdone.Name = "gdone"
+        Me.gdone.OptionsColumn.AllowEdit = False
         '
         'CHKDONE
         '
@@ -266,7 +294,7 @@ Partial Class RollsIssueToSizerDetails
         'TOOLEXCEL
         '
         Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon1
         Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TOOLEXCEL.Name = "TOOLEXCEL"
         Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
@@ -318,16 +346,17 @@ Partial Class RollsIssueToSizerDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'RollsIssueToSizerDetails
+        'BeamRecdDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 586)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "RollsIssueToSizerDetails"
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Name = "BeamRecdDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Rolls Issue To Sizer Details"
+        Me.Text = "Beam Recd Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -344,18 +373,21 @@ Partial Class RollsIssueToSizerDetails
     Friend WithEvents Label14 As Label
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GROLLISSUENO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GROLLISSUEDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSIZER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GVEHICALNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALIYTY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMRECNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GROLLS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCUT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWTCUT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNARR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDONE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALBEAM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALCUT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gdone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Label15 As Label
     Friend WithEvents ToolStrip1 As ToolStrip

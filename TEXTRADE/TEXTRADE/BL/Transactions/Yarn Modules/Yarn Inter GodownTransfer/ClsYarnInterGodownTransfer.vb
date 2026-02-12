@@ -183,7 +183,7 @@ Public Class ClsYarnInterGodownTransfer
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTGODOWN_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTYARNGODOWN_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@TEMPGODOWNNO", alParaval(0)))

@@ -58,13 +58,11 @@ Public Class YarnInterGodownTransfer
         LBLTOTALPCS.Text = 0.0
         TXTREFRENCE.Clear()
         TXTISSUEBY.Clear()
-        TXTBARCODE.Clear()
         GRIDJO.RowCount = 0
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
         txtsrno.Clear()
-        'CMBPIECETYPE.Text = "FRESH"
         CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
         TXTJOBBERLOTNO.Clear()
@@ -78,6 +76,8 @@ Public Class YarnInterGodownTransfer
         TXTLRNO.Clear()
         'DTLRDATE.Value = Now.Date
         LIFTINGDATE.Text = Now.Date
+        CMBFROMGODOWN.Text = ""
+        CMBTOGODOWN.Text = ""
     End Sub
 
 
@@ -291,14 +291,8 @@ Public Class YarnInterGodownTransfer
                 Dim DTTABLE As DataTable = objCUTTING.SAVE()
                 MsgBox("Details Added")
 
-                'If ClientName = "SVS" Then
-                '    If MsgBox("Wish to Stock Reco Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                '        RECOSAVE()
-                '    End If
-                'End If
-
                 TXTGODOWNNO.Text = DTTABLE.Rows(0).Item(0)
-                If ClientName <> "MJFABRIC" Then PRINTREPORT(DTTABLE.Rows(0).Item(0))
+                ' PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
             ElseIf EDIT = True Then
                 If USEREDIT = False Then
@@ -309,7 +303,7 @@ Public Class YarnInterGodownTransfer
                 alParaval.Add(TEMPGODOWNNO)
                 IntResult = objCUTTING.UPDATE()
                 MsgBox("Details Updated")
-                If ClientName <> "MJFABRIC" Then PRINTREPORT(TEMPGODOWNNO)
+                'PRINTREPORT(TEMPGODOWNNO)
                 EDIT = False
             End If
             clear()
@@ -405,7 +399,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("LOTNO").ToString, dr("BALENO").ToString, dr("DESIGN").ToString, dr("COLORNAME").ToString, Format(dr("PCS"), "0.00"), dr("UNIT"), Format(dr("MTRS"), "0.00"), dr("BARCODE").ToString, Format(dr("OUTPCS"), "0.00"), Format(dr("OUTMTRS"), "0.00"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, dr("LIFTINGDATE").ToString)
 
 
                     Next
@@ -429,7 +423,7 @@ Public Class YarnInterGodownTransfer
             If CMBFROMGODOWN.Text.Trim = "" Then fillGODOWN(CMBFROMGODOWN, EDIT)
             If CMBTOGODOWN.Text.Trim = "" Then fillGODOWN(CMBTOGODOWN, EDIT)
             If CMBTRANSPORTNAME.Text.Trim = "" Then filltransname(CMBTRANSPORTNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
-            fillitemname(CMBYARNQUALITY, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
+            fillYARNQUALITY(CMBYARNQUALITY, EDIT)
             FILLMILL(CMBMILL, EDIT)
             FILLDESIGN(CMBDESIGN, CMBYARNQUALITY.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, CMBYARNQUALITY.Text.Trim)
@@ -506,7 +500,7 @@ Public Class YarnInterGodownTransfer
             GRIDJO.Enabled = True
 
             If GRIDDOUBLECLICK = False Then
-                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, LIFTINGDATE.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0, "")
+                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, LIFTINGDATE.Text.Trim)
                 getsrno(GRIDJO)
             ElseIf GRIDDOUBLECLICK = True Then
                 GRIDJO.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -521,7 +515,6 @@ Public Class YarnInterGodownTransfer
                 GRIDJO.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
                 GRIDJO.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
                 GRIDJO.Item(GLRNO.Index, TEMPROW).Value = Val(TXTLRNO.Text.Trim)
-                'GRIDJO.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
                 GRIDJO.Item(GLIFTINGDATE.Index, TEMPROW).Value = Val(LIFTINGDATE.Text.Trim)
 
                 GRIDDOUBLECLICK = False
@@ -532,10 +525,7 @@ Public Class YarnInterGodownTransfer
             GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
 
             txtsrno.Clear()
-            'cmbitemname.Text = ""
-            'CMBQUALITY.Text = ""
-            'CMBDESIGN.Text = ""
-            'cmbcolor.Text = ""
+
 
 
 
@@ -674,8 +664,7 @@ LINE1:
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         Try
             If EDIT = True Then
-                PRINTREPORT(TEMPGODOWNNO)
-                PRINTBARCODE()
+                'PRINTREPORT(TEMPGODOWNNO)
             End If
         Catch ex As Exception
             Throw ex
@@ -683,130 +672,19 @@ LINE1:
     End Sub
 
 
-    Sub PRINTREPORT(ByVal GODOWNNO As Integer)
-        Try
-            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = vbYes Then
-                Dim OBJGDN As New GDNDESIGN
-                OBJGDN.MdiParent = MDIMain
-                OBJGDN.FRMSTRING = "GODOWNTRANSFER"
-                OBJGDN.FORMULA = "{INTERGODOWNTRANSFER.TRANSFER_NO}=" & Val(GODOWNNO) & " and {INTERGODOWNTRANSFER.TRANSFER_yearid}=" & YearId
-                OBJGDN.Show()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Sub PRINTBARCODE()
-        Try
-            If ALLOWBARCODEPRINT Then
-
-
-                If ClientName = "PARAS" And UserName <> "Admin" Then Exit Sub
-
-                'PRINT BARCODE
-                Dim TEMPMSG As Integer = MsgBox("Wish to Print Barcode?", MsgBoxStyle.YesNo)
-                If TEMPMSG = vbNo Then Exit Sub
-
-                'GET FRESH DATA FROM DATABASE (ONLY GRID)
-                'THIS IS DONE COZ FOR MULTIUSER THE NOS WILL BE SAME
-                'SO WE WILL ADD BARCODE IN SP AND THEN FETCH THAT DATA HERE AFTER THAT WE WILL PRINT BARCODES
-                GRIDJO.RowCount = 0
-                Dim objJO As New ClsYarnInterGodownTransfer()
-                Dim ALPARAVAL As New ArrayList
-                ALPARAVAL.Add(TEMPGODOWNNO)
-                ALPARAVAL.Add(CmpId)
-                ALPARAVAL.Add(Locationid)
-                ALPARAVAL.Add(YearId)
-                objJO.alParaval = ALPARAVAL
-                Dim dttable As DataTable = objJO.SELECTGODOWN()
-
-                For Each dr As DataRow In dttable.Rows
-                    GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("LOTNO").ToString, dr("BALENO").ToString, dr("DESIGN").ToString, dr("COLORNAME").ToString, Format(dr("PCS"), "0.00"), dr("UNIT"), Format(dr("MTRS"), "0.00"), dr("BARCODE").ToString, Format(dr("OUTPCS"), "0.00"), Format(dr("OUTMTRS"), "0.00"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
-                Next
-
-                Dim WHOLESALEBARCODE As Integer = 0
-                If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
-
-
-                Dim TEMPHEADER As String = ""
-                If ClientName = "YASHVI" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
-                    If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
-                    If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
-                    If TEMPHEADER = "N" Then TEMPHEADER = ""
-                End If
-
-                If ClientName = "GELATO" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "DAKSH" Or ClientName = "MILUXE" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "MANSI" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "RAJKRIPA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "MANS" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-
-                If ClientName = "AXIS" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR PCS" & Chr(13) & "2 FOR MTRS")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                Dim SUPRIYAHEADER As String = ""
-                If ClientName = "SUPRIYA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
-                    If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
-                    If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
-                    If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
-                    If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
-                    If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
-                End If
-
-
-                For Each ROW As DataGridViewRow In GRIDJO.Rows
-                    'TO PRINT BARCODE FROM SELECTED SRNO
-                    If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
-                        If Val(ROW.Cells(GSRNO.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(GSRNO.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
-                    End If
-                    Dim GRIDDESC As String = ""
-                    'If ClientName = "KCRAYON" Or ClientName = "NTC" Or ClientName = "KRFABRICS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Then GRIDDESC = ROW.Cells(GBALENO.Index).Value
-                    ''FOR DAKSH WE ARE PASSING REMARKS IN GRIDDESC AS WE WANT TO PRINT THIS REMARKS IN BARCODE
-                    'If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Then GRIDDESC = txtremarks.Text.Trim
-
-                    'IF barcode is used the BARCODE printING WILL BE BLOCKED
-                    'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
-
-                    'BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(GYARNQUALITY.Index).Value, ROW.Cells(GMILLNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GJOBBERLOTNO.Index).Value, ROW.Cells(GPCOLOR.Index).Value, ROW.Cells(GCOLOR.Index).Value, ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GQTY.Index).Value, ROW.Cells(GWT.Index).Value, ROW.Cells(GCONES.Index).Value, GRIDDESC, Val(ROW.Cells(GLRNO.Index).Value), Val(ROW.Cells(GLRDATE.Index).Value), 0, "", TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", "")
-NEXTLINE:
-
-                Next
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Sub PRINTREPORT(ByVal GODOWNNO As Integer)
+    '    Try
+    '        If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = vbYes Then
+    '            Dim OBJGDN As New GDNDESIGN
+    '            OBJGDN.MdiParent = MDIMain
+    '            OBJGDN.FRMSTRING = "YARNGODOWNTRANSFER"
+    '            OBJGDN.FORMULA = "{YARNINTERGODOWNTRANSFER.YTRANSFER_NO}=" & Val(GODOWNNO) & " and {YARNINTERGODOWNTRANSFER.YTRANSFER_yearid}=" & YearId
+    '            OBJGDN.Show()
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
     Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
         Try
             If EDIT = True Then
@@ -815,7 +693,7 @@ NEXTLINE:
                 If TEMPMSG = vbNo Then Exit Sub
 
                 Dim ALPARAVAL As New ArrayList
-                Dim OBJEMB As New ClsInterGodownTransfer
+                Dim OBJEMB As New ClsYarnInterGodownTransfer
 
                 ALPARAVAL.Add(TEMPGODOWNNO)
                 ALPARAVAL.Add(CmpId)
@@ -898,7 +776,6 @@ LINE1:
 
     Private Sub DTLRDATE_Validating(sender As Object, e As CancelEventArgs)
         Try
-            If ClientName = "MJFABRIC" Then Exit Sub
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
                 'If GRIDDOUBLECLICK = False Then
                 '    If EDIT = True Then
@@ -952,79 +829,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
-    Private Sub TXTBARCODE_Validating(sender As Object, e As CancelEventArgs) Handles TXTBARCODE.Validating
-        Try
-            If TXTBARCODE.Text.Trim <> "" Then
-                'CHECKING WHETHER IS IS GONE OUT OR NOT
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
-                    TXTBARCODE.Clear()
-                    e.Cancel = True
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
-        Try
-            If TXTBARCODE.Text.Trim.Length > 0 Then
-
-                If CMBFROMGODOWN.Text.Trim = "" Then
-                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
-
-                'GET DATA FROM BARCODE
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-
-                    'VALIDATE GODOWN
-                    If DT.Rows(0).Item("GODOWN") <> CMBFROMGODOWN.Text.Trim Then
-                        MsgBox("Item Not in Selected Godown", MsgBoxStyle.Critical)
-                        TXTBARCODE.Clear()
-                        Exit Sub
-                    End If
-
-                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
-                    For Each ROW As DataGridViewRow In GRIDJO.Rows
-                        ' If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
-                    Next
-
-
-                    Dim PCS As Double = 0
-                    If ClientName = "TCOT" Or ClientName = "VALIANT" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
-
-                    GRIDJO.Rows.Add(GRIDJO.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), DT.Rows(0).Item("BARCODE"), 0, 0, DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"))
-
-                    total()
-                    GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
-
-LINE1:
-                    TXTBARCODE.Clear()
-                    TXTBARCODE.Focus()
-                    'Else
-                    '    MsgBox("Invalid Barcode / Barcode already Used", MsgBoxStyle.Critical)
-                    '    GoTo LINE1
-                    '    Exit Sub
-                Else
-                    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
-                    TXTBARCODE.Clear()
-                End If
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTDATE_GotFocus(sender As Object, e As EventArgs) Handles TXTDATE.GotFocus
         TXTDATE.SelectionStart = 0
 
@@ -1052,48 +856,15 @@ LINE1:
         Try
             If ClientName = "MJFABRIC" Then Exit Sub
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
-                'If GRIDDOUBLECLICK = False Then
-                '    If EDIT = True Then
-                '        'GET LAST BARCODE SRNO
-                '        Dim LSRNO As Integer = 0
-                '        Dim RSRNO As Integer = 0
-                '        Dim SNO As Integer = 0
-                '        LSRNO = InStr(GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                '        RSRNO = InStr(LSRNO + 1, GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                '        SNO = GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
 
-                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
-                '    Else
-                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & GRIDJOBIN.RowCount + 1 & "/" & YearId
-                '    End If
-                'End If
                 fillgrid()
 
             Else
-                'If CMBJONO.Text.Trim = "" Then
-                '    MsgBox("Enter Job Out No.", MsgBoxStyle.Critical)
-                '    CMBJONO.Focus()
+
                 If CMBYARNQUALITY.Text.Trim = "" Then
                     MsgBox("Enter  Yarn Quality", MsgBoxStyle.Critical)
                     CMBYARNQUALITY.Focus()
-                    'ElseIf CMBQUALITY.Text.Trim = "" Then
-                    '    MsgBox("Enter Quality", MsgBoxStyle.Critical)
-                    '    CMBQUALITY.Focus()
-                    ''ElseIf CMBQUALITY.Text.Trim = "" And ClientName <> "KCRAYON" Then
-                    ''    MsgBox("Enter Quality", MsgBoxStyle.Critical)
-                    ''    CMBQUALITY.Focus()
-                    ''ElseIf CMBDESIGN.Text.Trim = "" Then
-                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
-                    ''    CMBDESIGN.Focus()
-                    ''ElseIf CMBDESIGN.Text.Trim = "" And ClientName <> "KCRAYON" Then
-                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
-                    ''    CMBDESIGN.Focus()
-                    ''ElseIf Val(txtqty.Text.Trim) = 0 Then
-                    ''    MsgBox("Enter Quantity", MsgBoxStyle.Critical)
-                    ''    txtqty.Focus()
-                    ''ElseIf cmbqtyunit.Text.Trim = "" Then
-                    ''    MsgBox("Enter Unit", MsgBoxStyle.Critical)
-                    ''    cmbqtyunit.Focus()
+
                 ElseIf Val(TXTWT.Text.Trim) = 0 Then
                     MsgBox("Enter Weight", MsgBoxStyle.Critical)
                     TXTWT.Focus()

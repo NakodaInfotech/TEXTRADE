@@ -97,6 +97,10 @@ Public Class ClsBeamMaster
             alParameter.Add(New SqlParameter("@GRIDWT", alparaval(I)))
             I += 1
 
+
+            alParameter.Add(New SqlParameter("@BEAMID", alparaval(I)))
+            I += 1
+
             Return objDBOperation.executeNonQuery(strCommand, alParameter)
 
         Catch ex As Exception

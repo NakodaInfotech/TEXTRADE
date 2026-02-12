@@ -97,7 +97,6 @@ Public Class RollsRecdFromWarper
         lbllocked.Visible = False
         PBlock.Visible = False
         GRIDROLLS.RowCount = 0
-        CMDSELECTPROGRAM.Enabled = True
 
         tstxtbillno.Clear()
 
@@ -133,7 +132,7 @@ Public Class RollsRecdFromWarper
 
     Private Sub RollsRecdFromWarper_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ROLLS RECD'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -143,7 +142,7 @@ Public Class RollsRecdFromWarper
 
             FILLCMB()
             CLEAR()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+            fillGODOWN(CMBOURGODOWN, EDIT)
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
@@ -220,7 +219,6 @@ Public Class RollsRecdFromWarper
 
                     CMBWINDINGMILL.Text = dttable.Rows(0).Item("WINDINGMILL").ToString
 
-                    CMDSELECTPROGRAM.Enabled = False
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
@@ -375,12 +373,12 @@ Public Class RollsRecdFromWarper
             End If
 
             If lbllocked.Visible = False Then
-                'If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                '    Dim OBJSIZER As New DirectIssueSizer
-                '    OBJSIZER.ShowDialog()
-                '    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
-                '    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
-                'End If
+                If MsgBox("Issue Rolls Directly to Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    Dim OBJSIZER As New DirectIssueSizer
+                    OBJSIZER.ShowDialog()
+                    If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
+                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
+                End If
             End If
 
 LINE1:
@@ -545,11 +543,11 @@ LINE1:
         End Try
     End Sub
     Sub FILLCMB()
-        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND (LEDGERS.ACC_SUBTYPE = 'WARPER' OR LEDGERS.ACC_SUBTYPE = 'SIZER')")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBQUALITY.Text = "" Then fillQUALITY(CMBQUALITY, EDIT)
-        If CMBMILL.Text = "" Then FILLNAME(CMBMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'MILL'")
-        If CMBWINDINGMILL.Text = "" Then FILLNAME(CMBWINDINGMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'MILL'")
+        If CMBMILL.Text = "" Then FILLNAME(CMBMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+        If CMBWINDINGMILL.Text = "" Then FILLNAME(CMBWINDINGMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
     End Sub
 
     Sub DIRECTISSUESIZER(ByVal SIZERNAME As String)
@@ -679,7 +677,7 @@ LINE1:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND (LEDGERS.ACC_SUBTYPE = 'WARPER' OR LEDGERS.ACC_SUBTYPE = 'SIZER')")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -691,7 +689,7 @@ LINE1:
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='ACCOUNTS' AND (LEDGERS.ACC_SUBTYPE = 'WARPER' OR LEDGERS.ACC_SUBTYPE = 'SIZER')"
+                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='ACCOUNTS')"
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
             End If
@@ -702,7 +700,7 @@ LINE1:
 
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND (LEDGERS.ACC_SUBTYPE = 'WARPER' OR LEDGERS.ACC_SUBTYPE = 'SIZER')", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "WARPER")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "WARPER")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1093,7 +1091,7 @@ LINE1:
 
     Private Sub CMBMILL_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBMILL.Enter
         Try
-            If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'")
+            If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1106,7 +1104,7 @@ LINE1:
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'"
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' "
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPNAME <> "" Then CMBMILL.Text = OBJLEDGER.TEMPNAME
             End If
@@ -1117,7 +1115,7 @@ LINE1:
 
     Private Sub CMBMILL_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMILL.Validating
         Try
-            If CMBMILL.Text.Trim <> "" Then NAMEVALIDATE(CMBMILL, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "MILL")
+            If CMBMILL.Text.Trim <> "" Then NAMEVALIDATE(CMBMILL, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "MILL")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1127,7 +1125,7 @@ LINE1:
         DTCHALLANDATE.Select(0, 0)
     End Sub
 
-    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTPROGRAM.Click
+    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If CMBNAME.Text.Trim = "" Then
                 MsgBox("Select Warper First", MsgBoxStyle.Critical)
@@ -1135,9 +1133,9 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJPROG As New SelectProgram
+            Dim OBJPROG As New SelectYarnProgram
             Dim DT As DataTable = OBJPROG.DT
-            OBJPROG.PARTYNAME = CMBNAME.Text.Trim
+            OBJPROG.WARPERNAME = CMBNAME.Text.Trim
             OBJPROG.ShowDialog()
             If DT.Rows.Count > 0 Then
                 TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
@@ -1149,7 +1147,6 @@ LINE1:
                 CMBQUALITY.Text = DT.Rows(0).Item("QUALITY")
                 CMBMILL.Text = DT.Rows(0).Item("MILLNAME")
                 TXTROLLS.Text = Val(DT.Rows(0).Item("ROLLS"))
-                CMDSELECTPROGRAM.Enabled = False
                 TXTLOTNO.Focus()
             End If
 

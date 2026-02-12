@@ -444,6 +444,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.Designer.vb">
+      <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2899,6 +2905,12 @@
     <Compile Include="Transactions\Sample\Booklet Creation\SampleBookletCreationDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.Designer.vb">
+      <DependentUpon>SelectBeamStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgram.Designer.vb">
       <DependentUpon>BeamProgram.vb</DependentUpon>
     </Compile>
@@ -2911,10 +2923,40 @@
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.Designer.vb">
+    <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.Designer.vb">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.vb">
+    <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.Designer.vb">
+      <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizer.Designer.vb">
+      <DependentUpon>BeamRecdFromSizer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\SelectBeam.Designer.vb">
+      <DependentUpon>SelectBeam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\SelectBeam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.Designer.vb">
+      <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.Designer.vb">
+      <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.Designer.vb">
@@ -2939,6 +2981,12 @@
       <DependentUpon>SelectRolls.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.Designer.vb">
+      <DependentUpon>SelectYarnProgram.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.Designer.vb">
@@ -8926,6 +8974,9 @@
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
+      <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
@@ -10379,14 +10430,32 @@
     <EmbeddedResource Include="Transactions\Sample\Sample Booklet Inward\SampleBookletInwardDetails.resx">
       <DependentUpon>SampleBookletInwardDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.resx">
+      <DependentUpon>SelectBeamStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgram.resx">
       <DependentUpon>BeamProgram.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.resx">
       <DependentUpon>BeamProgramDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.resx">
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.resx">
+      <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizer.resx">
+      <DependentUpon>BeamRecdFromSizer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectBeam.resx">
+      <DependentUpon>SelectBeam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.resx">
+      <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
+      <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.resx">
       <DependentUpon>RollsIssueToSizerDetails.vb</DependentUpon>
@@ -10399,6 +10468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectRolls.resx">
       <DependentUpon>SelectRolls.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.resx">
+      <DependentUpon>SelectYarnProgram.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.resx">
       <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>
@@ -14545,7 +14617,9 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Transactions\Yarn Module\Beam Received Warper\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
