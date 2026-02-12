@@ -120,7 +120,7 @@ Partial Class SaleOrder
         Me.TXTPCSINHOUSE = New System.Windows.Forms.TextBox()
         Me.LBLSTOCKINHOUSE = New System.Windows.Forms.Label()
         Me.TXTREFNO = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.LBLREFNO = New System.Windows.Forms.Label()
         Me.cmbtrans2 = New System.Windows.Forms.ComboBox()
         Me.cmbtrans = New System.Windows.Forms.ComboBox()
         Me.LBLTRANS2 = New System.Windows.Forms.Label()
@@ -410,7 +410,7 @@ Partial Class SaleOrder
         Me.BlendPanel1.Controls.Add(Me.TXTPCSINHOUSE)
         Me.BlendPanel1.Controls.Add(Me.LBLSTOCKINHOUSE)
         Me.BlendPanel1.Controls.Add(Me.TXTREFNO)
-        Me.BlendPanel1.Controls.Add(Me.Label13)
+        Me.BlendPanel1.Controls.Add(Me.LBLREFNO)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans2)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans)
         Me.BlendPanel1.Controls.Add(Me.LBLTRANS2)
@@ -1538,17 +1538,17 @@ Partial Class SaleOrder
         Me.TXTREFNO.Size = New System.Drawing.Size(62, 22)
         Me.TXTREFNO.TabIndex = 12
         '
-        'Label13
+        'LBLREFNO
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.Black
-        Me.Label13.Location = New System.Drawing.Point(588, 147)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(43, 14)
-        Me.Label13.TabIndex = 720
-        Me.Label13.Text = "Ref No"
+        Me.LBLREFNO.AutoSize = True
+        Me.LBLREFNO.BackColor = System.Drawing.Color.Transparent
+        Me.LBLREFNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLREFNO.ForeColor = System.Drawing.Color.Black
+        Me.LBLREFNO.Location = New System.Drawing.Point(588, 147)
+        Me.LBLREFNO.Name = "LBLREFNO"
+        Me.LBLREFNO.Size = New System.Drawing.Size(43, 14)
+        Me.LBLREFNO.TabIndex = 720
+        Me.LBLREFNO.Text = "Ref No"
         '
         'cmbtrans2
         '
@@ -4097,7 +4097,7 @@ Partial Class SaleOrder
     Friend WithEvents TXTMTRS As System.Windows.Forms.TextBox
     Friend WithEvents CMBPER As System.Windows.Forms.ComboBox
     Friend WithEvents TXTREFNO As System.Windows.Forms.TextBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents LBLREFNO As System.Windows.Forms.Label
     Friend WithEvents cmbtrans2 As System.Windows.Forms.ComboBox
     Friend WithEvents LBLTRANS2 As System.Windows.Forms.Label
     Friend WithEvents TXTMTRSJOBBER As System.Windows.Forms.TextBox

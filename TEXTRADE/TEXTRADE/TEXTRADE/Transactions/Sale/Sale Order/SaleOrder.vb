@@ -569,6 +569,10 @@ Public Class SaleOrder
                 LBLAGENT.Text = "Indent Name"
                 CMBPER.Text = "Qty"
             End If
+
+            If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED"
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2060,7 +2064,10 @@ LINE1:
                 cmbcolor.TabStop = False
                 TXTPARTYPONO.TabStop = False
                 LBLHASTE.Visible = True
-                CMBHASTE.Visible = True
+                TXTREFNO.Left = CMBHASTE.Left
+                TXTREFNO.Top = CMBHASTE.Top
+                TXTREFNO.Width = CMBHASTE.Width
+                TXTREFNO.TabIndex = CMBHASTE.TabIndex
                 TXTSONO.TabStop = True
                 TXTSONO.Focus()
             End If
@@ -3858,5 +3865,9 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTRATE_Enter(sender As Object, e As EventArgs) Handles TXTRATE.Enter
+        TXTRATE.SelectAll()
     End Sub
 End Class

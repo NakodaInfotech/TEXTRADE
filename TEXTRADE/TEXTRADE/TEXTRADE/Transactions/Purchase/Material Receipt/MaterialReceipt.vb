@@ -183,6 +183,7 @@ Public Class MaterialReceipt
         TXTREFLOTNO.Clear()
         CMBPIECETYPE.Text = "FRESH"
         CMBCMPNAME.Text = ""
+        If ClientName = "KOTHARI" Then CMBQUALITY.Text = "FINISHED"
     End Sub
 
     Sub TOTAL()

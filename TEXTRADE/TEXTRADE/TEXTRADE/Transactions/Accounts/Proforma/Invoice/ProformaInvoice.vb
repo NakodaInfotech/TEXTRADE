@@ -3890,40 +3890,6 @@ LINE1:
                 CHKRETAIL.CheckState = CheckState.Unchecked
             End If
 
-            If ClientName = "YAMUNESH" Then
-                Gpcs.ReadOnly = False
-                txtrefno.Visible = False
-                LBLREFNO.Visible = False
-                Label2.Visible = False
-                txtchallan.Visible = False
-                Label10.Visible = False
-                CHALLANDATE.Visible = False
-
-                CMBQUALITY.Visible = False
-                GQUALITY.Visible = False
-                CMBDESIGN.Visible = False
-                GDESIGN.Visible = False
-                CMBSHADE.Visible = False
-                GSHADE.Visible = False
-                TXTBALENO.Visible = False
-                GBALENO.Visible = False
-                LBLTOTALBALES.Visible = False
-                TXTCUT.Visible = False
-                GCUT.Visible = False
-                TXTMTRS.Visible = False
-                Gmtrs.Visible = False
-                lbltotalmtrs.Visible = False
-
-                TXTDESCRIPTION.Left = TXTHSNCODE.Left + TXTHSNCODE.Width
-                TXTPCS.Left = TXTDESCRIPTION.Left + TXTDESCRIPTION.Width
-                TXTRATE.Left = TXTPCS.Left + TXTPCS.Width
-                CMBPER.Left = TXTRATE.Left + TXTRATE.Width
-                TXTAMT.Left = CMBPER.Left + CMBPER.Width
-
-                LBLTOTAL.Left = TXTHSNCODE.Left + TXTHSNCODE.Width
-                lbltotalpcs.Left = TXTPCS.Left
-                LBLTOTALAMT.Left = TXTAMT.Left
-            End If
 
             If ClientName = "DRDRAPES" And UserName <> "Admin" Then
                 GRATE.ReadOnly = True
@@ -3950,8 +3916,8 @@ LINE1:
             End If
 
             If ClientName = "SNCM" Then
-                CMBHASTE.Visible = True
-                LBLHASTE.Visible = True
+                txtrefno.Width = CMBHASTE.Width
+                LBLREFNO.Text = "Haste"
             End If
 
             If ClientName = "LAXMI" Then

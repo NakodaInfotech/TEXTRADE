@@ -3908,6 +3908,7 @@ AFWSKIPLINE:    'SKIP DIRECTLY HERE FOR AFW (AHWAMEGH)
                             If DT2.Rows.Count > 0 Then
                                 If DT2.Rows(0).Item("REMARKS") <> "" Then MsgBox(DT2.Rows(0).Item("REMARKS"), MsgBoxStyle.Critical)
                             End If
+                            txtrefno.Text = DT.Rows(0).Item("TRANSREFF")
                         End If
 
                     ElseIf DTTABLE.Rows(0).Item("FROMTYPE") = "OPENINGGDN" Then
@@ -3933,7 +3934,7 @@ AFWSKIPLINE:    'SKIP DIRECTLY HERE FOR AFW (AHWAMEGH)
 
                             If ClientName = "SAFFRONOFF" Then
                                 txtrefno.Text = dr("TYPECHALLANNO")
-                            ElseIf ClientName <> "GELATO" Then
+                            ElseIf ClientName <> "GELATO" And ClientName <> "SNCM" Then
                                 txtrefno.Text = DTTABLE.Rows(0).Item("CHALLANNO")
                             End If
 
@@ -6581,10 +6582,13 @@ NORATE:
                 CMBCOSTCENTERNAME.Visible = True
             End If
 
-            If ClientName = "SUPRIYA" Or ClientName = "VINAYAK" Or ClientName = "KUNAL" Or ClientName = "SIDDHGIRI" Or ClientName = "SANGHVI" Or ClientName = "VSTRADERS" Or ClientName = "SNCM" Then
+            If ClientName = "SUPRIYA" Or ClientName = "VINAYAK" Or ClientName = "KUNAL" Or ClientName = "SIDDHGIRI" Or ClientName = "SANGHVI" Or ClientName = "VSTRADERS" Then
                 LBLHASTE.Visible = True
                 CMBHASTE.Visible = True
             End If
+
+            If ClientName = "SNCM" Then LBLREFNO.Text = "Haste"
+
 
             If ClientName = "GELATO" Then
                 GSHADE.HeaderText = "Size"
