@@ -42,6 +42,7 @@ Public Class BeamMaster
             TXTTOTALENDS.Clear()
             TXTTOTALWT.Clear()
             TXTSRNO.Text = 1
+            GRIDDOUBLECLICK = False
         Catch ex As Exception
             Throw ex
         End Try
@@ -433,7 +434,7 @@ Public Class BeamMaster
         End Try
     End Sub
 
-    Private Sub CMBGRIDQUALITY_Validated(sender As Object, e As EventArgs) Handles CMBGRIDQUALITY.Validated
+    Private Sub CMBGRIDQUALITY_Validated(sender As Object, e As EventArgs) Handles TXTGRIDWT.Validated
         Try
             If CMBGRIDQUALITY.Text.Trim <> "" And Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTGRIDWT.Text.Trim) > 0 Then
                 fillgrid()
@@ -474,25 +475,49 @@ Public Class BeamMaster
     End Sub
     Private Sub GRIDBEAM_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDBEAM.CellDoubleClick
         Try
-            If e.RowIndex = -1 Then Exit Sub
+            'If e.RowIndex = -1 Then Exit Sub
 
-            If e.RowIndex >= 0 And GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value <> Nothing Then
+            'If e.RowIndex >= 0 And GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value <> Nothing Then
+
+            '    GRIDDOUBLECLICK = True
+            '    TXTSRNO.Text = Val(GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value)
+            '    CMBGRIDQUALITY.Text = GRIDBEAM.Item(GYARNQUALITY.Index, e.RowIndex).Value
+            '    CMBSHADE.Text = GRIDBEAM.Item(GSHADE.Index, e.RowIndex).Value
+            '    TXTGRIDENDS.Text = Val(GRIDBEAM.Item(GENDS.Index, e.RowIndex).Value)
+            '    TXTGRIDWT.Text = Val(GRIDBEAM.Item(GWTPER.Index, e.RowIndex).Value)
+
+            '    TEMPROW = e.RowIndex
+            '    CMBGRIDQUALITY.Focus()
+
+            'End If
+            EDITROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+    Sub EDITROW()
+        Try
+
+            If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
 
                 GRIDDOUBLECLICK = True
-                TXTSRNO.Text = Val(GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value)
-                CMBGRIDQUALITY.Text = GRIDBEAM.Item(GYARNQUALITY.Index, e.RowIndex).Value
-                CMBSHADE.Text = GRIDBEAM.Item(GSHADE.Index, e.RowIndex).Value
-                TXTGRIDENDS.Text = Val(GRIDBEAM.Item(GENDS.Index, e.RowIndex).Value)
-                TXTGRIDWT.Text = Val(GRIDBEAM.Item(GWTPER.Index, e.RowIndex).Value)
 
-                TEMPROW = e.RowIndex
+                TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBGRIDQUALITY.Text = GRIDBEAM.Item(GYARNQUALITY.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                TXTGRIDENDS.Text = GRIDBEAM.Item(GENDS.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                TXTGRIDWT.Text = GRIDBEAM.Item(GWTPER.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+
+                TEMPROW = GRIDBEAM.CurrentRow.Index
                 CMBGRIDQUALITY.Focus()
-
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Private Sub GRIDBEAM_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDBEAM.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDBEAM.RowCount > 0 Then
@@ -537,7 +562,7 @@ Public Class BeamMaster
 
     Private Sub TXTGRIDENDS_Validated(sender As Object, e As EventArgs) Handles TXTGRIDENDS.Validated
         Try
-            If Val(TXTGRIDWT.Text.Trim) = 0 And Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTTL.Text.Trim) > 0 And CMBGRIDQUALITY.Text.Trim <> "" Then
+            If Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTTL.Text.Trim) > 0 And CMBGRIDQUALITY.Text.Trim <> "" Then
                 'GET DENIER FROM YARNMASTER
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(YARN_DENIER,0) AS DENIER", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBGRIDQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
