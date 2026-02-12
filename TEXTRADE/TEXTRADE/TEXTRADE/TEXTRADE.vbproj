@@ -2377,6 +2377,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.Designer.vb">
+      <DependentUpon>OpeningStockRolls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Magic Box\SelectAdjustBills.Designer.vb">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </Compile>
@@ -10189,6 +10195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramMaster.resx">
       <DependentUpon>OpeningProgramMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRolls.resx">
+      <DependentUpon>OpeningStockRolls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\SelectAdjustBills.resx">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
