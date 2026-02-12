@@ -2965,6 +2965,12 @@
     <Compile Include="Transactions\Yarn Module\Rolls\SelectRolls.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.Designer.vb">
+      <DependentUpon>SelectYarnProgram.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.Designer.vb">
       <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>
     </Compile>
@@ -10435,6 +10441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectRolls.resx">
       <DependentUpon>SelectRolls.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\SelectYarnProgram.resx">
+      <DependentUpon>SelectYarnProgram.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.resx">
       <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>

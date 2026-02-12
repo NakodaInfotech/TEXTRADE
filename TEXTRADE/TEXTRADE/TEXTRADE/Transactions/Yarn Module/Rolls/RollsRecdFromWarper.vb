@@ -1135,9 +1135,9 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJPROG As New SelectProgram
+            Dim OBJPROG As New SelectYarnProgram
             Dim DT As DataTable = OBJPROG.DT
-            OBJPROG.PARTYNAME = CMBNAME.Text.Trim
+            OBJPROG.WARPERNAME = CMBNAME.Text.Trim
             OBJPROG.ShowDialog()
             If DT.Rows.Count > 0 Then
                 TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
