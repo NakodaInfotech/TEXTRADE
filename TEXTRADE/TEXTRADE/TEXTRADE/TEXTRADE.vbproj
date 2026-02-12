@@ -444,6 +444,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.Designer.vb">
+      <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -8961,6 +8967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
+      <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
