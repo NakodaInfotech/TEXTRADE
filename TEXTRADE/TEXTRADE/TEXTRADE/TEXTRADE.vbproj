@@ -2929,6 +2929,30 @@
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.Designer.vb">
+      <DependentUpon>BeamRecdWarper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.Designer.vb">
+      <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.Designer.vb">
+      <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.Designer.vb">
+      <DependentUpon>SelectYarnIssue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.Designer.vb">
       <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
     </Compile>
@@ -10442,6 +10466,18 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.resx">
+      <DependentUpon>BeamRecdWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.resx">
+      <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
+      <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.resx">
+      <DependentUpon>SelectYarnIssue.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.resx">
       <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>
     </EmbeddedResource>
@@ -14617,9 +14653,7 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transactions\Yarn Module\Beam Received Warper\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
