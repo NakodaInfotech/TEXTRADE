@@ -180,16 +180,16 @@ Public Class BeamRecdFromSizer
         End Sub
 
         Sub FILLCMB()
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
-            If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'MILL'")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+        If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
         End Sub
 
         Private Sub BeamReceivedFromSizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
-                Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
-                USERADD = DTROW(0).Item(1)
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM RECD'")
+            USERADD = DTROW(0).Item(1)
                 USEREDIT = DTROW(0).Item(2)
                 USERVIEW = DTROW(0).Item(3)
                 USERDELETE = DTROW(0).Item(4)
@@ -1054,7 +1054,7 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            Dim OBJBEAM As New BeamRecdDetails
+            Dim OBJBEAM As New BeamRecdFromSizerDetails
             OBJBEAM.MdiParent = MDIMain
             OBJBEAM.Show()
         Catch ex As Exception

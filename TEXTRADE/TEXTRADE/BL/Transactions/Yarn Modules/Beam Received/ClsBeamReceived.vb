@@ -22,7 +22,7 @@ Public Class ClsBeamReceived
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_MFG_BEAMRECEIVEDFROMSIZER_SAVE"
+            Dim strCommand As String = "SP_TRANS_BEAMRECEIVEDFROMSIZER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -121,7 +121,7 @@ Public Class ClsBeamReceived
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_MFG_BEAMRECEIVEDFROMSIZER_UPDATE"
+            Dim strCommand As String = "SP_TRANS_BEAMRECEIVEDFROMSIZER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -238,7 +238,7 @@ Public Class ClsBeamReceived
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_MFG_BEAMRECEIVEDFROMSIZER_DELETE"
+            Dim strCommand As String = "SP_TRANS_BEAMRECEIVEDFROMSIZER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@RECDNO", alParaval(0)))
@@ -253,7 +253,7 @@ Public Class ClsBeamReceived
     Public Function SAVEUPLOAD() As Integer
         Dim INTRESULT As Integer
         Try
-            Dim STRCOMMAND As String = "SP_MFG_BEAMRECEIVEDFROMSIZER_SAVEUPLOAD"
+            Dim STRCOMMAND As String = "SP_TRANS_BEAMRECEIVEDFROMSIZER_SAVEUPLOAD"
             Dim ALPARAMATER As New ArrayList
             With ALPARAMATER
                 Dim I As Integer = 0

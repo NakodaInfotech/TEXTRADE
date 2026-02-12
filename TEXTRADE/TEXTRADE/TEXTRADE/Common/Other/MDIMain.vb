@@ -10988,4 +10988,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem11.Click
+        Try
+            Dim OBJRRFW As New BeamRecdFromSizer
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJRRFW As New BeamRecdFromSizerDetails
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

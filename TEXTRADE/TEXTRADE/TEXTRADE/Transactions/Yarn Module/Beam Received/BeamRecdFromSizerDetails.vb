@@ -2,7 +2,7 @@
 Imports BL
 Imports DevExpress.XtraGrid.Views.Grid
 
-Public Class BeamRecdDetails
+Public Class BeamRecdFromSizerDetails
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
