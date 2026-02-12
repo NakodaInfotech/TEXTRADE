@@ -97,7 +97,6 @@ Public Class RollsRecdFromWarper
         lbllocked.Visible = False
         PBlock.Visible = False
         GRIDROLLS.RowCount = 0
-        CMDSELECTPROGRAM.Enabled = True
 
         tstxtbillno.Clear()
 
@@ -220,7 +219,6 @@ Public Class RollsRecdFromWarper
 
                     CMBWINDINGMILL.Text = dttable.Rows(0).Item("WINDINGMILL").ToString
 
-                    CMDSELECTPROGRAM.Enabled = False
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
@@ -1149,7 +1147,6 @@ LINE1:
                 CMBQUALITY.Text = DT.Rows(0).Item("QUALITY")
                 CMBMILL.Text = DT.Rows(0).Item("MILLNAME")
                 TXTROLLS.Text = Val(DT.Rows(0).Item("ROLLS"))
-                CMDSELECTPROGRAM.Enabled = False
                 TXTLOTNO.Focus()
             End If
 
