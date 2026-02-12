@@ -21,7 +21,7 @@ Public Class ClsRollsRecdFromWarper
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_MFG_ROLLSRECEIVED_SAVE"
+            Dim strCommand As String = "SP_TRANS_ROLLSRECEIVED_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -155,7 +155,7 @@ Public Class ClsRollsRecdFromWarper
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_MFG_ROLLSRECEIVED_UPDATE"
+            Dim strCommand As String = "SP_TRANS_ROLLSRECEIVED_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -309,7 +309,7 @@ Public Class ClsRollsRecdFromWarper
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_MFG_ROLLSRECEIVED_DELETE"
+            Dim strCommand As String = "SP_TRANS_ROLLSRECEIVED_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ROLLSRECNO", alParaval(0)))
@@ -324,7 +324,7 @@ Public Class ClsRollsRecdFromWarper
     Public Function SAVEUPLOAD() As Integer
         Dim INTRESULT As Integer
         Try
-            Dim STRCOMMAND As String = "SP_MFG_ROLLSRECEIVED_SAVEUPLOAD"
+            Dim STRCOMMAND As String = "SP_TRANS_ROLLSRECEIVED_SAVEUPLOAD"
             Dim ALPARAMATER As New ArrayList
             With ALPARAMATER
                 Dim I As Integer = 0

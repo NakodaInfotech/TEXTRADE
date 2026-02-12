@@ -1,6 +1,6 @@
 ﻿Imports BL
 
-Public Class RollsRecdFromSizer
+Public Class RollsIssueToSizer
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDUPLOADDOUBLECLICK As Boolean
@@ -81,11 +81,11 @@ Public Class RollsRecdFromSizer
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(YARN_no),0) + 1 ", " YARNISSUE ", " AND YARN_cmpid=" & CmpId & " and YARN_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(ROLLISSUE_NO),0) + 1 ", " ROLLISSUETOSIZER ", " AND ROLLISSUE_cmpid=" & CmpId & " and ROLLISSUE_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTSERIES.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
-    Private Sub RollsIssue_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub RollsIssueToSizer_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
                 If errorvalid() = True Then
@@ -117,14 +117,14 @@ Public Class RollsRecdFromSizer
     End Sub
 
     Sub FILLCMB()
-        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
+        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If cmbtrans.Text = "" Then FILLNAME(cmbtrans, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'TRANSPORT'")
     End Sub
 
-    Private Sub RollsIssue_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub RollsIssueToSizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN PRODUCTION'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -143,7 +143,7 @@ Public Class RollsRecdFromSizer
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJROLLISSUE As New ClsRollIssue
+                Dim OBJROLLISSUE As New ClsRollIssueToSizer
 
                 OBJROLLISSUE.alParaval.Add(TEMPROLLSISSUENO)
                 OBJROLLISSUE.alParaval.Add(YearId)
@@ -180,7 +180,7 @@ Public Class RollsRecdFromSizer
 
                     'UPLOAD(GRID)
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH(" ROLLISSUE_UPLOAD.ROLLISSUE_SRNO AS GRIDSRNO, ROLLISSUE_UPLOAD.ROLLISSUE_REMARKS AS REMARKS, ROLLISSUE_UPLOAD.ROLLISSUE_NAME AS NAME, ROLLISSUE_UPLOAD.ROLLISSUE_PHOTO AS IMGPATH ", "", " ROLLISSUE_UPLOAD ", " AND ROLLISSUE_UPLOAD.ROLLISSUE_NO = " & TEMPROLLSISSUENO & " AND ROLLISSUE_YEARID = " & YearId & " ORDER BY ROLLISSUE_UPLOAD.ROLLISSUE_SRNO")
+                    Dim DT As DataTable = OBJCMN.SEARCH(" ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_SRNO AS GRIDSRNO, ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_REMARKS AS REMARKS, ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_NAME AS NAME, ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_PHOTO AS IMGPATH ", "", " ROLLISSUETOSIZER_UPLOAD ", " AND ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_NO = " & TEMPROLLSISSUENO & " AND ROLLISSUE_YEARID = " & YearId & " ORDER BY ROLLISSUETOSIZER_UPLOAD.ROLLISSUE_SRNO")
                     If DT.Rows.Count > 0 Then
                         For Each DTR As DataRow In DT.Rows
                             gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
@@ -277,7 +277,7 @@ Public Class RollsRecdFromSizer
 
 
 
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval = alParaval
 
             If EDIT = False Then
@@ -315,7 +315,7 @@ Public Class RollsRecdFromSizer
     Sub SAVEUPLOAD()
 
         Try
-            Dim OBJROLLISSUE As New ClsRollIssue
+            Dim OBJROLLISSUE As New ClsRollIssueToSizer
 
 
             For Each row As Windows.Forms.DataGridViewRow In gridupload.Rows
@@ -455,7 +455,7 @@ Public Class RollsRecdFromSizer
 
     Private Sub cmbname_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -478,7 +478,7 @@ Public Class RollsRecdFromSizer
 
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
-            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "SIZER")
+            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -529,7 +529,7 @@ Line2:
                 Dim DT As DataTable = OBJCMN.SEARCH(" ROLLISSUE_NO ", "", "  ROLLISSUE", " AND ROLLISSUE_NO = '" & TEMPROLLSISSUENO & "' AND ROLLISSUE.ROLLISSUE_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     EDIT = True
-                    RollsIssue_Load(sender, e)
+                    RollsIssueToSizer_Load(sender, e)
                 Else
                     TEMPROLLSISSUENO = Val(TEMPROLLSISSUENO - 1)
                     GoTo Line2
@@ -559,7 +559,7 @@ LINE1:
             CLEAR()
             If Val(TXTROLLISSUENO.Text) - 1 >= TEMPROLLSISSUENO Then
                 EDIT = True
-                RollsIssue_Load(sender, e)
+                RollsIssueToSizer_Load(sender, e)
             Else
                 CLEAR()
                 EDIT = False
@@ -584,7 +584,7 @@ LINE1:
                 TEMPROLLSISSUENO = Val(tstxtbillno.Text)
                 If TEMPROLLSISSUENO > 0 Then
                     EDIT = True
-                    RollsIssue_Load(sender, e)
+                    RollsIssueToSizer_Load(sender, e)
                 Else
                     CLEAR()
                     EDIT = False
@@ -719,7 +719,7 @@ LINE1:
                     alParaval.Add(TEMPROLLSISSUENO)
                     alParaval.Add(YearId)
 
-                    Dim CLSISSUE As New ClsRollIssue
+                    Dim CLSISSUE As New ClsRollIssueToSizer
                     CLSISSUE.alParaval = alParaval
                     IntResult = CLSISSUE.Delete()
 
@@ -776,6 +776,8 @@ LINE1:
         End Try
     End Sub
 
+
+
     Private Sub GRIDROLLS_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GRIDROLLS.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDROLLS.RowCount > 0 Then
@@ -791,7 +793,7 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            Dim OBJROLL As New RollIssueDetails
+            Dim OBJROLL As New RollsIssueToSizerDetails
             OBJROLL.MdiParent = MDIMain
             OBJROLL.Show()
         Catch EX As Exception
@@ -815,7 +817,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub RollsIssue_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub RollsIssueToSizer_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         'If ALLOWMFG = False Then Exit Sub
     End Sub
 End Class

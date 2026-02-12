@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class RollsRecdFromSizer
+Partial Class RollsIssueToSizer
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -34,7 +34,7 @@ Partial Class RollsRecdFromSizer
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RollsRecdFromSizer))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RollsIssueToSizer))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.TXTLENGTH = New System.Windows.Forms.TextBox()
@@ -1083,7 +1083,7 @@ Partial Class RollsRecdFromSizer
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'RollsRecdFromSizer
+        'RollsIssueToSizer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1083, 581)
@@ -1091,9 +1091,9 @@ Partial Class RollsRecdFromSizer
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Name = "RollsRecdFromSizer"
+        Me.Name = "RollsIssueToSizer"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "RollsRecdFromSizer"
+        Me.Text = "Rolls Issue To Sizer"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()

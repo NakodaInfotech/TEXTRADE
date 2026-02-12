@@ -1,6 +1,6 @@
 ﻿
 Imports DB
-Public Class ClsRollIssue
+Public Class ClsRollIssueToSizer
     Private objDBOperation As DBOperation
     Public alParaval As New ArrayList
 
@@ -20,7 +20,7 @@ Public Class ClsRollIssue
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_MFG_ROLLISSUE_SAVE"
+            Dim strCommand As String = "SP_TRANS_ROLLISSUETOSIZER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -100,7 +100,7 @@ Public Class ClsRollIssue
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_MFG_ROLLISSUE_UPDATE"
+            Dim strCommand As String = "SP_TRANS_ROLLISSUETOSIZER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -181,7 +181,7 @@ Public Class ClsRollIssue
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTROLLISSUE_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTROLLISSUETOSIZER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ROLLISSUENO", alParaval(0)))
@@ -198,7 +198,7 @@ Public Class ClsRollIssue
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_MFG_ROLLISSUE_DELETE"
+            Dim strCommand As String = "SP_TRANS_ROLLISSUETOSIZER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ROLLISSUENO", alParaval(0)))
@@ -213,7 +213,7 @@ Public Class ClsRollIssue
     Public Function SAVEUPLOAD() As Integer
         Dim INTRESULT As Integer
         Try
-            Dim STRCOMMAND As String = "SP_MFG_ROLLISSUE_SAVEUPLOAD"
+            Dim STRCOMMAND As String = "SP_TRANS_ROLLISSUETOSIZER_SAVEUPLOAD"
             Dim ALPARAMATER As New ArrayList
             With ALPARAMATER
                 Dim I As Integer = 0

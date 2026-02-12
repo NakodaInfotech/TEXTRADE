@@ -53,6 +53,7 @@ Partial Class ExpenseVoucherGridDetails
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,6 +63,7 @@ Partial Class ExpenseVoucherGridDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.CMDOK)
         Me.BlendPanel1.Controls.Add(Me.cmdcancel)
@@ -105,7 +107,7 @@ Partial Class ExpenseVoucherGridDetails
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "EXPNO"
-        Me.gsrno.ImageIndex = 1
+        Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.Visible = True
         Me.gsrno.VisibleIndex = 0
@@ -115,7 +117,7 @@ Partial Class ExpenseVoucherGridDetails
         '
         Me.gname.Caption = "Name"
         Me.gname.FieldName = "NAME"
-        Me.gname.ImageIndex = 0
+        Me.gname.ImageOptions.ImageIndex = 0
         Me.gname.Name = "gname"
         Me.gname.Visible = True
         Me.gname.VisibleIndex = 1
@@ -285,7 +287,7 @@ Partial Class ExpenseVoucherGridDetails
         Me.CMDOK.FlatAppearance.BorderSize = 0
         Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(534, 547)
+        Me.CMDOK.Location = New System.Drawing.Point(577, 547)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 2
@@ -299,7 +301,7 @@ Partial Class ExpenseVoucherGridDetails
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(620, 547)
+        Me.cmdcancel.Location = New System.Drawing.Point(663, 547)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 3
@@ -333,7 +335,7 @@ Partial Class ExpenseVoucherGridDetails
         '
         Me.cmdprint.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdprint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdprint.Location = New System.Drawing.Point(318, 578)
+        Me.cmdprint.Location = New System.Drawing.Point(182, 545)
         Me.cmdprint.Name = "cmdprint"
         Me.cmdprint.Size = New System.Drawing.Size(63, 24)
         Me.cmdprint.TabIndex = 256
@@ -389,6 +391,20 @@ Partial Class ExpenseVoucherGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Expense Voucher to Change"
         '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 547)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        '
         'ExpenseVoucherGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -441,4 +457,5 @@ Partial Class ExpenseVoucherGridDetails
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents lbl As Label
     Friend WithEvents GGROUPNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
