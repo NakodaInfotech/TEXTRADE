@@ -2377,6 +2377,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.Designer.vb">
+      <DependentUpon>OpeningStockRolls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Magic Box\SelectAdjustBills.Designer.vb">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </Compile>
@@ -2927,6 +2933,30 @@
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.Designer.vb">
+      <DependentUpon>BeamRecdWarper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.Designer.vb">
+      <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.Designer.vb">
+      <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.Designer.vb">
+      <DependentUpon>SelectYarnIssue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.Designer.vb">
@@ -10166,6 +10196,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramMaster.resx">
       <DependentUpon>OpeningProgramMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRolls.resx">
+      <DependentUpon>OpeningStockRolls.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\SelectAdjustBills.resx">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </EmbeddedResource>
@@ -10441,6 +10474,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.resx">
+      <DependentUpon>BeamRecdWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.resx">
+      <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
+      <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.resx">
+      <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\BeamRecdFromSizerDetails.resx">
       <DependentUpon>BeamRecdFromSizerDetails.vb</DependentUpon>

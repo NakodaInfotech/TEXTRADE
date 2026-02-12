@@ -7488,7 +7488,7 @@ line1:
         Try
             Dim clscommon As New ClsCommon
             Dim dt As DataTable
-            dt = clscommon.SEARCH(" GODOWN_NAME AS GODOWNNAME ", "", " GODOWNMASTER ", " and GODOWN_ISDEFAULT = 'True' and GODOWN_YEARID = " & YearId)
+            dt = clscommon.SEARCH(" GODOWN_NAME AS GODOWNNAME ", "", " GODOWNMASTER ", " and GODOWN_YEARID = " & YearId)
             If dt.Rows.Count > 0 Then Return dt.Rows(0).Item("GODOWNNAME") Else Return ""
         Catch ex As Exception
             Throw ex

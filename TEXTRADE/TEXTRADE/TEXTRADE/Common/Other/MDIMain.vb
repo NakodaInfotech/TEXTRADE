@@ -11008,4 +11008,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub ROLLSTOCK_GODOWN_Click(sender As Object, e As EventArgs) Handles ROLLSTOCK_GODOWN.Click
+        Try
+            Dim OBJSTOCK As New OpeningStockRolls
+            OBJSTOCK.MdiParent = Me
+            OBJSTOCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

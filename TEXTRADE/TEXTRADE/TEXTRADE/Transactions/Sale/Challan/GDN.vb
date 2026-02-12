@@ -669,6 +669,7 @@ CHECKNEXTLINEMTRS:
                     txttransref.Text = DTSO.Rows(0).Item("REFNO")
                     TXTTRANSREMARKS.Text = DTSO.Rows(0).Item("PONO")
                 End If
+                If ClientName = "SNCM" Then txttransref.Text = DTSO.Rows(0).Item("REFNO")
                 If ClientName = "RAJKRIPA" Then txttransref.Text = DTSO.Rows(0).Item("PACKINGTYPE")
                 If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Then txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
                 TXTSONO.Enabled = False
@@ -2526,6 +2527,11 @@ NEXTLINE:
                 cmbcity.BackColor = Color.LemonChiffon
                 If UserName <> "Admin" Then GRIDGDN.ReadOnly = True
                 If UserName <> "Admin" Then CMDSELECTSTOCK.Enabled = False
+                CMBHASTE.Visible = False
+                txttransref.Left = CMBHASTE.Left
+                txttransref.Top = CMBHASTE.Top
+                txttransref.Width = CMBHASTE.Width
+                txttransref.TabIndex = CMBHASTE.TabIndex
             End If
 
             If ClientName = "SHEETAL" Or ClientName = "MILUXE" Then

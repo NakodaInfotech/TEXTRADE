@@ -1101,6 +1101,11 @@ Partial Class MDIMain
         Me.ToolStripSeparator173 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator170 = New System.Windows.Forms.ToolStripSeparator()
         Me.GREYRECDTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.BeamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BeamRecievedFromSizerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem11 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator328 = New System.Windows.Forms.ToolStripSeparator()
         Me.RollsTransactionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RollsRecdFromWarperToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1255,11 +1260,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.BeamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BeamRecievedFromSizerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddNewEntryToolStripMenuItem11 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingEntryToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator328 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ROLLSTOCK_GODOWN = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3489,7 +3490,7 @@ Partial Class MDIMain
         '
         'OPENST_MASTER
         '
-        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.YARNSTOCKJOBBER_TOOL})
+        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ROLLSTOCK_GODOWN, Me.YARNSTOCKJOBBER_TOOL})
         Me.OPENST_MASTER.Enabled = False
         Me.OPENST_MASTER.Name = "OPENST_MASTER"
         Me.OPENST_MASTER.Size = New System.Drawing.Size(184, 22)
@@ -8157,6 +8158,38 @@ Partial Class MDIMain
         Me.GREYRECDTOOLSTRIP.Size = New System.Drawing.Size(218, 6)
         Me.GREYRECDTOOLSTRIP.Visible = False
         '
+        'BeamToolStripMenuItem
+        '
+        Me.BeamToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BeamRecievedFromSizerToolStripMenuItem})
+        Me.BeamToolStripMenuItem.Name = "BeamToolStripMenuItem"
+        Me.BeamToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.BeamToolStripMenuItem.Text = "Beam Transactions"
+        '
+        'BeamRecievedFromSizerToolStripMenuItem
+        '
+        Me.BeamRecievedFromSizerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem11, Me.EditExistingEntryToolStripMenuItem10})
+        Me.BeamRecievedFromSizerToolStripMenuItem.Name = "BeamRecievedFromSizerToolStripMenuItem"
+        Me.BeamRecievedFromSizerToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.BeamRecievedFromSizerToolStripMenuItem.Text = "Beam Recd From Sizer"
+        '
+        'AddNewEntryToolStripMenuItem11
+        '
+        Me.AddNewEntryToolStripMenuItem11.Name = "AddNewEntryToolStripMenuItem11"
+        Me.AddNewEntryToolStripMenuItem11.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewEntryToolStripMenuItem11.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem10
+        '
+        Me.EditExistingEntryToolStripMenuItem10.Name = "EditExistingEntryToolStripMenuItem10"
+        Me.EditExistingEntryToolStripMenuItem10.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem10.Text = "Edit Existing Entry"
+        '
+        'ToolStripSeparator328
+        '
+        Me.ToolStripSeparator328.Name = "ToolStripSeparator328"
+        Me.ToolStripSeparator328.Size = New System.Drawing.Size(218, 6)
+        Me.ToolStripSeparator328.Visible = False
+        '
         'RollsTransactionsToolStripMenuItem
         '
         Me.RollsTransactionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RollsRecdFromWarperToolStripMenuItem, Me.RollsIssueToSizerToolStripMenuItem})
@@ -9175,37 +9208,11 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'BeamToolStripMenuItem
+        'ROLLSTOCK_GODOWN
         '
-        Me.BeamToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BeamRecievedFromSizerToolStripMenuItem})
-        Me.BeamToolStripMenuItem.Name = "BeamToolStripMenuItem"
-        Me.BeamToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.BeamToolStripMenuItem.Text = "Beam Transactions"
-        '
-        'BeamRecievedFromSizerToolStripMenuItem
-        '
-        Me.BeamRecievedFromSizerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem11, Me.EditExistingEntryToolStripMenuItem10})
-        Me.BeamRecievedFromSizerToolStripMenuItem.Name = "BeamRecievedFromSizerToolStripMenuItem"
-        Me.BeamRecievedFromSizerToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.BeamRecievedFromSizerToolStripMenuItem.Text = "Beam Recd From Sizer"
-        '
-        'AddNewEntryToolStripMenuItem11
-        '
-        Me.AddNewEntryToolStripMenuItem11.Name = "AddNewEntryToolStripMenuItem11"
-        Me.AddNewEntryToolStripMenuItem11.Size = New System.Drawing.Size(180, 22)
-        Me.AddNewEntryToolStripMenuItem11.Text = "Add New Entry"
-        '
-        'EditExistingEntryToolStripMenuItem10
-        '
-        Me.EditExistingEntryToolStripMenuItem10.Name = "EditExistingEntryToolStripMenuItem10"
-        Me.EditExistingEntryToolStripMenuItem10.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingEntryToolStripMenuItem10.Text = "Edit Existing Entry"
-        '
-        'ToolStripSeparator328
-        '
-        Me.ToolStripSeparator328.Name = "ToolStripSeparator328"
-        Me.ToolStripSeparator328.Size = New System.Drawing.Size(218, 6)
-        Me.ToolStripSeparator328.Visible = False
+        Me.ROLLSTOCK_GODOWN.Name = "ROLLSTOCK_GODOWN"
+        Me.ROLLSTOCK_GODOWN.Size = New System.Drawing.Size(246, 22)
+        Me.ROLLSTOCK_GODOWN.Text = "Rolls Stock At Godown"
         '
         'MDIMain
         '
@@ -10470,4 +10477,5 @@ Partial Class MDIMain
     Friend WithEvents AddNewEntryToolStripMenuItem11 As ToolStripMenuItem
     Friend WithEvents EditExistingEntryToolStripMenuItem10 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator328 As ToolStripSeparator
+    Friend WithEvents ROLLSTOCK_GODOWN As ToolStripMenuItem
 End Class
