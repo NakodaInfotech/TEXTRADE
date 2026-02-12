@@ -2917,16 +2917,16 @@
     <Compile Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollIssueDetails.Designer.vb">
-      <DependentUpon>RollIssueDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.Designer.vb">
+      <DependentUpon>RollsIssueToSizerDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollIssueDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.Designer.vb">
-      <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.Designer.vb">
+      <DependentUpon>RollsIssueToSizer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.vb">
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.Designer.vb">
@@ -10388,11 +10388,11 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollIssueDetails.resx">
-      <DependentUpon>RollIssueDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsIssueToSizerDetails.resx">
+      <DependentUpon>RollsIssueToSizerDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromSizer.resx">
-      <DependentUpon>RollsRecdFromSizer.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsIssueToSizer.resx">
+      <DependentUpon>RollsIssueToSizer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.resx">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
