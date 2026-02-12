@@ -1135,7 +1135,7 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJPROG As New SelectYarnProgram
+            Dim OBJPROG As New SelectProgram
             Dim DT As DataTable = OBJPROG.DT
             OBJPROG.PARTYNAME = CMBNAME.Text.Trim
             OBJPROG.ShowDialog()
