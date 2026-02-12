@@ -1127,7 +1127,7 @@ LINE1:
         DTCHALLANDATE.Select(0, 0)
     End Sub
 
-    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTPROGRAM.Click
+    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If CMBNAME.Text.Trim = "" Then
                 MsgBox("Select Warper First", MsgBoxStyle.Critical)
