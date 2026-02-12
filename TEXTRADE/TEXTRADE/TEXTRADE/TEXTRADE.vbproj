@@ -2899,6 +2899,12 @@
     <Compile Include="Transactions\Sample\Booklet Creation\SampleBookletCreationDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.Designer.vb">
+      <DependentUpon>SelectBeamStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgram.Designer.vb">
       <DependentUpon>BeamProgram.vb</DependentUpon>
     </Compile>
@@ -10408,6 +10414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sample\Sample Booklet Inward\SampleBookletInwardDetails.resx">
       <DependentUpon>SampleBookletInwardDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.resx">
+      <DependentUpon>SelectBeamStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgram.resx">
       <DependentUpon>BeamProgram.vb</DependentUpon>
