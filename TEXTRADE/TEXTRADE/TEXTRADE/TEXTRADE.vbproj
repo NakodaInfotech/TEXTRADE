@@ -14599,7 +14599,9 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Transactions\Yarn Module\Beam Received Warper\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
