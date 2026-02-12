@@ -1127,7 +1127,7 @@ LINE1:
         DTCHALLANDATE.Select(0, 0)
     End Sub
 
-    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTPROGRAM.Click
+    Private Sub CMDSELECTPROGRAM_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If CMBNAME.Text.Trim = "" Then
                 MsgBox("Select Warper First", MsgBoxStyle.Critical)
@@ -1135,9 +1135,9 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJPROG As New SelectProgram
+            Dim OBJPROG As New SelectYarnProgram
             Dim DT As DataTable = OBJPROG.DT
-            OBJPROG.PARTYNAME = CMBNAME.Text.Trim
+            OBJPROG.WARPERNAME = CMBNAME.Text.Trim
             OBJPROG.ShowDialog()
             If DT.Rows.Count > 0 Then
                 TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
