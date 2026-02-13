@@ -2294,6 +2294,13 @@ NEXTLINE:
                 txttransref.BackColor = Color.LemonChiffon
             End If
 
+            If ClientName = "MASHOK" Then
+                GBALENO.HeaderText = "Coil No"
+                GDESIGN.HeaderText = "Coil Width"
+                GPIECETYPE.HeaderText = "Coil Type"
+            End If
+
+
             If ClientName = "SOFTAS" And UserName <> "Admin" Then
                 ORATE.Visible = False
                 GRATE.Visible = False
@@ -2673,7 +2680,7 @@ NEXTLINE:
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
 
-                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
+                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
 
                     Dim OBJCMN As New ClsCommon
                     If ClientName = "CC" Or ClientName = "C3" Then

@@ -244,16 +244,19 @@ Public Class SelectStockGDN
                 gridwo.Columns(I).Width = 200 'ITEMNAME
                 I = I + 1
                 gridwo.Columns(I).Width = 150 'QUALITY
-                If ClientName <> "SVS" Then gridwo.Columns(I).Visible = False  'DESIGNNO
+                If ClientName <> "SVS" Then gridwo.Columns(I).Visible = False
                 I = I + 1
 
                 If ClientName = "SPCORP" Then gridwo.Columns(I).Width = 200 Else gridwo.Columns(I).Width = 100 'DESIGNNO
+                If ClientName = "MASHOK" Then gridwo.Columns(I).HeaderText = "Coil Width"
                 gridwo.Columns(I).DefaultCellStyle.Font = New Font("Calibri", 12, FontStyle.Regular, GraphicsUnit.Point)
                 I = I + 1
+
                 gridwo.Columns(I).Width = 80 'SHADE
                 I = I + 1
+
                 gridwo.Columns(I).Width = 100 'GODOWN
-                If ClientName = "KOCHAR" Then gridwo.Columns(I).Visible = False
+                gridwo.Columns(I).Visible = False
                 I = I + 1
 
 
@@ -289,12 +292,15 @@ Public Class SelectStockGDN
                 I = I + 1
                 gridwo.Columns(I).Width = 60 'TYPE
                 I = I + 1
+
+                If ClientName = "MASHOK" Then gridwo.Columns(I).HeaderText = "Coil Type"
                 gridwo.Columns(I).Width = 70 'PIECETYPE
                 I = I + 1
 
                 gridwo.Columns(I).Width = 80 'BALENO
                 If ClientName = "INDRANI" Then gridwo.Columns(I).HeaderText = "SO No"
                 If ClientName = "AMAN" Or ClientName = "AARYA" Then gridwo.Columns(I).HeaderText = "Challan No"
+                If ClientName = "MASHOK" Then gridwo.Columns(I).HeaderText = "Coil No"
                 I = I + 1
 
 
@@ -800,6 +806,12 @@ Public Class SelectStockGDN
             If ALLOWBARCODEPRINT = False Then
                 LBLENTRYNO.Visible = False
                 TXTENTRYNO.Visible = False
+            End If
+
+            If ClientName = "MASHOK" Then
+                LBLBALENO.Text = "Coil No"
+                LBLDESIGN.Text = "Coil Width"
+                LBLPIECETYPE.Text = "Coil Type"
             End If
         Catch ex As Exception
             Throw ex
