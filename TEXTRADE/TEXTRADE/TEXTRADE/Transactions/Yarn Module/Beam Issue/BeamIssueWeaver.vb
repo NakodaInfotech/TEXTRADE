@@ -89,7 +89,17 @@ Public Class BeamIssueWeaver
         If DTTABLE.Rows.Count > 0 Then
             TXTISSUENO.Text = DTTABLE.Rows(0).Item(0)
         End If
-        'GETMAXSERIES(TXTSERIES)
+
+        GETMAXSERIES(TXTSERIES)
+
+    End Sub
+    Public Sub GETMAXSERIES(ByVal TXTSERIES As TextBox)
+        Try
+            Dim DTTABLE As DataTable = getmax(" ISNULL(MAX(SERIES),0) + 1 ", " ( SELECT MAX(ROLLISSUE_SERIES) AS SERIES, ROLLISSUE_yearid AS YEARID FROM ROLLISSUE GROUP BY ROLLISSUE_yearid  UNION ALL  SELECT MAX(BEAMISSUE_SERIES) AS SERIES, BEAMISSUE_yearid AS YEARID  FROM BEAMISSUETOWEAVER GROUP BY BEAMISSUE_yearid ) AS T", " AND T.YEARID = " & YearId)
+            If DTTABLE.Rows.Count > 0 Then TXTSERIES.Text = DTTABLE.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub BeamIssueWeaver_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -123,7 +133,7 @@ Public Class BeamIssueWeaver
         End Try
     End Sub
     Sub FILLCMB()
-        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'WEAVER'")
+        If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If cmbtrans.Text = "" Then FILLNAME(cmbtrans, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'TRANSPORT'")
         fillBEAM(CMBBEAMNAME, False)
@@ -365,7 +375,7 @@ Public Class BeamIssueWeaver
                     Exit Sub
                 End If
                 alParaval.Add(TEMPBEAMISSUENO)
-                IntResult = OBJBEAMISSUE.Update()
+                IntResult = OBJBEAMISSUE.UPDATE()
                 EDIT = False
                 MsgBox("Details Updated")
 
@@ -532,7 +542,7 @@ Public Class BeamIssueWeaver
 
     Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'WEAVER'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -555,7 +565,7 @@ Public Class BeamIssueWeaver
 
     Private Sub cmbname_Validating(sender As Object, e As CancelEventArgs) Handles cmbname.Validating
         Try
-            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'WEAVER'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "WEAVER")
+            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "")
         Catch ex As Exception
             Throw ex
         End Try

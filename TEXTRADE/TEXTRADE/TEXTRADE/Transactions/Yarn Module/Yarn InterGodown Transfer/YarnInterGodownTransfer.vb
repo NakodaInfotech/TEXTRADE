@@ -875,4 +875,24 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDJO_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDJO.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDJO.RowCount > 0 Then
+                If GRIDDOUBLECLICK = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+
+                'end of block
+                GRIDJO.Rows.RemoveAt(GRIDJO.CurrentRow.Index)
+                getsrno(GRIDJO)
+                total()
+            ElseIf e.KeyCode = Keys.F5 Then
+                EDITROW()
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class

@@ -66,7 +66,7 @@ Public Class ClsRollIssueToSizer
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
@@ -146,7 +146,7 @@ Public Class ClsRollIssueToSizer
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
