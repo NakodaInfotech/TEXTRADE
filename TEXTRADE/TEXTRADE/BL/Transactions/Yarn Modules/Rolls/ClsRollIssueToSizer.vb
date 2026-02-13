@@ -35,10 +35,6 @@ Public Class ClsRollIssueToSizer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMSRNO", alParaval(I)))
-                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@PROGENDS", alParaval(I)))
                 I = I + 1
@@ -115,10 +111,7 @@ Public Class ClsRollIssueToSizer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMSRNO", alParaval(I)))
-                I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@PROGENDS", alParaval(I)))
                 I = I + 1

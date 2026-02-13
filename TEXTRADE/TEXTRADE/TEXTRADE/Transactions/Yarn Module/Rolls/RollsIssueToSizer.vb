@@ -21,7 +21,6 @@ Public Class RollsIssueToSizer
 
     Sub CLEAR()
 
-        TXTSERIES.Clear()
         TXTROLLISSUENO.Clear()
         DTROLLISSUEDATE.Text = Mydate
         cmbname.Text = ""
@@ -38,7 +37,6 @@ Public Class RollsIssueToSizer
         TXTLENGTH.Clear()
 
         txtremarks.Clear()
-        TXTPROGRAMSRNO.Clear()
         GRIDROLLS.RowCount = 0
 
         getmaxno()
@@ -82,7 +80,7 @@ Public Class RollsIssueToSizer
     Sub getmaxno()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(ROLLISSUE_NO),0) + 1 ", " ROLLISSUE ", " AND ROLLISSUE_cmpid=" & CmpId & " and ROLLISSUE_yearid=" & YearId)
-        If DTTABLE.Rows.Count > 0 Then TXTSERIES.Text = DTTABLE.Rows(0).Item(0)
+        If DTTABLE.Rows.Count > 0 Then TXTROLLISSUENO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
     Private Sub RollsIssueToSizer_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -152,15 +150,12 @@ Public Class RollsIssueToSizer
                 If dttable.Rows.Count > 0 Then
                     cmbname.Focus()
 
-                    TXTSERIES.Text = Val(dttable.Rows(0).Item("SERIES"))
                     TXTROLLISSUENO.Text = TEMPROLLSISSUENO
                     DTROLLISSUEDATE.Text = dttable.Rows(0).Item("ROLLISSUEDATE")
                     CMBOURGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
                     cmbname.Text = dttable.Rows(0).Item("SIZER").ToString
                     cmbtrans.Text = dttable.Rows(0).Item("TRANSPORT").ToString
                     TXTVEHICLENO.Text = dttable.Rows(0).Item("VEHICALNO").ToString
-                    TXTPROGRAMNO.Text = Val(dttable.Rows(0).Item("PROGRAMNO"))
-                    TXTPROGRAMSRNO.Text = Val(dttable.Rows(0).Item("PROGRAMSRNO"))
 
                     TXTENDS.Text = Val(dttable.Rows(0).Item("PROGENDS"))
                     TXTTOTALENDS.Text = Val(dttable.Rows(0).Item("TOTALENDS"))
@@ -210,8 +205,6 @@ Public Class RollsIssueToSizer
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(cmbtrans.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
-            alParaval.Add(Val(TXTPROGRAMNO.Text.Trim))
-            alParaval.Add(Val(TXTPROGRAMSRNO.Text.Trim))
             alParaval.Add(Val(TXTENDS.Text.Trim))
             alParaval.Add(Val(TXTTOTALENDS.Text.Trim))
             alParaval.Add(Val(TXTLENGTH.Text.Trim))
@@ -751,10 +744,8 @@ LINE1:
                 OBJROLLSTOCK.ShowDialog()
                 If DTROLLSTOCK.Rows.Count > 0 Then
                     For Each ROW As DataRow In DTROLLSTOCK.Rows
-                        GRIDROLLS.Rows.Add(0, ROW("QUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), "", ROW("NO"), ROW("SRNO"), ROW("TYPE"))
+                        GRIDROLLS.Rows.Add(0, ROW("YARNQUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), "", ROW("NO"), ROW("SRNO"), ROW("TYPE"))
                     Next
-                    TXTPROGRAMNO.Text = Val(DTROLLSTOCK.Rows(0).Item("PROGRAMNO"))
-                    TXTPROGRAMSRNO.Text = Val(DTROLLSTOCK.Rows(0).Item("PROGRAMSRNO"))
 
                     TXTENDS.Text = Val(DTROLLSTOCK.Rows(0).Item("ENDS"))
                     TXTTOTALENDS.Text = Val(DTROLLSTOCK.Rows(0).Item("TOTALENDS"))

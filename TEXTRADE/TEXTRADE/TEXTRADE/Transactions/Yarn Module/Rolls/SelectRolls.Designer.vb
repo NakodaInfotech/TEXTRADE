@@ -145,7 +145,7 @@ Partial Class SelectRolls
         'GQUALITY
         '
         Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
+        Me.GQUALITY.FieldName = "YARNQUALITY"
         Me.GQUALITY.Name = "GQUALITY"
         Me.GQUALITY.OptionsColumn.AllowEdit = False
         Me.GQUALITY.Visible = True

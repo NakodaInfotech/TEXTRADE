@@ -495,11 +495,10 @@ LINE1:
             bln = False
         End If
 
-        'DONE TEMPORARILY
-        'If lbllocked.Visible = True Then
-        '    EP.SetError(lbllocked, "Unable to Modify, Entry Locked")
-        '    bln = False
-        'End If
+        If lbllocked.Visible = True Then
+            EP.SetError(lbllocked, "Unable to Modify, Entry Locked")
+            bln = False
+        End If
 
         Return bln
     End Function
