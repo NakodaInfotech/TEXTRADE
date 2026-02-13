@@ -558,8 +558,6 @@ LINE1:
             ALPARAVAL.Add("")   'TRANSPORT
             ALPARAVAL.Add("")   'VEHICLE NO
 
-            ALPARAVAL.Add(Val(TXTPROGRAMNO.Text.Trim))
-            ALPARAVAL.Add(Val(TXTPROGRAMSRNO.Text.Trim))  ''
 
             ALPARAVAL.Add(Val(TXTENDS.Text.Trim))  ''
             ALPARAVAL.Add(Val(TXTTOTALENDS.Text.Trim))  ''
