@@ -34,7 +34,7 @@ Public Class SelectRollIssue
 
             Dim objcmn As New ClsCommon
             Dim dt As DataTable
-            dt = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK, [NO] ,[DATE] ,[SRNO],[TYPE],[QUALITY],[MILLNAME],[ROLLS],[ENDS],[TOTALENDS],[LENGTH],[PROGRAMNO],[SIZERNAME], WT, DENIER ", "", " [ROLLSTOCK_SIZER] ", WHERE & " AND YEARID = " & YearId)
+            dt = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK, [NO] ,[DATE] ,[SRNO],[TYPE],[YARNQUALITY],[MILLNAME],[ROLLS],[ENDS],[TOTALENDS],[LENGTH],[SIZERNAME], WT, DENIER ", "", " [ROLLSTOCK_SIZER] ", WHERE & " AND YEARID = " & YearId)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -67,9 +67,8 @@ Public Class SelectRollIssue
             DT.Columns.Add("ROLLISSUESRNO")
             DT.Columns.Add("TYPE")
             DT.Columns.Add("MILLNAME")
-            DT.Columns.Add("PROGRAMNO")
             DT.Columns.Add("WT")
-            DT.Columns.Add("QUALITYNAME")
+            DT.Columns.Add("YARNQUALITY")
             DT.Columns.Add("TOTALENDS")
             DT.Columns.Add("ROLLS")
             DT.Columns.Add("LENGTH")
@@ -79,7 +78,7 @@ Public Class SelectRollIssue
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("SIZERNAME"), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), dtrow("MILLNAME"), dtrow("PROGRAMNO"), Val(dtrow("WT")), dtrow("QUALITY"), Val(dtrow("TOTALENDS")), Val(dtrow("ROLLS")), Val(dtrow("LENGTH")), Val(dtrow("DENIER")))
+                    DT.Rows.Add(dtrow("SIZERNAME"), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), dtrow("MILLNAME"), Val(dtrow("WT")), dtrow("YARNQUALITY"), Val(dtrow("TOTALENDS")), Val(dtrow("ROLLS")), Val(dtrow("LENGTH")), Val(dtrow("DENIER")))
                 End If
             Next
             Me.Close()

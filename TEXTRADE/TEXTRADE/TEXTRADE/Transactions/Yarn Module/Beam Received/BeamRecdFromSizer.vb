@@ -1134,9 +1134,8 @@ LINE1:
                     TXTROLLISSUESRNO.Text = DT.Rows(0).Item("ROLLISSUESRNO")
                     TXTTYPE.Text = DT.Rows(0).Item("TYPE")
                     CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
-                    TXTPROGRAMNO.Text = DT.Rows(0).Item("PROGRAMNO")
-                    TXTLENGTH.Text = Val(DT.Rows(0).Item("LENGTH"))
-                    TXTWTSUMM.Text = Val(DT.Rows(0).Item("WT"))
+                TXTLENGTH.Text = Val(DT.Rows(0).Item("LENGTH"))
+                TXTWTSUMM.Text = Val(DT.Rows(0).Item("WT"))
                     TXTROLLENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
                     TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
                     CMDSELECTROLLISSUE.Enabled = False
