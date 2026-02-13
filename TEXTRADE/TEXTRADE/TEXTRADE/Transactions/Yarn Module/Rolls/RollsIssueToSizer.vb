@@ -170,7 +170,7 @@ Public Class RollsIssueToSizer
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("QUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"))
+                        GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"))
                     Next
 
                     If Convert.ToBoolean(dttable.Rows(0).Item("DONE")) = True Then

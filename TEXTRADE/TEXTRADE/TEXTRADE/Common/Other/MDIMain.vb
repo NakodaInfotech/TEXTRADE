@@ -11018,4 +11018,34 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem12_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem12.Click
+        Try
+            Dim OBJRRFW As New BeamIssueWeaver
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem13_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem13.Click
+        Try
+            Dim OBJRRFW As New BeamRecdWarper
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem11.Click
+        Try
+            Dim OBJRRFW As New BeamRecdWarperDetails
+            OBJRRFW.MdiParent = Me
+            OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -610,16 +610,16 @@ Public Class BeamRecdFromSizer
 
         Private Sub CMBNAME_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
             Try
-                If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "SIZER")
-            Catch ex As Exception
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
 
         Private Sub CMBMILLNAME_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBMILLNAME.Enter
             Try
-                If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'")
-            Catch ex As Exception
+            If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
@@ -641,8 +641,8 @@ Public Class BeamRecdFromSizer
 
         Private Sub CMBMILLNAME_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMILLNAME.Validating
             Try
-                If CMBMILLNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBMILLNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "MILL")
-            Catch ex As Exception
+            If CMBMILLNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBMILLNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ")
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
@@ -672,15 +672,15 @@ Public Class BeamRecdFromSizer
             End Try
         End Sub
 
-        Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBOURGODOWN.Validating
-            Try
+    Private Sub CMBGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBOURGODOWN.Validating
+        Try
             If CMBOURGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBOURGODOWN, e, Me)
         Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
+            Throw ex
+        End Try
+    End Sub
 
-    Private Sub toolprevious_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub toolprevious_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolprevious.Click
         Try
             GRIDBEAM.RowCount = 0
 LINE1:
@@ -711,7 +711,7 @@ Line2:
         End Try
     End Sub
 
-    Private Sub toolnext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub toolnext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolnext.Click
         Try
             GRIDBEAM.RowCount = 0
 LINE1:
@@ -1033,9 +1033,9 @@ LINE1:
         Try
             If CMBBEAMNAME.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_ENDS, 0) AS ENDS, ISNULL(BEAM_TAPLINE, 0) AS TAPLINE", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_TOTALENDS, 0) AS ENDS, ISNULL(BEAM_TAPLINE, 0) AS TAPLINE", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    If ClientName <> "SASHWINKUMAR" And Val(TXTROLLENDS.Text.Trim) > 0 Then TXTENDS.Text = Val(TXTROLLENDS.Text.Trim) Else TXTENDS.Text = DT.Rows(0).Item("ENDS")
+                    TXTENDS.Text = DT.Rows(0).Item("ENDS")
                     If Val(TXTTAPLINE.Text.Trim) = 0 Then TXTTAPLINE.Text = DT.Rows(0).Item("TAPLINE")
                 End If
             End If
@@ -1052,7 +1052,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
             Dim OBJBEAM As New BeamRecdFromSizerDetails
             OBJBEAM.MdiParent = MDIMain
