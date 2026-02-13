@@ -31,6 +31,8 @@ Partial Class SelectStockGDN
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridwo = New System.Windows.Forms.DataGridView()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.CMBCHALLANNO = New System.Windows.Forms.ComboBox()
         Me.LBLENTRYNO = New System.Windows.Forms.Label()
         Me.TXTENTRYNO = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -49,7 +51,7 @@ Partial Class SelectStockGDN
         Me.CMBBALENO = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CMBLOTNO = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LBLPIECETYPE = New System.Windows.Forms.Label()
         Me.CMBPIECETYPE = New System.Windows.Forms.ComboBox()
         Me.LBLITEM = New System.Windows.Forms.Label()
         Me.CHKItem = New System.Windows.Forms.CheckBox()
@@ -76,8 +78,6 @@ Partial Class SelectStockGDN
         Me.cmbselect = New System.Windows.Forms.ComboBox()
         Me.txttempname = New System.Windows.Forms.TextBox()
         Me.txtsearch = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.CMBCHALLANNO = New System.Windows.Forms.ComboBox()
         CType(Me.gridwo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -182,7 +182,7 @@ Partial Class SelectStockGDN
         Me.BlendPanel1.Controls.Add(Me.CMBBALENO)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.CMBLOTNO)
-        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.LBLPIECETYPE)
         Me.BlendPanel1.Controls.Add(Me.CMBPIECETYPE)
         Me.BlendPanel1.Controls.Add(Me.LBLITEM)
         Me.BlendPanel1.Controls.Add(Me.CHKItem)
@@ -217,6 +217,29 @@ Partial Class SelectStockGDN
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 661)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Red
+        Me.Label7.Location = New System.Drawing.Point(763, 97)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(67, 14)
+        Me.Label7.TabIndex = 735
+        Me.Label7.Text = "Challan No"
+        '
+        'CMBCHALLANNO
+        '
+        Me.CMBCHALLANNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCHALLANNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCHALLANNO.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCHALLANNO.FormattingEnabled = True
+        Me.CMBCHALLANNO.Location = New System.Drawing.Point(832, 94)
+        Me.CMBCHALLANNO.Name = "CMBCHALLANNO"
+        Me.CMBCHALLANNO.Size = New System.Drawing.Size(93, 21)
+        Me.CMBCHALLANNO.TabIndex = 734
         '
         'LBLENTRYNO
         '
@@ -421,17 +444,17 @@ Partial Class SelectStockGDN
         Me.CMBLOTNO.Size = New System.Drawing.Size(93, 21)
         Me.CMBLOTNO.TabIndex = 10
         '
-        'Label1
+        'LBLPIECETYPE
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(760, 118)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 14)
-        Me.Label1.TabIndex = 548
-        Me.Label1.Text = "Piece Type"
+        Me.LBLPIECETYPE.AutoSize = True
+        Me.LBLPIECETYPE.BackColor = System.Drawing.Color.Transparent
+        Me.LBLPIECETYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLPIECETYPE.ForeColor = System.Drawing.Color.Red
+        Me.LBLPIECETYPE.Location = New System.Drawing.Point(760, 118)
+        Me.LBLPIECETYPE.Name = "LBLPIECETYPE"
+        Me.LBLPIECETYPE.Size = New System.Drawing.Size(63, 14)
+        Me.LBLPIECETYPE.TabIndex = 548
+        Me.LBLPIECETYPE.Text = "Piece Type"
         '
         'CMBPIECETYPE
         '
@@ -754,29 +777,6 @@ Partial Class SelectStockGDN
         Me.txtsearch.Size = New System.Drawing.Size(153, 21)
         Me.txtsearch.TabIndex = 1
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Red
-        Me.Label7.Location = New System.Drawing.Point(763, 97)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(67, 14)
-        Me.Label7.TabIndex = 735
-        Me.Label7.Text = "Challan No"
-        '
-        'CMBCHALLANNO
-        '
-        Me.CMBCHALLANNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCHALLANNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCHALLANNO.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBCHALLANNO.FormattingEnabled = True
-        Me.CMBCHALLANNO.Location = New System.Drawing.Point(832, 94)
-        Me.CMBCHALLANNO.Name = "CMBCHALLANNO"
-        Me.CMBCHALLANNO.Size = New System.Drawing.Size(93, 21)
-        Me.CMBCHALLANNO.TabIndex = 734
-        '
         'SelectStockGDN
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -823,7 +823,7 @@ Partial Class SelectStockGDN
     Friend WithEvents LBLITEM As System.Windows.Forms.Label
     Friend WithEvents CHKItem As System.Windows.Forms.CheckBox
     Friend WithEvents CLB_Item As System.Windows.Forms.CheckedListBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents LBLPIECETYPE As System.Windows.Forms.Label
     Private WithEvents CMBPIECETYPE As System.Windows.Forms.ComboBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Private WithEvents CMBLOTNO As System.Windows.Forms.ComboBox

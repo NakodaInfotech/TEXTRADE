@@ -134,7 +134,14 @@ Public Class GodownwiseDetails
             GMILLNAME.VisibleIndex = GDESIGNNO.VisibleIndex + 1
         End If
 
-
+        If ClientName = "MASHOK" Then
+            GDESIGNNO.Caption = "Coil Width"
+            GBALENO.Caption = "Coil No"
+            GPIECETYPE.Caption = "Coil Type"
+            GCOLOR.Visible = False
+            GRACK.Visible = False
+            GSHELF.Visible = False
+        End If
 
         If ClientName = "SAKARIA" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Then
             GNAME.Visible = True

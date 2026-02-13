@@ -1153,8 +1153,8 @@ CHECKNEXTLINE:
             End If
 SKIPLINE:
             If FRMSTRING = "GRN FANCY" Then
-                If ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "VINTAGEINDIA" And ClientName <> "BIGAPPLE" And ClientName <> "AARYA" Then PRINTBARCODE()
-                If ClientName <> "AMAN" And ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "BIGAPPLE" And ClientName <> "SOFTAS" Then PRINTREPORT(Val(txtgrnno.Text.Trim))
+                If ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "VINTAGEINDIA" And ClientName <> "BIGAPPLE" And ClientName <> "AARYA" And ClientName <> "MASHOK" Then PRINTBARCODE()
+                If ClientName <> "AMAN" And ClientName <> "RADHA" And ClientName <> "SNCM" And ClientName <> "BIGAPPLE" And ClientName <> "SOFTAS" And ClientName <> "MASHOK" Then PRINTREPORT(Val(txtgrnno.Text.Trim))
 
                 'DIRECTLY ISSUE TO JOBOUT
                 If EDIT = False And (ClientName = "KRFABRICS") Then
@@ -2217,7 +2217,7 @@ LINE1:
 
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
-        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Then TXTBALENO.Clear()
+        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Then TXTBALENO.Clear()
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
         txtgridremarks.Clear()
@@ -2232,7 +2232,7 @@ LINE1:
         TXTBARCODE.Clear()
         txtsrno.Text = gridgrn.RowCount + 1
 
-        If ClientName = "INDRANI" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "BIGAPPLE" Then
+        If ClientName = "MASHOK" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "BIGAPPLE" Then
             TXTBALENO.Focus()
         ElseIf ClientName = "MOMAI" Or ClientName = "KREEVE" Or ClientName = "BALAJI" Or ClientName = "TINUMINU" Then
             If FRMSTRING = "GRN FANCY" And (ClientName = "BALAJI") Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
@@ -3139,7 +3139,7 @@ LINE1:
     Private Sub TXTMTRS_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTMTRS.Validated
         Try
             CALC()
-            If ClientName = "MANIBHADRA" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VALIANT" Or ClientName = "AMAN" Or ClientName = "LEEFABRICO" Or ClientName = "MANISH" Or ClientName = "RADHA" Or ClientName = "AFW" Then TXTAMOUNT_Validated(sender, e)
+            If ClientName = "MANIBHADRA" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VALIANT" Or ClientName = "AMAN" Or ClientName = "LEEFABRICO" Or ClientName = "MANISH" Or ClientName = "RADHA" Or ClientName = "AFW" Or ClientName = "MASHOK" Then TXTAMOUNT_Validated(sender, e)
 
             'GET WT AUTO CALCULATED, IF USER HAS WRITTEN TOTALWT IN ITEMMASTER
             If ClientName = "VINTAGEINDIA" And Val(TXTMTRS.Text.Trim) > 0 And cmbitemname.Text.Trim <> "" And Val(TXTWT.Text.Trim) = 0 Then
@@ -3430,6 +3430,15 @@ LINE1:
                 cmbtrans.TabStop = True
                 txtlrno.TabStop = True
                 lrdate.TabStop = True
+            End If
+
+            If ClientName = "MASHOK" Then
+                GBALENO.HeaderText = "Coil No"
+                GDESIGN.HeaderText = "Coil Width"
+                GPIECETYPE.HeaderText = "Coil Type"
+                CMBQUALITY.TabStop = False
+                cmbcolor.TabStop = False
+                TXTCUT.TabStop = False
             End If
 
             If ClientName = "BIGAPPLE" And cmbtype.Text.Trim = "FANCY MATERIAL" Then TOOLUPLOADEXCEL.Visible = True
