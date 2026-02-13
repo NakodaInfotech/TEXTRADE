@@ -110,7 +110,7 @@ Public Class OpeningStockRolls
             OBJOPSTOCK.alParaval.Add(YearId)
             Dim DTTABLE As DataTable = OBJOPSTOCK.GETSTOCKROLLS()
             For Each ROW As DataRow In DTTABLE.Rows
-                GRIDSTOCK.Rows.Add(Val(ROW("OPROLLSTOCKNO")), ROW("GODOWN"), ROW("WARPERNAME"), ROW("QUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), ROW("REMARKS"), Val(ROW("OUTROLLS")), Val(ROW("OUTWT")))
+                GRIDSTOCK.Rows.Add(Val(ROW("OPROLLSTOCKNO")), ROW("GODOWN"), ROW("WARPERNAME"), ROW("YARNQUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), ROW("REMARKS"), Val(ROW("OUTROLLS")), Val(ROW("OUTWT")))
                 If Val(ROW("OUTROLLS")) > 0 Or Val(ROW("OUTWT")) > 0 Then GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
             Next
             TOTAL()
@@ -270,7 +270,7 @@ Public Class OpeningStockRolls
     End Sub
 
     Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
-        numdot3(e, TXTWT, Me)
+        numdot3(e, sender, Me)
     End Sub
 
     Private Sub TXTROLLS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTROLLS.KeyPress, TXTTOTALENDS.KeyPress
@@ -285,23 +285,6 @@ Public Class OpeningStockRolls
         End Try
     End Sub
 
-    Private Sub CMBOURGODOWN_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBOURGODOWN.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJGODOWN As New SelectGodown
-                OBJGODOWN.FRMSTRING = "GODOWN"
-                OBJGODOWN.SEARCH = "AND GODOWN_ISOUR='TRUE'"
-                OBJGODOWN.ShowDialog()
-                If OBJGODOWN.TEMPNAME <> "" Then CMBOURGODOWN.Text = OBJGODOWN.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub CMBOURGODOWN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBOURGODOWN.Validating
         Try
             If CMBOURGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBOURGODOWN, e, Me)
@@ -310,34 +293,17 @@ Public Class OpeningStockRolls
         End Try
     End Sub
 
-    Private Sub CMBQUALITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBYARNQUALITY.Enter
+    Private Sub CMBYARNQUALITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBYARNQUALITY.Enter
         Try
-            If CMBYARNQUALITY.Text.Trim = "" Then fillQUALITY(CMBYARNQUALITY, edit)
+            If CMBYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBYARNQUALITY, edit)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-
-    Private Sub CMBQUALITY_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBYARNQUALITY.KeyDown
+    Private Sub CMBYARNQUALITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating
         Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJQUALITY As New SelectQuality
-                OBJQUALITY.ShowDialog()
-                If OBJQUALITY.TEMPNAME <> "" Then CMBYARNQUALITY.Text = OBJQUALITY.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-
-    Private Sub CMBQUALITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating
-        Try
-            If CMBYARNQUALITY.Text.Trim <> "" Then QUALITYVALIDATE(CMBYARNQUALITY, e, Me)
+            If CMBYARNQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBYARNQUALITY, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -345,24 +311,7 @@ Public Class OpeningStockRolls
 
     Private Sub CMBMILL_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBMILL.Enter
         Try
-            If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, edit, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBMILL_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBMILL.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'"
-                OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPCODE <> "" Then cmbcode.Text = OBJLEDGER.TEMPCODE
-                If OBJLEDGER.TEMPNAME <> "" Then CMBMILL.Text = OBJLEDGER.TEMPNAME
-            End If
+            If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, edit)
         Catch ex As Exception
             Throw ex
         End Try

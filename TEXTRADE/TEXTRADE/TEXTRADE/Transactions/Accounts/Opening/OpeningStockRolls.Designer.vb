@@ -80,7 +80,7 @@ Partial Class OpeningStockRolls
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1292, 581)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.TabIndex = 0
         '
         'TXTADD
         '
@@ -109,7 +109,7 @@ Partial Class OpeningStockRolls
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(987, 543)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(907, 543)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(65, 15)
         Me.LBLTOTALWT.TabIndex = 834
@@ -121,7 +121,7 @@ Partial Class OpeningStockRolls
         Me.LBLTOTALROLLS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALROLLS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALROLLS.Location = New System.Drawing.Point(908, 543)
+        Me.LBLTOTALROLLS.Location = New System.Drawing.Point(828, 543)
         Me.LBLTOTALROLLS.Name = "LBLTOTALROLLS"
         Me.LBLTOTALROLLS.Size = New System.Drawing.Size(65, 15)
         Me.LBLTOTALROLLS.TabIndex = 832
@@ -134,7 +134,7 @@ Partial Class OpeningStockRolls
         Me.LBLTOTAL.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTAL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTAL.Location = New System.Drawing.Point(871, 543)
+        Me.LBLTOTAL.Location = New System.Drawing.Point(791, 543)
         Me.LBLTOTAL.Name = "LBLTOTAL"
         Me.LBLTOTAL.Size = New System.Drawing.Size(33, 15)
         Me.LBLTOTAL.TabIndex = 831
@@ -169,7 +169,7 @@ Partial Class OpeningStockRolls
         Me.Panel1.Location = New System.Drawing.Point(9, 12)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1275, 525)
-        Me.Panel1.TabIndex = 1
+        Me.Panel1.TabIndex = 0
         '
         'CMBNAME
         '
@@ -187,29 +187,25 @@ Partial Class OpeningStockRolls
         '
         Me.CMBMILL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBMILL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMILL.BackColor = System.Drawing.Color.Linen
-        Me.CMBMILL.Enabled = False
+        Me.CMBMILL.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBMILL.FormattingEnabled = True
         Me.CMBMILL.Location = New System.Drawing.Point(523, 3)
         Me.CMBMILL.Name = "CMBMILL"
         Me.CMBMILL.Size = New System.Drawing.Size(200, 23)
-        Me.CMBMILL.TabIndex = 4
-        Me.CMBMILL.TabStop = False
+        Me.CMBMILL.TabIndex = 3
         '
         'CMBYARNQUALITY
         '
         Me.CMBYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBYARNQUALITY.BackColor = System.Drawing.Color.Linen
-        Me.CMBYARNQUALITY.Enabled = False
+        Me.CMBYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBYARNQUALITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBYARNQUALITY.FormattingEnabled = True
         Me.CMBYARNQUALITY.Location = New System.Drawing.Point(323, 3)
         Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
         Me.CMBYARNQUALITY.Size = New System.Drawing.Size(200, 23)
-        Me.CMBYARNQUALITY.TabIndex = 3
-        Me.CMBYARNQUALITY.TabStop = False
+        Me.CMBYARNQUALITY.TabIndex = 2
         '
         'TXTREMARKS
         '
@@ -219,7 +215,7 @@ Partial Class OpeningStockRolls
         Me.TXTREMARKS.MaxLength = 200
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(200, 23)
-        Me.TXTREMARKS.TabIndex = 8
+        Me.TXTREMARKS.TabIndex = 7
         '
         'TXTWT
         '
@@ -229,32 +225,28 @@ Partial Class OpeningStockRolls
         Me.TXTWT.MaxLength = 10
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(80, 23)
-        Me.TXTWT.TabIndex = 7
+        Me.TXTWT.TabIndex = 6
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTROLLS
         '
-        Me.TXTROLLS.BackColor = System.Drawing.Color.Linen
+        Me.TXTROLLS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTROLLS.Location = New System.Drawing.Point(803, 3)
         Me.TXTROLLS.MaxLength = 10
         Me.TXTROLLS.Name = "TXTROLLS"
-        Me.TXTROLLS.ReadOnly = True
         Me.TXTROLLS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTROLLS.TabIndex = 6
-        Me.TXTROLLS.TabStop = False
+        Me.TXTROLLS.TabIndex = 5
         Me.TXTROLLS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALENDS
         '
-        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(723, 3)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
-        Me.TXTTOTALENDS.ReadOnly = True
         Me.TXTTOTALENDS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTTOTALENDS.TabIndex = 5
-        Me.TXTTOTALENDS.TabStop = False
+        Me.TXTTOTALENDS.TabIndex = 4
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBOURGODOWN
@@ -313,7 +305,7 @@ Partial Class OpeningStockRolls
         Me.GRIDSTOCK.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTOCK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.GRIDSTOCK.Size = New System.Drawing.Size(1270, 496)
-        Me.GRIDSTOCK.TabIndex = 7
+        Me.GRIDSTOCK.TabIndex = 8
         Me.GRIDSTOCK.TabStop = False
         '
         'GOPROLLSTOCKNO
@@ -427,7 +419,7 @@ Partial Class OpeningStockRolls
         Me.cmdexit.Location = New System.Drawing.Point(606, 543)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 2
+        Me.cmdexit.TabIndex = 1
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
