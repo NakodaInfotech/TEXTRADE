@@ -1530,6 +1530,77 @@ Public Class MDIMain
                         BEAMPROGEDIT.Enabled = False
                     End If
 
+                ElseIf DTROW(0).ToString = "ROLLS RECD" Then
+                    If DTROW(1).ToString = True Then
+                        ROLLSRECDWARPER_MASTER.Enabled = True
+                        ROLLSRETURNWARPER_MASTER.Enabled = True
+                        ROLLSRECDWARPERADD.Enabled = True
+                        ROLLSRETURNWARPERADD.Enabled = True
+                    Else
+                        ROLLSRECDWARPERADD.Enabled = False
+                        ROLLSRETURNWARPERADD.Enabled = False
+                    End If
+                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                        ROLLSRECDWARPER_MASTER.Enabled = True
+                        ROLLSRETURNWARPER_MASTER.Enabled = True
+                        ROLLSRECDWARPEREDIT.Enabled = True
+                        ROLLSRETURNWARPEREDIT.Enabled = True
+                    Else
+                        ROLLSRECDWARPEREDIT.Enabled = False
+                        ROLLSRETURNWARPEREDIT.Enabled = False
+                    End If
+
+
+                ElseIf DTROW(0).ToString = "ROLLS ISSUE" Then
+                    If DTROW(1).ToString = True Then
+                        ROLLSISSUESIZER_MASTER.Enabled = True
+                        ROLLSISSUESIZERADD.Enabled = True
+                    Else
+                        ROLLSISSUESIZERADD.Enabled = False
+                    End If
+                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                        ROLLSISSUESIZER_MASTER.Enabled = True
+                        ROLLSISSUESIZEREDIT.Enabled = True
+                    Else
+                        ROLLSISSUESIZEREDIT.Enabled = False
+                    End If
+
+
+                ElseIf DTROW(0).ToString = "BEAM RECD" Then
+                    If DTROW(1).ToString = True Then
+                        BEAMRECDSIZER_MASTER.Enabled = True
+                        BEAMRECDWARPER_MASTER.Enabled = True
+                        BEAMRECDSIZERADD.Enabled = True
+                        BEAMRECDWARPERADD.Enabled = True
+                    Else
+                        BEAMRECDSIZERADD.Enabled = False
+                        BEAMRECDWARPERADD.Enabled = False
+                    End If
+                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                        BEAMRECDSIZER_MASTER.Enabled = True
+                        BEAMRECDWARPER_MASTER.Enabled = True
+                        BEAMRECDSIZEREDIT.Enabled = True
+                        BEAMRECDWARPEREDIT.Enabled = True
+                    Else
+                        BEAMRECDSIZEREDIT.Enabled = False
+                        BEAMRECDWARPEREDIT.Enabled = False
+                    End If
+
+
+                ElseIf DTROW(0).ToString = "BEAM ISSUE" Then
+                    If DTROW(1).ToString = True Then
+                        BEAMISSUEWEAVER_MASTER.Enabled = True
+                        BEAMISSUEWEAVERADD.Enabled = True
+                    Else
+                        BEAMISSUEWEAVERADD.Enabled = False
+                    End If
+                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                        BEAMISSUEWEAVER_MASTER.Enabled = True
+                        BEAMISSUEWEAVEREDIT.Enabled = True
+                    Else
+                        BEAMISSUEWEAVEREDIT.Enabled = False
+                    End If
+
 
                     'PRODUCTION
                 ElseIf DTROW(0).ToString = "PACKING SLIP" Then
@@ -10909,7 +10980,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem8.Click
+    Private Sub AddNewEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles ROLLSRECDWARPERADD.Click
         Try
             Dim OBJRRFW As New RollsRecdFromWarper
             OBJRRFW.MdiParent = Me
@@ -10969,7 +11040,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem10.Click
+    Private Sub AddNewEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles ROLLSISSUESIZERADD.Click
         Try
             Dim OBJRRFW As New RollsIssueToSizer
             OBJRRFW.MdiParent = Me
@@ -10979,7 +11050,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingEntryToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem9.Click
+    Private Sub EditExistingEntryToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles ROLLSISSUESIZEREDIT.Click
         Try
             Dim OBJRRFW As New RollsIssueToSizerDetails
             OBJRRFW.MdiParent = Me
@@ -10989,7 +11060,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem11.Click
+    Private Sub AddNewEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs) Handles BEAMRECDSIZERADD.Click
         Try
             Dim OBJRRFW As New BeamRecdFromSizer
             OBJRRFW.MdiParent = Me
@@ -10999,7 +11070,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem10.Click
+    Private Sub EditExistingEntryToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles BEAMRECDSIZEREDIT.Click
         Try
             Dim OBJRRFW As New BeamRecdFromSizerDetails
             OBJRRFW.MdiParent = Me
@@ -11019,7 +11090,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem12_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem12.Click
+    Private Sub AddNewEntryToolStripMenuItem12_Click(sender As Object, e As EventArgs) Handles BEAMISSUEWEAVERADD.Click
         Try
             Dim OBJRRFW As New BeamIssueWeaver
             OBJRRFW.MdiParent = Me
@@ -11044,6 +11115,26 @@ SKIPLINE:
             Dim OBJRRFW As New BeamRecdWarperDetails
             OBJRRFW.MdiParent = Me
             OBJRRFW.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ROLLSRETURNWARPERADD_Click(sender As Object, e As EventArgs) Handles ROLLSRETURNWARPERADD.Click
+        Try
+            Dim OBJROLLSRET As New RollsReturnFromWarper
+            OBJROLLSRET.MdiParent = Me
+            OBJROLLSRET.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ROLLSRETURNWARPEREDIT_Click(sender As Object, e As EventArgs) Handles ROLLSRETURNWARPEREDIT.Click
+        Try
+            Dim OBJROLLSRET As New RollsReturnFromWarperDetails
+            OBJROLLSRET.MdiParent = Me
+            OBJROLLSRET.Show()
         Catch ex As Exception
             Throw ex
         End Try
