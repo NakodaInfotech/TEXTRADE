@@ -124,7 +124,7 @@ Public Class RollsIssueToSizer
 
     Private Sub RollsIssueToSizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN PRODUCTION'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ROLLS ISSUE'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

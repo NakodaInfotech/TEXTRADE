@@ -144,7 +144,7 @@ Public Class BeamIssueWeaver
 
     Private Sub BeamIssueWeaver_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM ISSUE'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
