@@ -73,7 +73,7 @@ Public Class YarnInterGodownTransfer
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
-        TXTLRNO.Clear()
+        'TXTLRNO.Clear()
         'DTLRDATE.Value = Now.Date
         LIFTINGDATE.Text = Now.Date
         CMBFROMGODOWN.Text = ""
@@ -203,7 +203,7 @@ Public Class YarnInterGodownTransfer
             Dim BAGS As String = ""
             Dim WEIGHT As String = ""
             Dim CONES As String = ""
-            Dim LRNO As String = ""
+            'Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTINGDATE As String = ""
 
@@ -222,7 +222,7 @@ Public Class YarnInterGodownTransfer
                         BAGS = row.Cells(GQTY.Index).Value.ToString
                         WEIGHT = row.Cells(GWT.Index).Value.ToString
                         CONES = row.Cells(GCONES.Index).Value.ToString
-                        LRNO = row.Cells(GLRNO.Index).Value
+                        'LRNO = row.Cells(GLRNO.Index).Value
                         'LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = row.Cells(GLIFTINGDATE.Index).Value
                         'BARCODE = row.Cells(GBARCODE.Index).Value.ToString
@@ -244,7 +244,7 @@ Public Class YarnInterGodownTransfer
                         BAGS = BAGS & "|" & row.Cells(GQTY.Index).Value
                         WEIGHT = WEIGHT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
-                        LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
+                        'LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         'LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = LIFTINGDATE & "|" & (row.Cells(GLIFTINGDATE.Index).Value)
                         'BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
@@ -269,7 +269,7 @@ Public Class YarnInterGodownTransfer
             alParaval.Add(BAGS)
             alParaval.Add(WEIGHT)
             alParaval.Add(CONES)
-            alParaval.Add(LRNO)
+            'alParaval.Add(LRNO)
             'alParaval.Add(LRDATE)
             alParaval.Add(LIFTINGDATE)
             'alParaval.Add(BARCODE)
@@ -399,7 +399,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, dr("LIFTINGDATE").ToString)
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LIFTINGDATE").ToString)
 
 
                     Next
@@ -500,7 +500,7 @@ Public Class YarnInterGodownTransfer
             GRIDJO.Enabled = True
 
             If GRIDDOUBLECLICK = False Then
-                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, LIFTINGDATE.Text.Trim)
+                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), LIFTINGDATE.Text.Trim)
                 getsrno(GRIDJO)
             ElseIf GRIDDOUBLECLICK = True Then
                 GRIDJO.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -514,7 +514,7 @@ Public Class YarnInterGodownTransfer
                 GRIDJO.Item(GQTY.Index, TEMPROW).Value = Format(Val(txtqty.Text.Trim), "0.00")
                 GRIDJO.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
                 GRIDJO.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
-                GRIDJO.Item(GLRNO.Index, TEMPROW).Value = Val(TXTLRNO.Text.Trim)
+                'GRIDJO.Item(GLRNO.Index, TEMPROW).Value = Val(TXTLRNO.Text.Trim)
                 GRIDJO.Item(GLIFTINGDATE.Index, TEMPROW).Value = Val(LIFTINGDATE.Text.Trim)
 
                 GRIDDOUBLECLICK = False
@@ -558,7 +558,7 @@ Public Class YarnInterGodownTransfer
                 txtqty.Text = GRIDJO.Item(GQTY.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDJO.Item(GWT.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDJO.Item(GCONES.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTLRNO.Text = GRIDJO.Item(GLRNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
+                'TXTLRNO.Text = GRIDJO.Item(GLRNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 'DTLRDATE.Text = GRIDJO.Item(GLRDATE.Index, GRIDJO.CurrentRow.Index).Value
                 LIFTINGDATE.Text = GRIDJO.Item(GLIFTINGDATE.Index, GRIDJO.CurrentRow.Index).Value.ToString
                 TEMPROW = GRIDJO.CurrentRow.Index
@@ -712,8 +712,13 @@ LINE1:
 
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
+            If CMBFROMGODOWN.Text = "" Then
+                EP.SetError(CMBFROMGODOWN, "Please Select From Godown")
+                Exit Sub
+            End If
+
             Dim DTJO As New DataTable
-            Dim OBJSELECTGDN As New SelectYarnStockGdnTransfer
+            Dim OBJSELECTGDN As New SelectYarnGodownTransfer
             OBJSELECTGDN.GODOWN = CMBFROMGODOWN.Text.Trim
             OBJSELECTGDN.ShowDialog()
             DTJO = OBJSELECTGDN.DT
@@ -725,7 +730,7 @@ LINE1:
                     '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
                     'Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LRNO"), DTROWPS("LIFTINGDATE"))
+                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LIFTINGDATE"))
 LINE1:
                 Next
                 getsrno(GRIDJO)
@@ -852,29 +857,29 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTLRNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTLRNO.Validating
-        Try
-            If ClientName = "MJFABRIC" Then Exit Sub
-            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
+    'Private Sub TXTLRNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTLRNO.Validating
+    '    Try
+    '        If ClientName = "MJFABRIC" Then Exit Sub
+    '        If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
 
-                fillgrid()
+    '            fillgrid()
 
-            Else
+    '        Else
 
-                If CMBYARNQUALITY.Text.Trim = "" Then
-                    MsgBox("Enter  Yarn Quality", MsgBoxStyle.Critical)
-                    CMBYARNQUALITY.Focus()
+    '            If CMBYARNQUALITY.Text.Trim = "" Then
+    '                MsgBox("Enter  Yarn Quality", MsgBoxStyle.Critical)
+    '                CMBYARNQUALITY.Focus()
 
-                ElseIf Val(TXTWT.Text.Trim) = 0 Then
-                    MsgBox("Enter Weight", MsgBoxStyle.Critical)
-                    TXTWT.Focus()
-                End If
-            End If
+    '            ElseIf Val(TXTWT.Text.Trim) = 0 Then
+    '                MsgBox("Enter Weight", MsgBoxStyle.Critical)
+    '                TXTWT.Focus()
+    '            End If
+    '        End If
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    ' End Sub
 
     Private Sub GRIDJO_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDJO.KeyDown
         Try

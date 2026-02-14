@@ -558,6 +558,20 @@ Public Class PurchaseReturn
                 Exit Sub
             End If
 
+            'GET BILLREMARKS
+            TXTBILLREMARKS.Clear()
+            For Each ROW As DataGridViewRow In GRIDPAYMENT.Rows
+                If ROW.Cells(gpaytype.Index).Value = "Against Bill" Then
+                    If TXTBILLREMARKS.Text = "" Then
+                        TXTBILLREMARKS.Text = "Against Bill - " & ROW.Cells(gbillno.Index).Value
+                    Else
+                        TXTBILLREMARKS.Text = TXTBILLREMARKS.Text & ", " & ROW.Cells(gbillno.Index).Value
+                    End If
+                ElseIf ROW.Cells(gpaytype.Index).Value = "" Then
+                    ROW.Cells(gpaytype.Index).Value = "On Account"
+                End If
+            Next
+
             Dim alParaval As New ArrayList
 
             If ALLOWMANUALCNDN = True Then

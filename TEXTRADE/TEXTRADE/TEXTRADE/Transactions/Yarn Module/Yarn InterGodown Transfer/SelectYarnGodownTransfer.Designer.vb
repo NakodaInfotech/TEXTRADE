@@ -27,17 +27,17 @@ Partial Class SelectYarnGodownTransfer
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GROLLS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPROGRAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLENGTH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLIFTINGDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -71,7 +71,7 @@ Partial Class SelectYarnGodownTransfer
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE, Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(986, 597)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1210, 597)
         Me.gridbilldetails.TabIndex = 648
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -81,7 +81,7 @@ Partial Class SelectYarnGodownTransfer
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GSRNO, Me.GTYPE, Me.GMILLNAME, Me.GQUALITY, Me.GENDS, Me.GROLLS, Me.GWT, Me.GPROGRAMNO, Me.GTOTALENDS, Me.GLENGTH})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLIFTINGDATE, Me.GGODOWN})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -98,7 +98,7 @@ Partial Class SelectYarnGodownTransfer
         Me.GCHK.OptionsColumn.ShowCaption = False
         Me.GCHK.Visible = True
         Me.GCHK.VisibleIndex = 0
-        Me.GCHK.Width = 57
+        Me.GCHK.Width = 30
         '
         'CHKEDIT
         '
@@ -107,30 +107,35 @@ Partial Class SelectYarnGodownTransfer
         Me.CHKEDIT.Name = "CHKEDIT"
         Me.CHKEDIT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
-        'GENTRYNO
+        'GDESIGNNO
         '
-        Me.GENTRYNO.Caption = "Entry No"
-        Me.GENTRYNO.FieldName = "NO"
-        Me.GENTRYNO.Name = "GENTRYNO"
-        Me.GENTRYNO.OptionsColumn.AllowEdit = False
-        Me.GENTRYNO.Visible = True
-        Me.GENTRYNO.VisibleIndex = 1
+        Me.GDESIGNNO.Caption = "Design No"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
+        Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 3
+        Me.GDESIGNNO.Width = 100
         '
-        'GSRNO
+        'GCOLOR
         '
-        Me.GSRNO.Caption = "SrNo"
-        Me.GSRNO.FieldName = "SRNO"
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Caption = "Color"
+        Me.GCOLOR.FieldName = "COLOR"
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Visible = True
+        Me.GCOLOR.VisibleIndex = 4
+        Me.GCOLOR.Width = 100
         '
-        'GTYPE
+        'GLOTNO
         '
-        Me.GTYPE.Caption = "Type"
-        Me.GTYPE.FieldName = "TYPE"
-        Me.GTYPE.Name = "GTYPE"
-        Me.GTYPE.OptionsColumn.AllowEdit = False
-        Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 2
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.OptionsColumn.AllowEdit = False
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 5
+        Me.GLOTNO.Width = 80
         '
         'GMILLNAME
         '
@@ -139,38 +144,39 @@ Partial Class SelectYarnGodownTransfer
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 3
-        Me.GMILLNAME.Width = 300
+        Me.GMILLNAME.VisibleIndex = 2
+        Me.GMILLNAME.Width = 150
         '
-        'GQUALITY
+        'GYARNQUALITY
         '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "YARNQUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.OptionsColumn.AllowEdit = False
-        Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 4
-        Me.GQUALITY.Width = 200
+        Me.GYARNQUALITY.Caption = "Yarn Quality"
+        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITY.Visible = True
+        Me.GYARNQUALITY.VisibleIndex = 1
+        Me.GYARNQUALITY.Width = 200
         '
-        'GENDS
+        'GBAGS
         '
-        Me.GENDS.Caption = "Ends"
-        Me.GENDS.DisplayFormat.FormatString = "0"
-        Me.GENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GENDS.FieldName = "ENDS"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.OptionsColumn.AllowEdit = False
-        Me.GENDS.Visible = True
-        Me.GENDS.VisibleIndex = 5
+        Me.GBAGS.Caption = "Bags"
+        Me.GBAGS.DisplayFormat.FormatString = "0"
+        Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBAGS.FieldName = "BAGS"
+        Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.OptionsColumn.AllowEdit = False
+        Me.GBAGS.Visible = True
+        Me.GBAGS.VisibleIndex = 6
+        Me.GBAGS.Width = 80
         '
-        'GROLLS
+        'GCONES
         '
-        Me.GROLLS.Caption = "Rolls"
-        Me.GROLLS.FieldName = "ROLLS"
-        Me.GROLLS.Name = "GROLLS"
-        Me.GROLLS.OptionsColumn.AllowEdit = False
-        Me.GROLLS.Visible = True
-        Me.GROLLS.VisibleIndex = 6
+        Me.GCONES.Caption = "Cones"
+        Me.GCONES.FieldName = "CONES"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.OptionsColumn.AllowEdit = False
+        Me.GCONES.Visible = True
+        Me.GCONES.VisibleIndex = 7
         '
         'GWT
         '
@@ -182,25 +188,35 @@ Partial Class SelectYarnGodownTransfer
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PCS", "")})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 7
+        Me.GWT.VisibleIndex = 8
+        Me.GWT.Width = 100
         '
-        'GPROGRAMNO
+        'GLRNO
         '
-        Me.GPROGRAMNO.Caption = "Program No"
-        Me.GPROGRAMNO.FieldName = "PROGRAMNO"
-        Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GLRNO.Caption = "Lr No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 9
+        Me.GLRNO.Width = 100
         '
-        'GTOTALENDS
+        'GLIFTINGDATE
         '
-        Me.GTOTALENDS.Caption = "Total Ends"
-        Me.GTOTALENDS.FieldName = "TOTALENDS"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GLIFTINGDATE.Caption = "Lifting Date"
+        Me.GLIFTINGDATE.FieldName = "LIFTINGDATE"
+        Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
+        Me.GLIFTINGDATE.Visible = True
+        Me.GLIFTINGDATE.VisibleIndex = 10
+        Me.GLIFTINGDATE.Width = 80
         '
-        'GLENGTH
+        'GGODOWN
         '
-        Me.GLENGTH.Caption = "Length"
-        Me.GLENGTH.FieldName = "LENGTH"
-        Me.GLENGTH.Name = "GLENGTH"
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 11
+        Me.GGODOWN.Width = 120
         '
         'APPROXDATE
         '
@@ -269,17 +285,17 @@ Partial Class SelectYarnGodownTransfer
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GENTRYNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GROLLS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPROGRAMNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLENGTH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLIFTINGDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents cmdexit As Button

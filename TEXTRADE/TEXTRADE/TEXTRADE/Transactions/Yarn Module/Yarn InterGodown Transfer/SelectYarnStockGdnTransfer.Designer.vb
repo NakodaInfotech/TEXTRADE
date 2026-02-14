@@ -52,7 +52,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.CMBPIECETYPE = New System.Windows.Forms.ComboBox()
         Me.LBLITEM = New System.Windows.Forms.Label()
         Me.CHKItem = New System.Windows.Forms.CheckBox()
-        Me.CLB_Item = New System.Windows.Forms.CheckedListBox()
+        Me.CLB_YarnQuality = New System.Windows.Forms.CheckedListBox()
         Me.LBLNEWSHADE = New System.Windows.Forms.Label()
         Me.LBLNEWDESIGN = New System.Windows.Forms.Label()
         Me.LBLNEWQUALITY = New System.Windows.Forms.Label()
@@ -70,7 +70,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.CLB_Design = New System.Windows.Forms.CheckedListBox()
         Me.chkQuality = New System.Windows.Forms.CheckBox()
         Me.LBLQUALITY = New System.Windows.Forms.Label()
-        Me.CLB_Quality = New System.Windows.Forms.CheckedListBox()
+        Me.CLB_Mill = New System.Windows.Forms.CheckedListBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmbselect = New System.Windows.Forms.ComboBox()
         Me.lbl = New System.Windows.Forms.Label()
@@ -109,7 +109,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.BlendPanel1.Controls.Add(Me.CMBPIECETYPE)
         Me.BlendPanel1.Controls.Add(Me.LBLITEM)
         Me.BlendPanel1.Controls.Add(Me.CHKItem)
-        Me.BlendPanel1.Controls.Add(Me.CLB_Item)
+        Me.BlendPanel1.Controls.Add(Me.CLB_YarnQuality)
         Me.BlendPanel1.Controls.Add(Me.LBLNEWSHADE)
         Me.BlendPanel1.Controls.Add(Me.LBLNEWDESIGN)
         Me.BlendPanel1.Controls.Add(Me.LBLNEWQUALITY)
@@ -127,7 +127,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.BlendPanel1.Controls.Add(Me.CLB_Design)
         Me.BlendPanel1.Controls.Add(Me.chkQuality)
         Me.BlendPanel1.Controls.Add(Me.LBLQUALITY)
-        Me.BlendPanel1.Controls.Add(Me.CLB_Quality)
+        Me.BlendPanel1.Controls.Add(Me.CLB_Mill)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmbselect)
         Me.BlendPanel1.Controls.Add(Me.lbl)
@@ -416,17 +416,17 @@ Partial Class SelectYarnStockGdnTransfer
         Me.CHKItem.UseVisualStyleBackColor = False
         Me.CHKItem.Visible = False
         '
-        'CLB_Item
+        'CLB_YarnQuality
         '
-        Me.CLB_Item.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.CLB_Item.FormattingEnabled = True
-        Me.CLB_Item.Location = New System.Drawing.Point(502, 50)
-        Me.CLB_Item.Name = "CLB_Item"
-        Me.CLB_Item.ScrollAlwaysVisible = True
-        Me.CLB_Item.Size = New System.Drawing.Size(247, 106)
-        Me.CLB_Item.TabIndex = 5
-        Me.CLB_Item.TabStop = False
-        Me.CLB_Item.Visible = False
+        Me.CLB_YarnQuality.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.CLB_YarnQuality.FormattingEnabled = True
+        Me.CLB_YarnQuality.Location = New System.Drawing.Point(502, 50)
+        Me.CLB_YarnQuality.Name = "CLB_YarnQuality"
+        Me.CLB_YarnQuality.ScrollAlwaysVisible = True
+        Me.CLB_YarnQuality.Size = New System.Drawing.Size(247, 106)
+        Me.CLB_YarnQuality.TabIndex = 5
+        Me.CLB_YarnQuality.TabStop = False
+        Me.CLB_YarnQuality.Visible = False
         '
         'LBLNEWSHADE
         '
@@ -641,16 +641,16 @@ Partial Class SelectYarnStockGdnTransfer
         Me.LBLQUALITY.TabIndex = 532
         Me.LBLQUALITY.Text = "Quality"
         '
-        'CLB_Quality
+        'CLB_Mill
         '
-        Me.CLB_Quality.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.CLB_Quality.FormattingEnabled = True
-        Me.CLB_Quality.Location = New System.Drawing.Point(21, 50)
-        Me.CLB_Quality.Name = "CLB_Quality"
-        Me.CLB_Quality.ScrollAlwaysVisible = True
-        Me.CLB_Quality.Size = New System.Drawing.Size(247, 106)
-        Me.CLB_Quality.TabIndex = 2
-        Me.CLB_Quality.TabStop = False
+        Me.CLB_Mill.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.CLB_Mill.FormattingEnabled = True
+        Me.CLB_Mill.Location = New System.Drawing.Point(21, 50)
+        Me.CLB_Mill.Name = "CLB_Mill"
+        Me.CLB_Mill.ScrollAlwaysVisible = True
+        Me.CLB_Mill.Size = New System.Drawing.Size(247, 106)
+        Me.CLB_Mill.TabIndex = 2
+        Me.CLB_Mill.TabStop = False
         '
         'cmdexit
         '
@@ -671,7 +671,7 @@ Partial Class SelectYarnStockGdnTransfer
         Me.cmbselect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbselect.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbselect.FormattingEnabled = True
-        Me.cmbselect.Items.AddRange(New Object() {"", "Item", "Quality", "Design", "Shade"})
+        Me.cmbselect.Items.AddRange(New Object() {"", "YarnQuality", "Mill", "Design", "Shade"})
         Me.cmbselect.Location = New System.Drawing.Point(760, 39)
         Me.cmbselect.Name = "cmbselect"
         Me.cmbselect.Size = New System.Drawing.Size(72, 21)
@@ -820,7 +820,7 @@ Partial Class SelectYarnStockGdnTransfer
     Private WithEvents CMBPIECETYPE As ComboBox
     Friend WithEvents LBLITEM As Label
     Friend WithEvents CHKItem As CheckBox
-    Friend WithEvents CLB_Item As CheckedListBox
+    Friend WithEvents CLB_YarnQuality As CheckedListBox
     Friend WithEvents LBLNEWSHADE As Label
     Friend WithEvents LBLNEWDESIGN As Label
     Friend WithEvents LBLNEWQUALITY As Label
@@ -838,7 +838,7 @@ Partial Class SelectYarnStockGdnTransfer
     Friend WithEvents CLB_Design As CheckedListBox
     Friend WithEvents chkQuality As CheckBox
     Friend WithEvents LBLQUALITY As Label
-    Friend WithEvents CLB_Quality As CheckedListBox
+    Friend WithEvents CLB_Mill As CheckedListBox
     Friend WithEvents cmdexit As Button
     Private WithEvents cmbselect As ComboBox
     Friend WithEvents lbl As Label
