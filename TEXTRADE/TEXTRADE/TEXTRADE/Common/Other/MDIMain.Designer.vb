@@ -8012,20 +8012,20 @@ Partial Class MDIMain
         '
         Me.BEAMISSUEWEAVERADD.Enabled = False
         Me.BEAMISSUEWEAVERADD.Name = "BEAMISSUEWEAVERADD"
-        Me.BEAMISSUEWEAVERADD.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMISSUEWEAVERADD.Size = New System.Drawing.Size(180, 22)
         Me.BEAMISSUEWEAVERADD.Text = "Add New Entry"
         '
         'BEAMISSUEWEAVEREDIT
         '
         Me.BEAMISSUEWEAVEREDIT.Enabled = False
         Me.BEAMISSUEWEAVEREDIT.Name = "BEAMISSUEWEAVEREDIT"
-        Me.BEAMISSUEWEAVEREDIT.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMISSUEWEAVEREDIT.Size = New System.Drawing.Size(180, 22)
         Me.BEAMISSUEWEAVEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator336
         '
         Me.ToolStripSeparator336.Name = "ToolStripSeparator336"
-        Me.ToolStripSeparator336.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator336.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator333
         '
