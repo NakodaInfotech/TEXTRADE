@@ -22,7 +22,6 @@ Partial Class BeamIssueWeaverDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamIssueWeaverDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.TXTCOPIES = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -52,10 +51,11 @@ Partial Class BeamIssueWeaverDetails
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -330,7 +330,7 @@ Partial Class BeamIssueWeaverDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1, Me.PrintToolStripButton})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -340,6 +340,7 @@ Partial Class BeamIssueWeaverDetails
         'TOOLEXCEL
         '
         Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
         Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TOOLEXCEL.Name = "TOOLEXCEL"
         Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
@@ -353,6 +354,7 @@ Partial Class BeamIssueWeaverDetails
         'TOOLREFRESH
         '
         Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
         Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TOOLREFRESH.Name = "TOOLREFRESH"
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
@@ -362,15 +364,6 @@ Partial Class BeamIssueWeaverDetails
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), System.Drawing.Image)
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
         '
         'CMDEXIT
         '
@@ -398,6 +391,13 @@ Partial Class BeamIssueWeaverDetails
         Me.CMDADD.TabIndex = 0
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
+        '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
         'BeamIssueWeaverDetails
         '
@@ -450,8 +450,9 @@ Partial Class BeamIssueWeaverDetails
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
 End Class
