@@ -11139,14 +11139,4 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-
-    Private Sub BEAMISSUEWEAVEREDIT_Click(sender As Object, e As EventArgs) Handles BEAMISSUEWEAVEREDIT.Click
-        Try
-            Dim OBJROLLSRET As New BeamIssueWeaverDetails
-            OBJROLLSRET.MdiParent = Me
-            OBJROLLSRET.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class
