@@ -24,17 +24,17 @@ Partial Class RollsIssueToSizer
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RollsIssueToSizer))
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.lbllocked = New System.Windows.Forms.Label()
@@ -67,35 +67,35 @@ Partial Class RollsIssueToSizer
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CMBOURGODOWN = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.tbupload = New System.Windows.Forms.TabPage()
-        Me.CMDVIEW = New System.Windows.Forms.Button()
-        Me.CMDUPLOAD = New System.Windows.Forms.Button()
-        Me.CMDREMOVE = New System.Windows.Forms.Button()
-        Me.gridupload = New System.Windows.Forms.DataGridView()
-        Me.GUIMGPATH = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.GUNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GUREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GUSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txtuploadremarks = New System.Windows.Forms.TextBox()
-        Me.TXTUPLOADSRNO = New System.Windows.Forms.TextBox()
-        Me.txtuploadname = New System.Windows.Forms.TextBox()
-        Me.PBSOFTCOPY = New System.Windows.Forms.PictureBox()
-        Me.TXTIMGPATH = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LBLTOTALWT = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.LBLTOTALROLLS = New System.Windows.Forms.Label()
         Me.GRIDROLLS = New System.Windows.Forms.DataGridView()
-        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNARRATION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNARRATION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LBLTOTALROLLS = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.LBLTOTALWT = New System.Windows.Forms.Label()
+        Me.tbupload = New System.Windows.Forms.TabPage()
+        Me.TXTIMGPATH = New System.Windows.Forms.TextBox()
+        Me.PBSOFTCOPY = New System.Windows.Forms.PictureBox()
+        Me.txtuploadname = New System.Windows.Forms.TextBox()
+        Me.TXTUPLOADSRNO = New System.Windows.Forms.TextBox()
+        Me.txtuploadremarks = New System.Windows.Forms.TextBox()
+        Me.gridupload = New System.Windows.Forms.DataGridView()
+        Me.GUSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GUREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GUNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GUIMGPATH = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.CMDREMOVE = New System.Windows.Forms.Button()
+        Me.CMDUPLOAD = New System.Windows.Forms.Button()
+        Me.CMDVIEW = New System.Windows.Forms.Button()
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TXTROLLISSUENO = New System.Windows.Forms.TextBox()
@@ -108,15 +108,16 @@ Partial Class RollsIssueToSizer
         Me.Label26 = New System.Windows.Forms.Label()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
-        Me.tbupload.SuspendLayout()
-        CType(Me.gridupload, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         CType(Me.GRIDROLLS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tbupload.SuspendLayout()
+        CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridupload, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -231,7 +232,7 @@ Partial Class RollsIssueToSizer
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
         Me.Label18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(388, 45)
+        Me.Label18.Location = New System.Drawing.Point(373, 70)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(60, 15)
         Me.Label18.TabIndex = 645
@@ -244,7 +245,7 @@ Partial Class RollsIssueToSizer
         Me.cmbtrans.BackColor = System.Drawing.Color.White
         Me.cmbtrans.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbtrans.FormattingEnabled = True
-        Me.cmbtrans.Location = New System.Drawing.Point(450, 41)
+        Me.cmbtrans.Location = New System.Drawing.Point(435, 66)
         Me.cmbtrans.MaxDropDownItems = 14
         Me.cmbtrans.Name = "cmbtrans"
         Me.cmbtrans.Size = New System.Drawing.Size(246, 23)
@@ -390,7 +391,7 @@ Partial Class RollsIssueToSizer
         Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
         Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Location = New System.Drawing.Point(105, 70)
+        Me.cmbname.Location = New System.Drawing.Point(105, 96)
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(246, 23)
@@ -402,7 +403,7 @@ Partial Class RollsIssueToSizer
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(36, 74)
+        Me.Label5.Location = New System.Drawing.Point(36, 100)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(67, 15)
         Me.Label5.TabIndex = 820
@@ -412,7 +413,7 @@ Partial Class RollsIssueToSizer
         '
         Me.TXTVEHICLENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTVEHICLENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTVEHICLENO.Location = New System.Drawing.Point(450, 70)
+        Me.TXTVEHICLENO.Location = New System.Drawing.Point(435, 95)
         Me.TXTVEHICLENO.MaxLength = 10
         Me.TXTVEHICLENO.Name = "TXTVEHICLENO"
         Me.TXTVEHICLENO.Size = New System.Drawing.Size(132, 23)
@@ -424,7 +425,7 @@ Partial Class RollsIssueToSizer
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(383, 74)
+        Me.Label1.Location = New System.Drawing.Point(368, 99)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(64, 15)
         Me.Label1.TabIndex = 824
@@ -436,7 +437,7 @@ Partial Class RollsIssueToSizer
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(17, 45)
+        Me.Label4.Location = New System.Drawing.Point(17, 71)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(86, 15)
         Me.Label4.TabIndex = 826
@@ -449,7 +450,7 @@ Partial Class RollsIssueToSizer
         Me.CMBOURGODOWN.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBOURGODOWN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBOURGODOWN.FormattingEnabled = True
-        Me.CMBOURGODOWN.Location = New System.Drawing.Point(105, 41)
+        Me.CMBOURGODOWN.Location = New System.Drawing.Point(105, 67)
         Me.CMBOURGODOWN.MaxDropDownItems = 14
         Me.CMBOURGODOWN.Name = "CMBOURGODOWN"
         Me.CMBOURGODOWN.Size = New System.Drawing.Size(246, 23)
@@ -461,11 +462,207 @@ Partial Class RollsIssueToSizer
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.tbupload)
         Me.TabControl1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(19, 105)
+        Me.TabControl1.Location = New System.Drawing.Point(19, 133)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1046, 357)
+        Me.TabControl1.Size = New System.Drawing.Size(1046, 327)
         Me.TabControl1.TabIndex = 5
+        '
+        'TabPage1
+        '
+        Me.TabPage1.AutoScroll = True
+        Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.GRIDROLLS)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALROLLS)
+        Me.TabPage1.Controls.Add(Me.Label10)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALWT)
+        Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1038, 299)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "1. Item Details"
+        '
+        'GRIDROLLS
+        '
+        Me.GRIDROLLS.AllowUserToAddRows = False
+        Me.GRIDROLLS.AllowUserToDeleteRows = False
+        Me.GRIDROLLS.AllowUserToResizeColumns = False
+        Me.GRIDROLLS.AllowUserToResizeRows = False
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDROLLS.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
+        Me.GRIDROLLS.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDROLLS.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDROLLS.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDROLLS.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        Me.GRIDROLLS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDROLLS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GENDS, Me.GROLLS, Me.GWT, Me.GNARRATION, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDROLLS.DefaultCellStyle = DataGridViewCellStyle17
+        Me.GRIDROLLS.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDROLLS.Location = New System.Drawing.Point(4, 2)
+        Me.GRIDROLLS.MultiSelect = False
+        Me.GRIDROLLS.Name = "GRIDROLLS"
+        Me.GRIDROLLS.RowHeadersVisible = False
+        Me.GRIDROLLS.RowHeadersWidth = 30
+        Me.GRIDROLLS.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDROLLS.RowsDefaultCellStyle = DataGridViewCellStyle18
+        Me.GRIDROLLS.RowTemplate.Height = 20
+        Me.GRIDROLLS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDROLLS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.GRIDROLLS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.GRIDROLLS.Size = New System.Drawing.Size(1030, 278)
+        Me.GRIDROLLS.TabIndex = 14
+        Me.GRIDROLLS.TabStop = False
+        '
+        'gsrno
+        '
+        Me.gsrno.HeaderText = "Sr."
+        Me.gsrno.Name = "gsrno"
+        Me.gsrno.ReadOnly = True
+        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gsrno.Width = 40
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 250
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.HeaderText = "Mill Name"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.ReadOnly = True
+        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILLNAME.Width = 250
+        '
+        'GENDS
+        '
+        Me.GENDS.HeaderText = "Ends"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.ReadOnly = True
+        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GROLLS
+        '
+        Me.GROLLS.HeaderText = "Rolls"
+        Me.GROLLS.Name = "GROLLS"
+        Me.GROLLS.ReadOnly = True
+        Me.GROLLS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GROLLS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GWT
+        '
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Calibri", 8.25!)
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle14
+        Me.GWT.HeaderText = "Weight"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GNARRATION
+        '
+        Me.GNARRATION.HeaderText = "Narration"
+        Me.GNARRATION.Name = "GNARRATION"
+        Me.GNARRATION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GNARRATION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GNARRATION.Width = 150
+        '
+        'GFROMNO
+        '
+        Me.GFROMNO.HeaderText = "FROMNO"
+        Me.GFROMNO.Name = "GFROMNO"
+        Me.GFROMNO.ReadOnly = True
+        Me.GFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMNO.Visible = False
+        Me.GFROMNO.Width = 70
+        '
+        'GFROMSRNO
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.NullValue = Nothing
+        Me.GFROMSRNO.DefaultCellStyle = DataGridViewCellStyle15
+        Me.GFROMSRNO.HeaderText = "FROMSRNO"
+        Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GFROMSRNO.ReadOnly = True
+        Me.GFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMSRNO.Visible = False
+        Me.GFROMSRNO.Width = 60
+        '
+        'GFROMTYPE
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GFROMTYPE.DefaultCellStyle = DataGridViewCellStyle16
+        Me.GFROMTYPE.HeaderText = "FROMTYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.ReadOnly = True
+        Me.GFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMTYPE.Visible = False
+        Me.GFROMTYPE.Width = 50
+        '
+        'LBLTOTALROLLS
+        '
+        Me.LBLTOTALROLLS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALROLLS.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALROLLS.Location = New System.Drawing.Point(673, 282)
+        Me.LBLTOTALROLLS.Name = "LBLTOTALROLLS"
+        Me.LBLTOTALROLLS.Size = New System.Drawing.Size(68, 15)
+        Me.LBLTOTALROLLS.TabIndex = 827
+        Me.LBLTOTALROLLS.Text = "0"
+        Me.LBLTOTALROLLS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(638, 282)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(33, 15)
+        Me.Label10.TabIndex = 635
+        Me.Label10.Text = "Total"
+        '
+        'LBLTOTALWT
+        '
+        Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(738, 282)
+        Me.LBLTOTALWT.Name = "LBLTOTALWT"
+        Me.LBLTOTALWT.Size = New System.Drawing.Size(83, 15)
+        Me.LBLTOTALWT.TabIndex = 643
+        Me.LBLTOTALWT.Text = "0.000"
+        Me.LBLTOTALWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'tbupload
         '
@@ -486,148 +683,16 @@ Partial Class RollsIssueToSizer
         Me.tbupload.TabIndex = 2
         Me.tbupload.Text = "2. Scan Documents"
         '
-        'CMDVIEW
+        'TXTIMGPATH
         '
-        Me.CMDVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDVIEW.Location = New System.Drawing.Point(484, 51)
-        Me.CMDVIEW.Name = "CMDVIEW"
-        Me.CMDVIEW.Size = New System.Drawing.Size(80, 28)
-        Me.CMDVIEW.TabIndex = 663
-        Me.CMDVIEW.Text = "&View"
-        Me.CMDVIEW.UseVisualStyleBackColor = True
-        '
-        'CMDUPLOAD
-        '
-        Me.CMDUPLOAD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDUPLOAD.Location = New System.Drawing.Point(443, 17)
-        Me.CMDUPLOAD.Name = "CMDUPLOAD"
-        Me.CMDUPLOAD.Size = New System.Drawing.Size(80, 28)
-        Me.CMDUPLOAD.TabIndex = 659
-        Me.CMDUPLOAD.Text = "&Upload"
-        Me.CMDUPLOAD.UseVisualStyleBackColor = True
-        '
-        'CMDREMOVE
-        '
-        Me.CMDREMOVE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREMOVE.Location = New System.Drawing.Point(530, 17)
-        Me.CMDREMOVE.Name = "CMDREMOVE"
-        Me.CMDREMOVE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREMOVE.TabIndex = 662
-        Me.CMDREMOVE.Text = "&Remove"
-        Me.CMDREMOVE.UseVisualStyleBackColor = True
-        '
-        'gridupload
-        '
-        Me.gridupload.AllowUserToAddRows = False
-        Me.gridupload.AllowUserToDeleteRows = False
-        Me.gridupload.AllowUserToResizeColumns = False
-        Me.gridupload.AllowUserToResizeRows = False
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
-        Me.gridupload.BackgroundColor = System.Drawing.Color.White
-        Me.gridupload.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.gridupload.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
-        Me.gridupload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridupload.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUSRNO, Me.GUREMARKS, Me.GUNAME, Me.GUIMGPATH})
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle25.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle25
-        Me.gridupload.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.gridupload.GridColor = System.Drawing.SystemColors.Control
-        Me.gridupload.Location = New System.Drawing.Point(6, 28)
-        Me.gridupload.MultiSelect = False
-        Me.gridupload.Name = "gridupload"
-        Me.gridupload.ReadOnly = True
-        Me.gridupload.RowHeadersVisible = False
-        Me.gridupload.RowHeadersWidth = 30
-        Me.gridupload.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White
-        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle26
-        Me.gridupload.RowTemplate.Height = 20
-        Me.gridupload.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridupload.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.gridupload.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridupload.Size = New System.Drawing.Size(434, 258)
-        Me.gridupload.TabIndex = 661
-        Me.gridupload.TabStop = False
-        '
-        'GUIMGPATH
-        '
-        Me.GUIMGPATH.HeaderText = "ImgPath"
-        Me.GUIMGPATH.Name = "GUIMGPATH"
-        Me.GUIMGPATH.ReadOnly = True
-        Me.GUIMGPATH.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GUIMGPATH.Visible = False
-        '
-        'GUNAME
-        '
-        Me.GUNAME.HeaderText = "Name"
-        Me.GUNAME.Name = "GUNAME"
-        Me.GUNAME.ReadOnly = True
-        Me.GUNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GUNAME.Width = 181
-        '
-        'GUREMARKS
-        '
-        Me.GUREMARKS.HeaderText = "Remarks"
-        Me.GUREMARKS.Name = "GUREMARKS"
-        Me.GUREMARKS.ReadOnly = True
-        Me.GUREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GUREMARKS.Width = 181
-        '
-        'GUSRNO
-        '
-        Me.GUSRNO.HeaderText = "Sr."
-        Me.GUSRNO.Name = "GUSRNO"
-        Me.GUSRNO.ReadOnly = True
-        Me.GUSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GUSRNO.Width = 40
-        '
-        'txtuploadremarks
-        '
-        Me.txtuploadremarks.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtuploadremarks.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtuploadremarks.Location = New System.Drawing.Point(46, 4)
-        Me.txtuploadremarks.MaxLength = 1000
-        Me.txtuploadremarks.Name = "txtuploadremarks"
-        Me.txtuploadremarks.Size = New System.Drawing.Size(181, 23)
-        Me.txtuploadremarks.TabIndex = 658
-        '
-        'TXTUPLOADSRNO
-        '
-        Me.TXTUPLOADSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTUPLOADSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTUPLOADSRNO.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTUPLOADSRNO.Location = New System.Drawing.Point(6, 4)
-        Me.TXTUPLOADSRNO.Name = "TXTUPLOADSRNO"
-        Me.TXTUPLOADSRNO.ReadOnly = True
-        Me.TXTUPLOADSRNO.Size = New System.Drawing.Size(40, 23)
-        Me.TXTUPLOADSRNO.TabIndex = 667
-        Me.TXTUPLOADSRNO.TabStop = False
-        '
-        'txtuploadname
-        '
-        Me.txtuploadname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtuploadname.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtuploadname.Location = New System.Drawing.Point(228, 4)
-        Me.txtuploadname.MaxLength = 1000
-        Me.txtuploadname.Name = "txtuploadname"
-        Me.txtuploadname.Size = New System.Drawing.Size(181, 23)
-        Me.txtuploadname.TabIndex = 660
+        Me.TXTIMGPATH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTIMGPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTIMGPATH.Location = New System.Drawing.Point(765, 22)
+        Me.TXTIMGPATH.Name = "TXTIMGPATH"
+        Me.TXTIMGPATH.Size = New System.Drawing.Size(29, 23)
+        Me.TXTIMGPATH.TabIndex = 852
+        Me.TXTIMGPATH.TabStop = False
+        Me.TXTIMGPATH.Visible = False
         '
         'PBSOFTCOPY
         '
@@ -642,212 +707,148 @@ Partial Class RollsIssueToSizer
         Me.PBSOFTCOPY.TabIndex = 668
         Me.PBSOFTCOPY.TabStop = False
         '
-        'TXTIMGPATH
+        'txtuploadname
         '
-        Me.TXTIMGPATH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTIMGPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTIMGPATH.Location = New System.Drawing.Point(765, 22)
-        Me.TXTIMGPATH.Name = "TXTIMGPATH"
-        Me.TXTIMGPATH.Size = New System.Drawing.Size(29, 23)
-        Me.TXTIMGPATH.TabIndex = 852
-        Me.TXTIMGPATH.TabStop = False
-        Me.TXTIMGPATH.Visible = False
+        Me.txtuploadname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtuploadname.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtuploadname.Location = New System.Drawing.Point(228, 4)
+        Me.txtuploadname.MaxLength = 1000
+        Me.txtuploadname.Name = "txtuploadname"
+        Me.txtuploadname.Size = New System.Drawing.Size(181, 23)
+        Me.txtuploadname.TabIndex = 660
         '
-        'TabPage1
+        'TXTUPLOADSRNO
         '
-        Me.TabPage1.AutoScroll = True
-        Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TabPage1.Controls.Add(Me.GRIDROLLS)
-        Me.TabPage1.Controls.Add(Me.LBLTOTALROLLS)
-        Me.TabPage1.Controls.Add(Me.Label10)
-        Me.TabPage1.Controls.Add(Me.LBLTOTALWT)
-        Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1038, 329)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "1. Item Details"
+        Me.TXTUPLOADSRNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTUPLOADSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTUPLOADSRNO.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTUPLOADSRNO.Location = New System.Drawing.Point(6, 4)
+        Me.TXTUPLOADSRNO.Name = "TXTUPLOADSRNO"
+        Me.TXTUPLOADSRNO.ReadOnly = True
+        Me.TXTUPLOADSRNO.Size = New System.Drawing.Size(40, 23)
+        Me.TXTUPLOADSRNO.TabIndex = 667
+        Me.TXTUPLOADSRNO.TabStop = False
         '
-        'LBLTOTALWT
+        'txtuploadremarks
         '
-        Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(738, 310)
-        Me.LBLTOTALWT.Name = "LBLTOTALWT"
-        Me.LBLTOTALWT.Size = New System.Drawing.Size(83, 15)
-        Me.LBLTOTALWT.TabIndex = 643
-        Me.LBLTOTALWT.Text = "0.000"
-        Me.LBLTOTALWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.txtuploadremarks.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtuploadremarks.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.txtuploadremarks.Location = New System.Drawing.Point(46, 4)
+        Me.txtuploadremarks.MaxLength = 1000
+        Me.txtuploadremarks.Name = "txtuploadremarks"
+        Me.txtuploadremarks.Size = New System.Drawing.Size(181, 23)
+        Me.txtuploadremarks.TabIndex = 658
         '
-        'Label10
+        'gridupload
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(638, 310)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(33, 15)
-        Me.Label10.TabIndex = 635
-        Me.Label10.Text = "Total"
+        Me.gridupload.AllowUserToAddRows = False
+        Me.gridupload.AllowUserToDeleteRows = False
+        Me.gridupload.AllowUserToResizeColumns = False
+        Me.gridupload.AllowUserToResizeRows = False
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
+        Me.gridupload.BackgroundColor = System.Drawing.Color.White
+        Me.gridupload.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.gridupload.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
+        Me.gridupload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridupload.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUSRNO, Me.GUREMARKS, Me.GUNAME, Me.GUIMGPATH})
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle21
+        Me.gridupload.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.gridupload.GridColor = System.Drawing.SystemColors.Control
+        Me.gridupload.Location = New System.Drawing.Point(6, 28)
+        Me.gridupload.MultiSelect = False
+        Me.gridupload.Name = "gridupload"
+        Me.gridupload.ReadOnly = True
+        Me.gridupload.RowHeadersVisible = False
+        Me.gridupload.RowHeadersWidth = 30
+        Me.gridupload.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White
+        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle22
+        Me.gridupload.RowTemplate.Height = 20
+        Me.gridupload.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridupload.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.gridupload.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.gridupload.Size = New System.Drawing.Size(434, 258)
+        Me.gridupload.TabIndex = 661
+        Me.gridupload.TabStop = False
         '
-        'LBLTOTALROLLS
+        'GUSRNO
         '
-        Me.LBLTOTALROLLS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALROLLS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALROLLS.Location = New System.Drawing.Point(673, 310)
-        Me.LBLTOTALROLLS.Name = "LBLTOTALROLLS"
-        Me.LBLTOTALROLLS.Size = New System.Drawing.Size(68, 15)
-        Me.LBLTOTALROLLS.TabIndex = 827
-        Me.LBLTOTALROLLS.Text = "0"
-        Me.LBLTOTALROLLS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.GUSRNO.HeaderText = "Sr."
+        Me.GUSRNO.Name = "GUSRNO"
+        Me.GUSRNO.ReadOnly = True
+        Me.GUSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GUSRNO.Width = 40
         '
-        'GRIDROLLS
+        'GUREMARKS
         '
-        Me.GRIDROLLS.AllowUserToAddRows = False
-        Me.GRIDROLLS.AllowUserToDeleteRows = False
-        Me.GRIDROLLS.AllowUserToResizeColumns = False
-        Me.GRIDROLLS.AllowUserToResizeRows = False
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDROLLS.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle27
-        Me.GRIDROLLS.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDROLLS.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDROLLS.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDROLLS.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle28
-        Me.GRIDROLLS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDROLLS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GENDS, Me.GROLLS, Me.GWT, Me.GNARRATION, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDROLLS.DefaultCellStyle = DataGridViewCellStyle32
-        Me.GRIDROLLS.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDROLLS.Location = New System.Drawing.Point(4, 2)
-        Me.GRIDROLLS.MultiSelect = False
-        Me.GRIDROLLS.Name = "GRIDROLLS"
-        Me.GRIDROLLS.RowHeadersVisible = False
-        Me.GRIDROLLS.RowHeadersWidth = 30
-        Me.GRIDROLLS.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDROLLS.RowsDefaultCellStyle = DataGridViewCellStyle33
-        Me.GRIDROLLS.RowTemplate.Height = 20
-        Me.GRIDROLLS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDROLLS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.GRIDROLLS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDROLLS.Size = New System.Drawing.Size(1030, 304)
-        Me.GRIDROLLS.TabIndex = 14
-        Me.GRIDROLLS.TabStop = False
+        Me.GUREMARKS.HeaderText = "Remarks"
+        Me.GUREMARKS.Name = "GUREMARKS"
+        Me.GUREMARKS.ReadOnly = True
+        Me.GUREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GUREMARKS.Width = 181
         '
-        'GFROMTYPE
+        'GUNAME
         '
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GFROMTYPE.DefaultCellStyle = DataGridViewCellStyle31
-        Me.GFROMTYPE.HeaderText = "FROMTYPE"
-        Me.GFROMTYPE.Name = "GFROMTYPE"
-        Me.GFROMTYPE.ReadOnly = True
-        Me.GFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMTYPE.Visible = False
-        Me.GFROMTYPE.Width = 50
+        Me.GUNAME.HeaderText = "Name"
+        Me.GUNAME.Name = "GUNAME"
+        Me.GUNAME.ReadOnly = True
+        Me.GUNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GUNAME.Width = 181
         '
-        'GFROMSRNO
+        'GUIMGPATH
         '
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.NullValue = Nothing
-        Me.GFROMSRNO.DefaultCellStyle = DataGridViewCellStyle30
-        Me.GFROMSRNO.HeaderText = "FROMSRNO"
-        Me.GFROMSRNO.Name = "GFROMSRNO"
-        Me.GFROMSRNO.ReadOnly = True
-        Me.GFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMSRNO.Visible = False
-        Me.GFROMSRNO.Width = 60
+        Me.GUIMGPATH.HeaderText = "ImgPath"
+        Me.GUIMGPATH.Name = "GUIMGPATH"
+        Me.GUIMGPATH.ReadOnly = True
+        Me.GUIMGPATH.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GUIMGPATH.Visible = False
         '
-        'GFROMNO
+        'CMDREMOVE
         '
-        Me.GFROMNO.HeaderText = "FROMNO"
-        Me.GFROMNO.Name = "GFROMNO"
-        Me.GFROMNO.ReadOnly = True
-        Me.GFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMNO.Visible = False
-        Me.GFROMNO.Width = 70
+        Me.CMDREMOVE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREMOVE.Location = New System.Drawing.Point(530, 17)
+        Me.CMDREMOVE.Name = "CMDREMOVE"
+        Me.CMDREMOVE.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREMOVE.TabIndex = 662
+        Me.CMDREMOVE.Text = "&Remove"
+        Me.CMDREMOVE.UseVisualStyleBackColor = True
         '
-        'GNARRATION
+        'CMDUPLOAD
         '
-        Me.GNARRATION.HeaderText = "Narration"
-        Me.GNARRATION.Name = "GNARRATION"
-        Me.GNARRATION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GNARRATION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GNARRATION.Width = 150
+        Me.CMDUPLOAD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDUPLOAD.Location = New System.Drawing.Point(443, 17)
+        Me.CMDUPLOAD.Name = "CMDUPLOAD"
+        Me.CMDUPLOAD.Size = New System.Drawing.Size(80, 28)
+        Me.CMDUPLOAD.TabIndex = 659
+        Me.CMDUPLOAD.Text = "&Upload"
+        Me.CMDUPLOAD.UseVisualStyleBackColor = True
         '
-        'GWT
+        'CMDVIEW
         '
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Calibri", 8.25!)
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle29
-        Me.GWT.HeaderText = "Weight"
-        Me.GWT.Name = "GWT"
-        Me.GWT.ReadOnly = True
-        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GROLLS
-        '
-        Me.GROLLS.HeaderText = "Rolls"
-        Me.GROLLS.Name = "GROLLS"
-        Me.GROLLS.ReadOnly = True
-        Me.GROLLS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GROLLS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GENDS
-        '
-        Me.GENDS.HeaderText = "Ends"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.ReadOnly = True
-        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.HeaderText = "Mill Name"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.ReadOnly = True
-        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILLNAME.Width = 250
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 250
-        '
-        'gsrno
-        '
-        Me.gsrno.HeaderText = "Sr."
-        Me.gsrno.Name = "gsrno"
-        Me.gsrno.ReadOnly = True
-        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gsrno.Width = 40
+        Me.CMDVIEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDVIEW.Location = New System.Drawing.Point(484, 51)
+        Me.CMDVIEW.Name = "CMDVIEW"
+        Me.CMDVIEW.Size = New System.Drawing.Size(80, 28)
+        Me.CMDVIEW.TabIndex = 663
+        Me.CMDVIEW.Text = "&View"
+        Me.CMDVIEW.UseVisualStyleBackColor = True
         '
         'lblgrndate
         '
@@ -1011,6 +1012,7 @@ Partial Class RollsIssueToSizer
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.lbllocked)
+        Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
@@ -1026,6 +1028,18 @@ Partial Class RollsIssueToSizer
         Me.ToolStrip1.Size = New System.Drawing.Size(1083, 25)
         Me.ToolStrip1.TabIndex = 646
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'LBLEINVGENERATED
+        '
+        Me.LBLEINVGENERATED.AutoSize = True
+        Me.LBLEINVGENERATED.BackColor = System.Drawing.Color.Transparent
+        Me.LBLEINVGENERATED.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLEINVGENERATED.ForeColor = System.Drawing.Color.Black
+        Me.LBLEINVGENERATED.Location = New System.Drawing.Point(3, 26)
+        Me.LBLEINVGENERATED.Name = "LBLEINVGENERATED"
+        Me.LBLEINVGENERATED.Size = New System.Drawing.Size(199, 29)
+        Me.LBLEINVGENERATED.TabIndex = 936
+        Me.LBLEINVGENERATED.Text = "Rolls Issue To Sizer"
         '
         'RollsIssueToSizer
         '
@@ -1044,13 +1058,13 @@ Partial Class RollsIssueToSizer
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
-        Me.tbupload.ResumeLayout(False)
-        Me.tbupload.PerformLayout()
-        CType(Me.gridupload, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.GRIDROLLS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tbupload.ResumeLayout(False)
+        Me.tbupload.PerformLayout()
+        CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridupload, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
@@ -1131,4 +1145,5 @@ Partial Class RollsIssueToSizer
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents LBLEINVGENERATED As Label
 End Class

@@ -22,7 +22,6 @@ Public Class BeamIssueWeaver
     End Sub
     Sub CLEAR()
         LBLWHATSAPP.Visible = False
-        TXTSERIES.Clear()
         TXTISSUENO.Clear()
         DTISSUEDATE.Text = Mydate
         cmbname.Text = ""
@@ -90,7 +89,6 @@ Public Class BeamIssueWeaver
             TXTISSUENO.Text = DTTABLE.Rows(0).Item(0)
         End If
 
-        GETMAXSERIES(TXTSERIES)
 
     End Sub
     Public Sub GETMAXSERIES(ByVal TXTSERIES As TextBox)
@@ -169,7 +167,6 @@ Public Class BeamIssueWeaver
                 If dttable.Rows.Count > 0 Then
                     cmbname.Focus()
 
-                    TXTSERIES.Text = Val(dttable.Rows(0).Item("SERIES"))
                     TXTISSUENO.Text = TEMPBEAMISSUENO
                     DTISSUEDATE.Text = dttable.Rows(0).Item("ISSUEDATE")
                     CMBOURGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString

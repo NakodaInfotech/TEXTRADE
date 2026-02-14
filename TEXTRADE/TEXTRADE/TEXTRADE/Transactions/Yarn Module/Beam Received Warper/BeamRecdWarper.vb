@@ -1123,6 +1123,8 @@ LINE1:
         numdotkeypress(e, sender, Me)
     End Sub
 
+
+
     Private Sub DTBEAMRECDDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles DTBEAMRECDDATE.Validating
         Try
             If DTBEAMRECDDATE.Text.Trim <> "__/__/____" Then
