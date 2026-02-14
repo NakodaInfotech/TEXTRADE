@@ -1060,7 +1060,7 @@ LINE1:
 
     Private Sub CMBLOOMNO_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBLOOMNO.Enter
         Try
-            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, cmbname.Text.Trim)
+            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, EDIT)
         Catch ex As Exception
             Throw ex
         End Try

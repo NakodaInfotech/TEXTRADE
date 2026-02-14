@@ -1,0 +1,3 @@
+﻿Public Class YarnInterGodownTransferDetails
+
+End Class
