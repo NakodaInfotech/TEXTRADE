@@ -87,30 +87,32 @@ Public Class RollsIssueToSizer
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
                 If errorvalid() = True Then
-                    Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
-                    If tempmsg = vbYes Then cmdok_Click(sender, e)
+                    Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNoCancel)
+                    If tempmsg = vbCancel Then Exit Sub
+                    If tempmsg = vbYes Then Call cmdok_Click(sender, e)
                 End If
                 Me.Close()
-            ElseIf e.KeyCode = Keys.Oemcomma Then
+
+            ElseIf e.Alt = True And e.KeyCode = Keys.D1 Then
+                TabControl1.SelectedIndex = 0
+            ElseIf e.KeyCode = Keys.OemPipe Then
                 e.SuppressKeyPress = True
+            ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
+                toolprevious_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
+                toolnext_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+                Call OpenToolStripButton_Click(sender, e)
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            ElseIf e.KeyCode = Keys.F5 Then
+                GRIDROLLS.Focus()
             ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
                 tstxtbillno.Focus()
                 tstxtbillno.SelectAll()
-            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D1) Then       'for CLEAR
-                TabControl1.SelectedIndex = (0)
-            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D2) Then       'for CLEAR
-                TabControl1.SelectedIndex = (1)
-            ElseIf e.KeyCode = Keys.Enter Then
-                SendKeys.Send("{Tab}")
-            ElseIf e.KeyCode = Keys.Left And e.Alt = True Then
-                Call toolprevious_Click(sender, e)
-            ElseIf e.KeyCode = Keys.Right And e.Alt = True Then
-                Call toolnext_Click(sender, e)
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        Finally
-            Cursor.Current = Cursors.WaitCursor
         End Try
     End Sub
 

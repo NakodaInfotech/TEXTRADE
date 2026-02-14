@@ -119,9 +119,9 @@ Public Class BeamRecdWarper
             ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
                 tstxtbillno.Focus()
                 tstxtbillno.SelectAll()
-            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D1) Then       'for CLEAR
+            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D1) Then       'for scheduling
                 TabControl1.SelectedIndex = (0)
-            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D2) Then       'for CLEAR
+            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D2) Then       'for ITEM DETAILS
                 TabControl1.SelectedIndex = (1)
             ElseIf e.KeyCode = Keys.Enter Then
                 SendKeys.Send("{Tab}")
