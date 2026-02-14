@@ -627,7 +627,7 @@ Public Class PurchaseOrder
             bln = False
         End If
 
-        If ClientName <> "MOMAI" Or ClientName <> "LAXMI" Then
+        If ClientName <> "MOMAI" aND ClientName <> "LAXMI" Then
             For Each row As DataGridViewRow In gridpo.Rows
                 If Val(row.Cells(GMTRS.Index).Value) = 0 Then
                     EP.SetError(txtqty, "Mtrs Cannot be 0")
@@ -1396,7 +1396,8 @@ LINE1:
 
     Private Sub cmbtoname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbtoname.Validating
         Try
-            If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors",, "Sundry Debtors", "ACCOUNTS", CMBTRANS.Text)
+            'If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS", CMBTRANS.Text)
+            If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, cmbcode, e, Me, txtadd, " and (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "ACCOUNTS", CMBTRANS.Text)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1933,6 +1934,7 @@ LINE1:
                 LBLBROKER.Text = "Indent Name"
                 LBLBROKER.Location = New Point(LBLBROKER.Location.X - 40, LBLBROKER.Location.Y)
                 CMBPER.Text = "Pcs"
+                TXTMTRS.TabStop = False
             End If
         Catch ex As Exception
             Throw ex
