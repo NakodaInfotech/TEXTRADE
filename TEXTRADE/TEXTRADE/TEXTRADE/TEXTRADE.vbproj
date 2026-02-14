@@ -2383,6 +2383,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.Designer.vb">
+      <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Magic Box\SelectAdjustBills.Designer.vb">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </Compile>

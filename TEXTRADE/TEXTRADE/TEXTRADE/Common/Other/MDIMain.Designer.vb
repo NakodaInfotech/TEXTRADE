@@ -382,7 +382,9 @@ Partial Class MDIMain
         Me.ToolStripSeparator119 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNSTOCK_GODOWN = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNSTOCK_JOBBER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator338 = New System.Windows.Forms.ToolStripSeparator()
         Me.ROLLSTOCK_GODOWN = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ROLLSTOCK_WARPER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNSTOCKJOBBER_TOOL = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator100 = New System.Windows.Forms.ToolStripSeparator()
         Me.TRANSACTION_MENU = New System.Windows.Forms.ToolStripMenuItem()
@@ -1279,8 +1281,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ROLLSTOCK_WARPER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator338 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3580,11 +3580,22 @@ Partial Class MDIMain
         Me.YARNSTOCK_JOBBER.Text = "Yarn Stock At &Jobber"
         Me.YARNSTOCK_JOBBER.Visible = False
         '
+        'ToolStripSeparator338
+        '
+        Me.ToolStripSeparator338.Name = "ToolStripSeparator338"
+        Me.ToolStripSeparator338.Size = New System.Drawing.Size(243, 6)
+        '
         'ROLLSTOCK_GODOWN
         '
         Me.ROLLSTOCK_GODOWN.Name = "ROLLSTOCK_GODOWN"
         Me.ROLLSTOCK_GODOWN.Size = New System.Drawing.Size(246, 22)
         Me.ROLLSTOCK_GODOWN.Text = "Rolls Stock At Godown"
+        '
+        'ROLLSTOCK_WARPER
+        '
+        Me.ROLLSTOCK_WARPER.Name = "ROLLSTOCK_WARPER"
+        Me.ROLLSTOCK_WARPER.Size = New System.Drawing.Size(246, 22)
+        Me.ROLLSTOCK_WARPER.Text = "Roll Stock At Warper"
         '
         'YARNSTOCKJOBBER_TOOL
         '
@@ -9352,17 +9363,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'ROLLSTOCK_WARPER
-        '
-        Me.ROLLSTOCK_WARPER.Name = "ROLLSTOCK_WARPER"
-        Me.ROLLSTOCK_WARPER.Size = New System.Drawing.Size(246, 22)
-        Me.ROLLSTOCK_WARPER.Text = "Roll Stock At Warper"
-        '
-        'ToolStripSeparator338
-        '
-        Me.ToolStripSeparator338.Name = "ToolStripSeparator338"
-        Me.ToolStripSeparator338.Size = New System.Drawing.Size(243, 6)
         '
         'MDIMain
         '

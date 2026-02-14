@@ -11139,4 +11139,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub ROLLSTOCK_WARPER_Click(sender As Object, e As EventArgs) Handles ROLLSTOCK_WARPER.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New OpeningStockRollsWarper
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
