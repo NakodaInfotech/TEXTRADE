@@ -2383,12 +2383,6 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.Designer.vb">
-      <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Transactions\Magic Box\SelectAdjustBills.Designer.vb">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </Compile>
@@ -3013,12 +3007,6 @@
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.Designer.vb">
-      <DependentUpon>RollsRecdFromWarperDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsReturnFromWarper.Designer.vb">
       <DependentUpon>RollsReturnFromWarper.vb</DependentUpon>
     </Compile>
@@ -3059,6 +3047,12 @@
       <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.Designer.vb">
+      <DependentUpon>YarnInterGodownTransferDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
@@ -10229,9 +10223,6 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRolls.resx">
       <DependentUpon>OpeningStockRolls.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.resx">
-      <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\SelectAdjustBills.resx">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </EmbeddedResource>
@@ -10544,9 +10535,6 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.resx">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.resx">
-      <DependentUpon>RollsRecdFromWarperDetails.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsReturnFromWarper.resx">
       <DependentUpon>RollsReturnFromWarper.vb</DependentUpon>
     </EmbeddedResource>
@@ -10567,6 +10555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.resx">
       <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.resx">
+      <DependentUpon>YarnInterGodownTransferDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
