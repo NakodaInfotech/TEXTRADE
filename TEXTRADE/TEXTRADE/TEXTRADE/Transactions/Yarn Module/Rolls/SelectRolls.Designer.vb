@@ -60,7 +60,7 @@ Partial Class SelectRolls
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1028, 662)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1028, 581)
         Me.BlendPanel1.TabIndex = 6
         '
         'gridbilldetails
@@ -71,7 +71,7 @@ Partial Class SelectRolls
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE, Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(986, 597)
+        Me.gridbilldetails.Size = New System.Drawing.Size(986, 516)
         Me.gridbilldetails.TabIndex = 648
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -144,7 +144,7 @@ Partial Class SelectRolls
         '
         'GQUALITY
         '
-        Me.GQUALITY.Caption = "Quality"
+        Me.GQUALITY.Caption = "Yarn Quality"
         Me.GQUALITY.FieldName = "YARNQUALITY"
         Me.GQUALITY.Name = "GQUALITY"
         Me.GQUALITY.OptionsColumn.AllowEdit = False
@@ -221,7 +221,7 @@ Partial Class SelectRolls
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(517, 624)
+        Me.cmdexit.Location = New System.Drawing.Point(517, 546)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -235,7 +235,7 @@ Partial Class SelectRolls
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(431, 624)
+        Me.cmdok.Location = New System.Drawing.Point(431, 546)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
@@ -245,7 +245,7 @@ Partial Class SelectRolls
         'SelectRolls
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1028, 662)
+        Me.ClientSize = New System.Drawing.Size(1028, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
