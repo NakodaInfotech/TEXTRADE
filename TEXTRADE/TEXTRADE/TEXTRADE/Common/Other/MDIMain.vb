@@ -11029,7 +11029,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem13_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem13.Click
+    Private Sub AddNewEntryToolStripMenuItem13_Click(sender As Object, e As EventArgs)
         Try
             Dim OBJRRFW As New BeamRecdWarper
             OBJRRFW.MdiParent = Me
@@ -11039,7 +11039,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem11.Click
+    Private Sub EditExistingEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs)
         Try
             Dim OBJRRFW As New BeamRecdWarperDetails
             OBJRRFW.MdiParent = Me
