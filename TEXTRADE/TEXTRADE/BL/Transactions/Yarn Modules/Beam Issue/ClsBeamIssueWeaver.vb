@@ -20,7 +20,7 @@ Public Class ClsBeamIssueWeaver
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_TRANS_YARNBEAMISSUETOWEAVER_SAVE"
+            Dim strCommand As String = "SP_TRANS_BEAMISSUETOWEAVER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -113,7 +113,7 @@ Public Class ClsBeamIssueWeaver
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_TRANS_YARNBEAMISSUETOWEAVER_UPDATE"
+            Dim strCommand As String = "SP_TRANS_BEAMISSUETOWEAVER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -206,7 +206,7 @@ Public Class ClsBeamIssueWeaver
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTYARNBEAMISSUETOWEAVER_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTBEAMISSUETOWEAVER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(0)))
@@ -239,7 +239,7 @@ Public Class ClsBeamIssueWeaver
     Public Function SAVEUPLOAD() As Integer
         Dim INTRESULT As Integer
         Try
-            Dim STRCOMMAND As String = "SP_TRANS_YARNBEAMISSUETOWEAVER_SAVEUPLOAD"
+            Dim STRCOMMAND As String = "SP_TRANS_BEAMISSUETOWEAVER_SAVEUPLOAD"
             Dim ALPARAMATER As New ArrayList
             With ALPARAMATER
                 Dim I As Integer = 0

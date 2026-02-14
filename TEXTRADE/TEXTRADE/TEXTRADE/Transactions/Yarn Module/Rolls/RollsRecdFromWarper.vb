@@ -547,7 +547,7 @@ LINE1:
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBQUALITY.Text = "" Then fillYARNQUALITY(CMBQUALITY, EDIT)
-        If CMBMILL.Text = "" Then FILLNAME(CMBMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+        If CMBMILL.Text = "" Then FILLMILL(CMBMILL, EDIT)
         If CMBWINDINGMILL.Text = "" Then FILLNAME(CMBWINDINGMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
     End Sub
 
@@ -1036,7 +1036,7 @@ LINE1:
             MsgBox("Select Program First", MsgBoxStyle.Critical)
             Exit Sub
         End If
-        If CMBQUALITY.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTNETTWT.Text.Trim) > 0 And Val(TXTGROSSWT.Text.Trim) > 0 And Val(TXTCONES.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+        If CMBQUALITY.Text.Trim <> "" And Val(TXTNETTWT.Text.Trim) > 0 And Val(TXTGROSSWT.Text.Trim) > 0 And Val(TXTCONES.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
     End Sub
 
     Private Sub CMBQUALITY_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBQUALITY.Enter
@@ -1090,7 +1090,7 @@ LINE1:
 
     Private Sub CMBMILL_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBMILL.Enter
         Try
-            If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
+            If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1114,7 +1114,7 @@ LINE1:
 
     Private Sub CMBMILL_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMILL.Validating
         Try
-            If CMBMILL.Text.Trim <> "" Then NAMEVALIDATE(CMBMILL, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "MILL")
+            If CMBMILL.Text.Trim <> "" Then MILLVALIDATE(CMBMILL, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
