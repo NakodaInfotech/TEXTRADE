@@ -31,13 +31,10 @@ Partial Class YarnInterGodownTransferDetails
         Me.GFROMGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -46,6 +43,9 @@ Partial Class YarnInterGodownTransferDetails
         Me.ToolStripdelete = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +82,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GFROMGODOWN, Me.GTOGODOWN, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGN, Me.GCOLOR, Me.GBALENO, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GFROMGODOWN, Me.GTOGODOWN, Me.GLOTNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GCONES})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -136,29 +136,23 @@ Partial Class YarnInterGodownTransferDetails
         Me.GLOTNO.Visible = True
         Me.GLOTNO.VisibleIndex = 4
         '
-        'GPIECETYPE
+        'GYARNQUALITY
         '
-        Me.GPIECETYPE.Caption = "PieceType"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 5
-        Me.GPIECETYPE.Width = 100
+        Me.GYARNQUALITY.Caption = "Yarn Quality"
+        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.Visible = True
+        Me.GYARNQUALITY.VisibleIndex = 5
+        Me.GYARNQUALITY.Width = 150
         '
-        'GITEMNAME
+        'GMILLNAME
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEM"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 6
-        Me.GITEMNAME.Width = 150
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 8
+        Me.GMILLNAME.Width = 100
         '
         'GDESIGN
         '
@@ -166,7 +160,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GDESIGN.FieldName = "DESIGN"
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 7
+        Me.GDESIGN.VisibleIndex = 6
         Me.GDESIGN.Width = 150
         '
         'GCOLOR
@@ -175,25 +169,8 @@ Partial Class YarnInterGodownTransferDetails
         Me.GCOLOR.FieldName = "COLORNAME"
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 8
+        Me.GCOLOR.VisibleIndex = 7
         Me.GCOLOR.Width = 100
-        '
-        'GBALENO
-        '
-        Me.GBALENO.Caption = "Bale No."
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 9
-        '
-        'GREMARKS
-        '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "Remarks"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 10
-        Me.GREMARKS.Width = 170
         '
         'cmdexit
         '
@@ -272,6 +249,32 @@ Partial Class YarnInterGodownTransferDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GBAGS
+        '
+        Me.GBAGS.Caption = "Bags"
+        Me.GBAGS.FieldName = "BAGS"
+        Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.Visible = True
+        Me.GBAGS.VisibleIndex = 9
+        Me.GBAGS.Width = 80
+        '
+        'GWT
+        '
+        Me.GWT.Caption = "WT"
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 10
+        Me.GWT.Width = 80
+        '
+        'GCONES
+        '
+        Me.GCONES.Caption = "Cones"
+        Me.GCONES.FieldName = "CONES"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.Visible = True
+        Me.GCONES.VisibleIndex = 11
+        '
         'YarnInterGodownTransferDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -301,13 +304,10 @@ Partial Class YarnInterGodownTransferDetails
     Friend WithEvents GFROMGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
@@ -316,4 +316,7 @@ Partial Class YarnInterGodownTransferDetails
     Friend WithEvents ToolStripdelete As ToolStripButton
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents cmdok As Button
+    Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
 End Class
