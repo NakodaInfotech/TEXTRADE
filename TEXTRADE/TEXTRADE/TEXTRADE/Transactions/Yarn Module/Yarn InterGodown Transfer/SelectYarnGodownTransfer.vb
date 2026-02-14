@@ -3,12 +3,14 @@
 Public Class SelectYarnGodownTransfer
     Public DT As New DataTable
     Public TEMPGODOWNNAME As String
+    Public GODOWN As String
+
     Sub fillgrid(ByVal WHERE As String)
         Try
             Cursor.Current = Cursors.WaitCursor
             Dim OBJCMN As New ClsCommon()
             'Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , NO, SRNO, TYPE, MILLNAME,YARNQUALITY, ISNULL(ENDS, 0) AS ENDS, ROLLS, WT, PROGRAMNO,PROGRAMSRNO, TOTALENDS, LENGTH", "", "ROLLSTOCK", " AND ROLLSTOCK.GODOWN='" & TEMPGODOWNNAME & "' AND ROLLSTOCK.YEARID = " & YearId)
-            Dim DT As DataTable = OBJCMN.SEARCH("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO ,  CAST(GETDATE() AS DATE) AS LIFTINGDATE,GODOWN  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & WHERE & " AND (BAGS > 0 OR CONES > 0 OR WT > 0)  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
+            Dim DT As DataTable = OBJCMN.SEARCH("CAST (0 AS BIT) AS CHK,YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,    CAST(GETDATE() AS DATE) AS LIFTINGDATE,GODOWN  ", "", " YARNSTOCKVIEW ", " AND YEARID = " & YearId & WHERE & "   GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY HAVING SUM(WT) > 0")
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -30,10 +32,10 @@ Public Class SelectYarnGodownTransfer
                     COUNT = COUNT + 1
                 End If
             Next
-            If COUNT > 1 Then
-                MsgBox("You Can Select Only One Entry")
-                Exit Sub
-            End If
+            'If COUNT > 1 Then
+            '    MsgBox("You Can Select Only One Entry")
+            '    Exit Sub
+            'End If
 
 
             DT.Columns.Add("YARNQUALITY")
@@ -44,15 +46,17 @@ Public Class SelectYarnGodownTransfer
             DT.Columns.Add("BAGS")
             DT.Columns.Add("WT")
             DT.Columns.Add("CONES")
-            DT.Columns.Add("LRNO")
+            'DT.Columns.Add("LRNO")
             DT.Columns.Add("LIFTINGDATE")
+            DT.Columns.Add("GODOWN")
+
             'DT.Columns.Add("TOTALENDS")
             'DT.Columns.Add("LENGTH")
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("BAGS"), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("LRNO"), dtrow("LIFTINGDATE"))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("BAGS"), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("LIFTINGDATE"))
                 End If
             Next
             Me.Close()

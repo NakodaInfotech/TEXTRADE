@@ -108,7 +108,7 @@ Public Class SelectYarnStockGdnTransfer
 
             Dim OBJCMN As New ClsCommon()
             Dim DT As New DataTable
-            DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO ,  CAST(GETDATE() AS DATE) AS LIFTINGDATE  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & WHERE & " AND (BAGS > 0 OR CONES > 0 OR WT > 0)  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
+            DT = OBJCMN.Execute_Any_String("SELECT YARNQUALITY, MILLNAME, DESIGNNO, COLOR, LOTNO, SUM(BAGS) AS BAGS, SUM (WT) AS WT,SUM(CONES) AS CONES,  LRNO ,  CAST(GETDATE() AS DATE) AS LIFTINGDATE,GODOWN  FROM YARNSTOCKVIEW WHERE YEARID = " & YearId & WHERE & " AND (BAGS > 0 OR CONES > 0 OR WT > 0)  GROUP BY YARNQUALITY, MILLNAME, DESIGNNO, COLOR, GODOWN, LOTNO,CATEGORY, LRNO", "", "")
 
             gridwo.DataSource = DT
             If DT.Rows.Count > 0 Then
@@ -184,8 +184,8 @@ Public Class SelectYarnStockGdnTransfer
 
                 gridwo.Columns(I).Width = 80 'LIFTINGDATE
                 I = I + 1
-                'gridwo.Columns(I).Width = 80 'RACK
-                'I = I + 1
+                gridwo.Columns(I).Width = 150 'GODOWN
+                I = I + 1
                 'gridwo.Columns(I).Width = 80 'SHELF
                 'I = I + 1
                 'gridwo.Columns(I).Width = 120 'CHALLANNO
@@ -212,14 +212,14 @@ Public Class SelectYarnStockGdnTransfer
         rowno = 0
 
         If txtsearch.Text.Trim <> "" Then
-            If cmbselect.Text = "Quality" Then
-                obj = CLB_Quality
+            If cmbselect.Text = "Mill" Then
+                obj = CLB_Mill
             ElseIf cmbselect.Text = "Design" Then
                 obj = CLB_Design
             ElseIf cmbselect.Text = "Shade" Then
                 obj = CLB_Shade
-            ElseIf cmbselect.Text = "Item" Then
-                obj = CLB_Item
+            ElseIf cmbselect.Text = "YarnQuality" Then
+                obj = CLB_YarnQuality
             End If
 
             For b = 1 To obj.Items.Count
@@ -282,7 +282,7 @@ Public Class SelectYarnStockGdnTransfer
 
         '***************search for QUALITY ****************
 
-        Dim checked_QUALITY As CheckedListBox.CheckedItemCollection = CLB_Quality.CheckedItems
+        Dim checked_QUALITY As CheckedListBox.CheckedItemCollection = CLB_Mill.CheckedItems
         Dim QUALITY As String = "" '"     Selected Students:" & vbCrLf
         For Each item As Object In checked_QUALITY
             If QUALITY = "" Then
@@ -299,7 +299,7 @@ Public Class SelectYarnStockGdnTransfer
 
         '***************search for ITEM ****************
 
-        Dim checked_ITEM As CheckedListBox.CheckedItemCollection = CLB_Item.CheckedItems
+        Dim checked_ITEM As CheckedListBox.CheckedItemCollection = CLB_YarnQuality.CheckedItems
         Dim ITEMNAME As String = "" '"     Selected Students:" & vbCrLf
         For Each item As Object In checked_ITEM
             If ITEMNAME = "" Then
@@ -381,18 +381,18 @@ Public Class SelectYarnStockGdnTransfer
         Dim objclscomm As New ClsCommon()
 
         'Fill QUALITY
-        dt = objclscomm.Execute_Any_String("SELECT DISTINCT QUALITY_NAME FROM QUALITYMASTER ", " ", " WHERE QUALITYMASTER.QUALITY_Yearid=" & YearId & " ORDER BY QUALITYMASTER.QUALITY_NAME ")
+        dt = objclscomm.Execute_Any_String("SELECT DISTINCT MILL_NAME FROM MILLMASTER ", " ", " WHERE MILLMASTER.MILL_Yearid=" & YearId & " ORDER BY MILLMASTER.MILL_NAME ")
         If dt.Rows.Count > 0 Then
             For Each dr As DataRow In dt.Rows
-                CLB_Quality.Items.Add(Convert.ToString(dr(0)), False)
+                CLB_Mill.Items.Add(Convert.ToString(dr(0)), False)
             Next
         End If
 
         'Fill ITEMNAME
-        dt = objclscomm.Execute_Any_String("SELECT DISTINCT ITEM_NAME FROM ITEMMASTER ", " ", " WHERE ITEMMASTER.ITEM_Yearid=" & YearId & " ORDER BY ITEMMASTER.ITEM_NAME ")
+        dt = objclscomm.Execute_Any_String("SELECT DISTINCT YARN_NAME FROM YARNQUALITYMASTER ", " ", " WHERE YARNQUALITYMASTER.YARN_Yearid=" & YearId & " ORDER BY YARNQUALITYMASTER.YARN_NAME ")
         If dt.Rows.Count > 0 Then
             For Each dr As DataRow In dt.Rows
-                CLB_Item.Items.Add(Convert.ToString(dr(0)), False)
+                CLB_YarnQuality.Items.Add(Convert.ToString(dr(0)), False)
             Next
         End If
 
@@ -502,12 +502,12 @@ Public Class SelectYarnStockGdnTransfer
 
     Private Sub chkQuality_CheckedChanged(sender As Object, e As EventArgs) Handles chkQuality.CheckedChanged
         If chkQuality.Checked = True Then
-            For i As Integer = 0 To CLB_Quality.Items.Count - 1
-                CLB_Quality.SetItemChecked(i, True)
+            For i As Integer = 0 To CLB_Mill.Items.Count - 1
+                CLB_Mill.SetItemChecked(i, True)
             Next
         Else
-            For i As Integer = 0 To CLB_Quality.Items.Count - 1
-                CLB_Quality.SetItemChecked(i, False)
+            For i As Integer = 0 To CLB_Mill.Items.Count - 1
+                CLB_Mill.SetItemChecked(i, False)
             Next
         End If
     End Sub
@@ -628,12 +628,12 @@ Public Class SelectYarnStockGdnTransfer
 
     Private Sub CHKItem_CheckedChanged(sender As Object, e As EventArgs) Handles CHKItem.CheckedChanged
         If CHKItem.Checked = True Then
-            For i As Integer = 0 To CLB_Item.Items.Count - 1
-                CLB_Item.SetItemChecked(i, True)
+            For i As Integer = 0 To CLB_YarnQuality.Items.Count - 1
+                CLB_YarnQuality.SetItemChecked(i, True)
             Next
         Else
-            For i As Integer = 0 To CLB_Item.Items.Count - 1
-                CLB_Item.SetItemChecked(i, False)
+            For i As Integer = 0 To CLB_YarnQuality.Items.Count - 1
+                CLB_YarnQuality.SetItemChecked(i, False)
             Next
         End If
     End Sub

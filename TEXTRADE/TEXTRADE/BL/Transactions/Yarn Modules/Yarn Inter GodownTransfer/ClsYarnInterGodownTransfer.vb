@@ -79,8 +79,8 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                I = I + 1
+                '.Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                'I = I + 1
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
 
@@ -159,8 +159,8 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                I = I + 1
+                '.Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                'I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
