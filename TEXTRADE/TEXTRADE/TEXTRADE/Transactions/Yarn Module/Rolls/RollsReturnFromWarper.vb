@@ -43,10 +43,9 @@ Public Class RollsReturnFromWarper
         CMDSELECTROLLS.Enabled = True
         DTROLLSRETDATE.Text = Mydate
         CMBGODOWN.Text = GETDEFAULTGODOWN()
-        CMBSIZER.Text = ""
+        CMBNAME.Text = ""
         TXTCHALLANNO.Clear()
         DTCHALLANDATE.Clear()
-        TXTPROGRAMNO.Clear()
         cmbtrans.Text = ""
         TXTREMARKS.Clear()
 
@@ -55,7 +54,7 @@ Public Class RollsReturnFromWarper
         LBLTOTALWT.Text = 0.0
 
         TXTSRNO.Clear()
-        CMBQUALITY.Text = ""
+        CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
         TXTENDS.Clear()
         TXTROLLS.Clear()
@@ -126,10 +125,10 @@ Public Class RollsReturnFromWarper
     End Sub
 
     Sub FILLCMB()
-        If CMBSIZER.Text.Trim = "" Then FILLNAME(CMBSIZER, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, EDIT)
-        If CMBQUALITY.Text = "" Then fillQUALITY(CMBQUALITY, EDIT)
-        If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'")
+        If CMBYARNQUALITY.Text = "" Then fillYARNQUALITY(CMBYARNQUALITY, EDIT)
+        If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, EDIT)
         If cmbtrans.Text = "" Then FILLNAME(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT' ")
     End Sub
 
@@ -166,7 +165,7 @@ Public Class RollsReturnFromWarper
 
     Private Sub RollsReturn_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ROLLS RECD'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -197,16 +196,15 @@ Public Class RollsReturnFromWarper
                     TXTROLLSRETNO.Text = TEMPROLLRETURNNO
                     DTROLLSRETDATE.Text = dttable.Rows(0).Item("DATE")
                     CMBGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
-                    CMBSIZER.Text = dttable.Rows(0).Item("SIZER").ToString
+                    CMBNAME.Text = dttable.Rows(0).Item("WARPER").ToString
                     TXTCHALLANNO.Text = dttable.Rows(0).Item("CHALLANNO").ToString
                     DTCHALLANDATE.Text = dttable.Rows(0).Item("CHALLANDATE")
-                    TXTPROGRAMNO.Text = Val(dttable.Rows(0).Item("PROGRAMNO"))
                     cmbtrans.Text = dttable.Rows(0).Item("TRANSPORT").ToString
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("QUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("GRIDTYPE"), ROW("DONE"))
+                        GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("GRIDTYPE"), ROW("DONE"))
 
                         If Convert.ToBoolean(ROW("DONE")) = True Then
                             GRIDROLLS.Rows(GRIDROLLS.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -218,7 +216,7 @@ Public Class RollsReturnFromWarper
 
                     'UPLOAD(GRID)
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search(" ROLLSRETURN_UPLOAD.ROLLSRET_SRNO AS GRIDSRNO, ROLLSRETURN_UPLOAD.ROLLSRET_REMARKS AS REMARKS, ROLLSRETURN_UPLOAD.ROLLSRET_NAME AS NAME, ROLLSRETURN_UPLOAD.ROLLSRET_PHOTO AS IMGPATH ", "", " ROLLSRETURN_UPLOAD ", " AND ROLLSRETURN_UPLOAD.ROLLSRET_NO = " & TEMPROLLRETURNNO & " AND ROLLSRET_YEARID = " & YearId & " ORDER BY ROLLSRETURN_UPLOAD.ROLLSRET_SRNO")
+                    Dim DT As DataTable = OBJCMN.SEARCH(" ROLLSRETURN_UPLOAD.ROLLSRET_SRNO AS GRIDSRNO, ROLLSRETURN_UPLOAD.ROLLSRET_REMARKS AS REMARKS, ROLLSRETURN_UPLOAD.ROLLSRET_NAME AS NAME, ROLLSRETURN_UPLOAD.ROLLSRET_PHOTO AS IMGPATH ", "", " ROLLSRETURN_UPLOAD ", " AND ROLLSRETURN_UPLOAD.ROLLSRET_NO = " & TEMPROLLRETURNNO & " AND ROLLSRET_YEARID = " & YearId & " ORDER BY ROLLSRETURN_UPLOAD.ROLLSRET_SRNO")
                     If DT.Rows.Count > 0 Then
                         For Each DTR As DataRow In DT.Rows
                             gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
@@ -251,10 +249,9 @@ Public Class RollsReturnFromWarper
 
             alParaval.Add(Format(Convert.ToDateTime(DTROLLSRETDATE.Text.Trim).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBGODOWN.Text.Trim)
-            alParaval.Add(CMBSIZER.Text.Trim)
+            alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(TXTCHALLANNO.Text.Trim)
             alParaval.Add(DTCHALLANDATE.Text.Trim)
-            alParaval.Add(TXTPROGRAMNO.Text.Trim)
             alParaval.Add(cmbtrans.Text.Trim)
             alParaval.Add(LBLTOTALENDS.Text.Trim)
             alParaval.Add(LBLTOTALROLLS.Text.Trim)
@@ -280,7 +277,7 @@ Public Class RollsReturnFromWarper
                 If row.Cells(gsrno.Index).Value <> Nothing Then
                     If SRNO = "" Then
                         SRNO = row.Cells(gsrno.Index).Value
-                        QUALITY = row.Cells(GQUALITY.Index).Value.ToString
+                        QUALITY = row.Cells(GYARNQUALITY.Index).Value.ToString
                         MILLNAME = row.Cells(GMILLNAME.Index).Value.ToString
                         ENDS = Val(row.Cells(GENDS.Index).Value)
                         ROLLS = Val(row.Cells(GROLLS.Index).Value)
@@ -293,7 +290,7 @@ Public Class RollsReturnFromWarper
                     Else
 
                         SRNO = SRNO & "|" & row.Cells(gsrno.Index).Value
-                        QUALITY = QUALITY & "|" & row.Cells(GQUALITY.Index).Value.ToString
+                        QUALITY = QUALITY & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
                         MILLNAME = MILLNAME & "|" & row.Cells(GMILLNAME.Index).Value.ToString
                         ENDS = ENDS & "|" & Val(row.Cells(GENDS.Index).Value)
                         ROLLS = ROLLS & "|" & Val(row.Cells(GROLLS.Index).Value)
@@ -427,16 +424,6 @@ Public Class RollsReturnFromWarper
             End If
         End If
 
-        'If DTCHALLANDATE.Text = "__/__/____" Then
-        '    EP.SetError(DTCHALLANDATE, " Please Enter Proper Date")
-        '    bln = False
-        'Else
-        '    If Not datecheck(DTCHALLANDATE.Text) Then
-        '        EP.SetError(DTCHALLANDATE, "Date not in Accounting Year")
-        '        bln = False
-        '    End If
-        'End If
-
         If DTROLLSRETDATE.Text.Trim <> "__/__/____" And DTCHALLANDATE.Text.Trim <> "__/__/____" Then
             If Convert.ToDateTime(DTROLLSRETDATE.Text).Date > Convert.ToDateTime(DTCHALLANDATE.Text).Date Then
                 EP.SetError(DTCHALLANDATE, " Please Enter Proper Challan Date")
@@ -444,8 +431,8 @@ Public Class RollsReturnFromWarper
             End If
         End If
 
-        If CMBSIZER.Text.Trim.Length = 0 Then
-            EP.SetError(CMBSIZER, "Please Fill Sizer Name")
+        If CMBNAME.Text.Trim.Length = 0 Then
+            EP.SetError(CMBNAME, "Please Fill Sizer Name")
             bln = False
         End If
 
@@ -490,32 +477,32 @@ Public Class RollsReturnFromWarper
         End Try
     End Sub
 
-    Private Sub CMBSIZER_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBSIZER.Enter
+    Private Sub CMBNAME_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBSIZER.Text.Trim = "" Then FILLNAME(CMBSIZER, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBSIZER_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBSIZER.KeyDown
+    Private Sub CMBNAME_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
         Try
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'"
+                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='ACCOUNTS' "
                 OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then CMBSIZER.Text = OBJLEDGER.TEMPNAME
+                If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBSIZER_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBSIZER.Validating
+    Private Sub CMBNAME_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBSIZER.Text.Trim <> "" Then NAMEVALIDATE(CMBSIZER, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' AND LEDGERS.ACC_SUBTYPE = 'SIZER'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "SIZER")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -537,34 +524,17 @@ Public Class RollsReturnFromWarper
         End Try
     End Sub
 
-    Private Sub CMBQUALITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBQUALITY.Enter
+    Private Sub CMBYARNQUALITY_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBYARNQUALITY.Enter
         Try
-            If CMBQUALITY.Text.Trim = "" Then fillQUALITY(CMBQUALITY, EDIT)
+            If CMBYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBYARNQUALITY, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-
-    Private Sub CMBQUALITY_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBQUALITY.KeyDown
+    Private Sub CMBYARNQUALITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating
         Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJQUALITY As New SelectQuality
-                OBJQUALITY.ShowDialog()
-                If OBJQUALITY.TEMPNAME <> "" Then CMBQUALITY.Text = OBJQUALITY.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-
-    Private Sub CMBQUALITY_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBQUALITY.Validating
-        Try
-            If CMBQUALITY.Text.Trim <> "" Then QUALITYVALIDATE(CMBQUALITY, e, Me)
+            If CMBYARNQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBYARNQUALITY, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -572,24 +542,7 @@ Public Class RollsReturnFromWarper
 
     Private Sub CMBMILL_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBMILL.Enter
         Try
-            If CMBMILL.Text.Trim = "" Then FILLNAME(CMBMILL, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBMILL_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBMILL.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'"
-                OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPCODE <> "" Then cmbcode.Text = OBJLEDGER.TEMPCODE
-                If OBJLEDGER.TEMPNAME <> "" Then CMBMILL.Text = OBJLEDGER.TEMPNAME
-            End If
+            If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -597,7 +550,7 @@ Public Class RollsReturnFromWarper
 
     Private Sub CMBMILL_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMILL.Validating
         Try
-            If CMBMILL.Text.Trim <> "" Then NAMEVALIDATE(CMBMILL, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' and LEDGERS.ACC_SUBTYPE = 'MILL'", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "MILL")
+            If CMBMILL.Text.Trim <> "" Then MILLVALIDATE(CMBMILL, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -612,7 +565,7 @@ Line2:
             If TEMPROLLRETURNNO > 0 Then
 
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search(" ROLLSRET_NO ", "", "  ROLLSRETURN", " AND ROLLSRET_NO = '" & TEMPROLLRETURNNO & "' AND ROLLSRETURN.ROLLSRET_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ROLLSRET_NO ", "", "  ROLLSRETURN", " AND ROLLSRET_NO = '" & TEMPROLLRETURNNO & "' AND ROLLSRETURN.ROLLSRET_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     EDIT = True
                     RollsReturn_Load(sender, e)
@@ -656,10 +609,6 @@ LINE1:
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
-    End Sub
-
-    Private Sub tstxtbillno_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tstxtbillno.KeyPress
-        numkeypress(e, tstxtbillno, Me)
     End Sub
 
     Private Sub tstxtbillno_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tstxtbillno.Validated
@@ -786,7 +735,7 @@ LINE1:
 
                 GRIDDOUBLECLICK = True
                 TXTSRNO.Text = GRIDROLLS.Item(gsrno.Index, e.RowIndex).Value
-                CMBQUALITY.Text = GRIDROLLS.Item(GQUALITY.Index, e.RowIndex).Value
+                CMBYARNQUALITY.Text = GRIDROLLS.Item(GYARNQUALITY.Index, e.RowIndex).Value
                 CMBMILL.Text = GRIDROLLS.Item(GMILLNAME.Index, e.RowIndex).Value
                 TXTENDS.Text = GRIDROLLS.Item(GENDS.Index, e.RowIndex).Value
                 TXTROLLS.Text = GRIDROLLS.Item(GROLLS.Index, e.RowIndex).Value
@@ -794,7 +743,7 @@ LINE1:
                 TXTNARR.Text = GRIDROLLS.Item(GNARR.Index, e.RowIndex).Value
 
                 TEMPROW = e.RowIndex
-                CMBQUALITY.Focus()
+                CMBYARNQUALITY.Focus()
 
             End If
         Catch ex As Exception
@@ -868,10 +817,10 @@ LINE1:
     Sub FILLGRID()
         Try
             If GRIDDOUBLECLICK = False Then
-                GRIDROLLS.Rows.Add(Val(TXTSRNO.Text.Trim), CMBQUALITY.Text.Trim, CMBMILL.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTROLLS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), TXTNARR.Text.Trim)
+                GRIDROLLS.Rows.Add(Val(TXTSRNO.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTROLLS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), TXTNARR.Text.Trim)
             Else
                 GRIDROLLS.Item(gsrno.Index, TEMPROW).Value = TXTSRNO.Text.Trim
-                GRIDROLLS.Item(GQUALITY.Index, TEMPROW).Value = CMBQUALITY.Text.Trim
+                GRIDROLLS.Item(GYARNQUALITY.Index, TEMPROW).Value = CMBYARNQUALITY.Text.Trim
                 GRIDROLLS.Item(GMILLNAME.Index, TEMPROW).Value = CMBMILL.Text.Trim
                 GRIDROLLS.Item(GENDS.Index, TEMPROW).Value = Val(TXTENDS.Text.Trim)
                 GRIDROLLS.Item(GROLLS.Index, TEMPROW).Value = Val(TXTROLLS.Text.Trim)
@@ -880,7 +829,7 @@ LINE1:
 
                 GRIDDOUBLECLICK = False
             End If
-            CMBQUALITY.Text = ""
+            CMBYARNQUALITY.Text = ""
             CMBMILL.Text = ""
             TXTENDS.Clear()
             TXTROLLS.Clear()
@@ -888,7 +837,7 @@ LINE1:
             TXTNARR.Clear()
             getsrno(GRIDROLLS)
             TOTAL()
-            CMBQUALITY.Focus()
+            CMBYARNQUALITY.Focus()
             If GRIDROLLS.RowCount > 0 Then TXTSRNO.Text = Val(GRIDROLLS.RowCount) + 1 Else TXTSRNO.Text = 1
         Catch ex As Exception
             Throw ex
@@ -897,7 +846,7 @@ LINE1:
 
 
     Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTNARR.Validating
-        If CMBQUALITY.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTENDS.Text.Trim) > 0 And Val(TXTROLLS.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+        If CMBYARNQUALITY.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTENDS.Text.Trim) > 0 And Val(TXTROLLS.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
     End Sub
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
@@ -910,21 +859,12 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTENDS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTENDS.KeyPress
-        numkeypress(e, TXTENDS, Me)
-    End Sub
-
-    Private Sub TXTROLLS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTROLLS.KeyPress
-        numkeypress(e, TXTROLLS, Me)
+    Private Sub TXTENDS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTENDS.KeyPress, TXTROLLS.KeyPress, TXTCHALLANNO.KeyPress, tstxtbillno.KeyPress
+        numkeypress(e, sender, Me)
     End Sub
 
     Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
-        numdot3(e, TXTWT, Me)
-    End Sub
-
-
-    Private Sub TXTCHALLANNO_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTCHALLANNO.KeyPress
-        numkeypress(e, TXTCHALLANNO, Me)
+        numdot3(e, sender, Me)
     End Sub
 
     Private Sub DTROLLSRETDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles DTROLLSRETDATE.Validating
@@ -961,20 +901,19 @@ LINE1:
 
     Private Sub CMDSELECTROLLS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTROLLS.Click
         Try
-            If CMBSIZER.Text.Trim = "" Then
-                MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
-                CMBSIZER.Focus()
+            If CMBNAME.Text.Trim = "" Then
+                MsgBox("Select Name First", MsgBoxStyle.Critical)
+                CMBNAME.Focus()
                 Exit Sub
             End If
 
             Dim OBJROLLISSUE As New SelectRollIssue
-            OBJROLLISSUE.SIZERNAME = CMBSIZER.Text.Trim
+            OBJROLLISSUE.SIZERNAME = CMBNAME.Text.Trim
             Dim DT As DataTable = OBJROLLISSUE.DT
             OBJROLLISSUE.ShowDialog()
             If DT.Rows.Count > 0 Then
-                TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
                 For Each ROW As DataRow In DT.Rows
-                    GRIDROLLS.Rows.Add(0, ROW("QUALITYNAME"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), "", Val(ROW("ROLLISSUENO")), Val(ROW("ROLLISSUESRNO")), ROW("TYPE"), 0)
+                    GRIDROLLS.Rows.Add(0, ROW("YARNQUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), "", Val(ROW("ROLLISSUENO")), Val(ROW("ROLLISSUESRNO")), ROW("TYPE"), 0)
                 Next
                 getsrno(GRIDROLLS)
                 CMDSELECTROLLS.Enabled = False

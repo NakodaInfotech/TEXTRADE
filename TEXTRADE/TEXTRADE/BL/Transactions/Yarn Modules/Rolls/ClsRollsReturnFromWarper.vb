@@ -30,13 +30,11 @@ Public Class ClsRollsReturnFromWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@SIZER", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WARPER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
@@ -61,7 +59,7 @@ Public Class ClsRollsReturnFromWarper
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
@@ -105,13 +103,11 @@ Public Class ClsRollsReturnFromWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@SIZER", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WARPER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
@@ -136,7 +132,7 @@ Public Class ClsRollsReturnFromWarper
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1

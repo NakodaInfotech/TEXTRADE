@@ -35,8 +35,6 @@ Partial Class RollsReturnFromWarper
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.TXTPROGRAMNO = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbtrans = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.CMDSELECTROLLS = New System.Windows.Forms.Button()
@@ -51,7 +49,7 @@ Partial Class RollsReturnFromWarper
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TXTCHALLANNO = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.CMBSIZER = New System.Windows.Forms.ComboBox()
+        Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.cmbcode = New System.Windows.Forms.ComboBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -74,10 +72,10 @@ Partial Class RollsReturnFromWarper
         Me.Button4 = New System.Windows.Forms.Button()
         Me.TXTWT = New System.Windows.Forms.TextBox()
         Me.CMBMILL = New System.Windows.Forms.ComboBox()
-        Me.CMBQUALITY = New System.Windows.Forms.ComboBox()
+        Me.CMBYARNQUALITY = New System.Windows.Forms.ComboBox()
         Me.GRIDROLLS = New System.Windows.Forms.DataGridView()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -136,8 +134,6 @@ Partial Class RollsReturnFromWarper
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.TXTPROGRAMNO)
-        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans)
         Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTROLLS)
@@ -152,7 +148,7 @@ Partial Class RollsReturnFromWarper
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.TXTCHALLANNO)
         Me.BlendPanel1.Controls.Add(Me.Label5)
-        Me.BlendPanel1.Controls.Add(Me.CMBSIZER)
+        Me.BlendPanel1.Controls.Add(Me.CMBNAME)
         Me.BlendPanel1.Controls.Add(Me.TXTADD)
         Me.BlendPanel1.Controls.Add(Me.cmbcode)
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
@@ -174,30 +170,6 @@ Partial Class RollsReturnFromWarper
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
-        '
-        'TXTPROGRAMNO
-        '
-        Me.TXTPROGRAMNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTPROGRAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPROGRAMNO.Location = New System.Drawing.Point(509, 103)
-        Me.TXTPROGRAMNO.Name = "TXTPROGRAMNO"
-        Me.TXTPROGRAMNO.ReadOnly = True
-        Me.TXTPROGRAMNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTPROGRAMNO.TabIndex = 857
-        Me.TXTPROGRAMNO.TabStop = False
-        Me.TXTPROGRAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(435, 107)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 15)
-        Me.Label1.TabIndex = 858
-        Me.Label1.Text = "Program No"
         '
         'cmbtrans
         '
@@ -365,24 +337,24 @@ Partial Class RollsReturnFromWarper
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(45, 78)
+        Me.Label5.Location = New System.Drawing.Point(29, 78)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(67, 15)
+        Me.Label5.Size = New System.Drawing.Size(83, 15)
         Me.Label5.TabIndex = 820
-        Me.Label5.Text = "Sizer Name"
+        Me.Label5.Text = "Warper Name"
         '
-        'CMBSIZER
+        'CMBNAME
         '
-        Me.CMBSIZER.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSIZER.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSIZER.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBSIZER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSIZER.FormattingEnabled = True
-        Me.CMBSIZER.Location = New System.Drawing.Point(114, 74)
-        Me.CMBSIZER.MaxDropDownItems = 14
-        Me.CMBSIZER.Name = "CMBSIZER"
-        Me.CMBSIZER.Size = New System.Drawing.Size(246, 23)
-        Me.CMBSIZER.TabIndex = 2
+        Me.CMBNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBNAME.FormattingEnabled = True
+        Me.CMBNAME.Location = New System.Drawing.Point(114, 74)
+        Me.CMBNAME.MaxDropDownItems = 14
+        Me.CMBNAME.Name = "CMBNAME"
+        Me.CMBNAME.Size = New System.Drawing.Size(246, 23)
+        Me.CMBNAME.TabIndex = 2
         '
         'TXTADD
         '
@@ -535,7 +507,7 @@ Partial Class RollsReturnFromWarper
         Me.TabPage1.Controls.Add(Me.Button4)
         Me.TabPage1.Controls.Add(Me.TXTWT)
         Me.TabPage1.Controls.Add(Me.CMBMILL)
-        Me.TabPage1.Controls.Add(Me.CMBQUALITY)
+        Me.TabPage1.Controls.Add(Me.CMBYARNQUALITY)
         Me.TabPage1.Controls.Add(Me.GRIDROLLS)
         Me.TabPage1.Controls.Add(Me.TXTNARR)
         Me.TabPage1.Controls.Add(Me.Button10)
@@ -625,7 +597,7 @@ Partial Class RollsReturnFromWarper
         '
         Me.CMBMILL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBMILL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMILL.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBMILL.BackColor = System.Drawing.Color.White
         Me.CMBMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBMILL.FormattingEnabled = True
         Me.CMBMILL.Location = New System.Drawing.Point(243, 29)
@@ -635,19 +607,19 @@ Partial Class RollsReturnFromWarper
         Me.CMBMILL.TabIndex = 1
         Me.CMBMILL.Visible = False
         '
-        'CMBQUALITY
+        'CMBYARNQUALITY
         '
-        Me.CMBQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBQUALITY.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBQUALITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBQUALITY.FormattingEnabled = True
-        Me.CMBQUALITY.Location = New System.Drawing.Point(43, 29)
-        Me.CMBQUALITY.MaxDropDownItems = 14
-        Me.CMBQUALITY.Name = "CMBQUALITY"
-        Me.CMBQUALITY.Size = New System.Drawing.Size(200, 23)
-        Me.CMBQUALITY.TabIndex = 0
-        Me.CMBQUALITY.Visible = False
+        Me.CMBYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBYARNQUALITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBYARNQUALITY.FormattingEnabled = True
+        Me.CMBYARNQUALITY.Location = New System.Drawing.Point(43, 29)
+        Me.CMBYARNQUALITY.MaxDropDownItems = 14
+        Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
+        Me.CMBYARNQUALITY.Size = New System.Drawing.Size(200, 23)
+        Me.CMBYARNQUALITY.TabIndex = 0
+        Me.CMBYARNQUALITY.Visible = False
         '
         'GRIDROLLS
         '
@@ -669,7 +641,7 @@ Partial Class RollsReturnFromWarper
         Me.GRIDROLLS.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDROLLS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDROLLS.ColumnHeadersVisible = False
-        Me.GRIDROLLS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GQUALITY, Me.GMILLNAME, Me.GENDS, Me.GROLLS, Me.Gwt, Me.GNARR, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE, Me.GDONE})
+        Me.GRIDROLLS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GENDS, Me.GROLLS, Me.Gwt, Me.GNARR, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE, Me.GDONE})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -705,14 +677,14 @@ Partial Class RollsReturnFromWarper
         Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.gsrno.Width = 40
         '
-        'GQUALITY
+        'GYARNQUALITY
         '
-        Me.GQUALITY.HeaderText = "Quality"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.ReadOnly = True
-        Me.GQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GQUALITY.Width = 200
+        Me.GYARNQUALITY.HeaderText = "Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 200
         '
         'GMILLNAME
         '
@@ -1127,6 +1099,7 @@ Partial Class RollsReturnFromWarper
         'PBlock
         '
         Me.PBlock.BackColor = System.Drawing.Color.Transparent
+        Me.PBlock.Image = Global.TEXTRADE.My.Resources.Resources.lock_copy
         Me.PBlock.Location = New System.Drawing.Point(775, 462)
         Me.PBlock.Name = "PBlock"
         Me.PBlock.Size = New System.Drawing.Size(60, 60)
@@ -1246,8 +1219,6 @@ Partial Class RollsReturnFromWarper
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Friend WithEvents TXTPROGRAMNO As TextBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents cmbtrans As ComboBox
     Friend WithEvents Label18 As Label
     Friend WithEvents CMDSELECTROLLS As Button
@@ -1262,7 +1233,7 @@ Partial Class RollsReturnFromWarper
     Friend WithEvents Label2 As Label
     Friend WithEvents TXTCHALLANNO As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents CMBSIZER As ComboBox
+    Friend WithEvents CMBNAME As ComboBox
     Friend WithEvents TXTADD As TextBox
     Friend WithEvents cmbcode As ComboBox
     Friend WithEvents GroupBox5 As GroupBox
@@ -1285,19 +1256,8 @@ Partial Class RollsReturnFromWarper
     Friend WithEvents Button4 As Button
     Friend WithEvents TXTWT As TextBox
     Friend WithEvents CMBMILL As ComboBox
-    Friend WithEvents CMBQUALITY As ComboBox
+    Friend WithEvents CMBYARNQUALITY As ComboBox
     Friend WithEvents GRIDROLLS As DataGridView
-    Friend WithEvents gsrno As DataGridViewTextBoxColumn
-    Friend WithEvents GQUALITY As DataGridViewTextBoxColumn
-    Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GENDS As DataGridViewTextBoxColumn
-    Friend WithEvents GROLLS As DataGridViewTextBoxColumn
-    Friend WithEvents Gwt As DataGridViewTextBoxColumn
-    Friend WithEvents GNARR As DataGridViewTextBoxColumn
-    Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
-    Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents GDONE As DataGridViewTextBoxColumn
     Friend WithEvents TXTNARR As TextBox
     Friend WithEvents Button10 As Button
     Friend WithEvents TXTSRNO As TextBox
@@ -1331,4 +1291,15 @@ Partial Class RollsReturnFromWarper
     Friend WithEvents lbllocked As Label
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents gsrno As DataGridViewTextBoxColumn
+    Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
+    Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GENDS As DataGridViewTextBoxColumn
+    Friend WithEvents GROLLS As DataGridViewTextBoxColumn
+    Friend WithEvents Gwt As DataGridViewTextBoxColumn
+    Friend WithEvents GNARR As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents GDONE As DataGridViewTextBoxColumn
 End Class
