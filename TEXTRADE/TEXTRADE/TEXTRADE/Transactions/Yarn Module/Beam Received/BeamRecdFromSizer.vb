@@ -183,7 +183,7 @@ Public Class BeamRecdFromSizer
 
         Sub FILLCMB()
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
-        If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
+        If CMBMILLNAME.Text = "" Then FILLMILL(CMBMILLNAME, EDIT)
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
         End Sub
@@ -620,7 +620,7 @@ Public Class BeamRecdFromSizer
 
         Private Sub CMBMILLNAME_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBMILLNAME.Enter
             Try
-            If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS' ")
+            If CMBMILLNAME.Text = "" Then FILLMILL(CMBMILLNAME, EDIT)
         Catch ex As Exception
                 Throw ex
             End Try
@@ -643,7 +643,7 @@ Public Class BeamRecdFromSizer
 
         Private Sub CMBMILLNAME_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBMILLNAME.Validating
             Try
-            If CMBMILLNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBMILLNAME, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ")
+            If CMBMILLNAME.Text.Trim <> "" Then MILLVALIDATE(CMBMILLNAME, e, Me)
         Catch ex As Exception
                 Throw ex
             End Try

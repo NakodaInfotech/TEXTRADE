@@ -226,7 +226,7 @@ Public Class ClsBeamIssueWeaver
             Dim strCommand As String = "SP_TRANS_YARNBEAMISSUETOWEAVER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@ISSUENO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)

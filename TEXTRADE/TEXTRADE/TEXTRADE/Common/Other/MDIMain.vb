@@ -11140,11 +11140,11 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub ROLLSTOCK_WARPER_Click(sender As Object, e As EventArgs) Handles ROLLSTOCK_WARPER.Click
+    Private Sub BEAMISSUEWEAVEREDIT_Click(sender As Object, e As EventArgs) Handles BEAMISSUEWEAVEREDIT.Click
         Try
-            Dim OBJROLLSTOCKWARPER As New OpeningStockRollsWarper
-            OBJROLLSTOCKWARPER.MdiParent = Me
-            OBJROLLSTOCKWARPER.Show()
+            Dim OBJROLLSRET As New BeamIssueWeaverDetails
+            OBJROLLSRET.MdiParent = Me
+            OBJROLLSRET.Show()
         Catch ex As Exception
             Throw ex
         End Try

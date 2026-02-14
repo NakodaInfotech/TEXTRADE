@@ -10,7 +10,7 @@ Public Class SelectRolls
         Try
             Cursor.Current = Cursors.WaitCursor
             Dim OBJCMN As New ClsCommon()
-            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , NO, SRNO, TYPE, MILLNAME,YARNQUALITY, ISNULL(ENDS, 0) AS ENDS, ROLLS, WT, PROGRAMNO,PROGRAMSRNO, TOTALENDS, LENGTH", "", "ROLLSTOCK", " AND ROLLSTOCK.GODOWN='" & TEMPGODOWNNAME & "' AND ROLLSTOCK.YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , NO, SRNO, TYPE, MILLNAME,YARNQUALITY, ISNULL(ENDS, 0) AS ENDS, ROLLS, WT,  TOTALENDS, LENGTH", "", "ROLLSTOCK", " AND ROLLSTOCK.GODOWN='" & TEMPGODOWNNAME & "' AND ROLLSTOCK.YEARID = " & YearId)
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -47,15 +47,15 @@ Public Class SelectRolls
             DT.Columns.Add("NO")
             DT.Columns.Add("SRNO")
             DT.Columns.Add("TYPE")
-            DT.Columns.Add("PROGRAMNO")
-            DT.Columns.Add("PROGRAMSRNO")
+            'DT.Columns.Add("PROGRAMNO")
+            'DT.Columns.Add("PROGRAMSRNO")
             DT.Columns.Add("TOTALENDS")
             DT.Columns.Add("LENGTH")
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("ENDS"), Val(dtrow("ROLLS")), Val(dtrow("WT")), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), dtrow("PROGRAMNO"), Val(dtrow("PROGRAMSRNO")), Val(dtrow("TOTALENDS")), Val(dtrow("LENGTH")))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("ENDS"), Val(dtrow("ROLLS")), Val(dtrow("WT")), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), Val(dtrow("TOTALENDS")), Val(dtrow("LENGTH")))
                 End If
             Next
             Me.Close()
