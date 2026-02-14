@@ -412,6 +412,7 @@
     <Compile Include="Transactions\Yarn Modules\BeamReceivedWarper\ClsBeamReceivedWarper.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollIssueToSizer.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsRecdFromWarper.vb" />
+    <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsReturnFromWarper.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Challan\ClsYarnChallan.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Inter GodownTransfer\ClsYarnInterGodownTransfer.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamIssue.vb" />
