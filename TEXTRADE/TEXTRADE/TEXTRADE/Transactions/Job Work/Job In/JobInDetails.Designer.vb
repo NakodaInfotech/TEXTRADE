@@ -198,6 +198,7 @@ Partial Class JobInDetails
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "SRNO"
         Me.gsrno.Name = "gsrno"
+        Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
         Me.gsrno.VisibleIndex = 1
         '
@@ -208,6 +209,7 @@ Partial Class JobInDetails
         Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.gdate.FieldName = "DATE"
         Me.gdate.Name = "gdate"
+        Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 2
         Me.gdate.Width = 85
@@ -217,6 +219,7 @@ Partial Class JobInDetails
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 300
@@ -226,6 +229,7 @@ Partial Class JobInDetails
         Me.GPURCHASENAME.Caption = "Purchase Party Name"
         Me.GPURCHASENAME.FieldName = "WEAVERNAME"
         Me.GPURCHASENAME.Name = "GPURCHASENAME"
+        Me.GPURCHASENAME.OptionsColumn.AllowEdit = False
         Me.GPURCHASENAME.Visible = True
         Me.GPURCHASENAME.VisibleIndex = 14
         Me.GPURCHASENAME.Width = 250
@@ -235,6 +239,7 @@ Partial Class JobInDetails
         Me.GGODOWN.Caption = "Godown"
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.OptionsColumn.AllowEdit = False
         Me.GGODOWN.Visible = True
         Me.GGODOWN.VisibleIndex = 4
         Me.GGODOWN.Width = 150
@@ -246,6 +251,7 @@ Partial Class JobInDetails
         Me.GTOTALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALPCS.FieldName = "TOTALPCS"
         Me.GTOTALPCS.Name = "GTOTALPCS"
+        Me.GTOTALPCS.OptionsColumn.AllowEdit = False
         Me.GTOTALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALPCS.Visible = True
         Me.GTOTALPCS.VisibleIndex = 5
@@ -257,6 +263,7 @@ Partial Class JobInDetails
         Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALMTRS.FieldName = "TOTALMTRS"
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
         Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALMTRS.Visible = True
         Me.GTOTALMTRS.VisibleIndex = 6
@@ -268,6 +275,7 @@ Partial Class JobInDetails
         Me.GJONO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GJONO.FieldName = "JONO"
         Me.GJONO.Name = "GJONO"
+        Me.GJONO.OptionsColumn.AllowEdit = False
         Me.GJONO.Visible = True
         Me.GJONO.VisibleIndex = 7
         '
@@ -276,6 +284,7 @@ Partial Class JobInDetails
         Me.GLOTNO.Caption = "Lot No"
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.OptionsColumn.AllowEdit = False
         Me.GLOTNO.Visible = True
         Me.GLOTNO.VisibleIndex = 8
         '
@@ -284,6 +293,7 @@ Partial Class JobInDetails
         Me.GREMARKS.Caption = "Remarks"
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
         Me.GREMARKS.VisibleIndex = 10
         Me.GREMARKS.Width = 220
@@ -293,6 +303,7 @@ Partial Class JobInDetails
         Me.GWEAVERNAME.Caption = "Weaver Name"
         Me.GWEAVERNAME.FieldName = "WEAVERNAME"
         Me.GWEAVERNAME.Name = "GWEAVERNAME"
+        Me.GWEAVERNAME.OptionsColumn.AllowEdit = False
         Me.GWEAVERNAME.Width = 200
         '
         'GWEAVERCHNO
@@ -300,6 +311,7 @@ Partial Class JobInDetails
         Me.GWEAVERCHNO.Caption = "Weaver Ch No"
         Me.GWEAVERCHNO.FieldName = "WEAVERCHNO"
         Me.GWEAVERCHNO.Name = "GWEAVERCHNO"
+        Me.GWEAVERCHNO.OptionsColumn.AllowEdit = False
         Me.GWEAVERCHNO.Width = 100
         '
         'GCHALLANNO
@@ -307,6 +319,7 @@ Partial Class JobInDetails
         Me.GCHALLANNO.Caption = "Challan No"
         Me.GCHALLANNO.FieldName = "CHALLANNO"
         Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
         Me.GCHALLANNO.Visible = True
         Me.GCHALLANNO.VisibleIndex = 9
         Me.GCHALLANNO.Width = 100
@@ -316,6 +329,7 @@ Partial Class JobInDetails
         Me.GTOTALAMOUNT.Caption = "Total Amount"
         Me.GTOTALAMOUNT.FieldName = "TOTALAMOUNT"
         Me.GTOTALAMOUNT.Name = "GTOTALAMOUNT"
+        Me.GTOTALAMOUNT.OptionsColumn.AllowEdit = False
         Me.GTOTALAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALAMOUNT.Visible = True
         Me.GTOTALAMOUNT.VisibleIndex = 11
@@ -325,6 +339,7 @@ Partial Class JobInDetails
         Me.GPARTYWHATSAAP.Caption = "Party Whatsaap No"
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
+        Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
         Me.GPARTYWHATSAAP.VisibleIndex = 12
         Me.GPARTYWHATSAAP.Width = 100
@@ -334,6 +349,7 @@ Partial Class JobInDetails
         Me.GPARTYEMAIL.Caption = "Party Email ID"
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
+        Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
         Me.GPARTYEMAIL.VisibleIndex = 13
         '
@@ -342,6 +358,7 @@ Partial Class JobInDetails
         Me.GUSERNAME.Caption = "User Name"
         Me.GUSERNAME.FieldName = "USERNAME"
         Me.GUSERNAME.Name = "GUSERNAME"
+        Me.GUSERNAME.OptionsColumn.AllowEdit = False
         Me.GUSERNAME.Visible = True
         Me.GUSERNAME.VisibleIndex = 15
         Me.GUSERNAME.Width = 100
@@ -351,6 +368,7 @@ Partial Class JobInDetails
         Me.GMACHINE.Caption = "Machine Name"
         Me.GMACHINE.FieldName = "MACHINE"
         Me.GMACHINE.Name = "GMACHINE"
+        Me.GMACHINE.OptionsColumn.AllowEdit = False
         Me.GMACHINE.Visible = True
         Me.GMACHINE.VisibleIndex = 16
         Me.GMACHINE.Width = 120
@@ -360,6 +378,7 @@ Partial Class JobInDetails
         Me.GOPERATOR.Caption = "Operator"
         Me.GOPERATOR.FieldName = "OPERATOR"
         Me.GOPERATOR.Name = "GOPERATOR"
+        Me.GOPERATOR.OptionsColumn.AllowEdit = False
         Me.GOPERATOR.Visible = True
         Me.GOPERATOR.VisibleIndex = 17
         Me.GOPERATOR.Width = 120
