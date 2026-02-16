@@ -56,7 +56,7 @@ Public Class PurchaseOrder
 
     Private Sub CMBTRANS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANS.Validating
         Try
-            If CMBTRANS.Text.Trim <> "" Then namevalidate(CMBTRANS, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "TRANSPORT")
+            If CMBTRANS.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANS, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "TRANSPORT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -227,8 +227,8 @@ Public Class PurchaseOrder
 
     Sub fillcmb()
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
-            If cmbtoname.Text.Trim = "" Then fillname(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+            If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
             fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
             If CMBBROKER.Text.Trim = "" Then fillagentledger(CMBBROKER, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'")
             fillQUALITY(CMBQUALITY, EDIT)
@@ -627,7 +627,7 @@ Public Class PurchaseOrder
             bln = False
         End If
 
-        If ClientName <> "MOMAI" aND ClientName <> "LAXMI" Then
+        If ClientName <> "MOMAI" And ClientName <> "LAXMI" Then
             For Each row As DataGridViewRow In gridpo.Rows
                 If Val(row.Cells(GMTRS.Index).Value) = 0 Then
                     EP.SetError(txtqty, "Mtrs Cannot be 0")
@@ -1407,6 +1407,7 @@ LINE1:
         If cmbitemname.Text.Trim <> "" Then
             If (ClientName <> "MOMAI" And ClientName <> "LAXMI") And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
             If ClientName = "SNCM" And Val(txtrate.Text.Trim) = 0 Then Exit Sub
+            If ClientName = "LAXMI" And Val(txtqty.Text.Trim) = 0 Then Exit Sub
             fillgrid()
             total()
         Else
@@ -1935,6 +1936,12 @@ LINE1:
                 LBLBROKER.Location = New Point(LBLBROKER.Location.X - 40, LBLBROKER.Location.Y)
                 CMBPER.Text = "Pcs"
                 TXTMTRS.TabStop = False
+                CMBQUALITY.TabStop = False
+                cmbcolor.TabStop = False
+                TXTPDESNO.TabStop = False
+                TXTPSHADE.TabStop = False
+                TXTCUT.TabStop = False
+
             End If
         Catch ex As Exception
             Throw ex
