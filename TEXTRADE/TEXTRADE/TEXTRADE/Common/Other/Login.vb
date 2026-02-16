@@ -1058,7 +1058,7 @@ line1:
                     HIDEACCOUNTSEXCEPTINVOICE = True
                     HIGHVERSION = True
                     HIDEPOSTER = False
-                    If Now.Date > DateTime.Parse("15.02.2026 00:00") Then
+                    If Now.Date > DateTime.Parse("15.02.2027 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                         GoTo LINE1
                     End If
