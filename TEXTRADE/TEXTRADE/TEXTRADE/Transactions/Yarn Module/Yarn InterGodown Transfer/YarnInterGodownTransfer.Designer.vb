@@ -473,6 +473,7 @@ Partial Class YarnInterGodownTransfer
         Me.LIFTINGDATE.TabIndex = 18
         Me.LIFTINGDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.LIFTINGDATE.ValidatingType = GetType(Date)
+        Me.LIFTINGDATE.Visible = False
         '
         'TXTCONES
         '
@@ -946,6 +947,7 @@ Partial Class YarnInterGodownTransfer
         '
         Me.GCOLOR.HeaderText = "Shade"
         Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.ReadOnly = True
         Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
@@ -955,6 +957,7 @@ Partial Class YarnInterGodownTransfer
         Me.GLOTNO.DefaultCellStyle = DataGridViewCellStyle3
         Me.GLOTNO.HeaderText = "Lot No"
         Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.ReadOnly = True
         Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GLOTNO.Width = 70
@@ -963,6 +966,8 @@ Partial Class YarnInterGodownTransfer
         '
         Me.GQTY.HeaderText = "Bags"
         Me.GQTY.Name = "GQTY"
+        Me.GQTY.ReadOnly = True
+        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GQTY.Width = 60
         '
         'GWT
@@ -971,6 +976,7 @@ Partial Class YarnInterGodownTransfer
         Me.GWT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GWT.HeaderText = "Weight"
         Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 60
@@ -979,12 +985,16 @@ Partial Class YarnInterGodownTransfer
         '
         Me.GCONES.HeaderText = "Cones"
         Me.GCONES.Name = "GCONES"
+        Me.GCONES.ReadOnly = True
+        Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GCONES.Width = 50
         '
         'GLIFTINGDATE
         '
         Me.GLIFTINGDATE.HeaderText = "Lift Date"
         Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
+        Me.GLIFTINGDATE.ReadOnly = True
+        Me.GLIFTINGDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLIFTINGDATE.Visible = False
         Me.GLIFTINGDATE.Width = 80
         '
