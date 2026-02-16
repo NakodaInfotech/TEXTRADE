@@ -111,7 +111,7 @@ Public Class BeamIssueWeaver
                     If tempmsg = vbCancel Then Exit Sub
                     If tempmsg = vbYes Then cmdok_Click(sender, e)
                 End If
-                    Me.Close()
+                Me.Close()
 
             ElseIf e.Alt = True And e.KeyCode = Keys.D1 Then
                 TabControl1.SelectedIndex = 0
@@ -1060,7 +1060,7 @@ LINE1:
 
     Private Sub CMBLOOMNO_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBLOOMNO.Enter
         Try
-            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, EDIT)
+            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, cmbname.Text.Trim, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1076,7 +1076,7 @@ LINE1:
 
     Private Sub CMBLOOMNO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBLOOMNO.Validating
         Try
-            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOMNO, e, Me)
+            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOMNO, cmbname.Text.Trim, e, Me)
         Catch ex As Exception
             Throw ex
         End Try

@@ -1318,7 +1318,7 @@ Public Class DesignCardMaster
         fillYARNQUALITY(CMBSELYARNQUALITY, EDIT)
         fillYARNQUALITY(CMBWEFTYARNQUALITY, EDIT)
         fillYARNQUALITY(CMBWARPQUALITY, EDIT)
-        FILLLOOM(CMBLOOM, EDIT)
+        FILLLOOM(CMBLOOM, CMBNAME.Text.Trim, EDIT)
         FILLWEAVE(CMBWEAVE, EDIT)
         If CMBAGENTNAME.Text.Trim = "" Then FILLNAME(CMBAGENTNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
         If CMBDELAT.Text.Trim = "" Then FILLNAME(CMBDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
@@ -1960,14 +1960,14 @@ LINE1:
     Private Sub CMBLOOM_Enter(sender As Object, e As EventArgs) Handles CMBLOOM.Enter
 
         Try
-            If CMBLOOM.Text.Trim = "" Then FILLLOOM(CMBLOOM, EDIT)
+            If CMBLOOM.Text.Trim = "" Then FILLLOOM(CMBLOOM, CMBNAME.Text.Trim, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
     Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
         Try
-            If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, e, Me)
+            If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, CMBNAME.Text.Trim, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
