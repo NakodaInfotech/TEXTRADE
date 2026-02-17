@@ -28,7 +28,7 @@ Public Class LoomMaster
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
-            'FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+            FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
             FILLCMB()
             clear()
             CMBNAME.Text = WEAVERNAME
@@ -53,7 +53,7 @@ Public Class LoomMaster
 
                 'GRID
                 Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR1 As DataRow In dttable.Rows
                         GRIDLOOM.Rows.Add(DTR1("LOOMID"))
@@ -69,7 +69,7 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -81,7 +81,7 @@ Public Class LoomMaster
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'"
+                OBJLEDGER.STRSEARCH = " and GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='ACCOUNTS'"
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
             End If
@@ -101,7 +101,7 @@ Public Class LoomMaster
 
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -112,7 +112,7 @@ Public Class LoomMaster
 
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("LOOM_NO AS LOOMNO, LOOMMASTER.LOOM_ID AS LOOMID", "", " LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOM_WEAVERID = ACC_ID ", " AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LOOM_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("LOOM_NO AS LOOMNO, LOOMMASTER.LOOM_ID AS LOOMID", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOM_WEAVERID = ACC_ID ", " AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LOOM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 GRIDLOOM.RowCount = 0
                 LOOMID = DT.Rows(0).Item("LOOMID")
@@ -252,7 +252,7 @@ LINE1:
                     Exit Sub
                 End If
 
-                Dim tempmsg As Integer = MsgBox("Delete Blanket Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
+                Dim tempmsg As Integer = MsgBox("Delete Loom Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
                 If tempmsg = vbYes Then
 
                     Dim OBJLOOM As New ClsLoomMaster
@@ -292,7 +292,7 @@ LINE1:
     End Sub
 
     Sub FILLCMB()
-        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+        If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
 
 
     End Sub

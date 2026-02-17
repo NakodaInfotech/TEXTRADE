@@ -6639,6 +6639,10 @@ NORATE:
                 CMBPER.TabStop = False
                 GBALENO.HeaderText = "Packing"
             End If
+
+            If ClientName = "MOOLTEX" Then
+                CMBPACKING.TabStop = False
+            End If
         Catch ex As Exception
             Throw ex
         End Try

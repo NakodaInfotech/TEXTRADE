@@ -7379,20 +7379,36 @@ line1:
             Throw ex
         End Try
     End Sub
-    Sub FILLLOOM(ByRef CMBLOOM As ComboBox, ByRef EDIT As Boolean)
+    'Sub FILLLOOM(ByRef CMBLOOM As ComboBox, ByRef EDIT As Boolean)
+    Sub FILLLOOM(ByRef CMBLOOM As ComboBox, ByVal WEAVERNAME As String, ByRef EDIT As Boolean, Optional ByVal WHERECLAUSE As String = "")
+
+        'Try
+        '    If CMBLOOM.Text.Trim = "" Then
+        '        Dim objclscommon As New ClsCommonMaster
+        '        Dim dt As DataTable
+
+        '        dt = objclscommon.search(" LOOM_name ", "", " LOOMMASTER", " and LOOM_cmpid=" & CmpId & " AND LOOM_YEARID = " & YearId)
+        '        If dt.Rows.Count > 0 Then
+        '            dt.DefaultView.Sort = "LOOM_name"
+        '            CMBLOOM.DisplayMember = "LOOM_name"
+        '            CMBLOOM.Text = ""
+        '        End If
+        '        CMBLOOM.DataSource = dt
+        '        CMBLOOM.SelectedIndex = -1
+        '        CMBLOOM.SelectAll()
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
         Try
             If CMBLOOM.Text.Trim = "" Then
-                Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable
-
-                dt = objclscommon.search(" LOOM_name ", "", " LOOMMASTER", " and LOOM_cmpid=" & CmpId & " AND LOOM_YEARID = " & YearId)
+                Dim OBJCMN As New ClsCommonMaster
+                Dim dt As DataTable = OBJCMN.search("  LOOMMASTER_DESC.LOOM_NO AS LOOMNO ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id", WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & WEAVERNAME & "' AND LOOM_YEARID = " & YearId & " ORDER BY CAST(LOOM_NO AS INT)")
                 If dt.Rows.Count > 0 Then
-                    dt.DefaultView.Sort = "LOOM_name"
-                    CMBLOOM.DisplayMember = "LOOM_name"
+                    CMBLOOM.DataSource = dt
+                    CMBLOOM.DisplayMember = "LOOMNO"
                     CMBLOOM.Text = ""
                 End If
-                CMBLOOM.DataSource = dt
-                CMBLOOM.SelectedIndex = -1
                 CMBLOOM.SelectAll()
             End If
         Catch ex As Exception
@@ -8231,30 +8247,65 @@ line1:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
-    Sub LOOMVALIDATE(ByRef CMBLOOM As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+    'Sub LOOMVALIDATE(ByRef CMBLOOM As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
+    Sub LOOMVALIDATE(ByRef CMBLOOM As ComboBox, ByVal WEAVERNAME As String, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form, Optional ByVal WHERECLAUSE As String = "")
+
+        'Try
+        '    Cursor.Current = Cursors.WaitCursor
+        '    If CMBLOOM.Text.Trim <> "" Then
+        '        uppercase(CMBLOOM)
+        '        Dim objclscommon As New ClsCommonMaster
+        '        Dim dt As DataTable
+        '        dt = objclscommon.search("loom_id", "", "loomMaster", " and loom_NAME = '" & CMBLOOM.Text.Trim & "' and loom_cmpid = " & CmpId & " and loom_LOCATIONid = " & Locationid & " and loom_YEARid = " & YearId)
+        '        If dt.Rows.Count = 0 Then
+        '            Dim tempmsg As Integer = MsgBox("loom not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+        '            If tempmsg = vbYes Then
+        '                Dim alParaval As New ArrayList
+
+        '                alParaval.Add(CMBLOOM.Text.Trim)
+        '                alParaval.Add("")
+        '                alParaval.Add(CmpId)
+        '                alParaval.Add(Locationid)
+        '                alParaval.Add(Userid)
+        '                alParaval.Add(YearId)
+        '                alParaval.Add(0)
+
+        '                Dim objclsloom As New ClsLoomMaster
+        '                objclsloom.alParaval = alParaval
+        '                Dim IntResult As Integer = objclsloom.save()
+        '            Else
+        '                CMBLOOM.Focus()
+        '                CMBLOOM.SelectAll()
+        '                e.Cancel = True
+        '            End If
+        '        End If
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'Finally
+        '    Cursor.Current = Cursors.Default
+        'End Try
         Try
             Cursor.Current = Cursors.WaitCursor
             If CMBLOOM.Text.Trim <> "" Then
                 uppercase(CMBLOOM)
-                Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable
-                dt = objclscommon.search("loom_id", "", "loomMaster", " and loom_NAME = '" & CMBLOOM.Text.Trim & "' and loom_cmpid = " & CmpId & " and loom_LOCATIONid = " & Locationid & " and loom_YEARid = " & YearId)
+                Dim OBJCMN As New ClsCommonMaster
+                Dim dt As DataTable = OBJCMN.search("  LOOMMASTER_DESC.LOOM_NO AS LOOMNO ", "", "  LOOMMASTER INNER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id", WHERECLAUSE & " AND LEDGERS.ACC_CMPNAME = '" & WEAVERNAME & "' AND LOOM_NO = '" & CMBLOOM.Text.Trim & "' AND LOOM_YEARID = " & YearId)
                 If dt.Rows.Count = 0 Then
                     Dim tempmsg As Integer = MsgBox("loom not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
                     If tempmsg = vbYes Then
                         Dim alParaval As New ArrayList
 
-                        alParaval.Add(CMBLOOM.Text.Trim)
+                        alParaval.Add(WEAVERNAME)
                         alParaval.Add("")
                         alParaval.Add(CmpId)
-                        alParaval.Add(Locationid)
                         alParaval.Add(Userid)
                         alParaval.Add(YearId)
-                        alParaval.Add(0)
+                        alParaval.Add(CMBLOOM.Text.Trim)
 
                         Dim objclsloom As New ClsLoomMaster
                         objclsloom.alParaval = alParaval
-                        Dim IntResult As Integer = objclsloom.save()
+                        Dim IntResult As Integer = objclsloom.SAVE()
                     Else
                         CMBLOOM.Focus()
                         CMBLOOM.SelectAll()
@@ -8263,6 +8314,7 @@ line1:
                 End If
             End If
         Catch ex As Exception
+            'GoTo line1
             Throw ex
         Finally
             Cursor.Current = Cursors.Default
