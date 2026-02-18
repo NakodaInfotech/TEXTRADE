@@ -25,6 +25,7 @@ Public Class AgencyDesign
     Public SONO As Integer
     Public RATERACK As String = "RATE"
     Public WITHPHOTO As Boolean = False
+    Public SORTDUEDATE As Boolean = False
     Public PARTYSOREPORT As Boolean = False
     Public OUTSTANDINGWITHLR As Boolean = False
     Public SHOWINDEX As Boolean = False
@@ -62,9 +63,11 @@ Public Class AgencyDesign
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDetailsNew
+                If SORTDUEDATE = True Then OBJ.DataDefinition.FormulaFields("PAYDATE").Text = "CDATE({OUTSTANDINGREC.DUEDATE})"
 
             ElseIf FRMSTRING = "AGENCYOUTGRIDSELLER" Then
                 OBJ = New AgencyOutstandingReport_SellerDetailsNew
+                If SORTDUEDATE = True Then OBJ.DataDefinition.FormulaFields("PAYDATE").Text = "CDATE({OUTSTANDINGPAY.DUEDATE})"
 
             ElseIf FRMSTRING = "AGENCYOUTSHORTBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerShort
@@ -115,6 +118,7 @@ Public Class AgencyDesign
             Next
 
             OBJ.RecordSelectionFormula = FORMULA
+
 
             If DIRECTWHATSAPP = False Then
                 crpo.ReportSource = OBJ

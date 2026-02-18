@@ -2524,6 +2524,7 @@ line1:
             Dim OBJOUT As New AgencyDesign
             OBJOUT.MdiParent = MDIMain
             OBJOUT.OUTSTANDINGREPORTS = True
+            OBJOUT.SORTDUEDATE = CHKSORTDUEDATE.Checked
             OBJOUT.DIRECTWHATSAPP = SENDWHATSAPP
             OBJOUT.DIRECTMAIL = SENDMAIL
             OBJOUT.PARTYNAME = PARTYNAME
@@ -3500,4 +3501,5 @@ LINE2:
             Throw ex
         End Try
     End Sub
+
 End Class

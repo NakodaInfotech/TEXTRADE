@@ -3705,7 +3705,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTPICKS.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
