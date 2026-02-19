@@ -4,6 +4,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraPrinting
 Imports System.Diagnostics
 
+
 Public Class PurchaseInvoiceGridDetails
 
     Dim PURCHASEREGID As Integer
@@ -199,6 +200,26 @@ Public Class PurchaseInvoiceGridDetails
             link.Landscape = True                      ' LANDSCAPE
             link.PaperKind = System.Drawing.Printing.PaperKind.A4
             link.Margins = New Printing.Margins(20, 20, 20, 20)
+
+            ' ✅ Correct grid reference
+            gridbill.Columns("NAME").Width = 165
+            gridbill.Columns("ITEMNAME").Width = 150
+            gridbill.Columns("TRANSNAME").Width = 160
+            gridbill.Columns("COMPLAINT").Width = 170
+            gridbill.Columns("PARTYBILLDATE").Width = 70
+            gridbill.Columns("LRNO").Width = 70
+
+            AddHandler link.CreateReportHeaderArea,
+                Sub(headerSender As Object, headerArgs As CreateAreaEventArgs)
+
+                    headerArgs.Graph.StringFormat = New BrickStringFormat(StringAlignment.Center)
+                    headerArgs.Graph.Font = New Font("Arial", 20, FontStyle.Bold)
+                    headerArgs.Graph.ForeColor = Color.Black
+                    headerArgs.Graph.BackColor = Color.Transparent
+                    headerArgs.Graph.DrawString(CmpName, Color.Black, New RectangleF(0, 0, headerArgs.Graph.ClientPageSize.Width, 35), BorderSide.None)
+                End Sub
+
+
 
             ' Create document and export
             link.CreateDocument()
