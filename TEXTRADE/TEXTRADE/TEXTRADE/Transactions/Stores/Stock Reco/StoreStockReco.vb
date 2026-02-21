@@ -143,16 +143,17 @@ Public Class StoreStockReco
     '        DTCHALLANDATE.Text = Now.Date
     '        tstxtbillno.Clear()
     '        txtremarks.Clear()
-    '        TXTRATE.Clear()
-    '        CMDSELECTSTOCK.Enabled = True
-    '        CMBTRANS.Text = ""
-    '        GRIDSTOCKOUT.RowCount = 0
+
     '        TXTSRNO.Text = 1
     '        CMBSTOREITEMNAME.Text = ""
     '        TXTDESC.Clear()
     '        TXTQTY.Clear()
+    '        CMBUNIT.Text = ""
+    '        TXTRATE.Clear()
+
 
     '        GRIDSTOCKIN.RowCount = 0
+    '        GRIDSTOCKOUT.RowCount = 0
     '        GRIDDOUBLECLICK = False
     '        TabControl1.SelectedIndex = 0
     '        getmaxno()
@@ -169,6 +170,8 @@ Public Class StoreStockReco
     '            LBLTOTALINQTY.Text = 0.0
 
     '        End If
+
+    '        CMDSELECTSTOCK.Enabled = True
     '    End Sub
 
     '    Function ERRORVALID() As Boolean
