@@ -38,6 +38,7 @@ Public Class OutstandingFilter
                     dt.DefaultView.Sort = "Group_name"
                     CMBGROUP.DataSource = dt
                     CMBGROUP.DisplayMember = "group_name"
+
                     CMBGROUP.Text = ""
                 End If
                 CMBGROUP.SelectAll()
@@ -472,7 +473,7 @@ Public Class OutstandingFilter
                 If GROUPNAME <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " AND ({@PARTYGROUP} = '" & GROUPNAME & "')"
                 If PARTYNAME <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " AND ({@NAME} = '" & PARTYNAME & "')"
                 If AGENTNAME <> "" Then OBJOUTSTAND.selfor_ss = OBJOUTSTAND.selfor_ss & " AND ({@AGENT} = '" & AGENTNAME & "')"
-                OBJOUTSTAND.PARTYNAME = PARTYNAME
+                'OBJOUTSTAND.PARTYNAME = PARTYNAME
             End If
 
 
