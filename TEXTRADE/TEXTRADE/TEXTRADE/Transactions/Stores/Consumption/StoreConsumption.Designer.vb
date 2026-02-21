@@ -23,11 +23,11 @@ Partial Class StoreConsumption
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StoreConsumption))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLGODOWN = New System.Windows.Forms.Label()
@@ -74,6 +74,10 @@ Partial Class StoreConsumption
         Me.TXTQTY = New System.Windows.Forms.TextBox()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CMBMACHINE = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCONSUME, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -85,6 +89,10 @@ Partial Class StoreConsumption
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TextBox1)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.CMBMACHINE)
+        Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.LBLGODOWN)
         Me.BlendPanel1.Controls.Add(Me.CMBGODOWN)
         Me.BlendPanel1.Controls.Add(Me.CMBUNIT)
@@ -127,7 +135,7 @@ Partial Class StoreConsumption
         Me.LBLGODOWN.BackColor = System.Drawing.Color.Transparent
         Me.LBLGODOWN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLGODOWN.ForeColor = System.Drawing.Color.Black
-        Me.LBLGODOWN.Location = New System.Drawing.Point(49, 47)
+        Me.LBLGODOWN.Location = New System.Drawing.Point(34, 47)
         Me.LBLGODOWN.Name = "LBLGODOWN"
         Me.LBLGODOWN.Size = New System.Drawing.Size(52, 14)
         Me.LBLGODOWN.TabIndex = 863
@@ -141,7 +149,7 @@ Partial Class StoreConsumption
         Me.CMBGODOWN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBGODOWN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBGODOWN.FormattingEnabled = True
-        Me.CMBGODOWN.Location = New System.Drawing.Point(103, 43)
+        Me.CMBGODOWN.Location = New System.Drawing.Point(88, 43)
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
         Me.CMBGODOWN.Size = New System.Drawing.Size(160, 23)
@@ -185,7 +193,7 @@ Partial Class StoreConsumption
         '
         Me.TXTISSUEDTO.BackColor = System.Drawing.Color.White
         Me.TXTISSUEDTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTISSUEDTO.Location = New System.Drawing.Point(103, 101)
+        Me.TXTISSUEDTO.Location = New System.Drawing.Point(88, 101)
         Me.TXTISSUEDTO.MaxLength = 20
         Me.TXTISSUEDTO.Name = "TXTISSUEDTO"
         Me.TXTISSUEDTO.Size = New System.Drawing.Size(246, 23)
@@ -221,28 +229,28 @@ Partial Class StoreConsumption
         Me.GRIDCONSUME.AllowUserToDeleteRows = False
         Me.GRIDCONSUME.AllowUserToResizeColumns = False
         Me.GRIDCONSUME.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDCONSUME.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDCONSUME.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
         Me.GRIDCONSUME.BackgroundColor = System.Drawing.Color.White
         Me.GRIDCONSUME.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDCONSUME.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDCONSUME.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDCONSUME.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
         Me.GRIDCONSUME.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDCONSUME.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GDESC, Me.GQTY, Me.GUNIT})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDCONSUME.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDCONSUME.DefaultCellStyle = DataGridViewCellStyle24
         Me.GRIDCONSUME.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDCONSUME.Location = New System.Drawing.Point(20, 160)
         Me.GRIDCONSUME.MultiSelect = False
@@ -251,9 +259,9 @@ Partial Class StoreConsumption
         Me.GRIDCONSUME.RowHeadersVisible = False
         Me.GRIDCONSUME.RowHeadersWidth = 30
         Me.GRIDCONSUME.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDCONSUME.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDCONSUME.RowsDefaultCellStyle = DataGridViewCellStyle25
         Me.GRIDCONSUME.RowTemplate.Height = 20
         Me.GRIDCONSUME.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCONSUME.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -291,8 +299,8 @@ Partial Class StoreConsumption
         '
         'GQTY
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle23
         Me.GQTY.HeaderText = "Qty"
         Me.GQTY.Name = "GQTY"
         Me.GQTY.ReadOnly = True
@@ -488,7 +496,7 @@ Partial Class StoreConsumption
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(391, 47)
+        Me.Label2.Location = New System.Drawing.Point(357, 105)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(68, 15)
         Me.Label2.TabIndex = 845
@@ -498,7 +506,7 @@ Partial Class StoreConsumption
         '
         Me.TXTCHALLANNO.BackColor = System.Drawing.Color.White
         Me.TXTCHALLANNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHALLANNO.Location = New System.Drawing.Point(461, 43)
+        Me.TXTCHALLANNO.Location = New System.Drawing.Point(427, 101)
         Me.TXTCHALLANNO.MaxLength = 20
         Me.TXTCHALLANNO.Name = "TXTCHALLANNO"
         Me.TXTCHALLANNO.Size = New System.Drawing.Size(82, 23)
@@ -523,7 +531,7 @@ Partial Class StoreConsumption
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(30, 76)
+        Me.Label6.Location = New System.Drawing.Point(15, 76)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(71, 15)
         Me.Label6.TabIndex = 838
@@ -536,7 +544,7 @@ Partial Class StoreConsumption
         Me.CMBDEPARTMENT.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBDEPARTMENT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBDEPARTMENT.FormattingEnabled = True
-        Me.CMBDEPARTMENT.Location = New System.Drawing.Point(103, 72)
+        Me.CMBDEPARTMENT.Location = New System.Drawing.Point(88, 72)
         Me.CMBDEPARTMENT.MaxDropDownItems = 14
         Me.CMBDEPARTMENT.Name = "CMBDEPARTMENT"
         Me.CMBDEPARTMENT.Size = New System.Drawing.Size(246, 23)
@@ -547,7 +555,7 @@ Partial Class StoreConsumption
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
         Me.Label18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(45, 105)
+        Me.Label18.Location = New System.Drawing.Point(28, 105)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(58, 15)
         Me.Label18.TabIndex = 836
@@ -559,7 +567,7 @@ Partial Class StoreConsumption
         Me.CONSUMEDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.CONSUMEDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CONSUMEDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.CONSUMEDATE.Location = New System.Drawing.Point(613, 72)
+        Me.CONSUMEDATE.Location = New System.Drawing.Point(615, 72)
         Me.CONSUMEDATE.Mask = "00/00/0000"
         Me.CONSUMEDATE.Name = "CONSUMEDATE"
         Me.CONSUMEDATE.Size = New System.Drawing.Size(82, 23)
@@ -571,7 +579,7 @@ Partial Class StoreConsumption
         '
         Me.TXTCONSUMENO.BackColor = System.Drawing.Color.Linen
         Me.TXTCONSUMENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCONSUMENO.Location = New System.Drawing.Point(613, 43)
+        Me.TXTCONSUMENO.Location = New System.Drawing.Point(615, 43)
         Me.TXTCONSUMENO.Name = "TXTCONSUMENO"
         Me.TXTCONSUMENO.ReadOnly = True
         Me.TXTCONSUMENO.Size = New System.Drawing.Size(82, 23)
@@ -585,7 +593,7 @@ Partial Class StoreConsumption
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(573, 47)
+        Me.Label12.Location = New System.Drawing.Point(575, 47)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(38, 15)
         Me.Label12.TabIndex = 834
@@ -597,7 +605,7 @@ Partial Class StoreConsumption
         Me.lblgrndate.BackColor = System.Drawing.Color.Transparent
         Me.lblgrndate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgrndate.ForeColor = System.Drawing.Color.Black
-        Me.lblgrndate.Location = New System.Drawing.Point(579, 76)
+        Me.lblgrndate.Location = New System.Drawing.Point(581, 76)
         Me.lblgrndate.Name = "lblgrndate"
         Me.lblgrndate.Size = New System.Drawing.Size(32, 15)
         Me.lblgrndate.TabIndex = 832
@@ -632,6 +640,48 @@ Partial Class StoreConsumption
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
+        '
+        'CMBMACHINE
+        '
+        Me.CMBMACHINE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBMACHINE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBMACHINE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBMACHINE.FormattingEnabled = True
+        Me.CMBMACHINE.Location = New System.Drawing.Point(427, 43)
+        Me.CMBMACHINE.Name = "CMBMACHINE"
+        Me.CMBMACHINE.Size = New System.Drawing.Size(140, 22)
+        Me.CMBMACHINE.TabIndex = 868
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Location = New System.Drawing.Point(336, 47)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(89, 14)
+        Me.Label9.TabIndex = 869
+        Me.Label9.Text = "Machine Name"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.White
+        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(427, 72)
+        Me.TextBox1.MaxLength = 20
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(140, 23)
+        Me.TextBox1.TabIndex = 870
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(371, 76)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(54, 15)
+        Me.Label1.TabIndex = 871
+        Me.Label1.Text = "Taken By"
         '
         'StoreConsumption
         '
@@ -702,4 +752,8 @@ Partial Class StoreConsumption
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents LBLGODOWN As Label
     Friend WithEvents CMBGODOWN As ComboBox
+    Friend WithEvents CMBMACHINE As ComboBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label1 As Label
 End Class
