@@ -2833,6 +2833,30 @@
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockReco.Designer.vb">
+      <DependentUpon>StoreStockReco.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockReco.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoInDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoOutDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.Designer.vb">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
     </Compile>
@@ -10456,6 +10480,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.resx">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockReco.resx">
+      <DependentUpon>StoreStockReco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.resx">
+      <DependentUpon>StoreStockRecoDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.resx">
+      <DependentUpon>StoreStockRecoInDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.resx">
+      <DependentUpon>StoreStockRecoOutDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.resx">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
