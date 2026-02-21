@@ -1579,6 +1579,11 @@ LINE1:
                 TXTGRIDLOTNO.BackColor = Color.White
             End If
 
+            If ClientName = "SWPL" Then
+                GLRNO.HeaderText = "Box No"
+
+            End If
+
 
 
             Me.Text = "Yarn Recd (" & TYPE & ")"
