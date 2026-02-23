@@ -38,6 +38,7 @@ Partial Class BeamRecdWarper
         Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -121,7 +122,8 @@ Partial Class BeamRecdWarper
         Me.lbllocked = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -138,6 +140,8 @@ Partial Class BeamRecdWarper
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label8)
+        Me.BlendPanel1.Controls.Add(Me.TextBox1)
         Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.LBLADDANO)
@@ -177,6 +181,18 @@ Partial Class BeamRecdWarper
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(984, 581)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'LBLEINVGENERATED
+        '
+        Me.LBLEINVGENERATED.AutoSize = True
+        Me.LBLEINVGENERATED.BackColor = System.Drawing.Color.Transparent
+        Me.LBLEINVGENERATED.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLEINVGENERATED.ForeColor = System.Drawing.Color.Black
+        Me.LBLEINVGENERATED.Location = New System.Drawing.Point(3, 25)
+        Me.LBLEINVGENERATED.Name = "LBLEINVGENERATED"
+        Me.LBLEINVGENERATED.Size = New System.Drawing.Size(205, 29)
+        Me.LBLEINVGENERATED.TabIndex = 938
+        Me.LBLEINVGENERATED.Text = "Beam Recd Warper"
         '
         'ToolStrip1
         '
@@ -320,11 +336,11 @@ Partial Class BeamRecdWarper
         Me.CMDSELECTYARNISSUE.FlatAppearance.BorderSize = 0
         Me.CMDSELECTYARNISSUE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTYARNISSUE.ForeColor = System.Drawing.Color.Black
-        Me.CMDSELECTYARNISSUE.Location = New System.Drawing.Point(452, 505)
+        Me.CMDSELECTYARNISSUE.Location = New System.Drawing.Point(431, 506)
         Me.CMDSELECTYARNISSUE.Name = "CMDSELECTYARNISSUE"
-        Me.CMDSELECTYARNISSUE.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSELECTYARNISSUE.Size = New System.Drawing.Size(123, 28)
         Me.CMDSELECTYARNISSUE.TabIndex = 858
-        Me.CMDSELECTYARNISSUE.Text = "&Select Issue"
+        Me.CMDSELECTYARNISSUE.Text = "&Select Job Order"
         Me.CMDSELECTYARNISSUE.UseVisualStyleBackColor = False
         '
         'LBLTAPLINE
@@ -1188,17 +1204,27 @@ Partial Class BeamRecdWarper
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'LBLEINVGENERATED
+        'Label8
         '
-        Me.LBLEINVGENERATED.AutoSize = True
-        Me.LBLEINVGENERATED.BackColor = System.Drawing.Color.Transparent
-        Me.LBLEINVGENERATED.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLEINVGENERATED.ForeColor = System.Drawing.Color.Black
-        Me.LBLEINVGENERATED.Location = New System.Drawing.Point(3, 25)
-        Me.LBLEINVGENERATED.Name = "LBLEINVGENERATED"
-        Me.LBLEINVGENERATED.Size = New System.Drawing.Size(205, 29)
-        Me.LBLEINVGENERATED.TabIndex = 938
-        Me.LBLEINVGENERATED.Text = "Beam Recd Warper"
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(562, 122)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(45, 15)
+        Me.Label8.TabIndex = 940
+        Me.Label8.Text = "Ref No."
+        '
+        'TextBox1
+        '
+        Me.TextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(609, 118)
+        Me.TextBox1.MaxLength = 10
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(79, 23)
+        Me.TextBox1.TabIndex = 939
         '
         'BeamRecdWarper
         '
@@ -1317,4 +1343,6 @@ Partial Class BeamRecdWarper
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents LBLEINVGENERATED As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class

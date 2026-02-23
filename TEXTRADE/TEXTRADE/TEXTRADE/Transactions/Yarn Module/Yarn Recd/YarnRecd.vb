@@ -74,11 +74,11 @@ Public Class YarnRecd
         TXTPSHADE.Clear()
         TXTJOBBERLOTNO.Clear()
         cmbcolor.Text = ""
-        TXTLRNO.Clear()
+        TXTGRIDLRNO.Clear()
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
-        TXTLRNO.Clear()
+        TXTGRIDLRNO.Clear()
         DTLRDATE.Value = Now.Date
         GRIDYARN.RowCount = 0
         GRIDORDER.RowCount = 0
@@ -175,7 +175,7 @@ Public Class YarnRecd
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLANNO.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    DT = objclscommon.search(" YARNRECD.YARN_challanno, LEDGERS.ACC_cmpname", "", " YARNRECD inner join LEDGERS on LEDGERS.ACC_id = YARNRECD.YARN_ledgerid ", " and YARNRECD.YARN_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND YARNRECD.YARN_YEARID =" & YearId)
+                    DT = objclscommon.SEARCH(" YARNRECD.YARN_challanno, LEDGERS.ACC_cmpname", "", " YARNRECD inner join LEDGERS on LEDGERS.ACC_id = YARNRECD.YARN_ledgerid ", " and YARNRECD.YARN_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND YARNRECD.YARN_YEARID =" & YearId)
                     If DT.Rows.Count > 0 Then
                         EP.SetError(TXTCHALLANNO, "Challan No. Already Exists")
                         bln = False
@@ -251,6 +251,14 @@ CHECKNEXTLINE:
                 End If
             End If
 
+            If ClientName = "SWPL" Then
+                If GRIDORDER.RowCount = 0 Then
+                    EP.SetError(cmbname, "Please Select  Purchase Order")
+                    bln = False
+                End If
+            End If
+
+
 
             Return bln
         Catch ex As Exception
@@ -294,6 +302,8 @@ CHECKNEXTLINE:
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTHAMALICHARGES.Text.Trim)
+            alParaval.Add(TXTLRNO.Text.Trim)
 
 
             Dim gridsrno As String = ""
@@ -699,6 +709,9 @@ LINE1:
 
                         txtpono.Text = Convert.ToString(dr("PONO").ToString)
                         podate.Value = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
+                        TXTHAMALICHARGES.Text = Convert.ToString(dr("HAMALICHARGES").ToString)
+                        TXTLRNO.Text = Convert.ToString(dr("TRANSPORTLRNO").ToString)
+
 
 
                         cmbtrans.Text = dr("TRANSNAME").ToString
@@ -714,7 +727,7 @@ LINE1:
                 End If
 
                 Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.search(" YARNRECD_UPLOAD.YARN_SRNO AS GRIDSRNO, YARNRECD_UPLOAD.YARN_REMARKS AS REMARKS, YARNRECD_UPLOAD.YARN_NAME AS NAME, YARNRECD_UPLOAD.YARN_PHOTO AS IMGPATH, YARNRECD_UPLOAD.YARN_GRIDTYPE AS TYPE ", "", " YARNRECD_UPLOAD ", " AND YARNRECD_UPLOAD.YARN_NO = " & TEMPYARNNO & " AND YARN_YEARID = " & YearId & " AND YARN_GRIDTYPE = '" & FRMSTRING & "' ORDER BY YARNRECD_UPLOAD.YARN_SRNO")
+                dttable = OBJCMN.SEARCH(" YARNRECD_UPLOAD.YARN_SRNO AS GRIDSRNO, YARNRECD_UPLOAD.YARN_REMARKS AS REMARKS, YARNRECD_UPLOAD.YARN_NAME AS NAME, YARNRECD_UPLOAD.YARN_PHOTO AS IMGPATH, YARNRECD_UPLOAD.YARN_GRIDTYPE AS TYPE ", "", " YARNRECD_UPLOAD ", " AND YARNRECD_UPLOAD.YARN_NO = " & TEMPYARNNO & " AND YARN_YEARID = " & YearId & " AND YARN_GRIDTYPE = '" & FRMSTRING & "' ORDER BY YARNRECD_UPLOAD.YARN_SRNO")
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
@@ -723,7 +736,7 @@ LINE1:
 
                 'ORDER GRID
                 'Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.search(" YARNRECD_PODETAILS.YARN_GRIDSRNO AS GRIDSRNO, YARNQUALITYMASTER.YARN_name AS YARNQUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, YARNRECD_PODETAILS.YARN_ORDERBAGS AS ORDERBAGS, ISNULL(YARNRECD_PODETAILS.YARN_ORDERWT,0) AS ORDERWT, YARNRECD_PODETAILS.YARN_FROMNO AS FROMNO, YARNRECD_PODETAILS.YARN_FROMSRNO AS FROMSRNO, YARNRECD_PODETAILS.YARN_FROMTYPE AS FROMTYPE, YARNRECD_PODETAILS.YARN_BAGS AS RECDBAGS, ISNULL(YARNRECD_PODETAILS.YARN_WT,0) AS RECDWT, ISNULL(YARNRECD_PODETAILS.YARN_RATE,0) AS RATE ", "", " YARNRECD_PODETAILS INNER JOIN YARNQUALITYMASTER ON YARNRECD_PODETAILS.YARN_YARNQUALITYID= YARNQUALITYMASTER.YARN_id LEFT OUTER JOIN COLORMASTER ON YARNRECD_PODETAILS.YARN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNRECD_PODETAILS.YARN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND YARNRECD_PODETAILS.YARN_NO = " & TEMPYARNNO & " AND YARNRECD_PODETAILS.YARN_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" YARNRECD_PODETAILS.YARN_GRIDSRNO AS GRIDSRNO, YARNQUALITYMASTER.YARN_name AS YARNQUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, YARNRECD_PODETAILS.YARN_ORDERBAGS AS ORDERBAGS, ISNULL(YARNRECD_PODETAILS.YARN_ORDERWT,0) AS ORDERWT, YARNRECD_PODETAILS.YARN_FROMNO AS FROMNO, YARNRECD_PODETAILS.YARN_FROMSRNO AS FROMSRNO, YARNRECD_PODETAILS.YARN_FROMTYPE AS FROMTYPE, YARNRECD_PODETAILS.YARN_BAGS AS RECDBAGS, ISNULL(YARNRECD_PODETAILS.YARN_WT,0) AS RECDWT, ISNULL(YARNRECD_PODETAILS.YARN_RATE,0) AS RATE ", "", " YARNRECD_PODETAILS INNER JOIN YARNQUALITYMASTER ON YARNRECD_PODETAILS.YARN_YARNQUALITYID= YARNQUALITYMASTER.YARN_id LEFT OUTER JOIN COLORMASTER ON YARNRECD_PODETAILS.YARN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNRECD_PODETAILS.YARN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND YARNRECD_PODETAILS.YARN_NO = " & TEMPYARNNO & " AND YARNRECD_PODETAILS.YARN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("YARNQUALITY"), DTR("DESIGNNO"), DTR("COLOR"), Val(DTR("ORDERBAGS")), Val(DTR("ORDERWT")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("RECDBAGS")), Val(DTR("RECDWT")), Val(DTR("RATE")))
@@ -760,11 +773,11 @@ LINE1:
     Sub fillcmb()
         Try
             If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
-            If cmbname.Text.Trim = "" Then fillname(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
             If CMBCODE.Text.Trim = "" Then fillACCCODE(CMBCODE, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
             If CMBTOCODE.Text.Trim = "" Then fillACCCODE(CMBTOCODE, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
 
-            If cmbtrans.Text.Trim = "" Then fillname(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT'")
+            If cmbtrans.Text.Trim = "" Then FILLNAME(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT'")
 
             fillYARNQUALITY(CMBYARNQUALITY, EDIT)
             FILLMILL(CMBMILL, EDIT)
@@ -828,7 +841,7 @@ LINE1:
 
     Private Sub cmbtrans_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbtrans.Enter
         Try
-            If cmbtrans.Text.Trim = "" Then fillname(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'")
+            If cmbtrans.Text.Trim = "" Then FILLNAME(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -836,7 +849,7 @@ LINE1:
 
     Private Sub cmbtrans_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbtrans.Validating
         Try
-            If cmbtrans.Text.Trim <> "" Then namevalidate(cmbtrans, CMBCODE, e, Me, TXTTRANSADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
+            If cmbtrans.Text.Trim <> "" Then NAMEVALIDATE(cmbtrans, CMBCODE, e, Me, TXTTRANSADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -859,7 +872,7 @@ LINE1:
                     'for search
                     Dim objclscommon As New ClsCommon()
                     Dim dt As New DataTable
-                    dt = objclscommon.search(" GRN.GRN_challanno, LEDGERS.ACC_cmpname", "", " GRN inner join LEDGERS on LEDGERS.ACC_id = GRN.GRN_ledgerid AND LEDGERS.ACC_CMPid = GRN.GRN_CMPid AND LEDGERS.ACC_LOCATIONid = GRN.GRN_lOCATIONid AND LEDGERS.ACC_YEARid = GRN.GRN_YEARid", " and GRN.GRN_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND GRN_CMPID =" & CmpId & " AND GRN_LOCATIONID =" & Locationid & " AND GRN_YEARID =" & YearId)
+                    dt = objclscommon.SEARCH(" GRN.GRN_challanno, LEDGERS.ACC_cmpname", "", " GRN inner join LEDGERS on LEDGERS.ACC_id = GRN.GRN_ledgerid AND LEDGERS.ACC_CMPid = GRN.GRN_CMPid AND LEDGERS.ACC_LOCATIONid = GRN.GRN_lOCATIONid AND LEDGERS.ACC_YEARid = GRN.GRN_YEARid", " and GRN.GRN_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND GRN_CMPID =" & CmpId & " AND GRN_LOCATIONID =" & Locationid & " AND GRN_YEARID =" & YearId)
                     If dt.Rows.Count > 0 Then
                         MsgBox("Challan No. Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                         e.Cancel = True
@@ -953,7 +966,7 @@ NEXTLINE:
 
         Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
         If GRIDDOUBLECLICK = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -969,7 +982,7 @@ NEXTLINE:
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
 
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
-            GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
+            GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTGRIDLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
 
             GRIDDOUBLECLICK = False
@@ -992,7 +1005,7 @@ NEXTLINE:
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
-        TXTLRNO.Clear()
+        TXTGRIDLRNO.Clear()
         DTLRDATE.Value = Now.Date
         TXTHSNCODE.Clear()
 
@@ -1126,7 +1139,7 @@ NEXTLINE:
                 txtqty.Text = GRIDYARN.Item(GQTY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
-                TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1330,7 +1343,7 @@ LINE1:
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            If cmbname.Text.Trim = "" Then fillname(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1339,7 +1352,7 @@ LINE1:
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             'If cmbname.Text.Trim <> "" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, CMBBROKER.Text)
-            If cmbname.Text.Trim <> "" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, "")
+            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, "")
 
         Catch ex As Exception
             Throw ex
@@ -1361,7 +1374,7 @@ LINE1:
             Else
                 'GET HSNCODE
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE", "", " YARNQUALITYMASTER INNER JOIN HSNMASTER ON YARN_HSNCODEID = HSNMASTER.HSN_ID ", " AND YARNQUALITYMASTER.YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE", "", " YARNQUALITYMASTER INNER JOIN HSNMASTER ON YARN_HSNCODEID = HSNMASTER.HSN_ID ", " AND YARNQUALITYMASTER.YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARNQUALITYMASTER.YARN_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then TXTHSNCODE.Text = DT.Rows(0).Item("HSNCODE")
             End If
         Catch ex As Exception
@@ -1398,14 +1411,14 @@ LINE1:
     End Sub
 
     Private Sub txtPartyMtrs_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtPartyMtrs.Validated
-        If Val(TXTLRNO.Text) <> 0 And Val(txtPartyMtrs.Text) <> 0 Then
-            txtCheckPcs.Text = Format(Val(TXTLRNO.Text) - Val(txtPartyMtrs.Text), "0.00")
+        If Val(TXTGRIDLRNO.Text) <> 0 And Val(txtPartyMtrs.Text) <> 0 Then
+            txtCheckPcs.Text = Format(Val(TXTGRIDLRNO.Text) - Val(txtPartyMtrs.Text), "0.00")
         End If
     End Sub
 
-    Private Sub TXTMTRS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTLRNO.Validating
-        If Val(TXTLRNO.Text) > 0 Then
-            txtPartyMtrs.Text = Val(TXTLRNO.Text)
+    Private Sub TXTMTRS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTGRIDLRNO.Validating
+        If Val(TXTGRIDLRNO.Text) > 0 Then
+            txtPartyMtrs.Text = Val(TXTGRIDLRNO.Text)
         End If
     End Sub
 
@@ -1581,6 +1594,10 @@ LINE1:
 
             If ClientName = "SWPL" Then
                 GLRNO.HeaderText = "Box No"
+                LBLLOTNO.Visible = False
+                TXTLOTNO.Visible = False
+                TXTGRIDLOTNO.Enabled = False
+                TXTGRIDLOTNO.TabStop = False
 
             End If
 
@@ -1675,7 +1692,7 @@ LINE1:
         numkeypress(e, TXTCONES, Me)
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
+    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTHAMALICHARGES.KeyPress
         numdot(e, TXTWT, Me)
     End Sub
 

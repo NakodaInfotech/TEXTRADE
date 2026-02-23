@@ -142,6 +142,11 @@ Public Class YarnRecdDetails
     Private Sub YarnRecdDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             Me.Text = "Yarn Recd (" & TYPE & ")"
+
+            If ClientName = "SWPL" Then
+                gridbill.Columns("LRNO").Caption = "Box No"
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
