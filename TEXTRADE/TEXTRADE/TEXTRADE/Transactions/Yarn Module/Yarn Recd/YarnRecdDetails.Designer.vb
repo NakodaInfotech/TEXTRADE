@@ -377,6 +377,7 @@ Partial Class YarnRecdDetails
         'GLRNO
         '
         Me.GLRNO.Caption = "LR NO"
+        Me.GLRNO.FieldName = "TRANSPORTLRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
         Me.GLRNO.VisibleIndex = 26
