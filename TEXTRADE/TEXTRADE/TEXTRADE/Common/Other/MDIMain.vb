@@ -11166,4 +11166,14 @@ SKIPLINE:
     Private Sub BEAMRECDWARPERADD_Click(sender As Object, e As EventArgs) Handles BEAMRECDWARPERADD.Click
 
     End Sub
+
+    Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBADD.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New JobOrder
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

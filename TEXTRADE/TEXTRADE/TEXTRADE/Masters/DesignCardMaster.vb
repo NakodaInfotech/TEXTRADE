@@ -598,6 +598,10 @@ Public Class DesignCardMaster
             alParaval.Add(TXTTOTALENDS.Text.Trim)
             alParaval.Add(TXTENDPERINCH.Text.Trim)
             alParaval.Add(TXTTOTALPEG.Text.Trim)
+            alParaval.Add(CMBSHADE.Text.Trim)
+            alParaval.Add(TXTEXTRAENDS.Text.Trim)
+            alParaval.Add(TXTTOTALEXTRAENDS.Text.Trim)
+
 
 
             Dim objDESIGN As New ClsDesignCardMaster
@@ -790,6 +794,9 @@ Public Class DesignCardMaster
         TXTWEFTCOST.Clear()
         txttotaldentsrepeat.Clear()
         TXTTOTALENDS.Clear()
+        TXTTOTALEXTRAENDS.Clear()
+        TXTEXTRAENDS.Clear()
+        CMBSHADE.Text = ""
         TXTENDPERINCH.Clear()
         TXTTOTALMAINENDS.Clear()
         txtxvalue.Clear()
@@ -844,10 +851,11 @@ Public Class DesignCardMaster
     Private Function errorvalid() As Boolean
 
         Dim bln As Boolean = True
-
-        If CMBDESIGNNO.Text.Trim.Length = 0 Then
-            Ep.SetError(CMBDESIGNNO, "Fill Design No")
-            bln = False
+        If ClientName = "AADHAR" Then
+            If CMBDESIGNNO.Text.Trim.Length = 0 Then
+                Ep.SetError(CMBDESIGNNO, "Fill Design No")
+                bln = False
+            End If
         End If
         If DTDATE.Text = "__/__/____" Then
             Ep.SetError(DTDATE, " Please Enter Proper Date")
@@ -1105,6 +1113,8 @@ Public Class DesignCardMaster
                     TXTGLM.Text = Format(Val(dr("GREYLOOMMTR")), "0.000")
                     TXTENDPERINCH.Text = dr("ENDPERINCH")
                     TXTTOTALENDS.Text = dr("TOTALENDS")
+                    TXTTOTALEXTRAENDS.Text = dr("TOTALEXTRAENDS")
+                    TXTEXTRAENDS.Text = dr("EXTRAENDS")
                 Next
                 'cmbtype.Enabled = False
 
@@ -1995,6 +2005,7 @@ LINE1:
         TXTENDPERINCH.Text = 0
         txttotaldentsrepeat.Text = 0.00
         TXTTOTALENDS.Text = 0.00
+        TXTTOTALEXTRAENDS.Text = 0.00
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
 
@@ -2071,8 +2082,9 @@ LINE1:
             Dim result As Double = Format(Val(totalDents) * Val(totalDrawEnds), "0.00")
             TXTTOTALENDS.Text = Format((result), "0.00")
         End If
+        If TXTTOTALENDS.Text <> "" Then TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text), "0.00")
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
-        If TXTTOTALENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
+        If TXTTOTALEXTRAENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALEXTRAENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
@@ -4073,9 +4085,6 @@ line1:
         End Try
     End Sub
 
-    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs) Handles cmdbtn1.Click
-
-    End Sub
 
     Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
         Try
