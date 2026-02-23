@@ -408,6 +408,7 @@
     <Compile Include="Transactions\Stores\ClsStoreConsumption.vb" />
     <Compile Include="Transactions\Stores\ClsStoreInward.vb" />
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
+    <Compile Include="Transactions\Stores\ClsStoreStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Issue\ClsBeamIssueWeaver.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Received\ClsBeamReceived.vb" />
     <Compile Include="Transactions\Yarn Modules\BeamReceivedWarper\ClsBeamReceivedWarper.vb" />

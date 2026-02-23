@@ -210,7 +210,7 @@ Public Class YarnSaleOrder
                         TXTNOTE.Text = Convert.ToString(dr("NOTE"))
 
 
-                        GRIDSO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESC").ToString, dr("DESIGN").ToString, dr("SHADE").ToString, Format(Val(dr("BAGS")), "0.00"), dr("UNIT").ToString, Format(Val(dr("WT")), "0.00"), Format(Val(dr("RATE")), "0.00"), Format(Val(dr("AMT")), "0.00"), Val(dr("RECDBAGS")), Val(dr("RECDWT")), dr("DONE").ToString, dr("CLOSED"))
+                        GRIDSO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESC").ToString, dr("DESIGN").ToString, dr("SHADE").ToString, Convert.ToDateTime(dr("SCHDATE")), Format(Val(dr("BAGS")), "0.00"), dr("UNIT").ToString, Format(Val(dr("WT")), "0.00"), Format(Val(dr("RATE")), "0.00"), Format(Val(dr("AMT")), "0.00"), Val(dr("RECDBAGS")), Val(dr("RECDWT")), dr("DONE").ToString, dr("CLOSED"))
 
 
                         If Val(dr("RECDBAGS")) > 0 Or Val(dr("RECDWT")) > 0 Then
@@ -322,6 +322,7 @@ Public Class YarnSaleOrder
             Dim desc As String = ""
             Dim DESIGN As String = ""
             Dim SHADE As String = ""
+            Dim SCHDATE As String = ""
             Dim BAGS As String = ""
             Dim UNIT As String = ""
             Dim WT As String = ""
@@ -338,6 +339,7 @@ Public Class YarnSaleOrder
                         desc = row.Cells(gdesc.Index).Value.ToString
                         DESIGN = row.Cells(GDESIGN.Index).Value.ToString
                         SHADE = row.Cells(gcolor.Index).Value.ToString
+                        SCHDATE = Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         BAGS = Val(row.Cells(GBAGS.Index).Value)
                         UNIT = row.Cells(GUNIT.Index).Value.ToString
                         WT = Val(row.Cells(GWT.Index).Value)
@@ -352,6 +354,7 @@ Public Class YarnSaleOrder
                         desc = desc & "|" & row.Cells(gdesc.Index).Value.ToString
                         DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         SHADE = SHADE & "|" & row.Cells(gcolor.Index).Value.ToString
+                        SCHDATE = SCHDATE & "|" & Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         BAGS = BAGS & "|" & Val(row.Cells(GBAGS.Index).Value)
                         UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value.ToString
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
@@ -368,6 +371,7 @@ Public Class YarnSaleOrder
             alParaval.Add(desc)
             alParaval.Add(DESIGN)
             alParaval.Add(SHADE)
+            alParaval.Add(SCHDATE)
             alParaval.Add(BAGS)
             alParaval.Add(UNIT)
             alParaval.Add(WT)
@@ -459,7 +463,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub txtsrno_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtsrno.GotFocus
+    Private Sub txtsrno_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs)
         If GRIDDOUBLECLICK = False Then
             If GRIDSO.RowCount > 0 Then
                 txtsrno.Text = Val(GRIDSO.Rows(GRIDSO.RowCount - 1).Cells(gsrno.Index).Value) + 1
@@ -469,7 +473,7 @@ Public Class YarnSaleOrder
         End If
     End Sub
 
-    Private Sub CMBYARNQUALITY_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBYARNQUALITY.Enter
+    Private Sub CMBYARNQUALITY_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             If CMBYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBYARNQUALITY, EDIT)
         Catch ex As Exception
@@ -477,7 +481,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub CMBYARNQUALITY_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating
+    Private Sub CMBYARNQUALITY_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
         Try
             If CMBYARNQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBYARNQUALITY, e, Me)
         Catch ex As Exception
@@ -531,7 +535,7 @@ Public Class YarnSaleOrder
 
     End Sub
 
-    Private Sub GRIDSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDSO.CellDoubleClick
+    Private Sub GRIDSO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
         If e.RowIndex >= 0 And GRIDSO.Item(gsrno.Index, e.RowIndex).Value <> Nothing Then
 
             If Convert.ToBoolean(GRIDSO.Rows(e.RowIndex).Cells(GDONE.Index).Value) = True Or Convert.ToBoolean(GRIDSO.Rows(e.RowIndex).Cells(GCLOSED.Index).Value) = True Then
@@ -556,7 +560,7 @@ Public Class YarnSaleOrder
         End If
     End Sub
 
-    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTRATE.KeyPress
+    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -628,12 +632,12 @@ Public Class YarnSaleOrder
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                namevalidate(cmbname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "Sundry Debtors", "ACCOUNTS", CMBTRANS.Text.Trim, CMBBROKER.Text)
+                NAMEVALIDATE(cmbname, cmbcode, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'", "Sundry Debtors", "ACCOUNTS", CMBTRANS.Text.Trim, CMBBROKER.Text)
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.Acc_crdays, 0) AS Expr1, ISNULL(LEDGERS_1.Acc_cmpname, '') AS transport, ISNULL(LEDGERS_2.Acc_cmpname, '') AS agent, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(LEDGERS.Acc_email,'') AS EMAIL, ISNULL(LEDGERS.ACC_DISC, 0) AS DISC, ISNULL(CITYMASTER.city_name, '') AS CITY ", "", "  LEDGERS LEFT OUTER JOIN CITYMASTER ON LEDGERS.Acc_cityid = CITYMASTER.city_id LEFT OUTER JOIN LEDGERS AS LEDGERS_2 ON LEDGERS.ACC_AGENTID = LEDGERS_2.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_2.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_2.Acc_locationid AND LEDGERS.Acc_yearid = LEDGERS_2.Acc_yearid LEFT OUTER JOIN LEDGERS AS LEDGERS_1 ON LEDGERS.ACC_TRANSID = LEDGERS_1.Acc_id AND LEDGERS.Acc_cmpid = LEDGERS_1.Acc_cmpid AND LEDGERS.Acc_locationid = LEDGERS_1.Acc_locationid AND LEDGERS.Acc_yearid = LEDGERS_1.Acc_yearid ", " AND ledgers.ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ledgers.ACC_CMPID = " & CmpId & " AND ledgers.ACC_LOCATIONID = " & Locationid & " AND ledgers.ACC_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If ClientName <> "MASHOK" Then
-                    If Val(TXTCRDAYS.Text.Trim) = 0 Then TXTCRDAYS.Text = Val(DT.Rows(0).Item(0))
+                        If Val(TXTCRDAYS.Text.Trim) = 0 Then TXTCRDAYS.Text = Val(DT.Rows(0).Item(0))
                     End If
                     TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
                     TXTEMAILADD.Text = DT.Rows(0).Item("EMAIL")
@@ -644,7 +648,7 @@ Public Class YarnSaleOrder
                         If Val(txtdiscount.Text.Trim) = 0 Then txtdiscount.Text = Val(DT.Rows(0).Item("DISC"))
                     End If
                 End If
-                End If
+            End If
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -667,7 +671,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub GRIDSO_CellValidating(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellValidatingEventArgs) Handles GRIDSO.CellValidating
+    Private Sub GRIDSO_CellValidating(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellValidatingEventArgs)
         ''  CODE FOR NUMERIC CHECK ONLY
         Dim colNum As Integer = GRIDSO.Columns(e.ColumnIndex).Index
         If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
@@ -722,7 +726,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub GRIDSO_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GRIDSO.KeyDown
+    Private Sub GRIDSO_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
 
         Try
             If e.KeyCode = Keys.Delete And GRIDSO.RowCount > 0 Then
@@ -769,7 +773,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub cmbcolor_Enter(sender As Object, e As EventArgs) Handles CMBCOLOR.Enter
+    Private Sub cmbcolor_Enter(sender As Object, e As EventArgs)
         Try
             FILLCOLOR(CMBCOLOR, CMBDESIGN.Text.Trim, "")
         Catch ex As Exception
@@ -777,7 +781,7 @@ Public Class YarnSaleOrder
         End Try
     End Sub
 
-    Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBCOLOR.Validating
+    Private Sub cmbcolor_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
         Try
             If CMBCOLOR.Text.Trim <> "" Then COLORVALIDATE(CMBCOLOR, e, Me, CMBDESIGN.Text.Trim, "")
         Catch ex As Exception
@@ -890,7 +894,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBDESIGN_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBDESIGN.Enter
+    Private Sub CMBDESIGN_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, "")
         Catch ex As Exception
@@ -898,7 +902,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBDESIGN_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBDESIGN.KeyDown
+    Private Sub CMBDESIGN_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
@@ -913,7 +917,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTRATE_Validated(sender As Object, e As EventArgs) Handles TXTRATE.Validated
+    Private Sub TXTRATE_Validated(sender As Object, e As EventArgs)
         Try
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
 
@@ -936,7 +940,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBDESIGN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBDESIGN.Validating
+    Private Sub CMBDESIGN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs)
         Try
             If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me, "")
         Catch ex As Exception
@@ -960,13 +964,13 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTBAGS_Validated(sender As Object, e As EventArgs) Handles TXTBAGS.Validated
+    Private Sub TXTBAGS_Validated(sender As Object, e As EventArgs)
         Try
             If ClientName = "VAISHALI" Then
                 'FETCH CONEWT FROM YARNQUALITYMASTER
                 If Val(TXTWT.Text.Trim) = 0 And Val(TXTBAGS.Text.Trim) <> 0 And CMBYARNQUALITY.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(YARN_BOXTUBEWT,0) AS BOXWT", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(YARN_BOXTUBEWT,0) AS BOXWT", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTBAGS.Text.Trim) * Val(DT.Rows(0).Item("BOXWT")), "0.00")
                 End If
             End If
@@ -975,7 +979,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBMILL_Enter(sender As Object, e As EventArgs) Handles CMBMILL.Enter
+    Private Sub CMBMILL_Enter(sender As Object, e As EventArgs)
         Try
             If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, EDIT)
         Catch ex As Exception
@@ -983,7 +987,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBMILL_Validating(sender As Object, e As CancelEventArgs) Handles CMBMILL.Validating
+    Private Sub CMBMILL_Validating(sender As Object, e As CancelEventArgs)
         Try
             If CMBMILL.Text.Trim <> "" Then MILLVALIDATE(CMBMILL, e, Me)
         Catch ex As Exception
