@@ -1142,6 +1142,10 @@ LINE1:
                 GLRNO.HeaderText = "Machine"
                 GLRDATE.HeaderText = "Date"
             End If
+
+            If ClientName = "SWPL" Then
+                GLRNO.HeaderText = "Box No."
+            End If
         Catch ex As Exception
             Throw ex
         End Try
