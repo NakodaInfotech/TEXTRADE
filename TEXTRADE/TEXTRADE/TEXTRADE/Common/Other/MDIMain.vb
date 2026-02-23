@@ -11162,4 +11162,8 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub BEAMRECDWARPERADD_Click(sender As Object, e As EventArgs) Handles BEAMRECDWARPERADD.Click
+
+    End Sub
 End Class

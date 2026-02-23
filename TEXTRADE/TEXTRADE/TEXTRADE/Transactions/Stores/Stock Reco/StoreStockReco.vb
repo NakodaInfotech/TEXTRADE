@@ -250,12 +250,6 @@ Public Class StoreStockReco
 
     '    Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
     '        Try
-    '            'WHILE ADDING COLUMN IN JOBOUT DONT FORGET TO ADD SAME COLUMNS IN FORMS GIVEN BELOW
-    '            '1) JOBOUT -- RECOSAVE
-    '            '2) OPENINGGDN --- RECOSAVE
-    '            '3) PACKINGSLIP --- RECOSAVE
-    '            '4) GDN --- RECOSAVE
-    '            '5) PROFORMA --- RECOSAVE
 
     '            Cursor.Current = Cursors.WaitCursor
     '            EP.Clear()
@@ -270,61 +264,47 @@ Public Class StoreStockReco
     '            Else
     '                alParaval.Add(0)
     '            End If
-
-
-    '            alParaval.Add(Format(DTRECODATE.Value.Date, "MM/dd/yyyy"))
+    '            alParaval.Add(Format(Convert.ToDateTime(DTRECODATE.Text).Date, "MM/dd/yyyy"))
     '            alParaval.Add(CMBGODOWN.Text.Trim)
+    '            alParaval.Add(CMBNAME.Text.Trim)
     '            alParaval.Add(CMBTRANS.Text.Trim)
-    '            alParaval.Add(txtchallan.Text.Trim)
-
-
+    '            alParaval.Add(TXTCHALLANNO.Text.Trim)
+    '            alParaval.Add(Format(Convert.ToDateTime(DTCHALLANDATE.Text).Date, "MM/dd/yyyy"))
     '            alParaval.Add(txtremarks.Text.Trim)
+    '            alParaval.Add(LBLTOTALINQTY.Text.Trim)
+    '            alParaval.Add(LBLTOTALOUTQTY.Text.Trim)
     '            alParaval.Add(CmpId)
     '            alParaval.Add(Locationid)
     '            alParaval.Add(Userid)
     '            alParaval.Add(YearId)
-    '            alParaval.Add(0)
 
 
     '            Dim gridsrno As String = ""
     '            Dim ITEMNAME As String = ""
-    '            Dim LOTNO As String = ""
-    '            Dim SIZE As String = ""
-    '            Dim WT As String = ""
+    '            Dim DESC As String = ""
     '            Dim QTY As String = ""
     '            Dim UNIT As String = ""
     '            Dim RATE As String = ""
-    '            Dim AMOUNT As String = ""
-    '            Dim SHEETS As String = ""
-    '            Dim DESC As String = ""
 
-
-    '            For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCK.Rows
+    '            For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCKOUT.Rows
     '                If row.Cells(0).Value <> Nothing Then
     '                    If gridsrno = "" Then
     '                        gridsrno = row.Cells(GSRNO.Index).Value.ToString
-    '                        ITEMNAME = row.Cells(GMERCHANT.Index).Value.ToString
-    '                        LOTNO = row.Cells(GLOTNO.Index).Value.ToString
-    '                        SIZE = row.Cells(GSIZE.Index).Value.ToString
-    '                        WT = row.Cells(GWT.Index).Value.ToString
+    '                        ITEMNAME = row.Cells(GITEMNAME.Index).Value.ToString
+    '                        DESC = row.Cells(GDESC.Index).Value
     '                        QTY = row.Cells(GQTY.Index).Value.ToString
     '                        UNIT = row.Cells(GUNIT.Index).Value.ToString
     '                        RATE = row.Cells(GRATE.Index).Value.ToString
-    '                        AMOUNT = row.Cells(GAMOUNT.Index).Value.ToString
-    '                        SHEETS = row.Cells(GSHEETS.Index).Value.ToString
-    '                        DESC = row.Cells(GDESC.Index).Value
     '                    Else
     '                        gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value.ToString
-    '                        ITEMNAME = ITEMNAME & "|" & row.Cells(GMERCHANT.Index).Value.ToString
-    '                        LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
-    '                        SIZE = SIZE & "|" & row.Cells(GSIZE.Index).Value.ToString
-    '                        WT = WT & "|" & row.Cells(GWT.Index).Value.ToString
+    '                        ITEMNAME = ITEMNAME & "|" & row.Cells(GITEMNAME.Index).Value.ToString
+    '                        DESC = DESC & "|" & row.Cells(GDESC.Index).Value0
     '                        QTY = QTY & "|" & row.Cells(GQTY.Index).Value.ToString
     '                        RATE = RATE & "|" & row.Cells(GRATE.Index).Value.ToString
     '                        AMOUNT = AMOUNT & "|" & row.Cells(GAMOUNT.Index).Value.ToString
     '                        UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value.ToString
     '                        SHEETS = SHEETS & "|" & row.Cells(GSHEETS.Index).Value.ToString
-    '                        DESC = DESC & "|" & row.Cells(GDESC.Index).Value
+
     '                    End If
     '                End If
     '            Next
