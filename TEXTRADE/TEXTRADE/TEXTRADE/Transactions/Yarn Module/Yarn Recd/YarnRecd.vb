@@ -251,6 +251,14 @@ CHECKNEXTLINE:
                 End If
             End If
 
+            If ClientName = "SWPL" Then
+                If GRIDORDER.RowCount = 0 Then
+                    EP.SetError(cmbname, "Please Select  Purchase Order")
+                    bln = False
+                End If
+            End If
+
+
 
             Return bln
         Catch ex As Exception
