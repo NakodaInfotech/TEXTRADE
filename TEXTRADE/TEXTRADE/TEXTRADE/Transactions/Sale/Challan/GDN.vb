@@ -671,7 +671,7 @@ CHECKNEXTLINEMTRS:
                 End If
                 If ClientName = "SNCM" Then txttransref.Text = DTSO.Rows(0).Item("REFNO")
                 If ClientName = "RAJKRIPA" Then txttransref.Text = DTSO.Rows(0).Item("PACKINGTYPE")
-                If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Then txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
+                If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Then txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
                 TXTSONO.Enabled = False
 
 
@@ -2546,6 +2546,10 @@ NEXTLINE:
                 TXTDESCRIPTION.TextAlign = HorizontalAlignment.Left
                 TXTDESCRIPTION.Left = CMBQUALITY.Left
                 If UserName <> "Admin" Then GRATE.ReadOnly = True
+                If ClientName = "SHEETAL" Then
+                    GBALENO.Visible = False
+                    GAMOUNT.Visible = False
+                End If
             End If
 
             If ClientName = "LAXMI" Then
