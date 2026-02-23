@@ -27,12 +27,15 @@ Partial Class StoreConsumptionDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GISSUETO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDEPARTMENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMACHINENAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTAKENBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -43,7 +46,6 @@ Partial Class StoreConsumptionDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,11 +82,9 @@ Partial Class StoreConsumptionDetails
         '
         'gridbill
         '
-        Me.gridbill.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GGODOWN, Me.GISSUETO, Me.GDEPARTMENT, Me.GCHALLANNO, Me.GITEMNAME, Me.GQTY, Me.GUNIT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GGODOWN, Me.GISSUETO, Me.GDEPARTMENT, Me.GCHALLANNO, Me.GITEMNAME, Me.GMACHINENAME, Me.GTAKENBY, Me.GQTY, Me.GUNIT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -117,6 +117,16 @@ Partial Class StoreConsumptionDetails
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.OptionsColumn.AllowEdit = False
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 2
+        Me.GGODOWN.Width = 120
+        '
         'GISSUETO
         '
         Me.GISSUETO.Caption = "Issue To"
@@ -142,6 +152,7 @@ Partial Class StoreConsumptionDetails
         Me.GCHALLANNO.Caption = "Challan No"
         Me.GCHALLANNO.FieldName = "CHALLANNO"
         Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
         Me.GCHALLANNO.Visible = True
         Me.GCHALLANNO.VisibleIndex = 5
         '
@@ -150,6 +161,7 @@ Partial Class StoreConsumptionDetails
         Me.GITEMNAME.Caption = "Item Name"
         Me.GITEMNAME.FieldName = "ITEMNAME"
         Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
         Me.GITEMNAME.VisibleIndex = 6
         Me.GITEMNAME.Width = 250
@@ -161,6 +173,7 @@ Partial Class StoreConsumptionDetails
         Me.GQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GQTY.FieldName = "QTY"
         Me.GQTY.Name = "GQTY"
+        Me.GQTY.OptionsColumn.AllowEdit = False
         Me.GQTY.Visible = True
         Me.GQTY.VisibleIndex = 7
         Me.GQTY.Width = 85
@@ -170,8 +183,29 @@ Partial Class StoreConsumptionDetails
         Me.GUNIT.Caption = "Unit"
         Me.GUNIT.FieldName = "QTYUNIT"
         Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.OptionsColumn.AllowEdit = False
         Me.GUNIT.Visible = True
         Me.GUNIT.VisibleIndex = 8
+        '
+        'GMACHINENAME
+        '
+        Me.GMACHINENAME.Caption = "Machine Name"
+        Me.GMACHINENAME.FieldName = "MACHINE"
+        Me.GMACHINENAME.Name = "GMACHINENAME"
+        Me.GMACHINENAME.OptionsColumn.AllowEdit = False
+        Me.GMACHINENAME.Visible = True
+        Me.GMACHINENAME.VisibleIndex = 9
+        Me.GMACHINENAME.Width = 150
+        '
+        'GTAKENBY
+        '
+        Me.GTAKENBY.Caption = "Taken By"
+        Me.GTAKENBY.FieldName = "TAKENBY"
+        Me.GTAKENBY.Name = "GTAKENBY"
+        Me.GTAKENBY.OptionsColumn.AllowEdit = False
+        Me.GTAKENBY.Visible = True
+        Me.GTAKENBY.VisibleIndex = 10
+        Me.GTAKENBY.Width = 120
         '
         'CHKDONE
         '
@@ -251,15 +285,6 @@ Partial Class StoreConsumptionDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'GGODOWN
-        '
-        Me.GGODOWN.Caption = "Godown"
-        Me.GGODOWN.FieldName = "GODOWN"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 2
-        Me.GGODOWN.Width = 120
-        '
         'StoreConsumptionDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -304,4 +329,6 @@ Partial Class StoreConsumptionDetails
     Friend WithEvents CMDADD As Button
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMACHINENAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTAKENBY As DevExpress.XtraGrid.Columns.GridColumn
 End Class

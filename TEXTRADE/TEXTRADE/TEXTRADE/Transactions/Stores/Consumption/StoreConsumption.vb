@@ -27,7 +27,9 @@ Public Class StoreConsumption
 
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBDEPARTMENT.Text = ""
+        CMBMACHINE.Text = ""
         TXTISSUEDTO.Clear()
+        TXTTAKENBY.Clear()
         TXTCHALLANNO.Clear()
         EP.Clear()
         TXTREMARKS.Clear()
@@ -103,6 +105,8 @@ Public Class StoreConsumption
         If CMBDEPARTMENT.Text.Trim = "" Then filldepartment(CMBDEPARTMENT, EDIT)
         If CMBSTOREITEMNAME.Text.Trim = "" Then FILLSTOREITEMNAME(CMBSTOREITEMNAME)
         If CMBUNIT.Text.Trim = "" Then fillunit(CMBUNIT)
+        If CMBMACHINE.Text.Trim = "" Then FILLMACHINE(CMBMACHINE)
+
     End Sub
 
     Private Sub StoreConsumption_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -141,6 +145,8 @@ Public Class StoreConsumption
 
                         CMBDEPARTMENT.Text = Convert.ToString(dr("DEPARTMENT").ToString)
                         TXTISSUEDTO.Text = dr("ISSUETO").ToString
+                        TXTTAKENBY.Text = dr("TAKENBY").ToString
+                        CMBMACHINE.Text = dr("MACHINE")
 
                         TXTCHALLANNO.Text = dr("CHALLANNO")
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
@@ -185,6 +191,7 @@ Public Class StoreConsumption
             alParaval.Add(YearId)
 
 
+
             Dim GRIDSRNO As String = ""
             Dim ITEMNAME As String = ""
             Dim DESC As String = ""
@@ -214,6 +221,10 @@ Public Class StoreConsumption
             alParaval.Add(DESC)
             alParaval.Add(QTY)
             alParaval.Add(UNIT)
+
+            alParaval.Add(CMBMACHINE.Text.Trim)
+            alParaval.Add(TXTTAKENBY.Text.Trim)
+
 
             Dim OBJCONSUME As New ClsStoreConsumption
             OBJCONSUME.alParaval = alParaval
