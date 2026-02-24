@@ -52,9 +52,9 @@ Public Class BeamRecdWarper
         CMBOURGODOWN.Text = GETDEFAULTGODOWN()
         CMBNAME.Text = ""
         CMBMILLNAME.Text = ""
-        TXTYARNISSUENO.Clear()
-        TXTTYPE.Clear()
-        TXTADDANO.Clear()
+        TXTJOBNO.Clear()
+        TXTREED.Clear()
+        TXTREEDSPACE.Clear()
 
         TXTCHALLANNO.Clear()
         DTCHALLANDATE.Text = Mydate
@@ -97,6 +97,12 @@ Public Class BeamRecdWarper
 
         TXTSRNO.Text = 1
         TXTUPLOADSRNO.Text = 1
+
+        TXTFROMTYPE.Clear()
+        TXTREFNO.Clear()
+        TXTPICS.Clear()
+
+
 
     End Sub
 
@@ -181,9 +187,9 @@ Public Class BeamRecdWarper
                     CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
                     CMBMILLNAME.Text = dttable.Rows(0).Item("MILLNAME").ToString
 
-                    TXTYARNISSUENO.Text = Val(dttable.Rows(0).Item("FROMNO"))
-                    TXTTYPE.Text = dttable.Rows(0).Item("FROMTYPE").ToString
-                    TXTADDANO.Text = Val(dttable.Rows(0).Item("ADDANO"))
+                    TXTJOBNO.Text = Val(dttable.Rows(0).Item("FROMNO"))
+                    TXTREED.Text = dttable.Rows(0).Item("FROMTYPE").ToString
+                    TXTREEDSPACE.Text = Val(dttable.Rows(0).Item("ADDANO"))
 
                     TXTCHALLANNO.Text = dttable.Rows(0).Item("CHALLANNO").ToString
                     DTCHALLANDATE.Text = dttable.Rows(0).Item("CHALLANDATE")
@@ -232,9 +238,9 @@ Public Class BeamRecdWarper
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBMILLNAME.Text.Trim)
 
-            alParaval.Add(Val(TXTYARNISSUENO.Text.Trim))
-            alParaval.Add(TXTTYPE.Text.Trim)
-            alParaval.Add(Val(TXTADDANO.Text.Trim))
+            alParaval.Add(Val(TXTJOBNO.Text.Trim))
+            alParaval.Add(TXTREED.Text.Trim)
+            alParaval.Add(Val(TXTREEDSPACE.Text.Trim))
 
             alParaval.Add(TXTCHALLANNO.Text.Trim)
             alParaval.Add(DTCHALLANDATE.Text.Trim)
@@ -253,12 +259,17 @@ Public Class BeamRecdWarper
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(TXTPICS.Text.Trim)
+            alParaval.Add(TXTREFNO.Text.Trim)
+            alParaval.Add(TXTFROMTYPE.Text.Trim)
+
+
 
             Dim SRNO As String = ""
             Dim BEAMNO As String = ""
             Dim BEAMNAME As String = ""
-            Dim TOTALENDS As String = ""
-            Dim TOTALMTRS As String = ""
+            Dim ENDS As String = ""
+            Dim MTRS As String = ""
             Dim GAMANO As String = ""
             Dim SECTION As String = ""
             Dim ROLLNO As String = ""
@@ -272,8 +283,8 @@ Public Class BeamRecdWarper
                         SRNO = row.Cells(GSRNO.Index).Value
                         BEAMNO = row.Cells(GBEAMNO.Index).Value.ToString
                         BEAMNAME = row.Cells(GBEAMNAME.Index).Value.ToString
-                        TOTALENDS = Val(row.Cells(GTOTALENDS.Index).Value)
-                        TOTALMTRS = Val(row.Cells(GTOTALMTRS.Index).Value)
+                        ENDS = Val(row.Cells(GTOTALENDS.Index).Value)
+                        MTRS = Val(row.Cells(GTOTALMTRS.Index).Value)
                         GAMANO = Val(row.Cells(GGAMANO.Index).Value)
                         SECTION = Val(row.Cells(GSECTION.Index).Value)
                         ROLLNO = Val(row.Cells(GROLLNO.Index).Value)
@@ -290,8 +301,8 @@ Public Class BeamRecdWarper
                         SRNO = SRNO & "|" & row.Cells(GSRNO.Index).Value
                         BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value.ToString
                         BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value.ToString
-                        TOTALENDS = TOTALENDS & "|" & Val(row.Cells(GTOTALENDS.Index).Value)
-                        TOTALMTRS = TOTALMTRS & "|" & Val(row.Cells(GTOTALMTRS.Index).Value)
+                        ENDS = ENDS & "|" & Val(row.Cells(GTOTALENDS.Index).Value)
+                        MTRS = MTRS & "|" & Val(row.Cells(GTOTALMTRS.Index).Value)
                         GAMANO = GAMANO & "|" & Val(row.Cells(GGAMANO.Index).Value)
                         SECTION = SECTION & "|" & Val(row.Cells(GSECTION.Index).Value)
                         ROLLNO = ROLLNO & "|" & Val(row.Cells(GROLLNO.Index).Value)
@@ -310,8 +321,8 @@ Public Class BeamRecdWarper
             alParaval.Add(SRNO)
             alParaval.Add(BEAMNO)
             alParaval.Add(BEAMNAME)
-            alParaval.Add(TOTALENDS)
-            alParaval.Add(TOTALMTRS)
+            alParaval.Add(ENDS)
+            alParaval.Add(MTRS)
             alParaval.Add(GAMANO)
             alParaval.Add(SECTION)
             alParaval.Add(ROLLNO)
@@ -1122,9 +1133,9 @@ LINE1:
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.ShowDialog()
             If DT.Rows.Count > 0 Then
-                TXTYARNISSUENO.Text = DT.Rows(0).Item("FROMNO")
-                TXTTYPE.Text = DT.Rows(0).Item("TYPE")
-                TXTADDANO.Text = Val(DT.Rows(0).Item("ADDANO"))
+                TXTJOBNO.Text = DT.Rows(0).Item("FROMNO")
+                TXTREED.Text = DT.Rows(0).Item("TYPE")
+                TXTREEDSPACE.Text = Val(DT.Rows(0).Item("ADDANO"))
                 CMDSELECTYARNISSUE.Enabled = False
             End If
         Catch ex As Exception

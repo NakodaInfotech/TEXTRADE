@@ -1027,6 +1027,8 @@ Partial Class MDIMain
         Me.YARNRECDJOBBEREDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator164 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDJOBBERTOOL = New System.Windows.Forms.ToolStripSeparator()
+        Me.YARNJOBWORKMASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNJOBADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.YarnInterGodownTransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNISSUE = New System.Windows.Forms.ToolStripMenuItem()
         Me.WEFTISSUE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1281,8 +1283,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.YARNJOBWORKMASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YARNJOBADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7673,6 +7673,19 @@ Partial Class MDIMain
         Me.YARNRECDJOBBERTOOL.Size = New System.Drawing.Size(192, 6)
         Me.YARNRECDJOBBERTOOL.Visible = False
         '
+        'YARNJOBWORKMASTER
+        '
+        Me.YARNJOBWORKMASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNJOBADD})
+        Me.YARNJOBWORKMASTER.Name = "YARNJOBWORKMASTER"
+        Me.YARNJOBWORKMASTER.Size = New System.Drawing.Size(195, 22)
+        Me.YARNJOBWORKMASTER.Text = "Yarn Job Work"
+        '
+        'YARNJOBADD
+        '
+        Me.YARNJOBADD.Name = "YARNJOBADD"
+        Me.YARNJOBADD.Size = New System.Drawing.Size(151, 22)
+        Me.YARNJOBADD.Text = "Add New Entry"
+        '
         'YarnInterGodownTransferToolStripMenuItem
         '
         Me.YarnInterGodownTransferToolStripMenuItem.Name = "YarnInterGodownTransferToolStripMenuItem"
@@ -7858,20 +7871,20 @@ Partial Class MDIMain
         '
         Me.ROLLSRECDWARPERADD.Enabled = False
         Me.ROLLSRECDWARPERADD.Name = "ROLLSRECDWARPERADD"
-        Me.ROLLSRECDWARPERADD.Size = New System.Drawing.Size(172, 22)
+        Me.ROLLSRECDWARPERADD.Size = New System.Drawing.Size(180, 22)
         Me.ROLLSRECDWARPERADD.Text = "Add new Entry"
         '
         'ROLLSRECDWARPEREDIT
         '
         Me.ROLLSRECDWARPEREDIT.Enabled = False
         Me.ROLLSRECDWARPEREDIT.Name = "ROLLSRECDWARPEREDIT"
-        Me.ROLLSRECDWARPEREDIT.Size = New System.Drawing.Size(172, 22)
+        Me.ROLLSRECDWARPEREDIT.Size = New System.Drawing.Size(180, 22)
         Me.ROLLSRECDWARPEREDIT.Text = "Edit Exisiting Entry"
         '
         'ToolStripSeparator329
         '
         Me.ToolStripSeparator329.Name = "ToolStripSeparator329"
-        Me.ToolStripSeparator329.Size = New System.Drawing.Size(169, 6)
+        Me.ToolStripSeparator329.Size = New System.Drawing.Size(177, 6)
         '
         'ROLLSISSUESIZER_MASTER
         '
@@ -7949,20 +7962,20 @@ Partial Class MDIMain
         '
         Me.BEAMRECDWARPERADD.Enabled = False
         Me.BEAMRECDWARPERADD.Name = "BEAMRECDWARPERADD"
-        Me.BEAMRECDWARPERADD.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMRECDWARPERADD.Size = New System.Drawing.Size(180, 22)
         Me.BEAMRECDWARPERADD.Text = "Add New Entry"
         '
         'BEAMRECDWARPEREDIT
         '
         Me.BEAMRECDWARPEREDIT.Enabled = False
         Me.BEAMRECDWARPEREDIT.Name = "BEAMRECDWARPEREDIT"
-        Me.BEAMRECDWARPEREDIT.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMRECDWARPEREDIT.Size = New System.Drawing.Size(180, 22)
         Me.BEAMRECDWARPEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator335
         '
         Me.ToolStripSeparator335.Name = "ToolStripSeparator335"
-        Me.ToolStripSeparator335.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator335.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator332
         '
@@ -9366,19 +9379,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'YARNJOBWORKMASTER
-        '
-        Me.YARNJOBWORKMASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNJOBADD})
-        Me.YARNJOBWORKMASTER.Name = "YARNJOBWORKMASTER"
-        Me.YARNJOBWORKMASTER.Size = New System.Drawing.Size(195, 22)
-        Me.YARNJOBWORKMASTER.Text = "Yarn Job Work"
-        '
-        'YARNJOBADD
-        '
-        Me.YARNJOBADD.Name = "YARNJOBADD"
-        Me.YARNJOBADD.Size = New System.Drawing.Size(180, 22)
-        Me.YARNJOBADD.Text = "Add New Entry"
         '
         'MDIMain
         '

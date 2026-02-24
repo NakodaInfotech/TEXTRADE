@@ -31,11 +31,6 @@ Partial Class BeamRecdWarper
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamRecdWarper))
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -43,15 +38,24 @@ Partial Class BeamRecdWarper
         Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamRecdWarper))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TXTFROMTYPE = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTPICS = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TXTREFNO = New System.Windows.Forms.TextBox()
         Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         Me.LBLADDANO = New System.Windows.Forms.Label()
-        Me.TXTADDANO = New System.Windows.Forms.TextBox()
-        Me.TXTTYPE = New System.Windows.Forms.TextBox()
-        Me.TXTYARNISSUENO = New System.Windows.Forms.TextBox()
+        Me.TXTREEDSPACE = New System.Windows.Forms.TextBox()
+        Me.TXTREED = New System.Windows.Forms.TextBox()
+        Me.TXTJOBNO = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CMDSELECTYARNISSUE = New System.Windows.Forms.Button()
         Me.LBLTAPLINE = New System.Windows.Forms.Label()
@@ -90,6 +94,17 @@ Partial Class BeamRecdWarper
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
         Me.TXTTOTALBEAM = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGAMANO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSECTION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GROLLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBREAKAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbupload = New System.Windows.Forms.TabPage()
         Me.TXTIMGPATH = New System.Windows.Forms.TextBox()
         Me.PBSOFTCOPY = New System.Windows.Forms.PictureBox()
@@ -125,17 +140,6 @@ Partial Class BeamRecdWarper
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGAMANO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSECTION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GROLLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBREAKAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -153,14 +157,18 @@ Partial Class BeamRecdWarper
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label11)
+        Me.BlendPanel1.Controls.Add(Me.TXTFROMTYPE)
+        Me.BlendPanel1.Controls.Add(Me.Label10)
+        Me.BlendPanel1.Controls.Add(Me.TXTPICS)
         Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.Label8)
         Me.BlendPanel1.Controls.Add(Me.TXTREFNO)
         Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
         Me.BlendPanel1.Controls.Add(Me.LBLADDANO)
-        Me.BlendPanel1.Controls.Add(Me.TXTADDANO)
-        Me.BlendPanel1.Controls.Add(Me.TXTTYPE)
-        Me.BlendPanel1.Controls.Add(Me.TXTYARNISSUENO)
+        Me.BlendPanel1.Controls.Add(Me.TXTREEDSPACE)
+        Me.BlendPanel1.Controls.Add(Me.TXTREED)
+        Me.BlendPanel1.Controls.Add(Me.TXTJOBNO)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTYARNISSUE)
         Me.BlendPanel1.Controls.Add(Me.LBLTAPLINE)
@@ -196,6 +204,50 @@ Partial Class BeamRecdWarper
         Me.BlendPanel1.Size = New System.Drawing.Size(1238, 581)
         Me.BlendPanel1.TabIndex = 2
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(715, 88)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(62, 15)
+        Me.Label11.TabIndex = 945
+        Me.Label11.Text = "From Type"
+        '
+        'TXTFROMTYPE
+        '
+        Me.TXTFROMTYPE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROMTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROMTYPE.Location = New System.Drawing.Point(780, 88)
+        Me.TXTFROMTYPE.MaxLength = 10
+        Me.TXTFROMTYPE.Name = "TXTFROMTYPE"
+        Me.TXTFROMTYPE.Size = New System.Drawing.Size(79, 23)
+        Me.TXTFROMTYPE.TabIndex = 944
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(747, 65)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(30, 15)
+        Me.Label10.TabIndex = 943
+        Me.Label10.Text = "Pics"
+        '
+        'TXTPICS
+        '
+        Me.TXTPICS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTPICS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPICS.Location = New System.Drawing.Point(780, 61)
+        Me.TXTPICS.MaxLength = 10
+        Me.TXTPICS.Name = "TXTPICS"
+        Me.TXTPICS.Size = New System.Drawing.Size(79, 23)
+        Me.TXTPICS.TabIndex = 942
+        '
         'Label9
         '
         Me.Label9.AutoSize = True
@@ -227,7 +279,6 @@ Partial Class BeamRecdWarper
         Me.TXTREFNO.Location = New System.Drawing.Point(609, 118)
         Me.TXTREFNO.MaxLength = 10
         Me.TXTREFNO.Name = "TXTREFNO"
-        Me.TXTREFNO.ReadOnly = True
         Me.TXTREFNO.Size = New System.Drawing.Size(79, 23)
         Me.TXTREFNO.TabIndex = 939
         '
@@ -255,43 +306,40 @@ Partial Class BeamRecdWarper
         Me.LBLADDANO.TabIndex = 867
         Me.LBLADDANO.Text = "Reed Space"
         '
-        'TXTADDANO
+        'TXTREEDSPACE
         '
-        Me.TXTADDANO.BackColor = System.Drawing.Color.Linen
-        Me.TXTADDANO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTADDANO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTADDANO.Location = New System.Drawing.Point(410, 117)
-        Me.TXTADDANO.MaxLength = 20
-        Me.TXTADDANO.Name = "TXTADDANO"
-        Me.TXTADDANO.ReadOnly = True
-        Me.TXTADDANO.Size = New System.Drawing.Size(79, 23)
-        Me.TXTADDANO.TabIndex = 866
-        Me.TXTADDANO.TabStop = False
-        Me.TXTADDANO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTREEDSPACE.BackColor = System.Drawing.Color.Linen
+        Me.TXTREEDSPACE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTREEDSPACE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTREEDSPACE.Location = New System.Drawing.Point(410, 117)
+        Me.TXTREEDSPACE.MaxLength = 20
+        Me.TXTREEDSPACE.Name = "TXTREEDSPACE"
+        Me.TXTREEDSPACE.Size = New System.Drawing.Size(79, 23)
+        Me.TXTREEDSPACE.TabIndex = 866
+        Me.TXTREEDSPACE.TabStop = False
+        Me.TXTREEDSPACE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTTYPE
+        'TXTREED
         '
-        Me.TXTTYPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTYPE.Location = New System.Drawing.Point(410, 88)
-        Me.TXTTYPE.Name = "TXTTYPE"
-        Me.TXTTYPE.ReadOnly = True
-        Me.TXTTYPE.Size = New System.Drawing.Size(79, 23)
-        Me.TXTTYPE.TabIndex = 865
-        Me.TXTTYPE.TabStop = False
-        Me.TXTTYPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTREED.BackColor = System.Drawing.Color.Linen
+        Me.TXTREED.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTREED.Location = New System.Drawing.Point(410, 88)
+        Me.TXTREED.Name = "TXTREED"
+        Me.TXTREED.Size = New System.Drawing.Size(79, 23)
+        Me.TXTREED.TabIndex = 865
+        Me.TXTREED.TabStop = False
+        Me.TXTREED.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTYARNISSUENO
+        'TXTJOBNO
         '
-        Me.TXTYARNISSUENO.BackColor = System.Drawing.Color.Linen
-        Me.TXTYARNISSUENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTYARNISSUENO.Location = New System.Drawing.Point(410, 60)
-        Me.TXTYARNISSUENO.Name = "TXTYARNISSUENO"
-        Me.TXTYARNISSUENO.ReadOnly = True
-        Me.TXTYARNISSUENO.Size = New System.Drawing.Size(79, 23)
-        Me.TXTYARNISSUENO.TabIndex = 862
-        Me.TXTYARNISSUENO.TabStop = False
-        Me.TXTYARNISSUENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTJOBNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTJOBNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTJOBNO.Location = New System.Drawing.Point(410, 60)
+        Me.TXTJOBNO.Name = "TXTJOBNO"
+        Me.TXTJOBNO.Size = New System.Drawing.Size(79, 23)
+        Me.TXTJOBNO.TabIndex = 862
+        Me.TXTJOBNO.TabStop = False
+        Me.TXTJOBNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
         '
@@ -829,6 +877,120 @@ Partial Class BeamRecdWarper
         Me.GRIDBEAM.TabIndex = 9
         Me.GRIDBEAM.TabStop = False
         '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.HeaderText = "Beam No."
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.ReadOnly = True
+        Me.GBEAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMNO.Width = 75
+        '
+        'GBEAMNAME
+        '
+        Me.GBEAMNAME.HeaderText = "Beamname"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.ReadOnly = True
+        Me.GBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMNAME.Width = 200
+        '
+        'GTOTALENDS
+        '
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALENDS.DefaultCellStyle = DataGridViewCellStyle26
+        Me.GTOTALENDS.HeaderText = " Total Ends"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.ReadOnly = True
+        Me.GTOTALENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTOTALENDS.Width = 80
+        '
+        'GTOTALMTRS
+        '
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle27
+        Me.GTOTALMTRS.HeaderText = "Total Mtrs"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.ReadOnly = True
+        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GTOTALMTRS.Width = 70
+        '
+        'GGAMANO
+        '
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGAMANO.DefaultCellStyle = DataGridViewCellStyle28
+        Me.GGAMANO.HeaderText = "Gama No"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.ReadOnly = True
+        Me.GGAMANO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGAMANO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGAMANO.Width = 80
+        '
+        'GSECTION
+        '
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSECTION.DefaultCellStyle = DataGridViewCellStyle29
+        Me.GSECTION.HeaderText = "Section"
+        Me.GSECTION.Name = "GSECTION"
+        Me.GSECTION.ReadOnly = True
+        Me.GSECTION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSECTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSECTION.Width = 75
+        '
+        'GROLLNO
+        '
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GROLLNO.DefaultCellStyle = DataGridViewCellStyle30
+        Me.GROLLNO.HeaderText = "Roll No"
+        Me.GROLLNO.MaxInputLength = 50
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.ReadOnly = True
+        Me.GROLLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GROLLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GROLLNO.Width = 80
+        '
+        'GBEAMWT
+        '
+        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle31.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle31.NullValue = Nothing
+        Me.GBEAMWT.DefaultCellStyle = DataGridViewCellStyle31
+        Me.GBEAMWT.HeaderText = "Beam WT"
+        Me.GBEAMWT.Name = "GBEAMWT"
+        Me.GBEAMWT.ReadOnly = True
+        Me.GBEAMWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMWT.Width = 80
+        '
+        'GBREAKAGE
+        '
+        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBREAKAGE.DefaultCellStyle = DataGridViewCellStyle32
+        Me.GBREAKAGE.HeaderText = "Breakage"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.ReadOnly = True
+        Me.GBREAKAGE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBREAKAGE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBREAKAGE.Width = 75
+        '
+        'GDONE
+        '
+        Me.GDONE.HeaderText = "Done"
+        Me.GDONE.Name = "GDONE"
+        Me.GDONE.ReadOnly = True
+        Me.GDONE.Visible = False
+        '
         'tbupload
         '
         Me.tbupload.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -1229,120 +1391,6 @@ Partial Class BeamRecdWarper
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GBEAMNO
-        '
-        Me.GBEAMNO.HeaderText = "Beam No."
-        Me.GBEAMNO.Name = "GBEAMNO"
-        Me.GBEAMNO.ReadOnly = True
-        Me.GBEAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBEAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBEAMNO.Width = 75
-        '
-        'GBEAMNAME
-        '
-        Me.GBEAMNAME.HeaderText = "Beamname"
-        Me.GBEAMNAME.Name = "GBEAMNAME"
-        Me.GBEAMNAME.ReadOnly = True
-        Me.GBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBEAMNAME.Width = 200
-        '
-        'GTOTALENDS
-        '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALENDS.DefaultCellStyle = DataGridViewCellStyle26
-        Me.GTOTALENDS.HeaderText = " Total Ends"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
-        Me.GTOTALENDS.ReadOnly = True
-        Me.GTOTALENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTOTALENDS.Width = 80
-        '
-        'GTOTALMTRS
-        '
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTOTALMTRS.DefaultCellStyle = DataGridViewCellStyle27
-        Me.GTOTALMTRS.HeaderText = "Total Mtrs"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.ReadOnly = True
-        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTOTALMTRS.Width = 70
-        '
-        'GGAMANO
-        '
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGAMANO.DefaultCellStyle = DataGridViewCellStyle28
-        Me.GGAMANO.HeaderText = "Gama No"
-        Me.GGAMANO.Name = "GGAMANO"
-        Me.GGAMANO.ReadOnly = True
-        Me.GGAMANO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGAMANO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGAMANO.Width = 80
-        '
-        'GSECTION
-        '
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSECTION.DefaultCellStyle = DataGridViewCellStyle29
-        Me.GSECTION.HeaderText = "Section"
-        Me.GSECTION.Name = "GSECTION"
-        Me.GSECTION.ReadOnly = True
-        Me.GSECTION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSECTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSECTION.Width = 75
-        '
-        'GROLLNO
-        '
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GROLLNO.DefaultCellStyle = DataGridViewCellStyle30
-        Me.GROLLNO.HeaderText = "Roll No"
-        Me.GROLLNO.MaxInputLength = 50
-        Me.GROLLNO.Name = "GROLLNO"
-        Me.GROLLNO.ReadOnly = True
-        Me.GROLLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GROLLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GROLLNO.Width = 80
-        '
-        'GBEAMWT
-        '
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle31.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle31.NullValue = Nothing
-        Me.GBEAMWT.DefaultCellStyle = DataGridViewCellStyle31
-        Me.GBEAMWT.HeaderText = "Beam WT"
-        Me.GBEAMWT.Name = "GBEAMWT"
-        Me.GBEAMWT.ReadOnly = True
-        Me.GBEAMWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBEAMWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBEAMWT.Width = 80
-        '
-        'GBREAKAGE
-        '
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBREAKAGE.DefaultCellStyle = DataGridViewCellStyle32
-        Me.GBREAKAGE.HeaderText = "Breakage"
-        Me.GBREAKAGE.Name = "GBREAKAGE"
-        Me.GBREAKAGE.ReadOnly = True
-        Me.GBREAKAGE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBREAKAGE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBREAKAGE.Width = 75
-        '
-        'GDONE
-        '
-        Me.GDONE.HeaderText = "Done"
-        Me.GDONE.Name = "GDONE"
-        Me.GDONE.ReadOnly = True
-        Me.GDONE.Visible = False
-        '
         'BeamRecdWarper
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1378,9 +1426,9 @@ Partial Class BeamRecdWarper
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Friend WithEvents LBLADDANO As Label
-    Friend WithEvents TXTADDANO As TextBox
-    Friend WithEvents TXTTYPE As TextBox
-    Friend WithEvents TXTYARNISSUENO As TextBox
+    Friend WithEvents TXTREEDSPACE As TextBox
+    Friend WithEvents TXTREED As TextBox
+    Friend WithEvents TXTJOBNO As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents CMDSELECTYARNISSUE As Button
     Friend WithEvents LBLTAPLINE As Label
@@ -1469,4 +1517,8 @@ Partial Class BeamRecdWarper
     Friend WithEvents GBEAMWT As DataGridViewTextBoxColumn
     Friend WithEvents GBREAKAGE As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TXTPICS As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TXTFROMTYPE As TextBox
 End Class
