@@ -31,16 +31,17 @@ Partial Class BeamRecdWarperDetails
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTAPLINE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCUT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWTCUT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNARR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALBEAM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALCUT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGAMANO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSECTION = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdone = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -104,7 +105,7 @@ Partial Class BeamRecdWarperDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GNAME, Me.GMILLNAME, Me.GCHALLANNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GTAPLINE, Me.GCUT, Me.GWT, Me.GWTCUT, Me.GNARR, Me.GTOTALBEAM, Me.GTOTALCUT, Me.GTOTALWT, Me.gdone})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GNAME, Me.GMILLNAME, Me.GCHALLANNO, Me.GJOBNO, Me.GREFNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GENDS, Me.GMTRS, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.gdone})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -165,6 +166,24 @@ Partial Class BeamRecdWarperDetails
         Me.GCHALLANNO.VisibleIndex = 3
         Me.GCHALLANNO.Width = 80
         '
+        'GJOBNO
+        '
+        Me.GJOBNO.Caption = "Job No"
+        Me.GJOBNO.FieldName = "JOBNO"
+        Me.GJOBNO.Name = "GJOBNO"
+        Me.GJOBNO.Visible = True
+        Me.GJOBNO.VisibleIndex = 4
+        '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 5
+        '
         'GBEAMNO
         '
         Me.GBEAMNO.Caption = "Beam No."
@@ -172,7 +191,7 @@ Partial Class BeamRecdWarperDetails
         Me.GBEAMNO.Name = "GBEAMNO"
         Me.GBEAMNO.OptionsColumn.AllowEdit = False
         Me.GBEAMNO.Visible = True
-        Me.GBEAMNO.VisibleIndex = 4
+        Me.GBEAMNO.VisibleIndex = 6
         Me.GBEAMNO.Width = 80
         '
         'GBEAMNAME
@@ -182,92 +201,79 @@ Partial Class BeamRecdWarperDetails
         Me.GBEAMNAME.Name = "GBEAMNAME"
         Me.GBEAMNAME.OptionsColumn.AllowEdit = False
         Me.GBEAMNAME.Visible = True
-        Me.GBEAMNAME.VisibleIndex = 5
+        Me.GBEAMNAME.VisibleIndex = 7
         Me.GBEAMNAME.Width = 160
         '
-        'GTAPLINE
+        'GENDS
         '
-        Me.GTAPLINE.Caption = "Tap Line"
-        Me.GTAPLINE.DisplayFormat.FormatString = "0"
-        Me.GTAPLINE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTAPLINE.FieldName = "TAPLINE"
-        Me.GTAPLINE.Name = "GTAPLINE"
-        Me.GTAPLINE.Visible = True
-        Me.GTAPLINE.VisibleIndex = 6
+        Me.GENDS.Caption = "ENDS"
+        Me.GENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GENDS.FieldName = "ENDS"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GENDS.Visible = True
+        Me.GENDS.VisibleIndex = 8
         '
-        'GCUT
+        'GMTRS
         '
-        Me.GCUT.Caption = "Cut"
-        Me.GCUT.DisplayFormat.FormatString = "0.000"
-        Me.GCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCUT.FieldName = "CUT"
-        Me.GCUT.Name = "GCUT"
-        Me.GCUT.OptionsColumn.AllowEdit = False
-        Me.GCUT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GCUT.Visible = True
-        Me.GCUT.VisibleIndex = 7
+        Me.GMTRS.Caption = "Mtrs"
+        Me.GMTRS.FieldName = "MTRS"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
+        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GMTRS.Visible = True
+        Me.GMTRS.VisibleIndex = 9
         '
-        'GWT
+        'GGAMANO
         '
-        Me.GWT.Caption = "Weight"
-        Me.GWT.DisplayFormat.FormatString = "0.000"
-        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWT.FieldName = "WT"
-        Me.GWT.Name = "GWT"
-        Me.GWT.OptionsColumn.AllowEdit = False
-        Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 8
-        Me.GWT.Width = 80
+        Me.GGAMANO.Caption = "Gama No"
+        Me.GGAMANO.FieldName = "GAMANO"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.OptionsColumn.AllowEdit = False
+        Me.GGAMANO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GGAMANO.Visible = True
+        Me.GGAMANO.VisibleIndex = 10
+        Me.GGAMANO.Width = 80
         '
-        'GWTCUT
+        'GSECTION
         '
-        Me.GWTCUT.Caption = "Wt./Cut"
-        Me.GWTCUT.DisplayFormat.FormatString = "0.000"
-        Me.GWTCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWTCUT.FieldName = "WTCUT"
-        Me.GWTCUT.Name = "GWTCUT"
-        Me.GWTCUT.OptionsColumn.AllowEdit = False
-        Me.GWTCUT.Visible = True
-        Me.GWTCUT.VisibleIndex = 9
+        Me.GSECTION.Caption = "Section"
+        Me.GSECTION.FieldName = "SECTION"
+        Me.GSECTION.Name = "GSECTION"
+        Me.GSECTION.OptionsColumn.AllowEdit = False
+        Me.GSECTION.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GSECTION.Visible = True
+        Me.GSECTION.VisibleIndex = 11
         '
-        'GNARR
+        'GROLLNO
         '
-        Me.GNARR.Caption = "Narration"
-        Me.GNARR.FieldName = "NARR"
-        Me.GNARR.Name = "GNARR"
-        Me.GNARR.OptionsColumn.AllowEdit = False
-        Me.GNARR.Visible = True
-        Me.GNARR.VisibleIndex = 10
-        Me.GNARR.Width = 250
+        Me.GROLLNO.Caption = "Roll No"
+        Me.GROLLNO.FieldName = "ROLLNO"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.OptionsColumn.AllowEdit = False
+        Me.GROLLNO.Visible = True
+        Me.GROLLNO.VisibleIndex = 12
+        Me.GROLLNO.Width = 100
         '
-        'GTOTALBEAM
+        'GBEAMWT
         '
-        Me.GTOTALBEAM.Caption = "Total Beam(s)"
-        Me.GTOTALBEAM.FieldName = "TOTALBEAM"
-        Me.GTOTALBEAM.Name = "GTOTALBEAM"
-        Me.GTOTALBEAM.OptionsColumn.AllowEdit = False
-        Me.GTOTALBEAM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBEAMWT.Caption = "Beam Wt"
+        Me.GBEAMWT.FieldName = "BEAMWT"
+        Me.GBEAMWT.Name = "GBEAMWT"
+        Me.GBEAMWT.OptionsColumn.AllowEdit = False
+        Me.GBEAMWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBEAMWT.Visible = True
+        Me.GBEAMWT.VisibleIndex = 14
         '
-        'GTOTALCUT
+        'GBREAKAGE
         '
-        Me.GTOTALCUT.Caption = "Total Cut"
-        Me.GTOTALCUT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALCUT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALCUT.FieldName = "TOTALCUT"
-        Me.GTOTALCUT.Name = "GTOTALCUT"
-        Me.GTOTALCUT.OptionsColumn.AllowEdit = False
-        Me.GTOTALCUT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        '
-        'GTOTALWT
-        '
-        Me.GTOTALWT.Caption = "Total Wt."
-        Me.GTOTALWT.DisplayFormat.FormatString = "0.000"
-        Me.GTOTALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALWT.FieldName = "TOTALWT"
-        Me.GTOTALWT.Name = "GTOTALWT"
-        Me.GTOTALWT.OptionsColumn.AllowEdit = False
-        Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBREAKAGE.Caption = "Breakage"
+        Me.GBREAKAGE.FieldName = "BREAKAGE"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.OptionsColumn.AllowEdit = False
+        Me.GBREAKAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBREAKAGE.Visible = True
+        Me.GBREAKAGE.VisibleIndex = 13
         '
         'gdone
         '
@@ -305,6 +311,7 @@ Partial Class BeamRecdWarperDetails
         'TOOLEXCEL
         '
         Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
         Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TOOLEXCEL.Name = "TOOLEXCEL"
         Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
@@ -318,6 +325,7 @@ Partial Class BeamRecdWarperDetails
         'TOOLREFRESH
         '
         Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
         Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TOOLREFRESH.Name = "TOOLREFRESH"
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
@@ -387,14 +395,14 @@ Partial Class BeamRecdWarperDetails
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTAPLINE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCUT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWTCUT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GNARR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALBEAM As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALCUT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGAMANO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSECTION As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gdone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Label15 As Label
@@ -406,4 +414,5 @@ Partial Class BeamRecdWarperDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents GJOBNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
