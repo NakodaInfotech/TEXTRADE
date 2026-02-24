@@ -33,7 +33,7 @@ Public Class SelectJobOrder
             If SIZERNAME <> "" Then WHERE = WHERE & " AND LEDGERS.ACC_CMPNAME = '" & SIZERNAME & "'"
 
             Dim objcmn As New ClsCommon
-            Dim dt As DataTable = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK,  YARNISSUEADDA.YISSUEADDA_no AS ENTRYNO, YARNISSUEADDA.YISSUEADDA_date AS DATE, 'YARNISSUEADDA'  AS TYPE, YARNISSUEADDA.YISSUEADDA_TOTALBAGS AS BAGS, YARNISSUEADDA.YISSUEADDA_TOTALWT AS WT, ISNULL(YARNISSUEADDA.YISSUEADDA_ADDANO,0) AS ADDANO, ADDADESC.QUALITY, ADDADESC.MILLNAME ", "", "  YARNISSUEADDA INNER JOIN LEDGERS ON YARNISSUEADDA.YISSUEADDA_ledgerid = LEDGERS.Acc_id  CROSS APPLY (SELECT TOP 1 ISNULL(QUALITYMASTER.QUALITY_NAME,'') AS QUALITY, ISNULL(MILLLEDGERS.ACC_CMPNAME,'') AS MILLNAME  FROM YARNISSUEADDA_DESC INNER JOIN QUALITYMASTER ON YARNISSUEADDA_DESC.YISSUEADDA_QUALITYID = QUALITY_ID LEFT OUTER JOIN LEDGERS AS MILLLEDGERS ON YARNISSUEADDA_DESC.YISSUEADDA_MILLID = MILLLEDGERS.ACC_ID WHERE  YARNISSUEADDA.YISSUEADDA_no = YARNISSUEADDA_DESC.YISSUEADDA_NO AND YARNISSUEADDA.YISSUEADDA_yearid = YARNISSUEADDA_DESC.YISSUEADDA_YEARID ) AS ADDADESC ", WHERE & " AND ISNULL(YARNISSUEADDA.YISSUEADDA_ADDARECD,0) = 0 AND YARNISSUEADDA.YISSUEADDA_YEARID = " & YearId)
+            Dim dt As DataTable = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK,  ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ALLJOBORDER.JOB_NO AS JOBNO, ALLJOBORDER.JOB_DATE AS DATE, ISNULL(ALLJOBORDER.JOB_REED, 0) AS REED, ISNULL(ALLJOBORDER.JOB_REEDSPACE, 0)  AS REEDSPACE, ISNULL(ALLJOBORDER.JOB_PICKS, 0) AS PICS, ALLJOBORDER.TYPE AS FROMTYPE, ISNULL(ALLJOBORDER.JOB_REFNO, '') AS REFNO ", "", "  ALLJOBORDER LEFT OUTER JOIN LEDGERS ON ALLJOBORDER.JOB_LEDGERID = LEDGERS.Acc_id ", WHERE & " AND (ALLJOBORDER.JOB_TOTALMTRS- ALLJOBORDER.JOB_OUTMTRS >0) AND ALLJOBORDER.JOB_YEARID = " & YearId)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -61,15 +61,19 @@ Public Class SelectJobOrder
                 Exit Sub
             End If
 
-            DT.Columns.Add("FROMNO")
-            DT.Columns.Add("TYPE")
-            DT.Columns.Add("ADDANO")
+            DT.Columns.Add("NAME")
+            DT.Columns.Add("JOBNO")
+            DT.Columns.Add("REED")
+            DT.Columns.Add("REEDSPACE")
+            DT.Columns.Add("PICS")
+            DT.Columns.Add("FROMTYPE")
+            DT.Columns.Add("REFNO")
 
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("ENTRYNO"), dtrow("TYPE"), Val(dtrow("ADDANO")))
+                    DT.Rows.Add(dtrow("NAME"), dtrow("JOBNO"), Val(dtrow("REED")), Val(dtrow("REEDSPACE")), Val(dtrow("PICS")), dtrow("FROMTYPE"), dtrow("REFNO"))
                 End If
             Next
             Me.Close()

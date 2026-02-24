@@ -1140,9 +1140,14 @@ LINE1:
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.ShowDialog()
             If DT.Rows.Count > 0 Then
-                TXTJOBNO.Text = DT.Rows(0).Item("FROMNO")
-                TXTREED.Text = DT.Rows(0).Item("TYPE")
-                TXTREEDSPACE.Text = Val(DT.Rows(0).Item("ADDANO"))
+                TXTJOBNO.Text = DT.Rows(0).Item("JOBNO")
+                TXTREED.Text = Val(DT.Rows(0).Item("REED"))
+                TXTREEDSPACE.Text = Val(DT.Rows(0).Item("REEDSPACE"))
+                TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
+                TXTFROMTYPE.Text = Val(DT.Rows(0).Item("FROMTYPE"))
+                TXTREFNO.Text = DT.Rows(0).Item("REFNO")
+
+
                 CMDSELECTYARNISSUE.Enabled = False
             End If
         Catch ex As Exception
