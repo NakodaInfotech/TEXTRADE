@@ -1129,13 +1129,13 @@ LINE1:
 
     Private Sub CMDSELECTROLLISSUE_Click(sender As Object, e As EventArgs) Handles CMDSELECTYARNISSUE.Click
         Try
-            If CMBNAME.Text.Trim = "" Then
-                MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
-                CMBNAME.Focus()
-                Exit Sub
-            End If
+            'If CMBNAME.Text.Trim = "" Then
+            '    MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
+            '    CMBNAME.Focus()
+            '    Exit Sub
+            'End If
 
-            Dim OBJYARNISSUE As New SelectYarnIssue
+            Dim OBJYARNISSUE As New SelectJobOrder
             OBJYARNISSUE.SIZERNAME = CMBNAME.Text.Trim
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.ShowDialog()
@@ -1144,7 +1144,7 @@ LINE1:
                 TXTREED.Text = Val(DT.Rows(0).Item("REED"))
                 TXTREEDSPACE.Text = Val(DT.Rows(0).Item("REEDSPACE"))
                 TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
-                TXTFROMTYPE.Text = Val(DT.Rows(0).Item("FROMTYPE"))
+                TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
                 TXTREFNO.Text = DT.Rows(0).Item("REFNO")
 
 
