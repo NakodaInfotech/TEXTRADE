@@ -3193,6 +3193,12 @@
     <Compile Include="Utilities\Others\IncentiveTaggingDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.Designer.vb">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Others\ReconcileData.Designer.vb">
       <DependentUpon>ReconcileData.vb</DependentUpon>
     </Compile>
@@ -10672,6 +10678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\IncentiveTaggingDetails.resx">
       <DependentUpon>IncentiveTaggingDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\MasterTransfer.resx">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\ReconcileData.resx">
       <DependentUpon>ReconcileData.vb</DependentUpon>
