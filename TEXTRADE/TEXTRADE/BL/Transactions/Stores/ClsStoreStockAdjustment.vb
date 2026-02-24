@@ -32,6 +32,8 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
@@ -40,7 +42,10 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALINQTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALOUTQTY", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
@@ -83,8 +88,7 @@ Public Class ClsStoreStockAdjustment
                 .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
+
 
             End With
 
@@ -112,6 +116,8 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
@@ -120,7 +126,10 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALINQTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALOUTQTY", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
@@ -162,8 +171,7 @@ Public Class ClsStoreStockAdjustment
                 .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@SANO", alParaval(I)))
                 I = I + 1

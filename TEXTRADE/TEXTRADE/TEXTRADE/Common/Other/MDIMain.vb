@@ -11192,4 +11192,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub STORESSTOCKADD_Click(sender As Object, e As EventArgs) Handles STORESSTOCKADD.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New StoreStockReco
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub STORESSTOCKEDIT_Click(sender As Object, e As EventArgs) Handles STORESSTOCKEDIT.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New StoreStockRecoDetails
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
