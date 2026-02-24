@@ -2989,6 +2989,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.Designer.vb">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.Designer.vb">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </Compile>
@@ -10564,6 +10570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.resx">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.resx">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>

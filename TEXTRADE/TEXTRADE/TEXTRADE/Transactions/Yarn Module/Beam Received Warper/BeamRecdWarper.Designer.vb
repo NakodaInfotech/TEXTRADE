@@ -223,6 +223,7 @@ Partial Class BeamRecdWarper
         Me.TXTFROMTYPE.Location = New System.Drawing.Point(780, 88)
         Me.TXTFROMTYPE.MaxLength = 10
         Me.TXTFROMTYPE.Name = "TXTFROMTYPE"
+        Me.TXTFROMTYPE.ReadOnly = True
         Me.TXTFROMTYPE.Size = New System.Drawing.Size(79, 23)
         Me.TXTFROMTYPE.TabIndex = 7
         '
@@ -245,6 +246,7 @@ Partial Class BeamRecdWarper
         Me.TXTPICS.Location = New System.Drawing.Point(780, 61)
         Me.TXTPICS.MaxLength = 10
         Me.TXTPICS.Name = "TXTPICS"
+        Me.TXTPICS.ReadOnly = True
         Me.TXTPICS.Size = New System.Drawing.Size(79, 23)
         Me.TXTPICS.TabIndex = 6
         '
@@ -314,6 +316,7 @@ Partial Class BeamRecdWarper
         Me.TXTREEDSPACE.Location = New System.Drawing.Point(410, 117)
         Me.TXTREEDSPACE.MaxLength = 20
         Me.TXTREEDSPACE.Name = "TXTREEDSPACE"
+        Me.TXTREEDSPACE.ReadOnly = True
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(79, 23)
         Me.TXTREEDSPACE.TabIndex = 866
         Me.TXTREEDSPACE.TabStop = False
@@ -325,6 +328,7 @@ Partial Class BeamRecdWarper
         Me.TXTREED.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTREED.Location = New System.Drawing.Point(410, 88)
         Me.TXTREED.Name = "TXTREED"
+        Me.TXTREED.ReadOnly = True
         Me.TXTREED.Size = New System.Drawing.Size(79, 23)
         Me.TXTREED.TabIndex = 865
         Me.TXTREED.TabStop = False
@@ -336,6 +340,7 @@ Partial Class BeamRecdWarper
         Me.TXTJOBNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTJOBNO.Location = New System.Drawing.Point(410, 60)
         Me.TXTJOBNO.Name = "TXTJOBNO"
+        Me.TXTJOBNO.ReadOnly = True
         Me.TXTJOBNO.Size = New System.Drawing.Size(79, 23)
         Me.TXTJOBNO.TabIndex = 862
         Me.TXTJOBNO.TabStop = False
