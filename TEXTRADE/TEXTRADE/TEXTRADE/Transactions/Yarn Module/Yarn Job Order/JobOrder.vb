@@ -4,7 +4,11 @@ Imports System.IO
 Imports System.Net
 Imports BL
 Imports DevExpress.XtraGrid.Drawing
+
+
 Public Class JobOrder
+
+
     Public EDIT As Boolean              'Used for edit
     Public tempdesignno As Integer           'Used for edit name
     Public tempid As Integer            'Used for edit id
@@ -26,38 +30,15 @@ Public Class JobOrder
     End Sub
     Sub clear()
         getmaxno()
-        'txtfinishmethod.Clear()
-        'CMBQUALITIES.Text = ""
-        'CMBQUALITYTYPE.Text = ""
+
         DTDATE.Text = Now.Date
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
-        'TXTREEDSPACECM.Clear()
         TXTPICKS.Clear()
-        'TXTMAINRS.Clear()
-
-        'SLEAVEDGE
-
         TXTREFNO.Clear()
         TXTTOTALMTRS.Clear()
-
-
-        ''WARPMATCHING TEXTBOXES
-        'TXTWARPSRNO.Text = 1
-        'CMBGRIDSYM.Text = ""
-        'CMBWARPQUALITY.Text = ""
-        'TXTWARPDENIER.Clear()
-        'CMBWARPMILLNAME.Text = ""
-
-
-        ''WEFTMATCHING TEXTBOXES
-        'TXTWEFTSRNO.Text = 1
-        'CMBWEFTGRIDSYMBOL.Text = ""
-        'CMBWEFTYARNQUALITY.Text = ""
-        'TXTWEFTDEN.Clear()
-        'CMBWEFTMILLNAME.Text = ""
         TXTWEFTPE.Clear()
         TXTWEFTBE.Clear()
         TXTWEFTTE.Clear()
@@ -66,28 +47,20 @@ Public Class JobOrder
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
         TXTTOTALENDS.Clear()
-
-        'GRID WARP
         GRIDWARP.RowCount = 0
-
-
-        'GRID WEFT
         GRIDWEFT.RowCount = 0
         CMBITEMNAME.Enabled = True
-
-        'DT TABLE FOR WARP
         DT_WARPDETAILS.Reset()
         DT_WARPDETAILS.Columns.Add("WDSRNO")
         DT_WARPDETAILS.Columns.Add("WDSHADE")
         DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
-        'DT TABLE FOR WEFT
         DT_WEFTDETAILS.Reset()
         DT_WEFTDETAILS.Columns.Add("FDSRNO")
         DT_WEFTDETAILS.Columns.Add("FDSHADE")
         DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
-
         Ep.Clear()
-        'TXTCOPYCARDNO.Clear()
+        lbllocked.Visible = False
+        PBlock.Visible = False
 
     End Sub
     Private Sub JobOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -109,11 +82,6 @@ Public Class JobOrder
                 clear()
             End If
 
-            'If GRIDSELVEDGE.RowCount > 0 Then
-            '    txtcardno.Text = Val(GRIDSELVEDGE.Rows(GRIDSELVEDGE.RowCount - 1).Cells(0).Value) + 1
-            'Else
-            '    txtcardno.Text = 1
-            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -144,6 +112,11 @@ Public Class JobOrder
 
         If CMBITEMNAME.Text.Trim = "" Then
             Ep.SetError(CMBITEMNAME, "Please select Item Name")
+            bln = False
+        End If
+
+        If lbllocked.Visible = True Then
+            Ep.SetError(lbllocked, " Entry Locked  !!!")
             bln = False
         End If
 
@@ -181,31 +154,13 @@ Public Class JobOrder
                     TXTTOTALMTRS.Text = dr("TOTALMTRS")
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
 
-                    '' Total Warp
-
-                    'TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
-                    'TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
-                    'TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
-                    'TXTTOTALWARPWT.Text = Format(Val(dr("TOTALWARPWT")), "0.000")
-                    'TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
-                    'TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
-                    'TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
-
-                    '' Total Weft
-
-                    'TXTTOTALWEFTPE.Text = Val(dr("TOTALWEFTPE"))
-                    'TXTTOTALWEFTBE.Text = Val(dr("TOTALWEFTBE"))
-                    'TXTTOTALWEFTTE.Text = Val(dr("TOTALWEFTTE"))
-                    'TXTTOTALWEFTWT.Text = Format(Val(dr("TOTALWEFTWT")), "0.000")
-                    'TXTTOTALWEFTCONS.Text = Val(dr("TOTALWEFTCONS"))
-                    'TXTTOTALWEFTRATE.Text = Val(dr("TOTALWEFTRATE"))
-                    'TXTTOTALWEFTCOST.Text = Val(dr("TOTALWEFTCOST"))
+                    If Val(dr("OUTMTRS")) > 0 Then
+                        lbllocked.Visible = True
+                        PBlock.Visible = True
+                    End If
 
                     TXTTOTALENDS.Text = dr("TOTALENDS")
                 Next
-                'cmbtype.Enabled = False
-
-                'TOTAL()
 
                 'warp gridmatching data serializations
                 Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSRNO, 0) As WARPGRIDSRNO, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPPE, 0) AS WARPPE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPBE, 0) AS WARPBE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPTE, 0) AS WARPTE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPWT, 0.000) AS WARPWT, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCONS, 0) AS WARPCONS, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPRATE, 0) AS WARPRATE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCOST, 0) AS WARPCOST ", "", " JOBORDER_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON JOBORDER_WARPMATCHING.JOB_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND JOBORDER_WARPMATCHING.JOB_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = JOBORDER_WARPMATCHING.JOB_WARPMILLID LEFT OUTER JOIN COLORMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = JOBORDER_WARPMATCHING.JOB_WARPCOLORID  ", " AND  JOBORDER_WARPMATCHING.JOB_NO = " & tempdesignno & " AND JOBORDER_WARPMATCHING.JOB_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
@@ -214,31 +169,6 @@ Public Class JobOrder
                         GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.000"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
                     Next
                 End If
-                '' Warp Gridpattern data serializations
-                'Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, '') AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
-                'If dttable2.Rows.Count > 0 Then
-                '    For Each DTR As DataRow In dttable2.Rows
-                '        GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), DTR("WARPPATTERNGRIDPE"), DTR("WARPPATTERNGRIDSYM").ToString)
-                '    Next
-                'End If
-                ''WARP grid shade data serializations
-                'Dim dttableWARPshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_WDSRNO, 0) AS WDSRNO, ISNULL(COLORMASTER.COLOR_name,'') AS WDSHADE, ISNULL(DESIGN_WDMAINSRNO, 0) AS WDMAINSRNO", "", " DESIGNCARD_WARPSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPSHADE.DESIGN_WDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid  ", " AND  DESIGNCARD_WARPSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = " & YearId & " ORDER BY WDSRNO")
-                'If dttableWARPshade.Rows.Count > 0 Then
-                '    For Each DTR As DataRow In dttableWARPshade.Rows
-                '        DT_WARPDETAILS.Rows.Add(DTR("WDSRNO"), DTR("WDSHADE"), DTR("WDMAINSRNO"))
-                '    Next
-                '    POPULATEGRID()
-                'End If
-
-                ''selvedge grid shade data serializations
-
-                'Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS  SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGESHADE.DESIGN_SDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
-                'If dttableshade.Rows.Count > 0 Then
-                '    For Each DTR As DataRow In dttableshade.Rows
-                '        DT_SELDETAILS.Rows.Add(Val(DTR("SDSRNO")), DTR("SDSHADE").ToString, Val(DTR("SDMAINSRNO")))
-                '    Next
-                '    POPULATESELGRID()
-                'End If
 
                 ' Weft Grid data serialization
                 Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTPE, 0) AS WEFTPE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTBE, 0) AS WEFTBE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTTE, 0) AS WEFTTE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTWT, 0) AS WEFTWT, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCONS, 0) AS WEFTCONS, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTRATE, 0) AS WEFTRATE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCOST, 0) AS WEFTCOST", "", " JOBORDER_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  JOBORDER_WEFTMATCHING.JOB_NO = " & tempdesignno & " AND JOBORDER_WEFTMATCHING.JOB_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
@@ -249,18 +179,11 @@ Public Class JobOrder
                 End If
 
                 CMBITEMNAME.Enabled = False
-                'TOTAL()
-                'CALC()
-                'FILLPEGPLAN()
-                'pegplan()
-                ''GRIDDRAWING_CellValidating(Nothing, Nothing)
-                'srno(GRIDWARP, TXTWARPSRNO)
-                'srno(GRIDSELVEDGE, TXTSELSRNO)
-                'srno(GRIDWEFT, TXTWEFTSRNO)
-                'srno(GRIDWEFTDESC, TXTFDSRNO)
-                'srno(GRIDWARPDESC, TXTWDSRNO)
-                'srno(GRIDSELDESC, TXTSDNO)
-                'fillMATCHINGcmb()
+
+
+
+
+
             End If
         Catch ex As Exception
             Throw ex
@@ -295,25 +218,6 @@ Public Class JobOrder
             alParaval.Add(TXTTOTALMTRS.Text.Trim)
             alParaval.Add(TXTTOTALENDS.Text.Trim)
             'alParaval.Add(Val(TXTORDERNO.Text.Trim))
-
-            ''TOTAL
-            'alParaval.Add(Val(TXTTOTALWARPPE.Text.Trim))        ' P.E. (Possible: Ends per repeat)
-            'alParaval.Add(Val(TXTTOTALWARPBE.Text.Trim))        ' B.E. (Possible: Ends for Border)
-            'alParaval.Add(Val(TXTTOTALWARPTE.Text.Trim))       ' T.E. (Possible: Ends for Total)
-            'alParaval.Add(Val(TXTTOTALWARPWT.Text.Trim))       ' Wt (Warp Weight)
-            'alParaval.Add(Val(TXTTOTALWARPCONS.Text.Trim))     ' Cons (Warp Consumption)
-            'alParaval.Add(Val(TXTTOTALWARPRATE.Text.Trim))     ' Rate (Rate per unit)
-            'alParaval.Add(Val(TXTTOTALWARPCOST.Text.Trim))     ' Cost (Warp Cost)
-
-            ''Weft Total
-            'alParaval.Add(Val(TXTTOTALWEFTPE.Text.Trim))        ' P.E. (Weft)
-            'alParaval.Add(Val(TXTTOTALWEFTBE.Text.Trim))        ' B.E. (Weft)
-            'alParaval.Add(Val(TXTTOTALWEFTTE.Text.Trim))        ' T.E. (Weft)
-            'alParaval.Add(Val(TXTTOTALWEFTWT.Text.Trim))        ' Wt (Weft Weight)
-            'alParaval.Add(Val(TXTTOTALWEFTCONS.Text.Trim))      ' Cons (Weft Consumption)
-            'alParaval.Add(Val(TXTTOTALWEFTRATE.Text.Trim))      ' Rate (Weft Rate)
-            'alParaval.Add(Val(TXTTOTALWEFTCOST.Text.Trim))      ' Cost (Weft Cost)
-            'alParaval.Add(Val(TXTTOTALWEFTGRIDPE.Text.Trim))        ' P.E. (Repeated for field order continuity)
 
 
             '*************************************************************************
@@ -383,31 +287,6 @@ Public Class JobOrder
 
 
 
-
-            'Dim WDSRNO As String = ""
-            'Dim WDMTRS As String = ""
-            'Dim WDMAINSRNO As String = ""
-
-            'For i As Integer = 0 To DT_WARPDETAILS.Rows.Count - 1
-            '    If DT_WARPDETAILS.Rows(i).Item(0) <> Nothing Then
-            '        If WDSRNO = "" Then
-            '            WDSRNO = Val(DT_WARPDETAILS.Rows(i).Item("WDSRNO"))
-            '            WDMTRS = DT_WARPDETAILS.Rows(i).Item("WDSHADE")
-            '            WDMAINSRNO = Val(DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
-            '        Else
-            '            WDSRNO = WDSRNO & "|" & Val(DT_WARPDETAILS.Rows(i).Item("WDSRNO"))
-            '            WDMTRS = WDMTRS & "|" & DT_WARPDETAILS.Rows(i).Item("WDSHADE")
-            '            WDMAINSRNO = WDMAINSRNO & "|" & Val(DT_WARPDETAILS.Rows(i).Item("WDMAINSRNO"))
-            '        End If
-            '    End If
-            'Next
-
-
-            'alParaval.Add(WDSRNO)
-            'alParaval.Add(WDMTRS)
-            'alParaval.Add(WDMAINSRNO)
-            '*************************************************************************
-
             '*************************************************************************
             'GRID WEFT
             ' Initialize variables for pipe-separated strings
@@ -472,57 +351,6 @@ Public Class JobOrder
             alParaval.Add(WEFTCons)
             alParaval.Add(WEFTRate)
             alParaval.Add(WEFTCost)
-
-
-            'Dim WEFTTRSrNo As String = ""
-            'Dim WEFTTRPE As String = ""
-            'Dim WEFTTRSym As String = ""
-
-            'For Each row As Windows.Forms.DataGridViewRow In GRIDWEFTPATTERN.Rows
-            '    If row.Cells(2).Value <> "" Then
-            '        If WEFTTRSrNo = "" Then
-            '            WEFTTRSrNo = Val(row.Cells(FPSRNO.Index).Value)
-            '            WEFTTRPE = row.Cells(FPENDS.Index).Value.ToString
-            '            WEFTTRSym = row.Cells(FPSYM.Index).Value.ToString
-            '        Else
-            '            WEFTTRSrNo = WEFTTRSrNo & "|" & Val(row.Cells(FPSRNO.Index).Value)
-            '            WEFTTRPE = WEFTTRPE & "|" & row.Cells(FPENDS.Index).Value.ToString
-            '            WEFTTRSym = WEFTTRSym & "|" & row.Cells(FPSYM.Index).Value.ToString
-            '        End If
-            '    End If
-            'Next
-
-            'alParaval.Add(WEFTTRSrNo)
-            'alParaval.Add(WEFTTRPE)
-            'alParaval.Add(WEFTTRSym)
-
-
-            'Dim FDSRNO As String = ""
-            'Dim FDMTRS As String = ""
-            'Dim FDMAINSRNO As String = ""
-
-            'For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
-            '    If DT_WEFTDETAILS.Rows(i).Item(0) <> Nothing Then
-            '        If FDSRNO = "" Then
-            '            FDSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
-            '            FDMTRS = DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
-            '            FDMAINSRNO = Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
-            '        Else
-            '            FDSRNO = FDSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDSRNO"))
-            '            FDMTRS = FDMTRS & "|" & DT_WEFTDETAILS.Rows(i).Item("FDSHADE")
-            '            FDMAINSRNO = FDMAINSRNO & "|" & Val(DT_WEFTDETAILS.Rows(i).Item("FDMAINSRNO"))
-            '        End If
-            '    End If
-            'Next
-
-
-            'alParaval.Add(FDSRNO)
-            'alParaval.Add(FDMTRS)
-            'alParaval.Add(FDMAINSRNO)
-
-            '*************************************************************************
-            '*************************************************************************
-
 
 
             alParaval.Add(CmpId)
@@ -607,15 +435,6 @@ LINE1:
                         TXTREFNO.Text = dr("REFNO").ToString
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
 
-                        ' Total Warp
-
-                        TXTTOTALWARPPE.Text = Val(dr("TOTALWARPPE"))
-                        TXTTOTALWARPBE.Text = Val(dr("TOTALWARPBE"))
-                        TXTTOTALWARPTE.Text = Val(dr("TOTALWARPTE"))
-                        TXTTOTALWARPWT.Text = Format(Val(dr("TOTALWARPWT")), "0.000")
-                        TXTTOTALWARPCONS.Text = Val(dr("TOTALWARPCONS"))
-                        TXTTOTALWARPRATE.Text = Val(dr("TOTALWARPRATE"))
-                        TXTTOTALWARPCOST.Text = Val(dr("TOTALWARPCOST"))
 
                         ' Total Weft
 
@@ -640,31 +459,7 @@ LINE1:
                             GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.000"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
                         Next
                     End If
-                    '' Warp Gridpattern data serializations
-                    'Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, '') AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
-                    'If dttable2.Rows.Count > 0 Then
-                    '    For Each DTR As DataRow In dttable2.Rows
-                    '        GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), DTR("WARPPATTERNGRIDPE"), DTR("WARPPATTERNGRIDSYM").ToString)
-                    '    Next
-                    'End If
-                    ''WARP grid shade data serializations
-                    'Dim dttableWARPshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_WDSRNO, 0) AS WDSRNO, ISNULL(COLORMASTER.COLOR_name,'') AS WDSHADE, ISNULL(DESIGN_WDMAINSRNO, 0) AS WDMAINSRNO", "", " DESIGNCARD_WARPSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPSHADE.DESIGN_WDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid  ", " AND  DESIGNCARD_WARPSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = " & YearId & " ORDER BY WDSRNO")
-                    'If dttableWARPshade.Rows.Count > 0 Then
-                    '    For Each DTR As DataRow In dttableWARPshade.Rows
-                    '        DT_WARPDETAILS.Rows.Add(DTR("WDSRNO"), DTR("WDSHADE"), DTR("WDMAINSRNO"))
-                    '    Next
-                    '    POPULATEGRID()
-                    'End If
 
-                    ''selvedge grid shade data serializations
-
-                    'Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS  SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGESHADE.DESIGN_SDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
-                    'If dttableshade.Rows.Count > 0 Then
-                    '    For Each DTR As DataRow In dttableshade.Rows
-                    '        DT_SELDETAILS.Rows.Add(Val(DTR("SDSRNO")), DTR("SDSHADE").ToString, Val(DTR("SDMAINSRNO")))
-                    '    Next
-                    '    POPULATESELGRID()
-                    'End If
 
                     ' Weft Grid data serialization
                     Dim dttable5 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTPE, 0) AS WEFTPE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTBE, 0) AS WEFTBE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTTE, 0) AS WEFTTE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTWT, 0) AS WEFTWT, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCONS, 0) AS WEFTCONS, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTRATE, 0) AS WEFTRATE, ISNULL(DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOST, 0) AS WEFTCOST", "", " DESIGNCARD_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_WEFTMATCHING.DESIGN_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID   ", " AND  DESIGNCARD_WEFTMATCHING.DESIGN_CARDNO = " & cardno & " AND DESIGNCARD_WEFTMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
@@ -673,28 +468,11 @@ LINE1:
                             GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.000"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
                         Next
                     End If
-
-
-                    'TOTAL()
-                    'CALC()
-                    'FILLPEGPLAN()
-                    'pegplan()
-                    ''GRIDDRAWING_CellValidating(Nothing, Nothing)
-                    'srno(GRIDWARP, TXTWARPSRNO)
-                    'srno(GRIDSELVEDGE, TXTSELSRNO)
-                    'srno(GRIDWEFT, TXTWEFTSRNO)
-                    'srno(GRIDWEFTDESC, TXTFDSRNO)
-                    'srno(GRIDWARPDESC, TXTWDSRNO)
-                    'srno(GRIDSELDESC, TXTSDNO)
-                    'fillMATCHINGcmb()
                 End If
 
             End If
             CMBITEMNAME.Enabled = False
-            'If GRIDSELVEDGE.RowCount = 0 And tempdesignno > 1 Then
-            '    txtcardno.Text = tempdesignno
-            '    GoTo LINE1
-            'End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -797,6 +575,25 @@ LINE1:
             If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub tstxtbillno_Validated(sender As Object, e As EventArgs) Handles tstxtbillno.Validated
+        Try
+            If Val(tstxtbillno.Text.Trim) > 0 Then
+                GRIDWARP.RowCount = 0
+                GRIDWEFT.RowCount = 0
+                tempdesignno = Val(tstxtbillno.Text)
+                If tempdesignno > 0 Then
+                    EDIT = True
+                    JobOrder_Load(sender, e)
+                Else
+                    clear()
+                    EDIT = False
+                End If
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
