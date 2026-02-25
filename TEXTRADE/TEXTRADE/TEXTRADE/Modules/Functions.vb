@@ -9217,6 +9217,31 @@ line1:
         End Try
     End Sub
 
+
+
+    Sub fillROLLITEM(ByRef CMBROLLITEM As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBROLLITEM.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search("STOREITEM_ID, STOREITEM_NAME ", "", "STOREITEMMASTER ", "  and STOREITEM_CMPID =" & CmpId & " and STOREITEM_ROLLITEM = 'TRUE'  and STOREITEM_YEARID =" & YearId & CONDITION)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "ACC_cmpname"
+                    CMBROLLITEM.DisplayMember = "ACC_cmpname"
+                End If
+                CMBROLLITEM.DataSource = dt
+                CMBROLLITEM.SelectedIndex = -1
+                CMBROLLITEM.SelectAll()
+                CMBROLLITEM.Text = ""
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+
     Sub GODOWNVALIDATE(ByRef CMBGODOWN As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
         Try
             Cursor.Current = Cursors.WaitCursor
