@@ -22,11 +22,11 @@ Partial Class MasterTransfer
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CMBNEWCMP = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.CMBOLDCMP = New System.Windows.Forms.ComboBox()
         Me.GBTRANSFERDATA = New System.Windows.Forms.GroupBox()
         Me.CHKOTHERMASTER = New System.Windows.Forms.CheckBox()
         Me.CHKDATA = New System.Windows.Forms.CheckBox()
@@ -35,33 +35,80 @@ Partial Class MasterTransfer
         Me.CMBUSER = New System.Windows.Forms.ComboBox()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
-        Me.GRIDYEAR = New System.Windows.Forms.DataGridView()
-        Me.GYEAR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYEARID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSTARTDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GENDDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lbl = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GBTRANSFERDATA.SuspendLayout()
-        CType(Me.GRIDYEAR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label2)
+        Me.BlendPanel1.Controls.Add(Me.CMBNEWCMP)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.CMBOLDCMP)
         Me.BlendPanel1.Controls.Add(Me.GBTRANSFERDATA)
         Me.BlendPanel1.Controls.Add(Me.LBLUSER)
         Me.BlendPanel1.Controls.Add(Me.CMBUSER)
         Me.BlendPanel1.Controls.Add(Me.CMDOK)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
-        Me.BlendPanel1.Controls.Add(Me.GRIDYEAR)
         Me.BlendPanel1.Controls.Add(Me.lbl)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(684, 411)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 18
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(327, 95)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(83, 14)
+        Me.Label2.TabIndex = 629
+        Me.Label2.Text = "New Company"
+        Me.Label2.Visible = False
+        '
+        'CMBNEWCMP
+        '
+        Me.CMBNEWCMP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBNEWCMP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBNEWCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBNEWCMP.FormattingEnabled = True
+        Me.CMBNEWCMP.Items.AddRange(New Object() {""})
+        Me.CMBNEWCMP.Location = New System.Drawing.Point(416, 91)
+        Me.CMBNEWCMP.Name = "CMBNEWCMP"
+        Me.CMBNEWCMP.Size = New System.Drawing.Size(216, 22)
+        Me.CMBNEWCMP.TabIndex = 628
+        Me.CMBNEWCMP.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(9, 95)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(78, 14)
+        Me.Label1.TabIndex = 627
+        Me.Label1.Text = "Old Company"
+        Me.Label1.Visible = False
+        '
+        'CMBOLDCMP
+        '
+        Me.CMBOLDCMP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBOLDCMP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBOLDCMP.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBOLDCMP.FormattingEnabled = True
+        Me.CMBOLDCMP.Items.AddRange(New Object() {""})
+        Me.CMBOLDCMP.Location = New System.Drawing.Point(90, 91)
+        Me.CMBOLDCMP.Name = "CMBOLDCMP"
+        Me.CMBOLDCMP.Size = New System.Drawing.Size(216, 22)
+        Me.CMBOLDCMP.TabIndex = 626
+        Me.CMBOLDCMP.Visible = False
         '
         'GBTRANSFERDATA
         '
@@ -69,9 +116,9 @@ Partial Class MasterTransfer
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKOTHERMASTER)
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKDATA)
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKLEDGER)
-        Me.GBTRANSFERDATA.Location = New System.Drawing.Point(312, 72)
+        Me.GBTRANSFERDATA.Location = New System.Drawing.Point(974, 72)
         Me.GBTRANSFERDATA.Name = "GBTRANSFERDATA"
-        Me.GBTRANSFERDATA.Size = New System.Drawing.Size(332, 271)
+        Me.GBTRANSFERDATA.Size = New System.Drawing.Size(220, 122)
         Me.GBTRANSFERDATA.TabIndex = 625
         Me.GBTRANSFERDATA.TabStop = False
         '
@@ -158,87 +205,6 @@ Partial Class MasterTransfer
         Me.CMDEXIT.Text = "&Exit"
         Me.CMDEXIT.UseVisualStyleBackColor = True
         '
-        'GRIDYEAR
-        '
-        Me.GRIDYEAR.AllowUserToAddRows = False
-        Me.GRIDYEAR.AllowUserToDeleteRows = False
-        Me.GRIDYEAR.AllowUserToResizeColumns = False
-        Me.GRIDYEAR.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDYEAR.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.GRIDYEAR.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDYEAR.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDYEAR.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.GRIDYEAR.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDYEAR.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.GRIDYEAR.ColumnHeadersHeight = 22
-        Me.GRIDYEAR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.GRIDYEAR.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GYEAR, Me.GYEARID, Me.GSTARTDATE, Me.GENDDATE})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDYEAR.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GRIDYEAR.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.GRIDYEAR.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDYEAR.Location = New System.Drawing.Point(23, 72)
-        Me.GRIDYEAR.MultiSelect = False
-        Me.GRIDYEAR.Name = "GRIDYEAR"
-        Me.GRIDYEAR.ReadOnly = True
-        Me.GRIDYEAR.RowHeadersVisible = False
-        Me.GRIDYEAR.RowHeadersWidth = 30
-        Me.GRIDYEAR.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDYEAR.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.GRIDYEAR.RowTemplate.Height = 20
-        Me.GRIDYEAR.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDYEAR.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.GRIDYEAR.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDYEAR.Size = New System.Drawing.Size(283, 271)
-        Me.GRIDYEAR.TabIndex = 18
-        '
-        'GYEAR
-        '
-        Me.GYEAR.HeaderText = "Year "
-        Me.GYEAR.Name = "GYEAR"
-        Me.GYEAR.ReadOnly = True
-        Me.GYEAR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYEAR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYEAR.Width = 250
-        '
-        'GYEARID
-        '
-        Me.GYEARID.HeaderText = "YEARID"
-        Me.GYEARID.Name = "GYEARID"
-        Me.GYEARID.ReadOnly = True
-        Me.GYEARID.Visible = False
-        '
-        'GSTARTDATE
-        '
-        Me.GSTARTDATE.HeaderText = "STARTDATE"
-        Me.GSTARTDATE.Name = "GSTARTDATE"
-        Me.GSTARTDATE.ReadOnly = True
-        Me.GSTARTDATE.Visible = False
-        '
-        'GENDDATE
-        '
-        Me.GENDDATE.HeaderText = "ENDDATE"
-        Me.GENDDATE.Name = "GENDDATE"
-        Me.GENDDATE.ReadOnly = True
-        Me.GENDDATE.Visible = False
-        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -254,7 +220,7 @@ Partial Class MasterTransfer
         'MasterTransfer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(684, 411)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -266,7 +232,6 @@ Partial Class MasterTransfer
         Me.BlendPanel1.PerformLayout()
         Me.GBTRANSFERDATA.ResumeLayout(False)
         Me.GBTRANSFERDATA.PerformLayout()
-        CType(Me.GRIDYEAR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -280,10 +245,9 @@ Partial Class MasterTransfer
     Friend WithEvents CMBUSER As ComboBox
     Friend WithEvents CMDOK As Button
     Friend WithEvents CMDEXIT As Button
-    Friend WithEvents GRIDYEAR As DataGridView
-    Friend WithEvents GYEAR As DataGridViewTextBoxColumn
-    Friend WithEvents GYEARID As DataGridViewTextBoxColumn
-    Friend WithEvents GSTARTDATE As DataGridViewTextBoxColumn
-    Friend WithEvents GENDDATE As DataGridViewTextBoxColumn
     Friend WithEvents lbl As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents CMBNEWCMP As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CMBOLDCMP As ComboBox
 End Class
