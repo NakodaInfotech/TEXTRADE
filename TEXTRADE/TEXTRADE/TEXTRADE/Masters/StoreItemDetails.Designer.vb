@@ -35,12 +35,13 @@ Partial Class StoreItemDetails
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDEBITLEDGER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GROLITEM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,7 +60,7 @@ Partial Class StoreItemDetails
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(898, 562)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1054, 562)
         Me.BlendPanel1.TabIndex = 5
         '
         'CMDREFRESH
@@ -69,7 +70,7 @@ Partial Class StoreItemDetails
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(366, 522)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(441, 522)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 325
@@ -83,7 +84,7 @@ Partial Class StoreItemDetails
         Me.CMDADDNEW.FlatAppearance.BorderSize = 0
         Me.CMDADDNEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDADDNEW.ForeColor = System.Drawing.Color.Black
-        Me.CMDADDNEW.Location = New System.Drawing.Point(280, 522)
+        Me.CMDADDNEW.Location = New System.Drawing.Point(355, 522)
         Me.CMDADDNEW.Name = "CMDADDNEW"
         Me.CMDADDNEW.Size = New System.Drawing.Size(80, 28)
         Me.CMDADDNEW.TabIndex = 324
@@ -97,7 +98,7 @@ Partial Class StoreItemDetails
         Me.CMDEDIT.FlatAppearance.BorderSize = 0
         Me.CMDEDIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEDIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEDIT.Location = New System.Drawing.Point(452, 522)
+        Me.CMDEDIT.Location = New System.Drawing.Point(527, 522)
         Me.CMDEDIT.Name = "CMDEDIT"
         Me.CMDEDIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEDIT.TabIndex = 323
@@ -111,7 +112,7 @@ Partial Class StoreItemDetails
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(538, 522)
+        Me.CMDEXIT.Location = New System.Drawing.Point(613, 522)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 322
@@ -124,7 +125,7 @@ Partial Class StoreItemDetails
         Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
         Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
-        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(860, 477)
+        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(1011, 477)
         Me.GRIDBILLDETAILS.TabIndex = 315
         Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
         '
@@ -132,7 +133,7 @@ Partial Class StoreItemDetails
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GNAME, Me.GPARTYNAME, Me.GUNIT, Me.GHSNCODE, Me.GDEBITLEDGER, Me.GCATEGORY})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GNAME, Me.GPARTYNAME, Me.GUNIT, Me.GHSNCODE, Me.GDEBITLEDGER, Me.GCATEGORY, Me.GROLITEM})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
@@ -148,7 +149,7 @@ Partial Class StoreItemDetails
         Me.GID.DisplayFormat.FormatString = "0"
         Me.GID.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GID.FieldName = "ID"
-        Me.GID.ImageIndex = 1
+        Me.GID.ImageOptions.ImageIndex = 1
         Me.GID.Name = "GID"
         Me.GID.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GID.Width = 81
@@ -157,7 +158,7 @@ Partial Class StoreItemDetails
         '
         Me.GNAME.Caption = "Store Item Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
@@ -198,12 +199,31 @@ Partial Class StoreItemDetails
         Me.GDEBITLEDGER.VisibleIndex = 4
         Me.GDEBITLEDGER.Width = 200
         '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.OptionsColumn.AllowEdit = False
+        Me.GCATEGORY.Visible = True
+        Me.GCATEGORY.VisibleIndex = 5
+        Me.GCATEGORY.Width = 100
+        '
+        'GROLITEM
+        '
+        Me.GROLITEM.Caption = "Roll item"
+        Me.GROLITEM.FieldName = "ROLLITEM"
+        Me.GROLITEM.Name = "GROLITEM"
+        Me.GROLITEM.Visible = True
+        Me.GROLITEM.VisibleIndex = 6
+        Me.GROLITEM.Width = 60
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(898, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1054, 25)
         Me.ToolStrip1.TabIndex = 318
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -234,20 +254,10 @@ Partial Class StoreItemDetails
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.OptionsColumn.AllowEdit = False
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 5
-        Me.GCATEGORY.Width = 100
-        '
         'StoreItemDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(898, 562)
+        Me.ClientSize = New System.Drawing.Size(1054, 562)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -284,4 +294,5 @@ Partial Class StoreItemDetails
     Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDEBITLEDGER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GROLITEM As DevExpress.XtraGrid.Columns.GridColumn
 End Class

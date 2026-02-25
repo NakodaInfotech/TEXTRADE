@@ -80,6 +80,7 @@ Public Class StoreItemDetails
         End Try
     End Sub
 
+
     Private Sub GRIDBILL_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles GRIDBILL.DoubleClick
         Try
             SHOWFORM(True, GRIDBILL.GetFocusedRowCellValue("ID"))
