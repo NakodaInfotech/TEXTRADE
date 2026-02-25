@@ -68,6 +68,11 @@ Public Class StoreItemMaster
             ALPARAVAL.Add(CMBHSNCODE.Text.Trim)
             ALPARAVAL.Add(CMBDEBITLEDGER.Text.Trim)
             ALPARAVAL.Add(cmbcategory.Text.Trim)
+            If CHKROLLITEM.Checked = True Then
+                ALPARAVAL.Add(1)
+            Else
+                ALPARAVAL.Add(0)
+            End If
 
 
 
@@ -154,6 +159,7 @@ Public Class StoreItemMaster
             CMBPARTYNAME.Text = ""
             GRIDSTORE.RowCount = 0
             TXTSRNO.Text = GRIDSTORE.RowCount + 1
+            CHKROLLITEM.Checked = False
 
         Catch ex As Exception
             Throw ex
@@ -273,6 +279,7 @@ Public Class StoreItemMaster
                     CMBHSNCODE.Text = DR("HSNCODE")
                     CMBDEBITLEDGER.Text = DR("DEBITLEDGER")
                     cmbcategory.Text = DR("CATEGORY")
+                    CHKROLLITEM.Checked = DR("ROLLITEM")
 
                     If Val(DR("SRNO")) > 0 Then GRIDSTORE.Rows.Add(Val(DR("SRNO")), DR("ITEMNAME"), Val(DR("QTY")))
                 Next

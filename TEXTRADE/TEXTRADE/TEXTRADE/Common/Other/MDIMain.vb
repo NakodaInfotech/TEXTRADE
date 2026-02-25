@@ -11164,7 +11164,13 @@ SKIPLINE:
     End Sub
 
     Private Sub BEAMRECDWARPERADD_Click(sender As Object, e As EventArgs) Handles BEAMRECDWARPERADD.Click
-
+        Try
+            Dim OBJBEAMISS As New BeamRecdWarper
+            OBJBEAMISS.MdiParent = Me
+            OBJBEAMISS.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBADD.Click
@@ -11172,6 +11178,46 @@ SKIPLINE:
             Dim OBJROLLSTOCKWARPER As New JobOrder
             OBJROLLSTOCKWARPER.MdiParent = Me
             OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub BEAMRECDWARPEREDIT_Click(sender As Object, e As EventArgs) Handles BEAMRECDWARPEREDIT.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New BeamRecdWarperDetails
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub STORESSTOCKADD_Click(sender As Object, e As EventArgs) Handles STORESSTOCKADD.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New StoreStockReco
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub STORESSTOCKEDIT_Click(sender As Object, e As EventArgs) Handles STORESSTOCKEDIT.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New StoreStockRecoDetails
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub MASTERTRANSFER_Click(sender As Object, e As EventArgs) Handles MASTERTRANSFER.Click
+        Try
+            Dim OBJMASTERTRANSFER As New MasterTransfer
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
         Catch ex As Exception
             Throw ex
         End Try

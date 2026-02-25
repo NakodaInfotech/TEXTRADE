@@ -680,12 +680,9 @@ Public Class ItemMaster
     Sub FILLGRIDCOLOR()
         Try
             If GRIDSHADEDOUBLECLICK = False Then
-                If GRIDWARP.RowCount > 0 Then
-                    GRIDSHADE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBCOLOR.Text.Trim)
-                    getsrno(GRIDSHADE)
-                Else
-                    MsgBox("Please Fill Beam Detail First")
-                End If
+
+                GRIDSHADE.Rows.Add(Val(TXTSRNO.Text.Trim), CMBCOLOR.Text.Trim)
+                getsrno(GRIDSHADE)
 
             ElseIf GRIDSHADEDOUBLECLICK = True Then
                 GRIDSHADE.Item(GSRNO.Index, TEMPSHADEROW).Value = Val(TXTSRNO.Text.Trim)
@@ -2300,8 +2297,10 @@ line1:
     Sub FILLSHADEGRID()
 
         If GRIDCOLORDOUBLECLICK = False Then
+
             GRIDCOLOR.Rows.Add(Val(TXTSHADESRNO.Text.Trim), CMBSHADE.Text.Trim)
             getsrno(GRIDCOLOR)
+
         ElseIf GRIDCOLORDOUBLECLICK = True Then
             GRIDCOLOR.Item(GSHADESRNO.Index, TEMPCOLOROW).Value = Val(TXTSHADESRNO.Text.Trim)
             GRIDCOLOR.Item(GSHADE.Index, TEMPCOLOROW).Value = CMBSHADE.Text.Trim
@@ -2309,8 +2308,8 @@ line1:
             'TEMPCOLORROW = GRIDCOLOR.CurrentRow.Index
             GRIDCOLORDOUBLECLICK = False
         End If
-        GRIDCOLOR.FirstDisplayedScrollingRowIndex = GRIDCOLOR.RowCount - 1
 
+        GRIDCOLOR.FirstDisplayedScrollingRowIndex = GRIDCOLOR.RowCount - 1
         GRIDCOLOR.Rows(GRIDCOLOR.RowCount - 1).Selected = True
         GRIDCOLOR.CurrentCell = GRIDCOLOR.Item(0, GRIDCOLOR.RowCount - 1)
         TXTSHADESRNO.Text = GRIDCOLOR.RowCount + 1

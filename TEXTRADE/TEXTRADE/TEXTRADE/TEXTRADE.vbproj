@@ -2989,6 +2989,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.Designer.vb">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.Designer.vb">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </Compile>
@@ -3185,6 +3191,12 @@
       <DependentUpon>IncentiveTaggingDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Others\IncentiveTaggingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.Designer.vb">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Others\ReconcileData.Designer.vb">
@@ -10565,6 +10577,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.resx">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.resx">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </EmbeddedResource>
@@ -10663,6 +10678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\IncentiveTaggingDetails.resx">
       <DependentUpon>IncentiveTaggingDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\MasterTransfer.resx">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\ReconcileData.resx">
       <DependentUpon>ReconcileData.vb</DependentUpon>

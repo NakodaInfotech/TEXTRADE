@@ -688,8 +688,10 @@ DONTSAVEINAGENCYORDER:
                     'FIRST GET THE CMPID AND YEARID OF ABHEE FABRICS LLP
                     Dim TEMPDT As DataTable = OBJCMN.SEARCH(" TOP 1 YEAR_CMPID AS CMPID, YEAR_ID AS YEARID", "", " YEARMASTER INNER JOIN CMPMASTER ON YEAR_CMPID = CMP_ID", " AND CMPMASTER.CMP_DISPLAYEDNAME = 'ABHEE FABRICS LLP' ORDER BY YEAR_STARTDATE DESC")
                     If TEMPDT.Rows.Count > 0 Then
-                        TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
-                        TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+                        'TEMPCMPID = TEMPDT.Rows(0).Item("CMPID")
+                        'TEMPYEARID = TEMPDT.Rows(0).Item("YEARID")
+                        TEMPCMPID = CmpId
+                        TEMPYEARID = YearId
                     Else
                         GoTo NEXTLINE
                     End If
