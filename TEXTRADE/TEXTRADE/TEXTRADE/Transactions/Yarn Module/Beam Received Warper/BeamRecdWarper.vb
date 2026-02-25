@@ -9,6 +9,7 @@ Public Class BeamRecdWarper
     Public EDIT As Boolean
     Public TEMPBEAMRECDNO As Integer
     Dim TEMPMSG As Integer
+    Dim NextBeamNo As Integer
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -64,7 +65,7 @@ Public Class BeamRecdWarper
         TXTTOTALMTRS.Clear()
         TXTREMARKS.Clear()
         TXTSRNO.Clear()
-        TXTBEAMNO.Clear()
+        'TXTBEAMNO.Clear()
         CMBBEAMNAME.Text = ""
         TXTENDS.Clear()
         TXTMTRS.Clear()
@@ -101,6 +102,8 @@ Public Class BeamRecdWarper
         TXTFROMTYPE.Clear()
         TXTREFNO.Clear()
         TXTPICS.Clear()
+        GetLastBeamNo()
+        TXTBEAMNO.Text = NextBeamNo
 
 
 
@@ -148,6 +151,7 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
+        'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND STOREITEM_ROLLFULL = 'FALSE'")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -615,6 +619,11 @@ LINE1:
             End If
         Next
 
+        If TXTJOBNO.Text.Trim = "" Then
+            EP.SetError(TXTJOBNO, " Please Select Job Order First ")
+            bln = False
+        End If
+
         Return bln
     End Function
 
@@ -955,6 +964,7 @@ LINE1:
                 TXTSRNO.Text = GRIDBEAM.RowCount + 1
                 TOTAL()
 
+
             End If
 
         Catch ex As Exception
@@ -1023,7 +1033,7 @@ LINE1:
 
                 GRIDDOUBLECLICK = False
             End If
-            TXTBEAMNO.Text = Val(TXTBEAMNO.Text.Trim) + 1
+            TXTBEAMNO.Text = NextBeamNo + 1
             TXTSECTION.Clear()
             TXTGAMANO.Clear()
             TXTBEAMWT.Clear()
@@ -1060,7 +1070,7 @@ LINE1:
     End Sub
 
     Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBREAKAGE.Validating
-        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBROLLNO.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
     End Sub
 
     Private Sub TXTCUT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTGAMANO.Validating, TXTBEAMWT.Validating, TXTMTRS.Validating
@@ -1208,4 +1218,25 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDBEAM_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDBEAM.CellClick
+        If e.RowIndex >= 0 Then
+            GRIDYARNDETAILS.Rows.Clear()
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" BEAMMASTER_DESC.BEAM_SRNO AS SRNO ,ISNULL(YARNQUALITYMASTER.YARN_NAME,'') AS YARNQUALITY ", "", " BEAMMASTER INNER JOIN BEAMMASTER_DESC ON BEAMMASTER.BEAM_ID = BEAMMASTER_DESC.BEAM_ID AND BEAMMASTER.BEAM_YEARID = BEAMMASTER_DESC.BEAM_YEARID INNER JOIN YARNQUALITYMASTER ON BEAMMASTER_DESC.BEAM_GRIDQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND BEAMMASTER.BEAM_NAME = '" & GRIDBEAM.Item(GBEAMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND BEAMMASTER.BEAM_YEARID = " & YearId)
+            For Each ROW As DataRow In DT.Rows
+                GRIDYARNDETAILS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"))
+            Next
+        End If
+    End Sub
+
+
+
+    Public Function GetLastBeamNo() As Integer
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_NO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+
+    End Function
+
 End Class

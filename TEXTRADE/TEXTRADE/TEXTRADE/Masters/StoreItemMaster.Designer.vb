@@ -56,6 +56,7 @@ Partial Class StoreItemMaster
         Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CHKROLLITEM = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GRPSTORE.SuspendLayout()
         CType(Me.GRIDSTORE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +66,7 @@ Partial Class StoreItemMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKROLLITEM)
         Me.BlendPanel1.Controls.Add(Me.cmbcategory)
         Me.BlendPanel1.Controls.Add(Me.lblcategory)
         Me.BlendPanel1.Controls.Add(Me.CMBDEBITLEDGER)
@@ -441,6 +443,17 @@ Partial Class StoreItemMaster
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'CHKROLLITEM
+        '
+        Me.CHKROLLITEM.AutoSize = True
+        Me.CHKROLLITEM.BackColor = System.Drawing.Color.Transparent
+        Me.CHKROLLITEM.Location = New System.Drawing.Point(245, 159)
+        Me.CHKROLLITEM.Name = "CHKROLLITEM"
+        Me.CHKROLLITEM.Size = New System.Drawing.Size(75, 19)
+        Me.CHKROLLITEM.TabIndex = 8
+        Me.CHKROLLITEM.Text = "Roll Item"
+        Me.CHKROLLITEM.UseVisualStyleBackColor = False
+        '
         'StoreItemMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -489,4 +502,5 @@ Partial Class StoreItemMaster
     Friend WithEvents Label2 As Label
     Friend WithEvents cmbcategory As ComboBox
     Friend WithEvents lblcategory As Label
+    Friend WithEvents CHKROLLITEM As CheckBox
 End Class
