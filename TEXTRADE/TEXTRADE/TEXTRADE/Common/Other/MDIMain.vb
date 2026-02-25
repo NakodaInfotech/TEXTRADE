@@ -11212,4 +11212,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub MASTERTRANSFER_Click(sender As Object, e As EventArgs) Handles MASTERTRANSFER.Click
+        Try
+            Dim OBJMASTERTRANSFER As New MasterTransfer
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
