@@ -9,6 +9,7 @@ Public Class BeamRecdWarper
     Public EDIT As Boolean
     Public TEMPBEAMRECDNO As Integer
     Dim TEMPMSG As Integer
+    Dim NextBeamNo As Integer
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -64,7 +65,7 @@ Public Class BeamRecdWarper
         TXTTOTALMTRS.Clear()
         TXTREMARKS.Clear()
         TXTSRNO.Clear()
-        TXTBEAMNO.Clear()
+        'TXTBEAMNO.Clear()
         CMBBEAMNAME.Text = ""
         TXTENDS.Clear()
         TXTMTRS.Clear()
@@ -101,6 +102,8 @@ Public Class BeamRecdWarper
         TXTFROMTYPE.Clear()
         TXTREFNO.Clear()
         TXTPICS.Clear()
+        GetLastBeamNo()
+        TXTBEAMNO.Text = NextBeamNo
 
 
 
@@ -148,7 +151,7 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
-        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND STOREITEM_ROLLFULL = 'FALSE'")
+        'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND STOREITEM_ROLLFULL = 'FALSE'")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -1030,7 +1033,7 @@ LINE1:
 
                 GRIDDOUBLECLICK = False
             End If
-            TXTBEAMNO.Text = Val(TXTBEAMNO.Text.Trim) + 1
+            TXTBEAMNO.Text = NextBeamNo + 1
             TXTSECTION.Clear()
             TXTGAMANO.Clear()
             TXTBEAMWT.Clear()
@@ -1226,4 +1229,14 @@ LINE1:
             Next
         End If
     End Sub
+
+
+
+    Public Function GetLastBeamNo() As Integer
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_NO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+
+    End Function
+
 End Class

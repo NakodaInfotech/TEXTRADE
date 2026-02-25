@@ -775,14 +775,16 @@ Partial Class BeamRecdWarper
         '
         'TXTBEAMNO
         '
-        Me.TXTBEAMNO.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTBEAMNO.BackColor = System.Drawing.Color.Linen
         Me.TXTBEAMNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTBEAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBEAMNO.Location = New System.Drawing.Point(33, 4)
         Me.TXTBEAMNO.MaxLength = 10
         Me.TXTBEAMNO.Name = "TXTBEAMNO"
+        Me.TXTBEAMNO.ReadOnly = True
         Me.TXTBEAMNO.Size = New System.Drawing.Size(75, 23)
         Me.TXTBEAMNO.TabIndex = 1
+        Me.TXTBEAMNO.TabStop = False
         '
         'TXTSRNO
         '
