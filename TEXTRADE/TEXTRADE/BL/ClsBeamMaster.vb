@@ -130,6 +130,25 @@ Public Class ClsBeamMaster
         End Try
     End Function
 
+
+#End Region
+#Region "SYNC"
+    Public Function SyncItemBeamDetails(ByVal ITEMID As Integer, ByVal BEAMID As Integer, ByVal CMPID As Integer, ByVal YEARID As Integer) As Integer
+        Try
+            Dim strCommand As String = "SP_SYNC_ITEM_BEAMDETAILS"
+            Dim alParameter As New ArrayList
+
+            alParameter.Add(New SqlParameter("@ITEMID", ITEMID))
+            alParameter.Add(New SqlParameter("@BEAMID", BEAMID))
+            alParameter.Add(New SqlParameter("@CMPID", CMPID))
+            alParameter.Add(New SqlParameter("@YEARID", YEARID))
+
+            Return objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 #End Region
 
 End Class
