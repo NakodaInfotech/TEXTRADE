@@ -120,6 +120,8 @@ Public Class MasterTransfer
 
 
                             If CHKLEDGER.Checked = True Then
+                                TRANSFERGROUP(SELECTEDCMP)
+
                                 TRANSFERTRANSPORT(SELECTEDCMP)
                                 TRANSFERAGENTS(SELECTEDCMP)
 
@@ -139,11 +141,27 @@ Public Class MasterTransfer
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERTRANSPORT(ByVal SELECTEDYEARID As Integer)
+    Sub TRANSFERGROUP(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
-            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.TRANSFERGROUP()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub TRANSFERTRANSPORT(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
@@ -155,11 +173,11 @@ Public Class MasterTransfer
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERAGENTS(ByVal SELECTEDYEARID As Integer)
+    Sub TRANSFERAGENTS(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
-            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(SELECTEDCMP)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
@@ -171,11 +189,11 @@ Public Class MasterTransfer
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERACCOUNTS(ByVal SELECTEDYEARID As Integer)
+    Sub TRANSFERACCOUNTS(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
-            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(SELECTEDCMP)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
@@ -187,11 +205,11 @@ Public Class MasterTransfer
             Throw ex
         End Try
     End Sub
-    Sub TRANSFEREMPLOYEES(ByVal SELECTEDYEARID As Integer)
+    Sub TRANSFEREMPLOYEES(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
-            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(SELECTEDCMP)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Locationid)
             ALPARAVAL.Add(Userid)
