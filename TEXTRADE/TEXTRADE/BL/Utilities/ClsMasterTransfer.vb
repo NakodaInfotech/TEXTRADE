@@ -202,7 +202,7 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERGROUP() As Integer
+    Public Function CMPTRANSFERGROUP() As Integer
         Dim intResult As Integer
         Try
 
@@ -233,7 +233,7 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERTRANSPORT() As Integer
+    Public Function CMPTRANSFERTRANSPORT() As Integer
         Dim intResult As Integer
         Try
 
@@ -295,7 +295,7 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFEREMPLOYEES() As Integer
+    Public Function CMPTRANSFEREMPLOYEES() As Integer
         Dim intResult As Integer
         Try
 
@@ -325,8 +325,38 @@ Public Class ClsMasterTransfer
         Return intResult
 
     End Function
+    Public Function CMPTRANSFERLOCATION() As Integer
+        Dim intResult As Integer
+        Try
 
-    Public Function TRANSFERAGENTS() As Integer
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERLOCATION"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function CMPTRANSFERAGENTS() As Integer
         Dim intResult As Integer
         Try
 
@@ -357,7 +387,7 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERACCOUNTS() As Integer
+    Public Function CMPTRANSFERACCOUNTS() As Integer
         Dim intResult As Integer
         Try
 

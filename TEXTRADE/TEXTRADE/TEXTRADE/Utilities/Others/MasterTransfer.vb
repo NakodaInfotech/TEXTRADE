@@ -1,9 +1,10 @@
-﻿Imports BL
+﻿Imports System.IO.Compression
+Imports BL
 
 
 Public Class MasterTransfer
     Dim INTRES As Integer
-    Dim OBJTRF As New ClsYearTransfer
+    Dim OBJTRF As New ClsMasterTransfer
     Public FRMSTRING As String = ""
     'Sub fillcmp()
     '    Try
@@ -43,7 +44,7 @@ Public Class MasterTransfer
             Cursor.Current = Cursors.WaitCursor
             If CMBCOMPANY.Text.Trim = "" Then
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search(" CMP_ID AS ID , CMP_NAME AS NAME ", "", "CMPMASTER", " And CMP_YEARID = " & YearId)
+                Dim dt As DataTable = objclscommon.search(" CMP_ID AS CMPID , CMP_NAME AS NAME ", "", "CMPMASTER")
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "NAME"
                     CMBCOMPANY.DisplayMember = "NAME"
@@ -98,7 +99,7 @@ Public Class MasterTransfer
         Try
 
 
-
+            backup()
             'INTIMATE IF USER HAS SELECTED WRONG YEAR
             If CMBOLDCMP.Text.Trim = CMBNEWCMP.Text.Trim Then
                 MsgBox("You have selected the Wrong Company.")
@@ -120,13 +121,13 @@ Public Class MasterTransfer
 
 
                             If CHKLEDGER.Checked = True Then
-                                TRANSFERGROUP(SELECTEDCMP)
+                                CMPTRANSFERGROUP(SELECTEDCMP)
+                                CMPTRANSFERLOCATION(SELECTEDCMP)
+                                CMPTRANSFERTRANSPORT(SELECTEDCMP)
+                                CMPTRANSFERAGENTS(SELECTEDCMP)
 
-                                TRANSFERTRANSPORT(SELECTEDCMP)
-                                TRANSFERAGENTS(SELECTEDCMP)
-
-                                TRANSFERACCOUNTS(SELECTEDCMP)
-                                TRANSFEREMPLOYEES(SELECTEDCMP)
+                                CMPTRANSFERACCOUNTS(SELECTEDCMP)
+                                CMPTRANSFEREMPLOYEES(SELECTEDCMP)
                                 MsgBox("Masters Transferred Successfully")
 
                             End If
@@ -141,7 +142,7 @@ Public Class MasterTransfer
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERGROUP(ByVal SELECTEDCMP As Integer)
+    Sub CMPTRANSFERGROUP(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
@@ -152,12 +153,12 @@ Public Class MasterTransfer
             ALPARAVAL.Add(YearId)
 
             OBJTRF.alParaval = ALPARAVAL
-            INTRES = OBJTRF.TRANSFERGROUP()
+            INTRES = OBJTRF.CMPTRANSFERGROUP()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERTRANSPORT(ByVal SELECTEDCMP As Integer)
+    Sub CMPTRANSFERTRANSPORT(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
@@ -168,12 +169,12 @@ Public Class MasterTransfer
             ALPARAVAL.Add(YearId)
 
             OBJTRF.alParaval = ALPARAVAL
-            INTRES = OBJTRF.TRANSFERTRANSPORT()
+            INTRES = OBJTRF.CMPTRANSFERTRANSPORT()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERAGENTS(ByVal SELECTEDCMP As Integer)
+    Sub CMPTRANSFERAGENTS(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
@@ -184,12 +185,12 @@ Public Class MasterTransfer
             ALPARAVAL.Add(YearId)
 
             OBJTRF.alParaval = ALPARAVAL
-            INTRES = OBJTRF.TRANSFERAGENTS()
+            INTRES = OBJTRF.CMPTRANSFERAGENTS()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Sub TRANSFERACCOUNTS(ByVal SELECTEDCMP As Integer)
+    Sub CMPTRANSFERACCOUNTS(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
@@ -200,12 +201,12 @@ Public Class MasterTransfer
             ALPARAVAL.Add(YearId)
 
             OBJTRF.alParaval = ALPARAVAL
-            INTRES = OBJTRF.TRANSFERACCOUNTS()
+            INTRES = OBJTRF.CMPTRANSFERACCOUNTS()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Sub TRANSFEREMPLOYEES(ByVal SELECTEDCMP As Integer)
+    Sub CMPTRANSFEREMPLOYEES(ByVal SELECTEDCMP As Integer)
         Try
             Dim ALPARAVAL As New ArrayList
 
@@ -216,9 +217,56 @@ Public Class MasterTransfer
             ALPARAVAL.Add(YearId)
 
             OBJTRF.alParaval = ALPARAVAL
-            INTRES = OBJTRF.TRANSFEREMPLOYEES()
+            INTRES = OBJTRF.CMPTRANSFEREMPLOYEES()
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Sub CMPTRANSFERLOCATION(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERLOCATION()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub backup()
+        'TAKE BACKUP
+        Dim TEMPMSG As Integer = MsgBox("Create Backup?", MsgBoxStyle.YesNo)
+        If TEMPMSG = vbYes Then
+
+            'CHECKING FOR BACKUP FOLDER
+            If FileIO.FileSystem.DirectoryExists("C:\TEXTRADEBACKUP") = False Then FileIO.FileSystem.CreateDirectory("C:\TEXTRADEBACKUP")
+
+
+            'COPY THE BACKUP FILE IN DIRECTIORY AND THEN CREATE ZIP
+            If FileIO.FileSystem.DirectoryExists("C:\TEXTRADEBACKUP\BACKUP") = False Then FileIO.FileSystem.CreateDirectory("C:\TEXTRADEBACKUP\BACKUP")
+
+
+            'IF SAME DATE'S BACKUP EXIST THEN DELETE IT THEN RECREATE IT
+            If FileIO.FileSystem.FileExists("C:\TEXTRADEBACKUP\BACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".bak") Then FileIO.FileSystem.DeleteFile("C:\TEXTRADEBACKUP\BACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".bak")
+
+            Dim OBJCMN As New ClsCommon
+            On Error Resume Next
+            Dim DT As DataTable = OBJCMN.Execute_Any_String(" BACKUP DATABASE TEXTRADE TO DISK='C:\TEXTRADEBACKUP\BACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".BAK'", "", "")
+
+
+            ZipFile.CreateFromDirectory("C:\TEXTRADEBACKUP\BACKUP", "C:\TEXTRADEBACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".zip", CompressionLevel.Optimal, False)
+
+            'DELETE THE BACKUP FOLDER
+            If FileIO.FileSystem.DirectoryExists("C:\TEXTRADEBACKUP\BACKUP") = True Then FileIO.FileSystem.DeleteDirectory("C:\TEXTRADEBACKUP\BACKUP", FileIO.DeleteDirectoryOption.DeleteAllContents)
+
+
+            MsgBox("Backup Completed")
+        End If
+
     End Sub
 End Class
