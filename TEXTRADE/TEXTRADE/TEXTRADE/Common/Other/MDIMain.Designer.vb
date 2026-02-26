@@ -814,6 +814,9 @@ Partial Class MDIMain
         Me.STORESSTOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESSTOCKADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESSTOCKEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESREC_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESRECADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESRECEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.REGISTER_MAIN = New System.Windows.Forms.ToolStripMenuItem()
         Me.PURREGISTER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALEREGISTER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1287,12 +1290,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-<<<<<<< HEAD
-        Me.STORESRECFROMREPAIRING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STORESRECADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STORESRECEDIT = New System.Windows.Forms.ToolStripMenuItem()
-=======
->>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6187,7 +6184,7 @@ Partial Class MDIMain
         '
         'STORES_MASTER
         '
-        Me.STORES_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESPO_MASTER, Me.STOREINWARD_MASTER, Me.STORECONSUMPTION_MASTER, Me.TRANSFERSTORES_MASTER, Me.ToolStripSeparator122, Me.STORESTOCKREPORT_MASTER, Me.StoresReOrderLevelReportToolStripMenuItem, Me.ToolStripSeparator222, Me.STORESSTOCKADJUSTMENT_MASTER, Me.STORESRECFROMREPAIRING_MASTER})
+        Me.STORES_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESPO_MASTER, Me.STOREINWARD_MASTER, Me.STORECONSUMPTION_MASTER, Me.TRANSFERSTORES_MASTER, Me.ToolStripSeparator122, Me.STORESTOCKREPORT_MASTER, Me.StoresReOrderLevelReportToolStripMenuItem, Me.ToolStripSeparator222, Me.STORESSTOCKADJUSTMENT_MASTER, Me.STORESREC_MASTER})
         Me.STORES_MASTER.Name = "STORES_MASTER"
         Me.STORES_MASTER.Size = New System.Drawing.Size(53, 20)
         Me.STORES_MASTER.Text = "Stores"
@@ -6345,21 +6342,32 @@ Partial Class MDIMain
         '
         Me.STORESSTOCKADD.Name = "STORESSTOCKADD"
         Me.STORESSTOCKADD.Size = New System.Drawing.Size(180, 22)
-<<<<<<< HEAD
         Me.STORESSTOCKADD.Text = "Add New Entry"
-=======
-        Me.STORESSTOCKADD.Text = "Add New Stock"
->>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         '
         'STORESSTOCKEDIT
         '
         Me.STORESSTOCKEDIT.Name = "STORESSTOCKEDIT"
         Me.STORESSTOCKEDIT.Size = New System.Drawing.Size(180, 22)
-<<<<<<< HEAD
         Me.STORESSTOCKEDIT.Text = "Edit Existing Entry"
-=======
-        Me.STORESSTOCKEDIT.Text = "Edit Existing Stock"
->>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
+        '
+        'STORESREC_MASTER
+        '
+        Me.STORESREC_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESRECADD, Me.STORESRECEDIT})
+        Me.STORESREC_MASTER.Name = "STORESREC_MASTER"
+        Me.STORESREC_MASTER.Size = New System.Drawing.Size(232, 22)
+        Me.STORESREC_MASTER.Text = "Store Rec From Repairing"
+        '
+        'STORESRECADD
+        '
+        Me.STORESRECADD.Name = "STORESRECADD"
+        Me.STORESRECADD.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECADD.Text = "Add new Entry"
+        '
+        'STORESRECEDIT
+        '
+        Me.STORESRECEDIT.Name = "STORESRECEDIT"
+        Me.STORESRECEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECEDIT.Text = "Edit Existing Entry"
         '
         'REGISTER_MAIN
         '
@@ -9423,28 +9431,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-<<<<<<< HEAD
-        'STORESRECFROMREPAIRING_MASTER
-        '
-        Me.STORESRECFROMREPAIRING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESRECADD, Me.STORESRECEDIT})
-        Me.STORESRECFROMREPAIRING_MASTER.Name = "STORESRECFROMREPAIRING_MASTER"
-        Me.STORESRECFROMREPAIRING_MASTER.Size = New System.Drawing.Size(232, 22)
-        Me.STORESRECFROMREPAIRING_MASTER.Text = "Store Rec From Repairing"
-        '
-        'STORESRECADD
-        '
-        Me.STORESRECADD.Name = "STORESRECADD"
-        Me.STORESRECADD.Size = New System.Drawing.Size(180, 22)
-        Me.STORESRECADD.Text = "Add new Entry"
-        '
-        'STORESRECEDIT
-        '
-        Me.STORESRECEDIT.Name = "STORESRECEDIT"
-        Me.STORESRECEDIT.Size = New System.Drawing.Size(180, 22)
-        Me.STORESRECEDIT.Text = "Edit Existing Entry"
-        '
-=======
->>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10735,7 +10721,7 @@ Partial Class MDIMain
     Friend WithEvents STORESSTOCKADD As ToolStripMenuItem
     Friend WithEvents STORESSTOCKEDIT As ToolStripMenuItem
     Friend WithEvents MASTERTRANSFER As ToolStripMenuItem
-    Friend WithEvents STORESRECFROMREPAIRING_MASTER As ToolStripMenuItem
+    Friend WithEvents STORESREC_MASTER As ToolStripMenuItem
     Friend WithEvents STORESRECADD As ToolStripMenuItem
     Friend WithEvents STORESRECEDIT As ToolStripMenuItem
 End Class
