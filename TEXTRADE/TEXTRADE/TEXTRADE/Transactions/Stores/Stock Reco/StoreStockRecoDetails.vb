@@ -103,21 +103,21 @@ Public Class StoreStockRecoDetails
         End Try
     End Sub
 
-    Private Sub TOOLSTOCKIN_Click(sender As Object, e As EventArgs)
-        Try
-            Dim OBJSTOCK As New StoreStockRecoInDetails
-            OBJSTOCK.MdiParent = MDIMain
-            OBJSTOCK.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TOOLSTOCKOUT_Click(sender As Object, e As EventArgs) Handles TOOLSTOCKOUT.Click
         Try
             Dim OBJSTCK As New StoreStockRecoOutDetails
             OBJSTCK.MdiParent = MDIMain
             OBJSTCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLSTOCKIN_Click_1(sender As Object, e As EventArgs) Handles TOOLSTOCKIN.Click
+        Try
+            Dim OBJSTOCK As New StoreStockRecoInDetails
+            OBJSTOCK.MdiParent = MDIMain
+            OBJSTOCK.Show()
         Catch ex As Exception
             Throw ex
         End Try
