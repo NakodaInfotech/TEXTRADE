@@ -54,8 +54,7 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+                
 
 
                 'grid parameters
@@ -138,8 +137,7 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+
 
 
                 'grid parameters
