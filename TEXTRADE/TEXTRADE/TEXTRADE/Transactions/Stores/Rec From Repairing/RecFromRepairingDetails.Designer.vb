@@ -172,7 +172,7 @@ Partial Class RecFromRepairingDetails
         'GNAME
         '
         Me.GNAME.Caption = "Name"
-        Me.GNAME.FieldName = "Name"
+        Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
