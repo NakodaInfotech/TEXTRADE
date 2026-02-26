@@ -32,6 +32,7 @@ Partial Class MasterTransfer
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.CHKOTHERMASTER = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GBTRANSFERDATA.SuspendLayout()
         Me.SuspendLayout()
@@ -103,6 +104,7 @@ Partial Class MasterTransfer
         'GBTRANSFERDATA
         '
         Me.GBTRANSFERDATA.BackColor = System.Drawing.Color.Transparent
+        Me.GBTRANSFERDATA.Controls.Add(Me.CHKOTHERMASTER)
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKLEDGER)
         Me.GBTRANSFERDATA.Location = New System.Drawing.Point(45, 95)
         Me.GBTRANSFERDATA.Name = "GBTRANSFERDATA"
@@ -156,6 +158,18 @@ Partial Class MasterTransfer
         Me.lbl.TabIndex = 182
         Me.lbl.Text = "Select Comapny To Transfer Data From"
         '
+        'CHKOTHERMASTER
+        '
+        Me.CHKOTHERMASTER.AutoSize = True
+        Me.CHKOTHERMASTER.Checked = True
+        Me.CHKOTHERMASTER.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKOTHERMASTER.Location = New System.Drawing.Point(6, 47)
+        Me.CHKOTHERMASTER.Name = "CHKOTHERMASTER"
+        Me.CHKOTHERMASTER.Size = New System.Drawing.Size(147, 19)
+        Me.CHKOTHERMASTER.TabIndex = 3
+        Me.CHKOTHERMASTER.Text = "Transfer Other Master"
+        Me.CHKOTHERMASTER.UseVisualStyleBackColor = True
+        '
         'MasterTransfer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -184,4 +198,5 @@ Partial Class MasterTransfer
     Friend WithEvents CMBNEWCMP As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents CMBOLDCMP As ComboBox
+    Friend WithEvents CHKOTHERMASTER As CheckBox
 End Class

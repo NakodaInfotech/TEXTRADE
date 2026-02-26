@@ -666,16 +666,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERDESIGN() As Integer
+    Public Function CMPTRANSFERDESIGN() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERDESIGN"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERDESIGN"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -697,16 +697,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERUNIT() As Integer
+    Public Function CMPTRANSFERUNIT() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERUNIT"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERUNIT"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -790,16 +790,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERMACHINE() As Integer
+    Public Function CMPTRANSFERMACHINE() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERMACHINE"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERMACHINE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -821,16 +821,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERSALESMAN() As Integer
+    Public Function CMPTRANSFERSALESMAN() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERSALESMAN"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERSALESMAN"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -852,16 +852,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERRACKSHELF() As Integer
+    Public Function CMPTRANSFERRACKSHELF() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERRACKSHELF"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERRACKSHELF"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -883,16 +883,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERCOLOR() As Integer
+    Public Function CMPTRANSFERCOLOR() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERCOLOR"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERCOLOR"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -914,16 +914,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERMATERIALTYPE() As Integer
+    Public Function CMPTRANSFERMATERIALTYPE() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERMATERIALTYPE"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERMATERIALTYPE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -945,16 +945,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERITEM() As Integer
+    Public Function CMPTRANSFERITEM() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERITEM"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERITEM"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -976,16 +976,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERCATEGORY() As Integer
+    Public Function CMPTRANSFERCATEGORY() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERCATEGORY"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERCATEGORY"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -1007,16 +1007,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERDYEDTYPE() As Integer
+    Public Function CMPTRANSFERDYEDTYPE() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERDYEDTYPE"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERDYEDTYPE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -1255,16 +1255,16 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERPROCESS() As Integer
+    Public Function CMPTRANSFERPROCESS() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERPROCESS"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERPROCESS"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -1410,11 +1410,78 @@ Public Class ClsMasterTransfer
 
     End Function
 
-    Public Function TRANSFERQUALITY() As Integer
+    Public Function CMPTRANSFERQUALITY() As Integer
         Dim intResult As Integer
         Try
 
-            Dim strCommand As String = "SP_UTILITIES_TRANSFERQUALITY"
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERQUALITY"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+
+
+#End Region
+#Region "BILLS"
+
+    Public Function CMPTRANSFERHSN() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_CMPTRANSFERHSN"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDCMP", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERYARN() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERYARNQUALITY"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -1441,7 +1508,408 @@ Public Class ClsMasterTransfer
 
     End Function
 
+    Public Function TRANSFERMILL() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERMILL"
+            Dim alParameter As New ArrayList
+            With alParameter
 
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERDESIGNER() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERDESIGNER"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERVEHICLE() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERVEHICLE"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERBILLS() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERBILLS"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERAGENCYBILLS() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERAGENCYBILLS"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+    Public Function TRANSFERWEAVE() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERWEAVE"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+    Public Function TRANSFERLOOM() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERLOOM"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERBALANCE() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERBALANCE"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERPROFITLOSS() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERPROFITLOSS"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@DR", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERSALEORDER() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERSALEORDER"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERPURORDER() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERPURORDER"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERYARNPURORDER() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERYARNPURORDER"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
+
+    Public Function TRANSFERGDN() As Integer
+        Dim intResult As Integer
+        Try
+            'save NONPURCHASE 
+            Dim strCommand As String = "SP_UTILITIES_TRANSFERGDN"
+            Dim alParameter As New ArrayList
+            With alParameter
+
+                Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@SELECTEDYEARID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
+                I += 1
+
+            End With
+
+            intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return intResult
+
+    End Function
 
 #End Region
 
