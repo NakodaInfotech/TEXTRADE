@@ -28,18 +28,18 @@ Partial Class StoreStockRecoOutDetails
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSANO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINDESC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GINRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEDESC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +103,7 @@ Partial Class StoreStockRecoOutDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GINGRIDSRNO, Me.GINITEMNAME, Me.GINDESC, Me.GINQTY, Me.GINUNIT, Me.GINRATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GGRIDSRNO, Me.GITEMNAME, Me.GEDESC, Me.GQTY, Me.GUNIT, Me.GRATE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -122,65 +122,6 @@ Partial Class StoreStockRecoOutDetails
         Me.GSANO.Visible = True
         Me.GSANO.VisibleIndex = 0
         Me.GSANO.Width = 69
-        '
-        'GINGRIDSRNO
-        '
-        Me.GINGRIDSRNO.Caption = "Grid Sr No"
-        Me.GINGRIDSRNO.FieldName = "INGRIDSRNO"
-        Me.GINGRIDSRNO.Name = "GINGRIDSRNO"
-        Me.GINGRIDSRNO.OptionsColumn.AllowEdit = False
-        Me.GINGRIDSRNO.Visible = True
-        Me.GINGRIDSRNO.VisibleIndex = 1
-        '
-        'GINITEMNAME
-        '
-        Me.GINITEMNAME.Caption = "Item Name"
-        Me.GINITEMNAME.FieldName = "INITEMNAME"
-        Me.GINITEMNAME.Name = "GINITEMNAME"
-        Me.GINITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GINITEMNAME.Visible = True
-        Me.GINITEMNAME.VisibleIndex = 2
-        Me.GINITEMNAME.Width = 150
-        '
-        'GINDESC
-        '
-        Me.GINDESC.Caption = "Description"
-        Me.GINDESC.FieldName = "INDESC"
-        Me.GINDESC.Name = "GINDESC"
-        Me.GINDESC.OptionsColumn.AllowEdit = False
-        Me.GINDESC.Visible = True
-        Me.GINDESC.VisibleIndex = 3
-        Me.GINDESC.Width = 100
-        '
-        'GINQTY
-        '
-        Me.GINQTY.Caption = "Qty"
-        Me.GINQTY.FieldName = "INQTY"
-        Me.GINQTY.Name = "GINQTY"
-        Me.GINQTY.OptionsColumn.AllowEdit = False
-        Me.GINQTY.Visible = True
-        Me.GINQTY.VisibleIndex = 4
-        Me.GINQTY.Width = 100
-        '
-        'GINUNIT
-        '
-        Me.GINUNIT.Caption = "Unit"
-        Me.GINUNIT.FieldName = "INUNIT"
-        Me.GINUNIT.Name = "GINUNIT"
-        Me.GINUNIT.OptionsColumn.AllowEdit = False
-        Me.GINUNIT.Visible = True
-        Me.GINUNIT.VisibleIndex = 5
-        Me.GINUNIT.Width = 100
-        '
-        'GINRATE
-        '
-        Me.GINRATE.Caption = "Rate"
-        Me.GINRATE.FieldName = "INRATE"
-        Me.GINRATE.Name = "GINRATE"
-        Me.GINRATE.OptionsColumn.AllowEdit = False
-        Me.GINRATE.Visible = True
-        Me.GINRATE.VisibleIndex = 6
-        Me.GINRATE.Width = 100
         '
         'ToolStrip1
         '
@@ -227,6 +168,64 @@ Partial Class StoreStockRecoOutDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'GGRIDSRNO
+        '
+        Me.GGRIDSRNO.Caption = "Grid Sr No"
+        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
+        Me.GGRIDSRNO.Name = "GGRIDSRNO"
+        Me.GGRIDSRNO.OptionsColumn.AllowEdit = False
+        Me.GGRIDSRNO.Visible = True
+        Me.GGRIDSRNO.VisibleIndex = 1
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 2
+        Me.GITEMNAME.Width = 150
+        '
+        'GQTY
+        '
+        Me.GQTY.Caption = "Qty"
+        Me.GQTY.FieldName = "QTY"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.OptionsColumn.AllowEdit = False
+        Me.GQTY.Visible = True
+        Me.GQTY.VisibleIndex = 4
+        Me.GQTY.Width = 100
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.OptionsColumn.AllowEdit = False
+        Me.GUNIT.Visible = True
+        Me.GUNIT.VisibleIndex = 5
+        Me.GUNIT.Width = 100
+        '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.OptionsColumn.AllowEdit = False
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 6
+        Me.GRATE.Width = 100
+        '
+        'GEDESC
+        '
+        Me.GEDESC.Caption = "Description"
+        Me.GEDESC.FieldName = "EDESC"
+        Me.GEDESC.Name = "GEDESC"
+        Me.GEDESC.Visible = True
+        Me.GEDESC.VisibleIndex = 3
+        Me.GEDESC.Width = 100
+        '
         'StoreStockRecoOutDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -254,16 +253,16 @@ Partial Class StoreStockRecoOutDetails
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Private WithEvents GSANO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINGRIDSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINDESC As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINQTY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINUNIT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GINRATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents GGRIDSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEDESC As DevExpress.XtraGrid.Columns.GridColumn
 End Class

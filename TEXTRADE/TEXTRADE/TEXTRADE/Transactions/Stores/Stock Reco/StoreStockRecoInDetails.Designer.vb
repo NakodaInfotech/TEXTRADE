@@ -48,7 +48,6 @@ Partial Class StoreStockRecoInDetails
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -66,7 +65,7 @@ Partial Class StoreStockRecoInDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(361, 534)
+        Me.cmdexit.Location = New System.Drawing.Point(361, 521)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 445
@@ -80,7 +79,7 @@ Partial Class StoreStockRecoInDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(275, 534)
+        Me.cmdok.Location = New System.Drawing.Point(275, 521)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 444
@@ -90,11 +89,11 @@ Partial Class StoreStockRecoInDetails
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(22, 55)
+        Me.gridbilldetails.Location = New System.Drawing.Point(7, 29)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(741, 473)
+        Me.gridbilldetails.Size = New System.Drawing.Size(762, 473)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
