@@ -2827,6 +2827,18 @@
     <Compile Include="Transactions\Stores\Inward\SelectStoresPO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.Designer.vb">
+      <DependentUpon>IssueToRepairing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.Designer.vb">
+      <DependentUpon>IssueToRepairingDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.Designer.vb">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
     </Compile>
@@ -10496,6 +10508,12 @@
     <EmbeddedResource Include="Transactions\Stores\Inward\SelectStoresPO.resx">
       <DependentUpon>SelectStoresPO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.resx">
+      <DependentUpon>IssueToRepairing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.resx">
+      <DependentUpon>IssueToRepairingDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.resx">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
     </EmbeddedResource>
@@ -14777,7 +14795,6 @@
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Transactions\Stores\Issue To Repairing\" />
     <Folder Include="Transactions\Stores\Rec From Repairing\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
