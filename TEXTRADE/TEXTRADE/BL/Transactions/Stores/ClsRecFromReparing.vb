@@ -121,7 +121,7 @@ Public Class ClsRecFromReparing
             Dim dtTable As DataTable
             Try
 
-            Dim strCommand As String = "SP_SRECFROMREPARING_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTSTORERECFROMREPARING_FOR_EDIT"
             Dim alParameter As New ArrayList
                 With alParameter
                 .Add(New SqlClient.SqlParameter("@RECNO", alParaval(0)))
