@@ -1053,7 +1053,8 @@ NEXTLINE:
             If EDIT = False Then
                 If GRIDDOUBLECLICK = False Then
                     'checking WHETHER AMT IS GREATER THEN CHQ AMT OR NOT
-                    If (Val(txttotal.Text.Trim) + Val(txtamt.Text)) > Val(txtchqamt.Text) Then
+                    'If (Val(txttotal.Text.Trim) + Val(txtamt.Text)) > Val(txtchqamt.Text) Then
+                    If Math.Round((Val(txttotal.Text.Trim) + Val(txtamt.Text)), 2) > Val(txtchqamt.Text) Then
                         EP.SetError(txtamt, "Amount Exceeds Specified Amt.")
                         BLN = False
                     End If

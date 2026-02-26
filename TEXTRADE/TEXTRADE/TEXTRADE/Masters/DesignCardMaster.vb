@@ -9,6 +9,7 @@ Imports DevExpress.Charts.Native
 Imports DevExpress.CodeParser
 Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.DashboardWin.Native
+Imports DevExpress.Pdf.ContentGeneration
 Imports DevExpress.UIAutomation
 Imports DevExpress.XtraGauges.Core.Model
 Imports DevExpress.XtraGrid.Drawing
@@ -32,6 +33,9 @@ Public Class DesignCardMaster
     Dim DT_SELDETAILS As New DataTable
     Dim DT_WARPDETAILS As New DataTable
     Dim DT_WEFTDETAILS As New DataTable
+    Public TEMPBEAMID As Integer
+    Public TEMPITEMID As Integer
+
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
@@ -612,6 +616,7 @@ Public Class DesignCardMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+                SAVEBEAMDESIGN(False)
                 IntResult = objDESIGN.SAVE()
                 'txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
@@ -622,6 +627,7 @@ Public Class DesignCardMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+                SAVEBEAMDESIGN(True)
                 alParaval.Add(tempdesignno)
                 IntResult = objDESIGN.UPDATE()
                 MsgBox("Details Updated")
@@ -1115,6 +1121,7 @@ Public Class DesignCardMaster
                     TXTTOTALENDS.Text = dr("TOTALENDS")
                     TXTTOTALEXTRAENDS.Text = dr("TOTALEXTRAENDS")
                     TXTEXTRAENDS.Text = dr("EXTRAENDS")
+                    CMBSHADE.Text = dr("SHADE")
                 Next
                 'cmbtype.Enabled = False
 
@@ -1321,6 +1328,7 @@ Public Class DesignCardMaster
         FILLCOLOR(CMBWARPSHADE, "", "")
         FILLCOLOR(CMBSELSHADE, "", "")
         FILLCOLOR(cmbweftshade, "", "")
+        FILLCOLOR(CMBSHADE, "", "")
         If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEM_FRMSTRING = 'MERCHANT'")
         FILLMILL(CMBWARPMILLNAME, EDIT)
         FILLMILL(CMBWEFTMILLNAME, EDIT)
@@ -4564,5 +4572,157 @@ line1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Sub SAVEBEAMDESIGN(EDIT As Boolean)
+        Try
+            Dim IntResult As Integer
+            Dim alParaval As New ArrayList
+            Dim OBJCMN As New ClsCommon
+            If EDIT = True Then
+                Dim DT1 As DataTable = OBJCMN.SEARCH("BEAM_ID ", "", "  BEAMMASTER ", " and BEAM_NAME = '" & CMBITEMNAME.Text & "' and BEAM_YEARid = " & YearId)
+                If DT1.Rows.Count > 0 Then TEMPBEAMID = DT1.Rows(0).Item("BEAM_ID")
+            End If
+            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL( HSNMASTER.HSN_CODE , 0) AS HSNCODE ", "", "  ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID ", " and ITEMMASTER.ITEM_NAME = '" & CMBITEMNAME.Text & "' and ITEMMASTER.ITEM_YEARid = " & YearId)
+            alParaval.Add(CMBITEMNAME.Text.Trim)
+            If DT.Rows.Count > 0 Then alParaval.Add(DT.Rows(0).Item("HSNCODE")) Else alParaval.Add(DT.Rows(0).Item("")) 'HSN CODE
+            alParaval.Add(Val(TXTWARPTL.Text.Trim))
+            alParaval.Add("0.000")
+            alParaval.Add(Format(Val(TXTTOTALWARPPE.Text.Trim), "0"))
+            alParaval.Add(Format(Val(TXTTOTALWARPWT.Text.Trim), "0.000"))
+            alParaval.Add(CmpId)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+
+            Dim SRNO As String = ""
+            Dim GRIDYARNQUALITY As String = ""
+            Dim SHADE As String = ""
+            Dim GRIDENDS As String = ""
+            Dim GRIDWT As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If SRNO = "" Then
+                        SRNO = row.Cells(WSRNO.Index).Value.ToString
+                        GRIDYARNQUALITY = row.Cells(WQUALITY.Index).Value.ToString
+                        SHADE = row.Cells(WSHADE.Index).Value.ToString
+                        GRIDENDS = Val(row.Cells(WPE.Index).Value)
+                        GRIDWT = Format((Val(row.Cells(WPE.Index).Value) * Val(TXTWARPTL.Text.Trim) * Val(row.Cells(WDENIER.Index).Value)) / 9000000, "0.000")
+                    Else
+                        SRNO = SRNO & "|" & row.Cells(WSRNO.Index).Value
+                        GRIDYARNQUALITY = GRIDYARNQUALITY & "|" & row.Cells(WQUALITY.Index).Value.ToString
+                        SHADE = SHADE & "|" & row.Cells(WSHADE.Index).Value.ToString
+                        GRIDENDS = GRIDENDS & "|" & Val(row.Cells(WPE.Index).Value)
+                        GRIDWT = GRIDWT & "|" & Format((Val(row.Cells(WPE.Index).Value) * Val(TXTWARPTL.Text.Trim) * Val(row.Cells(WDENIER.Index).Value)) / 9000000, "0.000")
+
+                    End If
+                End If
+            Next
+            alParaval.Add(SRNO)
+            alParaval.Add(GRIDYARNQUALITY)
+            alParaval.Add(SHADE)
+            alParaval.Add(GRIDENDS)
+            alParaval.Add(GRIDWT)
+
+
+            Dim objclsBeamMaster As New ClsBeamMaster
+            objclsBeamMaster.alparaval = alParaval
+            If EDIT = False Then
+                IntResult = objclsBeamMaster.SAVE()
+            Else
+                alParaval.Add(TEMPBEAMID)
+                IntResult = objclsBeamMaster.UPDATE()
+            End If
+
+            Dim DT2 As DataTable = OBJCMN.SEARCH("ITEM_ID ", "", "  ITEMMASTER ", " and ITEM_NAME = '" & CMBITEMNAME.Text & "' and ITEM_YEARid = " & YearId)
+            If DT2.Rows.Count > 0 Then TEMPITEMID = DT2.Rows(0).Item("ITEM_ID")
+            If EDIT = False Then
+                Dim DT1 As DataTable = OBJCMN.SEARCH("BEAM_ID ", "", "  BEAMMASTER ", " and BEAM_NAME = '" & CMBITEMNAME.Text & "' and BEAM_YEARid = " & YearId)
+                If DT1.Rows.Count > 0 Then TEMPBEAMID = DT1.Rows(0).Item("BEAM_ID")
+            End If
+            Dim objSync As New ClsBeamMaster
+            objSync.SyncItemBeamDetails(TEMPITEMID, TEMPBEAMID, CmpId, YearId)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub EDITBEAMDESIGN()
+        Try
+            Dim IntResult As Integer
+            Dim alParaval As New ArrayList
+            alParaval.Add(CMBITEMNAME.Text.Trim)
+            alParaval.Add("") 'HSN CODE
+            alParaval.Add(Val(TXTWARPTL.Text.Trim))
+            alParaval.Add("0.000")
+            alParaval.Add(Format(Val(TXTTOTALWARPPE.Text.Trim), "0"))
+            alParaval.Add(Format(Val(TXTTOTALWARPWT.Text.Trim), "0.000"))
+            alParaval.Add(CmpId)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+            Dim SRNO As String = ""
+            Dim GRIDYARNQUALITY As String = ""
+            Dim SHADE As String = ""
+            Dim GRIDENDS As String = ""
+            Dim GRIDWT As String = ""
+            For Each row As Windows.Forms.DataGridViewRow In GRIDWARP.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If SRNO = "" Then
+                        SRNO = row.Cells(WSRNO.Index).Value.ToString
+                        GRIDYARNQUALITY = row.Cells(WQUALITY.Index).Value.ToString
+                        SHADE = row.Cells(WSHADE.Index).Value.ToString
+                        GRIDENDS = Val(row.Cells(WPE.Index).Value)
+                        GRIDWT = Format((Val(row.Cells(WPE.Index).Value) * Val(TXTWARPTL.Text.Trim) * Val(row.Cells(WDENIER.Index).Value)) / 9000000, "0.000")
+                    Else
+                        SRNO = SRNO & "|" & row.Cells(WSRNO.Index).Value
+                        GRIDYARNQUALITY = GRIDYARNQUALITY & "|" & row.Cells(WQUALITY.Index).Value.ToString
+                        SHADE = SHADE & "|" & row.Cells(WSHADE.Index).Value.ToString
+                        GRIDENDS = GRIDENDS & "|" & Val(row.Cells(WPE.Index).Value)
+                        GRIDWT = GRIDWT & "|" & Format((Val(row.Cells(WPE.Index).Value) * Val(TXTWARPTL.Text.Trim) * Val(row.Cells(WDENIER.Index).Value)) / 9000000, "0.000")
+                    End If
+                End If
+            Next
+            alParaval.Add(SRNO)
+            alParaval.Add(GRIDYARNQUALITY)
+            alParaval.Add(SHADE)
+            alParaval.Add(GRIDENDS)
+            alParaval.Add(GRIDWT)
+
+            Dim objclsBeamMaster As New ClsBeamMaster
+            objclsBeamMaster.alparaval = alParaval
+
+            alParaval.Add(TEMPBEAMID)
+            IntResult = objclsBeamMaster.UPDATE()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHADE_Enter(sender As Object, e As EventArgs) Handles CMBSHADE.Enter
+        Try
+            If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, "", "")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHADE.Validating
+        Try
+            If CMBSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSHADE, e, Me, "", "")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTEXTRAENDS_Validated(sender As Object, e As EventArgs) Handles TXTEXTRAENDS.Validated
+        Try
+            CALC()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub DesignCardMaster_Leave(sender As Object, e As EventArgs) Handles Me.Leave
+
     End Sub
 End Class
