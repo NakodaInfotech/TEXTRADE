@@ -9224,10 +9224,10 @@ line1:
             Cursor.Current = Cursors.WaitCursor
             If CMBROLLITEM.Text.Trim = "" Then
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search("STOREITEM_ID, STOREITEM_NAME ", "", "STOREITEMMASTER ", "  and STOREITEM_CMPID =" & CmpId & " and STOREITEM_ROLLITEM = 'TRUE'  and STOREITEM_YEARID =" & YearId & CONDITION)
+                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ", "", "STORESTOCKREGISTER ", "  and CMPID =" & CmpId & "  and YEARID =" & YearId & CONDITION)
                 If dt.Rows.Count > 0 Then
-                    dt.DefaultView.Sort = "ACC_cmpname"
-                    CMBROLLITEM.DisplayMember = "ACC_cmpname"
+                    dt.DefaultView.Sort = "ITEMNAME"
+                    CMBROLLITEM.DisplayMember = "ITEMNAME"
                 End If
                 CMBROLLITEM.DataSource = dt
                 CMBROLLITEM.SelectedIndex = -1
