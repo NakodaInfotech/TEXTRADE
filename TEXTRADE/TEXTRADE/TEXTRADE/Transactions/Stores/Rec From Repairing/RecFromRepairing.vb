@@ -63,7 +63,7 @@ Public Class RecFromRepairing
     End Sub
 
     Sub getmax_BILL_no()
-        Dim DTTABLE As DataTable = getmax(" isnull(max(CONSUME_NO),0) + 1 ", "  CONSUMPTION ", " AND CONSUME_YEARID = " & YearId)
+        Dim DTTABLE As DataTable = getmax(" isnull(max(REP_NO),0) + 1 ", "  REPAIRING ", " AND CONSUME_YEARID = " & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTCONSUMENO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 

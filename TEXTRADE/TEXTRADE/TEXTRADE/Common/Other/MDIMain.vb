@@ -11223,7 +11223,7 @@ SKIPLINE:
         End Try
     End Sub
 
-<<<<<<< HEAD
+
     Private Sub STORESRECADD_Click(sender As Object, e As EventArgs) Handles STORESRECADD.Click
         Try
             Dim OBJMASTERTRANSFER As New RecFromRepairing
@@ -11243,7 +11243,5 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-=======
 
->>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
 End Class
