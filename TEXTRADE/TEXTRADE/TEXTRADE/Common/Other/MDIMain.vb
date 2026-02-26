@@ -11223,13 +11223,5 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub STORESSTOCKINEDIT_Click(sender As Object, e As EventArgs) Handles STORESSTOCKINEDIT.Click
-        Try
-            Dim OBJROLLSTOCKWARPER As New StoreStockRecoInDetails
-            OBJROLLSTOCKWARPER.MdiParent = Me
-            OBJROLLSTOCKWARPER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 End Class

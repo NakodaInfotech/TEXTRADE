@@ -1287,7 +1287,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.STORESSTOCKINEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6331,7 +6330,7 @@ Partial Class MDIMain
         '
         'STORESSTOCKADJUSTMENT_MASTER
         '
-        Me.STORESSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESSTOCKADD, Me.STORESSTOCKEDIT, Me.STORESSTOCKINEDIT})
+        Me.STORESSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESSTOCKADD, Me.STORESSTOCKEDIT})
         Me.STORESSTOCKADJUSTMENT_MASTER.Name = "STORESSTOCKADJUSTMENT_MASTER"
         Me.STORESSTOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(232, 22)
         Me.STORESSTOCKADJUSTMENT_MASTER.Text = "Store Stock Adjustment"
@@ -6339,13 +6338,13 @@ Partial Class MDIMain
         'STORESSTOCKADD
         '
         Me.STORESSTOCKADD.Name = "STORESSTOCKADD"
-        Me.STORESSTOCKADD.Size = New System.Drawing.Size(184, 22)
+        Me.STORESSTOCKADD.Size = New System.Drawing.Size(180, 22)
         Me.STORESSTOCKADD.Text = "Add New Stock"
         '
         'STORESSTOCKEDIT
         '
         Me.STORESSTOCKEDIT.Name = "STORESSTOCKEDIT"
-        Me.STORESSTOCKEDIT.Size = New System.Drawing.Size(184, 22)
+        Me.STORESSTOCKEDIT.Size = New System.Drawing.Size(180, 22)
         Me.STORESSTOCKEDIT.Text = "Edit Existing Stock"
         '
         'REGISTER_MAIN
@@ -9410,12 +9409,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'STORESSTOCKINEDIT
-        '
-        Me.STORESSTOCKINEDIT.Name = "STORESSTOCKINEDIT"
-        Me.STORESSTOCKINEDIT.Size = New System.Drawing.Size(184, 22)
-        Me.STORESSTOCKINEDIT.Text = "Edit Existing Stock In"
-        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10706,5 +10699,4 @@ Partial Class MDIMain
     Friend WithEvents STORESSTOCKADD As ToolStripMenuItem
     Friend WithEvents STORESSTOCKEDIT As ToolStripMenuItem
     Friend WithEvents MASTERTRANSFER As ToolStripMenuItem
-    Friend WithEvents STORESSTOCKINEDIT As ToolStripMenuItem
 End Class
