@@ -537,6 +537,7 @@ Public Class StoreStockReco
             TXTQTY.Clear()
             CMBUNIT.Text = ""
             TXTRATE.Clear()
+            CMBSTOREITEMNAME.Focus()
 
         Catch ex As Exception
             Throw ex
@@ -560,7 +561,7 @@ Public Class StoreStockReco
                 TXTDESC.Text = GRIDSTOCKIN.Item(EGDESC.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDSTOCKIN.CurrentRow.Index
-                TXTSRNO.Focus()
+                CMBSTOREITEMNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
