@@ -63,8 +63,8 @@ Public Class RecFromRepairing
     End Sub
 
     Sub getmax_BILL_no()
-        Dim DTTABLE As DataTable = getmax(" isnull(max(REP_NO),0) + 1 ", "  REPAIRING ", " AND CONSUME_YEARID = " & YearId)
-        If DTTABLE.Rows.Count > 0 Then TXTCONSUMENO.Text = DTTABLE.Rows(0).Item(0)
+        Dim DTTABLE As DataTable = getmax(" isnull(max(REP_NO),0) + 1 ", "  RECFROMREPAIRING ", " AND REP_YEARID = " & YearId)
+        If DTTABLE.Rows.Count > 0 Then TXTRECNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
     Private Sub RecFromRepairing_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -128,7 +128,7 @@ Public Class RecFromRepairing
                     Exit Sub
                 End If
 
-                Dim OBJCONSUME As New ClsStoreConsumption
+                Dim OBJCONSUME As New ClsRecFromReparing
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(TEMPRECNO)
                 ALPARAVAL.Add(YearId)
@@ -138,8 +138,8 @@ Public Class RecFromRepairing
                 If dttable.Rows.Count > 0 Then
                     For Each dr As DataRow In dttable.Rows
 
-                        TXTCONSUMENO.Text = TEMPRECNO
-                        RECEDATE.Text = Format(Convert.ToDateTime(dr("CONSUMEDATE")).Date, "dd/MM/yyyy")
+                        TXTRECNO.Text = TEMPRECNO
+                        RECEDATE.Text = Format(Convert.ToDateTime(dr("RECDATE")).Date, "dd/MM/yyyy")
                         CMBGODOWN.Text = dr("GODOWN")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
@@ -290,7 +290,7 @@ Public Class RecFromRepairing
             Cursor.Current = Cursors.WaitCursor
             GRIDRECREPAIRING.RowCount = 0
 LINE1:
-            TEMPRECNO = Val(TXTCONSUMENO.Text) - 1
+            TEMPRECNO = Val(TXTRECNO.Text) - 1
             If TEMPRECNO > 0 Then
                 EDIT = True
                 RecFromRepairing_Load(sender, e)
@@ -299,7 +299,7 @@ LINE1:
                 EDIT = False
             End If
             If GRIDRECREPAIRING.RowCount = 0 And TEMPRECNO > 1 Then
-                TXTCONSUMENO.Text = TEMPRECNO
+                TXTRECNO.Text = TEMPRECNO
                 GoTo LINE1
             End If
         Catch ex As Exception
@@ -320,11 +320,11 @@ LINE1:
             End If
             GRIDRECREPAIRING.RowCount = 0
 LINE1:
-            TEMPRECNO = Val(TXTCONSUMENO.Text) + 1
+            TEMPRECNO = Val(TXTRECNO.Text) + 1
             getmax_BILL_no()
-            Dim MAXNO As Integer = TXTCONSUMENO.Text.Trim
+            Dim MAXNO As Integer = TXTRECNO.Text.Trim
             CLEAR()
-            If Val(TXTCONSUMENO.Text) - 1 >= TEMPRECNO Then
+            If Val(TXTRECNO.Text) - 1 >= TEMPRECNO Then
                 EDIT = True
                 RecFromRepairing_Load(sender, e)
             Else
@@ -332,7 +332,7 @@ LINE1:
                 EDIT = False
             End If
             If GRIDRECREPAIRING.RowCount = 0 And TEMPRECNO < MAXNO Then
-                TXTCONSUMENO.Text = TEMPRECNO
+                TXTRECNO.Text = TEMPRECNO
                 GoTo LINE1
             End If
         Catch ex As Exception
@@ -388,10 +388,10 @@ LINE1:
 
                 If MsgBox("Delete Consumption?", MsgBoxStyle.YesNo) = vbYes Then
                     Dim alParaval As New ArrayList
-                    alParaval.Add(TXTCONSUMENO.Text.Trim)
+                    alParaval.Add(TXTRECNO.Text.Trim)
                     alParaval.Add(YearId)
 
-                    Dim ClsDO As New ClsStoreConsumption
+                    Dim ClsDO As New ClsRecFromReparing
                     ClsDO.alParaval = alParaval
                     Dim IntResult As Integer = ClsDO.DELETE()
                     MsgBox("Entry Deleted Successfully")

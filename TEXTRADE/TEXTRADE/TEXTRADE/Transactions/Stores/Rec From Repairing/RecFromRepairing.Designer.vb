@@ -64,7 +64,7 @@ Partial Class RecFromRepairing
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.RECEDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.TXTCONSUMENO = New System.Windows.Forms.TextBox()
+        Me.TXTRECNO = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.TXTQTY = New System.Windows.Forms.TextBox()
@@ -101,7 +101,7 @@ Partial Class RecFromRepairing
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.CMBNAME)
         Me.BlendPanel1.Controls.Add(Me.RECEDATE)
-        Me.BlendPanel1.Controls.Add(Me.TXTCONSUMENO)
+        Me.BlendPanel1.Controls.Add(Me.TXTRECNO)
         Me.BlendPanel1.Controls.Add(Me.Label12)
         Me.BlendPanel1.Controls.Add(Me.lblgrndate)
         Me.BlendPanel1.Controls.Add(Me.TXTQTY)
@@ -516,17 +516,17 @@ Partial Class RecFromRepairing
         Me.RECEDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.RECEDATE.ValidatingType = GetType(Date)
         '
-        'TXTCONSUMENO
+        'TXTRECNO
         '
-        Me.TXTCONSUMENO.BackColor = System.Drawing.Color.Linen
-        Me.TXTCONSUMENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCONSUMENO.Location = New System.Drawing.Point(615, 43)
-        Me.TXTCONSUMENO.Name = "TXTCONSUMENO"
-        Me.TXTCONSUMENO.ReadOnly = True
-        Me.TXTCONSUMENO.Size = New System.Drawing.Size(82, 23)
-        Me.TXTCONSUMENO.TabIndex = 0
-        Me.TXTCONSUMENO.TabStop = False
-        Me.TXTCONSUMENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTRECNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTRECNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRECNO.Location = New System.Drawing.Point(615, 43)
+        Me.TXTRECNO.Name = "TXTRECNO"
+        Me.TXTRECNO.ReadOnly = True
+        Me.TXTRECNO.Size = New System.Drawing.Size(82, 23)
+        Me.TXTRECNO.TabIndex = 0
+        Me.TXTRECNO.TabStop = False
+        Me.TXTRECNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label12
         '
@@ -641,7 +641,7 @@ Partial Class RecFromRepairing
     Friend WithEvents Label6 As Label
     Friend WithEvents CMBNAME As ComboBox
     Friend WithEvents RECEDATE As MaskedTextBox
-    Friend WithEvents TXTCONSUMENO As TextBox
+    Friend WithEvents TXTRECNO As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents lblgrndate As Label
     Friend WithEvents TXTQTY As TextBox
