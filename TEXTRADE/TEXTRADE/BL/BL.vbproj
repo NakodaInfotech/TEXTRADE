@@ -405,6 +405,7 @@
     <Compile Include="Transactions\Sale\ClsTransChallan.vb" />
     <Compile Include="Transactions\Sample\ClsSampleStockTaking.vb" />
     <Compile Include="Transactions\Stores\ClsInterGodownTransferStores.vb" />
+    <Compile Include="Transactions\Stores\ClsRecFromReparing.vb" />
     <Compile Include="Transactions\Stores\ClsStoreConsumption.vb" />
     <Compile Include="Transactions\Stores\ClsStoreInward.vb" />
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
