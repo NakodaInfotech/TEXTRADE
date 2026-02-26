@@ -32,13 +32,12 @@ Partial Class StoreConsumptionDetails
         Me.GDEPARTMENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMACHINENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTAKENBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
@@ -166,6 +165,26 @@ Partial Class StoreConsumptionDetails
         Me.GITEMNAME.VisibleIndex = 6
         Me.GITEMNAME.Width = 250
         '
+        'GMACHINENAME
+        '
+        Me.GMACHINENAME.Caption = "Machine Name"
+        Me.GMACHINENAME.FieldName = "MACHINE"
+        Me.GMACHINENAME.Name = "GMACHINENAME"
+        Me.GMACHINENAME.OptionsColumn.AllowEdit = False
+        Me.GMACHINENAME.Visible = True
+        Me.GMACHINENAME.VisibleIndex = 9
+        Me.GMACHINENAME.Width = 150
+        '
+        'GTAKENBY
+        '
+        Me.GTAKENBY.Caption = "Taken By"
+        Me.GTAKENBY.FieldName = "TAKENBY"
+        Me.GTAKENBY.Name = "GTAKENBY"
+        Me.GTAKENBY.OptionsColumn.AllowEdit = False
+        Me.GTAKENBY.Visible = True
+        Me.GTAKENBY.VisibleIndex = 10
+        Me.GTAKENBY.Width = 120
+        '
         'GQTY
         '
         Me.GQTY.Caption = "Qty"
@@ -187,26 +206,6 @@ Partial Class StoreConsumptionDetails
         Me.GUNIT.Visible = True
         Me.GUNIT.VisibleIndex = 8
         '
-        'GMACHINENAME
-        '
-        Me.GMACHINENAME.Caption = "Machine Name"
-        Me.GMACHINENAME.FieldName = "MACHINE"
-        Me.GMACHINENAME.Name = "GMACHINENAME"
-        Me.GMACHINENAME.OptionsColumn.AllowEdit = False
-        Me.GMACHINENAME.Visible = True
-        Me.GMACHINENAME.VisibleIndex = 9
-        Me.GMACHINENAME.Width = 150
-        '
-        'GTAKENBY
-        '
-        Me.GTAKENBY.Caption = "Taken By"
-        Me.GTAKENBY.FieldName = "TAKENBY"
-        Me.GTAKENBY.Name = "GTAKENBY"
-        Me.GTAKENBY.OptionsColumn.AllowEdit = False
-        Me.GTAKENBY.Visible = True
-        Me.GTAKENBY.VisibleIndex = 10
-        Me.GTAKENBY.Width = 120
-        '
         'CHKDONE
         '
         Me.CHKDONE.AutoHeight = False
@@ -214,21 +213,12 @@ Partial Class StoreConsumptionDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "&Refresh"
         '
         'TOOLEXCEL
         '
@@ -327,7 +317,6 @@ Partial Class StoreConsumptionDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMACHINENAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTAKENBY As DevExpress.XtraGrid.Columns.GridColumn

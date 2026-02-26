@@ -99,7 +99,7 @@ Public Class StoreConsumptionDetails
         End Try
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
         Try
             fillgrid()
         Catch ex As Exception
