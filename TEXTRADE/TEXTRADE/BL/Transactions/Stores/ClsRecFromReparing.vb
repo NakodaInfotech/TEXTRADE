@@ -28,45 +28,36 @@ Public Class ClsRecFromReparing
                 With alParameter
 
                     Dim I As Integer = 0
-                    .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@DEPARTMENT", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@ISSUETO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
-                    I = I + 1
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
 
-                    .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
-                    I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@QTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                I = I + 1
 
-                    .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                    I = I + 1
 
-                    .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@QTY", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@TAKENBY", alParaval(I)))
-                    I = I + 1
-
-                End With
+            End With
 
                 DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
 
@@ -86,47 +77,36 @@ Public Class ClsRecFromReparing
                 With alParameter
 
                     Dim I As Integer = 0
-                    .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@DEPARTMENT", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@ISSUETO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
-                    I = I + 1
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
 
-                    .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
-                    I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@QTY", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                I = I + 1
 
-                    .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                    I = I + 1
-
-                    .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@QTY", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
-                    I = I + 1
-
-                    .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
-                    I = I + 1
-                    .Add(New SqlClient.SqlParameter("@TAKENBY", alParaval(I)))
-                    I = I + 1
-
-                    .Add(New SqlClient.SqlParameter("@CONSUMENO", alParaval(I)))
-                    I = I + 1
+                .Add(New SqlClient.SqlParameter("@RECNO", alParaval(I)))
+                I = I + 1
                 End With
 
                 intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -144,8 +124,8 @@ Public Class ClsRecFromReparing
             Dim strCommand As String = "SP_SRECFROMREPARING_FOR_EDIT"
             Dim alParameter As New ArrayList
                 With alParameter
-                    .Add(New SqlClient.SqlParameter("@CONSUMENO", alParaval(0)))
-                    .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@RECNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
                 End With
                 dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
 
@@ -161,8 +141,8 @@ Public Class ClsRecFromReparing
             Dim strCommand As String = "SP_TRANS_STORES_RECFROMREPARING_DELETE"
             Dim alParameter As New ArrayList
                 With alParameter
-                    .Add(New SqlClient.SqlParameter("@CONSUMENO", alParaval(0)))
-                    .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@RECNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
                 End With
                 intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
             Catch ex As Exception

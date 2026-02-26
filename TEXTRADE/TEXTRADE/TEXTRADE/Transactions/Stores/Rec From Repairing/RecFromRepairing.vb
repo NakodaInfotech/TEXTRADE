@@ -19,12 +19,12 @@ Public Class RecFromRepairing
     Private Sub cmdclear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDCLEAR.Click
         CLEAR()
         EDIT = False
-        CONSUMEDATE.Focus()
+        RECEDATE.Focus()
     End Sub
 
     Sub CLEAR()
 
-        CONSUMEDATE.Text = Now.Date
+        RECEDATE.Text = Now.Date
         tstxtbillno.Clear()
 
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
@@ -139,10 +139,9 @@ Public Class RecFromRepairing
                     For Each dr As DataRow In dttable.Rows
 
                         TXTCONSUMENO.Text = TEMPRECNO
-                        CONSUMEDATE.Text = Format(Convert.ToDateTime(dr("CONSUMEDATE")).Date, "dd/MM/yyyy")
+                        RECEDATE.Text = Format(Convert.ToDateTime(dr("CONSUMEDATE")).Date, "dd/MM/yyyy")
                         CMBGODOWN.Text = dr("GODOWN")
-                        CMBNAME.Text = Convert.ToString(dr("DEPARTMENT").ToString)
-                        CMBNAME.Text = dr("NAME")
+                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
 
                         GRIDRECREPAIRING.Rows.Add(dr("GRIDSRNO"), dr("ITEMNAME"), dr("DESC"), Val(dr("QTY")), dr("QTYUNIT"))
@@ -172,7 +171,7 @@ Public Class RecFromRepairing
 
             Dim alParaval As New ArrayList
 
-            alParaval.Add(Format(Convert.ToDateTime(CONSUMEDATE.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(Format(Convert.ToDateTime(RECEDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBGODOWN.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(Val(LBLTOTALQTY.Text.Trim))
@@ -216,7 +215,7 @@ Public Class RecFromRepairing
 
 
 
-            Dim OBJCONSUME As New ClsStoreConsumption
+            Dim OBJCONSUME As New ClsRecFromReparing
             OBJCONSUME.alParaval = alParaval
             If EDIT = False Then
                 If USERADD = False Then
@@ -240,7 +239,7 @@ Public Class RecFromRepairing
             End If
 
             CLEAR()
-            CONSUMEDATE.Focus()
+            RECEDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -253,12 +252,12 @@ Public Class RecFromRepairing
     Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
 
-        If CONSUMEDATE.Text = "__/__/____" Then
-            EP.SetError(CONSUMEDATE, " Please Enter Proper Date")
+        If RECEDATE.Text = "__/__/____" Then
+            EP.SetError(RECEDATE, " Please Enter Proper Date")
             bln = False
         Else
-            If Not datecheck(CONSUMEDATE.Text) Then
-                EP.SetError(CONSUMEDATE, "Date not in Accounting Year")
+            If Not datecheck(RECEDATE.Text) Then
+                EP.SetError(RECEDATE, "Date not in Accounting Year")
                 bln = False
             End If
         End If
@@ -283,34 +282,6 @@ Public Class RecFromRepairing
     End Function
 
     Private Sub toolprevious_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolprevious.Click
-        '        Try
-        'LINE1:
-        '            TEMPRECNO = Val(TXTCONSUMENO.Text) - 1
-        'Line2:
-        '            If TEMPRECNO > 0 Then
-
-        '                Dim OBJCMN As New ClsCommon
-        '                Dim DT As DataTable = OBJCMN.search(" CONSUME_NO ", "", "  CONSUMPTION ", " AND CONSUME_NO = '" & TEMPRECNO & "' AND CONSUMPTION.CONSUME_YEARID = " & YearId)
-        '                If DT.Rows.Count > 0 Then
-        '                    EDIT = True
-        '                    RecFromRepairing_Load(sender, e)
-        '                Else
-        '                    TEMPRECNO = Val(TEMPRECNO - 1)
-        '                    GoTo Line2
-        '                End If
-        '            Else
-        '                clear()
-        '                EDIT = False
-        '            End If
-
-        '            If Val(TXTQTY.Text.Trim) = 0 And TEMPRECNO > 1 Then
-        '                TXTCONSUMENO.Text = TEMPRECNO
-        '                GoTo LINE1
-        '            End If
-        '        Catch ex As Exception
-        '            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        '        End Try
-
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -341,26 +312,6 @@ LINE1:
     End Sub
 
     Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolnext.Click
-        '        Try
-        'LINE1:
-        '            TEMPRECNO = Val(TXTCONSUMENO.Text) + 1
-        '            getmax_BILL_no()
-        '            Dim MAXNO As Integer = TXTCONSUMENO.Text.Trim
-        '            clear()
-        '            If Val(TXTCONSUMENO.Text) - 1 >= TEMPRECNO Then
-        '                EDIT = True
-        '                RecFromRepairing_Load(sender, e)
-        '            Else
-        '                clear()
-        '                EDIT = False
-        '            End If
-        '            If Val(TXTQTY.Text.Trim) = 0 And TEMPRECNO < MAXNO Then
-        '                TXTCONSUMENO.Text = TEMPRECNO
-        '                GoTo LINE1
-        '            End If
-        '        Catch ex As Exception
-        '            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        '        End Try
 
         Try
             If USEREDIT = False And USERVIEW = False Then
@@ -459,21 +410,21 @@ LINE1:
         Call cmddelete_Click(sender, e)
     End Sub
 
-    Private Sub CONSUMEDATE_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles CONSUMEDATE.GotFocus
-        CONSUMEDATE.SelectionStart = 0
+    Private Sub CONSUMEDATE_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles RECEDATE.GotFocus
+        RECEDATE.SelectionStart = 0
     End Sub
 
-    Private Sub CONSUMEDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CONSUMEDATE.Validating
+    Private Sub CONSUMEDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles RECEDATE.Validating
         Try
-            If CONSUMEDATE.Text.Trim <> "__/__/____" Then
+            If RECEDATE.Text.Trim <> "__/__/____" Then
                 'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
                 Dim TEMP As DateTime
-                If Not DateTime.TryParse(CONSUMEDATE.Text, TEMP) Then
+                If Not DateTime.TryParse(RECEDATE.Text, TEMP) Then
                     MsgBox("Enter Proper Date")
                     e.Cancel = True
                     Exit Sub
                 Else
-                    If Not datecheck(CONSUMEDATE.Text) Then
+                    If Not datecheck(RECEDATE.Text) Then
                         MsgBox("Date not in Accounting Year")
                         e.Cancel = True
 
