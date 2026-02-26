@@ -83,7 +83,7 @@ Public Class StoreStockRecoDetails
         End Try
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
         Try
             If USERADD = False Then
                 MsgBox("Insufficient Rights")
@@ -103,7 +103,27 @@ Public Class StoreStockRecoDetails
         End Try
     End Sub
 
-    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+    Private Sub TOOLSTOCKIN_Click(sender As Object, e As EventArgs)
+        Try
+            Dim OBJSTOCK As New StoreStockRecoInDetails
+            OBJSTOCK.MdiParent = MDIMain
+            OBJSTOCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLSTOCKOUT_Click(sender As Object, e As EventArgs) Handles TOOLSTOCKOUT.Click
+        Try
+            Dim OBJSTCK As New StoreStockRecoOutDetails
+            OBJSTCK.MdiParent = MDIMain
+            OBJSTCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs)
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -125,7 +145,7 @@ Public Class StoreStockRecoDetails
     End Sub
 
 
-    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs)
         Try
 
             Dim PATH As String = Application.StartupPath & "\Store Stock Details.XLS"

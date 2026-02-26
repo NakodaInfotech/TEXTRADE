@@ -1287,9 +1287,12 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+<<<<<<< HEAD
         Me.STORESRECFROMREPAIRING_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESRECADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESRECEDIT = New System.Windows.Forms.ToolStripMenuItem()
+=======
+>>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6342,13 +6345,21 @@ Partial Class MDIMain
         '
         Me.STORESSTOCKADD.Name = "STORESSTOCKADD"
         Me.STORESSTOCKADD.Size = New System.Drawing.Size(180, 22)
+<<<<<<< HEAD
         Me.STORESSTOCKADD.Text = "Add New Entry"
+=======
+        Me.STORESSTOCKADD.Text = "Add New Stock"
+>>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         '
         'STORESSTOCKEDIT
         '
         Me.STORESSTOCKEDIT.Name = "STORESSTOCKEDIT"
         Me.STORESSTOCKEDIT.Size = New System.Drawing.Size(180, 22)
+<<<<<<< HEAD
         Me.STORESSTOCKEDIT.Text = "Edit Existing Entry"
+=======
+        Me.STORESSTOCKEDIT.Text = "Edit Existing Stock"
+>>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         '
         'REGISTER_MAIN
         '
@@ -9412,6 +9423,7 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+<<<<<<< HEAD
         'STORESRECFROMREPAIRING_MASTER
         '
         Me.STORESRECFROMREPAIRING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESRECADD, Me.STORESRECEDIT})
@@ -9431,6 +9443,8 @@ Partial Class MDIMain
         Me.STORESRECEDIT.Size = New System.Drawing.Size(180, 22)
         Me.STORESRECEDIT.Text = "Edit Existing Entry"
         '
+=======
+>>>>>>> bd3b49d2e85d6c0f017f1f0ec1ca1c8566751353
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
