@@ -2839,6 +2839,18 @@
     <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.Designer.vb">
+      <DependentUpon>RecFromRepairing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.Designer.vb">
+      <DependentUpon>RecFromRepairingDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.Designer.vb">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
     </Compile>
@@ -10514,6 +10526,12 @@
     <EmbeddedResource Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.resx">
       <DependentUpon>IssueToRepairingDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.resx">
+      <DependentUpon>RecFromRepairing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.resx">
+      <DependentUpon>RecFromRepairingDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.resx">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
     </EmbeddedResource>
@@ -14794,9 +14812,7 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transactions\Stores\Rec From Repairing\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
