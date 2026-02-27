@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class StoreStockFilter
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,12 @@ Partial Class StoreStockFilter
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CMBPARTYNAME = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.RBPARTYWISE = New System.Windows.Forms.RadioButton()
         Me.CMBGODOWN = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RBITEMDTLS = New System.Windows.Forms.RadioButton()
@@ -37,9 +40,8 @@ Partial Class StoreStockFilter
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RBPARTYWISE = New System.Windows.Forms.RadioButton()
-        Me.CMBPARTYNAME = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
+        Me.cmbcode = New System.Windows.Forms.ComboBox()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -47,6 +49,8 @@ Partial Class StoreStockFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.TXTADD)
+        Me.BlendPanel2.Controls.Add(Me.cmbcode)
         Me.BlendPanel2.Controls.Add(Me.CMBPARTYNAME)
         Me.BlendPanel2.Controls.Add(Me.Label3)
         Me.BlendPanel2.Controls.Add(Me.RBPARTYWISE)
@@ -65,6 +69,43 @@ Partial Class StoreStockFilter
         Me.BlendPanel2.Name = "BlendPanel2"
         Me.BlendPanel2.Size = New System.Drawing.Size(391, 350)
         Me.BlendPanel2.TabIndex = 0
+        '
+        'CMBPARTYNAME
+        '
+        Me.CMBPARTYNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBPARTYNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBPARTYNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBPARTYNAME.FormattingEnabled = True
+        Me.CMBPARTYNAME.Location = New System.Drawing.Point(113, 81)
+        Me.CMBPARTYNAME.MaxDropDownItems = 14
+        Me.CMBPARTYNAME.Name = "CMBPARTYNAME"
+        Me.CMBPARTYNAME.Size = New System.Drawing.Size(230, 22)
+        Me.CMBPARTYNAME.TabIndex = 747
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(43, 85)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(68, 14)
+        Me.Label3.TabIndex = 748
+        Me.Label3.Text = "Party Name"
+        '
+        'RBPARTYWISE
+        '
+        Me.RBPARTYWISE.AutoSize = True
+        Me.RBPARTYWISE.BackColor = System.Drawing.Color.Transparent
+        Me.RBPARTYWISE.Checked = True
+        Me.RBPARTYWISE.Location = New System.Drawing.Point(96, 163)
+        Me.RBPARTYWISE.Name = "RBPARTYWISE"
+        Me.RBPARTYWISE.Size = New System.Drawing.Size(180, 19)
+        Me.RBPARTYWISE.TabIndex = 746
+        Me.RBPARTYWISE.TabStop = True
+        Me.RBPARTYWISE.Text = "Party Wise Issue And Repair"
+        Me.RBPARTYWISE.UseVisualStyleBackColor = False
         '
         'CMBGODOWN
         '
@@ -235,42 +276,27 @@ Partial Class StoreStockFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RBPARTYWISE
+        'TXTADD
         '
-        Me.RBPARTYWISE.AutoSize = True
-        Me.RBPARTYWISE.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTYWISE.Checked = True
-        Me.RBPARTYWISE.Location = New System.Drawing.Point(96, 163)
-        Me.RBPARTYWISE.Name = "RBPARTYWISE"
-        Me.RBPARTYWISE.Size = New System.Drawing.Size(178, 19)
-        Me.RBPARTYWISE.TabIndex = 746
-        Me.RBPARTYWISE.TabStop = True
-        Me.RBPARTYWISE.Text = "Party Wise Issue And reapir"
-        Me.RBPARTYWISE.UseVisualStyleBackColor = False
+        Me.TXTADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTADD.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTADD.Location = New System.Drawing.Point(356, 319)
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.Size = New System.Drawing.Size(29, 21)
+        Me.TXTADD.TabIndex = 853
+        Me.TXTADD.TabStop = False
+        Me.TXTADD.Visible = False
         '
-        'CMBPARTYNAME
+        'cmbcode
         '
-        Me.CMBPARTYNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBPARTYNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBPARTYNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBPARTYNAME.FormattingEnabled = True
-        Me.CMBPARTYNAME.Location = New System.Drawing.Point(113, 81)
-        Me.CMBPARTYNAME.MaxDropDownItems = 14
-        Me.CMBPARTYNAME.Name = "CMBPARTYNAME"
-        Me.CMBPARTYNAME.Size = New System.Drawing.Size(230, 22)
-        Me.CMBPARTYNAME.TabIndex = 747
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(43, 85)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(68, 14)
-        Me.Label3.TabIndex = 748
-        Me.Label3.Text = "Party Name"
+        Me.cmbcode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbcode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbcode.FormattingEnabled = True
+        Me.cmbcode.Location = New System.Drawing.Point(356, 317)
+        Me.cmbcode.Name = "cmbcode"
+        Me.cmbcode.Size = New System.Drawing.Size(25, 23)
+        Me.cmbcode.TabIndex = 852
+        Me.cmbcode.Visible = False
         '
         'StoreStockFilter
         '
@@ -309,4 +335,6 @@ Partial Class StoreStockFilter
     Friend WithEvents RBPARTYWISE As RadioButton
     Friend WithEvents CMBPARTYNAME As ComboBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents TXTADD As TextBox
+    Friend WithEvents cmbcode As ComboBox
 End Class

@@ -300,6 +300,7 @@ Partial Class DesignCardMaster
         Me.FCOST = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label86 = New System.Windows.Forms.Label()
         Me.cmdcopymatching = New System.Windows.Forms.Button()
+        Me.cmbgridshade = New System.Windows.Forms.ComboBox()
         Me.TBDRAWING = New System.Windows.Forms.TabPage()
         Me.cmdbtn1 = New System.Windows.Forms.Button()
         Me.TXTTOTALDRAWDENTS = New System.Windows.Forms.TextBox()
@@ -508,6 +509,7 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.cmbweftgridshade = New System.Windows.Forms.ComboBox()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -577,7 +579,7 @@ Partial Class DesignCardMaster
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(663, 35)
+        Me.Label7.Location = New System.Drawing.Point(338, 35)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(40, 15)
         Me.Label7.TabIndex = 1038
@@ -589,7 +591,7 @@ Partial Class DesignCardMaster
         Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBSHADE.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBSHADE.FormattingEnabled = True
-        Me.CMBSHADE.Location = New System.Drawing.Point(709, 32)
+        Me.CMBSHADE.Location = New System.Drawing.Point(384, 32)
         Me.CMBSHADE.Name = "CMBSHADE"
         Me.CMBSHADE.Size = New System.Drawing.Size(157, 23)
         Me.CMBSHADE.TabIndex = 3
@@ -791,7 +793,7 @@ Partial Class DesignCardMaster
         Me.lbldesign.BackColor = System.Drawing.Color.Transparent
         Me.lbldesign.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbldesign.ForeColor = System.Drawing.Color.Black
-        Me.lbldesign.Location = New System.Drawing.Point(345, 36)
+        Me.lbldesign.Location = New System.Drawing.Point(552, 36)
         Me.lbldesign.Name = "lbldesign"
         Me.lbldesign.Size = New System.Drawing.Size(66, 14)
         Me.lbldesign.TabIndex = 865
@@ -2013,10 +2015,12 @@ Partial Class DesignCardMaster
         Me.TBWEFT.Controls.Add(Me.GRIDWEFT)
         Me.TBWEFT.Controls.Add(Me.Label86)
         Me.TBWEFT.Controls.Add(Me.cmdcopymatching)
-        Me.TBWEFT.Location = New System.Drawing.Point(4, 22)
+        Me.TBWEFT.Controls.Add(Me.cmbgridshade)
+        Me.TBWEFT.Controls.Add(Me.cmbweftgridshade)
+        Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBWEFT.Size = New System.Drawing.Size(1436, 241)
+        Me.TBWEFT.Size = New System.Drawing.Size(1436, 239)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "3. Warp Matching && Weft Matching"
         '
@@ -2072,7 +2076,7 @@ Partial Class DesignCardMaster
         Me.GBWARP.Controls.Add(Me.CMDWARPCLOSE)
         Me.GBWARP.Controls.Add(Me.GRIDWARPDESC)
         Me.GBWARP.Controls.Add(Me.CMBWARPSHADE)
-        Me.GBWARP.Location = New System.Drawing.Point(470, 22)
+        Me.GBWARP.Location = New System.Drawing.Point(502, 22)
         Me.GBWARP.Name = "GBWARP"
         Me.GBWARP.Size = New System.Drawing.Size(211, 199)
         Me.GBWARP.TabIndex = 12
@@ -3135,6 +3139,17 @@ Partial Class DesignCardMaster
         Me.cmdcopymatching.Text = "Copy"
         Me.cmdcopymatching.UseVisualStyleBackColor = True
         '
+        'cmbgridshade
+        '
+        Me.cmbgridshade.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbgridshade.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbgridshade.FormattingEnabled = True
+        Me.cmbgridshade.Location = New System.Drawing.Point(518, 22)
+        Me.cmbgridshade.Name = "cmbgridshade"
+        Me.cmbgridshade.Size = New System.Drawing.Size(101, 23)
+        Me.cmbgridshade.TabIndex = 6
+        Me.cmbgridshade.Visible = False
+        '
         'TBDRAWING
         '
         Me.TBDRAWING.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -3620,7 +3635,7 @@ Partial Class DesignCardMaster
         Me.CMBDESIGNNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGNNO.BackColor = System.Drawing.SystemColors.Window
         Me.CMBDESIGNNO.FormattingEnabled = True
-        Me.CMBDESIGNNO.Location = New System.Drawing.Point(414, 32)
+        Me.CMBDESIGNNO.Location = New System.Drawing.Point(621, 32)
         Me.CMBDESIGNNO.Name = "CMBDESIGNNO"
         Me.CMBDESIGNNO.Size = New System.Drawing.Size(233, 23)
         Me.CMBDESIGNNO.TabIndex = 2
@@ -5544,6 +5559,17 @@ Partial Class DesignCardMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'cmbweftgridshade
+        '
+        Me.cmbweftgridshade.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbweftgridshade.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbweftgridshade.FormattingEnabled = True
+        Me.cmbweftgridshade.Location = New System.Drawing.Point(1194, 22)
+        Me.cmbweftgridshade.Name = "cmbweftgridshade"
+        Me.cmbweftgridshade.Size = New System.Drawing.Size(100, 23)
+        Me.cmbweftgridshade.TabIndex = 4
+        Me.cmbweftgridshade.Visible = False
+        '
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -6027,4 +6053,6 @@ Partial Class DesignCardMaster
     Friend WithEvents TXTTOTALEXTRAENDS As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents TXTEXTRAENDS As TextBox
+    Friend WithEvents cmbgridshade As ComboBox
+    Friend WithEvents cmbweftgridshade As ComboBox
 End Class
