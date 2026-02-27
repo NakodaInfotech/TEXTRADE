@@ -33,7 +33,7 @@ Public Class SelectStoreStock
 
             Dim objcmn As New ClsCommon
             Dim dt As DataTable
-            dt = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK,ITEMNAME , SUM(QTY) AS QTY ,UNIT ", "", "STORESTOCKREGISTER", " " & WHERE & " AND  CMPID = " & CmpId & " AND YEARID = " & YearId & " GROUP BY  ITEMNAME , UNIT  HAVING SUM(QTY)> 0")
+            dt = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK,ITEMNAME , SUM(QTY) - SUM(ISSQTY) AS QTY ,UNIT ", "", "STORESTOCKREGISTER", " " & WHERE & " AND  CMPID = " & CmpId & " AND YEARID = " & YearId & " GROUP BY  ITEMNAME , UNIT  HAVING SUM(QTY)> 0")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
