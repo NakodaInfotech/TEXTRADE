@@ -3140,10 +3140,15 @@ LINE1:
                     alParaval.Add(CmpId)
                     alParaval.Add(Locationid)
                     alParaval.Add(YearId)
+                    alParaval.Add(CMBITEMNAME.Text.Trim)
 
                     Dim Clsgrn As New ClsDesignCardMaster()
                     Clsgrn.alParaval = alParaval
                     IntResult = Clsgrn.Delete()
+                    'Dim OBJCMN As New ClsCommon
+                    'Dim DT1 As DataTable = OBJCMN.SEARCH("BEAM_ID ", "", "  BEAMMASTER ", " and BEAM_NAME = '" & CMBITEMNAME.Text & "' and BEAM_YEARid = " & YearId)
+                    'If DT1.Rows.Count > 0 Then TEMPBEAMID = DT1.Rows(0).Item("BEAM_ID")
+
                     MsgBox("Design Card Deleted")
                     clear()
                     EDIT = False
