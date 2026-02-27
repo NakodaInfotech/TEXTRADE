@@ -11215,9 +11215,10 @@ SKIPLINE:
 
     Private Sub MASTERTRANSFER_Click(sender As Object, e As EventArgs) Handles MASTERTRANSFER.Click
         Try
-            Dim OBJMASTERTRANSFER As New MasterTransfer
-            OBJMASTERTRANSFER.MdiParent = Me
-            OBJMASTERTRANSFER.Show()
+            Dim OBJYEAR As New YearTransfer
+            OBJYEAR.FRMSTRING = "MASTERTRANSFER"
+            OBJYEAR.MdiParent = Me
+            OBJYEAR.Show()
         Catch ex As Exception
             Throw ex
         End Try
