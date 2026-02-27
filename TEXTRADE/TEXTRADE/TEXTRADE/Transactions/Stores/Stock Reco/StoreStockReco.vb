@@ -464,17 +464,14 @@ Public Class StoreStockReco
             End If
 
             Dim DTTABLE As New DataTable
-            Dim OBJSELECTGDN As New SelectStock
+            Dim OBJSELECTGDN As New SelectStoreStock
             OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
             OBJSELECTGDN.ShowDialog()
-            DTTABLE = OBJSELECTGDN.DTNEW
 
             If DTTABLE.Rows.Count > 0 Then
-                TXTCHALLANNO.Text = DTTABLE.Rows(0).Item("CHALLANNO").ToString
-
                 For Each dr As DataRow In DTTABLE.Rows
-                    GRIDSTOCKOUT.Rows.Add(0, dr("ITEMNAME"), dr("LOTNO"), 0, Format(Val(dr("WT")), "0.00"), Format(Val(dr("QTY")), "0.00"), dr("UNIT"), dr("RATE"), 0, 0, "")
-                    If CHKCOPY.Checked = True Then GRIDSTOCKIN.Rows.Add(0, dr("ITEMNAME"), dr("LOTNO"), 0, Format(Val(dr("WT")), "0.00"), Format(Val(dr("QTY")), "0.00"), dr("UNIT"), dr("RATE"), 0, 0, "")
+                    GRIDSTOCKOUT.Rows.Add(0, dr("ITEMNAME"), "", Format(Val(dr("QTY")), "0.00"), dr("UNIT"), 0)
+                    If CHKCOPY.Checked = True Then GRIDSTOCKIN.Rows.Add(0, dr("ITEMNAME"), "", Format(Val(dr("QTY")), "0.00"), dr("UNIT"), 0)
                 Next
                 GRIDSTOCKOUT.FirstDisplayedScrollingRowIndex = GRIDSTOCKOUT.RowCount - 1
                 GETSRNO(GRIDSTOCKOUT)
