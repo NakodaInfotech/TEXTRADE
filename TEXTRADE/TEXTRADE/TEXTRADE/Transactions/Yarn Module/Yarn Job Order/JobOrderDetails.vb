@@ -106,6 +106,26 @@ Public Class JobOrderDetails
         End Try
     End Sub
 
+    Private Sub TOOLWARPGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWARPGRIDDETAILS.Click
+        Try
+            Dim OBJINV As New JobOrderWarpDetails
+            OBJINV.MdiParent = MDIMain
+            OBJINV.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLWEFTGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWEFTGRIDDETAILS.Click
+        Try
+            Dim OBJINV As New JobOrderWeftDetails
+            OBJINV.MdiParent = MDIMain
+            OBJINV.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
         Try
 
