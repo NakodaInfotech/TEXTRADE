@@ -33,7 +33,7 @@ Public Class StoreStockFilter
         Try
             If CMBSTOREITEMNAME.Text.Trim = "" Then FILLSTOREITEMNAME(CMBSTOREITEMNAME)
             If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, False)
-            If CMBPARTYNAME.Text.Trim = "" Then fillGODOWN(CMBGODOWN, False)
+            If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, False, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -82,11 +82,15 @@ Public Class StoreStockFilter
             OBJSTOCK.WHERECLAUSE = " {STORESTOCKREGISTER.YEARID}=" & YearId
             If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
             If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+            If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+
 
             If RBITEMSUMM.Checked = True Then
                 OBJSTOCK.FRMSTRING = "STOREITEMSTOCKSUMM"
             ElseIf RBITEMDTLS.Checked = True Then
                 OBJSTOCK.FRMSTRING = "STOREITEMSTOCKDTLS"
+            ElseIf RBPARTYWISE.Checked = True Then
+                OBJSTOCK.FRMSTRING = "STOREPARTYWISE"
             End If
 
             OBJSTOCK.Show()
@@ -124,6 +128,22 @@ Public Class StoreStockFilter
             If CMBGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBGODOWN, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBPARTYNAME.Validating
+        Try
+            If CMBPARTYNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBPARTYNAME, cmbcode, e, Me, TXTADD, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'", "", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Enter(sender As Object, e As EventArgs) Handles CMBPARTYNAME.Enter
+        Try
+            If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, False, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
