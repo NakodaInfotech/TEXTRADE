@@ -3127,6 +3127,12 @@
     <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.Designer.vb">
+      <DependentUpon>JobOrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
     </Compile>
@@ -10669,6 +10675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.resx">
       <DependentUpon>JobOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.resx">
+      <DependentUpon>JobOrderDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
