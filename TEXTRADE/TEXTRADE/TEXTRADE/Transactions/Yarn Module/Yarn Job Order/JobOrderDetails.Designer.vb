@@ -27,10 +27,15 @@ Partial Class JobOrderDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -41,11 +46,8 @@ Partial Class JobOrderDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TOOLWARPGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWEFTGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,15 +119,23 @@ Partial Class JobOrderDetails
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         '
-        'GDESIGNNO
+        'GNAME
         '
-        Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 5
-        Me.GDESIGNNO.Width = 120
+        Me.GNAME.Caption = "Party Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 200
+        '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 3
+        Me.GREFNO.Width = 100
         '
         'GITEMNAME
         '
@@ -136,6 +146,16 @@ Partial Class JobOrderDetails
         Me.GITEMNAME.Visible = True
         Me.GITEMNAME.VisibleIndex = 4
         Me.GITEMNAME.Width = 250
+        '
+        'GDESIGNNO
+        '
+        Me.GDESIGNNO.Caption = "Design No"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
+        Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 5
+        Me.GDESIGNNO.Width = 120
         '
         'GCOLOR
         '
@@ -157,6 +177,32 @@ Partial Class JobOrderDetails
         Me.GREED.VisibleIndex = 7
         Me.GREED.Width = 100
         '
+        'GREEDSPACE
+        '
+        Me.GREEDSPACE.Caption = "Reed Space"
+        Me.GREEDSPACE.FieldName = "REEDSPACE"
+        Me.GREEDSPACE.Name = "GREEDSPACE"
+        Me.GREEDSPACE.Visible = True
+        Me.GREEDSPACE.VisibleIndex = 8
+        Me.GREEDSPACE.Width = 100
+        '
+        'GPICKS
+        '
+        Me.GPICKS.Caption = "Picks"
+        Me.GPICKS.FieldName = "PICKS"
+        Me.GPICKS.Name = "GPICKS"
+        Me.GPICKS.Visible = True
+        Me.GPICKS.VisibleIndex = 9
+        '
+        'GTOTALENDS
+        '
+        Me.GTOTALENDS.Caption = "Total Ends"
+        Me.GTOTALENDS.FieldName = "TOTALENDS"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.Visible = True
+        Me.GTOTALENDS.VisibleIndex = 10
+        Me.GTOTALENDS.Width = 100
+        '
         'GTOTALMTRS
         '
         Me.GTOTALMTRS.Caption = "Total Mtrs"
@@ -176,7 +222,7 @@ Partial Class JobOrderDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1, Me.TOOLWARPGRIDDETAILS, Me.TOOLWEFTGRIDDETAILS})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -238,49 +284,21 @@ Partial Class JobOrderDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'GREEDSPACE
+        'TOOLWARPGRIDDETAILS
         '
-        Me.GREEDSPACE.Caption = "Reed Space"
-        Me.GREEDSPACE.FieldName = "REEDSPACE"
-        Me.GREEDSPACE.Name = "GREEDSPACE"
-        Me.GREEDSPACE.Visible = True
-        Me.GREEDSPACE.VisibleIndex = 8
-        Me.GREEDSPACE.Width = 100
+        Me.TOOLWARPGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TOOLWARPGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWARPGRIDDETAILS.Name = "TOOLWARPGRIDDETAILS"
+        Me.TOOLWARPGRIDDETAILS.Size = New System.Drawing.Size(109, 22)
+        Me.TOOLWARPGRIDDETAILS.Text = "Warp Grid Details"
         '
-        'GTOTALENDS
+        'TOOLWEFTGRIDDETAILS
         '
-        Me.GTOTALENDS.Caption = "Total Ends"
-        Me.GTOTALENDS.FieldName = "TOTALENDS"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
-        Me.GTOTALENDS.Visible = True
-        Me.GTOTALENDS.VisibleIndex = 10
-        Me.GTOTALENDS.Width = 100
-        '
-        'GPICKS
-        '
-        Me.GPICKS.Caption = "Picks"
-        Me.GPICKS.FieldName = "PICKS"
-        Me.GPICKS.Name = "GPICKS"
-        Me.GPICKS.Visible = True
-        Me.GPICKS.VisibleIndex = 9
-        '
-        'GNAME
-        '
-        Me.GNAME.Caption = "Party Name"
-        Me.GNAME.FieldName = "NAME"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
-        Me.GNAME.Width = 200
-        '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 3
-        Me.GREFNO.Width = 100
+        Me.TOOLWEFTGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TOOLWEFTGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWEFTGRIDDETAILS.Name = "TOOLWEFTGRIDDETAILS"
+        Me.TOOLWEFTGRIDDETAILS.Size = New System.Drawing.Size(105, 22)
+        Me.TOOLWEFTGRIDDETAILS.Text = "Weft Grid Details"
         '
         'JobOrderDetails
         '
@@ -328,4 +346,6 @@ Partial Class JobOrderDetails
     Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TOOLWARPGRIDDETAILS As ToolStripButton
+    Friend WithEvents TOOLWEFTGRIDDETAILS As ToolStripButton
 End Class

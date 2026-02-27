@@ -133,6 +133,9 @@ Public Class JobOrder
             Dim OBJCMN As New ClsCommon
             Dim objclsGRN As New ClsJobOrder()
             Dim dttable As New DataTable
+            Dim ALPARAVAL As New ArrayList
+            ALPARAVAL.Add(tempdesignno)
+            ALPARAVAL.Add(YearId)
             dttable = objclsGRN.SelectYarnJob()
 
             If dttable.Rows.Count > 0 Then
@@ -160,6 +163,18 @@ Public Class JobOrder
                     End If
 
                     TXTTOTALENDS.Text = dr("TOTALENDS")
+
+
+                    If Convert.ToDecimal(dr("OUTMTRS")) > 0 Then
+                        lbllocked.Visible = True
+                        PBlock.Visible = True
+                    End If
+
+                    If Convert.ToBoolean(dr("DONE")) = True Then
+                        LBLCLOSED.Visible = True
+                        PBlock.Visible = True
+                    End If
+
                 Next
 
                 'warp gridmatching data serializations
@@ -179,6 +194,7 @@ Public Class JobOrder
                 End If
 
                 CMBITEMNAME.Enabled = False
+
 
 
 

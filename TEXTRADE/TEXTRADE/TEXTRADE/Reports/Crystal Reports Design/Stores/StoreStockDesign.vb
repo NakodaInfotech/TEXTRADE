@@ -12,6 +12,8 @@ Public Class StoreStockDesign
 
     Dim RPTSTOREITEMSTOCKSUMM As New StoreItemWiseStockReport
     Dim RPTSTOREITEMSTOCKDTLS As New StoreItemWiseStockDetailReport
+    Dim RPTSTOREPARTYWISE As New StoresPartwiseRepairingReport
+
 
     Private Sub StoreStockDesign_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Windows.Forms.Keys.Escape Then
@@ -47,6 +49,8 @@ Public Class StoreStockDesign
 
             If FRMSTRING = "STOREITEMSTOCKSUMM" Then crTables = RPTSTOREITEMSTOCKSUMM.Database.Tables
             If FRMSTRING = "STOREITEMSTOCKDTLS" Then crTables = RPTSTOREITEMSTOCKDTLS.Database.Tables
+            If FRMSTRING = "STOREPARTYWISE" Then crTables = RPTSTOREPARTYWISE.Database.Tables
+
 
             For Each crTable In crTables
                 crtableLogonInfo = crTable.LogOnInfo
@@ -66,6 +70,13 @@ Public Class StoreStockDesign
                 RPTSTOREITEMSTOCKDTLS.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
                 RPTSTOREITEMSTOCKDTLS.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
                 crpo.ReportSource = RPTSTOREITEMSTOCKDTLS
+
+            ElseIf FRMSTRING = "STOREPARTYWISE" Then
+                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("PERIOD").Text = "' STORE PARTWISE STOCK SUMMARY - " & PERIOD & "'"
+                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                crpo.ReportSource = RPTSTOREPARTYWISE
+
             End If
 
             crpo.Zoom(100)
