@@ -702,6 +702,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Stock\Store Stock Reports\StoresPartwiseRepairingReport.vb">
+      <DependentUpon>StoresPartwiseRepairingReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.Designer.vb">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
     </Compile>
@@ -9286,6 +9292,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Stock Reports\CategoryItemDesignShadeWithoutUnitSmallSingleStockReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CategoryItemDesignShadeWithoutUnitSmallSingleStockReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Stock\Store Stock Reports\StoresPartwiseRepairingReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StoresPartwiseRepairingReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>

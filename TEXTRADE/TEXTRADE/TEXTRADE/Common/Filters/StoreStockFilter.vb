@@ -33,6 +33,8 @@ Public Class StoreStockFilter
         Try
             If CMBSTOREITEMNAME.Text.Trim = "" Then FILLSTOREITEMNAME(CMBSTOREITEMNAME)
             If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, False)
+            If CMBPARTYNAME.Text.Trim = "" Then fillGODOWN(CMBGODOWN, False)
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
