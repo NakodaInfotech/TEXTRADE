@@ -28,18 +28,24 @@ Partial Class StoreStockRecoOutDetails
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSANO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEDESC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GEDESC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +54,7 @@ Partial Class StoreStockRecoOutDetails
         '
         'BlendPanel1
         '
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -55,7 +62,7 @@ Partial Class StoreStockRecoOutDetails
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(795, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 10
         '
         'cmdexit
@@ -65,9 +72,9 @@ Partial Class StoreStockRecoOutDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(361, 545)
+        Me.cmdexit.Location = New System.Drawing.Point(588, 543)
         Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.Size = New System.Drawing.Size(80, 26)
         Me.cmdexit.TabIndex = 445
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
@@ -79,9 +86,9 @@ Partial Class StoreStockRecoOutDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(275, 545)
+        Me.cmdok.Location = New System.Drawing.Point(502, 543)
         Me.cmdok.Name = "cmdok"
-        Me.cmdok.Size = New System.Drawing.Size(80, 28)
+        Me.cmdok.Size = New System.Drawing.Size(80, 26)
         Me.cmdok.TabIndex = 444
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
@@ -89,11 +96,11 @@ Partial Class StoreStockRecoOutDetails
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(7, 27)
+        Me.gridbilldetails.Location = New System.Drawing.Point(12, 34)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(783, 513)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1212, 500)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -103,7 +110,7 @@ Partial Class StoreStockRecoOutDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GGRIDSRNO, Me.GITEMNAME, Me.GEDESC, Me.GQTY, Me.GUNIT, Me.GRATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GGODOWN, Me.GNAME, Me.GTRANSNAME, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GGRIDSRNO, Me.GITEMNAME, Me.GEDESC, Me.GQTY, Me.GUNIT, Me.GRATE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -115,20 +122,80 @@ Partial Class StoreStockRecoOutDetails
         '
         'GSANO
         '
-        Me.GSANO.Caption = "Entry No"
+        Me.GSANO.Caption = "No"
         Me.GSANO.FieldName = "SANO"
         Me.GSANO.Name = "GSANO"
         Me.GSANO.OptionsColumn.AllowEdit = False
         Me.GSANO.Visible = True
         Me.GSANO.VisibleIndex = 0
-        Me.GSANO.Width = 69
+        Me.GSANO.Width = 50
+        '
+        'GGRIDSRNO
+        '
+        Me.GGRIDSRNO.Caption = "Grid Sr No"
+        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
+        Me.GGRIDSRNO.Name = "GGRIDSRNO"
+        Me.GGRIDSRNO.OptionsColumn.AllowEdit = False
+        Me.GGRIDSRNO.Visible = True
+        Me.GGRIDSRNO.VisibleIndex = 6
+        Me.GGRIDSRNO.Width = 70
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 7
+        Me.GITEMNAME.Width = 150
+        '
+        'GEDESC
+        '
+        Me.GEDESC.Caption = "Description"
+        Me.GEDESC.FieldName = "EDESC"
+        Me.GEDESC.Name = "GEDESC"
+        Me.GEDESC.Visible = True
+        Me.GEDESC.VisibleIndex = 8
+        Me.GEDESC.Width = 100
+        '
+        'GQTY
+        '
+        Me.GQTY.Caption = "Qty"
+        Me.GQTY.FieldName = "QTY"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.OptionsColumn.AllowEdit = False
+        Me.GQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GQTY.Visible = True
+        Me.GQTY.VisibleIndex = 9
+        Me.GQTY.Width = 60
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.OptionsColumn.AllowEdit = False
+        Me.GUNIT.Visible = True
+        Me.GUNIT.VisibleIndex = 10
+        Me.GUNIT.Width = 60
+        '
+        'GRATE
+        '
+        Me.GRATE.Caption = "Rate"
+        Me.GRATE.FieldName = "RATE"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.OptionsColumn.AllowEdit = False
+        Me.GRATE.Visible = True
+        Me.GRATE.VisibleIndex = 11
+        Me.GRATE.Width = 60
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(795, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 255
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -168,68 +235,66 @@ Partial Class StoreStockRecoOutDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GGRIDSRNO
+        'GGODOWN
         '
-        Me.GGRIDSRNO.Caption = "Grid Sr No"
-        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
-        Me.GGRIDSRNO.Name = "GGRIDSRNO"
-        Me.GGRIDSRNO.OptionsColumn.AllowEdit = False
-        Me.GGRIDSRNO.Visible = True
-        Me.GGRIDSRNO.VisibleIndex = 1
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 1
+        Me.GGODOWN.Width = 70
         '
-        'GITEMNAME
+        'GNAME
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 2
-        Me.GITEMNAME.Width = 150
+        Me.GNAME.Caption = "Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 200
         '
-        'GQTY
+        'GTRANSNAME
         '
-        Me.GQTY.Caption = "Qty"
-        Me.GQTY.FieldName = "QTY"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.OptionsColumn.AllowEdit = False
-        Me.GQTY.Visible = True
-        Me.GQTY.VisibleIndex = 4
-        Me.GQTY.Width = 100
+        Me.GTRANSNAME.Caption = "Transport"
+        Me.GTRANSNAME.FieldName = "TRANSNAME"
+        Me.GTRANSNAME.Name = "GTRANSNAME"
+        Me.GTRANSNAME.Visible = True
+        Me.GTRANSNAME.VisibleIndex = 3
+        Me.GTRANSNAME.Width = 150
         '
-        'GUNIT
+        'GCHALLANNO
         '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.OptionsColumn.AllowEdit = False
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 5
-        Me.GUNIT.Width = 100
+        Me.GCHALLANNO.Caption = "Challan No"
+        Me.GCHALLANNO.FieldName = "CHALLANNO"
+        Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.Visible = True
+        Me.GCHALLANNO.VisibleIndex = 4
+        Me.GCHALLANNO.Width = 70
         '
-        'GRATE
+        'GCHALLANDATE
         '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.OptionsColumn.AllowEdit = False
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 6
-        Me.GRATE.Width = 100
+        Me.GCHALLANDATE.Caption = "Challan Date"
+        Me.GCHALLANDATE.DisplayFormat.FormatString = "dd/MM/YYYY"
+        Me.GCHALLANDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCHALLANDATE.FieldName = "CHALLANDATE"
+        Me.GCHALLANDATE.Name = "GCHALLANDATE"
+        Me.GCHALLANDATE.Visible = True
+        Me.GCHALLANDATE.VisibleIndex = 5
+        Me.GCHALLANDATE.Width = 80
         '
-        'GEDESC
+        'GREMARKS
         '
-        Me.GEDESC.Caption = "Description"
-        Me.GEDESC.FieldName = "EDESC"
-        Me.GEDESC.Name = "GEDESC"
-        Me.GEDESC.Visible = True
-        Me.GEDESC.VisibleIndex = 3
-        Me.GEDESC.Width = 100
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 12
+        Me.GREMARKS.Width = 150
         '
         'StoreStockRecoOutDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(795, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -265,4 +330,10 @@ Partial Class StoreStockRecoOutDetails
     Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GEDESC As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

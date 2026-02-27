@@ -3896,7 +3896,7 @@ line1:
                 GRIDWARPDESCDOUBLECLICK = False
             End If
             TXTWDMAINSRNO.Clear()
-            CMBWARPSHADE.Text = ""
+            'CMBWARPSHADE.Text = ""
             CMBWARPSHADE.Focus()
             TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
         Catch ex As Exception

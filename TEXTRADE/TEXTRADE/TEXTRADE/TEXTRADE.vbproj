@@ -2857,6 +2857,12 @@
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\SelectStoreStock.Designer.vb">
+      <DependentUpon>SelectStoreStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\SelectStoreStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\Stock Reco\StoreStockReco.Designer.vb">
       <DependentUpon>StoreStockReco.vb</DependentUpon>
     </Compile>
@@ -10552,6 +10558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.resx">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\SelectStoreStock.resx">
+      <DependentUpon>SelectStoreStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockReco.resx">
       <DependentUpon>StoreStockReco.vb</DependentUpon>
