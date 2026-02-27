@@ -3896,7 +3896,7 @@ line1:
                 GRIDWARPDESCDOUBLECLICK = False
             End If
             TXTWDMAINSRNO.Clear()
-            CMBWARPSHADE.Text = ""
+            'CMBWARPSHADE.Text = ""
             CMBWARPSHADE.Focus()
             TXTWDSRNO.Text = GRIDWARPDESC.RowCount + 1
         Catch ex As Exception
@@ -4604,7 +4604,7 @@ line1:
                     If SRNO = "" Then
                         SRNO = row.Cells(WSRNO.Index).Value.ToString
                         GRIDYARNQUALITY = row.Cells(WQUALITY.Index).Value.ToString
-                        SHADE = row.Cells(WSHADE.Index).Value.ToString
+                        SHADE = row.Cells(WDSHADE.Index).Value.ToString
                         GRIDENDS = Val(row.Cells(WPE.Index).Value)
                         GRIDWT = Format((Val(row.Cells(WPE.Index).Value) * Val(TXTWARPTL.Text.Trim) * Val(row.Cells(WDENIER.Index).Value)) / 9000000, "0.000")
                     Else
