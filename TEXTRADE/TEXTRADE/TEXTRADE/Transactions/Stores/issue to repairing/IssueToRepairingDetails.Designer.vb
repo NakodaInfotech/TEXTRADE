@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class StoreConsumptionDetails
+Partial Class IssueToRepairingDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -38,6 +38,7 @@ Partial Class StoreConsumptionDetails
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
@@ -65,7 +66,7 @@ Partial Class StoreConsumptionDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
-        Me.BlendPanel1.TabIndex = 15
+        Me.BlendPanel1.TabIndex = 16
         '
         'gridbilldetails
         '
@@ -213,12 +214,21 @@ Partial Class StoreConsumptionDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "&Refresh"
         '
         'TOOLEXCEL
         '
@@ -275,16 +285,16 @@ Partial Class StoreConsumptionDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'StoreConsumptionDetails
+        'IssueToRepairingDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "StoreConsumptionDetails"
+        Me.Name = "IssueToRepairingDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Store Consumption Details"
+        Me.Text = "IssueToRepairingDetails"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -302,14 +312,18 @@ Partial Class StoreConsumptionDetails
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GISSUETO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDEPARTMENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMACHINENAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTAKENBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents TOOLEXCEL As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
@@ -317,7 +331,4 @@ Partial Class StoreConsumptionDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMACHINENAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTAKENBY As DevExpress.XtraGrid.Columns.GridColumn
 End Class

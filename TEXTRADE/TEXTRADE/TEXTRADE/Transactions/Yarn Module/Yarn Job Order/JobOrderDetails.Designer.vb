@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class StoreConsumptionDetails
+Partial Class JobOrderDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,15 +27,11 @@ Partial Class StoreConsumptionDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GISSUETO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDEPARTMENT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMACHINENAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTAKENBY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
@@ -45,6 +41,11 @@ Partial Class StoreConsumptionDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,7 +66,7 @@ Partial Class StoreConsumptionDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
-        Me.BlendPanel1.TabIndex = 15
+        Me.BlendPanel1.TabIndex = 16
         '
         'gridbilldetails
         '
@@ -83,7 +84,7 @@ Partial Class StoreConsumptionDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GGODOWN, Me.GISSUETO, Me.GDEPARTMENT, Me.GCHALLANNO, Me.GITEMNAME, Me.GMACHINENAME, Me.GTAKENBY, Me.GQTY, Me.GUNIT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GREFNO, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GREED, Me.GREEDSPACE, Me.GPICKS, Me.GTOTALENDS, Me.GTOTALMTRS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -98,7 +99,7 @@ Partial Class StoreConsumptionDetails
         'GSRNO
         '
         Me.GSRNO.Caption = "Sr. No."
-        Me.GSRNO.FieldName = "CONSUME"
+        Me.GSRNO.FieldName = "JOBNO"
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.Visible = True
@@ -110,50 +111,21 @@ Partial Class StoreConsumptionDetails
         Me.GDATE.Caption = "Date"
         Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GDATE.FieldName = "CONSUMEDATE"
+        Me.GDATE.FieldName = "DATE"
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         '
-        'GGODOWN
+        'GDESIGNNO
         '
-        Me.GGODOWN.Caption = "Godown"
-        Me.GGODOWN.FieldName = "GODOWN"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.OptionsColumn.AllowEdit = False
-        Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 2
-        Me.GGODOWN.Width = 120
-        '
-        'GISSUETO
-        '
-        Me.GISSUETO.Caption = "Issue To"
-        Me.GISSUETO.FieldName = "ISSUETO"
-        Me.GISSUETO.Name = "GISSUETO"
-        Me.GISSUETO.OptionsColumn.AllowEdit = False
-        Me.GISSUETO.Visible = True
-        Me.GISSUETO.VisibleIndex = 3
-        Me.GISSUETO.Width = 200
-        '
-        'GDEPARTMENT
-        '
-        Me.GDEPARTMENT.Caption = "Department"
-        Me.GDEPARTMENT.FieldName = "DEPARTMENT"
-        Me.GDEPARTMENT.Name = "GDEPARTMENT"
-        Me.GDEPARTMENT.OptionsColumn.AllowEdit = False
-        Me.GDEPARTMENT.Visible = True
-        Me.GDEPARTMENT.VisibleIndex = 4
-        Me.GDEPARTMENT.Width = 200
-        '
-        'GCHALLANNO
-        '
-        Me.GCHALLANNO.Caption = "Challan No"
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 5
+        Me.GDESIGNNO.Caption = "Design No"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
+        Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 5
+        Me.GDESIGNNO.Width = 120
         '
         'GITEMNAME
         '
@@ -162,49 +134,40 @@ Partial Class StoreConsumptionDetails
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 6
+        Me.GITEMNAME.VisibleIndex = 4
         Me.GITEMNAME.Width = 250
         '
-        'GMACHINENAME
+        'GCOLOR
         '
-        Me.GMACHINENAME.Caption = "Machine Name"
-        Me.GMACHINENAME.FieldName = "MACHINE"
-        Me.GMACHINENAME.Name = "GMACHINENAME"
-        Me.GMACHINENAME.OptionsColumn.AllowEdit = False
-        Me.GMACHINENAME.Visible = True
-        Me.GMACHINENAME.VisibleIndex = 9
-        Me.GMACHINENAME.Width = 150
+        Me.GCOLOR.Caption = "Shade"
+        Me.GCOLOR.FieldName = "COLOR"
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Visible = True
+        Me.GCOLOR.VisibleIndex = 6
+        Me.GCOLOR.Width = 120
         '
-        'GTAKENBY
+        'GREED
         '
-        Me.GTAKENBY.Caption = "Taken By"
-        Me.GTAKENBY.FieldName = "TAKENBY"
-        Me.GTAKENBY.Name = "GTAKENBY"
-        Me.GTAKENBY.OptionsColumn.AllowEdit = False
-        Me.GTAKENBY.Visible = True
-        Me.GTAKENBY.VisibleIndex = 10
-        Me.GTAKENBY.Width = 120
+        Me.GREED.Caption = "Reed"
+        Me.GREED.FieldName = "REED"
+        Me.GREED.Name = "GREED"
+        Me.GREED.OptionsColumn.AllowEdit = False
+        Me.GREED.Visible = True
+        Me.GREED.VisibleIndex = 7
+        Me.GREED.Width = 100
         '
-        'GQTY
+        'GTOTALMTRS
         '
-        Me.GQTY.Caption = "Qty"
-        Me.GQTY.DisplayFormat.FormatString = "0"
-        Me.GQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GQTY.FieldName = "QTY"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.OptionsColumn.AllowEdit = False
-        Me.GQTY.Visible = True
-        Me.GQTY.VisibleIndex = 7
-        Me.GQTY.Width = 85
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "QTYUNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.OptionsColumn.AllowEdit = False
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 8
+        Me.GTOTALMTRS.Caption = "Total Mtrs"
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALMTRS.Visible = True
+        Me.GTOTALMTRS.VisibleIndex = 11
+        Me.GTOTALMTRS.Width = 100
         '
         'CHKDONE
         '
@@ -275,16 +238,60 @@ Partial Class StoreConsumptionDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'StoreConsumptionDetails
+        'GREEDSPACE
+        '
+        Me.GREEDSPACE.Caption = "Reed Space"
+        Me.GREEDSPACE.FieldName = "REEDSPACE"
+        Me.GREEDSPACE.Name = "GREEDSPACE"
+        Me.GREEDSPACE.Visible = True
+        Me.GREEDSPACE.VisibleIndex = 8
+        Me.GREEDSPACE.Width = 100
+        '
+        'GTOTALENDS
+        '
+        Me.GTOTALENDS.Caption = "Total Ends"
+        Me.GTOTALENDS.FieldName = "TOTALENDS"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.Visible = True
+        Me.GTOTALENDS.VisibleIndex = 10
+        Me.GTOTALENDS.Width = 100
+        '
+        'GPICKS
+        '
+        Me.GPICKS.Caption = "Picks"
+        Me.GPICKS.FieldName = "PICKS"
+        Me.GPICKS.Name = "GPICKS"
+        Me.GPICKS.Visible = True
+        Me.GPICKS.VisibleIndex = 9
+        '
+        'GNAME
+        '
+        Me.GNAME.Caption = "Party Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 200
+        '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 3
+        Me.GREFNO.Width = 100
+        '
+        'JobOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "StoreConsumptionDetails"
+        Me.Name = "JobOrderDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Store Consumption Details"
+        Me.Text = "JobOrderDetails"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -302,12 +309,11 @@ Partial Class StoreConsumptionDetails
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GISSUETO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDEPARTMENT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREED As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents TOOLEXCEL As ToolStripButton
@@ -317,7 +323,9 @@ Partial Class StoreConsumptionDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMACHINENAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTAKENBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREEDSPACE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPICKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

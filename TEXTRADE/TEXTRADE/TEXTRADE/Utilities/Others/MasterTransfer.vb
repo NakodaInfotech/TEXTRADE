@@ -1,5 +1,6 @@
 ﻿Imports System.IO.Compression
 Imports BL
+Imports Microsoft.VisualBasic.ApplicationServices
 
 
 Public Class MasterTransfer
@@ -119,7 +120,54 @@ Public Class MasterTransfer
 
                             SELECTEDCMP = DTROW("CMPID")
 
+                            If CHKOTHERMASTER.Checked = True Then
+                                'CMPTRANSFERUSER(SELECTEDCMP)
 
+                                'TRANSFERGROUP(SELECTEDCMP)
+                                'TRANSFERLOCATION(SELECTEDCMP)
+                                CMPTRANSFERMATERIALTYPE(SELECTEDCMP)
+                                CMPTRANSFERCATEGORY(SELECTEDCMP)
+                                CMPTRANSFERDYEDTYPE(SELECTEDCMP)
+                                CMPTRANSFERPROCESS(SELECTEDCMP)
+                                'CMPTRANSFERSAMPLETYPE(SELECTEDCMP)
+                                CMPTRANSFERUNIT(SELECTEDCMP)
+                                'CMPTRANSFERCONTRACT(SELECTEDCMP)
+                                'CMPTRANSFERCURRENCY(SELECTEDCMP)
+                                CMPTRANSFERMACHINE(SELECTEDCMP)
+                                CMPTRANSFERSALESMAN(SELECTEDCMP)
+                                CMPTRANSFERRACKSHELF(SELECTEDCMP)
+
+
+                                CMPTRANSFERHSN(SELECTEDCMP)
+                                'CMPTRANSFERYARNQUALITY(SELECTEDCMP)
+                                'CMPTRANSFERMILL(SELECTEDCMP)
+                                'CMPTRANSFERDESIGNER(SELECTEDCMP) 'USED IN DESIGN MASTER
+                                'CMPTRANSFERVEHICLE(SELECTEDCMP)
+
+                                'CMPTRANSFERWEAVE(SELECTEDCMP)
+                                'CMPTRANSFERLOOM(SELECTEDCMP)
+
+                                CMPTRANSFERITEM(SELECTEDCMP)
+                                CMPTRANSFERCOLOR(SELECTEDCMP)
+
+                                CMPTRANSFERDESIGN(SELECTEDCMP)
+                                'CMPTRANSFERDEPARTMENT(SELECTEDCMP)
+                                'CMPTRANSFERDESIGNATION(SELECTEDCMP)
+                                'CMPTRANSFERPIECETYPE(SELECTEDCMP)
+                                'CMPTRANSFERPACKING(SELECTEDCMP)
+                                'CMPTRANSFERCHALLANTYPE(SELECTEDCMP)
+                                'CMPTRANSFERTERM(SELECTEDCMP)
+                                CMPTRANSFERQUALITY(SELECTEDCMP)
+
+                                'CMPTRANSFERREORDER(SELECTEDCMP)
+                                'CMPTRANSFERCATALOG(SELECTEDCMP)
+                                'CMPTRANSFERREASON(SELECTEDCMP)
+                                'CMPTRANSFERNARRATION(SELECTEDCMP)
+                                'CMPTRANSFERPARTYBANK(SELECTEDCMP)
+                                'CMPTRANSFERGODOWN(SELECTEDCMP)
+                                'CMPTRANSFERGOC(SELECTEDCMP)
+                                'CMPTRANSFERREGISTER(SELECTEDCMP)
+                            End If
                             If CHKLEDGER.Checked = True Then
                                 CMPTRANSFERGROUP(SELECTEDCMP)
                                 CMPTRANSFERLOCATION(SELECTEDCMP)
@@ -138,6 +186,214 @@ Public Class MasterTransfer
 
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERMATERIALTYPE(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERMATERIALTYPE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERCATEGORY(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERCATEGORY()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERDYEDTYPE(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERDYEDTYPE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERPROCESS(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERPROCESS()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERUNIT(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERUNIT()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERMACHINE(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERMACHINE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERSALESMAN(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERSALESMAN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERRACKSHELF(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERRACKSHELF()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERHSN(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERHSN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERITEM(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERITEM()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERCOLOR(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERCOLOR()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERDESIGN(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERDESIGN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub CMPTRANSFERQUALITY(ByVal SELECTEDCMP As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDCMP)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.CMPTRANSFERQUALITY()
         Catch ex As Exception
             Throw ex
         End Try

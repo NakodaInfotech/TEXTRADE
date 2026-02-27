@@ -2,8 +2,7 @@
 Imports BL
 Imports System.Windows.Forms
 
-Public Class StoreConsumptionDetails
-
+Public Class JobOrderDetails
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
@@ -50,10 +49,10 @@ Public Class StoreConsumptionDetails
 
     Sub fillgrid()
         Try
-            Dim OBJSTORE As New ClsStoreConsumption
+            Dim OBJSTORE As New ClsJobOrder
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
-            Dim DT As DataTable = OBJSTORE.SELECTCONSUME
+            Dim DT As DataTable = OBJSTORE.SelectYarnJob
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -140,5 +139,4 @@ Public Class StoreConsumptionDetails
             Throw ex
         End Try
     End Sub
-
 End Class

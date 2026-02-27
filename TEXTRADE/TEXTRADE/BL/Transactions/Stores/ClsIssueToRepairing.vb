@@ -1,10 +1,8 @@
 ﻿Imports DB
 
-Public Class ClsStoreStockAdjustment
-
+Public Class ClsIssueToRepairing
     Private objDBOperation As DBOperation
     Public alParaval As New ArrayList
-
 #Region "Constructor"
     Public Sub New()
         Try
@@ -21,43 +19,30 @@ Public Class ClsStoreStockAdjustment
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_UTILITIES_STORESTOCKADJUSTMENT_SAVE"
+            Dim strCommand As String = "SP_TRANS_STORES_ISSUETOREPAIR_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@MANUALRECNO", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALOUTQTY", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                
 
-
-                'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
@@ -68,25 +53,6 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
-                I = I + 1
-
-
-
-                'INGRID PARAMETERS
-                .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INDESC", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INUNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
-                I = I + 1
-
 
 
             End With
@@ -104,43 +70,30 @@ Public Class ClsStoreStockAdjustment
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_UTILITIES_STORESTOCKADJUSTMENT_UPDATE"
+            Dim strCommand As String = "SP_TRANS_STORES_ISSUETOREPAIR_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@MANUALRECNO", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALOUTQTY", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
 
-
-
-                'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
@@ -151,27 +104,8 @@ Public Class ClsStoreStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
-                I = I + 1
 
-
-                'INGRID PARAMETERS
-                .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INDESC", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INUNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
-                I = I + 1
-
-
-
-                .Add(New SqlClient.SqlParameter("@SANO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REPAIRNO", alParaval(I)))
                 I = I + 1
             End With
 
@@ -183,17 +117,15 @@ Public Class ClsStoreStockAdjustment
         Return 0
     End Function
 
-    Public Function SELECTSTORESTOCKADJUSTMENT(ByVal RECONO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
+    Public Function SELECTCONSUME() As DataTable
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTSTORESTOCKADJUSTMENT_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTISSUETOREPAIR_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@RECONO", RECONO))
-                .Add(New SqlClient.SqlParameter("@CmpID", Cmpid))
-                .Add(New SqlClient.SqlParameter("@LocationID", LocationID))
-                .Add(New SqlClient.SqlParameter("@YearID", YearID))
+                .Add(New SqlClient.SqlParameter("@REPAIRNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
 
@@ -206,15 +138,11 @@ Public Class ClsStoreStockAdjustment
     Public Function DELETE() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_UTILITIES_STORESTOCKADJUSTMENT_DELETE"
+            Dim strCommand As String = "SP_TRANS_STORES_ISSUETOREPAIR_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@RECONO", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@Cmpid", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@LocationID", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@userID", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@YearID", alParaval(4)))
-
+                .Add(New SqlClient.SqlParameter("@REPAIRNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
         Catch ex As Exception
@@ -224,4 +152,3 @@ Public Class ClsStoreStockAdjustment
 
 #End Region
 End Class
-

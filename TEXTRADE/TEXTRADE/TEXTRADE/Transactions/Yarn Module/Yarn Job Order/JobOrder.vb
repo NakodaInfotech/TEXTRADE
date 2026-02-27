@@ -133,7 +133,7 @@ Public Class JobOrder
             Dim OBJCMN As New ClsCommon
             Dim objclsGRN As New ClsJobOrder()
             Dim dttable As New DataTable
-            dttable = objclsGRN.SelectYarnJob(tempdesignno, YearId)
+            dttable = objclsGRN.SelectYarnJob()
 
             If dttable.Rows.Count > 0 Then
 

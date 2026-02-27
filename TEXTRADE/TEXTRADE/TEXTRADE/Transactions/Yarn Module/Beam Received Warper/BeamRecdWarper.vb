@@ -10,6 +10,7 @@ Public Class BeamRecdWarper
     Public TEMPBEAMRECDNO As Integer
     Dim TEMPMSG As Integer
     Dim NextBeamNo As Integer
+    Dim MAXNO As Integer = 0
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -104,6 +105,7 @@ Public Class BeamRecdWarper
         TXTPICS.Clear()
         GetLastBeamNo()
         TXTBEAMNO.Text = NextBeamNo
+        GRIDYARNDETAILS.RowCount = 0
 
 
 
@@ -151,7 +153,7 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
-        'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND STOREITEM_ROLLFULL = 'FALSE'")
+        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -923,6 +925,8 @@ LINE1:
                 End If
 
                 GRIDDOUBLECLICK = True
+                NextBeamNo = GetGridMaxBeamNo()
+
                 TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value
                 TXTBEAMNO.Text = GRIDBEAM.Item(GBEAMNO.Index, e.RowIndex).Value
                 CMBBEAMNAME.Text = GRIDBEAM.Item(GBEAMNAME.Index, e.RowIndex).Value
@@ -1019,7 +1023,11 @@ LINE1:
         Try
             If GRIDDOUBLECLICK = False Then
                 GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), TXTBEAMNO.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTGAMANO.Text.Trim), Val(TXTSECTION.Text.Trim), Val(CMBROLLNO.Text.Trim), Val(TXTBEAMWT.Text.Trim), Val(TXTBREAKAGE.Text.Trim))
+
+                TXTBEAMNO.Text = TXTBEAMNO.Text + 1
+                'NextBeamNo += 1
             Else
+
                 GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = TXTSRNO.Text.Trim
                 GRIDBEAM.Item(GBEAMNO.Index, TEMPROW).Value = TXTBEAMNO.Text.Trim
                 GRIDBEAM.Item(GBEAMNAME.Index, TEMPROW).Value = CMBBEAMNAME.Text.Trim
@@ -1031,9 +1039,12 @@ LINE1:
                 GRIDBEAM.Item(GBEAMWT.Index, TEMPROW).Value = Val(TXTBEAMWT.Text.Trim)
                 GRIDBEAM.Item(GBREAKAGE.Index, TEMPROW).Value = Val(TXTBREAKAGE.Text.Trim)
 
+                TXTBEAMNO.Text = MAXNO + 1
+
                 GRIDDOUBLECLICK = False
             End If
-            TXTBEAMNO.Text = NextBeamNo + 1
+
+
             TXTSECTION.Clear()
             TXTGAMANO.Clear()
             TXTBEAMWT.Clear()
@@ -1070,7 +1081,7 @@ LINE1:
     End Sub
 
     Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBREAKAGE.Validating
-        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBROLLNO.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
     End Sub
 
     Private Sub TXTCUT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTGAMANO.Validating, TXTBEAMWT.Validating, TXTMTRS.Validating
@@ -1231,12 +1242,28 @@ LINE1:
     End Sub
 
 
+    Sub GetLastBeamNo()
 
-    Public Function GetLastBeamNo() As Integer
         Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_NO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_BEAMNO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
         If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
 
+    End Sub
+
+
+    Public Function GetGridMaxBeamNo() As Integer
+        For Each r As DataGridViewRow In GRIDBEAM.Rows
+            If Not r.IsNewRow Then
+                If Val(r.Cells(GBEAMNO.Index).Value) > MAXNO Then
+                    MAXNO = Val(r.Cells(GBEAMNO.Index).Value)
+                End If
+            End If
+        Next
     End Function
+
+
+
+
+
 
 End Class

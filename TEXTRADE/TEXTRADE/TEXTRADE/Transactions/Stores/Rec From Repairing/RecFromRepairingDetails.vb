@@ -1,8 +1,8 @@
-﻿
-Imports BL
+﻿Imports BL
 Imports System.Windows.Forms
 
-Public Class StoreConsumptionDetails
+
+Public Class RecFromRepairingDetails
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
@@ -10,7 +10,7 @@ Public Class StoreConsumptionDetails
         Me.Close()
     End Sub
 
-    Private Sub StoreConsumptionDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub RecFromRepairingDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Then
                 Me.Close()
@@ -28,7 +28,7 @@ Public Class StoreConsumptionDetails
         End Try
     End Sub
 
-    Private Sub StoreConsumptionDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub RecFromRepairingDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'STORES'")
             USERADD = DTROW(0).Item(1)
@@ -50,7 +50,7 @@ Public Class StoreConsumptionDetails
 
     Sub fillgrid()
         Try
-            Dim OBJSTORE As New ClsStoreConsumption
+            Dim OBJSTORE As New ClsRecFromReparing
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
             Dim DT As DataTable = OBJSTORE.SELECTCONSUME
@@ -72,10 +72,10 @@ Public Class StoreConsumptionDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJSTORES As New StoreConsumption
+                Dim OBJSTORES As New RecFromRepairing
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.TEMPCONSUMENO = INWARDNO
+                OBJSTORES.TEMPRECNO = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
@@ -85,7 +85,7 @@ Public Class StoreConsumptionDetails
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("RECNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -93,19 +93,21 @@ Public Class StoreConsumptionDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("RECNO"))
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ADDNEW.Click
         Try
-            fillgrid()
+            showform(False, 0)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
         Try
@@ -122,23 +124,17 @@ Public Class StoreConsumptionDetails
     End Sub
 
     Private Sub TOOLREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLREFRESH.Click
-        Try
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
-            fillgrid()
-        Catch ex As Exception
-            Throw ex
-        End Try
+            Try
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                fillgrid()
+            Catch ex As Exception
+                Throw ex
+            End Try
     End Sub
 
-    Private Sub CMDADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDADD.Click
-        Try
-            showform(False, 0)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 
 End Class

@@ -35,6 +35,7 @@ Partial Class StoreStockReco
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StoreStockReco))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTTRANSADD = New System.Windows.Forms.TextBox()
         Me.CHKCOPY = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTMTRSDIFF = New System.Windows.Forms.TextBox()
@@ -101,7 +102,6 @@ Partial Class StoreStockReco
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TXTTRANSADD = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBLOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -156,6 +156,17 @@ Partial Class StoreStockReco
         Me.BlendPanel1.Size = New System.Drawing.Size(797, 581)
         Me.BlendPanel1.TabIndex = 1
         '
+        'TXTTRANSADD
+        '
+        Me.TXTTRANSADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTRANSADD.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTRANSADD.Location = New System.Drawing.Point(737, 97)
+        Me.TXTTRANSADD.Name = "TXTTRANSADD"
+        Me.TXTTRANSADD.Size = New System.Drawing.Size(29, 21)
+        Me.TXTTRANSADD.TabIndex = 929
+        Me.TXTTRANSADD.TabStop = False
+        Me.TXTTRANSADD.Visible = False
+        '
         'CHKCOPY
         '
         Me.CHKCOPY.AutoSize = True
@@ -199,7 +210,7 @@ Partial Class StoreStockReco
         Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(397, 466)
         Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
         Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSELECTSTOCK.TabIndex = 925
+        Me.CMDSELECTSTOCK.TabIndex = 7
         Me.CMDSELECTSTOCK.Text = "Select S&tock"
         Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
         '
@@ -236,7 +247,7 @@ Partial Class StoreStockReco
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(762, 299)
-        Me.TabControl1.TabIndex = 862
+        Me.TabControl1.TabIndex = 5
         '
         'TBSTOCOUT1
         '
@@ -402,7 +413,7 @@ Partial Class StoreStockReco
         Me.TXTRATE.MaxLength = 10
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(71, 23)
-        Me.TXTRATE.TabIndex = 860
+        Me.TXTRATE.TabIndex = 5
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSRNO
@@ -414,7 +425,7 @@ Partial Class StoreStockReco
         Me.TXTSRNO.Name = "TXTSRNO"
         Me.TXTSRNO.ReadOnly = True
         Me.TXTSRNO.Size = New System.Drawing.Size(40, 23)
-        Me.TXTSRNO.TabIndex = 859
+        Me.TXTSRNO.TabIndex = 0
         Me.TXTSRNO.TabStop = False
         '
         'TXTQTY
@@ -425,7 +436,7 @@ Partial Class StoreStockReco
         Me.TXTQTY.MaxLength = 10
         Me.TXTQTY.Name = "TXTQTY"
         Me.TXTQTY.Size = New System.Drawing.Size(75, 23)
-        Me.TXTQTY.TabIndex = 8
+        Me.TXTQTY.TabIndex = 3
         Me.TXTQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBSTOREITEMNAME
@@ -439,7 +450,7 @@ Partial Class StoreStockReco
         Me.CMBSTOREITEMNAME.MaxDropDownItems = 14
         Me.CMBSTOREITEMNAME.Name = "CMBSTOREITEMNAME"
         Me.CMBSTOREITEMNAME.Size = New System.Drawing.Size(250, 23)
-        Me.CMBSTOREITEMNAME.TabIndex = 6
+        Me.CMBSTOREITEMNAME.TabIndex = 1
         '
         'CMBUNIT
         '
@@ -451,7 +462,7 @@ Partial Class StoreStockReco
         Me.CMBUNIT.Location = New System.Drawing.Point(569, 3)
         Me.CMBUNIT.Name = "CMBUNIT"
         Me.CMBUNIT.Size = New System.Drawing.Size(80, 23)
-        Me.CMBUNIT.TabIndex = 9
+        Me.CMBUNIT.TabIndex = 4
         '
         'GRIDSTOCKIN
         '
@@ -496,7 +507,7 @@ Partial Class StoreStockReco
         Me.GRIDSTOCKIN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTOCKIN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDSTOCKIN.Size = New System.Drawing.Size(744, 225)
-        Me.GRIDSTOCKIN.TabIndex = 10
+        Me.GRIDSTOCKIN.TabIndex = 6
         Me.GRIDSTOCKIN.TabStop = False
         '
         'ESRNO
@@ -561,7 +572,7 @@ Partial Class StoreStockReco
         Me.TXTDESC.MaxLength = 100
         Me.TXTDESC.Name = "TXTDESC"
         Me.TXTDESC.Size = New System.Drawing.Size(200, 23)
-        Me.TXTDESC.TabIndex = 7
+        Me.TXTDESC.TabIndex = 2
         '
         'LBLTOTALINQTY
         '
@@ -611,7 +622,7 @@ Partial Class StoreStockReco
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
         Me.CMBGODOWN.Size = New System.Drawing.Size(160, 23)
-        Me.CMBGODOWN.TabIndex = 1
+        Me.CMBGODOWN.TabIndex = 2
         '
         'TXTADD
         '
@@ -730,7 +741,7 @@ Partial Class StoreStockReco
         Me.GroupBox5.Location = New System.Drawing.Point(20, 445)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(277, 81)
-        Me.GroupBox5.TabIndex = 11
+        Me.GroupBox5.TabIndex = 6
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -754,7 +765,7 @@ Partial Class StoreStockReco
         Me.cmddelete.Location = New System.Drawing.Point(446, 498)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 14
+        Me.cmddelete.TabIndex = 10
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -768,7 +779,7 @@ Partial Class StoreStockReco
         Me.cmdclear.Location = New System.Drawing.Point(360, 498)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 13
+        Me.cmdclear.TabIndex = 9
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -782,7 +793,7 @@ Partial Class StoreStockReco
         Me.cmdok.Location = New System.Drawing.Point(486, 466)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 12
+        Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -826,7 +837,7 @@ Partial Class StoreStockReco
         '
         'TXTCHALLANNO
         '
-        Me.TXTCHALLANNO.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTCHALLANNO.BackColor = System.Drawing.SystemColors.Window
         Me.TXTCHALLANNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCHALLANNO.Location = New System.Drawing.Point(465, 41)
         Me.TXTCHALLANNO.MaxLength = 20
@@ -857,7 +868,7 @@ Partial Class StoreStockReco
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
         Me.CMBNAME.Size = New System.Drawing.Size(246, 23)
-        Me.CMBNAME.TabIndex = 2
+        Me.CMBNAME.TabIndex = 3
         '
         'CMBTRANS
         '
@@ -870,7 +881,7 @@ Partial Class StoreStockReco
         Me.CMBTRANS.MaxDropDownItems = 14
         Me.CMBTRANS.Name = "CMBTRANS"
         Me.CMBTRANS.Size = New System.Drawing.Size(246, 23)
-        Me.CMBTRANS.TabIndex = 3
+        Me.CMBTRANS.TabIndex = 4
         '
         'Label18
         '
@@ -893,7 +904,7 @@ Partial Class StoreStockReco
         Me.DTRECODATE.Mask = "00/00/0000"
         Me.DTRECODATE.Name = "DTRECODATE"
         Me.DTRECODATE.Size = New System.Drawing.Size(82, 23)
-        Me.DTRECODATE.TabIndex = 0
+        Me.DTRECODATE.TabIndex = 1
         Me.DTRECODATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.DTRECODATE.ValidatingType = GetType(Date)
         '
@@ -905,7 +916,7 @@ Partial Class StoreStockReco
         Me.TXTRECONO.Name = "TXTRECONO"
         Me.TXTRECONO.ReadOnly = True
         Me.TXTRECONO.Size = New System.Drawing.Size(82, 23)
-        Me.TXTRECONO.TabIndex = 833
+        Me.TXTRECONO.TabIndex = 0
         Me.TXTRECONO.TabStop = False
         Me.TXTRECONO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -942,7 +953,7 @@ Partial Class StoreStockReco
         Me.cmdexit.Location = New System.Drawing.Point(531, 498)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 15
+        Me.cmdexit.TabIndex = 11
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -951,17 +962,6 @@ Partial Class StoreStockReco
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'TXTTRANSADD
-        '
-        Me.TXTTRANSADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTTRANSADD.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTRANSADD.Location = New System.Drawing.Point(737, 97)
-        Me.TXTTRANSADD.Name = "TXTTRANSADD"
-        Me.TXTTRANSADD.Size = New System.Drawing.Size(29, 21)
-        Me.TXTTRANSADD.TabIndex = 929
-        Me.TXTTRANSADD.TabStop = False
-        Me.TXTTRANSADD.Visible = False
         '
         'StoreStockReco
         '
