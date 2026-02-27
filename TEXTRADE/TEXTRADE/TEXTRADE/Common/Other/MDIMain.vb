@@ -11173,7 +11173,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBADD.Click
+    Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBWORK_ADD.Click
         Try
             Dim OBJROLLSTOCKWARPER As New JobOrder
             OBJROLLSTOCKWARPER.MdiParent = Me
@@ -11258,6 +11258,16 @@ SKIPLINE:
     Private Sub STOREISSTOREPAIR_EDIT_Click(sender As Object, e As EventArgs) Handles STOREISSTOREPAIR_EDIT.Click
         Try
             Dim OBJMASTERTRANSFER As New IssueToRepairingDetails
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub JOBWORK_EDIT_Click(sender As Object, e As EventArgs) Handles JOBWORK_EDIT.Click
+        Try
+            Dim OBJMASTERTRANSFER As New JobOrderDetails
             OBJMASTERTRANSFER.MdiParent = Me
             OBJMASTERTRANSFER.Show()
         Catch ex As Exception
