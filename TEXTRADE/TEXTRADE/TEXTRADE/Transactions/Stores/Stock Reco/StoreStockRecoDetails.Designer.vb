@@ -45,6 +45,8 @@ Partial Class StoreStockRecoDetails
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALINQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALOUTQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip2.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +63,7 @@ Partial Class StoreStockRecoDetails
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1029, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1195, 581)
         Me.BlendPanel1.TabIndex = 8
         '
         'ToolStrip2
@@ -69,7 +71,7 @@ Partial Class StoreStockRecoDetails
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.TOOLSTOCKOUT, Me.ToolStripSeparator4, Me.TOOLSTOCKIN, Me.ToolStripSeparator5})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1029, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1195, 25)
         Me.ToolStrip2.TabIndex = 446
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -166,7 +168,7 @@ Partial Class StoreStockRecoDetails
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(1015, 505)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1172, 505)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -176,7 +178,7 @@ Partial Class StoreStockRecoDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GTRANSNAME, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GTRANSNAME, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREMARKS, Me.GTOTALINQTY, Me.GTOTALOUTQTY})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -269,10 +271,30 @@ Partial Class StoreStockRecoDetails
         Me.GREMARKS.VisibleIndex = 7
         Me.GREMARKS.Width = 200
         '
+        'GTOTALINQTY
+        '
+        Me.GTOTALINQTY.Caption = "Total In Qty"
+        Me.GTOTALINQTY.FieldName = "TOTALINQTY"
+        Me.GTOTALINQTY.Name = "GTOTALINQTY"
+        Me.GTOTALINQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALINQTY.Visible = True
+        Me.GTOTALINQTY.VisibleIndex = 8
+        Me.GTOTALINQTY.Width = 100
+        '
+        'GTOTALOUTQTY
+        '
+        Me.GTOTALOUTQTY.Caption = "Total Out Qty"
+        Me.GTOTALOUTQTY.FieldName = "TOTALOUTQTY"
+        Me.GTOTALOUTQTY.Name = "GTOTALOUTQTY"
+        Me.GTOTALOUTQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
+        Me.GTOTALOUTQTY.Visible = True
+        Me.GTOTALOUTQTY.VisibleIndex = 9
+        Me.GTOTALOUTQTY.Width = 100
+        '
         'StoreStockRecoDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1029, 581)
+        Me.ClientSize = New System.Drawing.Size(1195, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -313,4 +335,6 @@ Partial Class StoreStockRecoDetails
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents TOOLSTOCKIN As ToolStripLabel
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
+    Friend WithEvents GTOTALINQTY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALOUTQTY As DevExpress.XtraGrid.Columns.GridColumn
 End Class

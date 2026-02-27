@@ -28,12 +28,18 @@ Partial Class StoreStockRecoInDetails
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSANO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINDESC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GINRATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -56,7 +62,7 @@ Partial Class StoreStockRecoInDetails
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 592)
         Me.BlendPanel1.TabIndex = 9
         '
         'cmdexit
@@ -66,7 +72,7 @@ Partial Class StoreStockRecoInDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(614, 546)
+        Me.cmdexit.Location = New System.Drawing.Point(614, 554)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 445
@@ -80,7 +86,7 @@ Partial Class StoreStockRecoInDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(528, 546)
+        Me.cmdok.Location = New System.Drawing.Point(528, 554)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 444
@@ -90,11 +96,11 @@ Partial Class StoreStockRecoInDetails
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(7, 29)
+        Me.gridbilldetails.Location = New System.Drawing.Point(7, 37)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(1215, 514)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1221, 514)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -104,7 +110,7 @@ Partial Class StoreStockRecoInDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GINGRIDSRNO, Me.GINITEMNAME, Me.GINDESC, Me.GINQTY, Me.GINUNIT, Me.GINRATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GGODOWN, Me.GNAME, Me.GTRANS, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GINGRIDSRNO, Me.GINITEMNAME, Me.GINDESC, Me.GINQTY, Me.GINUNIT, Me.GINRATE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -116,13 +122,58 @@ Partial Class StoreStockRecoInDetails
         '
         'GSANO
         '
-        Me.GSANO.Caption = "Entry No"
+        Me.GSANO.Caption = "No"
         Me.GSANO.FieldName = "SANO"
         Me.GSANO.Name = "GSANO"
         Me.GSANO.OptionsColumn.AllowEdit = False
         Me.GSANO.Visible = True
         Me.GSANO.VisibleIndex = 0
-        Me.GSANO.Width = 69
+        Me.GSANO.Width = 50
+        '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 1
+        '
+        'GNAME
+        '
+        Me.GNAME.Caption = "Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 200
+        '
+        'GTRANS
+        '
+        Me.GTRANS.Caption = "Transport"
+        Me.GTRANS.FieldName = "TRANSNAME"
+        Me.GTRANS.Name = "GTRANS"
+        Me.GTRANS.Visible = True
+        Me.GTRANS.VisibleIndex = 3
+        Me.GTRANS.Width = 200
+        '
+        'GCHALLANNO
+        '
+        Me.GCHALLANNO.Caption = "Challan No"
+        Me.GCHALLANNO.FieldName = "CHALLANNO"
+        Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.Visible = True
+        Me.GCHALLANNO.VisibleIndex = 4
+        '
+        'GCHALLANDATE
+        '
+        Me.GCHALLANDATE.Caption = "Challan Date"
+        Me.GCHALLANDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCHALLANDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCHALLANDATE.FieldName = "CHALLANDATE"
+        Me.GCHALLANDATE.Name = "GCHALLANDATE"
+        Me.GCHALLANDATE.Visible = True
+        Me.GCHALLANDATE.VisibleIndex = 5
+        Me.GCHALLANDATE.Width = 80
         '
         'GINGRIDSRNO
         '
@@ -131,7 +182,8 @@ Partial Class StoreStockRecoInDetails
         Me.GINGRIDSRNO.Name = "GINGRIDSRNO"
         Me.GINGRIDSRNO.OptionsColumn.AllowEdit = False
         Me.GINGRIDSRNO.Visible = True
-        Me.GINGRIDSRNO.VisibleIndex = 1
+        Me.GINGRIDSRNO.VisibleIndex = 6
+        Me.GINGRIDSRNO.Width = 70
         '
         'GINITEMNAME
         '
@@ -140,7 +192,7 @@ Partial Class StoreStockRecoInDetails
         Me.GINITEMNAME.Name = "GINITEMNAME"
         Me.GINITEMNAME.OptionsColumn.AllowEdit = False
         Me.GINITEMNAME.Visible = True
-        Me.GINITEMNAME.VisibleIndex = 2
+        Me.GINITEMNAME.VisibleIndex = 7
         Me.GINITEMNAME.Width = 150
         '
         'GINDESC
@@ -150,7 +202,7 @@ Partial Class StoreStockRecoInDetails
         Me.GINDESC.Name = "GINDESC"
         Me.GINDESC.OptionsColumn.AllowEdit = False
         Me.GINDESC.Visible = True
-        Me.GINDESC.VisibleIndex = 3
+        Me.GINDESC.VisibleIndex = 8
         Me.GINDESC.Width = 100
         '
         'GINQTY
@@ -159,9 +211,10 @@ Partial Class StoreStockRecoInDetails
         Me.GINQTY.FieldName = "INQTY"
         Me.GINQTY.Name = "GINQTY"
         Me.GINQTY.OptionsColumn.AllowEdit = False
+        Me.GINQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GINQTY.Visible = True
-        Me.GINQTY.VisibleIndex = 4
-        Me.GINQTY.Width = 100
+        Me.GINQTY.VisibleIndex = 9
+        Me.GINQTY.Width = 60
         '
         'GINUNIT
         '
@@ -170,8 +223,8 @@ Partial Class StoreStockRecoInDetails
         Me.GINUNIT.Name = "GINUNIT"
         Me.GINUNIT.OptionsColumn.AllowEdit = False
         Me.GINUNIT.Visible = True
-        Me.GINUNIT.VisibleIndex = 5
-        Me.GINUNIT.Width = 100
+        Me.GINUNIT.VisibleIndex = 10
+        Me.GINUNIT.Width = 60
         '
         'GINRATE
         '
@@ -180,8 +233,17 @@ Partial Class StoreStockRecoInDetails
         Me.GINRATE.Name = "GINRATE"
         Me.GINRATE.OptionsColumn.AllowEdit = False
         Me.GINRATE.Visible = True
-        Me.GINRATE.VisibleIndex = 6
-        Me.GINRATE.Width = 100
+        Me.GINRATE.VisibleIndex = 11
+        Me.GINRATE.Width = 60
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 12
+        Me.GREMARKS.Width = 150
         '
         'ToolStrip1
         '
@@ -231,7 +293,7 @@ Partial Class StoreStockRecoInDetails
         'StoreStockRecoInDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 592)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -267,4 +329,10 @@ Partial Class StoreStockRecoInDetails
     Friend WithEvents GINQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GINUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GINRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRANS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
 End Class
