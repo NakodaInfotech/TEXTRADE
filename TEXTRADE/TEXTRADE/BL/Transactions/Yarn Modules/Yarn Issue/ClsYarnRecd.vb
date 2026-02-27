@@ -77,6 +77,10 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@HAMALICHARGES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRANSPORTLRNO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -210,6 +214,10 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@HAMALICHARGES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRANSPORTLRNO", alParaval(I)))
                 I = I + 1
 
 

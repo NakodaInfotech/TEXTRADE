@@ -9,6 +9,8 @@ Public Class BeamRecdWarper
     Public EDIT As Boolean
     Public TEMPBEAMRECDNO As Integer
     Dim TEMPMSG As Integer
+    Dim NextBeamNo As Integer
+    Dim MAXNO As Integer = 0
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -23,21 +25,21 @@ Public Class BeamRecdWarper
     Sub TOTAL()
         Try
             TXTTOTALBEAM.Text = 0.0
-            TXTTOTALCUT.Text = 0.0
-            TXTTOTALWT.Text = 0.0
+            TXTTOTALMTRS.Text = 0.0
+            TXTTOTALBEAMWT.Text = 0.0
             LBLTAPLINE.Text = 0.0
 
-            Dim TOTALTAPLINE As Double
+            'Dim TOTALTAPLINE As Double
             For Each ROW As DataGridViewRow In GRIDBEAM.Rows
                 If ROW.Cells(GSRNO.Index).Value <> Nothing Then
                     TXTTOTALBEAM.Text = Format(Val(TXTTOTALBEAM.Text) + 1, "0")
-                    TXTTOTALCUT.Text = Format(Val(TXTTOTALCUT.Text) + Val(ROW.Cells(GCUT.Index).EditedFormattedValue), "0.00")
-                    TXTTOTALWT.Text = Format(Val(TXTTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.000")
-                    TOTALTAPLINE += Val(ROW.Cells(GTAPLINE.Index).Value)
+                    TXTTOTALMTRS.Text = Format(Val(TXTTOTALMTRS.Text) + Val(ROW.Cells(GTOTALMTRS.Index).EditedFormattedValue), "0.00")
+                    TXTTOTALBEAMWT.Text = Format(Val(TXTTOTALBEAMWT.Text) + Val(ROW.Cells(GBEAMWT.Index).EditedFormattedValue), "0.000")
+                    'TOTALTAPLINE += Val(ROW.Cells(GTAPLINE.Index).Value)
                 End If
             Next
 
-            LBLTAPLINE.Text = Format(Val(TOTALTAPLINE / (GRIDBEAM.RowCount)), "0.00")
+            'LBLTAPLINE.Text = Format(Val(TOTALTAPLINE / (GRIDBEAM.RowCount)), "0.00")
 
         Catch ex As Exception
             Throw ex
@@ -52,26 +54,26 @@ Public Class BeamRecdWarper
         CMBOURGODOWN.Text = GETDEFAULTGODOWN()
         CMBNAME.Text = ""
         CMBMILLNAME.Text = ""
-        TXTYARNISSUENO.Clear()
-        TXTTYPE.Clear()
-        TXTADDANO.Clear()
+        TXTJOBNO.Clear()
+        TXTREED.Clear()
+        TXTREEDSPACE.Clear()
 
         TXTCHALLANNO.Clear()
         DTCHALLANDATE.Text = Mydate
         LBLTAPLINE.Text = 0.0
         TXTTOTALBEAM.Clear()
-        TXTTOTALWT.Clear()
-        TXTTOTALCUT.Clear()
+        TXTTOTALBEAMWT.Clear()
+        TXTTOTALMTRS.Clear()
         TXTREMARKS.Clear()
         TXTSRNO.Clear()
-        TXTBEAMNO.Clear()
+        'TXTBEAMNO.Clear()
         CMBBEAMNAME.Text = ""
         TXTENDS.Clear()
-        TXTTAPLINE.Clear()
-        TXTCUT.Clear()
-        TXTWT.Clear()
-        TXTWTCUT.Clear()
-        TXTNARR.Clear()
+        TXTMTRS.Clear()
+        TXTGAMANO.Clear()
+        TXTBEAMWT.Clear()
+        CMBROLLNO.Text = ""
+        TXTSECTION.Clear()
 
         EP.Clear()
         lbllocked.Visible = False
@@ -97,6 +99,15 @@ Public Class BeamRecdWarper
 
         TXTSRNO.Text = 1
         TXTUPLOADSRNO.Text = 1
+
+        TXTFROMTYPE.Clear()
+        TXTREFNO.Clear()
+        TXTPICS.Clear()
+        GetLastBeamNo()
+        TXTBEAMNO.Text = NextBeamNo
+        GRIDYARNDETAILS.RowCount = 0
+
+
 
     End Sub
 
@@ -142,6 +153,7 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
+        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -181,17 +193,23 @@ Public Class BeamRecdWarper
                     CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
                     CMBMILLNAME.Text = dttable.Rows(0).Item("MILLNAME").ToString
 
-                    TXTYARNISSUENO.Text = Val(dttable.Rows(0).Item("FROMNO"))
-                    TXTTYPE.Text = dttable.Rows(0).Item("FROMTYPE").ToString
-                    TXTADDANO.Text = Val(dttable.Rows(0).Item("ADDANO"))
+                    TXTJOBNO.Text = Val(dttable.Rows(0).Item("JOBNO"))
+                    TXTREED.Text = dttable.Rows(0).Item("REED").ToString
+                    TXTREEDSPACE.Text = Val(dttable.Rows(0).Item("REEDSPACE"))
 
                     TXTCHALLANNO.Text = dttable.Rows(0).Item("CHALLANNO").ToString
                     DTCHALLANDATE.Text = dttable.Rows(0).Item("CHALLANDATE")
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
+                    TXTREFNO.Text = dttable.Rows(0).Item("REFNO").ToString
+                    TXTFROMTYPE.Text = dttable.Rows(0).Item("FROMTYPE").ToString
+                    TXTPICS.Text = dttable.Rows(0).Item("PICS").ToString
+
+
+
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNO"), ROW("BEAMNAME"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), ROW("NARR"), ROW("GRIDDONE"))
+                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNO"), ROW("BEAMNAME"), Val(ROW("ENDS")), Val(ROW("MTRS")), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BEAMWT")), Val(ROW("BREAKAGE")), ROW("GRIDDONE"))
                         If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
                             lbllocked.Visible = True
                             PBlock.Visible = True
@@ -232,16 +250,16 @@ Public Class BeamRecdWarper
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBMILLNAME.Text.Trim)
 
-            alParaval.Add(Val(TXTYARNISSUENO.Text.Trim))
-            alParaval.Add(TXTTYPE.Text.Trim)
-            alParaval.Add(Val(TXTADDANO.Text.Trim))
+            alParaval.Add(Val(TXTJOBNO.Text.Trim))
+            alParaval.Add(TXTREED.Text.Trim)
+            alParaval.Add(Val(TXTREEDSPACE.Text.Trim))
 
             alParaval.Add(TXTCHALLANNO.Text.Trim)
             alParaval.Add(DTCHALLANDATE.Text.Trim)
 
             alParaval.Add(Val(TXTTOTALBEAM.Text.Trim))
-            alParaval.Add(Val(TXTTOTALCUT.Text.Trim))
-            alParaval.Add(Val(TXTTOTALWT.Text.Trim))
+            alParaval.Add(Val(TXTTOTALMTRS.Text.Trim))
+            alParaval.Add(Val(TXTTOTALBEAMWT.Text.Trim))
             alParaval.Add(Val(LBLTAPLINE.Text.Trim))
             alParaval.Add(TXTREMARKS.Text.Trim)
 
@@ -253,15 +271,22 @@ Public Class BeamRecdWarper
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(TXTPICS.Text.Trim)
+            alParaval.Add(TXTREFNO.Text.Trim)
+            alParaval.Add(TXTFROMTYPE.Text.Trim)
+
+
 
             Dim SRNO As String = ""
             Dim BEAMNO As String = ""
             Dim BEAMNAME As String = ""
-            Dim TAPLINE As String = ""
-            Dim CUT As String = ""
-            Dim WT As String = ""
-            Dim WTCUT As String = ""
-            Dim NARR As String = ""
+            Dim ENDS As String = ""
+            Dim MTRS As String = ""
+            Dim GAMANO As String = ""
+            Dim SECTION As String = ""
+            Dim ROLLNO As String = ""
+            Dim BEAMWT As String = ""
+            Dim BREAKAGE As String = ""
             Dim GRIDDONE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
@@ -270,11 +295,13 @@ Public Class BeamRecdWarper
                         SRNO = row.Cells(GSRNO.Index).Value
                         BEAMNO = row.Cells(GBEAMNO.Index).Value.ToString
                         BEAMNAME = row.Cells(GBEAMNAME.Index).Value.ToString
-                        TAPLINE = Val(row.Cells(GTAPLINE.Index).Value)
-                        CUT = Val(row.Cells(GCUT.Index).Value)
-                        WT = Val(row.Cells(GWT.Index).Value)
-                        WTCUT = Val(row.Cells(GWTCUT.Index).Value)
-                        NARR = row.Cells(GNARR.Index).Value.ToString
+                        ENDS = Val(row.Cells(GTOTALENDS.Index).Value)
+                        MTRS = Val(row.Cells(GTOTALMTRS.Index).Value)
+                        GAMANO = Val(row.Cells(GGAMANO.Index).Value)
+                        SECTION = Val(row.Cells(GSECTION.Index).Value)
+                        ROLLNO = Val(row.Cells(GROLLNO.Index).Value)
+                        BEAMWT = Val(row.Cells(GBEAMWT.Index).Value)
+                        BREAKAGE = Val(row.Cells(GBREAKAGE.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = 1
                         Else
@@ -286,11 +313,13 @@ Public Class BeamRecdWarper
                         SRNO = SRNO & "|" & row.Cells(GSRNO.Index).Value
                         BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value.ToString
                         BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value.ToString
-                        TAPLINE = TAPLINE & "|" & Val(row.Cells(GTAPLINE.Index).Value)
-                        CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
-                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
-                        WTCUT = WTCUT & "|" & Val(row.Cells(GWTCUT.Index).Value)
-                        NARR = NARR & "|" & row.Cells(GNARR.Index).Value
+                        ENDS = ENDS & "|" & Val(row.Cells(GTOTALENDS.Index).Value)
+                        MTRS = MTRS & "|" & Val(row.Cells(GTOTALMTRS.Index).Value)
+                        GAMANO = GAMANO & "|" & Val(row.Cells(GGAMANO.Index).Value)
+                        SECTION = SECTION & "|" & Val(row.Cells(GSECTION.Index).Value)
+                        ROLLNO = ROLLNO & "|" & Val(row.Cells(GROLLNO.Index).Value)
+                        BEAMWT = BEAMWT & "|" & Val(row.Cells(GBEAMWT.Index).Value)
+                        BREAKAGE = BREAKAGE & "|" & Val(row.Cells(GBREAKAGE.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = GRIDDONE & "|" & "1"
                         Else
@@ -304,11 +333,13 @@ Public Class BeamRecdWarper
             alParaval.Add(SRNO)
             alParaval.Add(BEAMNO)
             alParaval.Add(BEAMNAME)
-            alParaval.Add(TAPLINE)
-            alParaval.Add(CUT)
-            alParaval.Add(WT)
-            alParaval.Add(WTCUT)
-            alParaval.Add(NARR)
+            alParaval.Add(ENDS)
+            alParaval.Add(MTRS)
+            alParaval.Add(GAMANO)
+            alParaval.Add(SECTION)
+            alParaval.Add(ROLLNO)
+            alParaval.Add(BEAMWT)
+            alParaval.Add(BREAKAGE)
             alParaval.Add(GRIDDONE)
 
 
@@ -573,22 +604,27 @@ LINE1:
         End If
 
         If GRIDBEAM.RowCount = 0 Then
-            EP.SetError(TXTNARR, "Enter Proper Details")
+            EP.SetError(TXTSECTION, "Enter Proper Details")
             bln = False
         End If
 
 
         For Each row As DataGridViewRow In GRIDBEAM.Rows
-            If Val(row.Cells(GWT.Index).Value) = 0 Then
-                EP.SetError(TXTNARR, "Wt Cannot be 0 or Less")
+            If Val(row.Cells(GBEAMWT.Index).Value) = 0 Then
+                EP.SetError(TXTSECTION, "Wt Cannot be 0 or Less")
                 bln = False
             End If
 
-            If Val(row.Cells(GCUT.Index).Value) = 0 Then
-                EP.SetError(TXTNARR, "Cut Cannot be 0 or Less")
+            If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
+                EP.SetError(TXTSECTION, "Mtrs Cannot be 0 or Less")
                 bln = False
             End If
         Next
+
+        If TXTJOBNO.Text.Trim = "" Then
+            EP.SetError(TXTJOBNO, " Please Select Job Order First ")
+            bln = False
+        End If
 
         Return bln
     End Function
@@ -686,7 +722,7 @@ LINE1:
                 Dim OBJGODOWN As New SelectGodown
                 OBJGODOWN.FRMSTRING = "GODOWN"
                 OBJGODOWN.SEARCH = " And GODOWN_ISOUR = 'True'"
-            OBJGODOWN.ShowDialog()
+                OBJGODOWN.ShowDialog()
                 If OBJGODOWN.TEMPNAME <> "" Then CMBOURGODOWN.Text = OBJGODOWN.TEMPNAME
             End If
         Catch ex As Exception
@@ -889,15 +925,18 @@ LINE1:
                 End If
 
                 GRIDDOUBLECLICK = True
+                NextBeamNo = GetGridMaxBeamNo()
+
                 TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, e.RowIndex).Value
                 TXTBEAMNO.Text = GRIDBEAM.Item(GBEAMNO.Index, e.RowIndex).Value
                 CMBBEAMNAME.Text = GRIDBEAM.Item(GBEAMNAME.Index, e.RowIndex).Value
-                TXTENDS.Text = GRIDBEAM.Item(GENDS.Index, e.RowIndex).Value
-                TXTTAPLINE.Text = GRIDBEAM.Item(GTAPLINE.Index, e.RowIndex).Value
-                TXTCUT.Text = GRIDBEAM.Item(GCUT.Index, e.RowIndex).Value
-                TXTWT.Text = Format(Val(GRIDBEAM.Item(GWT.Index, e.RowIndex).Value), "0.000")
-                TXTWTCUT.Text = GRIDBEAM.Item(GWTCUT.Index, e.RowIndex).Value
-                TXTNARR.Text = GRIDBEAM.Item(GNARR.Index, e.RowIndex).Value
+                TXTENDS.Text = GRIDBEAM.Item(GTOTALENDS.Index, e.RowIndex).Value
+                TXTMTRS.Text = GRIDBEAM.Item(GTOTALMTRS.Index, e.RowIndex).Value
+                TXTGAMANO.Text = GRIDBEAM.Item(GGAMANO.Index, e.RowIndex).Value
+                TXTSECTION.Text = GRIDBEAM.Item(GSECTION.Index, e.RowIndex).Value
+                CMBROLLNO.Text = GRIDBEAM.Item(GROLLNO.Index, e.RowIndex).Value
+                TXTBEAMWT.Text = GRIDBEAM.Item(GBEAMWT.Index, e.RowIndex).Value
+                TXTBREAKAGE.Text = GRIDBEAM.Item(GBREAKAGE.Index, e.RowIndex).Value
 
                 TEMPROW = e.RowIndex
                 TXTBEAMNO.Focus()
@@ -928,6 +967,7 @@ LINE1:
                 getsrno(GRIDBEAM)
                 TXTSRNO.Text = GRIDBEAM.RowCount + 1
                 TOTAL()
+
 
             End If
 
@@ -978,27 +1018,39 @@ LINE1:
         End Try
     End Sub
 
+
     Sub FILLGRID()
         Try
             If GRIDDOUBLECLICK = False Then
-                GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), TXTBEAMNO.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTTAPLINE.Text.Trim), Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTWTCUT.Text.Trim), "0.000"), TXTNARR.Text.Trim)
+                GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), TXTBEAMNO.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTGAMANO.Text.Trim), Val(TXTSECTION.Text.Trim), Val(CMBROLLNO.Text.Trim), Val(TXTBEAMWT.Text.Trim), Val(TXTBREAKAGE.Text.Trim))
+
+                TXTBEAMNO.Text = TXTBEAMNO.Text + 1
+                'NextBeamNo += 1
             Else
+
                 GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = TXTSRNO.Text.Trim
                 GRIDBEAM.Item(GBEAMNO.Index, TEMPROW).Value = TXTBEAMNO.Text.Trim
                 GRIDBEAM.Item(GBEAMNAME.Index, TEMPROW).Value = CMBBEAMNAME.Text.Trim
-                GRIDBEAM.Item(GENDS.Index, TEMPROW).Value = Val(TXTENDS.Text.Trim)
-                GRIDBEAM.Item(GTAPLINE.Index, TEMPROW).Value = Format(Val(TXTTAPLINE.Text.Trim))
-                GRIDBEAM.Item(GCUT.Index, TEMPROW).Value = Format(Val(TXTCUT.Text.Trim), "0.00")
-                GRIDBEAM.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
-                GRIDBEAM.Item(GWTCUT.Index, TEMPROW).Value = Format(Val(TXTWTCUT.Text.Trim), "0.000")
-                GRIDBEAM.Item(GNARR.Index, TEMPROW).Value = TXTNARR.Text.Trim
+                GRIDBEAM.Item(GTOTALENDS.Index, TEMPROW).Value = Val(TXTENDS.Text.Trim)
+                GRIDBEAM.Item(GTOTALMTRS.Index, TEMPROW).Value = Val(TXTMTRS.Text.Trim)
+                GRIDBEAM.Item(GGAMANO.Index, TEMPROW).Value = Val(TXTGAMANO.Text.Trim)
+                GRIDBEAM.Item(GSECTION.Index, TEMPROW).Value = Val(TXTSECTION.Text.Trim)
+                GRIDBEAM.Item(GROLLNO.Index, TEMPROW).Value = Val(CMBROLLNO.Text.Trim)
+                GRIDBEAM.Item(GBEAMWT.Index, TEMPROW).Value = Val(TXTBEAMWT.Text.Trim)
+                GRIDBEAM.Item(GBREAKAGE.Index, TEMPROW).Value = Val(TXTBREAKAGE.Text.Trim)
+
+                TXTBEAMNO.Text = MAXNO + 1
 
                 GRIDDOUBLECLICK = False
             End If
-            TXTBEAMNO.Text = Val(TXTBEAMNO.Text.Trim) + 1
-            TXTNARR.Clear()
-            TXTCUT.Clear()
-            TXTWT.Clear()
+
+
+            TXTSECTION.Clear()
+            TXTGAMANO.Clear()
+            TXTBEAMWT.Clear()
+            TXTBREAKAGE.Clear()
+            CMBROLLNO.Text = ""
+
             getsrno(GRIDBEAM)
             TOTAL()
             TXTBEAMNO.Focus()
@@ -1009,30 +1061,30 @@ LINE1:
     End Sub
 
     Sub CALC()
-        Try
-            'GET WT AUTO FROM BEAMMASTER AND MULTIPLY IT BY CUT
-            If CMBBEAMNAME.Text.Trim <> "" And Val(TXTWT.Text.Trim) = 0 Then
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" BEAM_TOTALWT AS BEAMWT, BEAM_TAPLINE AS TAPLINE", "", " BEAMMASTER ", " AND BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    If Val(TXTTAPLINE.Text.Trim) <> Val(DT.Rows(0).Item("TAPLINE")) Then
-                        TXTWT.Text = Format(Val(TXTCUT.Text.Trim) * ((Val(TXTTAPLINE.Text.Trim) * Val(DT.Rows(0).Item("BEAMWT"))) / Val(DT.Rows(0).Item("TAPLINE"))), "0.000")
-                    Else
-                        TXTWT.Text = Format(Val(TXTCUT.Text.Trim) * Val(DT.Rows(0).Item("BEAMWT")), "0.000")
-                    End If
-                End If
-            End If
-            TXTWTCUT.Text = Format(Val(TXTWT.Text) / Val(TXTCUT.Text.Trim), "0.000")
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    'GET WT AUTO FROM BEAMMASTER AND MULTIPLY IT BY CUT
+        '    If CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) = 0 Then
+        '        Dim OBJCMN As New ClsCommon
+        '        Dim DT As DataTable = OBJCMN.SEARCH(" BEAM_TOTALWT AS BEAMWT, BEAM_TAPLINE AS TAPLINE", "", " BEAMMASTER ", " AND BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+        '        If DT.Rows.Count > 0 Then
+        '            If Val(TXTTOTALMTRS.Text.Trim) <> Val(DT.Rows(0).Item("TAPLINE")) Then
+        '                TXTBEAMWT.Text = Format(Val(TXTGAMANO.Text.Trim) * ((Val(TXTTOTALMTRS.Text.Trim) * Val(DT.Rows(0).Item("BEAMWT"))) / Val(DT.Rows(0).Item("TAPLINE"))), "0.000")
+        '            Else
+        '                TXTBEAMWT.Text = Format(Val(TXTGAMANO.Text.Trim) * Val(DT.Rows(0).Item("BEAMWT")), "0.000")
+        '            End If
+        '        End If
+        '    End If
+        '    ' TXTROLLNO.Text = Format(Val(TXTBEAMWT.Text) / Val(TXTGAMANO.Text.Trim), "0.000")
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
-    Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTNARR.Validating
-        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTCUT.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+    Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBREAKAGE.Validating
+        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
     End Sub
 
-    Private Sub TXTCUT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTCUT.Validating, TXTWT.Validating, TXTTAPLINE.Validating
+    Private Sub TXTCUT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTGAMANO.Validating, TXTBEAMWT.Validating, TXTMTRS.Validating
         Try
             CALC()
         Catch ex As Exception
@@ -1065,14 +1117,14 @@ LINE1:
 
     Private Sub CMBBEAMNAME_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Validated
         Try
-            If CMBBEAMNAME.Text.Trim <> "" Then
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
-                    TXTTAPLINE.Text = DT.Rows(0).Item("TAPLINE")
-                End If
-            End If
+            'If CMBBEAMNAME.Text.Trim <> "" Then
+            '    Dim OBJCMN As New ClsCommon
+            '    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+            '    If DT.Rows.Count > 0 Then
+            '        TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
+            '        TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
+            '    End If
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1098,20 +1150,25 @@ LINE1:
 
     Private Sub CMDSELECTROLLISSUE_Click(sender As Object, e As EventArgs) Handles CMDSELECTYARNISSUE.Click
         Try
-            If CMBNAME.Text.Trim = "" Then
-                MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
-                CMBNAME.Focus()
-                Exit Sub
-            End If
+            'If CMBNAME.Text.Trim = "" Then
+            '    MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
+            '    CMBNAME.Focus()
+            '    Exit Sub
+            'End If
 
-            Dim OBJYARNISSUE As New SelectYarnIssue
+            Dim OBJYARNISSUE As New SelectJobOrder
             OBJYARNISSUE.SIZERNAME = CMBNAME.Text.Trim
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.ShowDialog()
             If DT.Rows.Count > 0 Then
-                TXTYARNISSUENO.Text = DT.Rows(0).Item("FROMNO")
-                TXTTYPE.Text = DT.Rows(0).Item("TYPE")
-                TXTADDANO.Text = Val(DT.Rows(0).Item("ADDANO"))
+                TXTJOBNO.Text = DT.Rows(0).Item("JOBNO")
+                TXTREED.Text = Val(DT.Rows(0).Item("REED"))
+                TXTREEDSPACE.Text = Val(DT.Rows(0).Item("REEDSPACE"))
+                TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
+                TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
+                TXTREFNO.Text = DT.Rows(0).Item("REFNO")
+
+
                 CMDSELECTYARNISSUE.Enabled = False
             End If
         Catch ex As Exception
@@ -1119,7 +1176,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTCUT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTCUT.KeyPress, TXTWT.KeyPress
+    Private Sub TXTCUT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTGAMANO.KeyPress, TXTBEAMWT.KeyPress, TXTSECTION.KeyPress, TXTMTRS.KeyPress, TXTBEAMWT.KeyPress, TXTBREAKAGE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -1165,11 +1222,48 @@ LINE1:
         DTCHALLANDATE.Select(0, 0)
     End Sub
 
-    Private Sub TXTTAPLINE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTTAPLINE.KeyPress
+    Private Sub TXTTAPLINE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTENDS.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDBEAM_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDBEAM.CellClick
+        If e.RowIndex >= 0 Then
+            GRIDYARNDETAILS.Rows.Clear()
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" BEAMMASTER_DESC.BEAM_SRNO AS SRNO ,ISNULL(YARNQUALITYMASTER.YARN_NAME,'') AS YARNQUALITY ", "", " BEAMMASTER INNER JOIN BEAMMASTER_DESC ON BEAMMASTER.BEAM_ID = BEAMMASTER_DESC.BEAM_ID AND BEAMMASTER.BEAM_YEARID = BEAMMASTER_DESC.BEAM_YEARID INNER JOIN YARNQUALITYMASTER ON BEAMMASTER_DESC.BEAM_GRIDQUALITYID = YARNQUALITYMASTER.YARN_ID ", " AND BEAMMASTER.BEAM_NAME = '" & GRIDBEAM.Item(GBEAMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND BEAMMASTER.BEAM_YEARID = " & YearId)
+            For Each ROW As DataRow In DT.Rows
+                GRIDYARNDETAILS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"))
+            Next
+        End If
+    End Sub
+
+
+    Sub GetLastBeamNo()
+
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_BEAMNO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+
+    End Sub
+
+
+    Public Function GetGridMaxBeamNo() As Integer
+        For Each r As DataGridViewRow In GRIDBEAM.Rows
+            If Not r.IsNewRow Then
+                If Val(r.Cells(GBEAMNO.Index).Value) > MAXNO Then
+                    MAXNO = Val(r.Cells(GBEAMNO.Index).Value)
+                End If
+            End If
+        Next
+    End Function
+
+
+
+
+
+
 End Class

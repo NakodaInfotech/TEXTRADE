@@ -60,6 +60,10 @@ Public Class ClsStoreConsumption
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TAKENBY", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -113,6 +117,11 @@ Public Class ClsStoreConsumption
                 .Add(New SqlClient.SqlParameter("@QTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TAKENBY", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@CONSUMENO", alParaval(I)))

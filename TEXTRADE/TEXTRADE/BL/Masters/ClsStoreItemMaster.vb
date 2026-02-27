@@ -52,6 +52,8 @@ Public Class ClsStoreItemMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CATEGORY", ALPARAVAL(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@ROLLITEM", ALPARAVAL(I)))
+                I += 1
 
 
             End With
@@ -97,6 +99,8 @@ Public Class ClsStoreItemMaster
                 .Add(New SqlClient.SqlParameter("@DEBITLEDGER", ALPARAVAL(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CATEGORY", ALPARAVAL(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ROLLITEM", ALPARAVAL(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@TEMPID", ALPARAVAL(I)))

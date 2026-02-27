@@ -406,6 +406,12 @@ Public Class ClsDesignCardMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@EXTRAENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALEXTRAENDS", alParaval(I)))
+                I += 1
 
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
@@ -809,6 +815,13 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@TOTALPEG", alParaval(I)))
                 I += 1
 
+                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@EXTRAENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@TOTALEXTRAENDS", alParaval(I)))
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
                 I += 1
 
@@ -832,6 +845,7 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@CmpId", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@itemname", alParaval(3)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
             'Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)

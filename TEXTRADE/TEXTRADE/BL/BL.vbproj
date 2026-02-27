@@ -405,9 +405,12 @@
     <Compile Include="Transactions\Sale\ClsTransChallan.vb" />
     <Compile Include="Transactions\Sample\ClsSampleStockTaking.vb" />
     <Compile Include="Transactions\Stores\ClsInterGodownTransferStores.vb" />
+    <Compile Include="Transactions\Stores\ClsIssueToRepairing.vb" />
+    <Compile Include="Transactions\Stores\ClsRecFromReparing.vb" />
     <Compile Include="Transactions\Stores\ClsStoreConsumption.vb" />
     <Compile Include="Transactions\Stores\ClsStoreInward.vb" />
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
+    <Compile Include="Transactions\Stores\ClsStoreStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Issue\ClsBeamIssueWeaver.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Received\ClsBeamReceived.vb" />
     <Compile Include="Transactions\Yarn Modules\BeamReceivedWarper\ClsBeamReceivedWarper.vb" />
@@ -418,6 +421,7 @@
     <Compile Include="Transactions\Yarn Modules\Yarn Inter GodownTransfer\ClsYarnInterGodownTransfer.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamProgram.vb" />
+    <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsJobOrder.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsProductionFloorIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsWeftIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsYarnIssue.vb" />
@@ -449,6 +453,7 @@
     <Compile Include="Utilities\ClsLogsDelete.vb" />
     <Compile Include="Utilities\ClsLogsUpdate.vb" />
     <Compile Include="Utilities\ClsLotTagging.vb" />
+    <Compile Include="Utilities\ClsMasterTransfer.vb" />
     <Compile Include="Utilities\ClsMergeLedger.vb" />
     <Compile Include="Utilities\ClsMergeParameter.vb" />
     <Compile Include="Utilities\ClsReminder.vb" />

@@ -2827,10 +2827,64 @@
     <Compile Include="Transactions\Stores\Inward\SelectStoresPO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.Designer.vb">
+      <DependentUpon>IssueToRepairing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.Designer.vb">
+      <DependentUpon>IssueToRepairingDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.Designer.vb">
+      <DependentUpon>RecFromRepairing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.Designer.vb">
+      <DependentUpon>RecFromRepairingDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.Designer.vb">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\SelectStoreStock.Designer.vb">
+      <DependentUpon>SelectStoreStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\SelectStoreStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockReco.Designer.vb">
+      <DependentUpon>StoreStockReco.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockReco.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoInDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.Designer.vb">
+      <DependentUpon>StoreStockRecoOutDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.Designer.vb">
@@ -2965,6 +3019,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.Designer.vb">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.Designer.vb">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </Compile>
@@ -3067,6 +3127,30 @@
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.Designer.vb">
+      <DependentUpon>JobOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.Designer.vb">
+      <DependentUpon>JobOrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.Designer.vb">
+      <DependentUpon>JobOrderWarpDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.Designer.vb">
+      <DependentUpon>JobOrderWeftDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
     </Compile>
@@ -3155,6 +3239,12 @@
       <DependentUpon>IncentiveTaggingDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Others\IncentiveTaggingDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.Designer.vb">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\MasterTransfer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Others\ReconcileData.Designer.vb">
@@ -10454,8 +10544,35 @@
     <EmbeddedResource Include="Transactions\Stores\Inward\SelectStoresPO.resx">
       <DependentUpon>SelectStoresPO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Issue To Repairing\IssueToRepairing.resx">
+      <DependentUpon>IssueToRepairing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Issue To Repairing\IssueToRepairingDetails.resx">
+      <DependentUpon>IssueToRepairingDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Rec From Repairing\RecFromRepairing.resx">
+      <DependentUpon>RecFromRepairing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Rec From Repairing\RecFromRepairingDetails.resx">
+      <DependentUpon>RecFromRepairingDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\ReOrder Level\StoresReorderLevel.resx">
       <DependentUpon>StoresReorderLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\SelectStoreStock.resx">
+      <DependentUpon>SelectStoreStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockReco.resx">
+      <DependentUpon>StoreStockReco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoDetails.resx">
+      <DependentUpon>StoreStockRecoDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoInDetails.resx">
+      <DependentUpon>StoreStockRecoInDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.resx">
+      <DependentUpon>StoreStockRecoOutDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.resx">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
@@ -10523,6 +10640,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectJobOrder.resx">
+      <DependentUpon>SelectJobOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\SelectYarnIssue.resx">
       <DependentUpon>SelectYarnIssue.vb</DependentUpon>
     </EmbeddedResource>
@@ -10574,6 +10694,18 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.resx">
       <DependentUpon>YarnInterGodownTransferDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.resx">
+      <DependentUpon>JobOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.resx">
+      <DependentUpon>JobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.resx">
+      <DependentUpon>JobOrderWarpDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.resx">
+      <DependentUpon>JobOrderWeftDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
     </EmbeddedResource>
@@ -10618,6 +10750,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\IncentiveTaggingDetails.resx">
       <DependentUpon>IncentiveTaggingDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\MasterTransfer.resx">
+      <DependentUpon>MasterTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\ReconcileData.resx">
       <DependentUpon>ReconcileData.vb</DependentUpon>
@@ -14713,7 +14848,9 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\Crystal Reports\Stores\Stores Issue And Repair\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
