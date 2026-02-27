@@ -52,6 +52,7 @@ Partial Class SelectGdn
         Me.chkall = New System.Windows.Forms.CheckBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +138,7 @@ Partial Class SelectGdn
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GGATEPASSNO, Me.GCHALLANTYPENO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GDESIGNNO, Me.GSHADE, Me.GRATE, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GGODOWN, Me.GPONO, Me.GTOTALBALES, Me.GTOTALAMT, Me.GPARTYCHALLANNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GGATEPASSNO, Me.GCHALLANTYPENO, Me.GDATE, Me.GNAME, Me.GDELIVERYAT, Me.GDESIGNNO, Me.GSHADE, Me.GRATE, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GGODOWN, Me.GPONO, Me.GTOTALBALES, Me.GTOTALAMT, Me.GPARTYCHALLANNO, Me.GTRANSPORT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -382,6 +383,15 @@ Partial Class SelectGdn
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GTRANSPORT
+        '
+        Me.GTRANSPORT.Caption = "Transport"
+        Me.GTRANSPORT.FieldName = "TRANSNAME"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        Me.GTRANSPORT.Visible = True
+        Me.GTRANSPORT.VisibleIndex = 17
+        Me.GTRANSPORT.Width = 200
+        '
         'SelectGdn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -433,4 +443,5 @@ Partial Class SelectGdn
     Friend WithEvents Label10 As Label
     Friend WithEvents TXTTO As TextBox
     Friend WithEvents TXTFROM As TextBox
+    Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
 End Class
