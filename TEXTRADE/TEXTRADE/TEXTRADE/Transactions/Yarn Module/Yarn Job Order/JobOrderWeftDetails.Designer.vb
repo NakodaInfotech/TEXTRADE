@@ -31,70 +31,16 @@ Partial Class JobOrderWeftDetails
         Me.Label22 = New System.Windows.Forms.Label()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GPARTYPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGSTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GADDRESS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GEWAYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GIRNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GFOLDPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHIPPEDTO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPACKINGADD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSGSTIN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDISC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSPDISCAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHARGES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALTAXABLEAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCGSTPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALCGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSGSTPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALSGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GIGSTPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALIGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRECDAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRETURNAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALANCE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRADING = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDISPUTED = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBILLCHECKED = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSUPPLIERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRECDDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSTATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESCRIPTION = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMONTHNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDPURNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTGRIDSYM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDENIER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTBE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTTE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFTWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -213,7 +159,7 @@ Partial Class JobOrderWeftDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GWEFTGRIDSYM, Me.GYARNQUALITY, Me.GDENIER, Me.GWEFTMILLNAME, Me.GWEFTSHADE, Me.GWEFTPE, Me.GWEFTBE, Me.GWEFTTE, Me.GWEFTWT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -225,19 +171,10 @@ Partial Class JobOrderWeftDetails
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
-        'GPARTYPONO
-        '
-        Me.GPARTYPONO.Caption = "Party PONO"
-        Me.GPARTYPONO.FieldName = "PARTYPONO"
-        Me.GPARTYPONO.Name = "GPARTYPONO"
-        Me.GPARTYPONO.OptionsColumn.AllowEdit = False
-        Me.GPARTYPONO.Visible = True
-        Me.GPARTYPONO.VisibleIndex = 1
-        '
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
-        Me.gsrno.FieldName = "INVOICENO"
+        Me.gsrno.FieldName = "JOBNO"
         Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
@@ -245,624 +182,95 @@ Partial Class JobOrderWeftDetails
         Me.gsrno.VisibleIndex = 2
         Me.gsrno.Width = 60
         '
-        'gdate
-        '
-        Me.gdate.Caption = "Date"
-        Me.gdate.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gdate.FieldName = "INVOICEDATE"
-        Me.gdate.Name = "gdate"
-        Me.gdate.OptionsColumn.AllowEdit = False
-        Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 3
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.OptionsColumn.AllowEdit = False
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 4
-        '
-        'GCHALLANNO
-        '
-        Me.GCHALLANNO.Caption = "Challan No."
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 5
-        '
-        'GCHALLANDATE
-        '
-        Me.GCHALLANDATE.Caption = "Ch. Date"
-        Me.GCHALLANDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GCHALLANDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCHALLANDATE.FieldName = "CHALLANDATE"
-        Me.GCHALLANDATE.Name = "GCHALLANDATE"
-        Me.GCHALLANDATE.OptionsColumn.AllowEdit = False
-        Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 6
-        '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
-        '
-        'gname
-        '
-        Me.gname.Caption = "Name"
-        Me.gname.FieldName = "NAME"
-        Me.gname.ImageOptions.ImageIndex = 0
-        Me.gname.Name = "gname"
-        Me.gname.OptionsColumn.AllowEdit = False
-        Me.gname.Visible = True
-        Me.gname.VisibleIndex = 7
-        Me.gname.Width = 230
-        '
-        'GGSTNO
-        '
-        Me.GGSTNO.Caption = "GSTIN"
-        Me.GGSTNO.FieldName = "GSTIN"
-        Me.GGSTNO.Name = "GGSTNO"
-        Me.GGSTNO.OptionsColumn.AllowEdit = False
-        Me.GGSTNO.Visible = True
-        Me.GGSTNO.VisibleIndex = 8
-        Me.GGSTNO.Width = 120
-        '
-        'GADDRESS
-        '
-        Me.GADDRESS.Caption = "Address"
-        Me.GADDRESS.FieldName = "ADDRESS"
-        Me.GADDRESS.Name = "GADDRESS"
-        Me.GADDRESS.OptionsColumn.AllowEdit = False
-        Me.GADDRESS.Visible = True
-        Me.GADDRESS.VisibleIndex = 9
-        Me.GADDRESS.Width = 300
-        '
-        'GEWAYBILLNO
-        '
-        Me.GEWAYBILLNO.Caption = "Eway Bill No"
-        Me.GEWAYBILLNO.FieldName = "EWAYBILLNO"
-        Me.GEWAYBILLNO.Name = "GEWAYBILLNO"
-        Me.GEWAYBILLNO.OptionsColumn.AllowEdit = False
-        Me.GEWAYBILLNO.Visible = True
-        Me.GEWAYBILLNO.VisibleIndex = 10
-        Me.GEWAYBILLNO.Width = 120
-        '
-        'GIRNNO
-        '
-        Me.GIRNNO.Caption = "IRN No"
-        Me.GIRNNO.FieldName = "IRNNO"
-        Me.GIRNNO.Name = "GIRNNO"
-        Me.GIRNNO.OptionsColumn.AllowEdit = False
-        Me.GIRNNO.Visible = True
-        Me.GIRNNO.VisibleIndex = 11
-        Me.GIRNNO.Width = 150
-        '
-        'GLRDATE
-        '
-        Me.GLRDATE.Caption = "LR Date"
-        Me.GLRDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GLRDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GLRDATE.FieldName = "LRDATE"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.OptionsColumn.AllowEdit = False
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 12
-        Me.GITEMNAME.Width = 150
-        '
-        'GHSNCODE
-        '
-        Me.GHSNCODE.Caption = "HSN Code"
-        Me.GHSNCODE.FieldName = "HSNCODE"
-        Me.GHSNCODE.Name = "GHSNCODE"
-        Me.GHSNCODE.OptionsColumn.AllowEdit = False
-        Me.GHSNCODE.Visible = True
-        Me.GHSNCODE.VisibleIndex = 14
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.OptionsColumn.AllowEdit = False
-        Me.GQUALITY.Width = 100
-        '
-        'GDESIGNNO
-        '
-        Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGN"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 15
-        Me.GDESIGNNO.Width = 120
-        '
-        'GSHADE
-        '
-        Me.GSHADE.Caption = "Shade"
-        Me.GSHADE.FieldName = "COLOR"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.OptionsColumn.AllowEdit = False
-        Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 16
-        Me.GSHADE.Width = 100
-        '
-        'GQTY
-        '
-        Me.GQTY.Caption = "Qty"
-        Me.GQTY.FieldName = "QTY"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.OptionsColumn.AllowEdit = False
-        '
-        'GFOLDPER
-        '
-        Me.GFOLDPER.Caption = "Fold %"
-        Me.GFOLDPER.FieldName = "FOLDPER"
-        Me.GFOLDPER.Name = "GFOLDPER"
-        Me.GFOLDPER.OptionsColumn.AllowEdit = False
-        '
-        'GBALENO
-        '
-        Me.GBALENO.Caption = "Bale No"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.OptionsColumn.AllowEdit = False
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 17
-        '
-        'GPCS
-        '
-        Me.GPCS.Caption = "Pcs"
-        Me.GPCS.DisplayFormat.FormatString = "0.00"
-        Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "PCS"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.OptionsColumn.AllowEdit = False
-        Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 18
-        Me.GPCS.Width = 85
-        '
-        'GMTRS
-        '
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 19
-        Me.GMTRS.Width = 85
-        '
-        'GPER
-        '
-        Me.GPER.Caption = "Per"
-        Me.GPER.FieldName = "PER"
-        Me.GPER.Name = "GPER"
-        Me.GPER.OptionsColumn.AllowEdit = False
-        Me.GPER.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 20
-        Me.GPER.Width = 85
-        '
-        'GRATE
-        '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.DisplayFormat.FormatString = "0.00"
-        Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.OptionsColumn.AllowEdit = False
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 21
-        '
-        'GAMT
-        '
-        Me.GAMT.Caption = "Amount"
-        Me.GAMT.DisplayFormat.FormatString = "0.00"
-        Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GAMT.FieldName = "AMT"
-        Me.GAMT.Name = "GAMT"
-        Me.GAMT.OptionsColumn.AllowEdit = False
-        Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 22
-        '
-        'GAGENT
-        '
-        Me.GAGENT.Caption = "Agent Name"
-        Me.GAGENT.FieldName = "AGENT"
-        Me.GAGENT.Name = "GAGENT"
-        Me.GAGENT.OptionsColumn.AllowEdit = False
-        Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 23
-        Me.GAGENT.Width = 150
-        '
-        'GSHIPPEDTO
-        '
-        Me.GSHIPPEDTO.Caption = "Shipped To"
-        Me.GSHIPPEDTO.FieldName = "PACKING"
-        Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
-        Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
-        Me.GSHIPPEDTO.Visible = True
-        Me.GSHIPPEDTO.VisibleIndex = 24
-        Me.GSHIPPEDTO.Width = 100
-        '
-        'GPACKINGADD
-        '
-        Me.GPACKINGADD.Caption = "Ship To Address"
-        Me.GPACKINGADD.FieldName = "PACKINGADDRESS"
-        Me.GPACKINGADD.Name = "GPACKINGADD"
-        Me.GPACKINGADD.OptionsColumn.AllowEdit = False
-        Me.GPACKINGADD.Visible = True
-        Me.GPACKINGADD.VisibleIndex = 25
-        Me.GPACKINGADD.Width = 300
-        '
-        'GTRANSPORT
-        '
-        Me.GTRANSPORT.Caption = "Transport"
-        Me.GTRANSPORT.FieldName = "TRANSNAME"
-        Me.GTRANSPORT.Name = "GTRANSPORT"
-        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
-        Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 26
-        Me.GTRANSPORT.Width = 150
-        '
-        'GTRANSGSTIN
-        '
-        Me.GTRANSGSTIN.Caption = "Trans GSTIN"
-        Me.GTRANSGSTIN.FieldName = "TRANSGSTIN"
-        Me.GTRANSGSTIN.Name = "GTRANSGSTIN"
-        Me.GTRANSGSTIN.OptionsColumn.AllowEdit = False
-        Me.GTRANSGSTIN.Visible = True
-        Me.GTRANSGSTIN.VisibleIndex = 27
-        Me.GTRANSGSTIN.Width = 100
-        '
-        'GSO
-        '
-        Me.GSO.Caption = "SO No."
-        Me.GSO.FieldName = "PONO"
-        Me.GSO.Name = "GSO"
-        Me.GSO.OptionsColumn.AllowEdit = False
-        Me.GSO.Visible = True
-        Me.GSO.VisibleIndex = 28
-        '
-        'GBALES
-        '
-        Me.GBALES.Caption = "Bales"
-        Me.GBALES.DisplayFormat.FormatString = "0"
-        Me.GBALES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBALES.FieldName = "BALENOFROM"
-        Me.GBALES.Name = "GBALES"
-        Me.GBALES.OptionsColumn.AllowEdit = False
-        Me.GBALES.Visible = True
-        Me.GBALES.VisibleIndex = 29
-        '
-        'GTOTALAMT
-        '
-        Me.GTOTALAMT.Caption = "Total Amt"
-        Me.GTOTALAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALAMT.FieldName = "AMOUNT"
-        Me.GTOTALAMT.Name = "GTOTALAMT"
-        Me.GTOTALAMT.OptionsColumn.AllowEdit = False
-        Me.GTOTALAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALAMT.Visible = True
-        Me.GTOTALAMT.VisibleIndex = 30
-        '
-        'GDISC
-        '
-        Me.GDISC.Caption = "Total Disc Amt."
-        Me.GDISC.FieldName = "TOTALDISCAMT"
-        Me.GDISC.Name = "GDISC"
-        Me.GDISC.OptionsColumn.AllowEdit = False
-        Me.GDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GDISC.Visible = True
-        Me.GDISC.VisibleIndex = 31
-        Me.GDISC.Width = 80
-        '
-        'GSPDISCAMT
-        '
-        Me.GSPDISCAMT.Caption = "Total Sp Disc Amt."
-        Me.GSPDISCAMT.FieldName = "TOTALSPDISCAMT"
-        Me.GSPDISCAMT.Name = "GSPDISCAMT"
-        Me.GSPDISCAMT.OptionsColumn.AllowEdit = False
-        Me.GSPDISCAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GSPDISCAMT.Visible = True
-        Me.GSPDISCAMT.VisibleIndex = 32
-        '
-        'GCHARGES
-        '
-        Me.GCHARGES.Caption = "Charges"
-        Me.GCHARGES.FieldName = "CHARGES"
-        Me.GCHARGES.Name = "GCHARGES"
-        Me.GCHARGES.OptionsColumn.AllowEdit = False
-        Me.GCHARGES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GCHARGES.Visible = True
-        Me.GCHARGES.VisibleIndex = 33
-        '
-        'GTOTALTAXABLEAMT
-        '
-        Me.GTOTALTAXABLEAMT.Caption = "Total Taxable Amt."
-        Me.GTOTALTAXABLEAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALTAXABLEAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALTAXABLEAMT.FieldName = "TOTALTAXABLEAMT"
-        Me.GTOTALTAXABLEAMT.Name = "GTOTALTAXABLEAMT"
-        Me.GTOTALTAXABLEAMT.OptionsColumn.AllowEdit = False
-        Me.GTOTALTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALTAXABLEAMT.Visible = True
-        Me.GTOTALTAXABLEAMT.VisibleIndex = 34
-        '
-        'GCGSTPER
-        '
-        Me.GCGSTPER.Caption = "CGST %"
-        Me.GCGSTPER.DisplayFormat.FormatString = "0.00"
-        Me.GCGSTPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCGSTPER.FieldName = "CGSTPER"
-        Me.GCGSTPER.Name = "GCGSTPER"
-        Me.GCGSTPER.OptionsColumn.AllowEdit = False
-        Me.GCGSTPER.Visible = True
-        Me.GCGSTPER.VisibleIndex = 35
-        '
-        'GTOTALCGSTAMT
-        '
-        Me.GTOTALCGSTAMT.Caption = "Total CGST Amt."
-        Me.GTOTALCGSTAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALCGSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALCGSTAMT.FieldName = "TOTALCGSTAMT"
-        Me.GTOTALCGSTAMT.Name = "GTOTALCGSTAMT"
-        Me.GTOTALCGSTAMT.OptionsColumn.AllowEdit = False
-        Me.GTOTALCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALCGSTAMT.Visible = True
-        Me.GTOTALCGSTAMT.VisibleIndex = 36
-        '
-        'GSGSTPER
-        '
-        Me.GSGSTPER.Caption = "SGST %"
-        Me.GSGSTPER.DisplayFormat.FormatString = "0.00"
-        Me.GSGSTPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GSGSTPER.FieldName = "SGSTPER"
-        Me.GSGSTPER.Name = "GSGSTPER"
-        Me.GSGSTPER.OptionsColumn.AllowEdit = False
-        Me.GSGSTPER.Visible = True
-        Me.GSGSTPER.VisibleIndex = 37
-        '
-        'GTOTALSGSTAMT
-        '
-        Me.GTOTALSGSTAMT.Caption = "Total SGST Amt."
-        Me.GTOTALSGSTAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALSGSTAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALSGSTAMT.FieldName = "TOTALSGSTAMT"
-        Me.GTOTALSGSTAMT.Name = "GTOTALSGSTAMT"
-        Me.GTOTALSGSTAMT.OptionsColumn.AllowEdit = False
-        Me.GTOTALSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALSGSTAMT.Visible = True
-        Me.GTOTALSGSTAMT.VisibleIndex = 38
-        '
-        'GIGSTPER
-        '
-        Me.GIGSTPER.Caption = "IGST %"
-        Me.GIGSTPER.DisplayFormat.FormatString = "0.00"
-        Me.GIGSTPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GIGSTPER.FieldName = "IGSTPER"
-        Me.GIGSTPER.Name = "GIGSTPER"
-        Me.GIGSTPER.OptionsColumn.AllowEdit = False
-        Me.GIGSTPER.Visible = True
-        Me.GIGSTPER.VisibleIndex = 39
-        '
-        'GTOTALIGSTAMT
-        '
-        Me.GTOTALIGSTAMT.Caption = "Total IGST Amt."
-        Me.GTOTALIGSTAMT.FieldName = "TOTALIGSTAMT"
-        Me.GTOTALIGSTAMT.Name = "GTOTALIGSTAMT"
-        Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
-        Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALIGSTAMT.Visible = True
-        Me.GTOTALIGSTAMT.VisibleIndex = 40
-        '
-        'GGRANDTOTAL
-        '
-        Me.GGRANDTOTAL.Caption = "Grand Total"
-        Me.GGRANDTOTAL.DisplayFormat.FormatString = "0.00"
-        Me.GGRANDTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
-        Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
-        Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
-        Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 41
-        Me.GGRANDTOTAL.Width = 85
-        '
-        'GRECDAMT
-        '
-        Me.GRECDAMT.Caption = "Recd Amt"
-        Me.GRECDAMT.DisplayFormat.FormatString = "0.00"
-        Me.GRECDAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRECDAMT.FieldName = "AMTREC"
-        Me.GRECDAMT.Name = "GRECDAMT"
-        Me.GRECDAMT.OptionsColumn.AllowEdit = False
-        Me.GRECDAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GRECDAMT.Visible = True
-        Me.GRECDAMT.VisibleIndex = 42
-        '
-        'GRETURNAMT
-        '
-        Me.GRETURNAMT.Caption = "Sale Ret Amt"
-        Me.GRETURNAMT.DisplayFormat.FormatString = "0.00"
-        Me.GRETURNAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRETURNAMT.FieldName = "RETURN"
-        Me.GRETURNAMT.Name = "GRETURNAMT"
-        Me.GRETURNAMT.OptionsColumn.AllowEdit = False
-        Me.GRETURNAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GRETURNAMT.Visible = True
-        Me.GRETURNAMT.VisibleIndex = 43
-        '
-        'GBALANCE
-        '
-        Me.GBALANCE.Caption = "Bal Amt"
-        Me.GBALANCE.DisplayFormat.FormatString = "0.00"
-        Me.GBALANCE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBALANCE.FieldName = "BALANCE"
-        Me.GBALANCE.Name = "GBALANCE"
-        Me.GBALANCE.OptionsColumn.AllowEdit = False
-        Me.GBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GBALANCE.Visible = True
-        Me.GBALANCE.VisibleIndex = 44
-        '
-        'GREMARKS
-        '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "REMARKS"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.OptionsColumn.AllowEdit = False
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 45
-        Me.GREMARKS.Width = 150
-        '
-        'GTRADING
-        '
-        Me.GTRADING.Caption = "Trading"
-        Me.GTRADING.FieldName = "TRADING"
-        Me.GTRADING.Name = "GTRADING"
-        Me.GTRADING.Visible = True
-        Me.GTRADING.VisibleIndex = 47
-        '
-        'GDISPUTED
-        '
-        Me.GDISPUTED.Caption = "Disputed"
-        Me.GDISPUTED.FieldName = "BILLDISPUTE"
-        Me.GDISPUTED.Name = "GDISPUTED"
-        Me.GDISPUTED.OptionsColumn.AllowEdit = False
-        Me.GDISPUTED.Visible = True
-        Me.GDISPUTED.VisibleIndex = 46
-        '
-        'GBILLCHECKED
-        '
-        Me.GBILLCHECKED.Caption = "Checked"
-        Me.GBILLCHECKED.FieldName = "BILLCHECKED"
-        Me.GBILLCHECKED.Name = "GBILLCHECKED"
-        Me.GBILLCHECKED.OptionsColumn.AllowEdit = False
-        Me.GBILLCHECKED.Visible = True
-        Me.GBILLCHECKED.VisibleIndex = 48
-        '
-        'GSUPPLIERNAME
-        '
-        Me.GSUPPLIERNAME.Caption = "Supplier Name"
-        Me.GSUPPLIERNAME.FieldName = "PURNAME"
-        Me.GSUPPLIERNAME.Name = "GSUPPLIERNAME"
-        Me.GSUPPLIERNAME.OptionsColumn.AllowEdit = False
-        Me.GSUPPLIERNAME.Width = 230
-        '
-        'GRECDDATE
-        '
-        Me.GRECDDATE.Caption = "Recd Date"
-        Me.GRECDDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GRECDDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GRECDDATE.FieldName = "RECDATE"
-        Me.GRECDDATE.Name = "GRECDDATE"
-        Me.GRECDDATE.OptionsColumn.AllowEdit = False
-        '
-        'GSTATE
-        '
-        Me.GSTATE.Caption = "State Name"
-        Me.GSTATE.FieldName = "STATENAME"
-        Me.GSTATE.Name = "GSTATE"
-        Me.GSTATE.OptionsColumn.AllowEdit = False
-        Me.GSTATE.Visible = True
-        Me.GSTATE.VisibleIndex = 49
-        Me.GSTATE.Width = 100
-        '
-        'GCITY
-        '
-        Me.GCITY.Caption = "City"
-        Me.GCITY.FieldName = "CITYNAME"
-        Me.GCITY.Name = "GCITY"
-        Me.GCITY.OptionsColumn.AllowEdit = False
-        Me.GCITY.Visible = True
-        Me.GCITY.VisibleIndex = 50
-        Me.GCITY.Width = 100
-        '
-        'GREGNAME
-        '
-        Me.GREGNAME.Caption = "Register"
-        Me.GREGNAME.FieldName = "REGNAME"
-        Me.GREGNAME.Name = "GREGNAME"
-        Me.GREGNAME.OptionsColumn.AllowEdit = False
-        Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 51
-        Me.GREGNAME.Width = 120
-        '
-        'GDESCRIPTION
-        '
-        Me.GDESCRIPTION.Caption = "Description"
-        Me.GDESCRIPTION.FieldName = "DESCRIPTION"
-        Me.GDESCRIPTION.Name = "GDESCRIPTION"
-        Me.GDESCRIPTION.OptionsColumn.AllowEdit = False
-        Me.GDESCRIPTION.Visible = True
-        Me.GDESCRIPTION.VisibleIndex = 13
-        Me.GDESCRIPTION.Width = 150
-        '
-        'GMONTHNAME
-        '
-        Me.GMONTHNAME.Caption = "Month"
-        Me.GMONTHNAME.FieldName = "MONTHNAME"
-        Me.GMONTHNAME.Name = "GMONTHNAME"
-        Me.GMONTHNAME.Visible = True
-        Me.GMONTHNAME.VisibleIndex = 52
-        '
-        'GGRIDTRANSPORT
-        '
-        Me.GGRIDTRANSPORT.Caption = "Transport"
-        Me.GGRIDTRANSPORT.FieldName = "GRIDTRANSE"
-        Me.GGRIDTRANSPORT.Name = "GGRIDTRANSPORT"
-        Me.GGRIDTRANSPORT.OptionsColumn.AllowEdit = False
-        Me.GGRIDTRANSPORT.Width = 150
-        '
-        'GGRIDLRNO
-        '
-        Me.GGRIDLRNO.Caption = "LR No"
-        Me.GGRIDLRNO.FieldName = "GRIDLRNO"
-        Me.GGRIDLRNO.Name = "GGRIDLRNO"
-        Me.GGRIDLRNO.OptionsColumn.AllowEdit = False
-        Me.GGRIDLRNO.Width = 100
-        '
-        'GGRIDWT
-        '
-        Me.GGRIDWT.Caption = "WT"
-        Me.GGRIDWT.FieldName = "WT"
-        Me.GGRIDWT.Name = "GGRIDWT"
-        Me.GGRIDWT.OptionsColumn.AllowEdit = False
-        Me.GGRIDWT.Width = 60
-        '
-        'GGRIDPURNAME
-        '
-        Me.GGRIDPURNAME.Caption = "Purchase Name"
-        Me.GGRIDPURNAME.FieldName = "GRIDPURNAME"
-        Me.GGRIDPURNAME.Name = "GGRIDPURNAME"
-        Me.GGRIDPURNAME.OptionsColumn.AllowEdit = False
-        Me.GGRIDPURNAME.Width = 150
-        '
-        'GGRIDPARTYBILLNO
-        '
-        Me.GGRIDPARTYBILLNO.Caption = "Party Bill No"
-        Me.GGRIDPARTYBILLNO.FieldName = "PARTYBILLNO"
-        Me.GGRIDPARTYBILLNO.Name = "GGRIDPARTYBILLNO"
-        Me.GGRIDPARTYBILLNO.OptionsColumn.AllowEdit = False
-        Me.GGRIDPARTYBILLNO.Width = 100
+        'GWEFTGRIDSYM
+        '
+        Me.GWEFTGRIDSYM.Caption = "Grid Sym"
+        Me.GWEFTGRIDSYM.FieldName = "WEFTGRIDSYM"
+        Me.GWEFTGRIDSYM.Name = "GWEFTGRIDSYM"
+        Me.GWEFTGRIDSYM.OptionsColumn.AllowEdit = False
+        Me.GWEFTGRIDSYM.Visible = True
+        Me.GWEFTGRIDSYM.VisibleIndex = 3
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.Caption = "Yarn Quality"
+        Me.GYARNQUALITY.FieldName = "WEFTYARNQUALITY"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITY.Visible = True
+        Me.GYARNQUALITY.VisibleIndex = 3
+        Me.GYARNQUALITY.Width = 200
+        '
+        'GDENIER
+        '
+        Me.GDENIER.Caption = "Denier"
+        Me.GDENIER.FieldName = "WEFTDENIER"
+        Me.GDENIER.ImageOptions.ImageIndex = 0
+        Me.GDENIER.Name = "GDENIER"
+        Me.GDENIER.OptionsColumn.AllowEdit = False
+        Me.GDENIER.Visible = True
+        Me.GDENIER.VisibleIndex = 5
+        Me.GDENIER.Width = 100
+        '
+        'GWEFTMILLNAME
+        '
+        Me.GWEFTMILLNAME.Caption = "Mill Name"
+        Me.GWEFTMILLNAME.FieldName = "WEFTMILLNAME"
+        Me.GWEFTMILLNAME.Name = "GWEFTMILLNAME"
+        Me.GWEFTMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GWEFTMILLNAME.Visible = True
+        Me.GWEFTMILLNAME.VisibleIndex = 5
+        Me.GWEFTMILLNAME.Width = 200
+        '
+        'GWEFTSHADE
+        '
+        Me.GWEFTSHADE.Caption = "Shade"
+        Me.GWEFTSHADE.FieldName = "WEFTSHADE"
+        Me.GWEFTSHADE.Name = "GWEFTSHADE"
+        Me.GWEFTSHADE.OptionsColumn.AllowEdit = False
+        Me.GWEFTSHADE.Visible = True
+        Me.GWEFTSHADE.VisibleIndex = 7
+        Me.GWEFTSHADE.Width = 120
+        '
+        'GWEFTPE
+        '
+        Me.GWEFTPE.Caption = "PE"
+        Me.GWEFTPE.FieldName = "WEFTPE"
+        Me.GWEFTPE.Name = "GWEFTPE"
+        Me.GWEFTPE.OptionsColumn.AllowEdit = False
+        Me.GWEFTPE.Visible = True
+        Me.GWEFTPE.VisibleIndex = 7
+        Me.GWEFTPE.Width = 80
+        '
+        'GWEFTBE
+        '
+        Me.GWEFTBE.Caption = "BE"
+        Me.GWEFTBE.FieldName = "WEFTBE"
+        Me.GWEFTBE.Name = "GWEFTBE"
+        Me.GWEFTBE.OptionsColumn.AllowEdit = False
+        Me.GWEFTBE.Visible = True
+        Me.GWEFTBE.VisibleIndex = 8
+        Me.GWEFTBE.Width = 80
+        '
+        'GWEFTTE
+        '
+        Me.GWEFTTE.Caption = "TE"
+        Me.GWEFTTE.FieldName = "WEFTTE"
+        Me.GWEFTTE.Name = "GWEFTTE"
+        Me.GWEFTTE.OptionsColumn.AllowEdit = False
+        Me.GWEFTTE.Visible = True
+        Me.GWEFTTE.VisibleIndex = 9
+        Me.GWEFTTE.Width = 80
+        '
+        'GWEFTWT
+        '
+        Me.GWEFTWT.Caption = "WT"
+        Me.GWEFTWT.FieldName = "WEFTWT"
+        Me.GWEFTWT.Name = "GWEFTWT"
+        Me.GWEFTWT.OptionsColumn.AllowEdit = False
+        Me.GWEFTWT.Visible = True
+        Me.GWEFTWT.VisibleIndex = 10
+        Me.GWEFTWT.Width = 80
         '
         'CHKEDIT
         '
@@ -1017,70 +425,16 @@ Partial Class JobOrderWeftDetails
     Friend WithEvents Label22 As Label
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GPARTYPONO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gsrno As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGSTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GADDRESS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GEWAYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GIRNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHADE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQTY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPCS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHIPPEDTO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPACKINGADD As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTRANSGSTIN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALES As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDISC As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSPDISCAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHARGES As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALTAXABLEAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCGSTPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALCGSTAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSGSTPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALSGSTAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GIGSTPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALIGSTAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRANDTOTAL As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRECDAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRETURNAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALANCE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTRADING As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDISPUTED As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBILLCHECKED As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSUPPLIERNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRECDDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSTATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDESCRIPTION As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMONTHNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDLRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDPURNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTGRIDSYM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GDENIER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTSHADE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTBE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTTE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFTWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CMDOK As Button
     Friend WithEvents cmdcancel As Button

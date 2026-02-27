@@ -296,13 +296,15 @@ Public Class ClsJobOrder
     '        Throw ex
     '    End Try
     'End Function
-    Public Function SelectYarnJob(ByVal CARDNO As String, ByVal yearId As Integer) As DataTable
+    'Public Function SelectYarnJob(ByVal CARDNO As String, ByVal yearId As Integer) As DataTable
+    Public Function SelectYarnJob() As DataTable
+
         Try
             Dim strCommand As String = "SP_TRANS_SELECT_YARNJOBORDER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@JOBNO", CARDNO))
-                .Add(New SqlClient.SqlParameter("@YearId", yearId))
+                .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YearId", alParaval(1)))
             End With
             Dim dtTable As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
             Return dtTable

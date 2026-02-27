@@ -64,7 +64,7 @@ Partial Class IssueToRepairing
         Me.CMBSTOREITEMNAME = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
-        Me.CONSUMEDATE = New System.Windows.Forms.MaskedTextBox()
+        Me.REPAIRDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTREPAIRNO = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lblgrndate = New System.Windows.Forms.Label()
@@ -106,7 +106,7 @@ Partial Class IssueToRepairing
         Me.BlendPanel1.Controls.Add(Me.CMBSTOREITEMNAME)
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.CMBNAME)
-        Me.BlendPanel1.Controls.Add(Me.CONSUMEDATE)
+        Me.BlendPanel1.Controls.Add(Me.REPAIRDATE)
         Me.BlendPanel1.Controls.Add(Me.TXTREPAIRNO)
         Me.BlendPanel1.Controls.Add(Me.Label12)
         Me.BlendPanel1.Controls.Add(Me.lblgrndate)
@@ -508,19 +508,19 @@ Partial Class IssueToRepairing
         Me.CMBNAME.Size = New System.Drawing.Size(246, 23)
         Me.CMBNAME.TabIndex = 2
         '
-        'CONSUMEDATE
+        'REPAIRDATE
         '
-        Me.CONSUMEDATE.AsciiOnly = True
-        Me.CONSUMEDATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CONSUMEDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CONSUMEDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.CONSUMEDATE.Location = New System.Drawing.Point(615, 72)
-        Me.CONSUMEDATE.Mask = "00/00/0000"
-        Me.CONSUMEDATE.Name = "CONSUMEDATE"
-        Me.CONSUMEDATE.Size = New System.Drawing.Size(82, 23)
-        Me.CONSUMEDATE.TabIndex = 0
-        Me.CONSUMEDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.CONSUMEDATE.ValidatingType = GetType(Date)
+        Me.REPAIRDATE.AsciiOnly = True
+        Me.REPAIRDATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.REPAIRDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.REPAIRDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.REPAIRDATE.Location = New System.Drawing.Point(615, 72)
+        Me.REPAIRDATE.Mask = "00/00/0000"
+        Me.REPAIRDATE.Name = "REPAIRDATE"
+        Me.REPAIRDATE.Size = New System.Drawing.Size(82, 23)
+        Me.REPAIRDATE.TabIndex = 0
+        Me.REPAIRDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.REPAIRDATE.ValidatingType = GetType(Date)
         '
         'TXTREPAIRNO
         '
@@ -640,7 +640,7 @@ Partial Class IssueToRepairing
     Friend WithEvents CMBSTOREITEMNAME As ComboBox
     Friend WithEvents Label6 As Label
     Friend WithEvents CMBNAME As ComboBox
-    Friend WithEvents CONSUMEDATE As MaskedTextBox
+    Friend WithEvents REPAIRDATE As MaskedTextBox
     Friend WithEvents TXTREPAIRNO As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents lblgrndate As Label

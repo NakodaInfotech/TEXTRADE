@@ -31,20 +31,14 @@ Partial Class JobOrderWarpDetails
         Me.Label22 = New System.Windows.Forms.Label()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GPARTYPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGSTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GADDRESS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GEWAYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GIRNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPGRIDSYM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPDENIER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPBE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -213,7 +207,7 @@ Partial Class JobOrderWarpDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GWARPGRIDSYM, Me.GWARPYARNQUALITY, Me.GWARPDENIER, Me.GWARPMILLNAME, Me.GWARPSHADE, Me.GWARPPE, Me.GWARPBE, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -225,142 +219,86 @@ Partial Class JobOrderWarpDetails
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
-        'GPARTYPONO
-        '
-        Me.GPARTYPONO.Caption = "Party PONO"
-        Me.GPARTYPONO.FieldName = "PARTYPONO"
-        Me.GPARTYPONO.Name = "GPARTYPONO"
-        Me.GPARTYPONO.OptionsColumn.AllowEdit = False
-        Me.GPARTYPONO.Visible = True
-        Me.GPARTYPONO.VisibleIndex = 1
-        '
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
-        Me.gsrno.FieldName = "INVOICENO"
+        Me.gsrno.FieldName = "JOBNO"
         Me.gsrno.ImageOptions.ImageIndex = 1
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 2
+        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 60
         '
-        'gdate
+        'GWARPGRIDSYM
         '
-        Me.gdate.Caption = "Date"
-        Me.gdate.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gdate.FieldName = "INVOICEDATE"
-        Me.gdate.Name = "gdate"
-        Me.gdate.OptionsColumn.AllowEdit = False
-        Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 3
+        Me.GWARPGRIDSYM.Caption = "Grid Sym"
+        Me.GWARPGRIDSYM.FieldName = "WARPGRIDSYM"
+        Me.GWARPGRIDSYM.Name = "GWARPGRIDSYM"
+        Me.GWARPGRIDSYM.OptionsColumn.AllowEdit = False
+        Me.GWARPGRIDSYM.Visible = True
+        Me.GWARPGRIDSYM.VisibleIndex = 2
         '
-        'GLRNO
+        'GWARPYARNQUALITY
         '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.OptionsColumn.AllowEdit = False
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 4
+        Me.GWARPYARNQUALITY.Caption = "Yarn Quality"
+        Me.GWARPYARNQUALITY.FieldName = "WARPYARNQUALITY"
+        Me.GWARPYARNQUALITY.ImageOptions.ImageIndex = 0
+        Me.GWARPYARNQUALITY.Name = "GWARPYARNQUALITY"
+        Me.GWARPYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GWARPYARNQUALITY.Visible = True
+        Me.GWARPYARNQUALITY.VisibleIndex = 3
+        Me.GWARPYARNQUALITY.Width = 230
         '
-        'GCHALLANNO
+        'GWARPDENIER
         '
-        Me.GCHALLANNO.Caption = "Challan No."
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 5
+        Me.GWARPDENIER.Caption = "Denier"
+        Me.GWARPDENIER.FieldName = "WARPDENIER"
+        Me.GWARPDENIER.Name = "GWARPDENIER"
+        Me.GWARPDENIER.OptionsColumn.AllowEdit = False
+        Me.GWARPDENIER.Visible = True
+        Me.GWARPDENIER.VisibleIndex = 4
+        Me.GWARPDENIER.Width = 120
         '
-        'GCHALLANDATE
+        'GWARPMILLNAME
         '
-        Me.GCHALLANDATE.Caption = "Ch. Date"
-        Me.GCHALLANDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GCHALLANDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GCHALLANDATE.FieldName = "CHALLANDATE"
-        Me.GCHALLANDATE.Name = "GCHALLANDATE"
-        Me.GCHALLANDATE.OptionsColumn.AllowEdit = False
-        Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 6
+        Me.GWARPMILLNAME.Caption = "Mill Name"
+        Me.GWARPMILLNAME.FieldName = "WARPMILLNAME"
+        Me.GWARPMILLNAME.Name = "GWARPMILLNAME"
+        Me.GWARPMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GWARPMILLNAME.Visible = True
+        Me.GWARPMILLNAME.VisibleIndex = 5
+        Me.GWARPMILLNAME.Width = 300
         '
-        'GREFNO
+        'GWARPSHADE
         '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GWARPSHADE.Caption = "Shade"
+        Me.GWARPSHADE.FieldName = "WARPSHADE"
+        Me.GWARPSHADE.Name = "GWARPSHADE"
+        Me.GWARPSHADE.OptionsColumn.AllowEdit = False
+        Me.GWARPSHADE.Visible = True
+        Me.GWARPSHADE.VisibleIndex = 6
+        Me.GWARPSHADE.Width = 120
         '
-        'gname
+        'GWARPPE
         '
-        Me.gname.Caption = "Name"
-        Me.gname.FieldName = "NAME"
-        Me.gname.ImageOptions.ImageIndex = 0
-        Me.gname.Name = "gname"
-        Me.gname.OptionsColumn.AllowEdit = False
-        Me.gname.Visible = True
-        Me.gname.VisibleIndex = 7
-        Me.gname.Width = 230
+        Me.GWARPPE.Caption = "PE"
+        Me.GWARPPE.FieldName = "WARPPE"
+        Me.GWARPPE.Name = "GWARPPE"
+        Me.GWARPPE.OptionsColumn.AllowEdit = False
+        Me.GWARPPE.Visible = True
+        Me.GWARPPE.VisibleIndex = 7
+        Me.GWARPPE.Width = 150
         '
-        'GGSTNO
+        'GWARPBE
         '
-        Me.GGSTNO.Caption = "GSTIN"
-        Me.GGSTNO.FieldName = "GSTIN"
-        Me.GGSTNO.Name = "GGSTNO"
-        Me.GGSTNO.OptionsColumn.AllowEdit = False
-        Me.GGSTNO.Visible = True
-        Me.GGSTNO.VisibleIndex = 8
-        Me.GGSTNO.Width = 120
-        '
-        'GADDRESS
-        '
-        Me.GADDRESS.Caption = "Address"
-        Me.GADDRESS.FieldName = "ADDRESS"
-        Me.GADDRESS.Name = "GADDRESS"
-        Me.GADDRESS.OptionsColumn.AllowEdit = False
-        Me.GADDRESS.Visible = True
-        Me.GADDRESS.VisibleIndex = 9
-        Me.GADDRESS.Width = 300
-        '
-        'GEWAYBILLNO
-        '
-        Me.GEWAYBILLNO.Caption = "Eway Bill No"
-        Me.GEWAYBILLNO.FieldName = "EWAYBILLNO"
-        Me.GEWAYBILLNO.Name = "GEWAYBILLNO"
-        Me.GEWAYBILLNO.OptionsColumn.AllowEdit = False
-        Me.GEWAYBILLNO.Visible = True
-        Me.GEWAYBILLNO.VisibleIndex = 10
-        Me.GEWAYBILLNO.Width = 120
-        '
-        'GIRNNO
-        '
-        Me.GIRNNO.Caption = "IRN No"
-        Me.GIRNNO.FieldName = "IRNNO"
-        Me.GIRNNO.Name = "GIRNNO"
-        Me.GIRNNO.OptionsColumn.AllowEdit = False
-        Me.GIRNNO.Visible = True
-        Me.GIRNNO.VisibleIndex = 11
-        Me.GIRNNO.Width = 150
-        '
-        'GLRDATE
-        '
-        Me.GLRDATE.Caption = "LR Date"
-        Me.GLRDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GLRDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GLRDATE.FieldName = "LRDATE"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.OptionsColumn.AllowEdit = False
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 12
-        Me.GITEMNAME.Width = 150
+        Me.GWARPBE.Caption = "BE"
+        Me.GWARPBE.FieldName = "GWARPBE"
+        Me.GWARPBE.Name = "GWARPBE"
+        Me.GWARPBE.OptionsColumn.AllowEdit = False
+        Me.GWARPBE.Visible = True
+        Me.GWARPBE.VisibleIndex = 8
+        Me.GWARPBE.Width = 150
         '
         'GHSNCODE
         '
@@ -369,7 +307,7 @@ Partial Class JobOrderWarpDetails
         Me.GHSNCODE.Name = "GHSNCODE"
         Me.GHSNCODE.OptionsColumn.AllowEdit = False
         Me.GHSNCODE.Visible = True
-        Me.GHSNCODE.VisibleIndex = 14
+        Me.GHSNCODE.VisibleIndex = 10
         '
         'GQUALITY
         '
@@ -386,7 +324,7 @@ Partial Class JobOrderWarpDetails
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 15
+        Me.GDESIGNNO.VisibleIndex = 11
         Me.GDESIGNNO.Width = 120
         '
         'GSHADE
@@ -396,7 +334,7 @@ Partial Class JobOrderWarpDetails
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.OptionsColumn.AllowEdit = False
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 16
+        Me.GSHADE.VisibleIndex = 12
         Me.GSHADE.Width = 100
         '
         'GQTY
@@ -420,7 +358,7 @@ Partial Class JobOrderWarpDetails
         Me.GBALENO.Name = "GBALENO"
         Me.GBALENO.OptionsColumn.AllowEdit = False
         Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 17
+        Me.GBALENO.VisibleIndex = 13
         '
         'GPCS
         '
@@ -432,7 +370,7 @@ Partial Class JobOrderWarpDetails
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 18
+        Me.GPCS.VisibleIndex = 14
         Me.GPCS.Width = 85
         '
         'GMTRS
@@ -445,7 +383,7 @@ Partial Class JobOrderWarpDetails
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 19
+        Me.GMTRS.VisibleIndex = 15
         Me.GMTRS.Width = 85
         '
         'GPER
@@ -456,7 +394,7 @@ Partial Class JobOrderWarpDetails
         Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 20
+        Me.GPER.VisibleIndex = 16
         Me.GPER.Width = 85
         '
         'GRATE
@@ -468,7 +406,7 @@ Partial Class JobOrderWarpDetails
         Me.GRATE.Name = "GRATE"
         Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 21
+        Me.GRATE.VisibleIndex = 17
         '
         'GAMT
         '
@@ -480,7 +418,7 @@ Partial Class JobOrderWarpDetails
         Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 22
+        Me.GAMT.VisibleIndex = 18
         '
         'GAGENT
         '
@@ -489,7 +427,7 @@ Partial Class JobOrderWarpDetails
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.OptionsColumn.AllowEdit = False
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 23
+        Me.GAGENT.VisibleIndex = 19
         Me.GAGENT.Width = 150
         '
         'GSHIPPEDTO
@@ -499,7 +437,7 @@ Partial Class JobOrderWarpDetails
         Me.GSHIPPEDTO.Name = "GSHIPPEDTO"
         Me.GSHIPPEDTO.OptionsColumn.AllowEdit = False
         Me.GSHIPPEDTO.Visible = True
-        Me.GSHIPPEDTO.VisibleIndex = 24
+        Me.GSHIPPEDTO.VisibleIndex = 20
         Me.GSHIPPEDTO.Width = 100
         '
         'GPACKINGADD
@@ -509,7 +447,7 @@ Partial Class JobOrderWarpDetails
         Me.GPACKINGADD.Name = "GPACKINGADD"
         Me.GPACKINGADD.OptionsColumn.AllowEdit = False
         Me.GPACKINGADD.Visible = True
-        Me.GPACKINGADD.VisibleIndex = 25
+        Me.GPACKINGADD.VisibleIndex = 21
         Me.GPACKINGADD.Width = 300
         '
         'GTRANSPORT
@@ -519,7 +457,7 @@ Partial Class JobOrderWarpDetails
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 26
+        Me.GTRANSPORT.VisibleIndex = 22
         Me.GTRANSPORT.Width = 150
         '
         'GTRANSGSTIN
@@ -529,7 +467,7 @@ Partial Class JobOrderWarpDetails
         Me.GTRANSGSTIN.Name = "GTRANSGSTIN"
         Me.GTRANSGSTIN.OptionsColumn.AllowEdit = False
         Me.GTRANSGSTIN.Visible = True
-        Me.GTRANSGSTIN.VisibleIndex = 27
+        Me.GTRANSGSTIN.VisibleIndex = 23
         Me.GTRANSGSTIN.Width = 100
         '
         'GSO
@@ -539,7 +477,7 @@ Partial Class JobOrderWarpDetails
         Me.GSO.Name = "GSO"
         Me.GSO.OptionsColumn.AllowEdit = False
         Me.GSO.Visible = True
-        Me.GSO.VisibleIndex = 28
+        Me.GSO.VisibleIndex = 24
         '
         'GBALES
         '
@@ -550,7 +488,7 @@ Partial Class JobOrderWarpDetails
         Me.GBALES.Name = "GBALES"
         Me.GBALES.OptionsColumn.AllowEdit = False
         Me.GBALES.Visible = True
-        Me.GBALES.VisibleIndex = 29
+        Me.GBALES.VisibleIndex = 25
         '
         'GTOTALAMT
         '
@@ -562,7 +500,7 @@ Partial Class JobOrderWarpDetails
         Me.GTOTALAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALAMT.Visible = True
-        Me.GTOTALAMT.VisibleIndex = 30
+        Me.GTOTALAMT.VisibleIndex = 26
         '
         'GDISC
         '
@@ -572,7 +510,7 @@ Partial Class JobOrderWarpDetails
         Me.GDISC.OptionsColumn.AllowEdit = False
         Me.GDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDISC.Visible = True
-        Me.GDISC.VisibleIndex = 31
+        Me.GDISC.VisibleIndex = 27
         Me.GDISC.Width = 80
         '
         'GSPDISCAMT
@@ -583,7 +521,7 @@ Partial Class JobOrderWarpDetails
         Me.GSPDISCAMT.OptionsColumn.AllowEdit = False
         Me.GSPDISCAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSPDISCAMT.Visible = True
-        Me.GSPDISCAMT.VisibleIndex = 32
+        Me.GSPDISCAMT.VisibleIndex = 28
         '
         'GCHARGES
         '
@@ -593,7 +531,7 @@ Partial Class JobOrderWarpDetails
         Me.GCHARGES.OptionsColumn.AllowEdit = False
         Me.GCHARGES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCHARGES.Visible = True
-        Me.GCHARGES.VisibleIndex = 33
+        Me.GCHARGES.VisibleIndex = 29
         '
         'GTOTALTAXABLEAMT
         '
@@ -605,7 +543,7 @@ Partial Class JobOrderWarpDetails
         Me.GTOTALTAXABLEAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALTAXABLEAMT.Visible = True
-        Me.GTOTALTAXABLEAMT.VisibleIndex = 34
+        Me.GTOTALTAXABLEAMT.VisibleIndex = 30
         '
         'GCGSTPER
         '
@@ -616,7 +554,7 @@ Partial Class JobOrderWarpDetails
         Me.GCGSTPER.Name = "GCGSTPER"
         Me.GCGSTPER.OptionsColumn.AllowEdit = False
         Me.GCGSTPER.Visible = True
-        Me.GCGSTPER.VisibleIndex = 35
+        Me.GCGSTPER.VisibleIndex = 31
         '
         'GTOTALCGSTAMT
         '
@@ -628,7 +566,7 @@ Partial Class JobOrderWarpDetails
         Me.GTOTALCGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCGSTAMT.Visible = True
-        Me.GTOTALCGSTAMT.VisibleIndex = 36
+        Me.GTOTALCGSTAMT.VisibleIndex = 32
         '
         'GSGSTPER
         '
@@ -639,7 +577,7 @@ Partial Class JobOrderWarpDetails
         Me.GSGSTPER.Name = "GSGSTPER"
         Me.GSGSTPER.OptionsColumn.AllowEdit = False
         Me.GSGSTPER.Visible = True
-        Me.GSGSTPER.VisibleIndex = 37
+        Me.GSGSTPER.VisibleIndex = 33
         '
         'GTOTALSGSTAMT
         '
@@ -651,7 +589,7 @@ Partial Class JobOrderWarpDetails
         Me.GTOTALSGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALSGSTAMT.Visible = True
-        Me.GTOTALSGSTAMT.VisibleIndex = 38
+        Me.GTOTALSGSTAMT.VisibleIndex = 34
         '
         'GIGSTPER
         '
@@ -662,7 +600,7 @@ Partial Class JobOrderWarpDetails
         Me.GIGSTPER.Name = "GIGSTPER"
         Me.GIGSTPER.OptionsColumn.AllowEdit = False
         Me.GIGSTPER.Visible = True
-        Me.GIGSTPER.VisibleIndex = 39
+        Me.GIGSTPER.VisibleIndex = 35
         '
         'GTOTALIGSTAMT
         '
@@ -672,7 +610,7 @@ Partial Class JobOrderWarpDetails
         Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALIGSTAMT.Visible = True
-        Me.GTOTALIGSTAMT.VisibleIndex = 40
+        Me.GTOTALIGSTAMT.VisibleIndex = 36
         '
         'GGRANDTOTAL
         '
@@ -684,7 +622,7 @@ Partial Class JobOrderWarpDetails
         Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
         Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GGRANDTOTAL.Visible = True
-        Me.GGRANDTOTAL.VisibleIndex = 41
+        Me.GGRANDTOTAL.VisibleIndex = 37
         Me.GGRANDTOTAL.Width = 85
         '
         'GRECDAMT
@@ -697,7 +635,7 @@ Partial Class JobOrderWarpDetails
         Me.GRECDAMT.OptionsColumn.AllowEdit = False
         Me.GRECDAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDAMT.Visible = True
-        Me.GRECDAMT.VisibleIndex = 42
+        Me.GRECDAMT.VisibleIndex = 38
         '
         'GRETURNAMT
         '
@@ -709,7 +647,7 @@ Partial Class JobOrderWarpDetails
         Me.GRETURNAMT.OptionsColumn.AllowEdit = False
         Me.GRETURNAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRETURNAMT.Visible = True
-        Me.GRETURNAMT.VisibleIndex = 43
+        Me.GRETURNAMT.VisibleIndex = 39
         '
         'GBALANCE
         '
@@ -721,7 +659,7 @@ Partial Class JobOrderWarpDetails
         Me.GBALANCE.OptionsColumn.AllowEdit = False
         Me.GBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALANCE.Visible = True
-        Me.GBALANCE.VisibleIndex = 44
+        Me.GBALANCE.VisibleIndex = 40
         '
         'GREMARKS
         '
@@ -730,7 +668,7 @@ Partial Class JobOrderWarpDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 45
+        Me.GREMARKS.VisibleIndex = 41
         Me.GREMARKS.Width = 150
         '
         'GTRADING
@@ -739,7 +677,7 @@ Partial Class JobOrderWarpDetails
         Me.GTRADING.FieldName = "TRADING"
         Me.GTRADING.Name = "GTRADING"
         Me.GTRADING.Visible = True
-        Me.GTRADING.VisibleIndex = 47
+        Me.GTRADING.VisibleIndex = 43
         '
         'GDISPUTED
         '
@@ -748,7 +686,7 @@ Partial Class JobOrderWarpDetails
         Me.GDISPUTED.Name = "GDISPUTED"
         Me.GDISPUTED.OptionsColumn.AllowEdit = False
         Me.GDISPUTED.Visible = True
-        Me.GDISPUTED.VisibleIndex = 46
+        Me.GDISPUTED.VisibleIndex = 42
         '
         'GBILLCHECKED
         '
@@ -757,7 +695,7 @@ Partial Class JobOrderWarpDetails
         Me.GBILLCHECKED.Name = "GBILLCHECKED"
         Me.GBILLCHECKED.OptionsColumn.AllowEdit = False
         Me.GBILLCHECKED.Visible = True
-        Me.GBILLCHECKED.VisibleIndex = 48
+        Me.GBILLCHECKED.VisibleIndex = 44
         '
         'GSUPPLIERNAME
         '
@@ -783,7 +721,7 @@ Partial Class JobOrderWarpDetails
         Me.GSTATE.Name = "GSTATE"
         Me.GSTATE.OptionsColumn.AllowEdit = False
         Me.GSTATE.Visible = True
-        Me.GSTATE.VisibleIndex = 49
+        Me.GSTATE.VisibleIndex = 45
         Me.GSTATE.Width = 100
         '
         'GCITY
@@ -793,7 +731,7 @@ Partial Class JobOrderWarpDetails
         Me.GCITY.Name = "GCITY"
         Me.GCITY.OptionsColumn.AllowEdit = False
         Me.GCITY.Visible = True
-        Me.GCITY.VisibleIndex = 50
+        Me.GCITY.VisibleIndex = 46
         Me.GCITY.Width = 100
         '
         'GREGNAME
@@ -803,7 +741,7 @@ Partial Class JobOrderWarpDetails
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.OptionsColumn.AllowEdit = False
         Me.GREGNAME.Visible = True
-        Me.GREGNAME.VisibleIndex = 51
+        Me.GREGNAME.VisibleIndex = 47
         Me.GREGNAME.Width = 120
         '
         'GDESCRIPTION
@@ -813,7 +751,7 @@ Partial Class JobOrderWarpDetails
         Me.GDESCRIPTION.Name = "GDESCRIPTION"
         Me.GDESCRIPTION.OptionsColumn.AllowEdit = False
         Me.GDESCRIPTION.Visible = True
-        Me.GDESCRIPTION.VisibleIndex = 13
+        Me.GDESCRIPTION.VisibleIndex = 9
         Me.GDESCRIPTION.Width = 150
         '
         'GMONTHNAME
@@ -822,7 +760,7 @@ Partial Class JobOrderWarpDetails
         Me.GMONTHNAME.FieldName = "MONTHNAME"
         Me.GMONTHNAME.Name = "GMONTHNAME"
         Me.GMONTHNAME.Visible = True
-        Me.GMONTHNAME.VisibleIndex = 52
+        Me.GMONTHNAME.VisibleIndex = 48
         '
         'GGRIDTRANSPORT
         '
@@ -1017,20 +955,14 @@ Partial Class JobOrderWarpDetails
     Friend WithEvents Label22 As Label
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GPARTYPONO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gsrno As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGSTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GADDRESS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GEWAYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GIRNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPGRIDSYM As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GWARPYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPDENIER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPSHADE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPBE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn

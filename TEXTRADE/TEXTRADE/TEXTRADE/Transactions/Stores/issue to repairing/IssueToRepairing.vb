@@ -16,12 +16,12 @@ Public Class IssueToRepairing
     Private Sub cmdclear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDCLEAR.Click
         CLEAR()
         EDIT = False
-        CONSUMEDATE.Focus()
+        REPAIRDATE.Focus()
     End Sub
 
     Sub CLEAR()
 
-        CONSUMEDATE.Text = Now.Date
+        REPAIRDATE.Text = Now.Date
         tstxtbillno.Clear()
 
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
@@ -124,7 +124,7 @@ Public Class IssueToRepairing
                     Exit Sub
                 End If
 
-                Dim OBJCONSUME As New ClsStoreConsumption
+                Dim OBJCONSUME As New ClsIssueToRepairing
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(TEMPCONSUMENO)
                 ALPARAVAL.Add(YearId)
@@ -135,10 +135,10 @@ Public Class IssueToRepairing
                     For Each dr As DataRow In dttable.Rows
 
                         TXTREPAIRNO.Text = TEMPCONSUMENO
-                        CONSUMEDATE.Text = Format(Convert.ToDateTime(dr("CONSUMEDATE")).Date, "dd/MM/yyyy")
+                        REPAIRDATE.Text = Format(Convert.ToDateTime(dr("REPAIRDATE")).Date, "dd/MM/yyyy")
                         CMBGODOWN.Text = dr("GODOWN")
 
-                        CMBNAME.Text = Convert.ToString(dr("DEPARTMENT").ToString)
+                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
 
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
 
@@ -169,7 +169,7 @@ Public Class IssueToRepairing
 
             Dim alParaval As New ArrayList
 
-            alParaval.Add(Format(Convert.ToDateTime(CONSUMEDATE.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(Format(Convert.ToDateTime(REPAIRDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBGODOWN.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(Val(LBLTOTALQTY.Text.Trim))
@@ -238,7 +238,7 @@ Public Class IssueToRepairing
             End If
 
             CLEAR()
-            CONSUMEDATE.Focus()
+            REPAIRDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -251,23 +251,23 @@ Public Class IssueToRepairing
     Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
 
-        If CONSUMEDATE.Text = "__/__/____" Then
-            EP.SetError(CONSUMEDATE, " Please Enter Proper Date")
+        If REPAIRDATE.Text = "__/__/____" Then
+            EP.SetError(REPAIRDATE, " Please Enter Proper Date")
             bln = False
         Else
-            If Not datecheck(CONSUMEDATE.Text) Then
-                EP.SetError(CONSUMEDATE, "Date not in Accounting Year")
+            If Not datecheck(REPAIRDATE.Text) Then
+                EP.SetError(REPAIRDATE, "Date not in Accounting Year")
                 bln = False
             End If
         End If
 
         If CMBNAME.Text.Trim.Length = 0 Then
-            EP.SetError(CMBNAME, " Please Fill Department")
+            EP.SetError(CMBNAME, " Please Fill Party Name")
             bln = False
         End If
 
         If GRIDCONSUME.RowCount = 0 Then
-            EP.SetError(CMBNAME, " Please Fill Item Details")
+            EP.SetError(CMBSTOREITEMNAME, " Please Fill Item Details")
             bln = False
         End If
 
@@ -457,21 +457,21 @@ LINE1:
         Call cmddelete_Click(sender, e)
     End Sub
 
-    Private Sub CONSUMEDATE_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles CONSUMEDATE.GotFocus
-        CONSUMEDATE.SelectionStart = 0
+    Private Sub CONSUMEDATE_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles REPAIRDATE.GotFocus
+        REPAIRDATE.SelectionStart = 0
     End Sub
 
-    Private Sub CONSUMEDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CONSUMEDATE.Validating
+    Private Sub CONSUMEDATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles REPAIRDATE.Validating
         Try
-            If CONSUMEDATE.Text.Trim <> "__/__/____" Then
+            If REPAIRDATE.Text.Trim <> "__/__/____" Then
                 'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
                 Dim TEMP As DateTime
-                If Not DateTime.TryParse(CONSUMEDATE.Text, TEMP) Then
+                If Not DateTime.TryParse(REPAIRDATE.Text, TEMP) Then
                     MsgBox("Enter Proper Date")
                     e.Cancel = True
                     Exit Sub
                 Else
-                    If Not datecheck(CONSUMEDATE.Text) Then
+                    If Not datecheck(REPAIRDATE.Text) Then
                         MsgBox("Date not in Accounting Year")
                         e.Cancel = True
 
@@ -604,17 +604,17 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBDEPARTMENT_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
+    Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then filldepartment(CMBNAME, EDIT)
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub CMBDEPARTMENT_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
+    Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then DEPARTMENTVALIDATE(CMBNAME, e, Me)
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, cmbcode, e, Me, TXTADD, " And GroupMaster.GROUP_SECONDARY ='SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
