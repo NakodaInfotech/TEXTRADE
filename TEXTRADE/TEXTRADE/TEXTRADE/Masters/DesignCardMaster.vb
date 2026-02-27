@@ -862,6 +862,11 @@ Public Class DesignCardMaster
                 Ep.SetError(CMBDESIGNNO, "Fill Design No")
                 bln = False
             End If
+        Else
+            If CMBSHADE.Text.Trim.Length = 0 Then
+                Ep.SetError(CMBSHADE, "Fill Shade ")
+                bln = False
+            End If
         End If
         If DTDATE.Text = "__/__/____" Then
             Ep.SetError(DTDATE, " Please Enter Proper Date")
@@ -929,6 +934,15 @@ Public Class DesignCardMaster
             Ep.SetError(cmdok, "Check Selvedge Pattern Grid. ")
             bln = False ' If validation fails, set bln to False
         End If
+
+        'check if same item shade wise entry already filled
+        Dim OBJCMN As New ClsCommon
+        Dim DT1 As DataTable = OBJCMN.SEARCH("*", "", "  DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id AND DESIGNCARD.DESIGN_YEARID = ITEMMASTER.item_yearid INNER JOIN COLORMASTER ON DESIGNCARD.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND DESIGNCARD.DESIGN_SHADEID = COLORMASTER.COLOR_id  ", " and itemmaster.item_name = '" & CMBITEMNAME.Text & "' and colormaster.color_name = '" & CMBSHADE.Text & "' and designcard.DESIGN_YEARID = " & YearId)
+        If DT1.Rows.Count > 0 Then
+            Ep.SetError(cmdok, "This Combination of Designcard has already been created ")
+            bln = False
+        End If
+
         Return bln
     End Function
     Public Function CheckGridsForBlankOrNull(grid As DataGridView, endColumn As String, symColumn As String) As Boolean
