@@ -845,7 +845,7 @@ Public Class ClsDesignCardMaster
                 .Add(New SqlClient.SqlParameter("@CmpId", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@itemname", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@itemname", alParaval(4)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
             'Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
