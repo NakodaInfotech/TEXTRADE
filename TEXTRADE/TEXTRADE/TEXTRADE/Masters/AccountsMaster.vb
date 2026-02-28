@@ -360,6 +360,7 @@ Public Class AccountsMaster
                     CMBDISTRICT.Text = dttable.Rows(0).Item("DISTRICT")
                     TXTWARNING.Text = dttable.Rows(0).Item("WARNING")
                     TXTRD.Text = dttable.Rows(0).Item("RD")
+                    TXTHINDINAME.Text = dttable.Rows(0).Item("HINDINAME")
 
                     If Convert.ToBoolean(dttable.Rows(0).Item("GSTINVERIFIED")) = True Then
                         CHKGSTINVERIFIED.CheckState = CheckState.Checked
@@ -710,7 +711,7 @@ NEXTLINE:
             alParaval.Add(DESIGNATION)
             alParaval.Add(CMOB)
             alParaval.Add(CEMAIL)
-
+            alParaval.Add(TXTHINDINAME.Text.Trim)
 
             Dim objAccountsMaster As New ClsAccountsMaster
             objAccountsMaster.alParaval = alParaval
@@ -763,6 +764,7 @@ NEXTLINE:
         CMBTDSDEDUCTEDAC.Text = ""
         CMBSURCHARGE.SelectedIndex = 0
         TXTTDSRATE.Enabled = False
+        TXTHINDINAME.Clear()
 
         txtadd.Clear()
         txtadd1.Clear()
@@ -2471,7 +2473,6 @@ line1:
             Throw ex
         End Try
     End Sub
-
 
     Private Sub GRIDCONTACT_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GRIDCONTACT.KeyDown
         Try
