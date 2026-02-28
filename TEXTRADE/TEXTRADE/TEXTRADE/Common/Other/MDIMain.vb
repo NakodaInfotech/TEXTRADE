@@ -4628,6 +4628,8 @@ Public Class MDIMain
                 ALPARAVAL.Add(0)   'EXMILL
                 ALPARAVAL.Add(0)   'BILLTOID
                 ALPARAVAL.Add(0)   'LOCKDAYS
+                ALPARAVAL.Add("")   'HINDINAME
+                ALPARAVAL.Add("")   'ROUNDERID
 
                 'CONTACT DETAILS
                 '*******************************
