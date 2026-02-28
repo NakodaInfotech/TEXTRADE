@@ -26,28 +26,24 @@ Partial Class YarnInterGodownTransfer
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnInterGodownTransfer))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.TXTTO = New System.Windows.Forms.TextBox()
-        Me.LBLTO = New System.Windows.Forms.Label()
+        Me.LIFTINGDATE = New System.Windows.Forms.MaskedTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.LBLFROM = New System.Windows.Forms.Label()
         Me.TXTISSUEBY = New System.Windows.Forms.TextBox()
-        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.LBLISSUEBY = New System.Windows.Forms.Label()
         Me.CMBFROMGODOWN = New System.Windows.Forms.ComboBox()
         Me.LBLTYPE = New System.Windows.Forms.Label()
         Me.TXTREFRENCE = New System.Windows.Forms.TextBox()
         Me.LBLREFRENCE = New System.Windows.Forms.Label()
         Me.TXTDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
-        Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
-        Me.LBLTOTALPCS = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.PBlock = New System.Windows.Forms.PictureBox()
         Me.CMBTRANSPORTNAME = New System.Windows.Forms.ComboBox()
@@ -55,19 +51,22 @@ Partial Class YarnInterGodownTransfer
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LIFTINGDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.TXTCONES = New System.Windows.Forms.TextBox()
-        Me.TXTWT = New System.Windows.Forms.TextBox()
-        Me.txtqty = New System.Windows.Forms.TextBox()
-        Me.TXTGRIDLOTNO = New System.Windows.Forms.TextBox()
-        Me.TXTPSHADE = New System.Windows.Forms.TextBox()
         Me.GRIDJO = New System.Windows.Forms.DataGridView()
-        Me.TXTJOBBERLOTNO = New System.Windows.Forms.TextBox()
-        Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
-        Me.cmbcolor = New System.Windows.Forms.ComboBox()
-        Me.CMBMILL = New System.Windows.Forms.ComboBox()
-        Me.CMBYARNQUALITY = New System.Windows.Forms.ComboBox()
-        Me.txtsrno = New System.Windows.Forms.TextBox()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GJOBBERLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LBLTOTALPCS = New System.Windows.Forms.Label()
+        Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
         Me.cmddelete = New System.Windows.Forms.Button()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -91,18 +90,6 @@ Partial Class YarnInterGodownTransfer
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GJOBBERLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -118,12 +105,8 @@ Partial Class YarnInterGodownTransfer
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.LIFTINGDATE)
-        Me.BlendPanel1.Controls.Add(Me.TXTTO)
-        Me.BlendPanel1.Controls.Add(Me.LBLTO)
         Me.BlendPanel1.Controls.Add(Me.Label4)
-        Me.BlendPanel1.Controls.Add(Me.LBLFROM)
         Me.BlendPanel1.Controls.Add(Me.TXTISSUEBY)
-        Me.BlendPanel1.Controls.Add(Me.TXTFROM)
         Me.BlendPanel1.Controls.Add(Me.LBLISSUEBY)
         Me.BlendPanel1.Controls.Add(Me.CMBFROMGODOWN)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
@@ -156,29 +139,20 @@ Partial Class YarnInterGodownTransfer
         Me.BlendPanel1.Size = New System.Drawing.Size(1156, 581)
         Me.BlendPanel1.TabIndex = 1
         '
-        'TXTTO
+        'LIFTINGDATE
         '
-        Me.TXTTO.BackColor = System.Drawing.Color.White
-        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTO.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTTO.Location = New System.Drawing.Point(1090, 1)
-        Me.TXTTO.Name = "TXTTO"
-        Me.TXTTO.Size = New System.Drawing.Size(41, 23)
-        Me.TXTTO.TabIndex = 732
-        Me.TXTTO.Text = " "
-        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'LBLTO
-        '
-        Me.LBLTO.AutoSize = True
-        Me.LBLTO.BackColor = System.Drawing.SystemColors.Control
-        Me.LBLTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTO.ForeColor = System.Drawing.Color.Black
-        Me.LBLTO.Location = New System.Drawing.Point(1070, 5)
-        Me.LBLTO.Name = "LBLTO"
-        Me.LBLTO.Size = New System.Drawing.Size(19, 15)
-        Me.LBLTO.TabIndex = 731
-        Me.LBLTO.Text = "To"
+        Me.LIFTINGDATE.AsciiOnly = True
+        Me.LIFTINGDATE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.LIFTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LIFTINGDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
+        Me.LIFTINGDATE.Location = New System.Drawing.Point(851, 39)
+        Me.LIFTINGDATE.Mask = "00/00/0000"
+        Me.LIFTINGDATE.Name = "LIFTINGDATE"
+        Me.LIFTINGDATE.Size = New System.Drawing.Size(82, 23)
+        Me.LIFTINGDATE.TabIndex = 18
+        Me.LIFTINGDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
+        Me.LIFTINGDATE.ValidatingType = GetType(Date)
+        Me.LIFTINGDATE.Visible = False
         '
         'Label4
         '
@@ -192,18 +166,6 @@ Partial Class YarnInterGodownTransfer
         Me.Label4.TabIndex = 757
         Me.Label4.Text = "Sr. No."
         '
-        'LBLFROM
-        '
-        Me.LBLFROM.AutoSize = True
-        Me.LBLFROM.BackColor = System.Drawing.SystemColors.Control
-        Me.LBLFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLFROM.ForeColor = System.Drawing.Color.Black
-        Me.LBLFROM.Location = New System.Drawing.Point(914, 5)
-        Me.LBLFROM.Name = "LBLFROM"
-        Me.LBLFROM.Size = New System.Drawing.Size(113, 15)
-        Me.LBLFROM.TabIndex = 730
-        Me.LBLFROM.Text = "Print Barcode From"
-        '
         'TXTISSUEBY
         '
         Me.TXTISSUEBY.BackColor = System.Drawing.Color.White
@@ -215,18 +177,6 @@ Partial Class YarnInterGodownTransfer
         Me.TXTISSUEBY.Size = New System.Drawing.Size(144, 23)
         Me.TXTISSUEBY.TabIndex = 6
         Me.TXTISSUEBY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTFROM
-        '
-        Me.TXTFROM.BackColor = System.Drawing.Color.White
-        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROM.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTFROM.Location = New System.Drawing.Point(1026, 1)
-        Me.TXTFROM.Name = "TXTFROM"
-        Me.TXTFROM.Size = New System.Drawing.Size(41, 23)
-        Me.TXTFROM.TabIndex = 729
-        Me.TXTFROM.Text = " "
-        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLISSUEBY
         '
@@ -302,17 +252,6 @@ Partial Class YarnInterGodownTransfer
         Me.TXTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.TXTDATE.ValidatingType = GetType(Date)
         '
-        'Label2
-        '
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(771, 229)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(74, 15)
-        Me.Label2.TabIndex = 748
-        Me.Label2.Text = "Total"
-        '
         'TXTADD
         '
         Me.TXTADD.ForeColor = System.Drawing.Color.DimGray
@@ -338,30 +277,6 @@ Partial Class YarnInterGodownTransfer
         Me.CMBCODE.TabIndex = 742
         Me.CMBCODE.Visible = False
         '
-        'LBLTOTALMTRS
-        '
-        Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(884, 229)
-        Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
-        Me.LBLTOTALMTRS.Size = New System.Drawing.Size(66, 15)
-        Me.LBLTOTALMTRS.TabIndex = 659
-        Me.LBLTOTALMTRS.Text = "0"
-        Me.LBLTOTALMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLTOTALPCS
-        '
-        Me.LBLTOTALPCS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALPCS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALPCS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALPCS.Location = New System.Drawing.Point(813, 229)
-        Me.LBLTOTALPCS.Name = "LBLTOTALPCS"
-        Me.LBLTOTALPCS.Size = New System.Drawing.Size(74, 15)
-        Me.LBLTOTALPCS.TabIndex = 655
-        Me.LBLTOTALPCS.Text = "0"
-        Me.LBLTOTALPCS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -378,7 +293,7 @@ Partial Class YarnInterGodownTransfer
         '
         Me.PBlock.BackColor = System.Drawing.Color.Transparent
         Me.PBlock.Image = CType(resources.GetObject("PBlock.Image"), System.Drawing.Image)
-        Me.PBlock.Location = New System.Drawing.Point(707, 449)
+        Me.PBlock.Location = New System.Drawing.Point(1007, 449)
         Me.PBlock.Name = "PBlock"
         Me.PBlock.Size = New System.Drawing.Size(60, 60)
         Me.PBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -437,19 +352,8 @@ Partial Class YarnInterGodownTransfer
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.TabPage1.Controls.Add(Me.TXTCONES)
-        Me.TabPage1.Controls.Add(Me.TXTWT)
-        Me.TabPage1.Controls.Add(Me.txtqty)
-        Me.TabPage1.Controls.Add(Me.TXTGRIDLOTNO)
-        Me.TabPage1.Controls.Add(Me.TXTPSHADE)
         Me.TabPage1.Controls.Add(Me.GRIDJO)
-        Me.TabPage1.Controls.Add(Me.TXTJOBBERLOTNO)
-        Me.TabPage1.Controls.Add(Me.CMBDESIGN)
-        Me.TabPage1.Controls.Add(Me.cmbcolor)
-        Me.TabPage1.Controls.Add(Me.CMBMILL)
-        Me.TabPage1.Controls.Add(Me.CMBYARNQUALITY)
         Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.txtsrno)
         Me.TabPage1.Controls.Add(Me.LBLTOTALPCS)
         Me.TabPage1.Controls.Add(Me.LBLTOTALMTRS)
         Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -459,77 +363,6 @@ Partial Class YarnInterGodownTransfer
         Me.TabPage1.Size = New System.Drawing.Size(1056, 247)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
-        '
-        'LIFTINGDATE
-        '
-        Me.LIFTINGDATE.AsciiOnly = True
-        Me.LIFTINGDATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.LIFTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LIFTINGDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.LIFTINGDATE.Location = New System.Drawing.Point(851, 39)
-        Me.LIFTINGDATE.Mask = "00/00/0000"
-        Me.LIFTINGDATE.Name = "LIFTINGDATE"
-        Me.LIFTINGDATE.Size = New System.Drawing.Size(82, 23)
-        Me.LIFTINGDATE.TabIndex = 18
-        Me.LIFTINGDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.LIFTINGDATE.ValidatingType = GetType(Date)
-        Me.LIFTINGDATE.Visible = False
-        '
-        'TXTCONES
-        '
-        Me.TXTCONES.BackColor = System.Drawing.Color.White
-        Me.TXTCONES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCONES.Location = New System.Drawing.Point(964, 1)
-        Me.TXTCONES.Name = "TXTCONES"
-        Me.TXTCONES.Size = New System.Drawing.Size(50, 23)
-        Me.TXTCONES.TabIndex = 14
-        Me.TXTCONES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTCONES.Visible = False
-        '
-        'TXTWT
-        '
-        Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(904, 1)
-        Me.TXTWT.Name = "TXTWT"
-        Me.TXTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWT.TabIndex = 13
-        Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWT.Visible = False
-        '
-        'txtqty
-        '
-        Me.txtqty.BackColor = System.Drawing.Color.White
-        Me.txtqty.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtqty.Location = New System.Drawing.Point(844, 1)
-        Me.txtqty.Name = "txtqty"
-        Me.txtqty.Size = New System.Drawing.Size(60, 23)
-        Me.txtqty.TabIndex = 12
-        Me.txtqty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtqty.Visible = False
-        '
-        'TXTGRIDLOTNO
-        '
-        Me.TXTGRIDLOTNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTGRIDLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTGRIDLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDLOTNO.Location = New System.Drawing.Point(774, 1)
-        Me.TXTGRIDLOTNO.Name = "TXTGRIDLOTNO"
-        Me.TXTGRIDLOTNO.ReadOnly = True
-        Me.TXTGRIDLOTNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTGRIDLOTNO.TabIndex = 11
-        Me.TXTGRIDLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTGRIDLOTNO.Visible = False
-        '
-        'TXTPSHADE
-        '
-        Me.TXTPSHADE.BackColor = System.Drawing.Color.White
-        Me.TXTPSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPSHADE.Location = New System.Drawing.Point(574, 1)
-        Me.TXTPSHADE.Name = "TXTPSHADE"
-        Me.TXTPSHADE.Size = New System.Drawing.Size(100, 23)
-        Me.TXTPSHADE.TabIndex = 10
-        Me.TXTPSHADE.Visible = False
         '
         'GRIDJO
         '
@@ -551,104 +384,175 @@ Partial Class YarnInterGodownTransfer
         Me.GRIDJO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDJO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLIFTINGDATE})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDJO.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDJO.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDJO.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDJO.Location = New System.Drawing.Point(4, 24)
+        Me.GRIDJO.Location = New System.Drawing.Point(4, 3)
         Me.GRIDJO.MultiSelect = False
         Me.GRIDJO.Name = "GRIDJO"
         Me.GRIDJO.RowHeadersVisible = False
         Me.GRIDJO.RowHeadersWidth = 30
         Me.GRIDJO.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDJO.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDJO.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDJO.RowTemplate.Height = 20
         Me.GRIDJO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDJO.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDJO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDJO.Size = New System.Drawing.Size(1034, 199)
+        Me.GRIDJO.Size = New System.Drawing.Size(1034, 223)
         Me.GRIDJO.TabIndex = 0
         Me.GRIDJO.TabStop = False
         '
-        'TXTJOBBERLOTNO
+        'GSRNO
         '
-        Me.TXTJOBBERLOTNO.BackColor = System.Drawing.Color.White
-        Me.TXTJOBBERLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTJOBBERLOTNO.Location = New System.Drawing.Point(474, 1)
-        Me.TXTJOBBERLOTNO.Name = "TXTJOBBERLOTNO"
-        Me.TXTJOBBERLOTNO.Size = New System.Drawing.Size(100, 23)
-        Me.TXTJOBBERLOTNO.TabIndex = 8
-        Me.TXTJOBBERLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTJOBBERLOTNO.Visible = False
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 40
         '
-        'CMBDESIGN
+        'GYARNQUALITY
         '
-        Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDESIGN.FormattingEnabled = True
-        Me.CMBDESIGN.Location = New System.Drawing.Point(374, 1)
-        Me.CMBDESIGN.Name = "CMBDESIGN"
-        Me.CMBDESIGN.Size = New System.Drawing.Size(100, 23)
-        Me.CMBDESIGN.TabIndex = 4
-        Me.CMBDESIGN.Visible = False
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 180
         '
-        'cmbcolor
+        'GMILLNAME
         '
-        Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbcolor.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbcolor.FormattingEnabled = True
-        Me.cmbcolor.Location = New System.Drawing.Point(674, 1)
-        Me.cmbcolor.Name = "cmbcolor"
-        Me.cmbcolor.Size = New System.Drawing.Size(100, 23)
-        Me.cmbcolor.TabIndex = 5
-        Me.cmbcolor.Visible = False
+        Me.GMILLNAME.HeaderText = "Mill Name"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.ReadOnly = True
+        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILLNAME.Width = 150
         '
-        'CMBMILL
+        'GDESIGN
         '
-        Me.CMBMILL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBMILL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBMILL.FormattingEnabled = True
-        Me.CMBMILL.Location = New System.Drawing.Point(224, 1)
-        Me.CMBMILL.Name = "CMBMILL"
-        Me.CMBMILL.Size = New System.Drawing.Size(150, 23)
-        Me.CMBMILL.TabIndex = 3
-        Me.CMBMILL.Visible = False
+        Me.GDESIGN.HeaderText = "Design No"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'CMBYARNQUALITY
+        'GJOBBERLOTNO
         '
-        Me.CMBYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBYARNQUALITY.DropDownWidth = 400
-        Me.CMBYARNQUALITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBYARNQUALITY.FormattingEnabled = True
-        Me.CMBYARNQUALITY.Location = New System.Drawing.Point(44, 1)
-        Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
-        Me.CMBYARNQUALITY.Size = New System.Drawing.Size(180, 23)
-        Me.CMBYARNQUALITY.TabIndex = 2
-        Me.CMBYARNQUALITY.Visible = False
+        Me.GJOBBERLOTNO.HeaderText = "Party Lot No"
+        Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
+        Me.GJOBBERLOTNO.ReadOnly = True
+        Me.GJOBBERLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GJOBBERLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'txtsrno
+        'GPCOLOR
         '
-        Me.txtsrno.BackColor = System.Drawing.Color.Linen
-        Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(4, 1)
-        Me.txtsrno.Name = "txtsrno"
-        Me.txtsrno.ReadOnly = True
-        Me.txtsrno.Size = New System.Drawing.Size(40, 23)
-        Me.txtsrno.TabIndex = 0
-        Me.txtsrno.Visible = False
+        Me.GPCOLOR.HeaderText = "Party Color"
+        Me.GPCOLOR.Name = "GPCOLOR"
+        Me.GPCOLOR.ReadOnly = True
+        Me.GPCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GCOLOR
+        '
+        Me.GCOLOR.HeaderText = "Shade"
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.ReadOnly = True
+        Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GLOTNO
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLOTNO.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GLOTNO.HeaderText = "Lot No"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.ReadOnly = True
+        Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLOTNO.Width = 70
+        '
+        'GQTY
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GQTY.HeaderText = "Bags"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GQTY.Width = 60
+        '
+        'GWT
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle5
+        Me.GWT.HeaderText = "Weight"
+        Me.GWT.Name = "GWT"
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Width = 60
+        '
+        'GCONES
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GCONES.HeaderText = "Cones"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.ReadOnly = True
+        Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCONES.Width = 50
+        '
+        'GLIFTINGDATE
+        '
+        Me.GLIFTINGDATE.HeaderText = "Lift Date"
+        Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
+        Me.GLIFTINGDATE.ReadOnly = True
+        Me.GLIFTINGDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLIFTINGDATE.Visible = False
+        Me.GLIFTINGDATE.Width = 80
+        '
+        'Label2
+        '
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(771, 229)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(74, 15)
+        Me.Label2.TabIndex = 748
+        Me.Label2.Text = "Total"
+        '
+        'LBLTOTALPCS
+        '
+        Me.LBLTOTALPCS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALPCS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALPCS.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALPCS.Location = New System.Drawing.Point(813, 229)
+        Me.LBLTOTALPCS.Name = "LBLTOTALPCS"
+        Me.LBLTOTALPCS.Size = New System.Drawing.Size(74, 15)
+        Me.LBLTOTALPCS.TabIndex = 655
+        Me.LBLTOTALPCS.Text = "0"
+        Me.LBLTOTALPCS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLTOTALMTRS
+        '
+        Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(884, 229)
+        Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
+        Me.LBLTOTALMTRS.Size = New System.Drawing.Size(66, 15)
+        Me.LBLTOTALMTRS.TabIndex = 659
+        Me.LBLTOTALMTRS.Text = "0"
+        Me.LBLTOTALMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmddelete
         '
@@ -657,7 +561,7 @@ Partial Class YarnInterGodownTransfer
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmddelete.Location = New System.Drawing.Point(402, 497)
+        Me.cmddelete.Location = New System.Drawing.Point(526, 506)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(82, 27)
         Me.cmddelete.TabIndex = 12
@@ -671,7 +575,7 @@ Partial Class YarnInterGodownTransfer
         Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
         Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(361, 464)
+        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(485, 473)
         Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
         Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(82, 27)
         Me.CMDSELECTSTOCK.TabIndex = 9
@@ -707,7 +611,7 @@ Partial Class YarnInterGodownTransfer
         Me.cmdclear.FlatAppearance.BorderSize = 0
         Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdclear.Location = New System.Drawing.Point(537, 464)
+        Me.cmdclear.Location = New System.Drawing.Point(661, 473)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(82, 27)
         Me.cmdclear.TabIndex = 11
@@ -721,7 +625,7 @@ Partial Class YarnInterGodownTransfer
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdok.Location = New System.Drawing.Point(449, 464)
+        Me.cmdok.Location = New System.Drawing.Point(573, 473)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(82, 27)
         Me.cmdok.TabIndex = 10
@@ -735,7 +639,7 @@ Partial Class YarnInterGodownTransfer
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(488, 497)
+        Me.cmdexit.Location = New System.Drawing.Point(612, 506)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(82, 27)
         Me.cmdexit.TabIndex = 13
@@ -758,7 +662,7 @@ Partial Class YarnInterGodownTransfer
         Me.lbllocked.BackColor = System.Drawing.Color.Transparent
         Me.lbllocked.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbllocked.ForeColor = System.Drawing.Color.Red
-        Me.lbllocked.Location = New System.Drawing.Point(773, 480)
+        Me.lbllocked.Location = New System.Drawing.Point(994, 512)
         Me.lbllocked.Name = "lbllocked"
         Me.lbllocked.Size = New System.Drawing.Size(82, 29)
         Me.lbllocked.TabIndex = 445
@@ -892,110 +796,6 @@ Partial Class YarnInterGodownTransfer
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 40
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 180
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.HeaderText = "Mill Name"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.ReadOnly = True
-        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILLNAME.Width = 150
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.HeaderText = "Design No"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GJOBBERLOTNO
-        '
-        Me.GJOBBERLOTNO.HeaderText = "Party Lot No"
-        Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
-        Me.GJOBBERLOTNO.ReadOnly = True
-        Me.GJOBBERLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GJOBBERLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GPCOLOR
-        '
-        Me.GPCOLOR.HeaderText = "Party Color"
-        Me.GPCOLOR.Name = "GPCOLOR"
-        Me.GPCOLOR.ReadOnly = True
-        Me.GPCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GCOLOR
-        '
-        Me.GCOLOR.HeaderText = "Shade"
-        Me.GCOLOR.Name = "GCOLOR"
-        Me.GCOLOR.ReadOnly = True
-        Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GLOTNO
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLOTNO.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GLOTNO.HeaderText = "Lot No"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.ReadOnly = True
-        Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLOTNO.Width = 70
-        '
-        'GQTY
-        '
-        Me.GQTY.HeaderText = "Bags"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GQTY.Width = 60
-        '
-        'GWT
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GWT.HeaderText = "Weight"
-        Me.GWT.Name = "GWT"
-        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GWT.Width = 60
-        '
-        'GCONES
-        '
-        Me.GCONES.HeaderText = "Cones"
-        Me.GCONES.Name = "GCONES"
-        Me.GCONES.ReadOnly = True
-        Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCONES.Width = 50
-        '
-        'GLIFTINGDATE
-        '
-        Me.GLIFTINGDATE.HeaderText = "Lift Date"
-        Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
-        Me.GLIFTINGDATE.ReadOnly = True
-        Me.GLIFTINGDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLIFTINGDATE.Visible = False
-        Me.GLIFTINGDATE.Width = 80
-        '
         'YarnInterGodownTransfer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1010,7 +810,6 @@ Partial Class YarnInterGodownTransfer
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
         CType(Me.GRIDJO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -1023,12 +822,8 @@ Partial Class YarnInterGodownTransfer
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Friend WithEvents TXTTO As TextBox
-    Friend WithEvents LBLTO As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents LBLFROM As Label
     Friend WithEvents TXTISSUEBY As TextBox
-    Friend WithEvents TXTFROM As TextBox
     Friend WithEvents LBLISSUEBY As Label
     Friend WithEvents CMBFROMGODOWN As ComboBox
     Friend WithEvents LBLTYPE As Label
@@ -1048,12 +843,6 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents GRIDJO As DataGridView
-    Friend WithEvents TXTJOBBERLOTNO As TextBox
-    Friend WithEvents CMBDESIGN As ComboBox
-    Friend WithEvents cmbcolor As ComboBox
-    Friend WithEvents CMBMILL As ComboBox
-    Friend WithEvents CMBYARNQUALITY As ComboBox
-    Friend WithEvents txtsrno As TextBox
     Friend WithEvents cmddelete As Button
     Friend WithEvents CMDSELECTSTOCK As Button
     Friend WithEvents GroupBox5 As GroupBox
@@ -1076,11 +865,6 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents toolprevious As ToolStripButton
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents TXTPSHADE As TextBox
-    Friend WithEvents TXTGRIDLOTNO As TextBox
-    Friend WithEvents TXTCONES As TextBox
-    Friend WithEvents TXTWT As TextBox
-    Friend WithEvents txtqty As TextBox
     Friend WithEvents LIFTINGDATE As MaskedTextBox
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn

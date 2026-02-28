@@ -11013,15 +11013,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub YarnInterGodownTransferToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YarnInterGodownTransferToolStripMenuItem.Click
-        Try
-            Dim OBJHOLD As New YarnInterGodownTransfer
-            OBJHOLD.MdiParent = Me
-            OBJHOLD.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 
     Private Sub OPENINGSTOCKYARN_Click(sender As Object, e As EventArgs) Handles OPENINGSTOCKYARN.Click
         Try
@@ -11270,6 +11262,26 @@ SKIPLINE:
             Dim OBJMASTERTRANSFER As New JobOrderDetails
             OBJMASTERTRANSFER.MdiParent = Me
             OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click_1(sender As Object, e As EventArgs) Handles YARNINTERGODOWNADD.Click
+        Try
+            Dim OBJHOLD As New YarnInterGodownTransfer
+            OBJHOLD.MdiParent = Me
+            OBJHOLD.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem9_Click_1(sender As Object, e As EventArgs) Handles YARNINTERGODOWNEDIT.Click
+        Try
+            Dim OBJHOLD As New YarnInterGodownTransferDetails
+            OBJHOLD.MdiParent = Me
+            OBJHOLD.Show()
         Catch ex As Exception
             Throw ex
         End Try
