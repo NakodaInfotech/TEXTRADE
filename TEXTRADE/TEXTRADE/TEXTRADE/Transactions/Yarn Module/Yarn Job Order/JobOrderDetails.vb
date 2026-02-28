@@ -29,7 +29,7 @@ Public Class JobOrderDetails
 
     Private Sub StoreConsumptionDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'STORES'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -101,6 +101,26 @@ Public Class JobOrderDetails
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
         Try
             fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLWARPGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWARPGRIDDETAILS.Click
+        Try
+            Dim OBJINV As New JobOrderWarpDetails
+            OBJINV.MdiParent = MDIMain
+            OBJINV.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLWEFTGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWEFTGRIDDETAILS.Click
+        Try
+            Dim OBJINV As New JobOrderWeftDetails
+            OBJINV.MdiParent = MDIMain
+            OBJINV.Show()
         Catch ex As Exception
             Throw ex
         End Try
