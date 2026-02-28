@@ -23,14 +23,16 @@ Partial Class IssueToRepairing
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IssueToRepairing))
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TXTTENTATIVEDAYS = New System.Windows.Forms.TextBox()
         Me.LBLGODOWN = New System.Windows.Forms.Label()
         Me.CMBGODOWN = New System.Windows.Forms.ComboBox()
         Me.CMBUNIT = New System.Windows.Forms.ComboBox()
@@ -87,6 +89,8 @@ Partial Class IssueToRepairing
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
+        Me.BlendPanel1.Controls.Add(Me.TXTTENTATIVEDAYS)
         Me.BlendPanel1.Controls.Add(Me.LBLGODOWN)
         Me.BlendPanel1.Controls.Add(Me.CMBGODOWN)
         Me.BlendPanel1.Controls.Add(Me.CMBUNIT)
@@ -118,6 +122,31 @@ Partial Class IssueToRepairing
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(371, 47)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(85, 15)
+        Me.Label1.TabIndex = 926
+        Me.Label1.Text = "Tentative Days"
+        '
+        'TXTTENTATIVEDAYS
+        '
+        Me.TXTTENTATIVEDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTTENTATIVEDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTENTATIVEDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTENTATIVEDAYS.Location = New System.Drawing.Point(461, 43)
+        Me.TXTTENTATIVEDAYS.MaxLength = 50
+        Me.TXTTENTATIVEDAYS.Name = "TXTTENTATIVEDAYS"
+        Me.TXTTENTATIVEDAYS.Size = New System.Drawing.Size(86, 23)
+        Me.TXTTENTATIVEDAYS.TabIndex = 925
+        Me.TXTTENTATIVEDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTTENTATIVEDAYS.Visible = False
         '
         'LBLGODOWN
         '
@@ -209,28 +238,28 @@ Partial Class IssueToRepairing
         Me.GRIDCONSUME.AllowUserToDeleteRows = False
         Me.GRIDCONSUME.AllowUserToResizeColumns = False
         Me.GRIDCONSUME.AllowUserToResizeRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDCONSUME.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDCONSUME.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDCONSUME.BackgroundColor = System.Drawing.Color.White
         Me.GRIDCONSUME.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDCONSUME.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDCONSUME.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDCONSUME.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDCONSUME.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDCONSUME.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GDESC, Me.GQTY, Me.GUNIT})
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDCONSUME.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDCONSUME.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDCONSUME.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDCONSUME.Location = New System.Drawing.Point(20, 160)
         Me.GRIDCONSUME.MultiSelect = False
@@ -239,9 +268,9 @@ Partial Class IssueToRepairing
         Me.GRIDCONSUME.RowHeadersVisible = False
         Me.GRIDCONSUME.RowHeadersWidth = 30
         Me.GRIDCONSUME.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDCONSUME.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDCONSUME.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDCONSUME.RowTemplate.Height = 20
         Me.GRIDCONSUME.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDCONSUME.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -279,8 +308,8 @@ Partial Class IssueToRepairing
         '
         'GQTY
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle3
         Me.GQTY.HeaderText = "Qty"
         Me.GQTY.Name = "GQTY"
         Me.GQTY.ReadOnly = True
@@ -591,7 +620,7 @@ Partial Class IssueToRepairing
         Me.KeyPreview = True
         Me.Name = "IssueToRepairing"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "IssueToRepairing"
+        Me.Text = "Issue To Repairing"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel1.ResumeLayout(False)
@@ -646,4 +675,6 @@ Partial Class IssueToRepairing
     Friend WithEvents lblgrndate As Label
     Friend WithEvents TXTQTY As TextBox
     Friend WithEvents CMDEXIT As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TXTTENTATIVEDAYS As TextBox
 End Class

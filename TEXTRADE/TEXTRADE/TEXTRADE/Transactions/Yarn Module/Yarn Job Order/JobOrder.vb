@@ -132,11 +132,9 @@ Public Class JobOrder
             End If
             Dim OBJCMN As New ClsCommon
             Dim objclsGRN As New ClsJobOrder()
+
             Dim dttable As New DataTable
-            Dim ALPARAVAL As New ArrayList
-            ALPARAVAL.Add(tempdesignno)
-            ALPARAVAL.Add(YearId)
-            dttable = objclsGRN.SelectYarnJob()
+            dttable = objclsGRN.SelectYarnJob(tempdesignno, YearId)
 
             If dttable.Rows.Count > 0 Then
 

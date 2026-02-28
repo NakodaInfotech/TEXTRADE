@@ -35,6 +35,8 @@ Public Class ClsIssueToRepairing
 
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
@@ -85,6 +87,8 @@ Public Class ClsIssueToRepairing
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))

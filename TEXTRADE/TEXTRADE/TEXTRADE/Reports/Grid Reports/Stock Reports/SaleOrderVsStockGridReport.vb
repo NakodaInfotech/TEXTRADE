@@ -302,10 +302,12 @@ Public Class SaleOrderVsStockGridReport
     End Sub
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
-
         Try
-            For I As Integer = 0 To GRIDBILL.RowCount - 1
 
+            'THIS CODE IS FOR SENDING WHATSAPP IMAGES TO CUSTOMER
+            If MsgBox("DO YOU WANT TO SEND IMAGES ON WHATSAPP?", MsgBoxStyle.YesNo, "CONFIRM") = MsgBoxResult.No Then GoTo LINESENDPDF
+
+            For I As Integer = 0 To GRIDBILL.RowCount - 1
                 Dim ROW As DataRow = GRIDBILL.GetDataRow(I)
                 If ROW("CHK") = True Then
                     Dim OBJCMN As New ClsCommon
@@ -324,15 +326,50 @@ Public Class SaleOrderVsStockGridReport
 
                 End If
             Next
-            'If ALLOWWHATSAPP = True Then FRMSTRING = "DIRECTWHATSAPP"
-            'If FRMSTRING = "DIRECTWHATSAPP" Then
+
+LINESENDPDF:
+
+            GCHK.Visible = False
+            GSHADE.Width = 150
+            Dim filePath As String = Application.StartupPath & "\StockVsOrder.pdf"
+            GRIDBILL.OptionsPrint.AutoWidth = False   ' keeps column widths
+            GRIDBILL.OptionsPrint.UsePrintStyles = True
+
+            ' PDF export options
+            Dim pdfOptions As New PdfExportOptions()
+
+            ' Printing system to control page layout
+            Dim ps As New PrintingSystem()
+            Dim link As New PrintableComponentLink(ps)
+
+            link.Component = GRIDBILLDETAILS
+            link.PaperKind = System.Drawing.Printing.PaperKind.A4
+            link.Margins = New Printing.Margins(20, 20, 20, 20)
+
+
+            AddHandler link.CreateReportHeaderArea,
+            Sub(headerSender As Object, headerArgs As CreateAreaEventArgs)
+
+                headerArgs.Graph.StringFormat = New BrickStringFormat(StringAlignment.Center)
+                headerArgs.Graph.Font = New Font("Arial", 20, FontStyle.Bold)
+                headerArgs.Graph.ForeColor = Color.Black
+                headerArgs.Graph.BackColor = Color.Transparent
+                headerArgs.Graph.DrawString(CmpName, Color.Black, New RectangleF(0, 0, headerArgs.Graph.ClientPageSize.Width, 35), BorderSide.None)
+            End Sub
+
+            ' Create document and export
+            link.CreateDocument()
+            link.ExportToPdf(filePath)
+
+
+            PATH.Add(filePath)
+            FILENAME.Add("StockVsOrder.pdf")
 
             Dim OBJWHATSAPP As New SendWhatsapp
-                OBJWHATSAPP.FRMSTRING = "DIRECTWHATSAPP"
-                OBJWHATSAPP.PATH = PATH
-                OBJWHATSAPP.FILENAME = FILENAME
-                OBJWHATSAPP.ShowDialog()
-            ' End If
+            OBJWHATSAPP.FRMSTRING = "DIRECTWHATSAPP"
+            OBJWHATSAPP.PATH = PATH
+            OBJWHATSAPP.FILENAME = FILENAME
+            OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception
             Throw ex
@@ -349,6 +386,15 @@ Public Class SaleOrderVsStockGridReport
                 GPCS.Visible = False
                 GPENDINGPCS.Visible = False
                 GDYEINGMTRS.Visible = False
+            End If
+
+            If ClientName = "SHEETAL" Then
+                GCATEGORY.Visible = False
+                GMILLNAME.Visible = False
+                GPACKINGMTRS.Visible = False
+                GDYEINGMTRS.Visible = False
+                GPRGMTRS.Visible = False
+                GPO.Visible = False
             End If
         Catch ex As Exception
             Throw ex

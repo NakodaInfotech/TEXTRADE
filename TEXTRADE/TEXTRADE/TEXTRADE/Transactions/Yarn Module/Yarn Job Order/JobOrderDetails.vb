@@ -9,7 +9,7 @@ Public Class JobOrderDetails
         Me.Close()
     End Sub
 
-    Private Sub StoreConsumptionDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub JobOrderDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Then
                 Me.Close()
@@ -27,9 +27,9 @@ Public Class JobOrderDetails
         End Try
     End Sub
 
-    Private Sub StoreConsumptionDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub JobOrderDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'STORES'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -52,7 +52,9 @@ Public Class JobOrderDetails
             Dim OBJSTORE As New ClsJobOrder
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
-            Dim DT As DataTable = OBJSTORE.SelectYarnJob
+            'Dim DT As DataTable = OBJSTORE.SelectYarnJob
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, JOBORDER.JOB_NO AS JOBNO, ISNULL(JOBORDER.JOB_REFNO, '') AS REFNO,ISNULL(COLORMASTER.COLOR_name, '')AS COLOR, ISNULL(JOBORDER.JOB_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(DESIGNMASTER.DESIGN_NO, 0) AS DESIGNNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, JOBORDER.JOB_DATE AS DATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(JOBORDER.JOB_REED, 0) AS REED, ISNULL(JOBORDER.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER.JOB_TOTALENDS, 0) AS TOTALENDS,ISNULL(JOBORDER.JOB_TOTALMTRS, 0)AS TOTALMTRS, ISNULL(JOBORDER.JOB_OUTMTRS, 0) AS OUTMTRS,ISNULL(JOBORDER.JOB_DONE,0) AS DONE ", "", " JOBORDER LEFT OUTER JOIN LEDGERS ON JOBORDER.JOB_YEARID = LEDGERS.Acc_yearid AND JOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER.JOB_YEARID = ITEMMASTER.item_yearid AND JOBORDER.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON JOBORDER.JOB_YEARID = COLORMASTER.COLOR_yearid AND JOBORDER.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON JOBORDER.JOB_YEARID = DESIGNMASTER.DESIGN_yearid AND JOBORDER.JOB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND  (JOBORDER.JOB_YEARID  = '" & YearId & "') ORDER BY JOBNO")
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
