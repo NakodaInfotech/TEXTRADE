@@ -143,7 +143,7 @@ Partial Class YarnQualityMaster
         Me.CMBGREYQUALITY.Location = New System.Drawing.Point(110, 65)
         Me.CMBGREYQUALITY.Name = "CMBGREYQUALITY"
         Me.CMBGREYQUALITY.Size = New System.Drawing.Size(233, 23)
-        Me.CMBGREYQUALITY.TabIndex = 671
+        Me.CMBGREYQUALITY.TabIndex = 2
         '
         'Label8
         '
@@ -166,7 +166,7 @@ Partial Class YarnQualityMaster
         Me.CMBMILLNAME.Location = New System.Drawing.Point(110, 122)
         Me.CMBMILLNAME.Name = "CMBMILLNAME"
         Me.CMBMILLNAME.Size = New System.Drawing.Size(233, 23)
-        Me.CMBMILLNAME.TabIndex = 4
+        Me.CMBMILLNAME.TabIndex = 5
         '
         'Label7
         '
@@ -188,7 +188,7 @@ Partial Class YarnQualityMaster
         Me.TXTSHADENO.Location = New System.Drawing.Point(276, 94)
         Me.TXTSHADENO.Name = "TXTSHADENO"
         Me.TXTSHADENO.Size = New System.Drawing.Size(67, 22)
-        Me.TXTSHADENO.TabIndex = 3
+        Me.TXTSHADENO.TabIndex = 4
         Me.TXTSHADENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLCOUNT
@@ -225,7 +225,7 @@ Partial Class YarnQualityMaster
         Me.CMBHSNCODE.MaxDropDownItems = 14
         Me.CMBHSNCODE.Name = "CMBHSNCODE"
         Me.CMBHSNCODE.Size = New System.Drawing.Size(73, 23)
-        Me.CMBHSNCODE.TabIndex = 5
+        Me.CMBHSNCODE.TabIndex = 10
         '
         'Label5
         '
@@ -247,7 +247,7 @@ Partial Class YarnQualityMaster
         Me.TXTRATE.Location = New System.Drawing.Point(110, 151)
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(67, 22)
-        Me.TXTRATE.TabIndex = 5
+        Me.TXTRATE.TabIndex = 6
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label4
@@ -279,11 +279,11 @@ Partial Class YarnQualityMaster
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(62, 98)
+        Me.Label2.Location = New System.Drawing.Point(23, 98)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(44, 14)
+        Me.Label2.Size = New System.Drawing.Size(86, 14)
         Me.Label2.TabIndex = 313
-        Me.Label2.Text = "Denier"
+        Me.Label2.Text = "Denier / Count"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TXTDENIER
@@ -293,7 +293,7 @@ Partial Class YarnQualityMaster
         Me.TXTDENIER.Location = New System.Drawing.Point(110, 94)
         Me.TXTDENIER.Name = "TXTDENIER"
         Me.TXTDENIER.Size = New System.Drawing.Size(67, 22)
-        Me.TXTDENIER.TabIndex = 2
+        Me.TXTDENIER.TabIndex = 3
         Me.TXTDENIER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GPSTORES
@@ -308,7 +308,7 @@ Partial Class YarnQualityMaster
         Me.GPSTORES.Location = New System.Drawing.Point(653, 29)
         Me.GPSTORES.Name = "GPSTORES"
         Me.GPSTORES.Size = New System.Drawing.Size(292, 206)
-        Me.GPSTORES.TabIndex = 8
+        Me.GPSTORES.TabIndex = 12
         Me.GPSTORES.TabStop = False
         Me.GPSTORES.Text = "Stores Details"
         '
@@ -318,7 +318,7 @@ Partial Class YarnQualityMaster
         Me.TXTSTOREQTY.Location = New System.Drawing.Point(211, 21)
         Me.TXTSTOREQTY.Name = "TXTSTOREQTY"
         Me.TXTSTOREQTY.Size = New System.Drawing.Size(40, 22)
-        Me.TXTSTOREQTY.TabIndex = 1
+        Me.TXTSTOREQTY.TabIndex = 2
         Me.TXTSTOREQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBSTOREITEM
@@ -332,7 +332,7 @@ Partial Class YarnQualityMaster
         Me.CMBSTOREITEM.MaxDropDownItems = 14
         Me.CMBSTOREITEM.Name = "CMBSTOREITEM"
         Me.CMBSTOREITEM.Size = New System.Drawing.Size(160, 22)
-        Me.CMBSTOREITEM.TabIndex = 0
+        Me.CMBSTOREITEM.TabIndex = 1
         '
         'TXTSSRNO
         '
@@ -387,7 +387,7 @@ Partial Class YarnQualityMaster
         Me.GRIDSTORES.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTORES.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDSTORES.Size = New System.Drawing.Size(270, 158)
-        Me.GRIDSTORES.TabIndex = 2
+        Me.GRIDSTORES.TabIndex = 3
         '
         'SSRNO
         '
@@ -426,7 +426,7 @@ Partial Class YarnQualityMaster
         Me.CMBCATEGORY.MaxDropDownItems = 14
         Me.CMBCATEGORY.Name = "CMBCATEGORY"
         Me.CMBCATEGORY.Size = New System.Drawing.Size(233, 22)
-        Me.CMBCATEGORY.TabIndex = 6
+        Me.CMBCATEGORY.TabIndex = 7
         '
         'lblcategory
         '
@@ -459,7 +459,7 @@ Partial Class YarnQualityMaster
         Me.TXTBOXWT.Location = New System.Drawing.Point(110, 288)
         Me.TXTBOXWT.Name = "TXTBOXWT"
         Me.TXTBOXWT.Size = New System.Drawing.Size(73, 22)
-        Me.TXTBOXWT.TabIndex = 3
+        Me.TXTBOXWT.TabIndex = 9
         Me.TXTBOXWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRPCOMPOSITION
@@ -474,7 +474,7 @@ Partial Class YarnQualityMaster
         Me.GRPCOMPOSITION.Location = New System.Drawing.Point(355, 29)
         Me.GRPCOMPOSITION.Name = "GRPCOMPOSITION"
         Me.GRPCOMPOSITION.Size = New System.Drawing.Size(292, 173)
-        Me.GRPCOMPOSITION.TabIndex = 8
+        Me.GRPCOMPOSITION.TabIndex = 11
         Me.GRPCOMPOSITION.TabStop = False
         Me.GRPCOMPOSITION.Text = "Blend Composition"
         '
@@ -581,7 +581,7 @@ Partial Class YarnQualityMaster
         Me.CMDCLEAR.Location = New System.Drawing.Point(251, 384)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 10
+        Me.CMDCLEAR.TabIndex = 14
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = True
         '
@@ -604,7 +604,7 @@ Partial Class YarnQualityMaster
         Me.txtremarks.Multiline = True
         Me.txtremarks.Name = "txtremarks"
         Me.txtremarks.Size = New System.Drawing.Size(233, 69)
-        Me.txtremarks.TabIndex = 7
+        Me.txtremarks.TabIndex = 8
         '
         'cmddelete
         '
@@ -615,7 +615,7 @@ Partial Class YarnQualityMaster
         Me.cmddelete.Location = New System.Drawing.Point(337, 384)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 11
+        Me.cmddelete.TabIndex = 15
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -628,7 +628,7 @@ Partial Class YarnQualityMaster
         Me.cmdok.Location = New System.Drawing.Point(165, 384)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 9
+        Me.cmdok.TabIndex = 13
         Me.cmdok.Text = "Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -672,7 +672,7 @@ Partial Class YarnQualityMaster
         Me.cmdexit.Location = New System.Drawing.Point(423, 384)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 12
+        Me.cmdexit.TabIndex = 16
         Me.cmdexit.Text = "Exit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '

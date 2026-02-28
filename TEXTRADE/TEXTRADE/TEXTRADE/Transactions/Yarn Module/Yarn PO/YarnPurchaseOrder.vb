@@ -914,7 +914,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TOOLCLOSE_Click(sender As Object, e As EventArgs) Handles TOOLCLOSE.Click
+    Private Sub TOOLCLOSE_Click(sender As Object, e As EventArgs)
         'Try
         '    Dim OBJPO As New PurchaseOrderClose
         '    OBJPO.MdiParent = MDIMain
@@ -935,7 +935,7 @@ LINE1:
     Private Sub cmbcolor_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBCOLOR.Validated
         If cmbname.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And EDIT = False Then
             Dim OBJCMN As New ClsCommon
-            Dim dt As DataTable = OBJCMN.search(" ISNULL(COLORTAGGING.TAG_PCOLOR,'') AS PSHADE", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' and ISNULL(COLORMASTER.COLOR_name, '')='" & CMBCOLOR.Text.Trim & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
+            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(COLORTAGGING.TAG_PCOLOR,'') AS PSHADE", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' and ISNULL(COLORMASTER.COLOR_name, '')='" & CMBCOLOR.Text.Trim & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
             If dt.Rows.Count > 0 Then TXTPSHADE.Text = dt.Rows(0).Item("PSHADE")
         End If
     End Sub
@@ -947,6 +947,8 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub CMBMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBMILLNAME.Validating
         Try

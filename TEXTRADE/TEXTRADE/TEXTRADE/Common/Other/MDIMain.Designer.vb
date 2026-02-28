@@ -1039,7 +1039,10 @@ Partial Class MDIMain
         Me.YARNRECDJOBBERTOOL = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNJOBWORK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNJOBWORK_ADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YarnInterGodownTransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.JOBWORK_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNINTERGODOWN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNINTERGODOWNADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNINTERGODOWNEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNISSUE = New System.Windows.Forms.ToolStripMenuItem()
         Me.WEFTISSUE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.WEFTADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1293,7 +1296,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.JOBWORK_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7561,7 +7563,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNSO_MASTER, Me.YARNRECD, Me.YarnInterGodownTransferToolStripMenuItem, Me.YARNISSUE, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.YARNDYEINGPROGRAM_MASTER, Me.PRODUCTIONFLOOR_MASTER, Me.YARNCHALLAN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.GreyReceived_MENU, Me.GREYRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNSO_MASTER, Me.YARNRECD, Me.YARNINTERGODOWN_MASTER, Me.YARNISSUE, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.YARNDYEINGPROGRAM_MASTER, Me.PRODUCTIONFLOOR_MASTER, Me.YARNCHALLAN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.GreyReceived_MENU, Me.GREYRECDTOOLSTRIP})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -7665,20 +7667,20 @@ Partial Class MDIMain
         '
         Me.YARNRECDGREYADD.Enabled = False
         Me.YARNRECDGREYADD.Name = "YARNRECDGREYADD"
-        Me.YARNRECDGREYADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNRECDGREYADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNRECDGREYADD.Text = "&Add New Entry"
         '
         'YARNRECDGREYEDIT
         '
         Me.YARNRECDGREYEDIT.Enabled = False
         Me.YARNRECDGREYEDIT.Name = "YARNRECDGREYEDIT"
-        Me.YARNRECDGREYEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.YARNRECDGREYEDIT.Size = New System.Drawing.Size(180, 22)
         Me.YARNRECDGREYEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator216
         '
         Me.ToolStripSeparator216.Name = "ToolStripSeparator216"
-        Me.ToolStripSeparator216.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator216.Size = New System.Drawing.Size(177, 6)
         '
         'YARNRECDGODOWN_MASTER
         '
@@ -7757,14 +7759,33 @@ Partial Class MDIMain
         'YARNJOBWORK_ADD
         '
         Me.YARNJOBWORK_ADD.Name = "YARNJOBWORK_ADD"
-        Me.YARNJOBWORK_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNJOBWORK_ADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNJOBWORK_ADD.Text = "Add New Entry"
         '
-        'YarnInterGodownTransferToolStripMenuItem
+        'JOBWORK_EDIT
         '
-        Me.YarnInterGodownTransferToolStripMenuItem.Name = "YarnInterGodownTransferToolStripMenuItem"
-        Me.YarnInterGodownTransferToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
-        Me.YarnInterGodownTransferToolStripMenuItem.Text = "Yarn Inter Godown Transfer"
+        Me.JOBWORK_EDIT.Name = "JOBWORK_EDIT"
+        Me.JOBWORK_EDIT.Size = New System.Drawing.Size(168, 22)
+        Me.JOBWORK_EDIT.Text = "Edit Existing Entry"
+        '
+        'YARNINTERGODOWN_MASTER
+        '
+        Me.YARNINTERGODOWN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNINTERGODOWNADD, Me.YARNINTERGODOWNEDIT})
+        Me.YARNINTERGODOWN_MASTER.Name = "YARNINTERGODOWN_MASTER"
+        Me.YARNINTERGODOWN_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.YARNINTERGODOWN_MASTER.Text = "Yarn Inter Godown Transfer"
+        '
+        'YARNINTERGODOWNADD
+        '
+        Me.YARNINTERGODOWNADD.Name = "YARNINTERGODOWNADD"
+        Me.YARNINTERGODOWNADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNINTERGODOWNADD.Text = "Add New Entry"
+        '
+        'YARNINTERGODOWNEDIT
+        '
+        Me.YARNINTERGODOWNEDIT.Name = "YARNINTERGODOWNEDIT"
+        Me.YARNINTERGODOWNEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNINTERGODOWNEDIT.Text = "Edit Existing Entry"
         '
         'YARNISSUE
         '
@@ -9454,12 +9475,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'JOBWORK_EDIT
-        '
-        Me.JOBWORK_EDIT.Name = "JOBWORK_EDIT"
-        Me.JOBWORK_EDIT.Size = New System.Drawing.Size(180, 22)
-        Me.JOBWORK_EDIT.Text = "Edit Existing Entry"
-        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10711,7 +10726,7 @@ Partial Class MDIMain
     Friend WithEvents ROLLSRECDWARPEREDIT As ToolStripMenuItem
     Friend WithEvents LoomMasterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddNewEntryToolStripMenuItem9 As ToolStripMenuItem
-    Friend WithEvents YarnInterGodownTransferToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents YARNINTERGODOWN_MASTER As ToolStripMenuItem
     Friend WithEvents OPENINGSTOCKYARN As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator319 As ToolStripSeparator
     Friend WithEvents EditExistingEntryToolStripMenuItem8 As ToolStripMenuItem
@@ -10757,4 +10772,6 @@ Partial Class MDIMain
     Friend WithEvents STOREISSTOREPAIR_ADD As ToolStripMenuItem
     Friend WithEvents STOREISSTOREPAIR_EDIT As ToolStripMenuItem
     Friend WithEvents JOBWORK_EDIT As ToolStripMenuItem
+    Friend WithEvents YARNINTERGODOWNADD As ToolStripMenuItem
+    Friend WithEvents YARNINTERGODOWNEDIT As ToolStripMenuItem
 End Class

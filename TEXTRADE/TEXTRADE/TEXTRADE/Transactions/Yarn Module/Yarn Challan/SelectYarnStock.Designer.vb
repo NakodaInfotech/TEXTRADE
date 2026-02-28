@@ -35,10 +35,10 @@ Partial Class SelectYarnStock
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +145,7 @@ Partial Class SelectYarnStock
         Me.GCATEGORY.Caption = "Category"
         Me.GCATEGORY.FieldName = "CATEGORY"
         Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.OptionsColumn.AllowEdit = False
         Me.GCATEGORY.Visible = True
         Me.GCATEGORY.VisibleIndex = 2
         Me.GCATEGORY.Width = 120
@@ -188,6 +189,16 @@ Partial Class SelectYarnStock
         Me.GLOTNO.Visible = True
         Me.GLOTNO.VisibleIndex = 6
         '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 7
+        Me.GLRNO.Width = 100
+        '
         'GTOTALCONES
         '
         Me.GTOTALCONES.Caption = "Cones"
@@ -207,6 +218,7 @@ Partial Class SelectYarnStock
         Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBAGS.FieldName = "BAGS"
         Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.OptionsColumn.AllowEdit = False
         Me.GBAGS.Visible = True
         Me.GBAGS.VisibleIndex = 9
         '
@@ -222,15 +234,6 @@ Partial Class SelectYarnStock
         Me.GTOTALWT.Visible = True
         Me.GTOTALWT.VisibleIndex = 10
         Me.GTOTALWT.Width = 90
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 7
-        Me.GLRNO.Width = 100
         '
         'SelectYarnStock
         '

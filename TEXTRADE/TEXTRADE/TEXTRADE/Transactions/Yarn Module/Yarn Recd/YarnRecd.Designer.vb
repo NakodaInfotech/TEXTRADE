@@ -255,7 +255,7 @@ Partial Class YarnRecd
         Me.TXTHAMALICHARGES.BackColor = System.Drawing.Color.White
         Me.TXTHAMALICHARGES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTHAMALICHARGES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTHAMALICHARGES.Location = New System.Drawing.Point(654, 77)
+        Me.TXTHAMALICHARGES.Location = New System.Drawing.Point(478, 77)
         Me.TXTHAMALICHARGES.Name = "TXTHAMALICHARGES"
         Me.TXTHAMALICHARGES.Size = New System.Drawing.Size(70, 23)
         Me.TXTHAMALICHARGES.TabIndex = 673
@@ -267,7 +267,7 @@ Partial Class YarnRecd
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(559, 81)
+        Me.Label7.Location = New System.Drawing.Point(383, 82)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(94, 15)
         Me.Label7.TabIndex = 674
@@ -278,7 +278,7 @@ Partial Class YarnRecd
         Me.TXTLRNO.BackColor = System.Drawing.Color.White
         Me.TXTLRNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLRNO.Location = New System.Drawing.Point(904, 77)
+        Me.TXTLRNO.Location = New System.Drawing.Point(478, 49)
         Me.TXTLRNO.Name = "TXTLRNO"
         Me.TXTLRNO.Size = New System.Drawing.Size(70, 23)
         Me.TXTLRNO.TabIndex = 671
@@ -290,7 +290,7 @@ Partial Class YarnRecd
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(865, 81)
+        Me.Label2.Location = New System.Drawing.Point(439, 49)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 15)
         Me.Label2.TabIndex = 672
@@ -302,7 +302,7 @@ Partial Class YarnRecd
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(593, 53)
+        Me.Label1.Location = New System.Drawing.Point(906, 81)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(59, 15)
         Me.Label1.TabIndex = 670
@@ -313,7 +313,7 @@ Partial Class YarnRecd
         Me.TXTHSNCODE.BackColor = System.Drawing.Color.Linen
         Me.TXTHSNCODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTHSNCODE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTHSNCODE.Location = New System.Drawing.Point(654, 49)
+        Me.TXTHSNCODE.Location = New System.Drawing.Point(967, 77)
         Me.TXTHSNCODE.Name = "TXTHSNCODE"
         Me.TXTHSNCODE.ReadOnly = True
         Me.TXTHSNCODE.Size = New System.Drawing.Size(70, 23)
@@ -350,7 +350,7 @@ Partial Class YarnRecd
         Me.CHALLANDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.CHALLANDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHALLANDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.CHALLANDATE.Location = New System.Drawing.Point(448, 77)
+        Me.CHALLANDATE.Location = New System.Drawing.Point(650, 77)
         Me.CHALLANDATE.Mask = "00/00/0000"
         Me.CHALLANDATE.Name = "CHALLANDATE"
         Me.CHALLANDATE.Size = New System.Drawing.Size(82, 23)
@@ -364,7 +364,7 @@ Partial Class YarnRecd
         Me.LBLGODOWN.BackColor = System.Drawing.Color.Transparent
         Me.LBLGODOWN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLGODOWN.ForeColor = System.Drawing.Color.Black
-        Me.LBLGODOWN.Location = New System.Drawing.Point(743, 53)
+        Me.LBLGODOWN.Location = New System.Drawing.Point(780, 49)
         Me.LBLGODOWN.Name = "LBLGODOWN"
         Me.LBLGODOWN.Size = New System.Drawing.Size(52, 15)
         Me.LBLGODOWN.TabIndex = 656
@@ -377,10 +377,10 @@ Partial Class YarnRecd
         Me.cmbGodown.BackColor = System.Drawing.Color.LemonChiffon
         Me.cmbGodown.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGodown.FormattingEnabled = True
-        Me.cmbGodown.Location = New System.Drawing.Point(795, 49)
+        Me.cmbGodown.Location = New System.Drawing.Point(832, 49)
         Me.cmbGodown.MaxDropDownItems = 14
         Me.cmbGodown.Name = "cmbGodown"
-        Me.cmbGodown.Size = New System.Drawing.Size(178, 23)
+        Me.cmbGodown.Size = New System.Drawing.Size(204, 23)
         Me.cmbGodown.TabIndex = 6
         '
         'YARNDATE
@@ -402,7 +402,7 @@ Partial Class YarnRecd
         Me.TXTLOTNO.BackColor = System.Drawing.Color.White
         Me.TXTLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLOTNO.Location = New System.Drawing.Point(795, 77)
+        Me.TXTLOTNO.Location = New System.Drawing.Point(832, 77)
         Me.TXTLOTNO.Name = "TXTLOTNO"
         Me.TXTLOTNO.Size = New System.Drawing.Size(70, 23)
         Me.TXTLOTNO.TabIndex = 7
@@ -414,7 +414,7 @@ Partial Class YarnRecd
         Me.LBLLOTNO.BackColor = System.Drawing.Color.Transparent
         Me.LBLLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLLOTNO.ForeColor = System.Drawing.Color.Black
-        Me.LBLLOTNO.Location = New System.Drawing.Point(750, 81)
+        Me.LBLLOTNO.Location = New System.Drawing.Point(787, 81)
         Me.LBLLOTNO.Name = "LBLLOTNO"
         Me.LBLLOTNO.Size = New System.Drawing.Size(41, 15)
         Me.LBLLOTNO.TabIndex = 658
@@ -745,7 +745,7 @@ Partial Class YarnRecd
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(1049, 53)
+        Me.Label12.Location = New System.Drawing.Point(1049, 49)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(38, 15)
         Me.Label12.TabIndex = 630
@@ -757,7 +757,7 @@ Partial Class YarnRecd
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(391, 81)
+        Me.Label3.Location = New System.Drawing.Point(593, 83)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 15)
         Me.Label3.TabIndex = 625
@@ -767,7 +767,7 @@ Partial Class YarnRecd
         '
         Me.TXTCHALLANNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCHALLANNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHALLANNO.Location = New System.Drawing.Point(448, 49)
+        Me.TXTCHALLANNO.Location = New System.Drawing.Point(650, 49)
         Me.TXTCHALLANNO.Name = "TXTCHALLANNO"
         Me.TXTCHALLANNO.Size = New System.Drawing.Size(82, 23)
         Me.TXTCHALLANNO.TabIndex = 4
@@ -778,7 +778,7 @@ Partial Class YarnRecd
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(372, 53)
+        Me.Label5.Location = New System.Drawing.Point(574, 49)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(71, 15)
         Me.Label5.TabIndex = 621
@@ -790,7 +790,7 @@ Partial Class YarnRecd
         Me.lblgrndate.BackColor = System.Drawing.Color.Transparent
         Me.lblgrndate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgrndate.ForeColor = System.Drawing.Color.Black
-        Me.lblgrndate.Location = New System.Drawing.Point(1053, 81)
+        Me.lblgrndate.Location = New System.Drawing.Point(1053, 77)
         Me.lblgrndate.Name = "lblgrndate"
         Me.lblgrndate.Size = New System.Drawing.Size(32, 15)
         Me.lblgrndate.TabIndex = 622
@@ -860,7 +860,7 @@ Partial Class YarnRecd
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(21, 53)
+        Me.Label6.Location = New System.Drawing.Point(21, 49)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(70, 15)
         Me.Label6.TabIndex = 434

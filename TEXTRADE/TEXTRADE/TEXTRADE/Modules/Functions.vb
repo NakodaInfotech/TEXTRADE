@@ -9224,7 +9224,7 @@ line1:
             Cursor.Current = Cursors.WaitCursor
             If CMBROLLITEM.Text.Trim = "" Then
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ", "", "STORESTOCKREGISTER ", "  and CMPID =" & CmpId & "  and YEARID =" & YearId & CONDITION)
+                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ,SUM(QTY) ", "", "STORESTOCKREGISTER ", "   and CMPID =" & CmpId & "  and YEARID =" & YearId & " GROUP BY  ITEMID,ITEMNAME ")
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "ITEMNAME"
                     CMBROLLITEM.DisplayMember = "ITEMNAME"

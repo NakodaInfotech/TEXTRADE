@@ -248,6 +248,7 @@ Partial Class SelectRolls
         Me.ClientSize = New System.Drawing.Size(1028, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "SelectRolls"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

@@ -8684,10 +8684,10 @@
     <Compile Include="Transactions\Yarn Module\Production Issue\ProductionIssueDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\SelectYarnStock.Designer.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Challan\SelectYarnStock.Designer.vb">
       <DependentUpon>SelectYarnStock.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\SelectYarnStock.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Challan\SelectYarnStock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssue.Designer.vb">
@@ -13953,7 +13953,7 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Production Issue\ProductionIssueDetails.resx">
       <DependentUpon>ProductionIssueDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Issue\SelectYarnStock.resx">
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Challan\SelectYarnStock.resx">
       <DependentUpon>SelectYarnStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Issue\YarnIssue.resx">

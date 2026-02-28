@@ -151,6 +151,8 @@ Public Class StoreConsumption
                         TXTCHALLANNO.Text = dr("CHALLANNO")
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
 
+
+
                         GRIDCONSUME.Rows.Add(dr("GRIDSRNO"), dr("ITEMNAME"), dr("DESC"), Val(dr("QTY")), dr("QTYUNIT"))
                     Next
                     total()

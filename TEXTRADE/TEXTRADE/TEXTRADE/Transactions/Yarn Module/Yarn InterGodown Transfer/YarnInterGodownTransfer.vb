@@ -44,8 +44,7 @@ Public Class YarnInterGodownTransfer
         End If
         'CMBFROMGODOWN.Text = ""
         'CMBTOGODOWN.Text = ""
-        TXTFROM.Clear()
-        TXTTO.Clear()
+
         CMBTRANSPORTNAME.Text = ""
         TXTADD.Clear()
         TXTDATE.Text = Now.Date
@@ -62,17 +61,7 @@ Public Class YarnInterGodownTransfer
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
-        txtsrno.Clear()
-        CMBYARNQUALITY.Text = ""
-        CMBMILL.Text = ""
-        TXTJOBBERLOTNO.Clear()
-        TXTGRIDLOTNO.Clear()
-        TXTPSHADE.Clear()
-        CMBDESIGN.Text = ""
-        cmbcolor.Text = ""
-        txtqty.Clear()
-        TXTWT.Clear()
-        TXTCONES.Clear()
+
         'TXTLRNO.Clear()
         'DTLRDATE.Value = Now.Date
         LIFTINGDATE.Text = Now.Date
@@ -423,10 +412,6 @@ Public Class YarnInterGodownTransfer
             If CMBFROMGODOWN.Text.Trim = "" Then fillGODOWN(CMBFROMGODOWN, EDIT)
             If CMBTOGODOWN.Text.Trim = "" Then fillGODOWN(CMBTOGODOWN, EDIT)
             If CMBTRANSPORTNAME.Text.Trim = "" Then filltransname(CMBTRANSPORTNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'TRANSPORT'")
-            fillYARNQUALITY(CMBYARNQUALITY, EDIT)
-            FILLMILL(CMBMILL, EDIT)
-            FILLDESIGN(CMBDESIGN, CMBYARNQUALITY.Text.Trim)
-            FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, CMBYARNQUALITY.Text.Trim)
 
         Catch ex As Exception
             Throw ex
@@ -440,7 +425,7 @@ Public Class YarnInterGodownTransfer
                 Exit Sub
             End If
 
-            Dim OBJEMB As New InterGodownTransferDetails
+            Dim OBJEMB As New YarnInterGodownTransferDetails
             OBJEMB.MdiParent = MDIMain
             OBJEMB.Show()
         Catch ex As Exception
@@ -495,79 +480,8 @@ Public Class YarnInterGodownTransfer
 
 
 
-    Sub fillgrid()
-        Try
-            GRIDJO.Enabled = True
-
-            If GRIDDOUBLECLICK = False Then
-                GRIDJO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), LIFTINGDATE.Text.Trim)
-                getsrno(GRIDJO)
-            ElseIf GRIDDOUBLECLICK = True Then
-                GRIDJO.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
-                GRIDJO.Item(GYARNQUALITY.Index, TEMPROW).Value = CMBYARNQUALITY.Text.Trim
-                GRIDJO.Item(GMILLNAME.Index, TEMPROW).Value = CMBMILL.Text.Trim
-                GRIDJO.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
-                GRIDJO.Item(GJOBBERLOTNO.Index, TEMPROW).Value = Val(TXTJOBBERLOTNO.Text.Trim)
-                GRIDJO.Item(GPCOLOR.Index, TEMPROW).Value = Val(TXTPSHADE.Text.Trim)
-                GRIDJO.Item(GCOLOR.Index, TEMPROW).Value = cmbcolor.Text.Trim
-                GRIDJO.Item(GLOTNO.Index, TEMPROW).Value = Format(Val(TXTGRIDLOTNO.Text.Trim), "0.00")
-                GRIDJO.Item(GQTY.Index, TEMPROW).Value = Format(Val(txtqty.Text.Trim), "0.00")
-                GRIDJO.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
-                GRIDJO.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
-                'GRIDJO.Item(GLRNO.Index, TEMPROW).Value = Val(TXTLRNO.Text.Trim)
-                GRIDJO.Item(GLIFTINGDATE.Index, TEMPROW).Value = Val(LIFTINGDATE.Text.Trim)
-
-                GRIDDOUBLECLICK = False
-            End If
-
-            total()
-
-            GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
-
-            txtsrno.Clear()
 
 
-
-
-
-
-
-            If GRIDJO.RowCount > 0 Then
-                txtsrno.Text = Val(GRIDJO.Rows(GRIDJO.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
-            CMBYARNQUALITY.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Sub EDITROW()
-        Try
-            If GRIDJO.CurrentRow.Index >= 0 And GRIDJO.Item(GSRNO.Index, GRIDJO.CurrentRow.Index).Value <> Nothing Then
-
-                GRIDDOUBLECLICK = True
-                txtsrno.Text = GRIDJO.Item(GSRNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                CMBYARNQUALITY.Text = GRIDJO.Item(GYARNQUALITY.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                CMBMILL.Text = GRIDJO.Item(GMILLNAME.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                CMBDESIGN.Text = GRIDJO.Item(GDESIGN.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTJOBBERLOTNO.Text = GRIDJO.Item(GJOBBERLOTNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTPSHADE.Text = GRIDJO.Item(GPCOLOR.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                cmbcolor.Text = GRIDJO.Item(GCOLOR.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTGRIDLOTNO.Text = GRIDJO.Item(GLOTNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                txtqty.Text = GRIDJO.Item(GQTY.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTWT.Text = GRIDJO.Item(GWT.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TXTCONES.Text = GRIDJO.Item(GCONES.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                'TXTLRNO.Text = GRIDJO.Item(GLRNO.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                'DTLRDATE.Text = GRIDJO.Item(GLRDATE.Index, GRIDJO.CurrentRow.Index).Value
-                LIFTINGDATE.Text = GRIDJO.Item(GLIFTINGDATE.Index, GRIDJO.CurrentRow.Index).Value.ToString
-                TEMPROW = GRIDJO.CurrentRow.Index
-                txtsrno.Focus()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Private Sub toolprevious_Click(sender As Object, e As EventArgs) Handles toolprevious.Click
         Try
             If USEREDIT = False And USERVIEW = False Then
@@ -654,10 +568,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRIDJO_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDJO.CellDoubleClick
-        EDITROW()
 
-    End Sub
 
 
 
@@ -779,61 +690,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub DTLRDATE_Validating(sender As Object, e As CancelEventArgs)
-        Try
-            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
-                'If GRIDDOUBLECLICK = False Then
-                '    If EDIT = True Then
-                '        'GET LAST BARCODE SRNO
-                '        Dim LSRNO As Integer = 0
-                '        Dim RSRNO As Integer = 0
-                '        Dim SNO As Integer = 0
-                '        LSRNO = InStr(GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                '        RSRNO = InStr(LSRNO + 1, GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
-                '        SNO = GRIDJOBIN.Rows(GRIDJOBIN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
 
-                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
-                '    Else
-                '        TXTBARCODE.Text = "JI-" & Val(TXTJINO.Text.Trim) & "/" & GRIDJOBIN.RowCount + 1 & "/" & YearId
-                '    End If
-                'End If
-                fillgrid()
-
-            Else
-                'If CMBJONO.Text.Trim = "" Then
-                '    MsgBox("Enter Job Out No.", MsgBoxStyle.Critical)
-                '    CMBJONO.Focus()
-                If CMBYARNQUALITY.Text.Trim = "" Then
-                    MsgBox("Enter  Yarn Quality", MsgBoxStyle.Critical)
-                    CMBYARNQUALITY.Focus()
-                    'ElseIf CMBQUALITY.Text.Trim = "" Then
-                    '    MsgBox("Enter Quality", MsgBoxStyle.Critical)
-                    '    CMBQUALITY.Focus()
-                    ''ElseIf CMBQUALITY.Text.Trim = "" And ClientName <> "KCRAYON" Then
-                    ''    MsgBox("Enter Quality", MsgBoxStyle.Critical)
-                    ''    CMBQUALITY.Focus()
-                    ''ElseIf CMBDESIGN.Text.Trim = "" Then
-                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
-                    ''    CMBDESIGN.Focus()
-                    ''ElseIf CMBDESIGN.Text.Trim = "" And ClientName <> "KCRAYON" Then
-                    ''    MsgBox("Enter Design", MsgBoxStyle.Critical)
-                    ''    CMBDESIGN.Focus()
-                    ''ElseIf Val(txtqty.Text.Trim) = 0 Then
-                    ''    MsgBox("Enter Quantity", MsgBoxStyle.Critical)
-                    ''    txtqty.Focus()
-                    ''ElseIf cmbqtyunit.Text.Trim = "" Then
-                    ''    MsgBox("Enter Unit", MsgBoxStyle.Critical)
-                    ''    cmbqtyunit.Focus()
-                ElseIf Val(TXTWT.Text.Trim) = 0 Then
-                    MsgBox("Enter Weight", MsgBoxStyle.Critical)
-                    TXTWT.Focus()
-                End If
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Private Sub TXTDATE_GotFocus(sender As Object, e As EventArgs) Handles TXTDATE.GotFocus
         TXTDATE.SelectionStart = 0
 
@@ -894,10 +751,33 @@ LINE1:
                 getsrno(GRIDJO)
                 total()
             ElseIf e.KeyCode = Keys.F5 Then
-                EDITROW()
+                'EDITROW()
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+    End Sub
+
+    Private Sub GRIDJO_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDJO.CellValidating
+        Dim colNum As Integer = GRIDJO.Columns(e.ColumnIndex).Index
+        If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
+        Select Case colNum
+
+            Case GQTY.Index, GWT.Index
+                Dim dDebit As Decimal
+                Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
+
+                If bValid Then
+                    If GRIDJO.CurrentCell.Value = Nothing Then GRIDJO.CurrentCell.Value = "0.00"
+                    GRIDJO.CurrentCell.Value = Convert.ToDecimal(GRIDJO.Item(colNum, e.RowIndex).Value)
+                    total()
+                Else
+                    MessageBox.Show("Invalid Number Entered")
+                    e.Cancel = True
+                    'Exit Sub
+                End If
+
+
+        End Select
     End Sub
 End Class
