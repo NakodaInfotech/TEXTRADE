@@ -22,12 +22,17 @@ Partial Class YearTransfer
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLCOMPANY = New System.Windows.Forms.Label()
+        Me.CMBCOMPANY = New System.Windows.Forms.ComboBox()
         Me.GBTRANSFERDATA = New System.Windows.Forms.GroupBox()
+        Me.CHKOTHERMASTER = New System.Windows.Forms.CheckBox()
+        Me.CHKDATA = New System.Windows.Forms.CheckBox()
+        Me.CHKLEDGER = New System.Windows.Forms.CheckBox()
         Me.LBLUSER = New System.Windows.Forms.Label()
         Me.CMBUSER = New System.Windows.Forms.ComboBox()
         Me.CMDOK = New System.Windows.Forms.Button()
@@ -38,9 +43,6 @@ Partial Class YearTransfer
         Me.GSTARTDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GENDDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.CHKLEDGER = New System.Windows.Forms.CheckBox()
-        Me.CHKDATA = New System.Windows.Forms.CheckBox()
-        Me.CHKOTHERMASTER = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GBTRANSFERDATA.SuspendLayout()
         CType(Me.GRIDYEAR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +51,8 @@ Partial Class YearTransfer
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLCOMPANY)
+        Me.BlendPanel1.Controls.Add(Me.CMBCOMPANY)
         Me.BlendPanel1.Controls.Add(Me.GBTRANSFERDATA)
         Me.BlendPanel1.Controls.Add(Me.LBLUSER)
         Me.BlendPanel1.Controls.Add(Me.CMBUSER)
@@ -60,8 +64,33 @@ Partial Class YearTransfer
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(721, 388)
+        Me.BlendPanel1.Size = New System.Drawing.Size(721, 427)
         Me.BlendPanel1.TabIndex = 17
+        '
+        'LBLCOMPANY
+        '
+        Me.LBLCOMPANY.AutoSize = True
+        Me.LBLCOMPANY.BackColor = System.Drawing.Color.Transparent
+        Me.LBLCOMPANY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLCOMPANY.Location = New System.Drawing.Point(21, 74)
+        Me.LBLCOMPANY.Name = "LBLCOMPANY"
+        Me.LBLCOMPANY.Size = New System.Drawing.Size(64, 14)
+        Me.LBLCOMPANY.TabIndex = 627
+        Me.LBLCOMPANY.Text = "CMP Name"
+        Me.LBLCOMPANY.Visible = False
+        '
+        'CMBCOMPANY
+        '
+        Me.CMBCOMPANY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCOMPANY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCOMPANY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCOMPANY.FormattingEnabled = True
+        Me.CMBCOMPANY.Items.AddRange(New Object() {""})
+        Me.CMBCOMPANY.Location = New System.Drawing.Point(90, 71)
+        Me.CMBCOMPANY.Name = "CMBCOMPANY"
+        Me.CMBCOMPANY.Size = New System.Drawing.Size(216, 22)
+        Me.CMBCOMPANY.TabIndex = 626
+        Me.CMBCOMPANY.Visible = False
         '
         'GBTRANSFERDATA
         '
@@ -69,11 +98,47 @@ Partial Class YearTransfer
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKOTHERMASTER)
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKDATA)
         Me.GBTRANSFERDATA.Controls.Add(Me.CHKLEDGER)
-        Me.GBTRANSFERDATA.Location = New System.Drawing.Point(312, 72)
+        Me.GBTRANSFERDATA.Location = New System.Drawing.Point(312, 99)
         Me.GBTRANSFERDATA.Name = "GBTRANSFERDATA"
         Me.GBTRANSFERDATA.Size = New System.Drawing.Size(332, 271)
         Me.GBTRANSFERDATA.TabIndex = 625
         Me.GBTRANSFERDATA.TabStop = False
+        '
+        'CHKOTHERMASTER
+        '
+        Me.CHKOTHERMASTER.AutoSize = True
+        Me.CHKOTHERMASTER.Checked = True
+        Me.CHKOTHERMASTER.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKOTHERMASTER.Location = New System.Drawing.Point(6, 47)
+        Me.CHKOTHERMASTER.Name = "CHKOTHERMASTER"
+        Me.CHKOTHERMASTER.Size = New System.Drawing.Size(147, 19)
+        Me.CHKOTHERMASTER.TabIndex = 2
+        Me.CHKOTHERMASTER.Text = "Transfer Other Master"
+        Me.CHKOTHERMASTER.UseVisualStyleBackColor = True
+        '
+        'CHKDATA
+        '
+        Me.CHKDATA.AutoSize = True
+        Me.CHKDATA.Checked = True
+        Me.CHKDATA.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKDATA.Location = New System.Drawing.Point(6, 72)
+        Me.CHKDATA.Name = "CHKDATA"
+        Me.CHKDATA.Size = New System.Drawing.Size(100, 19)
+        Me.CHKDATA.TabIndex = 1
+        Me.CHKDATA.Text = "Transfer Data"
+        Me.CHKDATA.UseVisualStyleBackColor = True
+        '
+        'CHKLEDGER
+        '
+        Me.CHKLEDGER.AutoSize = True
+        Me.CHKLEDGER.Checked = True
+        Me.CHKLEDGER.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CHKLEDGER.Location = New System.Drawing.Point(6, 22)
+        Me.CHKLEDGER.Name = "CHKLEDGER"
+        Me.CHKLEDGER.Size = New System.Drawing.Size(151, 19)
+        Me.CHKLEDGER.TabIndex = 0
+        Me.CHKLEDGER.Text = "Transfer Ledger Master"
+        Me.CHKLEDGER.UseVisualStyleBackColor = True
         '
         'LBLUSER
         '
@@ -104,7 +169,7 @@ Partial Class YearTransfer
         '
         Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(81, 350)
+        Me.CMDOK.Location = New System.Drawing.Point(81, 377)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 184
@@ -115,7 +180,7 @@ Partial Class YearTransfer
         '
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(167, 350)
+        Me.CMDEXIT.Location = New System.Drawing.Point(167, 377)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 183
@@ -128,44 +193,44 @@ Partial Class YearTransfer
         Me.GRIDYEAR.AllowUserToDeleteRows = False
         Me.GRIDYEAR.AllowUserToResizeColumns = False
         Me.GRIDYEAR.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDYEAR.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDYEAR.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDYEAR.BackgroundColor = System.Drawing.Color.White
         Me.GRIDYEAR.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDYEAR.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.GRIDYEAR.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Transparent
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDYEAR.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GRIDYEAR.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDYEAR.ColumnHeadersHeight = 22
         Me.GRIDYEAR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.GRIDYEAR.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GYEAR, Me.GYEARID, Me.GSTARTDATE, Me.GENDDATE})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDYEAR.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDYEAR.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDYEAR.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.GRIDYEAR.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDYEAR.Location = New System.Drawing.Point(23, 72)
+        Me.GRIDYEAR.Location = New System.Drawing.Point(23, 99)
         Me.GRIDYEAR.MultiSelect = False
         Me.GRIDYEAR.Name = "GRIDYEAR"
         Me.GRIDYEAR.ReadOnly = True
         Me.GRIDYEAR.RowHeadersVisible = False
         Me.GRIDYEAR.RowHeadersWidth = 30
         Me.GRIDYEAR.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDYEAR.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDYEAR.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDYEAR.RowTemplate.Height = 20
         Me.GRIDYEAR.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYEAR.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -215,46 +280,10 @@ Partial Class YearTransfer
         Me.lbl.TabIndex = 182
         Me.lbl.Text = "Select Accounting Year To Transfer Data From"
         '
-        'CHKLEDGER
-        '
-        Me.CHKLEDGER.AutoSize = True
-        Me.CHKLEDGER.Checked = True
-        Me.CHKLEDGER.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKLEDGER.Location = New System.Drawing.Point(6, 22)
-        Me.CHKLEDGER.Name = "CHKLEDGER"
-        Me.CHKLEDGER.Size = New System.Drawing.Size(151, 19)
-        Me.CHKLEDGER.TabIndex = 0
-        Me.CHKLEDGER.Text = "Transfer Ledger Master"
-        Me.CHKLEDGER.UseVisualStyleBackColor = True
-        '
-        'CHKDATA
-        '
-        Me.CHKDATA.AutoSize = True
-        Me.CHKDATA.Checked = True
-        Me.CHKDATA.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKDATA.Location = New System.Drawing.Point(6, 72)
-        Me.CHKDATA.Name = "CHKDATA"
-        Me.CHKDATA.Size = New System.Drawing.Size(100, 19)
-        Me.CHKDATA.TabIndex = 1
-        Me.CHKDATA.Text = "Transfer Data"
-        Me.CHKDATA.UseVisualStyleBackColor = True
-        '
-        'CHKOTHERMASTER
-        '
-        Me.CHKOTHERMASTER.AutoSize = True
-        Me.CHKOTHERMASTER.Checked = True
-        Me.CHKOTHERMASTER.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CHKOTHERMASTER.Location = New System.Drawing.Point(6, 47)
-        Me.CHKOTHERMASTER.Name = "CHKOTHERMASTER"
-        Me.CHKOTHERMASTER.Size = New System.Drawing.Size(147, 19)
-        Me.CHKOTHERMASTER.TabIndex = 2
-        Me.CHKOTHERMASTER.Text = "Transfer Other Master"
-        Me.CHKOTHERMASTER.UseVisualStyleBackColor = True
-        '
         'YearTransfer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(721, 388)
+        Me.ClientSize = New System.Drawing.Size(721, 427)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -285,4 +314,6 @@ Partial Class YearTransfer
     Friend WithEvents CHKDATA As CheckBox
     Friend WithEvents CHKLEDGER As CheckBox
     Friend WithEvents CHKOTHERMASTER As CheckBox
+    Friend WithEvents LBLCOMPANY As Label
+    Friend WithEvents CMBCOMPANY As ComboBox
 End Class
