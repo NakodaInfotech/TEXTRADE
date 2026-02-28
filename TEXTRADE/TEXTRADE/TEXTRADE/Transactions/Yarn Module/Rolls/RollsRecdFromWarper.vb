@@ -40,7 +40,7 @@ Public Class RollsRecdFromWarper
         TXTROLLSRECDNO.Clear()
         ROLLSRECDDATE.Text = Mydate
         CMBNAME.Text = ""
-        CMBOURGODOWN.Text = "" 'GETDEFAULTGODOWN()
+        If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN Else CMBOURGODOWN.Text = ""
         TXTCHALLANNO.Clear()
         DTCHALLANDATE.Text = Mydate
         TXTWARPINGNO.Clear()

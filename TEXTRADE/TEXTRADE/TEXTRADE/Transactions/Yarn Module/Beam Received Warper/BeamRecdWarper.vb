@@ -114,6 +114,7 @@ Public Class BeamRecdWarper
 
 
 
+
     End Sub
 
     Sub GETMAX_BEAMRECD_NO()
@@ -158,14 +159,14 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
-        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1")
+        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM RECD'")
             USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
+        USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 

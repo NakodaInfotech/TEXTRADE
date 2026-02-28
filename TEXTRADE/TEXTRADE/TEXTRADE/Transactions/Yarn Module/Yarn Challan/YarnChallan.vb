@@ -18,7 +18,7 @@ Public Class YarnChallan
 
         tstxtbillno.Clear()
         EP.Clear()
-        CMBGODOWN.Text = ""
+        If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBNAME.Enabled = True
         CMBNAME.Text = ""
 

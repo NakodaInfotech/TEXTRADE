@@ -58,7 +58,7 @@ Public Class RollsIssueToSizer
 
         TXTUPLOADSRNO.Text = 1
 
-        CMBOURGODOWN.Text = ""
+        If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN Else CMBOURGODOWN.Text = ""
 
     End Sub
 

@@ -193,6 +193,8 @@ Public Class YarnIssueKnitting
         Else
             txtuploadsrno.Text = 1
         End If
+
+        If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
     End Sub
 
     Sub total()

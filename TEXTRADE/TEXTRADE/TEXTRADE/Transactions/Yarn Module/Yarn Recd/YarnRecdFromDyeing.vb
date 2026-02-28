@@ -63,6 +63,8 @@ Public Class YarnRecdFromDyeing
             txtuploadsrno.Text = 1
         End If
 
+        If USERGODOWN <> "" Then cmbGodown.Text = USERGODOWN Else cmbGodown.Text = ""
+
 
     End Sub
 

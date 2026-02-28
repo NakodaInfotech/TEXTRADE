@@ -42,7 +42,7 @@ Public Class RollsReturnFromWarper
 
         CMDSELECTROLLS.Enabled = True
         DTROLLSRETDATE.Text = Mydate
-        CMBGODOWN.Text = GETDEFAULTGODOWN()
+        If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBNAME.Text = ""
         TXTCHALLANNO.Clear()
         DTCHALLANDATE.Clear()

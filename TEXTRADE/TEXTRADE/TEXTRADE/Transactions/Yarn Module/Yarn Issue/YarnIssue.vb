@@ -190,6 +190,9 @@ Public Class YarnIssue
         getmaxno()
 
 
+        If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
+
+
         If gridupload.RowCount > 0 Then
             txtuploadsrno.Text = Val(gridupload.Rows(gridupload.RowCount - 1).Cells(0).Value) + 1
         Else

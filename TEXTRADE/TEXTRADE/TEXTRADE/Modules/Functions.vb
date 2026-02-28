@@ -9219,12 +9219,12 @@ line1:
 
 
 
-    Sub fillROLLITEM(ByRef CMBROLLITEM As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String)
+    Sub fillROLLITEM(ByRef CMBROLLITEM As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String, Optional HAVING As String = "")
         Try
             Cursor.Current = Cursors.WaitCursor
             If CMBROLLITEM.Text.Trim = "" Then
                 Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ,SUM(QTY) ", "", "STORESTOCKREGISTER ", "   and CMPID =" & CmpId & "  and YEARID =" & YearId & " GROUP BY  ITEMID,ITEMNAME ")
+                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ,SUM(QTY) ", "", "STORESTOCKREGISTER ", "  and CMPID =" & CmpId & " AND YEARID =" & YearId & " " & CONDITION & "  GROUP BY  ITEMID,ITEMNAME " & HAVING)
                 If dt.Rows.Count > 0 Then
                     dt.DefaultView.Sort = "ITEMNAME"
                     CMBROLLITEM.DisplayMember = "ITEMNAME"

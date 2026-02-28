@@ -65,7 +65,9 @@ Public Class YarnInterGodownTransfer
         'TXTLRNO.Clear()
         'DTLRDATE.Value = Now.Date
         LIFTINGDATE.Text = Now.Date
-        CMBFROMGODOWN.Text = ""
+
+
+        If USERGODOWN <> "" Then CMBFROMGODOWN.Text = USERGODOWN Else CMBFROMGODOWN.Text = ""
         CMBTOGODOWN.Text = ""
     End Sub
 
