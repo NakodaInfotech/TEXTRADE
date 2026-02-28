@@ -1606,7 +1606,7 @@ Public Class YearTransfer
     Sub FILLGRIDCMP()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" CONVERT(char(11), year_startdate , 6) + ' - ' + CONVERT(char(11), year_enddate , 6) AS YEARNAME, YEAR_ID AS YEARID, year_startdate AS STARTDATE, year_ENDDATE AS ENDDATE ", "", " YEARMASTER", " AND YEAR_STARTDATE <'" & AccFrom.Date & "' AND YEAR_ID <> " & YearId & " AND YEAR_CMPID = " & SELECTEDCMP & " ORDER BY year_startdate DESC ")
+            Dim DT As DataTable = OBJCMN.SEARCH(" CONVERT(char(11), year_startdate , 6) + ' - ' + CONVERT(char(11), year_enddate , 6) AS YEARNAME, YEAR_ID AS YEARID, year_startdate AS STARTDATE, year_ENDDATE AS ENDDATE ", "", " YEARMASTER", " AND  YEAR_ID <> " & YearId & " AND YEAR_CMPID = " & SELECTEDCMP & " ORDER BY year_startdate DESC ")
             If DT.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DT.Rows
                     GRIDYEAR.Rows.Add(DTROW("YEARNAME"), DTROW("YEARID"), Format(Convert.ToDateTime(DTROW("STARTDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(DTROW("ENDDATE")).Date, "dd/MM/yyyy"))
