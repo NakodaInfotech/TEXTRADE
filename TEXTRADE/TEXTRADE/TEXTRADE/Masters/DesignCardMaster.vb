@@ -4706,8 +4706,17 @@ line1:
             Throw ex
         End Try
     End Sub
-
-    Private Sub DesignCardMaster_Leave(sender As Object, e As EventArgs) Handles Me.Leave
-
+    Private Sub CMBITEMNAME_Validated(sender As Object, e As EventArgs) Handles CMBITEMNAME.Validated
+        Try
+            If CMBITEMNAME.Text <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("*", "", "BEAMMASTER", " and BEAMMASTER.BEAM_NAME = '" & CMBITEMNAME.Text.Trim & "' and BEAMMASTER.BEAM_YEARid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("Beam Name Already Exists in Beam Master")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

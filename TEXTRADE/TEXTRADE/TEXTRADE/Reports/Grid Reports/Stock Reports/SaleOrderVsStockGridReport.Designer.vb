@@ -24,6 +24,25 @@ Partial Class SaleOrderVsStockGridReport
     Private Sub InitializeComponent()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.GRIDBILLDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCADNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPENDINGPCS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPENDINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPACKINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDYEINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPRGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.lblbarcode = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -61,25 +80,6 @@ Partial Class SaleOrderVsStockGridReport
         Me.OUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.OPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.OMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRIDBILLDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDBILL = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCADNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GORDERTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPENDINGPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPENDINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPACKINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDYEINGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPRGMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -88,6 +88,8 @@ Partial Class SaleOrderVsStockGridReport
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
+        CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TBSTOCK.SuspendLayout()
         CType(Me.GRIDSTOCKDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,8 +103,6 @@ Partial Class SaleOrderVsStockGridReport
         CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDORDERDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -124,6 +124,240 @@ Partial Class SaleOrderVsStockGridReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 581)
         Me.BlendPanel1.TabIndex = 3
+        '
+        'GRIDBILLDETAILS
+        '
+        Me.GRIDBILLDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        GridLevelNode1.RelationName = "Level1"
+        Me.GRIDBILLDETAILS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        Me.GRIDBILLDETAILS.Location = New System.Drawing.Point(12, 38)
+        Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
+        Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
+        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(802, 497)
+        Me.GRIDBILLDETAILS.TabIndex = 447
+        Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
+        '
+        'GRIDBILL
+        '
+        Me.GRIDBILL.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBILL.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBILL.Appearance.Row.Options.UseFont = True
+        Me.GRIDBILL.Appearance.Row.Options.UseTextOptions = True
+        Me.GRIDBILL.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GRIDBILL.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBILL.Appearance.ViewCaption.Options.UseFont = True
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GITEMNAME, Me.GCATEGORY, Me.GMILLNAME, Me.GCADNO, Me.GDESIGNNO, Me.GSHADE, Me.GPCS, Me.GMTRS, Me.GORDERTOTALMTRS, Me.GPENDINGPCS, Me.GPENDINGMTRS, Me.GPACKINGMTRS, Me.GDYEINGMTRS, Me.GPRGMTRS, Me.GPO, Me.GBALMTRS})
+        Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
+        Me.GRIDBILL.Name = "GRIDBILL"
+        Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDBILL.OptionsMenu.EnableColumnMenu = False
+        Me.GRIDBILL.OptionsSelection.CheckBoxSelectorColumnWidth = 30
+        Me.GRIDBILL.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
+        Me.GRIDBILL.OptionsView.ColumnAutoWidth = False
+        Me.GRIDBILL.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDBILL.OptionsView.ShowFooter = True
+        Me.GRIDBILL.OptionsView.ShowGroupPanel = False
+        '
+        'GCHK
+        '
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 1
+        Me.GITEMNAME.Width = 170
+        '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.OptionsColumn.AllowEdit = False
+        Me.GCATEGORY.Visible = True
+        Me.GCATEGORY.VisibleIndex = 2
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 3
+        '
+        'GCADNO
+        '
+        Me.GCADNO.Caption = "CAD No"
+        Me.GCADNO.FieldName = "CADNO"
+        Me.GCADNO.Name = "GCADNO"
+        Me.GCADNO.OptionsColumn.AllowEdit = False
+        Me.GCADNO.Visible = True
+        Me.GCADNO.VisibleIndex = 4
+        '
+        'GDESIGNNO
+        '
+        Me.GDESIGNNO.Caption = "Design No"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
+        Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 5
+        '
+        'GSHADE
+        '
+        Me.GSHADE.Caption = "Shade"
+        Me.GSHADE.FieldName = "COLOR"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.OptionsColumn.AllowEdit = False
+        Me.GSHADE.Visible = True
+        Me.GSHADE.VisibleIndex = 6
+        Me.GSHADE.Width = 65
+        '
+        'GPCS
+        '
+        Me.GPCS.AppearanceCell.BackColor = System.Drawing.Color.Linen
+        Me.GPCS.AppearanceCell.Options.UseBackColor = True
+        Me.GPCS.Caption = "Pcs"
+        Me.GPCS.DisplayFormat.FormatString = "0"
+        Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPCS.FieldName = "PCS"
+        Me.GPCS.Name = "GPCS"
+        Me.GPCS.OptionsColumn.AllowEdit = False
+        Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GPCS.Visible = True
+        Me.GPCS.VisibleIndex = 7
+        '
+        'GMTRS
+        '
+        Me.GMTRS.AppearanceCell.BackColor = System.Drawing.Color.Linen
+        Me.GMTRS.AppearanceCell.Options.UseBackColor = True
+        Me.GMTRS.Caption = "Mtrs"
+        Me.GMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GMTRS.FieldName = "MTRS"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
+        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MTRS", "{0:0.00}")})
+        Me.GMTRS.Visible = True
+        Me.GMTRS.VisibleIndex = 8
+        '
+        'GORDERTOTALMTRS
+        '
+        Me.GORDERTOTALMTRS.AppearanceCell.BackColor = System.Drawing.Color.LemonChiffon
+        Me.GORDERTOTALMTRS.AppearanceCell.Options.UseBackColor = True
+        Me.GORDERTOTALMTRS.Caption = "Total Order Mtrs"
+        Me.GORDERTOTALMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GORDERTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GORDERTOTALMTRS.FieldName = "ORDERMTRS"
+        Me.GORDERTOTALMTRS.Name = "GORDERTOTALMTRS"
+        Me.GORDERTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GORDERTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        '
+        'GPENDINGPCS
+        '
+        Me.GPENDINGPCS.Caption = "Pending Pcs"
+        Me.GPENDINGPCS.DisplayFormat.FormatString = "0"
+        Me.GPENDINGPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPENDINGPCS.FieldName = "PENDINGPCS"
+        Me.GPENDINGPCS.Name = "GPENDINGPCS"
+        Me.GPENDINGPCS.OptionsColumn.AllowEdit = False
+        Me.GPENDINGPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GPENDINGPCS.Visible = True
+        Me.GPENDINGPCS.VisibleIndex = 9
+        '
+        'GPENDINGMTRS
+        '
+        Me.GPENDINGMTRS.AppearanceCell.BackColor = System.Drawing.Color.LemonChiffon
+        Me.GPENDINGMTRS.AppearanceCell.Options.UseBackColor = True
+        Me.GPENDINGMTRS.Caption = "Pending Order"
+        Me.GPENDINGMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GPENDINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPENDINGMTRS.FieldName = "PENDINGMTRS"
+        Me.GPENDINGMTRS.Name = "GPENDINGMTRS"
+        Me.GPENDINGMTRS.OptionsColumn.AllowEdit = False
+        Me.GPENDINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PENDINGMTRS", "{0:0.00}")})
+        Me.GPENDINGMTRS.Visible = True
+        Me.GPENDINGMTRS.VisibleIndex = 10
+        '
+        'GPACKINGMTRS
+        '
+        Me.GPACKINGMTRS.Caption = "Packing Mtrs"
+        Me.GPACKINGMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GPACKINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPACKINGMTRS.FieldName = "PACKINGMTRS"
+        Me.GPACKINGMTRS.Name = "GPACKINGMTRS"
+        Me.GPACKINGMTRS.OptionsColumn.AllowEdit = False
+        Me.GPACKINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PACKINGMTRS", "{0:0.00}")})
+        Me.GPACKINGMTRS.Visible = True
+        Me.GPACKINGMTRS.VisibleIndex = 11
+        Me.GPACKINGMTRS.Width = 65
+        '
+        'GDYEINGMTRS
+        '
+        Me.GDYEINGMTRS.Caption = "Dyeing Mtrs"
+        Me.GDYEINGMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GDYEINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GDYEINGMTRS.FieldName = "DYEINGMTRS"
+        Me.GDYEINGMTRS.Name = "GDYEINGMTRS"
+        Me.GDYEINGMTRS.OptionsColumn.AllowEdit = False
+        Me.GDYEINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DYEINGMTRS", "{0:0.00}")})
+        Me.GDYEINGMTRS.Visible = True
+        Me.GDYEINGMTRS.VisibleIndex = 12
+        '
+        'GPRGMTRS
+        '
+        Me.GPRGMTRS.AppearanceCell.BackColor = System.Drawing.Color.LightCyan
+        Me.GPRGMTRS.AppearanceCell.Options.UseBackColor = True
+        Me.GPRGMTRS.Caption = "Prg Mtrs"
+        Me.GPRGMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GPRGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPRGMTRS.FieldName = "PROGRAMMTRS"
+        Me.GPRGMTRS.Name = "GPRGMTRS"
+        Me.GPRGMTRS.OptionsColumn.AllowEdit = False
+        Me.GPRGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PROGRAMMTRS", "{0:0.00}")})
+        Me.GPRGMTRS.Visible = True
+        Me.GPRGMTRS.VisibleIndex = 13
+        Me.GPRGMTRS.Width = 65
+        '
+        'GPO
+        '
+        Me.GPO.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GPO.AppearanceCell.Options.UseBackColor = True
+        Me.GPO.Caption = "Pending PO"
+        Me.GPO.DisplayFormat.FormatString = "0.00"
+        Me.GPO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPO.FieldName = "PENDINGPOMTRS"
+        Me.GPO.Name = "GPO"
+        Me.GPO.OptionsColumn.AllowEdit = False
+        Me.GPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PENDINGPOMTRS", "{0:0.00}")})
+        Me.GPO.Visible = True
+        Me.GPO.VisibleIndex = 14
+        Me.GPO.Width = 65
+        '
+        'GBALMTRS
+        '
+        Me.GBALMTRS.Caption = "Bal Stock"
+        Me.GBALMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GBALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBALMTRS.FieldName = "BALMTRS"
+        Me.GBALMTRS.Name = "GBALMTRS"
+        Me.GBALMTRS.OptionsColumn.AllowEdit = False
+        Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BALMTRS", "{0:0.00}")})
+        Me.GBALMTRS.Visible = True
+        Me.GBALMTRS.VisibleIndex = 15
         '
         'TXTBARCODE
         '
@@ -591,240 +825,6 @@ Partial Class SaleOrderVsStockGridReport
         Me.OMTRS.VisibleIndex = 5
         Me.OMTRS.Width = 60
         '
-        'GRIDBILLDETAILS
-        '
-        Me.GRIDBILLDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        GridLevelNode1.RelationName = "Level1"
-        Me.GRIDBILLDETAILS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.GRIDBILLDETAILS.Location = New System.Drawing.Point(12, 38)
-        Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
-        Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
-        Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(802, 497)
-        Me.GRIDBILLDETAILS.TabIndex = 447
-        Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
-        '
-        'GRIDBILL
-        '
-        Me.GRIDBILL.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDBILL.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Appearance.Row.Options.UseTextOptions = True
-        Me.GRIDBILL.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GRIDBILL.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDBILL.Appearance.ViewCaption.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GITEMNAME, Me.GCATEGORY, Me.GMILLNAME, Me.GCADNO, Me.GDESIGNNO, Me.GSHADE, Me.GPCS, Me.GMTRS, Me.GORDERTOTALMTRS, Me.GPENDINGPCS, Me.GPENDINGMTRS, Me.GPACKINGMTRS, Me.GDYEINGMTRS, Me.GPRGMTRS, Me.GPO, Me.GBALMTRS})
-        Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
-        Me.GRIDBILL.Name = "GRIDBILL"
-        Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GRIDBILL.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GRIDBILL.OptionsMenu.EnableColumnMenu = False
-        Me.GRIDBILL.OptionsSelection.CheckBoxSelectorColumnWidth = 30
-        Me.GRIDBILL.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
-        Me.GRIDBILL.OptionsView.ColumnAutoWidth = False
-        Me.GRIDBILL.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
-        Me.GRIDBILL.OptionsView.ShowFooter = True
-        Me.GRIDBILL.OptionsView.ShowGroupPanel = False
-        '
-        'GCHK
-        '
-        Me.GCHK.FieldName = "CHK"
-        Me.GCHK.Name = "GCHK"
-        Me.GCHK.Visible = True
-        Me.GCHK.VisibleIndex = 0
-        Me.GCHK.Width = 30
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
-        Me.GITEMNAME.Width = 170
-        '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.OptionsColumn.AllowEdit = False
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 2
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 3
-        '
-        'GCADNO
-        '
-        Me.GCADNO.Caption = "CAD No"
-        Me.GCADNO.FieldName = "CADNO"
-        Me.GCADNO.Name = "GCADNO"
-        Me.GCADNO.OptionsColumn.AllowEdit = False
-        Me.GCADNO.Visible = True
-        Me.GCADNO.VisibleIndex = 4
-        '
-        'GDESIGNNO
-        '
-        Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 5
-        '
-        'GSHADE
-        '
-        Me.GSHADE.Caption = "Shade"
-        Me.GSHADE.FieldName = "COLOR"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.OptionsColumn.AllowEdit = False
-        Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 6
-        Me.GSHADE.Width = 65
-        '
-        'GPCS
-        '
-        Me.GPCS.AppearanceCell.BackColor = System.Drawing.Color.Linen
-        Me.GPCS.AppearanceCell.Options.UseBackColor = True
-        Me.GPCS.Caption = "Pcs"
-        Me.GPCS.DisplayFormat.FormatString = "0"
-        Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "PCS"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.OptionsColumn.AllowEdit = False
-        Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 7
-        '
-        'GMTRS
-        '
-        Me.GMTRS.AppearanceCell.BackColor = System.Drawing.Color.Linen
-        Me.GMTRS.AppearanceCell.Options.UseBackColor = True
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
-        '
-        'GORDERTOTALMTRS
-        '
-        Me.GORDERTOTALMTRS.AppearanceCell.BackColor = System.Drawing.Color.LemonChiffon
-        Me.GORDERTOTALMTRS.AppearanceCell.Options.UseBackColor = True
-        Me.GORDERTOTALMTRS.Caption = "Total Order Mtrs"
-        Me.GORDERTOTALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GORDERTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GORDERTOTALMTRS.FieldName = "ORDERMTRS"
-        Me.GORDERTOTALMTRS.Name = "GORDERTOTALMTRS"
-        Me.GORDERTOTALMTRS.OptionsColumn.AllowEdit = False
-        Me.GORDERTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        '
-        'GPENDINGPCS
-        '
-        Me.GPENDINGPCS.Caption = "Pending Pcs"
-        Me.GPENDINGPCS.DisplayFormat.FormatString = "0"
-        Me.GPENDINGPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPENDINGPCS.FieldName = "PENDINGPCS"
-        Me.GPENDINGPCS.Name = "GPENDINGPCS"
-        Me.GPENDINGPCS.OptionsColumn.AllowEdit = False
-        Me.GPENDINGPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPENDINGPCS.Visible = True
-        Me.GPENDINGPCS.VisibleIndex = 9
-        '
-        'GPENDINGMTRS
-        '
-        Me.GPENDINGMTRS.AppearanceCell.BackColor = System.Drawing.Color.LemonChiffon
-        Me.GPENDINGMTRS.AppearanceCell.Options.UseBackColor = True
-        Me.GPENDINGMTRS.Caption = "Pending Order"
-        Me.GPENDINGMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GPENDINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPENDINGMTRS.FieldName = "PENDINGMTRS"
-        Me.GPENDINGMTRS.Name = "GPENDINGMTRS"
-        Me.GPENDINGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPENDINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPENDINGMTRS.Visible = True
-        Me.GPENDINGMTRS.VisibleIndex = 10
-        '
-        'GPACKINGMTRS
-        '
-        Me.GPACKINGMTRS.Caption = "Packing Mtrs"
-        Me.GPACKINGMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GPACKINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPACKINGMTRS.FieldName = "PACKINGMTRS"
-        Me.GPACKINGMTRS.Name = "GPACKINGMTRS"
-        Me.GPACKINGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPACKINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPACKINGMTRS.Visible = True
-        Me.GPACKINGMTRS.VisibleIndex = 11
-        Me.GPACKINGMTRS.Width = 65
-        '
-        'GDYEINGMTRS
-        '
-        Me.GDYEINGMTRS.Caption = "Dyeing Mtrs"
-        Me.GDYEINGMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GDYEINGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GDYEINGMTRS.FieldName = "DYEINGMTRS"
-        Me.GDYEINGMTRS.Name = "GDYEINGMTRS"
-        Me.GDYEINGMTRS.OptionsColumn.AllowEdit = False
-        Me.GDYEINGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GDYEINGMTRS.Visible = True
-        Me.GDYEINGMTRS.VisibleIndex = 12
-        '
-        'GPRGMTRS
-        '
-        Me.GPRGMTRS.AppearanceCell.BackColor = System.Drawing.Color.LightCyan
-        Me.GPRGMTRS.AppearanceCell.Options.UseBackColor = True
-        Me.GPRGMTRS.Caption = "Prg Mtrs"
-        Me.GPRGMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GPRGMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPRGMTRS.FieldName = "PROGRAMMTRS"
-        Me.GPRGMTRS.Name = "GPRGMTRS"
-        Me.GPRGMTRS.OptionsColumn.AllowEdit = False
-        Me.GPRGMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPRGMTRS.Visible = True
-        Me.GPRGMTRS.VisibleIndex = 13
-        Me.GPRGMTRS.Width = 65
-        '
-        'GPO
-        '
-        Me.GPO.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GPO.AppearanceCell.Options.UseBackColor = True
-        Me.GPO.Caption = "Pending PO"
-        Me.GPO.DisplayFormat.FormatString = "0.00"
-        Me.GPO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPO.FieldName = "PENDINGPOMTRS"
-        Me.GPO.Name = "GPO"
-        Me.GPO.OptionsColumn.AllowEdit = False
-        Me.GPO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPO.Visible = True
-        Me.GPO.VisibleIndex = 14
-        Me.GPO.Width = 65
-        '
-        'GBALMTRS
-        '
-        Me.GBALMTRS.Caption = "Bal Stock"
-        Me.GBALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GBALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBALMTRS.FieldName = "BALMTRS"
-        Me.GBALMTRS.Name = "GBALMTRS"
-        Me.GBALMTRS.OptionsColumn.AllowEdit = False
-        Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 15
-        '
         'cmdok
         '
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
@@ -907,6 +907,8 @@ Partial Class SaleOrderVsStockGridReport
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
+        CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TBSTOCK.ResumeLayout(False)
         CType(Me.GRIDSTOCKDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -920,8 +922,6 @@ Partial Class SaleOrderVsStockGridReport
         CType(Me.PBIMAGE1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDORDERDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
