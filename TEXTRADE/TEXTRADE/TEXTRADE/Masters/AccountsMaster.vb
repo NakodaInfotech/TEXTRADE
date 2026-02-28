@@ -152,6 +152,7 @@ Public Class AccountsMaster
         If CMBDELIVERYAT.Text.Trim = "" Then fillCITY(CMBDELIVERYAT, EDIT)
         If CMBDISTRICT.Text.Trim = "" Then FILLDISTRICT(CMBDISTRICT)
         FILLNAME(CMBTDSDEDUCTEDAC, "False", " AND LEDGERS.ACC_TDSAC = 1")
+        If cmbrounder.Text.Trim = "" Then FILLCONTRACT(cmbrounder)
 
     End Sub
 
@@ -361,6 +362,7 @@ Public Class AccountsMaster
                     TXTWARNING.Text = dttable.Rows(0).Item("WARNING")
                     TXTRD.Text = dttable.Rows(0).Item("RD")
                     TXTHINDINAME.Text = dttable.Rows(0).Item("HINDINAME")
+                    cmbrounder.Text = dttable.Rows(0).Item("ROUNDER")
 
                     If Convert.ToBoolean(dttable.Rows(0).Item("GSTINVERIFIED")) = True Then
                         CHKGSTINVERIFIED.CheckState = CheckState.Checked
@@ -712,6 +714,7 @@ NEXTLINE:
             alParaval.Add(CMOB)
             alParaval.Add(CEMAIL)
             alParaval.Add(TXTHINDINAME.Text.Trim)
+            alParaval.Add(cmbrounder.Text.Trim)
 
             Dim objAccountsMaster As New ClsAccountsMaster
             objAccountsMaster.alParaval = alParaval
@@ -765,6 +768,7 @@ NEXTLINE:
         CMBSURCHARGE.SelectedIndex = 0
         TXTTDSRATE.Enabled = False
         TXTHINDINAME.Clear()
+        cmbrounder.Text = ""
 
         txtadd.Clear()
         txtadd1.Clear()
@@ -2530,6 +2534,26 @@ line1:
                 TEMPCONTACTROW = e.RowIndex
                 TXTCNAME.Focus()
 
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbrounder_Enter(sender As Object, e As EventArgs) Handles cmbrounder.Enter
+        Try
+            If cmbrounder.Text.Trim = "" Then
+                FILLCONTRACT(cmbrounder)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbrounder_Validated(sender As Object, e As EventArgs) Handles cmbrounder.Validated
+        Try
+            If cmbrounder.Text.Trim = "" Then
+                CONTRACTVALIDATE(cmbrounder, e, Me)
             End If
         Catch ex As Exception
             Throw ex

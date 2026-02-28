@@ -229,6 +229,8 @@ Partial Class AccountsMaster
         Me.GMOBILENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GEMAIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.cmbrounder = New System.Windows.Forms.ComboBox()
+        Me.Label72 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GROUPTDS.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -923,6 +925,8 @@ Partial Class AccountsMaster
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.cmbrounder)
+        Me.TabPage1.Controls.Add(Me.Label72)
         Me.TabPage1.Controls.Add(Me.CMBBILLTO)
         Me.TabPage1.Controls.Add(Me.LBLBILLTO)
         Me.TabPage1.Controls.Add(Me.Label71)
@@ -2732,6 +2736,30 @@ Partial Class AccountsMaster
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
         '
+        'cmbrounder
+        '
+        Me.cmbrounder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbrounder.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbrounder.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbrounder.FormattingEnabled = True
+        Me.cmbrounder.Location = New System.Drawing.Point(851, 370)
+        Me.cmbrounder.MaxDropDownItems = 14
+        Me.cmbrounder.Name = "cmbrounder"
+        Me.cmbrounder.Size = New System.Drawing.Size(159, 22)
+        Me.cmbrounder.TabIndex = 877
+        '
+        'Label72
+        '
+        Me.Label72.BackColor = System.Drawing.Color.Transparent
+        Me.Label72.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label72.ForeColor = System.Drawing.Color.Black
+        Me.Label72.Location = New System.Drawing.Point(773, 374)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(76, 14)
+        Me.Label72.TabIndex = 878
+        Me.Label72.Text = "Rounder"
+        Me.Label72.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'AccountsMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2966,4 +2994,6 @@ Partial Class AccountsMaster
     Friend WithEvents GEMAIL As DataGridViewTextBoxColumn
     Friend WithEvents TXTHINDINAME As TextBox
     Friend WithEvents Label70 As Label
+    Friend WithEvents cmbrounder As ComboBox
+    Friend WithEvents Label72 As Label
 End Class
