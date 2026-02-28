@@ -58,6 +58,8 @@ Partial Class YarnPurchaseOrderDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GBALBAG = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,7 +175,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GMILLNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.PSHADE, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRATE, Me.GAMT, Me.GRECDBAGS, Me.GRECDWT, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GMILLNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.PSHADE, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRATE, Me.GAMT, Me.GRECDBAGS, Me.GRECDWT, Me.GBALBAG, Me.GBALWT, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -207,7 +209,7 @@ Partial Class YarnPurchaseOrderDetails
         '
         Me.GNAME.Caption = "Supplier Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 2
@@ -344,7 +346,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.GORDERTYPE.FieldName = "ORDERTYPE"
         Me.GORDERTYPE.Name = "GORDERTYPE"
         Me.GORDERTYPE.Visible = True
-        Me.GORDERTYPE.VisibleIndex = 16
+        Me.GORDERTYPE.VisibleIndex = 18
         '
         'GDONE
         '
@@ -352,7 +354,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.GDONE.FieldName = "DONE"
         Me.GDONE.Name = "GDONE"
         Me.GDONE.Visible = True
-        Me.GDONE.VisibleIndex = 17
+        Me.GDONE.VisibleIndex = 19
         '
         'GCLOSED
         '
@@ -360,7 +362,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.GCLOSED.FieldName = "CLOSED"
         Me.GCLOSED.Name = "GCLOSED"
         Me.GCLOSED.Visible = True
-        Me.GCLOSED.VisibleIndex = 18
+        Me.GCLOSED.VisibleIndex = 20
         '
         'GGRIDREMARKS
         '
@@ -425,6 +427,28 @@ Partial Class YarnPurchaseOrderDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a P.O. to Change"
         '
+        'GBALBAG
+        '
+        Me.GBALBAG.Caption = "Bal Bag"
+        Me.GBALBAG.FieldName = "BALBAG"
+        Me.GBALBAG.Name = "GBALBAG"
+        Me.GBALBAG.OptionsColumn.AllowEdit = False
+        Me.GBALBAG.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBALBAG.Visible = True
+        Me.GBALBAG.VisibleIndex = 16
+        Me.GBALBAG.Width = 80
+        '
+        'GBALWT
+        '
+        Me.GBALWT.Caption = "Bal Wt"
+        Me.GBALWT.FieldName = "BALWT"
+        Me.GBALWT.Name = "GBALWT"
+        Me.GBALWT.OptionsColumn.AllowEdit = False
+        Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBALWT.Visible = True
+        Me.GBALWT.VisibleIndex = 17
+        Me.GBALWT.Width = 80
+        '
         'YarnPurchaseOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -482,4 +506,6 @@ Partial Class YarnPurchaseOrderDetails
     Friend WithEvents lbl As Label
     Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TOOLREFRESH As ToolStripButton
+    Friend WithEvents GBALBAG As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBALWT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

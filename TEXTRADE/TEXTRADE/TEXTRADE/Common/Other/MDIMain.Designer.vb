@@ -7661,7 +7661,7 @@ Partial Class MDIMain
         Me.YARNRECDGREY_MASTER.Enabled = False
         Me.YARNRECDGREY_MASTER.Name = "YARNRECDGREY_MASTER"
         Me.YARNRECDGREY_MASTER.Size = New System.Drawing.Size(195, 22)
-        Me.YARNRECDGREY_MASTER.Text = "&Yarn Recd (Grey)"
+        Me.YARNRECDGREY_MASTER.Text = "&Yarn Recd Purchaser"
         '
         'YARNRECDGREYADD
         '
@@ -7695,20 +7695,20 @@ Partial Class MDIMain
         '
         Me.YARNRECDADD.Enabled = False
         Me.YARNRECDADD.Name = "YARNRECDADD"
-        Me.YARNRECDADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNRECDADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNRECDADD.Text = "&Add New Entry"
         '
         'YARNRECDEDIT
         '
         Me.YARNRECDEDIT.Enabled = False
         Me.YARNRECDEDIT.Name = "YARNRECDEDIT"
-        Me.YARNRECDEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.YARNRECDEDIT.Size = New System.Drawing.Size(180, 22)
         Me.YARNRECDEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator33
         '
         Me.ToolStripSeparator33.Name = "ToolStripSeparator33"
-        Me.ToolStripSeparator33.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator33.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator59
         '
@@ -7778,13 +7778,13 @@ Partial Class MDIMain
         'YARNINTERGODOWNADD
         '
         Me.YARNINTERGODOWNADD.Name = "YARNINTERGODOWNADD"
-        Me.YARNINTERGODOWNADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNINTERGODOWNADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNINTERGODOWNADD.Text = "Add New Entry"
         '
         'YARNINTERGODOWNEDIT
         '
         Me.YARNINTERGODOWNEDIT.Name = "YARNINTERGODOWNEDIT"
-        Me.YARNINTERGODOWNEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNINTERGODOWNEDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNINTERGODOWNEDIT.Text = "Edit Existing Entry"
         '
         'YARNISSUE
