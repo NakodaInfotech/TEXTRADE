@@ -25,10 +25,10 @@ Partial Class IssueToRepairingDetails
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREPAIRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREPAIRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GISSUETO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDEPARTMENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,6 +46,9 @@ Partial Class IssueToRepairingDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GISSUETO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +58,6 @@ Partial Class IssueToRepairingDetails
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
@@ -84,7 +86,7 @@ Partial Class IssueToRepairingDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GGODOWN, Me.GISSUETO, Me.GDEPARTMENT, Me.GCHALLANNO, Me.GITEMNAME, Me.GMACHINENAME, Me.GTAKENBY, Me.GQTY, Me.GUNIT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GREPAIRNO, Me.GREPAIRDATE, Me.GNAME, Me.GGODOWN, Me.GDEPARTMENT, Me.GCHALLANNO, Me.GITEMNAME, Me.GMACHINENAME, Me.GTAKENBY, Me.GQTY, Me.GUNIT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -96,26 +98,26 @@ Partial Class IssueToRepairingDetails
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
-        'GSRNO
+        'GREPAIRNO
         '
-        Me.GSRNO.Caption = "Sr. No."
-        Me.GSRNO.FieldName = "CONSUME"
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.OptionsColumn.AllowEdit = False
-        Me.GSRNO.Visible = True
-        Me.GSRNO.VisibleIndex = 0
-        Me.GSRNO.Width = 60
+        Me.GREPAIRNO.Caption = "Sr. No."
+        Me.GREPAIRNO.FieldName = "REPAIRNO"
+        Me.GREPAIRNO.Name = "GREPAIRNO"
+        Me.GREPAIRNO.OptionsColumn.AllowEdit = False
+        Me.GREPAIRNO.Visible = True
+        Me.GREPAIRNO.VisibleIndex = 0
+        Me.GREPAIRNO.Width = 60
         '
-        'GDATE
+        'GREPAIRDATE
         '
-        Me.GDATE.Caption = "Date"
-        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GDATE.FieldName = "CONSUMEDATE"
-        Me.GDATE.Name = "GDATE"
-        Me.GDATE.OptionsColumn.AllowEdit = False
-        Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 1
+        Me.GREPAIRDATE.Caption = "Date"
+        Me.GREPAIRDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GREPAIRDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GREPAIRDATE.FieldName = "REPAIRDATE"
+        Me.GREPAIRDATE.Name = "GREPAIRDATE"
+        Me.GREPAIRDATE.OptionsColumn.AllowEdit = False
+        Me.GREPAIRDATE.Visible = True
+        Me.GREPAIRDATE.VisibleIndex = 1
         '
         'GGODOWN
         '
@@ -127,15 +129,15 @@ Partial Class IssueToRepairingDetails
         Me.GGODOWN.VisibleIndex = 2
         Me.GGODOWN.Width = 120
         '
-        'GISSUETO
+        'GNAME
         '
-        Me.GISSUETO.Caption = "Issue To"
-        Me.GISSUETO.FieldName = "ISSUETO"
-        Me.GISSUETO.Name = "GISSUETO"
-        Me.GISSUETO.OptionsColumn.AllowEdit = False
-        Me.GISSUETO.Visible = True
-        Me.GISSUETO.VisibleIndex = 3
-        Me.GISSUETO.Width = 200
+        Me.GNAME.Caption = "Party Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 3
+        Me.GNAME.Width = 200
         '
         'GDEPARTMENT
         '
@@ -285,6 +287,37 @@ Partial Class IssueToRepairingDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
+        'GSRNO
+        '
+        Me.GSRNO.Caption = "Sr. No."
+        Me.GSRNO.FieldName = "CONSUME"
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.OptionsColumn.AllowEdit = False
+        Me.GSRNO.Visible = True
+        Me.GSRNO.VisibleIndex = 0
+        Me.GSRNO.Width = 60
+        '
+        'GDATE
+        '
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDATE.FieldName = "REPAIRDATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 1
+        '
+        'GISSUETO
+        '
+        Me.GISSUETO.Caption = "Issue To"
+        Me.GISSUETO.FieldName = "ISSUETO"
+        Me.GISSUETO.Name = "GISSUETO"
+        Me.GISSUETO.OptionsColumn.AllowEdit = False
+        Me.GISSUETO.Visible = True
+        Me.GISSUETO.VisibleIndex = 3
+        Me.GISSUETO.Width = 200
+        '
         'IssueToRepairingDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -310,10 +343,10 @@ Partial Class IssueToRepairingDetails
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREPAIRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREPAIRDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GISSUETO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDEPARTMENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
@@ -331,4 +364,7 @@ Partial Class IssueToRepairingDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GISSUETO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

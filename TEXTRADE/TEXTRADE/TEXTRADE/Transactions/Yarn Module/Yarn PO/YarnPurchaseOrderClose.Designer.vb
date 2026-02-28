@@ -23,6 +23,8 @@ Partial Class YarnPurchaseOrderClose
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.RBENTERED = New System.Windows.Forms.RadioButton()
+        Me.RBPENDING = New System.Windows.Forms.RadioButton()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -51,8 +53,6 @@ Partial Class YarnPurchaseOrderClose
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.RBENTERED = New System.Windows.Forms.RadioButton()
-        Me.RBPENDING = New System.Windows.Forms.RadioButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +76,30 @@ Partial Class YarnPurchaseOrderClose
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'RBENTERED
+        '
+        Me.RBENTERED.AutoSize = True
+        Me.RBENTERED.BackColor = System.Drawing.Color.Transparent
+        Me.RBENTERED.Location = New System.Drawing.Point(170, 30)
+        Me.RBENTERED.Name = "RBENTERED"
+        Me.RBENTERED.Size = New System.Drawing.Size(66, 19)
+        Me.RBENTERED.TabIndex = 811
+        Me.RBENTERED.Text = "Entered"
+        Me.RBENTERED.UseVisualStyleBackColor = False
+        '
+        'RBPENDING
+        '
+        Me.RBPENDING.AutoSize = True
+        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
+        Me.RBPENDING.Checked = True
+        Me.RBPENDING.Location = New System.Drawing.Point(95, 30)
+        Me.RBPENDING.Name = "RBPENDING"
+        Me.RBPENDING.Size = New System.Drawing.Size(69, 19)
+        Me.RBPENDING.TabIndex = 810
+        Me.RBPENDING.TabStop = True
+        Me.RBPENDING.Text = "Pending"
+        Me.RBPENDING.UseVisualStyleBackColor = False
         '
         'CMDREFRESH
         '
@@ -175,7 +199,7 @@ Partial Class YarnPurchaseOrderClose
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -380,30 +404,6 @@ Partial Class YarnPurchaseOrderClose
         Me.cmdok.TabIndex = 3
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'RBENTERED
-        '
-        Me.RBENTERED.AutoSize = True
-        Me.RBENTERED.BackColor = System.Drawing.Color.Transparent
-        Me.RBENTERED.Location = New System.Drawing.Point(170, 30)
-        Me.RBENTERED.Name = "RBENTERED"
-        Me.RBENTERED.Size = New System.Drawing.Size(66, 19)
-        Me.RBENTERED.TabIndex = 811
-        Me.RBENTERED.Text = "Entered"
-        Me.RBENTERED.UseVisualStyleBackColor = False
-        '
-        'RBPENDING
-        '
-        Me.RBPENDING.AutoSize = True
-        Me.RBPENDING.BackColor = System.Drawing.Color.Transparent
-        Me.RBPENDING.Checked = True
-        Me.RBPENDING.Location = New System.Drawing.Point(95, 30)
-        Me.RBPENDING.Name = "RBPENDING"
-        Me.RBPENDING.Size = New System.Drawing.Size(69, 19)
-        Me.RBPENDING.TabIndex = 810
-        Me.RBPENDING.TabStop = True
-        Me.RBPENDING.Text = "Pending"
-        Me.RBPENDING.UseVisualStyleBackColor = False
         '
         'YarnPurchaseOrderClose
         '

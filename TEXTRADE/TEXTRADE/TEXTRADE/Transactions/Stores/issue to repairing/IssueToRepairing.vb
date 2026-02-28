@@ -414,7 +414,7 @@ LINE1:
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            Dim OBJDTLS As New StoreConsumptionDetails
+            Dim OBJDTLS As New IssueToRepairingDetails
             OBJDTLS.MdiParent = MDIMain
             OBJDTLS.Show()
 
