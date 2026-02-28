@@ -279,11 +279,11 @@ Partial Class YarnQualityMaster
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(23, 98)
+        Me.Label2.Location = New System.Drawing.Point(69, 98)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 14)
+        Me.Label2.Size = New System.Drawing.Size(38, 14)
         Me.Label2.TabIndex = 313
-        Me.Label2.Text = "Denier / Count"
+        Me.Label2.Text = "Count"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TXTDENIER
