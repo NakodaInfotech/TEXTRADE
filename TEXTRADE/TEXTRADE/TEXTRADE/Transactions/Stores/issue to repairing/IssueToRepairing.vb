@@ -26,7 +26,7 @@ Public Class IssueToRepairing
 
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBNAME.Text = ""
-
+        TXTTENTATIVEDAYS.Clear()
         EP.Clear()
         TXTREMARKS.Clear()
 
@@ -137,7 +137,7 @@ Public Class IssueToRepairing
                         TXTREPAIRNO.Text = TEMPCONSUMENO
                         REPAIRDATE.Text = Format(Convert.ToDateTime(dr("REPAIRDATE")).Date, "dd/MM/yyyy")
                         CMBGODOWN.Text = dr("GODOWN")
-
+                        TXTTENTATIVEDAYS.Text = dr("TENTATIVEDAYS")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
 
                         TXTREMARKS.Text = Convert.ToString(dr("REMARKS").ToString)
@@ -174,6 +174,8 @@ Public Class IssueToRepairing
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(Val(LBLTOTALQTY.Text.Trim))
             alParaval.Add(TXTREMARKS.Text.Trim)
+            alParaval.Add(TXTTENTATIVEDAYS.Text.Trim)
+
 
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
