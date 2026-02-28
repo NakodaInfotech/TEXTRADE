@@ -565,10 +565,15 @@ Public Class BeamMaster
             If Val(TXTGRIDENDS.Text.Trim) > 0 And Val(TXTTL.Text.Trim) > 0 And CMBGRIDQUALITY.Text.Trim <> "" Then
                 'GET DENIER FROM YARNMASTER
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(YARN_DENIER,0) AS DENIER", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBGRIDQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(YARN_DENIER, 0) AS DENIER, isnull(YARN_COUNT,0) as COUNT ", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBGRIDQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    '(ENDS * TL* DENIER)/9000000
-                    TXTGRIDWT.Text = Format((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim) * Val(DT.Rows(0).Item("DENIER"))) / 9000000, "0.000")
+                    'If Val(DT.Rows(0).Item("DENIER")) > 0 Then
+                    '    '(ENDS * TL* DENIER)/9000000
+                    '    TXTGRIDWT.Text = Format((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim) * Val(DT.Rows(0).Item("DENIER"))) / 9000000, "0.000")
+                    'Else
+                    '    '((ENDS * TL)/1850)/COUNT
+                    TXTGRIDWT.Text = Format(((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim)) / 1850) / Val(DT.Rows(0).Item("COUNT")), "0.000")
+                    'End If
                 End If
             End If
         Catch ex As Exception
