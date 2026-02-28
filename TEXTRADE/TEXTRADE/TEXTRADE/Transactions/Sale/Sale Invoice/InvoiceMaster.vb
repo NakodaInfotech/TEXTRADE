@@ -2231,6 +2231,8 @@ Public Class InvoiceMaster
             ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("EXMILLLESS")))   'EXMILL
             ALPARAVAL.Add(0)   'BILLTOID
             ALPARAVAL.Add(Val(DTLEDGER.Rows(0).Item("LOCKDAYS")))   'LOCKDAYS
+            ALPARAVAL.Add("")   'HINDINAME
+            ALPARAVAL.Add("")   'ROUNDER
 
             'CONTACT DETAILS
             '*******************************
