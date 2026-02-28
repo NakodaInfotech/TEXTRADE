@@ -146,7 +146,6 @@ Partial Class IssueToRepairing
         Me.TXTTENTATIVEDAYS.Size = New System.Drawing.Size(86, 23)
         Me.TXTTENTATIVEDAYS.TabIndex = 925
         Me.TXTTENTATIVEDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTENTATIVEDAYS.Visible = False
         '
         'LBLGODOWN
         '
