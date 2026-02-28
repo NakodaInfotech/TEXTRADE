@@ -73,14 +73,15 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WEIGHT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
-                '.Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                'I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
 
@@ -153,14 +154,15 @@ Public Class ClsYarnInterGodownTransfer
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WEIGHT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
-                '.Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
-                'I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1

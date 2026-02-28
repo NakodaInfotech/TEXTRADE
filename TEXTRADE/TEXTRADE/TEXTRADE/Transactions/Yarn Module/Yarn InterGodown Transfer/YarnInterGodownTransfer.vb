@@ -189,6 +189,7 @@ Public Class YarnInterGodownTransfer
             Dim PARTYCOLOR As String = ""
             Dim COLOR As String = ""
             Dim LOTNO As String = ""
+            Dim LRNO As String = ""
             Dim BAGS As String = ""
             Dim WEIGHT As String = ""
             Dim CONES As String = ""
@@ -208,6 +209,7 @@ Public Class YarnInterGodownTransfer
                         PARTYCOLOR = row.Cells(GPCOLOR.Index).Value.ToString
                         COLOR = row.Cells(GCOLOR.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
+                        LRNO = row.Cells(GLRNO.Index).Value.ToString
                         BAGS = row.Cells(GQTY.Index).Value.ToString
                         WEIGHT = row.Cells(GWT.Index).Value.ToString
                         CONES = row.Cells(GCONES.Index).Value.ToString
@@ -230,6 +232,7 @@ Public Class YarnInterGodownTransfer
                         PARTYCOLOR = PARTYCOLOR & "|" & row.Cells(GPCOLOR.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(GCOLOR.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
+                        LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
                         BAGS = BAGS & "|" & row.Cells(GQTY.Index).Value
                         WEIGHT = WEIGHT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
@@ -255,6 +258,7 @@ Public Class YarnInterGodownTransfer
             alParaval.Add(PARTYCOLOR)
             alParaval.Add(COLOR)
             alParaval.Add(LOTNO)
+            alParaval.Add(LRNO)
             alParaval.Add(BAGS)
             alParaval.Add(WEIGHT)
             alParaval.Add(CONES)
@@ -388,7 +392,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LIFTINGDATE").ToString)
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LIFTINGDATE").ToString)
 
 
                     Next
@@ -641,7 +645,7 @@ LINE1:
                     '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
                     'Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LIFTINGDATE"))
+                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), DTROWPS("LRNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LIFTINGDATE"))
 LINE1:
                 Next
                 getsrno(GRIDJO)
@@ -779,5 +783,11 @@ LINE1:
 
 
         End Select
+    End Sub
+
+    Private Sub YarnInterGodownTransfer_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName = "SWPL" Then
+            GLRNO.HeaderText = "Box No"
+        End If
     End Sub
 End Class
