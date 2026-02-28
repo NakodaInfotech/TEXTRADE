@@ -104,6 +104,7 @@ Partial Class YarnInterGodownTransfer
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.LIFTINGDATE)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTISSUEBY)
@@ -136,7 +137,7 @@ Partial Class YarnInterGodownTransfer
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1156, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
         '
         'LIFTINGDATE
@@ -145,7 +146,7 @@ Partial Class YarnInterGodownTransfer
         Me.LIFTINGDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.LIFTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LIFTINGDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.LIFTINGDATE.Location = New System.Drawing.Point(851, 39)
+        Me.LIFTINGDATE.Location = New System.Drawing.Point(851, 44)
         Me.LIFTINGDATE.Mask = "00/00/0000"
         Me.LIFTINGDATE.Name = "LIFTINGDATE"
         Me.LIFTINGDATE.Size = New System.Drawing.Size(82, 23)
@@ -160,7 +161,7 @@ Partial Class YarnInterGodownTransfer
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(962, 48)
+        Me.Label4.Location = New System.Drawing.Point(1092, 44)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 15)
         Me.Label4.TabIndex = 757
@@ -208,7 +209,7 @@ Partial Class YarnInterGodownTransfer
         Me.LBLTYPE.AutoSize = True
         Me.LBLTYPE.BackColor = System.Drawing.Color.Transparent
         Me.LBLTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTYPE.Location = New System.Drawing.Point(48, 48)
+        Me.LBLTYPE.Location = New System.Drawing.Point(48, 44)
         Me.LBLTYPE.Name = "LBLTYPE"
         Me.LBLTYPE.Size = New System.Drawing.Size(82, 14)
         Me.LBLTYPE.TabIndex = 754
@@ -231,7 +232,7 @@ Partial Class YarnInterGodownTransfer
         Me.LBLREFRENCE.BackColor = System.Drawing.Color.Transparent
         Me.LBLREFRENCE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLREFRENCE.ForeColor = System.Drawing.Color.Black
-        Me.LBLREFRENCE.Location = New System.Drawing.Point(441, 48)
+        Me.LBLREFRENCE.Location = New System.Drawing.Point(441, 44)
         Me.LBLREFRENCE.Name = "LBLREFRENCE"
         Me.LBLREFRENCE.Size = New System.Drawing.Size(68, 15)
         Me.LBLREFRENCE.TabIndex = 673
@@ -244,7 +245,7 @@ Partial Class YarnInterGodownTransfer
         Me.TXTDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.TXTDATE.Location = New System.Drawing.Point(1006, 72)
+        Me.TXTDATE.Location = New System.Drawing.Point(1136, 72)
         Me.TXTDATE.Mask = "00/00/0000"
         Me.TXTDATE.Name = "TXTDATE"
         Me.TXTDATE.Size = New System.Drawing.Size(82, 23)
@@ -318,7 +319,7 @@ Partial Class YarnInterGodownTransfer
         '
         Me.TXTGODOWNNO.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTGODOWNNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGODOWNNO.Location = New System.Drawing.Point(1006, 44)
+        Me.TXTGODOWNNO.Location = New System.Drawing.Point(1136, 44)
         Me.TXTGODOWNNO.Name = "TXTGODOWNNO"
         Me.TXTGODOWNNO.ReadOnly = True
         Me.TXTGODOWNNO.Size = New System.Drawing.Size(82, 23)
@@ -332,7 +333,7 @@ Partial Class YarnInterGodownTransfer
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(972, 76)
+        Me.Label9.Location = New System.Drawing.Point(1102, 76)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 15)
         Me.Label9.TabIndex = 622
@@ -345,7 +346,7 @@ Partial Class YarnInterGodownTransfer
         Me.TabControl1.Location = New System.Drawing.Point(25, 134)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1064, 275)
+        Me.TabControl1.Size = New System.Drawing.Size(1197, 275)
         Me.TabControl1.TabIndex = 7
         '
         'TabPage1
@@ -360,7 +361,7 @@ Partial Class YarnInterGodownTransfer
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1056, 247)
+        Me.TabPage1.Size = New System.Drawing.Size(1189, 247)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
         '
@@ -406,7 +407,7 @@ Partial Class YarnInterGodownTransfer
         Me.GRIDJO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDJO.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDJO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDJO.Size = New System.Drawing.Size(1034, 223)
+        Me.GRIDJO.Size = New System.Drawing.Size(1177, 223)
         Me.GRIDJO.TabIndex = 0
         Me.GRIDJO.TabStop = False
         '
@@ -577,7 +578,7 @@ Partial Class YarnInterGodownTransfer
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(63, 76)
+        Me.Label6.Location = New System.Drawing.Point(63, 77)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(67, 15)
         Me.Label6.TabIndex = 434
@@ -603,7 +604,7 @@ Partial Class YarnInterGodownTransfer
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.TOOLSMS, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1156, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 610
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -761,6 +762,8 @@ Partial Class YarnInterGodownTransfer
         '
         Me.GLRNO.HeaderText = "LR No"
         Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'GQTY
         '
@@ -790,7 +793,7 @@ Partial Class YarnInterGodownTransfer
         Me.GCONES.Name = "GCONES"
         Me.GCONES.ReadOnly = True
         Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCONES.Width = 50
+        Me.GCONES.Width = 80
         '
         'GLIFTINGDATE
         '
@@ -804,7 +807,7 @@ Partial Class YarnInterGodownTransfer
         'YarnInterGodownTransfer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1156, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True

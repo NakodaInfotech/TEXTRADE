@@ -804,7 +804,7 @@ Public Class YarnIssue
 
     End Sub
 
-    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles OpenToolStripButton
+    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
 
             If USEREDIT = False And USERVIEW = False Then
