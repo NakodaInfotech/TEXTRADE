@@ -371,7 +371,7 @@ Public Class YarnIssue
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
-                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
+                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LIFTDATE = Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LIFTDATE = Format(Now.Date, "MM/dd/yyyy")
 
 
                     Else
@@ -388,7 +388,7 @@ Public Class YarnIssue
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
-                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
+                        If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LIFTDATE = LIFTDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
 
                     End If
                 End If
@@ -707,7 +707,7 @@ Public Class YarnIssue
         End Try
     End Sub
 
-    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DTLRDATE.Validated
+    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DTLIFTDATE.Validated
         Try
 
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
@@ -753,7 +753,7 @@ Public Class YarnIssue
         TEMPLIFTDATE = Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy")
 
         If GRIDDOUBLECLICK = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, 0, 0, 0, 0, 0, TEMPLIFTDATE)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, TEMPLIFTDATE)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -804,7 +804,7 @@ Public Class YarnIssue
 
     End Sub
 
-    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+    Private Sub OpenToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles OpenToolStripButton
         Try
 
             If USEREDIT = False And USERVIEW = False Then
@@ -884,7 +884,7 @@ Public Class YarnIssue
         End Try
     End Sub
 
-    Private Sub toolprevious_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+    Private Sub toolprevious_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolprevious.Click
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -910,7 +910,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+    Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolnext.Click
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -1076,7 +1076,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub tooldelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub tooldelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tooldelete.Click
         Call cmddelete_Click(sender, e)
     End Sub
 
@@ -1349,6 +1349,8 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub cmbitemname_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
