@@ -93,7 +93,7 @@ Public Class YarnInterGodownTransferDetails
         End Try
     End Sub
 
-    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
+    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
 
             Dim PATH As String = Application.StartupPath & "\Stock Transfer Details.XLS"
@@ -125,5 +125,11 @@ Public Class YarnInterGodownTransferDetails
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub YarnInterGodownTransferDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName = "SWPL" Then
+            gridbill.Columns("LRNO").Caption = "Box No"
+        End If
     End Sub
 End Class

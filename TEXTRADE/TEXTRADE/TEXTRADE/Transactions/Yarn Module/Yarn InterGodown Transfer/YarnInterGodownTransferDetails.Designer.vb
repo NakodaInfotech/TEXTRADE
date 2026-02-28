@@ -22,7 +22,6 @@ Partial Class YarnInterGodownTransferDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnInterGodownTransferDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -30,10 +29,12 @@ Partial Class YarnInterGodownTransferDetails
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFROMGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -43,11 +44,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripdelete = New System.Windows.Forms.ToolStripButton()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,7 +119,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GFROMGODOWN.OptionsColumn.AllowEdit = False
         Me.GFROMGODOWN.Visible = True
         Me.GFROMGODOWN.VisibleIndex = 2
-        Me.GFROMGODOWN.Width = 100
+        Me.GFROMGODOWN.Width = 110
         '
         'GTOGODOWN
         '
@@ -131,17 +128,18 @@ Partial Class YarnInterGodownTransferDetails
         Me.GTOGODOWN.Name = "GTOGODOWN"
         Me.GTOGODOWN.OptionsColumn.AllowEdit = False
         Me.GTOGODOWN.Visible = True
-        Me.GTOGODOWN.VisibleIndex = 13
-        Me.GTOGODOWN.Width = 100
+        Me.GTOGODOWN.VisibleIndex = 3
+        Me.GTOGODOWN.Width = 110
         '
-        'GLOTNO
+        'GTRANSPORT
         '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.OptionsColumn.AllowEdit = False
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 7
+        Me.GTRANSPORT.Caption = "Transport"
+        Me.GTRANSPORT.FieldName = "TRANSPORTNAME"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
+        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
+        Me.GTRANSPORT.Visible = True
+        Me.GTRANSPORT.VisibleIndex = 4
+        Me.GTRANSPORT.Width = 150
         '
         'GYARNQUALITY
         '
@@ -150,7 +148,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GYARNQUALITY.Name = "GYARNQUALITY"
         Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
         Me.GYARNQUALITY.Visible = True
-        Me.GYARNQUALITY.VisibleIndex = 4
+        Me.GYARNQUALITY.VisibleIndex = 5
         Me.GYARNQUALITY.Width = 150
         '
         'GMILLNAME
@@ -160,7 +158,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 5
+        Me.GMILLNAME.VisibleIndex = 6
         Me.GMILLNAME.Width = 100
         '
         'GDESIGN
@@ -170,8 +168,27 @@ Partial Class YarnInterGodownTransferDetails
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.OptionsColumn.AllowEdit = False
         Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 6
+        Me.GDESIGN.VisibleIndex = 7
         Me.GDESIGN.Width = 100
+        '
+        'GLOTNO
+        '
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.OptionsColumn.AllowEdit = False
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 8
+        '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 9
+        Me.GLRNO.Width = 80
         '
         'GCOLOR
         '
@@ -180,7 +197,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 9
+        Me.GCOLOR.VisibleIndex = 10
         Me.GCOLOR.Width = 100
         '
         'GBAGS
@@ -189,7 +206,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GBAGS.FieldName = "BAGS"
         Me.GBAGS.Name = "GBAGS"
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 10
+        Me.GBAGS.VisibleIndex = 11
         Me.GBAGS.Width = 80
         '
         'GWT
@@ -198,7 +215,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GWT.FieldName = "WT"
         Me.GWT.Name = "GWT"
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 11
+        Me.GWT.VisibleIndex = 12
         Me.GWT.Width = 80
         '
         'GCONES
@@ -207,7 +224,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GCONES.FieldName = "CONES"
         Me.GCONES.Name = "GCONES"
         Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 12
+        Me.GCONES.VisibleIndex = 13
         '
         'cmdexit
         '
@@ -225,7 +242,7 @@ Partial Class YarnInterGodownTransferDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.ToolStripdelete, Me.PrintToolStripButton})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -254,24 +271,6 @@ Partial Class YarnInterGodownTransferDetails
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "&Refresh"
         '
-        'ToolStripdelete
-        '
-        Me.ToolStripdelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripdelete.Image = CType(resources.GetObject("ToolStripdelete.Image"), System.Drawing.Image)
-        Me.ToolStripdelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripdelete.Name = "ToolStripdelete"
-        Me.ToolStripdelete.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripdelete.Text = "C&ut"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), System.Drawing.Image)
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
         'cmdok
         '
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
@@ -285,26 +284,6 @@ Partial Class YarnInterGodownTransferDetails
         Me.cmdok.TabIndex = 2
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GTRANSPORT
-        '
-        Me.GTRANSPORT.Caption = "Transport"
-        Me.GTRANSPORT.FieldName = "TRANSPORTNAME"
-        Me.GTRANSPORT.Name = "GTRANSPORT"
-        Me.GTRANSPORT.OptionsColumn.AllowEdit = False
-        Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 3
-        Me.GTRANSPORT.Width = 150
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.OptionsColumn.AllowEdit = False
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 8
-        Me.GLRNO.Width = 80
         '
         'YarnInterGodownTransferDetails
         '
@@ -344,8 +323,6 @@ Partial Class YarnInterGodownTransferDetails
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
-    Friend WithEvents ToolStripdelete As ToolStripButton
-    Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents cmdok As Button
     Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
