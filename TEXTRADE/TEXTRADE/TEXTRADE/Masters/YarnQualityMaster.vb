@@ -255,6 +255,7 @@ Public Class YarnQualityMaster
                 dt.DefaultView.Sort = "HSNCODE"
                 CMBHSNCODE.DataSource = dt
                 CMBHSNCODE.DisplayMember = "HSNCODE"
+                CMBHSNCODE.Text = ""
             End If
             CMBHSNCODE.SelectAll()
         Catch ex As Exception

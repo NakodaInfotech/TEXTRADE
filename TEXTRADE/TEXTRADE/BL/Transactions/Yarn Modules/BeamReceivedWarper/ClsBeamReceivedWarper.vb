@@ -70,6 +70,8 @@ Public Class ClsBeamReceivedWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALROLLNO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -160,7 +162,8 @@ Public Class ClsBeamReceivedWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALROLLNO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters

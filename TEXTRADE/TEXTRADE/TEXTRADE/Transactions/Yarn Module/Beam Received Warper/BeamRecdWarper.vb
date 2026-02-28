@@ -1,5 +1,6 @@
 ﻿
 Imports BL
+Imports DevExpress.Diagram.Core.Native
 
 Public Class BeamRecdWarper
 
@@ -38,6 +39,8 @@ Public Class BeamRecdWarper
                     'TOTALTAPLINE += Val(ROW.Cells(GTAPLINE.Index).Value)
                 End If
             Next
+
+            TXTTOTALROLLNO.Text = GRIDBEAM.RowCount
 
             'LBLTAPLINE.Text = Format(Val(TOTALTAPLINE / (GRIDBEAM.RowCount)), "0.00")
 
@@ -80,6 +83,8 @@ Public Class BeamRecdWarper
         PBlock.Visible = False
 
         TXTREMARKS.Clear()
+        TXTTOTALROLLNO.Clear()
+
 
         GRIDBEAM.RowCount = 0
 
@@ -274,6 +279,7 @@ Public Class BeamRecdWarper
             alParaval.Add(TXTPICS.Text.Trim)
             alParaval.Add(TXTREFNO.Text.Trim)
             alParaval.Add(TXTFROMTYPE.Text.Trim)
+            alParaval.Add(TXTTOTALROLLNO.Text.Trim)
 
 
 
@@ -353,7 +359,15 @@ Public Class BeamRecdWarper
                 End If
                 Dim DT As DataTable = OBJBEAMREC.SAVE()
                 TEMPBEAMRECDNO = DT.Rows(0).Item(0)
+
+
                 MsgBox("Details Added")
+
+                If ClientName = "SWPL" Then
+                    'NOW NO NEED TO GENERATE INVOICE IN ABHEE
+                    GENERATECONSUMPTION()
+                End If
+
 
             Else
                 If USEREDIT = False Then
@@ -561,6 +575,89 @@ LINE1:
         txtuploadremarks.Focus()
 
     End Sub
+
+
+    Sub GENERATECONSUMPTION()
+
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            EP.Clear()
+
+            Dim alParaval As New ArrayList
+
+            alParaval.Add(Format(Convert.ToDateTime(DTBEAMRECDDATE.Text).Date, "MM/dd/yyyy"))
+            alParaval.Add(CMBOURGODOWN.Text.Trim)
+            alParaval.Add("")
+            alParaval.Add("")
+            alParaval.Add("")
+            alParaval.Add(TXTTOTALROLLNO.Text)
+            alParaval.Add("")
+
+            alParaval.Add(CmpId)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+
+
+
+            Dim GRIDSRNO As String = ""
+            Dim ITEMNAME As String = ""
+            Dim DESC As String = ""
+            Dim QTY As String = ""
+            Dim UNIT As String = ""
+
+            Dim TEMPUNIT As String = ""
+            Dim OBJCMN As New ClsCommon
+
+            Dim TEMPDT As DataTable = OBJCMN.SEARCH(" STOREITEMMASTER.STOREITEM_NAME AS ITEMNAME, UNITMASTER.unit_abbr AS UNIT ", "", " STOREITEMMASTER INNER JOIN UNITMASTER ON STOREITEMMASTER.STOREITEM_UNITID = UNITMASTER.unit_id ", " AND STOREITEMMASTER.STOREITEM_NAME =  '" & GRIDBEAM.Item(GROLLNO.Index, GRIDBEAM.CurrentRow.Index).Value & "' ")
+            If TEMPDT.Rows.Count > 0 Then
+                TEMPUNIT = TEMPDT.Rows(0).Item("UNIT")
+            End If
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If GRIDSRNO = "" Then
+                        GRIDSRNO = Val(row.Cells(GSRNO.Index).Value)
+                        ITEMNAME = row.Cells(GROLLNO.Index).Value.ToString
+                        DESC = ""
+                        QTY = 1
+                        UNIT = TEMPUNIT
+                    Else
+                        GRIDSRNO = GRIDSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
+                        ITEMNAME = ITEMNAME & "|" & row.Cells(GROLLNO.Index).Value
+                        DESC = DESC = ""
+                        QTY = QTY & "|" & Val(1)
+                        UNIT = UNIT & "|" & TEMPUNIT
+                    End If
+                End If
+            Next
+
+            alParaval.Add(GRIDSRNO)
+            alParaval.Add(ITEMNAME)
+            alParaval.Add(DESC)
+            alParaval.Add(QTY)
+            alParaval.Add(UNIT)
+
+            alParaval.Add("")
+            alParaval.Add("")
+
+
+            Dim OBJCONSUME As New ClsStoreConsumption
+            OBJCONSUME.alParaval = alParaval
+            Dim DTTABLE As DataTable = OBJCONSUME.SAVE()
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+
+
+    End Sub
+
+
+
+
+
 
     Private Function errorvalid() As Boolean
         Dim bln As Boolean = True

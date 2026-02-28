@@ -1656,6 +1656,8 @@ LINE1:
         End Try
     End Sub
 
+
+
     Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DTLRDATE.Validated
         Try
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then

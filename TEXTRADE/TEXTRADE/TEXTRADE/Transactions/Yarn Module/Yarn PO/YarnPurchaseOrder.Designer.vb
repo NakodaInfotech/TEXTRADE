@@ -52,8 +52,6 @@ Partial Class YarnPurchaseOrder
         Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLPRINT = New System.Windows.Forms.ToolStripButton()
         Me.TOOLDELETE = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLCLOSE = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLSMS = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLPREVIOUS = New System.Windows.Forms.ToolStripButton()
         Me.TOOLNEXT = New System.Windows.Forms.ToolStripButton()
@@ -372,7 +370,7 @@ Partial Class YarnPurchaseOrder
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.TOOLPRINT, Me.TOOLDELETE, Me.TOOLCLOSE, Me.TOOLSMS, Me.ToolStripSeparator1, Me.TOOLPREVIOUS, Me.TOOLNEXT, Me.ToolStripSeparator4})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.TOOLPRINT, Me.TOOLDELETE, Me.ToolStripSeparator1, Me.TOOLPREVIOUS, Me.TOOLNEXT, Me.ToolStripSeparator4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -414,24 +412,6 @@ Partial Class YarnPurchaseOrder
         Me.TOOLDELETE.Name = "TOOLDELETE"
         Me.TOOLDELETE.Size = New System.Drawing.Size(23, 22)
         Me.TOOLDELETE.Text = "&Delete"
-        '
-        'TOOLCLOSE
-        '
-        Me.TOOLCLOSE.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLCLOSE.Image = Global.TEXTRADE.My.Resources.Resources.DELETE_ICON
-        Me.TOOLCLOSE.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLCLOSE.Name = "TOOLCLOSE"
-        Me.TOOLCLOSE.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLCLOSE.Text = "Close SO"
-        '
-        'TOOLSMS
-        '
-        Me.TOOLSMS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLSMS.Image = CType(resources.GetObject("TOOLSMS.Image"), System.Drawing.Image)
-        Me.TOOLSMS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLSMS.Name = "TOOLSMS"
-        Me.TOOLSMS.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLSMS.Text = "&Delete"
         '
         'ToolStripSeparator1
         '
@@ -1308,8 +1288,6 @@ Partial Class YarnPurchaseOrder
     Friend WithEvents SaveToolStripButton As ToolStripButton
     Friend WithEvents TOOLPRINT As ToolStripButton
     Friend WithEvents TOOLDELETE As ToolStripButton
-    Friend WithEvents TOOLCLOSE As ToolStripButton
-    Friend WithEvents TOOLSMS As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TOOLPREVIOUS As ToolStripButton
     Friend WithEvents TOOLNEXT As ToolStripButton
