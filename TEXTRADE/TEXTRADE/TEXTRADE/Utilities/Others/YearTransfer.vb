@@ -6,6 +6,7 @@ Public Class YearTransfer
     Dim INTRES As Integer
     Dim OBJTRF As New ClsYearTransfer
     Public FRMSTRING As String = ""
+    Dim SELECTEDCMP As Integer
 
     Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
         Me.Close()
@@ -214,27 +215,87 @@ Public Class YearTransfer
 
                         MsgBox("Transfer Completed Successfully")
 
+                    ElseIf FRMSTRING = "MASTERTRANSFER" Then
+                        'TRANSFERUSER(SELECTEDYEARID)
+                        If CHKLEDGER.Checked = True Then
+                            TRANSFERGROUP(SELECTEDYEARID)
+                            TRANSFERTRANSPORT(SELECTEDYEARID)
+                            TRANSFERAGENTS(SELECTEDYEARID)
+
+                            TRANSFERACCOUNTS(SELECTEDYEARID)
+                            TRANSFEREMPLOYEES(SELECTEDYEARID)
+                        End If
+                        If CHKOTHERMASTER.Checked = True Then
+                            TRANSFERUSER(SELECTEDYEARID)
+
+                            'TRANSFERGROUP(SELECTEDYEARID)
+                            TRANSFERLOCATION(SELECTEDYEARID)
+                            TRANSFERMATERIALTYPE(SELECTEDYEARID)
+                            TRANSFERCATEGORY(SELECTEDYEARID)
+                            TRANSFERDYEDTYPE(SELECTEDYEARID)
+                            TRANSFERPROCESS(SELECTEDYEARID)
+                            TRANSFERSAMPLETYPE(SELECTEDYEARID)
+                            TRANSFERUNIT(SELECTEDYEARID)
+                            TRANSFERCONTRACT(SELECTEDYEARID)
+                            TRANSFERCURRENCY(SELECTEDYEARID)
+                            TRANSFERMACHINE(SELECTEDYEARID)
+                            TRANSFERSALESMAN(SELECTEDYEARID)
+                            TRANSFERRACKSHELF(SELECTEDYEARID)
+
+
+                            TRANSFERHSN(SELECTEDYEARID)
+                            TRANSFERYARNQUALITY(SELECTEDYEARID)
+                            TRANSFERMILL(SELECTEDYEARID)
+                            TRANSFERDESIGNER(SELECTEDYEARID) 'USED IN DESIGN MASTER
+                            TRANSFERVEHICLE(SELECTEDYEARID)
+
+                            TRANSFERWEAVE(SELECTEDYEARID)
+                            TRANSFERLOOM(SELECTEDYEARID)
+
+                            TRANSFERITEM(SELECTEDYEARID)
+                            TRANSFERCOLOR(SELECTEDYEARID)
+
+                            TRANSFERDESIGN(SELECTEDYEARID)
+                            TRANSFERDEPARTMENT(SELECTEDYEARID)
+                            TRANSFERDESIGNATION(SELECTEDYEARID)
+                            TRANSFERPIECETYPE(SELECTEDYEARID)
+                            TRANSFERPACKING(SELECTEDYEARID)
+                            TRANSFERCHALLANTYPE(SELECTEDYEARID)
+                            TRANSFERTERM(SELECTEDYEARID)
+                            TRANSFERQUALITY(SELECTEDYEARID)
+
+                            TRANSFERREORDER(SELECTEDYEARID)
+                            TRANSFERCATALOG(SELECTEDYEARID)
+                            TRANSFERREASON(SELECTEDYEARID)
+                            TRANSFERNARRATION(SELECTEDYEARID)
+                            TRANSFERPARTYBANK(SELECTEDYEARID)
+                            TRANSFERGODOWN(SELECTEDYEARID)
+                            TRANSFERGOC(SELECTEDYEARID)
+                            TRANSFERREGISTER(SELECTEDYEARID)
+                        End If
+                        MsgBox("Masters Transferred Successfully")
+
                     ElseIf FRMSTRING = "USERTRANSFER" Then
-                        TRANSFERUSER(SELECTEDYEARID)
-                        MsgBox("User Transferred Successfully")
+                            TRANSFERUSER(SELECTEDYEARID)
+                            MsgBox("User Transferred Successfully")
 
-                    ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
+                        ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
 
-                        TRANSFERAGENCYBILLS(SELECTEDYEARID)
+                            TRANSFERAGENCYBILLS(SELECTEDYEARID)
 
-                        '******* TRANSFERRING DATA DONE ********
-                        'THIS CODE WILL AUTO RECO THE AGENCY INVOICE
-                        Dim CLSRECO As New ClsDataReco
-                        CLSRECO.alParaval.Add(CmpId)
-                        CLSRECO.alParaval.Add(0)
-                        CLSRECO.alParaval.Add(YearId)
-                        Dim INTRES As Integer = CLSRECO.AGENCYINVRECO()
-                        '*********************************************
+                            '******* TRANSFERRING DATA DONE ********
+                            'THIS CODE WILL AUTO RECO THE AGENCY INVOICE
+                            Dim CLSRECO As New ClsDataReco
+                            CLSRECO.alParaval.Add(CmpId)
+                            CLSRECO.alParaval.Add(0)
+                            CLSRECO.alParaval.Add(YearId)
+                            Dim INTRES As Integer = CLSRECO.AGENCYINVRECO()
+                            '*********************************************
 
-                        MsgBox("Agency Data Transferred Successfully")
+                            MsgBox("Agency Data Transferred Successfully")
 
-                    ElseIf FRMSTRING = "STOCKTRANSFER" Then
-                        TRANSFERSTOCK(SELECTEDYEARID)
+                        ElseIf FRMSTRING = "STOCKTRANSFER" Then
+                            TRANSFERSTOCK(SELECTEDYEARID)
 
 
                         'IF WE TRANSFER STOCK WE HAVE TO RECOSTOCK ALSO
@@ -278,6 +339,12 @@ Public Class YearTransfer
                 Me.Text = "Stock Transfer"
                 GBTRANSFERDATA.Visible = False
                 If BLOCKSTOCKSTRANSFER = True Then CMDOK.Enabled = False
+
+            ElseIf FRMSTRING = "MASTERTRANSFER" Then
+                Me.Text = "Transfer Users"
+                LBLCOMPANY.Visible = True
+                CMBCOMPANY.Visible = True
+                FILLCOMPANY(CMBCOMPANY)
 
             ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
                 Me.Text = "Agency Data Transfer"
@@ -1494,6 +1561,58 @@ Public Class YearTransfer
     Private Sub YearTransfer_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "AVIS" Then CHKLEDGER.CheckState = CheckState.Unchecked
+            If FRMSTRING = "MASTERTRANSFER" Then
+                CHKDATA.Visible = False
+                CHKDATA.CheckState = CheckState.Unchecked
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FILLCOMPANY(ByRef CMBCOMPANY As ComboBox)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBCOMPANY.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search(" CMP_ID AS CMPID , CMP_NAME AS NAME ", "", "CMPMASTER ", " AND CMP_ID <> " & CmpId & " ")
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "NAME"
+                    CMBCOMPANY.DisplayMember = "NAME"
+                    CMBCOMPANY.ValueMember = "ID"
+                    CMBCOMPANY.SelectedItem = Nothing
+                End If
+                CMBCOMPANY.DataSource = dt
+                CMBCOMPANY.SelectedIndex = -1
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub CMBCOMPANY_Validated(sender As Object, e As EventArgs) Handles CMBCOMPANY.Validated
+        Dim objclscommon As New ClsCommonMaster
+        Dim dt As DataTable = objclscommon.search(" CMP_ID AS CMPID , CMP_NAME AS NAME ", "", "CMPMASTER ", " AND CMP_NAME = '" & CMBCOMPANY.Text & "' ")
+        If dt.Rows.Count > 0 Then
+
+            For Each dr As DataRow In dt.Rows
+                SELECTEDCMP = dr("CMPID")
+            Next
+        End If
+
+        FILLGRIDCMP()
+    End Sub
+    Sub FILLGRIDCMP()
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" CONVERT(char(11), year_startdate , 6) + ' - ' + CONVERT(char(11), year_enddate , 6) AS YEARNAME, YEAR_ID AS YEARID, year_startdate AS STARTDATE, year_ENDDATE AS ENDDATE ", "", " YEARMASTER", " AND YEAR_STARTDATE <'" & AccFrom.Date & "' AND YEAR_ID <> " & YearId & " AND YEAR_CMPID = " & SELECTEDCMP & " ORDER BY year_startdate DESC ")
+            If DT.Rows.Count > 0 Then
+                For Each DTROW As DataRow In DT.Rows
+                    GRIDYEAR.Rows.Add(DTROW("YEARNAME"), DTROW("YEARID"), Format(Convert.ToDateTime(DTROW("STARTDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(DTROW("ENDDATE")).Date, "dd/MM/yyyy"))
+                Next
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
