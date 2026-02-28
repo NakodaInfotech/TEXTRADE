@@ -168,8 +168,6 @@ Partial Class YarnRecdDetails
         Me.GPONO.Caption = "PO No."
         Me.GPONO.FieldName = "PONO"
         Me.GPONO.Name = "GPONO"
-        Me.GPONO.Visible = True
-        Me.GPONO.VisibleIndex = 3
         '
         'GPODATE
         '
@@ -178,8 +176,6 @@ Partial Class YarnRecdDetails
         Me.GPODATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GPODATE.FieldName = "PODATE"
         Me.GPODATE.Name = "GPODATE"
-        Me.GPODATE.Visible = True
-        Me.GPODATE.VisibleIndex = 4
         '
         'GCHALLAN
         '
@@ -187,7 +183,7 @@ Partial Class YarnRecdDetails
         Me.GCHALLAN.FieldName = "CHALLANNO"
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 5
+        Me.GCHALLAN.VisibleIndex = 3
         Me.GCHALLAN.Width = 70
         '
         'GCHALLANDATE
@@ -198,7 +194,7 @@ Partial Class YarnRecdDetails
         Me.GCHALLANDATE.FieldName = "CHALLANDATE"
         Me.GCHALLANDATE.Name = "GCHALLANDATE"
         Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 6
+        Me.GCHALLANDATE.VisibleIndex = 4
         '
         'GTONAME
         '
@@ -206,7 +202,7 @@ Partial Class YarnRecdDetails
         Me.GTONAME.FieldName = "TONAME"
         Me.GTONAME.Name = "GTONAME"
         Me.GTONAME.Visible = True
-        Me.GTONAME.VisibleIndex = 7
+        Me.GTONAME.VisibleIndex = 5
         Me.GTONAME.Width = 100
         '
         'GYARN
@@ -215,7 +211,7 @@ Partial Class YarnRecdDetails
         Me.GYARN.FieldName = "YARNQUALITY"
         Me.GYARN.Name = "GYARN"
         Me.GYARN.Visible = True
-        Me.GYARN.VisibleIndex = 8
+        Me.GYARN.VisibleIndex = 6
         Me.GYARN.Width = 100
         '
         'gmill
@@ -224,7 +220,7 @@ Partial Class YarnRecdDetails
         Me.gmill.FieldName = "MILLNAME"
         Me.gmill.Name = "gmill"
         Me.gmill.Visible = True
-        Me.gmill.VisibleIndex = 9
+        Me.gmill.VisibleIndex = 7
         Me.gmill.Width = 100
         '
         'gcolor
@@ -233,7 +229,7 @@ Partial Class YarnRecdDetails
         Me.gcolor.FieldName = "COLOR"
         Me.gcolor.Name = "gcolor"
         Me.gcolor.Visible = True
-        Me.gcolor.VisibleIndex = 10
+        Me.gcolor.VisibleIndex = 8
         Me.gcolor.Width = 80
         '
         'GDESIGN
@@ -242,7 +238,7 @@ Partial Class YarnRecdDetails
         Me.GDESIGN.FieldName = "DESIGNNO"
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 11
+        Me.GDESIGN.VisibleIndex = 9
         Me.GDESIGN.Width = 80
         '
         'GJOBBERLOTNO
@@ -251,7 +247,7 @@ Partial Class YarnRecdDetails
         Me.GJOBBERLOTNO.FieldName = "JOBBERLOTNO"
         Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
         Me.GJOBBERLOTNO.Visible = True
-        Me.GJOBBERLOTNO.VisibleIndex = 12
+        Me.GJOBBERLOTNO.VisibleIndex = 10
         Me.GJOBBERLOTNO.Width = 100
         '
         'GLOTNO
@@ -260,7 +256,7 @@ Partial Class YarnRecdDetails
         Me.GLOTNO.FieldName = "GRIDLOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 13
+        Me.GLOTNO.VisibleIndex = 11
         '
         'GLOTDATE
         '
@@ -270,7 +266,7 @@ Partial Class YarnRecdDetails
         Me.GLOTDATE.FieldName = "LOTDATE"
         Me.GLOTDATE.Name = "GLOTDATE"
         Me.GLOTDATE.Visible = True
-        Me.GLOTDATE.VisibleIndex = 14
+        Me.GLOTDATE.VisibleIndex = 12
         '
         'GGODOWN
         '
@@ -278,7 +274,7 @@ Partial Class YarnRecdDetails
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 15
+        Me.GGODOWN.VisibleIndex = 13
         Me.GGODOWN.Width = 140
         '
         'GQTY
@@ -288,7 +284,7 @@ Partial Class YarnRecdDetails
         Me.GQTY.Name = "GQTY"
         Me.GQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GQTY.Visible = True
-        Me.GQTY.VisibleIndex = 16
+        Me.GQTY.VisibleIndex = 14
         '
         'GTOTALQTY
         '
@@ -298,7 +294,7 @@ Partial Class YarnRecdDetails
         Me.GTOTALQTY.FieldName = "TOTALQTY"
         Me.GTOTALQTY.Name = "GTOTALQTY"
         Me.GTOTALQTY.Visible = True
-        Me.GTOTALQTY.VisibleIndex = 17
+        Me.GTOTALQTY.VisibleIndex = 15
         Me.GTOTALQTY.Width = 60
         '
         'gwt
@@ -308,7 +304,7 @@ Partial Class YarnRecdDetails
         Me.gwt.Name = "gwt"
         Me.gwt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gwt.Visible = True
-        Me.gwt.VisibleIndex = 18
+        Me.gwt.VisibleIndex = 16
         '
         'GTOTALWT
         '
@@ -318,7 +314,7 @@ Partial Class YarnRecdDetails
         Me.GTOTALWT.FieldName = "TOTALWT"
         Me.GTOTALWT.Name = "GTOTALWT"
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 19
+        Me.GTOTALWT.VisibleIndex = 17
         Me.GTOTALWT.Width = 60
         '
         'GCONES
@@ -328,7 +324,7 @@ Partial Class YarnRecdDetails
         Me.GCONES.Name = "GCONES"
         Me.GCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 20
+        Me.GCONES.VisibleIndex = 18
         '
         'GTOTALCONES
         '
@@ -338,7 +334,7 @@ Partial Class YarnRecdDetails
         Me.GTOTALCONES.FieldName = "TOTALCONES"
         Me.GTOTALCONES.Name = "GTOTALCONES"
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 21
+        Me.GTOTALCONES.VisibleIndex = 19
         '
         'GTRANSNAME
         '
@@ -346,7 +342,7 @@ Partial Class YarnRecdDetails
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 22
+        Me.GTRANSNAME.VisibleIndex = 20
         Me.GTRANSNAME.Width = 150
         '
         'GGRIDLRNO
@@ -355,7 +351,7 @@ Partial Class YarnRecdDetails
         Me.GGRIDLRNO.FieldName = "LRNO"
         Me.GGRIDLRNO.Name = "GGRIDLRNO"
         Me.GGRIDLRNO.Visible = True
-        Me.GGRIDLRNO.VisibleIndex = 23
+        Me.GGRIDLRNO.VisibleIndex = 21
         '
         'GREMARKS
         '
@@ -363,7 +359,7 @@ Partial Class YarnRecdDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 24
+        Me.GREMARKS.VisibleIndex = 22
         Me.GREMARKS.Width = 180
         '
         'GGREYFINISH
@@ -372,7 +368,7 @@ Partial Class YarnRecdDetails
         Me.GGREYFINISH.FieldName = "GREYFINISH"
         Me.GGREYFINISH.Name = "GGREYFINISH"
         Me.GGREYFINISH.Visible = True
-        Me.GGREYFINISH.VisibleIndex = 25
+        Me.GGREYFINISH.VisibleIndex = 23
         '
         'GLRNO
         '
@@ -380,7 +376,7 @@ Partial Class YarnRecdDetails
         Me.GLRNO.FieldName = "TRANSPORTLRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 26
+        Me.GLRNO.VisibleIndex = 24
         Me.GLRNO.Width = 80
         '
         'GHAMALICHARGES
@@ -391,7 +387,7 @@ Partial Class YarnRecdDetails
         Me.GHAMALICHARGES.OptionsColumn.AllowEdit = False
         Me.GHAMALICHARGES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GHAMALICHARGES.Visible = True
-        Me.GHAMALICHARGES.VisibleIndex = 27
+        Me.GHAMALICHARGES.VisibleIndex = 25
         Me.GHAMALICHARGES.Width = 100
         '
         'ToolStrip1

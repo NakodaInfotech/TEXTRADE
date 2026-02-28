@@ -231,9 +231,14 @@ CHECKNEXTLINE:
                     End If
                     If TEMPORDERMATCH = False Then
                         ROW.DefaultCellStyle.BackColor = Color.LightGreen
-                        If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        If ClientName = "SWPL" Then
                             EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
                             bln = False
+                        Else
+                            If MsgBox("There are Items which are not Present in Selected Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+                                bln = False
+                            End If
                         End If
                     End If
                     TEMPORDERMATCH = False
