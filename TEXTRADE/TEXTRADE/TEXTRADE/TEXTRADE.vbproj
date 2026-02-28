@@ -7135,6 +7135,12 @@
     <Compile Include="Utilities\Others\Reminder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\UpdateRounder.Designer.vb">
+      <DependentUpon>UpdateRounder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\UpdateRounder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Others\UploadExcel_MASHOK.Designer.vb">
       <DependentUpon>UploadExcel_MASHOK.vb</DependentUpon>
     </Compile>
@@ -13174,6 +13180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\Reminder.resx">
       <DependentUpon>Reminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\UpdateRounder.resx">
+      <DependentUpon>UpdateRounder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\UploadExcel_MASHOK.resx">
       <DependentUpon>UploadExcel_MASHOK.vb</DependentUpon>
