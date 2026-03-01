@@ -81,6 +81,9 @@ Public Class ClsRollIssueToSizer
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I = I + 1
 
+
+                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
+                I = I + 1
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -156,6 +159,9 @@ Public Class ClsRollIssueToSizer
                 .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@ROLLISSUENO", alParaval(I)))

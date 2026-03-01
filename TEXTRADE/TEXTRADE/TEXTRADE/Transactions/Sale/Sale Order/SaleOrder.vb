@@ -295,7 +295,7 @@ Public Class SaleOrder
         GRIDSO.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDSO.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, MATCHING, TXTPARTYPONO.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), 0, 0, 0, 0, 0)
+            GRIDSO.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, MATCHING, TXTPARTYPONO.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
             getsrno(GRIDSO)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDSO.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -2136,6 +2136,10 @@ LINE1:
                 LBLAGENT.Text = "Indent Name"
                 LBLAGENT.Location = New Point(LBLAGENT.Location.X - 40, LBLAGENT.Location.Y)
                 CMBPER.Text = "Pcs"
+            End If
+            If ClientName = "SWPL" Then
+                SCHEDDATE.Visible = True
+                GSCHEDULEDATE.Visible = True
             End If
         Catch ex As Exception
             Throw ex
