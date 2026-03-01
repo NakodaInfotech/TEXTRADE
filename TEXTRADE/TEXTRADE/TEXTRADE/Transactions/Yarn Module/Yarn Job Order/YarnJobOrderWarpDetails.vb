@@ -52,11 +52,10 @@ Public Class YarnJobOrderWarpDetails
                 Exit Sub
             End If
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJBILL As New InvoiceMaster
+                Dim OBJBILL As New YarnJobOrder
                 OBJBILL.MdiParent = MDIMain
                 OBJBILL.EDIT = editval
-                OBJBILL.TEMPINVOICENO = billno
-                OBJBILL.TEMPREGNAME = cmbregister.Text.Trim
+                OBJBILL.tempdesignno = billno
                 OBJBILL.Show()
             End If
         Catch ex As Exception
@@ -72,29 +71,17 @@ Public Class YarnJobOrderWarpDetails
         End Try
     End Sub
 
-    Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbregister.Enter
-        Try
-            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'SALE'")
-
-            Dim clscommon As New ClsCommon
-            Dim dt As DataTable
-            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-            If dt.Rows.Count > 0 Then
-                cmbregister.Text = dt.Rows(0).Item(0).ToString
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         Me.Close()
     End Sub
 
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+        fillgrid()
+    End Sub
+
     Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("INVOICENO"))
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -102,7 +89,7 @@ Public Class YarnJobOrderWarpDetails
 
     Private Sub gridINVOICE_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("INVOICENO"))
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -112,7 +99,7 @@ Public Class YarnJobOrderWarpDetails
     Private Sub InvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'SALE INVOICE'")
+            DTROW = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -130,33 +117,18 @@ Public Class YarnJobOrderWarpDetails
         End Try
     End Sub
 
-    Private Sub gridbill_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
-        Try
-            If e.RowHandle >= 0 Then
-                Dim View As GridView = sender
-                If View.GetRowCellDisplayText(e.RowHandle, View.Columns("BILLCHECKED")) = "Checked" Then
-                    e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Bold)
-                    e.Appearance.BackColor = Color.LightGreen
-                ElseIf View.GetRowCellDisplayText(e.RowHandle, View.Columns("BILLDISPUTE")) = "Checked" Then
-                    e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Bold)
-                    e.Appearance.BackColor = Color.Yellow
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 
     Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
         Try
-            Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Yarn Job Order Warp Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Sale Details"
+            opti.SheetName = "Yarn Job Order Warp Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Sale Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Yarn Job Order Warp Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Yarn Job Order Warp Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
