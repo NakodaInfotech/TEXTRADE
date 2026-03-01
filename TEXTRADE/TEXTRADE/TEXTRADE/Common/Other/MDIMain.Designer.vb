@@ -6803,6 +6803,7 @@ Partial Class MDIMain
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
+        Me.YARNMODULE_MENU.Visible = False
         '
         'YARNPO_MASTER
         '
@@ -6966,20 +6967,20 @@ Partial Class MDIMain
         '
         Me.WEFTADD.Enabled = False
         Me.WEFTADD.Name = "WEFTADD"
-        Me.WEFTADD.Size = New System.Drawing.Size(168, 22)
+        Me.WEFTADD.Size = New System.Drawing.Size(180, 22)
         Me.WEFTADD.Text = "&Add New Entry"
         '
         'WEFTEDIT
         '
         Me.WEFTEDIT.Enabled = False
         Me.WEFTEDIT.Name = "WEFTEDIT"
-        Me.WEFTEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.WEFTEDIT.Size = New System.Drawing.Size(180, 22)
         Me.WEFTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(177, 6)
         '
         'BEAMISSUE_MASTER
         '
@@ -6994,20 +6995,20 @@ Partial Class MDIMain
         '
         Me.BEAMISSUEADD.Enabled = False
         Me.BEAMISSUEADD.Name = "BEAMISSUEADD"
-        Me.BEAMISSUEADD.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMISSUEADD.Size = New System.Drawing.Size(180, 22)
         Me.BEAMISSUEADD.Text = "&Add New Entry"
         '
         'BEAMISSUEEDIT
         '
         Me.BEAMISSUEEDIT.Enabled = False
         Me.BEAMISSUEEDIT.Name = "BEAMISSUEEDIT"
-        Me.BEAMISSUEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.BEAMISSUEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.BEAMISSUEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator46
         '
         Me.ToolStripSeparator46.Name = "ToolStripSeparator46"
-        Me.ToolStripSeparator46.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator46.Size = New System.Drawing.Size(177, 6)
         '
         'BEAMISSTOOL
         '
@@ -7066,20 +7067,20 @@ Partial Class MDIMain
         '
         Me.YARNJOBORDERADD.Enabled = False
         Me.YARNJOBORDERADD.Name = "YARNJOBORDERADD"
-        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNJOBORDERADD.Text = "Add New Entry"
         '
         'YARNJOBORDEREDIT
         '
         Me.YARNJOBORDEREDIT.Enabled = False
         Me.YARNJOBORDEREDIT.Name = "YARNJOBORDEREDIT"
-        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(168, 22)
+        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(180, 22)
         Me.YARNJOBORDEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator340
         '
         Me.ToolStripSeparator340.Name = "ToolStripSeparator340"
-        Me.ToolStripSeparator340.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator340.Size = New System.Drawing.Size(177, 6)
         '
         'WARPING_MASTER
         '
