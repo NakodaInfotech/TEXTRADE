@@ -25,7 +25,7 @@ Public Class YarnJobOrderWarpDetails
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub fillgrid()
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -34,7 +34,7 @@ Public Class YarnJobOrderWarpDetails
 
             Dim OBJCMN As New ClsCommon
 
-            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WARPMATCHING.JOB_NO, 0)AS JOBNO,,ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSRNO, 0) As WARPGRIDSRNO, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPPE, 0) AS WARPPE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPBE, 0) AS WARPBE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPTE, 0) AS WARPTE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPWT, 0.000) AS WARPWT, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCONS, 0) AS WARPCONS, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPRATE, 0) AS WARPRATE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCOST, 0) AS WARPCOST ", "", " JOBORDER_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON JOBORDER_WARPMATCHING.JOB_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND JOBORDER_WARPMATCHING.JOB_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = JOBORDER_WARPMATCHING.JOB_WARPMILLID LEFT OUTER JOIN COLORMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = JOBORDER_WARPMATCHING.JOB_WARPCOLORID ", "AND JOBORDER_WARPMATCHING.JOB_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
+            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WARPMATCHING.JOB_NO, 0)AS JOBNO,ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSRNO, 0) As WARPGRIDSRNO, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPPE, 0) AS WARPPE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPBE, 0) AS WARPBE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPTE, 0) AS WARPTE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPWT, 0.000) AS WARPWT, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCONS, 0) AS WARPCONS, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPRATE, 0) AS WARPRATE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCOST, 0) AS WARPCOST ", "", " JOBORDER_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON JOBORDER_WARPMATCHING.JOB_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND JOBORDER_WARPMATCHING.JOB_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = JOBORDER_WARPMATCHING.JOB_WARPMILLID LEFT OUTER JOIN COLORMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = JOBORDER_WARPMATCHING.JOB_WARPCOLORID ", "AND JOBORDER_WARPMATCHING.JOB_YEARID = " & YearId & " ORDER BY JOBNO,WARPGRIDSRNO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -88,29 +88,6 @@ Public Class YarnJobOrderWarpDetails
         End Try
     End Sub
 
-    Private Sub cmbregister_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbregister.Validating
-        Try
-            If cmbregister.Text.Trim.Length > 0 Then
-                cmbregister.Text = UCase(cmbregister.Text)
-
-                Dim clscommon As New ClsCommon
-                Dim dt As DataTable
-                dt = clscommon.SEARCH(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-                If dt.Rows.Count > 0 Then
-                    SALEREGID = dt.Rows(0).Item(0)
-                    fillgrid(" and INVOICEMASTER.INVOICE_yearid = " & YearId & " AND RegisterMaster.register_name = '" & cmbregister.Text.Trim & "'")
-                Else
-                    MsgBox("Register Not Present, Add New from Master Module")
-                    e.Cancel = True
-                End If
-            Else
-                fillgrid(" AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         Me.Close()
     End Sub
@@ -131,48 +108,6 @@ Public Class YarnJobOrderWarpDetails
         End Try
     End Sub
 
-    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
-        Try
-            Dim layoutFileName As String = $"{Me.Name}"
-            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
-            gridbill.SaveLayoutToXml(layoutPath)
-            'MessageBox.Show("Layout saved as: " & layoutFileName)
-
-
-
-
-            ' Prompt user for filename
-            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
-
-            ' Exit if the user cancels or enters nothing
-            If String.IsNullOrWhiteSpace(userFileName) Then
-                MessageBox.Show("Save cancelled.")
-                Exit Sub
-            End If
-
-            ' Add .xml extension and construct path
-            Dim FileName As String = $"{userFileName}.xml"
-
-            ' Save layout to file
-            gridbill.SaveLayoutToXml(layoutPath)
-            MessageBox.Show("Layout saved as: " & FileName)
-
-            ' Read file content
-            Dim xmlContent As String = File.ReadAllText(layoutPath)
-
-
-
-            Dim OBJSELECTSG As New SelectCustomLayout
-            OBJSELECTSG.FORMNAMES = layoutFileName
-            OBJSELECTSG.FILENAME = FileName
-            OBJSELECTSG.FILES = xmlContent
-            OBJSELECTSG.ShowDialog()
-
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
     Private Sub InvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
@@ -183,26 +118,12 @@ Public Class YarnJobOrderWarpDetails
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
-            fillregister(cmbregister, " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-            cmbregister_Validating(sender, New System.ComponentModel.CancelEventArgs())
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
 
-            'If MsgBox("Want to Load Layout ? ", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            '    Dim layoutFileName As String = $"{Me.Name}.xml"
-            '    Dim OBJPO As New ClsCustomLayout
-            '    Dim dt As DataTable = OBJPO.selectLAYOUT(UserName, layoutFileName, CmpId, YearId)
-            '    If dt.Rows.Count > 0 AndAlso dt.Columns.Contains("CL_LayoutContent") Then
-            '        Dim layoutXml As String = dt.Rows(0)("CL_LayoutContent").ToString()
-
-            '        If Not String.IsNullOrWhiteSpace(layoutXml) Then
-            '            Using ms As New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(layoutXml))
-            '                gridbill.RestoreLayoutFromStream(ms)
-            '            End Using
-            '        End If
-            '    Else
-            '        MessageBox.Show("Layout file not found: " & layoutFileName)
-            '    End If
-
-            'End If
+            fillgrid()
 
         Catch ex As Exception
             Throw ex
