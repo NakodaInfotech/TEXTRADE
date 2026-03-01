@@ -1119,33 +1119,34 @@ LINE1:
     End Sub
 
     Private Sub CMDSELECTROLLISSUE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTROLLISSUE.Click
-            Try
-                If CMBNAME.Text.Trim = "" And ClientName = "SASHWINKUMAR" Then
-                    MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
-                    CMBNAME.Focus()
-                    Exit Sub
-                End If
+        Try
+            If CMBNAME.Text.Trim = "" And ClientName = "SASHWINKUMAR" Then
+                MsgBox("Select Sizer Name First", MsgBoxStyle.Critical)
+                CMBNAME.Focus()
+                Exit Sub
+            End If
 
-                Dim OBJROLLISSUE As New SelectRollIssue
-                OBJROLLISSUE.SIZERNAME = CMBNAME.Text.Trim
-                Dim DT As DataTable = OBJROLLISSUE.DT
-                OBJROLLISSUE.ShowDialog()
-                If DT.Rows.Count > 0 Then
-                    CMBNAME.Text = DT.Rows(0).Item("SIZERNAME")
-                    TXTROLLISSUENO.Text = DT.Rows(0).Item("ROLLISSUENO")
-                    TXTROLLISSUESRNO.Text = DT.Rows(0).Item("ROLLISSUESRNO")
-                    TXTTYPE.Text = DT.Rows(0).Item("TYPE")
-                    CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
+            Dim OBJROLLISSUE As New SelectRollIssue
+            OBJROLLISSUE.SIZERNAME = CMBNAME.Text.Trim
+            Dim DT As DataTable = OBJROLLISSUE.DT
+            OBJROLLISSUE.ShowDialog()
+            If DT.Rows.Count > 0 Then
+                CMBNAME.Text = DT.Rows(0).Item("SIZERNAME")
+                TXTROLLISSUENO.Text = DT.Rows(0).Item("ROLLISSUENO")
+                TXTROLLISSUESRNO.Text = DT.Rows(0).Item("ROLLISSUESRNO")
+                TXTTYPE.Text = DT.Rows(0).Item("TYPE")
+                CMBMILLNAME.Text = DT.Rows(0).Item("MILLNAME")
                 TXTLENGTH.Text = Val(DT.Rows(0).Item("LENGTH"))
                 TXTWTSUMM.Text = Val(DT.Rows(0).Item("WT"))
-                    TXTROLLENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
-                    TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
-                    CMDSELECTROLLISSUE.Enabled = False
-                End If
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
+                TXTROLLENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
+                TXTDENIER.Text = Val(DT.Rows(0).Item("DENIER"))
+                TXTPROGRAMNO.Text = Val(DT.Rows(0).Item("PROGRAMNO"))
+                CMDSELECTROLLISSUE.Enabled = False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
         Private Sub BeamRecd_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         'If ALLOWMFG = False Then Exit Sub

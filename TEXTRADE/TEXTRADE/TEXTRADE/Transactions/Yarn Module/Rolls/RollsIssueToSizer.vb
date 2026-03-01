@@ -59,7 +59,7 @@ Public Class RollsIssueToSizer
         TXTUPLOADSRNO.Text = 1
 
         If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN Else CMBOURGODOWN.Text = ""
-        TXTPROGRAMSRNO.Clear()
+        TXTPROGRAMNO.Clear()
     End Sub
 
     Sub TOTAL()
@@ -164,7 +164,7 @@ Public Class RollsIssueToSizer
                     TXTLENGTH.Text = Val(dttable.Rows(0).Item("LENGTH"))
 
                     txtremarks.Text = dttable.Rows(0).Item("REMARKS").ToString
-                    TXTPROGRAMSRNO.Text = dttable.Rows(0).Item("PROGRAMNO").ToString
+                    TXTPROGRAMNO.Text = dttable.Rows(0).Item("PROGRAMNO").ToString
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
                         GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"))
@@ -270,7 +270,7 @@ Public Class RollsIssueToSizer
             alParaval.Add(FROMSRNO)
             alParaval.Add(FROMTYPE)
 
-            alParaval.Add(TXTPROGRAMSRNO.Text.Trim)
+            alParaval.Add(TXTPROGRAMNO.Text.Trim)
 
 
             Dim OBJROLLISSUE As New ClsRollIssueToSizer
@@ -753,6 +753,7 @@ LINE1:
                     TXTENDS.Text = Val(DTROLLSTOCK.Rows(0).Item("ENDS"))
                     TXTTOTALENDS.Text = Val(DTROLLSTOCK.Rows(0).Item("TOTALENDS"))
                     TXTLENGTH.Text = Val(DTROLLSTOCK.Rows(0).Item("LENGTH"))
+                    TXTPROGRAMNO.Text = Val(DTROLLSTOCK.Rows(0).Item("PROGRAMNO"))
 
 
                     TOTAL()
