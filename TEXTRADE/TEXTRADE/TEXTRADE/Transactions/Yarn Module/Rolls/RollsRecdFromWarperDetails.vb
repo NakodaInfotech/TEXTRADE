@@ -30,8 +30,8 @@ Public Class RollsRecdFromWarperDetails
         Private Sub RollsRecdFromWarperDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             Try
 
-                Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
-                USERADD = DTROW(0).Item(1)
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ROLLS RECD'")
+            USERADD = DTROW(0).Item(1)
                 USEREDIT = DTROW(0).Item(2)
                 USERVIEW = DTROW(0).Item(3)
                 USERDELETE = DTROW(0).Item(4)
