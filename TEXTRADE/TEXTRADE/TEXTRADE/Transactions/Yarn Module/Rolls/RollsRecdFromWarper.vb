@@ -1265,6 +1265,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Sub CALC()
         If ClientName <> "SASHWINKUMAR" Then TXTENDS.Text = Format(Val(TXTTOTALENDS.Text.Trim) / Val(TXTROLLS.Text.Trim))
     End Sub
