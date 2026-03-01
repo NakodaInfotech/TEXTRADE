@@ -58,6 +58,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GCONTRACTORNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +122,7 @@ Partial Class RollsRecdFromWarperDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLRECDNO, Me.GDATE, Me.GGODOWN, Me.GWARPER, Me.GCHALLANNO, Me.gprogramno, Me.GPROGRAMSRNO, Me.GQUALITY, Me.GMILLNAME, Me.GENDS, Me.GLENGTH, Me.GTL, Me.GCUT, Me.GROLLS, Me.GWT, Me.GRETWT, Me.GUSEDWT, Me.GCOUNT, Me.GNARR, Me.GOUTROLLS, Me.GOUTWT, Me.GLONGATION, Me.GCUTWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLRECDNO, Me.GDATE, Me.GGODOWN, Me.GWARPER, Me.GCONTRACTORNAME, Me.GCHALLANNO, Me.gprogramno, Me.GPROGRAMSRNO, Me.GQUALITY, Me.GMILLNAME, Me.GENDS, Me.GLENGTH, Me.GTL, Me.GCUT, Me.GROLLS, Me.GWT, Me.GRETWT, Me.GUSEDWT, Me.GCOUNT, Me.GNARR, Me.GOUTROLLS, Me.GOUTWT, Me.GLONGATION, Me.GCUTWT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -179,7 +180,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GCHALLANNO.Name = "GCHALLANNO"
         Me.GCHALLANNO.OptionsColumn.AllowEdit = False
         Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 3
+        Me.GCHALLANNO.VisibleIndex = 4
         '
         'gprogramno
         '
@@ -195,7 +196,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GPROGRAMSRNO.FieldName = "PROGRAMSRNO"
         Me.GPROGRAMSRNO.Name = "GPROGRAMSRNO"
         Me.GPROGRAMSRNO.Visible = True
-        Me.GPROGRAMSRNO.VisibleIndex = 4
+        Me.GPROGRAMSRNO.VisibleIndex = 5
         Me.GPROGRAMSRNO.Width = 60
         '
         'GQUALITY
@@ -205,7 +206,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GQUALITY.Name = "GQUALITY"
         Me.GQUALITY.OptionsColumn.AllowEdit = False
         Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 5
+        Me.GQUALITY.VisibleIndex = 6
         Me.GQUALITY.Width = 150
         '
         'GMILLNAME
@@ -215,7 +216,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 6
+        Me.GMILLNAME.VisibleIndex = 7
         Me.GMILLNAME.Width = 200
         '
         'GENDS
@@ -227,7 +228,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GENDS.Name = "GENDS"
         Me.GENDS.OptionsColumn.AllowEdit = False
         Me.GENDS.Visible = True
-        Me.GENDS.VisibleIndex = 7
+        Me.GENDS.VisibleIndex = 8
         '
         'GLENGTH
         '
@@ -235,7 +236,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GLENGTH.FieldName = "LENGTH"
         Me.GLENGTH.Name = "GLENGTH"
         Me.GLENGTH.Visible = True
-        Me.GLENGTH.VisibleIndex = 8
+        Me.GLENGTH.VisibleIndex = 9
         '
         'GTL
         '
@@ -243,7 +244,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GTL.FieldName = "TAPLINE"
         Me.GTL.Name = "GTL"
         Me.GTL.Visible = True
-        Me.GTL.VisibleIndex = 9
+        Me.GTL.VisibleIndex = 10
         '
         'GCUT
         '
@@ -253,7 +254,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GCUT.FieldName = "CUT"
         Me.GCUT.Name = "GCUT"
         Me.GCUT.Visible = True
-        Me.GCUT.VisibleIndex = 10
+        Me.GCUT.VisibleIndex = 11
         '
         'GROLLS
         '
@@ -263,7 +264,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GROLLS.OptionsColumn.AllowEdit = False
         Me.GROLLS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GROLLS.Visible = True
-        Me.GROLLS.VisibleIndex = 11
+        Me.GROLLS.VisibleIndex = 12
         Me.GROLLS.Width = 65
         '
         'GWT
@@ -276,7 +277,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 12
+        Me.GWT.VisibleIndex = 13
         '
         'GRETWT
         '
@@ -285,7 +286,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GRETWT.Name = "GRETWT"
         Me.GRETWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRETWT.Visible = True
-        Me.GRETWT.VisibleIndex = 13
+        Me.GRETWT.VisibleIndex = 14
         '
         'GUSEDWT
         '
@@ -296,7 +297,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GUSEDWT.Name = "GUSEDWT"
         Me.GUSEDWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GUSEDWT.Visible = True
-        Me.GUSEDWT.VisibleIndex = 14
+        Me.GUSEDWT.VisibleIndex = 15
         '
         'GCOUNT
         '
@@ -306,7 +307,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GCOUNT.FieldName = "COUNT"
         Me.GCOUNT.Name = "GCOUNT"
         Me.GCOUNT.Visible = True
-        Me.GCOUNT.VisibleIndex = 15
+        Me.GCOUNT.VisibleIndex = 16
         '
         'GNARR
         '
@@ -342,7 +343,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GLONGATION.FieldName = "LONGATION"
         Me.GLONGATION.Name = "GLONGATION"
         Me.GLONGATION.Visible = True
-        Me.GLONGATION.VisibleIndex = 16
+        Me.GLONGATION.VisibleIndex = 17
         '
         'GCUTWT
         '
@@ -352,7 +353,7 @@ Partial Class RollsRecdFromWarperDetails
         Me.GCUTWT.FieldName = "CUTWT"
         Me.GCUTWT.Name = "GCUTWT"
         Me.GCUTWT.Visible = True
-        Me.GCUTWT.VisibleIndex = 17
+        Me.GCUTWT.VisibleIndex = 18
         '
         'CHKDONE
         '
@@ -418,6 +419,16 @@ Partial Class RollsRecdFromWarperDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
+        'GCONTRACTORNAME
+        '
+        Me.GCONTRACTORNAME.Caption = "Contractor Name"
+        Me.GCONTRACTORNAME.FieldName = "CONTRACTORNAME"
+        Me.GCONTRACTORNAME.Name = "GCONTRACTORNAME"
+        Me.GCONTRACTORNAME.OptionsColumn.AllowEdit = False
+        Me.GCONTRACTORNAME.Visible = True
+        Me.GCONTRACTORNAME.VisibleIndex = 3
+        Me.GCONTRACTORNAME.Width = 150
+        '
         'RollsRecdFromWarperDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -476,4 +487,5 @@ Partial Class RollsRecdFromWarperDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents GCONTRACTORNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class
