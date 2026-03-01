@@ -36,6 +36,11 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -61,11 +66,6 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemMaster))
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
         Me.GPMAINGROUP = New System.Windows.Forms.GroupBox()
@@ -98,6 +98,15 @@ Partial Class ItemMaster
         Me.GRPWEFTYARNDETAILS = New System.Windows.Forms.GroupBox()
         Me.TXTTOTALWEFTENDS = New System.Windows.Forms.TextBox()
         Me.GRIDWEFT = New System.Windows.Forms.DataGridView()
+        Me.FSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPICK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FSHADESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TXTWEFTWT = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWEFTAMOUNT = New System.Windows.Forms.TextBox()
@@ -295,15 +304,7 @@ Partial Class ItemMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.FSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FPICK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FSHADESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRPRATE = New System.Windows.Forms.GroupBox()
         Me.BLENDPANEL1.SuspendLayout()
         Me.GPMAINGROUP.SuspendLayout()
         Me.GRPBEAMDETAILS.SuspendLayout()
@@ -324,49 +325,21 @@ Partial Class ItemMaster
         Me.GPRATE.SuspendLayout()
         CType(Me.GRIDRATE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GRPRATE.SuspendLayout()
         Me.SuspendLayout()
         '
         'BLENDPANEL1
         '
         Me.BLENDPANEL1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BLENDPANEL1.Controls.Add(Me.GRPRATE)
         Me.BLENDPANEL1.Controls.Add(Me.GPMAINGROUP)
         Me.BLENDPANEL1.Controls.Add(Me.CHKGARMENT)
         Me.BLENDPANEL1.Controls.Add(Me.LBLPERCENT)
         Me.BLENDPANEL1.Controls.Add(Me.LBLGSM)
         Me.BLENDPANEL1.Controls.Add(Me.TXTPERCENT)
         Me.BLENDPANEL1.Controls.Add(Me.TXTGSM)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE15)
         Me.BLENDPANEL1.Controls.Add(Me.LBLCOSTCENTER)
-        Me.BLENDPANEL1.Controls.Add(Me.Label5)
         Me.BLENDPANEL1.Controls.Add(Me.CMBCOSTCENTERNAME)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE10)
-        Me.BLENDPANEL1.Controls.Add(Me.Label42)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE14)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE9)
-        Me.BLENDPANEL1.Controls.Add(Me.Label7)
-        Me.BLENDPANEL1.Controls.Add(Me.Label44)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE8)
-        Me.BLENDPANEL1.Controls.Add(Me.Label45)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE13)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE7)
-        Me.BLENDPANEL1.Controls.Add(Me.Label9)
-        Me.BLENDPANEL1.Controls.Add(Me.Label46)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE6)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE12)
-        Me.BLENDPANEL1.Controls.Add(Me.Label47)
-        Me.BLENDPANEL1.Controls.Add(Me.Label27)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE5)
-        Me.BLENDPANEL1.Controls.Add(Me.Label36)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE1)
-        Me.BLENDPANEL1.Controls.Add(Me.Label28)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE4)
-        Me.BLENDPANEL1.Controls.Add(Me.Label41)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE11)
-        Me.BLENDPANEL1.Controls.Add(Me.Label37)
-        Me.BLENDPANEL1.Controls.Add(Me.Label39)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE3)
-        Me.BLENDPANEL1.Controls.Add(Me.TXTRATE2)
-        Me.BLENDPANEL1.Controls.Add(Me.Label38)
         Me.BLENDPANEL1.Controls.Add(Me.TXTVALUELOSSPER)
         Me.BLENDPANEL1.Controls.Add(Me.Label26)
         Me.BLENDPANEL1.Controls.Add(Me.GPWARPWEFTCALC)
@@ -913,6 +886,97 @@ Partial Class ItemMaster
         Me.GRIDWEFT.TabIndex = 11
         Me.GRIDWEFT.TabStop = False
         '
+        'FSRNO
+        '
+        Me.FSRNO.HeaderText = "Sr."
+        Me.FSRNO.Name = "FSRNO"
+        Me.FSRNO.ReadOnly = True
+        Me.FSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSRNO.Width = 30
+        '
+        'FQUALITY
+        '
+        Me.FQUALITY.HeaderText = "Weft Quality"
+        Me.FQUALITY.Name = "FQUALITY"
+        Me.FQUALITY.ReadOnly = True
+        Me.FQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FQUALITY.Width = 200
+        '
+        'FSHADE
+        '
+        Me.FSHADE.HeaderText = "Shade"
+        Me.FSHADE.Name = "FSHADE"
+        Me.FSHADE.ReadOnly = True
+        Me.FSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSHADE.Width = 150
+        '
+        'FDENIER
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle15
+        Me.FDENIER.HeaderText = "Count"
+        Me.FDENIER.Name = "FDENIER"
+        Me.FDENIER.ReadOnly = True
+        Me.FDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FDENIER.Width = 70
+        '
+        'FPICK
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FPICK.DefaultCellStyle = DataGridViewCellStyle16
+        Me.FPICK.HeaderText = "Picks"
+        Me.FPICK.Name = "FPICK"
+        Me.FPICK.ReadOnly = True
+        Me.FPICK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FPICK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FPICK.Width = 60
+        '
+        'FWT
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FWT.DefaultCellStyle = DataGridViewCellStyle17
+        Me.FWT.HeaderText = "Wt"
+        Me.FWT.Name = "FWT"
+        Me.FWT.ReadOnly = True
+        Me.FWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FWT.Width = 60
+        '
+        'FRATE
+        '
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FRATE.DefaultCellStyle = DataGridViewCellStyle18
+        Me.FRATE.HeaderText = "Rate"
+        Me.FRATE.Name = "FRATE"
+        Me.FRATE.ReadOnly = True
+        Me.FRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FRATE.Width = 70
+        '
+        'FAMOUNT
+        '
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FAMOUNT.DefaultCellStyle = DataGridViewCellStyle19
+        Me.FAMOUNT.HeaderText = "Amount"
+        Me.FAMOUNT.Name = "FAMOUNT"
+        Me.FAMOUNT.ReadOnly = True
+        Me.FAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FAMOUNT.Width = 70
+        '
+        'FSHADESRNO
+        '
+        Me.FSHADESRNO.HeaderText = "SHADESRNO"
+        Me.FSHADESRNO.Name = "FSHADESRNO"
+        Me.FSHADESRNO.ReadOnly = True
+        Me.FSHADESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSHADESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSHADESRNO.Visible = False
+        '
         'Label25
         '
         Me.Label25.AutoSize = True
@@ -1314,7 +1378,7 @@ Partial Class ItemMaster
         'TXTRATE15
         '
         Me.TXTRATE15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE15.Location = New System.Drawing.Point(1052, 516)
+        Me.TXTRATE15.Location = New System.Drawing.Point(548, 55)
         Me.TXTRATE15.Name = "TXTRATE15"
         Me.TXTRATE15.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE15.TabIndex = 46
@@ -1337,7 +1401,7 @@ Partial Class ItemMaster
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(1003, 520)
+        Me.Label5.Location = New System.Drawing.Point(499, 59)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(47, 14)
         Me.Label5.TabIndex = 1014
@@ -1359,7 +1423,7 @@ Partial Class ItemMaster
         'TXTRATE10
         '
         Me.TXTRATE10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE10.Location = New System.Drawing.Point(927, 469)
+        Me.TXTRATE10.Location = New System.Drawing.Point(423, 8)
         Me.TXTRATE10.Name = "TXTRATE10"
         Me.TXTRATE10.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE10.TabIndex = 41
@@ -1370,7 +1434,7 @@ Partial Class ItemMaster
         Me.Label42.AutoSize = True
         Me.Label42.BackColor = System.Drawing.Color.Transparent
         Me.Label42.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(878, 473)
+        Me.Label42.Location = New System.Drawing.Point(374, 12)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(47, 14)
         Me.Label42.TabIndex = 1002
@@ -1379,7 +1443,7 @@ Partial Class ItemMaster
         'TXTRATE14
         '
         Me.TXTRATE14.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE14.Location = New System.Drawing.Point(1052, 492)
+        Me.TXTRATE14.Location = New System.Drawing.Point(548, 31)
         Me.TXTRATE14.Name = "TXTRATE14"
         Me.TXTRATE14.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE14.TabIndex = 45
@@ -1388,7 +1452,7 @@ Partial Class ItemMaster
         'TXTRATE9
         '
         Me.TXTRATE9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE9.Location = New System.Drawing.Point(802, 517)
+        Me.TXTRATE9.Location = New System.Drawing.Point(298, 56)
         Me.TXTRATE9.Name = "TXTRATE9"
         Me.TXTRATE9.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE9.TabIndex = 40
@@ -1399,7 +1463,7 @@ Partial Class ItemMaster
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(1005, 496)
+        Me.Label7.Location = New System.Drawing.Point(501, 35)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(47, 14)
         Me.Label7.TabIndex = 1013
@@ -1410,7 +1474,7 @@ Partial Class ItemMaster
         Me.Label44.AutoSize = True
         Me.Label44.BackColor = System.Drawing.Color.Transparent
         Me.Label44.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(759, 521)
+        Me.Label44.Location = New System.Drawing.Point(255, 60)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(41, 14)
         Me.Label44.TabIndex = 1000
@@ -1419,7 +1483,7 @@ Partial Class ItemMaster
         'TXTRATE8
         '
         Me.TXTRATE8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE8.Location = New System.Drawing.Point(802, 493)
+        Me.TXTRATE8.Location = New System.Drawing.Point(298, 32)
         Me.TXTRATE8.Name = "TXTRATE8"
         Me.TXTRATE8.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE8.TabIndex = 39
@@ -1430,7 +1494,7 @@ Partial Class ItemMaster
         Me.Label45.AutoSize = True
         Me.Label45.BackColor = System.Drawing.Color.Transparent
         Me.Label45.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(759, 497)
+        Me.Label45.Location = New System.Drawing.Point(255, 36)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(41, 14)
         Me.Label45.TabIndex = 998
@@ -1439,7 +1503,7 @@ Partial Class ItemMaster
         'TXTRATE13
         '
         Me.TXTRATE13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE13.Location = New System.Drawing.Point(1052, 468)
+        Me.TXTRATE13.Location = New System.Drawing.Point(548, 7)
         Me.TXTRATE13.Name = "TXTRATE13"
         Me.TXTRATE13.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE13.TabIndex = 44
@@ -1448,7 +1512,7 @@ Partial Class ItemMaster
         'TXTRATE7
         '
         Me.TXTRATE7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE7.Location = New System.Drawing.Point(802, 469)
+        Me.TXTRATE7.Location = New System.Drawing.Point(298, 8)
         Me.TXTRATE7.Name = "TXTRATE7"
         Me.TXTRATE7.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE7.TabIndex = 38
@@ -1459,7 +1523,7 @@ Partial Class ItemMaster
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(1004, 472)
+        Me.Label9.Location = New System.Drawing.Point(500, 11)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(47, 14)
         Me.Label9.TabIndex = 1012
@@ -1470,7 +1534,7 @@ Partial Class ItemMaster
         Me.Label46.AutoSize = True
         Me.Label46.BackColor = System.Drawing.Color.Transparent
         Me.Label46.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label46.Location = New System.Drawing.Point(759, 473)
+        Me.Label46.Location = New System.Drawing.Point(255, 12)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(41, 14)
         Me.Label46.TabIndex = 996
@@ -1479,7 +1543,7 @@ Partial Class ItemMaster
         'TXTRATE6
         '
         Me.TXTRATE6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE6.Location = New System.Drawing.Point(680, 518)
+        Me.TXTRATE6.Location = New System.Drawing.Point(176, 57)
         Me.TXTRATE6.Name = "TXTRATE6"
         Me.TXTRATE6.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE6.TabIndex = 37
@@ -1488,7 +1552,7 @@ Partial Class ItemMaster
         'TXTRATE12
         '
         Me.TXTRATE12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE12.Location = New System.Drawing.Point(927, 517)
+        Me.TXTRATE12.Location = New System.Drawing.Point(423, 56)
         Me.TXTRATE12.Name = "TXTRATE12"
         Me.TXTRATE12.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE12.TabIndex = 43
@@ -1499,7 +1563,7 @@ Partial Class ItemMaster
         Me.Label47.AutoSize = True
         Me.Label47.BackColor = System.Drawing.Color.Transparent
         Me.Label47.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(636, 522)
+        Me.Label47.Location = New System.Drawing.Point(132, 61)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(41, 14)
         Me.Label47.TabIndex = 994
@@ -1510,7 +1574,7 @@ Partial Class ItemMaster
         Me.Label27.AutoSize = True
         Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(880, 521)
+        Me.Label27.Location = New System.Drawing.Point(376, 60)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(47, 14)
         Me.Label27.TabIndex = 1011
@@ -1519,7 +1583,7 @@ Partial Class ItemMaster
         'TXTRATE5
         '
         Me.TXTRATE5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE5.Location = New System.Drawing.Point(680, 494)
+        Me.TXTRATE5.Location = New System.Drawing.Point(176, 33)
         Me.TXTRATE5.Name = "TXTRATE5"
         Me.TXTRATE5.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE5.TabIndex = 36
@@ -1530,7 +1594,7 @@ Partial Class ItemMaster
         Me.Label36.AutoSize = True
         Me.Label36.BackColor = System.Drawing.Color.Transparent
         Me.Label36.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(637, 498)
+        Me.Label36.Location = New System.Drawing.Point(133, 37)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(41, 14)
         Me.Label36.TabIndex = 992
@@ -1539,7 +1603,7 @@ Partial Class ItemMaster
         'TXTRATE1
         '
         Me.TXTRATE1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE1.Location = New System.Drawing.Point(557, 469)
+        Me.TXTRATE1.Location = New System.Drawing.Point(53, 8)
         Me.TXTRATE1.Name = "TXTRATE1"
         Me.TXTRATE1.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE1.TabIndex = 32
@@ -1550,7 +1614,7 @@ Partial Class ItemMaster
         Me.Label28.AutoSize = True
         Me.Label28.BackColor = System.Drawing.Color.Transparent
         Me.Label28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(879, 497)
+        Me.Label28.Location = New System.Drawing.Point(375, 36)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(47, 14)
         Me.Label28.TabIndex = 1010
@@ -1559,7 +1623,7 @@ Partial Class ItemMaster
         'TXTRATE4
         '
         Me.TXTRATE4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE4.Location = New System.Drawing.Point(680, 470)
+        Me.TXTRATE4.Location = New System.Drawing.Point(176, 9)
         Me.TXTRATE4.Name = "TXTRATE4"
         Me.TXTRATE4.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE4.TabIndex = 35
@@ -1570,7 +1634,7 @@ Partial Class ItemMaster
         Me.Label41.AutoSize = True
         Me.Label41.BackColor = System.Drawing.Color.Transparent
         Me.Label41.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.Location = New System.Drawing.Point(514, 473)
+        Me.Label41.Location = New System.Drawing.Point(10, 12)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(41, 14)
         Me.Label41.TabIndex = 984
@@ -1579,7 +1643,7 @@ Partial Class ItemMaster
         'TXTRATE11
         '
         Me.TXTRATE11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE11.Location = New System.Drawing.Point(927, 493)
+        Me.TXTRATE11.Location = New System.Drawing.Point(423, 32)
         Me.TXTRATE11.Name = "TXTRATE11"
         Me.TXTRATE11.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE11.TabIndex = 42
@@ -1590,7 +1654,7 @@ Partial Class ItemMaster
         Me.Label37.AutoSize = True
         Me.Label37.BackColor = System.Drawing.Color.Transparent
         Me.Label37.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(637, 474)
+        Me.Label37.Location = New System.Drawing.Point(133, 13)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(41, 14)
         Me.Label37.TabIndex = 990
@@ -1601,7 +1665,7 @@ Partial Class ItemMaster
         Me.Label39.AutoSize = True
         Me.Label39.BackColor = System.Drawing.Color.Transparent
         Me.Label39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(514, 497)
+        Me.Label39.Location = New System.Drawing.Point(10, 36)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(41, 14)
         Me.Label39.TabIndex = 986
@@ -1610,7 +1674,7 @@ Partial Class ItemMaster
         'TXTRATE3
         '
         Me.TXTRATE3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE3.Location = New System.Drawing.Point(557, 517)
+        Me.TXTRATE3.Location = New System.Drawing.Point(53, 56)
         Me.TXTRATE3.Name = "TXTRATE3"
         Me.TXTRATE3.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE3.TabIndex = 34
@@ -1619,7 +1683,7 @@ Partial Class ItemMaster
         'TXTRATE2
         '
         Me.TXTRATE2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE2.Location = New System.Drawing.Point(557, 493)
+        Me.TXTRATE2.Location = New System.Drawing.Point(53, 32)
         Me.TXTRATE2.Name = "TXTRATE2"
         Me.TXTRATE2.Size = New System.Drawing.Size(73, 22)
         Me.TXTRATE2.TabIndex = 33
@@ -1630,7 +1694,7 @@ Partial Class ItemMaster
         Me.Label38.AutoSize = True
         Me.Label38.BackColor = System.Drawing.Color.Transparent
         Me.Label38.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.Location = New System.Drawing.Point(515, 521)
+        Me.Label38.Location = New System.Drawing.Point(11, 60)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(41, 14)
         Me.Label38.TabIndex = 988
@@ -3213,96 +3277,45 @@ Partial Class ItemMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'FSRNO
+        'GRPRATE
         '
-        Me.FSRNO.HeaderText = "Sr."
-        Me.FSRNO.Name = "FSRNO"
-        Me.FSRNO.ReadOnly = True
-        Me.FSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSRNO.Width = 30
-        '
-        'FQUALITY
-        '
-        Me.FQUALITY.HeaderText = "Weft Quality"
-        Me.FQUALITY.Name = "FQUALITY"
-        Me.FQUALITY.ReadOnly = True
-        Me.FQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FQUALITY.Width = 200
-        '
-        'FSHADE
-        '
-        Me.FSHADE.HeaderText = "Shade"
-        Me.FSHADE.Name = "FSHADE"
-        Me.FSHADE.ReadOnly = True
-        Me.FSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSHADE.Width = 150
-        '
-        'FDENIER
-        '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle15
-        Me.FDENIER.HeaderText = "Count"
-        Me.FDENIER.Name = "FDENIER"
-        Me.FDENIER.ReadOnly = True
-        Me.FDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FDENIER.Width = 70
-        '
-        'FPICK
-        '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FPICK.DefaultCellStyle = DataGridViewCellStyle16
-        Me.FPICK.HeaderText = "Picks"
-        Me.FPICK.Name = "FPICK"
-        Me.FPICK.ReadOnly = True
-        Me.FPICK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FPICK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FPICK.Width = 60
-        '
-        'FWT
-        '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FWT.DefaultCellStyle = DataGridViewCellStyle17
-        Me.FWT.HeaderText = "Wt"
-        Me.FWT.Name = "FWT"
-        Me.FWT.ReadOnly = True
-        Me.FWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FWT.Width = 60
-        '
-        'FRATE
-        '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FRATE.DefaultCellStyle = DataGridViewCellStyle18
-        Me.FRATE.HeaderText = "Rate"
-        Me.FRATE.Name = "FRATE"
-        Me.FRATE.ReadOnly = True
-        Me.FRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FRATE.Width = 70
-        '
-        'FAMOUNT
-        '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FAMOUNT.DefaultCellStyle = DataGridViewCellStyle19
-        Me.FAMOUNT.HeaderText = "Amount"
-        Me.FAMOUNT.Name = "FAMOUNT"
-        Me.FAMOUNT.ReadOnly = True
-        Me.FAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FAMOUNT.Width = 70
-        '
-        'FSHADESRNO
-        '
-        Me.FSHADESRNO.HeaderText = "SHADESRNO"
-        Me.FSHADESRNO.Name = "FSHADESRNO"
-        Me.FSHADESRNO.ReadOnly = True
-        Me.FSHADESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSHADESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSHADESRNO.Visible = False
+        Me.GRPRATE.BackColor = System.Drawing.Color.Transparent
+        Me.GRPRATE.Controls.Add(Me.TXTRATE7)
+        Me.GRPRATE.Controls.Add(Me.Label38)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE2)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE3)
+        Me.GRPRATE.Controls.Add(Me.Label39)
+        Me.GRPRATE.Controls.Add(Me.Label37)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE11)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE15)
+        Me.GRPRATE.Controls.Add(Me.Label41)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE4)
+        Me.GRPRATE.Controls.Add(Me.Label5)
+        Me.GRPRATE.Controls.Add(Me.Label28)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE1)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE10)
+        Me.GRPRATE.Controls.Add(Me.Label36)
+        Me.GRPRATE.Controls.Add(Me.Label42)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE5)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE14)
+        Me.GRPRATE.Controls.Add(Me.Label27)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE9)
+        Me.GRPRATE.Controls.Add(Me.Label47)
+        Me.GRPRATE.Controls.Add(Me.Label7)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE12)
+        Me.GRPRATE.Controls.Add(Me.Label44)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE6)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE8)
+        Me.GRPRATE.Controls.Add(Me.Label46)
+        Me.GRPRATE.Controls.Add(Me.Label45)
+        Me.GRPRATE.Controls.Add(Me.Label9)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE13)
+        Me.GRPRATE.Location = New System.Drawing.Point(503, 461)
+        Me.GRPRATE.Name = "GRPRATE"
+        Me.GRPRATE.Size = New System.Drawing.Size(635, 84)
+        Me.GRPRATE.TabIndex = 981
+        Me.GRPRATE.TabStop = False
+        Me.GRPRATE.Visible = False
         '
         'ItemMaster
         '
@@ -3345,6 +3358,8 @@ Partial Class ItemMaster
         Me.GPRATE.PerformLayout()
         CType(Me.GRIDRATE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GRPRATE.ResumeLayout(False)
+        Me.GRPRATE.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3585,4 +3600,5 @@ Partial Class ItemMaster
     Friend WithEvents FRATE As DataGridViewTextBoxColumn
     Friend WithEvents FAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents FSHADESRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GRPRATE As GroupBox
 End Class
