@@ -120,6 +120,8 @@ Public Class ClsRollsRecdFromWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@CONTRACTOR", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -254,6 +256,8 @@ Public Class ClsRollsRecdFromWarper
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@CONTRACTOR", alParaval(I)))
                 I = I + 1
 
 

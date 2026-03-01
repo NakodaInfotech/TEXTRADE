@@ -20,6 +20,17 @@ Public Class RollsRecdFromWarper
             LBLTOTALCONES.Text = 0
             LBLTOTALGROSSWT.Text = 0.0
             LBLTOTALNETTWT.Text = 0.0
+
+            LBLUSEDFIRKATOTAL.Text = 0.0
+            LBLUSEDGROSSTOTAL.Text = 0.0
+            LBLUSEDNETTTOTAL.Text = 0.0
+
+
+            LBLRETFIRKATOTAL.Text = 0.00
+            LBLRETGROSSTOTAL.Text = 0.00
+            LBLRETNETTTOTAL.Text = 0.00
+
+
             For Each ROW As DataGridViewRow In GRIDROLLS.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     LBLTOTALCONES.Text = Format(Val(LBLTOTALCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0")
@@ -30,6 +41,18 @@ Public Class RollsRecdFromWarper
             TXTUSEDFRESH.Text = Val(LBLTOTALCONES.Text.Trim)
             TXTUSEDFRESHWT.Text = Val(LBLTOTALGROSSWT.Text.Trim)
             TXTUSEDFRESHNETT.Text = Val(LBLTOTALNETTWT.Text.Trim)
+
+
+            LBLUSEDFIRKATOTAL.Text = Format(Val(TXTUSEDFRESH.Text.Trim) + Val(TXTUSEDWINDING.Text.Trim) + Val(TXTUSEDFIRKA.Text.Trim), "0.00")
+            LBLUSEDGROSSTOTAL.Text = Format(Val(TXTUSEDFRESHWT.Text.Trim) + Val(TXTUSEDWINDINGWT.Text.Trim) + Val(TXTUSEDFIRKAWT.Text.Trim), "0.00")
+            LBLUSEDNETTTOTAL.Text = Format(Val(TXTUSEDFRESHNETT.Text.Trim) + Val(TXTUSEDWINDINGNETT.Text.Trim) + Val(TXTUSEDFIRKANETT.Text.Trim), "0.00")
+
+
+            LBLRETFIRKATOTAL.Text = Format(Val(TXTRETFRESH.Text.Trim) + Val(TXTRETWINDING.Text.Trim) + Val(TXTRETFIRKA.Text.Trim), "0.00")
+            LBLRETGROSSTOTAL.Text = Format(Val(TXTRETFRESHWT.Text.Trim) + Val(TXTRETWINDINGWT.Text.Trim) + Val(TXTRETFIRKAWT.Text.Trim), "0.00")
+            LBLRETNETTTOTAL.Text = Format(Val(TXTRETFRESHNETT.Text.Trim) + Val(TXTRETWINDINGNETT.Text.Trim) + Val(TXTRETFIRKANETT.Text.Trim), "0.00")
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -221,6 +244,8 @@ Public Class RollsRecdFromWarper
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
 
                     CMBWINDINGMILL.Text = dttable.Rows(0).Item("WINDINGMILL").ToString
+                    CMBCONTRACTOR.Text = dttable.Rows(0).Item("CONTRACTORNAME").ToString
+
 
 
                     'ITEM GRID
@@ -310,6 +335,7 @@ Public Class RollsRecdFromWarper
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(CMBCONTRACTOR.Text.Trim)
 
             Dim SRNO As String = ""
             Dim QUALITY As String = ""
@@ -552,7 +578,7 @@ LINE1:
         fillYARNQUALITY(CMBQUALITY, EDIT)
         If CMBMILL.Text = "" Then FILLMILL(CMBMILL, EDIT)
         If CMBWINDINGMILL.Text = "" Then FILLNAME(CMBWINDINGMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
-        If CMBCONTRACTOR.Text = "" Then FILLNAME(CMBCONTRACTOR, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'CONTRACTORS' AND ACC_TYPE = 'ACCOUNTS'")
+        If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
     End Sub
 
     Sub DIRECTISSUESIZER(ByVal SIZERNAME As String)
@@ -1255,7 +1281,24 @@ LINE1:
         numkeypress(e, TXTLENGTH, Me)
     End Sub
 
-    Private Sub TXTUSEDFRESH_Validated(sender As Object, e As EventArgs) Handles TXTUSEDFRESH.Validated, TXTUSEDWINDING.Validated, TXTUSEDFIRKA.Validated, TXTRETWINDING.Validated, TXTRETFRESH.Validated, TXTRETFIRKA.Validated
+    Private Sub TXTUSEDFRESH_Validated(sender As Object, e As EventArgs) Handles TXTUSEDFRESH.Validated, TXTUSEDWINDING.Validated, TXTUSEDFIRKA.Validated, TXTUSEDFRESHWT.Validated, TXTUSEDWINDINGWT.Validated, TXTUSEDFRESHNETT.Validated, TXTUSEDWINDINGNETT.Validated, TXTUSEDFIRKANETT.Validated,
+        TXTRETWINDING.Validated, TXTRETFRESH.Validated, TXTRETFIRKA.Validated, TXTRETFRESHWT.Validated, TXTRETWINDINGWT.Validated, TXTRETFIRKAWT.Validated, TXTRETFRESHNETT.Validated, TXTRETWINDINGNETT.Validated, TXTRETFIRKANETT.Validated
         TOTAL()
+    End Sub
+
+    Private Sub CMBCONTRACTOR_Validating(sender As Object, e As CancelEventArgs) Handles CMBCONTRACTOR.Validating
+        Try
+            If CMBCONTRACTOR.Text.Trim = "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCONTRACTOR_Enter(sender As Object, e As EventArgs) Handles CMBCONTRACTOR.Enter
+        Try
+            If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

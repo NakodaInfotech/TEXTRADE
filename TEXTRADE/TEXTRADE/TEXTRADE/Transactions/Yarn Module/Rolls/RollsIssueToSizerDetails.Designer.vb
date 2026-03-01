@@ -48,6 +48,7 @@ Partial Class RollsIssueToSizerDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GPROGRAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +101,7 @@ Partial Class RollsIssueToSizerDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLISSUENO, Me.GROLLISSUEDATE, Me.GGODOWN, Me.GSIZER, Me.GTRANSPORT, Me.GVEHICALNO, Me.GQUALIYTY, Me.GMILLNAME, Me.GROLLS, Me.GWT, Me.GNARR, Me.GDONE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLISSUENO, Me.GROLLISSUEDATE, Me.GGODOWN, Me.GSIZER, Me.GTRANSPORT, Me.GVEHICALNO, Me.GQUALIYTY, Me.GMILLNAME, Me.GROLLS, Me.GWT, Me.GNARR, Me.GDONE, Me.GPROGRAMNO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -318,6 +319,15 @@ Partial Class RollsIssueToSizerDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
+        'GPROGRAMNO
+        '
+        Me.GPROGRAMNO.Caption = "Program No"
+        Me.GPROGRAMNO.FieldName = "PROGRAMNO"
+        Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GPROGRAMNO.OptionsColumn.AllowEdit = False
+        Me.GPROGRAMNO.Visible = True
+        Me.GPROGRAMNO.VisibleIndex = 12
+        '
         'RollsIssueToSizerDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -366,4 +376,5 @@ Partial Class RollsIssueToSizerDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents GPROGRAMNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

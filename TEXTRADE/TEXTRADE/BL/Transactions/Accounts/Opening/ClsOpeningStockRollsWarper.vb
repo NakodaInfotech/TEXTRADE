@@ -37,6 +37,8 @@ Public Class ClsOpeningStockRollsWarper
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
 
@@ -81,6 +83,8 @@ Public Class ClsOpeningStockRollsWarper
                 .Add(New SqlClient.SqlParameter("@ROLLS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1

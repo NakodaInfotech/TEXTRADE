@@ -60,18 +60,18 @@ Partial Class SelectRolls
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1028, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1107, 581)
         Me.BlendPanel1.TabIndex = 6
         '
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(21, 21)
+        Me.gridbilldetails.Location = New System.Drawing.Point(19, 21)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE, Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(986, 516)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1069, 516)
         Me.gridbilldetails.TabIndex = 648
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -81,7 +81,7 @@ Partial Class SelectRolls
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GENTRYNO, Me.GSRNO, Me.GTYPE, Me.GMILLNAME, Me.GQUALITY, Me.GENDS, Me.GROLLS, Me.GWT, Me.GPROGRAMNO, Me.GTOTALENDS, Me.GLENGTH})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GPROGRAMNO, Me.GENTRYNO, Me.GSRNO, Me.GTYPE, Me.GMILLNAME, Me.GQUALITY, Me.GENDS, Me.GROLLS, Me.GWT, Me.GTOTALENDS, Me.GLENGTH})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -114,7 +114,7 @@ Partial Class SelectRolls
         Me.GENTRYNO.Name = "GENTRYNO"
         Me.GENTRYNO.OptionsColumn.AllowEdit = False
         Me.GENTRYNO.Visible = True
-        Me.GENTRYNO.VisibleIndex = 1
+        Me.GENTRYNO.VisibleIndex = 2
         '
         'GSRNO
         '
@@ -130,7 +130,7 @@ Partial Class SelectRolls
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 2
+        Me.GTYPE.VisibleIndex = 3
         '
         'GMILLNAME
         '
@@ -139,7 +139,7 @@ Partial Class SelectRolls
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 3
+        Me.GMILLNAME.VisibleIndex = 4
         Me.GMILLNAME.Width = 300
         '
         'GQUALITY
@@ -149,7 +149,7 @@ Partial Class SelectRolls
         Me.GQUALITY.Name = "GQUALITY"
         Me.GQUALITY.OptionsColumn.AllowEdit = False
         Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 4
+        Me.GQUALITY.VisibleIndex = 5
         Me.GQUALITY.Width = 200
         '
         'GENDS
@@ -161,7 +161,7 @@ Partial Class SelectRolls
         Me.GENDS.Name = "GENDS"
         Me.GENDS.OptionsColumn.AllowEdit = False
         Me.GENDS.Visible = True
-        Me.GENDS.VisibleIndex = 5
+        Me.GENDS.VisibleIndex = 6
         '
         'GROLLS
         '
@@ -170,7 +170,7 @@ Partial Class SelectRolls
         Me.GROLLS.Name = "GROLLS"
         Me.GROLLS.OptionsColumn.AllowEdit = False
         Me.GROLLS.Visible = True
-        Me.GROLLS.VisibleIndex = 6
+        Me.GROLLS.VisibleIndex = 7
         '
         'GWT
         '
@@ -182,13 +182,15 @@ Partial Class SelectRolls
         Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PCS", "")})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 7
+        Me.GWT.VisibleIndex = 8
         '
         'GPROGRAMNO
         '
         Me.GPROGRAMNO.Caption = "Program No"
         Me.GPROGRAMNO.FieldName = "PROGRAMNO"
         Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GPROGRAMNO.Visible = True
+        Me.GPROGRAMNO.VisibleIndex = 1
         '
         'GTOTALENDS
         '
@@ -221,7 +223,7 @@ Partial Class SelectRolls
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(517, 546)
+        Me.cmdexit.Location = New System.Drawing.Point(556, 546)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -235,7 +237,7 @@ Partial Class SelectRolls
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(431, 546)
+        Me.cmdok.Location = New System.Drawing.Point(470, 546)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
@@ -245,7 +247,7 @@ Partial Class SelectRolls
         'SelectRolls
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1028, 581)
+        Me.ClientSize = New System.Drawing.Size(1107, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
