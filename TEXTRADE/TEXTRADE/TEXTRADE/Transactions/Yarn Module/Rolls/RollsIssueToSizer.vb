@@ -59,7 +59,7 @@ Public Class RollsIssueToSizer
         TXTUPLOADSRNO.Text = 1
 
         If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN Else CMBOURGODOWN.Text = ""
-
+        TXTPROGRAMSRNO.Clear()
     End Sub
 
     Sub TOTAL()
@@ -164,7 +164,7 @@ Public Class RollsIssueToSizer
                     TXTLENGTH.Text = Val(dttable.Rows(0).Item("LENGTH"))
 
                     txtremarks.Text = dttable.Rows(0).Item("REMARKS").ToString
-
+                    TXTPROGRAMSRNO.Text = dttable.Rows(0).Item("PROGRAMNO").ToString
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
                         GRIDROLLS.Rows.Add(Val(ROW("SRNO")), ROW("YARNQUALITY"), ROW("MILLNAME"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.00"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"))
@@ -213,10 +213,11 @@ Public Class RollsIssueToSizer
             alParaval.Add(Val(LBLTOTALROLLS.Text.Trim))
             alParaval.Add(Val(LBLTOTALWT.Text.Trim))
             alParaval.Add(txtremarks.Text.Trim)
-
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(TXTPROGRAMSRNO.Text.Trim)
+
 
             Dim SRNO As String = ""
             Dim QUALITY As String = ""

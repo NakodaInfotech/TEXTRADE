@@ -121,6 +121,7 @@ Public Class RollsRecdFromWarper
 
         If ClientName = "SASHWINKUMAR" Then CMBWINDINGMILL.Text = "" Else CMBWINDINGMILL.Text = "WINDING"
 
+        CMBCONTRACTOR.Text = ""
     End Sub
 
     Sub GETMAX_ROLLSRECD_NO()
@@ -551,6 +552,7 @@ LINE1:
         fillYARNQUALITY(CMBQUALITY, EDIT)
         If CMBMILL.Text = "" Then FILLMILL(CMBMILL, EDIT)
         If CMBWINDINGMILL.Text = "" Then FILLNAME(CMBWINDINGMILL, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+        If CMBCONTRACTOR.Text = "" Then FILLNAME(CMBCONTRACTOR, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'CONTRACTORS' AND ACC_TYPE = 'ACCOUNTS'")
     End Sub
 
     Sub DIRECTISSUESIZER(ByVal SIZERNAME As String)
@@ -1251,5 +1253,9 @@ LINE1:
 
     Private Sub TXTLENGTH_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTLENGTH.KeyPress
         numkeypress(e, TXTLENGTH, Me)
+    End Sub
+
+    Private Sub TXTUSEDFRESH_Validated(sender As Object, e As EventArgs) Handles TXTUSEDFRESH.Validated, TXTUSEDWINDING.Validated, TXTUSEDFIRKA.Validated, TXTRETWINDING.Validated, TXTRETFRESH.Validated, TXTRETFIRKA.Validated
+        TOTAL()
     End Sub
 End Class
