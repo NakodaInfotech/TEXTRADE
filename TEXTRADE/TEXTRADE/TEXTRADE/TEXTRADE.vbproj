@@ -3085,6 +3085,12 @@
     <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.Designer.vb">
+      <DependentUpon>RollsRecdFromWarperDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\RollsReturnFromWarper.Designer.vb">
       <DependentUpon>RollsReturnFromWarper.vb</DependentUpon>
     </Compile>
@@ -10685,6 +10691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarper.resx">
       <DependentUpon>RollsRecdFromWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsRecdFromWarperDetails.resx">
+      <DependentUpon>RollsRecdFromWarperDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\RollsReturnFromWarper.resx">
       <DependentUpon>RollsReturnFromWarper.vb</DependentUpon>

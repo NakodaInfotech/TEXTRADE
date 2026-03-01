@@ -4,7 +4,9 @@ Imports WAProAPI
 Imports System.IO.Compression
 
 Public Class MDIMain
+
     Dim ObjExcel As New clsReportDesigner
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -4628,8 +4630,6 @@ Public Class MDIMain
                 ALPARAVAL.Add(0)   'EXMILL
                 ALPARAVAL.Add(0)   'BILLTOID
                 ALPARAVAL.Add(0)   'LOCKDAYS
-                ALPARAVAL.Add("")   'HINDINAME
-                ALPARAVAL.Add("")   'ROUNDERID
 
                 'CONTACT DETAILS
                 '*******************************
@@ -4638,6 +4638,8 @@ Public Class MDIMain
                 ALPARAVAL.Add("")   'FOR MOBILE
                 ALPARAVAL.Add("")   'FOR EMAIL
 
+                ALPARAVAL.Add("")   'HINDINAME
+                ALPARAVAL.Add("")   'ROUNDERID
 
 
                 OBJSM.alParaval = ALPARAVAL
@@ -10995,6 +10997,16 @@ SKIPLINE:
         End Try
     End Sub
 
+    Private Sub ROLLSRECDWARPEREDIT_Click(sender As Object, e As EventArgs) Handles ROLLSRECDWARPEREDIT.Click
+        Try
+            Dim OBJROLLS As New RollsRecdFromWarperDetails
+            OBJROLLS.MdiParent = Me
+            OBJROLLS.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub EditExistingEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem7.Click
         Try
             Dim OBJRRFW As New BeamDetails
@@ -11014,8 +11026,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-
-
 
     Private Sub OPENINGSTOCKYARN_Click(sender As Object, e As EventArgs) Handles OPENINGSTOCKYARN.Click
         Try
@@ -11167,16 +11177,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBWORK_ADD.Click
-        Try
-            Dim OBJROLLSTOCKWARPER As New YarnJobOrder
-            OBJROLLSTOCKWARPER.MdiParent = Me
-            OBJROLLSTOCKWARPER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub BEAMRECDWARPEREDIT_Click(sender As Object, e As EventArgs) Handles BEAMRECDWARPEREDIT.Click
         Try
             Dim OBJROLLSTOCKWARPER As New BeamRecdWarperDetails
@@ -11218,7 +11218,6 @@ SKIPLINE:
         End Try
     End Sub
 
-
     Private Sub STORESRECADD_Click(sender As Object, e As EventArgs) Handles STORESRECADD.Click
         Try
             Dim OBJMASTERTRANSFER As New RecFromRepairing
@@ -11259,7 +11258,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub JOBWORK_EDIT_Click(sender As Object, e As EventArgs) Handles JOBWORK_EDIT.Click
+    Private Sub YARNJOBORDEREDIT_Click(sender As Object, e As EventArgs) Handles YARNJOBORDEREDIT.Click
         Try
             Dim OBJMASTERTRANSFER As New YarnJobOrderDetails
             OBJMASTERTRANSFER.MdiParent = Me
@@ -11288,4 +11287,16 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub YARNJOBORDERADD_Click(sender As Object, e As EventArgs) Handles YARNJOBORDERADD.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New YarnJobOrder
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 End Class
