@@ -1003,10 +1003,8 @@ Public Class MDIMain
 
                         GREYRECDJOBBER_MASTER.Enabled = True
                         GREYRECDKNITTING_MASTER.Enabled = True
-                        GREYRECDPRODUCTION_MASTER.Enabled = True
                         GREYRECDJOBBERADD.Enabled = True
                         GREYRECDKNITTINGADD.Enabled = True
-                        GREYRECDPRODUCTIONADD.Enabled = True
                         GREYRECADD.Enabled = True
                         GREYISSUEPROCESSADD.Enabled = True
                     Else
@@ -1017,7 +1015,6 @@ Public Class MDIMain
                         OPPROGRAMADD.Enabled = False
                         GREYRECDJOBBERADD.Enabled = False
                         GREYRECDKNITTINGADD.Enabled = False
-                        GREYRECDPRODUCTIONADD.Enabled = False
                         GREYRECADD.Enabled = False
                         GREYISSUEPROCESSADD.Enabled = False
                         DYEINGPRICELISTADD.Enabled = False
@@ -1042,10 +1039,8 @@ Public Class MDIMain
                         DYEINGPRICELISTEDIT.Enabled = True
                         GREYRECDJOBBER_MASTER.Enabled = True
                         GREYRECDKNITTING_MASTER.Enabled = True
-                        GREYRECDPRODUCTION_MASTER.Enabled = True
                         GREYRECDJOBBEREDIT.Enabled = True
                         GREYRECDKNITTINGEDIT.Enabled = True
-                        GREYRECDPRODUCTIONEDIT.Enabled = True
                         GREYRECEDIT.Enabled = True
                         GREYISSUEPROCESSEDIT.Enabled = True
                     Else
@@ -1056,7 +1051,6 @@ Public Class MDIMain
                         OPPROGRAMEDIT.Enabled = False
                         GREYRECDJOBBEREDIT.Enabled = False
                         GREYRECDKNITTINGEDIT.Enabled = False
-                        GREYRECDPRODUCTIONEDIT.Enabled = False
                         GREYRECEDIT.Enabled = False
                         GREYISSUEPROCESSEDIT.Enabled = False
                         DYEINGPRICELISTEDIT.Enabled = False
@@ -1450,13 +1444,11 @@ Public Class MDIMain
                         YARNRECDGREY_MASTER.Enabled = True
                         YARNRECDGREYADD.Enabled = True
                         YARNRECDGODOWN_MASTER.Enabled = True
-                        PRODUCTIONFLOORRETURN_MASTER.Enabled = True
                         YARNRETURNPURCHASE_MASTER.Enabled = True
                         YARNRETURNKNITTING_MASTER.Enabled = True
                         GODOWNYARNWASTAGE_MASTER.Enabled = True
                         JOBBERYARNWASTAGE_MASTER.Enabled = True
                         YARNRECDADD.Enabled = True
-                        PRODRETADD.Enabled = True
                         GODOWNYARNWASTAGEADD.Enabled = True
                         JOBBERYARNWASTAGEADD.Enabled = True
                         YARNRETURNPURCHASEADD.Enabled = True
@@ -1464,7 +1456,6 @@ Public Class MDIMain
                     Else
                         YARNRECDGREYADD.Enabled = False
                         YARNRECDADD.Enabled = False
-                        PRODRETADD.Enabled = False
                         GODOWNYARNWASTAGEADD.Enabled = False
                         JOBBERYARNWASTAGEADD.Enabled = False
                         YARNRETURNPURCHASEADD.Enabled = False
@@ -1474,13 +1465,11 @@ Public Class MDIMain
                         YARNRECDGREY_MASTER.Enabled = True
                         YARNRECDGREYEDIT.Enabled = True
                         YARNRECDGODOWN_MASTER.Enabled = True
-                        PRODUCTIONFLOORRETURN_MASTER.Enabled = True
                         YARNRETURNPURCHASE_MASTER.Enabled = True
                         YARNRETURNKNITTING_MASTER.Enabled = True
                         GODOWNYARNWASTAGE_MASTER.Enabled = True
                         JOBBERYARNWASTAGE_MASTER.Enabled = True
                         YARNRECDEDIT.Enabled = True
-                        PRODRETURNEDIT.Enabled = True
                         GODOWNYARNWASTAGEEDIT.Enabled = True
                         JOBBERYARNWASTAGEEDIT.Enabled = True
                         YARNRETURNPURCHASEEDIT.Enabled = True
@@ -1488,7 +1477,6 @@ Public Class MDIMain
                     Else
                         YARNRECDGREYEDIT.Enabled = False
                         YARNRECDEDIT.Enabled = False
-                        PRODRETURNEDIT.Enabled = False
                         GODOWNYARNWASTAGEEDIT.Enabled = False
                         JOBBERYARNWASTAGEEDIT.Enabled = False
                         YARNRETURNPURCHASEEDIT.Enabled = False
@@ -1498,41 +1486,23 @@ Public Class MDIMain
                 ElseIf DTROW(0).ToString = "YARN ISSUE" Then
                     If DTROW(1).ToString = True Then
                         YARNISSUEJOBBER_MASTER.Enabled = True
-                        YARNISSUEKNITTING_MASTER.Enabled = True
-                        PRODUCTIONFLOOR_MASTER.Enabled = True
                         YARNISSUEJOBBERADD.Enabled = True
-                        YARNISSUEKNITTINGADD.Enabled = True
-                        PRODISSADD.Enabled = True
                         YARNDYEINGPROGRAM_MASTER.Enabled = True
                         YARNDYEINGPROGRAMADD.Enabled = True
                         YARNPROGRAMCLOSE.Enabled = True
-                        BEAMPROG_MASTER.Enabled = True
-                        BEAMPROGADD.Enabled = True
                     Else
                         YARNISSUEJOBBERADD.Enabled = False
-                        YARNISSUEKNITTINGADD.Enabled = False
-                        PRODISSADD.Enabled = False
                         YARNDYEINGPROGRAMADD.Enabled = False
-                        BEAMPROGADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         YARNISSUEJOBBER_MASTER.Enabled = True
-                        YARNISSUEKNITTING_MASTER.Enabled = True
-                        PRODUCTIONFLOOR_MASTER.Enabled = True
                         YARNISSUEJOBBEREDIT.Enabled = True
-                        YARNISSUEKNITTINGEDIT.Enabled = True
-                        PRODISSEDIT.Enabled = True
                         YARNDYEINGPROGRAM_MASTER.Enabled = True
                         YARNDYEINGPROGRAMEDIT.Enabled = True
                         YARNPROGRAMCLOSE.Enabled = True
-                        BEAMPROG_MASTER.Enabled = True
-                        BEAMPROGEDIT.Enabled = True
                     Else
                         YARNISSUEJOBBEREDIT.Enabled = False
-                        YARNISSUEKNITTINGEDIT.Enabled = False
-                        PRODISSEDIT.Enabled = False
                         YARNDYEINGPROGRAMEDIT.Enabled = False
-                        BEAMPROGEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "ROLLS RECD" Then
@@ -5117,27 +5087,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub YISSUEKNITTINGADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles YARNISSUEKNITTINGADD.Click
-        Try
-            Dim objyarnISSUE As New YarnIssueKnitting
-            objyarnISSUE.MdiParent = Me
-            objyarnISSUE.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub YISSUEKNITTINGEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles YARNISSUEKNITTINGEDIT.Click
-        Try
-            Dim objyarnISSUEDTLS As New YarnIssueKnittingDetails
-            objyarnISSUEDTLS.MdiParent = Me
-            'objyarnISSUEDTLS.FRMSTRING = "YARNISSUETOKNITTING"
-            objyarnISSUEDTLS.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub DesignProcessWiseRateChartToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DESIGNPROCESSWISERATECHART.Click
         Try
             Dim objdes As New DesignProcessWiseRateChart
@@ -5157,12 +5106,7 @@ SKIPLINE:
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then PRICELIST_MASTER.ShortcutKeys = Keys.Alt Or Keys.Control Or Keys.L
             If ClientName = "YASHVI" Then STOCKADJUSTMENT_MASTER.Text = "Item Correction"
             If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
-            If ClientName = "MOHAN" Then
-                PRODUCTIONFLOOR_MASTER.Visible = True
-                PRODUCTIONFLOORRETURN_MASTER.Visible = True
-                YARNISSUEKNITTING_MASTER.Visible = True
-                GREYRECDPRODUCTION_MASTER.Visible = True
-            End If
+
             If ClientName <> "INDRANI" Then SOREPORT_MASTER.Visible = False
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
@@ -5289,26 +5233,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub PRODISSADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PRODISSADD.Click
-        Try
-            Dim OBJPROD As New ProductionIssue
-            OBJPROD.MdiParent = Me
-            OBJPROD.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub PRODISSEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PRODISSEDIT.Click
-        Try
-            Dim OBJPROD As New ProductionIssueDetails
-            OBJPROD.MdiParent = Me
-            OBJPROD.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AddNewEntryToolStripMenuItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles YARNRECDJOBBERADD.Click
         Try
             Dim OBJYARN As New YarnRecdFromJobber
@@ -5369,26 +5293,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub GREYRECDPRODUCTIONADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GREYRECDPRODUCTIONADD.Click
-        Try
-            Dim OBJGREY As New GreyRecdProduction
-            OBJGREY.MdiParent = Me
-            OBJGREY.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GREYRECDPRODUCTIONEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GREYRECDPRODUCTIONEDIT.Click
-        Try
-            Dim OBJGREY As New GreyRecdProductionDetails
-            OBJGREY.MdiParent = Me
-            OBJGREY.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub JOBOUTTYPE_ADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles JOBOUTTYPEADD.Click
         Try
             Dim OBJJO As New JobOutTypeMaster
@@ -5424,26 +5328,6 @@ SKIPLINE:
             Dim OBJSTOCK As New QualityWiseColorWiseStock
             OBJSTOCK.MdiParent = Me
             OBJSTOCK.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub PRODRETADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PRODRETADD.Click
-        Try
-            Dim OBJPRET As New ProductionFloorReturn
-            OBJPRET.MdiParent = Me
-            OBJPRET.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub PRODRETURNEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PRODRETURNEDIT.Click
-        Try
-            Dim OBJPRET As New ProductionFloorReturnDetails
-            OBJPRET.MdiParent = Me
-            OBJPRET.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -8644,26 +8528,6 @@ SKIPLINE:
             Dim OBJSHELF As New UpdateRackShelfDetails
             OBJSHELF.MdiParent = Me
             OBJSHELF.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub AddNewToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles BEAMPROGADD.Click
-        Try
-            Dim OBJBP As New BeamProgram
-            OBJBP.MdiParent = Me
-            OBJBP.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub EditExistingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BEAMPROGEDIT.Click
-        Try
-            Dim OBJPRJ As New BeamProgramDetails
-            OBJPRJ.MdiParent = Me
-            OBJPRJ.Show()
         Catch ex As Exception
             Throw ex
         End Try
