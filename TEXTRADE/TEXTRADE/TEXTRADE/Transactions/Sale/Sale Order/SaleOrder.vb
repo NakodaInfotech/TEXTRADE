@@ -143,6 +143,7 @@ Public Class SaleOrder
             Dim RATE As String = ""
             Dim PER As String = ""
             Dim AMOUNT As String = ""
+            Dim SCHDATE As String = ""
             Dim RECDQTY As String = ""
             Dim RECDMTRS As String = ""
             Dim DONE As String = ""
@@ -166,6 +167,7 @@ Public Class SaleOrder
                         RATE = row.Cells(GRATE.Index).Value
                         PER = row.Cells(GPER.Index).Value
                         AMOUNT = row.Cells(GAMOUNT.Index).Value
+                        SCHDATE = Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         RECDQTY = Val(row.Cells(GRECDQTY.Index).Value)
                         RECDMTRS = Val(row.Cells(GRECDMTRS.Index).Value)
 
@@ -188,6 +190,7 @@ Public Class SaleOrder
                         RATE = RATE & "|" & row.Cells(GRATE.Index).Value
                         PER = PER & "|" & row.Cells(GPER.Index).Value
                         AMOUNT = AMOUNT & "|" & row.Cells(GAMOUNT.Index).Value
+                        SCHDATE = SCHDATE & "|" & Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         RECDQTY = RECDQTY & "|" & Val(row.Cells(GRECDQTY.Index).Value)
                         RECDMTRS = RECDMTRS & "|" & Val(row.Cells(GRECDMTRS.Index).Value)
 
@@ -213,6 +216,7 @@ Public Class SaleOrder
             alParaval.Add(RATE)
             alParaval.Add(PER)
             alParaval.Add(AMOUNT)
+            alParaval.Add(SCHDATE)
             alParaval.Add(RECDQTY)
             alParaval.Add(RECDMTRS)
             alParaval.Add(DONE)
@@ -308,6 +312,7 @@ Public Class SaleOrder
             GRIDSO.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.00")
             GRIDSO.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
             GRIDSO.Item(GAMOUNT.Index, TEMPROW).Value = Format(Val(TXTAMOUNT.Text.Trim), "0.00")
+            GRIDSO.Item(GSCHEDULEDATE.Index, TEMPROW).Value = Format(SCHEDDATE.Value.Date, "dd/MM/yyyy")
 
             GRIDDOUBLECLICK = False
         End If
@@ -1018,7 +1023,7 @@ line1:
 
 
 
-                    GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Val(dr("RECDQTY")), Val(dr("RECDMTRS")), dr("DONE"), dr("SAMPLEDONE"), dr("CLOSED"))
+                    GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Format(Convert.ToDateTime(dr("SCHEDULEDATE")).Date, "dd/MM/yyyy"), Val(dr("RECDQTY")), Val(dr("RECDMTRS")), dr("DONE"), dr("SAMPLEDONE"), dr("CLOSED"))
 
                     If Val(dr("RECDQTY")) > 0 Or Val(dr("RECDMTRS")) > 0 Then
                         GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
@@ -1437,7 +1442,7 @@ line1:
                 TXTRATE.Text = GRIDSO.Item(GRATE.Index, GRIDSO.CurrentRow.Index).Value.ToString
                 CMBPER.Text = GRIDSO.Item(GPER.Index, GRIDSO.CurrentRow.Index).Value.ToString
                 TXTAMOUNT.Text = GRIDSO.Item(GAMOUNT.Index, GRIDSO.CurrentRow.Index).Value.ToString
-
+                SCHEDDATE.Value = Convert.ToDateTime(GRIDSO.Item(GSCHEDULEDATE.Index, GRIDSO.CurrentRow.Index).Value).Date
 
 
                 'GET ITEMCODE
@@ -3869,5 +3874,61 @@ LINE1:
 
     Private Sub TXTRATE_Enter(sender As Object, e As EventArgs) Handles TXTRATE.Enter
         TXTRATE.SelectAll()
+    End Sub
+    Private Sub SCHEDDATE_Validating(sender As Object, e As CancelEventArgs) Handles SCHEDDATE.Validating
+        Try
+            If ClientName = "SWPL" Then
+                If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And ((SALEORDERONMTRS = False And Val(txtQTY.Text.Trim) > 0) Or (SALEORDERONMTRS = True And Val(TXTMTRS.Text.Trim) > 0)) Then
+                    'If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
+                    '    If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    'End If
+                    'fillgrid()
+                    'total()
+
+                    'IF COLOR IS NOT BLANK THEN ADD ONLY THAT MATCHING
+                    If cmbcolor.Text.Trim = "" And GRIDDOUBLECLICK = False And ClientName = "SOFTAS" Then
+                        If MsgBox("Enter Order for all Shade?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo LINESINGLE
+                        Dim OBJCMN As New ClsCommon
+                        Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT COLORMASTER.COLOR_name AS MATCHING FROM DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id WHERE DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId, "", "")
+                        For Each DTROW As DataRow In DT.Rows
+
+                            GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, DTROW("MATCHING"))
+                            If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
+                                If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                            End If
+
+                            CALC()
+                            If ClientName <> "SWPL" Then
+                                fillgrid(DTROW("MATCHING"))
+                            End If
+                            TOTAL()
+                        Next
+                    Else
+LINESINGLE:
+
+                        If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
+                            If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                        End If
+                        If ClientName = "SOFTAS" AndAlso cmbcolor.Text.Trim <> "" Then
+                            fillgrid(cmbcolor.Text.Trim)
+                        Else
+                            If ClientName = "SOFTAS" Then
+                                MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
+                                cmbcolor.Focus()
+                                Exit Sub
+                            End If
+                        End If
+                        If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
+                        TOTAL()
+                    End If
+                Else
+                    MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

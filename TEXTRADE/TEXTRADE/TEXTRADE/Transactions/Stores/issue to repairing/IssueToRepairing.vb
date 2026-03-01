@@ -5,7 +5,7 @@ Public Class IssueToRepairing
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public EDIT As Boolean
-    Public TEMPCONSUMENO As Integer
+    Public TEMPREPAIRNO As Integer
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
 
@@ -61,7 +61,7 @@ Public Class IssueToRepairing
     End Sub
 
     Sub getmax_BILL_no()
-        Dim DTTABLE As DataTable = getmax(" isnull(max(CONSUME_NO),0) + 1 ", "  CONSUMPTION ", " AND CONSUME_YEARID = " & YearId)
+        Dim DTTABLE As DataTable = getmax(" isnull(max(ISS_NO),0) + 1 ", "  ISSUETOREPAIR ", " AND ISS_YEARID = " & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTREPAIRNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -126,7 +126,7 @@ Public Class IssueToRepairing
 
                 Dim OBJCONSUME As New ClsIssueToRepairing
                 Dim ALPARAVAL As New ArrayList
-                ALPARAVAL.Add(TEMPCONSUMENO)
+                ALPARAVAL.Add(TEMPREPAIRNO)
                 ALPARAVAL.Add(YearId)
                 OBJCONSUME.alParaval = ALPARAVAL
                 Dim dttable As DataTable = OBJCONSUME.SELECTCONSUME()
@@ -134,7 +134,7 @@ Public Class IssueToRepairing
                 If dttable.Rows.Count > 0 Then
                     For Each dr As DataRow In dttable.Rows
 
-                        TXTREPAIRNO.Text = TEMPCONSUMENO
+                        TXTREPAIRNO.Text = TEMPREPAIRNO
                         REPAIRDATE.Text = Format(Convert.ToDateTime(dr("REPAIRDATE")).Date, "dd/MM/yyyy")
                         CMBGODOWN.Text = dr("GODOWN")
                         TXTTENTATIVEDAYS.Text = dr("TENTATIVEDAYS")
@@ -225,7 +225,7 @@ Public Class IssueToRepairing
                 End If
 
                 Dim DTTABLE As DataTable = OBJCONSUME.SAVE()
-                TEMPCONSUMENO = DTTABLE.Rows(0).Item(0)
+                TEMPREPAIRNO = DTTABLE.Rows(0).Item(0)
                 MessageBox.Show("Details Added")
 
             Else
@@ -233,7 +233,7 @@ Public Class IssueToRepairing
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                alParaval.Add(TEMPCONSUMENO)
+                alParaval.Add(TEMPREPAIRNO)
                 IntResult = OBJCONSUME.UPDATE()
                 MessageBox.Show("Details Updated")
                 EDIT = False
@@ -319,16 +319,16 @@ Public Class IssueToRepairing
             Cursor.Current = Cursors.WaitCursor
             GRIDCONSUME.RowCount = 0
 LINE1:
-            TEMPCONSUMENO = Val(TXTREPAIRNO.Text) - 1
-            If TEMPCONSUMENO > 0 Then
+            TEMPREPAIRNO = Val(TXTREPAIRNO.Text) - 1
+            If TEMPREPAIRNO > 0 Then
                 EDIT = True
                 StoreConsumption_Load(sender, e)
             Else
                 CLEAR()
                 EDIT = False
             End If
-            If GRIDCONSUME.RowCount = 0 And TEMPCONSUMENO > 1 Then
-                TXTREPAIRNO.Text = TEMPCONSUMENO
+            If GRIDCONSUME.RowCount = 0 And TEMPREPAIRNO > 1 Then
+                TXTREPAIRNO.Text = TEMPREPAIRNO
                 GoTo LINE1
             End If
         Catch ex As Exception
@@ -341,26 +341,7 @@ LINE1:
     End Sub
 
     Private Sub toolnext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles toolnext.Click
-        '        Try
-        'LINE1:
-        '            TEMPCONSUMENO = Val(TXTCONSUMENO.Text) + 1
-        '            getmax_BILL_no()
-        '            Dim MAXNO As Integer = TXTCONSUMENO.Text.Trim
-        '            clear()
-        '            If Val(TXTCONSUMENO.Text) - 1 >= TEMPCONSUMENO Then
-        '                EDIT = True
-        '                StoreConsumption_Load(sender, e)
-        '            Else
-        '                clear()
-        '                EDIT = False
-        '            End If
-        '            If Val(TXTQTY.Text.Trim) = 0 And TEMPCONSUMENO < MAXNO Then
-        '                TXTCONSUMENO.Text = TEMPCONSUMENO
-        '                GoTo LINE1
-        '            End If
-        '        Catch ex As Exception
-        '            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        '        End Try
+
 
         Try
             If USEREDIT = False And USERVIEW = False Then
@@ -369,19 +350,19 @@ LINE1:
             End If
             GRIDCONSUME.RowCount = 0
 LINE1:
-            TEMPCONSUMENO = Val(TXTREPAIRNO.Text) + 1
+            TEMPREPAIRNO = Val(TXTREPAIRNO.Text) + 1
             getmax_BILL_no()
             Dim MAXNO As Integer = TXTREPAIRNO.Text.Trim
             CLEAR()
-            If Val(TXTREPAIRNO.Text) - 1 >= TEMPCONSUMENO Then
+            If Val(TXTREPAIRNO.Text) - 1 >= TEMPREPAIRNO Then
                 EDIT = True
                 StoreConsumption_Load(sender, e)
             Else
                 CLEAR()
                 EDIT = False
             End If
-            If GRIDCONSUME.RowCount = 0 And TEMPCONSUMENO < MAXNO Then
-                TXTREPAIRNO.Text = TEMPCONSUMENO
+            If GRIDCONSUME.RowCount = 0 And TEMPREPAIRNO < MAXNO Then
+                TXTREPAIRNO.Text = TEMPREPAIRNO
                 GoTo LINE1
             End If
         Catch ex As Exception
@@ -393,8 +374,8 @@ LINE1:
     Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
         Try
             If Val(tstxtbillno.Text.Trim) > 0 Then
-                TEMPCONSUMENO = Val(tstxtbillno.Text)
-                If TEMPCONSUMENO > 0 Then
+                TEMPREPAIRNO = Val(tstxtbillno.Text)
+                If TEMPREPAIRNO > 0 Then
                     EDIT = True
                     StoreConsumption_Load(sender, e)
                 Else
@@ -435,12 +416,12 @@ LINE1:
                     Exit Sub
                 End If
 
-                If MsgBox("Delete Consumption?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Delete Issue To Repair?", MsgBoxStyle.YesNo) = vbYes Then
                     Dim alParaval As New ArrayList
                     alParaval.Add(TXTREPAIRNO.Text.Trim)
                     alParaval.Add(YearId)
 
-                    Dim ClsDO As New ClsStoreConsumption
+                    Dim ClsDO As New ClsIssueToRepairing
                     ClsDO.alParaval = alParaval
                     Dim IntResult As Integer = ClsDO.DELETE()
                     MsgBox("Entry Deleted Successfully")

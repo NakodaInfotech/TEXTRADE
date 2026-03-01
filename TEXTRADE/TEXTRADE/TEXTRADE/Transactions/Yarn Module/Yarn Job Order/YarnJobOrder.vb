@@ -21,9 +21,9 @@ Public Class YarnJobOrder
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public FRMSTRING As String
     Dim TEMPMSG As Integer
-    Dim DT_SELDETAILS As New DataTable
-    Dim DT_WARPDETAILS As New DataTable
-    Dim DT_WEFTDETAILS As New DataTable
+    'Dim DT_SELDETAILS As New DataTable
+    'Dim DT_WARPDETAILS As New DataTable
+    'Dim DT_WEFTDETAILS As New DataTable
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -50,14 +50,14 @@ Public Class YarnJobOrder
         GRIDWARP.RowCount = 0
         GRIDWEFT.RowCount = 0
         CMBITEMNAME.Enabled = True
-        DT_WARPDETAILS.Reset()
-        DT_WARPDETAILS.Columns.Add("WDSRNO")
-        DT_WARPDETAILS.Columns.Add("WDSHADE")
-        DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
-        DT_WEFTDETAILS.Reset()
-        DT_WEFTDETAILS.Columns.Add("FDSRNO")
-        DT_WEFTDETAILS.Columns.Add("FDSHADE")
-        DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
+        'DT_WARPDETAILS.Reset()
+        'DT_WARPDETAILS.Columns.Add("WDSRNO")
+        'DT_WARPDETAILS.Columns.Add("WDSHADE")
+        'DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
+        'DT_WEFTDETAILS.Reset()
+        'DT_WEFTDETAILS.Columns.Add("FDSRNO")
+        'DT_WEFTDETAILS.Columns.Add("FDSHADE")
+        'DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
         Ep.Clear()
         lbllocked.Visible = False
         PBlock.Visible = False
