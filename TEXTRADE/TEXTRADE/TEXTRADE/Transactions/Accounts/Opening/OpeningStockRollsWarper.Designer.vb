@@ -22,13 +22,13 @@ Partial Class OpeningStockRollsWarper
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.cmbcode = New System.Windows.Forms.ComboBox()
@@ -53,9 +53,11 @@ Partial Class OpeningStockRollsWarper
         Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPROGRAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TXTPROGRAMNO = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDSTOCK, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,8 +79,8 @@ Partial Class OpeningStockRollsWarper
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1185, 592)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 592)
+        Me.BlendPanel1.TabIndex = 0
         '
         'TXTADD
         '
@@ -155,6 +157,7 @@ Partial Class OpeningStockRollsWarper
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.TXTPROGRAMNO)
         Me.Panel1.Controls.Add(Me.CMBMILL)
         Me.Panel1.Controls.Add(Me.CMBYARNQUALITY)
         Me.Panel1.Controls.Add(Me.TXTREMARKS)
@@ -163,22 +166,22 @@ Partial Class OpeningStockRollsWarper
         Me.Panel1.Controls.Add(Me.TXTTOTALENDS)
         Me.Panel1.Controls.Add(Me.CMBWARPER)
         Me.Panel1.Controls.Add(Me.GRIDSTOCK)
-        Me.Panel1.Location = New System.Drawing.Point(12, 12)
+        Me.Panel1.Location = New System.Drawing.Point(8, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1160, 542)
-        Me.Panel1.TabIndex = 1
+        Me.Panel1.Size = New System.Drawing.Size(1219, 542)
+        Me.Panel1.TabIndex = 0
         '
         'CMBMILL
         '
         Me.CMBMILL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBMILL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMILL.BackColor = System.Drawing.Color.White
+        Me.CMBMILL.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBMILL.FormattingEnabled = True
         Me.CMBMILL.Location = New System.Drawing.Point(484, 3)
         Me.CMBMILL.Name = "CMBMILL"
         Me.CMBMILL.Size = New System.Drawing.Size(200, 23)
-        Me.CMBMILL.TabIndex = 3
+        Me.CMBMILL.TabIndex = 2
         '
         'CMBYARNQUALITY
         '
@@ -190,13 +193,13 @@ Partial Class OpeningStockRollsWarper
         Me.CMBYARNQUALITY.Location = New System.Drawing.Point(284, 3)
         Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
         Me.CMBYARNQUALITY.Size = New System.Drawing.Size(200, 23)
-        Me.CMBYARNQUALITY.TabIndex = 2
+        Me.CMBYARNQUALITY.TabIndex = 1
         '
         'TXTREMARKS
         '
         Me.TXTREMARKS.BackColor = System.Drawing.Color.White
         Me.TXTREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTREMARKS.Location = New System.Drawing.Point(924, 3)
+        Me.TXTREMARKS.Location = New System.Drawing.Point(984, 3)
         Me.TXTREMARKS.MaxLength = 200
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(200, 23)
@@ -206,33 +209,33 @@ Partial Class OpeningStockRollsWarper
         '
         Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(844, 3)
+        Me.TXTWT.Location = New System.Drawing.Point(824, 3)
         Me.TXTWT.MaxLength = 10
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(80, 23)
-        Me.TXTWT.TabIndex = 6
+        Me.TXTWT.TabIndex = 5
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTROLLS
         '
-        Me.TXTROLLS.BackColor = System.Drawing.Color.White
+        Me.TXTROLLS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTROLLS.Location = New System.Drawing.Point(764, 3)
+        Me.TXTROLLS.Location = New System.Drawing.Point(754, 3)
         Me.TXTROLLS.MaxLength = 10
         Me.TXTROLLS.Name = "TXTROLLS"
-        Me.TXTROLLS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTROLLS.TabIndex = 5
+        Me.TXTROLLS.Size = New System.Drawing.Size(70, 23)
+        Me.TXTROLLS.TabIndex = 4
         Me.TXTROLLS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALENDS
         '
-        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.White
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(684, 3)
         Me.TXTTOTALENDS.MaxLength = 10
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
-        Me.TXTTOTALENDS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTTOTALENDS.TabIndex = 4
+        Me.TXTTOTALENDS.Size = New System.Drawing.Size(70, 23)
+        Me.TXTTOTALENDS.TabIndex = 3
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBWARPER
@@ -253,28 +256,28 @@ Partial Class OpeningStockRollsWarper
         Me.GRIDSTOCK.AllowUserToDeleteRows = False
         Me.GRIDSTOCK.AllowUserToResizeColumns = False
         Me.GRIDSTOCK.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSTOCK.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSTOCK.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDSTOCK.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSTOCK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSTOCK.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSTOCK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSTOCK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDSTOCK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSTOCK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GOPROLLSTOCKNOSIZER, Me.GWARPER, Me.GYARNQUALITY, Me.GMILL, Me.GENDS, Me.GROLLS, Me.GWT, Me.GREMARKS, Me.GOUTROLLS, Me.GOUTWT})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSTOCK.DefaultCellStyle = DataGridViewCellStyle6
+        Me.GRIDSTOCK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GOPROLLSTOCKNOSIZER, Me.GWARPER, Me.GYARNQUALITY, Me.GMILL, Me.GENDS, Me.GROLLS, Me.GWT, Me.GPROGRAMNO, Me.GREMARKS, Me.GOUTROLLS, Me.GOUTWT})
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSTOCK.DefaultCellStyle = DataGridViewCellStyle13
         Me.GRIDSTOCK.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDSTOCK.Location = New System.Drawing.Point(3, 26)
         Me.GRIDSTOCK.MultiSelect = False
@@ -283,14 +286,14 @@ Partial Class OpeningStockRollsWarper
         Me.GRIDSTOCK.RowHeadersVisible = False
         Me.GRIDSTOCK.RowHeadersWidth = 30
         Me.GRIDSTOCK.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSTOCK.RowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSTOCK.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.GRIDSTOCK.RowTemplate.Height = 20
         Me.GRIDSTOCK.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSTOCK.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTOCK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDSTOCK.Size = New System.Drawing.Size(1150, 513)
+        Me.GRIDSTOCK.Size = New System.Drawing.Size(1213, 513)
         Me.GRIDSTOCK.TabIndex = 7
         Me.GRIDSTOCK.TabStop = False
         '
@@ -300,7 +303,7 @@ Partial Class OpeningStockRollsWarper
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(552, 560)
+        Me.cmdexit.Location = New System.Drawing.Point(577, 560)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 2
@@ -346,36 +349,45 @@ Partial Class OpeningStockRollsWarper
         '
         'GENDS
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GENDS.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GENDS.DefaultCellStyle = DataGridViewCellStyle10
         Me.GENDS.HeaderText = "ENDS"
         Me.GENDS.Name = "GENDS"
         Me.GENDS.ReadOnly = True
         Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GENDS.Width = 80
+        Me.GENDS.Width = 70
         '
         'GROLLS
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GROLLS.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GROLLS.DefaultCellStyle = DataGridViewCellStyle11
         Me.GROLLS.HeaderText = "Rolls"
         Me.GROLLS.Name = "GROLLS"
         Me.GROLLS.ReadOnly = True
         Me.GROLLS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GROLLS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GROLLS.Width = 80
+        Me.GROLLS.Width = 70
         '
         'GWT
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle12
         Me.GWT.HeaderText = "Weight"
         Me.GWT.Name = "GWT"
         Me.GWT.ReadOnly = True
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 80
+        '
+        'GPROGRAMNO
+        '
+        Me.GPROGRAMNO.HeaderText = "Program No"
+        Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GPROGRAMNO.ReadOnly = True
+        Me.GPROGRAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPROGRAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPROGRAMNO.Width = 80
         '
         'GREMARKS
         '
@@ -400,10 +412,21 @@ Partial Class OpeningStockRollsWarper
         Me.GOUTWT.ReadOnly = True
         Me.GOUTWT.Visible = False
         '
+        'TXTPROGRAMNO
+        '
+        Me.TXTPROGRAMNO.BackColor = System.Drawing.Color.White
+        Me.TXTPROGRAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPROGRAMNO.Location = New System.Drawing.Point(904, 3)
+        Me.TXTPROGRAMNO.MaxLength = 10
+        Me.TXTPROGRAMNO.Name = "TXTPROGRAMNO"
+        Me.TXTPROGRAMNO.Size = New System.Drawing.Size(80, 23)
+        Me.TXTPROGRAMNO.TabIndex = 6
+        Me.TXTPROGRAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'OpeningStockRollsWarper
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1185, 592)
+        Me.ClientSize = New System.Drawing.Size(1234, 592)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -445,7 +468,9 @@ Partial Class OpeningStockRollsWarper
     Friend WithEvents GENDS As DataGridViewTextBoxColumn
     Friend WithEvents GROLLS As DataGridViewTextBoxColumn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
+    Friend WithEvents GPROGRAMNO As DataGridViewTextBoxColumn
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTROLLS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTPROGRAMNO As TextBox
 End Class

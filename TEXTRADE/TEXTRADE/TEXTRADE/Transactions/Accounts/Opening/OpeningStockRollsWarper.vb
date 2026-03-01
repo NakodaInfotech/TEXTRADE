@@ -43,6 +43,7 @@ Public Class OpeningStockRollsWarper
         TXTTOTALENDS.Clear()
         TXTROLLS.Clear()
         TXTWT.Clear()
+        TXTPROGRAMNO.Clear()
         TXTREMARKS.Clear()
     End Sub
 
@@ -76,7 +77,7 @@ Public Class OpeningStockRollsWarper
             If dttable.Rows.Count > 0 Then
                 'ITEM GRID
                 For Each ROW As DataRow In dttable.Rows
-                    GRIDSTOCK.Rows.Add(Val(ROW("OPROLLSTOCKNOWARPER")), ROW("WARPER"), ROW("YARNQUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), ROW("REMARKS"), Val(ROW("OUTROLLS")), Val(ROW("OUTWT")))
+                    GRIDSTOCK.Rows.Add(Val(ROW("OPROLLSTOCKNOWARPER")), ROW("WARPER"), ROW("YARNQUALITY"), ROW("MILL"), Val(ROW("ENDS")), Val(ROW("ROLLS")), Format(Val(ROW("WT")), "0.000"), Val(ROW("PROGRAMNO")), ROW("REMARKS"), Val(ROW("OUTROLLS")), Val(ROW("OUTWT")))
                     If Val(ROW("OUTROLLS")) > 0 Or Val(ROW("OUTWT")) > 0 Then GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                 Next
             End If
@@ -106,6 +107,7 @@ Public Class OpeningStockRollsWarper
             ALPARAVAL.Add(Val(TXTTOTALENDS.Text.Trim))
             ALPARAVAL.Add(Val(TXTROLLS.Text.Trim))
             ALPARAVAL.Add(Format(Val(TXTWT.Text.Trim), "0.000"))
+            ALPARAVAL.Add(Val(TXTPROGRAMNO.Text.Trim))
             ALPARAVAL.Add(TXTREMARKS.Text.Trim)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Userid)
@@ -172,9 +174,10 @@ Public Class OpeningStockRollsWarper
             CMBWARPER.Text = GRIDSTOCK.Item(GWARPER.Index, e.RowIndex).Value
             CMBYARNQUALITY.Text = GRIDSTOCK.Item(GYARNQUALITY.Index, e.RowIndex).Value
             CMBMILL.Text = GRIDSTOCK.Item(GMILL.Index, e.RowIndex).Value
-            TXTTOTALENDS.Text = GRIDSTOCK.Item(GENDS.Index, e.RowIndex).Value
-            TXTROLLS.Text = GRIDSTOCK.Item(GROLLS.Index, e.RowIndex).Value
-            TXTWT.Text = GRIDSTOCK.Item(GWT.Index, e.RowIndex).Value
+            TXTTOTALENDS.Text = Val(GRIDSTOCK.Item(GENDS.Index, e.RowIndex).Value)
+            TXTROLLS.Text = Val(GRIDSTOCK.Item(GROLLS.Index, e.RowIndex).Value)
+            TXTWT.Text = Val(GRIDSTOCK.Item(GWT.Index, e.RowIndex).Value)
+            TXTPROGRAMNO.Text = Val(GRIDSTOCK.Item(GPROGRAMNO.Index, e.RowIndex).Value)
             TXTREMARKS.Text = GRIDSTOCK.Item(GREMARKS.Index, e.RowIndex).Value
 
             GRIDDOUBLECLICK = True
@@ -234,7 +237,7 @@ Public Class OpeningStockRollsWarper
         numdot3(e, sender, Me)
     End Sub
 
-    Private Sub TXTROLLS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTROLLS.KeyPress, TXTTOTALENDS.KeyPress
+    Private Sub TXTROLLS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTROLLS.KeyPress, TXTTOTALENDS.KeyPress, TXTPROGRAMNO.KeyPress
         numkeypress(e, sender, Me)
     End Sub
 

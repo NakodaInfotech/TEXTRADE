@@ -46,6 +46,7 @@ Partial Class OpeningStockRolls
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
         Me.CMBOURGODOWN = New System.Windows.Forms.ComboBox()
         Me.GRIDSTOCK = New System.Windows.Forms.DataGridView()
+        Me.cmdexit = New System.Windows.Forms.Button()
         Me.GOPROLLSTOCKNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGODOWN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,10 +55,11 @@ Partial Class OpeningStockRolls
         Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPROGRAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTROLLS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.TXTPROGRAMNO = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDSTOCK, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +81,7 @@ Partial Class OpeningStockRolls
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1292, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1304, 581)
         Me.BlendPanel1.TabIndex = 0
         '
         'TXTADD
@@ -157,6 +159,7 @@ Partial Class OpeningStockRolls
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.TXTPROGRAMNO)
         Me.Panel1.Controls.Add(Me.CMBNAME)
         Me.Panel1.Controls.Add(Me.CMBMILL)
         Me.Panel1.Controls.Add(Me.CMBYARNQUALITY)
@@ -166,9 +169,9 @@ Partial Class OpeningStockRolls
         Me.Panel1.Controls.Add(Me.TXTTOTALENDS)
         Me.Panel1.Controls.Add(Me.CMBOURGODOWN)
         Me.Panel1.Controls.Add(Me.GRIDSTOCK)
-        Me.Panel1.Location = New System.Drawing.Point(9, 12)
+        Me.Panel1.Location = New System.Drawing.Point(6, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1275, 525)
+        Me.Panel1.Size = New System.Drawing.Size(1297, 525)
         Me.Panel1.TabIndex = 0
         '
         'CMBNAME
@@ -211,17 +214,17 @@ Partial Class OpeningStockRolls
         '
         Me.TXTREMARKS.BackColor = System.Drawing.Color.White
         Me.TXTREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTREMARKS.Location = New System.Drawing.Point(963, 3)
+        Me.TXTREMARKS.Location = New System.Drawing.Point(1023, 3)
         Me.TXTREMARKS.MaxLength = 200
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(200, 23)
-        Me.TXTREMARKS.TabIndex = 7
+        Me.TXTREMARKS.TabIndex = 8
         '
         'TXTWT
         '
         Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(883, 3)
+        Me.TXTWT.Location = New System.Drawing.Point(863, 3)
         Me.TXTWT.MaxLength = 10
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(80, 23)
@@ -232,10 +235,10 @@ Partial Class OpeningStockRolls
         '
         Me.TXTROLLS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTROLLS.Location = New System.Drawing.Point(803, 3)
+        Me.TXTROLLS.Location = New System.Drawing.Point(793, 3)
         Me.TXTROLLS.MaxLength = 10
         Me.TXTROLLS.Name = "TXTROLLS"
-        Me.TXTROLLS.Size = New System.Drawing.Size(80, 23)
+        Me.TXTROLLS.Size = New System.Drawing.Size(70, 23)
         Me.TXTROLLS.TabIndex = 5
         Me.TXTROLLS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -245,7 +248,7 @@ Partial Class OpeningStockRolls
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(723, 3)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
-        Me.TXTTOTALENDS.Size = New System.Drawing.Size(80, 23)
+        Me.TXTTOTALENDS.Size = New System.Drawing.Size(70, 23)
         Me.TXTTOTALENDS.TabIndex = 4
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -280,7 +283,7 @@ Partial Class OpeningStockRolls
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDSTOCK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDSTOCK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSTOCK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GOPROLLSTOCKNO, Me.GGODOWN, Me.GNAME, Me.GYARNQUALITY, Me.GMILL, Me.GENDS, Me.GROLLS, Me.GWT, Me.GREMARKS, Me.GOUTROLLS, Me.GOUTWT})
+        Me.GRIDSTOCK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GOPROLLSTOCKNO, Me.GGODOWN, Me.GNAME, Me.GYARNQUALITY, Me.GMILL, Me.GENDS, Me.GROLLS, Me.GWT, Me.GPROGRAMNO, Me.GREMARKS, Me.GOUTROLLS, Me.GOUTWT})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -304,9 +307,22 @@ Partial Class OpeningStockRolls
         Me.GRIDSTOCK.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSTOCK.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTOCK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDSTOCK.Size = New System.Drawing.Size(1270, 496)
-        Me.GRIDSTOCK.TabIndex = 8
+        Me.GRIDSTOCK.Size = New System.Drawing.Size(1292, 496)
+        Me.GRIDSTOCK.TabIndex = 9
         Me.GRIDSTOCK.TabStop = False
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(606, 543)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 1
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
         '
         'GOPROLLSTOCKNO
         '
@@ -363,7 +379,7 @@ Partial Class OpeningStockRolls
         Me.GENDS.ReadOnly = True
         Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GENDS.Width = 80
+        Me.GENDS.Width = 70
         '
         'GROLLS
         '
@@ -374,7 +390,7 @@ Partial Class OpeningStockRolls
         Me.GROLLS.ReadOnly = True
         Me.GROLLS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GROLLS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GROLLS.Width = 80
+        Me.GROLLS.Width = 70
         '
         'GWT
         '
@@ -386,6 +402,15 @@ Partial Class OpeningStockRolls
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 80
+        '
+        'GPROGRAMNO
+        '
+        Me.GPROGRAMNO.HeaderText = "Program No"
+        Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GPROGRAMNO.ReadOnly = True
+        Me.GPROGRAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPROGRAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPROGRAMNO.Width = 80
         '
         'GREMARKS
         '
@@ -410,23 +435,21 @@ Partial Class OpeningStockRolls
         Me.GOUTWT.ReadOnly = True
         Me.GOUTWT.Visible = False
         '
-        'cmdexit
+        'TXTPROGRAMNO
         '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(606, 543)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 1
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
+        Me.TXTPROGRAMNO.BackColor = System.Drawing.Color.White
+        Me.TXTPROGRAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPROGRAMNO.Location = New System.Drawing.Point(943, 3)
+        Me.TXTPROGRAMNO.MaxLength = 10
+        Me.TXTPROGRAMNO.Name = "TXTPROGRAMNO"
+        Me.TXTPROGRAMNO.Size = New System.Drawing.Size(80, 23)
+        Me.TXTPROGRAMNO.TabIndex = 7
+        Me.TXTPROGRAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'OpeningStockRolls
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1292, 581)
+        Me.ClientSize = New System.Drawing.Size(1304, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -462,6 +485,7 @@ Partial Class OpeningStockRolls
     Friend WithEvents CMBOURGODOWN As ComboBox
     Friend WithEvents GRIDSTOCK As DataGridView
     Friend WithEvents cmdexit As Button
+    Friend WithEvents TXTPROGRAMNO As TextBox
     Friend WithEvents GOPROLLSTOCKNO As DataGridViewTextBoxColumn
     Friend WithEvents GGODOWN As DataGridViewTextBoxColumn
     Friend WithEvents GNAME As DataGridViewTextBoxColumn
@@ -470,6 +494,7 @@ Partial Class OpeningStockRolls
     Friend WithEvents GENDS As DataGridViewTextBoxColumn
     Friend WithEvents GROLLS As DataGridViewTextBoxColumn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
+    Friend WithEvents GPROGRAMNO As DataGridViewTextBoxColumn
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTROLLS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn

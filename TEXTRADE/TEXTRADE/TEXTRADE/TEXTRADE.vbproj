@@ -10272,6 +10272,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRolls.resx">
       <DependentUpon>OpeningStockRolls.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.resx">
+      <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\SelectAdjustBills.resx">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </EmbeddedResource>
