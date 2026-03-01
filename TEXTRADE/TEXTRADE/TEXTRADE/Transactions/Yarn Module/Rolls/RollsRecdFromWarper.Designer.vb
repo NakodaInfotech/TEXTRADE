@@ -38,12 +38,6 @@ Partial Class RollsRecdFromWarper
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.CMBCONTRACTOR = New System.Windows.Forms.ComboBox()
-        Me.LBLRETGROSSTOTAL = New System.Windows.Forms.Label()
-        Me.LBLRETFIRKATOTAL = New System.Windows.Forms.Label()
-        Me.LBLRETNETTTOTAL = New System.Windows.Forms.Label()
-        Me.LBLUSEDNETTTOTAL = New System.Windows.Forms.Label()
-        Me.LBLUSEDGROSSTOTAL = New System.Windows.Forms.Label()
-        Me.LBLUSEDFIRKATOTAL = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.TXTLONGATION = New System.Windows.Forms.TextBox()
         Me.LBLWINDINGMILL = New System.Windows.Forms.Label()
@@ -189,6 +183,12 @@ Partial Class RollsRecdFromWarper
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.lbllocked = New System.Windows.Forms.Label()
         Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
+        Me.LBLRETGROSSTOTAL = New System.Windows.Forms.Label()
+        Me.LBLRETFIRKATOTAL = New System.Windows.Forms.Label()
+        Me.LBLRETNETTTOTAL = New System.Windows.Forms.Label()
+        Me.LBLUSEDNETTTOTAL = New System.Windows.Forms.Label()
+        Me.LBLUSEDGROSSTOTAL = New System.Windows.Forms.Label()
+        Me.LBLUSEDFIRKATOTAL = New System.Windows.Forms.Label()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BlendPanel1.SuspendLayout()
@@ -212,12 +212,6 @@ Partial Class RollsRecdFromWarper
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.Label41)
         Me.BlendPanel1.Controls.Add(Me.CMBCONTRACTOR)
-        Me.BlendPanel1.Controls.Add(Me.LBLRETGROSSTOTAL)
-        Me.BlendPanel1.Controls.Add(Me.LBLRETFIRKATOTAL)
-        Me.BlendPanel1.Controls.Add(Me.LBLRETNETTTOTAL)
-        Me.BlendPanel1.Controls.Add(Me.LBLUSEDNETTTOTAL)
-        Me.BlendPanel1.Controls.Add(Me.LBLUSEDGROSSTOTAL)
-        Me.BlendPanel1.Controls.Add(Me.LBLUSEDFIRKATOTAL)
         Me.BlendPanel1.Controls.Add(Me.Label40)
         Me.BlendPanel1.Controls.Add(Me.TXTLONGATION)
         Me.BlendPanel1.Controls.Add(Me.LBLWINDINGMILL)
@@ -283,6 +277,12 @@ Partial Class RollsRecdFromWarper
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
         Me.BlendPanel1.Controls.Add(Me.lbllocked)
         Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
+        Me.BlendPanel1.Controls.Add(Me.LBLRETGROSSTOTAL)
+        Me.BlendPanel1.Controls.Add(Me.LBLRETFIRKATOTAL)
+        Me.BlendPanel1.Controls.Add(Me.LBLRETNETTTOTAL)
+        Me.BlendPanel1.Controls.Add(Me.LBLUSEDNETTTOTAL)
+        Me.BlendPanel1.Controls.Add(Me.LBLUSEDGROSSTOTAL)
+        Me.BlendPanel1.Controls.Add(Me.LBLUSEDFIRKATOTAL)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
@@ -313,78 +313,6 @@ Partial Class RollsRecdFromWarper
         Me.CMBCONTRACTOR.Name = "CMBCONTRACTOR"
         Me.CMBCONTRACTOR.Size = New System.Drawing.Size(206, 23)
         Me.CMBCONTRACTOR.TabIndex = 942
-        '
-        'LBLRETGROSSTOTAL
-        '
-        Me.LBLRETGROSSTOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLRETGROSSTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLRETGROSSTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLRETGROSSTOTAL.Location = New System.Drawing.Point(853, 475)
-        Me.LBLRETGROSSTOTAL.Name = "LBLRETGROSSTOTAL"
-        Me.LBLRETGROSSTOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLRETGROSSTOTAL.TabIndex = 941
-        Me.LBLRETGROSSTOTAL.Text = "0.00"
-        Me.LBLRETGROSSTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLRETFIRKATOTAL
-        '
-        Me.LBLRETFIRKATOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLRETFIRKATOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLRETFIRKATOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLRETFIRKATOTAL.Location = New System.Drawing.Point(756, 475)
-        Me.LBLRETFIRKATOTAL.Name = "LBLRETFIRKATOTAL"
-        Me.LBLRETFIRKATOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLRETFIRKATOTAL.TabIndex = 940
-        Me.LBLRETFIRKATOTAL.Text = "0.00"
-        Me.LBLRETFIRKATOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLRETNETTTOTAL
-        '
-        Me.LBLRETNETTTOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLRETNETTTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLRETNETTTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLRETNETTTOTAL.Location = New System.Drawing.Point(939, 475)
-        Me.LBLRETNETTTOTAL.Name = "LBLRETNETTTOTAL"
-        Me.LBLRETNETTTOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLRETNETTTOTAL.TabIndex = 939
-        Me.LBLRETNETTTOTAL.Text = "0.00"
-        Me.LBLRETNETTTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLUSEDNETTTOTAL
-        '
-        Me.LBLUSEDNETTTOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLUSEDNETTTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLUSEDNETTTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLUSEDNETTTOTAL.Location = New System.Drawing.Point(627, 475)
-        Me.LBLUSEDNETTTOTAL.Name = "LBLUSEDNETTTOTAL"
-        Me.LBLUSEDNETTTOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLUSEDNETTTOTAL.TabIndex = 938
-        Me.LBLUSEDNETTTOTAL.Text = "0.00"
-        Me.LBLUSEDNETTTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLUSEDGROSSTOTAL
-        '
-        Me.LBLUSEDGROSSTOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLUSEDGROSSTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLUSEDGROSSTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLUSEDGROSSTOTAL.Location = New System.Drawing.Point(539, 475)
-        Me.LBLUSEDGROSSTOTAL.Name = "LBLUSEDGROSSTOTAL"
-        Me.LBLUSEDGROSSTOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLUSEDGROSSTOTAL.TabIndex = 937
-        Me.LBLUSEDGROSSTOTAL.Text = "0.00"
-        Me.LBLUSEDGROSSTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LBLUSEDFIRKATOTAL
-        '
-        Me.LBLUSEDFIRKATOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.LBLUSEDFIRKATOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLUSEDFIRKATOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LBLUSEDFIRKATOTAL.Location = New System.Drawing.Point(435, 475)
-        Me.LBLUSEDFIRKATOTAL.Name = "LBLUSEDFIRKATOTAL"
-        Me.LBLUSEDFIRKATOTAL.Size = New System.Drawing.Size(41, 23)
-        Me.LBLUSEDFIRKATOTAL.TabIndex = 936
-        Me.LBLUSEDFIRKATOTAL.Text = "0.00"
-        Me.LBLUSEDFIRKATOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label40
         '
@@ -2235,6 +2163,78 @@ Partial Class RollsRecdFromWarper
         Me.LBLEINVGENERATED.Size = New System.Drawing.Size(255, 29)
         Me.LBLEINVGENERATED.TabIndex = 935
         Me.LBLEINVGENERATED.Text = "Rolls Recd From Warper"
+        '
+        'LBLRETGROSSTOTAL
+        '
+        Me.LBLRETGROSSTOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLRETGROSSTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLRETGROSSTOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLRETGROSSTOTAL.Location = New System.Drawing.Point(853, 475)
+        Me.LBLRETGROSSTOTAL.Name = "LBLRETGROSSTOTAL"
+        Me.LBLRETGROSSTOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLRETGROSSTOTAL.TabIndex = 941
+        Me.LBLRETGROSSTOTAL.Text = "0.00"
+        Me.LBLRETGROSSTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLRETFIRKATOTAL
+        '
+        Me.LBLRETFIRKATOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLRETFIRKATOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLRETFIRKATOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLRETFIRKATOTAL.Location = New System.Drawing.Point(756, 475)
+        Me.LBLRETFIRKATOTAL.Name = "LBLRETFIRKATOTAL"
+        Me.LBLRETFIRKATOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLRETFIRKATOTAL.TabIndex = 940
+        Me.LBLRETFIRKATOTAL.Text = "0.00"
+        Me.LBLRETFIRKATOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLRETNETTTOTAL
+        '
+        Me.LBLRETNETTTOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLRETNETTTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLRETNETTTOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLRETNETTTOTAL.Location = New System.Drawing.Point(939, 475)
+        Me.LBLRETNETTTOTAL.Name = "LBLRETNETTTOTAL"
+        Me.LBLRETNETTTOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLRETNETTTOTAL.TabIndex = 939
+        Me.LBLRETNETTTOTAL.Text = "0.00"
+        Me.LBLRETNETTTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLUSEDNETTTOTAL
+        '
+        Me.LBLUSEDNETTTOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLUSEDNETTTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLUSEDNETTTOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLUSEDNETTTOTAL.Location = New System.Drawing.Point(627, 475)
+        Me.LBLUSEDNETTTOTAL.Name = "LBLUSEDNETTTOTAL"
+        Me.LBLUSEDNETTTOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLUSEDNETTTOTAL.TabIndex = 938
+        Me.LBLUSEDNETTTOTAL.Text = "0.00"
+        Me.LBLUSEDNETTTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLUSEDGROSSTOTAL
+        '
+        Me.LBLUSEDGROSSTOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLUSEDGROSSTOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLUSEDGROSSTOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLUSEDGROSSTOTAL.Location = New System.Drawing.Point(539, 475)
+        Me.LBLUSEDGROSSTOTAL.Name = "LBLUSEDGROSSTOTAL"
+        Me.LBLUSEDGROSSTOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLUSEDGROSSTOTAL.TabIndex = 937
+        Me.LBLUSEDGROSSTOTAL.Text = "0.00"
+        Me.LBLUSEDGROSSTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LBLUSEDFIRKATOTAL
+        '
+        Me.LBLUSEDFIRKATOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLUSEDFIRKATOTAL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLUSEDFIRKATOTAL.ForeColor = System.Drawing.Color.Black
+        Me.LBLUSEDFIRKATOTAL.Location = New System.Drawing.Point(435, 475)
+        Me.LBLUSEDFIRKATOTAL.Name = "LBLUSEDFIRKATOTAL"
+        Me.LBLUSEDFIRKATOTAL.Size = New System.Drawing.Size(41, 23)
+        Me.LBLUSEDFIRKATOTAL.TabIndex = 936
+        Me.LBLUSEDFIRKATOTAL.Text = "0.00"
+        Me.LBLUSEDFIRKATOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'EP
         '
