@@ -22,6 +22,7 @@ Partial Class YarnPurchaseOrderDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnPurchaseOrderDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
@@ -47,6 +48,8 @@ Partial Class YarnPurchaseOrderDetails
         Me.GAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRECDBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRECDWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALBAG = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GORDERTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDONE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCLOSED = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,8 +61,15 @@ Partial Class YarnPurchaseOrderDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GBALBAG = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +79,12 @@ Partial Class YarnPurchaseOrderDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label4)
+        Me.BlendPanel1.Controls.Add(Me.TXTCOPIES)
+        Me.BlendPanel1.Controls.Add(Me.Label9)
+        Me.BlendPanel1.Controls.Add(Me.Label10)
+        Me.BlendPanel1.Controls.Add(Me.TXTTO)
+        Me.BlendPanel1.Controls.Add(Me.TXTFROM)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -340,6 +356,28 @@ Partial Class YarnPurchaseOrderDetails
         Me.GRECDWT.Visible = True
         Me.GRECDWT.VisibleIndex = 15
         '
+        'GBALBAG
+        '
+        Me.GBALBAG.Caption = "Bal Bag"
+        Me.GBALBAG.FieldName = "BALBAG"
+        Me.GBALBAG.Name = "GBALBAG"
+        Me.GBALBAG.OptionsColumn.AllowEdit = False
+        Me.GBALBAG.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBALBAG.Visible = True
+        Me.GBALBAG.VisibleIndex = 16
+        Me.GBALBAG.Width = 80
+        '
+        'GBALWT
+        '
+        Me.GBALWT.Caption = "Bal Wt"
+        Me.GBALWT.FieldName = "BALWT"
+        Me.GBALWT.Name = "GBALWT"
+        Me.GBALWT.OptionsColumn.AllowEdit = False
+        Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBALWT.Visible = True
+        Me.GBALWT.VisibleIndex = 17
+        Me.GBALWT.Width = 80
+        '
         'GORDERTYPE
         '
         Me.GORDERTYPE.Caption = "Order Type"
@@ -372,7 +410,7 @@ Partial Class YarnPurchaseOrderDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.TOOLMAIL, Me.TOOLWHATSAPP})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1184, 25)
@@ -427,27 +465,98 @@ Partial Class YarnPurchaseOrderDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a P.O. to Change"
         '
-        'GBALBAG
+        'ToolStripButton2
         '
-        Me.GBALBAG.Caption = "Bal Bag"
-        Me.GBALBAG.FieldName = "BALBAG"
-        Me.GBALBAG.Name = "GBALBAG"
-        Me.GBALBAG.OptionsColumn.AllowEdit = False
-        Me.GBALBAG.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GBALBAG.Visible = True
-        Me.GBALBAG.VisibleIndex = 16
-        Me.GBALBAG.Width = 80
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "&Print"
         '
-        'GBALWT
+        'TOOLMAIL
         '
-        Me.GBALWT.Caption = "Bal Wt"
-        Me.GBALWT.FieldName = "BALWT"
-        Me.GBALWT.Name = "GBALWT"
-        Me.GBALWT.OptionsColumn.AllowEdit = False
-        Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GBALWT.Visible = True
-        Me.GBALWT.VisibleIndex = 17
-        Me.GBALWT.Width = 80
+        Me.TOOLMAIL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLMAIL.Image = Global.TEXTRADE.My.Resources.Resources.MAIL_IMAGE
+        Me.TOOLMAIL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLMAIL.Name = "TOOLMAIL"
+        Me.TOOLMAIL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLMAIL.Text = "Mail Invoice Directly"
+        '
+        'TOOLWHATSAPP
+        '
+        Me.TOOLWHATSAPP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLWHATSAPP.Image = Global.TEXTRADE.My.Resources.Resources.WHATSAPP
+        Me.TOOLWHATSAPP.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWHATSAPP.Name = "TOOLWHATSAPP"
+        Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLWHATSAPP.Text = "&Whatsapp"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(606, 5)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(19, 14)
+        Me.Label9.TabIndex = 791
+        Me.Label9.Text = "To"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.White
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(508, 5)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(34, 14)
+        Me.Label10.TabIndex = 790
+        Me.Label10.Text = "From"
+        '
+        'TXTTO
+        '
+        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.Location = New System.Drawing.Point(627, 1)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
+        Me.TXTTO.TabIndex = 789
+        Me.TXTTO.TabStop = False
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.Location = New System.Drawing.Point(543, 1)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
+        Me.TXTFROM.TabIndex = 788
+        Me.TXTFROM.TabStop = False
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(715, 6)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 14)
+        Me.Label4.TabIndex = 799
+        Me.Label4.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.Location = New System.Drawing.Point(760, 2)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
+        Me.TXTCOPIES.TabIndex = 798
+        Me.TXTCOPIES.Text = "1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'YarnPurchaseOrderDetails
         '
@@ -508,4 +617,13 @@ Partial Class YarnPurchaseOrderDetails
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GBALBAG As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBALWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TXTTO As TextBox
+    Friend WithEvents TXTFROM As TextBox
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents TOOLMAIL As ToolStripButton
+    Friend WithEvents TOOLWHATSAPP As ToolStripButton
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TXTCOPIES As TextBox
 End Class
