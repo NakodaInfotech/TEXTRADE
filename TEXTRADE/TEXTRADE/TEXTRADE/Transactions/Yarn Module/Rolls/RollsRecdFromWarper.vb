@@ -406,7 +406,7 @@ Public Class RollsRecdFromWarper
                     Dim OBJSIZER As New DirectIssueSizer
                     OBJSIZER.ShowDialog()
                     If OBJSIZER.cmbname.Text.Trim = "" Then GoTo LINE1
-                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim)
+                    DIRECTISSUESIZER(OBJSIZER.cmbname.Text.Trim, OBJSIZER.CMBTRANSPORT.Text.Trim)
                 End If
             End If
 
