@@ -1,4 +1,6 @@
-﻿Public Class DirectIssueSizer
+﻿Imports System.ComponentModel
+
+Public Class DirectIssueSizer
 
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         If MsgBox("Exit Without Saving Direct Issue To Sizer?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
@@ -17,6 +19,8 @@
     Private Sub DirectIssueSizer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             FILLNAME(cmbname, False, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            FILLNAME(CMBTRANSPORT, False, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'TRANSPORT'")
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -48,6 +52,22 @@
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "SIZER")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTRANSPORT_Validating(sender As Object, e As CancelEventArgs) Handles CMBTRANSPORT.Validating
+        Try
+            If CMBTRANSPORT.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANSPORT, cmbcode, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'", "Sundry Creditors", "TRANSPORT")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTRANSPORT_Enter(sender As Object, e As EventArgs) Handles CMBTRANSPORT.Enter
+        Try
+            If CMBTRANSPORT.Text.Trim = "" Then FILLNAME(CMBTRANSPORT, False, "AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'AND LEDGERS.ACC_TYPE= 'TRANSPORT'")
         Catch ex As Exception
             Throw ex
         End Try
