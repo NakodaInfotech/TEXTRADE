@@ -5,8 +5,6 @@ Imports System.IO.Compression
 
 Public Class MDIMain
 
-    Dim ObjExcel As New clsReportDesigner
-
     Public Sub New()
 
         ' This call is required by the designer.
@@ -10585,16 +10583,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AGENCYOUTSTANDING_MENU_Click(sender As Object, e As EventArgs)
-        Try
-            Dim OBJMB As New AgencyOutstandingfilter
-            OBJMB.MdiParent = Me
-            OBJMB.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AddNewManualMatchingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewManualMatchingToolStripMenuItem.Click
         Try
             Dim OBJMM As New AgencyManualMatching
@@ -10971,26 +10959,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem13_Click(sender As Object, e As EventArgs)
-        Try
-            Dim OBJRRFW As New BeamRecdWarper
-            OBJRRFW.MdiParent = Me
-            OBJRRFW.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub EditExistingEntryToolStripMenuItem11_Click(sender As Object, e As EventArgs)
-        Try
-            Dim OBJRRFW As New BeamRecdWarperDetails
-            OBJRRFW.MdiParent = Me
-            OBJRRFW.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub ROLLSRETURNWARPERADD_Click(sender As Object, e As EventArgs) Handles ROLLSRETURNWARPERADD.Click
         Try
             Dim OBJROLLSRET As New RollsReturnFromWarper
@@ -11122,16 +11090,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub YARNJOBORDEREDIT_Click(sender As Object, e As EventArgs) Handles YARNJOBORDEREDIT.Click
-        Try
-            Dim OBJMASTERTRANSFER As New YarnJobOrderDetails
-            OBJMASTERTRANSFER.MdiParent = Me
-            OBJMASTERTRANSFER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AddNewEntryToolStripMenuItem8_Click_1(sender As Object, e As EventArgs) Handles YARNINTERGODOWNADD.Click
         Try
             Dim OBJHOLD As New YarnInterGodownTransfer
@@ -11162,5 +11120,13 @@ SKIPLINE:
         End Try
     End Sub
 
-
+    Private Sub YARNJOBORDEREDIT_Click(sender As Object, e As EventArgs) Handles YARNJOBORDEREDIT.Click
+        Try
+            Dim OBJMASTERTRANSFER As New YarnJobOrderDetails
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
