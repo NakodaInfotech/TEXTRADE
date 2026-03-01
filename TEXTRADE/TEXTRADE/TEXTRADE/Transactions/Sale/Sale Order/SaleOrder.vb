@@ -3879,48 +3879,14 @@ LINE1:
         Try
             If ClientName = "SWPL" Then
                 If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And ((SALEORDERONMTRS = False And Val(txtQTY.Text.Trim) > 0) Or (SALEORDERONMTRS = True And Val(TXTMTRS.Text.Trim) > 0)) Then
-                    'If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
-                    '    If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    'End If
-                    'fillgrid()
-                    'total()
 
-                    'IF COLOR IS NOT BLANK THEN ADD ONLY THAT MATCHING
-                    If cmbcolor.Text.Trim = "" And GRIDDOUBLECLICK = False And ClientName = "SOFTAS" Then
-                        If MsgBox("Enter Order for all Shade?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo LINESINGLE
-                        Dim OBJCMN As New ClsCommon
-                        Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT COLORMASTER.COLOR_name AS MATCHING FROM DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id WHERE DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId, "", "")
-                        For Each DTROW As DataRow In DT.Rows
 
-                            GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, DTROW("MATCHING"))
-                            If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
-                                If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                            End If
-
-                            CALC()
-                            If ClientName <> "SWPL" Then
-                                fillgrid(DTROW("MATCHING"))
-                            End If
-                            TOTAL()
-                        Next
-                    Else
 LINESINGLE:
 
-                        If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
-                            If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                        End If
-                        If ClientName = "SOFTAS" AndAlso cmbcolor.Text.Trim <> "" Then
-                            fillgrid(cmbcolor.Text.Trim)
-                        Else
-                            If ClientName = "SOFTAS" Then
-                                MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
-                                cmbcolor.Focus()
-                                Exit Sub
-                            End If
-                        End If
-                        If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
-                        TOTAL()
-                    End If
+
+
+                    If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
+                    TOTAL()
                 Else
                     MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
                     Exit Sub
