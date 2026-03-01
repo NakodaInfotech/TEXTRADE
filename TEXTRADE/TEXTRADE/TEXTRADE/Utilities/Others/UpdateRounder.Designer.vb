@@ -41,6 +41,10 @@ Partial Class UpdateRounder
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GCONTRACTOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDUPDATE = New System.Windows.Forms.Button()
+        Me.cmdEXIT = New System.Windows.Forms.Button()
+        Me.cmdOK = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDPARTY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDITEM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +68,8 @@ Partial Class UpdateRounder
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.cmdEXIT)
+        Me.BlendPanel1.Controls.Add(Me.CMDUPDATE)
         Me.BlendPanel1.Controls.Add(Me.CMBROUNDER)
         Me.BlendPanel1.Controls.Add(Me.Label5)
         Me.BlendPanel1.Controls.Add(Me.GRIDPARTY)
@@ -116,7 +121,7 @@ Partial Class UpdateRounder
         '
         Me.GRIDITEM.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDITEM.Appearance.Row.Options.UseFont = True
-        Me.GRIDITEM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME})
+        Me.GRIDITEM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GCONTRACTOR})
         Me.GRIDITEM.GridControl = Me.GRIDPARTY
         Me.GRIDITEM.Name = "GRIDITEM"
         Me.GRIDITEM.OptionsBehavior.AllowIncrementalSearch = True
@@ -224,6 +229,57 @@ Partial Class UpdateRounder
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'GCONTRACTOR
+        '
+        Me.GCONTRACTOR.Caption = "GridColumn1"
+        Me.GCONTRACTOR.Name = "GCONTRACTOR"
+        Me.GCONTRACTOR.OptionsColumn.AllowEdit = False
+        Me.GCONTRACTOR.Visible = True
+        Me.GCONTRACTOR.VisibleIndex = 1
+        Me.GCONTRACTOR.Width = 200
+        '
+        'CMDUPDATE
+        '
+        Me.CMDUPDATE.BackColor = System.Drawing.Color.Transparent
+        Me.CMDUPDATE.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDUPDATE.FlatAppearance.BorderSize = 0
+        Me.CMDUPDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDUPDATE.ForeColor = System.Drawing.Color.Black
+        Me.CMDUPDATE.Location = New System.Drawing.Point(71, 96)
+        Me.CMDUPDATE.Name = "CMDUPDATE"
+        Me.CMDUPDATE.Size = New System.Drawing.Size(80, 28)
+        Me.CMDUPDATE.TabIndex = 720
+        Me.CMDUPDATE.Text = "&Update"
+        Me.CMDUPDATE.UseVisualStyleBackColor = False
+        '
+        'cmdEXIT
+        '
+        Me.cmdEXIT.BackColor = System.Drawing.Color.Transparent
+        Me.cmdEXIT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdEXIT.FlatAppearance.BorderSize = 0
+        Me.cmdEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdEXIT.ForeColor = System.Drawing.Color.Black
+        Me.cmdEXIT.Location = New System.Drawing.Point(168, 96)
+        Me.cmdEXIT.Name = "cmdEXIT"
+        Me.cmdEXIT.Size = New System.Drawing.Size(80, 28)
+        Me.cmdEXIT.TabIndex = 721
+        Me.cmdEXIT.Text = "E&xit"
+        Me.cmdEXIT.UseVisualStyleBackColor = False
+        '
+        'cmdOK
+        '
+        Me.cmdOK.BackColor = System.Drawing.Color.Transparent
+        Me.cmdOK.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdOK.FlatAppearance.BorderSize = 0
+        Me.cmdOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdOK.ForeColor = System.Drawing.Color.Black
+        Me.cmdOK.Location = New System.Drawing.Point(71, 96)
+        Me.cmdOK.Name = "cmdOK"
+        Me.cmdOK.Size = New System.Drawing.Size(80, 28)
+        Me.cmdOK.TabIndex = 720
+        Me.cmdOK.Text = "&Update"
+        Me.cmdOK.UseVisualStyleBackColor = False
+        '
         'UpdateRounder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -263,4 +319,8 @@ Partial Class UpdateRounder
     Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CMBROUNDER As ComboBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents GCONTRACTOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDUPDATE As Button
+    Friend WithEvents cmdEXIT As Button
+    Friend WithEvents cmdOK As Button
 End Class

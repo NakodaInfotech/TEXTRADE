@@ -31,9 +31,9 @@ Partial Class RollsRecdFromWarperDetails
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWARPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONTRACTORNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gprogramno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPROGRAMSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPROGRAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,7 +58,6 @@ Partial Class RollsRecdFromWarperDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.GCONTRACTORNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,7 +121,7 @@ Partial Class RollsRecdFromWarperDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLRECDNO, Me.GDATE, Me.GGODOWN, Me.GWARPER, Me.GCONTRACTORNAME, Me.GCHALLANNO, Me.gprogramno, Me.GPROGRAMSRNO, Me.GQUALITY, Me.GMILLNAME, Me.GENDS, Me.GLENGTH, Me.GTL, Me.GCUT, Me.GROLLS, Me.GWT, Me.GRETWT, Me.GUSEDWT, Me.GCOUNT, Me.GNARR, Me.GOUTROLLS, Me.GOUTWT, Me.GLONGATION, Me.GCUTWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GROLLRECDNO, Me.GDATE, Me.GGODOWN, Me.GWARPER, Me.GCONTRACTORNAME, Me.GCHALLANNO, Me.GPROGRAMNO, Me.GQUALITY, Me.GMILLNAME, Me.GENDS, Me.GLENGTH, Me.GTL, Me.GCUT, Me.GROLLS, Me.GWT, Me.GRETWT, Me.GUSEDWT, Me.GCOUNT, Me.GNARR, Me.GOUTROLLS, Me.GOUTWT, Me.GLONGATION, Me.GCUTWT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -173,6 +172,16 @@ Partial Class RollsRecdFromWarperDetails
         Me.GWARPER.VisibleIndex = 2
         Me.GWARPER.Width = 220
         '
+        'GCONTRACTORNAME
+        '
+        Me.GCONTRACTORNAME.Caption = "Contractor Name"
+        Me.GCONTRACTORNAME.FieldName = "CONTRACTORNAME"
+        Me.GCONTRACTORNAME.Name = "GCONTRACTORNAME"
+        Me.GCONTRACTORNAME.OptionsColumn.AllowEdit = False
+        Me.GCONTRACTORNAME.Visible = True
+        Me.GCONTRACTORNAME.VisibleIndex = 3
+        Me.GCONTRACTORNAME.Width = 150
+        '
         'GCHALLANNO
         '
         Me.GCHALLANNO.Caption = "Challan No."
@@ -182,22 +191,14 @@ Partial Class RollsRecdFromWarperDetails
         Me.GCHALLANNO.Visible = True
         Me.GCHALLANNO.VisibleIndex = 4
         '
-        'gprogramno
+        'GPROGRAMNO
         '
-        Me.gprogramno.Caption = "Prog No"
-        Me.gprogramno.FieldName = "PROGRAMNO"
-        Me.gprogramno.Name = "gprogramno"
-        Me.gprogramno.OptionsColumn.AllowEdit = False
-        Me.gprogramno.Width = 60
-        '
-        'GPROGRAMSRNO
-        '
-        Me.GPROGRAMSRNO.Caption = "Prog No."
-        Me.GPROGRAMSRNO.FieldName = "PROGRAMSRNO"
-        Me.GPROGRAMSRNO.Name = "GPROGRAMSRNO"
-        Me.GPROGRAMSRNO.Visible = True
-        Me.GPROGRAMSRNO.VisibleIndex = 5
-        Me.GPROGRAMSRNO.Width = 60
+        Me.GPROGRAMNO.Caption = "Prog No."
+        Me.GPROGRAMNO.FieldName = "PROGRAMNO"
+        Me.GPROGRAMNO.Name = "GPROGRAMNO"
+        Me.GPROGRAMNO.Visible = True
+        Me.GPROGRAMNO.VisibleIndex = 5
+        Me.GPROGRAMNO.Width = 60
         '
         'GQUALITY
         '
@@ -419,16 +420,6 @@ Partial Class RollsRecdFromWarperDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'GCONTRACTORNAME
-        '
-        Me.GCONTRACTORNAME.Caption = "Contractor Name"
-        Me.GCONTRACTORNAME.FieldName = "CONTRACTORNAME"
-        Me.GCONTRACTORNAME.Name = "GCONTRACTORNAME"
-        Me.GCONTRACTORNAME.OptionsColumn.AllowEdit = False
-        Me.GCONTRACTORNAME.Visible = True
-        Me.GCONTRACTORNAME.VisibleIndex = 3
-        Me.GCONTRACTORNAME.Width = 150
-        '
         'RollsRecdFromWarperDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -461,8 +452,7 @@ Partial Class RollsRecdFromWarperDetails
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GWARPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gprogramno As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPROGRAMSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPROGRAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn

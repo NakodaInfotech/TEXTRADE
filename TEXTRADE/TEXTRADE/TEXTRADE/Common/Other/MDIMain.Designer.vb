@@ -1283,6 +1283,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6967,20 +6968,20 @@ Partial Class MDIMain
         '
         Me.WEFTADD.Enabled = False
         Me.WEFTADD.Name = "WEFTADD"
-        Me.WEFTADD.Size = New System.Drawing.Size(180, 22)
+        Me.WEFTADD.Size = New System.Drawing.Size(168, 22)
         Me.WEFTADD.Text = "&Add New Entry"
         '
         'WEFTEDIT
         '
         Me.WEFTEDIT.Enabled = False
         Me.WEFTEDIT.Name = "WEFTEDIT"
-        Me.WEFTEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.WEFTEDIT.Size = New System.Drawing.Size(168, 22)
         Me.WEFTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(165, 6)
         '
         'BEAMISSUE_MASTER
         '
@@ -6995,20 +6996,20 @@ Partial Class MDIMain
         '
         Me.BEAMISSUEADD.Enabled = False
         Me.BEAMISSUEADD.Name = "BEAMISSUEADD"
-        Me.BEAMISSUEADD.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMISSUEADD.Size = New System.Drawing.Size(168, 22)
         Me.BEAMISSUEADD.Text = "&Add New Entry"
         '
         'BEAMISSUEEDIT
         '
         Me.BEAMISSUEEDIT.Enabled = False
         Me.BEAMISSUEEDIT.Name = "BEAMISSUEEDIT"
-        Me.BEAMISSUEEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMISSUEEDIT.Size = New System.Drawing.Size(168, 22)
         Me.BEAMISSUEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator46
         '
         Me.ToolStripSeparator46.Name = "ToolStripSeparator46"
-        Me.ToolStripSeparator46.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator46.Size = New System.Drawing.Size(165, 6)
         '
         'BEAMISSTOOL
         '
@@ -7067,20 +7068,20 @@ Partial Class MDIMain
         '
         Me.YARNJOBORDERADD.Enabled = False
         Me.YARNJOBORDERADD.Name = "YARNJOBORDERADD"
-        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNJOBORDERADD.Text = "Add New Entry"
         '
         'YARNJOBORDEREDIT
         '
         Me.YARNJOBORDEREDIT.Enabled = False
         Me.YARNJOBORDEREDIT.Name = "YARNJOBORDEREDIT"
-        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNJOBORDEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator340
         '
         Me.ToolStripSeparator340.Name = "ToolStripSeparator340"
-        Me.ToolStripSeparator340.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator340.Size = New System.Drawing.Size(165, 6)
         '
         'WARPING_MASTER
         '
@@ -7304,20 +7305,20 @@ Partial Class MDIMain
         '
         Me.GREYRECDJOBBERADD.Enabled = False
         Me.GREYRECDJOBBERADD.Name = "GREYRECDJOBBERADD"
-        Me.GREYRECDJOBBERADD.Size = New System.Drawing.Size(180, 22)
+        Me.GREYRECDJOBBERADD.Size = New System.Drawing.Size(168, 22)
         Me.GREYRECDJOBBERADD.Text = "&Add New Entry"
         '
         'GREYRECDJOBBEREDIT
         '
         Me.GREYRECDJOBBEREDIT.Enabled = False
         Me.GREYRECDJOBBEREDIT.Name = "GREYRECDJOBBEREDIT"
-        Me.GREYRECDJOBBEREDIT.Size = New System.Drawing.Size(180, 22)
+        Me.GREYRECDJOBBEREDIT.Size = New System.Drawing.Size(168, 22)
         Me.GREYRECDJOBBEREDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator165
         '
         Me.ToolStripSeparator165.Name = "ToolStripSeparator165"
-        Me.ToolStripSeparator165.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator165.Size = New System.Drawing.Size(165, 6)
         '
         'GREYRECDKNITTING_MASTER
         '
@@ -8247,7 +8248,7 @@ Partial Class MDIMain
         '
         'UpdateEntriesToolStripMenuItem
         '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem})
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem, Me.UPDATEROUNDER_MASTER})
         Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
         Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
@@ -9338,10 +9339,6 @@ Partial Class MDIMain
         Me.XtraTabbedMdiManager1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.UseDocumentSelector = DevExpress.Utils.DefaultBoolean.[True]
         '
-        'DefaultLookAndFeel1
-        '
-        Me.DefaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Blue"
-        '
         'LBLCHECKIN
         '
         Me.LBLCHECKIN.AutoSize = True
@@ -9363,6 +9360,12 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
+        '
+        'UPDATEROUNDER_MASTER
+        '
+        Me.UPDATEROUNDER_MASTER.Name = "UPDATEROUNDER_MASTER"
+        Me.UPDATEROUNDER_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.UPDATEROUNDER_MASTER.Text = "Update Rounder"
         '
         'MDIMain
         '
@@ -10650,4 +10653,5 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator342 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator344 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator345 As ToolStripSeparator
+    Friend WithEvents UPDATEROUNDER_MASTER As ToolStripMenuItem
 End Class

@@ -11129,4 +11129,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub UPDATEROUNDER_MASTER_Click(sender As Object, e As EventArgs) Handles UPDATEROUNDER_MASTER.Click
+        Try
+            Dim OBJMASTERTRANSFER As New UpdateRounder
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
