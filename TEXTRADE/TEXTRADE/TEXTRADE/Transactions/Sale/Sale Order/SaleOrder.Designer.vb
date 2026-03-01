@@ -301,7 +301,7 @@ Partial Class SaleOrder
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.SCHDATE = New System.Windows.Forms.DateTimePicker()
+        Me.SCHEDDATE = New System.Windows.Forms.DateTimePicker()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gitemname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -2095,7 +2095,7 @@ Partial Class SaleOrder
         'tbitem
         '
         Me.tbitem.BackColor = System.Drawing.Color.Linen
-        Me.tbitem.Controls.Add(Me.SCHDATE)
+        Me.tbitem.Controls.Add(Me.SCHEDDATE)
         Me.tbitem.Controls.Add(Me.CMBGRIDREMARKS)
         Me.tbitem.Controls.Add(Me.TXTPARTYPONO)
         Me.tbitem.Controls.Add(Me.CMBPER)
@@ -3713,14 +3713,14 @@ Partial Class SaleOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'SCHDATE
+        'SCHEDDATE
         '
-        Me.SCHDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SCHDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.SCHDATE.Location = New System.Drawing.Point(1163, 2)
-        Me.SCHDATE.Name = "SCHDATE"
-        Me.SCHDATE.Size = New System.Drawing.Size(80, 22)
-        Me.SCHDATE.TabIndex = 15
+        Me.SCHEDDATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SCHEDDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.SCHEDDATE.Location = New System.Drawing.Point(1163, 2)
+        Me.SCHEDDATE.Name = "SCHEDDATE"
+        Me.SCHEDDATE.Size = New System.Drawing.Size(80, 22)
+        Me.SCHEDDATE.TabIndex = 15
         '
         'gsrno
         '
@@ -4203,7 +4203,7 @@ Partial Class SaleOrder
     Friend WithEvents LBLCATEGORY As Label
     Friend WithEvents CMBORDERON As ComboBox
     Friend WithEvents LBLORDERON As Label
-    Friend WithEvents SCHDATE As DateTimePicker
+    Friend WithEvents SCHEDDATE As DateTimePicker
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents gitemname As DataGridViewTextBoxColumn
     Friend WithEvents GQUALITY As DataGridViewTextBoxColumn
