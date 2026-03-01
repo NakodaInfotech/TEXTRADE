@@ -572,7 +572,9 @@ Public Class BeamMaster
                     '    TXTGRIDWT.Text = Format((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim) * Val(DT.Rows(0).Item("DENIER"))) / 9000000, "0.000")
                     'Else
                     '    '((ENDS * TL)/1850)/COUNT
-                    TXTGRIDWT.Text = Format(((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim)) / 1850) / Val(DT.Rows(0).Item("COUNT")), "0.000")
+
+
+                    TXTGRIDWT.Text = Format(((Val(TXTGRIDENDS.Text.Trim) * Val(TXTTL.Text.Trim)) / 1850) / Val(DT.Rows(0).Item("DENIER")), "0.000")
                     'End If
                 End If
             End If
