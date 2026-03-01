@@ -216,7 +216,6 @@ Public Class RollsIssueToSizer
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
-            alParaval.Add(TXTPROGRAMSRNO.Text.Trim)
 
 
             Dim SRNO As String = ""
@@ -271,6 +270,7 @@ Public Class RollsIssueToSizer
             alParaval.Add(FROMSRNO)
             alParaval.Add(FROMTYPE)
 
+            alParaval.Add(TXTPROGRAMSRNO.Text.Trim)
 
 
             Dim OBJROLLISSUE As New ClsRollIssueToSizer
