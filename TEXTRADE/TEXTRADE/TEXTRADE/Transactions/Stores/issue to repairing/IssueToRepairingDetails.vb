@@ -69,10 +69,10 @@ Public Class IssueToRepairingDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJSTORES As New StoreConsumption
+                Dim OBJSTORES As New IssueToRepairing
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.TEMPCONSUMENO = INWARDNO
+                OBJSTORES.TEMPREPAIRNO = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
@@ -82,7 +82,7 @@ Public Class IssueToRepairingDetails
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("REPAIRNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -90,7 +90,7 @@ Public Class IssueToRepairingDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("REPAIRNO"))
         Catch ex As Exception
             Throw ex
         End Try
