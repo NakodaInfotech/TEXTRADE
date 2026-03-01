@@ -143,6 +143,7 @@ Public Class SaleOrder
             Dim RATE As String = ""
             Dim PER As String = ""
             Dim AMOUNT As String = ""
+            Dim SCHDATE As String = ""
             Dim RECDQTY As String = ""
             Dim RECDMTRS As String = ""
             Dim DONE As String = ""
@@ -166,6 +167,7 @@ Public Class SaleOrder
                         RATE = row.Cells(GRATE.Index).Value
                         PER = row.Cells(GPER.Index).Value
                         AMOUNT = row.Cells(GAMOUNT.Index).Value
+                        SCHDATE = Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         RECDQTY = Val(row.Cells(GRECDQTY.Index).Value)
                         RECDMTRS = Val(row.Cells(GRECDMTRS.Index).Value)
 
