@@ -3133,28 +3133,28 @@
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.Designer.vb">
-      <DependentUpon>JobOrder.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrder.Designer.vb">
+      <DependentUpon>YarnJobOrder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.Designer.vb">
-      <DependentUpon>JobOrderDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.Designer.vb">
+      <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.Designer.vb">
-      <DependentUpon>JobOrderWarpDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWarpDetails.Designer.vb">
+      <DependentUpon>YarnJobOrderWarpDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWarpDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.Designer.vb">
-      <DependentUpon>JobOrderWeftDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWeftDetails.Designer.vb">
+      <DependentUpon>YarnJobOrderWeftDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWeftDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
@@ -10710,17 +10710,17 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransferDetails.resx">
       <DependentUpon>YarnInterGodownTransferDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrder.resx">
-      <DependentUpon>JobOrder.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrder.resx">
+      <DependentUpon>YarnJobOrder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderDetails.resx">
-      <DependentUpon>JobOrderDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.resx">
+      <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWarpDetails.resx">
-      <DependentUpon>JobOrderWarpDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWarpDetails.resx">
+      <DependentUpon>YarnJobOrderWarpDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\JobOrderWeftDetails.resx">
-      <DependentUpon>JobOrderWeftDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderWeftDetails.resx">
+      <DependentUpon>YarnJobOrderWeftDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>

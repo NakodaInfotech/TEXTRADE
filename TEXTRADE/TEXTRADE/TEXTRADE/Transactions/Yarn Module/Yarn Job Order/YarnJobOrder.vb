@@ -6,7 +6,7 @@ Imports BL
 Imports DevExpress.XtraGrid.Drawing
 
 
-Public Class JobOrder
+Public Class YarnJobOrder
 
 
     Public EDIT As Boolean              'Used for edit

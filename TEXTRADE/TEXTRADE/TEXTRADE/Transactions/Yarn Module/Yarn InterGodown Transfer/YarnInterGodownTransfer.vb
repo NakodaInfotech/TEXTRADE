@@ -1,23 +1,19 @@
 ﻿
 Imports BL
 Imports System.ComponentModel
+
 Public Class YarnInterGodownTransfer
+
     Dim IntResult As Integer
     Dim GRIDDOUBLECLICK As Boolean
-    Dim GRIDUPLOADDOUBLECLICK As Boolean
     Public TEMPGODOWNNO As Integer          'used for editing
     Public EDIT As Boolean          'used for editing
     Dim TEMPROW As Integer
-    Dim TEMPUPLOADROW As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim TEMPMSG As Integer
-    Dim TEMPMTRS As Double = 0.0
-
 
     Dim PARTYCHALLANNO As String
     Dim ALLOWMANUALJONO As Boolean = False
-
-
 
     Public Sub New()
 
@@ -27,10 +23,12 @@ Public Class YarnInterGodownTransfer
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
-    Sub clear()
+
+    Sub CLEAR()
 
         EP.Clear()
         TXTGODOWNNO.Clear()
@@ -59,7 +57,6 @@ Public Class YarnInterGodownTransfer
         TXTISSUEBY.Clear()
         GRIDJO.RowCount = 0
         GRIDDOUBLECLICK = False
-        GRIDUPLOADDOUBLECLICK = False
         getmaxno()
 
         'TXTLRNO.Clear()
@@ -71,18 +68,19 @@ Public Class YarnInterGodownTransfer
         CMBTOGODOWN.Text = ""
     End Sub
 
-
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         clear()
         EDIT = False
         'CMBFROMGODOWN.Focus()
     End Sub
+
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(YTRANSFER_no),0) + 1 ", " YARNINTERGODOWNTRANSFER ", " AND YTRANSFER_cmpid=" & CmpId & " and  YTRANSFER_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(YTRANSFER_no),0) + 1 ", " YARNINTERGODOWNTRANSFER ", " AND YTRANSFER_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTGODOWNNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
-    Function errorvalid() As Boolean
+
+    Function ERRORVALID() As Boolean
         Try
             Dim bln As Boolean = True
 
@@ -126,27 +124,12 @@ Public Class YarnInterGodownTransfer
                 bln = False
             End If
 
-            'If ALLOWMANUALJONO = True Then
-            '    If TXTGODOWNNO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
-            '        Dim OBJCMN As New ClsCommon
-            '        Dim dttable As DataTable = OBJCMN.search(" ISNULL(JOBOUT.JO_NO,0)  AS JONO", "", " JOBOUT ", "  AND JOBOUT.JO_NO=" & TXTGODOWNNO.Text.Trim & " AND JOBOUT.JO_CMPID = " & CmpId & " AND JOBOUT.JO_LOCATIONID = " & Locationid & " AND JOBOUT.JO_YEARID = " & YearId)
-            '        If dttable.Rows.Count > 0 Then
-            '            EP.SetError(TXTGODOWNNO, "Job Out No Already Exist")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
-
-
-
-
 
             Return bln
         Catch ex As Exception
             Throw ex
         End Try
     End Function
-
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
