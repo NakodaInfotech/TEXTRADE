@@ -204,6 +204,8 @@ Public Class ClsSaleOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@SCHDATE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RECDQTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RECDMTRS", alParaval(I)))
@@ -422,6 +424,8 @@ Public Class ClsSaleOrder
                 .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SCHDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RECDQTY", alParaval(I)))
                 I = I + 1
