@@ -2,7 +2,7 @@
 Imports BL
 Imports System.Windows.Forms
 
-Public Class JobOrderDetails
+Public Class YarnJobOrderDetails
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
@@ -110,7 +110,7 @@ Public Class JobOrderDetails
 
     Private Sub TOOLWARPGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWARPGRIDDETAILS.Click
         Try
-            Dim OBJINV As New JobOrderWarpDetails
+            Dim OBJINV As New YarnJobOrderWarpDetails
             OBJINV.MdiParent = MDIMain
             OBJINV.Show()
         Catch ex As Exception
@@ -120,7 +120,7 @@ Public Class JobOrderDetails
 
     Private Sub TOOLWEFTGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLWEFTGRIDDETAILS.Click
         Try
-            Dim OBJINV As New JobOrderWeftDetails
+            Dim OBJINV As New YarnJobOrderWeftDetails
             OBJINV.MdiParent = MDIMain
             OBJINV.Show()
         Catch ex As Exception

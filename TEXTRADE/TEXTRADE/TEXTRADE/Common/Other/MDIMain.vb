@@ -11169,7 +11169,7 @@ SKIPLINE:
 
     Private Sub YARNJOBADD_Click(sender As Object, e As EventArgs) Handles YARNJOBWORK_ADD.Click
         Try
-            Dim OBJROLLSTOCKWARPER As New JobOrder
+            Dim OBJROLLSTOCKWARPER As New YarnJobOrder
             OBJROLLSTOCKWARPER.MdiParent = Me
             OBJROLLSTOCKWARPER.Show()
         Catch ex As Exception
@@ -11261,7 +11261,7 @@ SKIPLINE:
 
     Private Sub JOBWORK_EDIT_Click(sender As Object, e As EventArgs) Handles JOBWORK_EDIT.Click
         Try
-            Dim OBJMASTERTRANSFER As New JobOrderDetails
+            Dim OBJMASTERTRANSFER As New YarnJobOrderDetails
             OBJMASTERTRANSFER.MdiParent = Me
             OBJMASTERTRANSFER.Show()
         Catch ex As Exception

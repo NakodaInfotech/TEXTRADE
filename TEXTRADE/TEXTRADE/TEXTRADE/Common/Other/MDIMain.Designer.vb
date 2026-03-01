@@ -1037,7 +1037,7 @@ Partial Class MDIMain
         Me.YARNRECDJOBBEREDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator164 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDJOBBERTOOL = New System.Windows.Forms.ToolStripSeparator()
-        Me.YARNJOBWORK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNJOBORDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNJOBWORK_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.JOBWORK_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNINTERGODOWN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1296,6 +1296,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.YARNPRODUCTION_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1304,7 +1305,7 @@ Partial Class MDIMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.Utilitiesmenu, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.OTHERREPORT_MAIN, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Mastermenuitems, Me.TRANSACTION_MENU, Me.REPORTS_MENU, Me.STORES_MASTER, Me.REGISTER_MAIN, Me.ACCOUNTREPORT_MAIN, Me.YARNMODULE_MENU, Me.AGENCYMODULE_MENU, Me.MAGICBOX_MENU, Me.MASHOK_REPORTS, Me.OTHERREPORT_MAIN, Me.Utilitiesmenu, Me.HelpMenu, Me.TALLYEXPORT_MAIN, Me.CUSTOMREPORTS_MENU})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1288, 24)
@@ -7563,7 +7564,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNSO_MASTER, Me.YARNRECD, Me.YARNINTERGODOWN_MASTER, Me.YARNISSUE, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.YARNDYEINGPROGRAM_MASTER, Me.PRODUCTIONFLOOR_MASTER, Me.YARNCHALLAN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.GreyReceived_MENU, Me.GREYRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNSO_MASTER, Me.YARNRECD, Me.YARNINTERGODOWN_MASTER, Me.YARNISSUE, Me.YARNPRODUCTION_MENU, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.YARNDYEINGPROGRAM_MASTER, Me.PRODUCTIONFLOOR_MASTER, Me.YARNCHALLAN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.GreyReceived_MENU, Me.GREYRECDTOOLSTRIP})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -7649,7 +7650,7 @@ Partial Class MDIMain
         '
         'YARNRECD
         '
-        Me.YARNRECD.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNRECDGREY_MASTER, Me.YARNRECDGODOWN_MASTER, Me.ToolStripSeparator59, Me.YARNRECDJOBBER_MASTER, Me.YARNRECDJOBBERTOOL, Me.YARNJOBWORK_MASTER})
+        Me.YARNRECD.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNRECDGREY_MASTER, Me.YARNRECDGODOWN_MASTER, Me.ToolStripSeparator59, Me.YARNRECDJOBBER_MASTER, Me.YARNRECDJOBBERTOOL, Me.YARNJOBORDER_MASTER})
         Me.YARNRECD.Name = "YARNRECD"
         Me.YARNRECD.Size = New System.Drawing.Size(221, 22)
         Me.YARNRECD.Text = "&Yarn Received"
@@ -7667,20 +7668,20 @@ Partial Class MDIMain
         '
         Me.YARNRECDGREYADD.Enabled = False
         Me.YARNRECDGREYADD.Name = "YARNRECDGREYADD"
-        Me.YARNRECDGREYADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNRECDGREYADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNRECDGREYADD.Text = "&Add New Entry"
         '
         'YARNRECDGREYEDIT
         '
         Me.YARNRECDGREYEDIT.Enabled = False
         Me.YARNRECDGREYEDIT.Name = "YARNRECDGREYEDIT"
-        Me.YARNRECDGREYEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNRECDGREYEDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNRECDGREYEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator216
         '
         Me.ToolStripSeparator216.Name = "ToolStripSeparator216"
-        Me.ToolStripSeparator216.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator216.Size = New System.Drawing.Size(165, 6)
         '
         'YARNRECDGODOWN_MASTER
         '
@@ -7695,20 +7696,20 @@ Partial Class MDIMain
         '
         Me.YARNRECDADD.Enabled = False
         Me.YARNRECDADD.Name = "YARNRECDADD"
-        Me.YARNRECDADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNRECDADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNRECDADD.Text = "&Add New Entry"
         '
         'YARNRECDEDIT
         '
         Me.YARNRECDEDIT.Enabled = False
         Me.YARNRECDEDIT.Name = "YARNRECDEDIT"
-        Me.YARNRECDEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNRECDEDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNRECDEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator33
         '
         Me.ToolStripSeparator33.Name = "ToolStripSeparator33"
-        Me.ToolStripSeparator33.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator33.Size = New System.Drawing.Size(165, 6)
         '
         'ToolStripSeparator59
         '
@@ -7749,23 +7750,23 @@ Partial Class MDIMain
         Me.YARNRECDJOBBERTOOL.Size = New System.Drawing.Size(192, 6)
         Me.YARNRECDJOBBERTOOL.Visible = False
         '
-        'YARNJOBWORK_MASTER
+        'YARNJOBORDER_MASTER
         '
-        Me.YARNJOBWORK_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNJOBWORK_ADD, Me.JOBWORK_EDIT})
-        Me.YARNJOBWORK_MASTER.Name = "YARNJOBWORK_MASTER"
-        Me.YARNJOBWORK_MASTER.Size = New System.Drawing.Size(195, 22)
-        Me.YARNJOBWORK_MASTER.Text = "Yarn Job Work"
+        Me.YARNJOBORDER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNJOBWORK_ADD, Me.JOBWORK_EDIT})
+        Me.YARNJOBORDER_MASTER.Name = "YARNJOBORDER_MASTER"
+        Me.YARNJOBORDER_MASTER.Size = New System.Drawing.Size(195, 22)
+        Me.YARNJOBORDER_MASTER.Text = "Yarn Job Work"
         '
         'YARNJOBWORK_ADD
         '
         Me.YARNJOBWORK_ADD.Name = "YARNJOBWORK_ADD"
-        Me.YARNJOBWORK_ADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNJOBWORK_ADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNJOBWORK_ADD.Text = "Add New Entry"
         '
         'JOBWORK_EDIT
         '
         Me.JOBWORK_EDIT.Name = "JOBWORK_EDIT"
-        Me.JOBWORK_EDIT.Size = New System.Drawing.Size(168, 22)
+        Me.JOBWORK_EDIT.Size = New System.Drawing.Size(180, 22)
         Me.JOBWORK_EDIT.Text = "Edit Existing Entry"
         '
         'YARNINTERGODOWN_MASTER
@@ -8856,7 +8857,7 @@ Partial Class MDIMain
         '
         Me.TCSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSCHALLAN_MASTER, Me.ToolStripSeparator239})
         Me.TCSReportsToolStripMenuItem.Name = "TCSReportsToolStripMenuItem"
-        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TCSReportsToolStripMenuItem.Text = "TCS Reports"
         '
         'TCSCHALLAN_MASTER
@@ -8873,13 +8874,13 @@ Partial Class MDIMain
         'ToolStripSeparator237
         '
         Me.ToolStripSeparator237.Name = "ToolStripSeparator237"
-        Me.ToolStripSeparator237.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator237.Size = New System.Drawing.Size(177, 6)
         '
         'TDSReportsToolStripMenuItem
         '
         Me.TDSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TDSToolStripMenuItem, Me.TDSCHALLAN_MASTER, Me.TDSDeductedNotDedictedReportToolStripMenuItem, Me.ToolStripSeparator238})
         Me.TDSReportsToolStripMenuItem.Name = "TDSReportsToolStripMenuItem"
-        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TDSReportsToolStripMenuItem.Text = "TDS Reports"
         '
         'TDSToolStripMenuItem
@@ -8908,13 +8909,13 @@ Partial Class MDIMain
         'ToolStripSeparator44
         '
         Me.ToolStripSeparator44.Name = "ToolStripSeparator44"
-        Me.ToolStripSeparator44.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator44.Size = New System.Drawing.Size(177, 6)
         '
         'InterestCalculatorToolStripMenuItem
         '
         Me.InterestCalculatorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InterestToolStripMenuItem, Me.IntrestCalculatorSummaryToolStripMenuItem, Me.ToolStripSeparator60, Me.InterestCalculatorBillWiseToolStripMenuItem, Me.ToolStripSeparator187})
         Me.InterestCalculatorToolStripMenuItem.Name = "InterestCalculatorToolStripMenuItem"
-        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.InterestCalculatorToolStripMenuItem.Text = "Interest Calculator"
         '
         'InterestToolStripMenuItem
@@ -8948,25 +8949,25 @@ Partial Class MDIMain
         'ToolStripSeparator62
         '
         Me.ToolStripSeparator62.Name = "ToolStripSeparator62"
-        Me.ToolStripSeparator62.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator62.Size = New System.Drawing.Size(177, 6)
         '
         'REMINDERREPORT_MASTER
         '
         Me.REMINDERREPORT_MASTER.Name = "REMINDERREPORT_MASTER"
-        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.REMINDERREPORT_MASTER.Text = "Reminder Report"
         '
         'ToolStripSeparator246
         '
         Me.ToolStripSeparator246.Name = "ToolStripSeparator246"
-        Me.ToolStripSeparator246.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator246.Size = New System.Drawing.Size(177, 6)
         '
         'LOGS_MASTER
         '
         Me.LOGS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATELOGS_MASTER, Me.DELETELOGS_MASTER, Me.ToolStripSeparator247})
         Me.LOGS_MASTER.Enabled = False
         Me.LOGS_MASTER.Name = "LOGS_MASTER"
-        Me.LOGS_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.LOGS_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.LOGS_MASTER.Text = "Logs"
         '
         'UPDATELOGS_MASTER
@@ -8989,19 +8990,19 @@ Partial Class MDIMain
         'ToolStripSeparator54
         '
         Me.ToolStripSeparator54.Name = "ToolStripSeparator54"
-        Me.ToolStripSeparator54.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator54.Size = New System.Drawing.Size(177, 6)
         '
         'COSTREPORT_MASTER
         '
         Me.COSTREPORT_MASTER.Name = "COSTREPORT_MASTER"
-        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.COSTREPORT_MASTER.Text = "Cost Report"
         Me.COSTREPORT_MASTER.Visible = False
         '
         'TOOLCOSTREPORT
         '
         Me.TOOLCOSTREPORT.Name = "TOOLCOSTREPORT"
-        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(172, 6)
+        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(177, 6)
         Me.TOOLCOSTREPORT.Visible = False
         '
         'HelpMenu
@@ -9474,6 +9475,13 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
+        '
+        'YARNPRODUCTION_MENU
+        '
+        Me.YARNPRODUCTION_MENU.Name = "YARNPRODUCTION_MENU"
+        Me.YARNPRODUCTION_MENU.Size = New System.Drawing.Size(221, 22)
+        Me.YARNPRODUCTION_MENU.Text = "Production Modules"
+        Me.YARNPRODUCTION_MENU.Visible = False
         '
         'MDIMain
         '
@@ -10759,7 +10767,7 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator328 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator338 As ToolStripSeparator
     Friend WithEvents ROLLSTOCK_WARPER As ToolStripMenuItem
-    Friend WithEvents YARNJOBWORK_MASTER As ToolStripMenuItem
+    Friend WithEvents YARNJOBORDER_MASTER As ToolStripMenuItem
     Friend WithEvents YARNJOBWORK_ADD As ToolStripMenuItem
     Friend WithEvents STORESSTOCKADJUSTMENT_MASTER As ToolStripMenuItem
     Friend WithEvents STORESSTOCKADD As ToolStripMenuItem
@@ -10774,4 +10782,5 @@ Partial Class MDIMain
     Friend WithEvents JOBWORK_EDIT As ToolStripMenuItem
     Friend WithEvents YARNINTERGODOWNADD As ToolStripMenuItem
     Friend WithEvents YARNINTERGODOWNEDIT As ToolStripMenuItem
+    Friend WithEvents YARNPRODUCTION_MENU As ToolStripMenuItem
 End Class

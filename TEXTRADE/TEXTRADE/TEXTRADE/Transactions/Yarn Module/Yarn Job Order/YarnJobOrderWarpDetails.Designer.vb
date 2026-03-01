@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class JobOrderWeftDetails
+Partial Class YarnJobOrderWarpDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class JobOrderWeftDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(JobOrderWeftDetails))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnJobOrderWarpDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -32,15 +32,15 @@ Partial Class JobOrderWeftDetails
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTGRIDSYM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDENIER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTBE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTTE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWEFTWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPGRIDSYM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPDENIER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPBE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPTE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARPWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -159,7 +159,7 @@ Partial Class JobOrderWeftDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GWEFTGRIDSYM, Me.GYARNQUALITY, Me.GDENIER, Me.GWEFTMILLNAME, Me.GWEFTSHADE, Me.GWEFTPE, Me.GWEFTBE, Me.GWEFTTE, Me.GWEFTWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GWARPGRIDSYM, Me.GWARPYARNQUALITY, Me.GWARPDENIER, Me.GWARPMILLNAME, Me.GWARPSHADE, Me.GWARPPE, Me.GWARPBE, Me.GWARPTE, Me.GWARPWT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -179,98 +179,98 @@ Partial Class JobOrderWeftDetails
         Me.gsrno.Name = "gsrno"
         Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 2
+        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 60
         '
-        'GWEFTGRIDSYM
+        'GWARPGRIDSYM
         '
-        Me.GWEFTGRIDSYM.Caption = "Grid Sym"
-        Me.GWEFTGRIDSYM.FieldName = "WEFTGRIDSYM"
-        Me.GWEFTGRIDSYM.Name = "GWEFTGRIDSYM"
-        Me.GWEFTGRIDSYM.OptionsColumn.AllowEdit = False
-        Me.GWEFTGRIDSYM.Visible = True
-        Me.GWEFTGRIDSYM.VisibleIndex = 3
+        Me.GWARPGRIDSYM.Caption = "Grid Sym"
+        Me.GWARPGRIDSYM.FieldName = "WARPGRIDSYM"
+        Me.GWARPGRIDSYM.Name = "GWARPGRIDSYM"
+        Me.GWARPGRIDSYM.OptionsColumn.AllowEdit = False
+        Me.GWARPGRIDSYM.Visible = True
+        Me.GWARPGRIDSYM.VisibleIndex = 2
         '
-        'GYARNQUALITY
+        'GWARPYARNQUALITY
         '
-        Me.GYARNQUALITY.Caption = "Yarn Quality"
-        Me.GYARNQUALITY.FieldName = "WEFTYARNQUALITY"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
-        Me.GYARNQUALITY.Visible = True
-        Me.GYARNQUALITY.VisibleIndex = 3
-        Me.GYARNQUALITY.Width = 200
+        Me.GWARPYARNQUALITY.Caption = "Yarn Quality"
+        Me.GWARPYARNQUALITY.FieldName = "WARPYARNQUALITY"
+        Me.GWARPYARNQUALITY.ImageOptions.ImageIndex = 0
+        Me.GWARPYARNQUALITY.Name = "GWARPYARNQUALITY"
+        Me.GWARPYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GWARPYARNQUALITY.Visible = True
+        Me.GWARPYARNQUALITY.VisibleIndex = 3
+        Me.GWARPYARNQUALITY.Width = 230
         '
-        'GDENIER
+        'GWARPDENIER
         '
-        Me.GDENIER.Caption = "Denier"
-        Me.GDENIER.FieldName = "WEFTDENIER"
-        Me.GDENIER.ImageOptions.ImageIndex = 0
-        Me.GDENIER.Name = "GDENIER"
-        Me.GDENIER.OptionsColumn.AllowEdit = False
-        Me.GDENIER.Visible = True
-        Me.GDENIER.VisibleIndex = 5
-        Me.GDENIER.Width = 100
+        Me.GWARPDENIER.Caption = "Denier"
+        Me.GWARPDENIER.FieldName = "WARPDENIER"
+        Me.GWARPDENIER.Name = "GWARPDENIER"
+        Me.GWARPDENIER.OptionsColumn.AllowEdit = False
+        Me.GWARPDENIER.Visible = True
+        Me.GWARPDENIER.VisibleIndex = 4
+        Me.GWARPDENIER.Width = 120
         '
-        'GWEFTMILLNAME
+        'GWARPMILLNAME
         '
-        Me.GWEFTMILLNAME.Caption = "Mill Name"
-        Me.GWEFTMILLNAME.FieldName = "WEFTMILLNAME"
-        Me.GWEFTMILLNAME.Name = "GWEFTMILLNAME"
-        Me.GWEFTMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GWEFTMILLNAME.Visible = True
-        Me.GWEFTMILLNAME.VisibleIndex = 5
-        Me.GWEFTMILLNAME.Width = 200
+        Me.GWARPMILLNAME.Caption = "Mill Name"
+        Me.GWARPMILLNAME.FieldName = "WARPMILLNAME"
+        Me.GWARPMILLNAME.Name = "GWARPMILLNAME"
+        Me.GWARPMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GWARPMILLNAME.Visible = True
+        Me.GWARPMILLNAME.VisibleIndex = 5
+        Me.GWARPMILLNAME.Width = 200
         '
-        'GWEFTSHADE
+        'GWARPSHADE
         '
-        Me.GWEFTSHADE.Caption = "Shade"
-        Me.GWEFTSHADE.FieldName = "WEFTSHADE"
-        Me.GWEFTSHADE.Name = "GWEFTSHADE"
-        Me.GWEFTSHADE.OptionsColumn.AllowEdit = False
-        Me.GWEFTSHADE.Visible = True
-        Me.GWEFTSHADE.VisibleIndex = 7
-        Me.GWEFTSHADE.Width = 120
+        Me.GWARPSHADE.Caption = "Shade"
+        Me.GWARPSHADE.FieldName = "WARPSHADE"
+        Me.GWARPSHADE.Name = "GWARPSHADE"
+        Me.GWARPSHADE.OptionsColumn.AllowEdit = False
+        Me.GWARPSHADE.Visible = True
+        Me.GWARPSHADE.VisibleIndex = 6
+        Me.GWARPSHADE.Width = 120
         '
-        'GWEFTPE
+        'GWARPPE
         '
-        Me.GWEFTPE.Caption = "PE"
-        Me.GWEFTPE.FieldName = "WEFTPE"
-        Me.GWEFTPE.Name = "GWEFTPE"
-        Me.GWEFTPE.OptionsColumn.AllowEdit = False
-        Me.GWEFTPE.Visible = True
-        Me.GWEFTPE.VisibleIndex = 7
-        Me.GWEFTPE.Width = 80
+        Me.GWARPPE.Caption = "PE"
+        Me.GWARPPE.FieldName = "WARPPE"
+        Me.GWARPPE.Name = "GWARPPE"
+        Me.GWARPPE.OptionsColumn.AllowEdit = False
+        Me.GWARPPE.Visible = True
+        Me.GWARPPE.VisibleIndex = 7
+        Me.GWARPPE.Width = 80
         '
-        'GWEFTBE
+        'GWARPBE
         '
-        Me.GWEFTBE.Caption = "BE"
-        Me.GWEFTBE.FieldName = "WEFTBE"
-        Me.GWEFTBE.Name = "GWEFTBE"
-        Me.GWEFTBE.OptionsColumn.AllowEdit = False
-        Me.GWEFTBE.Visible = True
-        Me.GWEFTBE.VisibleIndex = 8
-        Me.GWEFTBE.Width = 80
+        Me.GWARPBE.Caption = "BE"
+        Me.GWARPBE.FieldName = "GWARPBE"
+        Me.GWARPBE.Name = "GWARPBE"
+        Me.GWARPBE.OptionsColumn.AllowEdit = False
+        Me.GWARPBE.Visible = True
+        Me.GWARPBE.VisibleIndex = 8
+        Me.GWARPBE.Width = 80
         '
-        'GWEFTTE
+        'GWARPTE
         '
-        Me.GWEFTTE.Caption = "TE"
-        Me.GWEFTTE.FieldName = "WEFTTE"
-        Me.GWEFTTE.Name = "GWEFTTE"
-        Me.GWEFTTE.OptionsColumn.AllowEdit = False
-        Me.GWEFTTE.Visible = True
-        Me.GWEFTTE.VisibleIndex = 9
-        Me.GWEFTTE.Width = 80
+        Me.GWARPTE.Caption = "TE"
+        Me.GWARPTE.FieldName = "WARPTE"
+        Me.GWARPTE.Name = "GWARPTE"
+        Me.GWARPTE.OptionsColumn.AllowEdit = False
+        Me.GWARPTE.Visible = True
+        Me.GWARPTE.VisibleIndex = 9
+        Me.GWARPTE.Width = 80
         '
-        'GWEFTWT
+        'GWARPWT
         '
-        Me.GWEFTWT.Caption = "WT"
-        Me.GWEFTWT.FieldName = "WEFTWT"
-        Me.GWEFTWT.Name = "GWEFTWT"
-        Me.GWEFTWT.OptionsColumn.AllowEdit = False
-        Me.GWEFTWT.Visible = True
-        Me.GWEFTWT.VisibleIndex = 10
-        Me.GWEFTWT.Width = 80
+        Me.GWARPWT.Caption = "WT"
+        Me.GWARPWT.FieldName = "GWARPWT"
+        Me.GWARPWT.Name = "GWARPWT"
+        Me.GWARPWT.OptionsColumn.AllowEdit = False
+        Me.GWARPWT.Visible = True
+        Me.GWARPWT.VisibleIndex = 10
+        Me.GWARPWT.Width = 80
         '
         'CHKEDIT
         '
@@ -395,16 +395,16 @@ Partial Class JobOrderWeftDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'JobOrderWeftDetails
+        'JobOrderWarpDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "JobOrderWeftDetails"
+        Me.Name = "JobOrderWarpDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "JobOrderWeftDetails"
+        Me.Text = "JobOrderWarpDetails"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -426,15 +426,15 @@ Partial Class JobOrderWeftDetails
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Private WithEvents gsrno As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTGRIDSYM As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GDENIER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTSHADE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTBE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTTE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWEFTWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPGRIDSYM As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GWARPYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPDENIER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPSHADE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPBE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPTE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARPWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKEDIT As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CMDOK As Button
     Friend WithEvents cmdcancel As Button
